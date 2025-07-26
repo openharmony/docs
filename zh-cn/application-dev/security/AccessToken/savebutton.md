@@ -20,16 +20,10 @@
 
 - 为了保障用户的隐私不被恶意应用获取，应用需确保安全控件是可见的且用户能够识别的。开发者需要合理的配置控件的尺寸、颜色等属性，避免视觉混淆的情况，如果发生因控件的样式不合法导致授权失败的情况，请检查设备错误日志。
 
-- 当开发者需要自定义保存控件的图标和文本时，需要向应用市场申请ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，此时点击保存控件时会弹出系统提示弹框。
-  此外，当应用具有ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，且保存控件不满足[约束与限制](security-component-overview.md#约束与限制)时，也会弹出保存控件系统提示弹框。
+- 当开发者需要自定义保存控件的图标和文本时，需要向应用市场申请ohos.permission.CUSTOMIZE_SAVE_BUTTON权限。
 
-  应用处于前台时系统提示弹框仅弹一次，应用从后台或者死亡等状态重新拉起进入前台后，点击保存控件，系统提示弹框会再次弹出。
   > **注意：**
   > ohos.permission.CUSTOMIZE_SAVE_BUTTON受限开放，仅默认样式无法满足业务场景时可申请，申请方式请参考<!--RP1-->[申请使用受限权限](declare-permissions-in-acl.md)<!--RP1End-->。
-
-  保存控件系统提示弹框：
-
-  ![savebutton_tip](figures/savebutton_tip.png)
 
 ## 开发步骤
 

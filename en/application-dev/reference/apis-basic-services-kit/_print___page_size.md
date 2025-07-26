@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines the page size and related information.
+Defines the page size.
 
 **Since**: 12
 
 **Related module**: [OH_Print](_o_h___print.md)
 
+**Header file**: [ohprint.h](ohprint_8h.md)
 
 ## Summary
 
@@ -32,6 +33,7 @@ Defines the page size and related information.
 uint32_t Print_PageSize::height
 ```
 **Description**
+
 Defines the page height.
 
 
@@ -41,6 +43,7 @@ Defines the page height.
 char* Print_PageSize::id
 ```
 **Description**
+
 Defines the page ID.
 
 
@@ -50,6 +53,7 @@ Defines the page ID.
 char* Print_PageSize::name
 ```
 **Description**
+
 Defines the page name.
 
 
@@ -59,4 +63,5 @@ Defines the page name.
 uint32_t Print_PageSize::width
 ```
 **Description**
+
 Defines the page width.

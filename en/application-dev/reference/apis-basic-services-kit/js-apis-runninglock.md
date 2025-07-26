@@ -14,7 +14,7 @@ import {runningLock} from '@kit.BasicServicesKit';
 
 ## runningLock.isSupported<sup>9+</sup>
 
-isSupported(type: RunningLockType): boolean;
+isSupported(type: RunningLockType): boolean
 
 Checks whether the specified type of running locks is supported.
 
@@ -30,7 +30,7 @@ Checks whether the specified type of running locks is supported.
 
 | Type   | Description                                   |
 | ------- | --------------------------------------- |
-| boolean | The value **true** indicates that the specified type of running locks is supported, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the specified type of the running lock is supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -38,7 +38,6 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **Example**
@@ -66,8 +65,8 @@ Creates a **RunningLock** object.
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| name     | string                                     | Yes  | Name of the running lock. The value must be a string.                                                  |
-| type     | [RunningLockType](#runninglocktype)        | Yes  | Type of the running lock. The value must be an enum.                                          |
+| name     | string                                     | Yes  | Name of the **RunningLock** object. The value must be a string.                        |
+| type     | [RunningLockType](#runninglocktype)        | Yes  | Type of the **RunningLock** object. The value must be an enum.                |
 | callback | AsyncCallback<[RunningLock](#runninglock)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the created **RunningLock** object. Otherwise, **err** is an error object. **AsyncCallback** has encapsulated an API of the **RunningLock** class.|
 
 **Error codes**
@@ -106,8 +105,8 @@ Creates a **RunningLock** object.
 
 | Name| Type                               | Mandatory| Description              |
 | ------ | ----------------------------------- | ---- | ------------------ |
-| name   | string                              | Yes  | Name of the running lock. The value must be a string.|
-| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock. The value must be an enum.|
+| name   | string                              | Yes  | Name of the **RunningLock** object. The value must be a string. |
+| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object. The value must be an enum. |
 
 **Return value**
 
@@ -151,8 +150,8 @@ Checks whether the specified type of running locks is supported. This API uses a
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.                                        |
-| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that the specified type of **RunningLock** is supported and **false** indicates the opposite. Otherwise, **err** is an error object.|
+| type     | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock. |
+| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that the specified type of the running lock is supported and **false** indicates the opposite. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -172,7 +171,7 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of running locks is supported. This API uses a promise to return the result.
+Checks whether the specified type of the running lock is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -180,13 +179,13 @@ Checks whether the specified type of running locks is supported. This API uses a
 
 | Name| Type                               | Mandatory| Description                |
 | ------ | ----------------------------------- | ---- | -------------------- |
-| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.|
+| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock.|
 
 **Return value**
 
 | Type                  | Description                                                |
 | ---------------------- | ---------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the specified type of **RunningLock** is supported, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the specified type of the running lock is supported, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -295,8 +294,7 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 | ID  | Error Message    |
 |---------|----------|
-| 4900101 | Failed to connect to the service. |
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 201     | If the permission is denied.|
 
 **Example**
@@ -346,7 +344,6 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 | ID  | Error Message    |
 |---------|----------|
-| 4900101 | Failed to connect to the service. |
 | 201     | If the permission is denied.|
 
 
@@ -360,7 +357,7 @@ class RunningLockTest {
     public static unholdRunningLock(): void {
         if (RunningLockTest.recordLock) {
             RunningLockTest.recordLock.unhold();
-            console.info('hold running lock success');
+            console.info('unhold running lock success');
         } else {
             runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
                 if (typeof err === 'undefined') {
@@ -395,14 +392,6 @@ Checks the hold status of the **RunningLock** object.
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** indicates that the **RunningLock** object is held; and the value **false** indicates that the **RunningLock** object is released.|
 
-**Error codes**
-
-For details about the error codes, see [RunningLock Error Codes](errorcode-runninglock.md).
-
-| ID  | Error Message   |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **Example**
 
 ```ts
@@ -419,12 +408,8 @@ class RunningLockTest {
                 if (typeof err === 'undefined') {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
-                    try {
-                        let isHolding = lock.isHolding();
-                        console.info('check running lock holding status: ' + isHolding);
-                    } catch(err) {
-                        console.error('check running lock holding status failed, err: ' + err);
-                    }
+                    let isHolding = lock.isHolding();
+                    console.info('check running lock holding status: ' + isHolding);
                 } else {
                     console.error('create running lock failed, err: ' + err);
                 }

@@ -45,7 +45,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uin
 | 参数项 | 描述 |
 | -- | -- |
 | uint32_t displayId | 需要截屏的屏幕id号，该值为非负整数。 |
-| [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md **pixelMap | 创建指定屏幕id的OH_PixelmapNative对象，此处作为出参返回。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md **pixelMap | 创建指定屏幕id的OH_PixelmapNative对象，此处作为出参返回。 |
 
 **返回：**
 

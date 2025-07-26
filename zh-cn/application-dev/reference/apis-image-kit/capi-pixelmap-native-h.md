@@ -18,15 +18,15 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图格式结构体。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
-| [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | HDR_STATIC_METADATA关键字对应的静态元数据值。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相关操作。 |
-| [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | DR_DYNAMIC_METADATA关键字对应的动态元数据值。 |
-| [OH_Pixelmap_HdrGainmapMetadata](capi-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。 |
-| [OH_Pixelmap_HdrMetadataValue](capi-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。 |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) | OH_Pixelmap_InitializationOptions | OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。 |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) | OH_Pixelmap_ImageInfo | OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) | OH_PixelmapNative | OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图格式结构体。 |
+| [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
+| [OH_Pixelmap_HdrStaticMetadata](capi-image-nativemodule-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | HDR_STATIC_METADATA关键字对应的静态元数据值。 |
+| [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相关操作。 |
+| [OH_Pixelmap_HdrDynamicMetadata](capi-image-nativemodule-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | DR_DYNAMIC_METADATA关键字对应的动态元数据值。 |
+| [OH_Pixelmap_HdrGainmapMetadata](capi-image-nativemodule-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。 |
+| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) | OH_Pixelmap_InitializationOptions | OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) | OH_Pixelmap_ImageInfo | OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。 |
 
 ### 枚举
 
@@ -226,7 +226,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_Initializati
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) **options | 被创建的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) **options | 被创建的OH_Pixelmap_InitializationOptions指针。 |
 
 **返回：**
 
@@ -251,7 +251,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_Initializa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t *width | 图片的宽，单位：像素。 |
 
 **返回：**
@@ -277,7 +277,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t width | 图片的宽，单位：像素。 |
 
 **返回：**
@@ -303,7 +303,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_Initializ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t *height | 图片的高，单位：像素。 |
 
 **返回：**
@@ -329,7 +329,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_Initializ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t height | 图片的高，单位：像素。 |
 
 **返回：**
@@ -355,7 +355,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -381,7 +381,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -407,7 +407,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *srcpixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -433,7 +433,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -459,7 +459,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *rowStride | 跨距，单位：字节。 |
 
 **返回：**
@@ -485,7 +485,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t rowStride | 跨距，单位：字节。 |
 
 **返回：**
@@ -511,7 +511,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -537,7 +537,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -563,7 +563,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_Initial
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | bool *editable | 可编辑标志。 |
 
 **返回：**
@@ -589,7 +589,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_Initial
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | bool editable | 可编辑标志。 |
 
 **返回：**
@@ -615,7 +615,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_Initializat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被释放的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 被释放的OH_Pixelmap_InitializationOptions指针。 |
 
 **返回：**
 
@@ -640,7 +640,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) **info | 被创建的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) **info | 被创建的OH_Pixelmap_ImageInfo指针。 |
 
 **返回：**
 
@@ -665,7 +665,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *width | 图片宽，单位：像素。 |
 
 **返回：**
@@ -691,7 +691,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *height | 图片高，单位：像素。 |
 
 **返回：**
@@ -717,7 +717,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | int32_t *AlphaMode | 被操作的alpha格式的指针。 |
 
 **返回：**
@@ -743,7 +743,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *rowStride | 跨距，内存中每行像素所占的空间。 |
 
 **返回：**
@@ -769,7 +769,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | int32_t *pixelFormat | 像素格式。 |
 
 **返回：**
@@ -795,7 +795,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | int32_t *alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -821,7 +821,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | bool *isHdr | 是否为hdr的布尔值。 |
 
 **返回：**
@@ -847,7 +847,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被释放的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | 被释放的OH_Pixelmap_ImageInfo指针。 |
 
 **返回：**
 
@@ -874,8 +874,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 | -- | -- |
 | uint8_t *data | BGRA_8888格式的颜色数组。 |
 | size_t dataLength | 数组长度。 |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**
 
@@ -902,9 +902,9 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, si
 | -- | -- |
 | uint8_t *data | BGRA_8888格式的数据。 |
 | size_t dataLength | 数组长度。 |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建pixelmap的选项。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 创建pixelmap的选项。 |
 | [IMAGE_ALLOCATOR_MODE](capi-image-common-h.md#image_allocator_mode) allocator | 决定pixelmap内存分配的类型。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**
 
@@ -930,7 +930,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_P
 | 参数项 | 描述 |
 | -- | -- |
 | napi_env env | napi的环境指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmapNative | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmapNative | 被操作的OH_PixelmapNative指针。 |
 | napi_value *pixelmapNapi | 转换出来的PixelMapnapi对象指针。 |
 
 **返回：**
@@ -958,7 +958,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
 | -- | -- |
 | napi_env env | napi的环境指针。 |
 | napi_value pixelmapNapi | 需要转换的PixelMapnapi对象。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmapNative | 转换出的OH_PixelmapNative对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapNative | 转换出的OH_PixelmapNative对象指针。 |
 
 **返回：**
 
@@ -983,7 +983,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | uint8_t *destination | 缓冲区，获取的图像像素数据写入到该内存区域内。 |
 | size_t *bufferSize | 缓冲区大小。RGBA格式的缓冲区大小等于width \* height \* 4，NV21与NV12格式的缓冲区大小等于width \* height+((width+1)/2) \* ((height+1)/2) \* 2。 |
 
@@ -1010,7 +1010,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | uint8_t *source | 图像像素数据。 |
 | size_t bufferSize | 图像像素数据长度。 |
 
@@ -1037,7 +1037,7 @@ Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uin
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | uint8_t *destination | 缓冲区，获取的图像像素数据写入到该内存区域内。 |
 | size_t *bufferSize | 缓冲区大小。 |
 
@@ -1064,7 +1064,7 @@ Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -1089,8 +1089,8 @@ Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_P
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *imageInfo | 图像像素信息。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *imageInfo | 图像像素信息。 |
 
 **返回：**
 
@@ -1115,7 +1115,7 @@ Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | float rate | 透明比率的值。 |
 
 **返回：**
@@ -1141,7 +1141,7 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | float scaleX | 宽度的缩放比例。 |
 | float scaleY | 高度的缩放比例。 |
 
@@ -1168,7 +1168,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | float scaleX | 宽度的缩放比例。 |
 | float scaleY | 高度的缩放比例。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | 缩放算法。 |
@@ -1196,8 +1196,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
 | float scaleX | 宽度的缩放比例。 |
 | float scaleY | 高度的缩放比例。 |
 
@@ -1224,8 +1224,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
 | float scaleX | 宽度的缩放比例。 |
 | float scaleY | 高度的缩放比例。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | 缩放算法。 |
@@ -1253,7 +1253,7 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | float x | 区域横坐标。 |
 | float y | 区域纵坐标。 |
 
@@ -1280,7 +1280,7 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | float angle | 图片旋转的角度，单位为deg。 |
 
 **返回：**
@@ -1306,7 +1306,7 @@ Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldF
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | bool shouldFilpHorizontally | 是否水平翻转图像。 |
 | bool shouldFilpVertically | 是否垂直翻转图像。 |
 
@@ -1333,8 +1333,8 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| [Image_Region](capi-image-region.md) *region | 裁剪的尺寸。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [Image_Region](capi-image-nativemodule-image-region.md) *region | 裁剪的尺寸。 |
 
 **返回：**
 
@@ -1359,7 +1359,7 @@ Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被释放的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被释放的OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -1384,7 +1384,7 @@ Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被释放的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | 被释放的OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -1409,8 +1409,8 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* srcpixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* dstpixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* srcpixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* dstpixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 |
 | const bool isPremul | 转换方式，true为非预乘转预乘，false为预乘转非预乘。 |
 
 **返回：**
@@ -1436,8 +1436,8 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**
 
@@ -1462,9 +1462,9 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(OH_Pixelmap_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建pixelmap的选项。 |
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | 创建pixelmap的选项。 |
 | [IMAGE_ALLOCATOR_MODE](capi-image-common-h.md#image_allocator_mode) allocator | 决定pixelmap内存分配的类型。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**
 
@@ -1489,8 +1489,8 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 要获取NativeBuffer的源PixelMap。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 要获取NativeBuffer的源PixelMap。 |
+| [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
 
 **返回：**
 
@@ -1515,9 +1515,9 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key | 元数据的关键字。 |
-| [OH_Pixelmap_HdrMetadataValue](capi-oh-pixelmap-hdrmetadatavalue.md) **value | 元数据的值。 |
+| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) **value | 元数据的值。 |
 
 **返回：**
 
@@ -1542,9 +1542,9 @@ Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key | 元数据的关键字。 |
-| [OH_Pixelmap_HdrMetadataValue](capi-oh-pixelmap-hdrmetadatavalue.md) *value | 元数据的值。 |
+| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) *value | 元数据的值。 |
 
 **返回：**
 
@@ -1569,8 +1569,8 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 要设置NativeColorSpaceManager的目标PixelMap。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) *colorSpaceNative | 要设置的NativeColorSpaceManager对象。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 要设置NativeColorSpaceManager的目标PixelMap。 |
+| [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) *colorSpaceNative | 要设置的NativeColorSpaceManager对象。 |
 
 **返回：**
 
@@ -1595,8 +1595,8 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 获取到NativeColorSpaceManager的源PixelMap。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) **colorSpaceNative | 获取到的NativeColorSpaceManager对象。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 获取到NativeColorSpaceManager的源PixelMap。 |
+| [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) **colorSpaceNative | 获取到的NativeColorSpaceManager对象。 |
 
 **返回：**
 
@@ -1621,7 +1621,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
 | char *name | 需要被设置的PixelMap内存名称。 |
 | size_t *size | 需要被设置的PixelMap内存名称的字节大小。 |
 
@@ -1648,7 +1648,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
 | uint32_t *byteCount | 获取的总字节数。 |
 
 **返回：**
@@ -1674,7 +1674,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
 | uint32_t *allocationByteCount | 获取的内存字节数。 |
 
 **返回：**
@@ -1700,7 +1700,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
 | void **addr | Pixelmap内存地址的双指针。 |
 
 **返回：**
@@ -1726,7 +1726,7 @@ Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的Pixelmap指针。 |
 
 **返回：**
 

@@ -45,7 +45,7 @@ MediaLibrary_ErrorCode OH_MediaAccessHelper_ApplyChanges(OH_MediaAssetChangeRequ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)* changeRequest | 变更请求实例。 |
+| [OH_MediaAssetChangeRequest](capi-mediaassetmanager-oh-mediaassetchangerequest.md)* changeRequest | 变更请求实例。 |
 
 **返回：**
 

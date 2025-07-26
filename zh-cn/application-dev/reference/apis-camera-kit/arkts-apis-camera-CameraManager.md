@@ -6,6 +6,12 @@
 
 相机管理器类，使用前需要通过[getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager)接口获取相机管理实例。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## getSupportedCameras
 
 getSupportedCameras(): Array\<CameraDevice\>
@@ -261,7 +267,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](arkts-apis-camera-i.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)组件获取的surfaceId。|
 
 **返回值：**
 
@@ -311,7 +317,7 @@ createPreviewOutput(surfaceId: string): PreviewOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)组件获取的surfaceId。|
 
 **返回值：**
 
@@ -1056,7 +1062,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
 | profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)获取的surfaceId。|
+| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)获取的surfaceId。|
 
 **返回值：**
 

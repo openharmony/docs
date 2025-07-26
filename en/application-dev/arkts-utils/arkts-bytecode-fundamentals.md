@@ -13,7 +13,7 @@ The following table lists the terms used in this topic.
 
 |     Term     |      Description       |
 |   ----------  |    ----------   |
-|  acc         |	Accumulator, a special register in the Ark bytecode.  |
+|  acc         |	Accumulator, a special register in the Ark bytecode, used to store the default input or output values for most instructions.  |
 |  bit	|  A binary digit, represented as a bit in this topic.  |
 |  hole	|  An uninitialized object or variable.  |
 |  id	|  Index, a general term for string id, method id, or literal id.  |
@@ -589,7 +589,7 @@ For example, consider the instruction *defineclasswithbuffer RR, @AAAA, @BBBB, +
 |  0x06fb	|  PREF_IMM8_V8	|  callruntime.callinit +RR, vAA	|  acc: function object<br>R: 8-bit reserved number used in Ark runtime<br>A: Object|  Sets **this** to **A**, calls the function object stored in the acc without passing parameters, and stores the result in the acc.  |
 |  0x06fc	|  (deprecated)	 |  |  | Deprecated operation code.|  	 
 |  0x06fd	|  PREF_IMM16_V8	|  wide.supercallthisrange +AAAA, vBB	|  A: number of parameters<br>B, ..., B + A - 1: parameter|  Uses **B, ..., B + A - 1** as a parameter to call the **super** function and stores the result in the acc.<br>When the value of **A** is **0**, the value of **B** is **undefined**.<br>This instruction appears only in non-arrow functions.  |
-|  0x06fe	|  PREF_V8_V8	|  throw.undefinedifhole vAA, vBB	|  A: Object<br>B: object name|  If the value of A is **hole**, throws an exception indicating that the value of B is **undefined**.  |
+|  0x06fe	|  PREF_V8_V8	|  throw.undefinedifhole vAA, vBB	|  A: Object<br>B: object name|  Throws an exception indicating that the value of B is **undefined**, if the value of A is **hole**.  |
 |  0x07fb	|  PREF_IMM16_ID16_ID16_IMM16_V8	|  callruntime.definesendableclass RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R: 16-bit reserved number used in Ark runtime<br>A: method id of the constructor of [sendable class](arkts-sendable.md#sendable-class)<br>B: literal id<br>C: number of formal parameters of method A<br>D: parent class|  Uses the literal array corresponding to index B and parent class D to create a class object of A and stores it in the acc.  |
 |  0x07fc	|  (deprecated)	 |  |  | Deprecated operation code.|
 |  0x07fd	|  PREF_IMM16_V8	|  wide.supercallarrowrange +AAAA, vBB	|  Default input parameter: acc: class object<br>A: number of parameters<br>B, ..., B + A - 1: parameter|  Uses **B, ..., B + A - 1** as a parameter to call the constructor function of the parent class of the class stored in the acc and stores the result in the acc.<br>If the value of A is **0**, B is **undefined**.<br>This instruction appears only in arrow functions.  |
@@ -601,7 +601,7 @@ For example, consider the instruction *defineclasswithbuffer RR, @AAAA, @BBBB, +
 |  0x09fb	|  PREF_IMM8	|  callruntime.ldsendableexternalmodulevar +AA	|  A: slot number|  Stores the external module variable of slot A in the acc. This instruction is used only in Sendable classes and [Sendable functions](arkts-sendable.md#sendable-function).  |
 |  0x09fc	|  (deprecated)	 |  |  | Deprecated operation code.|
 |  0x09fd	|  PREF_V8_IMM32	|  wide.stobjbyindex vAA, +BBBBBBBB	|  Default input parameter: acc: value<br>A: Object<br>B: property key|  Stores the value in the acc to the property whose key is B of object A.  |
-|  0x09fe	|  PREF_ID16	|  throw.undefinedifholewithname @AAAA	|  Default input parameter: acc: object<br>A: string id|  If the value in the acc is **hole**, throws an exception indicating that the value of A is **undefined**.  |
+|  0x09fe	|  PREF_ID16	|  throw.undefinedifholewithname @AAAA	|  Default input parameter: acc: object<br>A: string id|  Throws an exception indicating that the value of A is **undefined**, if the value in the acc is **hole**.  |
 |  0x0afb	|  PREF_IMM16	|  callruntime.wideldsendableexternalmodulevar +AAAA	|  A: slot number|  Stores the external module variable of slot A in the acc. This instruction is used only in Sendable classes and Sendable functions.  |
 |  0x0afc	|  (deprecated)	 |  |  | Deprecated operation code.|
 |  0x0afd	|  PREF_V8_IMM32	|  wide.stownbyindex vAA, +BBBBBBBB	|  Default input parameter: acc: value<br>A: Object<br>B: property key|  Stores the value in the acc to the property whose key is B of object A.  |

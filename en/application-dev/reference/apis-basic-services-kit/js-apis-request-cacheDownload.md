@@ -18,7 +18,7 @@ The **request** module provides applications with the basic capabilities of file
 import { cacheDownload } from '@kit.BasicServicesKit';
 ```
 
-## cacheDownload.CacheDownloadOptions
+## CacheDownloadOptions
 
 Provides configuration options for download and cache in terms of HTTP, transfer, and task.
 
@@ -51,7 +51,7 @@ Downloads a task from a specified URL. If the transfer is successful, the data i
 | Name    | Type                                                        | Mandatory| Description                            |
 |---------|------------------------------------------------------------|----|--------------------------------|
 | url     | string                                                     | Yes | URL of the target resource. Only the HTTP protocol is supported. The URL length cannot exceed 8192 bytes.|
-| options | [CacheDownloadOptions](#cachedownloadcachedownloadoptions) | Yes | Cache download options for the target resource.                  |
+| options | [CacheDownloadOptions](#cachedownloadoptions) | Yes | Cache download options for the target resource.                  |
 
 **Error codes**
 
@@ -206,3 +206,4 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     console.error(`Failed to set file cache size. err: ${JSON.stringify(err)}`);
   }
   ```
+

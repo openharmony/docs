@@ -94,7 +94,7 @@ Lists the files that are accessed recently.
 
   | Type| Description|
   | --- | -- |
-  |  Array<[FileInfo](#fileinfo)> | List of the files and folders obtained.|
+  |  Array<[FileInfo](#fileinfo)> | List of the files.|
 
 **Error codes**
 
@@ -123,7 +123,7 @@ Represents information about the recent file list.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name| Type  | Read-Only| Writable| Description    |
+| Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file.|
 | srcPath | string | Yes| No| File path.|

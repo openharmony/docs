@@ -13,6 +13,10 @@ reuseId(id: string)
 
 Sets the ID that identifies the reuse group of the component.
 
+>  **NOTE**
+>
+> Set **reuseId** flexibly based on different scenarios to achieve optimal reuse effects. For best practices, see [Using reuseId to Mark Components with Layout Changes](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-component-reuse#section1239555818211).
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -25,7 +29,7 @@ Sets the ID that identifies the reuse group of the component.
 
 ## Example
 
-This example demonstrates how to use **reused** to identify the reuse group of a custom component.
+This example demonstrates how to use **reuseId** to identify the reuse group of a custom component.
 
 ```ts
 // xxx.ets

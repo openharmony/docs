@@ -12,7 +12,7 @@ Dynamic imports can be used in application development when you need to import m
 * The imported module has side effects (which can be understood as code that runs directly in the module) that are only needed when certain conditions are triggered.
 
 ## Service Expansion Scenarios
-As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls its static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarlibrary()**.
+As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls the static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarLibrary()** of the **Calc** class.
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
@@ -29,16 +29,16 @@ export class Calc {
   }
 }
 
-export function addHarlibrary(a:number, b:number):number {
+export function addHarLibrary(a:number, b:number):number {
   let c = a + b;
-  console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
 }
 ```
 
 ```typescript
 // harlibrary's Index.ets
-export { Calc, addHarlibrary } from './src/main/ets/utils/Calc'
+export { Calc, addHarLibrary } from './src/main/ets/utils/Calc'
 ```
 
 ```json5
@@ -54,17 +54,17 @@ import('harlibrary').then((ns:ESObject) => {
   ns.Calc.staticAdd(8, 9);  // Call the static member function staticAdd().
   let calc:ESObject = new ns.Calc();  // Instantiate the class Calc.
   calc.instanceAdd(10, 11);  // Call the instance member function instanceAdd().
-  ns.addHarlibrary(6, 7);  // Call the global function addHarlibrary().
+  ns.addHarLibrary(6, 7);  // Call the global method addHarLibrary().
 
   // Reflection using class, member function, and method names as strings.
   let className = 'Calc';
   let methodName = 'instanceAdd';
   let staticMethod = 'staticAdd';
-  let functionName = 'addHarlibrary';
+  let functionName = 'addHarLibrary';
   ns[className][staticMethod](12, 13);  // Call the static member function staticAdd().
   let calc1:ESObject = new ns[className]();  // Instantiate the class Calc.
   calc1[methodName](14, 15);  // Call the instance member function instanceAdd().
-  ns[functionName](16, 17);  // Call the global function addHarlibrary().
+  ns[functionName](16, 17);  // Call the global function addHarLibrary().
 });
 ```
 
@@ -76,9 +76,9 @@ The following table lists the specifications of dynamic import.
 | :------------- | :----------------------------- | :------------------------------------------------------- |
 | Local module  | File path      | The path must start with **./** or **../**.                                   |
 | Local module  | HSP module name          | -                                                        |
-| Local module  | HSP module file path    | Currently, dynamic imports with constants are supported, but not ones with variables.|
+| Local module  | HSP module file path    | -                                                        |
 | Local module  | HAR module name          | -                                                        |
-| Local module  | HAR module file path    | Currently, dynamic imports with constants are supported, but not ones with variables.|
+| Local module  | HAR module file path    | -                                                        |
 | Remote module        | Remote HAR module name       | -                                                        |
 | Remote module        | ohpm package name           | -                                                        |
 | API            | @system.*          | -                                                        |
@@ -90,13 +90,13 @@ The following table lists the specifications of dynamic import.
 > 
 > 1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.
 > 2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
-> 3. Importing a module by name is importing the module's entry file, generally **index.ets/ts**.
+> 3. Importing a module by name is importing the module's entry file, generally **Index.ets/ts**.
 
 ## Key Points in Dynamic Import Implementation
 
 ### Dynamic Imports with Constant Expressions
 
-Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import a module or API into a HAP module.
+Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import APIs of other modules into a HAP module.
 
 Note: In the examples, the paths, such as the path to **Index.ets**, are set based on the current DevEco Studio module configuration and are subject to change.
 
@@ -113,15 +113,21 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHar').then((ns:ESObject) => {
+  import('myhar').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
+
+  // You can use await to process dynamic import. (It must be used in an async function.)
+  async function asyncDynamicImport() {
+    let ns:ESObject = await import('myhar');
+    console.info(ns.add(3, 5));
+  }
   ```
 
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
 
@@ -138,7 +144,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHar/Index').then((ns:ESObject) => {
+  import('myhar/Index').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
   ```
@@ -146,7 +152,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
 
@@ -292,22 +298,26 @@ During compilation, static imports and dynamic imports with constant expressions
 If you are using dynamic imports with variable expressions to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module. The following are some examples.
 
 ```typescript
-// Dynamically import a module based on the module name myHar.
-let harName = 'myHar';
-import(harName).then(......);
+// Dynamically import a module based on the module name myhar.
+let harName = 'myhar';
+import(harName).then((obj: ESObject) => {
+    console.info('DynamicImport I am a har');
+}
 
 // Dynamically import a file of the module itself based on the file path src/main/ets/index.ets.
 let filePath = './Calc';
-import(filePath).then(......);
+import(filePath).then((obj: ESObject) => {
+    console.info('DynamicImport I am a file');
+}
 ```
 
 The corresponding **runtimeOnly** configuration is as follows:
 
-```typescript
+```json
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [ "myHar" ]  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
+      "packages": [ "myhar" ]  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
       "sources": ["./src/main/ets/utils/Calc.ets"] // Set the path of the file to dynamically import. The path is relative to the build-profile.json5 file of the module.
     }
   }
@@ -331,7 +341,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  let packageName = 'myHar';
+  let packageName = 'myhar';
   import(packageName).then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
@@ -339,7 +349,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
   ```json5
@@ -348,7 +358,7 @@ The corresponding **runtimeOnly** configuration is as follows:
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHar" // Applicable only when a variable is used to dynamically import a module or file.
+          "myhar"  // Applicable only when a variable is used to dynamically import a module.
         ]
       }
     }
@@ -541,9 +551,8 @@ The figure shows the dependency graph after dependency conversion.
 - The transferred dependencies between HAR packages can only be through dynamic imports with variable expressions, not static imports or dynamic imports with constant expressions.
 - When transferring dependencies, both **dependencies** and **runtimeOnly** configurations must be transferred simultaneously.
 - HSP does not support transferring dependencies. For example, in the chain HAP -> HSP1 -> HSP2 -> HSP3, dependency between HSP2 and HSP3 cannot be transferred to HAP.
-- The entire chain of transferred dependencies must consist only of HAR packages. Dependencies cannot be transferred across HSP packages. An incorrect use is as follows: HAP -> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4.
-
-  The dependency of HAR1 on HAR2 can be transferred to a HAP, and the dependency of HAR3 on HAR4 can be transferred to an HSP. However, HAR3 or HAR4 cannot be transferred to the HAP.
+- The entire chain of transferred dependencies must consist only of HAR packages. Dependencies cannot be transferred across HSP packages. For example, in the chain HAP-> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4, the dependency of HAR1 on HAR2 can be transferred to HAP, and the dependency of HAR3 on HAR4 can be transferred to HSP. However, HAR3 or HAR4 cannot be transferred to HAP.
+- If there are references to other project modules, remote packages, or integrated HSP packages, you must ensure that the **useNormalizedOHMUrl** configuration is consistent and set to either **true** or **false**. Failure to do so may result in runtime errors such as **Cannot find dynamic-import module library**.
 
 
 **Usage Examples**

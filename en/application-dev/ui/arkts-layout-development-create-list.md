@@ -5,7 +5,7 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. The list is applicable for presenting similar data types or data type sets, such as images and text. Some common lists seen in applications are the contacts list, playlist, and shopping list.
 
-You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../ui/state-management/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -213,7 +213,7 @@ List() {
 
 ## Iterating List Content
 
-Compared with a static list, a dynamic list is more common in applications. You can use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to obtain data from the data source and create components for each data item.
+Compared with a static list, a dynamic list is more common in applications. You can use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to obtain data from the data source and create components for each data item.
 
  For example, when creating a contacts list, you can store the contact name and profile picture data in a **Contact** class structure to the **contacts** array, and nest **ListItem**s in **ForEach**, thereby reducing repeated code needed for tiling similar list items.
 
@@ -892,9 +892,9 @@ The process of implementing the deletion feature is as follows:
 
 ## Handling a Long List
 
-[ForEach](../quick-start/arkts-rendering-control-foreach.md) is applicable to short lists. With regard to a long list with a large number of list items, using **ForEach** will greatly slow down page loading, as it loads all list items at once. Therefore, for better list performance, use [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
+[ForEach](../ui/state-management/arkts-rendering-control-foreach.md) is applicable to short lists. With regard to a long list with a large number of list items, using **ForEach** will greatly slow down page loading, as it loads all list items at once. Therefore, for better list performance, use [LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
 
-For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
+For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../ui/state-management/arkts-rendering-control-lazyforeach.md).
 
 When the list is rendered in lazy loading mode, to improve the list scrolling experience and minimize white blocks during list scrolling, you can use the **cachedCount** parameter of the **List** component. This parameter sets the number of list items preloaded outside of the screen and is valid only in **LazyForEach**.
 

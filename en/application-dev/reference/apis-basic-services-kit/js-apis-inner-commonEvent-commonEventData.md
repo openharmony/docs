@@ -1,12 +1,12 @@
 # CommonEventData
 
-Common event data.
+Describes the data of a common event.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

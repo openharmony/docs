@@ -373,7 +373,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 ```
   **Figure 13** Customizing the page switching interception event
 
-![TabsChange3](figures/TabsChange3.gif)
+
 <!--Del-->
 ## Supporting Aging-Friendly Design
 

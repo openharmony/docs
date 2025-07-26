@@ -10,9 +10,9 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 1. 构造对应参数。
    - 指定密钥别名keyAlias，密钥别名最大长度为128字节。
-   - 查询密钥需要的[属性TAG](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_tag)（默认传空）。
+   - 查询密钥需要的[属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)（默认传空）。
 
-2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
+2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
 
 ```c++
 #include "huks/native_huks_api.h"

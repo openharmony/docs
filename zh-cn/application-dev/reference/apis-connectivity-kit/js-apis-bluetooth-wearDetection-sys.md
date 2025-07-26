@@ -32,8 +32,8 @@ enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取使能佩戴检测的结果。如果成功，err为undefined，否则为错误对象。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当使能佩戴检测成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -79,13 +79,13 @@ enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -129,8 +129,8 @@ disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取禁用佩戴检测的结果。如果成功，err为undefined，否则为错误对象。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当禁用佩戴检测成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -176,13 +176,13 @@ disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -214,7 +214,7 @@ try {
 
 isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备是否支持佩戴检测。使用Callback异步回调。
+判断设备是否支持佩戴检测能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -226,8 +226,8 @@ isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备是否支持佩戴检测。如果成功，值在supported中返回。如果失败，返回对应错误码。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当接口调用成功，err为undefined，data为佩戴检测能力支持结果；否则为错误对象。 |
 
 **错误码**：
 
@@ -259,7 +259,7 @@ try {
 
 isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备是否支持佩戴检测。使用Promise异步回调。
+判断设备是否支持佩戴检测能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -271,13 +271,13 @@ isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | 以Promise的形式获取设备是否支持佩戴检测。如果成功，值在supported中返回。如果失败，返回对应错误码。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示支持佩戴检测能力；返回false表示不支持佩戴检测能力。 |
 
 **错误码**：
 
@@ -309,7 +309,7 @@ try {
 
 isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备佩戴检测是否开启。使用Callback异步回调。
+判断设备佩戴检测能力是否开启。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -321,8 +321,8 @@ isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;)
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备佩戴检测是否开启。如果成功，值在enabled中返回。如果失败，返回对应错误码。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当接口调用成功，err为undefined，data为佩戴检测能力开启结果；否则为错误对象。 |
 
 **错误码**：
 
@@ -354,7 +354,7 @@ try {
 
 isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备佩戴检测是否开启。使用Promise异步回调。
+判断设备佩戴检测能力是否开启。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -366,13 +366,13 @@ isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | 以Promise的形式获取设备佩戴检测是否开启。如果成功，值在enabled中返回。如果失败，返回对应错误码。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示佩戴检测能力开启；返回false表示佩戴检测能力未开启。 |
 
 **错误码**：
 

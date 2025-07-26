@@ -34,7 +34,7 @@ Shuts down the system.
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -74,7 +74,7 @@ The device is restarted.
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -103,7 +103,7 @@ Wakes up a device.
 
 **Required permissions**: ohos.permission.POWER_MANAGER
 
-For API version 9 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+For API version 9 to 18, no permission is required; since API version 19, this permission is required.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -115,7 +115,7 @@ For API version 9 to 17, no permission is required to use this API. Since API ve
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -144,7 +144,7 @@ Hibernates a device.
 
 **Required permissions**: ohos.permission.POWER_MANAGER
 
-For API version 9 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+For API version 9 to 18, no permission is required; since API version 19, this permission is required.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -152,12 +152,12 @@ For API version 9 to 17, no permission is required to use this API. Since API ve
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately. If this parameter is not specified, the default value **false** is used. The system automatically determines when to enter the hibernation state.<br>**NOTE**: This parameter is supported since API version 10.|
+| isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately after the screen is turned off. The value **true** indicates that the device is hibernated immediately; **false** indicates that the system controls when the device is hibernated. If this parameter is not set, the default value **false** is used. If you only want to turn off the screen, you are advised not to set this parameter.<br>**NOTE**: This parameter is supported since API version 10.|
 
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -197,11 +197,10 @@ Sets the power mode of this device. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -244,11 +243,10 @@ Sets the power mode of this device. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -275,7 +273,7 @@ Set the screen-off timeout duration.
 
 **Required permissions**: ohos.permission.POWER_MANAGER
 
-For API version 12 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+For API version 12 to 18, no permission is required; since API version 19, this permission is required.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -287,7 +285,7 @@ For API version 12 to 17, no permission is required to use this API. Since API v
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -316,7 +314,7 @@ Hibernates a device.
 
 **Required permissions**: ohos.permission.POWER_MANAGER
 
-For API version 12 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+For API version 12 to 18, no permission is required; since API version 19, this permission is required.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -328,7 +326,7 @@ For API version 12 to 17, no permission is required to use this API. Since API v
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|

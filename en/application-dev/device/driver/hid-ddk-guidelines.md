@@ -47,7 +47,7 @@ A non-standard peripheral application obtains the HID device ID by using the per
 | int32_t OH_Hid_Close(Hid_DeviceHandle **dev) | Closes a HID device.|
 | int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten) | Writes a report to a HID device.|
 | int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, int timeout, uint32_t *bytesRead) | Reads a report from a HID device within the specified time.|
-| int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, uint32_t *bytesRead) | Reads a report from a HID device in the specified mode. The blocking mode (blocking remains active until data can be read) is used by default. You can call **OH_Hid_SetNonBlocking** to change the mode.|
+| int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, uint32_t *bytesRead) | Reads a report from a HID device in the specified mode. The blocking mode (that is, blocking remains active until data can be read) is used by default. You can call **OH_Hid_SetNonBlocking** to change the mode.|
 | int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonblock) | Sets the device read mode to non-blocking mode.|
 | int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo) | Obtains the raw information of a HID device.|
 | int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t buffSize) | Obtains the raw name of a HID device.|
@@ -57,7 +57,7 @@ A non-standard peripheral application obtains the HID device ID by using the per
 | int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t buffSize) | Obtains a report from a HID device.|
 | int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t buffSize, uint32_t *bytesRead) | Obtains the report descriptor of a HID device.|
 
-For details about the APIs, see [HID DDK](../../reference/apis-driverdevelopment-kit/_hid_ddk.md).
+For details about the APIs, see [HID DDK](../../reference/apis-driverdevelopment-kit/capi-hidddk.md).
 
 ## How to Develop
 
@@ -80,7 +80,7 @@ libhid.z.so
 
 1. Create a HID device.
 
-    Use **OH_Hid_CreateDevice** of **hid_ddk_api.h** to create a HID device. If the operation is successful, a device ID is returned. If the operation fails, an [error code](../../reference/apis-driverdevelopment-kit/_hid_ddk.md#hid_ddkerrcode) is returned.
+    Use **OH_Hid_CreateDevice** of **hid_ddk_api.h** to create a HID device. If the operation is successful, a device ID is returned. If the operation fails, an [error code](../../reference/apis-driverdevelopment-kit/capi-hid-ddk-types-h.md#hid_ddkerrcode) is returned.
 
     ```c++
     // Construct HID device properties.

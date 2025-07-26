@@ -2316,7 +2316,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用promise形式异步回调。
 
-在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+在前台应用上拉起UIExtensionAbility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
@@ -2393,7 +2393,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用callback形式异步回调。
 
-在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+在前台应用上拉起UIExtensionAbility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
@@ -2559,7 +2559,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
 
-preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
+preStartMission(bundleName:string, moduleName: string, abilityName: string, startTime: string): Promise&lt;void&gt;
 
 打开原子化服务跳过loading框并预打开窗口，使用Promise异步回调。
 
@@ -2701,7 +2701,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
     this.context.startUIServiceExtensionAbility(startWant).then(() => {
       console.info('succeeded');
     }).catch((error: BusinessError) => {
-      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+      console.error(`error code: ${error.code}, error message : ${error.message}`);
     })
   }
 }
@@ -2772,6 +2772,96 @@ export default class ServiceExtension extends ServiceExtensionAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## ServiceExtensionContext.startUIAbilities<sup>20+</sup>
+
+startUIAbilities(wantList: Array\<Want>): Promise\<void>
+
+同时启动多个UIAbility。使用Promise异步回调。
+
+开发者可以传入多个UIAbility对应的Want信息，这些UIAbility可以指向一个或多个应用。当所有的UIAbility都能启动成功时，系统会通过多个窗口同时展示这些UIAbility。根据窗口的处理，不同设备上可能会有不同的展示效果（包括窗口形态、数量和排版布局）。
+
+> **说明：**
+>
+> 该接口仅在phone和tablet设备上生效。
+> 
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| wantList | Array\<[Want](js-apis-app-ability-want.md)> | 是 | 需要被同时拉起的多个UIAbility的启动参数列表，最多支持传入4个Want。启动参数Want不支持隐式启动、跨用户启动、分布式、免安装和按需加载，不指明分身的情况下默认启动主应用。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------ | ------ |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Failed to start the invisible ability. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000080 | Creating a new instance is not supported. |
+| 16000120 | A maximum of four UIAbility instances can be started simultaneously. The current parameter exceeds the maximum number or is less than 1.|
+| 16000121 | The target component type is not a UIAbility. |
+| 16000122 | The target component is blocked by the system module and does not support startup. |
+| 16000123 | Implicit startup is not supported. |
+| 16000124 | Starting a remote UIAbility is not supported. |
+| 16000125 | Starting a plugin UIAbility is not supported. |
+| 16000126 | Starting DLP files is not supported. |
+
+**示例**：
+
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryServiceExtAbility extends ServiceExtensionAbility {
+  onRequest() {
+    let want1: Want = {
+      bundleName: 'com.example.myapplication1',
+      abilityName: 'EntryAbility'
+    };
+    let want2: Want = {
+      bundleName: 'com.example.myapplication2',
+      abilityName: 'EntryAbility'
+    };
+    let wantList: Array<Want> = [want1, want2];
+    try {
+      this.context.startUIAbilities(wantList).then(() => {
+        console.info(`TestTag:: start succeeded.`);
+      }).catch((error: BusinessError) => {
+        console.info(`TestTag:: startUIAbilities failed: ${JSON.stringify(error)}`);
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }

@@ -23,7 +23,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### 使用Trace接口进行数据采集
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 #include <vector>

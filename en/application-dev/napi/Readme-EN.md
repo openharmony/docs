@@ -8,7 +8,7 @@
   - [Building an NDK Project with the Command Line CMake](build-with-ndk-cmake.md)
   - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)
 - Code Development<!--coding-->
-  - [Code Development Overview](develop-code-overview.md)
+  - [Development Overview](develop-code-overview.md)
   - C/C++ Standard Library<!--c-cpp-->
     - [C/C++ Library Mechanisms](c-cpp-overview.md)
     - [Using fdsan](fdsan.md)
@@ -50,7 +50,8 @@
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
-    - [Node-API FAQs](use-napi-faqs.md)
+    - Node-API FAQs<!--napi-questions-->
+      - [Node-API FAQs](use-napi-faqs.md)
   - Using JSVM-API<!--jsvm-->
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
@@ -88,16 +89,14 @@
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
       - [Working with Wrapper Objects Using JSVM-API](use-jsvm-about-wrapper-object.md)
       - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
-    - JSVM-API Use Cases<!--jsvm-scenarios-->
+    - Typical JSVM-API Use Cases<!--jsvm-scenarios-->
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
-      - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
       - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
         - [JSVM Tuning Practices](jsvm-optimizations.md)
-    - JSVM Performance Debugging Guides<!--jsvm-performance-->
-      - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
   - OpenMP Support<!--openmp-->
     - [OpenMP Overview](openmp-overview.md)
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
@@ -118,5 +117,3 @@
   - [OpenHarmony ABIs](ohos-abi.md)
   - [CPU Features](cpu-features.md)
   - [Using Neon Instructions](neon-guide.md)
-
-<!--no_check-->

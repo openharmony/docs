@@ -98,7 +98,28 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
       AppStorage.setOrCreate<number>('foldStatus', foldStatus);
     })
     ```
-
+## 判断是否存在对应位置摄像头
+通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)接口可获取到当前设备折叠状态下支持的所有镜头，遍历获取到的结果，通过[CameraPosition](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraposition)判断镜头是否存在。
+```ts
+// connectionType默认为camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN，表示设备的板载镜头。
+function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera.CameraPosition,
+  connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): boolean {
+  let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  if (cameraArray.length <= 0) {
+    console.error('cameraManager.getSupportedCameras error');
+    return false;
+  }
+  for (let index = 0; index < cameraArray.length; index++) {
+    if (cameraArray[index].cameraPosition === cameraPosition &&
+      cameraArray[index].connectionType === connectionType) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+## 摄像头切换逻辑
+在监听到折叠状态发生变化时通过设置被@StorageLink修饰的foldStatus变量改变，触发reloadXComponent方法重新加载XComponent组件，从而实现相机的切换逻辑。
 ## 完整示例
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -290,7 +311,8 @@ struct Index {
     return previewProfiles[index];
   }
 
-  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition): Promise<void> {
+  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition,
+    connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): Promise<void> {
     await this.releaseCamera();
     // 创建CameraManager对象。
     if (!this.mCameraManager) {
@@ -313,7 +335,7 @@ struct Index {
     }
 
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
-      return cameraDevice.cameraPosition === cameraPosition;
+      return cameraDevice.cameraPosition === cameraPosition && cameraDevice.connectionType === connectionType;
     })
     // 没有找到对应位置的摄像头，可选择其他摄像头，具体场景具体对待。
     if (deviceIndex === -1) {

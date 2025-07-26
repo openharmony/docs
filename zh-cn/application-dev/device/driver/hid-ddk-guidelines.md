@@ -57,7 +57,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 | int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t buffSize) | 获取设备报告。 |
 | int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t buffSize, uint32_t *bytesRead) | 获取设备报告描述符。 |
 
-详细的接口说明请参考[HID DDK](../../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
+详细的接口说明请参考[HID DDK](../../reference/apis-driverdevelopment-kit/capi-hidddk.md)。
 
 ## 开发步骤
 
@@ -80,7 +80,7 @@ libhid.z.so
 
 1. 创建设备。
 
-    使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId，失败返回[错误码](../../reference/apis-driverdevelopment-kit/_hid_ddk.md#hid_ddkerrcode)。
+    使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId，失败返回[错误码](../../reference/apis-driverdevelopment-kit/capi-hid-ddk-types-h.md#hid_ddkerrcode)。
 
     ```c++
     // 构建HID设备属性
@@ -226,7 +226,6 @@ libhid.z.so
             int32_t ret = OH_Hid_Read(dev, data3, sizeof(data3), &bytesRead);
 
             uint8_t data4[9] = {0x00};
-            uint32_t bytesRead = 0;
             // 在指定的超时时间内从HID设备读取报告
             ret = OH_Hid_ReadTimeout(dev, data4, sizeof(data4), 10000, &bytesRead);
             ```

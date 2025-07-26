@@ -43,7 +43,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -126,10 +126,10 @@ Unsubscribes from data of the color sensor.
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+| Name  | Type                                                    | Mandatory| Description                                                        |
+| -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                           | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Error codes**
 
@@ -164,6 +164,84 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### COLOR<sup>19+</sup>
+
+off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;ColorResponse&gt;): void
+
+Unsubscribes from data of the color sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                    | Mandatory| Description                                                        |
+| -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                           | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.ColorResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.COLOR;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -220,6 +298,84 @@ try {
 }
 ```
 
+### SAR<sup>19+</sup>
+
+off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;SarResponse&gt;): void
+
+Unsubscribes from data of the SAR sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                                                                   |
+| -------- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| 202      | Permission check failed. A non-system application uses the system API.                                                                  |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.SarResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.SAR;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ## SensorId<sup>9+</sup>
 
 Enumerates the sensor types.
@@ -240,7 +396,7 @@ Describes the color sensor data. It extends from [Response](js-apis-sensor.md#re
 **System API**: This is a system API.
 
 
-| Name            | Type  | Readable| Writable| Description                         |
+| Name            | Type  | Read-Only| Optional| Description                         |
 | ---------------- | ------ | ---- | ---- | ----------------------------- |
 | lightIntensity   | number | Yes  | Yes  | Intensity of light, in lux.|
 | colorTemperature | number | Yes  | Yes  | Color temperature, in Kelvin.    |
@@ -254,6 +410,19 @@ Describes the SAR sensor data. It extends from [Response](js-apis-sensor.md#resp
 **System API**: This is a system API.
 
 
-| Name           | Type  | Readable| Writable| Description                           |
+| Name           | Type  | Read-Only| Optional| Description                           |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | Yes  | Yes  | Absorption ratio, in W/kg.|
+
+
+## SensorInfoParam<sup>19+</sup>
+
+Defines sensor parameters.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+
+| Name| Type                  | Mandatory| Description                     |
+| ------ | ---------------------- | ---- |-------------------------|
+| deviceId   | number | No  | Device ID. The default value is **-1**, which indicates the local device.    |
+| sensorIndex   | number | No  | Sensor index. The default value is **0**, which indicates the default sensor on the device.|

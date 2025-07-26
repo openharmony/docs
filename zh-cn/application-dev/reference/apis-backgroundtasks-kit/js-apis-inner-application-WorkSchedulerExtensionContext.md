@@ -24,3 +24,10 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 }
 ```
 
+## WorkSchedulerExtensionContext
+
+WorkSchedulerExtensionContext是WorkSchedulerExtensionAbility的上下文环境。
+
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
+
+**模型约束：** 本模块接口仅可在Stage模型下使用。

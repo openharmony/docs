@@ -9,7 +9,7 @@ SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XM
 >  **说明：**
 >
 >  基础标签支持通用属性
->  id、fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、opacity、transform、clip-path、clip-rule
+>  id、fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、opacity、transform、clip-path、clip-rule，其中transform属性只支持平移。
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |

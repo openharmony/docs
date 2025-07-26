@@ -87,7 +87,7 @@ The data is read-only and cannot be copied.
 
 **Error Message**
 
-Request timed out.
+Excessive processing time for internal data.
 
 **Description**
 
@@ -123,7 +123,7 @@ Delete the existing settings and then set the new one.
 
 **Error Message**
 
-Copy file failed.
+Invalid destUri or file system error.
 
 **Description**
 
@@ -178,7 +178,7 @@ Check whether the pasting is successful. If yes, ignore this error; otherwise, c
 
 **Error Message**
 
-Get Data failed.
+System error occurred during paste execution.
 
 **Description**
 

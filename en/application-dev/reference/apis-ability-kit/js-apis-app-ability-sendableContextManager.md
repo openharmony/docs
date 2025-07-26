@@ -1,4 +1,4 @@
-# @ohos.app.ability.sendableContextManager (sendableContextManager)
+# @ohos.app.ability.sendableContextManager (Sendable Context Management)
 
 The sendableContextManager module provides APIs for converting between Context and [SendableContext](js-apis-inner-application-sendableContext.md) objects.
 
@@ -39,7 +39,7 @@ import { sendableContextManager } from '@kit.AbilityKit';
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| Level-2 module **SendableContext**.|
+| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| Level-2 module SendableContext.|
 
 **Example**
 
@@ -53,7 +53,7 @@ let sendableContext: sendableContextManager.SendableContext;
 
 convertFromContext(context: common.Context): SendableContext
 
-Converts a **Context** object to a **SendableContext** object.
+Converts a Context object to a SendableContext object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -119,7 +119,7 @@ export default class EntryAbility extends UIAbility {
 
 convertToContext(sendableContext: SendableContext): common.Context
 
-Converts a **SendableContext** object to a **Context** object.
+Converts a SendableContext object to a Context object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,7 +129,7 @@ Converts a **SendableContext** object to a **Context** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| SendableContext object.|
 
 **Return value**
 
@@ -231,7 +231,7 @@ workerPort.onerror = (e: ErrorEvent) => {
 
 convertToApplicationContext(sendableContext: SendableContext): common.ApplicationContext
 
-Converts a **SendableContext** object to an **ApplicationContext** object.
+Converts a SendableContext object to an ApplicationContext object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -241,7 +241,7 @@ Converts a **SendableContext** object to an **ApplicationContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| SendableContext object.|
 
 **Return value**
 
@@ -344,7 +344,7 @@ workerPort.onerror = (e: ErrorEvent) => {
 
 convertToAbilityStageContext(sendableContext: SendableContext): common.AbilityStageContext
 
-Converts a **SendableContext** object to an **AbilityStageContext** object.
+Converts a SendableContext object to an AbilityStageContext object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -354,7 +354,7 @@ Converts a **SendableContext** object to an **AbilityStageContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| SendableContext object.|
 
 **Return value**
 
@@ -455,7 +455,7 @@ workerPort.onerror = (e: ErrorEvent) => {
 
 convertToUIAbilityContext(sendableContext: SendableContext): common.UIAbilityContext
 
-Converts a **SendableContext** object to a **UIAbilityContext** object.
+Converts a SendableContext object to a UIAbilityContext object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -465,7 +465,7 @@ Converts a **SendableContext** object to a **UIAbilityContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+| sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| SendableContext object.|
 
 **Return value**
 

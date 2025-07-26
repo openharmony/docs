@@ -73,7 +73,35 @@
 
     Web组件支持对前端页面进行深色模式配置，可参考[Web组件深色模式](../web/web-set-dark-mode.md)进行相关配置。
 
-4. 应用监听深浅色模式切换事件
+4. "自定义节点"适配
+
+    自定义节点BuilderNode和ComponentContent需手动传递系统环境变化事件，触发节点的全量更新，详细请参考[builderNode系统环境变化更新](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)
+
+    ```ts
+    // 记录创建的自定义节点对象
+    const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+    class MyFrameCallback extends FrameCallback {
+      onFrame() {
+        updateColorMode();
+      }
+    }
+
+    function updateColorMode() {
+      builderNodeMap.forEach((value, index) => {
+        // 通知BuilderNode环境变量改变，触发深浅色切换
+        value.updateConfiguration();
+      })
+    }
+    // ... other code ...
+    aboutToAppear() {
+    // ... other code ...
+      this.getUIContext()?.postFrameCallback(new MyFrameCallback());
+    // ... other code ...
+    }
+    ```
+
+5. 应用监听深浅色模式切换事件
 
     应用可以主动监听系统深浅色模式变化，进行其他类型的资源初始化等自定义逻辑。无论应用是否跟随系统深浅色模式变化，该监听方式均可生效。
 
@@ -160,7 +188,7 @@ onCreate(): void {
 
 - 建议方法
 
-  当应用跟随系统深色或浅色模式时，建议采用[AbilityStage的监听回调](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)或[Ability的监听回调](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)方式，主动监听系统深浅色模式变化。一旦颜色模式发生变化，应通过绑定状态变量等方法，执行特定的业务逻辑。
+  当应用跟随系统深色或浅色模式时，建议采用[AbilityStage的监听回调](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)或[Ability的监听回调](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)方式，主动监听系统深浅色模式变化。一旦颜色模式发生变化，应通过绑定状态变量等方法，执行特定的业务逻辑。
 
 - 不推荐方法
 

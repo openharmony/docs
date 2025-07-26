@@ -355,3 +355,55 @@ Current operation cannot be applied to the preconfigured default input method.
 开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置的默认输入法，判断当前操作的输入法是否为系统配置的默认输入法，若是，则不做处理。
 
 <!--DelEnd-->
+
+## 12800020 沉浸效果不正确
+
+**错误信息**
+
+invalid immersive effect.
+1. The gradient mode and the fluid light mode can only be used when the immersive mode is enabled.
+2. The fluid light mode can only be used when the gradient mode is enabled.
+3. When the gradient mode is not enabled, the gradient height can only be 0.
+
+**错误描述**
+
+1. 只有在启用沉浸式模式时，才能使用渐变模式和流光模式。
+2. 只有在启用渐变模式时，才能使用流光模式。
+3. 未启用渐变模式时，渐变高度只能为0px。
+
+**可能原因**
+
+开发者调用接口[setImmersiveEffect](js-apis-inputmethodengine.md#setimmersiveeffect20)设置输入法沉浸效果[ImmersiveEffect](js-apis-inputmethodengine.md#immersiveeffect20)时，传入的参数不满足上述条件。
+
+**处理步骤**
+1. 先打开沉浸模式，再设置渐变模式和流光模式。
+2. 先打开渐变模式，再设置流光模式。
+3. 未启用渐变模式时，将渐变高度设置为0px。
+
+
+## 12800021 系统配置的默认输入法不支持此操作
+
+**错误信息**
+
+this operation is allowed only after adjustPanelRect or resize is called.
+
+**错误描述**
+
+必须先调用以下任一接口，才能调用当前接口：
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12)(支持API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15)(支持API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10)(支持API version 10)
+
+**可能原因**
+
+开发者调用接口[setImmersiveEffect](js-apis-inputmethodengine.md#setimmersiveeffect20)之前，没有调用以下任一接口：
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12)(支持API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15)(支持API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10)(支持API version 10)
+
+**处理步骤**
+
+先调用以下任一接口，再调用setImmersiveEffect接口：
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12)(支持API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15)(支持API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10)(支持API version 10)

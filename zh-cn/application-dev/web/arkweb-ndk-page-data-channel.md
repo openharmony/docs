@@ -4,7 +4,7 @@
 
 ## 适用的应用架构
 
-应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)实现PostWebMessage功能。
+应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md)实现PostWebMessage功能。
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -39,7 +39,7 @@
 
 ### 使用Native接口获取API结构体
 
-ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)。
+ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -54,7 +54,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
 
 ### 完整示例
 
-在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#postwebmessage)、[close](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#close)需运行在UI线程。
+在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#postwebmessage)、[close](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md#close)需运行在UI线程。
 
 * 前端页面代码
 
@@ -75,7 +75,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
 
   window.addEventListener('message', function (event) {
       if (event.data == 'init_web_messageport') {
-          const port = event.ports.at(0); // 1. 保存从应用侧发送过来的端口。
+          const port = event.ports[0]; // 1. 保存从应用侧发送过来的端口。
           if (port) {
               console.log("hwd In html got message");
               h5Port = port;
@@ -545,7 +545,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessageAPI success");
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
-
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -571,6 +571,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postWebMessage ArkWeb_ErrorCode:%{public}d", code);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk createWebMessagePorts end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -603,6 +604,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       webMessage->destroyWebMessage(&message);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -653,6 +655,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       for (int i = 0; i < numThreads; ++i) {
           threads[i].detach();
       }
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -686,6 +689,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       webMessagePort->setMessageEventHandler(g_web_message_port_arr[1], webTagValue, WebMessagePortCallback, NULL);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
   static napi_value postNoneMessage(napi_env env, napi_callback_info info) {
@@ -716,6 +720,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       webMessage->destroyWebMessage(&message);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -747,6 +752,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       webMessage->destroyWebMessage(&message1);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -772,6 +778,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       webMessagePort->setMessageEventHandler(g_web_message_port_arr[1], webTagValue, WebMessagePortCallback, NULL);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -798,6 +805,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
       controller->refresh(webTagValue);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -823,6 +831,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       controller->destroyWebMessagePorts(&g_web_message_port_arr, web_message_port_size);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -846,6 +855,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 

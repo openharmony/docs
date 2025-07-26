@@ -10,7 +10,7 @@ Provides C APIs for the multimodal input module.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

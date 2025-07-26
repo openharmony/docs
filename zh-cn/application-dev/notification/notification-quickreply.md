@@ -32,7 +32,6 @@
     import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { common } from '@kit.AbilityKit';
     ```
 
 2. 手机中应用订阅通知回复事件。
@@ -108,7 +107,7 @@
       ],
       actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
     };
     // 创建WantAgent
     wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data:WantAgent) => {

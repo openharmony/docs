@@ -1,10 +1,10 @@
 # @ohos.usbManager.serial (Serial Port Management) (system API)
 
-This module provides the serial port management functions, including enabling and disabling the serial port of the device, writing and reading data, setting and obtaining the configuration parameters of the serial port, and managing permissions.
+This module provides the serial port management features, including enabling and disabling the serial port of the device, writing and reading data, setting and obtaining the configuration parameters of the serial port, and managing permissions.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 19. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.usbManager.serial (USB Manager)](js-apis-serialManager.md).
 
@@ -16,7 +16,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.addSerialRight
 
-addSerialRight(tokenId: number, portId: number): void;
+addSerialRight(tokenId: number, portId: number): void
 
 Adds the permission to an application for accessing the serial port device.
 

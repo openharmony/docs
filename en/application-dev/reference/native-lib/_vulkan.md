@@ -69,9 +69,12 @@ The **Vulkan** module provides Vulkan capabilities extended by OpenHarmony. It p
 
 | Name| Description|
 | -------- | -------- |
-| [vkCreateSurfaceOHOS](#vkcreatesurfaceohos) (VkInstance instance, const VkSurfaceCreateInfoOHOS \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | Creates a Vulkan surface.|
-| [vkGetNativeBufferPropertiesOHOS](#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, VkNativeBufferPropertiesOHOS \*pProperties) | Obtains the properties of an **OH_NativeBuffer** instance.|
-| [vkGetMemoryNativeBufferOHOS](#vkgetmemorynativebufferohos) (VkDevice device, const VkMemoryGetNativeBufferInfoOHOS \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | Obtains an **OH_NativeBuffer** instance.|
+| VKAPI_ATTR VkResult VKAPI_CALL [vkCreateSurfaceOHOS](#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | Creates a Vulkan surface.| 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetNativeBufferPropertiesOHOS](#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | Obtains the properties of an **OH_NativeBuffer** instance.| 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetMemoryNativeBufferOHOS](#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | Obtains an **OH_NativeBuffer** instance.| 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetSwapchainGrallocUsageOHOS](#vkgetswapchaingrallocusageohos) (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t \*grallocUsage) | Returns the appropriate gralloc usage flag based on the given Vulkan device, image format, and image usage flag.| 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkAcquireImageOHOS](#vkacquireimageohos) (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence) | Obtains the ownership of the swap chain image and imports the fence of the external signal to the VkSemaphore and VkFence objects.| 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkQueueSignalReleaseImageOHOS](#vkqueuesignalreleaseimageohos) (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore \*pWaitSemaphores, VkImage image, int32_t \*pNativeFenceFd) | Sends a signal to the system hardware buffer to release an image once it is no longer needed so that other components can access it.| 
 
 
 ### Variables
@@ -378,6 +381,35 @@ Defines the parameters required for creating a Vulkan surface.
 ## Function Description
 
 
+### vkAcquireImageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkAcquireImageOHOS (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence )
+```
+
+**Description**
+
+Obtains the ownership of the swap chain image and imports the fence of the external signal to the VkSemaphore and VkFence objects.
+
+**System capability**: SystemCapability.Graphic.Vulkan
+
+**Since**: 10
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| device | **VkDevice** instance.| 
+| image | Vulkan image to obtain.| 
+| nativeFenceFd | File descriptor of the native fence.| 
+| semaphore | Vulkan semaphore indicating that the image is available.| 
+| fence | Vulkan fence used for synchronization when the image acquisition is complete.| 
+
+**Returns**
+
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_OUT_OF_HOST_MEMORY** if the host memory is insufficient.
 ### vkCreateSurfaceOHOS()
 
 
@@ -402,7 +434,10 @@ Creates a Vulkan surface.
 
 **Returns**
 
-Returns **VK_SUCCESS** if the execution is successful; returns an error code of the VkResult type otherwise.
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_OUT_OF_HOST_MEMORY** if the VkSurfaceKHR memory fails to be allocated.
+- Returns **VK_ERROR_SURFACE_LOST_KHR** if the NativeWindow operation fails.
 
 
 ### vkGetMemoryNativeBufferOHOS()
@@ -428,8 +463,9 @@ Obtains an **OH_NativeBuffer** instance.
 
 **Returns**
 
-Returns **VK_SUCCESS** if the execution is successful; returns an error code of the VkResult type otherwise.
-
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_OUT_OF_HOST_MEMORY** if the input parameter **pInfo** is abnormal or the obtained **pBuffer** is abnormal.
 
 ### vkGetNativeBufferPropertiesOHOS()
 
@@ -454,8 +490,71 @@ Obtains the properties of an **OH_NativeBuffer** instance.
 
 **Returns**
 
-Returns **VK_SUCCESS** if the execution is successful; returns an error code of the VkResult type otherwise.
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR** if an input parameter is abnormal.
+- Returns **VK_ERROR_OUT_OF_DEVICE_MEMORY** if the device memory is insufficient.
 
+
+### vkGetSwapchainGrallocUsageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkGetSwapchainGrallocUsageOHOS (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t* grallocUsage )
+```
+
+**Description**
+
+Returns the appropriate gralloc usage flag based on the given Vulkan device, image format, and image usage flag.
+
+**System capability**: SystemCapability.Graphic.Vulkan
+
+**Since**: 10
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| device | **VkDevice** instance.| 
+| format | Image format.| 
+| imageUsage | Image use flag.| 
+| grallocUsage | Pointer to the gralloc usage flag.| 
+
+**Returns**
+
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_INITIALIZATION_FAILED** if an input parameter is abnormal.
+
+### vkQueueSignalReleaseImageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore* pWaitSemaphores, VkImage image, int32_t* pNativeFenceFd )
+```
+
+**Description**
+
+Sends a signal to the system hardware buffer to release an image once it is no longer needed so that other components can access it.
+
+**System capability**: SystemCapability.Graphic.Vulkan
+
+**Since**: 10
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| queue | Handle to the Vulkan queue.| 
+| waitSemaphoreCount | Number of semaphores to wait on.| 
+| pWaitSemaphores | Pointer to the array of semaphores to wait on.| 
+| images | Handle to the Vulkan image to be released.| 
+| pNativeFenceFd | Pointer to the file descriptor of the fence.| 
+
+**Returns**
+
+Returns an error code of the VkResult type.
+- Returns **VK_SUCCESS** if the operation is successful.
+- Returns **VK_ERROR_DEVICE_LOST** if the Vulkan device link is lost.
+- Returns **VK_ERROR_OUT_OF_HOST_MEMORY** if the host memory is insufficient.
 
 ## Variable Description
 

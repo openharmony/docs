@@ -211,7 +211,7 @@ Grants temporary permissions on a file to an application. This API uses a promis
 
 | Name| Type| Mandatory| Description|
 | -------- |-------| -------- |----------|
-| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | Yes| Array of permission policies. The maximum number of policies is 500.|
+| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
 | targetBundleName| string | Yes| Bundle name of the target application.|
 | appCloneIndex| number | Yes| Index of the cloned application. The value **0** indicates the application itself.|
 

@@ -13,11 +13,11 @@
     - [asset_api.h](capi-asset-api-h.md)
     - [asset_type.h](capi-asset-type-h.md)
   - 结构体<!--asset-store-struct-->
-    - [Asset_Blob](capi-asset-blob.md)
-    - [Asset_Value](capi-asset-value.md)
-    - [Asset_Attr](capi-asset-attr.md)
-    - [Asset_Result](capi-asset-result.md)
-    - [Asset_ResultSet](capi-asset-resultset.md)
-    - [Asset_SyncResult](capi-asset-syncresult.md)
+    - [Asset_Blob](capi-assettype-asset-blob.md)
+    - [Asset_Value](capi-assettype-asset-value.md)
+    - [Asset_Attr](capi-assettype-asset-attr.md)
+    - [Asset_Result](capi-assettype-asset-result.md)
+    - [Asset_ResultSet](capi-assettype-asset-resultset.md)
+    - [Asset_SyncResult](capi-assettype-asset-syncresult.md)
 - 错误码<!--asset-store-arkts-errcode-->
   - [Asset错误码](errorcode-asset.md)

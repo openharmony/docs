@@ -8,11 +8,11 @@
 
 **Error Message**
 
-File operation error.
+Invalid file or file system error.
 
 **Description**
 
-This error code is reported when a file operation error occurs in invoking the **uploadFile** or **downloadFile** API.
+This error code is reported when the **uploadFile** or **downloadFile** API fails to be invoked to upload or download a file.
 
 **Possible Causes**
 
@@ -26,7 +26,7 @@ Make sure you have the required permission on the target files.
 
 **Error Message**
 
-Bad file path.
+File path not supported or invalid.
 
 **Description**
 
@@ -66,7 +66,7 @@ Other error.
 
 **Description**
 
-This error code is reported when a special error occurs in invoking the **uploadFile** or **downloadFile** API.
+This error code is reported when other error occurs in invoking the **uploadFile** or **downloadFile** API.
 
 **Possible Causes**
 
@@ -103,7 +103,7 @@ The application fails to create a background task (resources are preempted by fo
 
 **Error Message**
 
-Task mode error.
+Operation with wrong task mode.
 
 **Description**
 
@@ -123,11 +123,11 @@ The application attempts to create a foreground task when it is not running in t
 
 **Error Message**
 
-Task not found.
+Task removed or not found.
 
 **Description**
 
-This error code is reported when the task is not found.
+This error code is reported when the task does not exist.
 
 **Possible Causes**
 
@@ -141,15 +141,15 @@ The task to remove or query does not exist.
 
 3. Verify the task ID and try again.
 
-## 21900007 Operation Not Supported in Current State
+## 21900007 Operation Not Supported by the Task State
 
 **Error Message**
 
-Task state error.
+Operation with wrong task state.
 
 **Description**
 
-This error code is reported when the operation performed is not supported.
+This error code is reported when an operation is not supported by the task state.
 
 **Possible Causes**
 
@@ -165,9 +165,9 @@ This error code is reported when the operation performed is not supported.
 
 **Solution**
 
-1. Query the task status.
+1. Query the task state.
 
-2. Perform the operation supported by the current task status.
+2. Perform the operation supported by the current task state.
 
 ## 21900008 Task Group Not Found or Deleted
 
@@ -187,4 +187,4 @@ This error code is reported when a task group does not exist or has been deleted
 
 **Solution**
 
-1. Check whether the target group has been deleted.
+Check whether the target group has been deleted.

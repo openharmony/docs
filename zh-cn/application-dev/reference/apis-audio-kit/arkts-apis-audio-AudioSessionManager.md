@@ -1,11 +1,19 @@
 # Interface (AudioSessionManager)
 
 > **说明：**
-> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 12开始支持。
 
 音频会话管理。
 
 在使用AudioSessionManager的接口之前，需先通过[getSessionManager](arkts-apis-audio-AudioManager.md#getsessionmanager12)获取AudioSessionManager实例。
+
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
 
 ## activateAudioSession<sup>12+</sup>
 

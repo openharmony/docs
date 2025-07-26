@@ -208,3 +208,23 @@ ComponentA() {
 ```
 当父组件以.parallelGesture的形式绑定手势时，父组件和子组件所绑定的手势均可触发。
 此时，单击组件B区域范围，组件A和组件B的点击手势均会触发。
+
+### OverlayManager的事件透传
+OverlayManager事件机制，默认优先被WrappedBuilder内组件先接收，不会向下传递。
+
+若希望OverlayManager下方的页面也能感应到事件，可采用hitTestBehavior(HitTestMode.Transparent)来传递事件，参考以下伪代码。
+
+```ts
+@Builder
+function builderOverlay(params: Params) {
+    Component().hitTestBehavior(HitTestMode.Transparent)
+}
+
+aboutToAppear(): void {
+    let componentContent = new ComponentContent(
+        this.context, wrapBuilder<[Params]>(builderOverlay),
+        new Params(uiContext, {x:0, y: 100})
+    );
+    this.overlayManager.addComponentContent(componentContent, 0);
+}
+```

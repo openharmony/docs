@@ -549,3 +549,17 @@ try {
     console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
+
+## RemoteAbilityInfo
+
+type RemoteAbilityInfo = _RemoteAbilityInfo
+
+包含远程的ability信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.DistributedBundleFramework
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md#remoteabilityinfo) |包含远程的ability信息。 |

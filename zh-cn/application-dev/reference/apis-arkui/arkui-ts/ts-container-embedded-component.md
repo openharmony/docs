@@ -103,10 +103,10 @@ onError(callback: ErrorCallback)
 
 ### 属性
 
-| 名称 | 类型                                                       | 必填 | 说明                                                 |
-| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+| 名称 | 类型                      | 只读 | 可选 | 说明                                                 |
+| ---- | -------------------------| ---- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 否 | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 是 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 ## 示例（加载EmbeddedComponent）
 
@@ -158,23 +158,23 @@ onError(callback: ErrorCallback)
 
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     onCreate() {
-      console.log(TAG, `onCreate`);
+      console.info(TAG, `onCreate`);
     }
 
     onForeground() {
-      console.log(TAG, `onForeground`);
+      console.info(TAG, `onForeground`);
     }
 
     onBackground() {
-      console.log(TAG, `onBackground`);
+      console.info(TAG, `onBackground`);
     }
 
     onDestroy() {
-      console.log(TAG, `onDestroy`);
+      console.info(TAG, `onDestroy`);
     }
 
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
       let param: Record<string, UIExtensionContentSession> = {
         'session': session
       };
@@ -184,7 +184,7 @@ onError(callback: ErrorCallback)
     }
 
     onSessionDestroy(session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionDestroy`);
+      console.info(TAG, `onSessionDestroy`);
     }
   }
   ```

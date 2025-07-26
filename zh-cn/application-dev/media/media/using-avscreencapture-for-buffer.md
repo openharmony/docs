@@ -98,18 +98,31 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, userData);
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, userData);
     ```
 
-7. 设置屏幕录制隐私窗口屏蔽模式。（可选）
+7. 设置此次录屏的可配置策略。（可选）
 
-    value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
+   7.1 设置屏幕录制隐私窗口屏蔽模式。（可选）
 
-    ```c++
-    int value = 0;
-    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
-    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
-    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
-    ```
+        value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
+
+        ```c++
+        int value = 0;
+        OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+        OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+        OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+        ```
+
+   7.2 设置屏幕录屏自动跟随旋转配置。（可选）
+
+       设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
+
+        ```c++
+        OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+        OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
+        OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+        ```
 
 8. 调用StartScreenCapture()方法开始进行屏幕录制。
 
@@ -257,6 +270,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     // 错误事件发生回调函数OnError()。
     void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
         (void)capture;
+        // 应用根据错误码进行事件处理。
         (void)errorCode;
         (void)userData;
     }
@@ -318,7 +332,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                     // 获取buffer地址。
                     uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                    if (buf != nullptr) {
+                    if (buf == nullptr) {
                         return;
                     }
                     // 使用buffer数据。
@@ -337,7 +351,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -348,7 +362,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -378,6 +392,17 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         }
         (void)area;
         (void)userData;
+    }
+
+    // 手工确认页面用户选择结果的回调函数OnUserSelected()。
+    void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+        (void)capture;
+        (void)userData;
+        int* selectType = new int;
+        uint64_t* displayId = new uint64_t;
+        // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+        OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+        OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
     }
     ```
 
@@ -427,6 +452,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
+    // 应用根据错误码进行事件处理。
     (void)errorCode;
     (void)userData;
 }
@@ -489,7 +515,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -508,7 +534,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。
@@ -519,7 +545,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。
@@ -551,6 +577,17 @@ void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCapt
     (void)userData;
 }
 
+// 手工确认页面用户选择结果的回调函数OnUserSelected()。
+void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+    (void)capture;
+    (void)userData;
+    int* selectType = new int;
+    uint64_t* displayId = new uint64_t;
+    // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+}
+
 struct OH_AVScreenCapture *capture;
 // 开始录屏时调用StartScreenCapture。
 static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
@@ -580,6 +617,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
     // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+    // 可选 设置手工确认页面用户选择结果的回调，必须在开始录屏前调用。
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, nullptr);
 
     // 可选，设置录屏内容变化回调。
     OH_Rect* area = nullptr;
@@ -589,6 +628,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     int value = 0;
     OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+	// 可选，设置自动跟随旋转配置。
+    OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
     OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用。

@@ -64,7 +64,7 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 ### Stage模型下主窗口的生命周期
 
-在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md#windowstagecreate和windowstagedestroy状态)。
+在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md)。
 
 此外，WindowStage也提供了[on('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9)接口用于监听其生命周期变化。
 

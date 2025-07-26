@@ -93,8 +93,8 @@ bool OH_ImageProcessing_IsColorSpaceConversionSupported(const ImageProcessing_Co
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针， |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针， |
 
 **返回：**
 
@@ -119,9 +119,9 @@ bool OH_ImageProcessing_IsCompositionSupported(const ImageProcessing_ColorSpaceI
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* sourceGainmapInfo | 指向输入Gainmap色彩空间信息的指针。 |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* sourceGainmapInfo | 指向输入Gainmap色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针。 |
 
 **返回：**
 
@@ -146,9 +146,9 @@ bool OH_ImageProcessing_IsDecompositionSupported(const ImageProcessing_ColorSpac
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针。 |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* destinationGainmapInfo | 指向输出Gainmap色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* destinationImageInfo | 指向输出图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* destinationGainmapInfo | 指向输出Gainmap色彩空间信息的指针。 |
 
 **返回：**
 
@@ -173,7 +173,7 @@ bool OH_ImageProcessing_IsMetadataGenerationSupported(const ImageProcessing_Colo
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
+| const [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)* sourceImageInfo | 指向输入图片色彩空间信息的指针。 |
 
 **返回：**
 
@@ -198,7 +198,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imagePr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)** imageProcessor | 输出参数。指针\*imageProcessor指向一个新的图片处理对象。指针\*imageProcessor在传递前必须是一个空指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)** imageProcessor | 输出参数。指针\*imageProcessor指向一个新的图片处理对象。指针\*imageProcessor在传递前必须是一个空指针。 |
 | int32_t type | 使用IMAGE_PROCESSING_TYPE_XXX来指定图片处理类型。此实例的类型在创建后不能更改。 |
 
 **返回：**
@@ -224,7 +224,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Destroy(OH_ImageProcessing* imagePr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。当实例被销毁时，建议该指针设置为空。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。当实例被销毁时，建议该指针设置为空。 |
 
 **返回：**
 
@@ -249,7 +249,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* im
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
 | const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 图片处理参数。 |
 
 **返回：**
@@ -275,7 +275,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* im
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 该图片处理模块实例使用的参数。 |
 
 **返回：**
@@ -301,9 +301,9 @@ ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessin
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION类型创建。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION类型创建。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
 
 **返回：**
 
@@ -328,10 +328,10 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imagePr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_COMPOSITION类型创建。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceGainmap | 指向输入Gainmap的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_COMPOSITION类型创建。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceGainmap | 指向输入Gainmap的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
 
 **返回：**
 
@@ -356,10 +356,10 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* image
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_DECOMPOSITION类型创建。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* destinationGainmap | 指向输出Gainmap的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_DECOMPOSITION类型创建。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* destinationGainmap | 指向输出Gainmap的指针。 |
 
 **返回：**
 
@@ -384,8 +384,8 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_METADATA_GENERATION类型创建。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_METADATA_GENERATION类型创建。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
 
 **返回：**
 
@@ -410,9 +410,9 @@ ImageProcessing_ErrorCode OH_ImageProcessing_EnhanceDetail(OH_ImageProcessing* i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER类型创建。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。该实例应该由IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER类型创建。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* sourceImage | 指向输入图片的指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* destinationImage | 指向输出图片的指针。 |
 
 **返回：**
 

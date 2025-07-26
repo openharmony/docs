@@ -50,13 +50,16 @@ setScreenOffTime(admin: Want, time: number): void
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
+  // 参数需根据实际情况进行替换
   deviceSettings.setScreenOffTime(wantTemp, 30000);
   console.info(`Succeeded in setting screen off time`);
 } catch(err) {
@@ -96,11 +99,13 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
@@ -149,12 +154,14 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceSettings.getScreenOffTime(wantTemp).then((result) => {
@@ -197,17 +204,21 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
@@ -262,17 +273,21 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value
@@ -294,10 +309,10 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ----- | ------------------------------- |
-| inData | Uint8Array | 是 | 证书的二进制内容。 |
-| alias | string | 是 | 证书别名。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| inData | Uint8Array | 否 | 否 |证书的二进制内容。 |
+| alias | string | 否 | 否 |证书别名。 |
 
 ## deviceSettings.uninstallUserCertificate
 
@@ -333,12 +348,15 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
   if (err) {
@@ -388,13 +406,16 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate`);
@@ -436,11 +457,13 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let delayTime = 0;
@@ -492,11 +515,13 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
@@ -513,10 +538,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ----- | ------------------------------- |
-| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 是 | 执行电源策略的动作。 |
-| delayTime | number | 是 | 延迟时间（单位：毫秒）。|
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 否 | 否 | 执行电源策略的动作。 |
+| delayTime | number | 否 | 否 | 延迟时间（单位：毫秒）。|
 
 ## PowerScene<sup>11+</sup>
 

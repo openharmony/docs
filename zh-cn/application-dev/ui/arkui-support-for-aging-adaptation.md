@@ -1,4 +1,5 @@
 # 支持适老化
+<!--RP1-->
 
 ## 基本概念
 
@@ -9,8 +10,6 @@
 * 适老化规则
 
   由于在系统字体大于1倍时，组件并没有默认放大，需要通过配置[configuration标签](../quick-start/app-configuration-file.md#configuration标签)，实现组件放大的适老化功能。
-
-<!--RP1--><!--RP1End-->
 
 * 适老化操作
 
@@ -41,7 +40,6 @@
 
 ## 示例
 
-<!--RP2-->
 SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗。在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
 
 ```ts
@@ -52,8 +50,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct SideBarContainerExample {
   @State currentFontSizeScale: number = 1
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
+  selectedIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
   @State title: string = 'Index01';
@@ -255,4 +253,4 @@ struct TextPickerExample {
 | 系统字体为一倍（适老化能力开启前） | 系统字体为1.75倍（适老化能力开启后） |
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_03.png)          | ![](figures/aging_04.png)            |
-<!--RP2End-->
+<!--RP1End-->

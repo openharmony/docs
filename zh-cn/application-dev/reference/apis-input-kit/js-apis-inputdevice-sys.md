@@ -46,16 +46,29 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-try {
-  inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
-    if (error) {
-      console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
+              if (error) {
+                console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set keyboard repeat delay success`);
+            });
+          } catch (error) {
+            console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set keyboard repeat delay success`);
-  });
-} catch (error) {
-  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -93,12 +106,25 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  inputDevice.setKeyboardRepeatDelay(350).then(() => {
-    console.log(`Set keyboard repeat delay success`);
-  });
-} catch (error) {
-  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.setKeyboardRepeatDelay(350).then(() => {
+              console.log(`Set keyboard repeat delay success`);
+            });
+          } catch (error) {
+            console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -130,16 +156,29 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```js
-try {
-  inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
-    if (error) {
-      console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
+              if (error) {
+                console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Get keyboard repeat delay success`);
+            });
+          } catch (error) {
+            console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get keyboard repeat delay success`);
-  });
-} catch (error) {
-  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -171,12 +210,25 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 **示例**：
 
 ```js
-try {
-  inputDevice.getKeyboardRepeatDelay().then((delay: Number) => {
-    console.log(`Get keyboard repeat delay success`);
-  });
-} catch (error) {
-  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.getKeyboardRepeatDelay().then((delay: Number) => {
+              console.log(`Get keyboard repeat delay success`);
+            });
+          } catch (error) {
+            console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -209,16 +261,29 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-try {
-  inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
-    if (error) {
-      console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
+              if (error) {
+                console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set keyboard repeat rate success`);
+            });
+          } catch (error) {
+            console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set keyboard repeat rate success`);
-  });
-} catch (error) {
-  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -256,12 +321,25 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  inputDevice.setKeyboardRepeatRate(60).then(() => {
-    console.log(`Set keyboard repeat rate success`);
-  });
-} catch (error) {
-  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.setKeyboardRepeatRate(60).then(() => {
+              console.log(`Set keyboard repeat rate success`);
+            });
+          } catch (error) {
+            console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -293,16 +371,29 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```js
-try {
-  inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
-    if (error) {
-      console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
+              if (error) {
+                console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Get keyboard repeat rate success`);
+            });
+          } catch (error) {
+            console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get keyboard repeat rate success`);
-  });
-} catch (error) {
-  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -334,12 +425,25 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 **示例**：
 
 ```js
-try {
-  inputDevice.getKeyboardRepeatRate().then((rate: Number) => {
-    console.log(`Get keyboard repeat rate success`);
-  });
-} catch (error) {
-  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.getKeyboardRepeatRate().then((rate: Number) => {
+              console.log(`Get keyboard repeat rate success`);
+            });
+          } catch (error) {
+            console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -377,11 +481,24 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  inputDevice.setInputDeviceEnabled(0, true).then(() => {
-    console.info(`Set input device enable success`);
-  });
-} catch (error) {
-    console.error(`Set input device enable error`);
+import { inputDevice } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDevice.setInputDeviceEnabled(0, true).then(() => {
+              console.info(`Set input device enable success`);
+            });
+          } catch (error) {
+            console.error(`Set input device enable error`);
+          }
+        })
+    }
+  }
 }
 ```

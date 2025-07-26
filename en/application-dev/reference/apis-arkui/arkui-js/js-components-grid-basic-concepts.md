@@ -13,7 +13,7 @@ As a layout-auxiliary positioning tool, the grid system plays an essential role 
 
 ## Concepts<a name="section1429110563714"></a>
 
-A column system contains of three attributes: margins, gutters, and columns.
+A column system consists of three attributes: margins, gutters, and columns.
 
 1.  **Margin**
 
@@ -25,7 +25,7 @@ A column system contains of three attributes: margins, gutters, and columns.
 
 3.  **Column**
 
-    Columns are used for positioning in the layout. The positioning for different screen sizes is determined by the numbers of columns. The column width is automatically calculated based on the actual device width and the number of columns when the margins and clutters meet the specifications.  ![](figures/en-us_image_0000001127125136.png)
+    Columns are used for positioning in the layout. The positioning for different screen sizes is determined by the numbers of columns. The column width is automatically calculated based on the actual device width and the number of columns when the margins and gutters meet the specifications.  ![](figures/en-us_image_0000001127125136.png)
 
     **Breakpoint System**
 

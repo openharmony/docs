@@ -4,13 +4,17 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## ResultSet
-
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
 下列API示例中，都需先使用[query](arkts-apis-data-relationalStore-RdbStore.md#query)、[querySql](arkts-apis-data-relationalStore-RdbStore.md#querysql)、[remoteQuery](arkts-apis-data-relationalStore-RdbStore.md#remotequery-1)、[queryLockedRow](arkts-apis-data-relationalStore-RdbStore.md#querylockedrow12)等query类方法中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
 
-### 属性
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
+## 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -26,7 +30,7 @@
 | isStarted    | boolean             | 是   | 检查指针是否移动过，true表示指针已移动过，false表示指针未移动过。             |
 | isClosed     | boolean             | 是   | 检查当前结果集是否关闭，true表示结果集已关闭，false表示结果集未关闭。         |
 
-### getColumnIndex
+## getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -52,7 +56,7 @@ getColumnIndex(columnName: string): number
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800013  | Resultset is empty or column index is out of bounds. |
@@ -84,7 +88,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnName
+## getColumnName
 
 getColumnName(columnIndex: number): string
 
@@ -110,7 +114,7 @@ getColumnName(columnIndex: number): string
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800013  | Resultset is empty or column index is out of bounds. |
@@ -141,7 +145,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnType<sup>18+</sup>
+## getColumnType<sup>18+</sup>
 
 getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
 
@@ -167,7 +171,7 @@ getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted. |
 | 14800012     | ResultSet is empty or pointer index is out of bounds.                                           |
@@ -205,7 +209,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnTypeSync<sup>18+</sup>
+## getColumnTypeSync<sup>18+</sup>
 
 getColumnTypeSync(columnIdentifier: number | string): ColumnType
 
@@ -231,7 +235,7 @@ getColumnTypeSync(columnIdentifier: number | string): ColumnType
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted. |
 | 14800012     | ResultSet is empty or pointer index is out of bounds.                                           |
@@ -269,7 +273,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goTo
+## goTo
 
 goTo(offset:number): boolean
 
@@ -295,7 +299,7 @@ goTo(offset:number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -324,7 +328,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToRow
+## goToRow
 
 goToRow(position: number): boolean
 
@@ -350,7 +354,7 @@ goToRow(position: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -379,7 +383,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToFirstRow
+## goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -428,7 +432,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToLastRow
+## goToLastRow
 
 goToLastRow(): boolean
 
@@ -476,7 +480,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToNextRow
+## goToNextRow
 
 goToNextRow(): boolean
 
@@ -524,7 +528,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToPreviousRow
+## goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -572,7 +576,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getValue<sup>12+</sup>
+## getValue<sup>12+</sup>
 
 getValue(columnIndex: number): ValueType
 
@@ -598,7 +602,7 @@ getValue(columnIndex: number): ValueType
 
 | **错误码ID** | **错误信息**     |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.      |
 | 14800011  | Failed to open the database because it is corrupted.        |
 | 14800012  | ResultSet is empty or pointer index is out of bounds.       |
@@ -627,7 +631,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getBlob
+## getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -654,7 +658,7 @@ getBlob(columnIndex: number): Uint8Array
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -683,7 +687,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getString
+## getString
 
 getString(columnIndex: number): string
 
@@ -709,7 +713,7 @@ getString(columnIndex: number): string
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -738,7 +742,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getLong
+## getLong
 
 getLong(columnIndex: number): number
 
@@ -764,7 +768,7 @@ getLong(columnIndex: number): number
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -793,7 +797,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getDouble
+## getDouble
 
 getDouble(columnIndex: number): number
 
@@ -819,7 +823,7 @@ getDouble(columnIndex: number): number
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -848,7 +852,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getAsset<sup>10+</sup>
+## getAsset<sup>10+</sup>
 
 getAsset(columnIndex: number): Asset
 
@@ -874,7 +878,7 @@ getAsset(columnIndex: number): Asset
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -903,7 +907,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getAssets<sup>10+</sup>
+## getAssets<sup>10+</sup>
 
 getAssets(columnIndex: number): Assets
 
@@ -929,7 +933,7 @@ getAssets(columnIndex: number): Assets
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -958,7 +962,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getRow<sup>11+</sup>
+## getRow<sup>11+</sup>
 
 getRow(): ValuesBucket
 
@@ -1006,11 +1010,11 @@ if (resultSet != undefined) {
 }
 ```
 
-### getRows<sup>18+</sup>
+## getRows<sup>18+</sup>
 
 getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)的其他接口并发调用，否则获取的数据可能非预期。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)的其他接口并发调用，否则获取的数据可能非预期。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1034,7 +1038,7 @@ getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -1081,7 +1085,7 @@ async function proccessRows(resultSet: relationalStore.ResultSet) {
 }
 ```
 
-### getSendableRow<sup>12+</sup>
+## getSendableRow<sup>12+</sup>
 
 getSendableRow(): sendableRelationalStore.ValuesBucket
 
@@ -1167,7 +1171,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isColumnNull
+## isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
@@ -1193,7 +1197,7 @@ isColumnNull(columnIndex: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------- |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
@@ -1222,7 +1226,92 @@ if (resultSet != undefined) {
 }
 ```
 
-### close
+## getValueForFlutter<sup>20+</sup>
+
+getValueForFlutter(columnIndex: number): ValueType
+
+获取当前行中指定列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始的整数。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [ValueType](arkts-apis-data-relationalStore-t.md#valuetype) | 返回当前行中指定列对应数据字段类型的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**     |
+|-----------|---------|
+| 14800011  | Failed to open the database because it is corrupted.        |
+| 14800012  | ResultSet is empty or pointer index is out of bounds.       |
+| 14800013  | Resultset is empty or column index is out of bounds.   |
+| 14800014  | The RdbStore or ResultSet is already closed.       |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.    |
+| 14800023  | SQLite: Access permission denied.    |
+| 14800024  | SQLite: The database file is locked.    |
+| 14800025  | SQLite: A table in the database is locked.  |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.    |
+| 14800030  | SQLite: Unable to open the database file.    |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.    |
+
+**示例：**
+
+```ts
+if (resultSet != undefined) {
+  const codes = (resultSet as relationalStore.ResultSet).getValueForFlutter((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
+}
+```
+
+## getRowForFlutter<sup>20+</sup>
+
+getRowForFlutter(): ValuesBucket
+
+获取指定行中所有列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 返回指定行中所有列的值。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+
+**示例：**
+
+```ts
+if (resultSet != undefined) {
+  const row = (resultSet as relationalStore.ResultSet).getRowForFlutter();
+}
+```
+
+## close
 
 close(): void
 

@@ -1,4 +1,4 @@
-#  @ohos.app.ability.application (Application)
+#  @ohos.app.ability.application (Application Basic Capability)
 
 You can use this module to create a [Context](../../application-models/application-context-stage.md).
 
@@ -139,14 +139,6 @@ Creates the context of a plugin under the current application based on the conte
 | ------------------ | ------------------- |
 | Promise\<[Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md)> | Promise used to return the context created.|
 
-**Error codes**
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message       |
-| -------- | --------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -157,7 +149,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let moduleContext: common.Context;
     try {
-      application.createPluginModuleContext(this.context, 'pluginBundleName', 'pluginModuleName')
+      application.createPluginModuleContext(this.context, 'com.example.pluginBundleName', 'pluginModuleName')
         .then((data: Context) => {
           moduleContext = data;
           console.info('createPluginModuleContext success!');
@@ -171,6 +163,122 @@ export default class EntryAbility extends UIAbility {
       let code: number = (error as BusinessError).code;
       let message: string = (error as BusinessError).message;
       console.error(`createPluginModuleContext failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.promoteCurrentToCandidateMasterProcess<sup>20+</sup>
+
+promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
+
+Adds the current process to the candidate master process list. This API uses a promise to return the result.
+
+When the master process is terminated, the system promotes the candidate master process at the head of the list to the master process role and triggers the [onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11) callback. If no candidate master process is configured, the system creates an empty process as the master process for a UIAbility. For a UIExtensionAbility, the system preferentially reuses the existing UIExtensionAbility process as the new master process. If no process is available, the system creates an empty process as the master process.
+
+> **NOTE**
+>
+> - This API takes effect only on 2-in-1 devices and tablets.
+>
+> - This API is valid only when a UIAbility or UIExtensionAbility can run in an independent process, that is, their **isolationProcess** field in the [module.json5](../../quick-start/module-configuration-file.md) file is set to **true**.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| insertToHead | boolean | Yes| Whether to add the current process to the head of the candidate master process list. The value **true** means to add the current process to the head of the list, and **false** means to add the current process to the tail of the list.|
+
+**Return value**
+
+| Type              | Description               |
+| ------------------ | ------------------- |
+|Promise\<void> | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](./errorcode-ability.md).
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 801 | Capability not supported.|
+| 16000115 | The current process is not running a component configured with "isolationProcess" and cannot be set as a candidate master process. |
+
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, application, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      application.promoteCurrentToCandidateMasterProcess(true)
+        .then(() => {
+          console.info('promote succeed');
+        })
+        .catch((err: BusinessError) => {
+          console.error(`promote failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`promoteCurrentToCandidateMasterProcess failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.demoteCurrentFromCandidateMasterProcess<sup>20+</sup>
+
+demoteCurrentFromCandidateMasterProcess(): Promise\<void>
+
+Removes the current process from the candidate master process list. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API takes effect only on 2-in-1 devices and tablets.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type              | Description               |
+| ------------------ | ------------------- |
+|Promise\<void> | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 801 | Capability not supported.|
+| 16000116 | The current process is already a master process and does not support cancellation. |
+| 16000117 | The current process is not a candidate master process and does not support cancellation. |
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, application, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      application.demoteCurrentFromCandidateMasterProcess()
+        .then(() => {
+          console.info('demote succeed');
+        })
+        .catch((err: BusinessError) => {
+          console.error(`demote failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`demoteCurrentFromCandidateMasterProcess failed, error.code: ${code}, error.message: ${message}`);
     }
   }
 }

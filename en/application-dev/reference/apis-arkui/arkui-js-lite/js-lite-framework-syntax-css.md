@@ -99,8 +99,8 @@ A CSS pseudo-class is a keyword added to a selector that specifies a special sta
 
 | Name      | Available Components                               | Description                                      |
 | -------- | ----------------------------------- | ---------------------------------------- |
-| :active  | <br>input[type="button"]           | Selects the element activated by a user, for example, a pressed button. Only the **background-color** and **background-image** attributes can be set for the pseudo-class selector on lite wearables.|
-| :checked | input[type="checkbox", type="radio"]| Selects the element whose **checked** attribute is **true**. Only the **background-color** and **background-image** attributes can be set for the pseudo-class selector on lite wearables.|
+| :active  | <br>input[type="button"]           | Selects the element activated by a user, for example, a pressed button. Only the **background-color** and **background-image** attributes can be set for the pseudo-class selector on mini-system wearables.|
+| :checked | input[type="checkbox", type="radio"]| Selects the element whose **checked** attribute is **true**. Only the **background-color** and **background-image** attributes can be set for the pseudo-class selector on mini-system wearables.|
 
 The following is an example for you to use the **:active** pseudo-class to control the style when a user presses the button. 
 

@@ -15,7 +15,7 @@ import backup from '@ohos.file.backup';
 
 ## FileMeta
 
-文件的元数据，包含一个应用名称以及文件uri。FileMeta在执行备份/恢复时是不可缺少的对象。
+文件的元数据，包含一个应用名称以及文件URI。FileMeta在执行备份/恢复时是不可缺少的对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -1626,19 +1626,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  sessionBackup?: backup.SessionBackup;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.sessionBackup.cleanBundleTempDir(bundleName);
+      let res = await sessionBackup.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -1674,8 +1671,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -1693,7 +1690,106 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  ```
+
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+用于在备份业务中获取应用自定义的能力描述信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要查询能力信息的应用名称。 |
+| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getBackupCompatibilityInfo() {
+    let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // 空表示无需给应用传额外信息
+    try {
+      let retInfo = await sessionBackup.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ## SessionRestore
@@ -2818,19 +2914,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  sessionRestore?: backup.SessionRestore;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.sessionRestore.cleanBundleTempDir(bundleName);
+      let res = await sessionRestore.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -2866,8 +2959,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -2885,7 +2978,106 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
+  ```
+
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+用于在恢复业务中获取应用自定义的能力描述信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要查询能力信息的应用名称。 |
+| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getRestoreCompatibilityInfo() {
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // 空表示无需给应用传额外信息
+    try {
+      let retInfo = await sessionRestore.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ## IncrementalBackupSession<sup>12+</sup>
@@ -3716,19 +3908,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  incrementalBackupSession?: backup.IncrementalBackupSession;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.incrementalBackupSession.cleanBundleTempDir(bundleName);
+      let res = await incrementalBackupSession.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -3764,8 +3953,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -3783,5 +3972,104 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
+  ```
+
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+用于在增量备份业务中获取应用自定义的能力描述信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要查询能力信息的应用名称。 |
+| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getIncBackupCompatibilityInfo() {
+    let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // 空表示无需给应用传额外信息
+    try {
+      let retInfo = await incrementalBackupSession.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```

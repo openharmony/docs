@@ -4,7 +4,7 @@ This module provides the serial port management functions, including enabling an
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 19. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -14,7 +14,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.getPortList
 
-getPortList(): Readonly&lt;serialport&gt;[];
+getPortList(): Readonly&lt;SerialPort&gt;[]
 
 Obtains the serial port device list, including the device name and port number.
 
@@ -28,6 +28,11 @@ Obtains the serial port device list, including the device name and port number.
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **getPortList** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -44,9 +49,9 @@ let portId: number = portList[0].portId;
 
 ## serialManager.hasSerialRight
 
-hasSerialRight(portId: number): boolean;
+hasSerialRight(portId: number): boolean
 
-Checks whether the application has the permission to access the serial port device. When an application is restarted after exiting, you need to request the permission from the user again.
+Checks whether the application has the permission to access the serial port device. When an application is restarted after exits, you need to request the permission from the user again.
 
 **System capability**: SystemCapability.USB.USBManager.Serial
 
@@ -71,10 +76,15 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **hasSerialRight** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -125,10 +135,15 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **requestSerialRight** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -158,7 +173,7 @@ if (!serialManager.hasSerialRight(portId)) {
 
 ## serialManager.open
 
-open(portId: number): void;
+open(portId: number): void
 
 Opens a serial port device.
 
@@ -179,11 +194,16 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400004 | The serial port device is occupied. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **open** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -221,7 +241,7 @@ try {
 
 ## serialManager.getAttribute
 
-getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
+getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;
 
 Obtains the configuration parameters of a specified serial port.
 
@@ -247,11 +267,16 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **getAttribute** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -301,7 +326,7 @@ try {
 
 ## serialManager.setAttribute
 
-setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
+setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void
 
 Sets the parameters of the serial port. If this method is not called, the default configuration parameters are used (baud rate: 9600 bit/s; data bit: 8; parity bit: 0; stop bit: 1).
 
@@ -322,11 +347,16 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **setAttribute** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -378,7 +408,7 @@ try {
 
 ## serialManager.read
 
-read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 Reads data from the serial port device asynchronously.
 
@@ -390,7 +420,7 @@ Reads data from the serial port device asynchronously.
 |---------|------------|----|------------------|
 | portId  | number     | Yes | Port number.     |
 | buffer  | Uint8Array | Yes | Buffer for reading data.|
-| timeout | number     | No | Timeout duration for reading data, in milliseconds.|
+| timeout | number     | No | (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout. You can set this parameter as required.|
 
 **Returns**
 
@@ -406,13 +436,18 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **read** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -458,7 +493,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 
 ## serialManager.readSync
 
-readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 Reads data from the serial port device synchronously.
 
@@ -470,7 +505,7 @@ Reads data from the serial port device synchronously.
 |---------|------------|----|------------------|
 | portId  | number     | Yes | Port number.|
 | buffer  | Uint8Array | Yes | Buffer for reading data.|
-| timeout | number     | No | Timeout duration for reading data, in milliseconds.|
+| timeout | number     | No | (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout. You can set this parameter as required.|
 
 **Returns**
 
@@ -486,13 +521,18 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **readSync** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -539,7 +579,7 @@ try {
 
 ## serialManager.write
 
-write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 Writes data to the serial port device asynchronously.
 
@@ -551,7 +591,7 @@ Writes data to the serial port device asynchronously.
 |---------|------------|----|------------------|
 | portId  | number     | Yes | Port number.     |
 | buffer  | Uint8Array | Yes | Buffer for writing data.|
-| timeout | number     | No | Timeout duration for writing data, in milliseconds.|
+| timeout | number     | No | (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout. You can set this parameter as required.|
 
 **Returns**
 
@@ -567,13 +607,18 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **addSerialRight** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -619,7 +664,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 
 ## serialManager.writeSync
 
-writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 Writes data to the serial port device synchronously.
 
@@ -631,7 +676,7 @@ Writes data to the serial port device synchronously.
 |---------|------------|----|------------------|
 | portId  | number     | Yes | Port number.    |
 | buffer  | Uint8Array | Yes | Destination buffer for writing data.|
-| timeout | number     | No | Timeout duration for writing data, in milliseconds.|
+| timeout | number     | No | (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout. You can set this parameter as required.|
 
 **Returns**
 
@@ -647,13 +692,18 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **writeSync** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -700,7 +750,7 @@ try {
 
 ## serialManager.close
 
-close(portId: number): void;
+close(portId: number): void
 
 Closes the serial port device.
 
@@ -720,11 +770,16 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **close** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -770,7 +825,7 @@ try {
 
 ## serialManager.cancelSerialRight
 
-cancelSerialRight(portId: number): void;
+cancelSerialRight(portId: number): void
 
 Cancels the permission to access the serial port device when the application is running. This API is used to close the enabled serial port device.
 
@@ -792,10 +847,15 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 14400005 | Database operation exception.                                |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **Example**
 
+> **NOTE**
+>
+> The following sample code shows the basic process for calling the **cancelSerialRight** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols.
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -837,12 +897,12 @@ Represents the configuration parameters of a serial port.
 
 **System capability**: SystemCapability.USB.USBManager.Serial
 
-| Name      | Type    | Mandatory| Description       |
-|----------|--------|----|-----------|
-| baudrate | number | Yes | Baud rate. |
-| dataBits | number | No | Data bit. |
-| parity   | number | No | Parity check.|
-| stopBits | number | No | Stop bit. |
+| Name      |          Type       |  Read-Only  |  Optional| Description       |
+|----------|--------|----------|-----------|----------------------|
+| baudRate | [BaudRates](#baudrates) |   No  | No | Baud rate. |
+| dataBits | [DataBits](#databits)   |   No  | Yes | Data bits. The default value is **8**. |
+| parity   | [Parity](#parity)       |   No  | Yes | Parity check. The default value is **None**, indicating that no parity check is performed.|
+| stopBits | [StopBits](#stopbits)   |   No  | Yes | Stop bits. The default value is **1**. |
 
 ## SerialPort
 
@@ -850,10 +910,10 @@ Represents the parameters of a serial port.
 
 **System capability**: SystemCapability.USB.USBManager.Serial
 
-| Name    | Type    | Mandatory| Description   |
-|--------|--------|----|-------|
-| portId | number | Yes | Port number.|
-| deviceName   | string | Yes | Serial port device name.|
+| Name    | Type |  Read-Only| Optional| Description   |
+|--------|--------|------|-------|--------|
+| portId | number | No |  No| Port number.|
+| deviceName | string | No |  No| Serial port device name.|
 
 ## BaudRates
 
@@ -930,5 +990,4 @@ Enumerates of the number of stop bits.
 | Name    | Value    | Description   |
 |-----------|-----------|-----------|
 | STOPBIT_1 | 0 | The number of stop bits is 1.|
-| STOPBIT_1P5 | 1 | The number of stop bits is 1.5.|
-| STOPBIT_2 | 2 | The number of stop bits is 2.|
+| STOPBIT_2 | 1 | The number of stop bits is 2.|

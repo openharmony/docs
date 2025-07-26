@@ -59,42 +59,37 @@
 
 ### 持久化数据
 
-数据页面
 ```ts
-import { Type } from '@kit.ArkUI';
+import { PersistenceV2, Type } from '@kit.ArkUI';
 
-// 数据中心
 @ObservedV2
 class SampleChild {
-  @Trace p1: number = 0;
-  p2: number = 10;
+  @Trace childNumber: number = 1;
 }
 
 @ObservedV2
-export class Sample {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+class Sample {
+  // 对于复杂对象需要@Type修饰，确保反序列化成功，去掉@Type会反序列化值失败。
   @Type(SampleChild)
-  @Trace f: SampleChild = new SampleChild();
+  // 对于没有初值的类属性，经过@Type修饰后，需要手动保存，否则持久化失败。
+  // 无法使用@Type修饰的类属性，必须要有初值才能持久化。
+  @Trace sampleChild?: SampleChild = undefined;
 }
-```
-
-页面
-```ts
-import { PersistenceV2 } from '@kit.ArkUI';
-import { Sample } from '../Sample';
 
 @Entry
 @ComponentV2
-struct Page {
-  prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+struct TestCase {
+  @Local sample: Sample = PersistenceV2.connect(Sample, () => new Sample)!;
 
   build() {
     Column() {
-      Text(`Page1 add 1 to prop.p1: ${this.prop.f.p1}`)
-        .fontSize(30)
+      Text('childNumber value:' + this.sample.sampleChild?.childNumber)
         .onClick(() => {
-          this.prop.f.p1++;
+          this.sample.sampleChild = new SampleChild();
+          this.sample.sampleChild.childNumber = 2;
+          PersistenceV2.save(Sample);
         })
+        .fontSize(30)
     }
   }
 }

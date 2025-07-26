@@ -47,7 +47,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 | --------------------- | -------------- | -------------------------------------- |
 | timestamp	        | number	 | 时间戳。                                  |
 | angularVelocity	| number	 | 旋转角速度，每秒转的角度(°/s)。                   |
-| degree	        | number 	 | 相对旋转角度。<br>单位：度。<br>取值范围:[-360 360]。     |
+| degree	        | number 	 | 相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |
 | action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | 表冠动作。  |
 | stopPropagation	| () => void     | 阻止事件冒泡。                         |
 

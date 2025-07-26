@@ -608,6 +608,8 @@ struct Index {
 ![zh-cn_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
+平移参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -619,6 +621,8 @@ struct Index {
 | z    | number | 否   | z轴的平移距离。<br/>单位：px<br/>默认值：0<br/>取值范围 (-∞, +∞) |
 
 ## ScaleOption
+
+缩放参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -633,6 +637,8 @@ struct Index {
 | centerY | number | 否   | 变换中心点y轴坐标。<br/>单位：px<br/>默认值：组件中心点y轴坐标。<br/>取值范围 (-∞, +∞)    |
 
 ## RotateOption
+
+旋转参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -649,6 +655,8 @@ struct Index {
 
 ## PolyToPolyOptions<sup>12+</sup>
 
+多边形到多边形的映射选项。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -658,10 +666,12 @@ struct Index {
 | src    |  Array<[Point](#point12)> | 是   | 源点坐标。 |
 | srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
-| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞) |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞)|
+| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞) |
+| pointCount    | number | 否   | 使用到的点数量。<br>默认值: 0 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
+
+坐标点的数据结构。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

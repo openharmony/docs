@@ -23,7 +23,7 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
-设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
+设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -77,7 +77,7 @@ try {
 
 setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-设置当前应用中overlay module的禁用使能状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
+设置当前应用中overlay module的禁用使能状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -127,7 +127,7 @@ try {
 
 getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -165,7 +165,7 @@ let moduleName = "feature";
 (async () => {
   try {
     let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
-    console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
+    console.info('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -178,7 +178,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -214,7 +214,7 @@ try {
       console.error('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
       return;
     }
-    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+    console.info('overlayModuleInfo is ' + JSON.stringify(data));
   });
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -227,7 +227,7 @@ try {
 
 getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定的目标module的OverlayModuleInfo。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定的目标module的OverlayModuleInfo。使用promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -264,7 +264,7 @@ let targetModuleName = "feature";
 (async () => {
   try {
     let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
-    console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+    console.info('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -277,7 +277,7 @@ let targetModuleName = "feature";
 
 getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定的目标module的OverlayModuleInfo。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定的目标module的OverlayModuleInfo。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -312,7 +312,7 @@ try {
       console.error('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
       return;
     }
-    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+    console.info('overlayModuleInfo is ' + JSON.stringify(data));
   });
 } catch (err) {
   let code = (err as BusinessError).code;

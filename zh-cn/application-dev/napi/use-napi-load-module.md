@@ -68,6 +68,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
         return result;
     }
     ```
+    <!-- @[napi_load_module_napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/napi_init.cpp) -->
 
 - **加载ets目录下文件中的模块**
 
@@ -77,10 +78,11 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
+    <!-- @[napi_load_module_napi_test](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/ets/Test.ets) -->
 
 1. 需要在工程的build-profile.json5文件中进行以下配置：
 
@@ -97,6 +99,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
       }
     }
     ```
+    <!-- @[napi_load_module_napi_build](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/build-profile.json5) -->
 
 2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
@@ -124,6 +127,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
         return result;
     }
     ```
+    <!-- @[napi_load_module_napi_file](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/file.cpp) -->
 - **加载模块内文件路径**
 
     当加载文件中的模块时，如以下ArkTS代码：
@@ -132,7 +136,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -188,7 +192,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //library Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -254,7 +258,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //sharedlibrary Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -480,7 +484,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //har2 Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```

@@ -1,6 +1,10 @@
 # 栅格设置
 
+栅格设置可以为布局提供规律性的结构，解决多尺寸多设备的动态布局问题，保证不同设备上各个模块的布局一致性。
+
 >  **说明：**
+>
+>  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
 >
 >  - 从API version 9开始，该模块不再维护，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)替代。
 >

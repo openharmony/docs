@@ -161,7 +161,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 
 参考以下示例，完整地播放一个流媒体视频。
 
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSStreamingMedia)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程，下载[示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSStreamingMedia)，并将示例工程的以下资源复制到对应目录。
     ```
     AVPlayerArkTSAudio
     entry/src/main/ets/
@@ -200,7 +200,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 @Component
 struct Index {
   private avPlayer: media.AVPlayer | null = null;
-  private context: common.UIAbilityContext | undefined = undefined;
+  private context: Context | undefined = undefined;
   public videoTrackIndex: number = 0;
   public bitrate: number = 0;
   ...
@@ -514,7 +514,7 @@ struct Index {
     this.surfaceW = this.windowWidth * SURFACE_W;
     this.surfaceH = this.surfaceW / SURFACE_H;
     this.isPaused = true;
-    this.context = getContext(this) as common.UIAbilityContext;
+    this.context = this.getUIContext().getHostContext()!;
   }
 
   aboutToDisappear() {

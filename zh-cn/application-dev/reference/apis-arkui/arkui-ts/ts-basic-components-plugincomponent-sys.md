@@ -26,7 +26,7 @@ PluginComponent(options: PluginComponentOptions)
 
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 说明                                                     |
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
@@ -34,18 +34,32 @@ PluginComponent(options: PluginComponentOptions)
 
 定义用于构造插件组件的选项。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
-| template   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
-| data       | any    | 传给插件组件提供方使用的数据。 |
+| template<sup>9+</sup>   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
+| data<sup>9+</sup>       | any    | 传给插件组件提供方使用的数据。 |
 
 ## PluginComponentTemplate<sup>9+</sup>类型说明
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供方Ability的bundleName。 |
+
 ## 属性
+
 必须显式设置组件宽高为非0有效值。
 
 **说明：**
@@ -69,7 +83,7 @@ PluginComponent(options: PluginComponentOptions)
 
 ### onComplete
 
-onComplete(callback:&nbsp;VoidCallback\<void\>)
+onComplete(callback:&nbsp;VoidCallback)
 
 组件加载完成时触发回调。
 
@@ -81,7 +95,7 @@ onComplete(callback:&nbsp;VoidCallback\<void\>)
 
 | 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 是   | 回调函数，组件加载完成时触发的回调。 |
+| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 回调函数，组件加载完成时触发的回调。 |
 
 ### onError
 
@@ -103,6 +117,10 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 发生错误时调用回调。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
 | info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
@@ -111,10 +129,32 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 发生错误时提供的数据。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | -------------------------- |
-| errcode    | number | 错误码。                    |
-| msg        | string | 错误信息。                  |
+| errcode<sup>9+</sup>    | number | 错误码。                    |
+| msg<sup>9+</sup>        | string | 错误信息。                  |
+
+错误码1为默认错误码，错误信息和处理建议详见下表：
+
+| 错误信息   | 描述                        | 处理建议 |
+| ------ | -------------------------- | ----------------- |
+| package path is empty. | 包路径为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Query Active OsAccountIds failed! | 获取激活的用户ID失败。 | 检查Account服务是否异常，或检查应用是否具备用户ID查询权限。    |
+| Template source is empty. | 模板source为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Bms bundleManager is nullptr. | 获取BundleManager失败。 |  检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                  |
+| App bundleName is empty. | 应用包名为空。  | 检查PluginComponentTemplate参数中bundleName字段是否有误。                   |
+| Bms get bundleName failed! | 获取包名失败。  |  检查PluginComponentTemplate参数中bundleName字段是否有误，或检查bundleName字段对应的包是否已正确安装，或检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                |
+| Bms moduleResPaths is empty. | 插件包moduleResPaths属性为空。 |  检查bundleName字段对应的包的moduleResPaths属性是否异常，或检查BMS服务是否异常                   |
+| Bms get hapPath failed! Cannot find hap according to BundleName and ModuleName! | 获取hapPath失败。  |   检查PluginComponentTemplate参数中bundleName字段是否有误，检查bundleName字段对应的模块是否已正确安装。               |
+
 
 ## 示例（加载PluginComponent）
 
@@ -152,7 +192,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.onListener();
-            console.log("Button('Register Push Listener')");
+            console.info("Button('Register Push Listener')");
           })
         Button('Request')
           .fontSize(50)
@@ -161,7 +201,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.Request();
-            console.log("Button('Request')");
+            console.info("Button('Request')");
           })
         PluginComponent({
           // 提供方
@@ -169,10 +209,10 @@ onError(callback:&nbsp;PluginErrorCallback)
           data: { 'countDownStartValue': 'new countDownStartValue' }
         }).size({ width: 500, height: 350 })
           .onComplete(() => {
-            console.log("onComplete");
+            console.info("onComplete");
           })
           .onError((info: Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg);
+            console.error("onError" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')
@@ -217,7 +257,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.onListener();
-            console.log("Button('Register Request Listener')");
+            console.info("Button('Register Request Listener')");
           })
         Button('Push')
           .fontSize(30)
@@ -227,7 +267,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .onClick(() => {
             plugin.Push();
             this.message = "Button('Push')";
-            console.log("Button('Push')");
+            console.info("Button('Push')");
           })
         Text(this.message)
           .height(150)
@@ -255,17 +295,17 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data)
 {
-    console.log("onRequestListener name=" + name);
-    console.log("onRequestListener data=" + JSON.stringify(data));
+    console.info("onRequestListener name=" + name);
+    console.info("onRequestListener data=" + JSON.stringify(data));
     return {template:"pluginTemplate", data:data};
 }
 
@@ -294,7 +334,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -313,10 +353,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }
@@ -336,16 +376,16 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data) {
-    console.log("onRequestListener name=" + name)
-    console.log("onRequestListener data=" + JSON.stringify(data))
+    console.info("onRequestListener name=" + name)
+    console.info("onRequestListener data=" + JSON.stringify(data))
     return { template: "pluginTemplate", data: data }
 }
 
@@ -378,7 +418,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -401,10 +441,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }

@@ -18,9 +18,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) | OH_ImagePackerNative | ImagePacker结构体类型，用于执行ImagePacker相关操作。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) | OH_PackingOptions | OH_PackingOptions是native层封装的图像编码选项结构体，OH_PackingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。 |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) | OH_PackingOptionsForSequence | 图像序列编码选项。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) | OH_ImagePackerNative | ImagePacker结构体类型，用于执行ImagePacker相关操作。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) | OH_PackingOptions | OH_PackingOptions是native层封装的图像编码选项结构体，OH_PackingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) | OH_PackingOptionsForSequence | 图像序列编码选项。 |
 
 ### 枚举
 
@@ -104,7 +104,7 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) **options | 用于操作的PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) **options | 用于操作的PackingOptions指针。 |
 
 **返回：**
 
@@ -129,8 +129,8 @@ Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,Image_M
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
-| [Image_MimeType](capi-image-string.md) *format | 图像格式。可传入一个空指针和零大小，系统将分配内存，但必须在使用后释放内存。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [Image_MimeType](capi-image-nativemodule-image-string.md) *format | 图像格式。可传入一个空指针和零大小，系统将分配内存，但必须在使用后释放内存。 |
 
 **返回：**
 
@@ -155,8 +155,8 @@ Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码参数指针。 |
-| [Image_MimeType](capi-image-string.md) *format | 编码参数中的 MIME 类型的指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码参数指针。 |
+| [Image_MimeType](capi-image-nativemodule-image-string.md) *format | 编码参数中的 MIME 类型的指针。 |
 
 **返回：**
 
@@ -181,8 +181,8 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,Image_M
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
-| [Image_MimeType](capi-image-string.md) *format | 图像格式。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [Image_MimeType](capi-image-nativemodule-image-string.md) *format | 图像格式。 |
 
 **返回：**
 
@@ -207,7 +207,7 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | uint32_t *quality | 编码质量。 |
 
 **返回：**
@@ -233,7 +233,7 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | uint32_t quality | 编码质量。 |
 
 **返回：**
@@ -259,7 +259,7 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | bool *needsPackProperties | 是否需要编码图片属性信息，例如EXIF。 |
 
 **返回：**
@@ -285,7 +285,7 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | bool needsPackProperties | 是否需要编码图片属性信息，例如EXIF。 |
 
 **返回：**
@@ -311,7 +311,7 @@ Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *opti
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | int32_t* desiredDynamicRange | 期望的动态范围[IMAGE_PACKER_DYNAMIC_RANGE]#image_packer_dynamic_range)。 |
 
 **返回：**
@@ -337,7 +337,7 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 | int32_t desiredDynamicRange | 期望的动态范围[IMAGE_PACKER_DYNAMIC_RANGE]#image_packer_dynamic_range)。 |
 
 **返回：**
@@ -363,7 +363,7 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 被操作的OH_PackingOptions指针。 |
 
 **返回：**
 
@@ -388,7 +388,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) **options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) **options | 用于操作的OH_PackingOptionsForSequence指针。 |
 
 **返回：**
 
@@ -413,7 +413,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t frameCount | 图片的帧数。 |
 
 **返回：**
@@ -439,7 +439,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t *frameCount | 图片的帧数。 |
 
 **返回：**
@@ -465,7 +465,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | int32_t *delayTimeList | 图片延迟时间数组的指针。 |
 | size_t delayTimeListLength | 图片延迟时间数组的长度。 |
 
@@ -492,7 +492,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | int32_t *delayTimeList | 图片延迟时间数组的指针。 |
 | size_t delayTimeListLength | 图片延迟时间数组的长度。 |
 
@@ -519,7 +519,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t *disposalTypes | 图片过渡帧模式数组的指针，图片帧过渡模式的参数，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>0：不需要任何操作。<br>1：保持图形不变。<br>2：恢复背景色。<br>3：恢复到之前的状态。 |
 | size_t disposalTypesLength | 图片过渡帧模式数组的长度。 |
 
@@ -546,7 +546,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t *disposalTypes | 图片过渡帧模式数组的指针。 |
 | size_t disposalTypesLength | 图片过渡帧模式数组的长度。 |
 
@@ -573,7 +573,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t loopCount | 图片循环播放次数。 |
 
 **返回：**
@@ -599,7 +599,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 | uint32_t *loopCount | 图片循环播放次数。 |
 
 **返回：**
@@ -625,7 +625,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 用于操作的OH_PackingOptionsForSequence指针。 |
 
 **返回：**
 
@@ -650,7 +650,7 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) **imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) **imagePacker | 被操作的OH_ImagePackerNative指针。 |
 
 **返回：**
 
@@ -675,9 +675,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_ImageSourceNative](capi-oh-imagesourcenative.md) *imageSource | 用于编码的image source指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_ImageSourceNative](capi-image-nativemodule-oh-imagesourcenative.md) *imageSource | 用于编码的image source指针。 |
 | uint8_t *outData | 用于存储打包图像输出数据的缓冲区。 |
 | size_t *size | 用于存储打包图像输出数据的缓冲区大小。 |
 
@@ -704,9 +704,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 用于编码的Pixelmap指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 用于编码的Pixelmap指针。 |
 | uint8_t *outData | 用于存储打包图像输出数据的缓冲区。 |
 | size_t *size | 用于存储打包图像输出数据的缓冲区大小。 |
 
@@ -733,9 +733,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 用于编码的Picture指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 用于编码的Picture指针。 |
 | uint8_t *outData | 用于存储打包图像输出数据的缓冲区。 |
 | size_t *size | 用于存储打包图像输出数据的缓冲区大小。 |
 
@@ -762,9 +762,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 编码选项参数 [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md)。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmapSequence | 用于编码的Pixelmap序列指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 编码选项参数 [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md)。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | 用于编码的Pixelmap序列指针。 |
 | size_t sequenceLength | 用于编码的Pixelmap序列长度。 |
 | uint8_t *outData | 用于存储编码后图像输出数据的缓冲区。 |
 | size_t *outDataSize | 用于存储编码后图像输出数据的缓冲区大小。 |
@@ -792,9 +792,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_ImageSourceNative](capi-oh-imagesourcenative.md) *imageSource | 用于编码的image source指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_ImageSourceNative](capi-image-nativemodule-oh-imagesourcenative.md) *imageSource | 用于编码的image source指针。 |
 | int32_t fd | 可写的文件描述符。 |
 
 **返回：**
@@ -820,9 +820,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 用于编码的pixelmap指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 用于编码的pixelmap指针。 |
 | int32_t fd | 可写的文件描述符。 |
 
 **返回：**
@@ -848,9 +848,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptions](capi-oh-packingoptions.md) *options | 编码选项参数。 |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 用于编码的picture指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | 编码选项参数。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 用于编码的picture指针。 |
 | int32_t fd | 可写的文件描述符。 |
 
 **返回：**
@@ -876,9 +876,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
-| [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md) *options | 编码选项参数 [OH_PackingOptionsForSequence](capi-oh-packingoptionsforsequence.md)。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmapSequence | 用于编码的Pixelmap序列指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | 编码选项参数 [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md)。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | 用于编码的Pixelmap序列指针。 |
 | size_t sequenceLength | 用于编码的Pixelmap序列长度。 |
 | int32_t fd | 可写的文件描述符。 |
 
@@ -905,7 +905,7 @@ Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType **suppor
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Image_MimeType](capi-image-string.md) **supportedFormats | 支持编码的图片格式。 |
+| [Image_MimeType](capi-image-nativemodule-image-string.md) **supportedFormats | 支持编码的图片格式。 |
 | size_t *length | 数组长度。 |
 
 **返回：**
@@ -931,7 +931,7 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImagePackerNative](capi-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | 被操作的OH_ImagePackerNative指针。 |
 
 **返回：**
 

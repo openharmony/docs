@@ -25,7 +25,7 @@ Enables listening for system load level changes. This API uses an asynchronous c
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | type | string                      | Yes   | Change type. This parameter has a fixed value of **systemLoadChange**.                              |
-| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | Yes   | Callback used to return the system load level.|
+| callback  | Callback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | Yes   | Callback used to return the system load level.|
 
 **Error codes**
 
@@ -65,14 +65,15 @@ Disables listening for system load level changes. This API uses an asynchronous 
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | type | string                      | Yes   | Change type. This parameter has a fixed value of **systemLoadChange**.                              |
-| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | No   | Callback used to return the system load level.|
+| callback  | Callback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | No   | Callback used to return the system load level.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
 
 **Example**
 

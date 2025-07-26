@@ -94,6 +94,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 200px;
+  padding-left: 200px;
 }
 .popup {
   mask-color: gray;
@@ -103,7 +104,7 @@
 }
 .button {
   width: 220px;
-  height: 70px;
+  height: 100px;
   margin-top: 50px;
 }
 ```

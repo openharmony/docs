@@ -184,7 +184,7 @@ export default {
 单次定位请求的配置参数。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#CurrentLocationRequest)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -258,7 +258,7 @@ fail返回错误代码：
 持续定位请求的配置参数。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#locationrequest)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 

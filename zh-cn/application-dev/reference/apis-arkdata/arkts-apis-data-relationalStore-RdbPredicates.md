@@ -4,11 +4,15 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## RdbPredicates
-
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
 
-### constructor
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
+## constructor
 
 constructor(name: string)
 
@@ -28,7 +32,7 @@ constructor(name: string)
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -36,7 +40,7 @@ constructor(name: string)
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 ```
 
-### inDevices
+## inDevices
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
@@ -59,7 +63,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -67,7 +71,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -94,7 +98,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
 
-### inAllDevices
+## inAllDevices
 
 inAllDevices(): RdbPredicates
 
@@ -107,7 +111,7 @@ inAllDevices(): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -116,7 +120,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inAllDevices();
 ```
 
-### equalTo
+## equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
@@ -135,7 +139,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -143,7 +147,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -154,7 +158,7 @@ predicates.equalTo("NAME", "Lisa");
 ```
 
 
-### notEqualTo
+## notEqualTo
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -173,7 +177,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -181,7 +185,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -192,7 +196,7 @@ predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
-### beginWrap
+## beginWrap
 
 beginWrap(): RdbPredicates
 
@@ -204,7 +208,7 @@ beginWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有左括号的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有左括号的Rdb谓词。 |
 
 **示例：**
 
@@ -218,7 +222,7 @@ predicates.equalTo("NAME", "Lisa")
   .endWrap();
 ```
 
-### endWrap
+## endWrap
 
 endWrap(): RdbPredicates
 
@@ -230,7 +234,7 @@ endWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有右括号的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有右括号的Rdb谓词。 |
 
 **示例：**
 
@@ -244,7 +248,7 @@ predicates.equalTo("NAME", "Lisa")
   .endWrap();
 ```
 
-### or
+## or
 
 or(): RdbPredicates
 
@@ -256,7 +260,7 @@ or(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有或条件的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有或条件的Rdb谓词。 |
 
 **示例：**
 
@@ -268,7 +272,7 @@ predicates.equalTo("NAME", "Lisa")
   .equalTo("NAME", "Rose");
 ```
 
-### and
+## and
 
 and(): RdbPredicates
 
@@ -280,7 +284,7 @@ and(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有和条件的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有和条件的Rdb谓词。 |
 
 **示例：**
 
@@ -292,7 +296,7 @@ predicates.equalTo("NAME", "Lisa")
   .equalTo("SALARY", 200.5);
 ```
 
-### contains
+## contains
 
 contains(field: string, value: string): RdbPredicates
 
@@ -311,7 +315,7 @@ contains(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -319,7 +323,7 @@ contains(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -329,7 +333,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
 
-### beginsWith
+## beginsWith
 
 beginsWith(field: string, value: string): RdbPredicates
 
@@ -348,7 +352,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -356,7 +360,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -366,7 +370,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.beginsWith("NAME", "Li");
 ```
 
-### endsWith
+## endsWith
 
 endsWith(field: string, value: string): RdbPredicates
 
@@ -385,7 +389,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -393,7 +397,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -403,7 +407,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
 
-### isNull
+## isNull
 
 isNull(field: string): RdbPredicates
 
@@ -421,7 +425,7 @@ isNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -429,7 +433,7 @@ isNull(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -438,7 +442,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNull("NAME");
 ```
 
-### isNotNull
+## isNotNull
 
 isNotNull(field: string): RdbPredicates
 
@@ -456,7 +460,7 @@ isNotNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -464,7 +468,7 @@ isNotNull(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -473,7 +477,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNotNull("NAME");
 ```
 
-### like
+## like
 
 like(field: string, value: string): RdbPredicates
 
@@ -492,7 +496,7 @@ like(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -500,7 +504,7 @@ like(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -510,7 +514,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
 
-### glob
+## glob
 
 glob(field: string, value: string): RdbPredicates
 
@@ -529,7 +533,7 @@ glob(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -537,7 +541,7 @@ glob(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -547,7 +551,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
 
-### between
+## between
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -567,7 +571,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -575,7 +579,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -585,7 +589,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
 
-### notBetween
+## notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -605,7 +609,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -613,7 +617,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -623,7 +627,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
 
-### greaterThan
+## greaterThan
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
@@ -642,7 +646,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -650,7 +654,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -660,7 +664,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
 
-### lessThan
+## lessThan
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
@@ -679,7 +683,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -687,7 +691,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -697,7 +701,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
 
-### greaterThanOrEqualTo
+## greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -716,7 +720,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -724,7 +728,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -734,7 +738,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
 
-### lessThanOrEqualTo
+## lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -753,7 +757,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -761,7 +765,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -771,7 +775,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
 
-### orderByAsc
+## orderByAsc
 
 orderByAsc(field: string): RdbPredicates
 
@@ -789,7 +793,7 @@ orderByAsc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -797,7 +801,7 @@ orderByAsc(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -806,7 +810,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByAsc("NAME");
 ```
 
-### orderByDesc
+## orderByDesc
 
 orderByDesc(field: string): RdbPredicates
 
@@ -824,7 +828,7 @@ orderByDesc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -832,7 +836,7 @@ orderByDesc(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -841,7 +845,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByDesc("AGE");
 ```
 
-### distinct
+## distinct
 
 distinct(): RdbPredicates
 
@@ -853,16 +857,16 @@ distinct(): RdbPredicates
 
 | 类型                                 | 说明                           |
 | ------------------------------------ | ------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回可用于过滤重复记录的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回可用于过滤重复记录的谓词。 |
 
 **示例：**
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").distinct();
+predicates.equalTo("NAME", "Rose").distinct(); // 对NAME列值为Rose的结果集去重
 ```
 
-### limitAs
+## limitAs
 
 limitAs(value: number): RdbPredicates
 
@@ -880,7 +884,7 @@ limitAs(value: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回可用于设置最大数据记录数的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回可用于设置最大数据记录数的谓词。 |
 
 **错误码：**
 
@@ -888,7 +892,7 @@ limitAs(value: number): RdbPredicates
 
 | **错误码ID** | **错误信息**               |
 | --------- |--------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -897,7 +901,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
 
-### offsetAs
+## offsetAs
 
 offsetAs(rowOffset: number): RdbPredicates
 
@@ -915,7 +919,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回具有指定返回结果起始位置的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回具有指定返回结果起始位置的谓词。 |
 
 **错误码：**
 
@@ -923,7 +927,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -932,7 +936,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
-### groupBy
+## groupBy
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
@@ -950,7 +954,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                   |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回分组查询列的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回分组查询列的谓词。 |
 
 **错误码：**
 
@@ -958,7 +962,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -967,7 +971,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.groupBy(["AGE", "NAME"]);
 ```
 
-### indexedBy
+## indexedBy
 
 indexedBy(field: string): RdbPredicates
 
@@ -983,10 +987,9 @@ indexedBy(field: string): RdbPredicates
 
 **返回值**：
 
-
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回具有指定索引列的RdbPredicates。 |
 
 **错误码：**
 
@@ -994,7 +997,7 @@ indexedBy(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1003,7 +1006,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.indexedBy("SALARY");
 ```
 
-### in
+## in
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1022,7 +1025,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1030,7 +1033,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1040,7 +1043,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
 
-### notIn
+## notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1059,7 +1062,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1067,7 +1070,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1077,7 +1080,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
-### notContains<sup>12+</sup>
+## notContains<sup>12+</sup>
 
 notContains(field: string, value: string): RdbPredicates
 
@@ -1096,7 +1099,7 @@ notContains(field: string, value: string): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1104,7 +1107,7 @@ notContains(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1114,7 +1117,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notContains("NAME", "os");
 ```
 
-### notLike<sup>12+</sup>
+## notLike<sup>12+</sup>
 
 notLike(field: string, value: string): RdbPredicates
 
@@ -1133,7 +1136,7 @@ notLike(field: string, value: string): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1141,7 +1144,7 @@ notLike(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1151,7 +1154,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notLike("NAME", "os");
 ```
 
-### having<sup>20+</sup>
+## having<sup>20+</sup>
 
 having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
@@ -1170,7 +1173,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1178,7 +1181,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause. |
 
 **示例1：**
 

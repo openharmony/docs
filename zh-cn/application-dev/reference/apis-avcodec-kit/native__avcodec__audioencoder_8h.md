@@ -7,6 +7,8 @@
 
 **库：** libnative_media_aenc.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_audioencoder.h>
+
 **起始版本：** 9
 
 **相关模块：**[AudioEncoder](_audio_encoder.md)

@@ -71,7 +71,7 @@ type Modulo = Rounding | 9
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | 模运算下的舍入类型。与[Rounding](#常量)表示的舍入模式相同。  |
-| 9                      | 余模运算下，余数始终为正。欧几里得除法。与[Decimal.EUCLID](#常量)一致。 |
+| 9                      | 余模运算下，余数始终为正。欧几里得除法。与[Decimal.EUCLIDEAN](#常量)一致。 |
 
 ## DecimalConfig
 
@@ -128,7 +128,7 @@ type Modulo = Rounding | 9
 | ROUND_HALF_EVEN    | number | 6    | 向最近的邻值舍入。如果距离相等，则向偶数邻值舍入。模运算下，IEEE 754 求余函数。 |
 | ROUND_HALF_CEILING | number | 7    | 向最近的邻值舍入。如果距离相等，则向正无穷方向舍入。         |
 | ROUND_HALF_FLOOR   | number | 8    | 向最近的邻值舍入。如果距离相等，则向负无穷方向舍入。         |
-| EUCLID             | number | 9    | 模运算下，余数始终为正。使用欧几里得除法：q = sign(x) * floor(a / abs(x))。 |
+| EUCLIDEAN          | number | 9    | 模运算下，余数始终为正。使用欧几里得除法：q = sign(x) * floor(a / abs(x))。 |
 
 ### constructor
 
@@ -1476,14 +1476,6 @@ toBinary(): string
 | ------ | ------------------------ |
 | string | 返回二进制表示的字符串。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                          |
-| -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
-
 **示例：**
 
 ```ts
@@ -2185,11 +2177,11 @@ toNearest(n: Value): Decimal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 10200001 | The value of 'rounding' is out of range. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2224,10 +2216,11 @@ toNearest(n: Value, rounding: Rounding): Decimal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'rounding' is out of range. |
 
 **示例：**

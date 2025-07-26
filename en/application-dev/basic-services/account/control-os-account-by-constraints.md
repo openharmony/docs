@@ -42,7 +42,7 @@ The user can set constraints to restrict the system account behaviors. For examp
      accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
-     console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
    }
    ```
 
@@ -62,8 +62,9 @@ Before a constraint is enabled for a system account, the application needs to ch
 2. Use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to check whether the constraint can be enabled for the system account.
 
    ```ts
-   let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
-   if (isEnabled) {
-     // Your business logic
-   }
+   accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+     if (isEnabled) {
+        // Your business logic
+     }
+   });
    ```

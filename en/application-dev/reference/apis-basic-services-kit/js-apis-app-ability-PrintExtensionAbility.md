@@ -28,7 +28,7 @@ Called to initialize the print extension when the system connects to the extensi
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 import Want from '@ohos.app.ability.Want';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
@@ -50,7 +50,7 @@ Called when an attempt to discover printers starts.
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartDiscoverPrinter(): void {
@@ -71,7 +71,7 @@ Called when the attempt to discover printers stops.
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStopDiscoverPrinter(): void {
@@ -97,7 +97,7 @@ Called when the device connects to the specified printer.
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onConnectPrinter(printerId: number): void {
@@ -123,7 +123,7 @@ Called when the device disconnects from the specified printer.
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDisconnectPrinter(printerId: number): void {
@@ -144,7 +144,7 @@ Called when the print extension ability is stopped.
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDestroy(): void {

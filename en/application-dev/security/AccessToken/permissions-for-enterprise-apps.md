@@ -40,6 +40,23 @@ Allows an application to scan media and sandbox and set file extended properties
 
 **Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
 
+## ohos.permission.FILE_GUARD_FILE_WRITE
+
+Allows an enterprise application to modify files.
+
+With this permission, the application can obtain the write permission on user files and modify them.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 Allows an application to interact across local accounts.
@@ -318,6 +335,23 @@ Allows an application to obtain visible window information of the current screen
 
 **Valid since**: 18
 
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+Allows an enterprise security application to block security audit events.
+
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
 Allows an application to be launched as an AppServiceExtension.
@@ -357,6 +391,55 @@ With this permission, the software can obtain 802.1x packets and add information
 Allows an application to install on user 1.
 
 User 1 is a user who supports third-party applications running in singleton mode.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.QUERY_LOCAL_WORKSPACES
+
+Allows a normal enterprise application to query workspace and the list of non-deletable workspaces.
+
+With this permission, the application can query basic workspace information and the list of non-deletable workspaces.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+Allows an application to set network-specific extended attributes.
+
+With this permission, the application can specify whether a network is identified as internal or external.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.CALL_TPM_CMD
+
+Allows an application to call Trusted Platform Module(TPM) commands.
 
 **Permission level**：system_basic
 

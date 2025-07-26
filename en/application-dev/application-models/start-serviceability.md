@@ -41,7 +41,7 @@ struct PageServiceAbility {
 ```
 
 
-In the preceding code, [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is used to start the ServiceAbility.
+In the preceding code, [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) is used to start the ServiceAbility.
 
 
 - If the ServiceAbility is not running, the system calls **onStart()** to initialize the ServiceAbility, and then calls **onCommand()** on the ServiceAbility.

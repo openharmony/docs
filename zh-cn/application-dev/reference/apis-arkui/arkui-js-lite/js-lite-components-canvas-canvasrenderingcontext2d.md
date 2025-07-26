@@ -192,7 +192,7 @@ export default {
   ctx.lineWidth = '6';
   ctx.strokeStyle = '#0000ff';
   ctx.moveTo(15, 80); 
-  ctx.lineTo(280, 160);
+  ctx.lineTo(280, 80);
   ctx.stroke();
   ```
 

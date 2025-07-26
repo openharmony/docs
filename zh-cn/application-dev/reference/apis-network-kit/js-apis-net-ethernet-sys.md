@@ -495,6 +495,51 @@ import { ethernet } from '@kit.NetworkKit';
 ethernet.off('interfaceStateChange');
 ```
 
+
+## ethernet.getEthernetDeviceInfos<sup>20+</sup>
+
+getEthernetDeviceInfos(): Promise\<Array\<EthernetDeviceInfos>>
+
+获取以太网设备信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+**返回值：**
+
+| 类型                | 说明                                                        |
+| ------------------- | ----------------------------------------------------------- |
+| Promise\<Array\<[EthernetDeviceInfos](#ethernetdeviceinfos20)>>  | 以Promise形式返回执行结果。成功返回以太网设备信息列表，失败返回对应错误码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[以太网连接错误码](errorcode-net-ethernet.md)。
+
+| 错误码ID | 错误信息                                |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.|
+| 2201005 | Device information does not exist.      |
+
+**示例：**
+
+```ts
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+ethernet.getEthernetDeviceInfos().then((data: Array<ethernet.EthernetDeviceInfos>) => {
+  console.info("getEthernetDeviceInfos data.length = " + JSON.stringify(data.length));
+  for (let i = 0; i < data.length; i++) {
+    console.info("getEthernetDeviceInfos = " + JSON.stringify(data[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.error("getEthernetDeviceInfos err = " + err.code);
+});
+```
+
 ## InterfaceConfiguration<sup>9+</sup>
 
 以太网连接配置网络信息。
@@ -540,3 +585,34 @@ ethernet.off('interfaceStateChange');
 | DHCP                  | 1    | 以太网连接动态配置网络信息。 |
 | LAN_STATIC<sup>11+</sup>| 2    | LAN连接静态配置网络信息。    |
 | LAN_DHCP<sup>11+</sup>  | 3    | LAN连接动态配置网络信息。    |
+
+## EthernetDeviceInfos<sup>20+</sup>
+
+以太网设备信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+| 名称           | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------------   | ----------------------- | ---| ---|------------------------------------------------------------ |
+| ifaceName      | string                  | 否 | 否 | 网络接口名。      |
+| deviceName     | string                  | 否 | 否 | 设备名称。    |
+| connectionMode | [DeviceConnectionType](#deviceconnectiontype20)  | 否 | 否 | 设备连接模式。 |
+| supplierName   | string                  | 否 | 否 | 供应商名称。 |
+| supplierId     | string                  | 否 | 否 | 供应商标识号。 |
+| productName    | string                  | 否 | 否 | 产品名称。 |
+| maximumRate    | string                  | 否 | 否 | 最大连接速率。 |
+
+## DeviceConnectionType<sup>20+</sup>
+
+以太网设备连接模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+| 名称                  | 值   | 说明                        |
+| --------------------- | ---- | -------------------------- |
+| BUILT_IN              | 0    | 以太网设备为内置连接模式。 |
+| EXTERNAL              | 1    | 以太网设备为外接连接模式。例如，以太网设备通过USB连接。 |

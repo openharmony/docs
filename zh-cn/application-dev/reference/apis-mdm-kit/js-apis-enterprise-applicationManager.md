@@ -1,6 +1,6 @@
 # @ohos.enterprise.applicationManager（应用管理）
 
-本模块提供应用管理能力，包括添加应用运行黑名单、获取应用运行黑名单、移除应用运行黑名单等。
+本模块提供应用管理能力，包括添加应用运行禁止名单、获取应用运行禁止名单、移除应用运行禁止名单等。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。[applicationManager.isAppKioskAllowed](#applicationmanagerisappkioskallowed20)除外，该接口对所有应用开放。
 >
 
 ## 导入模块
@@ -21,7 +21,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?: number): void
 
-添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。
+添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前/指定用户下运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -51,12 +51,15 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -71,7 +74,7 @@ try {
 
 removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, accountId?: number): void
 
-将应用从当前/指定用户下的应用运行黑名单中移除。
+将应用从当前/指定用户下的应用运行禁止名单中移除。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -101,12 +104,15 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -121,7 +127,7 @@ try {
 
 getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;string>
 
-获取当前/指定用户下的应用运行黑名单。
+获取当前/指定用户下的应用运行禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -140,7 +146,7 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 返回当前/指定用户下的应用运行黑名单。 |
+| Array&lt;string&gt; | 返回当前/指定用户下的应用运行禁止名单。 |
 
 **错误码**：
 
@@ -156,11 +162,13 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -202,16 +210,19 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let autoStartApps: Array<Want> = [
   {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -254,16 +265,19 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let autoStartApps: Array<Want> = [
   {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -311,11 +325,13 @@ getAutoStartApps(admin: Want): Array\<Want>
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -330,7 +346,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行禁止名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -362,12 +378,15 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleNames: Array<string> = ['com.example.myapplication'];
 
 try {
@@ -412,12 +431,15 @@ removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number)
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleNames: Array<string> = ['com.example.myapplication'];
 
 try {
@@ -467,11 +489,13 @@ getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -481,3 +505,263 @@ try {
   console.error(`Failed to get keep alive apps. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## applicationManager.clearUpApplicationData<sup>20+</sup>
+
+clearUpApplicationData(admin: Want, bundleName: string, appIndex: number, accountId: number): void
+
+清除应用产生的所有数据。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名     | 类型                                                    | 必填 | 说明                                                         |
+| ---------  | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| bundleName | string                                                  | 是   | 应用包名，指定需要清除数据的应用包名。 |
+| appIndex | number                                                    | 是   | 应用分身索引，取值范围：大于等于0的整数。<br> appIndex可以通过@ohos.bundle.bundleManager中的[getAppCloneIdentity](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetappcloneidentity14)等接口来获取。|
+| accountId | number                                                   | 是   | 用户ID，取值范围：大于等于0的整数。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+// 需根据实际情况进行替换
+let bundleName: string = 'com.example.exampleapplication';
+
+try {
+  // 需根据实际情况进行替换
+  applicationManager.clearUpApplicationData(wantTemp, bundleName, 0, 100);
+  console.info('Succeeded in clear up application data.');
+} catch (err) {
+  console.error(`Failed to clear up application data. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.setAllowedKioskApps<sup>20+</sup>
+
+setAllowedKioskApps(admin: Want, bundleNames: Array&lt;string&gt;): void
+
+设置允许在Kiosk模式下运行的应用。
+
+Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| bundleNames | Array&lt;string&gt;                                   | 是   | 应用包名数组，设置允许在Kiosk模式下运行的应用。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+
+try {
+  // 需根据实际情况进行替换
+  let bundleNames: Array<string> = ['com.example.test'];
+  applicationManager.setAllowedKioskApps(wantTemp, bundleNames);
+  console.info('Succeeded in setting allowed kiosk apps.');
+} catch (err) {
+  console.error(`Failed to set allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.getAllowedKioskApps<sup>20+</sup>
+
+getAllowedKioskApps(admin: Want): Array&lt;string&gt;
+
+获取允许在Kiosk模式下运行的应用。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+
+**返回值：**
+
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用包名清单。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+
+try {
+  let bundleNames: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
+  console.info(`Succeeded in getting allowed kiosk apps, bundleNames: ${JSON.stringify(bundleNames)}`);
+} catch (err) {
+  console.error(`Failed to get allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.isAppKioskAllowed<sup>20+</sup>
+
+isAppKioskAllowed(bundleName: string): boolean
+
+查询某应用是否允许在Kiosk模式下运行。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                                                 | 是   | 应用包名。                                       |
+
+**返回值：**
+
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| boolean    | true表示允许在Kiosk模式下运行。false表示不允许在Kiosk模式下运行。 |
+
+**示例：**
+
+```ts
+import { applicationManager } from '@kit.MDMKit';
+
+try {
+  // 需根据实际情况进行替换
+  let isAllowed: boolean = applicationManager.isAppKioskAllowed('com.example.test');
+  console.info(`Succeeded in querying if the app is allowed kiosk, isAllowed: ${isAllowed}`);
+} catch (err) {
+  console.error(`Failed to query if the app is allowed kiosk. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.setKioskFeatures<sup>20+</sup>
+
+setKioskFeatures(admin: Want, features: Array\<KioskFeature>): void
+
+设置Kiosk模式的特征。[进入Kiosk模式](../apis-ability-kit/js-apis-app-ability-kioskManager.md#enterkioskmode)后，系统会默认禁用通知中心、控制中心和最近任务栏等能力。可通过本接口解除对部分能力的禁用或恢复禁用。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明                   |
+| ------------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。         |
+| features | Array&lt;[KioskFeature](#kioskfeature20)&gt;           | 是   | Kiosk模式的特征集合。 <br> 当传入空数组时，系统会清空之前下发过的特征，恢复到Kiosk模式的默认状态，即禁用通知中心、控制中心和最近任务栏等能力。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. | 
+| 9200012  | Parameter verification failed.                          |
+| 201      | Permission verification failed.The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let kioskFeatures: Array<applicationManager.KioskFeature> = [];
+kioskFeatures.push(applicationManager.KioskFeature.ALLOW_NOTIFICATION_CENTER);
+kioskFeatures.push(applicationManager.KioskFeature.ALLOW_CONTROL_CENTER);
+try {
+  applicationManager.setKioskFeatures(wantTemp, kioskFeatures);
+  console.info('Succeeded in setting kiosk feature.');
+} catch (err) {
+  console.error(`Failed to set kiosk feature. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## KioskFeature<sup>20+</sup>
+
+Kiosk模式的特征。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 名称                        | 值  | 说明    |
+| ----------------------------| ----| ------------------------------- |
+| ALLOW_NOTIFICATION_CENTER   | 1   | 允许进入通知中心。 |
+| ALLOW_CONTROL_CENTER        | 2   | 允许进入控制中心。 |

@@ -1,6 +1,7 @@
 # 分段式拍照(ArkTS)
 
 分段式拍照是相机的重要功能之一，即应用下发拍照任务后，系统将分多阶段上报不同质量的图片。
+
 - 在第一阶段，系统快速上报轻量处理的图片，轻量处理的图片比全质量图低，出图速度快。应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
 - 在第二阶段，相机框架会根据应用的请求图片诉求或者在系统闲时，进行图像增强处理得到全质量图，将处理好的图片传回给媒体库，替换轻量处理的图片。
 
@@ -8,7 +9,7 @@
 
 应用开发分段式拍照主要分为以下步骤：
 
-- 通过PhotoOutput，监听photoAssetAvailable回调，获取[photoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)的PhotoAsset对象。
+- 通过PhotoOutput，监听photoAssetAvailable回调，获取[photoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)的PhotoAsset对象。
 - 通过PhotoAsset对象，调用媒体库相关接口，读取或落盘图片。
 
 > **说明：**
@@ -115,9 +116,9 @@
    }
    ```
 
-   落盘图片参考媒体库接口：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
+   落盘图片参考媒体库接口：[saveCameraPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#savecameraphoto12)
 
-   请求图片参考媒体库接口：[requestImageData](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [onDataPrepared](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
+   请求图片参考媒体库接口：[requestImageData](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestimagedata11) 和 [onDataPrepared](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetDataHandler.md#ondataprepared11)
 
 4. 拍照时的会话配置及触发拍照的方式，与普通拍照相同，请参考[拍照](camera-shooting.md)的步骤4-5。
 

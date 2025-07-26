@@ -3,13 +3,13 @@
 
 ## Overview
 
-The OH_NativeBundle_ElementName struct describes the information about an element name.
+The struct describes the information about an element name.
 
 This struct is an output parameter of [OH_NativeBundle_GetMainElementName()](_bundle.md#oh_nativebundle_getmainelementname).
 
 **Since**: 13
 
-**Related module**: [Bundle](_bundle.md)
+**Related module**: [bundle](_bundle.md)
 
 **Header file**: [native_interface_bundle.h](native__interface__bundle.md)
 

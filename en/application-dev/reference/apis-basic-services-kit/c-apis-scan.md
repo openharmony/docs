@@ -1,4 +1,4 @@
-# OH_Scan
+# ohscan.h
 
 
 ## Overview
@@ -105,6 +105,8 @@ Defines a callback to be invoked when a scanner is discovered.
 | devices     | Scanner.|
 | deviceCount | Number of scanners.  |
 
+
+
 ## Enum Description
 
 
@@ -118,19 +120,19 @@ Enumerates the error codes.
 
 | Value| Description|
 | -------- | -------- |
-| SCAN_ERROR_NONE | Operation succeeded.|
+| SCAN_ERROR_NONE | Operation successful.|
 | SCAN_ERROR_NO_PERMISSION | Permission denied.|
 | SCAN_ERROR_INVALID_PARAMETER | Invalid parameter.|
 | SCAN_ERROR_GENERIC_FAILURE | Internal error.|
 | SCAN_ERROR_RPC_FAILURE | PRC communication error.|
 | SCAN_ERROR_SERVER_FAILURE | Server error.|
-| SCAN_ERROR_UNSUPPORTED | Operation is not supported.|
+| SCAN_ERROR_UNSUPPORTED | Operation not supported.|
 | SCAN_ERROR_CANCELED | Operation canceled.|
-| SCAN_ERROR_DEVICE_BUSY | Device is busy.|
+| SCAN_ERROR_DEVICE_BUSY | Device busy.|
 | SCAN_ERROR_INVALID | Invalid operation.|
-| SCAN_ERROR_JAMMED | Paper jammed at the paper feeder.|
+| SCAN_ERROR_JAMMED | Paper jam in feeder.|
 | SCAN_ERROR_NO_DOCS | Out of paper.|
-| SCAN_ERROR_COVER_OPEN | The cover of the scanner is opened.|
+| SCAN_ERROR_COVER_OPEN | Scanner cover opened.|
 | SCAN_ERROR_IO_ERROR | Scanner I/O operation error.|
 | SCAN_ERROR_NO_MEMORY | Insufficient memory.|
 
@@ -154,13 +156,13 @@ Starts the scanning service, initializes the client, and establishes a connectio
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
 ### OH_Scan_StartScannerDiscovery()
 
@@ -184,13 +186,13 @@ Searches for scanners and registers a callback function to process the found sca
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
 ### OH_Scan_OpenScanner()
 
@@ -214,21 +216,21 @@ Connects to a scanner.
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_DEVICE_BUSY**: The scanner is busy.
+**SCAN_ERROR_DEVICE_BUSY**: Scanner busy.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
-**SCAN_ERROR_IO_ERROR**: An I/O operation error occurs on the scanner.
+**SCAN_ERROR_IO_ERROR**: Scanner I/O operation error.
 
-**SCAN_ERROR_NO_MEMORY**: The scanner memory is insufficient.
+**SCAN_ERROR_NO_MEMORY**: Insufficient scanner memory.
 
 ### OH_Scan_CloseScanner()
 
@@ -252,15 +254,15 @@ Disconnects from a scanner.
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
 ### OH_Scan_GetScannerParameter()
 
@@ -270,7 +272,7 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 **Description**
 
-Obtains the scanner setting options. The memory is automatically released when returned structure points to {@link OH_Scan_Exit}. Only one copy of each scanner model is stored in the memory.
+Obtains the scanner setting options. The memory is automatically released when returned structure points to [OH_Scan_Exit](#oh_scan_exit). Only one copy of each scanner model is stored in the memory.
 
 **System capability**: ohos.permission.PRINT
 
@@ -285,13 +287,13 @@ Obtains the scanner setting options. The memory is automatically released when r
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
 ### OH_Scan_SetScannerParameter()
 
@@ -301,7 +303,7 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
 
 **Description**
 
-Sets the option parameters of the scanner. The option values are obtained through the {@link OH_Scan_GetScannerParameter} API.
+Sets the option parameters of the scanner. The option values are obtained through the [OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter) API.
 
 **System capability**: ohos.permission.PRINT
 
@@ -317,15 +319,15 @@ Sets the option parameters of the scanner. The option values are obtained throug
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
 ### OH_Scan_StartScan()
 
@@ -350,26 +352,26 @@ Starts a scanner.
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**Scan_ERROR_NONE**: Operation successful.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
-**SCAN_ERROR_JAMMED**: Paper jammed at the paper feeder.
+**SCAN_ERROR_JAMMED**: Paper jam in feeder.
 
-**SCAN_ERROR_NO_DOCS**: The scanner is out of paper.
+**SCAN_ERROR_NO_DOCS**: Scanner out of paper.
 
-**SCAN_ERROR_COVER_OPEN**: The cover of the scanner is opened.
+**SCAN_ERROR_COVER_OPEN**: Scanner cover opened.
 
-**SCAN_ERROR_IO_ERROR**: An I/O operation exception occurs on the scanner.
+**SCAN_ERROR_IO_ERROR**: Scanner I/O operation error.
 
-**SCAN_ERROR_NO_MEMORY**: The scanner memory is insufficient.
+**SCAN_ERROR_NO_MEMORY**: Insufficient scanner memory.
 
-**SCAN_ERROR_DEVICE_BUSY**: The scanner is busy.
+**SCAN_ERROR_DEVICE_BUSY**: Scanner busy.
 
 ### OH_Scan_CancelScan()
 
@@ -393,15 +395,15 @@ Cancels scanning.
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
 ### OH_Scan_GetPictureScanProgress()
 
@@ -426,27 +428,27 @@ Queries the image scanning progress.
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.
 
-**SCAN_ERROR_JAMMED**: Paper jammed at the paper feeder.
+**SCAN_ERROR_JAMMED**: Paper jam in feeder.
 
-**SCAN_ERROR_NO_DOCS**: The scanner is out of paper.
+**SCAN_ERROR_NO_DOCS**: Scanner out of paper.
 
-**SCAN_ERROR_COVER_OPEN**: The cover of the scanner is opened.
+**SCAN_ERROR_COVER_OPEN**: Scanner cover opened.
 
-**SCAN_ERROR_IO_ERROR**: An I/O operation exception occurs on the scanner.
+**SCAN_ERROR_IO_ERROR**: Scanner I/O operation error.
 
-**SCAN_ERROR_NO_MEMORY**: The scanner memory is insufficient.
+**SCAN_ERROR_NO_MEMORY**: Insufficient scanner memory.
 
-**SCAN_ERROR_DEVICE_BUSY**: The scanner is busy.
+**SCAN_ERROR_DEVICE_BUSY**: Scanner busy.
 
 ### OH_Scan_Exit()
 
@@ -464,12 +466,12 @@ Exits the scanning service, clear the client memory, and cancel the registered s
 
 **Returns**
 
-**Scan_ERROR_NONE**: Operation is succeeded.
+**Scan_ERROR_NONE**: Operation successful.
 
-**SCAN_ERROR_NO_PERMISSION**: Permission is denied.
+**SCAN_ERROR_NO_PERMISSION**: Permission denied.
 
-**SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.
+**SCAN_ERROR_RPC_FAILURE**: RPC communication error.
 
-**SCAN_ERROR_SERVER_FAILURE**: A server exception occurs.
+**SCAN_ERROR_SERVER_FAILURE**: Server error.
 
-**SCAN_ERROR_INVALID_PARAMETER**: The parameter is invalid.
+**SCAN_ERROR_INVALID_PARAMETER**: Invalid parameter.

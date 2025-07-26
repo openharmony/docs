@@ -19,7 +19,7 @@ OpenHarmony SELinux支持以下功能：
 
   安全上下文，也通常称为SELinux标签。OpenHarmony SELinux安全上下文的结构是`user:role:type:sensitivity[:category,...]- sensitivity [:category,...]`：
   - `user`：用户类型，比如`user u roles { r }`，定义user为u的用户，它属于`role r`。
-  - `role`：角色标识符，角色限制了进程在进程上下文中基于角色标识符可转换的类型，其中文件、参数、SA服务、HDF服务等资源的用户类型使用`object_r`，进程的用户类型使用r。
+  - `role`：角色标识符，角色限制了进程在进程上下文中基于角色标识符可转换的类型，其中文件、参数、SA服务、HDF服务等资源的用户类型使用`object_r`，进程的用户类型使用`r`。
   - `type`：SELinux类型，在SELinux规则语句中，使用类型定义规则。
   - `sensitivity`：分层安全级别，不同安全级别不能相互访问，目前OpenHarmony SELinux仅支持一层安全级别`s0`。
   - `category`：对特定`sensitivity`划分不分层的分类，目前OpenHarmony SELinux已经定义的分类为`c0-c1023`，目前的OpenHarmony SELinux策略上未对category进行区分。

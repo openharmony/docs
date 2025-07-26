@@ -36,7 +36,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -49,13 +49,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -79,7 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Return value**
 
@@ -97,12 +97,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     configPolicy.getOneCfgFile(relpath).then((value: string) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getOneCfgFile promise ' + error);
+      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -120,7 +120,7 @@ If there are two **config.xml** files, **/system/etc/config.xml** and **/sys_pod
 | Name  | Type                                    | Mandatory| Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
 | relPath  | string                                   | Yes  | Name of the configuration file.                |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file lists.|
 
 **Error codes**
 
@@ -128,7 +128,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -140,13 +140,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -170,13 +170,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Return value**
 
 | Type                              | Description    |
 | ---------------------------------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file lists.|
 
 **Example**
 
@@ -188,12 +188,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     configPolicy.getCfgFiles(relpath).then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgFiles promise ' + error);
+      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -217,7 +217,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -229,13 +229,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -251,7 +251,7 @@ Obtains the list of configuration level directories. This API uses a promise to 
 
 | Type                              | Description            |
 | ---------------------------------- | ---------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|
+| Promise&lt;Array&lt;string&gt;&gt; | Obtains the list of configuration level directories. This API returns the result synchronously.|
 
 **Example**
 
@@ -262,12 +262,12 @@ Obtains the list of configuration level directories. This API uses a promise to 
     configPolicy.getCfgDirList().then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgDirList promise ' + error);
+      console.error('getCfgDirList promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -294,7 +294,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -308,13 +308,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -322,7 +322,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 getOneCfgFile(relPath: string, followMode: FollowXMode, extra: string, callback: AsyncCallback&lt;string&gt;)
 
-Obtains the path of the configuration file with the highest priority based on the specified file name and custom follow rule. This API uses an asynchronous callback to return the result.
+Obtains the path of the configuration file with the highest priority based on the specified file name and follow mode. This API uses an asynchronous callback to return the result.
 For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. If the opkey of card 1 is **46060**, the follow mode is **USER_DEFINED**, and the custom follow rule is **etc/carrier/${telephony.sim.opkey0}**, **/sys_pod/etc/carrier/46060/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
@@ -342,7 +342,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -357,13 +357,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -389,7 +389,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
 
 **Return value**
 
@@ -408,12 +408,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: string) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getOneCfgFile promise ' + error);
+      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -439,13 +439,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | Promise used to return the path of the configuration file.|
+| string | Returns the path of the configuration file.|
 
 
 **Example**
@@ -461,7 +461,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -480,7 +480,7 @@ For example, there are three **config.xml** files (in ascending order of priorit
 | ---------- | ---------------------------------------- | ---- | -------------------------- |
 | relPath    | string                                   | Yes  | Name of the configuration file.                |
 | followMode | [FollowXMode](#followxmode11)            | Yes  | Follow mode.                  |
-| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.|
+| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file lists.|
 
 **Error codes**
 
@@ -488,7 +488,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -502,13 +502,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -528,7 +528,7 @@ For example, there are three **config.xml** files (in ascending order of priorit
 | relPath    | string                                   | Yes  | Name of the configuration file.                                            |
 | followMode | [FollowXMode](#followxmode11)            | Yes  | Follow mode.                                              |
 | extra      | string                                   | Yes  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
-| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.                            |
+| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file lists.                            |
 
 **Error codes**
 
@@ -536,7 +536,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **Example**
 
@@ -551,13 +551,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -583,13 +583,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
 
 **Return value**
 
 | Type                              | Description    |
 | ---------------------------------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file lists.|
 
 **Example**
 
@@ -602,12 +602,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgFiles promise ' + error);
+      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -633,13 +633,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
 
 **Return value**
 
 | Type               | Description    |
 | ------------------- | -------- |
-| Array&lt;string&gt; | Promise used to return the file list.|
+| Array&lt;string&gt; | Returns the file lists.|
 
 
 **Example**
@@ -655,7 +655,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -671,7 +671,7 @@ Obtains the list of configuration level directories. This API returns the result
 
 | Type               | Description            |
 | ------------------- | ---------------- |
-| Array&lt;string&gt; | Promise used to return the configuration level directory list.|
+| Array&lt;string&gt; | Obtains the list of configuration level directories. This API returns the result synchronously.|
 
 
 **Example**
@@ -685,7 +685,7 @@ Obtains the list of configuration level directories. This API returns the result
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 

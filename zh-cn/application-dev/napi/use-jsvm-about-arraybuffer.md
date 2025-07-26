@@ -6,8 +6,8 @@ ArrayBuffer 是 JavaScript 中的一种数据类型，用于表示通用的、�
 
 ## 基本概念
 
-- **ArrayBuffer**：ArrayBuffer 对象用来表示一个通用的、固定长度的原始二进制数据缓冲区。不能直接操作 ArrayBuffer 的内容，而是需要通过包装成 TypedArray 对象或 DataView 对象来读写。ArrayBuffer 常用于处理大量的二进制数据，如文件、网络数据包等。
-- **生命周期和内存管理**：在使用 JSVM 处理 ArrayBuffer 时，需要特别注意生命周期和内存管理。
+- **ArrayBuffer**：ArrayBuffer 对象用来表示一个通用的、固定长度的原始二进制数据缓冲区。不能直接操作 ArrayBuffer 的内容，而是需要通过包装成 TypedArray 对象或 DataView 对象来读写。ArrayBuffer 常用于处理固定长度的原始二进制数据，如文件、网络数据包等。
+- **生命周期和内存管理**：在使用 JSVM 处理 ArrayBuffer 时，需要特别注意对象的生命周期管理，确保及时释放内存。
 
 ## 接口说明
 
@@ -16,7 +16,7 @@ ArrayBuffer 是 JavaScript 中的一种数据类型，用于表示通用的、�
 | OH_JSVM_GetArraybufferInfo    | 检索 ArrayBuffer 的底层数据缓冲区及其长度。 |
 | OH_JSVM_IsArraybuffer        | 判断一个 JavaScript 对象是否为 ArrayBuffer 类型对象。        |
 | OH_JSVM_DetachArraybuffer    | 调用 ArrayBuffer 对象的 Detach 操作。            |
-| OH_JSVM_IsDetachedArraybuffer | 检查给定的 ArrayBuffer 是否已被分离(detached)。        |
+| OH_JSVM_IsDetachedArraybuffer | 检查给定的 ArrayBuffer 是否已被分离(Detached)。        |
 | OH_JSVM_CreateArraybuffer      | 创建一个指定大小的 ArrayBuffer 对象。   |
 
 ## 使用示例
@@ -27,7 +27,7 @@ JSVM-API 接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 检索 ArrayBuffer 的底层数据缓冲区及其长度。
 
-cpp 部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -48,7 +48,7 @@ static JSVM_Value GetArraybufferInfo(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM GetArraybufferInfo isArrayBuffer:false");
     }
     void *data;
-    size_t byteLength;
+    size_t byteLength = 0;
     // 获取ArrayBuffer的底层数据缓冲区和长度
     JSVM_Status status = OH_JSVM_GetArraybufferInfo(env, args[0], &data, &byteLength);
     if (status != JSVM_OK) {
@@ -72,13 +72,19 @@ const char *srcCallNative = R"JS(
 getArraybufferInfo(new ArrayBuffer(10));
 )JS";
 ```
-<!-- @[oh_jsvm_get_arraybuffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
+
+预期结果：
+```
+JSVM GetArraybufferInfo: success
+```
+
+<!-- @[oh_jsvm_get_arraybuffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsArraybuffer
 
-判断一个 JavaScript 对象是否为 Arraybuffer 类型对象。
+判断一个 JavaScript 对象是否为 ArrayBuffer 类型对象。
 
-cpp 部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -118,7 +124,14 @@ const char *srcCallNative = R"JS(
 isArrayBuffer(new ArrayBuffer(8));
 )JS";
 ```
-<!-- @[oh_jsvm_is_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
+
+预期结果：
+```
+JSVM IsArrayBuffer: success
+JSVM IsArrayBuffer: 1
+```
+
+<!-- @[oh_jsvm_is_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_DetachArraybuffer
 
@@ -128,7 +141,7 @@ isArrayBuffer(new ArrayBuffer(8));
 
 检查给定的 ArrayBuffer 是否已被分离。
 
-cpp 部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -187,13 +200,21 @@ detachArraybuffer(arrayBuffer);
 isDetachedArraybuffer(arrayBuffer);
 )JS";
 ```
-<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
+
+预期结果：
+```
+JSVM DetachArraybuffer: success
+JSVM IsDetachedArraybuffer: success
+JSVM IsArrayBuffer: 1
+```
+
+<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_CreateArraybuffer
 
 创建一个指定大小的 ArrayBuffer 对象。
 
-cpp 部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -238,4 +259,11 @@ const char *srcCallNative = R"JS(
 createArraybuffer(8);
 )JS";
 ```
-<!-- @[oh_jsvm_create_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->
+
+预期结果：
+```
+JSVM CreateArraybuffer: success
+JSVM ArrayBuffer length: 8
+```
+
+<!-- @[oh_jsvm_create_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->

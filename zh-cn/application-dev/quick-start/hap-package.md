@@ -59,13 +59,13 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
 
       ```shell
-      // 安装、更新，多HAP可以指定多个文件路径
+      # 安装、更新，多HAP可以指定多个文件路径
       hdc install entry.hap feature.hap
-      // 执行结果
+      # 执行结果
       install bundle successfully.
-      // 卸载
+      # 卸载
       hdc uninstall com.example.myapplication
-      // 执行结果
+      # 执行结果
       uninstall bundle successfully.
       ```
 
@@ -74,15 +74,15 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       HAP的文件路径为真机上的文件路径，命令参考如下：
 
       ```shell
-      // 先执行hdc shell才能使用bm工具
+      # 先执行hdc shell才能使用bm工具
       hdc shell
-      // 安装、更新，多HAP可以指定多个文件路径
+      # 安装、更新，多HAP可以指定多个文件路径
       bm install -p /data/app/entry.hap /data/app/feature.hap
-      // 执行结果
+      # 执行结果
       install bundle successfully.
-      // 卸载
+      # 卸载
       bm uninstall -n com.example.myapplication
-      // 执行结果
+      # 执行结果
       uninstall bundle successfully.
       ```
 

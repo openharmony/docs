@@ -22,7 +22,9 @@
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
+#include "CryptoArchitectureKit/crypto_kdf.h"
 #include <stdio.h>
+#include <cstring>
 
 static OH_Crypto_ErrCode doTestScrypt()
 {

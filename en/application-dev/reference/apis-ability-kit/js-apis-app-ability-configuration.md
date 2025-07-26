@@ -1,6 +1,6 @@
-# @ohos.app.ability.Configuration (Configuration)
+# @ohos.app.ability.Configuration (System Environment Information)
 
-The Configuration module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
+The module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
 
 > **NOTE**
 > 
@@ -12,14 +12,14 @@ The Configuration module defines environment change information. **Configuration
 import { Configuration } from '@kit.AbilityKit';
 ```
 
-## Properties
+## Configuration
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | language | string | No| Yes| Language of the application, for example, **zh**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | No| Yes| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | No| Yes| Dark/Light color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | direction | [ConfigurationConstant.Direction](js-apis-app-ability-configurationConstant.md#direction) | No| Yes| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | screenDensity  | [ConfigurationConstant.ScreenDensity](js-apis-app-ability-configurationConstant.md#screendensity) | No| Yes| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayId  | number | No| Yes| ID of the display where the application is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

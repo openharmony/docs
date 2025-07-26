@@ -308,6 +308,14 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
+function Uint8ArrayToString(dataArray: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i]);
+  }
+  return dataString;
+}
+
 function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
@@ -389,7 +397,7 @@ async function testSm4Cipher() {
   await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
   /* 传入认证令牌 */
   await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
-  if (finishOutData === StringToUint8Array(cipherInData)) {
+  if (Uint8ArrayToString(finishOutData) == cipherInData) {
     console.info('test finish encrypt error ');
   } else {
     console.info('test finish encrypt success');

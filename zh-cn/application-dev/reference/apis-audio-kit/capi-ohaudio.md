@@ -14,6 +14,7 @@
 | -- | -- |
 | [native_audiocapturer.h](capi-native-audiocapturer-h.md) | 声明输入类型的音频流相关接口。 |
 | [native_audio_manager.h](capi-native-audio-manager-h.md) | 声明音频管理相关的接口。 |
+| [native_audio_resource_manager.h](capi-native-audio-resource-manager-h.md) | 声明音频资源管理相关的接口。 |
 | [native_audio_routing_manager.h](capi-native-audio-routing-manager-h.md) | 声明与音频路由管理器相关的接口。<br> 包含用于创建audioRoutingManager，设备连接状态发生变化时的注册和注销功能，以及存储设备信息的指针数组的释放。 |
 | [native_audio_session_manager.h](capi-native-audio-session-manager-h.md) | 声明音频会话管理相关的接口。<br> 包含创建音频会话管理器、激活/停用音频会话、检查音频会话是否已激活，以及监听音频会话停用事件。 |
 | [native_audio_stream_manager.h](capi-native-audio-stream-manager-h.md) | 声明与音频流管理器相关的接口。<br> 该文件接口用于创建audioStreamManager以及音频流设置和管理。 |

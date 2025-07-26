@@ -17,7 +17,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t id | 显示设备的屏幕id号，为非负整数。 |
-| char name | 显示设备的名称。 |
+| char name[OH_DISPLAY_NAME_LENGTH + 1] | 显示设备的名称。 |
 | bool isAlive | 显示设备是否启用：true表示设备启动，false表示设备未启用。 |
 | int32_t width | 显示设备的屏幕宽度，单位为px，该参数应为非负整数。 |
 | int32_t height | 显示设备的屏幕高度，单位为px，该参数应为非负整数。 |

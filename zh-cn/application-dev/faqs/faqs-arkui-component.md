@@ -176,17 +176,23 @@ TextInput，TextArea组件输入多字符后，需要实现点击清空。
 
 **代码示例**
 
-```
+```ts
+// xxx.ets
+@Entry
+@Component
 struct Index {
-@State text: string = 'Hello World'
-controller: TextInputController = new TextInputController()
+  @State text: string = 'Hello World';
+  controller: TextInputController = new TextInputController();
+
   build() {
     Row() {
       Column() {
-        TextInput({ placeholder: 'Please input your words.', text: this.text,
-          controller:this.controller}).onChange((value) => {
-            this.text = value
-          })
+        TextInput({
+          placeholder: 'Please input your words.', text: this.text,
+          controller: this.controller
+        }).onChange((value: string) => {
+          this.text = value;
+        })
         Button("Clear TextInput").onClick(() => {
           this.text = "";
         })
@@ -471,23 +477,28 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
 
 **代码示例**
 
-```
+```ts
 // xxx.ets
-@Entry@Componentstruct VideoCreateComponent {
+@Entry
+@Component
+struct VideoCreateComponent {
   @State videoSrc: Resource = $rawfile('video1.mp4')
   @State previewUri: Resource = $r('app.media.poster1')
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
+  @State showControls: boolean = false
   controller: VideoController = new VideoController()
-   build() {
+
+  build() {
     Column() {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width('100%').height(600)
+      })
+        .width('100%')
+        .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -514,7 +525,7 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
         .onUpdate((e) => {
           console.info('onUpdate is ' + e.time)
         })
-             Row() {
+      Row() {
         Button('src').onClick(() => {
           this.videoSrc = $rawfile('video2.mp4') // 切换视频源
         }).margin(5)
@@ -526,7 +537,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
           this.showControls = !this.showControls // 切换是否显示视频控制栏
         }).margin(5)
       }
-       Row() {
+
+      Row() {
         Button('start').onClick(() => {
           this.controller.start() // 开始播放
         }).margin(5)
@@ -540,7 +552,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
           this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
         }).margin(5)
       }
-       Row() {
+
+      Row() {
         Button('rate 0.75').onClick(() => {
           this.curRate = PlaybackSpeed.Speed_Forward_0_75_X // 0.75倍速播放
         }).margin(5)
@@ -552,7 +565,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
         }).margin(5)
       }
     }
-  }}
+  }
+}
 ```
 
 **参考链接**
@@ -642,28 +656,30 @@ Scroll组件中的容器组件不设置尺寸，大小由内容撑开。
 
 ```
 class Model {
-  value: string
+  value: string = "";
 }
+
 @Entry
 @Component
 struct EntryComponent {
   test() {
     console.log('testTag test in my component');
   }
+
   build() {
     Column() {
-      MyComponent({ title: { value: 'Hello World 2' }, count: 7, onClick: this.test }) //初始化时传递定义的方法
+      MyComponent({ title: { value: 'Hello World 2' }, count: 7, click: this.test }) //初始化时传递定义的方法
     }
   }
 }
 
 @Component
 struct MyComponent {
-  @State title: Model = { value: 'Hello World' }
-  @State count: number = 0
-  onClick: any;
-  private toggle: string = 'Hello World'
-  private increaseBy: number = 1
+  @State title: Model = { value: 'Hello World' };
+  @State count: number = 0;
+  click: () => void = () => {
+  };
+  private increaseBy: number = 1;
 
   build() {
     Column() {
@@ -672,8 +688,8 @@ struct MyComponent {
         .margin(20)
         .onClick(() => {
           // 修改内部状态变量count
-          this.count += this.increaseBy
-          this.onClick.call();
+          this.count += this.increaseBy;
+          this.click();
         })
     }
   }
@@ -851,14 +867,10 @@ Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸
 
 ## Surface模式下的XComponent组件在设置RenderFit后如果出现显示异常，该如何调整获取正确的显示效果(API 10)
 
-**背景介绍**
-
-系统芯片平台侧除通用的CPU/GPU计算单元外，还提供了Hardware Composer（简称HWC）专用硬件合成器用于图形合成送显。与通用计算单元相比，HWC在图层叠加场景中具有更高的处理效率和更低的能耗。Surface模式下的XComponent组件所产生的图形数据是否能进入HWC硬件合成通道处理，受芯片平台能力、产品形态以及应用绘制行为等多个因素影响。
-
 **解决措施**
 
 当Surface模式下的XComponent组件其内容与组件尺寸不一致时，可通过设置[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)属性，以调整绘制内容在组件尺寸范围内的布局方式，例如拉伸、居中、等比缩放等。
-在API version 18之前，若要使用HWC硬件合成通道（当XComponent组件的背景色设置为纯黑不透明时，可能会进入HWC硬件合成通道，实际走进与否取决于前述因素），组件的[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)属性仅能支持设置为RenderFit.RESIZE_FILL，如果设置为其他属性值可能会导致显示异常。如果确实需要设置为RenderFit.RESIZE_FILL外的属性值，可以通过升级至API version 18或在XComponent组件的id字段中包含"RenderFitSurface"来修正显示效果(在API version 18前)。
+在API version 18之前，Surface模式下的XComponent组件的[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)属性仅支持设置为RenderFit.RESIZE_FILL；如果设置为其他属性值可能会在部分机型出现显示异常。如果确实需要设置RESIZE_FILL之外的属性值，可以通过升级至API version 18或在XComponent组件的id字段中包含"RenderFitSurface"关键字来修正显示效果（在API version 18前）。
 
 示例代码如下：
 

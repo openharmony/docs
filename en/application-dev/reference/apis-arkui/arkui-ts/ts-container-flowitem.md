@@ -20,7 +20,7 @@ This component supports only one child component.
 
 FlowItem()
 
-Ceates a child component in the **WaterFlow** layout.
+Creates a child component in the **WaterFlow** layout.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

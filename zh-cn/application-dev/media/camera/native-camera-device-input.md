@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/capi-oh-camera.md)。
 
 1. 导入NDK接口。选择系统提供的NDK接口能力，导入NDK接口的方法如下。
 
@@ -32,7 +32,7 @@
    )
    ```
 
-3. 通过[OH_CameraManager_CreateCameraInput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createcamerainput)方法，获取cameraInput对象。
+3. 通过[OH_CameraManager_CreateCameraInput()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createcamerainput)方法，获取cameraInput对象。
    ```c++
    // 监听cameraInput错误信息。
    void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
@@ -106,11 +106,12 @@
        }
    }
    ```
+
    > **说明：**
    >
    > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](native-camera-device-management.md)。
 
-4. 通过[OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedscenemodes)方法，获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode)。
+4. 通过[OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_getsupportedscenemodes)方法，获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[Camera_SceneMode](../../reference/apis-camera-kit/capi-camera-h.md#camera_scenemode)。
 
    ```c++
    bool IsSupportedSceneMode(Camera_Device camera, Camera_SceneMode sceneMode)
@@ -132,7 +133,7 @@
    }
    ```
 
-5. 通过[OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode)方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在CameraOutputCapability中的各个profile字段中。根据相机设备指定模式[Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode)的不同，需要添加不同类型的输出流。
+5. 通过[OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode)方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在CameraOutputCapability中的各个profile字段中。根据相机设备指定模式[Camera_SceneMode](../../reference/apis-camera-kit/capi-camera-h.md#camera_scenemode)的不同，需要添加不同类型的输出流。
 
 
    ```c++

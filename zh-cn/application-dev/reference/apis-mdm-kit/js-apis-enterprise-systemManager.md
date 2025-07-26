@@ -47,12 +47,15 @@ setNTPServer(admin: Want, server: string): void
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let server: string = "ntpserver.com";
 try {
   systemManager.setNTPServer(wantTemp, server);
@@ -98,12 +101,14 @@ getNTPServer(admin: Want): string
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   systemManager.getNTPServer(wantTemp);
@@ -144,11 +149,13 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 // 默认升级策略
 let otaUpdatePolicy1: systemManager.OtaUpdatePolicy = {
@@ -259,11 +266,13 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let policy: systemManager.OtaUpdatePolicy= systemManager.getOtaUpdatePolicy(wantTemp);
@@ -311,29 +320,35 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let notify: systemManager.NotifyDescription = {
+  // 需根据实际情况进行替换
   "installTips": "installTips",
   "installTipsDetail": "installTips detail"
-}
+};
 let description: systemManager.PackageDescription = {
-  "notify": notify,
-}
+  // 需根据实际情况进行替换
+  "notify": notify
+};
 let updatePackages: Array<systemManager.Package> = [{
+  // 需根据实际情况进行替换
   "type": systemManager.PackageType.FIRMWARE,
   "path": "path",
-  "fd": 60,
-}]
+  "fd": 60
+}];
 let updatePackageInfo: systemManager.UpdatePackageInfo = {
+  // 需根据实际情况进行替换
   "version" : "1.0",
   "packages" : updatePackages,
-  "description" : description,
+  "description" : description
 };
 systemManager.notifyUpdatePackages(wantTemp, updatePackageInfo).then(() => {
   console.info('Succeeded in notifying update packages.');
@@ -379,12 +394,14 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.UpdateResult) => {
     console.info(`Succeeded in getting update result: ${JSON.stringify(result)}`);
@@ -427,12 +444,14 @@ getUpdateAuthData(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.info(`Succeeded in getting update auth data: ${JSON.stringify(result)}`);
@@ -440,6 +459,181 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+
+
+## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
+
+addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
+
+为指定用户添加禁用的星闪协议名单。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。本接口对键盘、手写笔等系统服务和系统应用不生效。当前仅支持PC/2in1设备使用。<!--RP3--><!--RP3End-->
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
+try {
+  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
+  console.info('Succeeded in adding the disabled Starlink protocol list for the specified user.');
+} catch (err) {
+  console.error(`Failed to add the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.removeDisallowedNearLinkProtocols<sup>20+</sup>
+
+removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
+
+为指定用户移除禁用的星闪协议名单。当前仅支持PC/2in1设备使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. | 
+| 9200012  | Parameter verification failed. |                
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+try {
+  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
+  console.info('Succeeded in removing the disabled Starlink protocol list for the specified user.');
+} catch (err) {
+  console.error(`Failed to remove the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.getDisallowedNearLinkProtocols<sup>20+</sup>
+
+getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLinkProtocol&gt;
+
+获取指定用户下禁用的星闪协议名单。当前仅支持PC/2in1设备使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;          | 指定用户下禁用的星闪协议名单。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
+try {
+  let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, accountId);
+  console.info(`Succeeded in querying the disabled Starlink protocol list for the specified user: ${result}`);
+} catch (err) {
+  console.error(`Failed to query the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+  
 
 ## systemManager.setAutoUnlockAfterReboot<sup>20+</sup>
 
@@ -549,11 +743,11 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| versionName       | string | 是   | 待更新的系统版本名称。   |
-| firstReceivedTime | number | 是   | 首次收到系统更新包的时间。 |
-| packageType       | string | 是   | 待更新的系统更新包类型。  |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- |------------- |
+| versionName       | string | 否   | 否 |待更新的系统版本名称。   |
+| firstReceivedTime | number | 否   | 否 |第一次收到系统更新包的时间。 |
+| packageType       | string | 否   | 否 |待更新的系统更新包类型。  |
 
 ## OtaUpdatePolicy
 
@@ -561,15 +755,15 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| policyType        | [PolicyType](#policytype)   | 是   | 表示升级策略类型。 |
-| version | string   | 是   | 表示待升级软件版本号。 |
-| latestUpdateTime        | number   | 否   | 表示最晚升级时间（时间戳）。 |
-| delayUpdateTime | number   | 否   | 表示延迟升级时间（单位：小时）。 |
-| installStartTime        | number   | 否   | 表示指定安装窗口起始时间（时间戳）。 |
-| installEndTime | number   | 否   | 表示指定安装窗口结束时间（时间戳）。 |
-| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | -----| -------------------------- |
+| policyType        | [PolicyType](#policytype)   | 否   | 否 | 表示升级策略类型。 |
+| version | string   | 否   | 否 |表示待升级软件版本号。 |
+| latestUpdateTime        | number   | 否   | 是 | 表示最晚升级时间（时间戳）。 |
+| delayUpdateTime | number   | 否   | 是 | 表示延迟升级时间（单位：小时）。 |
+| installStartTime        | number   | 否   | 是 | 表示指定安装窗口起始时间（时间戳）。 |
+| installEndTime | number   | 否   | 是 | 表示指定安装窗口结束时间（时间戳）。 |
+| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 是 | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
 
 ## PolicyType
 
@@ -591,12 +785,12 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| version       | string | 是   | 系统更新包版本号。   |
-| packages | Array&lt;[Package](#package)&gt; | 是   | 系统更新包详情。 |
-| description       | [PackageDescription](#packagedescription) | 否   | 系统更新包描述信息。  |
-| authInfo<sup>19+</sup> | string | 否 | 系统更新包的鉴权信息。 |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | ---- |------------- |
+| version       | string | 否   | 否 | 系统更新包版本号。   |
+| packages | Array&lt;[Package](#package)&gt; | 否   | 否 | 系统更新包详情。 |
+| description       | [PackageDescription](#packagedescription) | 否   | 是 | 系统更新包描述信息。  |
+| authInfo<sup>19+</sup> | string | 否 | 是 | 系统更新包的鉴权信息。 |
 
 ## Package
 
@@ -604,11 +798,11 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| type       | [PackageType](#packagetype) | 是   | 系统更新包类型。   |
-| path | string | 是   | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
-| fd       | number | 否   | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- | ------------- |
+| type       | [PackageType](#packagetype) | 否   | 否 |  系统更新包类型。   |
+| path | string | 否   | 否 | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
+| fd       | number | 否   | 是 | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
 
 ## PackageDescription
 
@@ -616,9 +810,9 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| notify       | [NotifyDescription](#notifydescription) | 否   | 企业自定义更新通知说明。   |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- | ------------- |
+| notify       | [NotifyDescription](#notifydescription) | 否   | 是 | 企业自定义更新通知说明。   |
 
 ## NotifyDescription
 
@@ -626,10 +820,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| installTips       | string | 否   | 企业自定义更新提示。   |
-| installTipsDetail       | string | 否   | 企业自定义更新提示详情。   |
+| 名称                | 类型     | 只读  |  可选 | 说明            |
+| ----------------- | ------ | --- | ---- | ------------- |
+| installTips       | string | 否   | 是 | 企业自定义更新提示。   |
+| installTipsDetail       | string | 否   | 是 | 企业自定义更新提示详情。   |
 
 ## UpdateResult
 
@@ -637,11 +831,11 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型   | 可读  | 可写   | 说明            |
+| 名称                | 类型   | 只读  | 可选   | 说明            |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| version       | string |  是 | 否 |系统当前版本号。   |
-| status       | [UpdateStatus](#updatestatus) | 是 | 否 | 系统更新状态。   |
-| errorInfo       | [ErrorInfo](#errorinfo) | 是 | 否 | 系统更新错误信息。   |
+| version       | string |  否 | 否 |系统当前版本号。   |
+| status       | [UpdateStatus](#updatestatus) | 否 | 否 | 系统更新状态。   |
+| errorInfo       | [ErrorInfo](#errorinfo) | 否 | 否 | 系统更新错误信息。   |
 
 ## ErrorInfo
 
@@ -649,10 +843,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 可读  | 可写 | 说明            |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| code       | number | 是 | 否 | 错误码。   |
-| message       | string | 是 | 否 | 错误描述信息。   |
+| code       | number | 否 | 否 | 错误码。   |
+| message       | string | 否 | 否 | 错误描述信息。   |
 
 ## PackageType
 
@@ -677,3 +871,16 @@ try {
 | UPDATING           | -2 | 正在更新。 |
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
+
+## NearLinkProtocol<sup>20+</sup>
+
+星闪协议枚举。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 名称               | 值  | 说明    |
+| -----------------  | ---- | ----- |
+| SSAP   | 0 |  SSAP（SparkLink Service Access Protocol）协议。<!--RP1--><!--RP1End--> |
+| DATA_TRANSFER      | 1 | 数据传输协议。<!--RP2--><!--RP2End--> |

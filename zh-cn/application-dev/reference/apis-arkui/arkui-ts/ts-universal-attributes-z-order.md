@@ -53,6 +53,7 @@ struct ZIndexExample {
           .zIndex(1)
         Text('3, zIndex(0)')
           .size({ width: '90%', height: '80%' }).backgroundColor(0xc1cbac).align(Alignment.TopStart)
+          .zIndex(0)
       }.width('100%').height(200)
     }.width('100%').height(200)
   }
@@ -104,6 +105,6 @@ struct ZIndexExample {
 
 ![zIndex_1.png](figures/zIndex_1.png)
 
-点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级顺序发生改变。
+点击Button动态修改zIndex，使Text2的zIndex大于Text1，层级顺序发生改变。
 
 ![zIndex_2.png](figures/zIndex_2.png)

@@ -25,8 +25,8 @@ AVDemuxer模块提供从媒体文件码流中提取[sample](../../media/avcodec/
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)回调函数指针类型，不返回解封装器实例，适用于单个解封装器实例场景。需要使用[OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback)接口将其设置为回调。（API14废弃）  |
-| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)回调函数指针类型，返回解封装器实例，适用于多个解封装器实例场景。需要使用[OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback)接口将其设置为回调，推荐使用。  |
+| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | [DRM_MediaKeySystemInfo](../apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)回调函数指针类型，不返回解封装器实例，适用于单个解封装器实例场景。需要使用[OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback)接口将其设置为回调。（API14废弃）  |
+| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| [DRM_MediaKeySystemInfo](../apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)回调函数指针类型，返回解封装器实例，适用于多个解封装器实例场景。需要使用[OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback)接口将其设置为回调，推荐使用。  |
 
 
 ### 函数
@@ -157,7 +157,7 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_Medi
 | 名称 | 描述 | 
 | -------- | -------- |
 | demuxer | 指向OH_AVDemuxer实例的指针。  | 
-| mediaKeySystemInfo | 指向DRM信息的指针，请参阅[DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)。  | 
+| mediaKeySystemInfo | 指向DRM信息的指针，请参阅[DRM_MediaKeySystemInfo](../apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)。  | 
 
 **返回：**
 

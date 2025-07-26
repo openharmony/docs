@@ -573,7 +573,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -640,7 +640,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
@@ -694,7 +694,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 ## wallpaper.getImage<sup>9+</sup>
 
-getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the pixel map for the wallpaper of the specified type. This API only works for the static wallpaper set using **setImage**. This API uses an asynchronous callback to return the result.
 
@@ -709,7 +709,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API only wor
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Error codes**
 
@@ -758,7 +758,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API only wor
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Error codes**
 
@@ -806,7 +806,7 @@ Obtains the pixel map of the wallpaper of a specific type, folding state, or lan
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Error codes**
 
@@ -900,7 +900,7 @@ wallpaper.setAllWallpapers(wallpaperInfos, wallpaper.WallpaperType.WALLPAPER_SYS
 
 ## wallpaper.getPixelMap<sup>(deprecated)</sup>
 
-getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the pixel map for the wallpaper of the specified type.
 
@@ -976,3 +976,5 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: imag
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
+
+ <!--no_check--> 

@@ -525,13 +525,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统接口**：此接口为系统接口。
 
-| 名称            | 类型                                                                 | 可读 | 可写 | 说明     |
+| 名称            | 类型                                                                 | 只读 | 可选 | 说明     |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
 | request         | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是  | 否  | 通知内容。 |
-| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | 是  | 否  | 通知排序信息。 |
-| reason          | number                                                             | 是  | 否  | 删除原因（1:点击通知后删除通知，2:用户删除通知） 。|
-| sound           | string                                                             | 是  | 否  | 通知声音。 |
-| vibrationValues | Array\<number\>                                                    | 是  | 否  | 通知震动。 |
+| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | 是  | 是  | 通知排序信息。 |
+| reason          | number                                                             | 是  | 是  | 删除原因（1:点击通知后删除通知，2:用户删除通知） 。|
+| sound           | string                                                             | 是  | 是  | 通知声音。 |
+| vibrationValues | Array\<number\>                                                    | 是  | 是  | 通知震动。 |
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>

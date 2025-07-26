@@ -471,7 +471,7 @@ struct attributePressedDemo {
   build() {
     Row() {
       Column() {
-        ChildCompoent()
+        ChildComponent()
           .attributeModifier(this.modifier)
       }
       .width('100%')
@@ -481,7 +481,7 @@ struct attributePressedDemo {
 }
 
 @Component
-struct ChildCompoent {
+struct ChildComponent {
   build() {
     Text("common").fontColor(Color.Green).fontSize(28).textAlign(TextAlign.Center)
       .width('35%')
@@ -519,6 +519,7 @@ struct ChildCompoent {
 | gesture                  | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
 | gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
 | onAccessibilityHover     | 不支持   | is not callable           | -                                         |
+| onDigitalCrown           | 不支持   | is not callable.          | -                                       |
 | onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
 | parallelGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
 | priorityGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |

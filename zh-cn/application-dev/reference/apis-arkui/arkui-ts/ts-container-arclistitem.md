@@ -64,7 +64,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                    |
 | ------- | ------------------------------------------------------------ | ---- | ----------------------- |
-| options | [Optional\<SwipeActionOptions>](ts-container-listitem.md#swipeactionoptions9对象说明) | 否   | ArcListItem的划出组件。 |
+| options | [Optional\<SwipeActionOptions>](ts-container-listitem.md#swipeactionoptions9对象说明) | 是   | ArcListItem的划出组件。 |
 
 ## 示例
 
@@ -102,7 +102,7 @@ struct ArcListItemExample {
               .backgroundColor(0x17A98D)
           }
           .autoScale(item % 3 == 0 || item % 5 == 0)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)

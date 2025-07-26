@@ -11,9 +11,9 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
 
-2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造参数集paramSet，参数集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)属性。
+2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_buildparamset)构造参数集paramSet，参数集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keyalg)，[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keypurpose)属性。
 
-3. 将密钥别名与参数集作为参数传入[OH_Huks_AnonAttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_anonattestkeyitem)方法中，即可证明密钥。
+3. 将密钥别名与参数集作为参数传入[OH_Huks_AnonAttestKeyItem](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_anonattestkeyitem)方法中，即可证明密钥。
 
 ```c++
 #include "huks/native_huks_api.h"
@@ -75,10 +75,10 @@ int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
         certChain->certs[i].data = (uint8_t *)malloc(certChain->certs[i].size);
         if (certChain->certs[i].data == nullptr) {
             FreeCertChain(certChain, i);
-            return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
+            return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
         }
     }
-    return 0;
+    return OH_HUKS_SUCCESS;
 }
 static struct OH_Huks_Param g_genAnonAttestParams[] = {
     { .tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_RSA },
@@ -121,7 +121,10 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
             break;
         }
         
-        (void)ConstructDataToCertChain(&certChain);
+        ohResult.errorCode = ConstructDataToCertChain(&certChain);
+        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+            break;
+        }
         /* 3.证明密钥 */
         ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, &certChain);
     } while (0);

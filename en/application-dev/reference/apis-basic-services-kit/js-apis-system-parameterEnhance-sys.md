@@ -1,7 +1,6 @@
 # @ohos.systemParameterEnhance (System Parameter) (System API)
 
-The **SystemParameter** module provides system services with easy access to key-value pairs. You can use the APIs provided by this module to describe the service status and change the service behavior. The basic operation primitives are get and set. You can obtain the values of system parameters through getter APIs and modify the values through setter APIs.
-For details about the system parameter design principles and definitions, see [Parameter Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
+The **SystemParameter** module provides system services with easy access to key-value pairs. You can use the APIs provided by this module to describe the service status and change the service behavior. The basic operation primitives are get and set. You can obtain the values of system parameters through getter APIs and modify the values through setter APIs. For details about the system parameter design principles and definitions, see [Parameter Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
 
 > **NOTE**
 >
@@ -54,7 +53,7 @@ try {
     let info: string = systemParameterEnhance.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
-    console.log("getSync unexpected error: " + e);
+    console.error("getSync unexpected error: " + e);
 }
 ```
 
@@ -62,7 +61,7 @@ try {
 
 get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the value of the system parameter with the specified key.
+Obtains the value of the system parameter with the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Startup.SystemInfo
 
@@ -94,10 +93,10 @@ try {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
-        console.log(" get test.parameter.key value err:" + err.code)
+        console.error(" get test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -138,11 +137,11 @@ try {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
-            console.log(" get test.parameter.key value err:" + err.code)
+            console.error(" get test.parameter.key value err:" + err.code)
         }
     });
 } catch(e) {
-    console.log("get unexpected error:" + e)
+    console.error("get unexpected error:" + e)
 }
 ```
 
@@ -188,10 +187,10 @@ try {
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log("get test.parameter.key error: " + err.code);
+        console.error("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -229,7 +228,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     systemParameterEnhance.setSync("test.parameter.key", "default");
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -270,10 +269,10 @@ try {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
-        console.log("set test.parameter.key value err:" + err.code)
+        console.error("set test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -319,9 +318,9 @@ try {
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log(" set test.parameter.key error: " + err.code);
+        console.error(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```

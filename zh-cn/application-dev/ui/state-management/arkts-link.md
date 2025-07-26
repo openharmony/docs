@@ -22,7 +22,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无。                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件状态变量与子组件\@Link建立双向同步，当其中一方改变时，另一方也会同步更新。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须指定，且与双向绑定状态变量类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意：**<br/>使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。例如：`@Link a : string \| undefined`。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。<br/>类型必须指定，且与双向绑定状态变量类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意：**<br/>使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。例如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -50,61 +50,8 @@
 
 - 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
-- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性。
+- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，详见[装饰Date类型变量](#装饰date类型变量)。
 
-```ts
-@Component
-struct DateComponent {
-  @Link selectedDate: Date;
-
-  build() {
-    Column() {
-      Button(`child increase the year by 1`)
-      .onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-      })
-      Button('child update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate = new Date('2023-09-09');
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct ParentComponent {
-  @State parentSelectedDate: Date = new Date('2021-08-08');
-
-  build() {
-    Column() {
-      Button('parent increase the month by 1')
-        .margin(10)
-        .onClick(() => {
-          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
-        })
-      Button('parent update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07');
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.parentSelectedDate
-      })
-
-      DateComponent({ selectedDate:this.parentSelectedDate })
-    }
-  }
-}
-```
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -130,151 +77,151 @@ struct ParentComponent {
 
 ## 限制条件
 
-1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件中使用。
+1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#entry)装饰的自定义组件中使用。
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  @Link count: number = 10;
-
-  // 正确写法
-  @Link count: number;
-  ```
+    ```ts
+    // 错误写法，编译报错
+    @Link count: number = 10;
+  
+    // 正确写法
+    @Link count: number;
+    ```
 
 3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  class Cousin {
-    name: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 错误写法，@Link与@State数据源类型不一致
-    @Link test: Cousin;
-
-    build() {
-      Text(this.test.name)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，@Link与@State数据源类型不一致
-        Child({test: new Cousin()})
+  
+    class Cousin {
+      name: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 错误写法，@Link与@State数据源类型不一致
+      @Link test: Cousin;
+  
+      build() {
+        Text(this.test.name)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 正确写法
-    @Link test: Info;
-
-    build() {
-      Text(this.test.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({test: this.info})
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，@Link与@State数据源类型不一致
+          Child({test: new Cousin()})
+        }
       }
     }
-  }
-  ```
+    ```
+
+    【正例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 正确写法
+      @Link test: Info;
+  
+      build() {
+        Text(this.test.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({test: this.info})
+        }
+      }
+    }
+    ```
 
 4. \@Link装饰的变量仅能被状态变量初始化，不能使用常规变量初始化，否则编译期会给出告警，并在运行时崩溃。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: string;
-
-    build() {
-      Text(this.msg + this.info)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，常规变量不能初始化@Link
-        Child({msg: 'World', info: this.info.info})
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: string;
+  
+      build() {
+        Text(this.msg + this.info)
       }
     }
-  }
-  ```
 
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: Info;
-
-    build() {
-      Text(this.msg + this.info.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({msg: this.message, info: this.info})
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，常规变量不能初始化@Link
+          Child({msg: 'World', info: this.info.info})
+        }
       }
     }
-  }
-  ```
+    ```
+
+    【正例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: Info;
+  
+      build() {
+        Text(this.msg + this.info.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({msg: this.message, info: this.info})
+        }
+      }
+    }
+    ```
 
 5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -308,7 +255,7 @@ struct GreenButton {
       .width(this.greenButtonState.width)
       .height(40)
       .backgroundColor('#64bb5c')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
           // 更新class的属性，变化可以被观察到同步回父组件
@@ -330,7 +277,7 @@ struct YellowButton {
       .width(this.yellowButtonState)
       .height(40)
       .backgroundColor('#f7ce00')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         // 子组件的简单类型可以同步回父组件
         this.yellowButtonState += 40.0;
@@ -349,26 +296,26 @@ struct ShufflingContainer {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
         // 简单类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set yellowButton')
-          .width(312)
+          .width(this.yellowButtonProp)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 40 : 100;
           })
         // class类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set GreenButton')
-          .width(312)
+          .width(this.greenButtonState.width)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
           })
         // class类型初始化@Link
-        GreenButton({ greenButtonState: $greenButtonState }).margin(12)
+        GreenButton({ greenButtonState: this.greenButtonState }).margin(12)
         // 简单类型初始化@Link
-        YellowButton({ yellowButtonState: $yellowButtonProp }).margin(12)
+        YellowButton({ yellowButtonState: this.yellowButtonProp }).margin(12)
       }
     }
   }
@@ -391,7 +338,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF，90%')
+        .fontColor('#FFFFFF,90%')
         .onClick(() => {
           this.items.push(this.items.length + 1);
         })
@@ -399,7 +346,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF，90%')
+        .fontColor('#FFFFFF,90%')
         .onClick(() => {
           this.items = [100, 200, 300];
         })
@@ -543,6 +490,64 @@ struct SetSample {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 装饰Date类型变量
+
+在下面的示例中，selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+@Component
+struct DateComponent {
+  @Link selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the year by 1`)
+      .onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+      })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09');
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
+        })
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07');
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({ selectedDate:this.parentSelectedDate })
+    }
   }
 }
 ```

@@ -21,6 +21,11 @@
 >
 > 仅应用需要克隆、备份或同步用户公共目录的音频类文件时，可申请ohos.permission.READ_AUDIO、ohos.permission.WRITE_AUDIO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
+## 开发音频录制应用须知
+
+- 如果需要持续录制或后台录制，请申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../../task-management/continuous-task.md)。
+- 录制需要在前台启动，启动后可以退后台。在后台启动录制将会失败。
+- 应用录制音频时需要使用合适的录制流类型，请参考[使用合适的音频流类型](../audio/using-right-streamusage-and-sourcetype.md)。
 
 ## 开发步骤及注意事项
 
@@ -83,11 +88,11 @@
    import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
-     audioBitrate: 100000, // 音频比特率。
+     audioBitrate: 112000, // 音频比特率。
      audioChannels: 2, // 音频声道数。
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
      audioSampleRate: 48000, // 音频采样率。
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV。
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV，AMR，AAC。
    };
    
    const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
@@ -162,11 +167,11 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 export class AudioRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
-    audioBitrate: 100000, // 音频比特率。
+    audioBitrate: 112000, // 音频比特率。
     audioChannels: 2, // 音频声道数。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
     audioSampleRate: 48000, // 音频采样率。
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV。
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV，AMR，AAC。
   };
   private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风。
@@ -175,6 +180,7 @@ export class AudioRecorderDemo extends CustomComponent {
   };
   private uriPath: string = '';
   private filePath: string = '';
+  private fileFd: number = 0;
   
   // 创建文件以及设置avConfig.url。
   async createAndSetFd(): Promise<void> {
@@ -182,6 +188,7 @@ export class AudioRecorderDemo extends CustomComponent {
       const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应。
       const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       this.avConfig.url = 'fd://' + audioFile.fd; // 更新url。
+      this.fileFd = audioFile.fd;
       this.filePath = path;
   }
 
@@ -209,6 +216,7 @@ export class AudioRecorderDemo extends CustomComponent {
     this.avRecorder = await media.createAVRecorder();
     this.setAudioRecorderCallback();
     // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档。
+    this.createAndSetFd();
 
     // 3.配置录制参数完成准备工作。
     await this.avRecorder.prepare(this.avConfig);
@@ -244,6 +252,7 @@ export class AudioRecorderDemo extends CustomComponent {
       await this.avRecorder.release();
       this.avRecorder = undefined;
       // 4.关闭录制文件fd。
+      await fs.close(this.fileFd);
     }
   }
 

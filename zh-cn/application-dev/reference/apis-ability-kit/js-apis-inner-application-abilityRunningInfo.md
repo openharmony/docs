@@ -14,7 +14,7 @@ import { abilityManager } from '@kit.AbilityKit';
 
 ## 使用说明
 
-通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos)方法获取。
+通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos14)方法获取。
 
 ## 属性
 

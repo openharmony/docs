@@ -257,8 +257,8 @@ private:
 ```c++
 //Waterflow.h
 
-#ifndef MYAPPLICATION_WATERFLOWE_H
-#define MYAPPLICATION_WATERFLOWE_H
+#ifndef MYAPPLICATION_WATERFLOW_H
+#define MYAPPLICATION_WATERFLOW_H
 
 #include "FlowItemAdapter.h"
 #include "WaterflowSection.h"
@@ -327,7 +327,7 @@ public:
 };
 }// namespace NativeModule
 
-#endif // MYAPPLICATION_WATERFLOWE_H
+#endif // MYAPPLICATION_WATERFLOW_H
 ```
 
 ## 使用瀑布流

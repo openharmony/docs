@@ -8,7 +8,7 @@
 
 <!--RP1End-->
 
-当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpResponseOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
+当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpRequestOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
 
 | 功能分类     | 功能名称                           |功能描述                      | 开始支持的版本         |
 | ----------- | -----------------------------------|-----------------------------|------------------------|
@@ -26,7 +26,7 @@
 | 证书验证     | 设置支持传输客户端证书            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
 | 基础功能     | 设置下载起始位置和结束位置         | 指定客户端要获取的数据范围，通常在下载文件时配置该参数。 |  API version 11  |
 | 基础功能     | 设置需要上传的数据字段表单列表        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
-| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须以以下格式进行URL编码:"https://host:port/path"。 | API version 11    |
+| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须以以下格式进行URL编码:'https://host:port/path'。 | API version 11    |
 | DNS设置     | 设置指定的DNS服务器进行DNS解析         | 设置指定的DNS服务器进行DNS解析。可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。服务器必须是IPV4或者IPV6地址形式。 |  API version 11   |
 | 基础功能     | 设置响应消息的最大字节限制            | 响应消息的最大字节限制。以字节为单位，默认值为5\*1024\*1024，最大值为100\*1024\*1024。 |   API version 11  |
 | 证书验证     | 设置动态设置证书锁定配置             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
@@ -41,6 +41,8 @@
 >
 > 在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+完整示例代码见：[Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)
+
 1. 导入HTTP一般数据请求所需模块
 
     ```ts
@@ -53,7 +55,6 @@
 
     调用createHttp()方法，创建HttpRequest对象。
 
-    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。
@@ -177,6 +178,8 @@
 
 HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容的一小部分，而不是一次性将整个响应加载到内存，这对于处理大文件、实时数据流等场景非常有用。
 
+完整示例代码见：[Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)
+
 1. 导入HTTP流式传输所需模块
 
     ```ts
@@ -298,7 +301,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       // 当该请求使用完毕时，调用destroy方法主动销毁。
       httpRequest.destroy();
     }).catch((err: Error) => {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+      console.error("requestInStream ERROR : err = " + JSON.stringify(err));
     });
     ```
 

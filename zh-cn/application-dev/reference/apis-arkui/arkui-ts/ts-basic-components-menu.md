@@ -392,7 +392,7 @@ struct Index {
 
 ![image](figures/menu-arrow.gif)
 
-## 示例4（设置分割线样式）
+### 示例4（设置分割线样式）
 
 该示例通过设置menuItemGroupDivider属性实现分割线样式。
 

@@ -17,7 +17,7 @@ An internal error occurred.
 
 View the error log to determine the cause of the error. Possible causes include the following:
 1. The internal state is abnormal.
-2. There is API that is incorrectly used.
+2. There is an API that is incorrectly used.
 3. A system error, such as insufficient memory, I/O error, or JS engine exception, occurs.
 
 **Solution**

@@ -7,6 +7,8 @@
 
 **库：** 无
 
+**引用文件：** <multimedia/native_audio_channel_layout.h>
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 11

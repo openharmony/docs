@@ -12,7 +12,7 @@ The following figure shows the effect of the **SaveButton** component.
 
 ## Constraints
 
-- When a user clicks **SaveButton** in the application for the first time, a dialog box will be displayed to request user authorization. If the user clicks **Deny**, the dialog box will be closed and the application does not have the permission. When the user clicks **LocationButton** again, the user authorization dialog box will be displayed again. If the user clicks **Allow**, the dialog box will be closed and the application is granted the temporary location permission. After that, if the user clicks **LocationButton** again, no dialog box will be displayed.
+- When a user clicks **SaveButton** in the application for the first time, a dialog box will be displayed to request user authorization. If the user clicks **Deny**, the dialog box will be closed and the application does not have the permission.
 
 - The interval for calling **onClick()** to trigger a **mediaLibrary** API cannot exceed 10 seconds after **SaveButton** is tapped.
 

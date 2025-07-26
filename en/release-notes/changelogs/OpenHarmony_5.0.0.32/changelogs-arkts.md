@@ -8,7 +8,7 @@ Public API
 
 **Reason for Change**
 
-The constructors of the **TreeMap** and **TreeSet** classes support the input of a comparator, through which you can control the position to which an element is inserted in the binary tree. 
+The constructors of the **TreeMap** and **TreeSet** classes support the input of a comparator, through which you can control the position to which an element is inserted in the binary tree.
 
 When the **clear** API of **TreeMap** and **TreeSet** is called, the expected result is that only data is cleared. However, the actual result is that both the data and the passed-in comparator are cleared. As a result, when the API for inserting data is called again, the rules of the default comparator, rather than those of the passed-in comparator, are used. Consequently, the result does not meet the expectation.
 
@@ -20,100 +20,98 @@ This change is a non-compatible change. It affects the sorting rule after **clea
 
 - Case 1: When a user passes in a comparator and calls the **clear** API of **TreeMap**, the comparator becomes invalid.
 
-  ```
-  // Use comparator firstValue > secondValue to sort data in descending order.
-  let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeMap.set("aa","3");
-  treeMap.set("dd","1");
-  treeMap.set("cc","2");
-  treeMap.set("bb","4");
-  let numbers = Array.from(treeMap.keys())
-  for (let item of numbers) {
-    console.log("treeMap:" + item); // key: dd  cc  bb  aa
-  }
-  treeMap.clear();
-  treeMap.set("aa","3");
-  treeMap.set("dd","1");
-  treeMap.set("cc","2");
-  treeMap.set("bb","4");
-  numbers = Array.from(treeMap.keys())
-  for (let item of numbers) {
-    console.log("treeMap:" + item); //key: aa  bb  cc  dd
-  }
-  ```
+```
+// Use comparator firstValue > secondValue to sort data in descending order.
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item); // key: dd  cc  bb  aa
+}
+treeMap.clear();
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item); //key: aa  bb  cc  dd
+}
+```
 
 - Case 2: When a user passes in a comparator and calls the **clear** API of **TreeSet**, the comparator becomes invalid.
 
-  ```
-  let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeSet.add("a");
-  treeSet.add("c");
-  treeSet.add("d");
-  treeSet.add("b");
-  let numbers = Array.from(treeSet.values())
-  for (let item of numbers) {
-    console.log("TreeSet:" + item); // value: d  c  b  a
-  }
-  treeSet.clear();
-  treeSet.add("a");
-  treeSet.add("c");
-  treeSet.add("d");
-  treeSet.add("b");
-  numbers = Array.from(treeSet.values())
-  for (let item of numbers) {
-    console.log("TreeSet:" + item); // value: a  b  c  d
-  }
-  ```
-
+```
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item); // value: d  c  b  a
+}
+treeSet.clear();
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item); // value: a  b  c  d
+}
+```
 **After Change**
 
 - Case 1: When a user passes in a comparator and calls the **clear** API of **TreeMap**, the comparator functions normally.
 
-  ```
-  // Use comparator firstValue > secondValue to sort data in descending order.
-  let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeMap.set("aa","3");
-  treeMap.set("dd","1");
-  treeMap.set("cc","2");
-  treeMap.set("bb","4");
-  let numbers = Array.from(treeMap.keys())
-  for (let item of numbers) {
-    console.log("treeMap:" + item); // treeMap: dd  cc  bb  aa
-  }
-  treeMap.clear();
-  treeMap.set("aa","3");
-  treeMap.set("dd","1");
-  treeMap.set("cc","2");
-  treeMap.set("bb","4");
-  numbers = Array.from(treeMap.keys())
-  for (let item of numbers) {
-    console.log("treeMap:" + item); // treeMap: dd  cc  bb  aa
-  }
-  ```
+```
+// Use comparator firstValue > secondValue to sort data in descending order.
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item); // treeMap: dd  cc  bb  aa
+}
+treeMap.clear();
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item); // treeMap: dd  cc  bb  aa
+}
+```
 
 - Case 2: When a user passes in a comparator and calls the **clear** API of **TreeSet**, the comparator functions normally.
 
-  ```
-  let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeSet.add("a");
-  treeSet.add("c");
-  treeSet.add("d");
-  treeSet.add("b");
-  let numbers = Array.from(treeSet.values())
-  for (let item of numbers) {
-    console.log("TreeSet:" + item); // TreeSet: d  c  b  a
-  }
-  treeSet.clear();
-  treeSet.add("a");
-  treeSet.add("c");
-  treeSet.add("d");
-  treeSet.add("b");
-  numbers = Array.from(treeSet.values())
-  for (let item of numbers) {
-    console.log("TreeSet:" + item); // TreeSet: d  c  b  a
-  }
-  ```
-
+```
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item); // TreeSet: d  c  b  a
+}
+treeSet.clear();
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item); // TreeSet: d  c  b  a
+}
+```
 **Start API Level**
 
 8
@@ -154,21 +152,21 @@ This change is a non-compatible change. It affects the tree map length after **T
 
 - Before change: When treeMap1 is added using **setAll**, the tree map length is 1.
 
-  ```
-  let treeMap : TreeMap<string, number> = new TreeMap();
-  let treeMap1 : TreeMap<string, number> = new TreeMap();
-  treeMap.setAll(treeMap1); // Add all elements in treeMap1 to treeMap.
-  console.info("length:", treeMap.length) // length:1
-  ```
+```
+let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap1 : TreeMap<string, number> = new TreeMap();
+treeMap.setAll(treeMap1); // Add all elements in treeMap1 to treeMap.
+console.info("length:", treeMap.length) // length:1
+```
 
 - After change: When treeMap1 is added using **setAll**, the tree map length is 0.
 
-  ```
-  let treeMap : TreeMap<string, number> = new TreeMap();
-  let treeMap1 : TreeMap<string, number> = new TreeMap();
-  treeMap.setAll(treeMap1); // Add all elements in treeMap1 to treeMap.
-  console.info("length:",treeMap.length) // length:0
-  ```
+```
+let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap1 : TreeMap<string, number> = new TreeMap();
+treeMap.setAll(treeMap1); // Add all elements in treeMap1 to treeMap.
+console.info("length:",treeMap.length) // length:0
+```
 
 **Start API Level**
 
@@ -205,57 +203,57 @@ Public API
 
 This change is a non-compatible change. It affects the return value of **TreeMap.hasKey()** and **TreeSet.has()** when undefined or null is passed in.
 
-**Before Change**
+- **Before Change**
 
 - Case 1: For a **TreeMap** object with a user-defined comparator, if null or undefined is not inserted, **hasKey(null/undefined)** returns **true**.
 
-  ```
-  let treeMap : TreeMap<string, number> = new TreeMap((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeMap.set("aa",3);
-  treeMap.set("dd",1);
-  let res = treeMap.hasKey(null);
-  let res1 = treeMap.hasKey(undefined);
-  console.info("res:", res) // res:true
-  console.info("res1:",res1) // res1:true
-  ```
+```
+let treeMap : TreeMap<string, number> = new TreeMap((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa",3);
+treeMap.set("dd",1);
+let res = treeMap.hasKey(null);
+let res1 = treeMap.hasKey(undefined);
+console.info("res:", res) // res:true
+console.info("res1:",res1) // res1:true
+```
 
 - Case 2: For a **TreeSet** object with a user-defined comparator, if null or undefined is not inserted, **has(null/undefined)** returns **true**.
 
-  ```
-  let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeSet.add("a");
-  treeSet.add("c");
-  let res = treeSet.has(null);
-  let res1 = treeSet.has(undefined);
-  console.info("res:", res) // res:true
-  console.info("res1:",res1) // res1:true
-  ```
+```
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeSet.add("a");
+treeSet.add("c");
+let res = treeSet.has(null);
+let res1 = treeSet.has(undefined);
+console.info("res:", res) // res:true
+console.info("res1:",res1) // res1:true
+```
 
-**After Change**
+- **After Change**
 
 - Case 1: For a **TreeMap** object with a user-defined comparator, if null or undefined is not inserted, **hasKey(null/undefined)** returns **false**.
 
-  ```
-  let treeMap : TreeMap<string, number> = new TreeMap((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeMap.set("aa",3);
-  treeMap.set("dd",1);
-  let res = treeMap.hasKey(null);
-  let res1 = treeMap.hasKey(undefined);
-  console.info("res:", res) // res:false
-  console.info("res1:",res1) // res1:false
-  ```
+```
+let treeMap : TreeMap<string, number> = new TreeMap((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa",3);
+treeMap.set("dd",1);
+let res = treeMap.hasKey(null);
+let res1 = treeMap.hasKey(undefined);
+console.info("res:", res) // res:false
+console.info("res1:",res1) // res1:false
+```
 
 - Case 2: For a **TreeSet** object with a user-defined comparator, if null or undefined is not inserted, **has(null/undefined)** returns **false**.
 
-  ```
-  let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
-  treeSet.add("a");
-  treeSet.add("c");
-  let res = treeSet.has(null);
-  let res1 = treeSet.has(undefined);
-  console.info("res:", res) // res:false
-  console.info("res1:",res1) // res1:false
-  ```
+```
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeSet.add("a");
+treeSet.add("c");
+let res = treeSet.has(null);
+let res1 = treeSet.has(undefined);
+console.info("res:", res) // res:false
+console.info("res1:",res1) // res1:false
+```
 
 
 **Start API Level**
@@ -269,7 +267,6 @@ OpenHarmony SDK 5.0.0.32
 **Key API/Component Changes**
 
 TreeMap.hasKey();
-
 TreeSet.has();
 
 **Adaptation Guide**
@@ -409,10 +406,10 @@ Before change: The **append()** API of the **URLParams** class is used to add a 
 ```ts
 {
     const objectParams = new url.URLParams('?fod=1&bard=2')
-    objectParams.append("key&大", "abc");
-    objectParams.has('key&大');  // false
+    objectParams.append("key&large", "abc");
+    objectParams.has('key&large');  // false
     objectParams.has('%E5%A4%A7');  // true
-    objectParams.get('key&大');  // undefined
+    objectParams.get('key&large'); // undefined
     objectParams.get('%E5%A4%A7');  // abc
 }
 ```
@@ -421,10 +418,10 @@ After change: The **append()** API of the **URLParams** class is used to add a k
 ```ts
 {
     const objectParams = new url.URLParams('?fod=1&bard=2')
-    objectParams.append("key&大", "abc");
-    objectParams.has('key&大');  // true
+    objectParams.append("key&large", "abc");
+    objectParams.has('key&large');  // true
     objectParams.has('%E5%A4%A7');  // false
-    objectParams.get('key&大');  // abc
+    objectParams.get('key&large'); // abc
     objectParams.get('%E5%A4%A7');  // undefined
 }
 ```
@@ -432,5 +429,3 @@ After change: The **append()** API of the **URLParams** class is used to add a k
 **Adaptation Guide**
 
 If the passed-in parameter of **URLParams.append()** contains special characters such as Chinese characters, you need to adapt to the changes in the processing result and return value of **has()**, **get()**, **delete()**, and **set()**.
-
- <!--no_check--> 

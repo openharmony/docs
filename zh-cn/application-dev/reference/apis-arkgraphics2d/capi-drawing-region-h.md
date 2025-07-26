@@ -76,7 +76,7 @@ OH_Drawing_Region* OH_Drawing_RegionCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* | 函数会返回一个指针，指针指向创建的区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* | 函数会返回一个指针，指针指向创建的区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)。 |
 
 ### OH_Drawing_RegionCopy()
 
@@ -97,13 +97,13 @@ OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向用于拷贝的区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向用于拷贝的区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* | 函数会返回一个指针，指针指向创建的新区域对象。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* | 函数会返回一个指针，指针指向创建的新区域对象。 |
 
 ### OH_Drawing_RegionContains()
 
@@ -124,7 +124,7 @@ bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 | int32_t x | 表示指定坐标点的x轴坐标。 |
 | int32_t y | 表示指定坐标点的y轴坐标。 |
 
@@ -153,8 +153,8 @@ bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* oth
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针，操作完成后的区域结果将会保存在此区域对象中。 |
-| const [OH_Drawing_Region](capi-oh-drawing-region.md)* other | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针，操作完成后的区域结果将会保存在此区域对象中。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* other | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 | [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op | 区域操作枚举类型，支持可选的具体模式可见[OH_Drawing_RegionOpMode](capi-drawing-region-h.md#oh_drawing_regionopmode)枚举。 |
 
 **返回：**
@@ -182,8 +182,8 @@ bool OH_Drawing_RegionSetRect(OH_Drawing_Region* region, const OH_Drawing_Rect* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -210,9 +210,9 @@ bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Region](capi-oh-drawing-region.md)* clip | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* clip | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 
 **返回：**
 
@@ -239,6 +239,6 @@ void OH_Drawing_RegionDestroy(OH_Drawing_Region* region)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 
 

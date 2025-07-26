@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit'
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -30,6 +30,8 @@ onAdminEnabled(): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminEnabled() {
   }
@@ -49,6 +51,8 @@ onAdminDisabled(): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminDisabled() {
   }
@@ -74,6 +78,8 @@ onBundleAdded(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
@@ -101,7 +107,10 @@ onBundleAdded(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  // 由于存在同名回调方法onBundleAdded(bundleName: string)，该回调方法无accountId参数，因此在实际调用时accountId必须为可选参数，写法请参考示例代码。如果删除accountId后的问号"?"，编译会报错。
   onBundleAdded(bundleName: string, accountId?: number) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
   }
@@ -127,6 +136,8 @@ onBundleRemoved(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleRemoved(bundleName: string) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
@@ -154,7 +165,10 @@ onBundleRemoved(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  // 由于存在同名回调方法onBundleRemoved(bundleName: string)，该回调方法无accountId参数，因此在实际调用时accountId必须为可选参数，写法请参考示例代码。如果删除accountId后的问号"?"，编译会报错。
   onBundleRemoved(bundleName: string, accountId?: number) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
   }
@@ -180,6 +194,8 @@ onAppStart(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
     console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
@@ -206,6 +222,8 @@ onAppStop(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
     console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
@@ -231,7 +249,9 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 import { systemManager } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
@@ -252,6 +272,8 @@ EnterpriseAdminExtensionAbility启动事件回调。
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onStart() {
     console.info(`Succeeded in calling onStart callback.`);
@@ -276,6 +298,8 @@ onAccountAdded(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountAdded(accountId: number) {
     console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
@@ -300,6 +324,8 @@ onAccountSwitched(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountSwitched(accountId: number) {
     console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
@@ -324,9 +350,67 @@ onAccountRemoved(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountRemoved(accountId: number) {
     console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onKioskModeEntering<sup>20+</sup>
+
+onKioskModeEntering(bundleName: string, accountId: number): void
+
+应用进入Kiosk模式回调，回调中包含应用包名和用户ID。
+
+Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 进入Kiosk模式应用的包名。 |
+| accountId | number | 是    | 进入Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeEntering(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeEntering callback, bundleName:${bundleName}, accountId:${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onKioskModeExiting<sup>20+</sup>
+
+onKioskModeExiting(bundleName: string, accountId: number): void
+
+应用退出Kiosk模式回调，回调中包含应用包名和用户ID。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 退出Kiosk模式应用的包名。 |
+| accountId | number | 是    | 退出Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeExiting(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeExiting callback, bundleName:${bundleName}, accountId:${accountId}`);
   }
 };
 ```

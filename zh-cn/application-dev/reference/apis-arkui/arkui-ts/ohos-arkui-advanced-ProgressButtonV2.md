@@ -108,14 +108,14 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI';
+import { LengthMetrics, ProgressButtonV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
 struct Index {
   @Local progressIndex: number = 0;
   @Local textState: string = '下载';
-  @Local ButtonWidth: LengthMetrics = LengthMetrics.vp(200);
+  @Local buttonWidth: LengthMetrics = LengthMetrics.vp(200);
   @Local isRunning: boolean = false;
   @Local enableState: boolean = true;
 
@@ -125,7 +125,7 @@ struct Index {
         Column({ space: 20 }) {
           ProgressButtonV2({
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             isEnabled: this.enableState,
             onClicked: () => {

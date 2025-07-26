@@ -35,7 +35,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "ohos.want.action.home"
             ]
           },
           {

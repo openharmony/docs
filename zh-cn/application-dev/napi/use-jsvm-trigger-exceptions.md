@@ -26,7 +26,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 ### OH_JSVM_SetHandlerForOOMError
 通过OH_JSVM_SetHandlerForOOMError，用户可以设置处理OOM Error的函数。当多次调用这个API进行函数设置时，仅最后一次设置会生效。当用户传入的设置函数为NULL时，则表示取消之前设置的处理函数。
 
-#### cpp部分代码
+#### cpp部分代码：
 
 ```cpp
 #include <csetjmp>
@@ -83,16 +83,18 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 #### 样例测试JS
-
+```cpp
 const char *srcCallNative = R"JS(triggerOOMError();)JS";
-
+```
 #### 执行结果
 
-在LOG中输出：　JSVM Trigger OOM-Error: success
-
+在LOG中输出：　
+```cpp
+JSVM Trigger OOM-Error: success
+```
 ### OH_JSVM_SetHandlerForFatalError
 通过OH_JSVM_SetHandlerForFatalError，用户可以设置处理Fatal Error的函数。当多次调用这个API进行函数设置时，仅最后一次设置会生效。当用户传入的设置函数为NULL时，则表示取消之前设置的处理函数。
-#### cpp部分代码
+#### cpp部分代码：
 
 ```cpp
 #include <csetjmp>
@@ -148,23 +150,25 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 #### 样例测试JS
-
+```cpp
 const char* srcCallNative = R"JS(triggerFatalError())JS";
+```
+#### 执行结果：
 
-#### 执行结果
-
-在LOG中输出：　JSVM Trigger Fatal-Error: success
-
+在LOG中输出：　
+```cpp
+JSVM Trigger Fatal-Error: success
+```
 ### OH_JSVM_SetHandlerForPromiseReject
 通过OH_JSVM_SetHandlerForPromiseReject，用户可以设置处理Promise Reject的函数。当多次调用这个API进行函数设置时，仅最后一次设置会生效。当用户传入的设置函数为NULL时，则表示取消之前设置的处理函数。
-#### cpp部分代码
+#### cpp部分代码：
 
 ```cpp
 static bool promiseRejectHandlerFinished = false;
 
 void OnPromiseReject(JSVM_Env env, JSVM_PromiseRejectEvent rejectEvent, JSVM_Value rejectInfo)
 {
-    bool result;
+    bool result = false;
     OH_JSVM_IsObject(env, rejectInfo, &result);
     JSVM_Value promise;
     JSVM_Value key1;
@@ -222,9 +226,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 #### 样例测试JS
-
+```cpp
 const char* srcCallNative = R"JS(triggerPromiseReject())JS";
+```
+#### 执行结果：
 
-#### 执行结果
-
-在LOG中输出：　JSVM Trigger PromiseReject: success
+在LOG中输出：　
+```cpp
+JSVM Trigger PromiseReject: success
+```

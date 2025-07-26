@@ -2,7 +2,7 @@
 
 ## 场景说明
 
-开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
+开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
 
 语音识别可以将一段音频信息转换为文本，在智能语音助手、语音输入、语音搜索等领域有广泛的应用。
 
@@ -131,7 +131,7 @@
 
 #### 识别音频
 
-调用[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)，依次对3个模型进行推理，推理代码流程如下。
+调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，依次对3个模型进行推理，推理代码流程如下。
 
 1. 引用对应的头文件。其中三方库librosa来源是[LibrosaCpp](https://github.com/ewan-xu/LibrosaCpp)，libsamplerate来源是[libsamplerate](https://github.com/libsndfile/libsamplerate)，AudioFile.h、base64.h来源是[whisper.axera](https://github.com/ml-inory/whisper.axera/tree/main/cpp/src)。
 
@@ -198,19 +198,23 @@
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           return BinBuffer(nullptr, 0);
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
        if (fileSize <= 0) {
            LOGE("MS_LITE_ERR: FileSize not correct");
+           return BinBuffer(nullptr, 0);
        }
        void *buffer = malloc(fileSize);
        if (buffer == nullptr) {
            LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           return BinBuffer(nullptr, 0);
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
            LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
+           return BinBuffer(nullptr, 0);
        }
        OH_ResourceManager_CloseRawFile(rawFile);
        BinBuffer res(buffer, fileSize);

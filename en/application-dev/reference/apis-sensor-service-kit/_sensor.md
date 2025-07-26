@@ -25,8 +25,8 @@ It also provides APIs to define common sensor attributes.
 
 | Name| Description|
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) | Defines an enum for sensor types. |
-| [Sensor_Result](#sensor_result) | Defines an enum for sensor result codes. |
+| [Sensor_Type](#sensor_type) | Enumerates the sensor types. |
+| [Sensor_Result](#sensor_result) | Enumerates the sensor result codes. |
 | [Sensor_Accuracy](#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor.|
 | [Sensor_Info](#sensor_info) | Defines a struct for the sensor information. |
 | [Sensor_Event](#sensor_event) | Defines a struct for the sensor data information. |
@@ -298,6 +298,38 @@ Creates a [Sensor_Subscriber](#sensor_subscriber) instance.
 
 Returns the pointer to the [Sensor_Subscriber](#sensor_subscriber) instances if the operation is successful; returns **NULL** otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value CreateSubscriber(napi_env env, napi_callback_info info) {
+       Sensor_Result ret;
+       // Create a Sensor_Subscriber instance.
+       Sensor_Subscriber *subscriberTemp = OH_Sensor_CreateSubscriber();
+       if (subscriberTemp == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriber failed");
+           ret = SENSOR_SERVICE_EXCEPTION;
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriber successful");
+           ret = SENSOR_SUCCESS;
+       }
+       // Destroy the Sensor_Subscriber instance when it is no longer needed.
+       if (subscriberTemp != nullptr) {
+           OH_Sensor_DestroySubscriber(subscriberTemp);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_CreateSubscriptionAttribute()
 
@@ -314,6 +346,38 @@ Creates a [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) instance
 
 Returns the pointer to the [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) instances if the operation is successful; returns **NULL** otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value CreateSubscriptionAttribute(napi_env env, napi_callback_info info) {
+       Sensor_Result ret;
+       // Create a Sensor_SubscriptionAttribute instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       if (attr == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionAttribute failed");
+           ret =  SENSOR_SERVICE_EXCEPTION;
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionAttribute successful");
+           ret = SENSOR_SUCCESS;
+       }
+       // Destroy the Sensor_SubscriptionAttribute instance when it is no longer needed.
+       if (attr != nullptr) {
+           OH_Sensor_DestroySubscriptionAttribute(attr);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_CreateSubscriptionId()
 
@@ -330,6 +394,38 @@ Creates a [Sensor_SubscriptionId](#sensor_subscriptionid) instance.
 
 Returns the pointer to the [Sensor_SubscriptionId](#sensor_subscriptionid) instances if the operation is successful; returns **NULL** otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value CreateSubscriptionId(napi_env env, napi_callback_info info) {
+       Sensor_Result ret;
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       if (id == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionId failed");
+           ret = SENSOR_SERVICE_EXCEPTION;
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionId successful");
+           ret = SENSOR_SUCCESS;
+       }
+       // Destroy the Sensor_SubscriptionId instance when it is no longer needed.
+       if (id != nullptr) {
+           OH_Sensor_DestroySubscriptionId(id);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_DestroyInfos()
 
@@ -375,6 +471,33 @@ Destroys a [Sensor_Subscriber](#sensor_subscriber) instance and reclaims memory.
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value DestroySubscriber(napi_env env, napi_callback_info info) {
+       // Create a Sensor_Subscriber instance.
+       Sensor_Subscriber *subscriberTemp = OH_Sensor_CreateSubscriber();
+       // Destroy the Sensor_Subscriber instance when it is no longer needed.
+       int32_t ret = OH_Sensor_DestroySubscriber(subscriberTemp);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriber failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriber successful"); 
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_DestroySubscriptionAttribute()
 
@@ -397,6 +520,33 @@ Destroys a [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) instanc
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value DestroySubscriptionAttribute(napi_env env, napi_callback_info info) {
+       // Create a Sensor_SubscriptionAttribute instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       // Destroy the Sensor_SubscriptionAttribute instance when it is no longer needed.
+       int32_t ret = OH_Sensor_DestroySubscriptionAttribute(attr);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriptionAttribute failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriptionAttribute successful"); 
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_DestroySubscriptionId()
 
@@ -419,6 +569,33 @@ Destroys a [Sensor_SubscriptionId](#sensor_subscriptionid) instance and reclaims
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value DestroySubscriptionId(napi_env env, napi_callback_info info) {
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       // Destroy the Sensor_SubscriptionId instance when it is no longer needed.
+       int32_t ret = OH_Sensor_DestroySubscriptionId(id);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriptionId failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_DestroySubscriptionId successful"); 
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_Sensor_GetInfos()
 
@@ -470,6 +647,120 @@ Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code
 
 ohos.permission.ACCELEROMETER, ohos.permission.GYROSCOPE, ohos.permission.ACTIVITY_MOTION, or ohos.permission.READ_HEALTH_DATA
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include <thread>
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+   constexpr Sensor_Type SENSOR_ID { SENSOR_TYPE_ACCELEROMETER };
+   constexpr uint32_t SENSOR_NAME_LENGTH_MAX = 64;
+   constexpr int64_t SENSOR_SAMPLE_PERIOD = 200000000;
+   constexpr int32_t SLEEP_TIME_MS = 1000;
+   constexpr int64_t INVALID_VALUE = -1;
+   constexpr float INVALID_RESOLUTION = -1.0F;
+   Sensor_Subscriber *g_user = nullptr;
+   
+   // Define the callback.
+   void SensorDataCallbackImpl(Sensor_Event *event) {
+       if (event == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "event is null");
+           return;
+       }
+       int64_t timestamp = INVALID_VALUE;
+       // Obtain the timestamp of sensor data.
+       int32_t ret = OH_SensorEvent_GetTimestamp(event, &timestamp);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Type sensorType;
+       // Obtain the sensor type.
+       ret = OH_SensorEvent_GetType(event, &sensorType);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Accuracy accuracy = SENSOR_ACCURACY_UNRELIABLE;
+       // Obtain the accuracy of sensor data.
+       ret = OH_SensorEvent_GetAccuracy(event, &accuracy);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       float *data = nullptr;
+       uint32_t length = 0;
+       // Obtain sensor data.
+       ret = OH_SensorEvent_GetData(event, &data, &length);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "sensorType:%{public}d, dataLen:%{public}d, accuracy:%{public}d", sensorType, length, accuracy);
+       for (uint32_t i = 0; i < length; ++i) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "accData[%{public}d]:%{public}f", i, data[i]);
+       }
+   }
+
+   static napi_value Subscribe(napi_env env, napi_callback_info info) {
+       // Create a Sensor_Subscriber instance.
+       g_user = OH_Sensor_CreateSubscriber();
+       // Set the callback used to return sensor data.
+       int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriber_SetCallback failed");
+           return nullptr;
+       }
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       // Set the sensor type. For example, if you use SENSOR_TYPE_ACCELEROMETER, you need to request the ohos.permission.ACCELEROMETER permission.
+       // Configure the required permission as instructed in step 2 in the Sensor Development.
+       ret = OH_SensorSubscriptionId_SetType(id, SENSOR_ID);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
+           return nullptr;
+       }
+       // Create a **Sensor_SubscriptionAttribute** instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       // Set the sensor data reporting interval.
+       ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionAttribute_SetSamplingInterval failed");
+           return nullptr;
+       }
+       // Subscribe to sensor data.
+       ret = OH_Sensor_Subscribe(id, attr, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe successful");
+       std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME_MS));
+       // Unsubscribe from sensor data.
+       ret = OH_Sensor_Unsubscribe(id, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe successful");
+       if (id != nullptr) {
+           // Destroy the Sensor_SubscriptionId instance.
+           OH_Sensor_DestroySubscriptionId(id);
+       }
+       if (attr != nullptr) {
+           // Destroy the Sensor_SubscriptionAttribute instance.
+           OH_Sensor_DestroySubscriptionAttribute(attr);
+       }
+       if (g_user != nullptr) {
+           // Destroy the Sensor_Subscriber instance and reclaim memory.
+           OH_Sensor_DestroySubscriber(g_user);
+           g_user = nullptr;
+       }
+       return nullptr;
+   }
+   ```
 
 ### OH_Sensor_Unsubscribe()
 
@@ -497,6 +788,120 @@ Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code
 
 ohos.permission.ACCELEROMETER, ohos.permission.GYROSCOPE, ohos.permission.ACTIVITY_MOTION, or ohos.permission.READ_HEALTH_DATA
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include <thread>
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+   constexpr Sensor_Type SENSOR_ID { SENSOR_TYPE_ACCELEROMETER };
+   constexpr uint32_t SENSOR_NAME_LENGTH_MAX = 64;
+   constexpr int64_t SENSOR_SAMPLE_PERIOD = 200000000;
+   constexpr int32_t SLEEP_TIME_MS = 1000;
+   constexpr int64_t INVALID_VALUE = -1;
+   constexpr float INVALID_RESOLUTION = -1.0F;
+   Sensor_Subscriber *g_user = nullptr;
+   
+   // Define the callback.
+   void SensorDataCallbackImpl(Sensor_Event *event) {
+       if (event == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "event is null");
+           return;
+       }
+       int64_t timestamp = INVALID_VALUE;
+       // Obtain the timestamp of sensor data.
+       int32_t ret = OH_SensorEvent_GetTimestamp(event, &timestamp);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Type sensorType;
+       // Obtain the sensor type.
+       ret = OH_SensorEvent_GetType(event, &sensorType);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Accuracy accuracy = SENSOR_ACCURACY_UNRELIABLE;
+       // Obtain the accuracy of sensor data.
+       ret = OH_SensorEvent_GetAccuracy(event, &accuracy);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       float *data = nullptr;
+       uint32_t length = 0;
+       // Obtain sensor data.
+       ret = OH_SensorEvent_GetData(event, &data, &length);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "sensorType:%{public}d, dataLen:%{public}d, accuracy:%{public}d", sensorType, length, accuracy);
+       for (uint32_t i = 0; i < length; ++i) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "accData[%{public}d]:%{public}f", i, data[i]);
+       }
+   }
+
+   static napi_value Unsubscribe(napi_env env, napi_callback_info info) {
+       // Create a Sensor_Subscriber instance.
+       g_user = OH_Sensor_CreateSubscriber();
+       // Set the callback used to return sensor data.
+       int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriber_SetCallback failed");
+           return nullptr;
+       }
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       // Set the sensor type. For example, if you use SENSOR_TYPE_ACCELEROMETER, you need to request the ohos.permission.ACCELEROMETER permission.
+       // Configure the required permission as instructed in step 2 in the Sensor Development.
+       ret = OH_SensorSubscriptionId_SetType(id, SENSOR_ID);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
+           return nullptr;
+       }
+       // Create a **Sensor_SubscriptionAttribute** instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       // Set the sensor data reporting interval.
+       ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionAttribute_SetSamplingInterval failed");
+           return nullptr;
+       }
+       // Subscribe to sensor data.
+       ret = OH_Sensor_Subscribe(id, attr, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe successful");
+       std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME_MS));
+       // Unsubscribe from sensor data.
+       ret = OH_Sensor_Unsubscribe(id, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe successful");
+       if (id != nullptr) {
+           // Destroy the Sensor_SubscriptionId instance.
+           OH_Sensor_DestroySubscriptionId(id);
+       }
+       if (attr != nullptr) {
+           // Destroy the Sensor_SubscriptionAttribute instance.
+           OH_Sensor_DestroySubscriptionAttribute(attr);
+       }
+       if (g_user != nullptr) {
+           // Destroy the Sensor_Subscriber instance and reclaim memory.
+           OH_Sensor_DestroySubscriber(g_user);
+           g_user = nullptr;
+       }
+       return nullptr;
+   }
+   ```
 
 ### OH_SensorEvent_GetAccuracy()
 
@@ -574,6 +979,121 @@ Obtains sensor data. The data length and content depend on the sensor type. The 
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include <thread>
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+   constexpr Sensor_Type SENSOR_ID { SENSOR_TYPE_ACCELEROMETER };
+   constexpr uint32_t SENSOR_NAME_LENGTH_MAX = 64;
+   constexpr int64_t SENSOR_SAMPLE_PERIOD = 200000000;
+   constexpr int32_t SLEEP_TIME_MS = 1000;
+   constexpr int64_t INVALID_VALUE = -1;
+   constexpr float INVALID_RESOLUTION = -1.0F;
+   Sensor_Subscriber *g_user = nullptr;
+
+   // Define the callback.
+   void SensorDataCallbackImpl(Sensor_Event *event) {
+       if (event == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "event is null");
+           return;
+       }
+       int64_t timestamp = INVALID_VALUE;
+       // Obtain the timestamp of sensor data.
+       int32_t ret = OH_SensorEvent_GetTimestamp(event, &timestamp);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Type sensorType;
+       // Obtain the sensor type.
+       ret = OH_SensorEvent_GetType(event, &sensorType);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Accuracy accuracy = SENSOR_ACCURACY_UNRELIABLE;
+       // Obtain the accuracy of sensor data.
+       ret = OH_SensorEvent_GetAccuracy(event, &accuracy);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       float *data = nullptr;
+       uint32_t length = 0;
+       // Obtain sensor data.
+       ret = OH_SensorEvent_GetData(event, &data, &length);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorEvent_GetData failed");
+           return;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorEvent_GetData successful");
+       for (uint32_t i = 0; i < length; ++i) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "accData[%{public}d]:%{public}f", i, data[i]);
+       }
+   }
+
+   static napi_value SensorEventGetData(napi_env env, napi_callback_info info) {
+       // Create a Sensor_Subscriber instance.
+       g_user = OH_Sensor_CreateSubscriber();
+       // Set the callback used to return sensor data.
+       int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriber_SetCallback failed");
+           return nullptr;
+       }
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       // Set the sensor type. For example, if you use SENSOR_TYPE_ACCELEROMETER, you need to request the ohos.permission.ACCELEROMETER permission.
+       // Configure the required permission as instructed in step 2 in the Sensor Development.
+       ret = OH_SensorSubscriptionId_SetType(id, SENSOR_ID);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
+           return nullptr;
+       }
+       // Create a **Sensor_SubscriptionAttribute** instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       // Set the sensor data reporting interval.
+       ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionAttribute_SetSamplingInterval failed");
+           return nullptr;
+       }
+       // Subscribe to sensor data.
+       ret = OH_Sensor_Subscribe(id, attr, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Subscribe successful");
+       std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME_MS));
+       // Unsubscribe from sensor data.
+       ret = OH_Sensor_Unsubscribe(id, g_user);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe failed");
+           return nullptr;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_Unsubscribe successful");
+       if (id != nullptr) {
+           // Destroy the Sensor_SubscriptionId instance.
+           OH_Sensor_DestroySubscriptionId(id);
+       }
+       if (attr != nullptr) {
+           // Destroy the Sensor_SubscriptionAttribute instance.
+           OH_Sensor_DestroySubscriptionAttribute(attr);
+       }
+       if (g_user != nullptr) {
+           // Destroy the Sensor_Subscriber instance and reclaim memory.
+           OH_Sensor_DestroySubscriber(g_user);
+           g_user = nullptr;
+       }
+       return nullptr;
+   }
+   ```
 
 ### OH_SensorEvent_GetTimestamp()
 
@@ -806,6 +1326,73 @@ Sets a callback function to report sensor data.
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+   constexpr int64_t INVALID_VALUE = -1;
+
+   void SensorDataCallbackImpl(Sensor_Event *event) {
+       if (event == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "event is null");
+           return;
+       }
+       int64_t timestamp = INVALID_VALUE;
+       // Obtain the timestamp of sensor data.
+       int32_t ret = OH_SensorEvent_GetTimestamp(event, &timestamp);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Type sensorType;
+       // Obtain the sensor type.
+       ret = OH_SensorEvent_GetType(event, &sensorType);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       Sensor_Accuracy accuracy = SENSOR_ACCURACY_UNRELIABLE;
+       // Obtain the accuracy of sensor data.
+       ret = OH_SensorEvent_GetAccuracy(event, &accuracy);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       float *data = nullptr;
+       uint32_t length = 0;
+       // Obtain sensor data.
+       ret = OH_SensorEvent_GetData(event, &data, &length);
+       if (ret != SENSOR_SUCCESS) {
+           return;
+       }
+       OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "sensorType:%{public}d, dataLen:%{public}d, accuracy:%{public}d", sensorType, length, accuracy);
+       for (uint32_t i = 0; i < length; ++i) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "data[%{public}d]:%{public}f", i, data[i]);
+       }
+   }
+
+   static napi_value SensorSubscriberSetCallback(napi_env env, napi_callback_info info) {
+       // Create a Sensor_Subscriber instance.
+       Sensor_Subscriber *subscriberTemp = OH_Sensor_CreateSubscriber();
+       int32_t ret = OH_SensorSubscriber_SetCallback(subscriberTemp, SensorDataCallbackImpl);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriber_SetCallback failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriber_SetCallback successful"); 
+       }
+       // Destroy the Sensor_Subscriber instance when it is no longer needed.
+       if (subscriberTemp != nullptr) {
+           OH_Sensor_DestroySubscriber(subscriberTemp);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_SensorSubscriptionAttribute_GetSamplingInterval()
 
@@ -852,6 +1439,37 @@ Sets the interval for reporting sensor data.
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value SensorSubscriptionAttributeSetSamplingInterval(napi_env env, napi_callback_info info) {
+       // Create a **Sensor_SubscriptionAttribute** instance.
+       Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       int64_t sensorSamplePeriod = 200000000;
+       int32_t ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, sensorSamplePeriod);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionAttribute_SetSamplingInterval failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionAttribute_SetSamplingInterval successful"); 
+       }
+       // Destroy the Sensor_SubscriptionAttribute instance when it is no longer needed.
+       if (attr != nullptr) {
+           OH_Sensor_DestroySubscriptionAttribute(attr);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```
 
 ### OH_SensorSubscriptionId_GetType()
 
@@ -897,3 +1515,35 @@ Sets the sensor type.
 **Returns**
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
+
+**Example**
+
+For details about the development procedure, see [Sensor Development](../../device/sensor/sensor-guidelines-capi.md).
+
+   ```c
+   #include "sensors/oh_sensor.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
+   const int SENSOR_LOG_DOMAIN = 0xD002700;
+   const char *TAG = "[Sensor]";
+
+   static napi_value SensorSubscriptionIdSetType(napi_env env, napi_callback_info info) {
+       // Create a Sensor_SubscriptionId instance.
+       Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
+       Sensor_Type sensorId { SENSOR_TYPE_ACCELEROMETER };
+       int32_t ret = OH_SensorSubscriptionId_SetType(id, sensorId);
+       if (ret != SENSOR_SUCCESS) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType successful"); 
+       }
+       // Destroy the Sensor_SubscriptionId instance when it is no longer needed.
+       if (id != nullptr) {
+           OH_Sensor_DestroySubscriptionId(id);
+       }
+       napi_value result;
+       napi_create_int32(env, ret, &result);
+       return result;
+   }
+   ```

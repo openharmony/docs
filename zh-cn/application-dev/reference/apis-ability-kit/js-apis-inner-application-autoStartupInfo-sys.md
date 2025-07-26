@@ -14,13 +14,16 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                      | 类型   | 必填  | 说明       |
-| ------------------------- | ------ | ---- | --------- |
-| bundleName   | string | 是  | 应用程序的Bundle名称。 |
-| moduleName | string | 否   | 应用程序的Module名称。 |
-| abilityName | string | 是  | 应用程序的Ability名称。 |
-| abilityTypeName | string | 否 | 应用程序的Ability类型。 |
-| appCloneIndex | number   | 否   | 分身应用索引。  |
+| 名称                        | 类型    | 只读 | 可选 | 说明                                           |
+| --------------------------- | ------- | ---- | ---- | ---------------------------------------------- |
+| bundleName                  | string  | 否   | 否   | 应用程序的Bundle名称。                         |
+| moduleName                  | string  | 否   | 是   | 应用程序的Module名称。                         |
+| abilityName                 | string  | 否   | 否   | 应用程序的Ability名称。                        |
+| abilityTypeName             | string  | 否   | 是   | 应用程序的Ability类型。                        |
+| appCloneIndex               | number  | 否   | 是   | 分身应用索引。                                 |
+| userId<sup>20+</sup>        | number  | 是   | 是   | 应用程序的用户ID。                             |
+| setterUserId<sup>20+</sup>  | number  | 是   | 是   | 将此应用设置为开机自启动的用户ID。             |
+| canUserModify<sup>20+</sup> | boolean | 是   | 是   | 表示是否允许开发者修改此应用的开机自启动状态。 |
 
 **示例：**
 

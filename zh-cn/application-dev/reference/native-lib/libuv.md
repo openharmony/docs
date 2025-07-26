@@ -54,8 +54,31 @@ OpenHarmony还将长期通过Node-API来为开发者提供和主线程交互及�
 
 **错误示例：**
 
-在native侧直接通过调用`napi_get_uv_event_loop`接口获取系统loop，调用libuv NDK接口实现相关功能。
+在Native侧直接通过调用`napi_get_uv_event_loop`接口获取系统loop，调用libuv NDK接口实现相关功能。
 
+ArkTS侧:
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("test")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.test();
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+Native侧:
 ```cpp
 #include "napi/native_api.h"
 #include "uv.h"
@@ -73,7 +96,7 @@ static void complete(uv_work_t* work, int status)
     OH_LOG_INFO(LOG_APP, "ohos in complete"); 
     delete work;
 }
-static napi_value Add(napi_env env, napi_callback_info info)
+static napi_value Test(napi_env env, napi_callback_info info)
 {
     uv_loop_s* loop = nullptr;
     /* 获取应用JS主线程的uv_loop */
@@ -90,7 +113,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -112,10 +135,38 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
+在index.d.ts文件中怎添加如下代码：
+```
+export const test:() => number;
+```
+
 **正确示例：**
 
 可通过`napi_create_async_work`、`napi_queue_async_work`搭配使用。
 
+ArkTS侧:
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("test")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.test();
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+Native侧:
 ```cpp
 #include "napi/native_api.h"
 #include "uv.h"
@@ -126,7 +177,7 @@ uv_loop_t* loop = nullptr;
 napi_value jsCb;
 int fd = -1;
 
-static napi_value Add(napi_env env, napi_callback_info info)
+static napi_value Test(napi_env env, napi_callback_info info)
 {
     napi_value work_name;
     napi_async_work work;
@@ -148,7 +199,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -169,8 +220,12 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
+在index.d.ts文件中怎添加如下代码：
+```index.d.ts
+export const test:() => number;
+```
 
-#### 场景二、在native侧向应用主循环抛fd事件，接口无法生效
+#### 场景二、在Native侧向应用主循环抛fd事件，接口无法生效
 
 由于应用主循环仅仅接收fd事件，在监听了uvloop中的backend_fd后，只有该fd事件被触发才会执行一次`uv_run`。这就意味着，在应用主循环中调用uv接口，如果不触发一次fd事件，`uv_run`将永远不会被执行，最后导致libuv的接口正常调用时不生效（仅当应用中没有触发uvloop中的fd事件时）。
 
@@ -178,6 +233,29 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 我们以`uv_poll_start`接口举例，来说明在OpenHarmony中，我们像使用原生libuv一样调用`uv_poll_start`接口时无法生效的问题。
 
+ArkTS侧:
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("testClose")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testClose();
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+Native侧:
 ```cpp
 #include "napi/native_api.h"
 #include "uv.h"
@@ -256,6 +334,12 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
+在index.d.ts增加如下代码：
+
+```
+export const testClose:() => number;
+```
+
 在上述代码中，流程如下：
 
 1. 首先通过`napi_get_uv_event_loop`接口获取到应用主线程的uvloop。
@@ -269,8 +353,31 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前Node-API的接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，开发者可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
 
-针对上述无法生效的代码示例，可以修改如下使其生效：
+针对上述无法生效的代码示例，可以修改如下使其生效。
 
+ArkTS侧:
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("testClose")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testClose();
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+Native侧:
 ```cpp
 #include "napi/native_api.h"
 #include "uv.h"
@@ -348,6 +455,11 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
+```
+在index.d.ts增加如下代码：
+
+```
+export const testClose:() => number;
 ```
 
 ## libuv使用指导
@@ -508,7 +620,40 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function,
 
 开发者可以通过调用`uv_loop_new`创建loop或者`uv_loop_init`接口初始化loop，loop的生命周期由开发者自行维护。在这种情况下，如前文所述，需要保证`uv_run`执行在与创建/初始化loop操作相同的线程上，即loop线程上。此外，其余非线程安全操作，如timer相关操作等，均需要在loop线程上进行。 
 
-如果因为业务需要，必须在其他线程往loop线程抛任务，请使用`uv_async_send`函数：即在async句柄初始化时，注册一个回调函数，并在该回调中实现相应的操作，当调用`uv_async_send`时，在主线程上执行该回调函数。见如下代码示例：
+如果因为业务需要，必须在其他线程往loop线程抛任务，请使用`uv_async_send`函数：即在async句柄初始化时，注册一个回调函数，并在该回调中实现相应的操作，当调用`uv_async_send`时，在主线程上执行该回调函数。
+
+ArkTS侧：
+
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("TestTimerAsync")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testTimerAsync();  // 初始化async句柄
+        }).margin(20)
+          
+          Button("TestTimerAsyncSend")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testTimerAsyncSend();  // 子线程调用uv_async_send提交定时器任务
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+Native侧：
 
 ```cpp
 #include <napi/native_api.h>
@@ -556,23 +701,26 @@ void async_cb(uv_async_t* handle) {
     uv_timer_t* timer = new uv_timer_t;
     uv_timer_init(loop, timer);
 
-    uv_timer_start(timer,
-        [](uv_timer_t* timer){
-            // do something
-            // 在适当的时机停掉timer
-            if (cond1)
-                uv_timer_stop(timer);
-                uv_close((uv_handle_t*)timer, [](uv_handle_t* handle){
-                    delete(uv_timer_t*)handle;
-                });
-            },
-            100, 100);
     // 在适当的时机关闭async句柄
     if (cond2) {
         uv_close((uv_handle_t*)handle, [](uv_handle_t* handle){
             delete (uv_async_t*)handle;
         });
+        return;
     }
+
+    uv_timer_start(timer,
+        [](uv_timer_t* timer){
+            // do something
+            // 在适当的时机停掉timer
+            if (cond1) {
+                uv_timer_stop(timer);
+                uv_close((uv_handle_t*)timer, [](uv_handle_t* handle){
+                    delete(uv_timer_t*)handle;
+                });
+            }  
+        },
+        100, 100);
 }
 
 // 初始化async句柄, 绑定对应的回调函数
@@ -598,14 +746,22 @@ static napi_value TestTimerAsync(napi_env env, napi_callback_info info) {
 // 在另一个线程上调用uv_async_send函数
 static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info)
 {
-    std::thread t([](){ // B线程
+    std::thread t1([](){ // B线程
         uv_async_send(async);  // 调用uv_async_send, 通知loop线程调用与async句柄绑定的timer_cb
-        uv_sleep(1000);
-        // 修改cond1和cond2示例
+        uv_sleep(500);
+        // 修改cond1, 关闭timer handle
         cond1 = true;
-        cond2 = true;
     });
-    t.detach();
+
+    std::thread t2([](){ // B线程
+        uv_sleep(1000);
+        // 修改cond2, 关闭async handle
+        cond2 = true;
+        uv_async_send(async);
+    });
+
+    t1.detach();
+    t2.detach();
     return 0;
 }
 
@@ -637,6 +793,13 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
+在index.d.ts增加如下代码：
+
+```
+export const testTimerAsync:() => number;
+export const testTimerAsyncSend:() => number;
+```
+
 ##### 从env获取loop
 
 开发者使用`napi_get_uv_event_loop`接口从env获取到的loop一般是系统创建的JS主线程的事件循环，因此应当避免在子线程中调用非线程安全函数。
@@ -655,7 +818,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环线程中调用该函数。**
 
-**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。多次对同一个async句柄进行send操作，还会导致任意两次相同句柄send操作之间提交的的其他async_cb任务丢失。** 而在native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
+**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。多次对同一个async句柄进行send操作，还会导致任意两次相同句柄send操作之间提交的的其他async_cb任务丢失。** 而在Native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
 
 非线程安全函数：
 
@@ -912,16 +1075,9 @@ static napi_value TestTimer(napi_env env, napi_callback_info info)
 **场景二：** 如果需要在指定的子线程抛定时器，请使用线程安全函数`uv_async_send`实现。
 
 ArkTS侧：
-
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so'
-
-function waitforRunner(): number {
-    "use concurrent"
-    hilog.info(0xff, "testTag", "executed");
-    return 0;
-}
 
 @Entry
 @Component
@@ -940,7 +1096,7 @@ struct Index {
           .width('40%')
           .fontSize('14fp')
           .onClick(() => {
-              testNapi.testTimerAsyncSend();  // 子线程调用uv_async_send执行timer_cb
+              testNapi.testTimerAsyncSend();  // 子线程调用uv_async_send提交定时器任务
         }).margin(20)
       }.width('100%')
     }.height('100%')
@@ -948,7 +1104,7 @@ struct Index {
 }
 ```
 
-Native C++侧：
+Native侧：
 
 ```c++
 #include <napi/native_api.h>
@@ -1016,6 +1172,13 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
+```
+
+在index.d.ts增加如下代码：
+
+```
+export const testTimerAsync:() => number;
+export const testTimerAsyncSend:() => number;
 ```
 
 ### 线程间通信

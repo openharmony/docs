@@ -32,7 +32,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
 
 #### Playing Audio
 
-1. Call [@ohos.multimedia.media](../../reference/apis-media-kit/js-apis-media.md) and [@ohos.multimedia.audio](../../reference/apis-audio-kit/js-apis-audio.md) to play audio.
+1. Call [@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md) and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
 
    ```ts
    // player.ets
@@ -737,7 +737,7 @@ struct Index {
    com.samples.mindsporelitecdemoasr successfully launched...
    ```
 
-2. Tap the `Play Audio` button on the device screen to play the sample audio file. Tap the `Recognize Audio` button. The content of the sample audio file is displayed on the device screen. Filter the keyword **MS_LITE_LOG** in the log printing result. The following information is displayed:
+2. Tap the `Play Audio` button on the device screen to play the sample audio file. After you tap the `Recognize Audio` button, the content of the sample audio file is displayed on the device screen. Filter the keyword **MS_LITE_LOG** in the log printing result. The following information is displayed:
 
    ```verilog
    05-16 14:53:44.200   1679-1679     A03d00/JSAPP                    com.sampl...cdemoasr  I     MS_LITE_LOG: begin to play wav.
@@ -775,10 +775,10 @@ struct Index {
 
 ### Effects
 
-After you tap the `Play Audio` button on the device screen, the sample audio file is played. After you tap the `Recognize Audio` button, the content of the sample audio file is displayed on the device screen.
+After you tap the **Play Audio** button on the device screen, the sample audio file is played. After you tap the **Recognize Audio** button, the content of the sample audio file is displayed on the device screen.
 
-<img src="figures/asr1.png" width="20%"/>                                    
+|         Initial Page         |  Page with Recognized Content  |
+| :-----------------------: | :-----------------------: |
+| ![asr1](figures/asr1.png) | ![asr2](figures/asr2.png) |
 
-<img src="figures/asr2.png" width="20%"/>                           
-
-
+<!--no_check-->

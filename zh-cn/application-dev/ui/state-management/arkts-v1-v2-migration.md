@@ -739,7 +739,7 @@ V1的@Provide/@Consume和V2@Provider/@Consumer定位和作用大体类似，基�
 
 - V1中\@Provide/\@Consume在没有指定alias的情况下，可以直接使用。V2中\@Provider/\@Consumer是标准装饰器，且参数可选，所以不管有无指定alias后面需要必须跟随“()”。
 - alias和属性名匹配规则：V1中，@Provide和@Consume可以通过alias或属性名匹配；V2中，alias是唯一的匹配key，指定alias后只能通过alias匹配。
-- 本地初始化支持：V1中，@Consume不允许本地初始化，必须依赖父组件；V2中，@Consumer支持本地初始化，当找不到对应的@Provider时使用本地默认值。
+- 本地初始化支持：API version 20以前，@Consume不允许本地初始化，必须依赖父组件；从API version 20开始，@Consume支持本地初始化，当找不到对应的@Provide时使用本地默认值；V2中，@Consumer支持本地初始化，当找不到对应的@Provider时使用本地默认值。
 - 从父组件初始化：V1中，@Provide可以直接从父组件初始化；V2中，@Provider不支持外部初始化，需用@Param和@Once接受初始值并赋给 @Provider。
 - 重载支持：V1中，@Provide默认不支持重载，需设置 allowOverride；V2中，@Provider默认支持重载，@Consumer会向上查找最近的@Provider。
 #### 示例
@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -3089,6 +3089,109 @@ struct Index {
         })
     }
     .width('100%')
+  }
+}
+```
+#### AttributeUpdater
+
+将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
+
+V1：
+
+在状态管理V1中，开发者希望通过修改`MyButtonModifier`的`flag`来改变绑定在Button上的属性。由于状态管理V1的\@State装饰器支持自身及第一层对象属性的观察能力，因此只需用\@State装饰`AttributeUpdater`，即可监听其变化并触发属性更新。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+V2：
+
+与状态管理V1不同，状态管理V2的\@Local仅观察自身变化，因此`MyButtonModifier`需添加\@ObservedV2装饰器，`flag`需要被\@Trace装饰，并且需要在组件创建过程中读取`flag`以建立其与Button组件的联系。在`AttributeUpdater`场景中，需在`initializeModifier`中读取`flag`（如示例所示），否则无法建立关联。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+@ObservedV2
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  @Trace flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    // initializeModifier会在组件初始化阶段回调，需要在这个地方触发下flag的读，使其建立Button组件的关联。
+    this.flag;
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  // 状态管理V2装饰器仅观察本层，即当前可以观察到modifier整体赋值的变化。
+  @Local modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

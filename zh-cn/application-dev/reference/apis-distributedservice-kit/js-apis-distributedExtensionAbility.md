@@ -14,21 +14,23 @@ DistributedExtensionAbility模块提供分布式相关扩展能力，提供分�
 import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 ```
 
-## 属性
+## DistributedExtensionAbility
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+### 属性
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
 | 名称    | 类型                          | 可读 | 可写 | 说明                                                       |
 | ------- | ----------------------------- | ---- | ---- | ---------------------------------------------------------- |
-| context | DistributedExtensionContext() | 是   | 否   | DistributedExtension的上下文环境，继承自ExtensionContext。 |
+| context | DistributedExtensionContext | 是   | 否   | DistributedExtension的上下文环境，继承自ExtensionContext。 |
 
-## DistributedExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
 **参数：**
 
@@ -51,13 +53,13 @@ export default class DistributedExtension extends DistributedExtensionAbility {
 }
 ```
 
-## DistributedExtensionAbility.onCollaborate
+### onCollaborate
 
 onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateResult
 
 多设备协作场景下返回协作结果的回调。
 
-**系统功能**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
 **参数：**
 
@@ -69,7 +71,7 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 | 类型 | 说明 |
 | ---------- | ---- |
-| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](../apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方应用是否接受协同。 |
 
 **示例**
 
@@ -91,13 +93,13 @@ export default class DistributedExtension extends DistributedExtensionAbility {
 }
 ```
 
-## DistributedExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
 Extension生命周期回调，在销毁时回调，执行资源清理等操作。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
 **示例：**
 

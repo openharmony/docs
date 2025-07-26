@@ -8,7 +8,7 @@
 
 **变更原因**
 
-修复回调函数注入[Input_KeyEvent](../../../application-dev/reference/apis-input-kit/capi-input-keyevent.md)结构体的[Input_KeyEventAction](../../../application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#input_keyeventaction)字段时，注入值无法匹配枚举的bug。变更前注入Input_KeyEventAction的值为1、2、3分别对应取消（KEY_ACTION_CANCEL）、按下（KEY_ACTION_DOWN）和抬起（KEY_ACTION_UP）三种行为，与枚举中定义的0（KEY_ACTION_CANCEL）、1（KEY_ACTION_DOWN）、2（KEY_ACTION_UP）不匹配。
+修复回调函数注入[Input_KeyEvent](../../../application-dev/reference/apis-input-kit/capi-input-input-keyevent.md)结构体的[Input_KeyEventAction](../../../application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#input_keyeventaction)字段时，注入值无法匹配枚举的bug。变更前注入Input_KeyEventAction的值为1、2、3分别对应取消（KEY_ACTION_CANCEL）、按下（KEY_ACTION_DOWN）和抬起（KEY_ACTION_UP）三种行为，与枚举中定义的0（KEY_ACTION_CANCEL）、1（KEY_ACTION_DOWN）、2（KEY_ACTION_UP）不匹配。
 
 **变更影响**
 

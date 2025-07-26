@@ -66,7 +66,7 @@ A pipe is a logical communication channel between a host and an endpoint for dat
 
 ### Stop bit
 
-The stop bit is located at the end of a data frame. It is a logic high-level signal and is used to identify the end of a character (data packet) transfer. Its length can be 1 bit, 1.5 bits, or 2 bits. (In actual development, 1 bit is most commonly used, and 1.5 bits and 2 bits are mainly used in anti-interference scenarios.) A core function of this bit is to provide a space to tolerate the errors that may occur during time-sequence synchronization for a receiver and ensure data integrity.
+The stop bit is located at the end of a data frame. It is a logic high-level signal and is used to identify the end of a character (data packet) transfer. Its length can be 1 bit or 2 bits. (In actual development, 1 bit is most commonly used and 2 bits are mainly used in anti-interference scenarios.) A core function of this bit is to provide a space to tolerate the errors that may occur during time-sequence synchronization for a receiver and ensure data integrity.
 
 ## U
 

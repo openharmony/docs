@@ -57,7 +57,7 @@
 
 
 ### 联系人
-[Contacts Kit](../contacts/contacts-intro.md)提供联系人Picker（Contacts Picker），用于拉起联系人应用，读取联系人数据人。详见[选择联系人](../contacts/contacts-intro.md#使用picker选择联系人)。
+[Contacts Kit](../contacts/contacts-intro.md)提供联系人Picker（Contacts Picker），用于拉起联系人应用，读取联系人数据。详见[选择联系人](../contacts/contacts-intro.md#使用picker选择联系人)。
 
 <!--RP2-->
 ### 相机
@@ -68,7 +68,7 @@
 ### 文件管理
 [Core File Kit](../file-management/core-file-kit-intro.md)提供了文件Picker和音频Picker。
 - 文件Picker（DocumentViewPicker）：用于访问、保存公共目录中文档类文件。详见[选择文档类文件](../file-management/select-user-file.md#选择文档类文件)、[保存文档类文件](../file-management/save-user-file.md#保存文档类文件)。
-- 音频Picker（AudioViewPicker）：用于访问、保存公共目录的图片或视频文件。详见[选择音频类文件](../file-management/select-user-file.md#选择音频类文件)、[保存音频类文件](../file-management/save-user-file.md#保存音频类文件)。
+- 音频Picker（AudioViewPicker）：用于访问、保存公共目录的音频文件。详见[选择音频类文件](../file-management/select-user-file.md#选择音频类文件)、[保存音频类文件](../file-management/save-user-file.md#保存音频类文件)。
 
 ### 图库（媒体库）
 [Media Library Kit](../media/medialibrary/photoAccessHelper-overview.md)提供了照片Picker（PhotoViewPicker），用于访问、保存公共目录的图片或视频文件。详见[选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md) 、[创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。

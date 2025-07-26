@@ -9,6 +9,7 @@ A shared element transition is a transition animation applied to a component tha
 
 ## Attributes
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name            | Type         | Mandatory                                   | Description                                                    |
 | ---------------- | -----------------|------------------------------------------- | ------------------------------------------------------------ |
@@ -26,10 +27,12 @@ A shared element transition is a transition animation applied to a component tha
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name             | Type     | Mandatory      | Description                                                     |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  No          | Animation duration.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +∞)|
-| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | No| Animation curve.<br>You are advised to specify the curve using the **Curve** or** ICurve** type.<br>For the string type, this parameter indicates an animation interpolation curve. For available values, see the **curve** parameter in [AnimateParam](./ts-explicit-animation.md#animateparam).<br>Default value: **Curve.Linear**|
+| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | No| Animation curve.<br>You are advised to specify the curve using the **Curve** or **ICurve** type.<br>For the string type, this parameter indicates an animation interpolation curve. For available values, see the **curve** parameter in [AnimateParam](./ts-explicit-animation.md#animateparam).<br>Default value: **Curve.Linear**|
 | delay          |     number   |  No          | Delay of animation playback.<br>Default value: **0**<br>Unit: ms|
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  No          | Motion path.|
 | zIndex          |     number   |  No             | Z-axis.<br>Value range: (-∞, +∞)|
@@ -45,18 +48,15 @@ A shared element transition is a transition animation applied to a component tha
 @Entry
 @Component
 struct SharedTransitionExample {
-  @State active: boolean = false
 
   build() {
     Column() {
-      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
-        Image($r('app.media.ic_health_heart')).width(50).height(50)
-          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
-      }.padding({ left: 20, top: 20 })
-      .onClick(() => {
-        this.active = true
-      })
-    }
+      Image($r('app.media.ic_health_heart')).width(50).height(50).margin({ left: 20, top: 20 })
+        .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 }) 
+    }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/PageB' })
+    })
   }
 }
 ```

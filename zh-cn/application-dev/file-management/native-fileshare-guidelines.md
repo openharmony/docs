@@ -2,11 +2,11 @@
 
 ## 场景介绍
 
-应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除。如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行[持久化授权](file-persistPermission.md#场景介绍)。FileShare提供了支持基于uri的文件及目录授于持久化权限、权限激活、权限查询等方法。
+应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除。如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行[持久化授权](file-persistPermission.md#场景介绍)。FileShare提供了支持基于uri的文件及目录授予持久化权限、权限激活、权限查询等方法。
 
 ## 接口说明
 
-接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/file_share.md)。
+接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/capi-oh-file-share-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

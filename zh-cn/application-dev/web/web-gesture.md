@@ -1,7 +1,7 @@
 # 使用Web组件的手势与应用交互
 在移动端或支持触控的Web应用中，用户通过触摸屏与页面交互，Web组件支持了常见的手势识别，例如长按、滑动、点击等，以支持丰富的用户交互体验。
 ## ArkWeb手势识别
-ArkWeb接收ArkUI的[触摸事件](../ui/arkts-common-events-touch-screen-event.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[事件分发](../ui/arkts-common-events-distribute.md)）。ArkWeb手势符合W3c标准：Touch Events、UI Events、Pointer Events。
+ArkWeb接收ArkUI的[触摸事件](../ui/arkts-interaction-development-guide-touch-screen.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[交互基础机制说明](../ui/arkts-interaction-basic-principles.md)）。ArkWeb手势符合W3c标准：Touch Events、UI Events、Pointer Events。
 
 常见事件识别说明：
 | 手势事件 | 触发条件 |
@@ -56,7 +56,7 @@ struct Index {
           .onActionUpdate((event: GestureEvent|undefined) => {
             if(event){
               this.scaleValue = this.pinchValue * event.scale;
-              console.info('Pinch start');
+              console.info('Pinch update');
             }
           })
           .onActionEnd(() => {
@@ -78,8 +78,8 @@ struct Index {
 - ArkWeb手势
 
   ArkWeb手势的生成需要Web组件接收触摸事件，有两种拦截方案：
-  1. 完全禁止触摸事件发送给Web组件，详见ArkUI事件分发的[触摸测试](../ui/arkts-common-events-distribute.md)。
-  2. 发送TouchCancel触摸事件给Web组件，详见[OH_ArkUI_TouchRecognizer_CancelTouch](../reference/apis-arkui/native__gesture_8h.md#函数)。
+  1. 完全禁止触摸事件发送给Web组件，详见[触摸测试](../ui/arkts-interaction-basic-principles.md#触摸测试)。
+  2. 发送TouchCancel触摸事件给Web组件，详见[OH_ArkUI_TouchRecognizer_CancelTouch](../reference/apis-arkui/capi-native-gesture-h.md#函数)。
 
 
 ## 常见问题
@@ -102,7 +102,7 @@ struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })//需要手动替换为真实网站
+      Web({ src: 'https://www.example.com', controller: this.controller })//需要手动替换为真实网站
     }
   }
   onBackPress() {
@@ -116,5 +116,31 @@ struct Index {
       return false
     }
   }
+}
+```
+
+### 为什么Web加载后网页无法交互？
+
+网页可能基于其他平台的User-Agent进行判断。为解决此问题，可以在Web组件中设置自定义User-Agent，例如：
+
+```ts
+import { webview } from '@kit.ArkWeb'
+
+@Entry
+@Component
+struct Index {
+    private webController: webview.WebviewController = new webview.WebviewController()
+    build(){
+      Column() {
+        Web({
+          src: 'https://www.example.com',
+          controller: this.webController,
+        }).onControllerAttached(() => {
+          // 自定义User-Agent
+          let customUA = 'Mozilla/5.0 (Phone; Android; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36'
+          this.webController.setCustomUserAgent(customUA)
+        })
+      }
+    }
 }
 ```

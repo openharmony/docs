@@ -15,6 +15,10 @@
 
 Stack(options?: StackOptions)
 
+> **说明：**
+>
+> 过多的嵌套组件数会导致性能劣化。在部分场景中，直接使用组件属性或借助系统API的能力可以替代层叠容器的效果，减少了嵌套组件数进而优化性能。最佳实践请参考[组件嵌套优化-优先使用组件属性代替嵌套组件](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-nesting-optimization#section78181114123811)。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -25,19 +29,23 @@ Stack(options?: StackOptions)
 
 | 参数名       | 类型                                    | 必填 | 说明                                                    |
 | ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| options | [StackOptions](#stackoptions14对象说明) | 否   | 设置子组件在容器内的对齐方式。 |
+| options | [StackOptions](#stackoptions18对象说明) | 否   | 设置子组件在容器内的对齐方式。 |
 
-## StackOptions<sup>14+</sup>对象说明
+## StackOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型            | 必填 | 说明                        |
-| ------------ | --------------- | ---- | --------------------------- |
-| alignContent<sup>7+</sup> | [Alignment](ts-appendix-enums.md#alignment) | 否   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| alignContent<sup>7+</sup> | [Alignment](ts-appendix-enums.md#alignment) | 否 | 是   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center <br />非法值：按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -47,7 +55,7 @@ Stack(options?: StackOptions)
 
 alignContent(value: Alignment)
 
-设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。
+设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。该属性与接口的构造入参同时设置时，生效属性上的设置效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -59,8 +67,11 @@ alignContent(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                        |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 所有子组件在容器内的对齐方式。<br/>默认值：Alignment.Center |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 所有子组件在容器内的对齐方式。<br/>默认值：Alignment.Center <br />非法值：按默认值处理。 |
 
+## 事件
+
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

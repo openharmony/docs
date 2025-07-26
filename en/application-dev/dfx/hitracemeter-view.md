@@ -94,7 +94,7 @@ An integer value trace contains only one independent trace whose type identifier
 
 ### Fields
 
-This following describes fields of the user-mode trace, including the field composition, description, and relationship between fields and logging input parameters. For details, see [@ohos.hiTraceMeter (Performance Tracing)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md).
+The following describes fields of the user-mode trace, including the field composition, description, and relationship between fields and logging input parameters. For details, see [@ohos.hiTraceMeter (Performance Tracing)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md).
 
 - **Type Identifier**
 

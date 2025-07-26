@@ -1,9 +1,17 @@
 # Interface (AVScreenCaptureRecorder)
 
 > **说明：**
-> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 12开始支持。
 
 屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](arkts-apis-media-f.md#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
+
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
 
 ## init<sup>12+</sup>
 
@@ -39,7 +47,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
-    fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数。
+    fd: 0, // 文件需要先由调用者创建，通常是MP4文件，赋予写权限，将文件fd传给此参数。
     frameWidth: 640,
     frameHeight: 480
     // 补充其他参数。

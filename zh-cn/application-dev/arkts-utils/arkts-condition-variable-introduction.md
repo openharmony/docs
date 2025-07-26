@@ -1,12 +1,12 @@
 # 异步等待
 
-ArkTS引入了异步等待通知能力，以解决多线程任务时序控制问题。异步等待通知[ConditionVariable](../reference/apis-arkts/js-apis-arkts-utils.md#conditionvariable18)对象支持跨线程引用传递。
+ArkTS引入了异步任务的等待和被唤醒能力，以解决多线程任务时序控制问题。异步任务的等待和被唤醒[ConditionVariable](../reference/apis-arkts/arkts-apis-arkts-utils-locks.md#conditionvariable18)对象支持跨线程引用传递。
 
-由于ArkTS语言支持异步操作，现在增加了异步任务的等待和被唤醒功能。当收到唤醒通知或等待超时后，异步任务将继续执行。
+ArkTS语言支持异步操作，现已增加异步任务的等待和唤醒功能。当异步任务收到唤醒通知或等待超时后，将继续执行。
 
 > **说明：**
 >
-> 使用异步等待的方法需标记为async，调用时需用await修饰，以确保时序正确。
+> 使用异步方法需标记为async，调用时需用await修饰，确保时序正确。
 
 ## 使用示例
 
@@ -51,11 +51,11 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            // 创建conditionVariableR对象
+            // 创建conditionVariable对象
             const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
             // 将实例conditionVariable传递给wait线程
             taskpool.execute(wait, conditionVariable);
-            // 将实例conditionVariable传递给notify线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
+            // 将实例conditionVariable传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
             taskpool.execute(notifyAll, conditionVariable);
             // 将实例conditionVariable传递给waitFor线程
             taskpool.execute(waitFor, conditionVariable);
@@ -67,7 +67,7 @@ struct Index {
                 ArkTSUtils.locks.ConditionVariable.request("Request1");
             // 将实例conditionVariableRequest传递给wait线程
             taskpool.execute(wait, conditionVariableRequest);
-            // 将实例conditionVariableRequest传递给notify线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
+            // 将实例conditionVariableRequest传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
             taskpool.execute(notifyAll, conditionVariableRequest);
             // 将实例conditionVariableRequest传递给waitFor线程
             taskpool.execute(waitFor, conditionVariableRequest);

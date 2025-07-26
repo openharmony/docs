@@ -8,7 +8,7 @@
 
 1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
 
-2. 初始化密钥属性集。用于删除时指定[密钥的属性TAG](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_tag)，当删除单个时，TAG字段可传空。
+2. 初始化密钥属性集。用于删除时指定[密钥的属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)，当删除单个时，TAG字段可传空。
 
 3. 调用接口[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)，删除密钥。
 
@@ -29,7 +29,7 @@ class throwObject {
   isThrow = false;
 }
 
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj: throwObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -40,7 +40,7 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
         }
       });
     } catch (error) {
-      throwObject.isThrow = true;
+      throwObj.isThrow = true;
       throw (error as Error);
     }
   });
@@ -49,14 +49,14 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
 /* 3.删除密钥*/
 async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObj: throwObject = { isThrow: false };
   try {
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
+    await deleteKeyItem(keyAlias, huksOptions, throwObj)
       .then((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
       .catch((error: Error) => {
-        if (throwObject.isThrow) {
+        if (throwObj.isThrow) {
           throw (error as Error);
         } else {
           console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);

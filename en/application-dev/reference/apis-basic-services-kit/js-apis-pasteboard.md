@@ -1,6 +1,6 @@
 # @ohos.pasteboard (Pasteboard)
 
-The **Pasteboard** module provides the copy and paste support for the system pasteboard. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
+This module provides the capabilities of managing the system pasteboard to support the copy and paste functions. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
 
 > **NOTE**
 >
@@ -39,8 +39,8 @@ Enumerates the value types.
 
 | Type| Description|
 | -------- | -------- |
-| string | The value is a string.|
-| image.PixelMap | The value is of the [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) type.|
+| string | The value is of the string type.|
+| image.PixelMap | The value is of the [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) type.|
 | Want | The value is of the [Want](../apis-ability-kit/js-apis-app-ability-want.md) type.|
 | ArrayBuffer | The value is of the **ArrayBuffer** type.|
 
@@ -58,7 +58,7 @@ Creates a **PasteData** object of the specified type.
 
 | Name| Type| Mandatory| Description                                                                                                    |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------|
-| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes.|
+| mimeType | string | Yes| MIME type of custom data. The value can be a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes.|
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.                                                                                              |
 
 **Return value**
@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord
+createRecord(mimeType: string, value: ValueType): PasteDataRecord
 
 Creates a **PasteDataRecord** object of the specified type.
 
@@ -149,7 +149,7 @@ Creates a **PasteDataRecord** object of the specified type.
 
 | Name| Type| Mandatory| Description               |
 | -------- | -------- | -------- |-------------------|
-| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes. |
+| mimeType | string | Yes| MIME type of custom data. The value can be a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes. |
 | value | [ValueType](#valuetype9) | Yes| Data content of the specified type.         |
 
 **Return value**
@@ -215,7 +215,7 @@ Enumerates the pasteable ranges of pasteboard data.
 | ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
 | INAPP                              | 0   | Only intra-application pasting is allowed.                                                             |
 | LOCALDEVICE                        | 1   | Paste is allowed in any application.<!--RP1--><!--RP1End-->  |
-| CROSSDEVICE<sup>(deprecated)</sup> | 2   | Paste is allowed in any application across devices.<br>This API is deprecated since API version 12 without any alternative API or method<!--RP2--><!--RP2End-->.|
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | Paste is allowed in any application across devices.<br>This API is deprecated since API version 12 without any alternative API or method. <!--RP2--><!--RP2End-->|
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -224,7 +224,7 @@ createHtmlData(htmlText: string): PasteData
 Creates a **PasteData** object of the HTML type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -254,7 +254,7 @@ createWantData(want: Want): PasteData
 Creates a **PasteData** object of the Want type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -289,7 +289,7 @@ createPlainTextData(text: string): PasteData
 Creates a **PasteData** object of the plain text type.
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -318,7 +318,7 @@ createUriData(uri: string): PasteData
 Creates a **PasteData** object of the URI type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -346,7 +346,7 @@ createHtmlTextRecord(htmlText: string): PasteDataRecord
 Creates a **PasteDataRecord** object of the HTML text type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -376,7 +376,7 @@ createWantRecord(want: Want): PasteDataRecord
 Creates a **PasteDataRecord** object of the Want type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -411,7 +411,7 @@ createPlainTextRecord(text: string): PasteDataRecord
 Creates a **PasteDataRecord** object of the plain text type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -440,7 +440,7 @@ createUriRecord(uri: string): PasteDataRecord
 Creates a **PasteDataRecord** object of the URI type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createRecord](#pasteboardcreaterecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -471,14 +471,14 @@ Defines the properties of all data records on the pasteboard, including the time
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | Yes| Yes| Additional data. It does not allow for dynamic adding of attributes. Attributes can be added only by re-assigning values. For details, see the example of **setProperty**.|
+| additions<sup>7+</sup> | {[key:string]:object} | No| Yes| Additional data. It does not allow for dynamic adding of attributes. Attributes can be added only by re-assigning values. For details, see the example of **setProperty**.|
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.|
-| tag<sup>7+</sup> | string | Yes| Yes| Custom tag.|
+| tag<sup>7+</sup> | string | No| Yes| Custom tag.|
 | timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).|
-| localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the [ShareOption](#shareoption9) attribute instead.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Pasteable ranges of pasteboard data.|
+| localOnly<sup>7+</sup> | boolean | No| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the [ShareOption](#shareoption9) attribute instead.|
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | No| Yes| Pasteable ranges of pasteboard data.|
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -514,7 +514,7 @@ Defines the progress information. This information is reported only when [Progre
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name    | Type  | Readable| Writable| Description                                                      |
+| Name    | Type  | Read-Only| Optional| Description                                                      |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | progress | number | Yes  | No  | If the progress indicator provided by the system is not used, the system reports the progress percentage of the copy-and-paste task.|
 
@@ -615,14 +615,14 @@ Provides **PasteDataRecord** APIs. A **PasteDataRecord** is an abstract definiti
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | Yes| No| HTML content.|
 | want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| No| Want content.|
 | mimeType<sup>7+</sup> | string | Yes| No| Default data type.|
 | plainText<sup>7+</sup> | string | Yes| No| Plain text.|
 | uri<sup>7+</sup> | string | Yes| No| URI content.|
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| No| Pixel map.|
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes| No| Pixel map.|
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | Yes| No| Content of custom data.|
 
 ### toPlainText<sup>9+</sup>
@@ -661,7 +661,7 @@ Adds custom data of an extra type to **PasteDataRecord**. The MIME type added us
 
 | Name  | Type| Mandatory| Description               |
 |-------| -------- | -------- |-------------------|
-| type  | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes. |
+| type  | string | Yes| MIME type of custom data. The value can be a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes. |
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.         |
 
 **Error codes**
@@ -783,7 +783,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 Forcibly converts the content in a **PasteData** object to text. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -823,7 +823,7 @@ convertToText(): Promise&lt;string&gt;
 Forcibly converts the content in a **PasteData** object to text. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -985,7 +985,7 @@ Obtains the pixel map of the primary record.
 
 | Type| Description|
 | -------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Pixel map. If the **PasteData** object does not contain the pixel map, **undefined** is returned by default.|
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Pixel map. If the **PasteData** object does not contain the pixel map, **undefined** is returned by default.|
 
 **Example**
 
@@ -1449,7 +1449,7 @@ Adds an HTML record to this pasteboard, and adds **MIMETYPE_TEXT_HTML** to **mim
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1475,7 +1475,7 @@ Adds a Want record to this pasteboard, and adds **MIMETYPE_TEXT_WANT** to **mime
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1506,7 +1506,7 @@ Adds a plain text record to this pasteboard, and adds **MIME_TEXT_PLAIN** to **m
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1531,7 +1531,7 @@ Adds a URI record to this pasteboard, and adds **MIMETYPE_TEXT_URI** to **mimeTy
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1554,7 +1554,7 @@ getRecordAt(index: number): PasteDataRecord
 Obtains the record with a specific index from the pasteboard.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRecord](#getrecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRecord](#getrecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1592,7 +1592,7 @@ hasMimeType(mimeType: string): boolean
 Checks whether the pasteboard contains data of the specified type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasType](#hastype9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasType](#hastype9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1629,7 +1629,7 @@ removeRecordAt(index: number): boolean
 Removes the record with a specific index from the pasteboard.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeRecord](#removerecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeRecord](#removerecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1666,7 +1666,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 Replaces the record with a specific index from the pasteboard.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [replaceRecord](#replacerecord9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [replaceRecord](#replacerecord9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1703,7 +1703,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 ### on('update')<sup>7+</sup>
 
-on(type:  'update', callback: () =&gt;void ): void
+on(type: 'update', callback: () =&gt;void): void
 
 Subscribes to the content change event of the system pasteboard.
 
@@ -1736,7 +1736,7 @@ systemPasteboard.on('update', listener);
 
 ### off('update')<sup>7+</sup>
 
-off(type:  'update', callback?: () =&gt;void ): void
+off(type: 'update', callback?: () =&gt;void): void
 
 Unsubscribes from the system pasteboard content change event.
 
@@ -1922,7 +1922,7 @@ systemPasteboard.setData(pasteData).then((data: void) => {
 
 ### getData<sup>9+</sup>
 
-getData( callback: AsyncCallback&lt;PasteData&gt;): void
+getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 Obtains a **PasteData** object from the pasteboard. This API uses an asynchronous callback to return the result.
 
@@ -2078,7 +2078,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 Clears the system pasteboard. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.clearData](#cleardata9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.clearData](#cleardata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2116,7 +2116,7 @@ clear(): Promise&lt;void&gt;
 Clears the system pasteboard. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.clearData](#cleardata9-1).
+> This parameter is supported since API version 7 and deprecated since API version 9. Use [pasteboard.clearData](#cleardata9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2141,12 +2141,12 @@ systemPasteboard.clear().then((data) => {
 
 ### getPasteData<sup>(deprecated)</sup>
 
-getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
+getPasteData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 Obtains a **PasteData** object from the pasteboard. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getData](#getdata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getData](#getdata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2186,7 +2186,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 Obtains a **PasteData** object from the pasteboard. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getData](#getdata9-1).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getData](#getdata9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2216,7 +2216,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 Checks whether the system pasteboard contains data. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasData](#hasdata9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasData](#hasdata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2256,7 +2256,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 Checks whether the system pasteboard contains data. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasData](#hasdata9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [hasData](#hasdata9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2286,7 +2286,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 Writes a **PasteData** object to the pasteboard. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2325,7 +2325,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 Writes a **PasteData** object to the pasteboard. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9-1).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2376,7 +2376,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2412,7 +2412,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2455,7 +2455,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2485,7 +2485,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2523,7 +2523,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
@@ -2561,7 +2561,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2598,7 +2598,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2684,7 +2684,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -2778,7 +2778,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **Example**
 
@@ -3002,10 +3002,10 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
-| 12900007 | Copy file failed.                                            |
+| 12900007 | Invalid destUri or file system error.                        |
 | 12900008 | Failed to start progress.                                    |
 | 12900009 | Progress exits abnormally.                                   |
-| 12900010 | Get pasteData error.                                         |
+| 12900010 | System error occurred during paste execution.                |
 
 **Example**
 
@@ -3050,9 +3050,9 @@ struct PasteboardTest {
 
 getChangeCount(): number
 
-Obtains the number of times that the pasteboard data changes.
+Obtains the number of pasteboard content changes.
 
-Returns the result if this API is called successfully; otherwise, returns **0**.
+Returns the number of pasteboard content changes if this API is called successfully; returns **0** otherwise.
 
 Even though the pasteboard data expires, or the data becomes empty because of the called [clearDataSync](#cleardatasync11) API, the number of data changes remains.
 
@@ -3066,7 +3066,7 @@ When the system is restarted, or the pasteboard service is restarted due to an e
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of times that the pasteboard data changes.|
+| number | The number of pasteboard content changes obtained.|
 
 **Example**
 
@@ -3081,3 +3081,5 @@ try {
     console.error(`Failed to get the ChangeCount. Cause: ${err.message}`);
 };
 ```
+
+<!--no_check-->

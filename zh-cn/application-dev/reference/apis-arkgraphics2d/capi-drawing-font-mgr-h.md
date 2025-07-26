@@ -54,7 +54,7 @@ OH_Drawing_FontMgr* OH_Drawing_FontMgrCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* | 返回指向已创建的字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* | 返回指向已创建的字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针。 |
 
 ### OH_Drawing_FontMgrDestroy()
 
@@ -75,7 +75,7 @@ void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 
 ### OH_Drawing_FontMgrGetFamilyCount()
 
@@ -96,7 +96,7 @@ int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 
 **返回：**
 
@@ -123,7 +123,7 @@ char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | int index | 用于获取对应字体家族名称的索引值。 |
 
 **返回：**
@@ -172,14 +172,14 @@ OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | int index | 用于从字体管理对象获取字体样式集对象的索引值。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* | 返回指向已创建的字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* | 返回指向已创建的字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
 
 ### OH_Drawing_FontMgrDestroyFontStyleSet()
 
@@ -200,7 +200,7 @@ void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* drawingFontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* drawingFontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
 
 ### OH_Drawing_FontMgrMatchFamily()
 
@@ -221,14 +221,14 @@ OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | const char* familyName | 指定的字体家族名称。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* | 返回对应的字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)，不再需要时，请使用[OH_Drawing_FontMgrDestroyFontStyleSet](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrdestroyfontstyleset)释放该对象指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* | 返回对应的字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)，不再需要时，请使用[OH_Drawing_FontMgrDestroyFontStyleSet](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrdestroyfontstyleset)释放该对象指针。 |
 
 ### OH_Drawing_FontMgrMatchFamilyStyle()
 
@@ -249,15 +249,15 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | const char* familyName | 指定的字体家族名称。 |
-| [OH_Drawing_FontStyleStruct](capi-oh-drawing-fontstylestruct.md) fontStyle | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
+| [OH_Drawing_FontStyleStruct](capi-drawing-oh-drawing-fontstylestruct.md) fontStyle | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回对应的字体样式的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)，不再需要时，请使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象指针。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 返回对应的字体样式的字型对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)，不再需要时，请使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象指针。 |
 
 ### OH_Drawing_FontMgrMatchFamilyStyleCharacter()
 
@@ -278,9 +278,9 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | const char* familyName | 指定的字体家族名称。 |
-| [OH_Drawing_FontStyleStruct](capi-oh-drawing-fontstylestruct.md) fontStyle | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
+| [OH_Drawing_FontStyleStruct](capi-drawing-oh-drawing-fontstylestruct.md) fontStyle | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
 | bcp47 |  用来指示character语言编码数组，是ISO 639、15924和3166-1语言编码的组合。 |
 | int bcp47Count | 参数bcp47数组大小。 |
 | int32_t character | 待匹配的UTF8字符值。 |
@@ -289,7 +289,7 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回对应的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 返回对应的字型对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_FontStyleSetCreateTypeface()
 
@@ -310,14 +310,14 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
 | int index | 指定的字型对象的索引。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 如果成功，返回对应的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md); 如果失败，返回nullptr。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 如果成功，返回对应的字型对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md); 如果失败，返回nullptr。 |
 
 ### OH_Drawing_FontStyleSetGetStyle()
 
@@ -338,7 +338,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
 | int32_t index | 指定的字体样式的索引。 |
 | char** styleName | 指定字体样式名称的字符串。 |
 
@@ -346,7 +346,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleS
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_FontStyleStruct](capi-oh-drawing-fontstylestruct.md) | 返回对应的字体样式。 |
+| [OH_Drawing_FontStyleStruct](capi-drawing-oh-drawing-fontstylestruct.md) | 返回对应的字体样式。 |
 
 ### OH_Drawing_FontStyleSetFreeStyleName()
 
@@ -388,14 +388,14 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
-| [OH_Drawing_FontStyleStruct](capi-oh-drawing-fontstylestruct.md) fontStyleStruct | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleStruct](capi-drawing-oh-drawing-fontstylestruct.md) fontStyleStruct | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回对应的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 返回对应的字型对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_FontStyleSetCount()
 
@@ -416,7 +416,7 @@ int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md)的指针。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
 
 **返回：**
 

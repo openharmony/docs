@@ -9,6 +9,8 @@ Defines an IPC message.
 
 **Related module**: [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
 
+**Header file**: [ipc_cremote_object.h](ipc__cremote__object_8h.md)
+
 
 ## Summary
 

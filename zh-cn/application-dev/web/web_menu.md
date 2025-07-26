@@ -22,11 +22,10 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
     onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
       let items = menuItems.filter((menuItem) => {
         // 过滤用户需要的系统按键
-        return (
+        return
           menuItem.id.equals(TextMenuItemId.CUT) ||
           menuItem.id.equals(TextMenuItemId.COPY) ||
-          menuItem.id.equals((TextMenuItemId.PASTE))
-        )
+          menuItem.id.equals(TextMenuItemId.PASTE);
       });
       let customItem1: TextMenuItem = {
         content: 'customItem1',
@@ -95,9 +94,9 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
   ```
   ![editMenuOption](./figures/editMenuOption.gif)
 ## 上下文菜单
-上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。要应用需通过[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口并与Web绑定，通过菜单弹出时的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
+上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。要应用需通过[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件创建一个菜单子窗口并与Web绑定，通过菜单弹出时的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
 
-1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为弹出的菜单，包含所有菜单项行为与样式。
+1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件作为弹出的菜单，包含所有菜单项行为与样式。
 2. 使用bindPopup方法将Menu组件与Web组件绑定。当上下文菜单弹出时，将显示创建的Menu组件。
 3. 在onContextMenuShow回调中获取上下文菜单事件信息[onContextMenuShowEvent](../reference/apis-arkweb/arkts-basic-components-web-i.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuParam.md)类型，包含点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md)类型，提供常见的菜单能力。
 
@@ -117,6 +116,7 @@ struct WebComponent {
   @State offsetX: number = 0;
   @State offsetY: number = 0;
   @State showMenu: boolean = false;
+  uiContext: UIContext = this.getUIContext();
 
   @Builder
   // 构建自定义菜单及触发功能接口
@@ -202,7 +202,7 @@ struct WebComponent {
           console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
           this.showMenu = true;
           this.offsetX = 0;
-          this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+          this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
           return true;
         })
         .bindPopup(this.showMenu,
@@ -238,7 +238,7 @@ struct WebComponent {
 ![onContextMenuShow](./figures/onContextMenuShow.gif)
 ## 自定义菜单
 自定义菜单赋予开发者调整菜单触发时机与视觉展现的能力，使应用能够依据用户操作场景动态匹配功能入口，简化开发流程中的界面适配工作，同时使应用交互更符合用户直觉。自定义菜单允许应用通过[bindSelectionMenu](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bindselectionmenu13)，根据事件类型与元素类型弹出自定义菜单，目前支持响应长按图片。
-1. 创建[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为菜单弹窗。
+1. 创建[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件作为菜单弹窗。
 2. 通过Web组件的[bindSelectionMenu](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bindselectionmenu13)方法绑定MenuBuilder菜单弹窗。将[WebElementType](../reference/apis-arkweb/arkts-basic-components-web-e.md#webelementtype13)设置为WebElementType.IMAGE，[responseType](../reference/apis-arkweb/arkts-basic-components-web-e.md#webresponsetype13)设置为WebResponseType.LONG_PRESS，表示长按图片时弹出菜单。在[options](../reference/apis-arkweb/arkts-basic-components-web-i.md#selectionmenuoptionsext13)中定义菜单显示回调onAppear、菜单消失回调onDisappear、预览窗口preview和菜单类型menuType。
 ```ts
 // xxx.ets
@@ -267,6 +267,7 @@ struct WebComponent {
   @State previewImage: Resource | string | undefined = undefined;
   @State previewWidth: number = 0;
   @State previewHeight: number = 0;
+  uiContext: UIContext = this.getUIContext();
 
   @Builder
   MenuBuilder() {
@@ -305,13 +306,13 @@ struct WebComponent {
               if (event.param.getLinkUrl()) {
                 return false;
               }
-              this.previewWidth = px2vp(event.param.getPreviewWidth());
-              this.previewHeight = px2vp(event.param.getPreviewHeight());
+              this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
+              this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
               if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
                 this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
               } else {
                 this.previewImage = event.param.getSourceUrl();
-              }1
+              }
               return true;
             }
             return false;
@@ -415,6 +416,7 @@ struct SelectionMenuLongPress {
   @State linkURL:string = "";
   @State progressValue:number = 0;
   @State progressVisible:boolean = true;
+  uiContext: UIContext = this.getUIContext();
 
   @Builder
   LinkMenuBuilder() {
@@ -479,10 +481,10 @@ struct SelectionMenuLongPress {
         .onContextMenuShow((event) => {
           if (event) {
             this.result = event.result;
-            this.previewWidthImage = px2vp(event.param.getPreviewWidth());
-            this.previewHeightImage = px2vp(event.param.getPreviewHeight());
+            this.previewWidthImage = this.uiContext!.px2vp(event.param.getPreviewWidth());
+            this.previewHeightImage = this.uiContext!.px2vp(event.param.getPreviewHeight());
             if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
-              this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
+              this.previewImage = $rawfile(event.param.getSourceUrl().substring(19));
             } else {
               this.previewImage = event.param.getSourceUrl();
             }
@@ -539,41 +541,6 @@ import { systemDateTime } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-const Tag = 'web-savePic';
-const context = getContext(this) as common.UIAbilityContext;
-
-function copyLocalPicToDir(rawfilePath: string, newFileName: string): string {
-  let srcFileDes = context.resourceManager.getRawFdSync(rawfilePath)
-  let dstPath = context.filesDir + "/" +newFileName
-  let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE)
-  let bufsize = 4096
-  let buf = new ArrayBuffer(bufsize)
-  let off = 0, len = 0, readedLen = 0
-  while (len = fs.readSync(srcFileDes.fd, buf, { offset: srcFileDes.offset + off, length: bufsize })) {
-    readedLen += len
-    fs.writeSync(dest.fd, buf, { offset: off, length: len })
-    off = off + len
-    if ((srcFileDes.length - readedLen) < bufsize) {
-      bufsize = srcFileDes.length - readedLen
-    }
-  }
-  fs.close(dest.fd)
-  return dest.path
-}
-
-async function copyUrlPicToDir(picUrl: string, newFileName: string): Promise<string> {
-  let uri = ''
-  let httpRequest = http.createHttp();
-  let data: http.HttpResponse = await(httpRequest.request(picUrl) as Promise<http.HttpResponse>)
-  if (data?.responseCode == http.ResponseCode.OK) {
-    let dstPath = context.filesDir + "/" + newFileName;
-    let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE)
-    let writeLen: number = fs.writeSync(dest.fd, data.result as ArrayBuffer)
-    uri = dest.path
-  }
-  return uri
-}
-
 @Entry
 @Component
 struct WebComponent {
@@ -582,10 +549,43 @@ struct WebComponent {
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
   }
-  controller: webview.WebviewController = new webview.WebviewController()
-  private result: WebContextMenuResult | undefined = undefined
-  @State showMenu: boolean = false
-  @State imgUrl: string = ''
+  controller: webview.WebviewController = new webview.WebviewController();
+  private result: WebContextMenuResult | undefined = undefined;
+  @State showMenu: boolean = false;
+  @State imgUrl: string = '';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+  copyLocalPicToDir(rawfilePath: string, newFileName: string): string {
+    let srcFileDes = this.context.resourceManager.getRawFdSync(rawfilePath);
+    let dstPath = this.context.filesDir + "/" +newFileName;
+    let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let bufsize = 4096;
+    let buf = new ArrayBuffer(bufsize);
+    let off = 0, len = 0, readedLen = 0;
+    while (len = fs.readSync(srcFileDes.fd, buf, { offset: srcFileDes.offset + off, length: bufsize })) {
+      readedLen += len;
+      fs.writeSync(dest.fd, buf, { offset: off, length: len });
+      off = off + len;
+      if ((srcFileDes.length - readedLen) < bufsize) {
+        bufsize = srcFileDes.length - readedLen;
+      }
+    }
+    fs.close(dest.fd);
+    return dest.path;
+  }
+
+  async copyUrlPicToDir(picUrl: string, newFileName: string): Promise<string> {
+    let uri = '';
+    let httpRequest = http.createHttp();
+    let data: http.HttpResponse = await(httpRequest.request(picUrl) as Promise<http.HttpResponse>);
+    if (data?.responseCode == http.ResponseCode.OK) {
+      let dstPath = this.context.filesDir + "/" + newFileName;
+      let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+      let writeLen: number = fs.writeSync(dest.fd, data.result as ArrayBuffer);
+      uri = dest.path;
+    }
+    return uri;
+  }
 
   @Builder
   MenuBuilder() {
@@ -595,26 +595,26 @@ struct WebComponent {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
             if (result == SaveButtonOnClickResult.SUCCESS) {
               try {
-                let context = getContext();
+                let context = this.context;
                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let uri = '';
                 if (this.imgUrl?.includes('rawfile')) {
-                  let rawFileName: string = this.imgUrl.substring(this.imgUrl.lastIndexOf('/') + 1)
-                  uri = copyLocalPicToDir(rawFileName, 'copyFile.png')
+                  let rawFileName: string = this.imgUrl.substring(this.imgUrl.lastIndexOf('/') + 1);
+                  uri = this.copyLocalPicToDir(rawFileName, 'copyFile.png');
                 } else if (this.imgUrl?.includes('http') || this.imgUrl?.includes('https')) {
-                  uri = await copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`)
+                  uri = await this.copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`);
                 }
-                let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, uri)
-                await phAccessHelper.applyChanges(assetChangeRequest)
+                let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, uri);
+                await phAccessHelper.applyChanges(assetChangeRequest);
               }
               catch (err) {
-                console.error(`create asset failed with error: ${err.code}}, ${err.message}}`)
+                console.error(`create asset failed with error: ${err.code}}, ${err.message}}`);
               }
             } else {
-              console.error(`SaveButtonOnClickResult create asset failed`)
+              console.error(`SaveButtonOnClickResult create asset failed`);
             }
-            this.showMenu = false
-        })
+            this.showMenu = false;
+          })
       }
       .margin({ top: 20, bottom: 20 })
       .justifyContent(FlexAlign.Center)
@@ -629,10 +629,10 @@ struct WebComponent {
       Web({src: $rawfile("index.html"), controller: this.controller})
         .onContextMenuShow((event) => {
           if (event) {
-            let hitValue = this.controller.getHitTestValue()
-            this.imgUrl = hitValue.extra
+            let hitValue = this.controller.getLastHitTest();
+            this.imgUrl = hitValue.extra;
           }
-          this.showMenu = true
+          this.showMenu = true;
           return true;
         })
         .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)

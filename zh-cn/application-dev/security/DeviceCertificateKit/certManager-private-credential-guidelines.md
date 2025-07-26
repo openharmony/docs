@@ -111,7 +111,7 @@
        await certificateManager.update(signHandle.handle, srcData);
        const signResult: certificateManager.CMResult = await certificateManager.finish(signHandle.handle);
        
-       /* 构造验签的的属性参数。 */
+       /* 构造验签的属性参数。 */
        const verifySpec: certificateManager.CMSignatureSpec = {
          purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
          padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,

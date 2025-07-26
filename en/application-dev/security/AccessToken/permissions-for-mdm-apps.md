@@ -536,9 +536,58 @@ Allows a device administrator application to set the Kiosk mode.
 
 **Valid since**: 20
 
+## ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES
+
+Allows an enterprise application to enable, create, delete, and configure workspaces.
+
+With this permission, the application can set the password-free login duration for workspace switching, user photos, and the list of non-deletable workspaces.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**:PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_FILE_TRANSFER_AUDIT_POLICY_MANAGEMENT
+
+Allows an MDM application to manage file transfer policies and audit information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**:PC/2in1
+
+**Valid since**: 20
+
 ## ohos.permission.ENTERPRISE_SET_WALLPAPER
 
 Allows a device administrator application to set wallpapers.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
+
+Allows a mobile device management (MDM) application to configure user_grant permission policies.
+
+With this permission, the MDM application can configure user_grant permission policies for managed applications. Specifically, permissions can be silently granted, denied, or retained (without interfering with application requests).
 
 **Permission level**: system_basic
 

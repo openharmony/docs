@@ -178,7 +178,7 @@ struct Index {
         // 1.调用verifyAbc接口校验Abc文件
         Button("verifyAbc").onClick(() => {
           let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
-          console.log("abcFilePath: " + abcFilePath);
+          console.info("abcFilePath: " + abcFilePath);
           VerifyAbc([abcFilePath], false);
         }).height(100).width(200)
 

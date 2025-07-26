@@ -18,8 +18,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md) | OH_ImageReceiverNative | OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageReceiverNative结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。 |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md) | OH_ImageReceiverOptions | 用于定义OH_ImageReceiverOptions数据类型名称。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md) | OH_ImageReceiverNative | OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageReceiverNative结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md) | OH_ImageReceiverOptions | 用于定义OH_ImageReceiverOptions数据类型名称。 |
 
 ### 函数
 
@@ -88,7 +88,7 @@ Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md) **options | 表示作为获取结果的 OH_ImageReceiverOptions对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md) **options | 表示作为获取结果的 OH_ImageReceiverOptions对象的指针。 |
 
 **返回：**
 
@@ -113,8 +113,8 @@ Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options | 表示OH_ImageReceiverOptions对象的指针。 |
-| [Image_Size](capi-image-size.md)* size | 表示作为获取结果的Image_Size对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options | 表示OH_ImageReceiverOptions对象的指针。 |
+| [Image_Size](capi-image-nativemodule-image-size.md)* size | 表示作为获取结果的Image_Size对象的指针。 |
 
 **返回：**
 
@@ -139,8 +139,8 @@ Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
-| [Image_Size](capi-image-size.md) size | 表示Image_Size对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
+| [Image_Size](capi-image-nativemodule-image-size.md) size | 表示Image_Size对象的指针。 |
 
 **返回：**
 
@@ -165,7 +165,7 @@ Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* opt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
 | int32_t* capacity | 表示作为获取结果的图片缓存容量对象的指针。 |
 
 **返回：**
@@ -191,7 +191,7 @@ Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* opt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
 | int32_t capacity | 表示图片缓存容量对象的指针。 |
 
 **返回：**
@@ -217,7 +217,7 @@ Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
 
 **返回：**
 
@@ -242,8 +242,8 @@ Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverOptions](capi-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)** receiver | 表示作为获取结果的OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)* options| 表示OH_ImageReceiverOptions对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)** receiver | 表示作为获取结果的OH_ImageReceiverNative对象的指针。 |
 
 **返回：**
 
@@ -268,7 +268,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
 | uint64_t* surfaceId | 表示作为获取结果的id对象的指针。 |
 
 **返回：**
@@ -296,8 +296,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
-| [OH_ImageNative](capi-oh-imagenative.md)** image | 获取到的应用层的OH_ImageNative指针对象。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)** image | 获取到的应用层的OH_ImageNative指针对象。 |
 
 **返回：**
 
@@ -324,8 +324,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
-| [OH_ImageNative](capi-oh-imagenative.md)** image | 获取到的应用层的OH_ImageNative指针对象。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)** image | 获取到的应用层的OH_ImageNative指针对象。 |
 
 **返回：**
 
@@ -352,7 +352,7 @@ Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
 | [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback | 表示OH_ImageReceiver_OnCallback事件的回调函数。 |
 
 **返回：**
@@ -380,7 +380,7 @@ Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
 
 **返回：**
 
@@ -405,8 +405,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
-| [Image_Size](capi-image-size.md)* size | 表示作为获取结果的Image_Size对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [Image_Size](capi-image-nativemodule-image-size.md)* size | 表示作为获取结果的Image_Size对象的指针。 |
 
 **返回：**
 
@@ -431,7 +431,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
 | int32_t* capacity | 表示作为获取结果的图片缓存容量对象的指针。 |
 
 **返回：**
@@ -457,7 +457,7 @@ Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)* receiver | 表示OH_ImageReceiverNative对象的指针。 |
 
 **返回：**
 
@@ -482,7 +482,7 @@ Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *rec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md) *receiver | 处理回调的OH_ImageReceiverNative对象。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md) *receiver | 处理回调的OH_ImageReceiverNative对象。 |
 | [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback | 要注册的OH_ImageReceiver_ImageArriveCallback回调方法。 |
 | void *userData | 用户自定义数据指针。 |
 
@@ -509,7 +509,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *re
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageReceiverNative](capi-oh-imagereceivernative.md) *receiver | 处理回调的OH_ImageReceiverNative对象。 |
+| [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md) *receiver | 处理回调的OH_ImageReceiverNative对象。 |
 | [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback | 要注册的OH_ImageReceiver_ImageArriveCallback回调。 |
 
 **返回：**

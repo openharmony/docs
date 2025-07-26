@@ -7,6 +7,7 @@
   - [@arkts.utils (ArkTS Utils)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
+  - [@ohos.fastbuffer (Linear Container FastBuffer)](js-apis-fastbuffer.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
   - [@ohos.taskpool (Using the Task Pool)](js-apis-taskpool.md)
   - [@ohos.uri (URI String Parsing)](js-apis-uri.md)

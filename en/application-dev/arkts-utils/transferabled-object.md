@@ -1,12 +1,12 @@
 # Transferable Object (NativeBinding Object)
 
 
-A Transferable object, also known as a NativeBinding object, is a JS object that is bound to a C++ object, with the primary functionality provided by C++. Its JS object wrapper is allocated in the local heap of the virtual machine. During cross-thread communication, the same C++ object can be reused directly. Compared with the pass-by-copy mode of JS objects, this method offers higher transfer efficiency. Therefore, NativeBinding objects that can be shared or transferred are also referred to as Transferable objects.
+A Transferable object, also known as a NativeBinding object, is a JS object that is bound to a C++ object, with the primary functionality provided by C++. Its JS object wrapper is allocated in the local heap of the virtual machine. During cross-thread communication, the same C++ object is reused. Compared with the pass-by-copy mode of JS objects, this method offers higher transfer efficiency. Therefore, NativeBinding objects that can be shared or transferred are also referred to as Transferable objects. You can also customize Transferable objects. For details, see [Multithreaded Operations with Custom Native Transferable Objects](napi-coerce-to-native-binding-object.md).
 
 
 ## Shared Mode
 
-If the C++ implementation can ensure thread safety, the C++ part of the NativeBinding object supports the shared mode. In this case, after the NativeBinding object is passed across threads, you only need to create a JS object wrapper again to bridge to the same C++ object. The following figure shows the communication process.
+If the C++ implementation can ensure thread safety, the C++ part of the NativeBinding object supports the shared mode. In this case, after the NativeBinding object is passed across threads, you only need to create a JS object wrapper again to bridge to the same C++ object, achieving the sharing of the C++ object. The following figure shows the communication process.
 
 
 ![nativeBinding](figures/nativeBinding.png)
@@ -14,7 +14,7 @@ If the C++ implementation can ensure thread safety, the C++ part of the NativeBi
 
 A typical shared-mode NativeBinding object includes context. A context object contains contextual information for application components and provides a way to access system services and resources, enabling the application components to interact with the system. For details about how to obtain context, see [Context (Stage Model)](../application-models/application-context-stage.md).
 
-For details about the development example, see [Using TaskPool for Frequent Database Operations](./batch-database-operations-guide.md#using-taskpool-for-frequent-database-operations).
+For details about the development example, see [Using TaskPool for Frequent Database Operations](batch-database-operations-guide.md#using-taskpool-for-frequent-database-operations).
 
 
 ## Transfer Mode
@@ -23,7 +23,7 @@ If the C++ implementation contains data and cannot ensure thread safe, the C++ p
 
 ![nativeBinding_transfer](figures/nativeBinding_transfer.png)
 
-A typical transfer-mode NativeBinding object includes a PixelMap. The [PixelMap object](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmap8) can read or write image data and obtain image information, and is usually used to display images in applications or systems.
+A typical transfer-mode NativeBinding object includes a PixelMap. The [PixelMap object](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8) can read or write image data and obtain image information, and is usually used for image display.
 
 ### Usage Example
 
@@ -42,7 +42,8 @@ struct Index {
   @State pixelMap: PixelMap | undefined = undefined;
 
   private loadImageFromThread(): void {
-    const resourceMgr = getContext(this).resourceManager;
+    let context : Context = this.getUIContext().getHostContext() as Context;
+    const resourceMgr = context.resourceManager;
     // startIcon.png is copied from the media directory to the rawfile folder. You need to replace it. Otherwise, the imageSource fails to be created and subsequent operations cannot be performed.
     resourceMgr.getRawFd('startIcon.png').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
@@ -79,6 +80,7 @@ struct Index {
   }
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
 // pixelMapTest.ets
@@ -98,3 +100,6 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   return pixelMap;
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->
+
+<!--no_check-->

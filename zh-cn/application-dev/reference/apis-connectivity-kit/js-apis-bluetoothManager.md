@@ -223,7 +223,7 @@ setLocalName(name: string): void
 设置蓝牙本地设备名称。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalname)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalnamedeprecated)替代。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2169,7 +2169,7 @@ getPlayingState(device: string): PlayingState
 获取设备的播放状态。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[a2dp.A2dpSourceProfile#getPlayingState](js-apis-bluetooth-a2dp.md#getPlayingState)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[getPlayingState](js-apis-bluetooth-a2dp.md#getplayingstate)替代。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2218,7 +2218,7 @@ try {
 使用HandsFreeAudioGatewayProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#HandsFreeAudioGatewayProfile)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile)替代。
 
 
 ### connect
@@ -2505,7 +2505,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 使用PanProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile](js-apis-bluetooth-pan.md#panprofile)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.createPanProfile](js-apis-bluetooth-pan.md#pancreatepanprofile)替代。
 
 
 
@@ -2606,7 +2606,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 server端类，使用server端方法之前需要创建该类的实例进行操作，通过createGattServer()方法构造此实例。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattServer](js-apis-bluetooth-ble.md#GattServer)替代。 
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattServer](js-apis-bluetooth-ble.md#gattserver)替代。 
 
 
 ### startAdvertising<sup>(deprecated)</sup>
@@ -4109,7 +4109,7 @@ setBLEMtuSize(mtu: number): void
 client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setBLEMtuSize)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setblemtusize)替代。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

@@ -26,7 +26,7 @@ Creates a **Server** object. After **start()** is called, the device can be conn
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| name | string  | Yes   | **Server** object name. The value is a string of up to 255 bytes. |
+| name | string  | Yes   | **Server** object name. The value is a string of up to 255 bytes. It cannot be empty. |
 
 **Returns**
 
@@ -42,7 +42,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
 | 32390203      | Duplicate server name.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **Example**
 
@@ -52,15 +52,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    // Construct a Server object using the specified name.
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-  } catch (err) {
-    hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+try {
+  let name:string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  // Construct a Server object using the specified name.
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+} catch (err) {
+  hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 
@@ -78,8 +77,8 @@ Creates a **Connection** object on the device that functions as the client. The 
 
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
-| deviceId  | string | Yes   | Device ID of the device to be connected, that is, the BLE MAC address of the peer device. For details about how to obtain the BLE MAC address, see [BLE Development](../../connectivity/bluetooth/ble-development-guide.md).|
-| name      | string | Yes   | Server name of the device to be connected. The value is a string of up to 255 bytes.|
+| deviceId  | string | Yes   | Device ID of the peer device, that is, the BLE MAC address of the peer device. For details about how to obtain the BLE MAC address, see [BLE Advertising and Scanning](../../connectivity/bluetooth/ble-development-guide.md).|
+| name      | string | Yes   | Server name of the device to be connected. The value is a string of up to 255 bytes. It cannot be empty.|
 
 **Returns**
 
@@ -94,7 +93,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **Example**
 
@@ -106,14 +105,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceCreateConnection(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-  } catch (err) {
-    hilog.info(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+} catch (err) {
+  hilog.info(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 ## Server
@@ -126,7 +124,7 @@ The following APIs are used on the server.
 
 start():&nbsp;void
 
-Starts the server so that it can be connected to the client.
+Starts a server so that it can be connected by the client. A maximum of 10 servers are supported.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -150,15 +148,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-    server.start();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+  server.start();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 ### stop()
@@ -187,16 +184,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-    server.start();
-    server.stop();
-   } catch (err) {
-    hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+  server.start();
+  server.stop();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 
@@ -226,23 +222,22 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-    server.start();
-    server.close();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+  server.start();
+  server.close();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 ### on('connectionAccepted')
 
-on(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
-Registers a callback listener for the **connectionAccepted** event. This API uses an asynchronous callback to return the result.
+Registers a callback listener for **connectionAccepted** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -260,7 +255,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Parameter invalid.  |
 
 **Example**
 
@@ -270,29 +265,28 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    // Construct a Server object using the specified name.
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  // Construct a Server object using the specified name.
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
 
-    // Subscribe to the connectionAccepted event.
-    server.on('connectionAccepted', (connection: linkEnhance.Connection): void => {
-        hilog.info(0x0000, TAG, 'serverOnCallback = ' + JSON.stringify(connection));
-    });
-    // Start the server.
-    server.start();
-  } catch (err) {
-    hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  // Subscribe to connectionAccepted events.
+  server.on('connectionAccepted', (connection: linkEnhance.Connection): void => {
+      hilog.info(0x0000, TAG, 'serverOnCallback = ' + JSON.stringify(connection));
+  });
+  // Start the server.
+  server.start();
+} catch (err) {
+  hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 ### off('connectionAccepted')
 
-off(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
-Unregisters the callback listener for the **connectionAccepted** event. This API uses an asynchronous callback to return the result.
+Unregisters the callback listener for **connectionAccepted** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -301,7 +295,7 @@ Unregisters the callback listener for the **connectionAccepted** event. This API
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | Yes   |   Event type, which is **connectionAccepted**. This event is triggered when a connection from the peer end is received.  |
-| callback | Callback&lt;[Connection](#connection)&gt; | Yes   | Registered callback, which is used to return the [Connection](#connection) object.|
+| callback | Callback&lt;[Connection](#connection)&gt; | No   | Registered callback, which is used to return the [Connection](#connection) object.|
 
 **Error codes**
 
@@ -310,7 +304,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Parameter invalid.  |
 
 **Example**
 
@@ -320,31 +314,29 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    // Construct a Server object using the specified name.
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-    server.on('connectionAccepted', (connection: linkEnhance.Connection): void => {
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  // Construct a Server object using the specified name.
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+  server.on('connectionAccepted', (connection: linkEnhance.Connection): void => {
     hilog.info(0x0000, TAG, 'accpet new connection');
   });
-  // Unsubscribe from the connectionAccepted event.
+  // Unsubscribe from connectionAccepted events.
   server.off('connectionAccepted', (connection: linkEnhance.Connection): void => {
     hilog.info(0x0000, TAG, 'accpet new connection');
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 
 ### on('serverStopped')
 
-on(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
-Registers a callback listener for the **serverStopped** event. This API uses an asynchronous callback to return the result.
+Registers a callback listener for **serverStopped** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -362,7 +354,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Parameter invalid.  |
 
 **Example**
 
@@ -372,31 +364,29 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    // Construct a Server object using the specified name.
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  // Construct a Server object using the specified name.
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
 
-    // Unsubscribe from the serverStopped event.
-    server.on('serverStopped', (reason: number): void => {
-      hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
-    });
-    // Start the server.
-    server.start();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  // Unsubscribe from serverStopped events.
+  server.on('serverStopped', (reason: number): void => {
+    hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
+  });
+  // Start the server.
+  server.start();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 
 ### off('serverStopped')
 
-off(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
-Unregisters the callback listener for the **serverStopped** event. This API uses an asynchronous callback to return the result.
+Unregisters the callback listener for **serverStopped** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -405,7 +395,7 @@ Unregisters the callback listener for the **serverStopped** event. This API uses
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | Yes   |   Event type, which is **serverStopped**. This event is triggered when the server is stopped abnormally.  |
-| callback | Callback&lt;number&gt; | Yes   | Registered callback, where **number** indicates the returned error code.|
+| callback | Callback&lt;number&gt; | No   | Registered callback, where **number** indicates the returned error code.|
 
 **Error codes**
 
@@ -414,7 +404,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Parameter invalid.  |
 
 **Example**
 
@@ -424,24 +414,22 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceStart(name: string) {
-  hilog.info(0x0000, TAG, 'start sever deviceId = ' + name);
-  try {
-    // Construct a Server object using the specified name.
-    let server: linkEnhance.Server = linkEnhance.createServer(name);
-    server.on('serverStopped', (reason: number): void => {
-      hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
-    });
-    // Unsubscribe from the serverStopped event.
-    server.off('serverStopped', (reason: number): void => {
-      hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
-    });
-  } catch (err) {
-    hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-    }
+try {
+  let name: string = "demo";
+  hilog.info(0x0000, TAG, 'start sever name = ' + name);
+  // Construct a Server object using the specified name.
+  let server: linkEnhance.Server = linkEnhance.createServer(name);
+  server.on('serverStopped', (reason: number): void => {
+    hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
+  });
+  // Unsubscribe from serverStopped events.
+  server.off('serverStopped', (reason: number): void => {
+    hilog.info(0x0000, TAG, 'serverStopped, reason= ' + reason);
+  });
+} catch (err) {
+  hilog.info(0x0000, TAG, 'start sever errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 ## ConnectResult
 
@@ -451,9 +439,9 @@ Represents the connection result, which is returned after the client calls **con
 
 | **Name**                   | Type      |Read-Only  | Optional  | Description                |
 | ----------------- | ------ | ----  | ---- | ------------------ |
-| deviceId          | string | Yes   |Yes   | ID of the peer device. If the connection is successful, the device ID of the peer device is returned. If the connection fails, an empty string is returned.    |
-| success           | boolean | Yes   |Yes  | Connection result. The value **true** indicates that the connection is successful, and the value **false** indicates the opposite.|
-| reason            | number | Yes   |Yes   | Number indicating the error code. If the connection fails, an error code is returned. If the connection is successful, **0** is returned.|
+| deviceId          | string | No   |No   | ID of the peer device. If the connection is successful, the device ID of the peer device is returned. If the connection fails, an empty string is returned.    |
+| success           | boolean | No   |No  | Connection result. The value **true** indicates that the connection is successful, and the value **false** indicates the opposite.|
+| reason            | number | No   |No   | Number indicating the result code. If the connection is successful, **0** is returned. If the connection fails, an error code is returned:<br>- 32390200: The client connection times out.<br>- 32390201: The server service is not started.<br>- 32390300: Internal error.<br>For details about the error codes, see [Link Enhancement Error Codes](errorcode_linkEnhance.md).|
 
 ## Connection
 
@@ -461,9 +449,9 @@ Represents a **Connection** object, which provides methods for connecting to and
 
 ### connect()
 
-connect(void):&nbsp;void
+connect():&nbsp;void
 
-Connects to the server from the client.
+Connects to the server on the client. A maximum number of 10 connections are supported.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -488,36 +476,21 @@ After creating a **Connection** object, the application on the client device cal
 import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    // Subscribe to connection events.
-    this.linkEnhanceRegisterConnectResult(connection);
-    // Initiate a connection.
-    connection.connect();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
-}
-linkEnhanceRegisterConnectResult(connection: linkEnhance.Connection) {
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  // Subscribe to connectResult events.
   connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
     hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-    try {
-      if (result.success) {
-        connection.on('dataReceived',(data: ArrayBuffer): void => {
-          hilog.info(0x0000, TAG, 'receiveOnCallback data');
-        });
-      }
-    } catch (err) {
-      hilog.error(0x0000, TAG, 'connect state change on callback errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-      (err as BusinessError).message);
-    }
   });
+  // Initiate a connection.
+  connection.connect();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 
@@ -546,25 +519,23 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.connect();
-    connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
-      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-      if (result.success) {
-        connection.disconnect();
-      }
-    });
-    connection.disconnect();
-  } catch (err) {
-     hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.connect();
+  connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
+    hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+    if (result.success) {
+      connection.disconnect();
+    }
+  });
+  connection.disconnect();
+} catch (err) {
+    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 
@@ -593,23 +564,22 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG = "testDemo";
-linkEnhanceConnect(peerDeviceId: string) {
+
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.connect();
-    connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
-      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-      if (result.success) {
-        connection.close();
-      }
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.connect();
+  connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
+    hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+    if (result.success) {
+      connection.close();
+    }
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 ### getPeerDeviceId()
@@ -644,18 +614,17 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG = "testDemo";
-linkEnhanceConnect(peerDeviceId: string) {
+
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.getPeerDeviceId();
-    hilog.info(0x0000, TAG, "peerDeviceId=%{public}s" + connection.getPeerDeviceId());
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.getPeerDeviceId();
+  hilog.info(0x0000, TAG, "peerDeviceId=%{public}s" + connection.getPeerDeviceId());
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
 ```
 
@@ -683,7 +652,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
 | 32390205 | Connection is not ready. |
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 | 32390300 | Internal error. |
 
 **Example**
@@ -694,33 +663,31 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.connect();
-    connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
-      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-      if (result.success) {
-        let len = 1;
-        let arraybuffer = new ArrayBuffer(len); // Create the data to send.
-        connection.sendData(arraybuffer);
-        hilog.info(0x0000, TAG, "sendData data connection peerDeviceId=%{public}s" + connection.getPeerDeviceId());
-      }
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.connect();
+  connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
+    hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+    if (result.success) {
+      let len = 1;
+      let arraybuffer = new ArrayBuffer(len); // Create the data to send.
+      connection.sendData(arraybuffer);
+      hilog.info(0x0000, TAG, "sendData data connection peerDeviceId=%{public}s" + connection.getPeerDeviceId());
+    }
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 
 ### on('connectResult')
 
-on(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt;):&nbsp;void
+on(type: 'connectResult', callback: Callback&lt;ConnectResult&gt;): void
 
-Registers a listener for the **connectResult** event. This API uses an asynchronous callback to return the result.
+Registers a listener for **connectResult** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -740,7 +707,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.|
 
 **Example**
 
@@ -748,32 +715,30 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG = "testDemo";
-linkEnhanceConnect(peerDeviceId: string) {
+
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    // Subscribe to the connectResult event.
-    connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
-        hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-    });
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  // Subscribe to connectResult events.
+  connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
+      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+  });
 
-    // Initiate a connection.
-    connection.connect();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  // Initiate a connection.
+  connection.connect();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 
 ### off('connectResult')
 
-off(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt;):&nbsp;void
+off(type: 'connectResult', callback?: Callback&lt;ConnectResult&gt;): void
 
-Unregisters the listener for the **connectResult** event.
+Unregisters the listener for **connectResult** events.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -784,7 +749,7 @@ Unregisters the listener for the **connectResult** event.
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | Yes   |   Event type, which is **connectResult**. This event is triggered when `connect()` is called.  |
-| callback | Callback&lt;[ConnectResult](#connectresult)&gt; | Yes   | Registered callback.   |
+| callback | Callback&lt;[ConnectResult](#connectresult)&gt; | No   | Registered callback.   |
 
 **Error codes**
 
@@ -793,7 +758,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter. |
 
 **Example**
 
@@ -802,30 +767,29 @@ import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
-linkEnhanceConnect(peerDeviceId: string) {
-  hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
-      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-    });
-    // Unsubscribe from the connectResult event.
-    connection.off('connectResult', (result: linkEnhance.ConnectResult): void => {
-      hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
-}
 
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
+  hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
+    hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+  });
+  // Unsubscribe from connectResult events.
+  connection.off('connectResult', (result: linkEnhance.ConnectResult): void => {
+    hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
+}
 ```
 
 ### on('disconnected')
 
-on(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp;void
+on(type: 'disconnected', callback: Callback&lt;number&gt;): void
 
-Registers a listener for the **disconnected** event. This API uses an asynchronous callback to return the result.
+Registers a listener for **disconnected** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -845,7 +809,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.|
 
 **Example**
 
@@ -854,27 +818,26 @@ import { linkEnhance } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
-linkEnhanceConnect(peerDeviceId: string) {
-  hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    // Subscribe to the disconnected event.
-    connection.on('disconnected', (number: number)=> {
-        hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
-    });
-  } catch (err) {
-    hilog.info(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
-}
 
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
+  hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  // Subscribe to disconnected events.
+  connection.on('disconnected', (number: number)=> {
+      hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
+  });
+} catch (err) {
+  hilog.info(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
+}
 ```
 
 ### off('disconnected')
 
-off(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp;void
+off(type: 'disconnected', callback?: Callback&lt;number&gt;): void
 
-Unregisters the listener for the **disconnected** event. This API uses an asynchronous callback to return the result.
+Unregisters the listener for **disconnected** events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -885,7 +848,7 @@ Unregisters the listener for the **disconnected** event. This API uses an asynch
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | Yes   |   Event type, which is **disconnected**. This event is triggered when the connection is passively terminated or encounters an exception.  |
-| callback | Callback&lt;number&gt; | Yes   | Registered callback, where **number** indicates the returned error code.  |
+| callback | Callback&lt;number&gt; | No  | Registered callback, where **number** indicates the returned error code.  |
 
 **Error codes**
 
@@ -894,7 +857,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter. |
 
 **Example**
 
@@ -904,28 +867,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.on('disconnected', (number: number)=> {
-        hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
-    });
-    // Unsubscribe from the disconnected event.
-    connection.off('disconnected', (number: number)=> {
-        hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.on('disconnected', (number: number)=> {
+      hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
+  });
+  // Unsubscribe from disconnected events.
+  connection.off('disconnected', (number: number)=> {
+      hilog.info(0x0000, TAG, 'connection disconnected reason = ' + number);
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 
 ### on('dataReceived')
 
-on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
+on(type: 'dataReceived', callback: Callback&lt;ArrayBuffer&gt;): void
 
 Registers a listener for the **dataReceived** events. This API uses an asynchronous callback to return the result.
 
@@ -947,7 +908,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **Example**
 
@@ -957,26 +918,24 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.connect();
-    connection.on('dataReceived', (data: ArrayBuffer)=> {
-        hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
-    });
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.connect();
+  connection.on('dataReceived', (data: ArrayBuffer)=> {
+      hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
+  });
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```
 ### off('dataReceived')
 
-on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
+off(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
-Unregisters the listener for the **dataReceived** event.
+Unregisters the listener for **dataReceived** events.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -987,7 +946,7 @@ Unregisters the listener for the **dataReceived** event.
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | Yes   |   Event type, which is **dataReceived**. This event is triggered when data is received.  |
-| callback | Callback&lt;[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)&gt; | Yes   | Registered callback.|
+| callback | Callback&lt;[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)&gt; | No   | Registered callback.|
 
 **Error codes**
 
@@ -996,7 +955,7 @@ For details about the error codes, see [Enhanced Connection Error Codes](errorco
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **Example**
 
@@ -1006,19 +965,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = "testDemo";
 
-linkEnhanceConnect(peerDeviceId: string) {
+try {
+  let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
-  try {
-    let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-    connection.connect();
-    connection.off('dataReceived', (data: ArrayBuffer)=> {
-        hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
-    });
-    connection.disconnect();
-  } catch (err) {
-    hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
-    (err as BusinessError).message);
-  }
+  let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
+  connection.connect();
+  connection.off('dataReceived', (data: ArrayBuffer)=> {
+      hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
+  });
+  connection.disconnect();
+} catch (err) {
+  hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+  (err as BusinessError).message);
 }
-
 ```

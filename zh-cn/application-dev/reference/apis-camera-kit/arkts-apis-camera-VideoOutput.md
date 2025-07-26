@@ -6,6 +6,12 @@
 
 录像会话中使用的输出信息，继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## start
 
 start(callback: AsyncCallback\<void\>): void

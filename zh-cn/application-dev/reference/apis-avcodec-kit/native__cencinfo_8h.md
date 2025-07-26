@@ -7,6 +7,8 @@
 
 **库：** libnative_media_avcencinfo.so
 
+**引用文件：** <multimedia/player_framework/native_cencinfo.h>
+
 **起始版本：** 12
 
 **相关模块：**[Multimedia_Drm](_multimedia___drm.md)

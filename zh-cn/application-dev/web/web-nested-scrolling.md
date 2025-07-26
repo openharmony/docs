@@ -141,15 +141,15 @@ struct NestedScroll {
 	
 	(1) 获取Web组件自身高度、内容高度和当前滚动偏移量来判定。
 	
-	(2) 判断Web组件是否滚动到顶部：webController.getScrollOffset() == 0;
+	(2) 判断Web组件是否滚动到顶部：webController.getPageOffset().y == 0;
 	
-	(3) 判断Web组件是否滚动到底部：webController.getScrollOffset().y + this.webHeight >= webController.getPageHeight();
+	(3) 判断Web组件是否滚动到底部：webController.getPageOffset().y + this.webHeight >= webController.getPageHeight();
 	
 	(4) 获取Web组件自身高度：webController.[getPageHeight()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getpageheight);
 	
 	(5) 获取Web组件窗口高度：webController?.[runJavaScriptExt](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascriptext10)('window. innerHeight');
 	
-	(6) 获取Web组件的滚动偏移量：webController.[getScrollOffset()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getscrolloffset13);
+	(6) 获取Web组件的滚动偏移量：webController.[getPageOffset()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getpageoffset20);
 5. 如何让Scroll组件不滚动。
 	
 	Scroll组件绑定[onScrollFrameBegin](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#onscrollframebegin9)事件，将剩余滚动偏移量返回0，scroll组件就不滚动，也不会停止惯性滚动动画。
@@ -161,6 +161,11 @@ struct NestedScroll {
     ```ts
 	  this.webController.scrollBy(0, offset)
     ```
+8. 设置Web组件[bypassVsyncCondition](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bypassvsynccondition20)为WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET，加快Web组件首帧滚动绘制。
+    ```ts
+	  .bypassVsyncCondition(WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET)
+    ```
+
 **完整代码**
 ```ts
 // xxx.ets
@@ -200,7 +205,7 @@ struct Index {
 
   getWebScrollTop() {
   	this.isWebAtEnd = false;
-  	if (this.webController.getScrollOffset().y + this.webHeight >= this.webController.getPageHeight()) {
+  	if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
   	  this.isWebAtEnd = true;
   	}
   }
@@ -212,6 +217,7 @@ struct Index {
           src: $rawfile("index.html"),
           controller: this.webController,
         }).height("100%")
+          .bypassVsyncCondition(WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET)
           .onPageEnd(() => {
             this.webController.setScrollable(false, webview.ScrollType.EVENT);
             this.getWebHeight();

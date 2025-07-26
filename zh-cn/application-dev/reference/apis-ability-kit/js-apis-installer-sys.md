@@ -1793,10 +1793,10 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-| 名称     | 类型   | 必填 | 说明             |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | 是 | 应用程序模块名称。 |
-| hashValue  | string | 是 | 哈希值。           |
+| 名称     | 类型   | 只读 | 可选 | 说明             |
+| ---------- | ------ | ---------------- |------- | ---------------- |
+| moduleName | string | 否 | 否 | 应用程序模块名称。 |
+| hashValue  | string | 否 | 否 | 哈希值。           |
 
 ## InstallParam
 
@@ -1806,19 +1806,19 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-| 名称                        | 类型                           | 必填                         | 说明               |
-| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 否                        | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0，可使用[queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取当前进程所在用户。当安装、卸载或恢复一个驱动应用时，该参数会被忽略，会在所有用户下执行。 |
-| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0x00：应用初次安装，0x01：应用覆盖安装，0x10：应用免安装，默认值为应用初次安装。 |
-| isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录，默认值为false。true表示卸载时保留数据目录，false表示卸载时不保留数据目录。 |
-| hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
-| crowdtestDeadline| number                         | 否                        | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
-| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
-| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的[分发类型](../../security/app-provision-structure.md)，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
-| additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
-| verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
-| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
-| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，Parameters类型的数组，默认值为空。Parameters.key取值支持：</br> - "ohos.bms.param.renameInstall"：若对应value值为“true”，表示安装时使用共享目录将安装包从应用沙箱移动到安装目录，否则使用常规目录将安装包从应用沙箱拷贝到安装目录。</br> - "ohos.bms.param.enterpriseForAllUser"：若对应value值为“true”，表示在安装企业应用时为所有用户安装。</br> - "ohos.bms.param.verifyUninstallRule"：若对应value值为“true”，表示设置卸载处置规则，用于拦截应用卸载。</br> - "ohos.bms.param.enterpriseManifest"：value值为json文件的沙箱路径，json文件用于存储应用的描述文件，包括应用包名等，该字段用于企业应用克隆场景。克隆时，若该json文件存在，则将旧机的应用安装包拷贝到新机进行安装。|
+| 名称                        | 类型                           |  只读  |  可选  | 说明               |
+| ------------------------------ | ------------------------------ | ------------------| ------------------ | ------------------ |
+| userId                         | number                         | 否                       | 是  | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0，可使用[queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取当前进程所在用户。当安装、卸载或恢复一个驱动应用时，该参数会被忽略，会在所有用户下执行。 |
+| installFlag                    | number                         | 否                       | 是 | 指示安装标志，枚举值：0x00：应用初次安装，0x01：应用覆盖安装，0x10：应用免安装，默认值为应用初次安装。 |
+| isKeepData                     | boolean                        | 否                       | 是| 卸载时是否保留数据目录，默认值为false。true表示卸载时保留数据目录，false表示卸载时不保留数据目录。 |
+| hashParams        | Array<[HashParam](#hashparam)> | 否 | 是| 哈希值参数，默认值为空。         |
+| crowdtestDeadline| number                         | 否                       | 是 | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
+| sharedBundleDirPaths<sup>10+</sup> | Array\<string> | 否 | 是|共享包文件所在路径，默认值为空。 |
+| specifiedDistributionType<sup>10+</sup> | string | 否 | 是|应用安装时指定的[分发类型](../../security/app-provision-structure.md)，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
+| additionalInfo<sup>10+</sup> | string | 否 | 是|应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
+| verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 是| 代码签名文件参数，默认值为空。         |
+| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | 是| PGO配置文件参数，默认值为空。         |
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 是| 扩展参数，Parameters类型的数组，默认值为空。Parameters.key取值支持：</br> - "ohos.bms.param.renameInstall"：若对应value值为“true”，表示安装时使用共享目录将安装包从应用沙箱移动到安装目录，否则使用常规目录将安装包从应用沙箱拷贝到安装目录。</br> - "ohos.bms.param.enterpriseForAllUser"：若对应value值为“true”，表示在安装企业应用时为所有用户安装。</br> - "ohos.bms.param.verifyUninstallRule"：若对应value值为“true”，表示设置卸载处置规则，用于拦截应用卸载。</br> - "ohos.bms.param.enterpriseManifest"：value值为json文件的沙箱路径，json文件用于存储应用的描述文件，包括应用包名等，该字段用于企业应用克隆场景。克隆时，若该json文件存在，则将旧机的应用安装包拷贝到新机进行安装。|
 ## UninstallParam<sup>10+</sup>
 
 共享包卸载需指定的参数信息。
@@ -1827,10 +1827,10 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-| 名称        | 类型   | 必填 | 说明                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string | 是   | 共享包包名。                                                 |
-| versionCode | number | 否   | 指示共享包的版本号。默认值：如果不填写versionCode，则卸载该包名的所有共享包。 |
+| 名称        | 类型    |  只读  |  可选  | 说明                                                         |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| bundleName  | string | 否 | 否  | 共享包包名。                                                 |
+| versionCode | number | 否 | 是  | 指示共享包的版本号。默认值：如果不填写versionCode，则卸载该包名的所有共享包。 |
 
 ## VerifyCodeParam<sup>deprecated<sup>
 
@@ -1842,10 +1842,10 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-| 名称     | 类型   | 必填 | 说明             |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | 是 | 应用程序模块名称。 |
-| signatureFilePath  | string | 是 | 代码签名文件路径。           |
+| 名称     | 类型   |  只读  |  可选  | 说明             |
+| ---------- | ------ |------ | ---------------- | ---------------- |
+| moduleName | string |  否 | 否 | 应用程序模块名称。 |
+| signatureFilePath  | string |  否 | 否 | 代码签名文件路径。           |
 
 ## PGOParam<sup>11+</sup>
 
@@ -1855,10 +1855,10 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 **系统接口：** 此接口为系统接口。
 
-| 名称     | 类型   | 必填 | 说明             |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | 是 | 应用程序模块名称。 |
-| pgoFilePath  | string | 是 | PGO配置文件路径。           |
+| 名称     | 类型   | 只读  |  可选   | 说明             |
+| ---------- | ------ | ------ | ---------------- | ---------------- |
+| moduleName | string |  否 | 否 | 应用程序模块名称。 |
+| pgoFilePath  | string |  否 | 否 | PGO配置文件路径。           |
 
 ## Parameters<sup>15+</sup>
 
@@ -1868,10 +1868,10 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 **系统接口：** 此接口为系统接口。
 
-| 名称     | 类型   | 必填 | 说明             |
-| ---------- | ------ | ---------------- | ---------------- |
-| key | string | 是 | 扩展参数键。 |
-| value  | string | 是 | 扩展参数值。  |
+| 名称     | 类型   | 只读  |  可选  | 说明             |
+| ---------- | ------ |------ | ---------------- | ---------------- |
+| key | string | 否 | 否 | 扩展参数键。 |
+| value  | string | 否 | 否 | 扩展参数值。  |
 
 ## CreateAppCloneParam<sup>12+</sup>
 
@@ -1881,10 +1881,10 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 **系统接口：** 此接口为系统接口。
 
-| 名称        | 类型   | 必填 | 说明                                                          |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定创建分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
-| appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
+| 名称        | 类型   | 只读  |  可选 | 说明                                                          |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| userId      | number | 否 | 是  | 指定创建分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
+| appIndex    | number |  否 | 是   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
 
 ## DestroyAppCloneParam<sup>15+</sup>
 
@@ -1894,10 +1894,10 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 **系统接口：** 此接口为系统接口。
 
-| 名称        | 类型   | 必填 | 说明                                                          |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定删除分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
-| parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |
+| 名称        | 类型   | 只读  |  可选 | 说明                                                          |
+| ----------- | ------ | ----| ---- | ------------------------------------------------------------ |
+| userId      | number | 否 | 是  | 指定删除分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
+| parameters  | Array<[Parameters](#parameters15)> | 否 | 是   | 指定删除分身应用扩展参数，默认值为空。            |
 
 ## PluginParam<sup>19+</sup>
 
@@ -1907,7 +1907,7 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 **系统接口：** 此接口为系统接口。
 
-| 名称        | 类型   | 必填 | 说明                                                          |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定安装、卸载插件程序所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
-| parameters  | Array<[Parameters](#parameters15)> | 否   | 指定安装、卸载插件程序的扩展参数，默认值为空。            |
+| 名称        | 类型   | 只读  |  可选 | 说明                                                          |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| userId      | number | 否 | 是   | 指定安装、卸载插件程序所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
+| parameters  | Array<[Parameters](#parameters15)> | 否 | 是   | 指定安装、卸载插件程序的扩展参数，默认值为空。            |

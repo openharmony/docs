@@ -45,7 +45,7 @@ OH_Drawing_Filter* OH_Drawing_FilterCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* | 返回创建的滤波器对象的指针。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* | 返回创建的滤波器对象的指针。 |
 
 ### OH_Drawing_FilterSetImageFilter()
 
@@ -66,8 +66,8 @@ void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_Image
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-oh-drawing-filter.md)的指针。 |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* imageFilter | 指示指向图像滤波器[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)对象的指针，为NULL表示清空滤波器对象中的图像滤波器效果。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)的指针。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* imageFilter | 指示指向图像滤波器[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)对象的指针，为NULL表示清空滤波器对象中的图像滤波器效果。 |
 
 ### OH_Drawing_FilterSetMaskFilter()
 
@@ -88,8 +88,8 @@ void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-oh-drawing-filter.md)的指针。 |
-| [OH_Drawing_MaskFilter](capi-oh-drawing-maskfilter.md)* maskFilter | 指示指向蒙版滤波器对象[OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)的指针，为NULL表示清空滤波器对象中的蒙版滤波器效果。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)的指针。 |
+| [OH_Drawing_MaskFilter](capi-drawing-oh-drawing-maskfilter.md)* maskFilter | 指示指向蒙版滤波器对象[OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)的指针，为NULL表示清空滤波器对象中的蒙版滤波器效果。 |
 
 ### OH_Drawing_FilterSetColorFilter()
 
@@ -110,8 +110,8 @@ void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_Color
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-oh-drawing-filter.md)的指针。 |
-| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* colorFilter | 指示指向颜色滤波器对象[OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)的指针，为NULL表示清空滤波器对象中的颜色滤波器效果。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)的指针。 |
+| [OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)* colorFilter | 指示指向颜色滤波器对象[OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)的指针，为NULL表示清空滤波器对象中的颜色滤波器效果。 |
 
 ### OH_Drawing_FilterGetColorFilter()
 
@@ -132,8 +132,8 @@ void OH_Drawing_FilterGetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_Color
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-oh-drawing-filter.md)的指针。 |
-| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* colorFilter | 指示指向颜色滤波器对象[OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)的指针。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)的指针。 |
+| [OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)* colorFilter | 指示指向颜色滤波器对象[OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)的指针。 |
 
 ### OH_Drawing_FilterDestroy()
 
@@ -154,6 +154,6 @@ void OH_Drawing_FilterDestroy(OH_Drawing_Filter* filter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-oh-drawing-filter.md)的指针。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)* filter | 指示指向滤波器对象[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)的指针。 |
 
 

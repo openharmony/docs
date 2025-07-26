@@ -3,7 +3,7 @@
 
 ## When to Use
 
-The distributed application data sync allows the data of an application to be synced with other devices that are connected to form a Virtual Device. This feature enables seamless sync, modification, and query of use application data across trusted devices.
+The distributed application data sync allows the data of an application to be synced with other devices that are connected to form a Virtual Device. This feature enables seamless sync, modification, and query of user application data across trusted devices.
 
 For example, when data is added, deleted, or modified for an application on a device, the same application on another device can obtain the updated data. You can use this feature in the distributed Gallery, Notepad, Contacts, and File Manager. 
 

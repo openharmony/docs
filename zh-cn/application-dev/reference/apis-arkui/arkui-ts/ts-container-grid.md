@@ -5,11 +5,14 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
 
 
 ## 子组件
 
-仅支持[GridItem](ts-container-griditem.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
+仅支持[GridItem](ts-container-griditem.md)子组件和自定义组件。自定义组件在Grid下使用时，建议使用GridItem作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 >  **说明：**
 >
@@ -56,12 +59,12 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明                    |
-| ----- | ------- | ---- | --------------------- |
-| regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称    | 类型      | 只读   | 可选 | 说明                    |
+| ----- | ------- | ---- | --  | --------------------- |
+| regularSize  | [number, number]  | 否    | 否 | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| irregularIndexes | number[] | 否    | 是 | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 是 | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 是 | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -398,6 +401,8 @@ supportAnimation(value: boolean)
 
 设置是否支持动画。当前支持GridItem拖拽动画。仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。<br/>仅在大小规则的Grid中支持拖拽动画，跨行或跨列场景不支持。
 
+supportAnimation动画效果参考[示例5（Grid拖拽场景）](#示例5grid拖拽场景)，其他动画效果需要应用自定义拖拽实现。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -441,11 +446,15 @@ enableScrollInteraction(value: boolean)
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
+
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
 
-设置嵌套滚动选项。设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
+设置嵌套滚动选项。设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。当组件内容大小小于组件自身，且[edgeEffect](#edgeeffect10)的options为{ alwaysEnabled: false }时，组件自身滑动手势不会触发，嵌套滚动属性不会生效，如果其父滚动组件有滑动手势，则会触发父组件的滑动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -504,6 +513,22 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
+### syncLoad<sup>20+</sup>
+
+syncLoad(enable: boolean)
+
+设置是否同步加载Grid区域内所有子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，异步加载仅在首次显示等非滑动场景生效。 |
 
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
@@ -571,6 +596,8 @@ onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \
 手指长按GridItem时触发该事件。
 
 由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽。如有长按和拖拽同时使用的需求可以使用通用拖拽事件。
+
+拖拽浮起的网格元素可在应用窗口内移动，若需限制移动范围，可通过自定义手势实现，具体参考[示例16（实现GridItem自定义拖拽）](#示例16实现griditem自定义拖拽)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -696,7 +723,7 @@ Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Gri
 
 onReachEnd(event: () => void)
 
-网格到达末尾位置时触发。
+网格到达末尾位置时触发。不满一屏并且最后一个子组件末端在Grid内时触发。
 
 Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
@@ -708,7 +735,19 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
 
-网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
+
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. Grid惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -864,8 +903,8 @@ Grid组件可见区域item变化事件的回调类型。
 @Entry
 @Component
 struct GridExample {
-  @State numbers1: String[] = ['0', '1', '2', '3', '4'];
-  @State numbers2: String[] = ['0', '1', '2', '3', '4', '5'];
+  @State numbers1: string[] = ['0', '1', '2', '3', '4'];
+  @State numbers2: string[] = ['0', '1', '2', '3', '4', '5'];
   layoutOptions3: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
@@ -918,10 +957,10 @@ struct GridExample {
               .fontSize(16)
               .backgroundColor(0xF9CF93)
               .width('100%')
-              .height("100%")
+              .height('100%')
               .textAlign(TextAlign.Center)
           }
-          .height("100%")
+          .height('100%')
           .width('100%')
         }, (day: string) => day)
       }
@@ -1257,9 +1296,9 @@ struct GridExample {
 
             ListItem() {
               Grid(this.gridScroller) {
-                LazyForEach(this.numbers, (item: number) => {
+                LazyForEach(this.numbers, (item: string) => {
                   GridItem() {
-                    Text(item + '')
+                    Text(item)
                       .fontSize(16)
                       .backgroundColor(0xF9CF93)
                       .width('100%')
@@ -1358,6 +1397,7 @@ struct GridExample {
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
 2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
 3.  在[onItemDrop](#onitemdrop8)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#onitemdrop8)中完成交换数组位置逻辑。
+4.  设置属性`supportAnimation(true)`支持动画。
 
 > **说明：** 
 >
@@ -1418,6 +1458,7 @@ struct GridExample {
       .backgroundColor(0xFAEEE0)
       .height(300)
       .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
+      .supportAnimation(true) // 设置支持动画
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
         this.text = this.numbers.getData(itemIndex);
         return this.pixelMapBuilder(); //设置拖拽过程中显示的图片。
@@ -1427,7 +1468,7 @@ struct GridExample {
         if (!isSuccess || insertIndex >= this.numbers.totalCount()) {
           return;
         }
-        console.info('beixiang' + itemIndex + '', insertIndex + ''); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        console.info('itemIndex:' + itemIndex + ', insertIndex:' + insertIndex); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
         this.changeIndex(itemIndex, insertIndex);
       })
     }.width('100%').margin({ top: 5 })
@@ -1448,6 +1489,10 @@ struct GridExample {
 网格子组件1与子组件6拖拽交换位置后：
 
 ![gridDrag](figures/gridDrag2.png)
+
+拖拽动画：
+
+![gridDragAnimation](figures/gridDragAnimation.gif)
 
 ### 示例6（自适应Grid）
 
@@ -1927,7 +1972,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100)
+    this.rootNode.commonAttribute.width(100);
     return this.rootNode;
   }
 
@@ -2006,3 +2051,625 @@ struct Index {
   }
 }
 ```
+### 示例14（滚动到指定位置）
+
+该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
+
+<!--code_no_check-->
+```ts
+import { GridDataSource } from './GridDataSource';
+@Entry
+@Component
+struct GridScrollToIndexSample {
+  numbers: GridDataSource = new GridDataSource([]);
+  scroller: Scroller = new Scroller();
+  aboutToAppear(): void {
+    let list: string[] = [];
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        list.push((i * 5 + j  + 1).toString());
+      }
+    }
+    this.numbers =  new GridDataSource(list);
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Button('scrollToIndex')
+        .onClick(() => { // 滚动到对应的位置
+          this.scroller.scrollToIndex(25, true, ScrollAlign.START);
+        })
+      Grid(this.scroller) {
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .friction(0.6)
+      .enableScrollInteraction(true)
+      .supportAnimation(false)
+      .multiSelectable(false)
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Grey)
+      .scrollBarWidth(4)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![grid_scrollToIndex](figures/gridScrollToIndex.gif)
+
+
+### 示例15（实现Grid滑动选择）
+
+该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
+
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { GridDataSource } from './GridDataSource';
+import { display, curves } from '@kit.ArkUI';
+
+enum SlideActionType {
+  START,
+  UPDATE,
+  END
+}
+// 热区
+const HOT_AREA_LENGTH =
+  Math.round(display.getDefaultDisplaySync().densityDPI * 10 / 25.4 / display.getDefaultDisplaySync().densityPixels);
+// 滚动速度: 贝塞尔曲线
+const SLIDE_SELECT_SPEED_CURVE = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
+// 滚动速度: 最大速度
+const AUTO_SPEED_MAX: number = Math.round(2400 / display.getDefaultDisplaySync().densityPixels);
+@Entry
+@Component
+struct GridExample {
+  numbers: GridDataSource = new GridDataSource([]);
+  scroller: Scroller = new Scroller();
+  @State selectedIndexes: string[] = []
+  // 滑动多选时，当前变更选中状态的item
+  @State updateIndex: number = -1;
+  @State lastUpdateIndex: number = -1;
+  @State updateTimer: number = new Date().valueOf();
+  // 是否可进行滑动多选
+  @State canSlideSelect: boolean = false;
+  @State isAutoScroll: boolean = false;
+  // 停止手势
+  @State stopGesture: boolean = false;
+  private scrollStartIndex: number = 0;
+  private scrollEndIndex: number = 0;
+  // 滑动的初始点位
+  @State startIndex: number = -1;
+  @State endIndex: number = -1;
+  // 滚动部位显示区域的高度
+  @State contentHeight: number = 0;
+  @State areaY: number = 0;
+  // 列表宽度
+  @State listWidth: number = 0;
+  @State oldCheckList: boolean[] = [];
+  // 滑动过程中是否将经过的点设为选中状态
+  @State setChecked: boolean = false;
+  aboutToAppear() {
+    let list: string[] = [];
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 20; j++) {
+        list.push((20 * i + j + 1).toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
+  }
+  /**
+   * 获取当前点位
+   * @param finger
+   * @returns
+   */
+  getIndex(finger: FingerInfo): number {
+    // 初始化数据
+    let index = -1;
+    try {
+      index = this.scroller.getItemIndex(finger.localX, finger.localY);
+      if (index === -1) {
+        for (let i = this.scrollStartIndex; i <= this.scrollEndIndex; i++) {
+          const item = this.scroller.getItemRect(i);
+          if (finger.localY < item.y ||
+            finger.localY >= item.y && finger.localY <= item.y + item.height && finger.localX < item.x) {
+            break;
+          }
+          index = i;
+        }
+      }
+    } catch {
+      this.stopGesture = true;
+      return index;
+    }
+    return index;
+  }
+  slideActionStart(index: number): void {
+    if (index < 0) {
+      return;
+    }
+    console.debug('start index: ' + index.toString());
+    const targetIndex = index + 1;
+    this.setChecked = !this.selectedIndexes.includes(targetIndex.toString());
+    this.startIndex = index;
+    this.selectedIndexes.push(targetIndex.toString());
+    this.updateIndex = index;
+
+  }
+  slideActionUpdate(index: number): void {
+    if (!this.canSlideSelect) {
+      return;
+    }
+    if (this.startIndex === -1) {
+      //（初始接触点在空隙）时，重新配置滑动的初始数据
+      this.slideActionStart(index);
+      return;
+    }
+    if (index === -1) {
+      return;
+    }
+
+    this.lastUpdateIndex = this.updateIndex;
+    this.setItemChecked(index);
+    this.updateIndex = index;
+  }
+  setItemChecked(index: number):void {
+    const start = Math.min(this.startIndex, index);
+    const end = Math.max(this.startIndex, index);
+    for (let i = start; i < end+1;i++) {
+      const item = (i+1).toString()
+      if (this.setChecked) {
+        this.selectedIndexes.push(item)
+      } else {
+        if (this.selectedIndexes.includes(item)) {
+          this.selectedIndexes = this.selectedIndexes.filter(selectIndex => selectIndex != item)
+        }
+      }
+
+    }
+  }
+  /**
+   * 滑动结束
+   */
+  slideActionEnd(): void {
+    this.startIndex = -1;
+    this.updateIndex = -1;
+    this.scroller.scrollBy(0, 0);
+    this.isAutoScroll = false;
+  }
+  /**
+   * 自动滚动--
+   * @param finger
+   */
+  autoScroll(finger: FingerInfo): void {
+    // 不可多选
+    if (!this.canSlideSelect) {
+      return;
+    }
+    let pointY = finger.globalY - this.areaY;
+    if (pointY <= HOT_AREA_LENGTH) {
+      if (this.isAutoScroll && pointY <= 0) {
+        return;
+      }
+      const speedFlag = pointY > 0 ? SLIDE_SELECT_SPEED_CURVE
+        .interpolate(1 - pointY / HOT_AREA_LENGTH) : 1;
+      this.scroller.scrollEdge(Edge.Top, {
+        velocity: speedFlag * AUTO_SPEED_MAX
+      })
+      this.isAutoScroll = true;
+    } else if (pointY > this.contentHeight - HOT_AREA_LENGTH) {
+      if (this.isAutoScroll && pointY >= this.contentHeight) {
+        return;
+      }
+      const speedFlag = pointY < this.contentHeight ? SLIDE_SELECT_SPEED_CURVE
+        .interpolate(1 - (this.contentHeight - pointY) / HOT_AREA_LENGTH) : 1;
+      this.scroller.scrollEdge(Edge.Bottom, {
+        velocity: speedFlag * AUTO_SPEED_MAX
+      })
+      this.isAutoScroll = true;
+    } else {
+      if (this.isAutoScroll) {
+        this.scroller.scrollBy(0, 0);
+        this.isAutoScroll = false;
+      }
+    }
+  }
+
+  panGestureAction(type: SlideActionType, event: GestureEvent | undefined): void {
+    if (this.stopGesture || !event) {
+      return;
+    }
+    const finger = event!.fingerList[0];
+    const index = this.getIndex(finger);
+    switch (type) {
+      case SlideActionType.START: {
+        this.slideActionStart(index);
+        break;
+      }
+      case SlideActionType.UPDATE: {
+        this.slideActionUpdate(index);
+        this.autoScroll(finger);
+        break;
+      }
+      case SlideActionType.END: {
+        this.slideActionEnd();
+        break;
+      }
+      default: {
+      }
+    }
+  }
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Stack() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+              if (this.canSlideSelect) {
+                Image(this.selectedIndexes.includes(day) ? $r('app.media.gouxuan') :$r('app.media.weigouxuan'))
+                  .width(30)
+                  .height(30)
+                  .position({right:5,top:5})
+                  .draggable(false)
+              }
+
+            }
+          }
+        }, (index: number) => index.toString())
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .friction(0.6)
+      .enableScrollInteraction(true)
+      .supportAnimation(false)
+      .multiSelectable(false)
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Grey)
+      .scrollBarWidth(4)
+      .width('90%')
+      .height('85%')
+      .draggable(!this.canSlideSelect)
+      .backgroundColor(0xFAEEE0)
+      .onAreaChange((oldVal, newVal) => {
+        this.listWidth = newVal.width as number;
+        this.areaY = newVal.globalPosition.y as number;
+        this.contentHeight = newVal.height as number;
+      })
+      .onScrollIndex((start, end) => {
+        this.scrollStartIndex = start;
+        this.scrollEndIndex = end;
+      })
+      .gesture(
+        // 手势滑动
+        PanGesture({ direction: PanDirection.Vertical })
+          .onActionStart((event: GestureEvent | undefined) => {
+            this.panGestureAction(SlideActionType.START, event);
+          })
+          .onActionUpdate((event: GestureEvent | undefined) => {
+            this.panGestureAction(SlideActionType.UPDATE, event);
+          })
+          .onActionEnd((event?: GestureEvent) => {
+            this.panGestureAction(SlideActionType.END, event);
+          }),
+        GestureMask.Normal
+      )
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        recognizers: Array<GestureRecognizer>) => {
+        if (this.canSlideSelect && current.isBuiltIn() &&
+          current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+          return GestureJudgeResult.REJECT;
+        }
+        return GestureJudgeResult.CONTINUE;
+      })
+      Row() {
+        Button('开始编辑').onClick(()=>{
+          this.selectedIndexes = []
+          this.canSlideSelect = true
+        })
+        Button('结束编辑').onClick(()=>{
+          this.canSlideSelect = false
+          this.selectedIndexes = []
+        })
+      }
+      .margin({
+        bottom: 30
+      })
+      Text(`${this.selectedIndexes.join(',')}`)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![gridScrollWithPanGesture](figures/gridScrollWithPanGesture.gif)
+
+### 示例16（实现GridItem自定义拖拽）
+
+该示例通过gesture接口，实现了GridItem组件自定义拖拽效果。
+
+```ts
+import curves from '@ohos.curves'
+
+@Entry
+@Component
+struct GridItemExample {
+  @State numbers: number[] = []
+  @State dragItem: number = -1
+  @State scaleItem: number = -1
+  @State item: number = -1
+  private dragRefOffsetx: number = 0
+  private dragRefOffsety: number = 0
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  private FIX_VP_X: number = 108
+  private FIX_VP_Y: number = 120
+
+  aboutToAppear() {
+    for (let i = 1; i <= 11; i++) {
+      this.numbers.push(i)
+    }
+  }
+
+  itemMove(index: number, newIndex: number): void {
+    console.info('index:' + index + ' newIndex:' + newIndex)
+    if (!this.isDraggable(newIndex)) {
+      return
+    }
+    let tmp = this.numbers.splice(index, 1)
+    this.numbers.splice(newIndex, 0, tmp[0])
+  }
+
+  //向下滑
+  down(index: number): void {
+    // 指定固定GridItem不响应事件
+    if (!this.isDraggable(index + 3)) {
+      return
+    }
+    this.offsetY -= this.FIX_VP_Y
+    this.dragRefOffsety += this.FIX_VP_Y
+    this.itemMove(index, index + 3)
+  }
+
+  //向下滑(右下角为空)
+  down2(index: number): void {
+    if (!this.isDraggable(index + 3)) {
+      return
+    }
+    this.offsetY -= this.FIX_VP_Y
+    this.dragRefOffsety += this.FIX_VP_Y
+    this.itemMove(index, index + 3)
+  }
+
+  //向上滑
+  up(index: number): void {
+    if (!this.isDraggable(index - 3)) {
+      return
+    }
+    this.offsetY += this.FIX_VP_Y
+    this.dragRefOffsety -= this.FIX_VP_Y
+    this.itemMove(index, index - 3)
+  }
+
+  //向左滑
+  left(index: number): void {
+    if (!this.isDraggable(index - 1)) {
+      return
+    }
+    this.offsetX += this.FIX_VP_X
+    this.dragRefOffsetx -= this.FIX_VP_X
+    this.itemMove(index, index - 1)
+  }
+
+  //向右滑
+  right(index: number): void {
+    if (!this.isDraggable(index + 1)) {
+      return
+    }
+    this.offsetX -= this.FIX_VP_X
+    this.dragRefOffsetx += this.FIX_VP_X
+    this.itemMove(index, index + 1)
+  }
+
+  //向右下滑
+  lowerRight(index: number): void {
+    if (!this.isDraggable(index + 4)) {
+      return
+    }
+    this.offsetX -= this.FIX_VP_X
+    this.dragRefOffsetx += this.FIX_VP_X
+    this.offsetY -= this.FIX_VP_Y
+    this.dragRefOffsety += this.FIX_VP_Y
+    this.itemMove(index, index + 4)
+  }
+
+  //向右上滑
+  upperRight(index: number): void {
+    if (!this.isDraggable(index - 2)) {
+      return
+    }
+    this.offsetX -= this.FIX_VP_X
+    this.dragRefOffsetx += this.FIX_VP_X
+    this.offsetY += this.FIX_VP_Y
+    this.dragRefOffsety -= this.FIX_VP_Y
+    this.itemMove(index, index - 2)
+  }
+
+  //向左下滑
+  lowerLeft(index: number): void {
+    if (!this.isDraggable(index + 2)) {
+      return
+    }
+    this.offsetX += this.FIX_VP_X
+    this.dragRefOffsetx -= this.FIX_VP_X
+    this.offsetY -= this.FIX_VP_Y
+    this.dragRefOffsety += this.FIX_VP_Y
+    this.itemMove(index, index + 2)
+  }
+
+  //向左上滑
+  upperLeft(index: number): void {
+    if (!this.isDraggable(index - 4)) {
+      return
+    }
+    this.offsetX += this.FIX_VP_X
+    this.dragRefOffsetx -= this.FIX_VP_X
+    this.offsetY += this.FIX_VP_Y
+    this.dragRefOffsety -= this.FIX_VP_Y
+    this.itemMove(index, index - 4)
+  }
+
+  isDraggable(index: number): boolean {
+    console.info('index:' + index)
+    return index > 1
+  }
+
+  build() {
+    Column() {
+      Grid() {
+        ForEach(this.numbers, (item: number) => {
+          GridItem() {
+            Text(item + '')
+              .fontSize(16)
+              .width('100%')
+              .textAlign(TextAlign.Center)
+              .height(100)
+              .borderRadius(10)
+              .backgroundColor(0xF9CF93)
+              .shadow(this.scaleItem == item ? {
+                radius: 70,
+                color: '#15000000',
+                offsetX: 0,
+                offsetY: 0
+              } :
+                {
+                  radius: 0,
+                  color: '#15000000',
+                  offsetX: 0,
+                  offsetY: 0
+                })
+              .animation({ curve: Curve.Sharp, duration: 300 })
+          }
+          // 指定固定GridItem不响应事件
+          .hitTestBehavior(this.isDraggable(this.numbers.indexOf(item)) ? HitTestMode.Default : HitTestMode.None)
+          .scale({ x: this.scaleItem == item ? 1.05 : 1, y: this.scaleItem == item ? 1.05 : 1 })
+          .zIndex(this.dragItem == item ? 1 : 0)
+          .translate(this.dragItem == item ? { x: this.offsetX, y: this.offsetY } : { x: 0, y: 0 })
+          .padding(10)
+          .gesture(
+            // 以下组合手势为顺序识别，当长按手势事件未正常触发时则不会触发拖动手势事件
+            GestureGroup(GestureMode.Sequence,
+              LongPressGesture({ repeat: true })
+                .onAction((event?: GestureEvent) => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                    this.scaleItem = item
+                  })
+                })
+                .onActionEnd(() => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                    this.scaleItem = -1
+                  })
+                }),
+              PanGesture({ fingers: 1, direction: null, distance: 0 })
+                .onActionStart(() => {
+                  this.dragItem = item
+                  this.dragRefOffsetx = 0
+                  this.dragRefOffsety = 0
+                })
+                .onActionUpdate((event: GestureEvent) => {
+                  this.offsetY = event.offsetY - this.dragRefOffsety
+                  this.offsetX = event.offsetX - this.dragRefOffsetx
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                    let index = this.numbers.indexOf(this.dragItem)
+                    if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
+                      ![8, 9, 10].includes(index)) {
+                      //向下滑
+                      this.down(index)
+                    } else if (this.offsetY <= -this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
+                      ![0, 1, 2].includes(index)) {
+                      //向上滑
+                      this.up(index)
+                    } else if (this.offsetX >= this.FIX_VP_X / 2 && (this.offsetY <= 50 && this.offsetY >= -50) &&
+                      ![2, 5, 8, 10].includes(index)) {
+                      //向右滑
+                      this.right(index)
+                    } else if (this.offsetX <= -this.FIX_VP_X / 2 && (this.offsetY <= 50 && this.offsetY >= -50) &&
+                      ![0, 3, 6, 9].includes(index)) {
+                      //向左滑
+                      this.left(index)
+                    } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
+                      ![2, 5, 7, 8, 9, 10].includes(index)) {
+                      //向右下滑
+                      this.lowerRight(index)
+                    } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY <= -this.FIX_VP_Y / 2 &&
+                      ![0, 1, 2, 5, 8].includes(index)) {
+                      //向右上滑
+                      this.upperRight(index)
+                    } else if (this.offsetX <= -this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
+                      ![0, 3, 6, 9, 10].includes(index)) {
+                      //向左下滑
+                      this.lowerLeft(index)
+                    } else if (this.offsetX <= -this.FIX_VP_X / 2 && this.offsetY <= -this.FIX_VP_Y / 2 &&
+                      ![0, 1, 2, 3, 6, 9].includes(index)) {
+                      //向左上滑
+                      this.upperLeft(index)
+                    } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
+                    [7].includes(index)) {
+                      //向右下滑(右下角为空)
+                      this.down2(index)
+                    }
+                  })
+                })
+                .onActionEnd(() => {
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                    this.dragItem = -1
+                  })
+                  this.getUIContext()?.animateTo({
+                    curve: curves.interpolatingSpring(14, 1, 170, 17), delay: 150
+                  }, () => {
+                    this.scaleItem = -1
+                  })
+                })
+            )
+              .onCancel(() => {
+                this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                  this.dragItem = -1
+                })
+                this.getUIContext()?.animateTo({
+                  curve: curves.interpolatingSpring(14, 1, 170, 17)
+                }, () => {
+                  this.scaleItem = -1
+                })
+              })
+          )
+        }, (item: number) => item.toString())
+      }
+      .width('90%')
+      .editMode(true)
+      .scrollBar(BarState.Off)
+      .columnsTemplate('1fr 1fr 1fr')
+    }.width('100%').height('100%').backgroundColor('#0D182431').padding({ top: 5 })
+  }
+}
+```
+
+![gridCustomDrag](figures/gridCustomDrag.gif)

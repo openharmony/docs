@@ -32,7 +32,7 @@
 组件的生命周期回调，在可复用组件从复用缓存中加入到组件树之前调用，可在其中更新组件的状态变量以展示正确的内容，入参的类型与自定义组件的构造函数入参相同。
 
 ```ts
-aboutToReuse?(params: { [key: string]: unknown }): void;
+aboutToReuse?(params: Record<string, Object | undefined | null>): void;
 ```
 
 组件的生命周期回调，在可复用组件从组件树上被加入到复用缓存之前调用。

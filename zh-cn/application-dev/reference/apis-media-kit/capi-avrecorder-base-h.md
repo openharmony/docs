@@ -20,14 +20,14 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AVRecorder_Profile](capi-oh-avrecorder-profile.md) | OH_AVRecorder_Profile | 定义音视频录制的详细参数。 |
-| [OH_AVRecorder](capi-oh-avrecorder.md) | OH_AVRecorder | 初始化AVRecorder。 |
-| [OH_AVRecorder_Location](capi-oh-avrecorder-location.md) | OH_AVRecorder_Location | 提供媒体资源的地理位置信息。 |
-| [OH_AVRecorder_MetadataTemplate](capi-oh-avrecorder-metadatatemplate.md) | OH_AVRecorder_MetadataTemplate | 定义元数据的基本模板。 |
-| [OH_AVRecorder_Metadata](capi-oh-avrecorder-metadata.md) | OH_AVRecorder_Metadata | 元数据信息数据结构。 |
-| [OH_AVRecorder_Config](capi-oh-avrecorder-config.md) | OH_AVRecorder_Config | 提供媒体AVRecorder的配置定义。 |
-| [OH_AVRecorder_Range](capi-oh-avrecorder-range.md) | OH_AVRecorder_Range | 表示类型的范围。 |
-| [OH_AVRecorder_EncoderInfo](capi-oh-avrecorder-encoderinfo.md) | OH_AVRecorder_EncoderInfo | 提供编码器信息。 |
+| [OH_AVRecorder_Profile](capi-avrecorder-oh-avrecorder-profile.md) | OH_AVRecorder_Profile | 定义音视频录制的详细参数。 |
+| [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) | OH_AVRecorder | 初始化AVRecorder。 |
+| [OH_AVRecorder_Location](capi-avrecorder-oh-avrecorder-location.md) | OH_AVRecorder_Location | 提供媒体资源的地理位置信息。 |
+| [OH_AVRecorder_MetadataTemplate](capi-avrecorder-oh-avrecorder-metadatatemplate.md) | OH_AVRecorder_MetadataTemplate | 定义元数据的基本模板。 |
+| [OH_AVRecorder_Metadata](capi-avrecorder-oh-avrecorder-metadata.md) | OH_AVRecorder_Metadata | 元数据信息数据结构。 |
+| [OH_AVRecorder_Config](capi-avrecorder-oh-avrecorder-config.md) | OH_AVRecorder_Config | 提供媒体AVRecorder的配置定义。 |
+| [OH_AVRecorder_Range](capi-avrecorder-oh-avrecorder-range.md) | OH_AVRecorder_Range | 表示类型的范围。 |
+| [OH_AVRecorder_EncoderInfo](capi-avrecorder-oh-avrecorder-encoderinfo.md) | OH_AVRecorder_EncoderInfo | 提供编码器信息。 |
 
 ### 枚举
 
@@ -225,7 +225,7 @@ typedef void (*OH_AVRecorder_OnStateChange)(OH_AVRecorder *recorder,OH_AVRecorde
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVRecorder](capi-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
+| [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
 | [OH_AVRecorder_State](#oh_avrecorder_state) state | 表示录制器状态。 |
 | [OH_AVRecorder_StateChangeReason](#oh_avrecorder_statechangereason) reason | 录制器状态变化的原因。 |
 |  void *userData | 用户特定数据的指针。 |
@@ -249,7 +249,7 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVRecorder](capi-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
+| [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
 |  int32_t errorCode | 错误码，详细说明请参见[AVErrorCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。 |
 |  const char *errorMsg | 错误信息。 |
 | void *userData | 用户特定数据的指针。 |
@@ -273,8 +273,8 @@ typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asse
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVRecorder](capi-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
-| [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md) *asset | OH_MediaAsset实例的指针。 |
+| [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
+| [OH_MediaAsset](../apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md) *asset | OH_MediaAsset实例的指针。 |
 |  void *userData | 用户特定数据的指针。 |
 
 

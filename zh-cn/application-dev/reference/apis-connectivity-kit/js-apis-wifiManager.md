@@ -1294,8 +1294,6 @@ getLinkedInfoSync(): WifiLinkedInfo;
 > - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
 > - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -2775,7 +2773,7 @@ off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
-注册RSSI状态改变事件，在业务退出时，要调用off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
+注册WIFI接收信号强度(RSSI)变化事件，在业务退出时，要调用off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2803,7 +2801,7 @@ on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
 off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
-取消注册RSSI状态改变事件。
+取消注册WIFI接收信号强度(RSSI)变化事件。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 

@@ -118,7 +118,7 @@ if (script_run_completed) {
 
 从 OH_JSVM_TypeOf 接口获取对象类型后，再判断是否与某个类型相同。
 
-这种方法需要先查询 object 的类型，这种方法相对于直接使用 is 方法会更慢，因此我们新增了针对基础类型的 IsXXX 系列方法，用更高效的接口代替了相对低效的接口。下面的示例中中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
+这种方法需要先查询 object 的类型，这种方法相对于直接使用 is 方法会更慢，因此我们新增了针对基础类型的 IsXXX 系列方法，用更高效的接口代替了相对低效的接口。下面的示例中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
 
 - 低效用例
 
@@ -154,7 +154,7 @@ bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
 
 这种在已经有值的情况下创建一个新的 object 的操作是冗余的，直接创建对值的引用即可。
 
-下面的示例中中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
+下面的示例中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
 
 
 - 低效用例

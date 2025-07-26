@@ -155,6 +155,55 @@ try {
 }
 ```
 
+## media.getAVScreenCaptureConfigurableParameters<sup>20+</sup>
+
+getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
+
+从服务器获取用户可更改的系统隐私保护和应用隐私保护配置。使用Promise异步回调。
+
+>**注意：**
+>
+> 此接口仅提供给创建弹窗的系统应用调用。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                          |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| sessionId | number | 是   | AVScreenCapture服务会话Id，由AVScreenCapture拉起隐私弹窗时传给应用。 |
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<string> | 异步返回函数执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202      | Called from Non-System applications. Return by promise.               |
+| 5400109  | Sessions not exist. Return by promise.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+let sessionId: number = 0; // 替换成拉起此进程的sessionId。
+
+try {
+  let privacyResult: string = await media.getAVScreenCaptureConfigurableParameters(sessionId);
+} catch (error: BusinessError) {
+  console.error(`getAVScreenCaptureConfigurableParameters error, error message: ${error.message}`);
+}
+```
+
 ## media.getScreenCaptureMonitor<sup>18+</sup>
 
 getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
@@ -420,7 +469,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
+| watermark | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
 | config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
@@ -459,7 +508,7 @@ setMetadata(metadata: Record\<string, string\>): void
 
 给AVRecorder的录制文件中设置自定义meta数据。
 
-只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9-)方法之前，才能调用setMetadata方法。
+只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9)方法之前，才能调用setMetadata方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 

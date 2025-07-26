@@ -25,8 +25,8 @@
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- PC安装HDC工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc)。
+- 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
+- PC安装HDC工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互。
 - 用USB线缆将搭载OpenHarmony的设备连接到PC。
 
 ## 开发指导
@@ -71,15 +71,18 @@
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
-    let usbDevice: usbManager.USBDevice = usbDevices[0];
-    if(!usbManager.hasRight(usbDevice.name)) {
-      await usbManager.requestRight(usbDevice.name).then(result => {
-        if(!result) {
-          // 没有访问设备的权限且用户不授权则退出
-          console.error('The user does not have permission to perform this operation');
-          return;
+    // 函数名仅作为示例，实际需要与业务结合命名
+    async function transferDefault() {
+        let usbDevice: usbManager.USBDevice = usbDevices[0];
+        if(!usbManager.hasRight(usbDevice.name)) {
+          await usbManager.requestRight(usbDevice.name).then(result => {
+            if(!result) {
+              // 没有访问设备的权限且用户不授权则退出
+              console.error('The user does not have permission to perform this operation');
+              return;
+            }
+          });
         }
-      });
     }
     ```
 
@@ -91,22 +94,22 @@
    let usbInterfaces: usbManager.USBInterface[] = [];
    let usbInterface: usbManager.USBInterface | undefined = undefined
    let usbEndpoints: usbManager.USBEndpoint[] = [];
-   let usbEndprint: usbManager.USBEndpoint | undefined = undefined
+   let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
      for (let i = 0; i < usbInterfaces.length; i++) {
        usbEndpoints = usbInterfaces[i].endpoints;
-       usbEndprint = usbEndpoints.find((value) => {
+       usbEndpoint = usbEndpoints.find((value) => {
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
-       if (usbEndprint !== undefined) {
+       if (usbEndpoint !== undefined) {
          usbInterface = usbInterfaces[i];
          break;
        }
      }
    }
-   if (usbEndprint === undefined) {
-     console.error(`get usbEndprint error`)
+   if (usbEndpoint === undefined) {
+     console.error(`get usbEndpoint error`)
      return;
    }
    ```
@@ -130,7 +133,7 @@
      let transferParams: usbManager.UsbDataTransferParams = {
        devPipe: devicePipe,
        flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-       endpoint: usbEndprint.address,
+       endpoint: usbEndpoint.address,
        type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT,
        timeout: 2000,
        length: 10,

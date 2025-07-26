@@ -84,12 +84,12 @@ addColorStop(offset: number, color: ColorMetrics): void
 
 > **说明：**
 >
-> 仅[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)对象的[fillStyle](ts-canvasrenderingcontext2d.md#fillstyle)和[strokeStyle](ts-canvasrenderingcontext2d.md#strokestyle)属性支持设置P3广色域的CanvasGradient对象，且需要将Canvas组件所在窗口的色域模式通过[setWindowColorSpace](../js-apis-window.md#setwindowcolorspace9)方法设置为广色域模式WIDE_GAMUT。</br>
+> 仅[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)对象的[fillStyle](ts-canvasrenderingcontext2d.md#fillstyle)和[strokeStyle](ts-canvasrenderingcontext2d.md#strokestyle)属性支持设置P3广色域的CanvasGradient对象，且需要将Canvas组件所在窗口的色域模式通过[setWindowColorSpace](../arkts-apis-window-Window.md#setwindowcolorspace9)方法设置为广色域模式WIDE_GAMUT。</br>
 
 
 **示例：**
 
-通过addColorStop设置指定色域的渐变断点值，包括偏移和颜色。设置窗口色域模式为广色域参照方法[setWindowColorSpace](../js-apis-window.md#setwindowcolorspace9)。
+通过addColorStop设置指定色域的渐变断点值，包括偏移和颜色。设置窗口色域模式为广色域参照方法[setWindowColorSpace](../arkts-apis-window-Window.md#setwindowcolorspace9)。
   ```ts
 // xxx.ets
 import { ColorMetrics } from '@kit.ArkUI'

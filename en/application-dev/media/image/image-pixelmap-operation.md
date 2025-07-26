@@ -10,11 +10,11 @@ As shown in the figure below, the pixel data of a rectangle in an image is read,
 
 ## How to Develop
 
-Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs related to PixelMap operations.
+Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) for APIs related to PixelMap operations.
 
-1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
+1. Complete [image decoding](image-decoding.md) and obtain a PixelMap object.
 
-2. Obtain information from the **PixelMap** object.
+2. Obtain information from the PixelMap object.
 
    ```ts
    import { image } from '@kit.ImageKit';
@@ -71,14 +71,14 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
 
 ## Development Example: Cloning (Deep Copying) a PixelMap
 
-1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
+1. Complete [image decoding](image-decoding.md) and obtain a PixelMap object.
 
-2. Clone (deep copy) this **PixelMap** object to obtain a new PixelMap.
+2. Clone (deep copy) this PixelMap object to obtain a new PixelMap.
    > **NOTE**
    > 
    > When creating a PixelMap, you must set **srcPixelFormat** to the pixel format of the original PixelMap. Otherwise, the new PixelMap is abnormal.
 
-     ```ts
+      ```ts
       /**
        * Clone (deep copy) a PixelMap.
        *
@@ -104,7 +104,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
         // Generate a new PixelMap based on the initialization options and buffer array.
         return image.createPixelMapSync(buffer, options);
       }
-     ```
+      ```
 
 <!--RP1-->
 <!--RP1End-->

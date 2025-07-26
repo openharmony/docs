@@ -29,7 +29,7 @@ Declares the battery APIs that are used to obtain the current battery capacity a
 | Name| Description| 
 | -------- | -------- |
 | int32_t [OH_BatteryInfo_GetCapacity](oh__batteryinfo.md#oh_batteryinfo_getcapacity) () | Obtains the current battery capacity.| 
-| [BatteryInfo_BatteryPluggedType](oh__batteryinfo.md#batteryinfo_batterypluggedtype)[OH_BatteryInfo_GetPluggedType](oh__batteryinfo.md#oh_batteryinfo_getpluggedtype) () | Obtains the plug type.| 
+| [BatteryInfo_BatteryPluggedType](oh__batteryinfo.md#batteryinfo_batterypluggedtype) [OH_BatteryInfo_GetPluggedType](oh__batteryinfo.md#oh_batteryinfo_getpluggedtype) () | Obtains the plug type.| 
 
 
 ### Variables

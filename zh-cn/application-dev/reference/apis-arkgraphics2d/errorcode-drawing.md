@@ -4,7 +4,8 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 2590001 参数值异常
+## 25900001 参数值异常
+
 **错误信息**
 
 The parameter value is out of range.

@@ -53,14 +53,17 @@ getDeviceInfo(admin: Want, label: string): string
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 需根据实际情况进行替换
   let result: string = deviceInfo.getDeviceInfo(wantTemp, 'deviceName');
   console.info(`Succeeded in getting device name, result : ${result}`);
 } catch (err) {

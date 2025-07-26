@@ -276,6 +276,4 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
 针对IPC与RPC通信开发，端到端的完整示例，请参考：
 
-- [IPC通信完整样例-前后台通信](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/RPC)
-
 - [IPC通信完整样例-使用Parcelable/ArrayBuffer通信](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)

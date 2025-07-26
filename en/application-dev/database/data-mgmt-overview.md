@@ -17,7 +17,7 @@ The database files created by an application are saved to the application sandbo
 
 ## Working Principles
 
-The data management module includes preferences, KV data management (KV-Store), relational data management (RelatoinalStore), distributed data object (DataObject), cross-application data management (DataShare), and unified data management framework (UDMF). The interface layer provides standard JavaScript APIs for application development. The Frameworks & System service layer implements storage and sync of component data, and provides dependencies for SQLite and other subsystems.
+The data management module includes preferences, KV data management (KV-Store), relational data management (RelationalStore), distributed data object (DataObject), cross-application data management (DataShare), and unified data management framework (UDMF). The interface layer provides standard JavaScript APIs for application development. The Frameworks & System service layer implements storage and sync of component data, and provides dependencies for SQLite and other subsystems.
 
   **Figure 1** Data management architecture 
 

@@ -1,12 +1,14 @@
 #  OffscreenCanvas
 
-OffscreenCanvas组件用于自定义绘制图形。
+OffscreenCanvas组件用于绘制自定义图形。
 
 使用[Canvas](ts-components-canvas-canvas.md)组件或[Canvas API](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
 
 > **说明：** 
 >
 > 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> OffscreenCanvas无法在ServiceExtensionAbility中使用，ServiceExtensionAbility中建议使用[Drawing模块](../../apis-arkgraphics2d/arkts-apis-graphics-drawing.md)进行离屏绘制。
 
 ## 子组件
 
@@ -146,7 +148,7 @@ transferToImageBitmap(): ImageBitmap
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(400, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -154,14 +156,14 @@ struct OffscreenCanvasPage {
         .width('100%')
         .height('100%')
         .borderWidth(5)
-        .borderColor('#057D02')
+        .borderColor('rgb(39,135,217)')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#CDCDCD'
-          offContext.fillRect(0, 0, 300, 500)
+          offContext.fillRect(0, 0, 400, 600)
           offContext.fillStyle = '#000000'
-          offContext.font = '70px serif bold'
+          offContext.font = '40px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -268,6 +270,9 @@ struct OffscreenCanvasExamplePage {
 
 ```ts
 import { worker } from '@kit.ArkTS';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -275,6 +280,13 @@ struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+  private imgPixelMap: image.PixelMap | undefined = undefined
+
+  aboutToAppear(): void {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    this.imgPixelMap = resourceMgr.getDrawableDescriptor($r("app.media.startIcon").id).getPixelMap()
+  }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -287,16 +299,17 @@ struct OffscreenCanvasExamplePage {
           .backgroundColor('#FFFFFF')
           .onReady(() => {
             let offCanvas = new OffscreenCanvas(600, 800)
-            this.myWorker.postMessage({ myOffCanvas: offCanvas });
+            this.myWorker.postMessage({ myOffCanvas: offCanvas, imgPixelMap: this.imgPixelMap });
             this.myWorker.onmessage = (e): void => {
               if (e.data.myImage) {
                 let image: ImageBitmap = e.data.myImage
                 this.context.transferFromImageBitmap(image)
               }
             }
-            
           })
-      }.width('100%').height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
     .width('100%')
     .height('100%')
@@ -307,12 +320,36 @@ struct OffscreenCanvasExamplePage {
 Worker线程在onmessage中接收到主线程postMessage发送的OffscreenCanvas，并进行绘制。
 
 ```ts
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+import { image } from '@kit.ImageKit';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
 workerPort.onmessage = (e: MessageEvents) => {
   if (e.data.myOffCanvas) {
     let offCanvas: OffscreenCanvas = e.data.myOffCanvas
     let offContext = offCanvas.getContext("2d")
     offContext.fillStyle = '#CDCDCD'
     offContext.fillRect(0, 0, 200, 150)
+
+    let imgPixelMap: image.PixelMap = e.data.imgPixelMap
+    let imgBitmap: ImageBitmap = new ImageBitmap(imgPixelMap)
+    offContext.drawImage(imgBitmap, 0, 200)
+
+    let path2d = new Path2D("M250 150 L150 350 L350 350 Z")
+    offContext.stroke(path2d)
+
+    let matrix: Matrix2D = new Matrix2D()
+    matrix.scaleX = 1
+    matrix.scaleY = 1
+    matrix.rotateX = -0.5
+    matrix.rotateY = 0.5
+    matrix.translateX = 10
+    matrix.translateY = 10
+    offContext.setTransform(matrix)
+    offContext.fillStyle = "#707070"
+    offContext.fillRect(20, 20, 100, 100)
+
     let image = offCanvas.transferToImageBitmap()
     workerPort.postMessage({ myImage: image });
   }

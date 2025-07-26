@@ -25,6 +25,8 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Description|
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | Tap gesture, which can be a single-tap or multi-tap gesture.|
@@ -39,6 +41,8 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 ## GestureMask
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
@@ -56,29 +60,32 @@ The component binds gesture objects of different **GestureType** instances throu
 | onAction((event:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
 ## GestureEvent
-
 Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| repeat | boolean | Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.|
-| offsetX | number | Offset in the X coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.|
-| offsetY | number | Offset in the Y coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.|
-| angle | number | Rotation angle for the **RotationGesture** event;<br>angle of the swipe gesture for the **SwipeGesture** event, that is, the change in the included angle between the line segment created by the two fingers and the horizontal direction.<br>**NOTE**<br>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1) The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees.|
-| scale | number | Scale ratio. This attribute is used for the **PinchGesture** event.|
-| pinchCenterX | number | X coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.|
-| pinchCenterY | number | Y coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.|
-| speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | List of contact points of the gesture event. If the event input device is touchscreen, the list includes all contact points. If the event input device is mouse or touchpad, the list contains only one contact point.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
-| velocityX<sup>10+</sup> | number | Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left. The unit is vp/s.|
-| velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top. The unit is vp/s.|
-| velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. The unit is vp/s.|
+| Name| Type|   Mandatory |  Description|
+| -------- | -------- | ---- | -------- |
+| repeat | boolean | Yes| Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| offsetX | number | Yes|Offset in the X coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| offsetY | number | Yes| Offset in the Y coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| angle | number | Yes| Rotation angle for the **RotationGesture** event;<br>angle of the swipe gesture for the **SwipeGesture** event, that is, the change in the included angle between the line segment created by the two fingers and the horizontal direction.<br>**NOTE**<br>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1) The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| scale | number | Yes| Scale ratio. This attribute is used for the **PinchGesture** event.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| pinchCenterX | number | Yes| X coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| pinchCenterY | number | Yes| Y coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| speed<sup>8+</sup> | number | Yes| Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | Yes| List of touch points of the gesture event. If the event input device is touchscreen, the list includes all touch points. If the event input device is mouse or touchpad, the list contains only one touch point.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fingerInfos<sup>20+</sup> | [FingerInfo](#fingerinfo8)[] | No| Information about touch points of the gesture event. For gesture events initiated by a touchscreen, **fingerInfos** includes information about all touch points. For gesture events initiated by a mouse or touchpad, **fingerInfos** contains only one touch point.<br> **NOTE**<br>**fingerInfos** only records information about effective fingers that participate in the touch. Fingers that are pressed first but do not participate in triggering of the current gesture will not be shown in **fingerInfos**. The default value is an empty array **[]**, and an empty array indicates no effective touch point information.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| velocityX<sup>10+</sup> | number | Yes| Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left. The unit is vp/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| velocityY<sup>10+</sup> | number | Yes| Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top. The unit is vp/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| velocity<sup>10+</sup> | number | Yes| Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. The unit is vp/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| tapLocation<sup>20+</sup> | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20) | Yes| Coordinate information of the current tap gesture.<br>Value range: [0, +∞).<br> **Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## SourceType<sup>8+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
@@ -88,40 +95,50 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 ## FingerInfo<sup>8+</sup>
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Index of a finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| globalX | number | X-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| globalY | number | Y-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| localX | number | X-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| id | number | Index of a finger.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalX | number | X-coordinate relative to the upper left corner of the application window, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalY | number | Y-coordinate relative to the upper left corner of the application window, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localX | number | X-coordinate relative to the upper left corner of the current component's original area, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | hand<sup>15+</sup> | [InteractionHand](#interactionhand15) | Whether the event is triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## SourceTool<sup>9+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown input source.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Finger | Finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Pen | Stylus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Mouse<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| Touchpad<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| Joystick<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MOUSE<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TOUCHPAD<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| JOYSTICK<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## InteractionHand<sup>15+</sup>
 
 Defines whether an event is triggered by a left-hand or right-hand tap.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Description|
 | -------- | -------- |
-| NONE | Unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-| LEFT | Left hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-| RIGHT | Right hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| NONE | Unknown.|
+| LEFT | Left hand.|
+| RIGHT | Right hand.|
 
 
 ## Example
+
+### Example 1: Implementing Parent Component Prioritization and Simultaneous Gesture Triggering
 
 This example demonstrates how to configure **priorityGesture** and **parallelGesture** to set up gesture recognition where the parent component has priority in recognizing gestures, and both parent and child components can trigger gestures simultaneously.
 
@@ -179,4 +196,75 @@ struct GestureSettingsExample {
 }
 ```
 
-![en-us_image_0000001257058419](figures/en-us_image_0000001257058419.gif)
+![en-us_image_0000001210195016](figures/en-us_image_0000001210195016.gif)
+
+### Example 2: Implementing Real-time Monitoring of Effective Touch Points Involved in a Swipe Gesture
+
+This example demonstrates how to configure **fingerInfos** to monitor the number of effective touch points involved in a swipe gesture in real time.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+
+struct PanGestureWithFingerCount {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  @State fingerCount: number = 0 // Used to record the number of touch points involved in the gesture.
+
+  private panOption: PanGestureOptions = new PanGestureOptions({
+    direction: PanDirection.All,
+    fingers: 1
+  })
+
+  build() {
+    Column() {
+      // Display the number of effective touch points.
+      Text(`Touch Points: ${this.fingerCount}`)
+        .fontSize(20)
+        .margin(10)
+
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            this.fingerCount = event.fingerInfos?.length || 0  // Record the number of touch points.
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              console.log('fingerInfos',JSON.stringify(event.fingerInfos))
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+              this.fingerCount = event.fingerInfos?.length || 0  // Update the number of touch points, recording the effective touch points involved in the current gesture.
+            }
+          })
+          .onActionEnd((event: GestureEvent) => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            this.fingerCount = 0  // Reset the value to zero when the touch points leave the touch target.
+            console.info('Pan end')
+          })
+          .onActionCancel(() => {
+            this.fingerCount = 0 // Reset the value to zero when the gesture is canceled.
+          })
+      )
+
+      Button('Switch to Two-Finger Swipe')
+        .onClick(() => {
+          this.panOption.setFingers(2)
+        })
+    }
+  }
+}
+```

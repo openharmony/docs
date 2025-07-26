@@ -6,8 +6,10 @@
 > **说明**
 >
 > [app.json5配置文件](./app-configuration-file.md)中versionCode字段一致，表示安装或更新包同版本，否则为不同版本。
+>
+> 如果使用打包工具进行打包，打包过程中存在合法性校验，具体请参考[打包工具](../../application-dev/tools/packing-tool.md)。
 
-### 签名证书一致性校验
+## 签名证书一致性校验
 
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|
@@ -18,7 +20,7 @@
 |apl|表示应用程序的[APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)，系统定义的apl包括：normal、system_basic和system_core。|是|更新不同版本时无校验，同版本有校验。|
 
 
-### 配置文件一致性校验
+## 配置文件一致性校验
 
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|

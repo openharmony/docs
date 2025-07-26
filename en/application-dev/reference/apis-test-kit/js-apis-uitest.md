@@ -320,7 +320,7 @@ Specifies the type attribute of the target component.
 
 >**NOTE**
 >
->You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
+>You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/en/download) to query the type information of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -361,7 +361,7 @@ Specifies the type attribute of the target component.
 
 >**NOTE**
 >
->You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
+>You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/en/download) to query the type information of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

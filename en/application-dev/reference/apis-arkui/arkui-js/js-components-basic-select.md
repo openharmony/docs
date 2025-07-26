@@ -16,7 +16,7 @@ The **[<option\>](js-components-basic-option.md)** child component is supported.
 The [universal attributes](js-components-common-attributes.md) are supported.
 
 
-## Ad Asset
+## Styles
 
 In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 

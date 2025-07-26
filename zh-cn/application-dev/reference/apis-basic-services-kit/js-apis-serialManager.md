@@ -14,7 +14,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.getPortList
 
-getPortList(): Readonly&lt;[SerialPort](serialport)&gt;[]
+getPortList(): Readonly&lt;SerialPort&gt;[]
 
 查询串口设备清单，包括设备名称和对应的端口号。
 

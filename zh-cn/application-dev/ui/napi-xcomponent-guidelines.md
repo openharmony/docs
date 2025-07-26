@@ -13,6 +13,8 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 
 XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphics/native-window-guidelines.md)等接口，申请并提交Buffer至图形队列，以此方式将自绘制内容传送至该Surface。XComponent负责将此Surface整合进UI界面，其中展示的内容正是开发者传送的自绘制内容。Surface的默认位置与大小与XComponent组件一致，开发者可利用[setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口自定义调整Surface的位置和大小。
 
+XComponent组件负责创建Surface，并通过回调将Surface的相关信息告知应用。应用可以通过一系列接口设定Surface的属性。该组件本身不对所绘制的内容进行感知，亦不提供渲染绘制的接口。
+
 > **说明：** 
 >
 > 当开发者传输的绘制内容包含透明元素时，Surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
@@ -28,34 +30,35 @@ XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphi
 >
 > 1. Native侧的NativeWindow缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
 >
-> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
-)接口进行缓冲区尺寸设置。
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+> 
+> 4. 在onSurfaceCreated回调触发后，才能获取到有效的surfaceId。
 
 **生命周期**：
 
-- OnSurfaceCreated回调    	
+- onSurfaceCreated回调
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
-  ArkTS侧OnSurfaceCreated的时序如下图：
+  ArkTS侧onSurfaceCreated的时序如下图：
 
   ![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
 
-- OnSurfaceChanged回调
+- onSurfaceChanged回调
 
   触发时刻：Surface大小变化触发重新布局之后触发。
 
-  ArkTS侧OnSurfaceChanged的时序如下图：
+  ArkTS侧onSurfaceChanged的时序如下图：
 
   ![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
 
-- OnSurfaceDestroyed回调
+- onSurfaceDestroyed回调
 
   触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
 
-  ArkTS侧OnSurfaceDestroyed的时序图：
+  ArkTS侧onSurfaceDestroyed的时序图：
 
   ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed1.png)
 
@@ -519,7 +522,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后达成以下两个条件中的一个触发。
+  触发时刻：XComponent创建完成且创建好Surface后达成以下两个条件中的一个触发。
   1. 组件上树且autoInitialize = true。
   2. 调用OH_ArkUI_XComponent_Initialize。
 
@@ -572,7 +575,7 @@ Native侧
 
 **开发步骤**
 
-以下步骤通过在ArkTS侧创建SURFACE类型的XComponent为例（Native侧如何创建XComponent组件对应的ArkUI_NodeHandle可参考[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)），描述了如何使用`XComponent组件`调用OH_ArkUI_SurfaceHolder相关接口管理Surface生命周期，并在Native侧创建`EGL/GLES`环境，实现在主页面绘制图形，以及可以改变图形的颜色。
+以下步骤通过在ArkTS侧创建SURFACE类型的XComponent为例（Native侧如何创建XComponent组件对应的ArkUI_NodeHandle可参考[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)），描述了如何使用`XComponent组件`调用OH_ArkUI_SurfaceHolder相关接口管理Surface生命周期，并在Native侧创建`EGL/GLES`环境，实现在主页面绘制图形，以及可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
 
@@ -759,6 +762,13 @@ Native侧
 
     ```c++
     // plugin_manager.cpp
+    std::unordered_map<std::string, ArkUI_NodeHandle> PluginManager::nodeHandleMap_;
+    std::unordered_map<void *, EGLRender *> PluginManager::renderMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceCallback *> PluginManager::callbackMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceHolder *> PluginManager::surfaceHolderMap_;
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+
     std::string value2String(napi_env env, napi_value value) { // 将napi_value转化为string类型的变量
         size_t stringSize = 0;
         napi_get_value_string_utf8(env, value, nullptr, 0, &stringSize);
@@ -830,7 +840,7 @@ Native侧
         napi_get_value_int32(env, args[2], &max);
 
         int32_t expected = 0;
-        napi_get_value_int32(env, args[2], &expected);
+        napi_get_value_int32(env, args[3], &expected);
         OH_NativeXComponent_ExpectedRateRange range = {
             .min = min,
             .max = max,
@@ -1464,7 +1474,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
   Native侧OnSurfaceCreated的时序如下图：
 
@@ -1493,7 +1503,7 @@ Native侧
 | OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size) | 获取XComponent的id。                                         |
 | OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height) | 获取XComponent持有的Surface的大小。                          |
 | OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y) | 获取XComponent持有的Surface相对其父组件左顶点的偏移量。      |
-| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | 获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md)。 |
+| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | 获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-touchevent.md)。 |
 | OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType) | 获取XComponent触摸点的工具类型。                             |
 | OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX) | 获取XComponent触摸点处相对X轴的倾斜角度。                    |
 | OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY) | 获取XComponent触摸点处相对Y轴的倾斜角度。                    |
@@ -1518,6 +1528,7 @@ Native侧
 | OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node) | 将一个ArkUI组件节点添加到对应的NodeContent对象下。           |
 | OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback) | 注册NodeContent事件函数。                                    |
 | OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。 |
+| OH_NativeXComponent_GetHistoricalPoints(OH_NativeXComponent* component, const void* window, int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints ) | 获取当前XComponent触摸事件的历史点信息。由于部分输入设备上报触点的频率非常高（最高可达每1 ms上报一次），而对输入事件的响应通常是为了使UI界面发生变化以响应用户操作，如果将触摸事件按照上报触点的频率如此高频率上报给应用，大多会造成冗余，因此触摸事件在一帧内只会上报一次给应用。在当前帧内上报的触点均作为历史点保存，如果应用需要直接处理这些数据，可调用该接口获取历史点信息。历史接触点historicalPoints的具体规格可参考[重采样与历史点](arkts-interaction-development-guide-touch-screen.md#重采样与历史点)。 |
 
 > **说明 :**
 >
@@ -2378,3 +2389,5 @@ Native侧
 针对ArkTS XComponent的使用，有以下相关实例可供参考：
 
 - [ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+
+<!--RP1--><!--RP1End-->

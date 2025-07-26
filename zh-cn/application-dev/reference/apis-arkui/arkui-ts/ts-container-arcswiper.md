@@ -600,7 +600,7 @@ finishTransition(): void
 import {
   CircleShape,
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController

@@ -456,3 +456,76 @@ With this permission, the application can detect information such as the user's 
 **Authorization mode**: system_grant
 
 **Valid since**: 20
+
+## ohos.permission.kernel.NET_RAW
+
+Allows an application to capture network data packets.
+
+With this permission, the application needs user authentication before it can capture network data packets. Otherwise, this operation is not allowed.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.kernel.DEBUGGER
+
+Allows an application to obtain the debugging capability.
+
+With this permission, the application, as the main process, can obtain the PTRACE debugging capability.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.kernel.ALLOW_DEBUG
+
+Allows a C/C++ program to be debugged.
+
+With this permission, the C/C++ program in the application can be debugged. However, the runtime memory may be dumped. Exercise caution when using this permission.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
+
+Allows an application to set its power-saving mode.
+
+This permission is applicable to the applications that meet the following conditions: 
+- The application does not gain the system focus or is not performing audio playback or UI refresh operations. 
+- It cannot acquire a power lock through the framework layer. 
+- It should not be forced into power-saving mode when CPU resources become constrained during the execution of time-consuming tasks such as compression, decompression, and compilation.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.SET_WINDOW_TRANSPARENT
+
+Allows an application to set the main window container to be transparent and remove the shadow of the outer border of the main window.
+
+With this permission, the application can set the background color and shadow visibility of the main window.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20

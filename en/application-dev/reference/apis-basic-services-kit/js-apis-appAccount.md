@@ -69,10 +69,14 @@ Creates an application account with the given name. This API uses an asynchronou
   
   try {
     appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
-        console.log('createAccount err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('createAccount code: ' + JSON.stringify(err));
+      } else {
+        console.log('createAccount successful.');
+      }
     });
   } catch (err) {
-    console.log('createAccount err: ' + JSON.stringify(err));
+    console.error('createAccount err: ' + JSON.stringify(err));
   }
   ```
 
@@ -115,13 +119,13 @@ Creates an application account with custom data. This API uses an asynchronous c
   try {
     appAccountManager.createAccount('LiSi', options, (err: BusinessError) => {
       if (err) {
-        console.log('createAccount failed, error: ' + JSON.stringify(err));
+        console.error('createAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('createAccount successfully');
       }
     });
   } catch(err) {
-    console.log('createAccount exception: ' + JSON.stringify(err));
+    console.error('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -170,10 +174,10 @@ Creates an application account with custom data. This API uses a promise to retu
     appAccountManager.createAccount('LiSi', options).then(() => {
       console.log('createAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('createAccount failed, error: ' + JSON.stringify(err));
+      console.error('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log('createAccount exception: ' + JSON.stringify(err));
+    console.error('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -210,34 +214,41 @@ Creates an application account implicitly based on the specified account owner. 
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {  
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -275,38 +286,45 @@ Creates an application account implicitly based on the specified account owner a
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: appAccount.CreateAccountImplicitlyOptions = {
-    authType: 'getSocialData',
-    requiredLabels: [ 'student' ]
-  };
-  try {
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: appAccount.CreateAccountImplicitlyOptions = {
+        authType: 'getSocialData',
+        requiredLabels: [ 'student' ]
+      };
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -342,13 +360,13 @@ Removes an application account. This API uses an asynchronous callback to return
   try {
     appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
       if (err) {
-        console.log('removeAccount failed, error: ' + JSON.stringify(err));
+        console.error('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('removeAccount successfully');
       }
    });
   } catch(err) {
-    console.log('removeAccount exception: ' + JSON.stringify(err));
+    console.error('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -390,10 +408,10 @@ Removes an application account. This API uses a promise to return the result.
     appAccountManager.removeAccount('Lisi').then(() => {
       console.log('removeAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('removeAccount failed, error: ' + JSON.stringify(err));
+      console.error('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('removeAccount exception: ' + JSON.stringify(err));
+    console.error('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -432,13 +450,13 @@ Sets the access to the data of an account for an application. This API uses an a
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
       if (err) {
-        console.log('setAppAccess failed: ' + JSON.stringify(err));
+        console.error('setAppAccess failed: ' + JSON.stringify(err));
       } else {
         console.log('setAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log('setAppAccess exception: ' + JSON.stringify(err));
+    console.error('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -483,10 +501,10 @@ Sets the access to the data of an account for an application. This API uses a pr
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAppAccess successfully');
     }).catch((err: BusinessError) => {
-      console.log('setAppAccess failed: ' + JSON.stringify(err));
+      console.error('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAppAccess exception: ' + JSON.stringify(err));
+    console.error('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -524,13 +542,13 @@ Checks whether an application can access the data of an account. This API uses a
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
       (err: BusinessError, isAccessible: boolean) => {
         if (err) {
-          console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+          console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAppAccess successfully');
         }
       });
   } catch (err) {
-    console.log('checkAppAccess exception: ' + JSON.stringify(err));
+    console.error('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -573,10 +591,10 @@ Checks whether an application can access the data of an account. This API uses a
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
       console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err: BusinessError) => {
-      console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+      console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAppAccess exception: ' + JSON.stringify(err));
+    console.error('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -615,10 +633,10 @@ Sets data synchronization for an application account. This API uses an asynchron
   
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
-          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -664,10 +682,10 @@ Sets data synchronization for an application account. This API uses a promise to
       appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
-          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -706,13 +724,13 @@ Checks whether data synchronization is enabled for an application account. This 
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
       if (err) {
-        console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+        console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -757,10 +775,10 @@ Checks whether data synchronization is enabled for an application account. This 
     appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+      console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -798,13 +816,13 @@ Sets a credential for an application account. This API uses an asynchronous call
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
       if (err) {
-        console.log('setCredential failed, error: ' + JSON.stringify(err));
+        console.error('setCredential failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setCredential successfully');
       }
     });
   } catch (err) {
-    console.log('setCredential exception: ' + JSON.stringify(err));
+    console.error('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -848,10 +866,10 @@ Sets a credential for an application account. This API uses a promise to return 
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
       console.log('setCredential successfully');
     }).catch((err: BusinessError) => {
-      console.log('setCredential failed, error: ' + JSON.stringify(err));
+      console.error('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setCredential exception: ' + JSON.stringify(err));
+    console.error('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -889,13 +907,13 @@ Obtains the credential of an application account. This API uses an asynchronous 
   try {
       appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
         if (err) {
-          console.log('getCredential failed, error: ' + JSON.stringify(err));
+          console.error('getCredential failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
-      console.log('getCredential err: ' + JSON.stringify(err));
+      console.error('getCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -939,10 +957,10 @@ Obtains the credential of an application account. This API uses a promise to ret
     appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
         console.log('getCredential successfully, credential: ' + credential);
     }).catch((err: BusinessError) => {
-        console.log('getCredential failed, error: ' + JSON.stringify(err));
+        console.error('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getCredential exception: ' + JSON.stringify(err));
+    console.error('getCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -981,13 +999,13 @@ Sets custom data for an application account. This API uses an asynchronous callb
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
       if (err) {
-        console.log('setCustomData failed, error: ' + JSON.stringify(err));
+        console.error('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setCustomData successfully');
       }
     });
   } catch (err) {
-    console.log('setCustomData exception: ' + JSON.stringify(err));
+    console.error('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1032,10 +1050,10 @@ Sets custom data for an application account. This API uses a promise to return t
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
       console.log('setCustomData successfully');
     }).catch((err: BusinessError) => {
-      console.log('setCustomData failed, error: ' + JSON.stringify(err));
+      console.error('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setCustomData exception: ' + JSON.stringify(err));
+    console.error('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1073,13 +1091,13 @@ Obtains the custom data of an application account based on the specified key. Th
   try {
     appAccountManager.getCustomData('ZhangSan', 'age', (err: BusinessError, data: string) => {
       if (err) {
-        console.log('getCustomData failed, error: ' + err);
+        console.error('getCustomData failed, error: ' + err);
       } else {
         console.log('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
-    console.log('getCustomData exception: ' + JSON.stringify(err));
+    console.error('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1123,10 +1141,10 @@ Obtains the custom data of an application account based on the specified key. Th
     appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
       console.log('getCustomData successfully, data: ' + data);
     }).catch((err: BusinessError) => {
-      console.log('getCustomData failed, error: ' + JSON.stringify(err));
+      console.error('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getCustomData exception: ' + JSON.stringify(err));
+    console.error('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1201,13 +1219,13 @@ Obtains information about all accessible application accounts. This API uses an 
   try {
     appAccountManager.getAllAccounts((err: BusinessError, data: appAccount.AppAccountInfo[]) => {
       if (err) {
-        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+        console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
         console.debug('getAllAccounts successfully');
       }
     });
   } catch (err) {
-      console.debug('getAllAccounts exception: ' + JSON.stringify(err));
+      console.error('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1240,10 +1258,10 @@ Obtains information about all accessible application accounts. This API uses a p
     appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
     }).catch((err: BusinessError) => {
-      console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+      console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug('getAllAccounts exception: ' + JSON.stringify(err));
+    console.error('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1279,13 +1297,13 @@ Obtains the application accounts that can be accessed by the invoker based on th
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
       (err: BusinessError, data: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
+          console.error('getAccountsByOwner failed, error:' + JSON.stringify(err));
         } else {
           console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
         }
       });
   } catch (err) {
-    console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
+    console.error('getAccountsByOwner exception:' + JSON.stringify(err));
   }
   ```
 
@@ -1327,10 +1345,10 @@ Obtains the application accounts that can be accessed by the invoker based on th
       data: appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
+      console.error('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug('getAccountsByOwner exception: ' + JSON.stringify(err));
+    console.error('getAccountsByOwner exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1347,7 +1365,7 @@ Subscribes to account information changes of apps.
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target application changes.|
-| owners   | Array&lt;string&gt;                      | Yes   | application bundle names of the account.                     |
+| owners   | Array&lt;string&gt;                      | Yes   | Application bundle names of the account.                     |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed application accounts.          |
 
 **Error codes**
@@ -1448,34 +1466,41 @@ Authenticates an application account. This API uses an asynchronous callback to 
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1515,37 +1540,44 @@ Authenticates an application account. This API uses an asynchronous callback to 
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: Record<string, Object> = {
-    'password': 'xxxx',
-  };
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: Record<string, Object> = {
+        'password': 'xxxx',
+      };
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1585,13 +1617,13 @@ Obtains the authorization token of the specified authentication type for an appl
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
       (err: BusinessError, token: string) => {
         if (err) {
-          console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+          console.error('getAuthToken failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getAuthToken successfully, token: ' + token);
         }
       });
   } catch (err) {
-      console.log('getAuthToken exception: ' + JSON.stringify(err));
+      console.error('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1636,10 +1668,10 @@ Obtains the authorization token of the specified authentication type for an appl
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
       console.log('getAuthToken successfully, token: ' + token);
     }).catch((err: BusinessError) => {
-      console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+      console.error('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-      console.log('getAuthToken exception: ' + JSON.stringify(err));
+      console.error('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1678,13 +1710,13 @@ Sets an authorization token of the specific authentication type for an applicati
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       if (err) {
-        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setAuthToken successfully');
       }
     });
   } catch (err) {
-    console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.error('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1729,10 +1761,10 @@ Sets an authorization token of the specific authentication type for an applicati
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
         console.log('setAuthToken successfully');
     }).catch((err: BusinessError) => {
-        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.error('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1773,13 +1805,13 @@ Deletes the authorization token of the specified authentication type for an appl
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
       (err: BusinessError) => {
         if (err) {
-          console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
+          console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
           console.log('deleteAuthToken successfully');
         }
       });
   } catch (err) {
-    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1825,10 +1857,10 @@ Deletes the authorization token of the specified authentication type for an appl
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
       console.log('deleteAuthToken successfully');
     }).catch((err: BusinessError) => {
-      console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
+      console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1870,13 +1902,13 @@ Sets the visibility of an authorization token to an application. This API uses a
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
       (err: BusinessError) => {
         if (err) {
-          console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
           console.log('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
-      console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+      console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1923,10 +1955,10 @@ Sets the visibility of an authorization token to an application. This API uses a
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAuthTokenVisibility successfully');
     }).catch((err: BusinessError) => {
-      console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1966,13 +1998,13 @@ Checks the visibility of an authorization token of the specified authentication 
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
       (err: BusinessError, isVisible: boolean) => {
         if (err) {
-          console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
         }
       });
   } catch (err) {
-    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2018,10 +2050,10 @@ Checks the visibility of an authorization token of the specified authentication 
       isVisible: boolean) => {
       console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err: BusinessError) => {
-      console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2059,13 +2091,13 @@ Obtains all tokens visible to the invoker for an application account. This API u
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
       (err: BusinessError, tokenArr: appAccount.AuthTokenInfo[]) => {
         if (err) {
-          console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+          console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
         }
       });
   } catch (err) {
-    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
+    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2109,10 +2141,10 @@ Obtains all tokens visible to the invoker for an application account. This API u
       tokenArr: appAccount.AuthTokenInfo[]) => {
       console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err: BusinessError) => {
-      console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+      console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
+    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2150,13 +2182,13 @@ Obtains the authorization list of the specified authentication type for an appli
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
       if (err) {
-        console.log('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
-    console.log('getAuthList exception: ' + JSON.stringify(err));
+    console.error('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2200,10 +2232,10 @@ Obtains the authorization list of the specified authentication type for an appli
     appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
         console.log('getAuthList successfully, authList: ' + authList);
     }).catch((err: BusinessError) => {
-        console.log('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAuthList exception: ' + JSON.stringify(err));
+    console.error('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2243,7 +2275,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
       try {
         appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: appAccount.AuthCallback) => {
           if (err != null) {
-              console.log('getAuthCallback err: ' + JSON.stringify(err));
+              console.error('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
           let result: appAccount.AuthResult = {
@@ -2259,7 +2291,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
           callback.onResult(0, result);
         });
       } catch (err) {
-          console.log('getAuthCallback exception: ' + JSON.stringify(err));
+          console.error('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2317,10 +2349,10 @@ Obtains the authenticator callback for an authentication session. This API uses 
         };
         callback.onResult(0, result);
         }).catch((err: BusinessError) => {
-          console.log('getAuthCallback err: ' + JSON.stringify(err));
+          console.error('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
-        console.log('getAuthCallback exception: ' + JSON.stringify(err));
+        console.error('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2359,13 +2391,13 @@ Obtains the authenticator information of an application. This API uses an asynch
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
       (err: BusinessError, info: appAccount.AuthenticatorInfo) => {
         if (err) {
-          console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+          console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
         } else {
           console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
         }
       });
   } catch (err) {
-    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2408,10 +2440,10 @@ Obtains the authenticator information of an application. This API uses a promise
       info: appAccount.AuthenticatorInfo) => { 
       console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err: BusinessError) => {
-      console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+      console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2454,13 +2486,13 @@ Checks whether an application account has specific labels. This API uses an asyn
     appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels,
       (err: BusinessError, hasAllLabels: boolean) => {
         if (err) {
-          console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+          console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
         }
       });
   } catch (err) {
-    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
+    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2509,10 +2541,10 @@ Checks whether an application account has specific labels. This API uses a promi
       hasAllLabels: boolean) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err: BusinessError) => {
-      console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+      console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
+    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2550,13 +2582,13 @@ Deletes the credential of the specified type from an application account. This A
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
       if (err) {
-        console.log('deleteCredential failed, error: ' + JSON.stringify(err));
+        console.error('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
         console.log('deleteCredential successfully');
       }
     });
   } catch (err) {
-    console.log('deleteCredential exception: ' + JSON.stringify(err));
+    console.error('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2600,10 +2632,10 @@ Deletes the credential of the specified type from an application account. This A
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
       console.log('deleteCredential successfully');
     }).catch((err: BusinessError) => {
-      console.log('deleteCredential failed, error: ' + JSON.stringify(err));
+      console.error('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('deleteCredential exception: ' + JSON.stringify(err));
+    console.error('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2645,13 +2677,13 @@ Selects the accounts that can be accessed by the invoker based on the options. T
     appAccountManager.selectAccountsByOptions(options,
       (err: BusinessError, accountArr: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+          console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
         } else {
           console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
         }
       });
   } catch (err) {
-    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2697,10 +2729,10 @@ Selects the accounts that can be accessed by the invoker based on the options. T
     appAccountManager.selectAccountsByOptions(options).then((accountArr: appAccount.AppAccountInfo[]) => {
       console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+      console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2748,7 +2780,7 @@ Verifies the credential of an application account. This API uses an asynchronous
           }
       });
   } catch (err) {
-      console.log('verifyCredential err: ' + JSON.stringify(err));
+      console.error('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2801,7 +2833,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
       }
     });
   } catch (err) {
-    console.log('verifyCredential err: ' + JSON.stringify(err));
+    console.error('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2847,7 +2879,7 @@ Sets the authenticator attributes of an application. This API uses an asynchrono
       }
     });
   } catch (err) {
-    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2897,7 +2929,7 @@ Sets the authenticator properties. This API uses an asynchronous callback to ret
       }
     });
   } catch (err) {
-    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
   } 
 
   ```
@@ -2919,7 +2951,7 @@ Adds an application account with the given name. This API uses an asynchronous c
 
 | Name     | Type                       | Mandatory  | Description                  |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | Yes   | Name of the target application account.         |
+| name     | string                    | Yes   | Name of the application account to create.         |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -2928,7 +2960,7 @@ Adds an application account with the given name. This API uses an asynchronous c
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
-      console.log('addAccount err: ' + JSON.stringify(err));
+      console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2947,7 +2979,7 @@ Adds an application account name and additional information. This API uses an as
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| name      | string                    | Yes   | Name of the target application account.                             |
+| name      | string                    | Yes   | Name of the application account to create.                             |
 | extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the application account password and token.|
 | callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
@@ -2957,7 +2989,7 @@ Adds an application account name and additional information. This API uses an as
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
-    console.log('addAccount err: ' + JSON.stringify(err));
+    console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2976,7 +3008,7 @@ Adds an application account name and additional information. This API uses an as
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| name      | string | Yes   | Name of the target application account.                           |
+| name      | string | Yes   | Name of the application account to create.                           |
 | extraInfo | string | No   | Additional information (information that can be converted to the string type). <br>The additional information cannot be sensitive information (such as the password and token) of the application account.<br>By default, no value is passed, which means no additional information needs to be added for the account.|
 
 **Return value**
@@ -2993,7 +3025,7 @@ Adds an application account name and additional information. This API uses an as
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
   }).catch((err: BusinessError) => {
-    console.log('addAccount err: ' + JSON.stringify(err));
+    console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3005,7 +3037,7 @@ Adds an application account implicitly based on the specified owner. This API us
 
 > **NOTE** 
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3024,31 +3056,38 @@ Adds an application account implicitly based on the specified owner. This API us
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result: Record<string, Object>): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### deleteAccount<sup>(deprecated)</sup>
@@ -3076,7 +3115,7 @@ Deletes an application account. This API uses an asynchronous callback to return
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
-      console.log('deleteAccount err: ' + JSON.stringify(err));
+      console.error('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
 
@@ -3112,7 +3151,7 @@ Deletes an application account. This API uses a promise to return the result.
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
    }).catch((err: BusinessError) => {
-      console.log('deleteAccount err: ' + JSON.stringify(err));
+      console.error('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
 ### disableAppAccess<sup>(deprecated)</sup>
@@ -3141,7 +3180,7 @@ Disables an application account from accessing an application. This API uses an 
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
-      console.log('disableAppAccess err: ' + JSON.stringify(err));
+      console.error('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3178,7 +3217,7 @@ Disables an application account from accessing an application. This API uses a p
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.log('disableAppAccess err: ' + JSON.stringify(err));
+      console.error('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3207,8 +3246,12 @@ Enables an application account to access an application. This API uses an asynch
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
-      console.log('enableAppAccess: ' + JSON.stringify(err));
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => {
+      if (err) {
+        console.error('enableAppAccess err: ' + JSON.stringify(err));
+      } else {
+        console.log('enableAppAccess successful.');
+      }
    });
   ```
 
@@ -3245,7 +3288,7 @@ Enables an application account to access an application. This API uses a promise
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.log('enableAppAccess err: ' + JSON.stringify(err));
+      console.error('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3276,8 +3319,11 @@ Checks whether data synchronization is enabled for an application account. This 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
-      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('checkAppAccountSyncEnable code: ' + JSON.stringify(err));
+    } else {
       console.log('checkAppAccountSyncEnable result: ' + result);
+    }
   });
   ```
 
@@ -3315,7 +3361,7 @@ Checks whether data synchronization is enabled for an application account. This 
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3327,7 +3373,7 @@ Sets a credential for an application account. This API uses an asynchronous call
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCredential](#setcredential9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3346,7 +3392,11 @@ Sets a credential for an application account. This API uses an asynchronous call
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
-      console.log('setAccountCredential err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setAccountCredential err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAccountCredential successful.');
+    }
   });
   ```
 
@@ -3358,7 +3408,7 @@ Sets a credential for an application account. This API uses a promise to return 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCredential](#setcredential9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3384,7 +3434,7 @@ Sets a credential for an application account. This API uses a promise to return 
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
   }).catch((err: BusinessError) => {
-      console.log('setAccountCredential err: ' + JSON.stringify(err));
+      console.error('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3415,7 +3465,11 @@ Sets additional information for an application account. This API uses an asynchr
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
-      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAccountExtraInfo successful.');
+    }
   });
   ```
 
@@ -3453,7 +3507,7 @@ Sets additional information for an application account. This API uses a promise 
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
   }).catch((err: BusinessError) => {
-      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3484,8 +3538,12 @@ Sets data synchronization for an application account. This API uses an asynchron
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
-      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => {
+    if (err) {
+      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAppAccountSyncEnable successful.');
+    }
   });
   ```
 
@@ -3524,7 +3582,7 @@ Sets data synchronization for an application account. This API uses a promise to
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
-      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3555,8 +3613,12 @@ Sets data to be associated with an application account. This API uses an asynchr
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
-      console.log('setAssociatedData err: ' + JSON.stringify(err));
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => {
+    if (err) {
+      console.error('setAssociatedData err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAssociatedData successful.');
+    }
   });
   ```
 
@@ -3595,7 +3657,7 @@ Sets data to be associated with an application account. This API uses a promise 
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
   }).catch((err: BusinessError) => {
-      console.log('setAssociatedData err: ' + JSON.stringify(err));
+      console.error('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3658,7 +3720,7 @@ Obtains information about all accessible application accounts. This API uses a p
   appAccountManager.getAllAccessibleAccounts().then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
+      console.error('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3730,7 +3792,7 @@ Obtains the application accounts that can be accessed by the invoker based on th
   appAccountManager.getAllAccounts(selfBundle).then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAllAccounts err: ' + JSON.stringify(err));
+      console.error('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3760,8 +3822,11 @@ Obtains the credential of an application account. This API uses an asynchronous 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
-      console.log('getAccountCredential err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAccountCredential err: ' + JSON.stringify(err));
+    } else {
       console.log('getAccountCredential result: ' + result);
+    }
   });
   ```
 
@@ -3798,7 +3863,7 @@ Obtains the credential of an application account. This API uses a promise to ret
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
       console.log('getAccountCredential, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAccountCredential err: ' + JSON.stringify(err));
+      console.error('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3827,8 +3892,11 @@ Obtains additional information of an application account. Additional information
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
-      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
+    } else {
       console.log('getAccountExtraInfo result: ' + result);
+    }
   });
   ```
 
@@ -3864,7 +3932,7 @@ Obtains additional information of an application account. Additional information
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
       console.log('getAccountExtraInfo, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3894,8 +3962,11 @@ Obtains data associated with an application account. This API uses an asynchrono
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
-      console.log('getAssociatedData err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAssociatedData err: ' + JSON.stringify(err));
+    } else {
       console.log('getAssociatedData result: ' + result);
+    }
   });
   ```
 
@@ -3932,7 +4003,7 @@ Obtains data associated with an application account. This API uses a promise to 
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
        console.log('getAssociatedData: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAssociatedData err: ' + JSON.stringify(err));
+      console.error('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3953,7 +4024,7 @@ Subscribes to account information changes of apps.
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes.|
-| owners   | Array&lt;string&gt;                      | Yes   | application bundle names of the account.                     |
+| owners   | Array&lt;string&gt;                      | Yes   | Application bundle names of the account.                     |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed application accounts.          |
 
 **Example**
@@ -4014,7 +4085,7 @@ Authenticates an application account. This API uses an asynchronous callback to 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4034,31 +4105,38 @@ Authenticates an application account. This API uses an asynchronous callback to 
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
+    onResultCallback(code: number, result: Record<string, Object>): void {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### getOAuthToken<sup>(deprecated)</sup>
@@ -4069,7 +4147,7 @@ Obtains the authorization token of the specified authentication type for an appl
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4089,8 +4167,11 @@ Obtains the authorization token of the specified authentication type for an appl
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
     (err: BusinessError, data: string) => {
-      console.log('getOAuthToken err: ' + JSON.stringify(err));
-      console.log('getOAuthToken token: ' + data);
+      if (err) {
+        console.error('getOAuthToken err: ' + JSON.stringify(err));
+      } else {
+        console.log('getOAuthToken token: ' + data);
+      }
     });
   ```
 
@@ -4102,7 +4183,7 @@ Obtains the authorization token of the specified authentication type for an appl
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4128,7 +4209,7 @@ Obtains the authorization token of the specified authentication type for an appl
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getOAuthToken err: ' + JSON.stringify(err));
+      console.error('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4140,7 +4221,7 @@ Sets an authorization token of the specific authentication type for an applicati
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4159,7 +4240,11 @@ Sets an authorization token of the specific authentication type for an applicati
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
-      console.log('setOAuthToken err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setOAuthToken err: ' + JSON.stringify(err));
+    } else {
+      console.log('setOAuthToken successful.');
+    }
   });
   ```
 
@@ -4171,7 +4256,7 @@ Sets an authorization token of the specific authentication type for an applicati
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4197,7 +4282,7 @@ Sets an authorization token of the specific authentication type for an applicati
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOAuthToken err: ' + JSON.stringify(err));
+      console.error('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4209,7 +4294,7 @@ Deletes the authorization token of the specified authentication type for an appl
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4230,7 +4315,11 @@ Deletes the authorization token of the specified authentication type for an appl
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
     (err: BusinessError) => {
-      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('deleteOAuthToken err: ' + JSON.stringify(err));
+      } else {
+        console.log('deleteOAuthToken successful.');
+      }
     });
   ```
 
@@ -4242,7 +4331,7 @@ Deletes the authorization token of the specified authentication type for an appl
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4269,7 +4358,7 @@ Deletes the authorization token of the specified authentication type for an appl
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+      console.error('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4281,7 +4370,7 @@ Sets the visibility of an authorization token to an application. This API uses a
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4302,7 +4391,11 @@ Sets the visibility of an authorization token to an application. This API uses a
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
     (err: BusinessError) => {
-      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      } else {
+        console.log('setOAuthTokenVisibility successful.');
+      }
     });
   ```
 
@@ -4314,7 +4407,7 @@ Sets the visibility of an authorization token to an application. This API uses a
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4341,7 +4434,7 @@ Sets the visibility of an authorization token to an application. This API uses a
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4353,7 +4446,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4373,8 +4466,11 @@ Checks the visibility of an authorization token of the specified authentication 
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
     (err: BusinessError, data: boolean) => {
-      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
-      console.log('checkOAuthTokenVisibility isVisible: ' + data);
+      if (err) {
+        console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+      } else {
+        console.log('checkOAuthTokenVisibility isVisible: ' + data);
+      }
     });
   ```
 
@@ -4386,7 +4482,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4413,7 +4509,7 @@ Checks the visibility of an authorization token of the specified authentication 
     data: boolean) => {
     console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err: BusinessError) => {
-    console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+    console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4425,7 +4521,7 @@ Obtains all tokens visible to the invoker for an application account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4444,8 +4540,11 @@ Obtains all tokens visible to the invoker for an application account. This API u
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.OAuthTokenInfo[]) => {
-      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
-      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      if (err) {
+        console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
+      } else {
+        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      }
     });
   ```
 
@@ -4457,7 +4556,7 @@ Obtains all tokens visible to the invoker for an application account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4483,7 +4582,7 @@ Obtains all tokens visible to the invoker for an application account. This API u
     data: appAccount.OAuthTokenInfo[]) => {
     console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
+    console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4495,7 +4594,7 @@ Obtains the authorization list of the specified authentication type for an appli
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4513,8 +4612,11 @@ Obtains the authorization list of the specified authentication type for an appli
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
-    console.log('getOAuthList err: ' + JSON.stringify(err));
-    console.log('getOAuthList data: ' + JSON.stringify(data));
+    if (err) {
+      console.error('getOAuthList err: ' + JSON.stringify(err));
+    } else {
+      console.log('getOAuthList data: ' + JSON.stringify(data));
+    }
   });
   ```
 
@@ -4526,7 +4628,7 @@ Obtains the authorization list of the specified authentication type for an appli
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4551,7 +4653,7 @@ Obtains the authorization list of the specified authentication type for an appli
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-      console.log('getOAuthList err: ' + JSON.stringify(err));
+      console.error('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4563,7 +4665,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4586,7 +4688,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
       appAccountManager.getAuthenticatorCallback(sessionId,
           (err: BusinessError, callback: appAccount.AuthenticatorCallback) => {
           if (err.code != appAccount.ResultCode.SUCCESS) {
-              console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+              console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
               return;
           }
           callback.onResult(appAccount.ResultCode.SUCCESS, {
@@ -4608,7 +4710,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4642,7 +4744,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
           token: 'xxxxxx'}
         );
       }).catch((err: BusinessError) => {
-        console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+        console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
   }
@@ -4656,7 +4758,7 @@ Obtains the authenticator information of an application. This API uses an asynch
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4674,8 +4776,11 @@ Obtains the authenticator information of an application. This API uses an asynch
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.AuthenticatorInfo) => {
-      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
-      console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+      if (err) {
+        console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+      }
     });
   ```
 
@@ -4687,7 +4792,7 @@ Obtains the authenticator information of an application. This API uses a promise
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4712,7 +4817,7 @@ Obtains the authenticator information of an application. This API uses a promise
     data: appAccount.AuthenticatorInfo) => { 
     console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
+    console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4745,7 +4850,7 @@ Defines authorization token information.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [AuthTokenInfo](#authtokeninfo9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [AuthTokenInfo](#authtokeninfo9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4930,7 +5035,7 @@ Called to return the result of an authentication request.
       };
       callback.onResult(appAccount.ResultCode.SUCCESS, result);
   }).catch((err: BusinessError) => {
-      console.log('getAuthCallback err: ' + JSON.stringify(err));
+      console.error('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -5000,7 +5105,7 @@ Called to continue to process the request.
       callback.onRequestContinued();
     }
   }).catch((err: BusinessError) => {
-    console.log('getAuthCallback err: ' + JSON.stringify(err));
+    console.error('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -5010,7 +5115,7 @@ Provides OAuth authenticator callbacks.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
 
 ### onResult<sup>8+</sup>
 
@@ -5042,7 +5147,7 @@ Called to return the result of an authentication request.
         token: 'xxxxxx'}
       );
   }).catch((err: BusinessError) => {
-      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+      console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -5234,6 +5339,12 @@ getRemoteObject(): rpc.RemoteObject;
 Obtains the remote object of an authenticator. This API cannot be overloaded.
 
 **System capability**: SystemCapability.Account.AppAccount
+
+**Return value**
+
+| Type            | Description                                                  |
+| ---------------- | ----------------------------------------------------- |
+| rpc.RemoteObject | Remote object of the authenticator, which is used for inter-process communication.         |
 
 **Example**
 

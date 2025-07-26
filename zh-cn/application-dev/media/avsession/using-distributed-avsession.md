@@ -10,7 +10,7 @@
 
 使用分布式媒体会话进行远端投播时使用的关键接口如下表所示。接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同。
 
-更多API说明请参见[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。
+更多API说明请参见[API文档](../../reference/apis-avsession-kit/arkts-apis-avsession.md)。
 
 | 接口名 | 说明 | 
 | -------- | -------- |

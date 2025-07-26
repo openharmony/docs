@@ -34,7 +34,7 @@ MDM Kit为企业MDM应用提供设备管理能力，包括企业设备管理与�
 ```ts
 "requestPermissions": [
   {
-    "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN"
+    "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS"
   },
 ]
 ```
@@ -66,7 +66,7 @@ MDM Kit为企业MDM应用提供设备管理能力，包括企业设备管理与�
      restrictions.setDisallowedPolicy(wantTemp, "wifi", true);
      console.info("disable wifi success.");
    } catch (error) {
-     console.info("disable wifi fail.");
+     console.error("disable wifi fail.");
    }
    ```
 

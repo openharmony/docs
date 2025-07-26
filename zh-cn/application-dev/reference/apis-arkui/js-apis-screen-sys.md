@@ -875,7 +875,7 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入则使用默认隐私蒙版图片。 |
+| image | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否   | 屏幕的隐私蒙版图片，不传入则使用默认隐私蒙版图片。 |
 
 **返回值：**
 

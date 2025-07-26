@@ -2478,7 +2478,7 @@ disconnect(): boolean
 client端断开与远端蓝牙低功耗设备的连接。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnectdeprecated-4)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnectdeprecated-2)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3312,7 +3312,7 @@ gattClient.getRssiValue().then((data : number) => {
 描述service的接口参数定义。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservice)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservicedeprecated)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3701,7 +3701,7 @@ gattClient.getRssiValue().then((data : number) => {
 描述profile状态改变参数。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparam)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparamdeprecated)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

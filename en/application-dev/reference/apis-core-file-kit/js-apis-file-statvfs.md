@@ -14,7 +14,7 @@ import { statfs } from '@kit.CoreFileKit';
 
 ## statfs.getFreeSize
 
-getFreeSize(path:string):Promise&lt;number&gt;
+getFreeSize(path:string): Promise&lt;number&gt;
 
 Obtains the free size of the specified file system, in bytes. This API uses a promise to return the result.
 
@@ -35,6 +35,22 @@ Obtains the free size of the specified file system, in bytes. This API uses a pr
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -71,6 +87,22 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -115,6 +147,22 @@ Obtains the free size of the specified file system, in bytes. This API returns t
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
 <!--code_no_check-->
@@ -152,6 +200,22 @@ Obtains the total size of the specified file system, in bytes. This API uses a p
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
 <!--code_no_check-->
@@ -187,6 +251,22 @@ Obtains the total size of the specified file system, in bytes. This API uses an 
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -230,6 +310,22 @@ Obtains the total size of the specified file system, in bytes. This API returns 
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
 
 **Example**
 

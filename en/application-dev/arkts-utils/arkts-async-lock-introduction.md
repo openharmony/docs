@@ -1,6 +1,6 @@
 # Asynchronous Lock
 
-To address data race issues in concurrent multithreading tasks, ArkTS introduces asynchronous locks. These locks can be held by class objects. To simplify access across concurrent instances, the [AsyncLock object](../reference/apis-arkts/js-apis-arkts-utils.md#asynclock) supports pass-by-reference across threads.
+To address data race issues in concurrent multithreading instances, ArkTS introduces asynchronous locks. These locks can be held by class objects. To simplify access across concurrent instances, the [AsyncLock object](../reference/apis-arkts/js-apis-arkts-utils.md#asynclock) supports pass-by-reference across threads.
 
 Given that ArkTS supports asynchronous operations, blocking locks are prone to deadlocks. Therefore, ArkTS only supports asynchronous locks (non-blocking locks). In addition, asynchronous locks can ensure the temporal consistency of asynchronous tasks within a single thread, preventing synchronization issues caused by uncertain task timing.
 
@@ -69,3 +69,4 @@ struct Index {
   }
 }
 ```
+<!-- @[example_protect](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsAsyncLockIntroduction.ets) -->

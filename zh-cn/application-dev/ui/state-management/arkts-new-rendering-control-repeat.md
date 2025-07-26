@@ -24,8 +24,15 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 - Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。
 <br/>循环渲染只允许创建一个子组件，子组件应当是允许包含在容器组件中的子组件。例如：Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
 - Repeat不支持V1装饰器，混用V1装饰器会导致渲染异常。
+- Repeat当前不支持动画效果。
 - 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - 当Repeat与自定义组件或[@Builder](./arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
+
+> **注意：**
+>
+> Repeat功能依赖数组属性的动态修改。如果数组对象被密封（sealed）或冻结（frozen），将导致Repeat部分功能失效，因为密封操作会禁止对象扩展属性并锁定现有属性的配置。
+>
+> 常见触发场景：<br>1）可观察数据的转换：使用[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)将普通数组（如[collections.Array](../../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)）转换为可观察数据时，某些实现会自动密封数组。<br>2）主动对象保护：显式调用`Object.seal()`或`Object.freeze()`防止数组被修改。
 
 ## 循环渲染能力说明
 
@@ -141,7 +148,7 @@ struct RepeatExampleWithTemplates {
 
 当**滚动容器组件滑动/数组改变**时，Repeat将失效的子组件节点（离开有效加载范围）加入空闲节点缓存池中，即断开组件节点与页面组件树的连接但不销毁节点。在需要生成新的组件时，对缓存池里的组件节点进行复用。
 
-Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
 从API version 18开始，Repeat支持L2缓存自定义组件冻结。详细描述见[缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat)。
 
@@ -196,7 +203,7 @@ Repeat的`.key()`属性为每个子组件生成一个键值。Repeat通过键值
 
 当数据源总长度较长，或数据项加载耗时较长时，可使用Repeat数据精准懒加载特性，避免在初始化时加载所有数据。
 
-开发者可以设置`.virtualScroll()`的`totalCount`属性值或`onTotalCount`自定义方法用于计算期望的数据源长度，设置`onLazyLoading`属性实现数据精准懒加载，实现在节点首次渲染时加载对应的数据。详细说明和注意事项见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+开发者可以设置`.virtualScroll()`的`totalCount`属性值或`onTotalCount`自定义方法用于计算期望的数据源长度，设置`onLazyLoading`属性实现数据精准懒加载，实现在节点首次渲染时加载对应的数据。详细说明和注意事项见[VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
 **示例1**
 
@@ -341,7 +348,7 @@ struct RepeatLazyLoading {
 
 ## 拖拽排序
 
-当Repeat在List组件下使用，并且设置了onMove事件，Repeat每次迭代都生成一个ListItem时，可以使能拖拽排序。Repeat拖拽排序特性从API version 19开始支持。
+当Repeat在List组件下使用，并且设置了[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove)事件，Repeat每次迭代都生成一个ListItem时，可以使能拖拽排序。Repeat拖拽排序特性从API version 19开始支持。
 
 > **注意：**
 >
@@ -397,155 +404,7 @@ struct RepeatVirtualScrollOnMove {
 
 运行效果：
 
-![Repeat-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
-
-## 动画
-
-从API version 20开始，当父容器为滚动容器组件时，可视区内Repeat子组件的插入、删除、交换操作均支持animateTo动画，子组件更新操作不支持animateTo动画。Repeat子组件在动画过程中不会复用。滚动容器组件的`cachedCount(count: number, show: boolean)`属性包含两个参数，`count`设置预加载数量，`show`设置是否显示预加载的组件（show设置为true，可视区包含预加载的组件）。
-
-### 示例
-```ts
-@ObservedV2
-class DemoData {
-  @Trace key: string;
-  @Trace value: string;
-
-  constructor(key: string, value: string) {
-    this.key = key;
-    this.value = value;
-  }
-}
-
-@Entry
-@ComponentV2
-struct AnimateToDemo {
-  @Local simpleList: Array<DemoData> = [];
-
-  aboutToAppear(): void {
-    for (let i = 0; i < 10; i++) {
-      this.simpleList.push(new DemoData(i.toString(), i.toString()));
-    }
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Button('update index 1').onClick(() => {
-          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            this.simpleList[1].value = Math.random().toPrecision(2).toString();
-          });
-        }).fontSize(16).width(230).margin({ top: 10 })
-
-        Button('exchange index 2 7').onClick(() => {
-          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            let temp = this.simpleList[2];
-            this.simpleList[2] = this.simpleList[7];
-            this.simpleList[7] = temp;
-          });
-        }).fontSize(16).width(230).margin({ top: 10 })
-
-        Button('exchange index 2 3').onClick(() => {
-          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            let temp = this.simpleList[2];
-            this.simpleList[2] = this.simpleList[3];
-            this.simpleList[3] = temp;
-          });
-        }).fontSize(16).width(230).margin({ top: 10 })
-
-        Button('delete index 2').onClick(() => {
-          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            this.simpleList.splice(2, 1);
-          });
-        }).fontSize(16).width(230).margin({ top: 10 })
-
-        Button('add item to index 2').onClick(() => {
-          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            this.simpleList.splice(2, 0, new DemoData(this.simpleList.length.toString(), this.simpleList.length.toString()));
-          });
-        }).fontSize(16).width(230).margin({ top: 10 })
-
-        Column() {
-          List() {
-            Repeat<DemoData>(this.simpleList)
-              .each((obj: RepeatItem<DemoData>) => {
-                ListItem() {
-                  Text(obj.item.value)
-                    .fontSize(30)
-                    .margin({ top: 20, left: 10 })
-                }
-                // 设置平移转场效果，组件出现或消失的位置在x=300处
-                .transition(TransitionEffect.translate({ x: 300 }))
-              })
-              .key((item: DemoData) => item.key) // 不同的数组项生成的key要具有唯一性
-              .virtualScroll({ totalCount: this.simpleList.length })
-              .templateId(() => 'a')
-              .template('a', (ri) => {
-                ListItem() {
-                  Text(ri.item.value)
-                    .fontSize(30)
-                    .margin({ top: 20, left: 10 })
-                }
-                // 设置平移转场效果，组件出现或消失的位置在x=300处
-                .transition(TransitionEffect.translate({ x: 300 }))
-              })
-          }
-          // Repeat动画一般需配合滚动容器组件cachedCount属性的show参数(设置true时显示预加载的子组件)一起使用；
-          // 当show参数设置为false、插入数组项时，Repeat子组件离开屏幕时无动画，效果如下图(show参数设置为false、插入数组项时的动画效果)所示
-          .cachedCount(1, true)
-          .border({ width: 1 })
-          .height(386)
-        }
-      }
-      .justifyContent(FlexAlign.Center)
-      .width('100%')
-      .height('100%')
-    }
-    .height('100%')
-  }
-}
-```
-点击“udpate index 1”按钮，更新Repeat子组件没有动画效果。点击其他按钮，可视区内Repeat子组件的交换、删除、插入都有相应的动画效果：
-
-![Repeat-Support-animateTo](./figures/repeat_animateTo.gif)
-
-show参数设置为false、插入数组项时的动画效果：
-
-![Repeat-No-Disappearing-Animation](./figures/repeat_animateTo_exception.gif)
-
-### 最佳实践
-通过设置Repeat父容器组件的cachedCount属性来控制动画效果。
-| 操作     | 设置   | 动画效果 | 说明                                                         |
-| ---------- | ------ | ---- | ------------------------------------------------------------ |
-| 组件插入 | cachedCount(0, true) | 组件“6”移除动画 | 插入“10”后，组件“6”出可视区，下树做移除动画。|
-| 组件插入 | cachedCount(1, true) | 组件“6”下移动画 | 插入“10”后，组件“6”进入预加载区，没有下树，做下移动画。|
-| 组件删除 | cachedCount(0, true) | 组件“7”插入动画 | 删除“2”后，组件“7”进可视区，上树做插入动画。|
-| 组件删除 | cachedCount(1, true) | 组件“7”上移动画 | 删除“2”后，组件“7”从预加载区进入显示区，做上移动画。|
-| 组件交换 | cachedCount(0, true) | 组件“2”移除动画，组件“7”插入动画 | 组件“2”出可视区，下树做移除动画；组件“7”进可视区，上树做插入动画。|
-| 组件交换 | cachedCount(1, true) | 组件“2”和组件“7”挤位动画 | 组件“2”从显示区进入预加载区，组件“7”从预加载区进入显示区。两个组件都一直在可视区，只是位置发生变化，因此做挤位动画。|
-
-没有预加载组件时，组件插入的运行效果：
-
-![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_add_0.gif)
-
-预加载组件时，组件插入的运行效果：
-
-![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_add_1.gif)
-
-没有预加载组件时，组件删除的运行效果：
-
-![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_delete_0.gif)
-
-预加载组件时，组件删除的运行效果：
-
-![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_delete_1.gif)
-
-没有预加载组件时，组件交换的运行效果：
-
-![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_exchange_0.gif)
-
-预加载组件时，组件交换的运行效果：
-
-![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_exchange_1.gif)
+![Repeat-Drag-Sort](./figures/repeat-drag-sort.gif)
 
 ## 前插保持
 
@@ -1310,10 +1169,10 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
+![repeat-case1-wrong](./figures/repeat-case1-wrong.gif)
 
 以下为修正后的示例：
-在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
+在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
 
 示例代码仅对增加数据的情况进行展示。
 
@@ -1374,7 +1233,7 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
+![repeat-case1-fixed](./figures/repeat-case1-fixed.gif)
 
 ### totalCount值大于数据源长度
 
@@ -1382,7 +1241,7 @@ struct RepeatTemplateSingle {
 
 totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
-上述规范可以通过实现父组件List/Grid的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
+上述规范可以通过实现父组件List/Grid的[onScrollIndex](../arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 
 ```ts
 @ObservedV2

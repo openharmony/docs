@@ -20,10 +20,10 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 必填 | 说明                        |
-| ------- | ------ | ---- | --------------------------- |
-| source  | string | 是   | 组件模板名。                |
-| ability | string | 是   | 提供方Ability的bundleName。 |
+| 名称    | 类型   | 只读 | 可选 | 说明                        |
+| ------- | ------ | ---- | ---- | --------------------------- |
+| source  | string | 否 | 否 | 组件模板名。                |
+| ability | string | 否 | 否 | 提供方Ability的bundleName。 |
 
 ## pluginComponentManager
 
@@ -39,9 +39,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 必填 | 说明                        |
-| ------- | ------ | ---- | --------------------------- |
-|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
+| 名称    | 类型   | 只读 | 可选 | 说明                        |
+| ------- | ------ | ---- | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 否 | 否   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
@@ -52,13 +52,13 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                  | 必填   | 说明                                       |
-| --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用方Ability信息。                          |
-| name      | string                              | 是    | 组件名称。                                    |
-| data      | [KVObject](#kvobject)               | 是    | 组件数据。                                   |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据。                                   |
-| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
+| 名称        | 类型                               | 只读 | 可选   | 说明                                       |
+| --------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
+| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 否 | 否    | 组件使用方Ability信息。                          |
+| name      | string                              | 否 | 否    | 组件名称。                                    |
+| data      | [KVObject](#kvobject)               | 否 | 否    | 组件数据。                                   |
+| extraData | [KVObject](#kvobject)               | 否 | 否    | 附加数据。                                   |
+| jsonPath  | string                              | 否 | 是    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
 
@@ -68,12 +68,12 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型                                  | 必填   | 说明                                       |
-| -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
-| name     | string                              | 是    | 请求组件名称。                                  |
-| data     | [KVObject](#kvobject)               | 是    | 组件数据。                                    |
-| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
+| 名称       | 类型                               | 只读 | 可选 | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---- |---------------------------------------- |
+| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 否 | 否    | 组件提供方Ability信息。                          |
+| name     | string                              | 否 | 否    | 请求组件名称。                                  |
+| data     | [KVObject](#kvobject)               | 否 | 否    | 组件数据。                                    |
+| jsonPath | string                              | 否 | 是    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
 
 ### RequestCallbackParameters
 
@@ -83,11 +83,11 @@ PluginManager.Request方法接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型                                       | 必填   | 说明    |
-| ----------------- | ---------------------------------------- | ---- | ----- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | 组件模板。 |
-| data              | [KVObject](#kvobject)                    | 是    | 组件数据。 |
-| extraData         | [KVObject](#kvobject)                    | 是    | 附加数据。 |
+| 名称              | 类型                                      | 只读 | 可选 | 说明  |
+| ----------------- | ---------------------------------------- | ---- | ---- | ----- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 否 | 否    | 组件模板。 |
+| data              | [KVObject](#kvobject)                    | 否 | 否    | 组件数据。 |
+| extraData         | [KVObject](#kvobject)                    | 否 | 否    | 附加数据。 |
 
 ### RequestEventResult
 
@@ -97,11 +97,11 @@ PluginManager.Request方法接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                    | 必填   | 说明    |
-| --------- | --------------------- | ---- | ----- |
-| template  | string                | 否    | 组件模板。 |
-| data      | [KVObject](#kvobject) | 否    | 组件数据。 |
-| extraData | [KVObject](#kvobject) | 否    | 附加数据。 |
+| 名称       | 类型                  | 只读 | 可选  | 说明    |
+| --------- | --------------------- | ---- | ---- | ----- |
+| template  | string                | 否 | 是    | 组件模板。 |
+| data      | [KVObject](#kvobject) | 否 | 是    | 组件数据。 |
+| extraData | [KVObject](#kvobject) | 否 | 是    | 附加数据。 |
 
 ### OnPushEventCallback
 
@@ -130,11 +130,11 @@ import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -171,9 +171,9 @@ import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
     'data': data,
@@ -219,7 +219,7 @@ pluginComponentManager.push(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("push_callback: push ok!");
+    console.info("push_callback: push ok!");
   }
 )
 ```
@@ -260,10 +260,10 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
-    console.log("request_callback: data=" + JSON.stringify(data.data));
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
+    console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.info("request_callback: data=" + JSON.stringify(data.data));
+    console.info("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -291,17 +291,17 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }

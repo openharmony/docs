@@ -20,6 +20,12 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Returns**
+
+| Type                                                  | Description     |
+| ---------------------------------------------------- | ------- |
+| Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | USB device list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -27,12 +33,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                 |
 | -------- | ------------------------- |
 | 801      | Capability not supported. |
-
-**Return value**
-
-| Type                                                  | Description     |
-| ---------------------------------------------------- | ------- |
-| Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | USB device list.|
 
 **Example**
 
@@ -109,7 +109,7 @@ Connects to the USB device based on the device information returned by **getDevi
 | -------- | -------- | -------- | ---------------- |
 | device | [USBDevice](#usbdevice) | Yes| USB device. The **busNum** and **devAddress** parameters obtained by **getDevices** are used to determine a USB device. Other parameters are passed transparently.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
@@ -155,6 +155,12 @@ Checks whether the user, for example, the application or system, has the device 
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise. If this API fails to be called, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -163,12 +169,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise. If this API fails to be called, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.|
 
 **Example**
 
@@ -198,6 +198,12 @@ Requests the temporary device access permission for the application. This API us
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the temporary device access permissions are granted; and the value **false** indicates the opposite. If this API fails to be called, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080392: An error occurs when the API data packet is written.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -206,12 +212,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the temporary device access permissions are granted; and the value **false** indicates the opposite. If this API fails to be called, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080392: An error occurs when the API data packet is written.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.|
 
 **Example**
 
@@ -241,6 +241,12 @@ Removes the device access permission for the application. System applications ar
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Permission removal result. The value **true** indicates that the access permission is removed successfully; and the value **false** indicates the opposite. If this API fails to be called, the following error codes are returned:<br>- 88080382: An invalid value or parameter occurs during the API operation.<br>- 88080385: This API is not initialized.<br>- 88080392: An error occurs when the API data packet is written.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -249,12 +255,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Permission removal result. The value **true** indicates that the access permission is removed successfully; and the value **false** indicates the opposite. If this API fails to be called, the following error codes are returned:<br>- 88080382: An invalid value or parameter occurs during the API operation.<br>- 88080385: This API is not initialized.<br>- 88080392: An error occurs when the API data packet is written.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.|
 
 **Example**
 
@@ -290,6 +290,12 @@ Claims a USB interface.
 | iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 | force | boolean | No| Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -298,12 +304,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -338,6 +338,12 @@ Before you do this, ensure that you have claimed the interface by calling [usbMa
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully released; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080381: Invalid interface operation.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -346,12 +352,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Returns **0** if the USB interface is successfully released; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080381: Invalid interface operation.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -389,6 +389,12 @@ Sets the device configuration.
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration. You can use **getDevices** to obtain device information and identify the USB configuration based on the ID.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.<br>- -17: I/O failure.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -397,12 +403,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.<br>- -17: I/O failure.|
 
 **Example**
 
@@ -440,6 +440,12 @@ Sets a USB interface.
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its **id** and **alternateSetting**.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully set; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -448,12 +454,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Returns **0** if the USB interface is successfully set; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -490,6 +490,12 @@ Obtains the raw USB descriptor. If the USB service is abnormal, **undefined** ma
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Returns the raw USB descriptor if the operation is successful; returns **undefined** otherwise.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -498,12 +504,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Uint8Array | Returns the raw USB descriptor if the operation is successful; returns **undefined** otherwise.|
 
 **Example**
 
@@ -536,6 +536,12 @@ Obtains the file descriptor.
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
+**Returns**
+
+| Type    | Description                  |
+| ------ | -------------------- |
+| number | Returns the file descriptor corresponding to the device if this API is successful called; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -544,12 +550,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type    | Description                  |
-| ------ | -------------------- |
-| number | Returns the file descriptor corresponding to the device if this API is successful called; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -588,6 +588,12 @@ Performs control transfer.
 | controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -595,12 +601,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -655,6 +655,12 @@ Performs control transfer.
 | requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -663,12 +669,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -731,6 +731,12 @@ Performs bulk transfer.
 | buffer | Uint8Array | Yes| Buffer used to write or read data.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.<br>- -3: The parameter is invalid.<br>- -202: The device is not found.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -739,12 +745,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transferred or received data block if the transfer is successful. If the API call fails, the following error codes are returned:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.<br>- -3: The parameter is invalid.<br>- -202: The device is not found.|
 
 **Example**
 
@@ -806,12 +806,11 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400007 | Resource busy. |
+| 14400007 | Resource busy. Possible causes: 1. The transfer has already been submitted. 2. The interface is claimed by another program or driver.|
 | 14400008 | No such device (it may have been disconnected). |
-| 14400009 | Insufficient memory. |
+| 14400009 | Insufficient memory. Possible causes: 1. Memory allocation failed. |
 | 14400012 | Transmission I/O error. |
 
 **Example**
@@ -820,6 +819,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 >
 > The following sample code shows the basic process for calling the **usbSubmitTransfer** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols to ensure correct data transfer and device compatibility.
 
+<!--code_no_check-->
 ```ts
 // Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
 // Pass the obtained USB device as a parameter to usbManager.connectDevice. Then, call usbManager.connectDevice to connect the USB device.
@@ -883,24 +883,23 @@ Cancels an asynchronous USB data transfer request.
 | -------- | -------- | -------- | -------- |
 | transfer | [UsbDataTransferParams](#usbdatatransferparams18) | Yes| Only **USBDevicePipe** and **endpoint** are required for canceling the transfer.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| &lt;void&gt; | None.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
 | 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
 | 14400011 | The transfer is not in progress, or is already complete or cancelled.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| &lt;void&gt; | None.|
 
 **Example**
 
@@ -908,6 +907,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 >
 > The following sample code shows the basic process for calling the **usbCancelTransfer** API and it needs to be executed in a specific method. In actual calling, you must comply with the device-related protocols to ensure correct data transfer and device compatibility.
 
+<!--code_no_check-->
 ```ts
 // Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
 // Pass the obtained USB device as a parameter to usbManager.connectDevice. Then, call usbManager.connectDevice to connect the USB device.
@@ -969,6 +969,12 @@ Closes a USB device pipe.
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the message control channel. You need to call **connectDevice** to obtain its value.|
 
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -977,12 +983,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080393: An error occurs when the API data packet is read.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Example**
 
@@ -1014,6 +1014,12 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
+**Returns**
+
+| Type   | Description                         |
+| ------- | ----------------------------- |
+| boolean | The value **true** indicates that the application has the permission to access the USB accessory; **false** indicates the opposite.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -1025,12 +1031,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 | 14401001 | The target USBAccessory not matched.                         |
-
-**Return value**
-
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | The value **true** indicates that the application has the permission to access the USB accessory; **false** indicates the opposite.|
 
 **Example**
 
@@ -1061,6 +1061,12 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
+**Returns**
+
+| Type            | Description                         |
+| ---------------- | ----------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the application result. The value **true** indicates that the device access permissions are granted; **false** indicates the opposite.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -1072,12 +1078,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 | 14401001 | The target USBAccessory not matched.                         |
-
-**Return value**
-
-| Type            | Description                         |
-| ---------------- | ----------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the application result. The value **true** indicates that the device access permissions are granted; **false** indicates the opposite.|
 
 **Example**
 
@@ -1142,6 +1142,12 @@ Obtains the list of USB accessories connected to the host.
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Returns**
+
+| Type                         | Description                                              |
+| ----------------------------- | -------------------------------------------------- |
+| Array<Readonly&lt;USBAccessory&gt;> | List of USB accessories (read-only). Currently, only one USB accessory is contained in the list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -1150,12 +1156,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 801      | Capability not supported.                                    |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-
-**Return value**
-
-| Type                         | Description                                              |
-| ----------------------------- | -------------------------------------------------- |
-| Array<Readonly&lt;USBAccessory&gt;> | List of USB accessories (read-only). Currently, only one USB accessory is contained in the list.|
 
 **Example**
 
@@ -1173,7 +1173,7 @@ try {
 
 openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
-Obtains the accessory handle and opens the accessory file descriptor.
+Obtains the accessory handle and opens the accessory file descriptor. Then, the host can communicate with the accessory through the **read** and **write** APIs provided by Core File Kit.
 
 You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to obtain the accessory list and use [USBAccessory](#usbaccessory14) as a parameter.
 
@@ -1185,6 +1185,12 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
+**Returns**
+
+| Type              | Description       |
+| ------------------ | ----------- |
+| [USBAccessoryHandle](#usbaccessoryhandle14) | USB accessory handle.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -1193,27 +1199,25 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
 | 14401003 | Cannot reopen the accessory.                                 |
 
-**Return value**
-
-| Type              | Description       |
-| ------------------ | ----------- |
-| [USBAccessoryHandle](#usbaccessoryhandle14) | USB accessory handle.|
-
 **Example**
 
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
+  let arrayBuffer = new ArrayBuffer(4096);
+  let readLength = fs.readSync(handle.accessoryFd, arrayBuffer, {offset: 0, length: 4096});
+  hilog.info(0, 'testTag ui', 'readSync ret: ' + readLength.toString(10));
 } catch (error) {
   hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
 }
@@ -1233,7 +1237,7 @@ You need to call [usbManager.openAccessory](#usbmanageropenaccessory14) to obtai
 
 | Name         | Type              | Mandatory| Description                                  |
 | --------------- | ------------------ | ---- | -------------------------------------- |
-| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | Yes  | USB accessory handle, obtained through [openAccessory](#usbmanageropenaccessory14).|
+| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | Yes  | USB accessory handle.  |
 
 **Error codes**
 
@@ -1257,6 +1261,63 @@ try {
   hilog.info(0, 'testTag ui', `closeAccessory success`)
 } catch (error) {
   hilog.info(0, 'testTag ui', `closeAccessory error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.resetUsbDevice<sup>20+</sup>
+
+resetUsbDevice(pipe: USBDevicePipe): boolean
+
+Resets a USB peripheral.
+
+Previous configurations and APIs will be reset. Ensure that the related services have been completed before calling this API. Before calling this API, perform the following operations:
+
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the device list.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as the input parameter of this API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the device is reset successfully; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first.|
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
+| 14400013 | The USBDevicePipe validity check failed. Possible causes:<br>1. The input parameters fail the validation check.<br>2. The call chain used to obtain the input parameters is not reasonable. |
+
+**Example**
+
+```ts
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.error(`device list is empty`);
+}
+
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+try {
+  let ret: boolean = usbManager.resetUsbDevice(devicepipe);
+  console.info(`resetUsbDevice  = ${ret}`);
+} catch (err) {
+  console.error(`resetUsbDevice failed: ` + err);
 }
 ```
 
@@ -1494,7 +1555,7 @@ Transfers USB data packets in an asynchronous manner.
 
 ## UsbTransferStatus<sup>18+</sup>
 
-Enumerates the statuses returned by **libusb** through callback after the actual processing is complete.
+Enumerates the status code returned after data processing is complete.
 
 **System capability**: SystemCapability.USB.USBManager
 

@@ -2,8 +2,6 @@
 
 FormEditExtensionContext是[FormEditExtensionAbility](./js-apis-app-form-formEditExtensionAbility.md)的上下文，继承自[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)。
 
-FormEditExtensionContext提供允许访问特定于FormEditExtensionAbility资源的能力。
-
 > **说明：**
 >
 > 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -14,7 +12,10 @@ FormEditExtensionContext提供允许访问特定于FormEditExtensionAbility资�
 ```ts
 import { FormEditExtensionAbility } from '@kit.FormKit';
 ```
-## FormEditExtensionContext.startSecondPage
+## FormEditExtensionContext
+FormEditExtensionContext提供允许访问特定于FormEditExtensionAbility资源的能力。
+
+### startSecondPage
 
 startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>
 

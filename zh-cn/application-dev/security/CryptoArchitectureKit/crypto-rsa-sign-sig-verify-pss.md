@@ -70,7 +70,7 @@
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 构造RSA密钥对生成器。
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    // sign和verfiy均支持RSA密钥带长度/不带长度的写法。
+    // sign和verify均支持RSA密钥带长度/不带长度的写法。
     let signer = cryptoFramework.createSign("RSA|PSS|SHA256|MGF1_SHA256");
     let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
@@ -151,7 +151,7 @@
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 构造RSA密钥对生成器。
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    // sign和verfiy均支持RSA密钥带长度/不带长度的写法。
+    // sign和verify均支持RSA密钥带长度/不带长度的写法。
     let signer = cryptoFramework.createSign("RSA|PSS|SHA256|MGF1_SHA256");
     let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
     let keyPair = rsaGeneratorSpec.generateKeyPairSync();

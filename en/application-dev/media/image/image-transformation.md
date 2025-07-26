@@ -4,9 +4,9 @@ Image processing refers to a series of operations performed on the PixelMap, suc
 
 ## How to Develop
 
-Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs related to image transformation.
+Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) for APIs related to image transformation.
 
-1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
+1. Complete [image decoding](image-decoding.md) and obtain a PixelMap object.
 
 2. Obtain image information.
 

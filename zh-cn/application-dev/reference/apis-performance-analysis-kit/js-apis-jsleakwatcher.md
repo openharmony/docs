@@ -111,3 +111,48 @@ dump(filePath: string): Array&lt;string&gt;
 let context = this.getUIContext().getHostContext();
 let files: Array<string> = jsLeakWatcher.dump(context?.filesDir);
 ```
+
+
+## jsLeakWatcher.enableLeakWatcher<sup>20+</sup>
+
+enableLeakWatcher(isEnabled: boolean, config: Array&lt;string&gt;, callback: Callback&lt;Array&lt;string&gt;&gt;): void
+
+使能js对象泄露检测，默认关闭。
+
+这个接口通过一次调用即可检测JS对象的内存泄漏，比之前需要调用四个函数（enable、watch、check、dump）的方法更加简洁。
+
+如果发生内存泄漏，泄漏文件将通过回调函数返回给开发者。
+
+
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| isEnabled | boolean | 是| 是否使能js对象内存泄漏检测功能。true：开启该功能；false：关闭该功能。|
+| config | array&lt;string&gt; | 是| 配置项，数组中每个元素为监测具体对象的类型。<br>可配置项包括：XComponent，NodeContainer，Window，Custom Component，和Ability。 |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 是| 回调函数，用于接收jsLeakWatcher.enableLeakWatcher接口的返回的内存泄漏的对象。<br>回调函数中传入一个数组对象，索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshort。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[JsLeakWatcher错误码](./errorcode-jsleakwatcher.md)。
+
+| 错误码ID| 错误信息|
+| ------- | ----------------------------------------------------------------- |
+| 10801001 | The parameter isEnabled invalid.                      |
+| 10801002 | The parameter config invalid.                        |
+| 10801003 | The parameter callback invalid.                       |
+
+**示例：**
+
+```ts
+let config: Array<string> = ['XComponent'];
+// 监测js对象XComponent的内存泄漏
+jsLeakWatcher.enableLeakWatcher(true, config, (filePath: Array<string>) => {
+    console.info('JsLeakWatcher leaklistFileName:' + filePath[0]);
+    console.info('JsLeakWatcher heapDumpFileName:' + filePath[1]);
+});
+```
+

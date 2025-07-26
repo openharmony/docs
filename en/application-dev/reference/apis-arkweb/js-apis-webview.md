@@ -5360,7 +5360,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID | Error Message                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100002 | Invalid url.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **Example**
 

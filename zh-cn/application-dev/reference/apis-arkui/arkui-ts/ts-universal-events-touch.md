@@ -6,13 +6,15 @@
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+> 事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
+>
+> 如需绑定手势事件可参考[绑定手势方法](./ts-gesture-settings.md)。
 
 ## onTouch
 
 onTouch(event: (event: TouchEvent) => void): T
 
-手指触摸动作触发该回调。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
+手指触摸动作触发该回调。触摸事件默认冒泡，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -39,8 +41,8 @@ onTouch(event: (event: TouchEvent) => void): T
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
 | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -64,7 +66,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **返回值：**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt; | 由历史点组成的数组。 |
 
@@ -73,7 +75,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                        | 描述                                  |
+| 名称    | 类型                                        | 说明                                  |
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | id      | number                                      | 手指唯一标识符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
@@ -85,13 +87,17 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
-| PressedTime<sup>15+</sup> | number | 当前手指按下的时间。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| pressure<sup>15+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| PressedTime<sup>15+</sup> | number | 当前手指按下的时间。<br>单位：ns<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressure<sup>15+</sup> | number | 当前手指按着的压力值。<br/>取值范围：[0,65535)，压力越大值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | width<sup>15+</sup> | number | 当前手指按压区域的宽。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | height<sup>15+</sup> | number | 当前手指按压区域的高。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 触摸点位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 触摸点位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
+
+历史点信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -113,51 +119,65 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 @Entry
 @Component
 struct TouchExample {
-  @State text: string = ''
-  @State eventType: string = ''
+  @State text: string = '';
+  @State eventType: string = '';
 
   build() {
     Column() {
       Button('Touch').height(40).width(100)
         .onTouch((event?: TouchEvent) => {
-          if(event){
+          if (event && event.sourceTool === SourceTool.Finger) {
             if (event.type === TouchType.Down) {
-              this.eventType = 'Down'
+              this.eventType = 'Down';
             }
             if (event.type === TouchType.Up) {
-              this.eventType = 'Up'
+              this.eventType = 'Up';
             }
             if (event.type === TouchType.Move) {
-              this.eventType = 'Move'
+              this.eventType = 'Move';
             }
-            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-            event.touches[0].pressure +
-              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
+            // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
+            // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
+            if (event.type === TouchType.Cancel) {
+              this.eventType = 'Cancel';
+            }
+            if (event.touches) {
+              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+              event.touches[0].pressure +
+                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+            }
           }
         })
       Button('Touch').height(50).width(200).margin(20)
         .onTouch((event?: TouchEvent) => {
-          if(event){
+          if (event) {
             if (event.type === TouchType.Down) {
-              this.eventType = 'Down'
+              this.eventType = 'Down';
             }
             if (event.type === TouchType.Up) {
-              this.eventType = 'Up'
+              this.eventType = 'Up';
             }
             if (event.type === TouchType.Move) {
-              this.eventType = 'Move'
+              this.eventType = 'Move';
             }
-            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-            event.touches[0].pressure +
-              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
+            // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
+            // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
+            if (event.type === TouchType.Cancel) {
+              this.eventType = 'Cancel';
+            }
+            if (event.touches) {
+              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+              event.touches[0].pressure +
+                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+            }
           }
         })
       Text(this.text)

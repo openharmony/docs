@@ -244,7 +244,7 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
-let res = buf1.compare(buf2);
+let res = buffer.compare(buf1, buf2);
 
 console.info(Number(res).toString());
 // 输出结果：1
@@ -1012,18 +1012,18 @@ keys(): IterableIterator&lt;number&gt;
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.keys());
-for (const key of numbers) {
+let keys = buf.keys();
+for (const key of keys) {
   console.info(key.toString());
-  /*
-  输出结果：0
-           1
-           2
-           3
-           4
-           5
-  */
 }
+/*
+输出结果：0
+        1
+        2
+        3
+        4
+        5
+*/
 ```
 
 ### lastIndexOf

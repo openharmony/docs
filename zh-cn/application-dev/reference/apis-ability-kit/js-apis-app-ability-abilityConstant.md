@@ -14,6 +14,18 @@ AbilityConstant提供Ability相关的枚举，包括应用启动原因[LaunchRea
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
+## 常量
+
+**系统能力**：SystemCapability.Ability.AbilityBase
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称 | 类型 | 值 | 说明 |
+| ---- | -----| ---- | ---------------------------------------------------------- |
+| REASON_MESSAGE_DESKTOP_SHORTCUT<sup>20+</sup>  | string | "ReasonMessage_DesktopShortcut" | 通过桌面快捷方式启动。开发者如果从[LaunchParam](#launchparam)的launchReasonMessage属性中获取到该字符串，表示UIAbility是通过点击桌面快捷方式启动的。|
+
 ## LaunchParam
 
 启动参数。Ability启动时由系统自动传入，开发者无需修改。
@@ -45,6 +57,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PREPARE_CONTINUATION<sup>12+</sup>           | 10    | 跨端迁移提前启动Ability。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| PRELOAD<sup>20+</sup>           | 11    | 表明该UIAbility是通过预加载机制启动的。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 **示例：**
 
@@ -115,7 +128,7 @@ export default class MyAbility extends UIAbility {
 | rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
 | pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
 | timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
-| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。 |
+| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **示例**:
 
@@ -168,7 +181,7 @@ export default class MyAbility extends UIAbility {
 
 ## MemoryLevel
 
-内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
+整机可用内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -176,16 +189,16 @@ export default class MyAbility extends UIAbility {
 
 | 名称                         | 值 | 说明                |
 | ---                         | --- | ---           |
-| MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。 |
-| MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
-| MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+| MEMORY_LEVEL_MODERATE       | 0   | 整机可用内存适中。 |
+| MEMORY_LEVEL_LOW            | 1   | 整机可用内存低。   |
+| MEMORY_LEVEL_CRITICAL       | 2   | 整机可用内存极低。   |
 
 > **说明：**
 > 
 > 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
-> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
-> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
-> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
+> - 当整机可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当整机可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当整机可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 
@@ -349,7 +362,7 @@ export default class MyAbility extends UIAbility {
 
 ## PrepareTermination<sup>15+</sup>
 
-应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)方法使用。
+应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)方法使用。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 

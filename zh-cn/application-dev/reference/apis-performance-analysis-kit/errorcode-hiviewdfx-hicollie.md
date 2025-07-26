@@ -58,11 +58,11 @@ Invalid timeout value.
 
 **错误描述**
 
-timieout值是无效的。
+timeout值是无效的。
 
 **可能原因**
 
-传入的time out的值为0。
+传入的timeout的值为0。
 
 ## 29800005 错误的进程上下文
 

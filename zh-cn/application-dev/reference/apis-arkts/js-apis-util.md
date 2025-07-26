@@ -838,9 +838,9 @@ TextDecoder用于将字节数组解码为字符串，支持utf-8、utf-16le/be�
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
+| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、gb2312、iso-8859-1。 |
 | fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示，false表示不显示。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte order marker）标记，默认值为false，表示解码结果包含BOM标记。 |
 
@@ -1095,13 +1095,15 @@ console.info("retStr = " + retStr);
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
+编码后的信息，包含读取的字符数和写入的字节数。
 
-编码后的数据。
+### 属性
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 类型 | 可读  |可写  | 说明               |
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称      | 类型 | 只读  |可选  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | 是 | 否 |已读取的字符数。 |
 | written | number   | 是 |否 |已写入的字节数。  |
@@ -1118,9 +1120,9 @@ TextEncoder将字符串编码为字节数组，支持多种编码格式。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、gb2312、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -1903,7 +1905,7 @@ LRUCache用于在缓存空间不足时，将近期最少使用的数据替换为
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称   | 类型   | 可读 | 可写 | 说明                   |
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | length | number | 是   | 否   | 当前缓冲区中值的总数。 |
 
@@ -2557,14 +2559,13 @@ entries(): IterableIterator&lt;[K, V]&gt;
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro.entries();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+let pair = pro.entries();
+for (let value of pair) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -2589,14 +2590,13 @@ for (let value of arrayValue) {
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro[Symbol.iterator]();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+
+for (let value of pro) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ## ScopeComparable<sup>8+</sup>
@@ -3437,7 +3437,7 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
-通过输入参数编码后输出对应文本。
+将输入的Uint8Array字节数组进行Base64编码，返回一个字符串结果。该方法支持多种编码格式，包括标准Base64编码、MIME格式的Base64编码（带有换行符）、URL安全格式的Base64编码等。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3467,8 +3467,16 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 **示例：**
 
   ```ts
+  // MIME编码
   let base64Helper = new util.Base64Helper();
-  let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
   let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
   console.info("result = " + result);
   /*
@@ -3476,8 +3484,56 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
   aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
   aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
   */
-  ```
 
+  // BASIC编码
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.BASIC);
+  console.info("result = " + result);
+  /*
+  输出结果：result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
+  
+  // MIME_URL_SAFE编码
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.BASIC_URL_SAFE);
+  console.info("result = " + result);
+  /*
+  输出结果：result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU
+  */
+  // MIME_URL_SAFE编码
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME_URL_SAFE);
+  console.info("result = " + result);
+  /*
+  输出结果：result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU
+  */
+  ```
 
 ### decodeSync<sup>9+</sup>
 
@@ -5180,7 +5236,7 @@ isSharedArrayBuffer(value: Object): boolean
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | 当前缓冲区中值的总数。 |
 
@@ -6508,7 +6564,7 @@ Base64的构造函数。
 
 encodeSync(src: Uint8Array): Uint8Array
 
-通过输入参数编码后输出对应文本。
+将输入的Uint8Array字节数组进行Base64编码，返回编码后的Uint8Array数组。
 
 > **说明：**
 >
@@ -6542,7 +6598,7 @@ encodeSync(src: Uint8Array): Uint8Array
 
 encodeToStringSync(src: Uint8Array): string
 
-通过输入参数编码后输出对应文本。
+将输入的Uint8Array字节数组进行Base64编码，返回编码后的字符串结果。
 
 > **说明：**
 >

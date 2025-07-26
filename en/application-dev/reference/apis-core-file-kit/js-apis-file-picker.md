@@ -90,7 +90,7 @@ A constructor used to create a **DocumentViewPicker** object in a window created
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| Yes  | Application context (only **UIAbilityContext** is supported). For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| window  | [window.Window](../apis-arkui/js-apis-window.md#window)  | Yes  | Window instance created by the application.|
+| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md#window)  | Yes  | Window instance created by the application.|
 
 > **NOTE**
 >
@@ -788,13 +788,13 @@ Defines the options for selecting documents.
 | :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
 | maxSelectNumber<sup>10+</sup>       | number                                      | No  | Yes| Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices with the required system capability can select directories, and only one directory can be selected at a time. <br>Default value: **1**.<br>**System capability**: SystemCapability.FileManagement.UserFileService |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | No  |  Yes| Path of the document or directory to select. It is empty by default (the recently opened page is displayed).          |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  |  Yes| Document suffix of the document to select.<br>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the document suffix. If there is no "\|", the option does not have the description. Multiple document suffixes separated by a comma (,) are allowed in an option. The number of elements in a string array cannot exceed 100.<br>By default, no filtering is performed, that is, all documents are selected. The wildcard ['All files (\*.\*)\\.*'] can be used on 2-in-1 devices to display all files. (Mobile phones can support this configuration since API version 17.)<br>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService  |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  |  Yes| Suffix of the document to select. <br>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the document suffix. If there is no "\|", the option does not have the description. Each filter suffix can contain multiple suffixes, separated by a comma (,). The length of the input array cannot exceed 100 characters, for example, ['Images (.png, .jpg)\|.png,.jpg', 'Documents\|.txt', 'Videos\|.mp4', '.pdf'].<br>By default, no filtering is performed, that is, all documents are selected. The wildcard ['All files (\*.\*)\|.*'] can be used on 2-in-1 devices to display all files. (Mobile phones can support this configuration since API version 17.)<br>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService  |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  |  Yes| Only 2-in-1 devices are supported. The default value is **FILE**.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 | authMode<sup>12+</sup>    | boolean                              | No  |  Yes| Whether to start Picker.<br>Default value: **false**. If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. Only 2-in-1 devices are supported.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 |multiAuthMode<sup>15+</sup>  | boolean                             |No   |  Yes| Whether to enable the batch authorization mode.<br>The value **false** (default) means to disable the batch authorization mode; the value **true** means to enable the batch authorization mode. The **multiUriArray** parameter only takes effect when **multAuthMode** is set to **true**. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 |multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |No   |  Yes| Whether to pass the URIs for batch authorization (only files are supported). <br>This parameter is used with **multAuthMode**, and does not take effect when **multAuthMode** is set to **false**. By default, this parameter is left empty. (The files displayed on the batch authorization page are empty.) Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 |mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |No   |  Yes| Whether to enable the aggregation view mode for a file management application. The default value is **DEFAULT**, indicating that this parameter does not take effect and the aggregation view is disabled. If this parameter is set to a value other than **DEFAULT**, other parameters do not take effect. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-|isEncryptionSupported<sup>19+</sup>    | boolean |No   |  Yes| Whether to support encryption (only files are supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the Picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 19. |
+|isEncryptionSupported<sup>19+</sup>    | boolean |No   |  Yes| Whether to support encryption (only files are supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the Picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 19.<br>**System capability**: SystemCapability.FileManagement.UserFileService|
 
 ## DocumentPickerMode<sup>12+</sup>
 
@@ -866,21 +866,25 @@ Defines the options for saving audio clips.
 
 ## PhotoViewPicker<sup>(deprecated)</sup>
 
-Provides APIs for selecting and saving images or videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to select files. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for selecting and saving images or videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) to select a file. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoViewPicker](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-### constructor<sup>12+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor(context: Context)
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 A constructor used to create a **PhotoViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **Example**
 
@@ -910,7 +914,7 @@ struct Index {
 }
 ```
 
-### constructor<sup>12+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
 
@@ -920,13 +924,17 @@ constructor()
 
 A constructor used to create a **PhotoViewPicker** instance. This constructor is not recommended due to the potential risk of operation failure.
 
+> **NOTE**
+>
+> This API is deprecated since API version 12.
+
 **Example**
 
 ```ts
 let photoPicker = new picker.PhotoViewPicker(); // Construction without parameter is not recommended. There is a possibility that the PhotoViewPicker instance fails to start.
 ```
 
-### select
+### select<sup>(deprecated)</sup>
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
@@ -934,9 +942,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select) instead.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -978,7 +986,7 @@ async function example01(context: common.UIAbilityContext) { // Ensure that cont
 }
 ```
 
-### select
+### select<sup>(deprecated)</sup>
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -986,9 +994,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-1) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select-1) instead.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1027,7 +1035,7 @@ async function example02(context: common.UIAbilityContext) { // Ensure that cont
 }
 ```
 
-### select
+### select<sup>(deprecated)</sup>
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -1035,9 +1043,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-2) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select-2) instead.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1072,7 +1080,7 @@ async function example03(context: common.UIAbilityContext) { // Ensure that cont
 }
 ```
 
-### save
+### save<sup>(deprecated)</sup>
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -1121,7 +1129,7 @@ async function example04(context: common.UIAbilityContext) { // Ensure that cont
 }
 ```
 
-### save
+### save<sup>(deprecated)</sup>
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1167,7 +1175,7 @@ async function example05(context: common.UIAbilityContext) { // Ensure that cont
 }
 ```
 
-### save
+### save<sup>(deprecated)</sup>
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1216,7 +1224,7 @@ Enumerates the media file types that can be selected.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1234,7 +1242,7 @@ Defines the options for selecting images or videos.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectoptions) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectoptions) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1251,7 +1259,7 @@ Defines information about the images or videos selected.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult) instead.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectresult) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1259,7 +1267,7 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Mandatory| Description                          |
 | ----------------------- | ------------------- | ----| ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | URIs of the media files selected. This URI array can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri). |
+| photoUris        | Array&lt;string&gt;    | Yes  | URIs of the media files selected. This URI array can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri). |
 | isOriginalPhoto        | boolean    | Yes  | Whether the selected image is the original one. The value **true** means the selected image is the original one; the value **false** means the opposite. |
 
 ## PhotoSaveOptions<sup>(deprecated)</sup>
@@ -1275,3 +1283,5 @@ Defines the options for saving images or videos.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames              | Array&lt;string&gt;    | No | File name of the image or video to save. If this parameter is not specified, the user needs to enter the file name.|
+
+<!--no_check-->

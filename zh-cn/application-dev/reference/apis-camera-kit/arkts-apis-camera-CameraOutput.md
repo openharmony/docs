@@ -6,6 +6,12 @@
 
 会话中[Session](arkts-apis-camera-Session.md)使用的输出信息，output的基类。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## release
 
 release(callback: AsyncCallback\<void\>): void

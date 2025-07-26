@@ -360,3 +360,57 @@ Called to return the progress information. This callback is executed synchronous
     return "ok";
   }
   ```
+
+### onRelease<sup>20+</sup>
+
+onRelease(scenario: number): Promise&lt;void&gt;
+
+Provides secure exit APIs of the backup and restore framework. It is triggered when the application backup or restore is complete, allowing the application to perform special processing afterward, such as removing temporary files generated during these operations. This API uses a promise to return the result.<br>
+**onRelease** has a timeout mechanism. If the **onRelease** operation is not completed within 5 seconds, the application process exits when the backup and restoration are complete.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                          |
+| ------------- | ------------------------------- | ---- | ------------------------------ |
+| scenario | number | Yes  | Indicates the backup or restore scenario.<br>The value **1** indicates the backup scenario.<br>The value **2** indicates the restore scenario.|
+
+**Return value**
+
+| Type                  | Description   |
+| --------------------- | :---- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+// The following describes an example of removing files.
+import { BackupExtensionAbility, fileIo } from '@kit.CoreFileKit';
+
+const SCENARIO_BACKUP: number = 1;
+const SCENARIO_RESTORE: number = 2;
+// Temporary directory to be removed.
+let filePath: string = '/data/storage/el2/base/.temp/';
+
+class BackupExt extends BackupExtensionAbility {
+  async onRelease(scenario: number): Promise<void> {
+    try {
+      if (scenario == SCENARIO_BACKUP) {
+        // In the backup scenario, the application implements the processing. The following describes how to remove temporary files generated during backup.
+        console.info(`onRelease begin`);
+        await fileIo.rmdir(filePath);
+        console.info(`onRelease end, rmdir succeed`);
+      }
+      if (scenario == SCENARIO_RESTORE) {
+        // In the restore scenario, the application implements the processing. The following describes how to remove temporary files generated during restoration.
+        console.info(`onRelease begin`);
+        await fileIo.rmdir(filePath);
+        console.info(`onRelease end, rmdir succeed`);
+      }
+    } catch (error) {
+      console.error(`onRelease failed with error. Code: ${error.code}, message: ${error.message}`);
+    }
+  }
+}
+```

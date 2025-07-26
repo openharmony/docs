@@ -1,12 +1,12 @@
 # @ohos.util.Queue (Linear Container Queue)
 
-**Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
+Queue follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. Queue is implemented based on the queue data structure.
 
-Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other end.
+Unlike [Deque](js-apis-deque.md), which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other end.
 
-**Recommended use case**: Use **Queue** in FIFO scenarios.
+**Recommended use case**: Use Queue in FIFO scenarios.
 
-This topic uses the following to identify the use of generics:
+This topic uses the following to identify the use of generics:<br>
 - T: Type
 
 > **NOTE**
@@ -23,7 +23,7 @@ import { Queue } from '@kit.ArkTS';
 
 ## Queue
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -31,7 +31,7 @@ import { Queue } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a queue (called container later).|
+| length | number | Yes| No| Number of elements in a Queue.|
 
 
 ### constructor
@@ -63,7 +63,7 @@ let queue : Queue<number | string | Object> = new Queue();
 
 add(element: T): boolean
 
-Adds an element at the end of this container.
+Adds an element at the end of this Queue.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -79,7 +79,7 @@ Adds an element at the end of this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -109,7 +109,7 @@ let result3 = queue.add(c);
 
 pop(): T
 
-Removes the first element from this container.
+Removes the first element from this Queue.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -145,7 +145,7 @@ let result = queue.pop();
 
 getFirst(): T
 
-Obtains the first element of this container.
+Obtains the first element of this Queue.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -181,7 +181,7 @@ let result = queue.getFirst();
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this Queue and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -191,7 +191,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the Queue.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
@@ -228,7 +228,7 @@ queue.forEach((value : number, index ?: number) : void => {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -258,7 +258,7 @@ queue.add(4);
 
 // Method 1:
 while(queue.length) {
-  let item = queue.pop()
+  let item = queue.pop();
   console.log("value:" + item);
 }
 

@@ -32,7 +32,7 @@ Obtains the power consumption information list. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -69,7 +69,7 @@ Obtains the power consumption information list. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -113,7 +113,7 @@ Obtains the power consumption of an application.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -156,7 +156,7 @@ Obtains the proportion of the power consumption of an application.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -199,7 +199,7 @@ Obtains the power consumption of a hardware unit according to the consumption ty
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -242,7 +242,7 @@ Obtains the proportion of the power consumption of a hardware unit according to 
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-batteryStatistics.md).
+For details about the error codes, see [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Code  | Error Message   |
 |---------|---------|
@@ -271,7 +271,7 @@ Describes the device power consumption information.
 
 ### Attributes
 
-| Name | Type                               | Readable| Writable| Description                  |
+| Name | Type                               | Read-Only| Optional| Description                  |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
 | uid   | number                              | Yes  | No  | UID related to power consumption information.   |
 | type  | [ConsumptionType](#consumptiontype) | Yes  | No  | Power consumption type.  |

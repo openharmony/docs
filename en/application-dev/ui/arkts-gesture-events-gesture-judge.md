@@ -14,8 +14,8 @@ The following APIs are involved in gesture triggering control.
 
 | API| Description|
 | ------- | -------------- |
-|[onGestureJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#ongesturejudgebegin)|Triggered when the gesture meets the recognition threshold to allow the application to decide whether to continue with the gesture. It is a universal event.|
-|[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)|Triggered to implement gesture judgment, obtain gesture recognizers, and initialize and their enabled state. It is an extension of **onGestureJudgeBegin** and can serve as its substitute.<br>This API obtains all recognizers involved in the gesture response chain during a single interaction, including the current recognizer about to be triggered, and initializes the gesture's active state.|
+|[onGestureJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#ongesturejudgebegin)|Triggered when the gesture meets the recognition threshold to allow the application to decide whether to intercept the gesture. It is a universal event.|
+|[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)|Triggered to implement gesture judgment, obtain gesture recognizers, and set their enabled state. It is an extension of **onGestureJudgeBegin** and can serve as its substitute.<br>When obtaining gesture recognizers, this API obtains all gesture recognizers in the response chain of the current interaction, as well as the recognizer about to be triggered successfully, allowing the enabled state of the gesture to be set.|
 
 In the following example, the **Image** and **Stack** components are located in the same area. Long-pressing the upper half of the **Stack** component triggers the long-press gesture bound to the **Stack** component, while long-pressing the lower half of the **Stack** component triggers the drag operation of the **Image** component.
 
@@ -69,12 +69,13 @@ In the following example, the **Image** and **Stack** components are located in 
 4. Below is the complete code example.
 
    ```ts
-   import { promptAction } from '@kit.ArkUI';
+   import { PromptAction } from '@kit.ArkUI';
    
    @Entry
    @Component
    struct Index {
      scroller: Scroller = new Scroller();
+     promptAction: PromptAction = this.getUIContext().getPromptAction();
    
      build() {
        Scroll(this.scroller) {
@@ -90,7 +91,7 @@ In the following example, the **Image** and **Stack** components are located in 
              Image($r('sys.media.ohos_app_icon'))
                .draggable(true)
                .onDragStart(()=>{
-                 promptAction.showToast({ message: ""Drag the lower blue area. The Image component responds." });
+                 this.promptAction.showToast({ message: "Drag the lower blue area. The Image component responds." });
                })
                .width('200vp').height('200vp')
              // The upper half of the Stack component is the floating area bound to the long press gesture.
@@ -102,7 +103,7 @@ In the following example, the **Image** and **Stack** components are located in 
              .gesture(GestureGroup(GestureMode.Parallel,
                LongPressGesture()
                  .onAction((event: GestureEvent) => {
-                   promptAction.showToast({ message: "Long-press the upper red area. The red area responds." });
+                   this.promptAction.showToast({ message: "Long-press the upper red area. The red area responds." });
                  })
                  .tag("longpress")
              ))
@@ -145,7 +146,7 @@ The following APIs are involved in gesture response control.
 
 | API| Description|
 | ------- | -------------- |
-|[shouldBuiltInRecognizerParallelWith](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#shouldbuiltinrecognizerparallelwith)|Used to set the system's built-in gestures to be parallel with other gestures.|
+|[shouldBuiltInRecognizerParallelWith](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#shouldbuiltinrecognizerparallelwith)|Used to set the built-in gestures to be parallel with other gestures.|
 |[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)|Triggered to implement gesture judgment, obtain gesture recognizers, and initialize and their enabled state.|
 |[parallelGesture](arkts-gesture-events-binding.md#parallelgesture-parallel-gesture-binding-method)|Allows custom gestures to be parallel with gestures of higher priority.|
 
@@ -167,7 +168,7 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
    })
    ```
 
-2. Use the **onGestureRecognizerJudgeBegin** API to obtain the PanGesture recognizer of the **Scroll** component and to initialize the enabled state of the inner and outer gesture recognizers based on the boundary conditions of the **Scroll** components.
+2. Use the **onGestureRecognizerJudgeBegin** API to obtain the pan gesture recognizer of the **Scroll** component and to set the enabled state of the inner and outer gesture recognizers based on the boundary conditions of the **Scroll** components.
 
    ```ts
    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // When gesture recognition is about to be successful, set the recognizer's enabled state based on the current component state.       
@@ -197,7 +198,7 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
    })
    ```
 
-3. Set up a gesture listener to listen for the state changes of the **Scroll** component and dynamically adjust the enabled state of the gesture recognizers to ensure they respond appropriately.
+3. Set up a gesture listener to listen for the state changes of the **Scroll** component, dynamically adjust the enabled state of the gesture recognizers, and controls whether gesture callbacks are triggered, allowing you to manage scrolling.
 
    ```ts
    .parallelGesture ( // Bind a PanGesture as a dynamic controller.

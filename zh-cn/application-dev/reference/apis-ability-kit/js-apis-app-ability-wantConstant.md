@@ -28,7 +28,7 @@ import { wantConstant } from '@kit.AbilityKit';
 | SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | 表示在跨端迁移过程中是否迁移页面栈信息。默认值为true，表示在跨端迁移过程中自动迁移页面栈信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | 表示跨端迁移源端应用是否退出。默认值为true，表示在跨端迁移过程中源端应用自动退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | 表示[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)的显示模式，值为枚举类型[ShowMode](#showmode12)<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
-| PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 表示授权给目标方的文件URI列表。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 表示授权给目标方的文件URI列表。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) 。该字段需要与文件URI[读写Flag](js-apis-app-ability-wantConstant.md#flags)配合使用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | 表示分身应用索引。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | 表示应用拉起的请求码。<br>当调用[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult)或[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)拉起目标方Ability时，需要目标方返回结果。为了确保目标方能够将结果准确返回到调用方，系统会自动生成唯一的requestCode，以标识本次调用。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | PAGE_PATH<sup>12+</sup>  | ohos.param.atomicservice.pagePath | 表示原子化服务的页面路径。<br>如果原子化服务的页面跳转是通过[router](../../ui/arkts-routing.md)实现的，可以使用该参数指定跳转的页面，例如"library/ets/pages/menu"。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
@@ -42,6 +42,8 @@ import { wantConstant } from '@kit.AbilityKit';
 | APP_LAUNCH_TRUSTLIST<sup>17+</sup>  | ohos.params.appLaunchTrustList  | 表示隐式启动时的应用过滤列表。<br>隐式启动时仅匹配列表中的应用，值为string类型的[AppIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)数组，过滤列表最多支持50个应用，传入空数组不生效。<br>**原子化服务API**：从API version 17开始，该接口支持在原子化服务中使用。 |
 | LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | 表示应用拉起的原因。<br>调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。当前取值仅支持"ReasonMessage_SystemShare"。 <br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | DESTINATION_PLUGIN_ABILITY<sup>19+</sup>  | ohos.params.pluginAbility  | 指示目标Ability是插件Ability。 |
+| ATOMIC_SERVICE_SHARE_ROUTER<sup>20+</sup>  | ohos.params.atomicservice.shareRouter  | 表示被拉起的原子化服务的页面栈信息。仅当拉起方为UIAbilityContext，被拉起方为原子化服务时生效。<br>例如，某原子化服务中包含首页和第2页，如果希望直接拉起原子化服务的第2页，可以在拉起原子化服务时通过该字段传递第2页的页面栈信息。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| ABILITY_UNIFIED_DATA_KEY<sup>20+</sup>  | ohos.param.ability.udKey  | 表示基于[UDMF](../../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)进行文件分享时使用的唯一标识。该字段只允许系统应用设置，三方应用可以读取。<br>当Want中存在URI授权Flag字段（即[FLAG_AUTH_READ_URI_PERMISSION](#flags)或[FLAG_AUTH_WRITE_URI_PERMISSION](#flags)），且同时存在PARAMS_STREAM字段时，该字段将不生效。 <br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Flags
 

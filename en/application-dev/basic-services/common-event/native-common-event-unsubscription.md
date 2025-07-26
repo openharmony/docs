@@ -11,7 +11,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe)|Creates the subscriber information.|
+|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe)|Unsubscribe from a common event.|
 
 ## How to Develop
 

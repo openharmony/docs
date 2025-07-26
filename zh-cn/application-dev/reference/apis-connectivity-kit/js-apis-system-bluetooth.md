@@ -95,7 +95,7 @@ import bluetooth from '@system.bluetooth';
 | success | Function | 是 | 寻找到新设备上报时调用的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 
-**表4** success返回值：
+**表4** success返回值
 
 | 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |

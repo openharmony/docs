@@ -104,7 +104,7 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
 
 ### selectedColor<sup>18+</sup>
 
@@ -122,7 +122,7 @@ selectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
@@ -154,7 +154,7 @@ unselectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_switch_outline_off')|
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_switch_outline_off')|
 
 ### mark<sup>10+</sup>
 
@@ -192,7 +192,7 @@ mark(style: Optional\<MarkStyle>)
 
 shape(value: CheckBoxShape)
 
-设置CheckBox组件形状，包括圆形和圆角方形。
+设置CheckBox组件形状，包括圆形和圆角方形。如果想要调整当前CheckBox的样式，需使用[contentModifier](#contentmodifier12)属性自定义CheckBox样式。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ shape(value: CheckBoxShape)
 
 shape(shape: Optional\<CheckBoxShape>)
 
-设置CheckBox组件形状，包括圆形和圆角方形。与[shape](#shape11)<sup>11+</sup>相比，shape参数新增了对undefined类型的支持。
+设置CheckBox组件形状，包括圆形和圆角方形。与[shape](#shape11)<sup>11+</sup>相比，shape参数新增了对undefined类型的支持。如果想要调整当前CheckBox的样式，需使用[contentModifier](#contentmodifier12)属性自定义CheckBox样式。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -228,7 +228,7 @@ shape(shape: Optional\<CheckBoxShape>)
 
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
-定制CheckBox内容区的方法。
+定制CheckBox内容区的方法。设置该属性时，会导致其他属性设置失效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -244,7 +244,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
-定制CheckBox内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+定制CheckBox内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。设置该属性时，会导致其他属性设置失效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -325,7 +325,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 | 名称 | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
-| selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
+| selected | boolean| 否 | 否 | 指示多选框是否被选中，值为true时，多选框被选中。值为false时，多选框未选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
 | triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。true表示从未选中变为选中，false表示从选中变为未选中。 |
 
 ## 示例
@@ -416,7 +416,7 @@ struct Index {
 ![](figures/checkbox2.gif)
 
 ### 示例3（自定义多选框样式）
-该示例实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
+该示例通过[contentModifier](#contentmodifier12)属性实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
 
 ```ts
 // xxx.ets
@@ -559,5 +559,376 @@ struct CheckboxExample {
 }
 ```
 
-
 ![](figures/checkbox4.gif)
+
+### 示例5（获取多选框选中信息）
+
+该示例通过选中Checkbox以及CheckboxGroup多选框来获取选中的信息。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @State arrOne: Array<string> = ['1', '2', '3'];
+  @State arrTwo: Array<string> = ['1', '2', '3', '4'];
+  @State arrThree: Array<string> = ['1', '2', '3', '4', '5', '6'];
+  @State selected: boolean = false;
+  @State infoOne: string = '';
+  @State infoTwo: string = '';
+  @State infoThree: string = '';
+
+  build() {
+    Column() {
+      // 单元项全选按钮
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupOne' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoOne = "checkboxGroupOne" + JSON.stringify(itemName);
+            console.info("checkboxGroupOne" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupOne Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项1
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrOne, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupOne' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupTwo' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoTwo = "checkboxGroupTwo" + JSON.stringify(itemName);
+            console.info("checkboxGroupTwo" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupTwo Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项2
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrTwo, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupTwo' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupThree' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoThree = "checkboxGroupThree" + JSON.stringify(itemName);
+            console.info("checkboxGroupThree" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupThree Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项3
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrThree, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupThree' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      //全选按钮
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Row() {
+          CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.CIRCLE)
+            .selectedColor('#007DFF')
+            .width(30)
+            .margin({ left: 10 })
+            .onChange(() => {
+              this.selected = !this.selected
+            })
+          Text('Select All')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
+            .margin({ left: 10 })
+        }
+      }.margin({ bottom: 15 })
+
+      //获取选中信息
+      Button('get selected info')
+        .margin({ top: 10 })
+        .onClick(() => {
+          this.getUIContext().getPromptAction().showToast({
+            message: 'selected info: ' + this.infoOne + '\n' + this.infoTwo + '\n' + this.infoThree
+          })
+        })
+    }.padding(10)
+  }
+}
+```
+
+![checkbox5](figures/checkbox5.gif)
+
+### 示例6（设置滑动多选）
+
+该示例通过设置手势事件实现Checkbox滑动多选。
+
+```ts
+// xxx.ets
+import { componentUtils, ComponentUtils, UIContext } from '@kit.ArkUI';
+import { LinkedList } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State isChoosing: boolean = false;
+  @State selectedStart: number = -1;
+  @State @Watch('onSelectedEndChange') selectedEnd: number = -1;
+  selectedPhotos: LinkedList<number> = new LinkedList();
+  @State selectedList: number[] = [];
+  @State image: Resource[] =
+    [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')];
+  private selectedState: SelectedState = SelectedState.None;
+  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+  private listScroller: ListScroller = new ListScroller();
+  private currentOffsetY: number = 0;
+
+  onChange() {
+    console.info('change successful');
+  }
+
+  getSpeed(fingerY: number, edge: number) {
+    return 150 * 150 * (fingerY - edge) / 2000 / Math.abs(fingerY - edge);
+  }
+
+  getIndex(fingerX: number, fingerY: number) {
+    let rect: componentUtils.ComponentInfo | null = null;
+    for (let i = 0; i < 100; i++) {
+      let uiContext: UIContext = this.getUIContext();
+      rect = this.componentUtils.getRectangleById(`stack${i}`);
+      const x1 = uiContext.px2vp(rect.windowOffset.x);
+      const x2 = uiContext.px2vp(rect.windowOffset.x + rect.size.width);
+      const y1 = uiContext.px2vp(rect.windowOffset.y);
+      const y2 = uiContext.px2vp(rect.windowOffset.y + rect.size.height);
+      if (x1 <= fingerX && fingerX < x2 && y1 <= fingerY && fingerY < y2) {
+        return i;
+      }
+    }
+    return this.selectedEnd;
+  }
+
+  onSelectedEndChange() {
+    let start: number = -1;
+    let end: number = -1;
+    if (this.selectedEnd > this.selectedStart) {
+      start = this.selectedStart;
+      end = this.selectedEnd;
+    } else {
+      end = this.selectedStart;
+      start = this.selectedEnd;
+    }
+    if (this.selectedState == SelectedState.Selected) {
+      for (let i = start; i <= end; i++) {
+        if (!this.selectedPhotos.has(i)) {
+          this.selectedPhotos.add(i);
+        }
+      }
+    } else if (this.selectedState == SelectedState.Remove) {
+      for (let i = start; i <= end; i++) {
+        if (this.selectedPhotos.has(i)) {
+          this.selectedPhotos.remove(i);
+        }
+      }
+    }
+    this.selectedList = this.selectedPhotos.convertToArray();
+  }
+
+  scroll(fingerY: number) {
+    if (fingerY > 700 && !this.listScroller.isAtEnd()) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 700));
+      return;
+    }
+    if (fingerY < 200 && this.currentOffsetY > 0) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 200));
+      return;
+    }
+  }
+
+  onPanGestureUpdate(event: GestureEvent) {
+    const fingerInfo = event.fingerList[event.fingerList.length - 1];
+    const fingerX = fingerInfo.globalX;
+    const fingerY = fingerInfo.globalY;
+    this.selectedEnd = this.getIndex(fingerX, fingerY);
+    this.scroll(fingerY);
+  }
+
+  build() {
+    Column() {
+      if (this.isChoosing) {
+        Row() {
+          Text('取消')
+            .onClick(() => {
+              this.isChoosing = false;
+              this.selectedStart = -1;
+              this.selectedEnd = -1;
+              this.selectedPhotos.clear();
+              this.selectedList = [];
+            })
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceEvenly)
+      }
+      List({ space: 10, scroller: this.listScroller }) {
+        ForEach(Array.from({ length: 100 }), (item: string, index: number) => {
+          ListItem() {
+            Stack({ alignContent: Alignment.TopEnd }) {
+              Image(this.image[(index % 4)])
+                .width('100%')
+                .draggable(false)
+              Checkbox({ name: index.toString() })
+                .shape(CheckBoxShape.CIRCLE)
+                .visibility(this.isChoosing ? Visibility.Visible : Visibility.None)
+                .select(this.selectedList.includes(index))
+            }
+            .id(`stack${index}`)
+            .width('100%')
+          }
+          .draggable(false)
+        }, (item: string, index: number) => 'listItem' + index)
+      }
+      .id('list')
+      .height('100%')
+      .width('100%')
+      .lanes(4)
+      .alignListItem(ListItemAlign.Center)
+      .onDidScroll(() => {
+        this.currentOffsetY = this.listScroller.currentOffset().yOffset;
+      })
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+          GestureGroup(GestureMode.Sequence,
+            LongPressGesture()
+              .onAction(() => {
+                this.isChoosing = true;
+              }),
+            PanGesture()
+              .onActionStart(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                const fingerInfo = event.fingerList[event.fingerList.length - 1];
+                const fingerX = fingerInfo.globalX;
+                const fingerY = fingerInfo.globalY;
+                this.selectedStart = this.getIndex(fingerX, fingerY);
+                if (this.selectedPhotos.has(this.selectedStart)) {
+                  this.selectedState = SelectedState.Remove;
+                } else {
+                  this.selectedState = SelectedState.Selected;
+                }
+              })
+              .onActionUpdate(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.onPanGestureUpdate(event);
+              })
+              .onActionEnd(() => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.selectedState = SelectedState.None;
+              })
+          ),
+          PanGesture()
+            .onActionStart(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              const fingerInfo = event.fingerList[event.fingerList.length - 1];
+              const fingerX = fingerInfo.globalX;
+              const fingerY = fingerInfo.globalY;
+              this.selectedStart = this.getIndex(fingerX, fingerY);
+              if (this.selectedPhotos.has(this.selectedStart)) {
+                this.selectedState = SelectedState.Remove;
+              } else {
+                this.selectedState = SelectedState.Selected;
+              }
+            })
+            .onActionUpdate(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.onPanGestureUpdate(event);
+            })
+            .onActionEnd(() => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.selectedState = SelectedState.None;
+            })
+        )
+      )
+    }
+  }
+}
+
+enum SelectedState {
+  None,
+  Selected,
+  Remove
+}
+```
+
+![checkbox6](figures/checkbox6.gif)

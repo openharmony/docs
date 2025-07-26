@@ -136,11 +136,11 @@ Prior to API version 10, ArkTS (.ets file) completely adopted the syntax of stan
 Syntax issues are classified as warning or error, depending on the **compatibleSdkVersion** of the project:
 
   - In compatible mode, where the value of **compatibleSdkVersion** is greater than or equal to 10, syntax issues are reported as errors and will block the compilation process. The compilation can be successful only after the ArkTS syntax is fully adapted.
-  - In compatible mode, where the value of **compatibleSdkVersion** is smaller than 10, syntax issues are reported as warnings and will not block the compilation process. and will not block the compilation process.
+  - In compatible mode, where the value of **compatibleSdkVersion** is smaller than 10, syntax issues are reported as warnings and will not block the compilation process.
 
 ## Interaction with TS/JS
 
-ArkTS supports efficient interoperability with TS/JS. In the current version, ArkTS is compatible with dynamic object semantics. In the scenario of interaction with TS/JS, when data and objects of TS/JS are used as that of ArkTS, the static compilation check of ArkTS may be bypassed, causing unexpected behavior or extra overhead.
+ArkTS supports efficient interoperability with TS/JS. In the current version, ArkTS is compatible with dynamic object semantics. In the scenario of interaction with TS/JS, when data and objects of TS/JS are used as those of ArkTS, the static compilation check of ArkTS may be bypassed, causing unexpected behavior or extra overhead.
 
 ```typescript
 // lib.ts

@@ -12,12 +12,12 @@ A higher data security label and device security level indicate stricter encrypt
 
 The data can be rated into four security levels: S1, S2, S3, and S4.
 
-  | Risk Level| Security Level| Definition| Example| 
+| Risk Level| Security Level| Definition| Example|
 | -------- | -------- | -------- | -------- |
-| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information| 
-| High| S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Individual real-time precise positioning information and movement trajectory| 
-| Moderate| S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Detailed addresses and nicknames of individuals| 
-| Low| S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Gender, nationality, and user application records| 
+| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
+| High| S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Individual real-time precise positioning information and movement trajectory|
+| Moderate| S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Detailed addresses and nicknames of individuals|
+| Low| S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Gender, nationality, and user application records|
 
 
 ### Device Security Levels
@@ -34,13 +34,13 @@ During device networking, you can run the **hidumper -s 3511** command to query 
 
 In cross-device data sync, data access is controlled based on the device security level and data security labels. In principle, data can be synced only to the devices whose data security labels are not higher than the device's security level. The access control matrix is as follows:
 
-|Device Security Level|Data Security Labels of the Synchornizable Device|
+|Device Security Level|Data Security Labels of the Synchronizable Device|
 |---|---|
 |SL1|S1|
 |SL2|S1 to S2|
 |SL3|S1 to S3|
 |SL4|S1 to S4|
-|SL5|S1 to S4| 
+|SL5|S1 to S4|
 <!--RP2-->
 For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synced with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
 <!--RP2End-->
@@ -118,8 +118,6 @@ When an RDB store is created, the **securityLevel** parameter specifies the secu
 
 For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-
-  
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { relationalStore } from '@kit.ArkData';

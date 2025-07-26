@@ -84,7 +84,7 @@ struct ShortcutExample {
           try {
             shortcutManager.addDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("addDesktopShortcutInfo success");
+                console.info("addDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`addDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -165,7 +165,7 @@ struct ShortcutExample {
           try {
             shortcutManager.deleteDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("deleteDesktopShortcutInfo success");
+                console.info("deleteDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`deleteDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -232,7 +232,7 @@ struct ShortcutExample {
           try {
             shortcutManager.getAllDesktopShortcutInfo(100)
               .then((data: shortcutManager.ShortcutInfo[]) => {
-                console.log("Shortcut data is " + JSON.stringify(data));
+                console.info("Shortcut data is " + JSON.stringify(data));
               }).catch((err: BusinessError) => {
               console.error(`getAllDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });

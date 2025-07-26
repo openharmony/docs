@@ -256,7 +256,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 
 **NOTE**
 
-- In OpenHarmory, if the **napi_finalize** callback is registered when a strong reference is created, calling this API will trigger the **napi_finalize** callback.
+- In OpenHarmony, if the **napi_finalize** callback is registered when a strong reference is created, calling this API will trigger the **napi_finalize** callback.
 
 ### napi_create_symbol
 
@@ -714,8 +714,11 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_wrap_sendable | Wraps a native instance into an ArkTS object.|12|
 |FUNC|napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|12|
 |FUNC|napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|12|
-|FUNC|napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|12|
+|FUNC|napi_remove_wrap_sendable | Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.|12|
 |FUNC|napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|18|
+|FUNC|napi_create_ark_context|Creates a new runtime context environment.|20|
+|FUNC|napi_switch_ark_context|Switches to the specified runtime context environment.|20|
+|FUNC|napi_destroy_ark_context|Destroys a context environment created by **napi_create_ark_context**.|20|
 
 > **NOTE**
 >
@@ -739,7 +742,7 @@ Enumerates the QoS levels, which determine the priority of thread scheduling.
 
 ```cpp
 typedef enum {
-    napi_event_mode_default = 0, //  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.
+    napi_event_mode_default = 0, // Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.
     napi_event_mode_nowait = 1, // Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately.
 } napi_event_mode;
 ```
@@ -919,7 +922,7 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 **Description**
 
-Creates an ArkTS runtime environment. A process allows up to 64 instances, and the total number of subthreads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
+Creates a runtime environment. A process allows up to 64 instances, and the total number of child threads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
 
 **Parameters**
 
@@ -1196,7 +1199,7 @@ Creates a sendable object with the given **napi_property_descriptor**.
 
 - **property_count**: number of properties of the class. This parameter is of the size_t type.
 
-- **properties**: pointer to the properties of the sendable object to create.
+- **properties**: pointer to the descriptors of the properties. This parameter of the const napi_property_descriptor* type.
 
 - **result**: pointer to the sendable class created. This parameter is of the napi_value type.
 
@@ -1396,7 +1399,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 **Description**
 
-Removes the native instance from an ArkTS object.
+Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
 
 **Parameters**
 
@@ -1455,7 +1458,79 @@ Wraps a Node-API instance into an ArkTS object and specifies the instance size. 
 
 - **napi_pending_exception**: An uncaught exception or an exception occurs during the execution.
 
-#### **napi_finalize** description
+### napi_create_ark_context
+
+```cpp
+napi_status napi_create_ark_context(napi_env env, napi_env* newEnv);
+```
+
+**Description**
+
+Creates a new runtime context environment.
+
+Note the following when using this API:
+
+1. Only new context environments created through the initial context environment are supported. It is prohibited to create new context environments using the context environment created by this API.
+2. Currently, this API cannot be called on ArkTS threads that are not the main thread.
+3. Before calling this API, ensure that the current context environment is normal. Otherwise, the API call fails.
+4. The context environment created by this API can only load some native.so files of ArkUI. Loading application-specific native .so files and common basic library native so files is not supported.
+5. The multi-context runtime environment does not support the sendable feature.
+6. The runtime context environment created through **napi_create_ark_context** does not support module capabilities such as console and timer.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- newEnv: pointer to the new runtime context environment.
+
+**Return value**
+
+**napi_ok** if the operation is successful.
+
+### napi_switch_ark_context
+
+```cpp
+napi_status napi_switch_ark_context(napi_env env)
+```
+
+**Description**
+
+Switches to the specified runtime context environment. Note the following when using this API:
+
+1. Currently, this API does not support calls in ArkTS threads that are not the main thread.
+2. Before calling this API, ensure that the current context environment is normal. Otherwise, the API call fails.
+
+**Parameters**
+
+- env: specified runtime context environment.
+
+**Return value**
+
+**napi_ok** if the operation is successful.
+
+### napi_destroy_ark_context
+
+```cpp
+napi_status napi_destroy_ark_context(napi_env env)
+```
+
+**Description**
+
+Destroys a context environment created by **napi_create_ark_context**. Note the following when using this API:
+
+1. Currently, this API does not support calls in ArkTS threads that are not the main thread.
+2. This API can only be used to destroy runtime context environments created by calling **napi_create_ark_context**.
+3. You cannot use this API to destroy a context environment that is currently in use.
+
+**Parameters**
+
+- env: runtime context to be destroyed.
+
+**Return value**
+
+**napi_ok** if the operation is successful.
+
+### **napi_finalize** description
 
 ```cpp
 typedef void (*napi_finalize)(napi_env env,

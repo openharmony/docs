@@ -2,7 +2,7 @@
 
 - ArkTS APIs<!--basic-services-arkts-->
   - Account Management<!--account-management-arkts-->
-    - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
+    - [@ohos.account.appAccount (Application Account Management)](js-apis-appAccount.md)
     - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
     <!--Del-->
@@ -97,24 +97,23 @@
   - Modules<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
     - [DeviceInfo](_device_info.md)
-    - [InitSync](_init_sync.md)
-    - [OsAccount](_os_account.md)
+    - [OsAccount](capi-osaccount.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
-    - [Pasteboard](_pasteboard.md)
+    - [Pasteboard](capi-pasteboard.md)
     - [TimeService](_time_service.md)
   - Header Files<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
-    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
-    - [oh_pasteboard.h](oh__pasteboard_8h.md)
-    - [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md)
-    - [os_account.h](os__account_8h.md)
-    - [os_account_common.h](os__account__common_8h.md)
+    - [oh_pasteboard.h](capi-oh-pasteboard-h.md)
+    - [oh_pasteboard_err_code.h](capi-oh-pasteboard-err-code-h.md)
+    - [os_account.h](capi-os-account-h.md)
+    - [os_account_common.h](capi-os-account-common-h.md)
     - [ohprint.h](ohprint_8h.md)
+    - [ohscan.h](c-apis-scan.md)
     - [time_service.h](time__service_8h.md)
   - Structs<!--basic-services-struct-->
     - [Print_Margin](_print___margin.md)
@@ -122,6 +121,10 @@
     - [Print_PrintAttributes](_print___print_attributes.md)
     - [Print_PrintDocCallback](_print___print_doc_callback.md)
     - [Print_Range](_print___range.md)
+    - [Pasteboard_ProgressInfo](capi-pasteboard-progressinfo.md)
+    - [Pasteboard_GetDataParams](capi-pasteboard-getdataparams.md)
+    - [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)
+    - [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)
 - Error Codes<!--basic-services-arkts-errcode-->
   - [USB Error Codes](errorcode-usb.md)
   - [Running Lock Error Codes](errorcode-runninglock.md)

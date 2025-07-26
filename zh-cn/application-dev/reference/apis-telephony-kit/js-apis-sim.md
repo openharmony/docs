@@ -168,7 +168,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1。<br />- 1：卡槽2。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。                              |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。<br/>- true:授权。<br/>- false：未授权。                              |
 
 **错误码：**
 
@@ -1518,8 +1518,8 @@ Icc帐户信息。
 | ---------- | ------- | ---- | ---------------- |
 | simId      | number  |  是  | SIM卡ID。          |
 | slotIndex  | number  |  是  | 卡槽ID。           |
-| isEsim     | boolean |  是  | 标记卡是否是eSim。 |
-| isActive   | boolean |  是  | 卡是否被激活。     |
+| isEsim     | boolean |  是  | 标记卡是否是eSim。<br/>- true:是eSim。<br/>- false：不是eSim。 |
+| isActive   | boolean |  是  | 卡是否被激活。   <br/>- true:激活。<br/>- false：未激活。  |
 | iccId      | string  |  是  | ICCID号码。        |
 | showName   | string  |  是  | SIM卡显示名称。    |
 | showNumber | string  |  是  | SIM卡显示号码。    |

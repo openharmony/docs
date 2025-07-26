@@ -147,9 +147,26 @@ Internal error.
 An internal error occurs.
 
 **Possible Causes**
+1. Invalid input device ID.
 
-This error code is reported if an internal error occurs.
+2. Invalid input name.
+
+3. Abnormal internal state.
+
+4. Incorrect API usage.
+
+5. System errors, such as null pointer, insufficient memory, unexpected distributed service restart, IPC exception, and JS engine exception.
 
 **Solution**
 
-Try again later.
+View the error log to identify the error cause. Take appropriate based on the actual cause:
+
+1. If the device ID passed to the API is the same as that obtained from the Bluetooth system API, check whether the peer device is in the advertising state.
+
+2. If the name passed from the client to the server is the same as that passed from the server to the client, check whether the name is correct by referring to the API reference.
+
+3. Check whether objects are used after being closed.
+
+4. Check whether the API is correctly used by referring to the API reference.
+
+5. If the problem persists, restart or update the application or upgrade the device version.

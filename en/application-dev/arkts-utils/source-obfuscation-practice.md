@@ -1,4 +1,4 @@
-# Package-specific Obfuscation Recommendations
+# Package-specific Source Code Obfuscation Recommendations
 
 Different package types serve various purposes and have distinct build processes. This requires you to consider different aspects when applying obfuscation. This topic provides tailored recommendations for three types of packages: [HAP](../quick-start/hap-package.md), [HAR](../quick-start/har-package.md), and [HSP](../quick-start/in-app-hsp.md), aiming to help you effectively implement obfuscation.
 
@@ -18,7 +18,7 @@ After the option configuration, you must configure the corresponding trustlists 
 - For new applications, you are advised to configure these options from the start and gradually add trustlist configurations as needed during development.
 - For existing applications, configure these options one by one in the suggested order. Compare the obfuscation products to understand the impact of each option, and refer to [Obfuscation Configuration Guidelines](source-obfuscation-guide.md#obfuscation-configuration-guidelines) for troubleshooting.
 
-Once the application functions correctly, you can enable additional features like code compression (**compact**) and log removal (**-remove-log**) to prepare the release package.
+Once the application functions correctly, you can enable additional features like code compression (**-compact**) and log removal (**-remove-log**) to prepare the release package.
 
 ## HAP Package Obfuscation Recommendations
 
@@ -26,8 +26,8 @@ Once the application functions correctly, you can enable additional features lik
 2. Familiarize yourself with the [obfuscation rule merging strategies](source-obfuscation.md#obfuscation-rule-merging-strategies) to understand how these rules affect the current module during compilation.
 
 3. Understand which code from dependent packages will be compiled and obfuscated together with the current module. This will affect the newly generated obfuscated names and some globally effective trustlists (such as property names), and consequently affect the final obfuscation effect of the current module. Specifically:
-    - When your HAP depends on a local HAR package, its code is obfuscated together with your HAP. The original and obfuscated names in this code will appear in the **obfuscation\nameCache.json** file.
-    - When your HAP depends on a released source code HAR package, its code in the project-level **oh_modules** directory is obfuscated together with your HAP. The original and obfuscated names in this code will appear in the **obfuscation\nameCache.json** file.
+    - When your HAP depends on a local HAR package, its code is obfuscated together with your HAP. The original and obfuscated names in this code will appear in the **obfuscation/nameCache.json** file of the HAP.
+    - When your HAP depends on a released source code HAR package, its code in the project-level **oh_modules** directory is obfuscated together with your HAP. The original and obfuscated names in this code will appear in the **obfuscation/nameCache.json** file of the HAP.
     - When your HAP depends on a released bytecode HAR package or HSP package, only the binary bytecode and declaration files are used for compilation. Since ArkGuard supports only source code obfuscation, these files are not obfuscated. (This also maintains the consistency between the interfaces in the declaration file and those in the binary file.) However, if third-party libraries lack proper interface declarations or trustlist configurations in **consumer-rules**, their interfaces may be accidentally obfuscated. You should manually configure trustlists to ensure runtime correctness.
 
 4. To ensure the correctness of the interaction with third-party libraries in the release state, ArkGuard automatically collects exported names and related properties from dependent modules in **oh_modules** and adds them to a trustlist. Since you can reference files from any path within the dependent modules, this collection includes exported names from both entry files (such as **Index.ets**) and all files of the third-party libraries in **oh_modules**.
@@ -54,7 +54,7 @@ Once the application functions correctly, you can enable additional features lik
 
 1. Familiarize yourself with the [three types of obfuscation configuration files](source-obfuscation-guide.md#obfuscation-configuration-files) and the [obfuscation rule merging strategies](source-obfuscation.md#obfuscation-rule-merging-strategies). Understand the precautions provided in [HAP Package Obfuscation Recommendations](#hap-package-obfuscation-recommendations) to ensure that your HAR functions correctly when it is used by HAP packages.
 
-2. HAR packages can affect the obfuscation process of the main module that uses them. No matter whether obfuscation is enabled for your HAR, configure **consumer-rules.txt** to ensure that your HAR package functions correctly when the main module enables any obfuscation.
+2. HAR packages can affect the obfuscation process of the main module that uses them. No matter whether obfuscation is enabled for your HAR, configure **consumer-rules.txt** to ensure that your HAR package functions correctly when the main module enables obfuscation.
 
 3. Due to the transitivity of consumer configurations, avoid enabling obfuscation directly in your HAR. Instead, use **-keep-global-name** and **-keep-property-name** to add specific names to a trustlist and minimize impact on dependent modules.
 
@@ -64,7 +64,7 @@ As unreleased static packages, local source code HAR packages are compiled and o
 
 ### Released Source Code HAR Package
 
-1. Enable the obfuscation rules. Start with the [recommended four options](#recommended-obfuscation-options) and add other options as needed.
+1. Enable the obfuscation rules. Start with the recommended [four obfuscation options](#recommended-obfuscation-options) and add other options as needed.
 2. Understand the [scenarios that require trustlist configurations](source-obfuscation.md#retention-options), and configure a trustlist in the HAR.
     - In **obfuscation-rules.txt**, configure the exported interface names and related property names of your HAR, as well as any names that should not be obfuscated during the build.
     - In **consumer-rules.txt**, configure the names of interfaces and properties that should not be re-obfuscated.

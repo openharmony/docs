@@ -51,7 +51,7 @@ constructor是FileUri的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明|
 | -------- | -------- | -------- |--------|
-| uriOrPath | string | 是 | uri或路径。uri类型：<br/>-&nbsp; 应用沙箱uri：file://\<bundleName>/\<sandboxPath> <br/>-&nbsp; 公共目录文件类uri：file://docs/storage/Users/currentUser/\<publicPath> <br/>-&nbsp; 公共目录媒体类uri：file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName> |
+| uriOrPath | string | 是 | URI或路径。URI类型：<br/>-&nbsp; 应用沙箱URI：file://\<bundleName>/\<sandboxPath> <br/>-&nbsp; 公共目录文件类URI：file://docs/storage/Users/currentUser/\<publicPath> <br/>-&nbsp; 公共目录媒体类URI：file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName> |
 
 **错误码：**
 
@@ -98,11 +98,11 @@ toString(): string
 
 getFullDirectoryUri(): string
 
-获取所在路径uri。uri指向文件则返回所在路径的uri，uri指向目录则不处理直接返回原串；uri指向的文件不存在或属性获取失败则返回空串。
+获取所在路径URI。URI指向文件则返回所在路径的URI，URI指向目录则不处理直接返回原串；URI指向的文件不存在或属性获取失败则返回空串。
 
-如果当前FileUri指向文件，将返回文件所在路径uri。如`xxx/example.txt`，将返回`xxx`。
+如果当前FileUri指向文件，将返回文件所在路径URI。如`xxx/example.txt`，将返回`xxx`。
 
-如果当前FileUri指向目录，将返回当前路径的uri。
+如果当前FileUri指向目录，将返回当前路径的URI。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -142,7 +142,7 @@ getFullDirectoryUri(): string
 
 isRemoteUri(): boolean
 
-判断当前uri是否是远端uri。
+判断当前URI是否是远端URI。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -180,7 +180,7 @@ isRemoteUri(): boolean
 
 getUriFromPath(path: string): string
 
-通过传入的路径path生成应用自己的uri；将path转uri时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在uri中。
+通过传入的路径path生成应用自己的URI；将path转URI时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在URI中。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -196,7 +196,7 @@ getUriFromPath(path: string): string
 
   | 类型 | 说明|
   | ------- |------|
-  | string | 通过传入的路径path生成应用自己的uri；将path转uri时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在uri中。 |
+  | string | 通过传入的路径path生成应用自己的URI；将path转URI时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在URI中。 |
 
 **错误码：**  
 

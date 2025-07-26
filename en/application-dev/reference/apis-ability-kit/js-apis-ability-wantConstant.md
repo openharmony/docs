@@ -1,6 +1,6 @@
 # @ohos.ability.wantConstant (wantConstant)
 
-The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
+The module provides the actions, entities, and flags used in Want objects.
 
 > **NOTE**
 > 
@@ -14,7 +14,7 @@ import wantConstant from '@ohos.ability.wantConstant';
 
 ## Action
 
-Enumerates the action constants of the **Want** object. **action** specifies the operation to execute.
+Enumerates the action constants of the Want object. **action** specifies the operation to execute.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -50,7 +50,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 
 ## Entity
 
-Enumerates the entity constants of the **Want** object. **entity** specifies additional information of the target ability.
+Enumerates the entity constants of the Want object. **entity** specifies additional information of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -81,6 +81,6 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the ServiceAbility is started regardless of whether the host application has been started.        |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                             |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** passed in [startAbility](js-apis-ability-featureAbility.md#startability). It must be used together with **FLAG_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the Want passed in [startAbility](js-apis-ability-featureAbility.md#featureabilitystartability). It must be used together with **FLAG_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

@@ -14,7 +14,7 @@ For details about the scenarios and supported algorithm specifications, see [Sup
 ## How to Develop
 > **NOTE**
 > <br>In the following, wrap means encrypt and unwrap means decrypt.
-1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key material format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
+1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key-material-format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
 
 2. Generate an asymmetric key pair **Wrapping_Key** (public key **Wrapping_Pk** and private key **Wrapping_Sk**) with the purpose of **HUKS_KEY_PURPOSE_UNWRAP** for device B (device to which the key is imported), and export the public key **Wrapping_Pk** of **Wrapping_Key** and save it. The asymmetric key pair **Wrapping_Key** is used for key agreement in the encrypted import process.
 

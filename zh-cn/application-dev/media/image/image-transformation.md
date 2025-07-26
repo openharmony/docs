@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-图像变换相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
+图像变换相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 1. 完成[图片解码](image-decoding.md)，获取PixelMap对象。
 

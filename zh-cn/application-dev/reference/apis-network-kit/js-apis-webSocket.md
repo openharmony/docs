@@ -344,7 +344,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail, error:" + JSON.stringify(err))
+    console.error("close fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -916,8 +916,8 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 | -------   | ------------------------------------------ |
 | 201       | Permission denied.                         |
 | 2302002   | Websocket certificate file does not exist. |
-| 2302004   | Cant't listen on the given NIC.            |
-| 2302005   | Cant't listen on the given Port.           |
+| 2302004   | Can't listen on the given NIC.            |
+| 2302005   | Can't listen on the given Port.           |
 | 2302999   | Websocket other unknown error.             |
 
 **示例：**
@@ -1321,7 +1321,7 @@ localServer.off('messageReceive');
 
 ### on('close')<sup>19+</sup>
 
-on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
+on(type: 'close', callback: ClientConnectionCloseCallback): void
 
 订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1332,7 +1332,7 @@ on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当onclose()调用完成，连接关闭成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1348,7 +1348,7 @@ localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeR
 
 ### off('close')<sup>19+</sup>
 
-off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
+off(type: 'close', callback?: ClientConnectionCloseCallback): void
 
 取消订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1363,7 +1363,7 @@ off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当offclose()调用完成，取消订阅连接关闭事件成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1444,6 +1444,7 @@ localServer.off('error');
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   否  |  是   | 支持传输客户端证书。 |
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
+| skipServerCertVerification<sup>20+</sup> | boolean | 否 | 是 | 是否跳过服务器证书验证。true表示跳过服务器证书验证，false表示不跳过服务器证书验证。默认为false。 |
 
 ## ClientCert<sup>11+</sup>
 
@@ -1507,7 +1508,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined。 |
+| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined。 |
 
 ## close错误码说明
 
@@ -1529,7 +1530,7 @@ type HttpProxy = connection.HttpProxy
 
 网络全局代理配置信息。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
@@ -1584,6 +1585,8 @@ type HttpProxy = connection.HttpProxy
 | clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 

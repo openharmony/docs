@@ -18,9 +18,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-colorspaceinfo.md) | ImageProcessing_ColorSpaceInfo | 色彩空间信息，用于色彩空间转换能力查询。 |
-| [OH_ImageProcessing](capi-oh-imageprocessing.md) | OH_ImageProcessing | 提供OH_ImageProcessing结构体声明。<br>定义了OH_ImageProcessing的空指针并调用[OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create)来创建图片处理实例。在创建实例之前，指针应为空。用户可以为不同的处理类型创建多个图片实例。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | 提供OH_PixelmapNative结构体声明。 |
+| [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md) | ImageProcessing_ColorSpaceInfo | 色彩空间信息，用于色彩空间转换能力查询。 |
+| [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md) | OH_ImageProcessing | 提供OH_ImageProcessing结构体声明。<br>定义了OH_ImageProcessing的空指针并调用[OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create)来创建图片处理实例。在创建实例之前，指针应为空。用户可以为不同的处理类型创建多个图片实例。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) | OH_PixelmapNative | 提供OH_PixelmapNative结构体声明。 |
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat) | OH_AVFormat | 提供OH_AVFormat结构体声明。 |
 
 ### 枚举

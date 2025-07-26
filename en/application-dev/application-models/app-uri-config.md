@@ -11,9 +11,9 @@
 - **scheme**: scheme name, for example, **http**, **https**, **file**, and **ftp**. Custom values are also supported.
 - **host**: domain name or IP address, for example, developer.huawei.com or 127.0.0.1.
 - **port**: port number, for example, 80 in developer.huawei.com:80.
-- **path**: directory or file path on the DNS, The **path** field does not support wildcards. If wildcards are required, use **pathRegex**.
+- **path**: directory or file path on the DNS. It is valid only when the scheme exists. The **path** field does not support wildcards. If wildcards are required, use **pathRegex**.
 - **pathStartWith**: prefix of the directory or file path on the DNS. It is used for prefix matching.
-- **pathRegex**: regular expression of the directory or file path on the DNS. It is used for regular expression matching.
+- **pathRegex**: regular expression of the directory or file path on the DNS. It is used for regular expression matching. It is valid only when the scheme exists.
 - [linkFeature](#description-of-linkfeature): application's function type (such as file opening, sharing, and navigation). The value is a string with a maximum of 127 bytes.
 
 ### Basic URL Format
@@ -31,7 +31,7 @@ URIs can be expressed in different formats based on the available fields. Among 
 
 > **NOTE**
 > - The scheme of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
-> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for uses to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
+> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for users to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
 
 
 ### Description of linkFeature
@@ -53,7 +53,7 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |RoutePlan|Plans a route.|
     |PlaceSearch|Searches a location.|
 
-2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
+2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
 
     |Value|Description|
     |---|---|

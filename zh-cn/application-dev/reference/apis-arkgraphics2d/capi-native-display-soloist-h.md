@@ -20,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [DisplaySoloist_ExpectedRateRange](capi-displaysoloist-expectedraterange.md) | DisplaySoloist_ExpectedRateRange | 提供期望帧率范围结构体。 |
-| [OH_DisplaySoloist](capi-oh-displaysoloist.md) | OH_DisplaySoloist | 提供OH_DisplaySoloist结构体声明。 |
+| [DisplaySoloist_ExpectedRateRange](capi-nativedisplaysoloist-displaysoloist-expectedraterange.md) | DisplaySoloist_ExpectedRateRange | 提供期望帧率范围结构体。 |
+| [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md) | OH_DisplaySoloist | 提供OH_DisplaySoloist结构体声明。 |
 
 ### 函数
 
@@ -80,7 +80,7 @@ OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_DisplaySoloist* | 返回一个指向[OH_DisplaySoloist](capi-oh-displaysoloist.md)实例的指针，如果返回空表示执行失败，可能的原因是内存不足。 |
+| OH_DisplaySoloist* | 返回一个指向[OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)实例的指针，如果返回空表示执行失败，可能的原因是内存不足。 |
 
 ### OH_DisplaySoloist_Destroy()
 
@@ -99,7 +99,7 @@ int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_DisplaySoloist](capi-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-oh-displaysoloist.md)实例的指针。 |
+| [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)实例的指针。 |
 
 **返回：**
 
@@ -124,7 +124,7 @@ int32_t OH_DisplaySoloist_Start(OH_DisplaySoloist* displaySoloist, OH_DisplaySol
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_DisplaySoloist](capi-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-oh-displaysoloist.md)实例的指针。 |
+| [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)实例的指针。 |
 | [OH_DisplaySoloist_FrameCallback](#oh_displaysoloist_framecallback) callback | 表示下一次VSync信号到来时执行的回调函数类型。 |
 | void* data | 一个指向用户自定义数据结构的指针，类型是void。 |
 
@@ -151,7 +151,7 @@ int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_DisplaySoloist](capi-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-oh-displaysoloist.md)实例的指针。 |
+| [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)实例的指针。 |
 
 **返回：**
 
@@ -176,8 +176,8 @@ int32_t OH_DisplaySoloist_SetExpectedFrameRateRange(OH_DisplaySoloist* displaySo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_DisplaySoloist](capi-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-oh-displaysoloist.md)实例的指针。 |
-| [DisplaySoloist_ExpectedRateRange](capi-displaysoloist-expectedraterange.md)* range | 一个指向期望帧率范围[DisplaySoloist_ExpectedRateRange](capi-displaysoloist-expectedraterange.md)实例的指针。 |
+| [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)* displaySoloist | 一个指向[OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)实例的指针。 |
+| [DisplaySoloist_ExpectedRateRange](capi-nativedisplaysoloist-displaysoloist-expectedraterange.md)* range | 一个指向期望帧率范围[DisplaySoloist_ExpectedRateRange](capi-nativedisplaysoloist-displaysoloist-expectedraterange.md)实例的指针。 |
 
 **返回：**
 

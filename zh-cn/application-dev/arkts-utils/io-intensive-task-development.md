@@ -1,7 +1,7 @@
 # I/O密集型任务开发指导 (TaskPool)
 
 
-使用异步并发可以解决单次I/O任务阻塞的问题，但如果遇到I/O密集型任务，同样会阻塞线程中其它任务的执行，这时需要使用多线程并发能力来进行解决。
+使用异步并发可以解决单次I/O任务阻塞的问题。对于I/O密集型任务，若线程中的其他任务仍可能被阻塞，建议采用多线程并发来处理。
 
 
 I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU的处理能力。这类任务需要频繁进行磁盘读写和网络通信。此处通过频繁读写系统文件来模拟I/O密集型并发任务的处理。
@@ -10,9 +10,9 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
 1. 定义并发函数，内部密集调用I/O能力。
     ```ts
     // write.ets
-    import { fileIo } from '@kit.CoreFileKit'
+    import { fileIo } from '@kit.CoreFileKit';
 
-    // 定义并发函数，内部密集调用I/O能力
+    // 定义并发函数，内部频繁调用I/O能力
     // 写入文件的实现
     export async function write(data: string, filePath: string): Promise<void> {
       let file: fileIo.File = await fileIo.open(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
@@ -24,24 +24,25 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
 
 	```ts
     // Index.ets
-    import { write } from './write'
+    import { write } from './write';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { taskpool } from '@kit.ArkTS';
     import { common } from '@kit.AbilityKit';
 
     @Concurrent
     async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
-      let filePath1: string = context.filesDir + "/path1.txt"; // 应用文件路径
+      // 应用文件路径
+      let filePath1: string = context.filesDir + "/path1.txt";
       let filePath2: string = context.filesDir + "/path2.txt";
       // 循环写文件操作
       let fileList: Array<string> = [];
       fileList.push(filePath1);
-      fileList.push(filePath2)
+      fileList.push(filePath2);
       for (let i: number = 0; i < fileList.length; i++) {
         write('Hello World!', fileList[i]).then(() => {
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
         }).catch((err: BusinessError) => {
-          console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`)
+          console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`);
           return false;
         })
       }
@@ -71,7 +72,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
                 // 数组较大时，I/O密集型任务分发也会抢占UI主线程，需要使用多线程能力
                 taskpool.execute(concurrentTest, context).then(() => {
                   // 调度结果处理
-                  console.info("taskpool: execute success")
+                  console.info("taskpool: execute success");
                 })
               })
           }

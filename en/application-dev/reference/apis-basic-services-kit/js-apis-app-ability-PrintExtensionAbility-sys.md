@@ -37,8 +37,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartPrintJob(jobInfo: print.PrintJob): void {
@@ -72,8 +72,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCancelPrintJob(jobInfo: print.PrintJob): void {
@@ -112,8 +112,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPrinterCapability(printerId: number): print.PrinterCapability {
@@ -158,8 +158,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 **Example**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPreview(jobInfo: print.PrintJob): string {

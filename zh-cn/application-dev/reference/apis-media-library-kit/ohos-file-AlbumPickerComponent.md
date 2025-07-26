@@ -49,7 +49,7 @@ Album Picker配置选项。
 | 名称             | 类型  | 必填  | 说明                                                          |
 |----------------|-------|-----|-------------------------------------------------------------|
 | themeColorMode | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | 否   | 相册页主题颜色，包括跟随系统、浅色模式以及深色模式，默认为跟随系统。 <br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                         |
-| filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否   | 相册组件过滤参数，可筛选只显示图片、视频或者图片和视频。若未配置此参数，则某个具体相册中显示图片和视频类型的所有资源。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
+| filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | 否   | 相册组件过滤参数，可筛选只显示图片、视频或者图片和视频。若未配置此参数，则某个具体相册中显示图片和视频类型的所有资源。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## EmptyAreaClickCallback<sup>13+</sup>
 

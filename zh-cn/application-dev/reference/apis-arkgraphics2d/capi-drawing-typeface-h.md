@@ -48,7 +48,7 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateDefault(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回一个指针，指针指向创建的字形对象。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 返回一个指针，指针指向创建的字形对象。 |
 
 ### OH_Drawing_TypefaceCreateFromFile()
 
@@ -76,7 +76,7 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFile(const char* path, int ind
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字形对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字形对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_TypefaceCreateFromFileWithArguments()
 
@@ -98,13 +98,13 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFileWithArguments(const char* 
 | 参数项 | 描述 |
 | -- | -- |
 | const char* path | 指向字体对象所在文件路径的指针。 |
-| const [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)的指针。 |
+| const [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。<br> 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、传入的文件路径对象指针或字型参数为空、传入的路径无效。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。<br> 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、传入的文件路径对象指针或字型参数为空、传入的路径无效。 |
 
 ### OH_Drawing_TypefaceCreateFromCurrent()
 
@@ -125,14 +125,14 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromCurrent(const OH_Drawing_Typef
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* current | 指向字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)的指针。 |
-| const [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)的指针。 |
+| const [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* current | 指向字体对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)的指针。 |
+| const [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。<br> 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、传入的文件路径对象指针或字型参数为空、传入的字体对象不支持字型参数对象中描述的可变维度。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。<br> 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、传入的文件路径对象指针或字型参数为空、传入的字体对象不支持字型参数对象中描述的可变维度。 |
 
 ### OH_Drawing_TypefaceCreateFromStream()
 
@@ -153,14 +153,14 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream(OH_Drawing_MemoryStream
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)* memoryStream | 指向内存流对象[OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)的指针。 |
+| [OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)* memoryStream | 指向内存流对象[OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)的指针。 |
 | int32_t index | 内存流索引。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回一个指针，指针指向创建的字形对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | 返回一个指针，指针指向创建的字形对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_TypefaceDestroy()
 
@@ -181,7 +181,7 @@ void OH_Drawing_TypefaceDestroy(OH_Drawing_Typeface* typeface)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* typeface | 指向字形对象的指针。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* typeface | 指向字形对象的指针。 |
 
 ### OH_Drawing_FontArgumentsCreate()
 
@@ -201,7 +201,7 @@ OH_Drawing_FontArguments* OH_Drawing_FontArgumentsCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)* | 返回一个指针，指针指向创建的字型参数对象。 |
+| [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)* | 返回一个指针，指针指向创建的字型参数对象。 |
 
 ### OH_Drawing_FontArgumentsAddVariation()
 
@@ -222,7 +222,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontArgumentsAddVariation(OH_Drawing_FontArgumen
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)的指针。 |
+| [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)的指针。 |
 | const char* axis | 字型参数对象可变维度的标签，必须为4个ASCII字符。具体可支持的标签取决于加载的字体文件，如'wght'即为字重标签。 |
 | float value | 可变维度标签对应的取值。 |
 
@@ -250,7 +250,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontArgumentsDestroy(OH_Drawing_FontArguments* f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md)的指针。 |
+| [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)* fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)的指针。 |
 
 **返回：**
 

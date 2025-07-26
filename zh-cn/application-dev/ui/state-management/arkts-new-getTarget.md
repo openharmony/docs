@@ -2,7 +2,7 @@
 
 为了获取状态管理框架代理前的原始对象，开发者可以使用[getTarget接口](../../reference/apis-arkui/js-apis-StateManagement.md#gettarget)。
 
-在阅读本文档前，建议提前阅读：[\@Observed](./arkts-observed-and-objectlink.md)，[\@ObservedV2](./arkts-new-observedV2-and-trace.md)。
+在阅读本文档前，建议提前阅读：[\@Observed](./arkts-observed-and-objectlink.md)、[\@ObservedV2](./arkts-new-observedV2-and-trace.md)。
 
 >**说明：**
 >
@@ -225,7 +225,7 @@ struct Index {
            globalObservedObject}`) // true
       Text(`UIUtils.getTarget(this.numberList) === globalNumberList: ${UIUtils.getTarget(this.numberList) ===
            globalNumberList}`) // true
-      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMAP: ${UIUtils.getTarget(this.sampleMap) ===
+      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMap: ${UIUtils.getTarget(this.sampleMap) ===
            globalSampleMap}`) // true
       Text(`UIUtils.getTarget(this.sampleSet) === globalSampleSet: ${UIUtils.getTarget(this.sampleSet) ===
            globalSampleSet}`) // true

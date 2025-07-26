@@ -1,6 +1,6 @@
 # @ohos.app.ability.AtomicServiceOptions (AtomicServiceOptions)
 
-**AtomicServiceOptions** is used as an input parameter of [openAtomicService()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenatomicservice12) to carry arguments. It inherits from [StartOptions](js-apis-app-ability-startOptions.md).
+**AtomicServiceOptions** is used as an input parameter of [openAtomicService()](js-apis-inner-application-uiAbilityContext.md#openatomicservice12) to carry arguments. It inherits from [StartOptions](js-apis-app-ability-startOptions.md).
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@
 import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
-## Properties
+## AtomicServiceOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,17 +28,27 @@ import { AtomicServiceOptions } from '@kit.AbilityKit';
 **Example**
 
 ```ts
-import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { UIAbility, AtomicServiceOptions, common, wantConstant, bundleManager, CompletionHandler } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let appId: string = '6918661953712445909';
+    let completionHandler: CompletionHandler = {
+      onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
+        console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+      },
+      onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
+        console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+      }
+    };
+
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
       parameters: {
-        "demo.result": 123456
-      }
+        'demo.result': 123456
+      },
+      completionHandler: completionHandler
     };
 
     try {

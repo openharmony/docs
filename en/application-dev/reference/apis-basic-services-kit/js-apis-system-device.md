@@ -39,7 +39,7 @@ Defines the parameters for obtaining the device information.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | (data: DeviceResponse)=> void| No| Called when an API call is successful. **data** indicates the returned device information. For details, see [DeviceResponse](#deviceresponsedeprecated).|
+| success | (data: DeviceResponse) => void | No| Called when an API call is successful. **data** indicates the returned device information. For details, see [DeviceResponse](#deviceresponsedeprecated).|
 | fail | (data: any,code:number)=> void| No| Called when an API call has failed. **code** indicates the error code returned upon a failure.<br>**code:200**: Certain information could not be obtained.|
 | complete | () => void| No| Called when an API call is complete.|
 

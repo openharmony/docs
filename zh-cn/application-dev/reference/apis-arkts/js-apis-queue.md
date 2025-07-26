@@ -29,7 +29,7 @@ import { Queue } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Queue的元素个数。 |
 
@@ -55,7 +55,7 @@ Queue的构造函数。
 **示例：**
 
 ```ts
-let queue : Queue<number | string | Object> = new Queue();
+let queue = new Queue<number | string | Object>();
 ```
 
 
@@ -96,13 +96,14 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let queue : Queue<number | string | C1 | number[]> = new Queue();
+let queue = new Queue<number | string | C1 | number[]>();
 let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
 let result2 = queue.add(b);
 let c : C1 = {name : "Dylan", age : "13"};
 let result3 = queue.add(c);
+console.info("result:", queue.length);  // result: 4
 ```
 
 ### pop
@@ -132,13 +133,14 @@ pop(): T
 **示例：**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
+console.info("result:", result);  // result: 2
 ```
 
 ### getFirst
@@ -168,12 +170,13 @@ getFirst(): T
 **示例：**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### forEach
@@ -181,7 +184,7 @@ let result = queue.getFirst();
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数遍历Queue实例对象的元素及其下标。
+在遍历Queue实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -214,14 +217,18 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
-queue.forEach((value : number, index ?: number) : void => {
-  console.log("value:" + value, "index:" + index);
+queue.forEach((value: number, index: number): void => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### [Symbol.iterator]
@@ -250,23 +257,30 @@ queue.forEach((value : number, index ?: number) : void => {
 
 **示例：**
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
 
 // 使用方法一：
-while(queue.length) {
-  let item = queue.pop();
-  console.log("value:" + item);
+for (let value of queue) {
+  console.info("value:", value);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // 使用方法二：
 let iter = queue[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value: " + temp);
   temp = iter.next().value;
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

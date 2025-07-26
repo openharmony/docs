@@ -167,7 +167,7 @@ export struct PageOne {
 
 ## 路由操作
 
-Router通过`@ohos.router`模块提供的方法来操作页面，建议使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取[Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router)实例。
+Router通过`@ohos.router`模块提供的方法来操作页面，建议使用[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中的[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取[Router](../reference/apis-arkui/arkts-apis-uicontext-router.md)对象。
 
 ```ts
 // push page
@@ -189,7 +189,7 @@ let size = this.getUIContext().getRouter().getLength();
 let pageState = this.getUIContext().getRouter().getState();
 ```
 
-Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
+Navigation通过导航控制器对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
 
 ```ts
 @Entry
@@ -222,7 +222,7 @@ this.pathStack.replacePath({ name: 'pageOne' });
 // clear all page
 this.pathStack.clear();
 
-// 获取页面栈大小
+// 获取路由栈大小
 let size: number = this.pathStack.size();
 
 // 删除栈中name为PageOne的所有页面
@@ -245,7 +245,7 @@ this.pathStack.getIndexByName("pageOne");
 // ...
 ```
 
-Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
+Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的导航控制器对象NavPathStack，可以通过如下几种方式获取：
 
 **方式一**：通过`@Provide`和`@Consume`传递给子页面（有耦合，不推荐）。
 
@@ -362,7 +362,17 @@ struct CustomNode {
 
 ## 生命周期
 
-Router页面生命周期为`@Entry`页面中的通用方法，主要有如下四个生命周期：
+> **说明：**
+>
+> router页面的生命周期和Navigation页面的生命周期关系如下：
+>
+> 1.router页面的跳转会影响其内部Navigation页面的生命周期。
+>
+> 2.Navigation页面的跳转不会影响其所在router页面的生命周期。
+>
+> 3.应用前后台切换会同时触发router页面和Navigation页面的生命周期。
+
+[Router页面生命周期](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)为`@Entry`页面中的通用方法，主要有如下四个生命周期：
 
 ```ts
 // 页面创建后挂树的回调
@@ -441,7 +451,7 @@ Navigation也提供了共享元素一镜到底的转场能力，需要配合`geo
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名。
+1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entry)命名。
 
    ```ts
    // library/src/main/ets/pages/Index.ets
@@ -597,7 +607,7 @@ Navigation作为路由组件，默认支持跨包跳转。
 
 ## 生命周期监听
 
-Router可以通过observer实现注册监听，接口定义请参考Router无感监听[observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)。
+Router可以通过observer实现注册监听，接口定义请参考Router无感监听[observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11)。
 
 
 ```ts
@@ -685,7 +695,7 @@ Navigation也可以通过[queryNavDestinationInfo](../reference/apis-arkui/arkui
 | navigationId                  | ResourceStr         | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name                          | ResourceStr         | 是   | NavDestination组件的名称。                   |
 | state                         | NavDestinationState | 是   | NavDestination组件的状态。                   |
-| index<sup>12+<sup>            | number              | 是   | NavDestination在页面栈中的索引。             |
+| index<sup>12+<sup>            | number              | 是   | NavDestination在路由栈中的索引。             |
 | param<sup>12+<sup>            | Object              | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+<sup> | string              | 是   | NavDestination组件的唯一标识ID。             |
 
@@ -718,6 +728,6 @@ struct MyComponent {
 
 ## 路由拦截
 
-Router原生没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
+Router没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
 
 Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：Navigation[路由拦截](arkts-navigation-navigation.md#路由拦截)

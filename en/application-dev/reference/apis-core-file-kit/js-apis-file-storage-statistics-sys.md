@@ -626,11 +626,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System API**: This is a system API.
 
-| Name     | Type  | Read-Only | Writable | Description          |
+| Name     | Type  | Read-Only | Optional | Description          |
 | --------- | ------ | ---- | ----- | -------------- |
-| total   | number | Yes| No| Total space of the built-in storage, in bytes.   |
-| audio | number  |Yes| No| Size of the audio data, in bytes. |
-| video  | number | Yes| No| Size of the video data, in bytes.|
-| image   | number | Yes| No| Size of the image data, in bytes.  |
-| file | number | Yes| No| Size of files, in bytes. |
-| app  | number | Yes| No| Size of application data, in bytes.|
+| total   | number | No| No| Total space of the built-in storage, in bytes.   |
+| audio | number  |No| No| Size of the audio data, in bytes. |
+| video  | number | No| No| Size of the video data, in bytes.|
+| image   | number | No| No| Size of the image data, in bytes.  |
+| file | number | No| No| Size of files, in bytes. |
+| app  | number | No| No| Size of application data, in bytes.|

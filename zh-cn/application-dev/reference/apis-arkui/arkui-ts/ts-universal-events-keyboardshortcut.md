@@ -36,7 +36,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 快捷键使用注意事项
 
-快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
+快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-interaction-development-guide-keyboard.md#按键事件数据流)。
 
 | 场景                                       | 快捷键处理逻辑                            | 例子                                       |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
@@ -68,7 +68,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 已存在如下系统响应的按键事件，具体规格如下表。
 
-表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
+表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-interaction-development-guide-keyboard.md#按键事件数据流)。
 
 | 快捷键 | 获焦组件 | 用途 | 事件处理类别 |
 | ----- | ---- | ---- | ---- |
@@ -94,25 +94,25 @@ struct Index {
         Text(this.message)
         Button("Test short cut 1").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 1";
-          console.log("I clicked 1");
+          console.info("I clicked 1");
         }).keyboardShortcut('.', [ModifierKey.SHIFT, ModifierKey.CTRL, ModifierKey.ALT])
           .onKeyEvent((event: KeyEvent)=>{
-            console.log("event.keyCode: " + JSON.stringify(event));
+            console.info("event.keyCode: " + JSON.stringify(event));
           })
         Button("Test short cut 2").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 2";
-          console.log("I clicked 2");
+          console.info("I clicked 2");
         }).keyboardShortcut('1', [ModifierKey.CTRL])
         Button("Test short cut 3").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 3";
-          console.log("I clicked 3");
+          console.info("I clicked 3");
         }).keyboardShortcut('A', [ModifierKey.SHIFT])
         Button("Test short cut 4").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 4";
-          console.log("I clicked 4");
+          console.info("I clicked 4");
         }).keyboardShortcut(FunctionKey.F5, [], () => {
           this.message = "I clicked Button 4";
-          console.log("I clicked user callback.");
+          console.info("I clicked user callback.");
         }).keyboardShortcut(FunctionKey.F3, [])
       }
       .width('100%')
@@ -142,7 +142,7 @@ struct Index {
         Text('Ctrl+A is ' + this.message)
         Button("Test short cut").onClick((event: ClickEvent) => {
           this.message = "I clicked Button";
-          console.log("I clicked");
+          console.info("I clicked");
         }).keyboardShortcut(this.keyValue, [ModifierKey.CTRL])
         Button(this.message + 'shortCut').onClick((event: ClickEvent) => {
           this.shortCutEnable = !this.shortCutEnable;
@@ -150,7 +150,7 @@ struct Index {
           this.keyValue = this.shortCutEnable ? 'a' : '';
         })
         Button('multi-shortcut').onClick((event: ClickEvent) => {
-          console.log('Trigger keyboard shortcut success.')
+          console.info('Trigger keyboard shortcut success.')
         }).keyboardShortcut('q', [ModifierKey.CTRL])
           .keyboardShortcut('w', [ModifierKey.CTRL])
           .keyboardShortcut('', []) // 不生效，绑定了多个快捷键的组件不能取消快捷键

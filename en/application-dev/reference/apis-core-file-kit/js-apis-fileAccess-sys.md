@@ -24,9 +24,9 @@ Represents a URI used for observing the device online/offline status.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name| Type                       | Read-Only| Writable| Description                                                     |
+| Name| Type                       | Read-Only| Optional| Description                                                     |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | Yes  | No  | URI used for observing the device online/offline status.                   |
+| DEVICES_URI<sup>11+</sup>  | string | No  | No  | URI used for observing the device online/offline status.                   |
 
 ## fileAccess.getFileAccessAbilityInfo
 
@@ -232,15 +232,15 @@ Provides APIs for managing file or directory attribute information.
 
 ### Properties
 
-| Name| Type  | Read-Only| Writable| Description    |
+| Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file or directory.|
+| uri | string | No| No| URI of the file or directory.|
 | relativePath<sup>10+</sup> | string | Yes| No| Relative path of the file or directory.|
-| fileName | string | Yes| No| Name of the file or directory.|
-| mode | number | Yes| No| Permissions on the file or directory.|
-| size | number | Yes| No|  Size of the file or directory.|
-| mtime | number | Yes| No|  Time when the file or directory was last modified.|
-| mimeType | string | Yes| No|  Multipurpose Internet Mail Extensions (MIME) type of the file or directory.|
+| fileName | string | No| No| Name of the file or directory.|
+| mode | number | No| No| Permissions on the file or directory.|
+| size | number | No| No|  Size of the file or directory.|
+| mtime | number | No| No|  Time when the file or directory was last modified.|
+| mimeType | string | No| No|  Multipurpose Internet Mail Extensions (MIME) type of the file or directory.|
 
 ### listFile
 
@@ -258,7 +258,7 @@ Obtains a **FileIterator** object that lists the next-level files or directories
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
+| filter | [Filter](js-apis-file-fs.md#filter10) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -318,7 +318,7 @@ Obtains a **FileIterator** object that recursively retrieves the files matching 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
+| filter | [Filter](js-apis-file-fs.md#filter10) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -406,13 +406,13 @@ Provides APIs for managing the device's root attribute information.
 
 ### Properties
 
-| Name| Type  | Read-Only| Writable| Description    |
+| Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| deviceType | number | Yes| No|Device type.|
-| uri | string | Yes| No| Root directory URI of the device.|
-| relativePath<sup>10+</sup> | string | Yes| No| Relative path of the root directory.|
-| displayName | string | Yes| No| Device name.|
-| deviceFlags | number | Yes| No| Capabilities supported by the device.|
+| deviceType | number | No| No|Device type.|
+| uri | string | No| No| Root directory URI of the device.|
+| relativePath<sup>10+</sup> | string | No| No| Relative path of the root directory.|
+| displayName | string | No| No| Device name.|
+| deviceFlags | number | No| No| Capabilities supported by the device.|
 
 ### listFile
 
@@ -430,7 +430,7 @@ Obtains a **FileIterator** object that lists the first-level files or directorie
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
+| filter | [Filter](js-apis-file-fs.md#filter10) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -490,7 +490,7 @@ Obtains a **FileIterator** object that recursively retrieves the files matching 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
+| filter | [Filter](js-apis-file-fs.md#filter10) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -1572,7 +1572,7 @@ Queries the attribute information about a file or directory based on a URI. This
 
 | Type                 | Description                            |
 | :-------------------- | :------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the file attribute and the value obtained.|
+| Promise&lt;string&gt; | Promise used to return a JSON string that contains the file attribute and the value obtained.|
 
 **Example**
 
@@ -1612,7 +1612,7 @@ Queries the attribute information about a file or directory based on a URI. This
 | -------- | --------------------------- | ---- | ---------------------------------------------------- |
 | uri      | string | Yes  | File or directory URI obtained from [FileInfo](#fileinfo).|
 | metaJson | string | Yes  | Attribute [FILEKEY](#filekey10) to query.       |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the file attribute and the value obtained.                    |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return a JSON string that contains the file attribute and the value obtained.                    |
 
 **Example**
 
@@ -1628,7 +1628,7 @@ async function getQuery02() {
       let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
       fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
         if (err) {
-          console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+          console.error(`query_file_single faf query Failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
         console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
@@ -2599,12 +2599,12 @@ Defines the information returned when the file copy operation fails. If the copy
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name     | Type  | Read-Only| Writable| Description               |
+| Name     | Type  | Read-Only| Optional| Description               |
 | --------- | ------ | ---- | ---- | ----------------- |
-| sourceUri | string | Yes  | No  | URI of the source file or directory.                                        |
-| destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.|
-| errCode   | number | Yes  | No  | Error code.                                                |
-| errMsg    | string | Yes  | No  | Error message.                                              |
+| sourceUri | string | No  | No  | URI of the source file or directory.                                        |
+| destUri   | string | No  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.|
+| errCode   | number | No  | No  | Error code.                                                |
+| errMsg    | string | No  | No  | Error message.                                              |
 
 ## OPENFLAGS
 
@@ -2664,10 +2664,10 @@ Represents the notification message.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name| Type                       | Read-Only| Writable| Description                                                     |
+| Name| Type                       | Read-Only| Optional| Description                                                     |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| type | [NotifyType](#notifytype10) | Yes  | No  | Notification type.                                           |
-| uris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files. Currently, only one notification is supported. A collection of multiple notifications will be supported in later versions.|
+| type | [NotifyType](#notifytype10) | No  | No  | Notification type.                                           |
+| uris | Array&lt;string&gt;         | No  | No  | URIs of the changed files. Currently, only one notification is supported. A collection of multiple notifications will be supported in later versions.|
 
 ## MoveResult<sup>11+</sup>
 
@@ -2679,9 +2679,9 @@ Represents the information returned when the move operation fails. If the operat
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name     | Type  | Read-Only| Writable| Description                                                        |
+| Name     | Type  | Read-Only| Optional| Description                                                        |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| sourceUri | string | Yes  | No  | URI of the source file or directory.                                              |
-| destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.    |
-| errCode   | number | Yes  | No  | Error code. For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).|
-| errMsg    | string | Yes  | No  | Error message.                                                  |
+| sourceUri | string | No  | No  | URI of the source file or directory.                                              |
+| destUri   | string | No  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.    |
+| errCode   | number | No  | No  | Error code. For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).|
+| errMsg    | string | No  | No  | Error message.                                                  |

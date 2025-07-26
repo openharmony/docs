@@ -21,7 +21,7 @@
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| doubleOH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography\*) | 获取最长行的宽度，建议实际使用时将返回值向上取整。 | 
+| double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography\*) | 获取最长行的宽度，建议实际使用时将返回值向上取整。 | 
 | double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography\*) | 获取最长行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。 | 
 | size_t OH_Drawing_TypographyGetLineCount (OH_Drawing_Typography\* ) | 获取文本行数。 | 
 | OH_Drawing_LineMetrics\* OH_Drawing_TypographyGetLineMetrics (OH_Drawing_Typography\* ) | 获取段落行的度量信息。包含行的高度、宽度、起始坐标等信息。 | 
@@ -38,7 +38,7 @@
    #include <native_drawing/drawing_text_typography.h>
    ```
 
-2. 创建段落生成器PargraphBuilder，并设置段落样式。
+2. 创建段落生成器ParagraphBuilder，并设置段落样式。
 
    ```c++
    // 创建段落样式
@@ -59,7 +59,7 @@
 3. 调用排版接口并设置段落排版宽度，对段落进行塑型排版。
 
    ```c++
-   // 对段落进行塑性排版，设置排版宽度1000
+   // 对段落进行塑形排版，设置排版宽度1000
    OH_Drawing_TypographyLayout(typography, 1000);
    ```
 
@@ -74,15 +74,14 @@
    
    // case3:获取段落每行的度量信息
    OH_Drawing_LineMetrics* lineMetrics = OH_Drawing_TypographyGetLineMetrics(typography);
-   int lineCnt = OH_Drawing_LineMetricsGetSize(lineMetrics);
-   for (int i = 0; i < lineCnt; ++i) {
+   int lineMetricsSize = OH_Drawing_LineMetricsGetSize(lineMetrics);
+   for (int i = 0; i < lineMetricsSize; ++i) {
        // lineMetrics为经过排版测量的文字度量信息
        double curLineAscender = lineMetrics[i].ascender;
        double curLineWidth = lineMetrics[i].width;
    }
    
-   // case4:获取段落最长行宽度与带缩进最长行行宽
-   double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
+   // case4:获取段落带缩进最长行行宽
    double longestLineWithIndent = OH_Drawing_TypographyGetLongestLineWithIndent(typography);
    ```
 

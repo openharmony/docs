@@ -84,7 +84,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 | int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap) | 销毁缓冲区。|
 | int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen, ScsiPeripheral_BasicSenseInfo *senseInfo) | 解析基本的sense data，包括Information、Command specific information、Sense key specific字段。 |
 
-详细的接口说明请参考[SCSI Peripheral DDK](../../reference/apis-driverdevelopment-kit/_s_c_s_i.md)。
+详细的接口说明请参考[SCSI Peripheral DDK](../../reference/apis-driverdevelopment-kit/capi-scsiperipheralddk.md)。
 
 ### 开发步骤
 
@@ -120,7 +120,7 @@ libscsi.z.so
     uint64_t deviceId = 0x100000003;
     uint8_t interfaceIndex = 0;
     ScsiPeripheral_Device *dev = NULL;
-    // 打开deviceId和interfaceIndex1指定的SCSI设备
+    // 打开deviceId和interfaceIndex指定的SCSI设备
     ret = OH_ScsiPeripheral_Open(deviceId, interfaceIndex, &dev);
     ```
 

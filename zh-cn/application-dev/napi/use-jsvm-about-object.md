@@ -2,11 +2,11 @@
 
 ## 简介
 
-使用JSVM-API接口进行object相关开发，处理JavaScript对象的基本操作的功能，例如创建对象、获取原型、冻结和密封对象，检查对象的类型等。这些操作是在处理JavaScript对象时非常常见的，提供了一种与JavaScript对象交互的方式。
+使用JSVM-API接口进行object相关开发，处理JavaScript对象的基本操作，例如创建对象、获取原型、冻结和密封对象，检查对象的类型等。这些操作是在处理JavaScript对象时非常常见的，提供了一种与JavaScript对象交互的方式。
 
 ## 基本概念
 
-在JSVM接口开发中，经常需要定义和操作对象。例如，创建一个API接口，该接口接受一个对象作为输入参数，对该对象执行某些操作，并返回一个结果对象。在这个过程中，需要确保接口的定义清晰、规范，并且与对象的属性和方法相兼容。
+在JSVM接口开发中，经常需要定义和操作对象。例如，创建一个接口，该接口接受一个对象作为输入参数，对该对象执行某些操作，并返回一个结果对象。在这个过程中，需要确保接口的定义清晰、规范，并且与对象的属性和方法相兼容。
 
 - **接口（API）**：接口定义了组件之间的交互协议，包括输入参数、输出结果以及可能的错误处理。通过接口，组件可以相互调用和交换数据，而无需了解对方的内部实现细节。
 - **对象（Object）**：在JavaScript，对象是一种复合数据类型，允许存储多个不同类型的值作为一个单独的实体。对象是属性和方法的集合。属性是与对象相关联的值，而方法则是对象可以执行的操作。
@@ -19,9 +19,9 @@
 | OH_JSVM_CreateObject         | 创建一个默认的JavaScript Object对象。                   |
 | OH_JSVM_ObjectFreeze         | 冻结给定的对象，防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。                             |
 | OH_JSVM_ObjectSeal           |  密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。                             |
-| OH_JSVM_Typeof                | 返回JavaScript对象的类型。  |
-| OH_JSVM_Instanceof            | 判断一个对象是否是某个构造函数的实例。    |
-| OH_JSVM_TypeTagObject       | 将type_tag指针的值与JavaScript对象或外部对象相关联。                  |
+| OH_JSVM_Typeof                | 返回JavaScript对象的类型。 |
+| OH_JSVM_Instanceof            | 判断一个对象是否是某个构造函数的实例。 |
+| OH_JSVM_TypeTagObject       | 将type_tag指针的值与JavaScript对象或外部对象相关联。 |
 | OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配。 |
 | OH_JSVM_CreateSymbol         | 根据给定的描述符创建一个Symbol对象。                     |
 |OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol。 |
@@ -34,9 +34,9 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_GetPrototype
 
-获取给定JavaScript对象的原型。
+该函数用于获取给定JavaScript对象的原型。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -74,18 +74,18 @@ const char* srcCallNative = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
     console.log(proto === Object.prototype);)JS";
 ```
-<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM GetPrototype success
 ```
 
 ### OH_JSVM_CreateObject
 
-创建一个默认的JavaScript Object对象。
+该函数创建一个默认的JavaScript Object对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -127,18 +127,18 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createObject())JS";
 ```
-<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateObject success
 ```
 
 ### OH_JSVM_ObjectFreeze
 
-冻结给定的对象，防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。
+冻结给定的对象，防止向其添加新属性，移除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -177,18 +177,18 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
-<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 Test JSVM OH_JSVM_ObjectFreeze success
 ```
 
 ### OH_JSVM_ObjectSeal
 
-密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。
+密封给定的对象。这可以防止向该对象添加新属性，以及将所有现有属性标记为不可配置。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -240,9 +240,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
-<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 Test JSVM OH_JSVM_ObjectSeal success
 ```
@@ -251,7 +251,7 @@ Test JSVM OH_JSVM_ObjectSeal success
 
 返回JavaScript对象的类型。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -259,7 +259,8 @@ cpp部分代码
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // OH_JSVM_Typeof的样例方法
-static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
+{
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -267,50 +268,50 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_Typeof(env, args[0], &valueType);
     JSVM_Value type = nullptr;
     switch (valueType) {
-    case JSVM_UNDEFINED:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
-        OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NULL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
-        OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BOOLEAN:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
-        OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NUMBER:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
-        OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_STRING:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
-        OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_SYMBOL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
-        OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_OBJECT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
-        OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_FUNCTION:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
-        OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_EXTERNAL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
-        OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BIGINT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
-        OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
-        break;
-    default:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
-        OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
-        break;
+        case JSVM_UNDEFINED:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
+            OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NULL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
+            OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BOOLEAN:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
+            OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NUMBER:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
+            OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_STRING:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
+            OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_SYMBOL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
+            OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_OBJECT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
+            OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_FUNCTION:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
+            OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_EXTERNAL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
+            OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BIGINT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
+            OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
+            break;
+        default:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
+            OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
+            break;
     }
     return type;
 }
@@ -326,9 +327,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
-<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM Input type is boolean
 ```
@@ -337,7 +338,7 @@ JSVM Input type is boolean
 
 判断一个对象是否是某个构造函数的实例。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -383,22 +384,22 @@ const char* srcCallNative = R"JS(class Person {
      instanceOf(new Person('Alice', 30), Person);
      ;)JS";
 ```
-<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM InstanceOf：1
 ```
 
 ### OH_JSVM_TypeTagObject
 
-使用类型标签type_tag来标记JavaScript对象，后续可以更精确地识别JavaScript对象。
+使用类型标签type_tag来标记JavaScript对象，这样在后续操作中可以更精确地识别JavaScript对象。
 
 ### OH_JSVM_CheckObjectTypeTag
 
 检查给定的类型标签是否与对象上的类型标签匹配。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -480,9 +481,9 @@ const char* srcCallNative = R"JS(
          setTypeTagToObject(obj, 0);
          checkObjectTypeTag(obj,0);)JS";
 ```
-<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM SetTypeTagToObject success
 JSVM SetTypeTagToObject:1
@@ -493,7 +494,7 @@ JSVM SetTypeTagToObject:1
 创建一个包装了外部指针的JavaScript对象。
 **注意**：JavaScript对象被垃圾回收时，包装的外部指针指向的内容不被GC直接管理，仅调用传入的第三个参数对应的函数（如果传入时不为nullptr）。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -537,18 +538,18 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createExternal())JS";
 ```
-<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateExternal success
 ```
 
 ### OH_JSVM_GetValueExternal
 
-OH_JSVM_CreateExternal可以创建包装自定义的C/C++对象并将其公开给JavaScript代码，而OH_JSVM_GetValueExternal就是用来获得OH_JSVM_CreateExternal所包装的外部对象的指针。
+OH_JSVM_CreateExternal可以创建并包装自定义的C/C++对象，并将其公开给JavaScript代码，而OH_JSVM_GetValueExternal则用于获取OH_JSVM_CreateExternal所包装的外部对象的指针。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -591,9 +592,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
-<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM OH_JSVM_CreateExternal success
 JSVM GetValueExternal success
@@ -603,7 +604,7 @@ JSVM GetValueExternal success
 
 用于创建一个新的Symbol。Symbol是一种特殊的数据类型，用于表示唯一的标识符。与字符串或数字不同，符号的值是唯一的，即使两个符号具有相同的描述，它们也是不相等的。符号通常用作对象属性的键，以确保属性的唯一性。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -639,9 +640,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createSymbol())JS";
 ```
-<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateSymbol Success
 ```
@@ -650,7 +651,7 @@ JSVM CreateSymbol Success
 
 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -692,9 +693,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(symbolFor())JS";
 ```
-<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM OH_JSVM_SymbolFor success
 ```

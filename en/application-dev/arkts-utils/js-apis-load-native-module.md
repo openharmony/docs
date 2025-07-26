@@ -18,7 +18,7 @@ loadNativeModule(moduleName: string): Object;
 >
 > **loadNativeModule** can be used only to load modules in the UI main thread.
 >
-> Dependencies must be configured for the API call regardless of whether the input parameter is a constant string or variable expression.
+> Dependencies must be configured for the API call regardless of whether the parameter is a constant string or variable expression.
 
 ## Supported Scenarios
 

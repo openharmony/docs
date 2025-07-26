@@ -16,7 +16,7 @@ import { promptAction } from '@kit.ArkUI';
 
 ### ToastShowMode
 
-设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
+设置弹窗显示模式，默认显示在应用内，支持显示在子窗。
 
 **系统接口：** 此接口为系统接口。
 

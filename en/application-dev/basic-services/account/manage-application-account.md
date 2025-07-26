@@ -38,12 +38,11 @@ Create an application account for an application user.
 2. Use [createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9) to create an application account based on the specified parameters.
 
    ```ts
-   try {
-     await appAccountManager.createAccount(name, options);
-     console.log('createAccount successfully');
-   } catch (err) {
-     console.log('createAccount failed, error: ' + JSON.stringify(err));
-   }
+   appAccountManager.createAccount(name, options).then(()=>{
+    console.log('createAccount successfully');
+  }).catch((err: BusinessError)=>{
+    console.error('createAccount failed, error: ' + JSON.stringify(err));
+  });
    ```
 
 ## Obtaining Application Account List
@@ -55,9 +54,9 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
 
    ```ts
    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
-       console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
+       console.log('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
-       console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+       console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -79,7 +78,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.getCredential(name, credentialType).then((data: string) => {
        console.log('getCredential successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getCredential failed, error: ' + JSON.stringify(err));
+       console.error('getCredential failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -89,7 +88,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.setCredential(name, credentialType, credential).then(() => {
        console.log('setCredential successfully');
    }).catch((err: BusinessError) => {
-       console.log('setCredential failed: ' + JSON.stringify(err));
+       console.error('setCredential failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -111,7 +110,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.setCustomData(name, key, value).then(() => {
        console.log('setCustomData successfully');
    }).catch((err: BusinessError) => {
-       console.log('setCustomData failed: ' + JSON.stringify(err));
+       console.error('setCustomData failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -121,7 +120,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.getCustomData(name, key).then((data: string) => {
        console.log('getCustomData successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getCustomData failed, error: ' + JSON.stringify(err));
+       console.error('getCustomData failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -144,7 +143,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.setAuthToken(name, authType, token).then(() => {
        console.log('setAuthToken successfully');
    }).catch((err: BusinessError) => {
-       console.log('setAuthToken failed: ' + JSON.stringify(err));
+       console.error('setAuthToken failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -154,7 +153,7 @@ Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.
    appAccountManager.getAuthToken(name, owner, authType).then((data: string) => {
        console.log('getAuthToken successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+       console.error('getAuthToken failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -171,7 +170,7 @@ Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.m
    appAccountManager.removeAccount(name).then(() => {
        console.log('removeAccount successfully');
    }).catch((err: BusinessError) => {
-       console.log('removeAccount failed, error: ' + JSON.stringify(err));
+       console.error('removeAccount failed, error: ' + JSON.stringify(err));
    });
    ```
 

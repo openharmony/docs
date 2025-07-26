@@ -1,10 +1,10 @@
 # @ohos.util.TreeSet (Nonlinear Container TreeSet)
 
-**TreeSet** is implemented based on **[TreeMap](js-apis-treemap.md)**. In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
+TreeSet is implemented based on [TreeMap](js-apis-treemap.md). In TreeSet, only **value** objects are processed. TreeSet can be used to store values, each of which must be unique.
 
-**[HashSet](js-apis-hashset.md)** stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+TreeSet and [HashSet](js-apis-hashset.md) do not allow duplicate elements. Data in a HashSet is stored in an unordered manner, whereas elements in a TreeSet are stored in a sorted order. HashSet permits the insertion of null values. However, you are not advised to insert null into a TreeSet, as it may affect the sorting results.
 
-Recommended use case: Use **TreeSet** when you need to store data in sorted order.
+Recommended use case: Use TreeSet when you need to store data in sorted order.
 
 This topic uses the following to identify the use of generics:
 
@@ -23,7 +23,7 @@ import { TreeSet } from '@kit.ArkTS';
 
 ## TreeSet
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -31,7 +31,7 @@ import { TreeSet } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a tree set (called container later).|
+| length | number | Yes| No| Number of elements in a TreeSet.|
 
 
 ### constructor
@@ -49,6 +49,13 @@ A constructor used to create a **TreeSet** instance. It supports sorting element
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
+
+comparator parameters
+
+| Name| Type| Mandatory| Description|
+| ------| ---- | ----- | -- |
+| firstValue | T | Yes| Previous element.|
+| secondValue | T | Yes| Next element.|
 
 **Error codes**
 
@@ -73,7 +80,7 @@ treeSet.add("a");
 treeSet.add("c");
 treeSet.add("d");
 treeSet.add("b");
-let numbers = Array.from(treeSet.values())
+let numbers = Array.from(treeSet.values());
 for (let item of numbers) {
   console.log("TreeSet:" + item);
 }
@@ -101,7 +108,7 @@ console.log("treeSet: ", ts1.length);
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this TreeSet is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -111,7 +118,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the TreeSet is empty; returns **false** otherwise.|
 
 **Error codes**
 
@@ -133,7 +140,7 @@ let result = treeSet.isEmpty();
 
 has(value: T): boolean
 
-Checks whether this container has the specified value.
+Checks whether this TreeSet has the specified value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -171,7 +178,7 @@ let result = treeSet.has(123);
 
 getFirstValue(): T
 
-Obtains the value of the first element in this container.
+Obtains the value of the first element in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -205,7 +212,7 @@ let result = treeSet.getFirstValue();
 
 getLastValue(): T
 
-Obtains the value of the last element in this container.
+Obtains the value of the last element in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -239,7 +246,7 @@ let result = treeSet.getLastValue();
 
 add(value: T): boolean
 
-Adds an element to this container.
+Adds an element to this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -278,7 +285,7 @@ let result = treeSet.add("squirrel");
 
 remove(value: T): boolean
 
-Removes the element with the specified key from this container.
+Removes the element with the specified key from this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -318,7 +325,7 @@ let result = treeSet.remove("sparrow");
 
 getLowerValue(key: T): T
 
-Obtains the value that is placed in front of the input key in this container.
+Obtains the value that is placed in front of the input key in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -360,7 +367,7 @@ let result = treeSet.getLowerValue("sparrow");
 
 getHigherValue(key: T): T
 
-Obtains the value that is placed next to the input key in this container.
+Obtains the value that is placed next to the input key in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -402,7 +409,7 @@ let result = treeSet.getHigherValue("sparrow");
 
 popFirst(): T
 
-Removes the first element in this container.
+Removes the first element in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -436,7 +443,7 @@ let result = treeSet.popFirst();
 
 popLast(): T
 
-Removes the last element in this container.
+Removes the last element in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -470,7 +477,7 @@ let result = treeSet.popLast();
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this TreeSet and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -498,7 +505,7 @@ treeSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-Obtains an iterator that contains all the values in this container.
+Returns an iterator that contains all the values in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -537,7 +544,7 @@ while(!t.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this TreeSet and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -547,7 +554,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the TreeSet.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
@@ -591,7 +598,7 @@ for(let i = 0; i < 10; i++) {
 
 entries(): IterableIterator<[T, T]>
 
-Obtains an iterator that contains all the elements in this container.
+Returns an iterator that contains all the elements in this TreeSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -639,7 +646,7 @@ for(let i = 0; i < 10; i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -665,7 +672,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let numbers = Array.from(treeSet.values())
+let numbers = Array.from(treeSet.values());
 // Method 1:
 for (let item of numbers) {
   console.log("value:" + item);

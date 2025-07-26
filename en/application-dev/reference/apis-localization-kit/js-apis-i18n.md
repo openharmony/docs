@@ -33,7 +33,7 @@ Obtains the country/region display name in the specified language.
 
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | Yes   | Valie country/region code.           |
+| country      | string  | Yes   | Valid country/region code.           |
 | locale       | string  | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
@@ -207,7 +207,7 @@ Checks whether a language is a suggested language in the specified region. It ca
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Whether a language is a suggested language. The value **true** indicates that  the language is a suggested language of the region, the the value false indicates the opposite.|
+| boolean | Whether a language is a suggested language. The value **true** indicates that the language is a suggested language of the region, the the value false indicates the opposite.|
 
 **Error codes**
 
@@ -620,7 +620,7 @@ Enumerates the first day of a week. The value ranges from Monday to Sunday.
 
 isRTL(locale: string): boolean
 
-Checks whether a language is an RTL language. For an RTL language, [UI mirroring](see../../internationalization/i18n-ui-design.md#ui-mirroring) is required.
+Checks whether a language is an RTL language. For an RTL language, [UI mirroring](../../internationalization/i18n-ui-design.md#ui-mirroring) is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2033,6 +2033,171 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
+### getZoneRules<sup>20+</sup>
+
+getZoneRules(): ZoneRules
+
+Obtains the time zone transition rules. For details about the time zone transition logic, see [DST Transition](../../internationalization/i18n-dst-transition.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description                |
+| ------ | ------------------ |
+| [ZoneRules](#zonerules20) | Time zone transition rule, including the transition time and the offset before and after the transition.|
+
+**Example**
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let tzId: string = 'America/Tijuana';
+let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
+let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+let date = new Date(2025, 4, 13);
+let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+zoneOffsetTransition.getMilliseconds(); // Timestamp of the transition point: 1762074000000
+zoneOffsetTransition.getOffsetAfter(); // Post-transition offset: -28800000
+zoneOffsetTransition.getOffsetBefore(); // Pre-transition offset: -25200000
+// Format the timestamp of the transition point.
+let dateTimeFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat('en-US', {
+  timeZone: tzId,
+  dateStyle: 'long',
+  timeStyle: 'long',
+  hour12: false
+});
+let dateFormat: string =
+  dateTimeFormat.format(new Date(zoneOffsetTransition.getMilliseconds())); // November 2, 2025, 1:00:00 PST
+```
+
+## ZoneRules<sup>20+</sup>
+
+
+### nextTransition<sup>20+</sup>
+
+nextTransition(date?: number): ZoneOffsetTransition
+
+Obtains the **nextTransition** object for the specified time.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| date | number | No   | Timestamp of next transition. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the specified time, which defaults to the current system time.|
+
+**Return value**
+
+| Type      | Description        |
+| -------- | ---------- |
+| [ZoneOffsetTransition](#zoneoffsettransition20) | **nextTransition** object.|
+
+**Example**
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+// Obtain the time zone of Tijuana.
+let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
+// Obtain the time zone transition rule of Tijuana.
+let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+let date = new Date(2025, 4, 13);
+// Obtain the next time zone transition for Tijuana after May 13, 2025.
+let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(date.getTime());
+```
+
+## ZoneOffsetTransition<sup>20+</sup>
+
+
+### getMilliseconds<sup>20+</sup>
+
+getMilliseconds(): number
+
+Obtains the timestamp of the time zone transition point.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type      | Description        |
+| -------- | ---------- |
+| number | Timestamp of the time zone transition point. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the time zone transition point, for example, 1762074000000.|
+
+**Example**
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
+let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+let date = new Date(2025, 4, 13);
+let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+zoneOffsetTransition.getMilliseconds(); // Timestamp of the transition point: 1762074000000
+```
+
+### getOffsetAfter<sup>20+</sup>
+
+getOffsetAfter(): number
+
+Obtains the offset after the time zone transition.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type      | Description        |
+| -------- | ---------- |
+| number | Post-transition offset, that is, the time difference between the post-transition time and UTC, measured in ms. For example, **-28800000** indicates that the time after the transition is 28800000 ms (8 hours) later than UTC.|
+
+**Example**
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
+let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+let date = new Date(2025, 4, 13);
+let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+zoneOffsetTransition.getOffsetAfter(); // Post-transition offset: -28800000
+```
+
+### getOffsetBefore<sup>20+</sup>
+
+getOffsetBefore(): number
+
+Obtains the offset before the time zone transition.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type      | Description        |
+| -------- | ---------- |
+| number | Pre-transition offset, that is, the time difference between the pre-transition time and UTC, measured in ms. For example, **-25200000** indicates that the pre-transition time is 25200000 ms (7 hours) slower than UTC.|
+
+**Example**
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
+let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+let date = new Date(2025, 4, 13);
+let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+zoneOffsetTransition.getOffsetBefore(); // Pre-transition offset: -25200000
+```
+
 
 ## Transliterator<sup>9+</sup>
 
@@ -2665,13 +2830,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getUnicodeWrappedFilePath<sup>18+</sup>
+### getUnicodeWrappedFilePath<sup>20+</sup>
 
-static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
+static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale): string
 
 Localizes a file path for the specified locale.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after localization.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2681,7 +2846,7 @@ Localizes a file path for the specified locale.<br>For example, **/data/out/tmp*
 | ------ | ------ | ---- | ------------------------ |
 | path | string | Yes  | Path to mirror, for example, **/data/out/tmp**.|
 | delimiter | string | No  | Path delimiter. The default value is **/**.|
-| locale | [intl.Locale](./js-apis-intl.md#locale) | No  | **Locale** object. The default value is the current system locale.|
+| locale | [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No  | **Locale** object. The default value is the current system locale.|
 
 **Return value**
 
@@ -2699,21 +2864,72 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 **Example**
 
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let path: string = '/data/out/tmp';
-    let delimiter: string = '/';
-    let locale: intl.Locale = new intl.Locale('ar');
-    let mirrorPath: string =
-      i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath is displayed as tmp/out/data/.
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
+try {
+  let path: string = '/data/out/tmp';
+  let delimiter: string = '/';
+  let locale: Intl.Locale = new Intl.Locale('ar');
+  let mirrorPath: string =
+    i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath is displayed as tmp/out/data/.
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUnicodeWrappedFilePath<sup>(deprecated)</sup>
+
+static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
+
+This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getUnicodeWrappedFilePath](#getunicodewrappedfilepath20).
+
+Localizes a file path for the specified locale.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after localization.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| path | string | Yes  | Path to mirror, for example, **/data/out/tmp**.|
+| delimiter | string | No  | Path delimiter. The default value is **/**.|
+| locale | [intl.Locale](./js-apis-intl.md#localedeprecated) | No  | **Locale** object. The default value is the current system locale.|
+
+**Return value**
+
+| Type    | Description                 |
+| ------ | ------------------- |
+| string | File path after localization. If the specified locale object corresponds to an RTL language, the processed file path contains a direction control character to ensure that the file path is displayed in mirror mode.|
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { intl } from '@kit.LocalizationKit';
+
+try {
+  let path: string = '/data/out/tmp';
+  let delimiter: string = '/';
+  let locale: intl.Locale = new intl.Locale('ar');
+  let mirrorPath: string =
+    i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath is displayed as tmp/out/data/.
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## Normalizer<sup>10+</sup>
 
@@ -2981,11 +3197,57 @@ Represents the name of a holiday in different languages.
 | name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
 
-## i18n.getSimpleDateTimeFormatByPattern<sup>18+</sup>
+## i18n.getSimpleDateTimeFormatByPattern<sup>20+</sup>
+
+getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleDateTimeFormat
+
+Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20), see the examples in [SimpleDateTimeFormat.format](#format18).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| pattern | string      | Yes   | Valid pattern, which supports free combinations of field patterns in [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter also supports custom text enclosed in single quotation marks (`''`).|
+| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No   | **Locale** object. The default value is the current system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+## i18n.getSimpleDateTimeFormatByPattern<sup>(deprecated)</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
+This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20).
+
+Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeletondeprecated), see the examples in [SimpleDateTimeFormat.format](#format18).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -2995,8 +3257,8 @@ Obtains a **SimpleDateTimeFormat** object based on the specified pattern string.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------- | ----------- | ----- | ---------------------------------------- |
-| pattern | string      | Yes   | Valid pattern. For details about the supported characters and their meanings, see [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter also supports custom text enclosed in single quotation marks (`''`).|
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | **Locale** object. The default value is the current system locale.|
+| pattern | string      | Yes   | Valid pattern, which supports free combinations of field patterns in [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter also supports custom text enclosed in single quotation marks (`''`).|
+| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | No   | **Locale** object. The default value is the current system locale.|
 
 **Return value**
 
@@ -3013,24 +3275,70 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { intl } from '@kit.LocalizationKit';
 
-  try {
-    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
+try {
+  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>20+</sup>
+
+getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleDateTimeFormat
+
+Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20), see the examples in [SimpleDateTimeFormat.format](#format18).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | Yes   | Valid skeleton, which supports free combinations of field patterns in [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter does not support custom text.|
+| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No   | **Locale** object. The default value is the current system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>(deprecated)</sup>
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
+This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20).
+
+Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypatterndeprecated), see the examples in [SimpleDateTimeFormat.format](#format18).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -3040,8 +3348,8 @@ Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For d
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------- | ----------- | ----- | ---------------------------------------- |
-| skeleton | string      | Yes   | Valid skeleton. For details about the supported characters and their meanings, see [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter does not support custom text.|
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | **Locale** object. The default value is the current system locale.|
+| skeleton | string      | Yes   | Valid skeleton, which supports free combinations of field patterns in [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter does not support custom text.|
+| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | No   | **Locale** object. The default value is the current system locale.|
 
 **Return value**
 
@@ -3058,18 +3366,18 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { intl } from '@kit.LocalizationKit';
 
-  try {
-    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
+try {
+  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## SimpleDateTimeFormat<sup>18+</sup>
 
@@ -3098,10 +3406,9 @@ Formats the date and time.
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
 
   try {
-    let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+    let locale : Intl.Locale = new Intl.Locale("zh-Hans-CN");
     let date: Date = new Date(2024, 11, 13); // Set the date to 2024.12.13.
 
     let formatterWithText: i18n.SimpleDateTimeFormat =
@@ -3120,13 +3427,13 @@ Formats the date and time.
   ```
 
 
-## i18n.getSimpleNumberFormatBySkeleton<sup>18+</sup>
+## i18n.getSimpleNumberFormatBySkeleton<sup>20+</sup>
 
-getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
+getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleNumberFormat
 
 Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3135,7 +3442,7 @@ Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 | Name   | Type    | Mandatory  | Description                                      |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | Yes   | Valid skeleton. For details about the supported characters and their meanings, see [Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons).|
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | **Locale** object. The default value is the current system locale.|
+| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No   | **Locale** object. The default value is the current system locale.|
 
 **Return value**
 
@@ -3152,18 +3459,64 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
+try {
+  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+## i18n.getSimpleNumberFormatBySkeleton<sup>(deprecated)</sup>
+
+getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
+
+This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20).
+
+Obtains a **SimpleNumberFormat** object based on the specified skeleton.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | Yes   | Valid skeleton. For details about the supported characters and their meanings, see [Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons).|
+| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | No   | **Locale** object. The default value is the current system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleNumberFormat](#simplenumberformat18) | **SimpleNumberFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { intl } from '@kit.LocalizationKit';
+
+try {
+  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## SimpleNumberFormat<sup>18+</sup>
 
@@ -3190,19 +3543,18 @@ Formats a number.
 | string | Formatted number.|
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-    let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
+try {
+  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
+  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+  let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## StyledNumberFormat<sup>18+</sup>
 
@@ -3862,5 +4214,6 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | Type    | Description         |
 | ------ | ----------- |
 | string | Type of the input character.|
+
 
 <!--no_check-->

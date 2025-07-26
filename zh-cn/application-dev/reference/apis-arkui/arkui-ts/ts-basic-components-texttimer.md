@@ -30,6 +30,8 @@ TextTimer(options?: TextTimerOptions)
 
 ## TextTimerOptions对象说明
 
+用于构建TextTimer组件的选项。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -137,7 +139,7 @@ fontWeight(value: number | FontWeight | ResourceStr)
 
 | 参数名 | 类型  | 必填 | 说明      |
 | ------ | ---------- | ------ | ----------------- |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。[ResourceStr](ts-types.md#resourcestr)类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal <br>从API version 20开始，支持Resource类型。|
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本的字体粗细，number类型取值范围为[100,&nbsp;900]，取值间隔为100，取值越大，字体越粗。number类型取值范围外的默认值为400。[ResourceStr](ts-types.md#resourcestr)类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal <br>从API version 20开始，支持Resource类型。|
 
 ### fontFamily
 
@@ -275,6 +277,8 @@ reset()
 
 ## TextTimerConfiguration<sup>12+</sup>对象说明
 
+ContentModifier接口使用的TextTimer配置。
+
 开发者需要自定义class实现ContentModifier接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -291,7 +295,7 @@ reset()
 ## 示例
 ### 示例1（支持手动启停的文本计时器）
 
-该示例展示了TextTimer组件的基本使用方法，通过format属性设置计时器的文本显示格式。
+该示例展示了TextTimer组件的基本使用方法，通过[format](#format)属性设置计时器的文本显示格式。
 
 用户可以通过点击"start"、"pause"、"reset"按钮，开启、暂停、重置计时器。
 
@@ -333,7 +337,7 @@ struct TextTimerExample {
 
 ### 示例2（设定文本阴影样式）
 
-该示例通过textShadow属性设置计时器的文本阴影样式。
+该示例通过[textShadow](#textshadow11)属性设置计时器的文本阴影样式。
 
 ``` ts
 // xxx.ets

@@ -28,11 +28,15 @@ AbilityComponent需设置且只能设置width、height，且width、height不支
 
 ## 接口
 
-AbilityComponent(want: Want)
+AbilityComponent(value: {want: Want})
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名 | 参数类型                                                   | 必填 | 参数描述                |
+| 参数名 | 类型                                                   | 必填 | 说明                |
 | ------ | ---------------------------------------------------------- | ---- | ----------------------- |
 | want   | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 默认加载的Ability描述。 |
 
@@ -45,11 +49,19 @@ onConnect(callback:()&nbsp;=&gt;&nbsp;void)
 
 AbilityComponent环境启动完成时的回调，之后可使用AbilityComponent的方法。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### onDisconnect
 
 onDisconnect(callback:()&nbsp;=&gt;&nbsp;void)
 
 AbilityComponent环境销毁时的回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例
 

@@ -19,13 +19,19 @@ import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 Represents a circle shape used in the **clipShape** and **maskShape** APIs.
 
+This API inherits from [BaseShape](#baseshape).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: ShapeSize)
+
+A constructor used to create a **CircleShape** object.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -36,20 +42,24 @@ constructor(options?: ShapeSize)
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | No| Size of the shape.|
-
-This API inherits from [BaseShape](#baseshape).
 
 ## EllipseShape
 
 Represents an ellipse shape used in the **clipShape** and **maskShape** APIs.
 
+This API inherits from [BaseShape](#baseshape).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: ShapeSize)
+
+A constructor used to create an **EllipseShape** object.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -61,19 +71,23 @@ constructor(options?: ShapeSize)
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | No| Size of the shape.|
 
-This API inherits from [BaseShape](#baseshape).
-
 ## PathShape
 
 Represents a path used in the **clipShape** and **maskShape** APIs.
 
+This API inherits from [CommonShapeMethod](#commonshapemethod).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: PathShapeOptions)
+
+A constructor used to create a **PathShape** object.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,8 +98,6 @@ constructor(options?: PathShapeOptions)
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [PathShapeOptions](#pathshapeoptions) | No| Path parameters.|
-
-This API inherits from [CommonShapeMethod](#commonshapemethod).
 
 ### commands
 
@@ -99,21 +111,35 @@ Sets the path drawing commands.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | commands | string | Yes| Path drawing commands.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| PathShape | **PathShape** object.|
 
 ## RectShape
 
 Represents a rectangle shape used in the **clipShape** and **maskShape** APIs.
 
+This API inherits from [BaseShape](#baseshape).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: RectShapeOptions | RoundRectShapeOptions)
+
+A constructor used to create a **RectShape** object.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -124,8 +150,6 @@ constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [RectShapeOptions](#rectshapeoptions)  \|  [RoundRectShapeOptions](#roundrectshapeoptions) | No| Rectangle parameters.|
-
-This API inherits from [BaseShape](#baseshape).
 
 ### radiusWidth
 
@@ -139,9 +163,17 @@ Sets the radius width of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rWidth | number  \|  string | Yes| Radius width of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.| 
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| RectShape | **RectShape** object.|
 
 ### radiusHeight
 
@@ -155,9 +187,17 @@ Sets the radius height of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rHeight | number  \|  string | Yes| Radius height of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| RectShape | **RectShape** object.|
 
 ### radius
 
@@ -171,9 +211,17 @@ Sets the radius of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | radius | number  \|  string  \|  Array<number  \|  string> | Yes| Radius of the rectangle border corners. When an array is provided, it should contain exactly four elements, corresponding to the radius of the upper left, upper right, lower left, and lower right corners of the rectangle, respectively. If more than four elements are contained, only the first four are accepted.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| RectShape | **RectShape** object.|
 
 
 ## ShapeSize
@@ -188,8 +236,8 @@ Describes the size of a shape.
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number  \|  string | No| Width of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|<br>Unit: vp.|
-| height | number  \|  string | No| Height of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|<br>Unit: vp.|
+| width | number  \|  string | No| Width of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.<br>Unit: vp.|
+| height | number  \|  string | No| Height of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.<br>Unit: vp.|
 
 ## PathShapeOptions
 
@@ -209,13 +257,13 @@ Represents the parameter of the constructor used to create a **PathShape** objec
 
 Represents the parameter of the constructor used to create a **RectShape** object.
 
+This API inherits from [ShapeSize](#shapesize).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -225,13 +273,13 @@ This API inherits from [ShapeSize](#shapesize).
 
 Represents the parameter of the constructor used to create a **RectShape** object with rounded corners.
 
+This API inherits from [ShapeSize](#shapesize).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -240,11 +288,13 @@ This API inherits from [ShapeSize](#shapesize).
 
 ## BaseShape
 
+This API inherits from [CommonShapeMethod](#commonshapemethod).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-This API inherits from [CommonShapeMethod](#commonshapemethod).
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### width
 
@@ -258,9 +308,17 @@ Sets the width of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | width | [Length](arkui-ts/ts-types.md#length) | Yes| Width of the shape.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
 
 ### height
 
@@ -274,9 +332,17 @@ Sets the height of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | height | [Length](arkui-ts/ts-types.md#length) | Yes| Height of the shape.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
 
 ### size
 
@@ -290,13 +356,25 @@ Sets the size of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | size | [SizeOptions](arkui-ts/ts-types.md#sizeoptions) | Yes| Size of the shape.|
 
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
+
 ## CommonShapeMethod
 
+Implements the common shape methods.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -312,9 +390,18 @@ Sets the coordinate offset relative to the component's layout position.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | offset | [Position](arkui-ts/ts-types.md#position) | Yes| Coordinate offset relative to the component's layout position.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
+
 
 ### fill
 
@@ -328,9 +415,18 @@ Sets the fill color of this shape, which determines its opacity, with black repr
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Fill color of the shape, which represents the opacity of the fill area. The black color indicates full transparency, while white indicates full opacity.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
+
 
 ### position
 
@@ -344,9 +440,17 @@ Sets the position of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | position | [Position](arkui-ts/ts-types.md#position) | Yes| Position of the shape.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current object.|
 
 ## **Example**
 

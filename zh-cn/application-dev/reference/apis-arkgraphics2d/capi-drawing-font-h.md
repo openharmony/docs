@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_Font_Metrics](capi-oh-drawing-font-metrics.md) | OH_Drawing_Font_Metrics | 定义字体度量信息的结构体。 |
+| [OH_Drawing_Font_Metrics](capi-drawing-oh-drawing-font-metrics.md) | OH_Drawing_Font_Metrics | 定义字体度量信息的结构体。 |
 
 ### 枚举
 
@@ -72,6 +72,10 @@
 | [OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, const void* text, size_t byteLength,OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path)](#oh_drawing_fontgettextpath) | 获取文字轮廓路径。 |
 | [OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, bool followed)](#oh_drawing_fontsetthemefontfollowed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 |
 | [OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* font, bool* followed)](#oh_drawing_fontisthemefontfollowed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_Drawing_Font* font, const char* str,const OH_Drawing_FontFeatures* fontFeatures, float* textWidth)](#oh_drawing_fontmeasuresinglecharacterwithfeatures) | 用于测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。 |
+| [OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void)](#oh_drawing_fontfeaturescreate) | 用于创建一个字体特征容器对象。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* fontFeatures,const char* name, float value)](#oh_drawing_fontfeaturesaddfeature) | 向字体特征容器对象中添加一个字体特征。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures)](#oh_drawing_fontfeaturesdestroy) | 用于销毁字体特征容器对象并回收该对象占有的内存。 |
 
 ## 枚举类型说明
 
@@ -115,6 +119,112 @@ enum OH_Drawing_FontEdging
 
 ## 函数说明
 
+### OH_Drawing_FontMeasureSingleCharacterWithFeatures()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_Drawing_Font* font, const char* str, const OH_Drawing_FontFeatures* fontFeatures, float* textWidth)
+```
+
+**描述**
+
+用于测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [const OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
+| const char* str | 待测量的单个字符。可以传入字符串，但只会以UTF-8编码解析并测量字符串中的首个字符。 |
+| [const OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。容器中未加入任何字体特征时使用TTF(TrueType Font)文件中预设的字体特征。 |
+| float* textWidth | 用于存储得到的字符宽度，作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、str、fontFeatures或者textWidth任意一个为空指针或者str的长度为0。 |
+
+### OH_Drawing_FontFeaturesCreate()
+
+```
+OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void)
+```
+
+**描述**
+
+用于创建一个字体特征容器对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* | 函数会返回一个指针，指向创建的字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)。<br>如果返回的对象指针为空，则表示字体特征容器对象创建失败。失败的原因可能为：没有可用的内存。 |
+
+### OH_Drawing_FontFeaturesAddFeature()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* fontFeatures, const char* name, float value)
+```
+
+**描述**
+
+向字体特征容器对象中添加一个字体特征。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。 |
+| const char* name | 字体特征的名称。常见的字体特征名称包含liga、frac、case等，需要对应的ttf文件支持才能生效。 |
+| float value | 字体特征的数值。建议通过字体查看工具或查阅字体文档，确定具体的有效取值范围。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontFeatures或name为空指针。 |
+
+### OH_Drawing_FontFeaturesDestroy()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures)
+```
+
+**描述**
+
+用于销毁字体特征容器对象并回收该对象占有的内存。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontFeatures为空指针。 |
+
 ### OH_Drawing_FontMeasureTextWithBrushOrPen()
 
 ```
@@ -133,12 +243,12 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_F
 
 | 参数项 | 描述 |
 | -- | -- |
-| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const void* text | 指向文本的指针。 |
 | size_t byteLength | 表示以字节为单位的文本长度。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 文本编码类型。 |
-| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针。 |
-| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-oh-drawing-pen.md)的指针。 |
+| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)的指针。 |
+| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)的指针。 |
 | OH_Drawing_Rect* bounds | 用于承载获取的边界框，可以为NULL。 |
 | float* textWidth | 表示文本宽度。 |
 
@@ -166,11 +276,11 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font,
 
 | 参数项 | 描述 |
 | -- | -- |
-| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const uint16_t* glyphs | 字形索引存储首地址。 |
 | int count | 字形索引的数量，大小与glyphs数组大小保持一致。 |
-| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针。 |
-| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-oh-drawing-pen.md)的指针。 |
+| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)的指针。 |
+| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)的指针。 |
 | float* widths | 字形宽度存储首地址，用于存储得到的字形宽度，作为返回值返回给调用者。 |
 | OH_Drawing_Array* bounds | 字形边界框存储首地址，用于存储得到的字形边界框。 |
 
@@ -198,11 +308,11 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const ui
 
 | 参数项 | 描述 |
 | -- | -- |
-| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const uint16_t* glyphs | 字形索引存储首地址。 |
 | int count | 字形索引的数量，大小与glyphs数组大小保持一致。 |
 | const OH_Drawing_Point* origin | 指向第一个字形的位置，可以为NULL，为NULL默认从(0, 0)开始。 |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* points | 字形相对位置存储首地址，用于存储得到的字形相对位置，作为返回值返回给调用者。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* points | 字形相对位置存储首地址，用于存储得到的字形相对位置，作为返回值返回给调用者。 |
 
 **返回：**
 
@@ -228,7 +338,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, floa
 
 | 参数项 | 描述 |
 | -- | -- |
-| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | float* spacing | 推荐的字型行间距，作为返回值返回给调用者。 |
 
 **返回：**
@@ -255,7 +365,7 @@ OH_Drawing_Font* OH_Drawing_FontCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* | 函数会返回一个指针，指针指向创建的字型对象。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* | 函数会返回一个指针，指针指向创建的字型对象。 |
 
 ### OH_Drawing_FontSetBaselineSnap()
 
@@ -276,7 +386,7 @@ void OH_Drawing_FontSetBaselineSnap(OH_Drawing_Font* font, bool baselineSnap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool baselineSnap | 指示字型基线是否和像素对齐。true表示对齐，false表示不对齐。 |
 
 ### OH_Drawing_FontIsBaselineSnap()
@@ -298,7 +408,7 @@ bool OH_Drawing_FontIsBaselineSnap(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -325,7 +435,7 @@ void OH_Drawing_FontSetSubpixel(OH_Drawing_Font* font, bool isSubpixel)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool isSubpixel | 字型是否使用次像素渲染。true为使用，false为不使用。 |
 
 ### OH_Drawing_FontIsSubpixel()
@@ -347,7 +457,7 @@ bool OH_Drawing_FontIsSubpixel(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -374,7 +484,7 @@ void OH_Drawing_FontSetForceAutoHinting(OH_Drawing_Font* font, bool isForceAutoH
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool isForceAutoHinting | 是否自动调整字型轮廓。true为自动调整，false为不自动调整。 |
 
 ### OH_Drawing_FontIsForceAutoHinting()
@@ -396,7 +506,7 @@ bool OH_Drawing_FontIsForceAutoHinting(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -423,8 +533,8 @@ void OH_Drawing_FontSetTypeface(OH_Drawing_Font* font, OH_Drawing_Typeface* type
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* typeface | 指向字体对象的指针，为NULL会使用系统默认字体对象。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* typeface | 指向字体对象的指针，为NULL会使用系统默认字体对象。 |
 
 ### OH_Drawing_FontGetTypeface()
 
@@ -445,13 +555,13 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface(OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | OH_Drawing_Typeface 函数返回一个指针，指向字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)* | OH_Drawing_Typeface 函数返回一个指针，指向字体对象[OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_FontSetTextSize()
 
@@ -472,7 +582,7 @@ void OH_Drawing_FontSetTextSize(OH_Drawing_Font* font, float textSize)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
 | float textSize | 文字大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。 |
 
 ### OH_Drawing_FontGetTextSize()
@@ -494,7 +604,7 @@ float OH_Drawing_FontGetTextSize(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -521,7 +631,7 @@ int OH_Drawing_FontCountText(OH_Drawing_Font* font, const void* text, size_t byt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const void* text | 文本存储首地址。 |
 | size_t byteLength | 文本长度，单位为字节。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 文本编码类型[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
@@ -545,7 +655,7 @@ uint32_t OH_Drawing_FontTextToGlyphs(const OH_Drawing_Font* font, const void* te
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const void* text | 文本存储首地址。 |
 | uint32_t byteLength | 文本长度，单位为字节。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 文本编码类型[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
@@ -577,7 +687,7 @@ void OH_Drawing_FontGetWidths(const OH_Drawing_Font* font, const uint16_t* glyph
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const uint16_t* glyphs | 字形索引存储首地址。 |
 | int count | 字形索引的数量。 |
 | float* widths | 字形宽度存储首地址，用于存储得到的字形宽度。 |
@@ -601,7 +711,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacter(const OH_Drawing_Font
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const char* str | 待测量的单个字符。可以传入字符串，但只会以UTF-8编码解析并测量字符串中的首个字符。 |
 | float* textWidth | 用于存储得到的字符宽度。 |
 
@@ -630,11 +740,11 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureText(const OH_Drawing_Font* font, con
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const void* text | 指向文本的指针。 |
 | size_t byteLength | 表示以字节为单位的文本长度。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 文本编码类型。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* bounds | 用于承载获取的边界框，可以为NULL。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* bounds | 用于承载获取的边界框，可以为NULL。 |
 | float* textWidth | 表示文本宽度。 |
 
 **返回：**
@@ -662,7 +772,7 @@ void OH_Drawing_FontSetLinearText(OH_Drawing_Font* font, bool isLinearText)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
 | bool isLinearText | 真为使能线性可缩放字型，假为不使能。 |
 
 ### OH_Drawing_FontIsLinearText()
@@ -684,7 +794,7 @@ bool OH_Drawing_FontIsLinearText(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -711,7 +821,7 @@ void OH_Drawing_FontSetTextSkewX(OH_Drawing_Font* font, float skewX)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
 | float skewX | 轴相对于Y轴的倾斜度。 |
 
 ### OH_Drawing_FontGetTextSkewX()
@@ -733,7 +843,7 @@ float OH_Drawing_FontGetTextSkewX(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -760,7 +870,7 @@ void OH_Drawing_FontSetFakeBoldText(OH_Drawing_Font* font, bool isFakeBoldText)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
 | bool isFakeBoldText | 真为使能增加描边宽度，假为不使能。 |
 
 ### OH_Drawing_FontIsFakeBoldText()
@@ -782,7 +892,7 @@ bool OH_Drawing_FontIsFakeBoldText(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -809,7 +919,7 @@ void OH_Drawing_FontSetScaleX(OH_Drawing_Font* font, float scaleX)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | float scaleX | 文本在x轴上的缩放比例。 |
 
 ### OH_Drawing_FontGetScaleX()
@@ -831,7 +941,7 @@ float OH_Drawing_FontGetScaleX(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -858,7 +968,7 @@ void OH_Drawing_FontSetHinting(OH_Drawing_Font* font, OH_Drawing_FontHinting fon
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | [OH_Drawing_FontHinting](#oh_drawing_fonthinting) fontHinting | 字型轮廓枚举类型[OH_Drawing_FontHinting](capi-drawing-font-h.md#oh_drawing_fonthinting)。 |
 
 ### OH_Drawing_FontGetHinting()
@@ -880,7 +990,7 @@ OH_Drawing_FontHinting OH_Drawing_FontGetHinting(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -907,7 +1017,7 @@ void OH_Drawing_FontSetEmbeddedBitmaps(OH_Drawing_Font* font, bool isEmbeddedBit
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool isEmbeddedBitmaps | 设置字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
 
 ### OH_Drawing_FontIsEmbeddedBitmaps()
@@ -929,7 +1039,7 @@ bool OH_Drawing_FontIsEmbeddedBitmaps(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -956,7 +1066,7 @@ void OH_Drawing_FontSetEdging(OH_Drawing_Font* font, OH_Drawing_FontEdging fontE
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | [OH_Drawing_FontEdging](#oh_drawing_fontedging) fontEdging | 字型边缘效果。 |
 
 ### OH_Drawing_FontGetEdging()
@@ -978,7 +1088,7 @@ OH_Drawing_FontEdging OH_Drawing_FontGetEdging(const OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 
 **返回：**
 
@@ -1005,7 +1115,7 @@ void OH_Drawing_FontDestroy(OH_Drawing_Font* font)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象的指针。 |
 
 ### OH_Drawing_FontGetMetrics()
 
@@ -1026,8 +1136,8 @@ float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
-| [OH_Drawing_Font_Metrics](capi-oh-drawing-font-metrics.md)* fontMetrics | 指向字体度量信息对象[OH_Drawing_Font_Metrics](capi-oh-drawing-font-metrics.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font_Metrics](capi-drawing-oh-drawing-font-metrics.md)* fontMetrics | 指向字体度量信息对象[OH_Drawing_Font_Metrics](capi-drawing-oh-drawing-font-metrics.md)的指针。 |
 
 **返回：**
 
@@ -1054,10 +1164,10 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetBounds(const OH_Drawing_Font* font, const
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const uint16_t* glyphs | 字形索引数组。 |
 | uint32_t count | 字形数组的长度。 |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* bounds | 矩形边界数组。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* bounds | 矩形边界数组。 |
 
 **返回：**
 
@@ -1084,9 +1194,9 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font,
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | uint16_t glyph | 指定的字形索引。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针, 用于存储得到的字形路径。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针, 用于存储得到的字形路径。 |
 
 **返回：**
 
@@ -1113,13 +1223,13 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | const void* text | 指示要获取轮廓路径的文本字符串。 |
 | size_t byteLength | 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引，具体类型格式可见[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
 | float x | 指示文本在绘图区域内以原点为起始位置的X坐标。 |
 | float y | 指示文本在绘图区域内以原点为起始位置的Y坐标。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 返回获取到的文字轮廓路径对象，作为出参使用。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 返回获取到的文字轮廓路径对象，作为出参使用。 |
 
 **返回：**
 
@@ -1146,7 +1256,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool followed | 字型中的字体是否跟随主题字体，true表示跟随主题字体，false表示不跟随主题字体。 |
 
 **返回：**
@@ -1174,7 +1284,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* f
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | bool* followed | 返回字型中的字体是否跟随主题字体的结果，true表示跟随主题字体，false表示不跟随主题字体。作为出参使用。 |
 
 **返回：**

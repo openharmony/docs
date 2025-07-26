@@ -9,6 +9,7 @@ Defines the print attributes.
 
 **Related module**: [OH_Print](_o_h___print.md)
 
+**Header file**: [ohprint.h](ohprint_8h.md)
 
 ## Summary
 
@@ -38,6 +39,7 @@ Defines the print attributes.
 uint32_t Print_PrintAttributes::colorMode
 ```
 **Description**
+
 Defines the color mode.
 
 
@@ -47,6 +49,7 @@ Defines the color mode.
 uint32_t Print_PrintAttributes::copyNumber
 ```
 **Description**
+
 Defines the number of copies to print.
 
 
@@ -56,6 +59,7 @@ Defines the number of copies to print.
 uint32_t Print_PrintAttributes::duplexMode
 ```
 **Description**
+
 Defines the duplex mode.
 
 
@@ -65,6 +69,7 @@ Defines the duplex mode.
 bool Print_PrintAttributes::hasOption
 ```
 **Description**
+
 Defines whether the printing has an option flag.
 
 
@@ -74,6 +79,7 @@ Defines whether the printing has an option flag.
 bool Print_PrintAttributes::isLandscape
 ```
 **Description**
+
 Defines whether to print in the landscape mode.
 
 
@@ -83,6 +89,7 @@ Defines whether to print in the landscape mode.
 bool Print_PrintAttributes::isSequential
 ```
 **Description**
+
 Defines whether to print in a sequential manner.
 
 
@@ -92,6 +99,7 @@ Defines whether to print in a sequential manner.
 char Print_PrintAttributes::options[256]
 ```
 **Description**
+
 Defines the printing options.
 
 
@@ -101,6 +109,7 @@ Defines the printing options.
 Print_Margin Print_PrintAttributes::pageMargin
 ```
 **Description**
+
 Defines the page margin.
 
 
@@ -110,6 +119,7 @@ Defines the page margin.
 Print_Range Print_PrintAttributes::pageRange
 ```
 **Description**
+
 Defines the page range.
 
 
@@ -119,4 +129,5 @@ Defines the page range.
 Print_PageSize Print_PrintAttributes::pageSize
 ```
 **Description**
+
 Defines the page size.

@@ -7,7 +7,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/capi-oh-camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
@@ -44,7 +44,7 @@
 
 3. 相机初始化及拍照触发参考[拍照(C/C++)](./native-camera-shooting.md)。
 
-4. 注册**分段式(PhotoAssetAvailable)**拍照回调，对比单端式拍照，仅注册的拍照回调接口不同。
+4. 注册分段式（PhotoAssetAvailable）拍照回调，对比单端式拍照，仅注册的拍照回调接口不同。
 
    > **注意：**
    >

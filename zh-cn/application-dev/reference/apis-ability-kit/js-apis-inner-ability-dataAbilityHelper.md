@@ -988,7 +988,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1027,7 +1027,7 @@ query(uri: string, callback: AsyncCallback\<ResultSet>): void
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1064,7 +1064,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1102,7 +1102,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1147,7 +1147,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 | 类型                | 说明           |
 | ------------------- | -------------- |
-| Promise\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#resultset)> | Promise对象，返回查询结果。 |
+| Promise\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)> | Promise对象，返回查询结果。 |
 
 **示例：**
 

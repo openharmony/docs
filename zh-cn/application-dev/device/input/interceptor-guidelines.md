@@ -60,7 +60,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestInterceptor()
+void TestKeyEventInterceptor()
 {
     //添加按键事件拦截
     Input_Result ret = OH_Input_AddKeyEventInterceptor(OnKeyEventCallback, nullptr);
@@ -165,7 +165,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
 //输入事件回调函数结构体
 Input_InterceptorEventCallback g_eventCallback;
 
-void TestInterceptor()
+void TestInputEventInterceptor()
 {
     //设置鼠标事件回调函数
     g_eventCallback.mouseCallback = OnMouseEventCallback;

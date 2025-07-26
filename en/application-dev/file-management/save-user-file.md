@@ -17,7 +17,7 @@ When a user needs to download a file from the Internet or save a file to another
 
 [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated) will not be maintained in later versions. You are advised to use [Media Library Kit](../media/medialibrary/photoAccessHelper-savebutton.md) to save media assets.
 
-If the security component cannot be called to save images and videos in your development, use [PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to save images and videos.
+If the security component cannot be called to save images and videos in your development, use [PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#showassetscreationdialog12) to save images and videos.
 
 ## Saving Documents
 
@@ -187,3 +187,5 @@ If the security component cannot be called to save images and videos in your dev
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+
+ <!--no_check--> 

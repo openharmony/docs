@@ -32,7 +32,7 @@ Sets the screen brightness.
 
 **Error codes**
 
-For details about the error codes, see [Screen Brightness Error Codes](errorcode-brightness.md).
+For details about the error codes, see [Brightness Error Codes](errorcode-brightness.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -64,12 +64,12 @@ Sets the screen brightness. This API is used for continuous brightness adjustmen
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | Yes  | Brightness value. Value range: 0 to 255. The value of this parameter must be a number.|
-| continuous  | boolean | Yes  | Whether the luminance adjustment is continuous. The value of this parameter must be of the Boolean type.|
+| value  | number | Yes  | Brightness value. Value range: [0, 255]|
+| continuous  | boolean | Yes  | Whether the brightness adjustment is continuous. The value **true** indicates that the brightness adjustment is continuous; **false** indicates the opposite. Default value: **false**|
 
 **Error codes**
 
-For details about the error codes, see [Screen Brightness Error Codes](errorcode-brightness.md).
+For details about the error codes, see [Brightness Error Codes](errorcode-brightness.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|

@@ -154,7 +154,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 | Name  | Type                       | Mandatory| Description  |
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -195,7 +195,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description   |
 | -------- | -------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -236,7 +236,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>The default value is false.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 
 **Return value**
 
@@ -282,7 +282,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 | Name  | Type                       | Mandatory| Description  |
 | -------- | --------------- | ---- | ------------------------------- |
 | isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -323,7 +323,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description     |
 | -------- | --------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 

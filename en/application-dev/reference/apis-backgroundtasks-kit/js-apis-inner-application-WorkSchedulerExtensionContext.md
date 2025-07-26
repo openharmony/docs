@@ -23,3 +23,11 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     }
 }
 ```
+
+## WorkSchedulerExtensionContext
+
+Provides a context environment for the WorkSchedulerExtensionAbility.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Model restriction**: This API can be used only in the stage model.

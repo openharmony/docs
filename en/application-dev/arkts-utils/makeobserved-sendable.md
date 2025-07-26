@@ -1,12 +1,12 @@
 # ArkUI Data Updates
 
-When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, for such scenarios, it is necessary to use [makeObserved](../quick-start/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
+When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, it is necessary to use [makeObserved](../ui/state-management/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
 
 This example describes the following scenarios:
 - When **makeObserved** is used with @Sendable data, it enables observability of changes that can trigger UI refreshes.
-- A complete set of data is fetched from a child thread and used to replace the observable data in the UI thread entirely.
+- Data is fetched from a child thread and used to replace the observable data in the UI thread entirely.
 - The data fetched from the child thread is reprocessed with **makeObserved** to become observable.
-- Only non-observable data is passed from the UI main thread back to the child thread. The return value of **makeObserved** is not directly passed to child threads.
+- Only non-observable data is passed from the UI main thread back to the child thread. The return value of **makeObserved** cannot be directly passed to child threads.
 
 ```ts
 // SendableData.ets
@@ -19,6 +19,7 @@ export class SendableData {
   follow: boolean = false;
 }
 ```
+<!-- @[define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SendableData.ets) -->
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -63,3 +64,4 @@ struct Index {
   }
 }
 ```
+<!-- @[update_arkui_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/MakeobservedSendable.ets) -->

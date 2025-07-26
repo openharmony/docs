@@ -118,7 +118,7 @@
     build() {
       Column() {
         Button('back').onClick((event: ClickEvent) => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
         Web({ src: $rawfile('alert.html'), controller: this.webviewController })
           .onAlert((event) => {

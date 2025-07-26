@@ -1,16 +1,7 @@
-# Widget Event Capability Overview
+# Overview of ArkTS Widget Page Interaction
 
-For dynamic ArkTS widgets, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API is provided for interaction between the widget internal and the provider application. Currently, this API supports the router, message, and call events and can be called only in the widget.
+ArkTS widgets provide page interaction capabilities, including page redirection between widgets and widget providers (such as applications), process startup of widget providers, and message transfer between widgets and widget providers. You can call [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) to implement a [dynamic widget](arkts-form-overview.md#dynamic-widget) and use [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md) to implement page interaction of a [static widget](arkts-form-overview.md#static-widget). Both **postCardAction** and **FormLink** support router, message, and call events. The usage scenarios are as follows:
 
-For static ArkTS widgets, the [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md) component is provided for interaction between the widget internal and the provider application.
-
-## Dynamic Widget Event Capability
-![WidgetPostCardAction](figures/WidgetPostCardAction.png)
-
-Dynamic widget events are used in the following scenarios:
-- Router event: used to redirect to a UIAbility and update the widget content.
-- Call event: used to start a UIAbility in the background and update the widget content.
-- Message event: used to start a FormExtensionAbility, which then updates the widget content.
-
-## Static Widget Event Capability
-See [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
+- [router event](arkts-ui-widget-event-router.md): used to redirect to a specified UIAbility, enabling the functionality of navigating from a widget to an internal application page after a widget is touched. For non-system applications, this redirection is limited to their own UIAbilities.
+- [call event](arkts-ui-widget-event-call.md): used to launch a specified UIAbility to the background, after which the UIAbility can request the corresponding background continuous task to complete functionalities such as music playback.
+- [message event](arkts-ui-widget-event-formextensionability.md): used to launch the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md), which then notifies the application via the [onFormEvent](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonformevent) API callback, thereby fulfilling the functionality of passing messages to the application after a widget is touched.

@@ -5,7 +5,7 @@
 
 Use the **requestAnimationFrame** method to request frames on a one-by-one basis. This method accepts a callback as an argument.
 
-When **runframe** calls **requestAnimationFrame**, the **step** callback with the **timestamp** parameter is passed, and this timestamp iss assigned to **startTime**. When the difference between the **timestamp** and **startTime** is less than the specified value, **requestAnimationFrame** is called again, and the animation stops.
+When **runframe** calls **requestAnimationFrame**, the **step** callback with the **timestamp** parameter is passed, and this timestamp is assigned to **startTime**. When the difference between the **timestamp** and **startTime** is less than the specified value, **requestAnimationFrame** is called again, and the animation stops.
 
 ```html
 <!-- xxx.hml -->

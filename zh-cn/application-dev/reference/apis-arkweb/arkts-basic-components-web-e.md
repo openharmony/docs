@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持，后续版本的新增接口，则采用上角标单独标记接口的起始版本。
+> 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## MessageLevel
 
@@ -205,6 +205,8 @@ Web布局模式的配置。
 | ----- | -- | ------------- |
 | None  | 0 | 非特殊媒体或其他媒体类型。 |
 | Image | 1 | 图片。           |
+| Video<sup>20+</sup> | 2 | 视频。           |
+| Audio<sup>20+</sup> | 3 | 音频。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
@@ -335,4 +337,40 @@ Web布局模式的配置。
 
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
-| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。 |
+| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。对应系统音频流类型STREAM_USAGE_GAME。|
+
+## GestureFocusMode<sup>20+</sup>
+
+手势获焦的模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                       | 值 | 说明           |
+| -------------------------- | -- | ------------- |
+| DEFAULT                    | 0 | 默认值，Web会在触摸按下屏幕时申请获焦，包括点击、长按、滑动、缩放等任何触摸屏幕的手势行为。 |
+| GESTURE_TAP_AND_LONG_PRESS | 1 | Web只会在点击和长按手势事件生成时申请获焦，点击和长按在触摸抬起之后生成，滑动和缩放等手势行为不会获焦。 |
+
+## WebBypassVsyncCondition<sup>20+</sup>
+
+跳过渲染vsync条件。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                 |
+| ----------- | -- | ------------------ |
+| NONE        | 0 | 默认值，按vsync调度流程绘制。         |
+| SCROLLBY_FROM_ZERO_OFFSET | 1 | 在使用scrollby（只支持带滚动偏移量）且Web页面滚动偏移量为0，渲染流程跳过vsync调度直接绘制。 |
+
+## PdfLoadResult<sup>20+</sup>
+
+定义PDF页面的加载结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 值    | 说明                                       |
+| -------------- | ---- | ---------------------------------------- |
+| LOAD_SUCCESS | 0 | PDF页面加载成功。    |
+| PARSE_ERROR_FILE | 1 | PDF文件加载失败的错误码。 |
+| PARSE_ERROR_FORMAT | 2 | PDF文件格式不支持的错误码。 |
+| PARSE_ERROR_PASSWORD | 3 | PDF文件密码不正确的错误码。 |
+| PARSE_ERROR_HANDLER | 4 | PDF文件处理失败的错误码。 |

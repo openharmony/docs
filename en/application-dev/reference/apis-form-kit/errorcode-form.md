@@ -4,24 +4,6 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 16500001 Internal Error
-
-**Error Message**
-
-Internal error.
-
-**Description**
-
-A common kernel error, for example, a malloc failure, occurs.
-
-**Possible Causes**
-
-The memory is insufficient.
-
-**Solution**
-
-Analyze the memory usage of the entire process, and check whether memory leakage occurs.
-
 ## 16500050 IPC Failure
 
 **Error Message**
@@ -149,33 +131,15 @@ The widget does not belong to the application.
 1. Check the ownership of the widget ID.
 2. Upgrade the application permission to **SystemApp**.
 
-## 16501004 Ability Not Installed
+## 16501006 Failed to Connect to the Widget Rendering Service
 
 **Error Message**
 
-The ability is not installed.
+FormRenderService is stopped. Connect to the service again.
 
 **Description**
 
-The specified ability is not installed.
-
-**Possible Causes**
-
-The specified ability is not installed.
-
-**Solution**
-
-Pass in valid **abilityName** and **bundleName**.
-
-## 16501005 Failed to Connect to FormRenderService
-
-**Error Message**
-
-Failed to connect to FormRenderService.
-
-**Description**
-
-The FormRenderService fails to be connected.
+This error code is reported when the widget rendering service fails to be connected.
 
 **Possible Causes**
 
@@ -185,6 +149,25 @@ The service is busy.
 
 Try again later.
 
+## 16501007 Untrusted Widget
+
+**Error Message**
+
+Form is not trust.
+
+**Description**
+
+The widget is not trusted.
+
+**Possible Causes**
+
+The widget code has problems such as infinite loop and memory leakage, causing system exceptions.
+
+**Solution**
+
+Check whether the widget code has an infinite loop or memory leakage.
+
+<!--Del-->
 ## 16501008 Adding a Widget to the Home Screen Times Out
 
 **Error Message**
@@ -202,3 +185,158 @@ The service is busy.
 **Solution**
 
 Try again later.
+<!--DelEnd-->
+
+## 16501010 Failed to Set the Background Image of the Interactive Widget
+
+**Error Message**
+
+Failed to set the live form background image.
+
+**Description**
+
+This error code is reported when the background image resource is invalid.
+
+**Possible Causes**
+
+The background image resource is invalid.
+
+**Solution**
+
+Check whether the background image resource is valid.
+
+## 16501011 Interactive Capabilities Not Supported
+
+**Error Message**
+
+The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+
+**Description**
+
+This error code is reported when the current widget does not support interactive capabilities.
+
+**Possible Causes**
+
+The interactive widget animation is requested by a common widget, or the current interactive widget is incorrectly configured.
+
+**Solution**
+
+Check whether the configured [sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams-field) of the current widget is correct.
+
+## 2293761 Internal Service Error
+
+**Error Message**
+
+Some internal server error occurs.
+
+**Description**
+
+An internal error occurs when the system executes the current request.
+
+**Possible Causes**
+
+An internal service execution exception occurs.
+
+**Solution**
+
+1. Restart the system and try again.
+2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.
+
+## 2293766 Requested Bundle Name Not Exist
+
+**Error Message**
+
+The requested bundle name does not exist.
+
+**Description**
+
+The requested bundle name does not exist. This is an internal error.
+
+**Possible Causes**
+
+An error occurs when the bundle management module obtains the bundle name of the requester. This is an internal service execution exception.
+
+**Solution**
+
+1. Restart the system and try again.
+2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.
+
+## 2293767 Invalid Parameter
+
+**Error Message**
+
+Invalid params received on operating form.
+
+**Description**
+
+Invalid input parameters are passed when the API is called.
+
+**Possible Causes**
+
+1. Mandatory parameters are not transferred.
+2. The parameter type is incorrect.
+3. The number of parameters is incorrect.
+4. The input parameter is empty, for example, an empty string ('').
+5. Incorrect parameter format.
+6. Invalid parameter value. The input parameter must be the same as the corresponding configuration in [app.json5](../../quick-start/app-configuration-file.md) and [Configuring Widget Configuration Files](../../form/arkts-ui-widget-configuration.md).
+
+**Solution**
+
+Check the possible causes to determine whether mandatory parameters are transferred and whether the transferred parameter types are correct.
+
+## 2293795 Failed to Obtain the Bundle Manager Service
+
+**Error Message**
+
+Get bms rpc failed.
+
+**Description**
+
+Failed to obtain the Bundle Manager service.
+
+**Possible Causes**
+
+An internal service execution exception occurs.
+
+**Solution**
+
+1. Restart the system and try again.
+2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.
+
+## 2293798 Failed to Obtain the Widget Manager Service
+
+**Error Message**
+
+Get fms rpc failed.
+
+**Description**
+
+Failed to obtain the Widget Manager service.
+
+**Possible Causes**
+
+An internal service execution exception occurs.
+
+**Solution**
+
+1. Restart the system and try again.
+2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.
+
+## 2293802 Failed to Obtain the System Manager Service
+
+**Error Message**
+
+Get system manager service failed.
+
+**Description**
+
+Failed to obtain the System Manager service.
+
+**Possible Causes**
+
+An internal service execution exception occurs.
+
+**Solution**
+
+1. Restart the system and try again.
+2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.

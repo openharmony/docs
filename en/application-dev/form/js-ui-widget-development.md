@@ -1,47 +1,5 @@
-# Developing a JS Widget
-
-
-The following describes how to develop JS widgets based on the web-like development paradigm.
-
-
-## Working Principles
-
-Below shows the working principles of the widget framework.
-
-**Figure 1** Widget framework working principles in the stage model
-
-![JSCardPrinciple](figures/JSCardPrinciple.png)
-
-The widget host consists of the following modules:
-
-- Widget usage: provides operations such as creating, deleting, or updating a widget.
-
-- Communication adapter: provided by the SDK for communication with the Widget Manager. It sends widget-related operations to the Widget Manager.
-
-The Widget Manager consists of the following modules:
-
-- Periodic updater: starts a scheduled task based on the update policy to periodically update a widget after it is added to the Widget Manager.
-
-- Cache manager: caches view information of a widget after it is added to the Widget Manager. This enables the cached data to be directly returned when the widget is obtained next time, greatly reducing the latency.
-
-- Lifecycle manager: suspends update when a widget is switched to the background or is blocked, and updates and/or clears widget data during upgrade and deletion.
-
-- Object manager: manages RPC objects of the widget host. It is used to verify requests from the widget host and process callbacks after the widget update.
-
-- Communication adapter: communicates with the widget host and provider through RPCs.
-
-The widget provider consists of the following modules:
-
-- Widget service: implemented by the widget provider developer to process requests on widget creation, update, and deletion, and to provide corresponding widget services.
-
-- Instance manager: implemented by the widget provider developer for persistent management of widget instances allocated by the Widget Manager.
-
-- Communication adapter: provided by the SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
-
-> **NOTE**
-> 
-> You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
-
+# Developing a JS Widget (Stage Model)
+The stage model is supported since API version 9. It is the mainstream model with a long evolution plan. This model is object-oriented and provides open application components as classes. You can derive application components for capability expansion.
 
 ## Available APIs
 
@@ -49,29 +7,29 @@ The **FormExtensionAbility** class has the following APIs. For details, see [For
 
 | Name                                                                                             | Description|
 | -------- | -------- |
-| onAddForm(want: Want): formBindingData.FormBindingData                                 | Called to notify the widget provider that a widget is being created.|
-| onCastToNormalForm(formId: string): void                                               | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
-| onUpdateForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being updated.|
-| onChangeFormVisibility(newStatus: Record&lt;string, number&gt;): void             | Called to notify the widget provider that the widget visibility status is being changed.|
-| onFormEvent(formId: string, message: string): void                           | Called to instruct the widget provider to process a widget event.|
-| onRemoveForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being destroyed.|
-| onConfigurationUpdate(newConfig: Configuration): void                                  | Called when the configuration of the environment where the widget is running is being updated.|
-| onShareForm?(formId: string): Record&lt;string, Object&gt;                        | Called to notify the widget provider that the widget host is sharing the widget data.|
+| onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData                                 | Called to notify the widget provider that a widget is being created.|
+| onCastToNormalForm(formId:&nbsp;string):&nbsp;void                                               | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
+| onUpdateForm(formId:&nbsp;string):&nbsp;void                                                     | Called to notify the widget provider that a widget is being updated.|
+| onChangeFormVisibility(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void             | Called to notify the widget provider that the widget visibility status is being changed.|
+| onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | Called to instruct the widget provider to process a widget event.|
+| onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | Called to notify the widget provider that a widget is being destroyed.|
+| onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | Called when the configuration of the environment where the widget is running is being updated.|
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | Called to notify the widget provider that the widget host is sharing the widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
-| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
-| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;void&gt;): void | Updates a widget. This API uses an asynchronous callback to return the result.|
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Updates a widget. This API uses an asynchronous callback to return the result.|
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
 
 | Name| Description|
 | -------- | -------- |
-| createFormBindingData(obj?: Object \| string): FormBindingData | Creates a **FormBindingData** object.|
+| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | Creates a **FormBindingData** object.|
 
 
 ## How to Develop
@@ -400,64 +358,66 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 - CSS: defines style information about the web-like paradigm components in HML.
 
-    ```css
-    .container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .bg-img {
-      flex-shrink: 0;
-      height: 100%;
-    }
-    
-    .container-inner {
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      height: 100%;
-      width: 100%;
-      padding: 12px;
-    }
-    
-    .title {
-      font-size: 19px;
-      font-weight: bold;
-      color: white;
-      text-overflow: ellipsis;
-      max-lines: 1;
-    }
-    
-    .detail_text {
-      font-size: 16px;
-      color: white;
-      opacity: 0.66;
-      text-overflow: ellipsis;
-      max-lines: 1;
-      margin-top: 6px;
-    }
-    ```
+
+  ```css
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bg-img {
+    flex-shrink: 0;
+    height: 100%;
+  }
+  
+  .container-inner {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 19px;
+    font-weight: bold;
+    color: white;
+    text-overflow: ellipsis;
+    max-lines: 1;
+  }
+  
+  .detail_text {
+    font-size: 16px;
+    color: white;
+    opacity: 0.66;
+    text-overflow: ellipsis;
+    max-lines: 1;
+    margin-top: 6px;
+  }
+  ```
 
 - JSON: defines data and event interaction on the widget UI page.
 
-    ```json
-    {
-      "data": {
-        "title": "TitleDefault",
-        "detail": "TextDefault"
-      },
-      "actions": {
-        "routerEvent": {
-          "action": "router",
-          "abilityName": "EntryAbility",
-          "params": {
-            "message": "add detail"
-          }
+  
+  ```json
+  {
+    "data": {
+      "title": "TitleDefault",
+      "detail": "TextDefault"
+    },
+    "actions": {
+      "routerEvent": {
+        "action": "router",
+        "abilityName": "EntryAbility",
+        "params": {
+          "message": "add detail"
         }
       }
     }
-    ```
+  }
+  ```
 
 
 ### Developing Widget Events
@@ -483,6 +443,7 @@ The following are examples:
 
 - HML file:
 
+
   ```html
   <div class="container">
       <stack>
@@ -501,94 +462,96 @@ The following are examples:
 
 - CSS file:
 
-    ```css
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-      
-    .bg-img {
-        flex-shrink: 0;
-        height: 100%;
-        z-index: 1;
-    }
-      
-    .bottom-img {
-        position: absolute;
-        width: 150px;
-        height: 56px;
-        top: 63%;
-        background-color: rgba(216, 216, 216, 0.15);
-        filter: blur(20px);
-        z-index: 2;
-    }
-      
-    .container-inner {
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-start;
-        height: 100%;
-        width: 100%;
-        padding: 12px;
-    }
-      
-    .title {
-        font-family: HarmonyHeiTi-Medium;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.90);
-        letter-spacing: 0.6px;
-        font-weight: 500;
-        width: 100%;
-        text-overflow: ellipsis;
-        max-lines: 1;
-    }
-      
-    .detail_text {
-        ffont-family: HarmonyHeiTi;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.60);
-        letter-spacing: 0.51px;
-        font-weight: 400;
-        text-overflow: ellipsis;
-        max-lines: 1;
-        margin-top: 6px;
-        width: 100%;
-    }
-    ```
+
+  ```css
+  .container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .bg-img {
+      flex-shrink: 0;
+      height: 100%;
+      z-index: 1;
+  }
+
+  .bottom-img {
+      position: absolute;
+      width: 150px;
+      height: 56px;
+      top: 63%;
+      background-color: rgba(216, 216, 216, 0.15);
+      filter: blur(20px);
+      z-index: 2;
+  }
+
+  .container-inner {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      padding: 12px;
+  }
+
+  .title {
+      font-family: HarmonyHeiTi-Medium;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.90);
+      letter-spacing: 0.6px;
+      font-weight: 500;
+      width: 100%;
+      text-overflow: ellipsis;
+      max-lines: 1;
+  }
+
+  .detail_text {
+      ffont-family: HarmonyHeiTi;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.60);
+      letter-spacing: 0.51px;
+      font-weight: 400;
+      text-overflow: ellipsis;
+      max-lines: 1;
+      margin-top: 6px;
+      width: 100%;
+  }
+  ```
 
 - JSON file:
 
-    ```json
-    {
-      "data": {
-        "title": "TitleDefault",
-        "detail": "TextDefault"
+  
+  ```json
+  {
+    "data": {
+      "title": "TitleDefault",
+      "detail": "TextDefault"
+    },
+    "actions": {
+      "routerEvent": {
+        "action": "router",
+        "abilityName": "JSCardEntryAbility",
+        "params": {
+          "info": "router info",
+          "message": "router message"
+        }
       },
-      "actions": {
-        "routerEvent": {
-          "action": "router",
-          "abilityName": "JSCardEntryAbility",
-          "params": {
-            "info": "router info",
-            "message": "router message"
-          }
-        },
-        "messageEvent": {
-          "action": "message",
-          "params": {
-            "detail": "message detail"
-          }
+      "messageEvent": {
+        "action": "message",
+        "params": {
+          "detail": "message detail"
         }
       }
     }
-    ```
+  }
+  ```
 
   > **NOTE**
   >
   > **JSON Value** in **data** supports multi-level nested data. When updating data, ensure that complete data is carried.
 
-Assume that a widget is displaying the course information of Mr. Zhang on July 18, as shown in the following code snippet.
+  Assume that a widget is displaying the course information of Mr. Zhang on July 18, as shown in the following code snippet.
   ```ts
   "data": {
       "Day": "07.18",
@@ -598,7 +561,7 @@ Assume that a widget is displaying the course information of Mr. Zhang on July 1
       }
   }
   ```
-To update the widget content to the course information of Mr. Li on July 18, you must pass the complete data as follows, instead of only a single date item such as **name** or **course**:
+  To update the widget content to the course information of Mr. Li on July 18, you must pass the complete data as follows, instead of only a single date item such as **name** or **course**:
   ```ts
   "teacher": {
       "name": "Mr.Li",
@@ -609,53 +572,55 @@ To update the widget content to the course information of Mr. Li on July 18, you
 
 - Receive the router event in UIAbility and obtain parameters.
 
-    ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import hilog from '@ohos.hilog';
-      
-    const TAG: string = 'EtsCardEntryAbility';
-    const DOMAIN_NUMBER: number = 0xFF00;
-      
-    export default class EtsCardEntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        if (want.parameters) {
-          let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-          // Obtain the info parameter passed in the router event.
-          if (params.info === 'router info') {
-            // Execute the service logic.
-            hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
-          }
-          // Obtain the message parameter passed in the router event.
-          if (params.message === 'router message') {
-            // Execute the service logic.
-            hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
-          }
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import hilog from '@ohos.hilog';
+
+  const TAG: string = 'EtsCardEntryAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  export default class EtsCardEntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      if (want.parameters) {
+        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+        // Obtain the info parameter passed in the router event.
+        if (params.info === 'router info') {
+          // Execute the service logic.
+          hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
+        }
+        // Obtain the message parameter passed in the router event.
+        if (params.message === 'router message') {
+          // Execute the service logic.
+          hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
         }
       }
-    };
-    ```
+    }
+  };
+  ```
 
 - Receive the message event in FormExtensionAbility and obtain parameters.
 
-    ```ts
-    import FormExtension from '@ohos.app.form.FormExtensionAbility';
-    import hilog from '@ohos.hilog';
-    
-    const TAG: string = 'FormAbility';
-    const DOMAIN_NUMBER: number = 0xFF00;
-    
-    export default class FormAbility extends FormExtension {
-      onFormEvent(formId: string, message: string): void {
-        // If the widget supports event triggering, override this method and implement the trigger.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
-        // Obtain the detail parameter passed in the message event.
-        let msg: Record<string, string> = JSON.parse(message);
-        if (msg.detail === 'message detail') {
-          // Execute the service logic.
-          hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
-        }
+  
+  ```ts
+  import FormExtension from '@ohos.app.form.FormExtensionAbility';
+  import hilog from '@ohos.hilog';
+
+  const TAG: string = 'FormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  export default class FormAbility extends FormExtension {
+    onFormEvent(formId: string, message: string): void {
+      // If the widget supports event triggering, override this method and implement the trigger.
+      hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+      // Obtain the detail parameter passed in the message event.
+      let msg: Record<string, string> = JSON.parse(message);
+      if (msg.detail === 'message detail') {
+        // Execute the service logic.
+        hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
       }
-    };
-    ```
+    }
+  };
+  ```

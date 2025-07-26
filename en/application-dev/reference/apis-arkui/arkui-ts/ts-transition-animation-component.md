@@ -4,7 +4,7 @@ You can configure the component transition animations through the **transition**
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
@@ -67,7 +67,7 @@ The static functions listed in the preceding table are used to create a **Transi
 >  3. If **animateTo** is not used and **TransitionEffect** does not have the **animation** parameter specified, the component will appear or disappear without any transition animation.
 >  4. If the value of an attribute specified in **TransitionEffect** is the same as the default value, no transition animation will be applied to the attribute. For example, with **TransitionEffect.opacity(1).animation({duration:1000})**, because the default value of **opacity** is also **1**, no opacity animation will be applied, and the component appears or disappears without any transition animation.
 >  5. For details about the scale and rotate effects, see [Transformation](ts-universal-attributes-transformation.md).
->  6. If a component's attach or detach in the component tree or visibility ([Visibility](ts-universal-attributes-visibility.md)) change is triggered within the animation scope ([animateTo](ts-explicit-animation.md) or [animation](ts-animatorproperty.md)), and the root component does not have a transition configured, a default opacity transition, namely **TransitionEffect.OPACITY**, will be applied to the component. The animation parameters will follow the parameters of the surrounding animation environment. If this default behavior is not desired, it can be disabled by configuring **TransitionEffect.IDENTITY**, which causes the component to appear or disappear instantly without any transition effect.
+>  6. If a component's attach or detach in the component tree or visibility ([Visibility](ts-universal-attributes-visibility.md)) change is triggered within the animation scope ([animateTo](../js-apis-arkui-UIContext.md#animateto) or [animation](ts-animatorproperty.md)), and the root component does not have a transition configured, a default opacity transition, namely **TransitionEffect.OPACITY**, will be applied to the component. The animation parameters will follow the parameters of the surrounding animation environment. If this default behavior is not desired, it can be disabled by configuring **TransitionEffect.IDENTITY**, which causes the component to appear or disappear instantly without any transition effect.
 >  7. To ensure that the complete disappearance transition process is visible when triggering it by deleting an entire subtree, it is necessary to guarantee that the root component of the subtree being deleted has ample time to complete its disappearance transition, as demonstrated in Example 3.
 
 ## TransitionFinishCallback<sup>12+</sup>
@@ -106,7 +106,7 @@ This API is deprecated since API version 10. You are advised to use [TransitionE
 
 >  **NOTE**
 >
->  1. When set to a value of the **TransitionOptions** type, the **transition** attribute must work with [animateTo](ts-explicit-animation.md). The animation duration, curve, and delay follow the settings in **animateTo**.
+>  1. When set to a value of the **TransitionOptions** type, the **transition** attribute must work with [animateTo](../js-apis-arkui-UIContext.md#animateto). The animation duration, curve, and delay follow the settings in **animateTo**.
 >  2. If the value of the **TransitionOptions** type has only **type** specified, the transition effect will take on the default opacity. For example, **{type: TransitionType.Insert}** produces the same effect as **{type: TransitionType.Insert, opacity: 0}**. If a specific style is specified, the transition effect will not take on the default opacity.
 
 ## Example
@@ -171,7 +171,7 @@ struct TransitionEffectExample2 {
           } else {
             this.show = 'show';
           }
-          animateTo({ duration: 2000 }, () => {
+          this.getUIContext().animateTo({ duration: 2000 }, () => {
             // In the first image, **TransitionEffect** contains **animation**, and therefore the animation settings are those configured in **TransitionEffect**.
             // In the second image, **TransitionEffect** does not contain **animation**, and therefore the animation settings are those configured in **animateTo**.
             this.flag = !this.flag;

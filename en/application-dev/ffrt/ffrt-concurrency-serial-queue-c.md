@@ -24,7 +24,7 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 typedef struct {
     FILE *logFile;          // Pointer to a log file.

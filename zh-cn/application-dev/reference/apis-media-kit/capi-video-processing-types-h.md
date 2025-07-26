@@ -18,9 +18,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | 视频颜色空间信息数据结构。 |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例，该指针在创建实例之前必须为空。用户可以对不同的处理类型创建不同的视频处理实例。 |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
+| [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | 视频颜色空间信息数据结构。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例，该指针在创建实例之前必须为空。用户可以对不同的处理类型创建不同的视频处理实例。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
 
 ### 枚举
 
@@ -149,7 +149,7 @@ VIDEO_PROCESSING_ERROR_PROCESS_FAILED，处理过程中出错。
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
 | [VideoProcessing_ErrorCode](#videoprocessing_errorcode) error | 报告给用户的错误码。 |
 |  void* userData | 用户的自定义数据。 |
 
@@ -172,7 +172,7 @@ typedef void (*OH_VideoProcessingCallback_OnState)(OH_VideoProcessing* videoProc
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
 |  [VideoProcessing_State](#videoprocessing_state) state | 视频处理状态。 |
 | void* userData | 用户的自定义数据。 |
 
@@ -195,7 +195,7 @@ typedef void (*OH_VideoProcessingCallback_OnNewOutputBuffer)(OH_VideoProcessing*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 视频处理实例。 |
 |  uint32_t index | 新输出buffer的索引。 |
 | void* userData | 用户自定义的数据。 |
 

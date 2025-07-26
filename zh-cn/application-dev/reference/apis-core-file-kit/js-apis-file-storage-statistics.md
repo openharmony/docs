@@ -24,7 +24,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
+  | Promise&lt;[BundleStats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
 
 **错误码：**
 
@@ -309,4 +309,4 @@ try {
 | --------- | ------ | --- | -------------- |
 | appSize   | number | 是 | 应用安装文件大小（单位为Byte）。    |
 | cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）。   |
-| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte）。 |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件）（单位为Byte）。 |

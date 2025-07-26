@@ -1,6 +1,6 @@
 # Resident Task Development (Worker)
 
-This section describes how to use Worker to execute a resident task. Worker continuously executes the task until it receives a termination command from the host thread.
+This topic describes how to use Worker to execute a resident task. Worker continuously executes the task until it receives a termination command from the host thread.
 
 The development process and example are outlined as follows:
 
@@ -52,6 +52,7 @@ The development process and example are outlined as follows:
      }
    }
    ```
+   <!-- @[worker_receive_child_thread_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/ResidentTaskGuide.ets) -->
 
 5. Handle messages in the Worker thread. When receiving 'start' from the host thread, the Worker thread starts executing the long-running, non-periodic task and sends messages back to the host thread in real-time. When receiving 'stop', it terminates the task and sends a corresponding message back to the host thread.
 
@@ -84,3 +85,4 @@ The development process and example are outlined as follows:
      workerPort.postMessage('Worker is stop performing a task');
    }
    ```
+   <!-- @[worker_correspond_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/Worker.ets) -->

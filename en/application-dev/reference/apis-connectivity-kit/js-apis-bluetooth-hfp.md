@@ -25,7 +25,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## hfp.createHfpAgProfile
@@ -40,7 +40,7 @@ Creates an **HfpAgProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| HandsFreeAudioGatewayProfile | **HfpAgProfile** instance created.|
+| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | **HfpAgProfile** instance created.|
 
 **Error codes**
 

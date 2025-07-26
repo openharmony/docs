@@ -14,7 +14,7 @@ The system provides APIs for registering and unregistering a domain account plug
    import { osAccount, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. Obtains an **AccountManager** instance.
+3. Obtain an **AccountManager** instance.
 
    ```ts
    let accountMgr = osAccount.getAccountManager()
@@ -155,7 +155,7 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
        osAccount.DomainAccountManager.registerPlugin(plugin)
        console.info("registerPlugin success")
    } catch (err) {
-       console.info("registerPlugin err: " + JSON.stringify(err));
+       console.error("registerPlugin err: " + JSON.stringify(err));
    }
    ```
 
@@ -163,13 +163,13 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
 
 Use [unregisterPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterplugin9) to unregister a domain account plugin that is not required.
 
-**Example**
+**Procedure**
 
 ```ts
 try {
   osAccount.DomainAccountManager.unregisterPlugin();
   console.log('unregisterPlugin success.');
 } catch(err) {
-  console.log('unregisterPlugin err:' + JSON.stringify(err));
+  console.error('unregisterPlugin err:' + JSON.stringify(err));
 }
 ```

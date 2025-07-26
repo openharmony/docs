@@ -220,17 +220,21 @@ struct SubIndex {
             let context = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             let startWant: Record<string, Object> = {
               'sceneType': 1,
-              'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-              'cc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 抄收人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-              'bcc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 密送人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+              'email': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+              'cc': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // 抄收人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+              'bcc': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // 密送人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
               'subject': encodeURI('邮件主题'), // 邮件主题，对内容使用encodeURI()方法进行url编码
               'body': encodeURI('邮件正文'), // 邮件正文，对内容使用encodeURI()方法进行url编码
-              'ability.params.stream': [encodeURI('附件uri1'), encodeURI('附件uri2')], // 附件uri，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+              'ability.params.stream': [encodeURI('附件uri1'),
+                encodeURI('附件uri2')], // 附件uri，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
               'ability.want.params.uriPermissionFlag': 1
             };
             let abilityStartCallback: common.AbilityStartCallback = {
               onError: (code: number, name: string, message: string) => {
-                console.log(TAG + `code: ${code}  name:${name}  message:${message}`);
+                console.error(TAG + `code: ${code}  name:${name}  message:${message}`);
               }
             };
             try {
@@ -239,10 +243,13 @@ struct SubIndex {
                 .then(() => {
                   console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
-                console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
+                console.error(TAG +
+                  `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}.`);
               })
             } catch (err) {
-              console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(TAG + `Failed to windows starting ability, Code is ${code}, message is ${msg}.`);
             }
           })
       }

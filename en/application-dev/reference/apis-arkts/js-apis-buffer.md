@@ -2,7 +2,7 @@
 
 A **Buffer** object represents a byte sequence of a fixed length. It is used to store binary data.
 
-You can use the APIs provided by the Buffer module to process images and a large amount of binary data, and receive or upload files.
+**Recommended use case**: Use Buffer when you need to process images and a large amount of binary data, and receive or upload files.
 
 > **NOTE**
 >
@@ -40,7 +40,7 @@ Enumerates the supported encoding formats.
 
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
 
-Creates and initializes a **Buffer** instance of the specified length.
+Creates and initializes a **Buffer** object of the specified length.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -50,15 +50,15 @@ Creates and initializes a **Buffer** instance of the specified length.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
-| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Value to be filled in the buffer. The default value is **0**.|
+| size | number | Yes| Size of the **Buffer** object to create, in bytes.|
+| fill | string \| [Buffer](#buffer) \| number | No| Value to be filled in the buffer. The default value is **0**.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -71,19 +71,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
+console.info(JSON.stringify(buf1)); // {"type":"Buffer","data":[0,0,0,0,0]}
+
 let buf2 = buffer.alloc(5, 'a');
+console.info(JSON.stringify(buf2)); // {"type":"Buffer","data":[97,97,97,97,97]}
+
 let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
+console.info(JSON.stringify(buf3)); // {"type":"Buffer","data":[104,101,108,108,111,32,119,111,114,108,100]}
 ```
 
 ## buffer.allocUninitializedFromPool
 
 allocUninitializedFromPool(size: number): Buffer
 
-Creates a **Buffer** instance of the specified size from the buffer pool, without initializing it.
-You need to use [fill()](#fill) to initialize the **Buffer** instance created.
+Creates a **Buffer** object of the specified size from the buffer pool, without initializing it.
+
+You need to use [fill()](#fill) to initialize the **Buffer** object created.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -93,13 +99,13 @@ You need to use [fill()](#fill) to initialize the **Buffer** instance created.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
+| size | number | Yes| Size of the **Buffer** object to create, in bytes.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | Uninitialized **Buffer** instance.|
+| [Buffer](#buffer) | Uninitialized **Buffer** object.|
 
 **Error codes**
 
@@ -112,18 +118,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.allocUninitialized
 
 allocUninitialized(size: number): Buffer
 
-Creates a **Buffer** instance of the specified size, without initializing it. This API does not allocate memory from the buffer pool.
-You need to use [fill()](#fill) to initialize the **Buffer** instance created.
+Creates a **Buffer** object of the specified size, without initializing it. This API does not allocate memory from the buffer pool.
+
+You need to use [fill()](#fill) to initialize the **Buffer** object created.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -133,13 +141,13 @@ You need to use [fill()](#fill) to initialize the **Buffer** instance created.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes|Size of the **Buffer** instance to create, in bytes.|
+| size | number | Yes|Size of the **Buffer** object to create, in bytes.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | Uninitialized **Buffer** instance.|
+| [Buffer](#buffer) | Uninitialized **Buffer** object.|
 
 **Error codes**
 
@@ -152,10 +160,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.byteLength
@@ -172,8 +181,8 @@ Obtains the number of bytes of a string based on the encoding format.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
+| string | string \| [Buffer](#buffer) \| TypedArray \| DataView \| ArrayBuffer \| SharedArrayBuffer | Yes| Target string.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format. The default value is **'utf8'**.|
 
 **Return value**
 
@@ -203,7 +212,7 @@ console.info(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8'
 
 compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
-Compares two **Buffer** instances. This API is used for sorting **Buffer** instances.
+Compares two **Buffer** objects. This API is used for sorting **Buffer** objects.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -213,8 +222,8 @@ Compares two **Buffer** instances. This API is used for sorting **Buffer** insta
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buf1 | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to compare.|
-| buf2 | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to compare.|
+| buf1 | [Buffer](#buffer) \| Uint8Array | Yes| **Buffer** object to compare.|
+| buf2 | [Buffer](#buffer) \| Uint8Array | Yes| **Buffer** object to compare.|
 
 **Return value**
 
@@ -237,7 +246,7 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
-let res = buf1.compare(buf2);
+let res = buffer.compare(buf1, buf2);
 
 console.info(Number(res).toString());
 // Output: 1
@@ -247,7 +256,7 @@ console.info(Number(res).toString());
 
 concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
-Concatenates an array of **Buffer** instances of the specified length into a new instance.
+Concatenates an array of **Buffer** objects of the specified length into a new object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -257,14 +266,14 @@ Concatenates an array of **Buffer** instances of the specified length into a new
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | Yes| Array of instances to concatenate.|
+| list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | Yes| Array of objects to concatenate.|
 | totalLength | number | No| Total length of bytes to be copied. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -291,7 +300,7 @@ console.info(buf.toString('hex'));
 
 from(array: number[]): Buffer
 
-Creates a **Buffer** instance with the specified array.
+Creates a **Buffer** object with the specified array.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -301,13 +310,13 @@ Creates a **Buffer** instance with the specified array.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| array | number[] | Yes| Array to create a **Buffer** instance.|
+| array | number[] | Yes| Array to create a **Buffer** object.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -331,7 +340,7 @@ console.info(buf.toString('hex'));
 
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): Buffer
 
-Creates a **Buffer** instance of the specified length that shares memory with **arrayBuffer**.
+Creates a **Buffer** object of the specified length that shares memory with ArrayBuffer.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -341,15 +350,15 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| **ArrayBuffer** or **SharedArrayBuffer** instance whose memory is to be shared.|
+| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| **ArrayBuffer** or **SharedArrayBuffer** object whose memory is to be shared.|
 | byteOffset | number | No| Byte offset. The default value is **0**.|
-| length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
+| length | number | No| Length of the **Buffer** object to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -363,19 +372,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0]}
 ```
 
 ## buffer.from
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-Copies the data of a passed **Buffer** instance to create a new **Buffer** instance and returns the new one.
+Copies the data of a passed **Buffer** object to create a new **Buffer** object and returns the new one.
 
-Creates a **Buffer** instance that holds the memory of a passed **Uint8Array** instance and returns the new instance, maintaining the memory association of the data.
+Creates a **Buffer** object based on the memory of a passed **Uint8Array** object and returns the new object, maintaining the memory association of the data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -385,13 +395,13 @@ Creates a **Buffer** instance that holds the memory of a passed **Uint8Array** i
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** or **Uint8Array** instance.|
+| buffer | [Buffer](#buffer) \| Uint8Array | Yes| Target object.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -406,15 +416,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { buffer } from '@kit.ArkTS';
 
-// Create a Buffer instance of the Buffer type.
+// Create a Buffer object of the Buffer type.
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
 
-// Create a Buffer instance object of the Uint8Array type to ensure memory sharing between objects.
+// Create a Buffer object of the Uint8Array type to ensure memory sharing between objects.
 let uint8Array = new Uint8Array(10);
 let buf3 = buffer.from(uint8Array);
-buf3.fill(1)
-console.info("uint8Array:", uint8Array)
+buf3.fill(1);
+console.info("uint8Array:", uint8Array);
 // Output: 1,1,1,1,1,1,1,1,1,1
 ```
 
@@ -422,7 +432,7 @@ console.info("uint8Array:", uint8Array)
 
 from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
-Creates a **Buffer** instance based on the specified object.
+Creates a **Buffer** object based on the specified object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -434,13 +444,13 @@ Creates a **Buffer** instance based on the specified object.
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object that supports **Symbol.toPrimitive** or **valueOf()**.|
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | Yes| Byte offset or encoding format.|
-| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **ArrayBuffer**. The value range is [0, ArrayBuffer.byteLength]. Error 10200001 is reported if a value outside this range is reported. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
+| length | number | Yes| Length of the **Buffer** object to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **ArrayBuffer**. Value range: 0 <= length <= ArrayBuffer.byteLength. Error 10200001 is reported if a value outside this range is reported. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -453,16 +463,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[116,104,105,115,32,105,115,32,97,32,116,101,115,116]}
 ```
 
 ## buffer.from
 
 from(string: String, encoding?: BufferEncoding): Buffer
 
-Creates a **Buffer** instance based on a string in the given encoding format.
+Creates a **Buffer** object based on a string in the given encoding format.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -473,13 +484,13 @@ Creates a **Buffer** instance based on a string in the given encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | String | Yes| String.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format. The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| [Buffer](#buffer) | **Buffer** object created.|
 
 **Error codes**
 
@@ -508,7 +519,7 @@ console.info(buf2.toString());
 
 isBuffer(obj: Object): boolean
 
-Checks whether the specified object is a **Buffer** instance.
+Checks whether the specified object is a **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -524,7 +535,7 @@ Checks whether the specified object is a **Buffer** instance.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the object is a **Buffer** instance; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the object is a **Buffer** object; otherwise, **false** is returned.|
 
 **Example**
 
@@ -568,7 +579,7 @@ Checks whether the encoding format is supported.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the encoding format is supported; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the encoding format is supported; otherwise, **false** is returned.|
 
 **Example**
 
@@ -589,7 +600,7 @@ console.info(buffer.isEncoding('').toString());
 
 transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
-Transcodes the given **Buffer** or **Uint8Array** object from one encoding format to another.
+Transcodes a **Buffer** or **Uint8Array** object from one encoding format to another.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -599,7 +610,7 @@ Transcodes the given **Buffer** or **Uint8Array** object from one encoding forma
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to encode.|
+| source | [Buffer](#buffer) \| Uint8Array | Yes| Object to encode.|
 | fromEnc | string | Yes| Current encoding format. For details about the supported formats, see [BufferEncoding](#bufferencoding).|
 | toEnc | string | Yes| Target encoding format. For details about the supported formats, see [BufferEncoding](#bufferencoding).|
 
@@ -607,7 +618,7 @@ Transcodes the given **Buffer** or **Uint8Array** object from one encoding forma
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | New **Buffer** instance in the target encoding format.|
+| [Buffer](#buffer) | New **Buffer** object in the target encoding format.|
 
 **Error codes**
 
@@ -629,17 +640,17 @@ console.info("newBuf = " + newBuf.toString('ascii'));
 
 ## Buffer
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Length of the **Buffer** instance, in bytes.|
+| length | number | Yes| No| Length of the **Buffer** object, in bytes.|
 | buffer | ArrayBuffer | Yes| No| **ArrayBuffer** object.|
-| byteOffset | number | Yes| No| Offset of the **Buffer** instance in the memory pool.|
+| byteOffset | number | Yes| No| Offset of the **Buffer** object in the memory pool.|
 
 **Error codes**
 
@@ -668,7 +679,7 @@ console.info(JSON.stringify(buf.byteOffset));
 
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
-Compares this **Buffer** instance with another instance.
+Compares this **Buffer** object with another object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -678,17 +689,17 @@ Compares this **Buffer** instance with another instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Target **Buffer** instance to compare.|
-| targetStart | number | No| Offset to the start of the data to compare in the target **Buffer** instance. The default value is **0**.|
-| targetEnd | number | No| Offset to the end of the data to compare in the target **Buffer** instance (not inclusive). The default value is the length of the target **Buffer** instance.|
-| sourceStart | number | No| Offset to the start of the data to compare in this **Buffer** instance. The default value is **0**.|
-| sourceEnd | number | No| Offset to the end of the data to compare in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
+| target | [Buffer](#buffer) \| Uint8Array | Yes| Target **Buffer** object to compare.|
+| targetStart | number | No| Offset to the start of the data to compare in the target **Buffer** object. The default value is **0**.|
+| targetEnd | number | No| Offset to the end of the data to compare in the target **Buffer** object (not inclusive). The default value is the length of the target **Buffer** object.|
+| sourceStart | number | No| Offset to the start of the data to compare in this **Buffer** object. The default value is **0**.|
+| sourceEnd | number | No| Offset to the end of the data to compare in this **Buffer** object (not inclusive). The default value is the length of this **Buffer** object.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Comparison result. The value **0** is returned if the two **Buffer** instances are the same; **1** is returned if this instance comes after the target instance when sorted; **-1** is returned if this instance comes before the target instance when sorted.|
+| number | Comparison result. The value **0** is returned if the two **Buffer** objects are the same; **1** is returned if this object comes after the target object when sorted; **-1** is returned if this object comes before the target object when sorted.|
 
 **Error codes**
 
@@ -719,7 +730,7 @@ console.info(buf1.compare(buf2, 5, 6, 5).toString());
 
 copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sourceEnd?: number): number
 
-Copies data at the specified position in this **Buffer** instance to the specified position in another **Buffer** instance.
+Copies data at the specified position in this **Buffer** object to the specified position in another **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -729,10 +740,10 @@ Copies data at the specified position in this **Buffer** instance to the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to which data is copied.|
-| targetStart | number | No| Offset to the start position in the target instance where data is copied. The default value is **0**.|
-| sourceStart | number | No| Offset to the start position in this **Buffer** instance where data is copied. The default value is **0**.|
-| sourceEnd | number | No| Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
+| target | [Buffer](#buffer) \| Uint8Array | Yes| **Buffer** or **Uint8Array** object to which data is copied.|
+| targetStart | number | No| Offset to the start position in the target object where data is copied. The default value is **0**.|
+| sourceStart | number | No| Offset to the start position in this **Buffer** object where data is copied. The default value is **0**.|
+| sourceEnd | number | No| Offset to the end position in this **Buffer** object (not inclusive). The default value is the length of this **Buffer** object.|
 
 **Return value**
 
@@ -770,7 +781,7 @@ console.info(buf2.toString('ascii', 0, 25));
 
 entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
-Creates and returns an iterator that contains key-value pairs of this **Buffer** instance.
+Creates and returns an iterator that contains key-value pairs of this **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -808,7 +819,7 @@ while (!next.done) {
 
 equals(otherBuffer: Uint8Array | Buffer): boolean
 
-Checks whether this **Buffer** instance is the same as another **Buffer** instance.
+Checks whether this **Buffer** object is the same as another **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -818,13 +829,13 @@ Checks whether this **Buffer** instance is the same as another **Buffer** instan
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| otherBuffer | Uint8Array&nbsp;\|&nbsp;Buffer | Yes| **Buffer** instance to compare.|
+| otherBuffer | Uint8Array \| [Buffer](#buffer) | Yes| **Buffer** object to compare.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the two instances are the same; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the two objects are the same; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -853,7 +864,7 @@ console.info(buf1.equals(buf3).toString());
 
 fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number, encoding?: BufferEncoding): Buffer
 
-Fills this **Buffer** instance at the specified position. By default, data is filled cyclically.
+Fills this **Buffer** object at the specified position. By default, data is filled cyclically.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -863,16 +874,16 @@ Fills this **Buffer** instance at the specified position. By default, data is fi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | Yes| Value to fill.|
-| offset | number | No| Offset to the start position in this **Buffer** instance where data is filled. The default value is **0**.|
-| end | number | No| Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
+| value | string \| [Buffer](#buffer) \| Uint8Array \| number | Yes| Value to fill.|
+| offset | number | No| Offset to the start position in this **Buffer** object where data is filled. The default value is **0**.|
+| end | number | No| Offset to the end position in this **Buffer** object (not inclusive). The default value is the length of this **Buffer** object.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance filled with the specified value.|
+| [Buffer](#buffer) | **Buffer** object filled with the specified value.|
 
 **Error codes**
 
@@ -898,7 +909,7 @@ console.info(b.toString());
 
 includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): boolean
 
-Checks whether this **Buffer** instance contains the specified value.
+Checks whether this **Buffer** object contains the specified value.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -908,15 +919,15 @@ Checks whether this **Buffer** instance contains the specified value.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | Yes| Value to match.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** object. The default value is **0**.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the instance contains the specified value; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the object contains the specified value; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -942,7 +953,7 @@ console.info(buf.includes('be').toString());
 
 indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
-Obtains the index of the first occurrence of the specified value in this **Buffer** instance.
+Obtains the index of the first occurrence of the specified value in this **Buffer** object. If no match is found, **-1** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -952,15 +963,15 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | Yes| Value to match.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** object. The default value is **0**.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Index obtained. <br>If **-1** is returned, the **Buffer** instance does not contain the specified value.|
+| number | Index obtained.|
 
 **Error codes**
 
@@ -986,7 +997,7 @@ console.info(buf.indexOf('is').toString());
 
 keys(): IterableIterator&lt;number&gt;
 
-Creates and returns an iterator that contains the keys of this **Buffer** instance.
+Creates and returns an iterator that contains the keys of this **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1022,7 +1033,7 @@ for (const key of numbers) {
 
 lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
-Obtains the index of the last occurrence of the specified value in this **Buffer** instance.
+Obtains the index of the last occurrence of the specified value in this **Buffer** object. If no match is found, **-1** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1032,15 +1043,15 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is the length of this **Buffer** instance.|
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | Yes| Value to match.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** object. The default value is the length of this **Buffer** object.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Index obtained.<br>If **-1** is returned, the **Buffer** instance does not contain the specified value.|
+| number | Index obtained.|
 
 **Error codes**
 
@@ -1067,7 +1078,7 @@ console.info(buf.lastIndexOf('buffer').toString());
 
 readBigInt64BE(offset?: number): bigint
 
-Reads a 64-bit, big-endian, signed big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, signed big integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1077,7 +1088,7 @@ Reads a 64-bit, big-endian, signed big integer from this **Buffer** instance at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1114,7 +1125,7 @@ console.info("result = " + result);
 
 readBigInt64LE(offset?: number): bigint
 
-Reads a 64-bit, little-endian, signed big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, signed big integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1124,7 +1135,7 @@ Reads a 64-bit, little-endian, signed big integer from this **Buffer** instance 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1161,7 +1172,7 @@ console.info("result = " + result);
 
 readBigUInt64BE(offset?: number): bigint
 
-Reads a 64-bit, big-endian, unsigned big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, unsigned big integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1171,7 +1182,7 @@ Reads a 64-bit, big-endian, unsigned big integer from this **Buffer** instance a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1207,7 +1218,7 @@ console.info("result = " + result);
 
 readBigUInt64LE(offset?: number): bigint
 
-Reads a 64-bit, little-endian, unsigned big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, unsigned big integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1217,7 +1228,7 @@ Reads a 64-bit, little-endian, unsigned big integer from this **Buffer** instanc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1254,7 +1265,7 @@ console.info("result = " + result);
 
 readDoubleBE(offset?: number): number
 
-Reads a 64-bit, big-endian, double-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, double-precision floating-point number from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1264,7 +1275,7 @@ Reads a 64-bit, big-endian, double-precision floating-point number from this **B
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1299,7 +1310,7 @@ console.info("result = " + result);
 
 readDoubleLE(offset?: number): number
 
-Reads a 64-bit, little-endian, double-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, double-precision floating-point number from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1309,7 +1320,7 @@ Reads a 64-bit, little-endian, double-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 **Return value**
 
@@ -1344,7 +1355,7 @@ console.info("result = " + result);
 
 readFloatBE(offset?: number): number
 
-Reads a 32-bit, big-endian, single-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, single-precision floating-point number from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1354,7 +1365,7 @@ Reads a 32-bit, big-endian, single-precision floating-point number from this **B
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 **Return value**
 
@@ -1389,7 +1400,7 @@ console.info("result = " + result);
 
 readFloatLE(offset?: number): number
 
-Reads a 32-bit, little-endian, single-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, single-precision floating-point number from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1399,7 +1410,7 @@ Reads a 32-bit, little-endian, single-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 **Return value**
 
@@ -1434,7 +1445,7 @@ console.info("result = " + result);
 
 readInt8(offset?: number): number
 
-Reads an 8-bit signed integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit signed integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1444,7 +1455,7 @@ Reads an 8-bit signed integer from this **Buffer** instance at the specified off
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 1].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 1|
 
 **Return value**
 
@@ -1481,7 +1492,7 @@ console.info("result = " + result);
 
 readInt16BE(offset?: number): number
 
-Reads a 16-bit, big-endian, signed integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, big-endian, signed integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1491,7 +1502,7 @@ Reads a 16-bit, big-endian, signed integer from this **Buffer** instance at the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 **Return value**
 
@@ -1526,7 +1537,7 @@ console.info("result = " + result);
 
 readInt16LE(offset?: number): number
 
-Reads a 16-bit, little-endian, signed integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, little-endian, signed integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1536,7 +1547,7 @@ Reads a 16-bit, little-endian, signed integer from this **Buffer** instance at t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 **Return value**
 
@@ -1571,7 +1582,7 @@ console.info("result = " + result);
 
 readInt32BE(offset?: number): number
 
-Reads a 32-bit, big-endian, signed integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, signed integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1581,7 +1592,7 @@ Reads a 32-bit, big-endian, signed integer from this **Buffer** instance at the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 **Return value**
 
@@ -1616,7 +1627,7 @@ console.info("result = " + result);
 
 readInt32LE(offset?: number): number
 
-Reads a 32-bit, little-endian, signed integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, signed integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1626,7 +1637,7 @@ Reads a 32-bit, little-endian, signed integer from this **Buffer** instance at t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 **Return value**
 
@@ -1661,7 +1672,7 @@ console.info("result = " + result);
 
 readIntBE(offset: number, byteLength: number): number
 
-Reads the specified number of bytes from this **Buffer** instance at the specified offset, and interprets the result as a big-endian, two's complement signed value that supports up to 48 bits of precision.
+Reads the specified number of bytes from this **Buffer** object at the specified offset, and interprets the result as a big-endian, two's complement signed value that supports up to 48 bits of precision.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1671,8 +1682,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
+| byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
 **Return value**
@@ -1710,7 +1721,7 @@ console.info("result = " + result);
 
 readIntLE(offset: number, byteLength: number): number
 
-Reads the specified number of bytes from this **Buffer** instance at the specified offset and interprets the result as a little-endian, two's complement signed value that supports up to 48 bits of precision.
+Reads the specified number of bytes from this **Buffer** object at the specified offset and interprets the result as a little-endian, two's complement signed value that supports up to 48 bits of precision.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1720,8 +1731,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
+| byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
 **Return value**
@@ -1757,7 +1768,7 @@ console.info("result = " + result);
 
 readUInt8(offset?: number): number
 
-Reads an 8-bit unsigned integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit unsigned integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1767,7 +1778,7 @@ Reads an 8-bit unsigned integer from this **Buffer** instance at the specified o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 1].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 1|
 
 
 **Return value**
@@ -1805,7 +1816,7 @@ console.info("result = " + result);
 
 readUInt16BE(offset?: number): number
 
-Reads a 16-bit, big-endian, unsigned integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, big-endian, unsigned integer from this **Buffer** object at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1815,7 +1826,7 @@ Reads a 16-bit, big-endian, unsigned integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -1853,7 +1864,7 @@ console.info("result = " + result);
 
 readUInt16LE(offset?: number): number
 
-Reads a 16-bit, little-endian, unsigned integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, little-endian, unsigned integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1863,7 +1874,7 @@ Reads a 16-bit, little-endian, unsigned integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -1901,7 +1912,7 @@ console.info("result = " + result);
 
 readUInt32BE(offset?: number): number
 
-Reads a 32-bit, big-endian, unsigned integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, unsigned integer from this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1911,7 +1922,7 @@ Reads a 32-bit, big-endian, unsigned integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -1947,7 +1958,7 @@ console.info("result = " + result);
 
 readUInt32LE(offset?: number): number
 
-Reads a 32-bit, little-endian, unsigned integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, unsigned integer from this **Buffer** object at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1957,7 +1968,7 @@ Reads a 32-bit, little-endian, unsigned integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -1993,7 +2004,7 @@ console.info("result = " + result);
 
 readUIntBE(offset: number, byteLength: number): number
 
-Reads the specified number of bytes from this **Buffer** instance at the specified offset, and interprets the result as an unsigned, big-endian integer that supports up to 48 bits of precision.
+Reads the specified number of bytes from this **Buffer** object at the specified offset, and interprets the result as an unsigned, big-endian integer that supports up to 48 bits of precision.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2003,8 +2014,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read.  The value range is [1, 6].|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
+| byteLength | number | Yes| Number of bytes to read.  Value range: 1 <= byteLength <= 6|
 
 
 **Return value**
@@ -2040,7 +2051,7 @@ console.info("result = " + result);
 
 readUIntLE(offset: number, byteLength: number): number
 
-Reads the specified number of bytes from this **Buffer** instance at the specified offset, and interprets the result as an unsigned, little-endian integer that supports up to 48 bits of precision.
+Reads the specified number of bytes from this **Buffer** object at the specified offset, and interprets the result as an unsigned, little-endian integer that supports up to 48 bits of precision.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2050,8 +2061,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
+| byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
 **Return value**
@@ -2087,7 +2098,7 @@ console.info("result = " + result);
 
 subarray(start?: number, end?: number): Buffer
 
-Truncates this **Buffer** instance from the specified position to create a new **Buffer** instance.
+Truncates this **Buffer** object from the specified position to create a new **Buffer** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2097,14 +2108,14 @@ Truncates this **Buffer** instance from the specified position to create a new *
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| start | number | No| Offset to the start position in this **Buffer** instance where data is truncated. The default value is **0**.|
-| end | number | No|  Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
+| start | number | No| Offset to the start position in this **Buffer** object where data is truncated. The default value is **0**.|
+| end | number | No|  Offset to the end position in this **Buffer** object (not inclusive). The default value is the length of this **Buffer** object.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created. When the value of **start** or **end** is less than **0**, an empty buffer is returned.|
+| [Buffer](#buffer) | **Buffer** object created. When the value of **start** or **end** is less than **0**, an empty buffer is returned.|
 
 **Example**
 
@@ -2125,7 +2136,7 @@ console.info(buf2.toString('ascii', 0, buf2.length));
 
 swap16(): Buffer
 
-Interprets this **Buffer** instance as an array of unsigned 16-bit integers and swaps the byte order in place.
+Converts this **Buffer** object into an array of unsigned 16-bit integers and swaps the byte order in place.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2136,7 +2147,7 @@ Interprets this **Buffer** instance as an array of unsigned 16-bit integers and 
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance swapped.|
+| [Buffer](#buffer) | **Buffer** object swapped.|
 
 **Error codes**
 
@@ -2163,7 +2174,7 @@ console.info(buf1.toString('hex'));
 
 swap32(): Buffer
 
-Interprets this **Buffer** instance as an array of unsigned 32-bit integers and swaps the byte order in place.
+Converts this **Buffer** object into an array of unsigned 32-bit integers and swaps the byte order in place.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2174,7 +2185,7 @@ Interprets this **Buffer** instance as an array of unsigned 32-bit integers and 
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance swapped.|
+| [Buffer](#buffer) | **Buffer** object swapped.|
 
 **Error codes**
 
@@ -2201,7 +2212,7 @@ console.info(buf1.toString('hex'));
 
 swap64(): Buffer
 
-Interprets this **Buffer** instance as an array of unsigned 64-bit integers and swaps the byte order in place.
+Converts this **Buffer** object into an array of unsigned 64-bit integers and swaps the byte order in place.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2212,7 +2223,7 @@ Interprets this **Buffer** instance as an array of unsigned 64-bit integers and 
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance swapped.|
+| [Buffer](#buffer) | **Buffer** object swapped.|
 
 **Error codes**
 
@@ -2239,7 +2250,7 @@ console.info(buf1.toString('hex'));
 
 toJSON(): Object
 
-Converts this **Buffer** instance into a JSON object.
+Converts this **Buffer** object into a JSON object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2267,7 +2278,7 @@ console.info(JSON.stringify(obj));
 
 toString(encoding?: string, start?: number, end?: number): string
 
-Converts the data at the specified position in this **Buffer** instance into a string in the specified encoding format.
+Converts the data at the specified position in this **Buffer** object into a string in the specified encoding format.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2279,7 +2290,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 | start  | number | No|  Offset to the start position of the data to convert. The default value is **0**.|
-| end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** instance.|
+| end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** object.|
 
 **Return value**
 
@@ -2312,7 +2323,7 @@ console.info(buf1.toString('utf-8'));
 
 values(): IterableIterator&lt;number&gt;
 
-Creates and returns an iterator that contains the values of this **Buffer** instance.
+Creates and returns an iterator that contains the values of this **Buffer** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2330,8 +2341,8 @@ Creates and returns an iterator that contains the values of this **Buffer** inst
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
-let pair = buf1.values()
-let next:IteratorResult<number> = pair.next()
+let pair = buf1.values();
+let next:IteratorResult<number> = pair.next();
 while (!next.done) {
   console.info(next.value.toString());
   /*
@@ -2350,7 +2361,7 @@ while (!next.done) {
 
 write(str: string, offset?: number, length?: number, encoding?: string): number
 
-Writes a string of the specified length to this **Buffer** instance at the specified position in the given encoding format.
+Writes a string of the specified length to this **Buffer** object at the specified position in the given encoding format.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2401,7 +2412,7 @@ console.info("length = " + length);
 
 writeBigInt64BE(value: bigint, offset?: number): number
 
-Writes a 64-bit, big-endian, signed big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, signed big integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2412,7 +2423,7 @@ Writes a 64-bit, big-endian, signed big integer to this **Buffer** instance at t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2445,7 +2456,7 @@ console.info("result = " + result);
 
 writeBigInt64LE(value: bigint, offset?: number): number
 
-Writes a 64-bit, little-endian, signed big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, signed big integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2456,7 +2467,7 @@ Writes a 64-bit, little-endian, signed big integer to this **Buffer** instance a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2491,7 +2502,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** object at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2500,7 +2511,7 @@ Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** instance at
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2533,7 +2544,7 @@ console.info("result = " + result);
 
 writeBigUInt64LE(value: bigint, offset?: number): number
 
-Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2544,7 +2555,7 @@ Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** instance
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2577,7 +2588,7 @@ console.info("result = " + result);
 
 writeDoubleBE(value: number, offset?: number): number
 
-Writes a 64-bit, big-endian, double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, double-precision floating-point number to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2588,7 +2599,7 @@ Writes a 64-bit, big-endian, double-precision floating-point number to this **Bu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2621,7 +2632,7 @@ console.info("result = " + result);
 
 writeDoubleLE(value: number, offset?: number): number
 
-Writes a 64-bit, little-endian, double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, double-precision floating-point number to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2632,7 +2643,7 @@ Writes a 64-bit, little-endian, double-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 8|
 
 
 **Return value**
@@ -2665,7 +2676,7 @@ console.info("result = " + result);
 
 writeFloatBE(value: number, offset?: number): number
 
-Writes a 32-bit, big-endian, single-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, single-precision floating-point number to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2676,7 +2687,7 @@ Writes a 32-bit, big-endian, single-precision floating-point number to this **Bu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -2710,7 +2721,7 @@ console.info("result = " + result);
 
 writeFloatLE(value: number, offset?: number): number
 
-Writes a 32-bit, little-endian, single-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, single-precision floating-point number to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2721,7 +2732,7 @@ Writes a 32-bit, little-endian, single-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -2754,7 +2765,7 @@ console.info("result = " + result);
 
 writeInt8(value: number, offset?: number): number
 
-Writes an 8-bit signed integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit signed integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2765,7 +2776,7 @@ Writes an 8-bit signed integer to this **Buffer** instance at the specified offs
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 1].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 1|
 
 
 **Return value**
@@ -2802,7 +2813,7 @@ console.info("result1 = " + result1);
 
 writeInt16BE(value: number, offset?: number): number
 
-Writes a 16-bit, big-endian, signed integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, big-endian, signed integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2813,7 +2824,7 @@ Writes a 16-bit, big-endian, signed integer to this **Buffer** instance at the s
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -2847,7 +2858,7 @@ console.info("result = " + result);
 
 writeInt16LE(value: number, offset?: number): number
 
-Writes a 16-bit, little-endian, signed integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, little-endian, signed integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2858,7 +2869,7 @@ Writes a 16-bit, little-endian, signed integer to this **Buffer** instance at th
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -2891,7 +2902,7 @@ console.info("result = " + result);
 
 writeInt32BE(value: number, offset?: number): number
 
-Writes a 32-bit, big-endian, signed integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, signed integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2902,7 +2913,7 @@ Writes a 32-bit, big-endian, signed integer to this **Buffer** instance at the s
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -2936,7 +2947,7 @@ console.info("result = " + result);
 
 writeInt32LE(value: number, offset?: number): number
 
-Writes a 32-bit, little-endian, signed integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, signed integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2947,7 +2958,7 @@ Writes a 32-bit, little-endian, signed integer to this **Buffer** instance at th
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -2980,7 +2991,7 @@ console.info("result = " + result);
 
 writeIntBE(value: number, offset: number, byteLength: number): number
 
-Writes a big-endian signed value of the specified length to this **Buffer** instance at the specified offset.
+Writes a big-endian signed value of the specified length to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2991,7 +3002,7 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -3026,7 +3037,7 @@ console.info("result = " + result);
 
 writeIntLE(value: number, offset: number, byteLength: number): number
 
-Writes a little-endian signed value of the specified length to this **Buffer** instance at the specified offset.
+Writes a little-endian signed value of the specified length to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3037,7 +3048,7 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -3071,7 +3082,7 @@ console.info("result = " + result);
 
 writeUInt8(value: number, offset?: number): number
 
-Writes an 8-bit unsigned integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit unsigned integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3082,7 +3093,7 @@ Writes an 8-bit unsigned integer to this **Buffer** instance at the specified of
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 1].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 1|
 
 
 **Return value**
@@ -3124,7 +3135,7 @@ console.info("result3 = " + result3);
 
 writeUInt16BE(value: number, offset?: number): number
 
-Writes a 16-bit, big-endian, unsigned integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, big-endian, unsigned integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3135,7 +3146,7 @@ Writes a 16-bit, big-endian, unsigned integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -3171,7 +3182,7 @@ console.info("result1 = " + result1);
 
 writeUInt16LE(value: number, offset?: number): number
 
-Writes a 16-bit, little-endian, unsigned integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, little-endian, unsigned integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3182,7 +3193,7 @@ Writes a 16-bit, little-endian, unsigned integer to this **Buffer** instance at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 2|
 
 
 **Return value**
@@ -3218,7 +3229,7 @@ console.info("result1 = " + result1);
 
 writeUInt32BE(value: number, offset?: number): number
 
-Writes a 32-bit, big-endian, unsigned integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, unsigned integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3229,7 +3240,7 @@ Writes a 32-bit, big-endian, unsigned integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -3262,7 +3273,7 @@ console.info("result = " + result);
 
 writeUInt32LE(value: number, offset?: number): number
 
-Writes a 32-bit, little-endian, unsigned integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, unsigned integer to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3273,7 +3284,7 @@ Writes a 32-bit, little-endian, unsigned integer to this **Buffer** instance at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - 4|
 
 
 **Return value**
@@ -3306,7 +3317,7 @@ console.info("result = " + result);
 
 writeUIntBE(value: number, offset: number, byteLength: number): number
 
-Writes an unsigned big-endian value of the specified length to this **Buffer** instance at the specified offset.
+Writes an unsigned big-endian value of the specified length to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3317,7 +3328,7 @@ Writes an unsigned big-endian value of the specified length to this **Buffer** i
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -3351,7 +3362,7 @@ console.info("result = " + result);
 
 writeUIntLE(value: number, offset: number, byteLength: number): number
 
-Writes an unsigned little-endian value of the specified length to this **Buffer** instance at the specified offset.
+Writes an unsigned little-endian value of the specified length to this **Buffer** object at the specified offset.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3362,7 +3373,7 @@ Writes an unsigned little-endian value of the specified length to this **Buffer*
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= Buffer.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -3394,22 +3405,22 @@ console.info("result = " + result);
 
 ## Blob
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| size | number | Yes| No| Total size of the **Blob** instance, in bytes.|
-| type | string | Yes| No| Type of the data in the **Blob** instance.|
+| size | number | Yes| No| Total size of the **Blob** object, in bytes.|
+| type | string | Yes| No| Type of the data in the **Blob** object.|
 
 ### constructor
 
 constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options?: Object)
 
-A constructor used to create a **Blob** instance.
+A constructor used to create a **Blob** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3419,8 +3430,8 @@ A constructor used to create a **Blob** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| sources | string[]&nbsp;\|&nbsp;ArrayBuffer[]&nbsp;\|&nbsp;TypedArray[]&nbsp;\|&nbsp;DataView[]&nbsp;\|&nbsp;Blob[] | Yes| Data sources of the **Blob** instance.|
-| options | Object | No| options:<br>- **endings**: specifies how the terminator **'\n'** is output. The value can be **'native'** or **'transparent'**. **'native'** means that the terminator follows the system. **'transparent'** means that the terminator stored in the **Blob** instance remains unchanged. The default value is **'transparent'**.<br>- **type**: type of the data in the **Blob** instance. This type represents the MIME type of the data. However, it is not used for type format validation. The default value is **''**.|
+| sources | string[]&nbsp;\|&nbsp;ArrayBuffer[]&nbsp;\|&nbsp;TypedArray[]&nbsp;\|&nbsp;DataView[]&nbsp;\|&nbsp;Blob[] | Yes| Data sources of the **Blob** object.|
+| options | Object | No| options:<br>- **endings**: specifies how the terminator **'\n'** is output. The value can be **'native'** or **'transparent'**. **'native'** means that the terminator follows the system. **'transparent'** means that the terminator stored in the **Blob** object remains unchanged. The default value is **'transparent'**.<br>- **type**: type of the data in the **Blob** object. This type represents the MIME type of the data. However, it is not used for type format validation. The default value is **''**.|
 
 **Error codes**
 
@@ -3448,7 +3459,7 @@ let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
-Puts the **Blob** data into an **ArrayBuffer** instance. This API uses a promise to return the result.
+Puts the **Blob** data into an **ArrayBuffer** object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3475,7 +3486,7 @@ pro.then((val: ArrayBuffer) => {
 
 slice(start?: number, end?: number, type?: string): Blob
 
-Creates a **Blob** instance by copying specified data from this **Blob** instance.
+Creates and returns a **Blob** object that contains specified data from this **Blob** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3486,13 +3497,13 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | start | number | No| Offset to the start position of the data to copy. The default value is **0**.|
-| end | number | No| Offset to the end position of the data to copy. The default value is the data length in the original **Blob** instance.|
-| type | string | No| Type of the data in the new **Blob** instance. The default value is **''**.|
+| end | number | No| Offset to the end position of the data to copy. The default value is the data length in the original **Blob** object.|
+| type | string | No| Type of the data in the new **Blob** object. The default value is **''**.|
 
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Blob | New **Blob** instance created.|
+| Blob | New **Blob** object created.|
 
 **Example**
 ```ts
@@ -3501,13 +3512,14 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
+console.info("type:", blob3.type); // type: MIME
 ```
 
 ### text
 
 text(): Promise&lt;string&gt;
 
-Returns text in UTF-8 format. This API uses a promise to return the result.
+Decodes and returns text using UTF-8. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

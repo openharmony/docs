@@ -184,7 +184,7 @@ export default {
 Options of a single location request.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#CurrentLocationRequest).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest).
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -258,7 +258,7 @@ Defines the list of location types supported by the current device
 Defines the options for continuous location.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#locationrequest).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest).
 
 **Required permissions**: ohos.permission.LOCATION
 

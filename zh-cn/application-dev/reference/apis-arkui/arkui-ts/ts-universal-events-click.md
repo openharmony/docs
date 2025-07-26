@@ -6,7 +6,9 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+>  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。
+>
+>  事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 
 ## onClick<sup>12+</sup>
 
@@ -14,7 +16,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 点击动作触发该回调。
 
-当触发点击事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+当触发点击事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
 新增distanceThreshold参数，设置点击手势移动阈值。手指移动超出阈值时，点击手势识别失败。
 对于无手指移动距离限制的点击场景，建议使用原有接口。若需限制点击时手指移动范围，建议使用该接口。
@@ -35,8 +37,12 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
+| event  | Callback\<[ClickEvent](#clickevent对象说明)> | 是   | 点击事件的回调函数。 |
 | distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于等于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>单位：vp<br/>**说明：**<br/>当手指的移动距离超出开发者预设的移动阈值时，点击识别失败。如果初始化为默认阈值时，手指移动超过组件热区范围，点击识别失败。 |
+
+>  **说明：**
+>
+>  如果是滑动操作，但是滑动距离未超过点击事件移动阈值并且抬手时手指在组件热区范围内，也会触发点击事件。
 
 **返回值：**
 
@@ -68,7 +74,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
+| event  | (event: [ClickEvent](#clickevent对象说明)) => void | 是   | 点击事件的回调函数。 |
 
 **返回值：**
 
@@ -96,6 +102,8 @@ onClick(event: (event: ClickEvent) => void): T
 | preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | targetDisplayId<sup>15+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -106,6 +114,8 @@ onClick(event: (event: ClickEvent) => void): T
 | 100017       | Component does not support prevent function. |
 
 ## EventTarget<sup>8+</sup>对象说明
+
+触发事件的元素对象显示区域。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -127,12 +137,12 @@ onClick(event: (event: ClickEvent) => void): T
 @Entry
 @Component
 struct ClickExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Column() {
       Row({ space: 20 }) {
-        Button('Click').width(100).height(40).id('click')
+        Button('Click').width(100).height(40).id('click1')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
@@ -142,7 +152,7 @@ struct ClickExample {
                 + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
             }
           }, 20)
-        Button('Click').width(200).height(50).id('click')
+        Button('Click').width(200).height(50).id('click2')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY

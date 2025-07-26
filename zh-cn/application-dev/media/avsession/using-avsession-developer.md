@@ -12,7 +12,7 @@
 
 媒体会话提供方使用的关键接口如下表所示。接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同。
 
-更多API说明请参见[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。
+更多API说明请参见[API文档](../../reference/apis-avsession-kit/arkts-apis-avsession.md)。
 
 | 接口名 | 说明 | 
 | -------- | -------- |
@@ -36,7 +36,11 @@
 音视频应用作为媒体会话提供方接入媒体会话的基本步骤如下所示：
 
 1. 通过AVSessionManager的方法创建并激活媒体会话。
-     
+
+   > **说明：**
+   >
+   > 以下示例代码仅展示创建AVSession对象的接口调用，应用在真正使用时，需要确保AVSession对象实例在应用后台播放业务活动期间一直存在，避免被系统回收、释放，导致后台发声时被系统管控。
+
       ```ts
       import { avSession as AVSessionManager } from '@kit.AVSessionKit';  
       @Entry
@@ -276,7 +280,7 @@
    > **说明：**
    > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应暂不使用时的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
 
-   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommand10)。
+   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/arkts-apis-avsession-i.md#avcontrolcommand10)。
 
      
     ```ts
@@ -525,4 +529,4 @@
 
 针对媒体会话提供方开发，有以下相关实例可供参考：
 
-- [媒体会话——提供方（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider)
+- [媒体会话——提供方（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider)

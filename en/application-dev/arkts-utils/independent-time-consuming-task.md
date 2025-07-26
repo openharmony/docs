@@ -18,12 +18,13 @@ This example uses image loading to illustrate the process.
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
+   // Methods executed in the TaskPool thread must be decorated by @Concurrent. Otherwise, they cannot be called.
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -41,6 +42,7 @@ This example uses image loading to illustrate the process.
      return iconItemSourceList;
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTask.ets) -->
 
 2. Use the **execute** method of TaskPool to execute the task, that is, to load the images.
 
@@ -64,9 +66,9 @@ This example uses image loading to illustrate the process.
              .onClick(() => {
                let iconItemSourceList: IconItemSource[] = [];
                // Create a task.
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
                // Execute the task and return the result.
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  // Execution result of the loadPicture method.
                  iconItemSourceList = res as IconItemSource[];
                })
@@ -78,3 +80,4 @@ This example uses image loading to illustrate the process.
      }
    }
    ```
+   <!-- @[execute_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTimeConsumingTask.ets) -->

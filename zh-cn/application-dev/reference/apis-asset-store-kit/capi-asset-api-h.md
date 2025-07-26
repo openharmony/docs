@@ -52,7 +52,7 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *attributes | 待新增关键资产的属性集合。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *attributes | 待新增关键资产的属性集合。 |
 | uint32_t attrCnt | 待新增关键资产的属性数量。 |
 
 **返回：**
@@ -78,7 +78,7 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *query | 待删除关键资产的搜索条件。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *query | 待删除关键资产的搜索条件。 |
 | uint32_t queryCnt | 待删除关键资产搜索条件的个数。 |
 
 **返回：**
@@ -104,9 +104,9 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,const Asset_A
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *query | 待更新关键资产的搜索条件。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *query | 待更新关键资产的搜索条件。 |
 | uint32_t queryCnt | 待更新关键资产搜索条件的个数。 |
-| const [Asset_Attr](capi-asset-attr.md) *attributesToUpdate | 待更新关键资产的属性集合。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *attributesToUpdate | 待更新关键资产的属性集合。 |
 | uint32_t updateCnt | 待更新关键资产的属性数量。 |
 
 **返回：**
@@ -132,9 +132,9 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *query | 关键资产的查询条件。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *query | 关键资产的查询条件。 |
 | uint32_t queryCnt | 关键资产查询条件的个数。 |
-| [Asset_Blob](capi-asset-blob.md) *challenge | 挑战值，在后续调用OH_Asset_Query时使用。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) *challenge | 挑战值，在后续调用OH_Asset_Query时使用。 |
 
 **返回：**
 
@@ -159,9 +159,9 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *query | 关键资产的查询条件。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *query | 关键资产的查询条件。 |
 | uint32_t queryCnt | 关键资产查询条件的个数。 |
-| [Asset_ResultSet](capi-asset-resultset.md) *resultSet | 查询结果列表。 |
+| [Asset_ResultSet](capi-assettype-asset-resultset.md) *resultSet | 查询结果列表。 |
 
 **返回：**
 
@@ -186,7 +186,7 @@ int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。 |
 | uint32_t handleCnt | 句柄属性集合中元素的个数。 |
 
 **返回：**
@@ -212,9 +212,9 @@ int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Ass
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-asset-attr.md) *query | 关键资产同步结果的查询条件。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *query | 关键资产同步结果的查询条件。 |
 | uint32_t queryCnt | 关键资产同步结果的查询条件个数。 |
-| [Asset_SyncResult](capi-asset-syncresult.md) *syncResult | 查询到的关键资产同步结果。 |
+| [Asset_SyncResult](capi-assettype-asset-syncresult.md) *syncResult | 查询到的关键资产同步结果。 |
 
 **返回：**
 
@@ -239,14 +239,14 @@ Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Result](capi-asset-result.md) *result | 从OH_Asset_Query中获取的查询结果。 |
+| const [Asset_Result](capi-assettype-asset-result.md) *result | 从OH_Asset_Query中获取的查询结果。 |
 | [Asset_Tag](capi-asset-type-h.md#asset_tag) tag | 待获取的属性标签。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Asset_Attr](capi-asset-attr.md) | 如果操作成功，则以Asset_Attr的形式返回属性，该属性不需要业务进行释放；否则返回NULL。 |
+| [Asset_Attr](capi-assettype-asset-attr.md) | 如果操作成功，则以Asset_Attr的形式返回属性，该属性不需要业务进行释放；否则返回NULL。 |
 
 ### OH_Asset_FreeBlob()
 
@@ -265,7 +265,7 @@ void OH_Asset_FreeBlob(Asset_Blob *blob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Asset_Blob](capi-asset-blob.md) *blob | 从OH_Asset_PreQuery获取的挑战值。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) *blob | 从OH_Asset_PreQuery获取的挑战值。 |
 
 ### OH_Asset_FreeResultSet()
 
@@ -284,6 +284,6 @@ void OH_Asset_FreeResultSet(Asset_ResultSet *resultSet)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Asset_ResultSet](capi-asset-resultset.md) *resultSet | 从OH_Asset_Query得到的查询结果列表。 |
+| [Asset_ResultSet](capi-assettype-asset-resultset.md) *resultSet | 从OH_Asset_Query得到的查询结果列表。 |
 
 

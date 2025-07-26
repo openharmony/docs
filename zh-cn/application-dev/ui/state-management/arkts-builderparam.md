@@ -487,6 +487,8 @@ struct HelloWorldPage {
 }   
 ```
 
+**图5** 示例效果图
+
 ![builderparam-demo7](figures/builderparam-demo7.gif)
 
 ### 使用全局和局部\@Builder初始化\@BuilderParam
@@ -567,7 +569,7 @@ struct ParentPage {
   }
 }
 ```
-**图5** 示例效果图
+**图6** 示例效果图
 
 ![builderparam-demo5](figures/builderparam-demo5.png)
 
@@ -649,7 +651,7 @@ struct ParentPage {
   }
 }
 ```
-**图6** 示例效果图
+**图7** 示例效果图
 
 ![builderparam-demo6](figures/builderparam-demo6.png)
 

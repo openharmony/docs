@@ -951,7 +951,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 dup(fd: number): File
 
-Opens a **File** object based on an FD.
+Duplicates the file descriptor and returns the corresponding **File** object.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -959,7 +959,7 @@ Opens a **File** object based on an FD.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | fd | number | Yes   | FD of the file.|
+  | fd | number | Yes   | File descriptor.|
 
 **Return value**
 
@@ -1217,9 +1217,9 @@ Obtains an extended attribute of a file. This API returns the result synchronous
 
 **Return value**
 
-  | Type    | Description                                      |
-  | ------ | ---------------------------------------- |
-  | key| Value of the extended attribute obtained.     |
+  | Type   | Description               |
+  | ------ | ------------------- |
+  | string | Value of the extended attribute obtained.|
 
 **Error codes**
 
@@ -1295,7 +1295,7 @@ Creates a directory. This API uses a promise to return the result. The value **t
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br> The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 
 **Return value**
 
@@ -1369,7 +1369,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br> The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
@@ -1432,7 +1432,7 @@ Creates a directory. This API returns the result synchronously. The value **true
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br> The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 
 **Error codes**
 
@@ -3157,7 +3157,7 @@ Adjusts the position of the file offset pointer.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | fd | number | Yes   | FD of the file.|
+  | fd | number | Yes   | File descriptor.|
   | offset | number | Yes   | Relative offset, in bytes.|
   | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. If this parameter is not specified, the file start position is used by default.|
 
@@ -3214,9 +3214,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
@@ -3254,9 +3253,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3301,9 +3299,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3346,9 +3343,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-// move directory from srcPath to destPath
-let srcPath = pathDir + "/srcDir/";
-let destPath = pathDir + "/destDir/";
+let srcPath = pathDir + "/srcDir";
+let destPath = pathDir + "/destDir";
 try {
   fs.moveDirSync(srcPath, destPath, 1);
   console.info("move directory succeed");
@@ -3382,7 +3378,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
+  | mode | number | No   | Move mode.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Return value**
 
@@ -3425,7 +3421,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | Yes   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
+  | mode | number | Yes   | Move mode.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3504,7 +3500,7 @@ Moves a file. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
+  | mode | number | No   | Move mode.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Error codes**
 
@@ -4228,6 +4224,12 @@ The FD needs to be closed by calling **close()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
+**Return value**
+
+  | Type         | Description           |
+  | ------------- | -------------- |
+  | [File](#file) | File object opened.|
+
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
@@ -4598,7 +4600,7 @@ Defines the event to observe.
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | Yes   | No   | Sandbox path of the file to observe. The sandbox path contains the file name.|
 | event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
-| cookie | number | Yes   | No   | Cookie bound with the event.<br>Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
+| cookie | number | Yes   | No   | Cookie bound with the event.<br> Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
 
 ## Progress<sup>11+</sup>
 
@@ -4759,6 +4761,10 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 | mtimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last modification to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | ctimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last status change of the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| Yes|No| File location, which indicates whether the file is stored in a local device or in the cloud.
+
+> **NOTE**
+>
+> Some properties in **Stat** are only supported for common files. You can use the [isFile()](#isfile) API to check whether a file is a common file.
 
 ### isBlockDevice
 
@@ -5454,7 +5460,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.     |
+  | exclusive  | boolean | No  | Lock to apply.<br> The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.     |
 
 **Return value**
 
@@ -5493,7 +5499,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.       |
+  | exclusive  | boolean | No  | Lock to apply.<br> The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.       |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -5528,7 +5534,7 @@ Applies an exclusive lock or a shared lock on this file in non-blocking mode.
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+  | exclusive  | boolean | No  | Lock to apply.<br> The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
 
 **Error codes**
 
@@ -5590,7 +5596,7 @@ Called to return the specified status. Its parameters are passed in by [connectD
   | Name | Type    | Mandatory  | Description                             |
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | Yes   | Network ID of the device.                            |
-  | status | number | Yes   | Status code of the distributed file system. The status code is the error code returned by **onStatus** invoked by **connectDfs**. If the device is abnormal when **connectDfs()** is called, **onStatus** will be called to return the error code:<br>- [13900046](errorcode-filemanagement.md#13900046): disconnection caused by software.
+  | status | number | Yes   | Status code of the distributed file system. The status code is the error code returned by **onStatus** invoked by **connectDfs**. If the device is abnormal when **connectDfs()** is called, **onStatus** will be called to return the error code:<br>- [13900046](errorcode-filemanagement.md#13900046-connection-interrupted-by-software): The connection is interrupted by software.
 
 ## RandomAccessFile
 
@@ -6055,7 +6061,7 @@ Defines the file filtering configuration used by **listFile()**.
 | mimeType    | Array&lt;string&gt; | No| Locate files that fully match the specified MIME types, which are of the OR relationship. This parameter is reserved.     |
 | fileSizeOver    | number | No| Locate files that are greater than the specified size.      |
 | lastModifiedAfter    | number | No| Locate files whose last modification time is the same or later than the specified time.      |
-| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**.<br>The value **true** means to exclude the files already in **Media**; the value **false** means not to exclude the files already in **Media**.   |
+| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**.<br> The value **true** means to exclude the files already in **Media**; the value **false** means not to exclude the files already in **Media**.   |
 
 ## ConflictFiles<sup>10+</sup>
 
@@ -6098,7 +6104,7 @@ Enumerates the file locations.
 
 | Name       | Value      | Description               |
 | ----------- | --------------- | ------------------ |
-| LOCAl | 1     | The file is stored in a local device.          |
+| LOCAL | 1     | The file is stored in a local device.          |
 | CLOUD    | 2     | The file is stored in the cloud.|
 
 ## AccessModeType<sup>12+</sup>

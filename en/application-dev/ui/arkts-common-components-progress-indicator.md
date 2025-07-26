@@ -108,7 +108,7 @@ In this example, the progress of the **Progress** component is updated by clicki
 @Entry
 @Component
 struct ProgressCase1 { 
-  @State progressValue: number = 0	// Set the initial progress of the progress indicator to 0.
+  @State progressValue: number = 0;	// Set the initial progress of the progress indicator to 0.
   build() {
     Column() {
       Column() {
@@ -116,9 +116,9 @@ struct ProgressCase1 {
         Row().width('100%').height(5)
         Button("Progress + 5")
           .onClick(()=>{
-            this.progressValue += 5
+            this.progressValue += 5;
             if (this.progressValue > 100){
-              this.progressValue = 0
+              this.progressValue = 0;
             }
           })
       }
@@ -126,6 +126,5 @@ struct ProgressCase1 {
   }
 }
 ```
-
 
 ![progress](figures/progress.gif)

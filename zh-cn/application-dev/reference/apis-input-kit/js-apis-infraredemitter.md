@@ -28,7 +28,7 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | 是    | 红外频率，单位Hz。 |
-| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us，电平信号的数量取值范围[0,1024]，电平信号数量需为偶数。<br/>比如[100,200,300,400]该电平信号数组，其中表示100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
+| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us。电平信号的数量取值范围为[0,1024]。电平信号的取值需大于0。<br/>比如[100,200,300,400]该电平信号数组，其中100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
 
 **错误码：**
 
@@ -42,10 +42,23 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 **示例**：
 
 ```js
-try {
-  infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
-} catch (error) {
-  console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
+          } catch (error) {
+            console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -76,11 +89,24 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 **示例**：
 
 ```js
-try {
-  let frequencies = infraredEmitter.getInfraredFrequencies();
-  console.log(`frequencies: ${JSON.stringify(frequencies)}`);
-} catch (error) {
-  console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let frequencies = infraredEmitter.getInfraredFrequencies();
+            console.log(`frequencies: ${JSON.stringify(frequencies)}`);
+          } catch (error) {
+            console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

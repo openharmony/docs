@@ -84,8 +84,8 @@
     });
 
     // 获取指定应用实时上行流量数据。
-    let uids = 20010038;
-    statistics.getUidTxBytes(uids).then((stats: number) => {
+    let uid = 20010038;
+    statistics.getUidTxBytes(uid).then((stats: number) => {
       console.log(JSON.stringify(stats));
     });
     ```

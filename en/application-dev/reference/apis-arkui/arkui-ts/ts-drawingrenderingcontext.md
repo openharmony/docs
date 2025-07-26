@@ -4,7 +4,7 @@
 
 > **NOTE**
 >
-> This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
@@ -18,7 +18,7 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | Name     | Type| Mandatory  | Description|
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No   | Unit mode of the **DrawingRenderingContext** object. The value cannot be changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No   | Unit mode of the **DrawingRenderingContext** object. The value cannot be changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**.|
 
 ## Attributes
 
@@ -29,7 +29,7 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 | Name      | Type| Read Only| Optional| Description|
 | ---------- | ------------ | -------------------- | ---------------------------- | ---------------------------- |
 | size       | [Size](#size)    | No| No| Width and height of the context.<br>Default unit: vp                                           |
-| canvas     | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | No| No| **Canvas** object. For details, see [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas).|
+| canvas     | [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | No| No| **Canvas** object. For details, see [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).|
 
 ### Size
 
@@ -54,26 +54,66 @@ invalidate(): void
 
 Invalidates the component and triggers re-rendering of the component.
 
+## DrawingCanvas<sup>12+</sup>
+
+type DrawingCanvas = Canvas
+
+Defines a canvas object for drawing content on the **XComponent** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | Canvas object.|
+
 ## Example
 
 This example shows how to use the APIs in **DrawingRenderingContext** for drawing.
 
 ```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 // xxx.ets
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
         .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
+        .height('50%')
+        .backgroundColor('#D5D5D5')
         .onReady(() => {
-          this.context.canvas.drawCircle(200, 200, 100)
-          this.context.invalidate()
+          let brush = new drawing.Brush();
+          // Draw a circle with center at (200, 200) and radius of 100, filled with RGBA(39, 135, 217, 255).
+          brush.setColor({
+            alpha: 255,
+            red: 39,
+            green: 135,
+            blue: 217
+          });
+          this.context.canvas.attachBrush(brush);
+          this.context.canvas.drawCircle(200, 200, 100);
+          this.context.canvas.detachBrush();
+          this.context.invalidate();
+        })
+      Button("Clear")
+        .width('120')
+        .height('50')
+        .onClick(() => {
+          let color: common2D.Color = {
+            alpha: 0,
+            red: 0,
+            green: 0,
+            blue: 0
+          };
+          // Clear the canvas using RGBA(0, 0, 0, 0).
+          this.context.canvas.clear(color);
+          this.context.invalidate();
         })
     }
     .width('100%')
@@ -81,4 +121,12 @@ struct CanvasExample {
   }
 }
 ```
-  ![en-us_image_0000001194032666](figures/canvas_drawingRenderingContext.png)
+
+Figure 1 Circle with center at (200, 200) and radius of 100, filled with RGBA(39, 135, 217, 255)
+  
+  ![canvas_drawingRenderingContext](figures/canvas_drawingRenderingContext.png)
+
+Figure 2 Clearing the canvas with the Clear button
+
+  ![canvas_drawingRenderingContextClear](figures/canvas_drawingRenderingContextClear.png)
+<!--no_check-->

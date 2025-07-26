@@ -14,7 +14,7 @@ EmbeddableUIAbility是为原子化服务提供可以嵌入式启动的UIAbility�
 import { EmbeddableUIAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## EmbeddableUIAbility
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

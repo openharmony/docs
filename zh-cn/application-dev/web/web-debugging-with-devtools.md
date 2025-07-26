@@ -71,7 +71,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
    ```
 
 ### 端口转发
-当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。  
+当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118)。  
 Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
@@ -200,11 +200,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    pause >nul
 
    :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
+   start msedge chrome://inspect/#devices
 
    :: If Edge is not available, then open the page in Chrome
    if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
+       start chrome chrome://inspect/#devices
    )
 
    endlocal

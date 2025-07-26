@@ -6,7 +6,7 @@
 
 谓词(DataSharePredicates)的使用场景如下：
 
-- 用于在媒体文件管理服务作为检索条件使用，参考[相册管理模块检索条件](../apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)。此种场景下，开发者无需关注数据库类型。
+- 用于在媒体文件管理服务作为检索条件使用，参考[相册管理模块检索条件](../apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions)。此种场景下，开发者无需关注数据库类型。
 
 <!--Del-->
 - 用于调用[关系型数据库](js-apis-data-relationalStore-sys.md)和[键值型数据库](js-apis-distributedKVStore-sys.md)系统接口时的检索条件使用。此种场景下，开发者根据使用的数据库类型参考对应的谓词使用方法。

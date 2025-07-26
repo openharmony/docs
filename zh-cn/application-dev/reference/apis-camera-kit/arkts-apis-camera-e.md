@@ -373,3 +373,32 @@
 | DAYLIGHT       | 4 | 日光 |
 | MANUAL         | 5 | 手动 |
 | LOCKED         | 6 | 锁定  |
+
+## SystemPressureLevel<sup>20+</sup>
+
+枚举，系统压力等级。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值 | 说明       | 
+|--------------------------|---|------------|
+| SYSTEM_PRESSURE_NORMAL   | 0 | 系统压力正常。 |
+| SYSTEM_PRESSURE_MILD     | 1 | 系统压力升高，但是系统不会主动管控。 |
+| SYSTEM_PRESSURE_SEVERE   | 2 | 系统压力可能对图像总质量、性能产生影响。 |
+| SYSTEM_PRESSURE_CRITICAL | 3 | 系统压力对图像质量、性能产生显著影响。 |
+| SYSTEM_PRESSURE_SHUTDOWN | 4 | 系统压力过高，停止工作。 |
+
+## ControlCenterEffectType<sup>20+</sup>
+
+枚举，相机控制器支持的效果类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 值 | 说明    |
+|-----------|---|---------|
+| BEAUTY    | 0 | 美颜。   |
+| PORTRAIT  | 1 | 人像虚化。|

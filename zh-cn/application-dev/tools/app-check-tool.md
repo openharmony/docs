@@ -201,5 +201,5 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | 字段     | 类型   | 描述                                                                |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | 文件路径。                                                          |
-| size     | int    | 文件的大小。                                                        |
+| size     | int    | 文件的大小，单位为Byte。                                                        |
 | compress | bool   | 是否是压缩文件（仅so类型文件展示）。<br>true：是压缩文件。<br>false：不是压缩文件。 |

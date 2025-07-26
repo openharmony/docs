@@ -108,7 +108,7 @@ try {
 
 ## access.getLocalAddress<sup>11+</sup><a name="getLocalAddress"></a>
 
-getLocalAddress(): string;
+getLocalAddress(): string
 
 获取本端设备的蓝牙地址。
 

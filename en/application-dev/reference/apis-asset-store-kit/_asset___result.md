@@ -9,6 +9,8 @@ Defines the query result of an asset.
 
 **Related module**: [AssetType](_asset_type.md)
 
+**Header file**: [asset_type.h](asset__type_8h.md)
+
 
 ## Summary
 

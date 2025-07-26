@@ -20,9 +20,13 @@ import { audio } from '@kit.AudioKit';
 
 ## 常量
 
-| 名称                                    | 类型      | 可读  | 可写 | 说明               |
-| --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                                    | 类型      | 只读 | 说明               |
+| --------------------------------------- | ----------| ---- | ------------------ |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是 | 本地设备网络id。 |
 
 ## audio.createTonePlayer<sup>9+</sup>
 
@@ -30,9 +34,9 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 
 创建DTMF播放器。使用callback异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Tone
+**系统接口：** 该接口为系统接口。
 
-**系统接口：** 该接口为系统接口
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **参数：**
 
@@ -69,9 +73,9 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
 创建DTMF播放器。使用Promise异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Tone
+**系统接口：** 该接口为系统接口。
 
-**系统接口：** 该接口为系统接口
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **参数：**
 
@@ -106,7 +110,7 @@ createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingContro
 
 获取ASR处理控制器
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -171,20 +175,23 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，音频流类型。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称                         | 值      | 说明       |
 | ---------------------------- | ------ | ---------- |
-| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
-| ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
+| SYSTEM<sup>20+</sup>         | 6      | 系统音。|
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。|
+| ALL<sup>9+</sup>             | 100    | 所有公共音频流。|
 
 ## InterruptRequestResultType<sup>9+</sup>
 
 枚举，音频中断请求结果类型。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+**系统接口：** 该接口为系统接口。
 
-**系统接口：** 该接口为系统接口
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 | 名称                         | 值      | 说明       |
 | ---------------------------- | ------ | ---------- |
@@ -195,20 +202,22 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，可获取的设备种类。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                            |  值     | 说明                        |
 | ------------------------------- | ------ |---------------------------|
-| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无设备。 <br/>此接口为系统接口。        |
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。<br/>此接口为系统接口。    |
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无设备。 |
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。 |
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。 |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。 |
 
 ## EffectFlag<sup>18+</sup>
 
 枚举，音效分类。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -221,35 +230,37 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音效属性。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-| 名称               | 类型 | 必填 | 说明       |
-| ------------------ | ---- | ---- | --------- |
-| name         | string | 是 | 音效名称。 |
-| category     | string | 是 | 音效分类。 |
-| flag        | [EffectFlag](#effectflag18) | 是 | 音效分类。 |
+| 名称               | 类型 | 只读 | 可选 | 说明       |
+| ------------------ | ---- | ---- |---| --------- |
+| name         | string | 否 | 否 | 音效名称。 |
+| category     | string | 否 | 否 | 音效分类。 |
+| flag        | [EffectFlag](#effectflag18) | 否 | 否 | 音效分类。 |
 
 ## StreamUsage
 
 枚举，音频流使用类型。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-| 名称                                      |  值    | 说明                                                                                                                                          |
-| ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。  |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。    |
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。   |
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。 |
-| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | 通话辅助语音。<br/>此接口为系统接口。 |
+| 名称                                      |  值    | 说明                          |
+| ------------------------------------------| ------ |-----------------------------|
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。 |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。 |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。 |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。 |
+| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | 通话辅助语音。 |
 
 ## InterruptRequestType<sup>9+</sup>
 
 枚举，音频中断请求类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -261,7 +272,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，音量相关操作。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -273,22 +284,22 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，ASR 噪音抑制模式
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 | 名称|  值 | 说明 |
 |-------|-------|-------|
-| BYPASS | 0 |旁路噪音抑制|
-| STANDARD | 1 |标准噪音抑制|
-| NEAR_FIELD | 2 |近场噪音抑制|
-| FAR_FIELD | 3 |远场噪音抑制|
+| BYPASS | 0 |旁路噪音抑制。|
+| STANDARD | 1 |标准噪音抑制。|
+| NEAR_FIELD | 2 |近场噪音抑制。|
+| FAR_FIELD | 3 |远场噪音抑制。|
 
 ## AsrAecMode<sup>12+</sup>
 
 枚举，ASR AEC 模式
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -301,7 +312,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，ASR（Automatic Speech Recognition，自动语音识别）耳语检测模式。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -314,7 +325,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，ASR音频通路模式。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -329,7 +340,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，ASR静音模式。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -345,31 +356,33 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音频中断结果。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
-**系统接口：** 该接口为系统接口
-
-| 名称          | 类型                                                            | 必填 | 说明             |
-| --------------| -------------------------------------------------------------- | ---- | ---------------- |
-| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | 是   | 表示音频请求中断类型。 |
-| interruptNode | number                                                         | 是   | 音频请求中断的节点。 |
+| 名称          | 类型                                                            | 只读 | 可选 | 说明             |
+| --------------| -------------------------------------------------------------- | ---- |---| ---------------- |
+| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | 否 | 否 | 表示音频请求中断类型。 |
+| interruptNode | number                                                         | 否 | 否 | 音频请求中断的节点。 |
 
 ## VolumeEvent<sup>9+</sup>
 
 音量改变时，应用接收的事件。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称       | 类型                                | 必填   | 说明                                        |
-| ---------- | ----------------------------------- | ---- |-------------------------------------------|
-| volumeGroupId | number                           | 是   | 音量组id，可用于getGroupManager入参。<br/>此接口为系统接口。 |
-| networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。    |
+| 名称       | 类型                                | 只读 | 可选 | 说明                                        |
+| ---------- | ----------------------------------- | ---- |---|-------------------------------------------|
+| volumeGroupId | number                           | 否 | 否 | 音量组id，可用于getGroupManager入参。 |
+| networkId  | string                              | 否 | 否 | 网络id。 |
 
 ## ConnectType<sup>9+</sup>
 
 枚举，设备连接类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -382,7 +395,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -390,7 +403,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音量组信息。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -406,24 +419,28 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 枚举，音源类型。
 
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
 | 名称                                         |  值     | 说明                   |
 | :------------------------------------------- | :----- | :--------------------- |
-| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
-| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
-| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE |
+| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL |
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | 语音转写音频源。 |
 
 ## VolumeAdjustType<sup>10+</sup>
 
 枚举，音量调节类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| VOLUME_UP              | 0      | 向上调节音量。<br/>此接口为系统接口。   |
-| VOLUME_DOWN            | 1      | 向下调节音量。<br/>此接口为系统接口。   |
+| VOLUME_UP              | 0      | 向上调节音量。 |
+| VOLUME_DOWN            | 1      | 向下调节音量。 |
 
 ## AudioManager
 
@@ -437,7 +454,7 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -488,7 +505,7 @@ getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<
 
 获取指定音频参数值。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -534,7 +551,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 设置音频场景模式。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -565,7 +582,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 设置音频场景模式。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -599,7 +616,7 @@ getEffectManager(): AudioEffectManager
 
 获取音效会话管理器。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -607,7 +624,7 @@ getEffectManager(): AudioEffectManager
 
 | 类型                                           | 说明                          |
 |----------------------------------------------| ----------------------------- |
-| [AudioEffectManager](#audioeffectmanager18) | AudioEffectManager实例 |
+| [AudioEffectManager](#audioeffectmanager18) | AudioEffectManager实例。 |
 
 **错误码：**
 
@@ -635,7 +652,7 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -675,9 +692,9 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
-
 目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -707,7 +724,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](arkts-apis-audio-AudioVolumeGroupManager.md#onringermodechange9)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -726,6 +743,54 @@ audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
 });
 ```
 
+## forceVolumeKeyControlType<sup>20+</sup>
+
+forceVolumeKeyControlType(volumeType: AudioVolumeType, duration: number): void
+
+设置音量键调节类型。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| volumeType     | [AudioVolumeType](#audiovolumetype)                       | 是   | 应用程序期望控制的音量类型。 |
+| duration |number | 是   | 无音量键事件时，控制音量类型的持续时间。当计时器到期时，强制音量类型设置将被取消，最大持续时间不得超过10秒。如果持续时间设置为-1，则取消该设置。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+| 6800301  | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioManager = audio.getAudioManager();
+let audioVolumeManager = audioManager.getVolumeManager();
+
+// 设置音量保持类型为响铃模式。
+let volumeType = audio.AudioVolumeType.RINGTONE;
+let duration = 10;
+audioVolumeManager.forceVolumeKeyControlType(volumeType, duration);
+
+// 取消音量保持类型，恢复默认音量控制。
+let volumeTypeDefault = audio.AudioVolumeType.MEDIA;
+let durationToCancel = -1;
+audioVolumeManager.forceVolumeKeyControlType(volumeTypeDefault, durationToCancel);
+```
+
 ## AudioVolumeManager<sup>9+</sup>
 
 音量管理。在使用AudioVolumeManager的接口前，需要使用[getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
@@ -736,7 +801,7 @@ getVolumeGroupInfos(networkId: string, callback: AsyncCallback<VolumeGroupInfos\
 
 获取音量组信息列表。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -766,7 +831,7 @@ getVolumeGroupInfos(networkId: string\): Promise<VolumeGroupInfos\>
 
 获取音量组信息列表。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -797,7 +862,7 @@ getVolumeGroupInfosSync(networkId: string\): VolumeGroupInfos
 
 获取音量组信息列表，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1189,7 +1254,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1225,7 +1290,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1260,7 +1325,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1305,7 +1370,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1341,7 +1406,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1376,7 +1441,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 仅在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1411,7 +1476,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 仅在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1443,7 +1508,7 @@ setMicMute(mute: boolean): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1488,7 +1553,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1534,7 +1599,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1583,7 +1648,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1629,7 +1694,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1681,7 +1746,7 @@ getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1724,7 +1789,7 @@ getAudioEffectProperty(): Array\<AudioEffectProperty>
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1766,7 +1831,7 @@ setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.core
 
@@ -1812,7 +1877,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 选择音频输入设备，当前只能选择一个输入设备。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1858,9 +1923,9 @@ async function selectInputDevice(){
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**系统接口：** 该接口为系统接口
-
 选择音频输入设备，当前只能选择一个输入设备。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1912,7 +1977,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 选择音频输出设备，当前只能选择一个输出设备。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1957,9 +2022,9 @@ async function selectOutputDevice(){
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**系统接口：** 该接口为系统接口
-
 选择音频输出设备，当前只能选择一个输出设备。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2009,9 +2074,9 @@ async function selectOutputDevice(){
 
 selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-**系统接口：** 该接口为系统接口
-
 根据过滤条件，选择音频输出设备，当前只能选择一个输出设备。使用callback异步回调。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2066,9 +2131,9 @@ async function selectOutputDeviceByFilter(){
 
 selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**系统接口：** 该接口为系统接口
-
 根据过滤条件，选择音频输出设备，当前只能选择一个输出设备。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2130,7 +2195,7 @@ selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioD
 
 根据过滤条件，选择音频输入设备，当前只能选择一个输入设备。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2203,7 +2268,7 @@ getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescri
 
 根据过滤条件，查询音频输出设备。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2256,7 +2321,7 @@ getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescrip
 
 根据过滤条件，查询音频输入设备，当前只能查询一个输入设备。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2582,13 +2647,13 @@ async function getExcludedDevices(){
 
 过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioRendererFilter实例。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称          | 类型                                     | 必填 | 说明          |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| 名称          | 类型                                     | 只读 | 可选 | 说明          |
+| -------------| ---------------------------------------- | ---- |---| -------------- |
+| uid          | number                                   |  否  | 是 | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8) |  否  | 是 | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  否  | 是 | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
 
@@ -2609,12 +2674,12 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 
 过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioCapturerFilter实例。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称          | 类型                                     | 必填 | 说明          |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  否  | 表示采集器信息。。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
+| 名称          | 类型                                     | 只读 | 可选 | 说明          |
+| -------------| ---------------------------------------- | ---- |---| -------------- |
+| uid          | number                                   |  否  | 是 | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  否  | 是 | 表示采集器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
 
 **示例：**
 
@@ -2636,12 +2701,12 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：SystemCapability.Multimedia.Audio
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
-| 参数名                 | 类型                                                         | 必填 | 说明                      |
-| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
-| enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染或头动。true为开启，false为关闭。  |
+| 参数名                 | 类型                                                         | 只读 | 可选 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- |---| ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 否 | 否 | 指定设备的描述。     |
+| enabled               | boolean                                                      | 否 | 否 | 表示开启/关闭空间音频渲染或头动。true为开启，false为关闭。  |
 
 ## AudioSpatializationManager<sup>11+</sup>
 
@@ -2653,7 +2718,7 @@ isSpatializationSupported(): boolean
 
 获取系统是否支持空间音频，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2691,7 +2756,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 获取指定设备是否支持空间音频，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2753,7 +2818,7 @@ isHeadTrackingSupported(): boolean
 
 获取系统是否支持头动跟踪，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2792,7 +2857,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 获取指定设备是否支持头动跟踪，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2859,7 +2924,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2908,7 +2973,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -2956,7 +3021,7 @@ setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boole
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3023,7 +3088,7 @@ isSpatializationEnabled(): boolean
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isspatializationenabled12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3062,7 +3127,7 @@ isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 获取指定设备的空间音频渲染是否开启，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3127,7 +3192,7 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationenabledchangeforanydevice12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3164,7 +3229,7 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 
 监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发）。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3205,7 +3270,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationenabledchangeforanydevice12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3248,7 +3313,7 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 
 取消监听空间音频渲染开关状态变化事件。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3299,7 +3364,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3348,7 +3413,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3397,7 +3462,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3463,7 +3528,7 @@ isHeadTrackingEnabled(): boolean
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isheadtrackingenabled12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3502,7 +3567,7 @@ isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 获取指定设备的头动跟踪是否开启，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3567,7 +3632,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadtrackingenabledchangeforanydevice12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3604,7 +3669,7 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 
 监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发）。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3645,7 +3710,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadtrackingenabledchangeforanydevice12)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3690,7 +3755,7 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpat
 
 取消监听头动跟踪开关状态变化事件。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3738,7 +3803,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3789,7 +3854,7 @@ setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3831,7 +3896,7 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 
 查询当前空间音频渲染场景类型，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3868,7 +3933,7 @@ try {
 
 空间化设备状态。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3896,7 +3961,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 
 枚举，空间化设备类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3913,7 +3978,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 
 枚举，空间音频渲染场景类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -3928,7 +3993,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 
 枚举，播放器的音调类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -3968,7 +4033,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。
 在调用TonePlayer的接口前，需要先通过[createTonePlayer](#audiocreatetoneplayer9)创建实例。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 ### load<sup>9+</sup>
 
@@ -3976,7 +4041,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 加载DTMF音调配置。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4008,7 +4073,7 @@ load(type: ToneType): Promise&lt;void&gt;
 
 加载DTMF音调配置。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4040,7 +4105,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 启动DTMF音调播放。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4071,7 +4136,7 @@ start(): Promise&lt;void&gt;
 
 启动DTMF音调播放。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4097,7 +4162,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 停止当前正在播放的音调。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4128,7 +4193,7 @@ stop(): Promise&lt;void&gt;
 
 停止当前正在播放的音调。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4154,7 +4219,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 释放与此TonePlayer对象关联的资源。使用callback异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4185,7 +4250,7 @@ release(): Promise&lt;void&gt;
 
 释放与此TonePlayer对象关联的资源。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4209,7 +4274,7 @@ tonePlayer.release().then(() => {
 
 ASR处理控制器
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4219,7 +4284,7 @@ setAsrAecMode(mode: AsrAecMode): boolean
 
 设置ASR AEC模式，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4258,7 +4323,7 @@ getAsrAecMode(): AsrAecMode
 
 获取ASR AEC模式，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4290,7 +4355,7 @@ setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean
 
 设置ASR 噪音抑制模式，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4329,7 +4394,7 @@ getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode
 
 获取ASR 噪音抑制模式，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4337,7 +4402,7 @@ getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode
 
 | 类型                      |说明 |
 |-------------------------|-------|
-| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR 噪音抑制模式 |
+| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR 噪音抑制模式。 |
 
 **错误码：**
 
@@ -4360,7 +4425,7 @@ isWhispering(): boolean
 
 查询耳语状态。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4391,7 +4456,7 @@ setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean
 
 设置耳语检测模式。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4431,7 +4496,7 @@ getAsrWhisperDetectionMode(): AsrWhisperDetectionMode
 
 获取耳语检测模式，同步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4439,7 +4504,7 @@ getAsrWhisperDetectionMode(): AsrWhisperDetectionMode
 
 | 类型 | 说明     |
 |-------|--------|
-| [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 耳语检测模式 |
+| [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 耳语检测模式。 |
 
 **错误码：**
 
@@ -4463,7 +4528,7 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
 设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4503,7 +4568,7 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 
 在系统通话中，对ASR音频通路进行静音控制。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

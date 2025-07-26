@@ -30,8 +30,8 @@ In addition to the [universal events](js-components-common-events.md), the follo
 
 | Name| Parameter| Description|
 | -------- | -------- | -------- |
-| start | - | Triggered when loading starts.|
-| complete | - | Triggered when the loading starts.|
+| start | - | Triggered when the loading starts.|
+| complete | - | Triggered when the loading is complete.|
 
 >  **NOTE**
 > - The **focus**, **blur**, and **key** events are not supported.

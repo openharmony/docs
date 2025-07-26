@@ -133,6 +133,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -168,6 +169,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -209,6 +211,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -245,6 +248,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -285,6 +289,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -341,6 +346,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -390,6 +396,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -427,6 +434,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -467,6 +475,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -514,6 +523,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -556,6 +566,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -591,6 +602,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -630,6 +642,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -683,6 +696,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -733,6 +747,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -785,6 +800,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -834,6 +850,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -886,6 +903,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -935,6 +953,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -987,6 +1006,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1036,6 +1056,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1088,6 +1109,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1135,6 +1157,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1142,7 +1165,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
+updater.getUpgradePolicy((err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1171,6 +1194,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1210,6 +1234,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1256,6 +1281,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1298,6 +1324,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1333,6 +1360,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1429,6 +1457,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1462,6 +1491,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1503,6 +1533,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1549,6 +1580,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1591,6 +1623,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1630,6 +1663,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
