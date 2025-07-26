@@ -1948,7 +1948,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的显示方向属性，使用callback异步回调。相关横竖屏开发实践查询[横竖屏切换](../../Samples.md#横竖屏切换)<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
+设置主窗口的显示方向属性，使用callback异步回调。相关横竖屏开发实践查询[横竖屏切换](../../Samples.md#横竖屏切换)。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1959,7 +1959,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](arkts-apis-window-e.md#orientation9)                | 是   | 窗口显示方向的属性。         |
-| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回结果表示是否调用成功，而非应用旋转动效结束。 |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回调用结果是否成功，非应用旋转动效结束。 |
 
 **错误码：**
 
