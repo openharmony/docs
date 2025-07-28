@@ -2,7 +2,7 @@
 
 ## Overview
 
-The VideoProcessing_ColorSpaceInfo struct describes the color space information of video processing.
+The struct describes the color space information of video processing.
 
 **Reference**: [OH_VideoProcessing_IsColorSpaceConversionSupported](capi-video-processing-h.md#oh_videoprocessing_iscolorspaceconversionsupported)
 

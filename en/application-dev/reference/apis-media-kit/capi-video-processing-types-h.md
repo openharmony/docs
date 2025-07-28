@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **video_processing_types.h** file declares the video processing types.
+The file declares the video processing types.
 
 **Library**: libvideo_processing.so
 
@@ -136,7 +136,7 @@ The following error codes are defined in [VideoProcessing_ErrorCode](#videoproce
 
 **VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING**: unsupported processing. For example, conversion between the color space types for input and output is not supported.
 
-**VIDEO_PROCESSING_ERROR_INVALID_VALUE**: invalid video attribute. For example, the video color space is invalid.
+**VIDEO_PROCESSING_ERROR_INVALID_VALUE**: invalid video property. For example, the video color space is invalid.
 
 **VIDEO_PROCESSING_ERROR_NO_MEMORY**: out of memory.
 
