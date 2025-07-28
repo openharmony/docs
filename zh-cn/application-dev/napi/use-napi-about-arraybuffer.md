@@ -88,6 +88,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include <cstring>
 
 static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
@@ -120,6 +121,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value bufferData = nullptr;
     void *newData = nullptr;
     napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
+    memcpy(newData, data, byteLength);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -142,8 +144,15 @@ ArkTS侧示例代码
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
-const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
+try {
+  let typedArray = new Uint8Array([1, 2, 3, 4, 5]);
+  let buffer = typedArray.buffer;
+  let result = testNapi.getArrayBufferInfo(buffer) as testNapi.ArrayBufferInfo;
+  let resBuffer = new Uint8Array(result.buffer);
+  hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info byteLength: %{public}d buffer: %{public}s', result.byteLength, JSON.stringify(resBuffer));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info error: %{public}s', error.message);
+}
 ```
 
 输出日志：
