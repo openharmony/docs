@@ -1360,7 +1360,6 @@ struct SelectExample {
         })
         .optionTextModifier(this.optiontextModifier)
         .selectedOptionTextModifier(this.selectedOptiontextModifier)
-        .width('90%')
         .margin({ top: 20,left:30 })
         .borderRadius(12)
         .width(200)
