@@ -32,7 +32,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
 
 #### Playing Audio
 
-1. Call [@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md) and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
+1. Call **@ohos.multimedia.media** and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
 
    ```ts
    // player.ets
