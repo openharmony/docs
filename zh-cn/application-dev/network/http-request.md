@@ -202,23 +202,23 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 3. 按需订阅HTTP流式响应事件
 
     ```ts
-    // 用于订阅HTTP流式响应数据接收事件。
-	let res = new ArrayBuffer(0);
-	httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-        const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
-        const resView = new Uint8Array(newRes);
-        resView.set(new Uint8Array(res));
-        resView.set(new Uint8Array(data), res.byteLength);
-        res = newRes;
-        console.info('res length: ' + res.byteLength);
-    });
+	// 用于订阅HTTP流式响应数据接收事件。
+    let res = new ArrayBuffer(0);
+    httpRequest.on('dataReceive', (data: ArrayBuffer) => {
+      const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+      const resView = new Uint8Array(newRes);
+      resView.set(new Uint8Array(res));
+      resView.set(new Uint8Array(data), res.byteLength);
+      res = newRes;
+      console.info('res length: ' + res.byteLength);
+      });
     // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
-    	 console.info('No more data in response, data receive end');
+      console.info('No more data in response, data receive end');
     });
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
     httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
-       console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
+      console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
     });
 
     // 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
