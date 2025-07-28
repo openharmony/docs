@@ -20,10 +20,10 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称    | 类型           | 必填 | 说明                                       |
-| --------- | -------------- | ---- | ------------------------------------------ |
-| popupSize | [PopupSize](#popupsize)      | 否   | 气泡弹窗的宽和高，不设置则不更新。 |
-| placement | [PopupPlacement](#popupplacement) | 否   | 气泡弹窗位置，不设置则不更新。|
+| 名称    | 类型           | 只读 | 可选 | 说明                                       |
+| --------- | -------------- | ---- | ---- | ------------------------------------------ |
+| popupSize | [PopupSize](#popupsize)      | 否   | 是  | 气泡弹窗的宽和高，不设置则不更新。 |
+| placement | [PopupPlacement](#popupplacement) | 否   | 是  | 气泡弹窗位置，不设置则不更新。|
 
 ## PopupSize
 
@@ -33,10 +33,10 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型   | 必填 | 说明            |
-| ------ | ------ | ---- | --------------- |
-| width  | number | 是   | 气泡弹窗的宽。 |
-| height | number | 是   | 气泡弹窗的高。 |
+| 名称 | 类型   | 只读 | 可选 | 说明            |
+| ------ | ------ | ---- | ---- | --------------- |
+| width  | number | 否   | 否   | 气泡弹窗的宽。 |
+| height | number | 否   | 否   | 气泡弹窗的高。 |
 
 ## PopupPlacement
 
