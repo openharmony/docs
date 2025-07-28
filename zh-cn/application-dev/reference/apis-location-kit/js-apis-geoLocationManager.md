@@ -212,7 +212,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenario)  | 否 | 否  | 表示定位场景。 |
-| command | string | 否 | 否  | 扩展命令字符串。 |
+| command | string | 否 | 否  | 扩展命令字符串，字符串长度不超过100。 |
 
 
 ## Location
