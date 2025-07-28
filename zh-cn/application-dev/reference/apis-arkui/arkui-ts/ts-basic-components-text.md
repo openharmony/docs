@@ -2404,8 +2404,8 @@ struct TextExample14 {
 @Entry
 @Component
 struct TextNumberTransition {
-  @State number: number = 98
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false }
+  @State number: number = 98;
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   build() {
     Column() {
@@ -2415,7 +2415,7 @@ struct TextNumberTransition {
         .contentTransition(this.numberTransition)
       Button("chang number")
         .onClick(() => {
-          this.number++
+          this.number++;
         })
         .margin(10)
     }
@@ -2424,3 +2424,5 @@ struct TextNumberTransition {
   }
 }
 ```
+
+![Text_content_transition](figures/Text_content_transition.gif)
