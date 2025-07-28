@@ -44,7 +44,7 @@ Device not connected.
 
 **错误信息**
 
-Device not supported.
+Feature not supported.
 
 **错误描述**
 
