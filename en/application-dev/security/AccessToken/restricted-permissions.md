@@ -685,6 +685,8 @@ Allows an application to request continuous tasks of special types, such as comp
 
 Allows an application to achieve multipath transmission.
 
+With this permission, the application can initiate operations such as multi-network activation, monitoring, and release for multipath transmission.
+
 <!--RP49--><!--RP49End-->
 
 **Permission level**: system_basic
