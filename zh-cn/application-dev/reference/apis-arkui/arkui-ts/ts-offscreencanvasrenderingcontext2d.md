@@ -899,7 +899,7 @@ justifyContent: FlexAlign.Center }) {
             offContext.filter = 'saturate(30%)';
             offContext.drawImage(img, 0, 100, 100, 100);
 
-            offContext.filter = 'hue-rotate(90degree)';
+            offContext.filter = 'hue-rotate(90deg)';
             offContext.drawImage(img, 100, 100, 100, 100);
 
             offContext.filter = 'invert(100%)';
