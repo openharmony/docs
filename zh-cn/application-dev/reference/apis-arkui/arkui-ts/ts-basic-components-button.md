@@ -662,10 +662,10 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
   y: number = 0;
   selectedColor: Color = Color.Black;
 
-  constructor(x: number, y: number, ColorType: Color) {
+  constructor(x: number, y: number, colorType: Color) {
     this.x = x;
     this.y = y;
-    this.selectedColor = ColorType;
+    this.selectedColor = colorType;
   }
 
   applyContent(): WrappedBuilder<[ButtonConfiguration]> {
