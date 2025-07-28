@@ -3874,7 +3874,7 @@ completeTransition(isCompleted: boolean): void
       y: 0.0,
       z: 0.0
     };
-    toWindow.translate(obj);
+    toWindow?.translate(obj);
     console.info('toWindow translate end');
   }
   );
@@ -3943,8 +3943,8 @@ animationForShown(context: TransitionContext): void
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForShownCallFunc_: Function = undefined;
-  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForShownCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -3986,7 +3986,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // 设置动画过程中的属性转换
+      toWindow?.translate(obj); // 设置动画过程中的属性转换
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');
@@ -4026,8 +4026,8 @@ animationForHidden(context: TransitionContext): void
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForHiddenCallFunc_: Function = undefined;
-  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForHiddenCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -4069,7 +4069,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // 设置动画过程中的属性转换
+      toWindow?.translate(obj); // 设置动画过程中的属性转换
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');
