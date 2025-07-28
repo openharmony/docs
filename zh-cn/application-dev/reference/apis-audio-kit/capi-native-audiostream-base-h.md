@@ -135,7 +135,7 @@ enum OH_AudioStream_EncodingType
 | 枚举项 | 描述 |
 | -- | -- |
 | AUDIOSTREAM_ENCODING_TYPE_RAW = 0 | PCM编码。 |
-| AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 | AudioVivid编码。<br>**起始版本：** 12 |
+| AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 | Audio Vivid编码。<br>**起始版本：** 12 |
 | AUDIOSTREAM_ENCODING_TYPE_E_AC3 = 2 | E_AC3编码。<br>**起始版本：** 19 |
 
 ### OH_AudioStream_Usage
