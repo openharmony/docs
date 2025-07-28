@@ -12,7 +12,7 @@
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 >
-> 上传下载模块不支持Charles、Fiddler等代理抓包工具。如需抓包，请使用其他模块接口。
+> 上传下载模块不支持Charles、Fiddler等代理抓包工具。
 
 以下示例代码演示两种将缓存文件上传至服务器的方法：
 
