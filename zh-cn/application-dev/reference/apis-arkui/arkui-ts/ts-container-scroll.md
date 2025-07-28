@@ -725,7 +725,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(options: [ScrollOptions](#scrolloptions18对象说明))
+scrollTo(options: ScrollOptions)
 
 
 滑动到指定位置。
