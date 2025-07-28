@@ -183,7 +183,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户在设备上手动取消应用自启动，但可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)，[removeAutoStartApps](#applicationmanagerremoveautostartapps20)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
+为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户在设备上手动取消应用自启动<!--RP4--><!--RP4End-->，但可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)，[removeAutoStartApps](#applicationmanagerremoveautostartapps20)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -346,7 +346,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-为指定用户添加开机自启动应用名单，并设置是否禁止该用户手动取消应用自启动。<br>通过本接口、[addAutoStartApps](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口的设置可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加7个应用。该接口仅在PC/2in1设备上生效。
+为指定用户添加开机自启动应用名单，并设置是否禁止该用户手动取消应用自启动<!--RP4--><!--RP4End-->。<br>通过本接口、[addAutoStartApps](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口的设置可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加7个应用。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -361,7 +361,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单数组，数组总长度不超过10。Want中必须包含bundleName和abilityName。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | 是否禁止用户手动取消应用自启动，true禁止，false允许。<!--RP1--><!--RP1End-->
+| disallowModify | boolean | 是   | 是否禁止用户手动取消应用自启动，true表示禁止，false表示允许。<!--RP1--><!--RP1End-->|
 
 **错误码**：
 
@@ -538,7 +538,7 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止用户取消应用自启动，true表示禁止，false表示允许。|
+| boolean | 是否禁止用户取消应用自启动，true表示禁止，false表示允许。<!--PR1--><!--PR1End-->|
 
 **错误码**：
 
@@ -635,7 +635,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>添加至保活名单中的应用，需要安装在系统1用户下（1用户是支持三方应用单例运行的用户），且应用接入[后台服务](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)（应用entry包的module.json5配置文件中，EntensionAbility组件被配置为[mainElement](../../quick-start/module-configuration-file.md)、ExtensionAbility的type为appService）。<!--RP3--><!--RP3End--><br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>添加至保活名单中的应用，需要安装在系统1用户下（1用户是支持三方应用单例运行的用户），且应用接入[后台服务](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)（应用entry包的module.json5配置文件中，EntensionAbility组件被配置为[mainElement](../../quick-start/module-configuration-file.md)、ExtensionAbility的type为appService）。<!--RP3--><!--RP3End-->否则，接口会报错。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -820,7 +820,7 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止用户手动取消应用保活，true表示禁止，false表示允许。|
+| boolean | 是否禁止用户手动取消应用保活，true表示禁止，false表示允许。<!--RP2--><!--RP2End-->|
 
 **错误码**：
 
