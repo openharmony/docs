@@ -28,7 +28,7 @@ import { media } from '@kit.MediaKit';
 
 setUrlSource(url: string, headers?: Record\<string, string>): void
 
-网络点播资源地址描述，通过该接口设置数据源。使用Promise异步回调。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）、[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
+网络点播资源地址描述，通过该接口设置数据源。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）、[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
