@@ -8638,7 +8638,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 设置子窗或悬浮窗的圆角半径值，使用Promise异步回调。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+此接口仅支持在2in1设备、手机和平板设备上使用。
 
 圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
 
