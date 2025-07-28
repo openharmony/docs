@@ -76,10 +76,7 @@
    let headers: Record<string, string> = {
      "User-Agent" : "User-Agent-Value"
    };
-   await avMetadataExtractor.setUrlSource(url, headers).then(() => {
-   }).catch((error: BusinessError) => {
-     console.error(`Failed to setUrlSource, code: ${error.code} message: ${error.message}`);
-   });
+   avMetadataExtractor.setUrlSource(url, headers);
    ```
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个[AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i.md#avmetadata11)对象，通过访问该对象的各个属性，可以获取到元数据。
