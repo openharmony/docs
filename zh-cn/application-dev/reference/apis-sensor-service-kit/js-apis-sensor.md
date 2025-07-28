@@ -4959,7 +4959,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 **返回值**：
