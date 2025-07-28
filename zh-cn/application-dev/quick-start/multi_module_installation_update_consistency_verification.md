@@ -34,6 +34,6 @@
 |targetPriority|标识当前应用的优先级。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetPriority字段。|是|是|
 |bundleType|标识应用的类型。该字段来源[app.json5配置文件](./app-configuration-file.md)中bundleType字段。|是|是|
 |installationFree|标识是否支持免安装。该字段来源[module.json5配置文件](./module-configuration-file.md)中installationFree字段。|是|是|
-|debug|标识是否可调式（IDE断点调测）。该字段来源[app.json5配置文件](./app-configuration-file.md)中debug字段。|是|否|
+|debug|标识是否可调试。该字段来源[app.json5配置文件](./app-configuration-file.md)中debug字段。|是|否|
 |moduleType|标识应用包的类型，应用中单个模块只允许配置一个。该字段来源[module.json5配置文件](./module-configuration-file.md)中type字段。|是，同版本entry类型的moduleName不能修改|是|
 
