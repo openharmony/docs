@@ -477,7 +477,7 @@ enableHapticFeedback(enabled: boolean)
 ```json
 "requestPermissions": [
   {
-    "name": "ohos.permission.VIBRATE",
+    "name": "ohos.permission.VIBRATE"
   }
  ]
 ```
@@ -995,7 +995,7 @@ function buildSlider(config: SliderConfiguration) {
         max: config.max,
         step: config.step,
       })
-        .width(config.max)
+        .width(100)
         .visibility((config.contentModifier as MySliderStyle).showSlider ? Visibility.Visible : Visibility.Hidden)
         .showSteps(true)
         .onChange((value: number, mode: SliderChangeMode) => {
