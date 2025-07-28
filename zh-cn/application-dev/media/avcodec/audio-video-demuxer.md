@@ -436,7 +436,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_COLOR_PRIMARIES|视频流视频色域的键，只针对 h265 码流使用|√|-|-|
 |OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频流视频传递函数的键，只针对 h265 码流使用|√|-|-|
 |OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为 HDRVivid 的键，只针对 HDRVivid 码流使用|√|-|-|
+|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为 HDR Vivid 的键，只针对 HDR Vivid 码流使用|√|-|-|
 |OH_MD_KEY_AUD_SAMPLE_RATE|音频流采样率的键|-|√|-|
 |OH_MD_KEY_AUD_CHANNEL_COUNT|音频流通道数的键|-|√|-|
 |OH_MD_KEY_CHANNEL_LAYOUT|音频流所需编码通道布局的键|-|√|-|

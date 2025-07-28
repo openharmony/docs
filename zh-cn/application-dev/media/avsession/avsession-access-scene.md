@@ -164,7 +164,7 @@ struct Index {
 
 ### 媒体资源金标
 
-对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示AudioVivid标识。
+对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示Audio Vivid标识。
 对于应用来说，接入只需要在AVMetadata中通知系统，当前播放音频的音源标识，播控就会同步展示。
 
 ```ts
@@ -190,7 +190,7 @@ struct Index {
             assetId: '0',
             title: 'TITLE',
             mediaImage: 'IMAGE',
-            // 标识该媒体音源是AudioVivid。
+            // 标识该媒体音源是Audio Vivid。
             displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
           };
           session.setAVMetadata(metadata).then(() => {
