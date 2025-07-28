@@ -2913,17 +2913,13 @@ on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from 'ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
   console.info(`Keyboard will show animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
-};
+}
 try {
-  let promise = window.getLastWindow(this.getUIContext().getHostContext())
-  promise.then((winodwClass) => {
-    windowClass.on('keyboardWillShow', callback);
-  });
+  windowClass.on('keyboardWillShow', callback);
   console.info(`Register keyboard will show animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -3006,17 +3002,13 @@ on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from 'ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
   console.info(`Keyboard will hide animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
-};
+}
 try {
-  let promise = window.getLastWindow(this.getUIContext().getHostContext())
-  promise.then((winodwClass) => {
-    windowClass.on('keyboardWillHide', callback);
-  });
+  windowClass.on('keyboardWillHide', callback);
   console.info(`Register keyboard will hide animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
