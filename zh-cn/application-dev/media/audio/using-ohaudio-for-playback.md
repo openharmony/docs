@@ -386,7 +386,7 @@ int32_t MyOnWriteDataWithMetadata(
 }
 
 // 设置编码类型。
-OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_AUDIO VIVID);
+OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
 // 配置回调函数。
 OH_AudioRenderer_WriteDataWithMetadataCallback metadataCallback = MyOnWriteDataWithMetadata;
 // 设置同时写入PCM数据和元数据的回调。
