@@ -183,7 +183,7 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | xxxxxxxxxx import { common } from '@kit.AbilityKit';​async function onPickerStateChange(context: common.Context) {  let avCastPicker = new avSession.AVCastPickerHelper(context);  avCastPicker.off('pickerStateChange');}ts |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1127,9 +1127,9 @@ sendCustomData(data: Record<string, Object>): Promise<void>;
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                       |
-| ------ | ---------------------- | ---- | -------------------------- |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。 |
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。当前服务端仅解析key为customData，Object为string类型 |
 
 **错误码：**
 
@@ -1137,7 +1137,6 @@ sendCustomData(data: Record<string, Object>): Promise<void>;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
@@ -1167,7 +1166,7 @@ struct Index {
             }
             });
             if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).sendCustomData({data : "This is custom media packet"}).then(() => {
+            (currentAVSession as avSession.AVSession).sendCustomData({customData : "This is custom data"}).then(() => {
                 console.info('sendCustomData successfully');
             }).catch((err: BusinessError) => {
                 console.error(`sendCustomData BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3425,7 +3424,6 @@ on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
@@ -3460,7 +3458,6 @@ off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 

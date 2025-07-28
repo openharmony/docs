@@ -345,9 +345,9 @@ sendCustomData(data: Record<string, Object>): Promise<void>
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                       |
-| ------ | ---------------------- | ---- | -------------------------- |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。 |
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。当前服务端仅解析key为customData，Object为string类型 |
 
 **错误码：**
 
@@ -355,12 +355,17 @@ sendCustomData(data: Record<string, Object>): Promise<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
-| 6600109  | The remote connection is not established.                    |
 
 **示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.sendCustomData({customData : "This is custom data"});
+```
+
+
 
 ## prepare<sup>10+</sup>
 
@@ -2065,7 +2070,6 @@ on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **示例：**
@@ -2097,7 +2101,7 @@ off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **示例：**
 

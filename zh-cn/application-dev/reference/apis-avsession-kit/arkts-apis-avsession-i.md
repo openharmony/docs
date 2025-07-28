@@ -97,6 +97,7 @@
 | creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 |displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](arkts-apis-avsession-e.md#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+|launchClientData<sup>20+</sup> | string | 否 | 是 | 投播过程中应用程序向接收方发送的自定义数据。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -189,6 +190,7 @@
 | manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | audioCapabilities<sup>20+</sup> | [AudioCapabilities](#audiocapabilities20) | 否   | 播放设备支持的音频能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
+| supportedPullClients<sup>20+</sup> | Array\<number> | 否 | 播放设备是否支持拉端播放，包含支持拉端客户端的ID集合。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## OutputDeviceInfo<sup>10+</sup>
 
