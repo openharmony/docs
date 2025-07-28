@@ -80,9 +80,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 3. 调用OH_AudioCodec_Configure配置编码器。
 
-   设置必选项：采样率、位深、声道数、码率、声道布局和同步模式配置。
+   配置选项key值说明：
 
-   flac编码：需要标识兼容性级别（Compliance Level）。
+   |             key               |       描述       |  AAC  |  Flac | MPEG(MP3) | G711mu | lbvc |
+   | ----------------------------- | :--------------: | :---: | :---: | :------: | :---: | :---: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE     |      采样率      |  必须  |  必须 |   必须   |  必须  |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT   |      声道数      |  必须  |  必须 |   必须   |  必须  |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT |  输出音频流格式   |  必须  |  必须 |   必须   |  必须  |  必须  |
+   | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |  必须  |
+   | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |   -   |
+   | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |  可选  |
+   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -  |    -     |   -    |   -   |
+   | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |   -   |
    
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
