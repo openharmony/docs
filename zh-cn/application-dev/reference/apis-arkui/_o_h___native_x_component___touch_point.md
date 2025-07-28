@@ -26,5 +26,5 @@
 | [OH_NativeXComponent_TouchEventType](_o_h___native_x_component.md#oh_nativexcomponent_toucheventtype) [type](_o_h___native_x_component.md#type-13) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN |  触摸事件的触摸类型。| 
 | double [size](_o_h___native_x_component.md#size-13) = 0.0 |  指垫和屏幕之间的接触面积。| 
 | float [force](_o_h___native_x_component.md#force-13) = 0.0 |  当前触摸事件的压力。| 
-| long long [timeStamp](_o_h___native_x_component.md#timestamp-13) = 0 | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。| 
+| int64_t [timeStamp](_o_h___native_x_component.md#timestamp-13) = 0 | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。| 
 | bool [isPressed](_o_h___native_x_component.md#ispressed) = false |  触摸点是否被按下。true：触摸点被按下；false：触摸点未被按下。|
