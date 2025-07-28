@@ -930,12 +930,14 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 ### -keep-file-name
 
-指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用[名称类通配符](#名称类通配符)。例如：
+指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用[名称类通配符](#保留选项支持的通配符)。
 
-```
+以文件路径"utils/file.ets"为例，配置白名单的方法如下：
+
+```txt
 -keep-file-name
-index
-entry
+utils
+file
 ```
 
 **哪些文件名应该被保留?**
@@ -955,19 +957,59 @@ const module2 = import(moduleName)
 
 3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与第二种动态引用场景一致。若采用系统路由表进行跳转，则需将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
 
-```
-  {
-    "routerMap": [
-      {
-        "name": "PageOne",
-        "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
-        "buildFunction": "PageOneBuilder",
-        "data": {
-          "description" : "this is PageOne"
-        }
+```json
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description" : "this is PageOne"
       }
-    ]
-  }
+    }
+  ]
+}
+```
+
+4.在使用[应用启动框架AppStartup](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-startup)时，启动参数配置文件和启动任务文件的路径应保留。这些路径配置在本模块的`resources/base/profile/startup_config.json`文件中，分别对应`configEntry`字段和`startupTasks`对象的`srcEntry`字段。
+
+`startup_config.json`文件示例如下：
+
+```json
+{
+  "startupTasks": [
+    {
+      "name": "StartupTask_001",
+      "srcEntry": "./ets/startup/StartupTask_001.ets",
+      "dependencies": [
+        "StartupTask_002"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_002",
+      "srcEntry": "./ets/startup/StartupTask_002.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    }
+  ],
+  "configEntry": "./ets/startup/StartupConfig.ets"
+}
+```
+
+配置白名单方式如下：
+
+```txt
+-keep-file-name
+# 启动任务文件路径为："./ets/startup/StartupTask_001.ets" 和 "./ets/startup/StartupTask_002.ets"。
+startup
+StartupTask_001
+StartupTask_002
+
+# 启动参数配置文件路径为："./ets/startup/StartupConfig.ets"。
+StartupConfig
 ```
 
 ### -keep-comments
