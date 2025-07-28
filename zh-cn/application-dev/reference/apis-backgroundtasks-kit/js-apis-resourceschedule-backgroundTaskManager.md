@@ -738,6 +738,7 @@ export default class EntryAbility extends UIAbility {
             });
         } catch (error) {
             console.error(`Operation updateBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
     }
 };
 ```
