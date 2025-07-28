@@ -3756,17 +3756,17 @@
         - [@ohos.rpc (RPC通信)](reference/apis-ipc-kit/js-apis-rpc.md)
       - C API<!--ipc-c-->
         - 模块<!--ipc-moudle-->
-          - [OHIPCParcel](reference/apis-ipc-kit/_capi-ohipcparcel.md)
-          - [OHIPCRemoteObject](reference/apis-ipc-kit/_capi-ohipcremoteobject.md)
-          - [OHIPCSkeleton](reference/apis-ipc-kit/_capi-ohipcskeleton.md)
-          - [OHIPCErrorCode](reference/apis-ipc-kit/_capi-ohipcerrorcode.md)
-          - [IPCKit](reference/apis-ipc-kit/_capi-ipckit.md)
+          - [OHIPCParcel](reference/apis-ipc-kit/capi-ohipcparcel.md)
+          - [OHIPCRemoteObject](reference/apis-ipc-kit/capi-ohipcremoteobject.md)
+          - [OHIPCSkeleton](reference/apis-ipc-kit/capi-ohipcskeleton.md)
+          - [OHIPCErrorCode](reference/apis-ipc-kit/capi-ohipcerrorcode.md)
+          - [IPCKit](reference/apis-ipc-kit/capi-ipckit.md)
         - 头文件<!--ipc-headerfile-->
-          - [ipc_cparcel.h](reference/apis-ipc-kit/_capi-ipc-cparcel-h.md)
-          - [ipc_cremote_object.h](reference/apis-ipc-kit/_capi-ipc-cremote-object-h.md)
-          - [ipc_cskeleton.h](reference/apis-ipc-kit/_capi-ipc-cskeleton-h.md)
-          - [ipc_error_code.h](reference/apis-ipc-kit/_capi-ipc-error-code-h.md)
-          - [ipc_kit.h](reference/apis-ipc-kit/_capi-ipc-kit-h.md)
+          - [ipc_cparcel.h](reference/apis-ipc-kit/capi-ipc-cparcel-h.md)
+          - [ipc_cremote_object.h](reference/apis-ipc-kit/capi-ipc-cremote-object-h.md)
+          - [ipc_cskeleton.h](reference/apis-ipc-kit/capi-ipc-cskeleton-h.md)
+          - [ipc_error_code.h](reference/apis-ipc-kit/capi-ipc-error-code-h.md)
+          - [ipc_kit.h](reference/apis-ipc-kit/capi-ipc-kit-h.md)
         - 结构体<!--ipc-struct-->
             - [OH_IPC_MessageOption](reference/apis-ipc-kit/capi-ohipcremoteobject-oh-ipc-messageoption.md)
             - [OHIPCRemoteProxy](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md)
