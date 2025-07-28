@@ -1,6 +1,6 @@
 # 二进制签名工具
 
-Binary Sign Tool (二进制签名工具)，是用于在PC/2in1设备上对二进制文件进行代码签名的工具，支持通过命令行的方式对标准elf文件进行代码签名或打印已签名elf的证书信息。
+Binary Sign Tool (二进制签名工具)，是用于在PC/2in1设备上对二进制文件进行代码签名的工具，支持通过命令行的方式对标准ELF文件进行代码签名或打印已签名ELF的证书信息。
 工具可以在本地下载的SDK库toolchains/lib中找到，文件名为binary-sign-tool。
 
 ## 环境说明
@@ -80,11 +80,11 @@ code signature is self-sign
 
 **可能原因**
 
-输入文件不存在或文件名错误。
+输入文件不存在或路径不正确。
 
 **处理步骤**
 
-检查输入文件路径是否存在或文件名是否有误。
+检查输入文件路径或文件名是否正确。
 
 ### COMMAND_PARAM_ERROR
 
@@ -94,12 +94,12 @@ code signature is self-sign
 
 **可能原因**
 
-1. 粘贴某条命令时，多粘贴了一段造成COMMAND_PARAM_ERROR错误。
-2. 填写命令时，最后一个参数的value值忘记填写触发该COMMAND_PARAM_ERROR错误。
+1. 粘贴命令时，多粘贴了一段内容，导致出现COMMAND_PARAM_ERROR错误。
+2. 填写命令时，如果最后一个参数的value值未填写，将导致COMMAND_PARAM_ERROR错误。
 
 **处理步骤**
 
-检查填写的命令是否有误，修正多余或错误的命令。
+检查并修正命令中的多余或错误部分。
 
 ### KEY_PASSWORD_ERROR
 
@@ -109,11 +109,11 @@ code signature is self-sign
 
 **可能原因**
 
-密钥对密码填写错误时，会触发KEY_PASSWORD_ERROR错误。
+当密钥对密码错误时，会导致KEY_PASSWORD_ERROR错误。
 
 **处理步骤**
 
-仔细检查命令中密码参数是否正确，访问不同密钥库获取密钥不能忘记填写各自的密钥对密码。
+检查命令中的密码参数是否正确。确保访问不同密钥库时，填写各自的密钥对密码。
 
 ### NOT_SUPPORT_ERROR
 
@@ -123,11 +123,11 @@ code signature is self-sign
 
 **可能原因**
 
-填写了错误的密钥库文件类型，触发NOT_SUPPORT_ERROR错误。
+填写错误的密钥库文件类型会导致NOT_SUPPORT_ERROR错误。
 
 **处理步骤**
 
-检查密钥库文件后缀是否为：`{.p12}`。
+确保密钥库文件的后缀为 `.p12`。
 
 ### KEY_ALIAS_ERROR
 
@@ -137,11 +137,11 @@ code signature is self-sign
 
 **可能原因**
 
-密钥库中已存在该别名的密钥对，触发KEY_ALIAS_ERROR错误。
+密钥库中已存在该别名的密钥对，将导致KEY_ALIAS_ERROR错误。
 
 **处理步骤**
 
-将需要生成密钥对的别名替换为其他的命名。
+替换需要生成密钥对的别名为其他名称。
 
 ### SIGN_ERROR
 
@@ -151,9 +151,9 @@ code signature is self-sign
 
 **可能原因**
 
-签名使用的密钥和实体证书不匹配。
+签名密钥与实体证书不匹配。
 
 **处理步骤**
 
 1. 检查keyAlias密钥是否使用正确。
-2. 检查appCertFile是否使用正确，确保密钥和证书匹配。
+2. 检查appCertFile是否使用正确，确保密钥与证书匹配。
