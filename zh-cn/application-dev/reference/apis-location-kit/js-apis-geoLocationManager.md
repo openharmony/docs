@@ -212,7 +212,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenario)  | 否 | 否  | 表示定位场景。 |
-| command | string | 否 | 否  | 扩展命令字符串。 |
+| command | string | 否 | 否  | 扩展命令字符串，字符串长度不超过100。 |
 
 
 ## Location
@@ -2052,7 +2052,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | command |  [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串），字符串长度不超过100。 |
+  | command |  [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -2094,7 +2094,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | command | [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串），字符串长度不超过100。 |
+  | command | [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
 
 **返回值**：
 
