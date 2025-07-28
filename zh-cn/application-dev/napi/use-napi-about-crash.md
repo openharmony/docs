@@ -310,17 +310,22 @@ napi_call_threadsafe_function、napi_release_threadsafe_function示例代码
  * @variable napi_threadsafe_function tsfn
  */
 #define EXPAND_THREADSAFE_FUNCTION_CASE(name, op)                                       \
-    napi_value name(napi_env, napi_callback_info info) {                                     \
+    napi_value name(napi_env, napi_callback_info info) {                                \
         std::thread([]() {                                                              \
             EngineProxy localEnv;                                                       \
             napi_threadsafe_function tsfn = nullptr;                                    \
             {                                                                           \
                 napi_value taskName = nullptr;                                          \
                 napi_create_string_utf8(localEnv, "Test", NAPI_AUTO_LENGTH, &taskName); \
-                napi_create_threadsafe_function(                                        \
+                napi_status status = napi_create_threadsafe_function(                   \
                     localEnv, nullptr, nullptr, taskName, 0, 1, nullptr,                \
                     [](napi_env, void *, void *) {}, nullptr,                           \
                     [](napi_env, napi_value, void *, void *) {}, &tsfn);                \
+                if (status != napi_ok) {                                                \
+                    napi_throw_error(env, nullptr,                                      \
+                    "napi_create_threadsafe_function failed");                          \
+                    return nullptr;                                                     \
+                }                                                                       \
                 if (!localEnv.RecreateSame()) {                                         \
                     return;                                                             \
                 };                                                                      \
