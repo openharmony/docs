@@ -116,16 +116,16 @@ struct WebComponent {
             transaction.oncomplete = function () {
                 console.log('Transaction completed: data added');
             }
-            
+
             transaction.onerror = function (event) {
                 console.error("Transaction failed", event);
             }
-            
+
             // 查询数据
             var queryTransaction = db.transaction(['customers']);
             var queryObjectStore = queryTransaction.objectStore('customers');
             var query = queryObjectStore.get(2);
-            
+
             query.onsuccess = function (event) {
                 console.log('query succ');
                 console.log('Customer:', event.target.result);
@@ -133,7 +133,7 @@ struct WebComponent {
                 console.log('Customer name:', event.target.result.name);
                 console.log('Customer email:', event.target.result.email);
             };
-            
+
             queryObjectStore.openCursor().onsuccess = (event) => {
                 const cursor = event.target.result;
                 if (cursor) {
