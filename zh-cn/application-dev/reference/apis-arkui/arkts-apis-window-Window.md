@@ -1312,6 +1312,10 @@ export default class EntryAbility extends UIAbility {
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window. Cause: The data is undefined.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用maximize接口，设置窗口进入全屏模式。
@@ -6502,21 +6506,21 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      if (!windowClass) {
+        console.error('Failed to get main window.');
         return;
       }
-      windowClass = data;
       let promise = windowClass.recover();
       promise.then(() => {
         console.info('Succeeded in recovering the window.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
       });
-    });
+    } catch (exception) {
+      console.error(`Failed to recover the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -7157,7 +7161,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
-        if (data == null) {
+        if (!data) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
@@ -7697,6 +7701,10 @@ export default class EntryAbility extends UIAbility {
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window. Cause: The data is undefined.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用setWindowTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、关闭按钮。
@@ -8262,6 +8270,10 @@ struct Index {
             if (event.type === TouchType.Down) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
+                if (!windowClass) {
+                  console.error('Failed to find window.');
+                  return;
+                }
                 windowClass.startMoving().then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8279,8 +8291,16 @@ struct Index {
               this.isTouchDown = true;
             } else if (event.type === TouchType.Move && this.isTouchDown) {
               try {
-                let context = this.getUIContext().getHostContext();
+                let context = this.getUIContext()?.getHostContext();
+                if (!context) {
+                  console.error('Failed to get host context.');
+                  return;
+                }
                 window.getLastWindow(context).then((data)=>{
+                  if (!data) {
+                    console.error('Failed to get last window.');
+                    return;
+                  }
                   let windowClass: window.Window = data;
                   windowClass.startMoving().then(() => {
                     console.info('Succeeded in starting moving window.')
@@ -8364,6 +8384,10 @@ struct Index {
             if (event.type === TouchType.Down) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
+                if (!windowClass) {
+                  console.error('Failed to find window.');
+                  return;
+                }
                 windowClass.startMoving(100, 50).then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8381,7 +8405,11 @@ struct Index {
               this.isTouchDown = true;
             } else if (event.type === TouchType.Move && this.isTouchDown) {
               try {
-                let context = this.getUIContext().getHostContext();
+                let context = this.getUIContext()?.getHostContext();
+                if (!context) {
+                  console.error('Failed to get host context.');
+                  return;
+                }
                 window.getLastWindow(context).then((data)=>{
                   let windowClass: window.Window = data;
                   windowClass.startMoving(100, 50).then(() => {
