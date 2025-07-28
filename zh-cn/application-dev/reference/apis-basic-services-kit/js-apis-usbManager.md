@@ -12,15 +12,20 @@
 import { usbManager } from '@kit.BasicServicesKit';
 ```
 
->  ## 说明：
-> 
-> 凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
-> <br>**在使用接口前：**
-> <br>1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-> <br>2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取请求权限；
-> <br>3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到USBDevicePipe作为参数。
-> <br>**在使用接口后：**
-> <br>调用[usbManager.closePipe](#usbmanagerclosepipe)关闭设备消息控制通道。
+## 使用说明
+ 凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
+ 
+**在使用接口前：**
+
+1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表。
+
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取请求权限。
+
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到USBDevicePipe作为参数。
+
+**在使用接口后：**
+
+调用[usbManager.closePipe](#usbmanagerclosepipe)关闭设备消息控制通道。
 
 ## usbManager.getDevices
 
