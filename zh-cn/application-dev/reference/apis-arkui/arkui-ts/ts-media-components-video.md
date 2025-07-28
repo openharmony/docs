@@ -73,7 +73,7 @@ Video(value: VideoOptions)
 
 muted(value: boolean)
 
-设置视频是否静音。
+设置视频是否静音，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,8 @@ muted(value: boolean)
 
 autoPlay(value: boolean)
 
-设置视频是否自动播放。
+设置视频是否自动播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +110,8 @@ autoPlay(value: boolean)
 
 controls(value: boolean)
 
-设置控制视频播放的控制栏是否显示。
+设置控制视频播放的控制栏是否显示，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +131,8 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频的填充模式。
+设置视频的填充模式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +148,8 @@ objectFit(value: ImageFit)
 
 loop(value: boolean)
 
-设置是否单个视频循环播放。
+设置是否单个视频循环播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -198,7 +202,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 enableShortcutKey(enabled: boolean)
 
-设置组件支持快捷键响应。
+设置组件支持快捷键响应，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
