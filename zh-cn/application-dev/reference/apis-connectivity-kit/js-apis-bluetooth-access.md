@@ -49,6 +49,52 @@ try {
 ```
 
 
+## access.enableBluetoothAsync<sup>20+</sup><a name="enableBluetoothAsync"></a>
+
+enableBluetoothAsync(): Promise&lt;void&gt;
+
+开启蓝牙。使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 801      | Capability not supported.  |
+| 2900001  | Service stopped.           |
+| 2900013  | The user does not respond. |
+| 2900014  | User refuse the action.    |
+| 2900099  | Operation failed.          |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    access.enableBluetoothAsync().then(() => {
+        console.info('enableBluetoothAsync');
+    }, (error: BusinessError) => {
+        console.error('enableBluetoothAsync: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## access.disableBluetooth
 
 disableBluetooth(): void
@@ -78,6 +124,51 @@ disableBluetooth(): void
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetooth();
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## access.disableBluetoothAsync<sup>20+</sup><a name="disableBluetoothAsync"></a>
+
+disableBluetoothAsync(): Promise&lt;void&gt;
+
+关闭蓝牙。使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 801      | Capability not supported.  |
+| 2900001  | Service stopped.           |
+| 2900013  | The user does not respond. |
+| 2900014  | User refuse the action.    |
+| 2900099  | Operation failed.          |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    access.disableBluetoothAsync().then(() => {
+        console.info('disableBluetoothAsync');
+    }, (error: BusinessError) => {
+        console.error('disableBluetoothAsync: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
