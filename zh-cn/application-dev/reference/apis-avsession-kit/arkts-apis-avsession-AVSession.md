@@ -183,7 +183,7 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | xxxxxxxxxx import { common } from '@kit.AbilityKit';​async function onPickerStateChange(context: common.Context) {  let avCastPicker = new avSession.AVCastPickerHelper(context);  avCastPicker.off('pickerStateChange');}ts |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 
 **示例：**
