@@ -244,4 +244,3 @@ add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
-<!-- @[](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIClass/entry/src/main/cpp/CMakeLists.txt) -->
