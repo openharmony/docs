@@ -162,14 +162,20 @@ export {value, test};
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+           return nullptr;
+        }
     
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+           return nullptr;
+        }
         return result;
     }
     ```
@@ -226,16 +232,25 @@ export {value, test};
 
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -363,7 +378,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     // 2. 使用napi_get_named_property获取info函数
     napi_value infoFn;
-    napi_get_named_property(env, result, "info", &infoFn);
+    status = napi_get_named_property(env, result, "info", &infoFn);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value tag;
     std::string formatStr = "test";
@@ -378,7 +396,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     napi_value args[3] = {flag, tag, outputString};
     // 3. 使用napi_call_function调用info函数
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
+    status = napi_call_function(env, result, infoFn, 3, args, nullptr);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     return result;
 }
 ```
@@ -500,16 +521,25 @@ export {value, test};
     
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
     
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
