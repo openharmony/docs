@@ -122,6 +122,10 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 设置应用组件开机自启动。使用callback异步回调。
 
+> **说明：**
+>
+> 从API version 11开始，该接口在2in1设备上生效；从API version 18开始，该接口在wearable设备上生效。
+
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -175,6 +179,10 @@ try {
 setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 设置应用组件开机自启动。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 11开始，该接口在2in1设备上生效；从API version 18开始，该接口在wearable设备上生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
