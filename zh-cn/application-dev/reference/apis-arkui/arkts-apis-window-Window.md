@@ -5143,7 +5143,7 @@ try {
   let colorSpace = windowClass.getWindowColorSpace();
   console.info(`Succeeded in getting the window color space. ColorSpace: ${colorSpace}`);
 } catch (exception) {
-  console.error(`Failed to set the window color space. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to get the window color space. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
