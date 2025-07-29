@@ -355,7 +355,7 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2066,7 +2066,7 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type | string | 是 | 事件回调类型，支持 `customDataChange` 事件。媒体提供方发送自定义数据时触发。 |
+| type | string | 是 | 事件回调类型，支持'customDataChange'事件。媒体提供方发送自定义数据时触发。 |
 | callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接收自定义数据。                               |
 
 **错误码：**
