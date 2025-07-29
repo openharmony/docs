@@ -1172,13 +1172,13 @@ sendCustomData(data: Record<string, Object>): Promise<void>;
 
 发送私有数据到远端设备。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                       |
-| ------ | ---------------------- | ---- | -------------------------- |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。 |
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
 
 **错误码：**
 
@@ -1209,7 +1209,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
 });
 
 if (controller !== undefined) {
-  (controller as avSession.AVSessionController).sendcustomData({customData : "This is my data"})
+  (controller as avSession.AVSessionController).sendCustomData({customData : "This is my data"})
 }
 ```
 
@@ -2282,13 +2282,13 @@ on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | 是   | 事件回调类型，支持事件`'customDataChange'`：当媒体提供方发送自定义数据包时，触发该事件。 |
+| type     | string                             | 是   | 事件回调类型，支持事件`'customDataChange'`：当媒体提供方发送自定义数据时，触发该事件。 |
 | callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接受自定义数据。                               |
 
 **错误码：**
@@ -2332,14 +2332,14 @@ off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
-| 参数名   | 类型                               | 必填 | 说明                                                 |
-| -------- | ---------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                             | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。 |
-| callback | Callback\<Record\<string, Object>> | 否   | 回调函数，用于接受自定义数据。                       |
+| 参数名   | 类型                               | 必填 | 说明                                                         |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                             | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
+| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 
@@ -2355,8 +2355,6 @@ off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
 ```ts
 avsessionController.off('customDataChange');
 ```
-
-
 
 ## getAVPlaybackStateSync<sup>10+</sup>
 
