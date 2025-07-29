@@ -222,7 +222,7 @@ let profile: eap.EthEapProfile = {
     
 try {
   eap.startEthEap(netId, profile);
-  console.info('startEthEap success');
+  console.log('startEthEap success');
 } catch (err) {
   console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
