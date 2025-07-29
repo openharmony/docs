@@ -2749,7 +2749,7 @@ struct AttributeDemo {
 
 V2:
 
-In V2, however, [\@Local](./arkts-new-local.md) can only observe its own changes, but cannot observe the top-level changes. To observe the attribute changes of **attributeModifier**, use[makeObserved](./arkts-new-makeObserved.md) instead.
+In V2, however, [\@Local](./arkts-new-local.md) can only observe its own changes, but cannot observe the top-level changes. To observe the attribute changes of **attributeModifier**, use [makeObserved](./arkts-new-makeObserved.md) instead.
 
 Example:
 

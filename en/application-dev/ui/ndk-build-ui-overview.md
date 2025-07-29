@@ -45,7 +45,7 @@ The ArkUI NDK APIs provide the following capabilities:
 
 ![NDK Access](figures/ndk_access.png)
 
-- The ArkTS declarative UI frontend and the NDK APIs both expose ArkUI's underlying capabilities. Compared to the ArkTS declarative UI frontend, NDK APIs not only strip away the declarative UI syntax such as state management but also streamline component capabilities, encapsulating the core functions of ArkUI components through C APIs.
+- The ArkTS declarative UI frontend and the NDK APIs both expose ArkUI's underlying capabilities. Compared with the ArkTS declarative UI frontend, NDK APIs not only strip away the declarative UI syntax such as state management but also streamline component capabilities, encapsulating the core functions of ArkUI components through C APIs.
 
 - NDK-created UI components must be mounted through ArkTS placeholder components. Once mounted, they coexist with ArkTS components on the same UI tree, following uniform layout and event-handling rules.
 

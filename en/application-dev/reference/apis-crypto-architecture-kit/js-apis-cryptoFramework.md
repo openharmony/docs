@@ -1,11 +1,9 @@
 # @ohos.security.cryptoFramework (Crypto Framework)
 
 The **cryptoFramework** module provides APIs for cryptographic operations, shielding the underlying hardware and algorithm library.
-The **cryptoFramework** module provides APIs for cryptographic operations, shielding the underlying hardware and algorithm library.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -31,16 +29,13 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ## DataBlob
 
 Represents data of the Binary Large Object (BLOB) type.
-Represents data of the Binary Large Object (BLOB) type.
 
  **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type      | Read-Only| Optional| Description  |
-| Name| Type      | Read-Only| Optional| Description  |
 | ---- | ---------- | ---- | ---- | ------ |
-| data | Uint8Array | No  | No  | Binary data array.|
 | data | Uint8Array | No  | No  | Binary data array.|
 
 > **NOTE**
@@ -50,9 +45,7 @@ Represents data of the Binary Large Object (BLOB) type.
 ## ParamsSpec
 
 Encapsulates the parameters used for encryption or decryption. You need to construct its child class object and pass it to [init()](#init-1) for symmetric encryption or decryption.
-Encapsulates the parameters used for encryption or decryption. You need to construct its child class object and pass it to [init()](#init-1) for symmetric encryption or decryption.
 
-It applies to the symmetric block cipher modes that require parameters such as the initialization vector (IV). If the IV is not required (for example, the ECB mode), pass in **null** to [init()](#init-1).
 It applies to the symmetric block cipher modes that require parameters such as the initialization vector (IV). If the IV is not required (for example, the ECB mode), pass in **null** to [init()](#init-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -60,25 +53,19 @@ It applies to the symmetric block cipher modes that require parameters such as t
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | No  | No  | Algorithm for symmetric encryption or decryption. The value can be:<br> - **IvParamsSpec**: applicable to CBC,|CTR,|OFB,|and CFB modes.<br> - **GcmParamsSpec**: applicable to GCM mode.<br> - **CcmParamsSpec**: applicable to CCM mode.|
 | algName | string | No  | No  | Algorithm for symmetric encryption or decryption. The value can be:<br> - **IvParamsSpec**: applicable to CBC,|CTR,|OFB,|and CFB modes.<br> - **GcmParamsSpec**: applicable to GCM mode.<br> - **CcmParamsSpec**: applicable to CCM mode.|
 
 > **NOTE**
 >
-> The **params** parameter in [init()](#init-1) is of the **ParamsSpec** type (parent class). However, a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, you must set **algName** for its parent class **ParamsSpec** to specify the child class object to be passed to **init()**.
 > The **params** parameter in [init()](#init-1) is of the **ParamsSpec** type (parent class). However, a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, you must set **algName** for its parent class **ParamsSpec** to specify the child class object to be passed to **init()**.
 
 ## IvParamsSpec
 
 Encapsulates the parameters for encryption or decryption. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
-Encapsulates the parameters for encryption or decryption. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
 
-This class is applicable to block cipher modes that only use an IV, such as CBC, CTR, OFB, and CFB.
 This class is applicable to block cipher modes that only use an IV, such as CBC, CTR, OFB, and CFB.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -86,25 +73,19 @@ This class is applicable to block cipher modes that only use an IV, such as CBC,
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name| Type                 | Read-Only| Optional| Description                                                        |
-| Name| Type                 | Read-Only| Optional| Description                                                        |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | No  | No | IV for encryption or decryption. Options:<br>- AES CBC,|CTR,|OFB,|or CFB mode: The IV length is 16 bytes.<br>- 3DES CBC,|OFB,|or CFB mode: The IV length is 8 bytes.<br>- SM4<sup>10+</sup> CBC,|CTR,|OFB,|or CFB mode: The IV length is 16 bytes.|
 | iv   | [DataBlob](#datablob) | No  | No | IV for encryption or decryption. Options:<br>- AES CBC,|CTR,|OFB,|or CFB mode: The IV length is 16 bytes.<br>- 3DES CBC,|OFB,|or CFB mode: The IV length is 8 bytes.<br>- SM4<sup>10+</sup> CBC,|CTR,|OFB,|or CFB mode: The IV length is 16 bytes.|
 
 > **NOTE**
 >
-> Before passing **IvParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 > Before passing **IvParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## GcmParamsSpec
 
 Encapsulates the parameters for encryption or decryption using a block cipher mode that requires an IV. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
-Encapsulates the parameters for encryption or decryption using a block cipher mode that requires an IV. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
 
-**GcmParamsSpec** applies to GCM mode.
 **GcmParamsSpec** applies to GCM mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -112,23 +93,15 @@ Encapsulates the parameters for encryption or decryption using a block cipher mo
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name   | Type                 | Read-Only| Optional| Description                                                        |
-| Name   | Type                 | Read-Only| Optional| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | No  | No  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
-| aad     | [DataBlob](#datablob) | No  | No  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
-| authTag | [DataBlob](#datablob) | No  | No  | Authentication tag, which is of 16 bytes.<br>When GCM mode is used for encryption, you need to extract the last 16 bytes from the [DataBlob](#datablob) returned by [doFinal()](#dofinal) or [doFinalSync()](#dofinalsync12) and use them as **authTag** in **GcmParamsSpec** for [init()](#init-1) or [initSync()](#initsync12).|
 | iv      | [DataBlob](#datablob) | No  | No  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
 | aad     | [DataBlob](#datablob) | No  | No  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
 | authTag | [DataBlob](#datablob) | No  | No  | Authentication tag, which is of 16 bytes.<br>When GCM mode is used for encryption, you need to extract the last 16 bytes from the [DataBlob](#datablob) returned by [doFinal()](#dofinal) or [doFinalSync()](#dofinalsync12) and use them as **authTag** in **GcmParamsSpec** for [init()](#init-1) or [initSync()](#initsync12).|
 
 > **NOTE**
 >
-> 1. Before passing **GcmParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
-> 2. The Crypto framework imposes no additional restrictions on the IV of 1 to 16 bytes. However, the operation result depends on the underlying OpenSSL support.
-> 3. If **aad** is not required or the **aad** length is 0, you can set its **data** attribute to an empty Uint8Array in the **aad: { data: new Uint8Array() }** format when constructing **GcmParamsSpec**.
 > 1. Before passing **GcmParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 > 2. The Crypto framework imposes no additional restrictions on the IV of 1 to 16 bytes. However, the operation result depends on the underlying OpenSSL support.
 > 3. If **aad** is not required or the **aad** length is 0, you can set its **data** attribute to an empty Uint8Array in the **aad: { data: new Uint8Array() }** format when constructing **GcmParamsSpec**.
@@ -136,9 +109,7 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 ## CcmParamsSpec
 
 Encapsulates the parameters for encryption or decryption using a block cipher mode that requires an IV. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
-Encapsulates the parameters for encryption or decryption using a block cipher mode that requires an IV. It is a child class of [ParamsSpec](#paramsspec) and used as a parameter in [init()](#init-1) for symmetric encryption or decryption.
 
-**CcmParamsSpec** applies to CCM mode.
 **CcmParamsSpec** applies to CCM mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -146,21 +117,15 @@ Encapsulates the parameters for encryption or decryption using a block cipher mo
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name   | Type                 | Read-Only| Optional| Description                                                        |
-| Name   | Type                 | Read-Only| Optional| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | No  | No  | IV, which is of 7 bytes.                             |
-| aad     | [DataBlob](#datablob) | No  | No  | AAD, which is of 8 bytes.                            |
-| authTag | [DataBlob](#datablob) | No  | No  | Authentication tag, which is of 12 bytes.<br>When CCM mode is used for encryption, you need to extract the last 12 bytes from the [DataBlob](#datablob) returned by [doFinal()](#dofinal) or [doFinalSync()](#dofinalsync12) and use them as **authTag** in [CcmParamsSpec](#ccmparamsspec) for [init()](#init-1) or [initSync()](#initsync12).|
 | iv      | [DataBlob](#datablob) | No  | No  | IV, which is of 7 bytes.                             |
 | aad     | [DataBlob](#datablob) | No  | No  | AAD, which is of 8 bytes.                            |
 | authTag | [DataBlob](#datablob) | No  | No  | Authentication tag, which is of 12 bytes.<br>When CCM mode is used for encryption, you need to extract the last 12 bytes from the [DataBlob](#datablob) returned by [doFinal()](#dofinal) or [doFinalSync()](#dofinalsync12) and use them as **authTag** in [CcmParamsSpec](#ccmparamsspec) for [init()](#init-1) or [initSync()](#initsync12).|
 
 > **NOTE**
 >
-> Before passing **GcmParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 > Before passing **GcmParamsSpec** to [init()](#init-1), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## CryptoMode
@@ -171,7 +136,6 @@ Enumerates the cryptographic operations.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name        | Value  | Description              |
@@ -187,7 +151,6 @@ Enumerates the asymmetric key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name        | Value  | Description            |
@@ -232,7 +195,6 @@ Enumerates the key parameter types.
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
@@ -244,7 +206,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 ## CipherSpecItem<sup>10+</sup>
 
 Enumerates encryption and decryption parameters, which can be set by using [setCipherSpec](#setcipherspec10) and obtained by using [getCipherSpec](#getcipherspec10).
-Enumerates encryption and decryption parameters, which can be set by using [setCipherSpec](#setcipherspec10) and obtained by using [getCipherSpec](#getcipherspec10).
 
 Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NAME_STR** parameter is supported. For details, see [Asymmetric Key Encryption and Decryption Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md).
 
@@ -252,7 +213,6 @@ Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NA
 
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 | Name        | Value  | Description            |
@@ -266,7 +226,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 ## SignSpecItem<sup>10+</sup>
 
 Enumerates the signing and signature verification parameters, which can be set by using [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10), and obtained by using [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10).
-Enumerates the signing and signature verification parameters, which can be set by using [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10), and obtained by using [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10).
 
 Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_ID_UINT8ARR** parameter is supported. For details, see [Signing and Signature Verification Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md).
 
@@ -274,7 +233,6 @@ Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_
 
 **System capability**: SystemCapability.Security.CryptoFramework.Signature
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Signature** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Signature** since API version 12.
 
 | Name        | Value  | Description            |
@@ -295,13 +253,9 @@ Defines the asymmetric key parameters for creating a key generator. You need to 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | No  | No  | Asymmetric key algorithm, for example, **RSA**, **DSA**, **ECC**, **SM2**, **Ed25519**, **X25519**, or **DH**.|
-| specType | [AsyKeySpecType](#asykeyspectype10) | No  | No| Key parameter type, which is used to distinguish public and private key parameters.|
 | algName | string | No  | No  | Asymmetric key algorithm, for example, **RSA**, **DSA**, **ECC**, **SM2**, **Ed25519**, **X25519**, or **DH**.|
 | specType | [AsyKeySpecType](#asykeyspectype10) | No  | No| Key parameter type, which is used to distinguish public and private key parameters.|
 
@@ -316,14 +270,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | No  | No  | Prime modulus **p** in the DSA algorithm.|
-| q | bigint | No  | No  | Parameter **q**, prime factor of (**p** – 1) in the DSA algorithm.|
-| g | bigint | No  | No  | Parameter **g** in the DSA algorithm.|
 | p | bigint | No  | No  | Prime modulus **p** in the DSA algorithm.|
 | q | bigint | No  | No  | Parameter **q**, prime factor of (**p** – 1) in the DSA algorithm.|
 | g | bigint | No  | No  | Parameter **g** in the DSA algorithm.|
@@ -339,13 +288,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the DSA algorithm.|
-| pk | bigint | No  | No  | Public key in the DSA algorithm.|
 | params | [DSACommonParamsSpec](#dsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the DSA algorithm.|
 | pk | bigint | No  | No  | Public key in the DSA algorithm.|
 
@@ -360,14 +305,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the DSA algorithm.|
-| sk | bigint | No  | No  | Private key **sk** in the DSA algorithm.|
-| pk | bigint | No  | No  | Public key in the DSA algorithm.|
 | params | [DSACommonParamsSpec](#dsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the DSA algorithm.|
 | sk | bigint | No  | No  | Private key **sk** in the DSA algorithm.|
 | pk | bigint | No  | No  | Public key in the DSA algorithm.|
@@ -381,12 +321,9 @@ Defines an elliptic curve field. Currently, only the **Fp** field is supported.
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| fieldType | string | No  | No  | Type of the elliptic curve field. Currently, only **Fp** is supported.|
 | fieldType | string | No  | No  | Type of the elliptic curve field. Currently, only **Fp** is supported.|
 
 ## ECFieldFp<sup>10+</sup>
@@ -398,12 +335,9 @@ Defines the prime field of the elliptic curve. It is a child class of [ECField](
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | No  | No  | Value of the prime number **p**.|
 | p | bigint | No  | No  | Value of the prime number **p**.|
 
 ## Point<sup>10+</sup>
@@ -415,13 +349,9 @@ Defines a point on the elliptic curve.
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x | bigint | No  | No  | X coordinate of the point on an elliptic curve.|
-| y | bigint | No  | No  | Y coordinate of the point on an elliptic curve.|
 | x | bigint | No  | No  | X coordinate of the point on an elliptic curve.|
 | y | bigint | No  | No  | Y coordinate of the point on an elliptic curve.|
 
@@ -436,17 +366,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield10) | No  | No  | Field of the elliptic curve. Currently, only **Fp** is supported.|
-| a | bigint | No  | No  | First coefficient **a** of the elliptic curve.|
-| b | bigint | No  | No  | Second coefficient **b** of the elliptic curve.|
-| g | [Point](#point10) | No  | No  | Base point g.|
-| n | bigint | No  | No  | Order **n** of the base point **g**.|
-| h | number | No  | No  | Cofactor **h**.|
 | field | [ECField](#ecfield10) | No  | No  | Field of the elliptic curve. Currently, only **Fp** is supported.|
 | a | bigint | No  | No  | First coefficient **a** of the elliptic curve.|
 | b | bigint | No  | No  | Second coefficient **b** of the elliptic curve.|
@@ -465,13 +387,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
-| sk | bigint | No  | No  | Private key **sk** in the ECC algorithm.|
 | params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
 | sk | bigint | No  | No  | Private key **sk** in the ECC algorithm.|
 
@@ -486,13 +404,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
-| pk | [Point](#point10) | No  | No  | Public key **pk** in the ECC algorithm.|
 | params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
 | pk | [Point](#point10) | No  | No  | Public key **pk** in the ECC algorithm.|
 
@@ -507,14 +421,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
-| sk | bigint | No  | No  | Private key **sk** in the ECC algorithm.|
-| pk | [Point](#point10) | No  | No  | Public key **pk** in the ECC algorithm.|
 | params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the ECC algorithm.|
 | sk | bigint | No  | No  | Private key **sk** in the ECC algorithm.|
 | pk | [Point](#point10) | No  | No  | Public key **pk** in the ECC algorithm.|
@@ -530,12 +439,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| n | bigint | No  | No  | Modulus **n**.|
 | n | bigint | No  | No  | Modulus **n**.|
 
 ## RSAPubKeySpec<sup>10+</sup>
@@ -549,13 +455,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the RSA algorithm.|
-| pk | bigint | No  | No  | Public key **pk** in the RSA algorithm.|
 | params | [RSACommonParamsSpec](#rsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the RSA algorithm.|
 | pk | bigint | No  | No  | Public key **pk** in the RSA algorithm.|
 
@@ -570,14 +472,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the RSA algorithm.|
-| sk | bigint | No  | No  | Private key **sk** in the RSA algorithm.|
-| pk | bigint | No  | No  | Public key **pk** in the RSA algorithm.|
 | params | [RSACommonParamsSpec](#rsacommonparamsspec10) | No  | No  | Common parameters of the public and private keys in the RSA algorithm.|
 | sk | bigint | No  | No  | Private key **sk** in the RSA algorithm.|
 | pk | bigint | No  | No  | Public key **pk** in the RSA algorithm.|
@@ -593,12 +490,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                     |
-| Name| Type  | Read-Only| Optional| Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | No  | No  | Private key **sk** in the Ed25519 algorithm.|
 | sk   | bigint | No  | No  | Private key **sk** in the Ed25519 algorithm.|
 
 ## ED25519PubKeySpec<sup>11+</sup>
@@ -612,12 +506,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                     |
 | Name| Type  | Read-Only| Optional| Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | No  | No  | Public key **pk** in the Ed25519 algorithm.|
 | pk   | bigint | No  | No  | Public key **pk** in the Ed25519 algorithm.|
 
 ## ED25519KeyPairSpec<sup>11+</sup>
@@ -631,13 +523,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                     |
-| Name| Type  | Read-Only| Optional| Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | No  | No  | Private key **sk** in the Ed25519 algorithm.|
-| pk   | bigint | No  | No  | Public key **pk** in the Ed25519 algorithm.|
 | sk   | bigint | No  | No  | Private key **sk** in the Ed25519 algorithm.|
 | pk   | bigint | No  | No  | Public key **pk** in the Ed25519 algorithm.|
 
@@ -652,12 +540,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                    |
-| Name| Type  | Read-Only| Optional| Description                    |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | No  | No  | Private key **sk** in the X25519 algorithm.|
 | sk   | bigint | No  | No  | Private key **sk** in the X25519 algorithm.|
 
 ## X25519PubKeySpec<sup>11+</sup>
@@ -671,12 +556,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                    |
-| Name| Type  | Read-Only| Optional| Description                    |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| pk   | bigint | No  | No  | Public key **pk** in the X25519 algorithm.|
 | pk   | bigint | No  | No  | Public key **pk** in the X25519 algorithm.|
 
 ## X25519KeyPairSpec<sup>11+</sup>
@@ -697,8 +579,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 | ---- | ------ | ---- | ---- | ------------------------ |
 | sk   | bigint | No  | No  | Private key **sk** in the X25519 algorithm.|
 | pk   | bigint | No  | No  | Public key **pk** in the X25519 algorithm.|
-| sk   | bigint | No  | No  | Private key **sk** in the X25519 algorithm.|
-| pk   | bigint | No  | No  | Public key **pk** in the X25519 algorithm.|
 
 ## DHCommonParamsSpec<sup>11+</sup>
 
@@ -711,14 +591,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name| Type  | Read-Only| Optional| Description                               |
-| Name| Type  | Read-Only| Optional| Description                               |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
-| p    | bigint | No  | No  | Large prime **p** in the DH algorithm.              |
-| g    | bigint | No  | No  | Parameter **g** in the DH algorithm.                |
-| l    | number | No  | No  | Length of the private key in the DH algorithm, in bits.|
 | p    | bigint | No  | No  | Large prime **p** in the DH algorithm.              |
 | g    | bigint | No  | No  | Parameter **g** in the DH algorithm.                |
 | l    | number | No  | No  | Length of the private key in the DH algorithm, in bits.|
@@ -734,13 +609,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name  | Type              | Read-Only| Optional| Description                                |
-| Name  | Type              | Read-Only| Optional| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
-| sk     | bigint             | No  | No  | Private key **sk** in the DH algorithm.                |
 | params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
 | sk     | bigint             | No  | No  | Private key **sk** in the DH algorithm.                |
 
@@ -755,13 +626,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name  | Type              | Read-Only| Optional| Description                                |
-| Name  | Type              | Read-Only| Optional| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
-| pk     | bigint             | No  | No  | Public key **pk** in the DH algorithm.                |
 | params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
 | pk     | bigint             | No  | No  | Public key **pk** in the DH algorithm.                |
 
@@ -776,14 +643,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 | Name  | Type              | Read-Only| Optional| Description                                |
-| Name  | Type              | Read-Only| Optional| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
-| sk     | bigint             | No  | No  | Private key **sk** in the DH algorithm.                |
-| pk     | bigint             | No  | No  | Public key **pk** in the DH algorithm.                |
 | params | [DHCommonParamsSpec](#dhcommonparamsspec11) | No  | No  | Common parameters of the public and private keys in the DH algorithm.|
 | sk     | bigint             | No  | No  | Private key **sk** in the DH algorithm.                |
 | pk     | bigint             | No  | No  | Public key **pk** in the DH algorithm.                |
@@ -797,12 +659,9 @@ Defines the parameters of the key derivation function. When the key derivation f
 **System capability**: SystemCapability.Security.CryptoFramework.Kdf
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Kdf** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Kdf** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | No  | No  | Algorithm of the key derivation function, for example, **PBKDF2**.|
 | algName | string | No  | No  | Algorithm of the key derivation function, for example, **PBKDF2**.|
 
 ## PBKDF2Spec<sup>11+</sup>
@@ -814,15 +673,9 @@ Defines the child class of [KdfSpec](#kdfspec11). It is used as a parameter for 
 **System capability**: SystemCapability.Security.CryptoFramework.Kdf
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Kdf** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Kdf** since API version 12.
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | No  | No  | Original password entered by the user.|
-| salt | Uint8Array | No  | No  | Salt value.|
-| iterations | number | No  | No  | Number of iterations. The value must be a positive integer.|
-| keySize | number | No  | No  | Length of the derived key, in bytes.|
 | password | string \| Uint8Array | No  | No  | Original password entered by the user.|
 | salt | Uint8Array | No  | No  | Salt value.|
 | iterations | number | No  | No  | Number of iterations. The value must be a positive integer.|
@@ -830,7 +683,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 
 > **NOTE**
 >
->  **password** is the original password. If **password** of the string type is used, pass in the actual data for key derivation, rather than a HexString or Base64-encoded value. In addition, the string must be encoded in UTF-8, as other encodings may alter the derivation outcome.
 >  **password** is the original password. If **password** of the string type is used, pass in the actual data for key derivation, rather than a HexString or Base64-encoded value. In addition, the string must be encoded in UTF-8, as other encodings may alter the derivation outcome.
 
 ## HKDFSpec<sup>12+</sup>
@@ -842,12 +694,7 @@ Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for HKDF key
 **System capability**: SystemCapability.Security.CryptoFramework.Kdf
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| key | string \| Uint8Array | No  | No  | Key material.|
-| salt | Uint8Array | No  | No  | Salt value.|
-| info | Uint8Array | No  | No  | Information used to expand the key.|
-| keySize | number | No  | No  | Length of the derived key, in bytes.|
 | key | string \| Uint8Array | No  | No  | Key material.|
 | salt | Uint8Array | No  | No  | Salt value.|
 | info | Uint8Array | No  | No  | Information used to expand the key.|
@@ -878,13 +725,6 @@ Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for scrypt k
 | r | number | No  | No  | Block size. The value must be a positive integer.|
 | maxMemory | number | No  | No  | Maximum memory size. The value must be a positive integer.|
 | keySize | number | No  | No  | Length of the derived key, in bytes. The value must be a positive integer.|
-| passphrase | string \| Uint8Array | No  | No  | Original password entered by the user.|
-| salt | Uint8Array | No  | No  | Salt value.|
-| n | number | No  | No  | Number of iterations. The value must be a positive integer.|
-| p | number | No  | No  | Parallelization parameter. The value must be a positive integer.|
-| r | number | No  | No  | Block size. The value must be a positive integer.|
-| maxMemory | number | No  | No  | Maximum memory size. The value must be a positive integer.|
-| keySize | number | No  | No  | Length of the derived key, in bytes. The value must be a positive integer.|
 
 > **NOTE**
 >
@@ -899,12 +739,7 @@ Represents the SM2 ciphertext parameters. You can use this object to generate SM
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
-| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| xCoordinate | bigint | No  | No  | Coordinate X.|
-| yCoordinate | bigint | No  | No  | Coordinate Y.|
-| cipherTextData | Uint8Array | No  | No  | Ciphertext.|
-| hashData | Uint8Array | No  | No  | Hash value.|
 | xCoordinate | bigint | No  | No  | Coordinate X.|
 | yCoordinate | bigint | No  | No  | Coordinate Y.|
 | cipherTextData | Uint8Array | No  | No  | Ciphertext.|
@@ -929,8 +764,6 @@ Represents the RSA private key encoding parameters. You can use it to generate a
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | password | string | No  | No  | Password used for encoding the private key.|
 | cipherName | string | No  | No  | Algorithm to use.|
-| password | string | No  | No  | Password used for encoding the private key.|
-| cipherName | string | No  | No  | Algorithm to use.|
 
 > **NOTE**
 >
@@ -940,7 +773,6 @@ Represents the RSA private key encoding parameters. You can use it to generate a
 
 ## MacSpec<sup>18+</sup>
 Represents the message authentication code (MAC) parameters. You need to construct a child class object and use it as a parameter when generating an HMAC or a CMAC.
-Represents the message authentication code (MAC) parameters. You need to construct a child class object and use it as a parameter when generating an HMAC or a CMAC.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -949,11 +781,9 @@ Represents the message authentication code (MAC) parameters. You need to constru
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | algName | string | No  | No  | Algorithm to use.|
-| algName | string | No  | No  | Algorithm to use.|
 
 > **NOTE**
 >
-> **algName** specifies the MAC algorithm to use. It is mandatory.
 > **algName** specifies the MAC algorithm to use. It is mandatory.
 
 ## HmacSpec<sup>18+</sup>
@@ -966,11 +796,9 @@ Represents the child class of [MacSpec](#macspec18). It is used as an input para
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | mdName | string | No  | No  | MD algorithm to use.|
-| mdName | string | No  | No  | MD algorithm to use.|
 
 > **NOTE**
 >
-> **mdName** specifies the HMAC digest algorithm. It is mandatory.
 > **mdName** specifies the HMAC digest algorithm. It is mandatory.
 
 ## CmacSpec<sup>18+</sup>
@@ -983,16 +811,13 @@ Represents the child class of [MacSpec](#macspec18). It is used as an input para
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | cipherName | string | No  | No  | Symmetric encryption algorithm to use.|
-| cipherName | string | No  | No  | Symmetric encryption algorithm to use.|
 
 > **NOTE**
 >
 > **cipherName** specifies the CMAC symmetric encryption algorithm. It is mandatory.
-> **cipherName** specifies the CMAC symmetric encryption algorithm. It is mandatory.
 
 ## Key
 
-Provides APIs for key operations. Before performing cryptographic operations (such as encryption and decryption), you need to construct a child class object of **Key** and pass it to [init()](#init-1) of the [Cipher](#cipher) instance.
 Provides APIs for key operations. Before performing cryptographic operations (such as encryption and decryption), you need to construct a child class object of **Key** and pass it to [init()](#init-1) of the [Cipher](#cipher) instance.
 
 Keys can be generated by a key generator.
@@ -1004,9 +829,7 @@ Keys can be generated by a key generator.
 **System capability**: SystemCapability.Security.CryptoFramework.Key
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key** since API version 12.
 
-| Name   | Type  | Read-Only| Optional| Description                        |
 | Name   | Type  | Read-Only| Optional| Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | Yes  | No  | Format of the key.                |
@@ -1017,7 +840,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 getEncoded(): DataBlob
 
 Obtains the byte stream of the key data. This API returns the result synchronously. The key can be a symmetric key, public key, or private key. The public key must comply with the ASN.1 syntax, X.509 specifications, and DER encoding. The private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding.
-Obtains the byte stream of the key data. This API returns the result synchronously. The key can be a symmetric key, public key, or private key. The public key must comply with the ASN.1 syntax, X.509 specifications, and DER encoding. The private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding.
 
 > **NOTE**
 >
@@ -1027,7 +849,6 @@ Obtains the byte stream of the key data. This API returns the result synchronous
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key** since API version 12.
 
 **Return value**
@@ -1042,7 +863,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 801 | this operation is not supported. |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
 
@@ -1062,7 +882,6 @@ async function testGenerateAesKey() {
 ## SymKey
 
 Provides APIs for symmetric key operations. It is a child class of [Key](#key). Its objects need to be passed to [init()](#init-1) of the [Cipher](#cipher) instance in symmetric encryption and decryption.
-Provides APIs for symmetric key operations. It is a child class of [Key](#key). Its objects need to be passed to [init()](#init-1) of the [Cipher](#cipher) instance in symmetric encryption and decryption.
 
 Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
 
@@ -1071,13 +890,11 @@ Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
 clearMem(): void
 
 Clears the keys in memory. This API returns the result synchronously. Call this API when the symmetric key instance is no longer required.
-Clears the keys in memory. This API returns the result synchronously. Call this API when the symmetric key instance is no longer required.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Example**
@@ -1109,7 +926,6 @@ Obtains a key parameter. This API returns the result synchronously.
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
@@ -1129,8 +945,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported.          |
-| 17620001 | memory operation failed. |
 | 801 | this operation is not supported.          |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
@@ -1177,7 +991,6 @@ Obtains the public key data that complies with the ASN.1 syntax and DER encoding
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
 | [DataBlob](#datablob) | Public key data obtained.|
-| [DataBlob](#datablob) | Public key data obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -1185,7 +998,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
 
@@ -1202,7 +1014,6 @@ console.info('returnBlob data: ' + returnBlob.data);
 
 getEncodedPem(format: string): string
 
-Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The public key must comply with the X.509 and PKCS #1 specifications and be encoded in PEM.
 Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The public key must comply with the X.509 and PKCS #1 specifications and be encoded in PEM.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -1263,13 +1074,11 @@ The private key can be generated by using the asymmetric key generator [AsyKeyGe
 clearMem(): void
 
 Clear the keys in memory. This API returns the result synchronously.
-Clear the keys in memory. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Example**
@@ -1291,7 +1100,6 @@ Obtains a key parameter. This API returns the result synchronously.
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
@@ -1311,8 +1119,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported.          |
-| 17620001 | memory operation failed. |
 | 801 | this operation is not supported.          |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
@@ -1352,7 +1158,6 @@ Obtains the private key data that complies with the ASN.1 syntax and DER encodin
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
 | [DataBlob](#datablob) | ECC private key data obtained.|
-| [DataBlob](#datablob) | ECC private key data obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -1360,7 +1165,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
 
@@ -1378,7 +1182,6 @@ console.info('returnBlob data: ' + returnBlob.data);
 getEncodedPem(format: string): string
 
 Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with the PKCS #8 and PKCS #1 specifications and be encoded in PEM.
-Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with the PKCS #8 and PKCS #1 specifications and be encoded in PEM.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1388,7 +1191,6 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **'PKCS1'** or **'PKCS8'**.|
 | format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **'PKCS1'** or **'PKCS8'**.|
 
 **Return value**
@@ -1403,7 +1205,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
 
@@ -1443,7 +1244,6 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
 getEncodedPem(format: string, config: KeyEncodingConfig): string
 
 Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with PKCS #8 or PKCS #1 specifications and be encoded in PEM.
-Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with PKCS #8 or PKCS #1 specifications and be encoded in PEM.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1453,7 +1253,6 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **'PKCS1'** or **'PKCS8'**.|
 | format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **'PKCS1'** or **'PKCS8'**.|
 | config | [KeyEncodingConfig](#keyencodingconfig18) | Yes| Options (including the password and algorithm) for encoding the private key.|
 
@@ -1469,8 +1268,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported.          |
-| 17620001 | memory operation failed. |
 | 801 | this operation is not supported.          |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
@@ -1519,7 +1316,6 @@ The asymmetric key pair can be generated by using the asymmetric key generator [
 > **NOTE**
 >
 > The **pubKey** and **priKey** objects are members of the **KeyPair** object. When the **KeyPair** object is out of the scope, its **pubKey** and **priKey** objects will be destructed.
-> The **pubKey** and **priKey** objects are members of the **KeyPair** object. When the **KeyPair** object is out of the scope, its **pubKey** and **priKey** objects will be destructed.
 >
 > The service must reference the **KeyPair** object instead of the internal **pubKey** or **priKey** object.
 
@@ -1530,9 +1326,7 @@ The asymmetric key pair can be generated by using the asymmetric key generator [
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
-| Name   | Type  | Read-Only| Optional| Description          |
 | Name   | Type  | Read-Only| Optional| Description          |
 | ------- | ------ | ---- | ---- | ------------ |
 | priKey  | [PriKey](#prikey) | Yes  | No  | Private key.     |
@@ -1543,7 +1337,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 createSymKeyGenerator(algName: string): SymKeyGenerator
 
 Creates a symmetric key generator instance with the specified algorithm.
-Creates a symmetric key generator instance with the specified algorithm.
 
 For details about the supported specifications, see [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).
 
@@ -1552,13 +1345,11 @@ For details about the supported specifications, see [Symmetric Key Generation an
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Parameters**
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm to be used by the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
 | algName | string | Yes  | Algorithm to be used by the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
 
 **Return value**
@@ -1588,7 +1379,6 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 Provides APIs for using the **symKeyGenerator**.
 
 Before using the APIs of this class, use [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator) to create a **SymKeyGenerator** instance.
-Before using the APIs of this class, use [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator) to create a **SymKeyGenerator** instance.
 
 ### Attributes
 
@@ -1597,9 +1387,7 @@ Before using the APIs of this class, use [createSymKeyGenerator](#cryptoframewor
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
-| Name   | Type  | Read-Only| Optional| Description                          |
 | Name   | Type  | Read-Only| Optional| Description                          |
 | ------- | ------ | ---- | ---- | ------------------------------ |
 | algName | string | Yes  | No  | Algorithm used by the **symKeyGenerator**.|
@@ -1617,13 +1405,11 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 > **NOTE**
 >
 > For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key matching the hash length (for example, a 256-bit key) will be randomly generated. If no hash algorithm is specified, for example, only **HMAC** is specified, random symmetric key generation is not supported. You can generate symmetric key data using [convertKey](#convertkey).
-> For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key matching the hash length (for example, a 256-bit key) will be randomly generated. If no hash algorithm is specified, for example, only **HMAC** is specified, random symmetric key generation is not supported. You can generate symmetric key data using [convertKey](#convertkey).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Parameters**
@@ -1631,14 +1417,12 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 | Name    | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
-| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 
 **Example**
@@ -1667,7 +1451,6 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Return value**
 
@@ -1680,7 +1463,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 
 **Example**
@@ -1711,7 +1493,6 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 > **NOTE**
 >
 > For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key matching the hash length (for example, a 256-bit key) will be randomly generated.<br>If no hash algorithm is specified, for example, only **HMAC** is specified, random symmetric key generation is not supported. You can generate symmetric key data using [convertKeySync](#convertkeysync12).
-> For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key matching the hash length (for example, a 256-bit key) will be randomly generated.<br>If no hash algorithm is specified, for example, only **HMAC** is specified, random symmetric key generation is not supported. You can generate symmetric key data using [convertKeySync](#convertkeysync12).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1722,7 +1503,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 
 **Example**
@@ -1751,13 +1531,11 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 > **NOTE**
 >
 > For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data passed in must match the hash length (for example, a 256-bit key for SHA256).<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only **HMAC** is specified), any binary key data with a length of 1 to 4096 bytes is supported.
-> For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data passed in must match the hash length (for example, a 256-bit key for SHA256).<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only **HMAC** is specified), any binary key data with a length of 1 to 4096 bytes is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Parameters**
@@ -1766,7 +1544,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 | -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | Yes  | Data to convert.                                        |
 | callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
-| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -1774,7 +1551,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message                                              |
 | -------- | --------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.                                       |
 | 17620001 | memory operation failed.                                       |
 
 **Example**
@@ -1807,13 +1583,11 @@ convertKey(key: DataBlob): Promise\<SymKey>
 Converts data into a symmetric key. This API uses a promise to return the result.
 
 Before using this API, create a symmetric key generator by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
-Before using this API, create a symmetric key generator by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.SymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.SymKey** since API version 12.
 
 **Parameters**
@@ -1834,7 +1608,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message                                         |
 | -------- | --------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.                                |
 | 17620001 | memory operation failed.                                |
 
 **Example**
@@ -1875,7 +1648,6 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 > **NOTE**
 >
 > For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data passed in must match the hash length (for example, a 256-bit key for SHA256). If no hash algorithm is specified when the symmetric key generator is created (for example, only **HMAC** is specified), any binary key data with a length of 1 to 4096 bytes is supported.
-> For symmetric keys used in the HMAC algorithm, if a hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data passed in must match the hash length (for example, a 256-bit key for SHA256). If no hash algorithm is specified when the symmetric key generator is created (for example, only **HMAC** is specified), any binary key data with a length of 1 to 4096 bytes is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1893,19 +1665,12 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 | --------------------------- | --------------------------------- |
 | [SymKey](#symkey) | Symmetric key obtained.|
 
-**Return value**
-
-| Type                       | Description                             |
-| --------------------------- | --------------------------------- |
-| [SymKey](#symkey) | Symmetric key obtained.|
-
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
 | ID| Error Message                                              |
 | -------- | --------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.                                       |
 | 17620001 | memory operation failed.                                       |
 
 **Example**
@@ -1940,20 +1705,17 @@ For details about the supported specifications, see [Asymmetric Key Generation a
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
 | Name | Type  | Mandatory| Description                            |
 | ------- | ------ | ---- | -------------------------------- |
 | algName | string | Yes  | [Algorithm used to generate an asymmetric key pair](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md).|
-| algName | string | Yes  | [Algorithm used to generate an asymmetric key pair](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md).|
 
 **Return value**
 
 | Type           | Description                        |
 | --------------- | ---------------------------- |
-| [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created. |
 | [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created. |
 
 **Error codes**
@@ -1963,7 +1725,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 
 **Example**
@@ -1985,9 +1746,7 @@ Provides APIs for using the **AsKeyGenerator**. Before using any API of the **As
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
-| Name   | Type  | Read-Only| Optional| Description                            |
 | Name   | Type  | Read-Only| Optional| Description                            |
 | ------- | ------ | ---- | ---- | -------------------------------- |
 | algName | string | Yes  | No  | Algorithm used by the **AsKeyGenerator**.|
@@ -2003,13 +1762,11 @@ Generates a key pair randomly. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
 | callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
 
 **Error codes**
@@ -2018,7 +1775,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;|
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2042,13 +1798,11 @@ asyKeyGenerator.generateKeyPair((err, keyPair) => {
 generateKeyPair(): Promise\<KeyPair>
 
 Generates an asymmetric key pair randomly. This API uses a promise to return the result.
-Generates an asymmetric key pair randomly. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Return value**
@@ -2063,7 +1817,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2087,7 +1840,6 @@ keyGenPromise.then(keyPair => {
 generateKeyPairSync(): KeyPair
 
 Generates an asymmetric key pair randomly. This API returns the result synchronously.
-Generates an asymmetric key pair randomly. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2105,7 +1857,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.          |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2138,7 +1889,6 @@ Converts data into an asymmetric key. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
@@ -2147,7 +1897,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 | pubKey   | [DataBlob](#datablob) \| null<sup>10+</sup>    | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.       |
 | priKey   | [DataBlob](#datablob) \| null<sup>10+</sup>   | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.       |
 | callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2155,7 +1904,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2189,7 +1937,6 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
@@ -2210,7 +1957,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2249,8 +1995,6 @@ Converts data into an asymmetric key pair. This API returns the result synchrono
 | ------ | -------- | ---- | ---------------- |
 | pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material. If the public key does not need to be converted, pass in **null**. Before API version 10, only **DataBlob** is supported. Since API version 10s, **null** can be passed in.|
 | priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material. Before API version 10, only **DataBlob** is supported. Since API version 10s, **null** can be passed in.|
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material. If the public key does not need to be converted, pass in **null**. Before API version 10, only **DataBlob** is supported. Since API version 10s, **null** can be passed in.|
-| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material. Before API version 10, only **DataBlob** is supported. Since API version 10s, **null** can be passed in.|
 
 **Return value**
 
@@ -2264,7 +2008,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2292,7 +2035,6 @@ try {
 
 **Key Conversion**
 
-1. For asymmetric keys (RSA, ECC, and DSA), calling **getEncoded()** on the public key returns binary data in X.509 format, and calling **getEncoded()** on the private key returns binary data in PKCS #8 format. For ECC private keys, the data returned is in the format defined in RFC 5915. These key data can be passed across applications and stored persistently.
 1. For asymmetric keys (RSA, ECC, and DSA), calling **getEncoded()** on the public key returns binary data in X.509 format, and calling **getEncoded()** on the private key returns binary data in PKCS #8 format. For ECC private keys, the data returned is in the format defined in RFC 5915. These key data can be passed across applications and stored persistently.
 2. When **convertKey()** is used to convert binary data into an asymmetric key object defined by the Crypto framework, the public key must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
 3. In **convertKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
@@ -2485,7 +2227,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory operation failed.          |
-| 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
 **Example**
@@ -2551,7 +2292,6 @@ Converts data into an asymmetric key pair. This API returns the result synchrono
 | ------ | -------- | ---- | ---------------- |
 | pubKey | string \| null| Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.|
 | priKey | string \| null| Yes  | Private key material. If the private key does not need to be converted, you can pass in **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
-| priKey | string \| null| Yes  | Private key material. If the private key does not need to be converted, you can pass in **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
 | password | string | Yes| Password used to decrypt the private key.|
 
 **Return value**
@@ -2566,7 +2306,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error.          |
 
@@ -2614,7 +2353,6 @@ function TestConvertPemKeyBySync() {
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 Obtains an asymmetric key generator instance with the specified key parameters.
-Obtains an asymmetric key generator instance with the specified key parameters.
 
 For details about the supported specifications, see [Asymmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md).
 
@@ -2622,7 +2360,6 @@ For details about the supported specifications, see [Asymmetric Key Generation a
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
@@ -2644,7 +2381,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 
 **Example**
@@ -2692,9 +2428,7 @@ Provides APIs for using the **AsKeyGenerator**. Before using the APIs of this cl
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 10 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
-| Name   | Type  | Read-Only| Optional| Description                      |
 | Name   | Type  | Read-Only| Optional| Description                      |
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algName | string | Yes  | No  | Algorithm used by the asymmetric key generator.|
@@ -2712,13 +2446,11 @@ If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used t
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
 | callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback used to return the key pair obtained.|
 
 **Error codes**
@@ -2727,7 +2459,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;         |
-| 17620001 | memory operation failed.           |
 | 17620001 | memory operation failed.           |
 | 17630001 | crypto operation error. |
 
@@ -2759,7 +2490,6 @@ If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used t
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Return value**
 
@@ -2773,7 +2503,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -2798,7 +2527,6 @@ keyGenPromise.then(keyPair => {
 generateKeyPairSync(): KeyPair
 
 Generates an asymmetric key pair using this asymmetric key generator. This API returns the result synchronously.
-Generates an asymmetric key pair using this asymmetric key generator. This API returns the result synchronously.
 
 If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
 
@@ -2818,7 +2546,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -2850,20 +2577,17 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
 If [PRIVATE_KEY_SPEC](#asykeyspectype10) is used to create a key generator, the key generator generates the specified private key. If [KEY_PAIR_SPEC](#asykeyspectype10) is used to create a key generator, you can obtain the specified private key from the key pair generated.
-If [PRIVATE_KEY_SPEC](#asykeyspectype10) is used to create a key generator, the key generator generates the specified private key. If [KEY_PAIR_SPEC](#asykeyspectype10) is used to create a key generator, you can obtain the specified private key from the key pair generated.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[PriKey](#prikey)> | Yes  | Callback used to return the key pair obtained.|
 | callback | AsyncCallback\<[PriKey](#prikey)> | Yes  | Callback used to return the key pair obtained.|
 
 **Error codes**
@@ -2872,7 +2596,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>Mandatory parameters are left unspecified;         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -2904,7 +2627,6 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Return value**
 
@@ -2918,7 +2640,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -2943,7 +2664,6 @@ keyGenPromise.then(priKey => {
 generatePriKeySync(): PriKey
 
 Generates a private key using this asymmetric key generator. This API returns the result synchronously.
-Generates a private key using this asymmetric key generator. This API returns the result synchronously.
 
 If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, a private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the private key from the key pair generated.
 
@@ -2956,7 +2676,6 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
 | [PriKey](#prikey) | Asymmetric key pair generated.|
-| [PriKey](#prikey) | Asymmetric key pair generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2964,7 +2683,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -2999,13 +2717,11 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[PubKey](#pubkey)> | Yes  | Callback used to return the key pair obtained.|
 | callback | AsyncCallback\<[PubKey](#pubkey)> | Yes  | Callback used to return the key pair obtained.|
 
 **Error codes**
@@ -3014,7 +2730,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes:<br> Incorrect parameter types;        |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -3046,7 +2761,6 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Return value**
 
@@ -3060,7 +2774,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -3085,9 +2798,7 @@ keyGenPromise.then(pubKey => {
 generatePubKeySync(): PubKey
 
 Generates a public key using this asymmetric key generator. This API returns the result synchronously.
-Generates a public key using this asymmetric key generator. This API returns the result synchronously.
 
-If [PUBLIC_KEY_SPEC](#asykeyspectype10) is used to create a key generator, the key generator generates the specified public key. If [KEY_PAIR_SPEC](#asykeyspectype10) is used to create a key generator, you can obtain the specified public key from the key pair generated.
 If [PUBLIC_KEY_SPEC](#asykeyspectype10) is used to create a key generator, the key generator generates the specified public key. If [KEY_PAIR_SPEC](#asykeyspectype10) is used to create a key generator, you can obtain the specified public key from the key pair generated.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -3099,7 +2810,6 @@ If [PUBLIC_KEY_SPEC](#asykeyspectype10) is used to create a key generator, the k
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
 | [PubKey](#pubkey) | Asymmetric key pair generated.|
-| [PubKey](#pubkey) | Asymmetric key pair generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -3107,7 +2817,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 | 17630001 | crypto operation error. |
 
@@ -3144,7 +2853,6 @@ Generates common parameters for an asymmetric key pair based on the specified na
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
 
@@ -3166,7 +2874,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
 | 17620001 | memory operation failed.                    |
-| 17620001 | memory operation failed.                    |
 
 **Example**
 
@@ -3186,7 +2893,6 @@ try {
 
 static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
-Converts the specified point data into a **Point** object based on the curve name (NID). Currently, compressed and uncompressed point data is supported. 
 Converts the specified point data into a **Point** object based on the curve name (NID). Currently, compressed and uncompressed point data is supported. 
 
 > **NOTE**
@@ -3218,7 +2924,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed. |
 | 17620001 | memory operation failed. |
 | 17630001 | crypto operation error. |
 
@@ -3292,7 +2997,6 @@ async function doTest() {
 ## DHKeyUtil<sup>11+</sup>
 
 Generates common parameters for a DH key based on the prime **p** length and the private key length.
-Generates common parameters for a DH key based on the prime **p** length and the private key length.
 
 ### genDHCommonParamsSpec<sup>11+</sup>
 
@@ -3304,7 +3008,6 @@ Generates common parameters for a DH key based on the prime **p** length and the
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API version 11, and **SystemCapability.Security.CryptoFramework.Key.AsymKey** since API version 12.
 
 **Parameters**
@@ -3327,7 +3030,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
-| 17620001 | memory operation failed.                    |
 | 17620001 | memory operation failed.                    |
 | 17630001 | crypto operation error.          |
 
@@ -3378,7 +3080,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.                    |
 | 17620001 | memory operation failed.                    |
 | 17630001 | crypto operation error.          |
 
@@ -3432,7 +3133,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                    |
-| 17620001 | memory operation failed.                    |
 | 17630001 | crypto operation error.          |
 
 ```ts
@@ -3462,7 +3162,6 @@ For details about the supported specifications, see [Symmetric Key Encryption an
 **System capability**: SystemCapability.Security.CryptoFramework.Cipher
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Cipher** since API version 12.
 
 **Parameters**
 
@@ -3472,9 +3171,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 
 > **NOTE**
 >
-> 1. In symmetric encryption and decryption, PKCS #5 and PKCS #7 share the same implementation, with padding length and block size remaining consistent. In 3DES, padding is applied in 8-byte blocks; in AES, padding is applied in 16-byte blocks. **NoPadding** means no padding is applied.
-> <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
-> 2. When RSA or SM2 is used for asymmetric encryption and decryption, two **Cipher** objects must be created to perform encryption and decryption separately. This is not required for symmetric encryption and decryption. If the algorithm specifications are the same, the same **Cipher** object can be used for encryption and decryption.
 > 1. In symmetric encryption and decryption, PKCS #5 and PKCS #7 share the same implementation, with padding length and block size remaining consistent. In 3DES, padding is applied in 8-byte blocks; in AES, padding is applied in 16-byte blocks. **NoPadding** means no padding is applied.
 > <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
 > 2. When RSA or SM2 is used for asymmetric encryption and decryption, two **Cipher** objects must be created to perform encryption and decryption separately. This is not required for symmetric encryption and decryption. If the algorithm specifications are the same, the same **Cipher** object can be used for encryption and decryption.
@@ -3492,7 +3188,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 17620001 | memory operation failed.          |
 | 17620001 | memory operation failed.          |
 
 **Example**
@@ -3779,7 +3474,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 updateSync(data: DataBlob): DataBlob
 
-Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data.
 Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data.
 
 This API can be called only after the [Cipher](#cipher) instance is initialized by using [initSync()](#initsync12).
@@ -5065,7 +4759,6 @@ The system capability is **SystemCapability.Security.CryptoFramework** in API ve
 | -------- | --------------------- | ---- | ------------ |
 | data     | [DataBlob](#datablob) | Yes  | Data to pass in.|
 | callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
-| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -5073,8 +4766,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
-| 17620002 | failed to convert parameters between arkts and c.         |
 | 17620001 | memory operation failed.          |
 | 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
@@ -5099,7 +4790,6 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 **System capability**: SystemCapability.Security.CryptoFramework.Signature
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Signature** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Signature** since API version 12.
 
 **Parameters**
 
@@ -5119,8 +4809,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
-| 17620002 | failed to convert parameters between arkts and c.         |
 | 17620001 | memory operation failed.          |
 | 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
@@ -5162,8 +4850,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.          |
-| 17620002 | failed to convert parameters between arkts and c.         |
 | 17620001 | memory operation failed.          |
 | 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
@@ -5597,7 +5283,6 @@ For details about the supported specifications, see [Key Agreement Overview and 
 
 **System capability**: SystemCapability.Security.CryptoFramework.KeyAgreement
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.KeyAgreement** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.KeyAgreement** since API version 12.
 
 **Parameters**
@@ -6170,7 +5855,6 @@ For details about the supported specifications, see [HMAC](../../security/Crypto
 **System capability**: SystemCapability.Security.CryptoFramework.Mac
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
 
 **Parameters**
 
@@ -6190,7 +5874,6 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | ID| Error Message          |
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 17620001 | memory operation failed.       |
 | 17620001 | memory operation failed.       |
 
 **Example**
@@ -6213,10 +5896,8 @@ try {
 createMac(macSpec: MacSpec): Mac
 
 Creates a **Mac** instance for message authentication code (MAC) operations.
-Creates a **Mac** instance for message authentication code (MAC) operations.
 
-For details about the supported specifications, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
-For details about the supported specifications, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
+For details about the supported specifications, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -6226,8 +5907,7 @@ For details about the supported specifications, see [MAC Overview and Algorithm 
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
-| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
+| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
 
 **Return value**
 
@@ -6299,14 +5979,12 @@ Initializes the MAC computation with a symmetric key. This API uses an asynchron
 **System capability**: SystemCapability.Security.CryptoFramework.Mac
 
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description          |
 | -------- | -------------------- | ---- | -------------- |
 | key      | [SymKey](#symkey)    | Yes  | Shared symmetric key.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
@@ -6329,7 +6007,6 @@ Initializes the MAC computation with a symmetric key. This API uses a promise to
 
 **System capability**: SystemCapability.Security.CryptoFramework.Mac
 
-The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
 The system capability is **SystemCapability.Security.CryptoFramework** in API versions 9 to 11, and **SystemCapability.Security.CryptoFramework.Mac** since API version 12.
 
 **Parameters**
