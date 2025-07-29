@@ -1,4 +1,9 @@
 # @ohos.enterprise.systemManager （系统管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供系统管理能力。
 
