@@ -673,7 +673,7 @@ export default class AccessibilityManager {
   onEvent(accessibilityEvent: AccessibilityEvent): void {
     this.context?.getWindowRootElement().then((rootElement: AccessibilityElement) => {
       console.log(`Succeeded in get root element of the window, ${JSON.stringify(rootElement)}`);
-      await rootElement.enableScreenCurtain(true);
+      rootElement.enableScreenCurtain(true);
       console.log(`Succeeded in enableScreenCurtain`);
     }).catch((err: BusinessError) => {
       console.error(`failed to enableScreenCurtain, Code is ${err.code}, message is ${err.message}`);
