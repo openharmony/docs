@@ -683,7 +683,7 @@ struct Index {
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
     let context = this.getUIContext().getHostContext();
-    this.text = context?.resourceManager.getStringSync($r('app.string.startup_text'));
+    this.text = context?.resourceManager.getStringSync($r('app.string.startup_text').id);
   }
 
   build() {
@@ -701,7 +701,7 @@ struct Index {
       this.count++;
     }
     let context = this.getUIContext().getHostContext();
-    this.text = context?.resourceManager.getStringSync($r('app.string.task_text'));
+    this.text = context?.resourceManager.getStringSync($r('app.string.task_text').id);
   }
 
   // 运算任务异步处理
