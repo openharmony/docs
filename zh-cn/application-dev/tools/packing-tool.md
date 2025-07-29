@@ -578,11 +578,11 @@ Check shared App mode invalid.
 
 **错误描述**
 
-构建[bundleType为shared的App包](../quick-start/app-configuration-file.md#配置文件标签)时，检查HSP包无效。
+构建[bundleType](../quick-start/app-configuration-file.md#配置文件标签)为shared的App包时，检查HSP包无效。
 
 **可能原因**
 
-1. 存在两个以上的[HSP包](../quick-start/module-configuration-file.md#配置文件标签)。例如下图使用DevEco Studio构建App时，工程中包含了两个HSP包library和library1，此时打包APP包失败。
+1. 存在两个以上的[HSP包](../quick-start/in-app-hsp.md)。例如下图使用DevEco Studio构建App时，工程中包含了两个HSP包library和library1，此时打包APP包失败。
 
 ![alt text](figures/zh_cn_packing_tool_image_10012017_01.png)
 
