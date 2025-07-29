@@ -1,7 +1,7 @@
 # 二进制签名工具
 
-Binary Sign Tool (二进制签名工具)，是用于在PC/2in1设备上对二进制文件进行代码签名的工具，支持通过命令行的方式对标准ELF文件进行代码签名或打印已签名ELF的证书信息。
-工具可以在本地下载的SDK库toolchains/lib中找到，文件名为binary-sign-tool。
+Binary Sign Tool （二进制签名工具），是用于在OpenHarmony PC/2in1设备上对二进制文件进行代码签名的工具，支持通过命令行的方式对标准ELF文件进行代码签名或打印已签名ELF的证书信息。
+工具可以在本地下载的OpenHarmony的SDK库toolchains/lib中找到，文件名为binary-sign-tool。
 
 ## 环境说明
 在使用本工具前，开发者需要先获取[hdc](../dfx/hdc.md)工具，执行hdc shell命令。
