@@ -11,6 +11,36 @@
 >
 > - 静态方法必须在用户界面（UI）线程上使用。
 
+该模块提供以下Web控制相关的常用功能：
+
+- [AdsBlockManager](#adsblockmanager12)：广告过滤配置。
+- [BackForwardCacheOptions](#backforwardcacheoptions12)：前进后退缓存配置。
+- [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12)：前进后退缓存特性配置。
+- [GeolocationPermissions](./js-apis-webview-GeolocationPermissions.md)：地理位置权限配置。
+- [JsMessageExt](#jsmessageext10)：执行JavaScript脚本的结果。
+- [MediaSourceInfo](#mediasourceinfo12)：媒体源信息配置。
+- [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)：应用接管媒体播放时渲染信息。
+- [PdfData](#pdfdata14)：生成的PDF输出数据。
+- [ProxyConfig](#proxyconfig15)：网络代理配置。
+- [ProxyController](#proxycontroller15)：网络代理控制器。
+- [WebviewController](./js-apis-webview-WebviewController.md)：Web组件控制器。
+- [WebCookieManager](./js-apis-webview-WebCookieManager.md)：Cookie管理。
+- [WebDataBase](./js-apis-webview-WebDataBase.md)：数据库管理。
+- [WebDownloadDelegate](#webdownloaddelegate11)：下载任务状态事件。
+- [WebDownloadItem](#webdownloaditem11)：下载任务。
+- [WebDownloadManager](#webdownloadmanager11)：下载任务管理。
+- [WebHttpBodyStream](#webhttpbodystream12)：HTTP请求体。
+- [WebMessageExt](./js-apis-webview-WebMessageExt.md)：前端与应用通信数据对象。
+- [WebResourceHandler](#webresourcehandler12)：资源加载控制。
+- [WebSchemeHandler](#webschemehandler12)：指定Scheme的请求拦截器。
+- [WebSchemeHandlerRequest](#webschemehandlerrequest12)：通过拦截器拦截到的请求。
+- [WebSchemeHandlerResponse](#webschemehandlerresponse12)：为拦截到的请求创建自定义响应。
+- [WebStorage](./js-apis-webview-WebStorage.md)：Web组件存储操作接口。
+- [BackForwardList](./js-apis-webview-BackForwardList.md)：历史信息列表。
+- [NativeMediaPlayerBridge](#nativemediaplayerbridge12)：托管网页媒体播放器桥接接口。
+- [NativeMediaPlayerHandler](#nativemediaplayerhandler12)：托管网页媒体播放器的事件接口。
+- [WebMessagePort](./js-apis-webview-WebMessagePort.md)：网页前端与应用的消息端口。
+
 ## 需要权限
 
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
