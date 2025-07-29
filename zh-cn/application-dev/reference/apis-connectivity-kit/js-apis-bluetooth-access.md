@@ -49,7 +49,7 @@ try {
 ```
 
 
-## access.enableBluetoothAsync<sup>20+</sup><a name="enableBluetoothAsync"></a>
+## access.enableBluetoothAsync<sup>20+</sup>
 
 enableBluetoothAsync(): Promise&lt;void&gt;
 
@@ -132,7 +132,7 @@ try {
 }
 ```
 
-## access.disableBluetoothAsync<sup>20+</sup><a name="disableBluetoothAsync"></a>
+## access.disableBluetoothAsync<sup>20+</sup>
 
 disableBluetoothAsync(): Promise&lt;void&gt;
 
