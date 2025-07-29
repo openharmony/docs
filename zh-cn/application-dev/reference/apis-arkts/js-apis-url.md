@@ -509,6 +509,19 @@ console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
+> **说明：**
+>
+> 在解析URL字符串时，如果入参中的port内容是当前protocol的默认端口，那么port将被解析为空字符串。默认端口为：
+>
+> | 协议 | 默认端口 |
+> | -------- | -------- |
+> | http: | 80 |
+> | https: | 443 |
+> | ftp: | 21 |
+> | gopher: | 70 |
+> | ws: | 80 |
+> | wss: | 443 |
+
 **示例：**
 
 ```ts
@@ -526,6 +539,10 @@ console.info("search " + that.search); // search ?foo=1&bar=2
 console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
 console.info("params: foo " + that.params.get("foo")); // params: foo 1
+
+let urlObj = url.URL.parseURL('http://testhost:80/directory/file?foo=1');
+console.info("port " + that.port); // port 
+console.info("toString " + that.port); // toString http://testhost/directory/file?foo=1
 ```
 
 ### constructor<sup>(deprecated)</sup>
