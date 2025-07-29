@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [IPowerHdiCallback.idl](_i_power_hdi_callback_8idl.md) | 休眠/唤醒状态的回调。电源模块为电源服务提供的订阅休眠/唤醒状态的回调。 | 
-| [IPowerInterface.idl](_i_power_interface_8idl.md) | 电源模块为电源服务提供休眠/唤醒操作、订阅休眠/唤醒状态和运行锁管理的接口。 | 
+| [IPowerInterface.idl](_i_power_interface_8idl_v12.md) | 电源模块为电源服务提供休眠/唤醒操作、订阅休眠/唤醒状态和运行锁管理的接口。 | 
 | [IPowerRunningLockCallback.idl](_i_power_running_lock_callback_8idl.md) | 提供运行锁定状态的回调。电源模块为电源服务提供回调，以处理运行锁状态。 | 
 | [PowerTypes.idl](_power_types_8idl.md) | 电源相关的数据类型。电源管理中使用的数据类型，包括命令参数、回调参数和系统状态。 | 
 | [RunningLockTypes.idl](_running_lock_types_8idl.md) | 枚举与运行锁管理相关的数据类型。这些数据类型包括运行锁类型和运行锁信息。 | 
