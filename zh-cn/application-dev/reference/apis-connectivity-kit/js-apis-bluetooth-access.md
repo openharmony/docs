@@ -20,6 +20,8 @@ enableBluetooth(): void
 
 开启蓝牙。
 
+- 调用该接口时，界面弹出开启蓝牙的弹框，由用户确认是否需要开启蓝牙。如果应用想要感知用户操作弹框的结果，建议使用[access.enableBluetoothAsync](#accessenablebluetoothasync20)。
+
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
@@ -54,7 +56,7 @@ try {
 enableBluetoothAsync(): Promise&lt;void&gt;
 
 开启蓝牙。使用Promise异步回调。
-- 与API version 20开始支持的[access.notifyDialogResult](js-apis-bluetooth-access-sys.md#accessnotifydialogresult20)搭配使用，相较于[access.enableBluetooth](#accessenablebluetooth)调用该接口会将用户处理开关蓝牙弹框的结果通知给应用。
+- 调用该接口时，界面弹出开启蓝牙的弹框，由用户确认是否需要开启蓝牙。应用可以感知用户操作弹框的结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -103,6 +105,7 @@ try {
 disableBluetooth(): void
 
 关闭蓝牙。
+- 调用该接口时，界面弹出关闭蓝牙的弹框，由用户确认是否需要关闭蓝牙。如果应用想要感知用户操作弹框的结果，建议使用[access.disableBluetoothAsync](#accessdisablebluetoothasync20)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -137,7 +140,7 @@ try {
 disableBluetoothAsync(): Promise&lt;void&gt;
 
 关闭蓝牙。使用Promise异步回调。
-- 与API version 20开始支持的[access.notifyDialogResult](js-apis-bluetooth-access-sys.md#accessnotifydialogresult20)搭配使用，相较于[access.disableBluetooth](#accessdisablebluetooth)调用该接口会将用户处理开关蓝牙弹框的结果通知给应用。
+- 调用该接口时，界面弹出关闭蓝牙的弹框，由用户确认是否需要关闭蓝牙。应用可以感知用户操作弹框的结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
