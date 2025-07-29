@@ -140,7 +140,7 @@ class SendableTestClass {
   }
 }
 ```
-<!-- @[example_modify_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/class/Index.ets) -->
+<!-- @[example_modify_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/class/Index.ets) -->
 
 **装饰器修饰Function使用示例：**
 
@@ -185,4 +185,4 @@ let sendableClass = new SendableTestClass(SendableTestFunction);
 sendableClass.callback();
 sendableClass.CallSendableFunc();
 ```
-<!-- @[example_modify_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/entry/src/main/ets/managers/functionusage.ets) -->
+<!-- @[example_modify_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/entry/src/main/ets/managers/functionusage.ets) -->

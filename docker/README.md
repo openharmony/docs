@@ -12,7 +12,7 @@ OpenHarmony的Docker镜像托管在[HUAWEI Cloud SWR](https://auth.huaweicloud.c
 
 ### 使用方式及步骤
 
- 开发者在下载好源码后，可以通过以下步骤来使用我们提供的Docker环境。详情请参见[Docker编译环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/gettools-acquire.md)。
+ 开发者在下载好源码后，可以通过以下步骤来使用我们提供的Docker环境。详情请参见[Docker编译环境](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/gettools-acquire.md)。
 
 1. 获取Docker镜像
      ```
