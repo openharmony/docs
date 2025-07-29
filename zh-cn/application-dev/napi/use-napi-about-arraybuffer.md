@@ -58,7 +58,7 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined;
 ```
 <!-- @[napi_is_arraybuffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -137,7 +137,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: ArrayBuffer;
 }
-export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined;
 ```
 <!-- @[napi_get_arraybuffer_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

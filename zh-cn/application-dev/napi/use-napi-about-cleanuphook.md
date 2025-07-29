@@ -122,7 +122,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiEnvCleanUpHook: () => Object | void;
+export const napiEnvCleanUpHook: () => Object | undefined;
 ```
 <!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -269,7 +269,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libuv.so)
 
 ```ts
 // index.d.ts
-export const napiAsyncCleanUpHook: () => boolean | void;
+export const napiAsyncCleanUpHook: () => boolean | undefined;
 ```
 <!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
