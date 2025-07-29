@@ -233,7 +233,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.addAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in adding auto start applications.`);
+  console.info('Succeeded in adding auto start applications.');
 } catch(err) {
   console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -290,7 +290,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in removing auto start applications.`);
+  console.info('Succeeded in removing auto start applications.');
 } catch(err) {
   console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -347,7 +347,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.removeAutoStartApps(wantTemp, autoStartApps, 100);
-  console.info(`Succeeded in removing auto start applications.`);
+  console.info('Succeeded in removing auto start applications.');
 } catch(err) {
   console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -461,7 +461,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.addAutoStartApps(wantTemp, autoStartApps, 100, true);
-  console.info(`Succeeded in adding auto start applications and set disllowModify.`);
+  console.info('Succeeded in adding auto start applications and set disllowModify.');
 } catch(err) {
   console.error(`Failed to add auto start applications and set disallowModify. Code: ${err.code}, message: ${err.message}`);
 }
