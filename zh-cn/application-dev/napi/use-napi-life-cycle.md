@@ -272,9 +272,9 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createReference: () => Object | void;
-export const useReference: () => Object | void;
-export const deleteReference: () => string | void;
+export const createReference: () => Object | undefined;
+export const useReference: () => Object | undefined;
+export const deleteReference: () => string | undefined;
 ```
 
 ArkTS侧示例代码

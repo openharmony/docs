@@ -102,7 +102,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | void;
+export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | undefined;
 ```
 
 ArkTS侧示例代码

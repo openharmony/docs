@@ -121,7 +121,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiEnvCleanUpHook: () => Object | void;
+export const napiEnvCleanUpHook: () => Object | undefined;
 ```
 
 ArkTS侧示例代码
@@ -264,7 +264,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libuv.so)
 
 ```ts
 // index.d.ts
-export const napiAsyncCleanUpHook: () => boolean | void;
+export const napiAsyncCleanUpHook: () => boolean | undefined;
 ```
 
 ArkTS侧示例代码

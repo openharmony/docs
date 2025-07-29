@@ -386,7 +386,7 @@ static napi_value ThrowRangeError(napi_env env, napi_callback_info info)
 ```ts
 // index.d.ts
 export const throwRangeErrorMessage: () => void;
-export const throwRangeError: (num: number) => number | void;
+export const throwRangeError: (num: number) => number | undefined;
 ```
 
 ArkTS侧示例代码
@@ -482,7 +482,7 @@ static napi_value GetAndClearLastException(napi_env env, napi_callback_info info
 
 ```ts
 // index.d.ts
-export const getAndClearLastException: () => Error | void;
+export const getAndClearLastException: () => Error | undefined;
 ```
 
 ArkTS侧示例代码
@@ -533,7 +533,7 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isExceptionPending: () => Object | void;
+export const isExceptionPending: () => Object | undefined;
 ```
 
 ArkTS侧示例代码

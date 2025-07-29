@@ -317,7 +317,7 @@ typedef struct {
 void FinalizeCallback(napi_env env, void *finalize_data, void *finalize_hint)
 {
     // 获取终结时的数据
-    BufferData *bufferData = static_cast<BufferData *>(finalize_data);
+    BufferData *bufferData = static_cast<BufferData *>(finalize_hint);
 
     // 执行清理操作，比如释放资源
     delete[] bufferData->data;
@@ -355,7 +355,7 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createExternalArraybuffer: () => ArrayBuffer | void;
+export const createExternalArraybuffer: () => ArrayBuffer | undefined;
 ```
 
 ArkTS侧示例代码
