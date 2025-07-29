@@ -206,12 +206,6 @@ const transform: Matrix4 = [
 
 图形绘制上下文，提供绘制所需的画布宽度和高度。
 
-| 名称 | 类型   | 只读 | 可选 | 说明              |
-| ---- | ------ | ---- | ---- | ----------------- |
-| size | [Size](#size) | 是  | 否  | 画布的宽度和高度。 |
-| sizeInPixel | [Size](#size) | 是  | 否  | 画布的宽度和高度，以px为单位。 |
-| canvas | [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)| 是  | 否  | 用于绘制的画布。 |
-
 ### size
 
 get size(): Size
