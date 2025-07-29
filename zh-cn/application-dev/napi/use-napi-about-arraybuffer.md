@@ -239,6 +239,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -259,7 +260,7 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
       // 确保安全后才能使用data进行操作
     } else {
       // 处理内存分配失败的情况
-      napi_throw_error(env, nullptr, "Failed to allocate memory for ArrayBuffer");
+      OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for ArrayBuffer");
       return nullptr;
     }
     // 返回ArrayBuffer

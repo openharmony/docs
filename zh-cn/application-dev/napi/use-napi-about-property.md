@@ -407,6 +407,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 {
@@ -420,7 +421,7 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     size_t keyLength;
     napi_status status = napi_get_value_string_utf8(env, str, strKey, strLength, &keyLength);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     // 创建一个新对象
@@ -431,9 +432,9 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     napi_value numValue;
     napi_create_int32(env, value, &numValue);
     // 将整数值与指定属性名关联
-    napi_status status2 = napi_set_named_property(env, newObj, strKey, numValue);
-    if (status2 != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_set_named_property failed");
+    status = napi_set_named_property(env, newObj, strKey, numValue);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_set_named_property failed");
         return nullptr;
     }
     // 返回设置了命名属性的对象newObj
