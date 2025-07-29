@@ -1168,7 +1168,7 @@ if (controller !== undefined) {
 
 ## sendCustomData<sup>20+</sup>
 
-sendCustomData(data: Record\<string, Object>): Promise\<void>;
+sendCustomData(data: Record\<string, Object>): Promise\<void>
 
 发送私有数据到远端设备。使用Promise异步回调。
 
