@@ -284,9 +284,9 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createReference: () => Object | void;
-export const useReference: () => Object | void;
-export const deleteReference: () => string | void;
+export const createReference: () => Object | undefined;
+export const useReference: () => Object | undefined;
+export const deleteReference: () => string | undefined;
 ```
 <!-- @[napi_create_delete_reference_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
