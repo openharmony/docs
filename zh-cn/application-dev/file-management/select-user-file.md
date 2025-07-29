@@ -43,7 +43,7 @@
    documentSelectOptions.multiUriArray = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
    //开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。
    documentSelectOptions.mergeMode = picker.MergeTypeMode.DEFAULT;
-   //是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在Picker界面可以选择对文件进行加密。
+   //是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在Picker界面可以选择对文件进行加密。（说明：从API version 19开始支持该参数）。
    documentSelectOptions.isEncryptionSupported = false;
    ```
 
