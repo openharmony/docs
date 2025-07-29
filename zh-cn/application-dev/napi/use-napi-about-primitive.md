@@ -234,6 +234,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetBoolean(napi_env env, napi_callback_info info)
 {
@@ -243,7 +244,7 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     napi_valuetype data, value;
     napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_cb_info failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
         return nullptr;
     }
     // 判断两个参数类型值
@@ -254,7 +255,7 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     // 判断两个类型值是否相等,获取结果的布尔值
     status = napi_get_boolean(env, data == value, &returnValue);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_boolean failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
         return nullptr;
     }
     // 返回结果
@@ -292,6 +293,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetValueBool(napi_env env, napi_callback_info info)
 {
@@ -306,9 +308,9 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
         return nullptr;
     }
     napi_value boolNapi = nullptr;
-    napi_status status2 = napi_get_boolean(env, bool_c, &boolNapi);
-    if (status2 != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_boolean failed");
+    status = napi_get_boolean(env, bool_c, &boolNapi);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
         return nullptr;
     }
     return boolNapi;

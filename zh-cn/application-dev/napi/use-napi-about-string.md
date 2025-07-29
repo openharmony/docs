@@ -38,6 +38,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include <cstring>
 
 static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info) 
@@ -51,7 +52,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     napi_status status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &length);
     // 传入一个非字符串 napi_get_value_string_utf8接口会返回napi_string_expected
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     char* buf = new char[length + 1];
@@ -61,7 +62,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
         if (buf) {
             delete[] buf;
         }
-        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     napi_value result = nullptr;

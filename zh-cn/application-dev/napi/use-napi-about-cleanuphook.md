@@ -75,27 +75,27 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 创建外部缓冲区对象，并指定清理回调函数
     // 注意：wrapper->data 的内存释放依赖于 ExternalFinalize 回调，只有 buffer 被正确持有并最终被 GC 回收时，ExternalFinalize 才会被调用，否则会导致内存泄漏。
     napi_value buffer = nullptr;
-    napi_status bufferStatus = napi_create_external_buffer(env, wrapper->size, (void *)wrapper->data, ExternalFinalize, wrapper, &buffer);
-    if (bufferStatus != napi_ok) {
+    napi_status status = napi_create_external_buffer(env, wrapper->size, (void *)wrapper->data, ExternalFinalize, wrapper, &buffer);
+    if (status != napi_ok) {
         // 创建失败时需主动释放内存，避免泄漏
         free(wrapper->data);
         free(wrapper);
-        napi_throw_error(env, nullptr, "napi_create_external_buffer failed");
+        OH_LOG_ERROR(LOG_APP, "napi_create_external_buffer failed");
         return nullptr;
     }
     // 静态变量作为钩子函数参数
     static int hookArg = 42;
     static int hookParameter = 1;
     // 注册环境清理钩子函数
-    napi_status status = napi_add_env_cleanup_hook(env, Cleanup, &hookArg);
+    status = napi_add_env_cleanup_hook(env, Cleanup, &hookArg);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
+        OH_LOG_ERROR(LOG_APP, "Test Node-API napi_add_env_cleanup_hook failed.");
         return nullptr;
     }
     // 注册环境清理钩子函数，此处不移除环境清理钩子，为了在Java环境被销毁时，这个钩子函数被调用，用来模拟执行一些清理操作，例如释放资源、关闭文件等。
     status = napi_add_env_cleanup_hook(env, Cleanup, &hookParameter);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
+        OH_LOG_ERROR(LOG_APP, "Test Node-API napi_add_env_cleanup_hook failed.");
         return nullptr;
     }
     // 立即移除环境清理钩子函数，确保不会在后续环境清理时被调用
@@ -194,7 +194,7 @@ static void AsyncWork(uv_async_s *async)
     // 执行一些清理工作,比如释放动态分配的内存
     AsyncContent *asyncData = reinterpret_cast<AsyncContent *>(async->data);
     
-    if (asyncData != nullptr || asyncData->testData != nullptr) {
+    if (asyncData != nullptr && asyncData->testData != nullptr) {
         free(asyncData->testData);
         asyncData->testData = nullptr;
     }

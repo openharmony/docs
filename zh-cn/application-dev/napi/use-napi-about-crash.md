@@ -322,8 +322,7 @@ napi_call_threadsafe_function、napi_release_threadsafe_function示例代码
                     [](napi_env, void *, void *) {}, nullptr,                           \
                     [](napi_env, napi_value, void *, void *) {}, &tsfn);                \
                 if (status != napi_ok) {                                                \
-                    napi_throw_error(env, nullptr,                                      \
-                    "napi_create_threadsafe_function failed");                          \
+                    OH_INFO_ERROR(LOG_APP,"napi_create_threadsafe_function failed");    \
                     return nullptr;                                                     \
                 }                                                                       \
                 if (!localEnv.RecreateSame()) {                                         \
