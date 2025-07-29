@@ -42,14 +42,20 @@ entry.add(2, 3);
 
 ### 转为具名变量导出再导入
 ```ts
+// libentry.so对应的index.d.ts
+export const add: (a: number, b: number) => number;
+```
+```ts
 // test1.ets
-import { hilog } from '@kit.PerformanceAnalysisKit';
-export { hilog }
+// 将libentry.so的API封装后导出
+import { add } from 'libentry.so';
+export { add };
 ```
 ```ts
 // test2.ets
-import { hilog } from './test1'
-hilog.info(0x000, 'testTag', '%{public}s', 'test');
+// 从中间模块导入API
+import { add } from './test1';
+const result = add(2, 3);
 ```
 
 ### 转为命名空间导出再导入
