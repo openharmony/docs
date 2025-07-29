@@ -4812,13 +4812,11 @@ struct LineBreakStrategyExample {
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
-import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
 struct Index {
   stringLength: number = 0;
-  imagePixelMap: image.PixelMap | undefined = undefined;
   @State selection: string = "";
   @State content: string = "";
   @State range: string = "";
@@ -4863,26 +4861,6 @@ struct Index {
       this.rangeAfter = '[ ' + rangeAfter.start + ' , ' + rangeAfter.end + ' ]';
     }
   }
-
-  async aboutToAppear() {
-    console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
-  }
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release()
-    return createPixelMap;
-  }
-
 
   build() {
     Column({space:6}) {
@@ -4936,13 +4914,13 @@ struct Index {
           Button("插入图片")
             .stateEffect(true)
             .onClick(() => {
-            if (this.imagePixelMap !== undefined) {
               let imageStyledString = new MutableStyledString(new ImageAttachment({
-                value: this.imagePixelMap,
+                resourceValue: $r('app.media.app_icon'),
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
-                objectFit: ImageFit.Contain
+                objectFit: ImageFit.Contain,
+                syncLoad: true
               }));
               // 获取组件展示的属性字符串
               this.richEditorStyledString = this.controller.getStyledString();
@@ -4950,7 +4928,6 @@ struct Index {
               // 使插入图片后的属性字符串展示在组件上
               this.controller.setStyledString(this.richEditorStyledString)
               this.controller.setCaretOffset(this.richEditorStyledString.length)
-            }
           })
           Button("插入文本").onClick(() => {
             // 获取组件展示的属性字符串
