@@ -137,7 +137,7 @@ module.json5配置文件包含以下标签。
 | extractNativeLibs | 标识应用安装时，libs库是否解压到应用安装目录。当compressNativeLibs和extractNativeLibs都配置为false时，应用以不解压libs库的方式进行安装；其他场景，应用以解压libs库的方式进行安装。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 布尔值 | 该标签可缺省，缺省值为true。 |
 | libIsolation | 在libs目录下是否生成模块名称目录存储so，用于区分同一应用中不同HAP的.so文件，以防止.so文件冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [fileContextMenu](#filecontextmenu标签) | 标识当前HAP的右键菜单配置项，是一个profile文件资源。取值为长度不超过255字节的字符串。<br/>**说明：**<br/>仅在PC/2in1设备上生效。<br/>仅允许在entry类型模块中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，每个字符串取值不超过128字节。<br/>**说明：**<br/>从API version 21开始，最多允许配置200个URL scheme。API version 20及之前的版本，最多允许配置50个URL scheme。  | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module启动框架配置路径，支持在entry类型的Module中配置。<br>从API version 18开始，新增支持在HSP、HAR中配置。<br>从API version 20开始，新增支持在feature类型的Module中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
