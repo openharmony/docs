@@ -45,9 +45,7 @@
 
 如果开发者有其他图像分类的预训练模型，请参考[MindSpore Lite 模型转换](mindspore-lite-converter-guidelines.md)介绍，将原始模型转换成.ms格式。
 
-### 编写代码
-
-#### 图像输入和预处理
+### 编写图像输入和预处理代码
 
 1. 此处以获取相册图片为例，调用[@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) 实现相册图片文件的选择。
 
@@ -185,7 +183,7 @@
    }
    ```
 
-#### 编写推理代码
+### 编写推理代码
 
 1. 工程默认设备定义的能力集可能不包含MindSporeLite。需在DevEco Studio工程的entry/src/main目录下，手动创建syscap.json文件，内容如下：
 
@@ -246,7 +244,7 @@
    }
    ```
 
-#### 进行推理并输出结果
+### 进行推理并输出结果
 
 加载模型文件，调用推理函数，对相册选择的图片进行推理，并对推理结果进行处理。
 
