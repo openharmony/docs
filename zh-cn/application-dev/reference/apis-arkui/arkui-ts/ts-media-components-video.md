@@ -73,7 +73,7 @@ Video(value: VideoOptions)
 
 muted(value: boolean)
 
-设置视频是否静音。
+设置视频是否静音，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ muted(value: boolean)
 
 autoPlay(value: boolean)
 
-设置视频是否自动播放。
+设置视频是否自动播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +109,7 @@ autoPlay(value: boolean)
 
 controls(value: boolean)
 
-设置控制视频播放的控制栏是否显示。
+设置控制视频播放的控制栏是否显示，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +129,7 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频的显示模式。
+设置视频的显示模式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ objectFit(value: ImageFit)
 
 loop(value: boolean)
 
-设置是否单个视频循环播放。
+设置是否单个视频循环播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -161,7 +161,7 @@ loop(value: boolean)
 
 enableAnalyzer(enable: boolean)
 
-设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时[overlay](ts-universal-attributes-overlay.md)中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。
 
@@ -184,7 +184,7 @@ enableAnalyzer(enable: boolean)
 
 analyzerConfig(config: ImageAnalyzerConfig)
 
-设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
+设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -198,7 +198,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 enableShortcutKey(enabled: boolean)
 
-设置组件支持快捷键响应。
+设置组件支持快捷键响应，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
@@ -218,7 +218,7 @@ enableShortcutKey(enabled: boolean)
 
 onStart(event:&nbsp;VoidCallback)
 
-播放时触发该事件。
+播放时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -234,7 +234,7 @@ onStart(event:&nbsp;VoidCallback)
 
 onPause(event:&nbsp;VoidCallback)
 
-暂停时触发该事件。
+暂停时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -250,7 +250,7 @@ onPause(event:&nbsp;VoidCallback)
 
 onFinish(event:&nbsp;VoidCallback)
 
-播放结束时触发该事件。
+播放结束时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -266,7 +266,7 @@ onFinish(event:&nbsp;VoidCallback)
 
 onError(event: () => void)
 
-播放失败时触发该事件。
+播放失败时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -276,7 +276,7 @@ onError(event: () => void)
 
 onStop(event: Callback&lt;void&gt;)
 
-播放停止时触发该事件(当stop()方法被调用后触发)。
+播放停止时触发该事件(当stop()方法被调用后触发)，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -286,7 +286,7 @@ onStop(event: Callback&lt;void&gt;)
 
 onPrepared(callback: Callback\<PreparedInfo>)
 
-视频准备完成时触发该事件。
+视频准备完成时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -302,7 +302,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 onSeeking(callback: Callback\<PlaybackInfo>)
 
-操作进度条过程时上报时间信息。
+操作进度条过程时上报时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -318,7 +318,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 onSeeked(callback: Callback\<PlaybackInfo>)
 
-操作进度条完成后，上报播放时间信息。
+操作进度条完成后，上报播放时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -334,7 +334,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 onUpdate(callback: Callback\<PlaybackInfo>)
 
-播放进度变化时触发该事件。
+播放进度变化时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -350,7 +350,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
-在全屏播放与非全屏播放状态之间切换时触发该事件。
+在全屏播放与非全屏播放状态之间切换时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
