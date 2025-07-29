@@ -77,10 +77,10 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填 |说明                                                       |
-| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置气泡信息文本颜色。                                       |
-| font      | [Font](ts-types.md#font)                   | 否   | 设置气泡信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
+| 名称      | 类型                                       | 只读 | 可选 | 说明                                                         |
+| --------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 设置气泡信息文本颜色。                                       |
+| font      | [Font](ts-types.md#font)                   | 否   | 是   | 设置气泡信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
 
 ## DismissPopupAction<sup>12+</sup>类型说明
 
@@ -90,10 +90,10 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                      | 必填 | 说明                                                       |
-| ------- | ----------------------------------------- | ---- | --------------------------------------------------------------- |
-| dismiss | function                                  | 是   | Popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截Popup消失的事件原因。                       |
+| 名称    | 类型                                      | 只读 | 可选 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| dismiss | function                                  | 否   | 否   | Popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason  | [DismissReason](#dismissreason12枚举说明) | 否   | 否   | 关闭原因，返回本次拦截Popup消失的事件原因。                  |
 
 ## DismissReason<sup>12+</sup>枚举说明
 
@@ -185,9 +185,9 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型    | 必填 | 说明                                                         |
-| --------- | ------- | ---- | ------------------------------------------------------------ |
-| isVisible | boolean | 是   | 气泡的显示状态。返回true时，表示气泡从关闭到打开，返回false时，表示气泡从打开到关闭。 |
+| 名称      | 类型    | 只读 | 可选 | 说明                                                         |
+| --------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| isVisible | boolean | 否   | 否   | 气泡的显示状态。返回true时，表示气泡从关闭到打开，返回false时，表示气泡从打开到关闭。 |
 
 ## PopupStateChangeCallback<sup>18+</sup>类型说明
 
@@ -213,15 +213,15 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填 | 说明                                                         |
-| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置遮罩层颜色。                                       |
+| 名称      | 类型                                       | 只读 | 可选 | 说明                                                         |
+| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否  | 否  | 设置遮罩层颜色。                                       |
 
 ## 示例
 
 ### 示例1（弹出不同类型的气泡）
 
-该示例为bindPopup通过配置Popup弹出PopupOptions、CustomPopupOptions类型的气泡。
+从API version 15开始，该示例通过配置[PopupOptions](#popupoptions类型说明)或[CustomPopupOptions](#custompopupoptions8类型说明)中的keyboardAvoidMode属性，设置气泡是否避让软键盘。
 
 ```ts
 // xxx.ets
@@ -234,6 +234,7 @@ struct PopupExample {
   // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
+      // icon仅作示例，请替换为实际使用的图片。
       Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
@@ -248,10 +249,9 @@ struct PopupExample {
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
-          placementOnTop: true,
+          placement: Placement.Top,
           showInSubWindow:false,
-          // 设置气泡避让软键盘
-          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 设置气泡避让软键盘
           primaryButton: {
             value: 'confirm',
             action: () => {
@@ -288,8 +288,7 @@ struct PopupExample {
           mask: {color:'#33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
-          // 设置气泡避让软键盘
-          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 设置气泡避让软键盘
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
@@ -307,7 +306,7 @@ struct PopupExample {
 
 ### 示例2（设置气泡的文本样式）
 
-该示例为bindPopup通过配置messageOptions弹出自定义文本样式的气泡。
+从API version 10开始，该示例为bindPopup通过配置[PopupOptions](#popupoptions类型说明)中的messageOptions弹出自定义文本样式的气泡。
 
 ```ts
 // xxx.ets
@@ -354,7 +353,7 @@ struct PopupExample {
 
 ### 示例3（设置气泡的样式）
 
-该示例为bindPopup通过配置arrowHeight、arrowWidth、radius、shadow、popupColor，实现气泡箭头以及气泡本身的样式。
+从API version 11开始，该示例为bindPopup通过配置[PopupOptions](#popupoptions类型说明)中的arrowHeight、arrowWidth、radius、shadow、popupColor属性，实现气泡箭头以及气泡本身的样式。
 
 ```ts
 // xxx.ets
@@ -402,7 +401,7 @@ struct PopupExample {
 
 ### 示例4（设置气泡的动效）
 
-该示例为bindPopup通过配置transition，实现气泡的显示和退出动效。
+从API version 12开始，该示例为bindPopup通过配置[PopupOptions](#popupoptions类型说明)或[CustomPopupOptions](#custompopupoptions8类型说明)中的transition属性，实现气泡的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -413,7 +412,8 @@ struct PopupExample {
   @State customPopup: boolean = false;
 
   // Popup构造器定义弹框内容
-  @Builder popupBuilder() {
+  @Builder
+  popupBuilder() {
     Row() {
       Text('Custom Popup with transitionEffect').fontSize(10)
     }.height(50).padding(5)
@@ -428,7 +428,7 @@ struct PopupExample {
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
-          placementOnTop: true,
+          placement: Placement.Top,
           showInSubWindow: false,
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
@@ -437,7 +437,7 @@ struct PopupExample {
             }
           },
           // 设置气泡显示动效为透明度动效与平移动效的组合效果，无退出动效
-          transition:TransitionEffect.asymmetric(
+          transition: TransitionEffect.asymmetric(
             TransitionEffect.OPACITY.animation({ duration: 1000, curve: Curve.Ease }).combine(
               TransitionEffect.translate({ x: 50, y: 50 })),
             TransitionEffect.IDENTITY)
@@ -459,7 +459,7 @@ struct PopupExample {
             }
           },
           // 设置气泡显示动效与退出动效为缩放动效
-          transition:TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
+          transition: TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
         })
         .position({ x: 80, y: 300 })
     }.width('100%').padding({ top: 5 })
@@ -471,7 +471,7 @@ struct PopupExample {
 
 ### 示例5（为气泡添加事件）
 
-该示例为bindPopup通过配置onWillDismiss，实现当气泡退出时，拦截退出事件并执行回调函数。
+从API version 11开始，该示例为bindPopup通过配置[PopupOptions](#popupoptions类型说明)中的onWillDismiss属性，实现当气泡退出时，拦截退出事件并执行回调函数。
 
 ```ts
 // xxx.ets
@@ -522,7 +522,7 @@ struct PopupExample {
 
 ### 示例6（为气泡拦截退出事件）
 
-该示例通过配置onWillDismiss的boolean类型为false时，拦截气泡的退出事件。
+该示例通过将[PopupOptions](#popupoptions类型说明)中onWillDismiss（从API version 12开始支持）属性设置为false，实现拦截气泡的退出事件。同时，配置[PopupOptions](#popupoptions类型说明)中的followTransformOfTarget（从API version 13开始支持）属性，可以设置宿主变换位置时，气泡是否跟随显示到相应位置。
 
 ```ts
 // xxx.ets
