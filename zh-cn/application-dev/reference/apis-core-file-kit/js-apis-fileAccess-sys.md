@@ -2394,7 +2394,7 @@ let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
 let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
   if (fileAccessHelper != undefined) {
-    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
       if (err) {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
