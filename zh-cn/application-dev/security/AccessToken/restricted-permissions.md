@@ -723,3 +723,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
+
+## ohos.permission.ACCESS_NET_TRACE_INFO
+
+允许应用使用网络探测和获取TraceRoute信息的维测能力，用于检测网络时延较大的可能故障原因。
+
+可申请此权限的特殊场景与功能： 针对网络时延敏感的音视频通话和会议、游戏、在线教育、直播等网络应用场景，提供网络维测能力，用于检测网络链路质量或故障。
+
+<!--RP49--><!--RP49End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：General
+
+**起始版本**：20
