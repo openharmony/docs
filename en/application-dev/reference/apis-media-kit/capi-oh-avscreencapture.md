@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVScreenCapture struct defines a screen capture instance used to obtain original video and audio streams.
+The OH_AVScreenCapture struct allows you to obtain original video and audio streams.
 
 **Since**: 10
 

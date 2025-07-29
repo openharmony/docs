@@ -638,10 +638,12 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
-class bottom {
-  bottom:number = 50;
+
+class Bottom {
+  bottom: number = 50;
 }
-let bott:bottom = new bottom();
+
+let bott: Bottom = new Bottom();
 @Entry
 @Component
 struct TextPickerExample {
@@ -733,7 +735,7 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1;
+  private select: number = 0;
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
@@ -771,7 +773,7 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1;
+  private select: number = 0;
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {

@@ -14,7 +14,7 @@ Screen capture automatically stops upon system user switching, and **OH_SCREEN_C
 
 This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md).
 
-If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
+If microphone data collection is configured, configure the permission ohos.permission.MICROPHONE and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
@@ -47,7 +47,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
 3. Set screen capture parameters.
 
-    After creating the **capture** instance, you can set the parameters required for screen capture.
+    After creating the capture instance, you can set the parameters required for screen capture.
 
     By default, internal capture is used when captured files need to be stored. The microphone, which can be dynamically turned on or off, can be used for both internal capture and external capture.
 
@@ -122,7 +122,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
@@ -237,7 +237,7 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
     // Call StopScreenCapture to stop screen capture.
-    
+
     // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);

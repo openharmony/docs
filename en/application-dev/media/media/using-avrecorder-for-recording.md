@@ -81,7 +81,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
-     audioBitrate: 100000, // Audio bit rate.
+     audioBitrate: 112000, // Audio bit rate.
      audioChannels: 2, // Number of audio channels.
      audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
      audioSampleRate: 48000, // Audio sampling rate.
@@ -160,7 +160,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 export class AudioRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
-    audioBitrate: 100000, // Audio bit rate.
+    audioBitrate: 112000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
     audioSampleRate: 48000, // Audio sampling rate.

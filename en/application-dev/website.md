@@ -240,6 +240,7 @@
       - [Application Data Vectorization](database/aip-data-intelligence-embedding.md)
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF Development (C/C++)](database/native-unified-data-management-framework-guidelines.md)
+      - [ArkData Terms](database/data-terminology.md)
     - ArkTS<!--arkts-->
       - [Introduction to ArkTS](arkts-utils/arkts-overview.md)
       - ArkTS Common Library<!--arkts-utils-->
@@ -453,7 +454,6 @@
         - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
           - [Component Navigation and Page Routing Overview](ui/arkts-navigation-introduction.md)
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
-          - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
           - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
@@ -490,6 +490,7 @@
           - [Managing Overlays (OverlayManager)](ui/arkts-create-overlaymanager.md)
         - Using Graphics<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
+          - [Clipping Shapes (clipShape)](ui/arkts-clip-shape.md)
           - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
         - Using Animation<!--arkts-use-animation-->
           - [Animation Overview](ui/arkts-animation.md)
@@ -552,6 +553,7 @@
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
+        - [Inspecting Page Layouts](ui/arkts-inspector-overview.md) 
         - Using Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
@@ -566,6 +568,7 @@
             - [Listening for Component Events](ui/ndk-listen-to-component-events.md)
             - [Binding Gesture Events](ui/ndk-bind-gesture-events.md)
             - [Drag Event](ui/ndk-drag-event.md)
+            - [Listening for Component Layout and Drawing Events](ui/ndk-inspector-component-observer.md)
           - [Using Animations](ui/ndk-use-animation.md)
           - Building a Layout<!--arkts-build-layout-ndk-->
             - [Implementing a List Layout](ui/ndk-loading-long-list.md)
@@ -1260,6 +1263,7 @@
       - Input Kit<!--input-kit-->
         - [Introduction to Input Kit](device/input/input-overview.md)
         - [Input Device Development](device/input/inputdevice-guidelines.md)
+        - [Key Press Event Listening Development](device/input/keypressed-guidelines.md)
         - [Mouse Pointer Development](device/input/pointerstyle-guidelines.md)
         <!--Del-->
         - [Input Monitor Development](device/input/inputmonitor-guidelines.md)
@@ -1949,22 +1953,22 @@
           <!--DelEnd-->
         - Dependent Elements and Definitions<!--ability-api-interface-depend-->
           - ability<!--ability-->
-            - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
-            - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
-            - [dataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
-            - [dataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
-            - [dataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
-            - [startAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
+            - [AbilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
+            - [ConnectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
+            - [DataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
+            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
+            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
+            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
             - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
           - app<!--app-->
-            - [appVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
-            - [context](reference/apis-ability-kit/js-apis-inner-app-context.md)
-            - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
+            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
+            - [Context](reference/apis-ability-kit/js-apis-inner-app-context.md)
+            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application<!--ability-arkts-application-->
-            - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
+            - [AbilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
-            - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
+            - [AbilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
             - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
             - [ApplicationContext](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
@@ -3280,24 +3284,32 @@
             - [@system.cipher (Cipher Algorithm)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C APIs<!--crypto-architecture-c-->
           - Modules<!--crypto-architecture-module-->
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)	
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)	
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)	
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)	
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)	
-            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
-
+            - [CryptoArchitectureKit](reference/apis-crypto-architecture-kit/capi-cryptoarchitecturekit.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi.md)
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/capi-cryptocommonapi.md)
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/capi-cryptodigestapi.md)
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi.md)
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi.md)
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi.md)
           - Header Files<!--crypto-architecture-headerfile-->
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)	
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)	
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)	
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)	
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)	
-            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
-
+            - [crypto_architecture_kit.h](reference/apis-crypto-architecture-kit/capi-crypto-architecture-kit-h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md)
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/capi-crypto-common-h.md)
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md)
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md)
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md)
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md)
           - Structs<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
-
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)
+            - [OH_CryptoKeyPair](reference/apis-crypto-architecture-kit/capi-oh-cryptokeypair.md)
+            - [OH_CryptoPubKey](reference/apis-crypto-architecture-kit/capi-oh-cryptopubkey.md)
+            - [OH_CryptoAsymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptoasymkeygenerator.md)
+            - [OH_CryptoDigest](reference/apis-crypto-architecture-kit/capi-oh-cryptodigest.md)
+            - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-oh-cryptoverify.md)
+            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipher.md)
+            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipherparams.md)
+            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkey.md)
+            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkeygenerator.md)
         - Error Codes<!--crypto-architecture-arkts-errcode-->
           - [Crypto Framework Error Codes](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit<!--data-protection-api-->
@@ -3753,6 +3765,7 @@
           - [@ohos.multimodalInput.inputEventClient (Input Event Injection) (System API)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (Input Monitor) (System API)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
           - [@ohos.multimodalInput.gestureEvent (Gesture Event) (System APIs)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
+          - [@ohos.multimodalInput.touchEvent (Touch Event) (System API)](reference/apis-input-kit/js-apis-touchevent-sys.md)
           - APIs No Longer Maintained<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (System API)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->

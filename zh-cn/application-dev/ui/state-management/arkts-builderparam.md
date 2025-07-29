@@ -777,7 +777,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       // 由于未对子组件ChildBuilder进行赋值，此处无论是编译还是编辑，均会报错。
@@ -810,7 +810,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       ChildPage({ ChildBuilder: globalBuilder })
@@ -844,7 +844,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   @State message: string = "";
 
   build() {
@@ -879,7 +879,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       ChildPage({ ChildBuilder: globalBuilder })

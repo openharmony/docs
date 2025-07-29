@@ -43,7 +43,7 @@ Line(options?: LineOptions)
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | width | string \| number | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp |
 
 ## 属性
 

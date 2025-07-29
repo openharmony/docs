@@ -43,8 +43,8 @@ Path(options?: PathOptions)
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | width<sup>7+</sup> | string \| number | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| height<sup>7+</sup> | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| [commands<sup>7+</sup>](ts-drawing-components-path.md#commands) | string  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：空字符串<br/>异常值按照默认值处理。 |
+| height<sup>7+</sup> | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp |
+| [commands<sup>7+</sup>](ts-drawing-components-path.md#commands) | string  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽高处理。默认值：空字符串<br/>异常值按照默认值处理。 |
 
 ## 属性
 

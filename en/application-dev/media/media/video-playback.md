@@ -8,7 +8,7 @@ The system provides two solutions for video playback development:
 
 In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file.
 
-The full playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
+The full playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** property of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 **Figure 1** Playback state transition 
 
@@ -16,7 +16,7 @@ The full playback process includes creating an AVPlayer instance, setting the me
 
 For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
-## Developer's Tips
+## Development Tips
 
 This topic describes only how to implement the playback of a media asset. In practice, background playback and playback conflicts may be involved. You can refer to the following description to handle the situation based on your service requirements.
 
@@ -34,7 +34,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
    | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.|
+   | stateChange | Mandatory; used to listen for changes of the **state** property of the AVPlayer.|
    | error | Mandatory; used to listen for AVPlayer errors.|
    | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.|
    | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.|
@@ -46,7 +46,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    | bufferingUpdate | Used to listen for network playback buffer information.|
    | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.<br>This event is reported when the AVPlayer enters the playing state and the first frame of the video image is rendered to the display. Generally, the application can use this event to remove the video cover, achieving smooth connection between the cover and the video image.|
    | videoSizeChange | Used to listen for the width and height of video playback and adjust the window size and ratio.|
-   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
+   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** property.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
 
 3. Set the media asset URL. The AVPlayer enters the **initialized** state.
    > **NOTE**
@@ -72,7 +72,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 8. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Development Example
+## Sample Code
 
 
 ```ts
@@ -98,13 +98,13 @@ export class AVPlayerDemo {
     this.surfaceID = surfaceID;
   }
 
-  // Set AVPlayer callback functions.
+  // Set the AVPlayer callback.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // startRenderFrame: callback function invoked when the first frame starts rendering.
     avPlayer.on('startRenderFrame', () => {
       console.info(`AVPlayer start render frame`);
     });
-    // Callback function for the seek operation.
+    // Callback for the seek operation.
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     });
@@ -170,7 +170,7 @@ export class AVPlayerDemo {
   async avPlayerUrlDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
+    // Create a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     let fdPath = 'fd://';
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
@@ -180,7 +180,7 @@ export class AVPlayerDemo {
       // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
       let file = await fs.open(path);
       fdPath = fdPath + '' + file.fd;
-      this.isSeek = true; // The seek operation is supported.
+      this.isSeek = true; // Enable the seek operation.
       avPlayer.url = fdPath;
     }
   }
@@ -189,7 +189,7 @@ export class AVPlayerDemo {
   async avPlayerFdSrcDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
+    // Create a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
@@ -197,7 +197,7 @@ export class AVPlayerDemo {
       let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
       let avFileDescriptor: media.AVFileDescriptor =
         { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-      this.isSeek = true; // Ö§³Öseek²Ù×÷¡£
+      this.isSeek = true; // Enable the seek operation.
       // Assign a value to fdSrc to trigger the reporting of the initialized state.
       avPlayer.fdSrc = avFileDescriptor;
     }
@@ -207,7 +207,7 @@ export class AVPlayerDemo {
   async avPlayerDataSrcSeekDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
+    // Create a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
     let src: media.AVDataSrcDescriptor = {
@@ -234,7 +234,7 @@ export class AVPlayerDemo {
       // Obtain the size of the file to be played.
       this.fileSize = fs.statSync(path).size;
       src.fileSize = this.fileSize;
-      this.isSeek = true; // The seek operation is supported.
+      this.isSeek = true; // Enable the seek operation.
       avPlayer.dataSrc = src;
     }
   }
@@ -243,7 +243,7 @@ export class AVPlayerDemo {
   async avPlayerDataSrcNoSeekDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
+    // Create a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
@@ -275,7 +275,7 @@ export class AVPlayerDemo {
   async avPlayerLiveDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
+    // Create a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.

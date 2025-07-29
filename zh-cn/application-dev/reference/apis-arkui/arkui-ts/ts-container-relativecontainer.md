@@ -7,7 +7,8 @@
 >  **说明：**
 >
 > * 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> * 从API Version 11开始，在RelativeContainer组件中，[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)设置"auto"表示自适应子组件。当width设置"auto"时，如果水平方向上子组件以容器作为锚点，则"auto"不生效，垂直方向上同理。
+> * 在RelativeContainer组件中，不设置[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)时，对应属性布局表现与设置为100%相同。
+> * 从API version 11开始，在RelativeContainer组件中，[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)设置"auto"表示自适应子组件。当width设置"auto"时，如果水平方向上子组件以容器作为锚点，则"auto"不生效（即视为不设置width），垂直方向上同理。
 > * 相对布局容器内的子组件的[margin](ts-universal-attributes-size.md#margin)含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。
 
 ## 子组件

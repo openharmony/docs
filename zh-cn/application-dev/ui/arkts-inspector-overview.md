@@ -4,6 +4,8 @@ inspector用于检查页面布局，通过inspector双向定位功能帮助开�
 
 ArkUI获取当前显示页面中所有组件的信息，包括组件树的父子结构、尺寸、位置、样式、属性和状态。获取组件树信息后，生成并展示为Inspector组件树。DevEco Studio的使用具体可以参考<!--RP1-->[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)<!--RP1End-->。
 
+inspector针对UI组件的布局或绘制送显完成，还提供了注册与取消监听函数的C API接口，具体使用可以参考[监听组件布局和绘制送显事件](ndk-inspector-component-observer.md)。
+
 ## 使用约束
 
 1. 不支持动效类组件的控件树实时刷新功能。

@@ -900,7 +900,7 @@ struct ImageExample2 {
   }
 
   requestImageUrl(url: string) {
-    http.createHttp().request(url, (error: BusinessError, data: http.HttpResponse)=> {
+    http.createHttp().request(url, (error: BusinessError, data: http.HttpResponse) => {
       if (error) {
         console.error(`request image failed: url: ${url}, code: ${error.code}, message: ${error.message}`);
       } else {
@@ -921,8 +921,10 @@ struct ImageExample2 {
         imgSource.createPixelMap(options).then((pixelMap: PixelMap) => {
           console.error('image createPixelMap success');
           this.pixelMapImg = pixelMap;
+          imgSource.release();
+        }).catch(() => {
+          imgSource.release();
         })
-        imgSource.release()
       }
     })
   }
@@ -961,7 +963,7 @@ struct Index {
     try {
       // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。
       cacheDownload.download(this.src, options);
-      console.error(`successs to download the resource. `);
+      console.error(`success to download the resource. `);
     } catch (err) {
       console.error(`Failed to download the resource. err: ${JSON.stringify(err)}`);
     }
@@ -1198,7 +1200,7 @@ import { image } from '@kit.ImageKit';
 @Component
 struct ImageExample {
   pixelMaps: PixelMap[] = [];
-  options: AnimationOptions = { iterations: 1 };
+  @State options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
@@ -1728,14 +1730,18 @@ struct Index {
     // 获取资源管理器中的媒体资源
     let img = this.getUIContext().getHostContext()?.resourceManager.getMediaByNameSync(this.imgUrl);
     // 创建图片源并获取图片信息
-    let imageSource = image.createImageSource(img?.buffer.slice(0));
-    let imageInfo = imageSource.getImageInfoSync();
-    // 检查图片信息是否获取成功
-    if (imageInfo == undefined) {
-      console.error(TAG, 'Failed to obtain the image information.');
+    if (img && img.buffer) {
+      let imageSource = image.createImageSource(img?.buffer.slice(0));
+      let imageInfo = imageSource.getImageInfoSync();
+      // 检查图片信息是否获取成功
+      if (imageInfo == undefined) {
+        console.error(TAG, 'Failed to obtain the image information.');
+      } else {
+        // 成功获取到图片信息，打印HDR状态
+        console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+      }
     } else {
-      // 成功获取到图片信息，打印HDR状态
-      console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+      console.error(TAG, 'Failed to obtain the image buffer.');
     }
   }
 
@@ -1743,7 +1749,7 @@ struct Index {
     Column() {
       Image($r('app.media.img_1')).width('50%')
         .height('auto')
-        .margin({top:160})
+        .margin({ top: 160 })
         .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
       Button('图片动态提亮 0->1')
         .onClick(() => {
