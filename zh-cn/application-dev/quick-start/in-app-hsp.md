@@ -244,7 +244,7 @@ struct Index {
         })
 
         ListItem() {
-          Text($r('app.string.get_string_value'))
+          Text(ResManager.getDesc())
             .fontSize(18)
             .textAlign(TextAlign.Start)
             .width('100%')
@@ -257,18 +257,7 @@ struct Index {
         .height('84px')
         .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
         .margin({ top: 10, bottom: 10 })
-        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-        .onClick(() => {
-          // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-          this.getUIContext()?.getHostContext()?.resourceManager.getStringValue(ResManager.getDesc())
-            .then(value => {
-              console.log('getStringValue is ' + value);
-              this.message = 'getStringValue is ' + value;
-            })
-            .catch((err: BusinessError) => {
-              console.error('getStringValue promise error is ' + err);
-            });
-        })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 });
 
         ListItem() {
           Text($r('app.string.native_multi'))
