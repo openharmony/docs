@@ -39,7 +39,7 @@
     - [@ohos.app.ability.ShareExtensionAbility (分享详情页扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (startAbility的可选参数)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (带界面的应用组件)](js-apis-app-ability-uiAbility.md)
-    - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](js-apis-app-ability-uiExtensionAbility.md)
+    - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](js-apis-app-ability-uiExtensionAbility.md)
     - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
     - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](js-apis-app-ability-sendableContextManager.md)
     - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](js-apis-app-appstartup-startupConfig.md)
