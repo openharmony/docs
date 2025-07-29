@@ -1,4 +1,9 @@
 # 通过用户首选项实现数据持久化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--SE: @houpengtao1-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍

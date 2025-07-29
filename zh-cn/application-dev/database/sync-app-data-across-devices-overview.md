@@ -1,4 +1,9 @@
 # 同应用跨设备数据同步概述
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997; @dboy190-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍
