@@ -696,3 +696,19 @@ With this permission, the application can initiate operations such as multi-netw
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.ACCESS_NET_TRACE_INFO
+
+Allows an application to detect the network and obtain the TraceRoute information to determine the possible causes of high network latency. 
+
+Applicable scenarios and functionalities: Detecting network link quality or faults in network-based scenarios such as audio/video calls and conferences, games, online education, and live broadcasts that are sensitive to network latency.
+
+<!--RP49--><!--RP49End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: General
+
+**Valid since**: 20
