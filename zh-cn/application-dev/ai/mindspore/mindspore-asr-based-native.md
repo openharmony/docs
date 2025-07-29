@@ -78,7 +78,7 @@
              console.info('MS_LITE_LOG: AVPlayer state playing called.');
              if (this.isSeek) {
                console.info('MS_LITE_LOG: AVPlayer start to seek.');
-               avPlayer.seek(0); // seek到音频末尾。
+               avPlayer.seek(0); // 将播放位置移动到音频的开始。
              } else {
                // 当播放模式不支持seek操作时继续播放到结尾。
                console.info('MS_LITE_LOG: AVPlayer wait to play end.');
@@ -186,7 +186,7 @@
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -212,7 +212,7 @@
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -371,7 +371,8 @@
        BinBuffer logits{nullptr, 51865 * sizeof(float)};
        logits.first = malloc(logits.second);
        if (!logits.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
        void *logits_init_src = static_cast<char *>(logits_init.first) + 51865 * 3 * sizeof(float);
        memcpy(logits.first, logits_init_src, logits.second);
@@ -393,7 +394,8 @@
        slice.second = WHISPER_N_TEXT_STATE * sizeof(float);
        slice.first = malloc(slice.second);
        if (!slice.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
    
        auto out_n_layer_self_k_cache_new = out_n_layer_self_k_cache;
@@ -467,13 +469,15 @@
        std::string filePath = "zh.wav";
        auto audioBin = ReadBinFile(resourcesManager, filePath);
        if (audioBin.first == nullptr) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        size_t dataSize = audioBin.second;
        uint8_t *dataBuffer = (uint8_t *)audioBin.first;
        bool ok = audioFile.loadFromMemory(std::vector<uint8_t>(dataBuffer, dataBuffer + dataSize));
        if (!ok) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        std::vector<float> data(audioFile.samples[0]);
        ResampleAudio(data, audioFile.getSampleRate(), WHISPER_SAMPLE_RATE, 1, SRC_SINC_BEST_QUALITY);
@@ -506,6 +510,8 @@
        // tiny-encoder.ms模型推理
        auto encoderBin = ReadBinFile(resourcesManager, "tiny-encoder.ms");
        if (encoderBin.first == nullptr) {
+           free(dataBuffer);
+           dataBuffer = nullptr;
            return error_ret;
        }
    
@@ -516,7 +522,7 @@
            OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
-       LOGI("run encoder ok!\n");
+       LOGI("MS_LITE_LOG: run encoder ok!\n");
    
        auto outputs = OH_AI_ModelGetOutputs(encoder);
        auto n_layer_cross_k = GetMSOutput(outputs.handle_list[0]);
@@ -531,6 +537,7 @@
        const std::string decoder_main_path = "tiny-decoder-main.ms";
        auto decoderMainBin = ReadBinFile(resourcesManager, decoder_main_path);
        if (decoderMainBin.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
        auto decoder_main = CreateMSLiteModel(decoderMainBin);
@@ -540,7 +547,7 @@
            OH_AI_ModelDestroy(&decoder_main);
            return error_ret;
        }
-       LOGI("run decoder_main ok!\n");
+       LOGI("MS_LITE_LOG: run decoder_main ok!\n");
    
        auto decoderMainOut = OH_AI_ModelGetOutputs(decoder_main);
        auto logitsBin = GetMSOutput(decoderMainOut.handle_list[0]);
@@ -555,6 +562,9 @@
        const std::string dataName_embedding = "tiny-positional_embedding.bin"; // 获取输入数据
        auto data_embedding = ReadBinFile(resourcesManager, dataName_embedding);
        if (data_embedding.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
+           OH_AI_ModelDestroy(&decoder_main);
+           OH_AI_ModelDestroy(&decoder_loop);
            return error_ret;
        }
    
@@ -589,7 +599,8 @@
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
    project(test)
-   set(CMAKE_CXX_STANDARD 17) # AudioFile.h
+   # AudioFile.h
+   set(CMAKE_CXX_STANDARD 17)
    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
@@ -702,10 +713,17 @@ struct Index {
         .height('5%')
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-
+          if (resMgr === undefined || resMgr === null) {
+            console.error('MS_LITE_ERR: get resourceManager failed.');
+            return
+          }
           // 调用封装的runDemo函数
           console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
           let output = msliteNapi.runDemo(resMgr);
+          if (output === null || output.length === 0) {
+            console.error('MS_LITE_ERR: runDemo failed.')
+            return
+          }
           console.info('MS_LITE_LOG: output length = ', output.length, ';value = ', output.slice(0, 20));
           this.content = output;
           console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
