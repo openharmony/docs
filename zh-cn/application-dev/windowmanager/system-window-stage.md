@@ -106,8 +106,12 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
           return;
         }
         console.info('Succeeded in loading the content.');
+        if (!windowClass) {
+          console.error('windowClass is null');
+          return;
+        }
         // 3.显示音量条窗口。
-        (windowClass as window.Window).showWindow((err: BusinessError) => {
+        windowClass.showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to show the window. Cause:' + JSON.stringify(err));
@@ -120,7 +124,11 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
       // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
       windowClass.on('touchOutside', () => {
         console.info('touch outside');
-        (windowClass as window.Window).hide((err: BusinessError) => {
+        if (!windowClass) {
+          console.error('windowClass is null');
+          return;
+        }
+        windowClass.hide((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
