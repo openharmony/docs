@@ -138,8 +138,7 @@ export default class EntryAbility extends UIAbility {
     // 1.创建应用子窗口。
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
-    }
-    else {
+    } else {
       windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -147,6 +146,10 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {

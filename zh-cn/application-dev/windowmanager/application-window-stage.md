@@ -161,6 +161,10 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -255,7 +259,7 @@ let sub_windowClass: window.Window | undefined = undefined;
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private CreateSubWindow(){
+  private createSubWindow(){
     // 获取windowStage
     windowStage_ = AppStorage.get('windowStage');
     // 1.创建应用子窗口。
@@ -270,6 +274,10 @@ struct Index {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -333,7 +341,7 @@ struct Index {
         }.width(220).height(68)
         .margin({left:10, top:60})
         .onClick(() => {
-          this.CreateSubWindow()
+          this.createSubWindow()
         })
         Button(){
           Text('destroySubWindow')
@@ -577,19 +585,19 @@ export default class EntryAbility extends UIAbility {
           JSON.stringify(data));
 
         // 根据事件状态类型选择进行相应的处理
-        if (data == window.WindowStageEventType.SHOWN) {
+        if (data === window.WindowStageEventType.SHOWN) {
           console.info('current window stage event is SHOWN');
           // 应用进入前台，默认为可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.HIDDEN) {
+        } else if (data === window.WindowStageEventType.HIDDEN) {
           console.info('current window stage event is HIDDEN');
           // 应用进入后台，默认为不可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.PAUSED) {
+        } else if (data === window.WindowStageEventType.PAUSED) {
           console.info('current window stage event is PAUSED');
           // 前台应用进入多任务，转为不可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.RESUMED) {
+        } else if (data === window.WindowStageEventType.RESUMED) {
           console.info('current window stage event is RESUMED');
           // 进入多任务后又继续返回前台时，恢复可交互状态
           // ...

@@ -77,6 +77,10 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
       }
       console.info('Succeeded in creating the volume window.')
       windowClass = data;
+      if (!windowClass) {
+        console.error('windowClass is null');
+        return;
+      }
       // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
       windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
         let errCode: number = err.code;
