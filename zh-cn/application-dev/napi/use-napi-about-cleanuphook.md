@@ -247,7 +247,7 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
 由于需要包含“uv.h”库，所以需要在CMakeLists文件中添加配置：
 ```text
 // CMakeLists.txt
-target_link_libraries(entry PUBLIC libuv.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libuv.so)
 ```
 
 接口声明
@@ -275,5 +275,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
