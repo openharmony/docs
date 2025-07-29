@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVScreenCaptureConfig struct describes the screen capture configuration.
+The struct describes the screen capture configuration.
 
 **Since**: 10
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_Range struct describes the range.
+The struct describes the range.
 
 **Since**: 18
 

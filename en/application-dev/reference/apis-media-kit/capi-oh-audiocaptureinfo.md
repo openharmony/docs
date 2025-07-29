@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AudioCaptureInfo struct describes the audio capture information.
+The struct describes the audio capture information.
 
 When both **audioSampleRate** and **audioChannels** are **0**, the audio-related parameters are ignored and the audio data is not recorded.
 

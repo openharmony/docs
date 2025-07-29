@@ -21,6 +21,7 @@ This topic describes how to use the AVScreenCapture APIs to carry out one-time s
 
 If microphone data collection is configured, configure the permission ohos.permission.MICROPHONE and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
+
 ## How to Develop
 
 After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
@@ -56,7 +57,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 
 4. Set screen capture parameters.
 
-    After the **capture** instance is created, you can set the parameters required for screen capture. For details about how to set the audio and video parameters, see [Detailed Description](#detailed-description).
+    After the capture instance is created, you can set the parameters required for screen capture. For details about how to set the audio and video parameters, see [Detailed Description](#detailed-description).
 
     ```c++
     OH_AVScreenCaptureConfig config;
@@ -181,6 +182,7 @@ The selection page is also compatible with the following screen capture modes:
 3. OH_CAPTURE_HOME_SCREEN mode.
 
     The PC or 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
+
     In this mode, the configured **videoCapInfo.displayId** does not take effect. The default display ID of the primary screen is used.
 
     ```c++
@@ -361,7 +363,7 @@ This section describes how to set screen capture parameters, set callback functi
     }
     ```
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to implement screen capture using AVScreenCapture.
 

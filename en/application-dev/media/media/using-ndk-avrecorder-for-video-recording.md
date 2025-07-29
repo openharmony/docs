@@ -296,7 +296,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       ```
 
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
 

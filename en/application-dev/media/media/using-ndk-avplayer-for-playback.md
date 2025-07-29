@@ -75,7 +75,7 @@ Read [AVPlayer](../../reference/apis-media-kit/capi-avplayer.md) for the API ref
 
 10. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/capi-avplayer-base-h.md#avplayerstate) state and exits the playback. Further actions on the AVPlayer instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
 
-## Development Example
+## Sample Code
 
 ```c
 #include "napi/native_api.h"
