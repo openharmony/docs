@@ -1170,7 +1170,7 @@ if (controller !== undefined) {
 
 sendCustomData(data: Record\<string, Object>): Promise\<void>;
 
-发送私有数据到远端设备。结果通过Promise异步回调方式返回。
+发送私有数据到远端设备。使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2291,7 +2291,7 @@ on(type: 'customDataChange', callback: Callback<Record\<string, Object>>): void
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                             | 是   | 事件回调类型，支持事件`'customDataChange'`，当媒体提供方发送自定义数据时，触发该事件。 |
-| callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接受自定义数据。                               |
+| callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接收自定义数据。                               |
 
 **错误码：**
 

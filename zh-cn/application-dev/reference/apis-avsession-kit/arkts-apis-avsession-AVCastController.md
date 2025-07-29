@@ -339,7 +339,9 @@ aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
 
 sendCustomData(data: Record\<string, Object>): Promise\<void>
 
-发送私有数据到远端设备。结果通过Promise异步回调方式返回。
+发送私有数据到远端设备。使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -2079,7 +2081,7 @@ aVCastController.on('customDataChange', (callback) => {
 
 ## off('customDataChange')<sup>20+</sup>
 
-off(type: 'customDataChange', callback?: Callback\<Record<string, Object>>): void
+off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): void
 
 取消对自定义数据的监听。
 
