@@ -2499,7 +2499,7 @@ struct WebComponent {
     return false;// 返回默认值false
   }
 
-   onPrepareMenu(menuItems: Array<TextMenuItem>) => {
+   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1',
       id: TextMenuItemId.of('prepareMenu1'),
@@ -2508,10 +2508,10 @@ struct WebComponent {
       content: 'prepare2' + selectText,
       id: TextMenuItemId.of('prepareMenu2'),
     };
-    items.push(item1);// 在选项列表后添加新选项
-    items.unshift(item2);// 在选项列表前添加选项
+    menuItems.push(item1);// 在选项列表后添加新选项
+    menuItems.unshift(item2);// 在选项列表前添加选项
 
-    return items;
+    return menuItems;
   }
 
   @State EditMenuOptions: EditMenuOptions =
