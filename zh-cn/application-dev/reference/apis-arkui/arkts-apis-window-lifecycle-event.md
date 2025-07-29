@@ -1,4 +1,4 @@
-# 主窗口生命周期状态说明与事件监听接口适配指导
+# 窗口生命周期机制说明与开发指导
 
 ## 主窗口生命周期和UIAbility组件生命周期
 
@@ -90,8 +90,23 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     const callback = (data: window.WindowStageLifecycleEventType) => {
-        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+      console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
         JSON.stringify(data));
+      // 根据事件状态类型选择进行具体的处理
+      if (data === window.WindowStageLifecycleEventType.SHOWN) {
+        console.info('current window stage event is SHOWN');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.RESUMED) {
+        console.info('current window stage event is RESUMED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.PAUSED) {
+        console.info('current window stage event is PAUSED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.HIDDEN) {
+        console.info('current window stage event is HIDDEN');
+        // ...
+      }
+      // ...
     }
     try {
       windowStage.on('windowStageLifecycleEvent', callback);
