@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)
 
-AbilityLifecycleCallback提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用实现该接口后，通过应用上下文相关接口注册该监听[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)。
+AbilityLifecycleCallback接口提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用实现AbilityLifecycleCallback接口后，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 
 > **说明：**
 >
@@ -13,10 +13,10 @@ AbilityLifecycleCallback提供监听[UIAbility](js-apis-app-ability-uiAbility.md
 ## AbilityLifecycleCallback机制
 
 [UIAbility](js-apis-app-ability-uiAbility.md)中定义了[生命周期状态](js-apis-app-ability-uiAbility.md#uiability生命周期状态)，当UIAbility状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。流程如下：
-1. 需要监听UIAbility生命周期变化的模块，实现abilityLifecycleCallback接口，然后通过应用上下问题[ApplicationContext](js-apis-inner-application-applicationContext.md)注册回调。
-2. UIAbility生命周期管理模块，调度UIAbility生命周期，并通知ApplicationContext对应UIAbility的生命周期变化。
-3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的abilityLifecycleCallback回调。
-4. 不需要监听UIAbility生命周期变化时，通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)取消监听。
+1. 需要监听UIAbility生命周期变化的模块，实现abilityLifecycleCallback接口，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
+2. UIAbility生命周期管理模块，调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
+3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的abilityLifecycleCallback监听回调函数。
+4. 不需要监听UIAbility生命周期变化时，应用通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
 
 > **说明：**
 >
