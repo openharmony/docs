@@ -2459,7 +2459,7 @@ try {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (moveResult.length === 0) {
-        console.log("copy success");
+        console.log("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
