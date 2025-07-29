@@ -6874,8 +6874,7 @@ setWindowDecorVisible(isVisible: boolean): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 let storage: LocalStorage = new LocalStorage();
-let newValue: Number = 121;
-storage.setOrCreate('storageSimpleProp', newValue);
+storage.setOrCreate('storageSimpleProp', 121);
 windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
   let errCode: number = err.code;
   if (errCode) {
