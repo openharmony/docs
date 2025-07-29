@@ -599,7 +599,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   // 应用更新进度
-  updateProcess(process: Number) {
+  updateProcess(process: number) {
     // 应用定义下载类通知模版
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
@@ -687,19 +687,15 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-                try {
-                    // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning。这里假设已经申请过
-                    let list: Array<string> = ["audioPlayback"];
-                    backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
-                        console.info("Operation updateBackgroundRunning succeeded");
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
+            // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
+            let list: Array<string> = ["audioPlayback"];
+            backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
+                console.info("Operation updateBackgroundRunning succeeded");
+            }).catch((error: BusinessError) => {
+                console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            console.error(`Operation updateBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
