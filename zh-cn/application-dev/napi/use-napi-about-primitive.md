@@ -119,10 +119,8 @@ let value = testNapi.coerceToNumber<string>('2556');
 let str = testNapi.coerceToNumber<string>('sssss');
 let bool = testNapi.coerceToNumber<boolean>(true);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', value);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);
-// 返回的为NAN
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);
-// 返回的是1
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);    // 返回的为NAN
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);   // 返回的是1
 ```
 
 ### napi_coerce_to_object
