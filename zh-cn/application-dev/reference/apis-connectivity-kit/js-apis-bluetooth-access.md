@@ -20,7 +20,7 @@ enableBluetooth(): void
 
 开启蓝牙。
 
-- 调用该接口时，界面弹出开启蓝牙的弹框，由用户确认是否需要开启蓝牙。如果应用想要感知用户操作弹框的结果，建议使用[access.enableBluetoothAsync](#accessenablebluetoothasync20)。
+- 调用该接口时，系统弹出开启蓝牙的对话框，由用户确认是否需要开启蓝牙。如果应用想要感知用户操作对话框的行为，建议使用[access.enableBluetoothAsync](#accessenablebluetoothasync20)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -56,7 +56,7 @@ try {
 enableBluetoothAsync(): Promise&lt;void&gt;
 
 开启蓝牙。使用Promise异步回调。
-- 调用该接口时，界面弹出开启蓝牙的弹框，由用户确认是否需要开启蓝牙。应用可以感知用户操作弹框的结果。
+- 调用该接口时，系统弹出开启蓝牙的对话框，由用户确认是否需要开启蓝牙。应用可以感知用户操作对话框的行为。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -68,7 +68,7 @@ enableBluetoothAsync(): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -105,7 +105,7 @@ try {
 disableBluetooth(): void
 
 关闭蓝牙。
-- 调用该接口时，界面弹出关闭蓝牙的弹框，由用户确认是否需要关闭蓝牙。如果应用想要感知用户操作弹框的结果，建议使用[access.disableBluetoothAsync](#accessdisablebluetoothasync20)。
+- 调用该接口时，系统弹出关闭蓝牙的对话框，由用户确认是否需要关闭蓝牙。如果应用想要感知用户操作对话框的行为，建议使用[access.disableBluetoothAsync](#accessdisablebluetoothasync20)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -140,7 +140,7 @@ try {
 disableBluetoothAsync(): Promise&lt;void&gt;
 
 关闭蓝牙。使用Promise异步回调。
-- 调用该接口时，界面弹出关闭蓝牙的弹框，由用户确认是否需要关闭蓝牙。应用可以感知用户操作弹框的结果。
+- 调用该接口时，系统弹出关闭蓝牙的对话框，由用户确认是否需要关闭蓝牙。应用可以感知用户操作对话框的行为。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
