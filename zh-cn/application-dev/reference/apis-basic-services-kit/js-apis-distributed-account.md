@@ -310,9 +310,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
-      console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error(`updateOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('queryOsAccountDistributedInfo successfully');
+      console.info('updateOsAccountDistributedInfo successfully');
     }
   });
   ```
