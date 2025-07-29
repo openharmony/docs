@@ -2,7 +2,7 @@
 
 ## Overview
 
-The video_processing.h file declares the video processing functions.
+The file declares the video processing functions.
 
 It provides video processing capabilities, including color space conversion, metadata generation, and video scaling.
 
@@ -109,8 +109,8 @@ Checks whether color space conversion is supported during video processing.
 
 | Parameter| Description|
 | -- | -- |
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | Pointer to the color space information of the input video.|
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* destinationVideoInfo | Pointer to the color space information of the output video.|
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | Pointer to the color space information of the input video.|
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* destinationVideoInfo | Pointer to the color space information of the output video.|
 
 **Returns**
 
@@ -135,7 +135,7 @@ Checks whether metadata generation is supported during video processing.
 
 | Parameter| Description|
 | -- | -- |
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | Pointer to the color space information of the input video.|
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | Pointer to the color space information of the input video.|
 
 **Returns**
 
@@ -160,7 +160,7 @@ Creates a video processing instance.
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)** videoProcessor |  Double pointer to the video processing instance created. Before any input, **\*videoProcessor** must be a null pointer.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)** videoProcessor |  Double pointer to the video processing instance created. Before any input, **\*videoProcessor** must be nullptr.|
 | int type | Video processing type. The processing type of an instance cannot be changed.|
 
 **Returns**
@@ -188,7 +188,7 @@ Before destroying the instance, call [OH_VideoProcessing_Stop](#oh_videoprocessi
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance. You are advised to set the pointer to a null pointer after the instance is destroyed.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance. You are advised to set the pointer to nullptr after the instance is destroyed.|
 
 **Returns**
 
@@ -215,8 +215,8 @@ The callback function should be registered before video processing starts. Durin
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| const [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | Pointer to the callback function.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| const [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | Pointer to the callback function.|
 | void* userData | Pointer to user-defined data.|
 
 **Returns**
@@ -244,14 +244,14 @@ An output surface must be set before video processing starts.
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md)* window | Pointer to the output surface.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)* window | Pointer to the output surface.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The output surface is successfully set.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The window is a null pointer.|
+| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The output surface is successfully set.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The window is nullptr.|
 
 ### OH_VideoProcessing_GetSurface()
 
@@ -272,14 +272,14 @@ An input surface must be created before video processing starts, and it must be 
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md)** window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)** window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The processing is successful.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The window is a null pointer or the pointer to the window is not null.<br> **VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED**: The surface fails to be created, an input surface has been created, or the video processing instance is running.|
+| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The processing is successful.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The window is nullptr or the pointer to the window is not null.<br> **VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED**: The surface fails to be created, an input surface has been created, or the video processing instance is running.|
 
 ### OH_VideoProcessing_SetParameter()
 
@@ -298,14 +298,14 @@ Sets video processing parameters.
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 | const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the video processing parameter instance.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The parameters are successfully set.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The parameter is empty.<br> **VIDEO_PROCESSING_ERROR_INVALID_VALUE**: Some attributes of a parameter are invalid, for example, unsupported parameter value.<br> **VIDEO_PROCESSING_ERROR_NO_MEMORY**: Memory allocation fails.|
+| [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The parameters are successfully set.<br> **VIDEO_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not a video processing instance.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: The parameter is empty.<br> **VIDEO_PROCESSING_ERROR_INVALID_VALUE**: Some properties of a parameter are invalid, for example, unsupported parameter value.<br> **VIDEO_PROCESSING_ERROR_NO_MEMORY**: Memory allocation fails.|
 
 ### OH_VideoProcessing_GetParameter()
 
@@ -324,7 +324,7 @@ Obtains video processing parameters.
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the video processing parameter instance.|
 
 **Returns**
@@ -352,7 +352,7 @@ After video processing starts, the callback [OH_VideoProcessingCallback_OnState]
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 
 **Returns**
 
@@ -379,7 +379,7 @@ After video processing stops, the callback [OH_VideoProcessingCallback_OnState](
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 
 **Returns**
 
@@ -406,7 +406,7 @@ If the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-vid
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 | uint32_t index | Index of the output buffer.|
 
 **Returns**
@@ -432,7 +432,7 @@ Creates a video processing callback object.
 
 | Parameter| Description|
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)** callback |  Double pointer to the video processing callback object. Before creating a callback object, **\*callback** must be a null pointer.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)** callback |  Double pointer to the video processing callback object. Before creating a callback object, **\*callback** must be nullptr.|
 
 **Returns**
 
@@ -457,7 +457,7 @@ Destroys a video processing callback object. The video processing callback objec
 
 | Parameter| Description|
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | Pointer to the callback object. You are advised to set the pointer to a null pointer after the callback object is destroyed.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | Pointer to the callback object. You are advised to set the pointer to nullptr after the callback object is destroyed.|
 
 **Returns**
 
@@ -482,7 +482,7 @@ Binds the callback function [OH_VideoProcessingCallback_OnError](capi-video-proc
 
 | Parameter| Description|
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | Pointer to the callback object.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | Pointer to the callback object.|
 | [OH_VideoProcessingCallback_OnError](capi-video-processing-types-h.md#oh_videoprocessingcallback_onerror) onError | Callback function to bind.|
 
 **Returns**
@@ -508,7 +508,7 @@ Binds the callback function [OH_VideoProcessingCallback_OnState](capi-video-proc
 
 | Parameter| Description|
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | Pointer to the callback object.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | Pointer to the callback object.|
 | [OH_VideoProcessingCallback_OnState](capi-video-processing-types-h.md#oh_videoprocessingcallback_onstate) onState | Callback function to bind.|
 
 **Returns**
@@ -534,7 +534,7 @@ Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-
 
 | Parameter| Description|
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | Pointer to the callback object.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | Pointer to the callback object.|
 | [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-video-processing-types-h.md#oh_videoprocessingcallback_onnewoutputbuffer) onNewOutputBuffer | Callback function to bind.|
 
 **Returns**
@@ -542,5 +542,4 @@ Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-
 | Type| Description|
 | -- | -- |
 | [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The binding is successful.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: **callback** is null.|
-
- <!--no_check--> 
+<!--no_check-->
