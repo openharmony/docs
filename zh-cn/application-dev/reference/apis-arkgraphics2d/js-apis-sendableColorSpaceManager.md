@@ -55,7 +55,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 colorSpace = sendableColorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 ```
@@ -93,7 +93,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 let primaries: colorSpaceManager.ColorSpacePrimaries = {
   redX: 0.1,
