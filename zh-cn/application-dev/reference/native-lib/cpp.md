@@ -1,5 +1,11 @@
 # 标准C++库
 
+<!--Kit: Standard Libraries-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @eric96-->
+<!--SE: @liuyingying19huawei-->
+<!--TSE: @hwu-mc-->
+
 OpenHarmony使用llvm开源项目的C++标准库[libc++](https://libcxx.llvm.org/)作为C++运行时库。
 
 ## libc++版本
