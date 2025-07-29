@@ -54,8 +54,11 @@ try {
 enableBluetoothAsync(): Promise&lt;void&gt;
 
 开启蓝牙。使用Promise异步回调。
+- 与API version 20开始支持的[access.notifyDialogResult](js-apis-bluetooth-access-sys.md#accessnotifydialogresult20)搭配使用，相较于[access.enableBluetooth](#accessenablebluetooth)调用该接口会将用户处理开关蓝牙弹框的结果通知给应用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -134,8 +137,11 @@ try {
 disableBluetoothAsync(): Promise&lt;void&gt;
 
 关闭蓝牙。使用Promise异步回调。
+- 与API version 20开始支持的[access.notifyDialogResult](js-apis-bluetooth-access-sys.md#accessnotifydialogresult20)搭配使用，相较于[access.disableBluetooth](#accessdisablebluetooth)调用该接口会将用户处理开关蓝牙弹框的结果通知给应用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -143,7 +149,7 @@ disableBluetoothAsync(): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -513,4 +519,3 @@ try {
 | STATE_BLE_TURNING_ON  | 4    | 表示蓝牙正在打开LE-only模式。 |
 | STATE_BLE_ON          | 5    | 表示蓝牙正处于LE-only模式。  |
 | STATE_BLE_TURNING_OFF | 6    | 表示蓝牙正在关闭LE-only模式。 |
-

@@ -192,11 +192,13 @@ try {
 ```
 
 
-## access.notifyDialogResult<sup>20+</sup><a name="restrictBluetooth"></a>
+## access.notifyDialogResult<sup>20+</sup>
 
 notifyDialogResult(notifyDialogResultParams: NotifyDialogResultParams): Promise&lt;void&gt;
 
 通知蓝牙开关弹框的结果。使用Promise异步回调。
+- 与API version 20开始支持的[access.enableBluetoothAsync](js-apis-bluetooth-access.md#accessenablebluetoothasync20)搭配使用，应用申请开启蓝牙，调用该接口会将用户处理开关蓝牙弹框的结果通知给蓝牙服务。
+- 与API version 20开始支持的[access.disableBluetoothAsync](js-apis-bluetooth-access.md#accessdisablebluetoothasync20)搭配使用，应用申请关闭蓝牙，调用该接口会将用户处理开关蓝牙弹框的结果通知给蓝牙服务。
 
 **系统接口**：此接口为系统接口。
 
@@ -204,11 +206,17 @@ notifyDialogResult(notifyDialogResultParams: NotifyDialogResultParams): Promise&
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
+**参数：**
+
+| 参数名   | 类型                                               | 必填  | 说明                                                       |
+| -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
+|  notifyDialogResultParams<sup>20+</sup>    | [NotifyDialogResultParams](js-apis-bluetooth-access.md#notifydialogresultparams20)             | 是    | 用户操作弹框的结果。       |
+
 **返回值：**
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -236,3 +244,25 @@ try {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
+
+
+## NotifyDialogResultParams<sup>20+</sup>
+
+用户操作弹框的结果。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称        | 类型                    | 只读   | 可选   | 说明                                     |
+| ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
+|   dialogType     | [DialogType](#dialogtype20)      | 否    | 否    | 表示弹框的类型。 |
+|   dialogResult     | boolean      | 否    | 否    | 表示弹框的结果。 |
+
+## DialogType<sup>20+</sup>
+
+枚举，弹框类型
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称                    | 值  | 说明                 |
+| --------------------- | ---- | ------------------ |
+| BLUETOOTH_SWITCH      | 0    | 蓝牙开关弹框。          |
