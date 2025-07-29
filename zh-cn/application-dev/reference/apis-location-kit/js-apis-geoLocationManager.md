@@ -591,7 +591,7 @@ beacon围栏请求参数。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | beacon | [BeaconFence](#beaconfence20) | 否 | 否 | beacon围栏的参数配置。 |
-| transitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 是 | beacon围栏事件信息。 |
+| transitionCallback | Callback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 是 | beacon围栏事件信息。 |
 | fenceExtensionAbilityName | string | 否 | 是 | [FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称。 |
 
 
