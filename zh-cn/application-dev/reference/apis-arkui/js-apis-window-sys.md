@@ -3297,10 +3297,18 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
+      if (err?.code) {
+        console.error(`Failed to load content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
       let mainWindow: window.Window | undefined = undefined;
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用setTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、分屏按钮。
