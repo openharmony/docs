@@ -10,7 +10,7 @@ During application development, you can use the **state** property of the AVReco
 
 ![Recording state change](figures/video-recording-status-change.png)
 
-For details about the states, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
+For details about the states, see [AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9).
 
 
 ## Requesting Permissions
@@ -35,7 +35,7 @@ Before your development, configure the following permissions for your applicatio
 > For details about how to create and save a file, see [Accessing Application Files](../../file-management/app-file-access.md). By default, files are saved in the sandbox path of the application. To save them to Gallery, use the [security components](../medialibrary/photoAccessHelper-savebutton.md).
 
 
-Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
+Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md) for the API reference.
 
 1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
 
@@ -99,6 +99,10 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      videoFrameRate: 30 // Video frame rate.
    };
 
+   let videoMetaData: media.AVMetadata = {
+     videoOrientation: '0' // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+   };
+
    const context: Context = this.getUIContext().getHostContext()!; // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -108,7 +112,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
      profile : avProfile,
      url: 'fd://' + fileFd.toString(), // Create, read, and write a video file by referring to the sample code in Accessing Application Files.
-     rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+     metadata : videoMetaData
    };
    this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
@@ -152,7 +156,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 11. Call **release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
 
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
@@ -181,11 +185,14 @@ export class VideoRecorderDemo extends CustomComponent {
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.
   };
+  private videoMetaData: media.AVMetadata = {
+    videoOrientation: '0' // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+  };
   private avConfig: media.AVRecorderConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
     profile : this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Accessing Application Files.
-    rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+    metadata : this.videoMetaData
   };
   
   private uriPath: string = ''; // File URI, which can be used by the security component to save the media asset.

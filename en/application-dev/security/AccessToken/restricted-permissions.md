@@ -680,3 +680,19 @@ Allows an application to request continuous tasks of special types, such as comp
 **Supported devices**: General
 
 **Valid since**: 20
+
+## ohos.permission.LINKTURBO
+
+Allows an application to achieve multipath transmission.
+
+With this permission, the application can initiate operations such as multi-network activation, monitoring, and release for multipath transmission.
+
+<!--RP49--><!--RP49End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

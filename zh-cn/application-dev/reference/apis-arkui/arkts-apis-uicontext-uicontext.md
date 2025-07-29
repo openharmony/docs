@@ -144,6 +144,8 @@ getFont(): Font
 
 **示例：**
 
+完整示例请参考[Font](arkts-apis-uicontext-font.md)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getFont();
@@ -1624,6 +1626,8 @@ getMeasureUtils(): MeasureUtils
 | [MeasureUtils](arkts-apis-uicontext-measureutils.md) | 提供文本宽度、高度等相关计算。 |
 
 **示例：**
+
+完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
 
 <!--code_no_check-->
 ```ts

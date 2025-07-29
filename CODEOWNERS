@@ -19,7 +19,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @77_cc @zengyawen @fang-jinxu
+zh-cn/device-dev/ @w_Machine_cc @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -63,9 +63,9 @@ zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @chang
 
 
 [开发-Accessibility Kit]
-zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md @77_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityKit.md @77_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityextensionability.md @77_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @lin-steven  @A_qqq
 
 
 [开发-ArkData]
@@ -289,8 +289,8 @@ zh-cn/application-dev/account/ @zengyawen
 zh-cn/application-dev/basic-services/common-event/  @huipeizi  @dong-qingran   @shine_hk
 
 [开发-Basic Services Kit-设备管理]
-zh-cn/application-dev/device/usb-overview.md @77_cc @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/device/usb-guidelines.md @77_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-guidelines.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 [开发-Basic Services Kit-升级服务]
 zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13
@@ -322,8 +322,8 @@ zh-cn/application-dev/file-management/ @foryourself
 
 
 [开发-Driverdevelopment kit]
-zh-cn/application-dev/application-models/driverextensionability.md @77_cc @w00373942 @dong-dongzhen
-zh-cn/application-dev/device/externaldevice-guidelines.md @77_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/application-models/driverextensionability.md @w_Machine_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w00373942 @dong-dongzhen
 
 
 [开发-Form Kit]
@@ -435,7 +435,7 @@ zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @prin
 [开发-NDK]
 zh-cn/application-dev/napi/  @fang-jinxu
 zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @Buda-Liu @budda-wang @lpw_work
-zh-cn/application-dev/napi/usb-ddk-guidelines.md @77_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 
 [开发-Notification Kit]
@@ -523,17 +523,24 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliant
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-bundle.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-zlib.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
+zh-cn/application-dev/reference/apis-ability-kit/_bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native__interface__bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_application_info.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_element_name.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_module_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+
 [API参考-Ability Kit-分布式]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManager.md @chenmingJay @nan-xiansen @iceice1001
 
 
 [API参考-Accessibility kit]
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @77_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @77_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @77_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md @mupceet @RayShih @mupceet @chengxingzhen @77_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md @mupceet @RayShih @mupceet @gaoxi785 @77_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @77_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md @mupceet @RayShih @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @w_Machine_cc @lin-steven @A_qqq
 
 
 [API参考-ArkGraphics2D]
@@ -929,21 +936,21 @@ zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventServ
 
 
 [API参考-Basic Services Kit-设备管理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-brightness.md  @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-thermal.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md @77_cc @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usb*.md @77_cc @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui  @lpw_work @caiminggang @77_cc
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @77_cc  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @77_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-brightness.md  @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-thermal.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usb*.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui  @lpw_work @caiminggang @w_Machine_cc
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
@@ -1048,12 +1055,11 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 
 [API参考-Distributedservice Kit]
-zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @77_cc
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
-
+zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 @w_Machine_cc
 
 [API参考-Driverdevelopment kit]
-zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @77_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen
 
 
 
@@ -1253,7 +1259,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @77_cc @zengyawen @fang-jinxu
+zh-cn/device-dev/ @w_Machine_cc @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -1297,9 +1303,9 @@ zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @chang
 
 
 [开发-Accessibility Kit]
-zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md @77_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityKit.md @77_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityextensionability.md @77_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @lin-steven  @A_qqq
 
 
 [开发-ArkData]

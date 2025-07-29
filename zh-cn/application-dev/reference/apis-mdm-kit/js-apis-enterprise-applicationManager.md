@@ -27,6 +27,7 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -80,6 +81,7 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -133,6 +135,7 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -189,6 +192,8 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
@@ -243,6 +248,8 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -355,6 +362,8 @@ getAutoStartApps(admin: Want): Array\<Want>
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -585,6 +594,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -696,6 +706,7 @@ removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number)
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -749,6 +760,7 @@ getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -864,6 +876,7 @@ clearUpApplicationData(admin: Want, bundleName: string, appIndex: number, accoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -920,6 +933,8 @@ Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -969,6 +984,7 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -1021,6 +1037,7 @@ isAppKioskAllowed(bundleName: string): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**

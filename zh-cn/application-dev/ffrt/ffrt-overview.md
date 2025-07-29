@@ -1,5 +1,11 @@
 # Function Flow Runtime Kit概述
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## 简介
 
 FFRT: Function Flow Runtime，一种并发编程框架，旨在简化并发编程和任务调度的复杂性。FFRT采用基于任务的调度方式，开发者只需关注任务及其依赖关系，而无需处理底层的线程和计算资源；同时，FFRT采用基于协程的任务执行方式，可以提高任务并行度、提升线程利用率并充分利用多核平台的计算资源，保证系统对所有资源的集约化管理，最终解决系统线程资源滥用问题，打造极致用户体验。
