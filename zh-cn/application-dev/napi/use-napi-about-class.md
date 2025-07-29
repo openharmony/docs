@@ -43,18 +43,10 @@ static napi_value NewInstance(napi_env env, napi_callback_info info)
     // 传入并解析参数，第一个参数为传入的构造函数，第二个参数为需要传入构造函数的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};
-    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_cb_info failed");
-        return nullptr;
-    }
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 调用napi_new_instance接口，实例化一个对象，将这个对象返回
     napi_value result = nullptr;
-    napi_status status2 = napi_new_instance(env, args[0], 1, &args[1], &result);
-    if (status2 != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_new_instance failed");
-        return nullptr;
-    }
+    napi_new_instance(env, args[0], 1, &args[1], &result);
     return result;
 }
 ```
@@ -158,7 +150,7 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     // 调用napi_wrap将Node-API模块的object绑定到ArkTS object上
     napi_status status_cb = napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
     if (status_cb != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_get_cb_info failed");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
         delete obj;
         return nullptr;
     }
@@ -179,10 +171,7 @@ static napi_value RemoveWrap(napi_env env, napi_callback_info info)
     void *data = nullptr;
     // 调用napi_remove_wrap从一个被包装的对象中解除包装
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
-    napi_status status = napi_remove_wrap(env, wrapped, &data);
-    if (status == napi_ok && data != nullptr) {
-        delete reinterpret_cast<Object*>(data);
-    }
+    napi_remove_wrap(env, wrapped, &data);
     return nullptr;
 }
 

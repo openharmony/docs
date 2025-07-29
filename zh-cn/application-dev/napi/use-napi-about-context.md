@@ -243,9 +243,11 @@ node_api_get_module_file_name | 否 |
         napi_value args2[1] = {};
         args2[0] = getLocation2;
 
-        // 注意：args[0]是napi_get_cb_info获取的参数，通常不是this对象。此处应传入newEnv2的global对象作为this参数。
-        napi_value globalObj = nullptr;
-        status = napi_get_global(newEnv2, &globalObj);
+        status = napi_call_function(newEnv2, nullptr, args[0], 1, args2, &result);
+        if (status != napi_ok) {
+            OH_LOG_INFO(LOG_APP, "napi_get_global of env failed");
+            return nullptr;
+        }
         status = napi_call_function(newEnv2, globalObj, args[0], 1, args2, &result);
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "call function of env failed");
@@ -265,9 +267,7 @@ node_api_get_module_file_name | 否 |
         }
         args2[0] = getLocation1;
         // 注意：args[0]不是this对象，应传入env的global对象作为this参数。
-        napi_value globalObj2 = nullptr;
-        status = napi_get_global(env, &globalObj2);
-        status = napi_call_function(env, globalObj2, args[0], 1, args2, &result);
+        status = napi_call_function(env, nullptr, args[0], 1, args2, &result);
         if (status != napi_ok) {
             return nullptr;
         }

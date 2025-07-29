@@ -135,8 +135,8 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     // 调用napi_is_promise判断napi_create_promise接口创建的是不是Promise对象
     bool isPromise = false;
     napi_value returnIsPromise = nullptr;
-    napi_status status2 = napi_is_promise(env, promise, &isPromise);
-    if (status2 != napi_ok) {
+    status = napi_is_promise(env, promise, &isPromise);
+    if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_is_promise failed");
         return nullptr;
     }
@@ -153,8 +153,8 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
     bool status;
-    napi_status statusBool = napi_get_value_bool(env, args[INT_ARG_2], &status);
-    if (statusBool != napi_ok) {
+    napi_status status = napi_get_value_bool(env, args[INT_ARG_2], &status);
+    if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_get_value_bool failed");
         return nullptr;
     }
@@ -162,8 +162,8 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     // 创建Promise对象
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
-    napi_status createStatus = napi_create_promise(env, &deferred, &promise);
-    if (createStatus != napi_ok) {
+    status = napi_create_promise(env, &deferred, &promise);
+    if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Create promise failed");
         return nullptr;
     }

@@ -359,7 +359,7 @@ try {
   let varObject: Obj = {id: 1, name: "LiLei"};
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
   const mulNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(mulNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
@@ -643,6 +643,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
@@ -651,14 +652,14 @@ static napi_value CreateSymbol(napi_env env, napi_callback_info info)
     // 使用napi_create_string_utf8创建描述字符串
     napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_create_string_utf8 failed");
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_string_utf8 failed");
         return nullptr;
     }
     napi_value returnSymbol = nullptr;
     // 创建一个symbol类型，并返回
     status = napi_create_symbol(env, result, &returnSymbol);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_create_symbol failed");
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_symbol failed");
         return nullptr;
     }
     return returnSymbol;
