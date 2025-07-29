@@ -3752,7 +3752,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setImageForRecent<sup>20+</sup>
+### setImageForRecent<sup>19+</sup>
 
 setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
