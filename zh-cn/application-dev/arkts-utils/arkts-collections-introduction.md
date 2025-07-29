@@ -42,7 +42,8 @@ struct Index {
           let lock = new ArkTSUtils.locks.AsyncLock();
           let arr = collections.Array.create<number>(1, 0);
           let count = 1000;
-          while (count--) {
+          let num = count;
+          while (num--) {
             taskGroup.addTask(add, arr, lock);
           }
           taskpool.execute(taskGroup).then(() => {
