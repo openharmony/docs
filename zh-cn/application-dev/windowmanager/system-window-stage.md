@@ -261,7 +261,7 @@ struct transferCtrlSubWindow {
       Button() {
         Text("close")
           .fontSize(24)
-          .fontSize(FontWeight.Normal)
+          .fontWeight(FontWeight.Normal)
       }.width(220).height(68)
       .margin({ left: 10, top: 10 })
       .onClick(() => {
