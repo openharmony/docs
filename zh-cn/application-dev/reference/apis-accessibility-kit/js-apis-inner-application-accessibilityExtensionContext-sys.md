@@ -656,10 +656,10 @@ export default class AccessibilityManager {
   context?: AccessibilityExtensionContext;
 
   static getInstance(): AccessibilityManager {
-    if (!Accessibilitymanager.instance) {
-      Accessibilitymanager.instance = new Accessibilitymanager();
+    if (!AccessibilityManager.instance) {
+      AccessibilityManager.instance = new AccessibilityManager();
     }
-    return Accessibilitymanager.instance;
+    return AccessibilityManager.instance;
   }
 
   onStart(context: AccessibilityExtensionContext) {
