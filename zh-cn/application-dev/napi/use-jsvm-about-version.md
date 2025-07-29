@@ -80,4 +80,4 @@ JSVM API version: 13.2.152.41
 JSVM API cachedDataVersionTag: 0x81ff9402
 ```
 
-<!-- @[oh_jsvm_get_version_and_vm_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_version_and_vm_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->

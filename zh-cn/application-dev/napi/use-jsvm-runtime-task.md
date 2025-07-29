@@ -329,7 +329,7 @@ static int32_t TestJSVM() {
     return 0;
 }
 ```
-<!-- @[runtime_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
+<!-- @[runtime_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM CreateJsCore START

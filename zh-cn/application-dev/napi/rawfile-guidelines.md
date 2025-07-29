@@ -72,7 +72,7 @@
     }
     EXTERN_C_END
     ```
-    <!-- @[module_registration](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[module_registration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 2. 在src/main/cpp/hello.cpp文件中，增加对应的四个方法，如下所示：
 
@@ -98,14 +98,14 @@
     #include "rawfile/raw_dir.h"
     #include "hilog/log.h"
     ```
-    <!-- @[includes](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[includes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
     声明hilog日志打印的DOMAIN和TAG常量
     ```c++
     const int GLOBAL_RESMGR = 0xFF00;
     const char *TAG = "[Sample_rawfile]";
     ```
-    <!-- @[constants](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[constants](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
     示例：
     ```c++
@@ -155,7 +155,7 @@
         return fileList;
     }
     ```
-    <!-- @[example_get_file_list](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_file_list](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
@@ -218,7 +218,7 @@
         return CreateJsArrayValue(env, data, len);
     }
     ```
-    <!-- @[example_get_rawfile_content](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_rawfile_content](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
@@ -297,7 +297,7 @@
         return createJsFileDescriptor(env, descriptor);
     }
     ```
-    <!-- @[example_get_rawfile_descriptor](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_rawfile_descriptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
@@ -339,7 +339,7 @@
         return CreateJsBool(env, result);
     }
     ```
-    <!-- @[example_is_raw_dir](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_is_raw_dir](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 **4. ArkTS侧调用**
 
@@ -408,10 +408,10 @@
 	  }
 	}
 	```
-    <!-- @[native_rawfile_guide_sample](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/ets/pages/Index.ets) -->
+    <!-- @[native_rawfile_guide_sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/ets/pages/Index.ets) -->
 
 ## 相关实例
 
 针对资源管理Rawfile开发，有以下相关实例可供参考：
 
-- [获取Rawfile资源（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
+- [获取Rawfile资源（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
