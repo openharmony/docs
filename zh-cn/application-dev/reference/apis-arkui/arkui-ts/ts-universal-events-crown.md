@@ -49,7 +49,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 | angularVelocity	| number	 | 旋转角速度，每秒转的角度(°/s)。                   |
 | degree	        | number 	 | 相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |
 | action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | 表冠动作。  |
-| stopPropagation	| () => void     | 阻止事件冒泡。                         |
+| stopPropagation	| () => void     | 阻止[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。                         |
 
 ## 示例
 该示例实现了组件注册表冠事件，接收表冠事件数据上报内容。

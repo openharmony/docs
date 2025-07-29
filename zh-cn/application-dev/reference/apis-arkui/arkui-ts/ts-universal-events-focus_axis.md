@@ -39,7 +39,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 | 名称                                    | 属性类型                                       | 描述                 |
 | ------------------------------------- | ---------------------------------------- | --------------------------- |
 | axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>     | 焦点轴事件的轴值表。          |
-| stopPropagation                       | Callback\<void>                           | 阻塞事件冒泡传递。            |
+| stopPropagation                       | Callback\<void>                           | 阻塞[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)传递。            |
 
 ## 示例
 

@@ -66,6 +66,8 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -200,6 +202,8 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -282,7 +286,7 @@ constructor(value: number, total: number, color: ResourceColor)
 
 **参数：**
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述           |
+| 参数名 | 类型                                   | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | number                                     | 是   | 进度遮罩的当前值。<br/> 取值范围：[0.0, +∞) |
 | total  | number                                     | 是   | 进度遮罩的最大值。<br/> 取值范围：[0.0, +∞) |
@@ -300,7 +304,7 @@ updateProgress(value: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述           |
+| 参数名 | 类型 | 必填 | 说明           |
 | ------ | -------- | ---- | ------------------ |
 | value  | number   | 是   | 进度遮罩的当前值。 |
 
@@ -316,7 +320,7 @@ updateColor(value: ResourceColor): void
 
 **参数：**
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述         |
+| 参数名 | 类型                                   | 必填 | 说明         |
 | ------ | ------------------------------------------ | ---- | ---------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。 |
 
@@ -332,7 +336,7 @@ enableBreathingAnimation(value: boolean): void
 
 **参数：**
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述         |
+| 参数名 | 类型                                   | 必填 | 说明         |
 | ------ | ------------------------------------------ | ---- | ---------------- |
 | value  | boolean | 是   | 设置为true则开启呼吸光晕动画。默认值：false |
 

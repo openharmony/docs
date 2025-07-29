@@ -24,7 +24,7 @@
 | OH_NativeXComponent_TouchEventType type | 触摸事件的触摸类型。 |
 | double size | 指垫和屏幕之间的接触面积。 |
 | float force | 当前触摸事件的压力。 |
-| long long timeStamp | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
+| int64_t timeStamp | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
 | bool isPressed | 当前点是否被按下。 |
 
 
