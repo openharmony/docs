@@ -266,7 +266,6 @@ node_api_get_module_file_name | 否 |
             OH_LOG_INFO(LOG_APP, "switch to env failed");
         }
         args2[0] = getLocation1;
-        // 注意：args[0]不是this对象，应传入env的global对象作为this参数。
         status = napi_call_function(env, nullptr, args[0], 1, args2, &result);
         if (status != napi_ok) {
             return nullptr;

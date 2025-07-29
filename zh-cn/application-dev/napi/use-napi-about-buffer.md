@@ -101,7 +101,6 @@ static napi_value CreateBufferCopy(napi_env env, napi_callback_info info)
         OH_LOG_ERROR(LOG_APP, "napi_create_buffer_copy failed");
         return nullptr;
     }
-    // resultData 是 void*，打印前需转换为 char*，并做空指针保护
     if (resultData != nullptr) {
         OH_LOG_INFO(LOG_APP, "Node-API resultData is : %{public}s.", reinterpret_cast <const char*>(resultData));
     } else {
