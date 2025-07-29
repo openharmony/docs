@@ -337,9 +337,9 @@ aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
 
 ## sendCustomData<sup>20+</sup>
 
-sendCustomData(data: Record<string, Object>): Promise<void>
+sendCustomData(data: Record\<string, Object>): Promise\<void>
 
-发送私有数据到远端设备
+发送私有数据到远端设备。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -347,7 +347,7 @@ sendCustomData(data: Record<string, Object>): Promise<void>
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
+| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
 
 **错误码：**
 
@@ -2046,7 +2046,7 @@ aVCastController.off('castControlDrmError');
 
 ## on('customDataChange')<sup>20+</sup>
 
-on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
+on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 注册从远端设备发送的自定义数据的监听器。
 
@@ -2079,7 +2079,7 @@ aVCastController.on('customDataChange', (callback) => {
 
 ## off('customDataChange')<sup>20+</sup>
 
-off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
+off(type: 'customDataChange', callback?: Callback\<Record<string, Object>>): void
 
 取消对自定义数据的监听。
 
@@ -2092,9 +2092,11 @@ off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
-| callback | Callback<Record<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

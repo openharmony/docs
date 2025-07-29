@@ -1119,9 +1119,11 @@ struct Index {
 
 ## sendCustomData<sup>20+</sup>
 
-sendCustomData(data: Record<string, Object>): Promise<void>;
+sendCustomData(data: Record\<string, Object>): Promise<void>;
 
-发送私有数据到远端设备。
+发送私有数据到远端设备。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1129,7 +1131,7 @@ sendCustomData(data: Record<string, Object>): Promise<void>;
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
+| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
 
 **错误码：**
 
@@ -3401,7 +3403,7 @@ currentAVSession.off('playFromAssetId');
 
 ## on('customDataChange')<sup>20+</sup>
 
-on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
+on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 注册从远程设备发送的自定义数据的监听器。
 
@@ -3413,7 +3415,7 @@ on(type: 'customDataChange', callback: Callback<Record<string, Object>>): void
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件回调类型，支持事件`'customDataChange'`：当媒体提供方发送自定义数据时，触发该事件。 |
+| type     | string                           | 是   | 事件回调类型，支持事件`'customDataChange'`，当媒体提供方发送自定义数据时，触发该事件。 |
 | callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接受自定义数据。                               |
 
 **错误码：**
@@ -3435,7 +3437,7 @@ currentAVSession.on('customDataChange', (callback) => {
 
 ## off('customDataChange')<sup>20+</sup>
 
-off(type: 'customDataChange', callback?: Callback<Record<string, Object>>): void
+off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): void
 
 取消自定义数据监听。
 
