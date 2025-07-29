@@ -519,6 +519,6 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 针对HTTP数据请求，有以下相关实例可供参考：
 
-* [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
+* [上传和下载（ArkTS）(API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
-* [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
+* [Http（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)

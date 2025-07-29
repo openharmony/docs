@@ -5,7 +5,7 @@
 定义获取和使用NativeImage的相关函数。
 
 <!--RP1-->
-相关示例：[NDKNativeImage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)<!--RP1End-->
+相关示例：[NDKNativeImage](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)<!--RP1End-->
 
 **引用文件：** <native_image/native_image.h>
 

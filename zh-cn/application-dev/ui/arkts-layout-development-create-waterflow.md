@@ -316,6 +316,6 @@ struct WaterFlowDemo {
 
 针对瀑布流开发，有以下实例可供参考：
 
-- [WaterFlow示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow)
+- [WaterFlow示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow)
 
 <!--RP1--><!--RP1End-->
