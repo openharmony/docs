@@ -186,7 +186,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 | middle | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | 设置横向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置顶部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置纵向居中对齐方式的参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
+| center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置纵向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
 | bias<sup>11+</sup>   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LocalizedAlignRuleOptions<sup>12+</sup>对象说明
