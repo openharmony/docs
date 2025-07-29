@@ -255,11 +255,12 @@ try {
 | 名称        | 类型                    | 只读   | 可选   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
 |   dialogType     | [DialogType](#dialogtype20)      | 否    | 否    | 表示弹框的类型。 |
-|   dialogResult     | boolean      | 否    | 否    | 表示弹框的结果。 |
+|   dialogResult     | boolean      | 否    | 否    | 表示操作弹框的结果。 |
+
 
 ## DialogType<sup>20+</sup>
 
-枚举，弹框类型
+枚举，弹框类型。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
