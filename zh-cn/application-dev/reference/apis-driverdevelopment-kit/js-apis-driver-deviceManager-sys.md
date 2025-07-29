@@ -125,7 +125,7 @@ try {
 | 名称              | 类型      | 必填  | 说明          |
 |-----------------|---------|-----|-------------|
 | deviceId        | number  | 是   | 设备ID。       |
-| isDriverMatched | boolean | 是   | 设备是否匹配到驱动。  |
+| isDriverMatched | boolean | 是   | 设备是否匹配到驱动。`true`：匹配到驱动；`false`：未匹配到驱动。 |
 | driverUid       | string  | 否   | 设备匹配的驱动UID。 |
 
 ## USBDeviceInfo

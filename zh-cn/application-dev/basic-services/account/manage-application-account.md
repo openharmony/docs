@@ -39,10 +39,10 @@
 
    ```ts
    appAccountManager.createAccount(name, options).then(()=>{
-    console.log('createAccount successfully');
-  }).catch((err: BusinessError)=>{
-    console.error('createAccount failed, error: ' + JSON.stringify(err));
-  });
+       console.info('createAccount successfully');
+   }).catch((err: BusinessError)=>{
+       console.error(`createAccount failed, error: code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 ## 查询应用账号列表
@@ -166,7 +166,7 @@
 指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
 
    ```ts
-   let name: string = 'Zhangsan';
+   let name: string = 'ZhangSan';
    appAccountManager.removeAccount(name).then(() => {
        console.log('removeAccount successfully');
    }).catch((err: BusinessError) => {

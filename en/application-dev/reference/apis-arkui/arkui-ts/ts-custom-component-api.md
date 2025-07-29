@@ -21,7 +21,7 @@ Obtains the **UIContext** instance.
 
 | Type                                                     | Description                   |
 | --------------------------------------------------------- | ----------------------- |
-| [UIContext](../js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
+| [UIContext](../arkts-apis-uicontext-uicontext.md) | **UIContext** instance obtained.|
 
 **Example**
 

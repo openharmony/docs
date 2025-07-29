@@ -13,7 +13,7 @@ Since API version 18, data in vector stores can be persisted.
 
 ## Constraints
 
-- By default, the Write Ahead Log (WAL) and the **FULL** flushing mode are used.
+- The default log mode is Write Ahead Log ([WAL](data-terminology.md#write-ahead-log-wal)), and the default flush mode is [FULL](data-terminology.md#full).
 
 - A vector store supports a maximum of four read connections and one write connection at a time by default. A thread can perform the read operation when acquiring an idle read connection. If there is no idle read connection, a new read connection will be created.
 
@@ -23,11 +23,103 @@ Since API version 18, data in vector stores can be persisted.
 
 - ArkTS supports basic data types such as number, string, binary, and boolean, and the special data type ValueType.
 
-- To ensure successful data access, limit the size of a data record to 2 MB. Data records larger than this may be inserted correctly but fail to read.
+- To ensure successful data access, limit the size of a data record to 2 MB. If a single data record exceeds the size limit, the data record may fail to be read even if it is successfully inserted.
+
+## Specifications
+
+### Data Types
+
+Types of database table fields are as follows.
+
+| Type| Description| Supported|
+| -------- | -------- | -------- |
+| NULL | Null.| Yes|
+| INTEGER | Integer.| Yes|
+| DOUBLE | Floating point.| Yes|
+| TEXT | String.| Yes|
+| BLOB | Binary.| Yes|
+| FLOATVECTOR | Vector data.| Yes|
+
+### Field Constraints
+
+Constraints on database table fields are as follows.
+
+| Function| SQL Syntax| Supported|
+| -------- | -------- | -------- |
+| Not null| NOT NULL | Yes|
+| Default value| DEFAULT  | Yes|
+| Unique index| UNIQUE | Yes|
+| Primary key index| PRIMARY KEY | Yes|
+| Foreign key index| FOREIGN | No|
+| CHECK constraint| CHECK | No|
+
+### Clauses
+
+Clauses in a query statement are as follows.
+
+| Keyword| Description| Supported|
+| -------- | -------- | -------- |
+| WHERE | Obtains data from one or more tables.| Yes|
+| LIMIT | Restricts the data to return. | Yes|
+| ORDER BY | Sorts data based on one or more columns.| Yes|
+| ORDER BY vector distance| **<->** indicates the Euclidean distance, and **<=>** indicates the cosine distance.| Yes|
+| GROUP BY | Groups the same data.| Yes|
+| HAVING | Filters the results of aggregate functions.| Yes|
+| INDEXED BY | Uses a specific index during query.| Yes|
+| DISTINCT | Eliminates duplicate records.| No|
+
+### Sets
+
+Set statements in a query statement are as follows.
+
+| Keyword| Description| Supported|
+| -------- | -------- | -------- |
+| UNION | Merges the results of two or more query statements and deduplicates the results.| Yes|
+| UNION ALL | Merges the results of two or more query statements.| Yes|
+
+### Operators
+
+The following lists the operators used to filter data based on a condition. Generally, they are used in query statements.  
+
+| Type| Operator| Supported|
+| -------- | -------- | -------- |
+| Arithmetic operation| +, -, *, /, %| Yes|
+| Comparison operation| ==, =, !=, >, >=, <, <=| Yes|
+| Logical operation| AND, BETWEEN, EXISTS, IN, NOT IN, NOT, OR, IS NULL, IS, IS NOT, LIKE, GLOB| Yes|
+| String concatenation operation| \|\| | Yes|
+| Bitwise operation| &, \|, ~, <<, >>| Yes|
+| Vector distance operation| <->, <=>| Yes (used in the aggregate functions **max** and **min**)|
+
+### Time and Date
+
+The following lists the functions used to return dates in different formats based on different time functions. Generally, these functions are used in query statements.  
+
+| Keyword| Description| Supported|
+| -------- | -------- | -------- |
+| DATE | Returns a date in the format of YYYY-MM-DD.| Yes|
+| TIME | Returns a time in the format of HH:MM:SS.| Yes|
+| DATETIME | Returns date and time in the format of YYYY-MM-DD HH:MM:SS.| Yes|
+| JULIANDAY | Returns the number of days since noon on November 24, 4714 BC in Greenwich Mean Time (GMT).| Yes|
+| STRFTIME | Returns a formatted date based on the format string specified by the first parameter.| Yes|
+
+### Functions
+
+Functions in SQL statements are as follows.
+
+| Keyword| Description| Supported|
+| -------- | -------- | -------- |
+| COUNT | Calculates the number of rows returned after a query.| Yes|
+| MAX/MIN | Selects the maximum or minimum value in a column.| Yes|
+| AVG | Calculates the average value of a column.| Yes|
+| SUM | Calculates the sum of a column.| Yes|
+| RANDOM | Returns a pseudo-random integer ranging from -9223372036854775808 to 9223372036854775807.| Yes|
+| ABS | Calculates the absolute value.| Yes|
+| UPPER/LOWER | Converts a string to uppercase or lowercase letters.| Yes|
+| LENGTH | Returns the length of a string.| Yes|
 
 ## Available APIs
 
-The following lists only the APIs for persisting vector store data. For details about more APIs and their usage, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
+The following lists only the APIs for persisting vector store data. For details about more APIs and their usage, see [RDB Store](../reference/apis-arkdata/arkts-apis-data-relationalStore.md).
 
 | API| Description|
 | -------- | -------- |
@@ -37,7 +129,7 @@ The following lists only the APIs for persisting vector store data. For details 
 | beginTrans(): Promise&lt;number&gt; | Starts the transaction before executing the SQL statements.|
 | commit(txId : number):Promise&lt;void&gt; | Commits the executed SQL statements. This API must be used together with **beginTrans**.|
 | rollback(txId : number):Promise&lt;void&gt; | Rolls back the executed SQL statements. This API must be used together with **beginTrans**.|
-| deleteRdbStore(context: Context, config: StoreConfig): Promise&lt;void&gt; | Deletes an RDB store.|
+| deleteRdbStore(context: Context, config: StoreConfig): Promise&lt;void&gt; | Deletes a database.|
 | isVectorSupported(): boolean | Checks whether the system supports vector stores.|
 
 ## How to Develop
@@ -143,7 +235,7 @@ The following lists only the APIs for persisting vector store data. For details 
 
    > **NOTE**
    >
-   > Call **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
+   > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
    The sample code is as follows:
 
@@ -281,7 +373,37 @@ The following lists only the APIs for persisting vector store data. For details 
    }
    ```
 
-8. Configure the data aging policy, which allows the application data to be automatically deleted by time or space.
+8. Manually reclaim disk fragmentation generated during index deletion. This function is supported since API version 20.
+
+    After the vector store deletes vectors on the table where the GSDiskANN index has been created, disk defragmentation is automatically performed. However, automatic disk defragmentation may not be triggered in the following scenarios:
+    - After vectors are deleted from the GSDiskANN index, the vector store is closed immediately.
+    - After vectors are deleted in batches from the GSDiskANN index, no operation is performed on the table.
+
+   Therefore, the following statement is provided for you to trigger the disk defragmentation from the GSDiskANN index:
+   ```sql
+   PRAGMA DISKANN_ASYNC_COLLECTING;
+   ```
+  
+   > **NOTE**
+   >
+   > - This statement is triggered to reclaim disk fragmentation from GSDiskANN indexes in all tables of the vector store at a time.
+   > 
+   > - The disk defragmentation task is a background task and does not block the execution of subsequent statements.
+   > 
+   > - The disk defragmentation task is automatically scheduled by the background based on the load. Generally, the task is executed only in low-load scenarios. The time required for successful execution depends on the load.
+
+    The sample code is as follows:
+
+   ```ts
+   try {
+     // Manually trigger asynchronous deletion and sorting to execute disk defragmentation for all GSDiskANN indexes in the vector store.
+     await store!.execute("PRAGMA DISKANN_ASYNC_COLLECTING;");
+   } catch (err) {
+     console.error(`diskann async collecting failed, code is ${err.code}, message is ${err.message}`);
+   }
+   ```
+
+9. Configure the data aging policy, which allows the application data to be automatically deleted by time or space.
    
    The syntax is as follows:
 
@@ -323,16 +445,39 @@ The following lists only the APIs for persisting vector store data. For details 
    }
    ```
 
-9. Delete the database.
+10. Configure data compression. This feature is configured when a table is created to compress column data of the text type.
 
-   Call **deleteRdbStore()** to delete the vector store and related database files. The sample code is as follows:
+    Data compression is supported since API version 20.
 
-   ```ts
-   try {
-     await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
-   } catch (err) {
-     console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);
-   }
-   ```
+    The syntax is as follows:
+
+    ```sql
+    CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
+    ```
+
+    In this syntax, **compress_col** is mandatory, and value is the name of the data column of the text type. This parameter can be configured together with the data aging policy.
+
+    The sample code is as follows:
+
+    ```ts
+    try {
+      // Data compression and data aging are configured for the content column.
+      await store!.execute("CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');");
+    } catch (err) {
+       console.error(`configure data compress failed, code is ${err.code}, message is ${err.message}`);
+    }
+    ```
+
+11. Delete the database.
+
+    Call **deleteRdbStore()** to delete the vector store and related database files. The sample code is as follows:
+
+    ```ts
+    try {
+      await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
+    } catch (err) {
+      console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);
+    }
+    ```
 
    

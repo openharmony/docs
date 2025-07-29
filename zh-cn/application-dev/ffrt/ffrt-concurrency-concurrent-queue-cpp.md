@@ -1,5 +1,11 @@
 # Function Flow Runtime并发队列(C++)
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## 概述
 
 FFRT并发队列提供了设置任务优先级（Priority）和队列并发度的能力，使得队列中的任务能同时在多个线程上执行，获得更高的并行效果。

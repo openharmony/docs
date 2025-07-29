@@ -404,7 +404,7 @@ function buildDataPanel(config: DataPanelConfiguration) {
     Column() {
       ForEach(config.values, (item: number, index: number) => {
         ChildItem({ item: item, index: index, max: config.maxValue })
-      }, (item: string) => item)
+      }, (item: number, index: number) => item.toString())
     }.padding(10)
 
     Column() {
@@ -464,7 +464,8 @@ struct ChildItem {
         Rect()
           .height(25)
           .width(this.item * 600 / this.max)
-          .foregroundColor(this.colorArray[this.index])
+          .foregroundColor((this.index < 0 || this.index >= this.colorArray.length) ? this.colorArray[0] :
+                            this.colorArray[this.index])
           .radius(5)
           .align(Alignment.Start)
         Text(" " + this.item)

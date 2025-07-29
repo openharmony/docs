@@ -181,7 +181,7 @@ ArkTS Array归约函数类型，被Array类的'from' 接口使用。
 | ------ | --------------------------- |
 | ToElementType | 归约函数的结果，该结果会作为数组的新元素。 |
 
-## ArrayPredicateFn</a><sup>18+</sup>
+## ArrayPredicateFn<sup>18+</sup>
 type ArrayPredicateFn<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
 ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用来判断数组元素是否满足测试条件。
@@ -204,7 +204,7 @@ ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用
 | ------ | --------------------------- |
 | boolean | 归约函数的结果，该结果作为判断当前元素是否通过测试条件。为true时表示当前或之前的某个元素已满足条件，为false时表示尚未找到符合条件的元素。 |
 
-## ArrayReduceCallback</a><sup>18+</sup>
+## ArrayReduceCallback<sup>18+</sup>
 type ArrayReduceCallback<AccType, ElementType, ArrayType> =
     (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
 
@@ -481,7 +481,7 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 | 参数名    | 类型          | 必填 | 说明                            |
 | --------- | ------------- | ---- | ------------------------------- |
 | arrayLike | ArrayLike\<T> \| Iterable\<T> | 是   | 用于构造ArkTS Array的对象。 |
-| mapFn | ArrayFromMapFn\<T,T> | 是   | 调用数组每个元素的函数。 |
+| mapFn | [ArrayFromMapFn](#arrayfrommapfn18)\<T,T> | 是   | 调用数组每个元素的函数。 |
 
 **返回值：**
 
@@ -521,7 +521,7 @@ static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapF
 | 参数名    | 类型          | 必填 | 说明                            |
 | --------- | ------------- | ---- | ------------------------------- |
 | arrayLike | ArrayLike\<U> \| Iterable\<U> | 是   | 用于构造ArkTS Array的对象。 |
-| mapFn | ArrayFromMapFn\<U, T> | 是   | 调用数组每个元素的函数。 |
+| mapFn | [ArrayFromMapFn](#arrayfrommapfn18)\<U, T> | 是   | 调用数组每个元素的函数。 |
 
 **返回值：**
 
@@ -718,7 +718,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 | 参数名  | 类型   | 必填 | 说明                                                  |
 | ------- | ------ | ---- | ---------------------------------------------------- |
-| predicate | ArrayPredicateFn\<T, Array\<T>> | 是 | 用于测试的断言函数。|
+| predicate | [ArrayPredicateFn](#arraypredicatefn18)\<T, Array\<T>> | 是 | 用于测试的断言函数。|
 
 **返回值：**
 
@@ -756,7 +756,7 @@ reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
 
 | 参数名        | 类型                                                                               | 必填  | 说明                                         |
 | ---------- | -------------------------------------------------------------------------------- | --- | ------------------------------------------ |
-| callbackFn | ArrayReduceCallback\<T, T, Array\<T>> | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+| callbackFn | [ArrayReduceCallback](#arrayreducecallback18)\<T, T, Array\<T>> | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
 
 **返回值：**
 
@@ -796,7 +796,7 @@ reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialVa
 
 | 参数名          | 类型                                                                                           | 必填  | 说明                                         |
 | ------------ | -------------------------------------------------------------------------------------------- | --- | ------------------------------------------ |
-| callbackFn   | ArrayReduceCallback\<U, T, Array\<T>> | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+| callbackFn   | [ArrayReduceCallback](#arrayreducecallback18)\<U, T, Array\<T>> | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
 | initialValue | U                                                                                            | 是   | 用于初始化累加器的值。                                |
 
 **返回值：**
@@ -1856,7 +1856,7 @@ every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                                    |
 | ------- | ------ | ---- | ----------------------------------------------------- |
-| predicate | ArrayPredicateFn\<T, Array\<T>> | 是 | 用于测试的断言函数。|
+| predicate | [ArrayPredicateFn](#arraypredicatefn18)\<T, Array\<T>> | 是 | 用于测试的断言函数。|
 
 **返回值：**
 
@@ -2425,7 +2425,7 @@ const myMap = new collections.Map<string, string>([
 // Expected output: "world"
 console.info(myMap.get("hello"));
 // Expected output: undefined
-console.info(myMap.get("world"));
+console.info(myMap.get("hel"));
 ```
 
 ### has
@@ -2508,7 +2508,7 @@ set(key: K, value: V): Map<K, V>
 ```ts
 // 正例：
 const myMap = new collections.Map<string, string>();
-myMap.set("foo", "bar")
+myMap.set("foo", "bar");
 ```
 
 <!--code_no_check-->
@@ -3874,7 +3874,7 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| number | 第一个满足条件的元素索引；如果所有元素都不满足条件，否返回-1。|
+| number | 第一个满足条件的元素索引；如果所有元素都不满足条件，则返回-1。|
 
 **错误码：**
 
