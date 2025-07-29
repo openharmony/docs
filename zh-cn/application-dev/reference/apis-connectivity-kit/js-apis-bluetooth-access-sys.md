@@ -196,7 +196,7 @@ try {
 
 notifyDialogResult(notifyDialogResultParams: NotifyDialogResultParams): Promise&lt;void&gt;
 
-通知蓝牙开关弹框的结果。使用Promise异步回调。
+通知用户操作蓝牙弹框的行为。使用Promise异步回调。
 - 与API version 20开始支持的[access.enableBluetoothAsync](js-apis-bluetooth-access.md#accessenablebluetoothasync20)搭配使用，应用申请开启蓝牙，调用该接口会将用户处理开关蓝牙弹框的结果通知给蓝牙服务。
 - 与API version 20开始支持的[access.disableBluetoothAsync](js-apis-bluetooth-access.md#accessdisablebluetoothasync20)搭配使用，应用申请关闭蓝牙，调用该接口会将用户处理开关蓝牙弹框的结果通知给蓝牙服务。
 
@@ -210,7 +210,7 @@ notifyDialogResult(notifyDialogResultParams: NotifyDialogResultParams): Promise&
 
 | 参数名   | 类型                                               | 必填  | 说明                                                       |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
-|  notifyDialogResultParams<sup>20+</sup>    | [NotifyDialogResultParams](js-apis-bluetooth-access.md#notifydialogresultparams20)             | 是    | 用户操作弹框的结果。       |
+|  notifyDialogResultParams   | [NotifyDialogResultParams](#notifydialogresultparams20)             | 是    | 用户操作弹框的行为。       |
 
 **返回值：**
 
@@ -233,7 +233,7 @@ notifyDialogResult(notifyDialogResultParams: NotifyDialogResultParams): Promise&
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let notifyDialogResultParams: access.NotifyDialogResultParams = {
         "dialogType": 0,
@@ -248,19 +248,23 @@ try {
 
 ## NotifyDialogResultParams<sup>20+</sup>
 
-用户操作弹框的结果。
+用户操作弹框的行为。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称        | 类型                    | 只读   | 可选   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
 |   dialogType     | [DialogType](#dialogtype20)      | 否    | 否    | 表示弹框的类型。 |
-|   dialogResult     | boolean      | 否    | 否    | 表示操作弹框的结果。 |
+|   dialogResult     | boolean      | 否    | 否    | 表示操作弹框的行为。true表示用户同意该操作，false表示拒绝该操作。 |
 
 
 ## DialogType<sup>20+</sup>
 
 枚举，弹框类型。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

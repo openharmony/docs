@@ -86,7 +86,7 @@ enableBluetoothAsync(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     access.enableBluetoothAsync().then(() => {
         console.info('enableBluetoothAsync');
@@ -170,7 +170,7 @@ disableBluetoothAsync(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetoothAsync().then(() => {
         console.info('disableBluetoothAsync');
@@ -381,7 +381,7 @@ deletePersistentDeviceId(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
