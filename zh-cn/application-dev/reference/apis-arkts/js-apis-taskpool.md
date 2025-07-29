@@ -371,7 +371,7 @@ function printArgs(args: number): void {
 let t: number = Date.now();
 console.info("taskpool start time is: " + t);
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed(1000, task).then(() => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -429,7 +429,7 @@ function printArgs(args: number): string {
 }
 
 let task: taskpool.Task = new taskpool.GenericsTask<[number], string>(printArgs, 100); // 100: test number
-taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -2673,8 +2673,6 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import { taskpool } from '@kit.ArkTS';
-
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
