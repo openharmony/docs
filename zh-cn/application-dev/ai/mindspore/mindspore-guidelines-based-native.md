@@ -68,8 +68,6 @@
            .width('40%')
            .height('5%')
            .onClick(() => {
-             let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-   
              // 获取相册图片
              // 1.创建图片文件选择实例
              let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -103,6 +101,10 @@
    
                    // 3.通过PixelMap预处理
                    let imageSource = image.createImageSource(file.fd);
+                   if (imageSource == undefined) {
+                     console.error('MS_LITE_ERR: createImageSource failed.')
+                     return
+                   }
                    imageSource.createPixelMap().then((pixelMap) => {
                      pixelMap.getImageInfo().then((info) => {
                        console.info('MS_LITE_LOG: info.width = ' + info.size.width);
@@ -193,16 +195,20 @@
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
+       if (fileSize <= 0) {
+           LOGE("MS_LITE_ERR: FileSize not correct");
+       }
        void *modelBuffer = malloc(fileSize);
        if (modelBuffer == nullptr) {
-           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: malloc failed");
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, modelBuffer, fileSize);
        if (ret == 0) {
-           LOGI("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
@@ -473,7 +479,7 @@ struct Index {
         .width('40%')
         .height('5%')
         .onClick(() => {
-          let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+
           let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
           // 图像输入和预处理。
           // 调用c++的runDemo方法，完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
