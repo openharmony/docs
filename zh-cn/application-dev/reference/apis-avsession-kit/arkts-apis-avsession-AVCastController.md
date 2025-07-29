@@ -351,6 +351,12 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'，且Object为string类型的对象。 |
 
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
