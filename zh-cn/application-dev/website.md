@@ -705,12 +705,9 @@
           - [UI稳定性故障分析概述](ui/arkts-stability-guide.md)
           - [UI相关应用崩溃常见问题](ui/arkts-stability-crash-issues.md)
           - [UI相关应用无响应常见问题](ui/arkts-stability-freeze-issues.md)
-        - UI显示异常调试<!--ui-display-exception-->
-          - [定位UI显示异常问题](ui/arkts-layout-development-Tool.md)
-          - [解决UI显示异常问题](ui/arkts-layout-development-FAQ.md)
-        - UI调优<!--ui-inspector-profiler-->
-          - [UI调优能力介绍](ui/ui-inspector-profiler.md)
-          - [UI预览](ui/ui-ide-previewer.md)
+        - [UI显示异常调试](ui/arkts-layout-debug.md)
+        - [UI预览](ui/ui-ide-previewer.md)
+        - [UI调优](ui/ui-inspector-profiler.md)
         - UI高性能开发<!--ui-performance-->
           - [UI性能优化概览](ui/ui-performance-overview.md)
       - 窗口管理<!--window-manager-->
