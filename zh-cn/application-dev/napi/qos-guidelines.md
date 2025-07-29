@@ -64,6 +64,7 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 ### QoS对线程执行的优化
 
 **优化前**
+
 ![qosfigure1.png](./figures/qosfigure1.png)
 
 线程1和线程2是某程序的两个关键线程，线程1在运行时会触发新任务线程2，等线程2执行完后会唤醒线程1继续执行。在未标记这两个线程的QoS等级之前，其优先执行顺序低于线程3和线程4；此时线程1和线程2的执行效果如上图所示：
@@ -75,6 +76,7 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 3. 线程1优先级低，运行过程中长时间被其它线程抢占。
 
 **优化后**
+
 ![qosfigure2.png](./figures/qosfigure2.png)
 
 合理标记线程1和线程2的QoS等级后，两个线程的执行优化效果如上图所示：
@@ -159,6 +161,7 @@ int OH_QoS_ResetThreadQoS();
 * 若成功则返回0，失败则返回-1。
 
 **描述**
+
 取消某个任务设置的QoS等级。取消当前任务的QoS等级。参考[QoS实践指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-thread-priority-setting)。
 
 **样例**
@@ -197,6 +200,7 @@ QoS_Level *level
 * 若成功则返回0，失败则返回-1。
 
 **描述**
+
 获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则返回-1。查看当前任务的QoS等级。参考[QoS实践指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-thread-priority-setting)。
 
 **样例**
