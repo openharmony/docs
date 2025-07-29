@@ -1131,7 +1131,7 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>;
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
+| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'，且Object为string类型的对象。 |
 
 **错误码：**
 
@@ -3450,7 +3450,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
-| callback | Callback<Record<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 
