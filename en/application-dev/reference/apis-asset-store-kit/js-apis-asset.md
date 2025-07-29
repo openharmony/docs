@@ -789,6 +789,55 @@ try {
 }
 ```
 
+## asset.querySyncResult<sup>20+</sup>
+
+querySyncResult(query: AssetMap): Promise\<SyncResult>
+
+Queries the result of the sync operation. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.Asset
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                                                        |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| query | [AssetMap](#assetmap) | Yes  | Attributes of the sync result to query, such as the group to which the asset belongs and whether the custom attribute information is encrypted.|
+
+**Return value**
+
+| Type         | Description                   |
+| ------------- | ----------------------- |
+| Promise\<[SyncResult](#syncresult20)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+
+| ID| Error Message                                                  |
+| -------- | ---------------------------------------------------------- |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000006 | Insufficient memory.                                       |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.   |
+| 24000018 | Parameter verification failed.   |
+
+**Example**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let query: asset.AssetMap = new Map();
+asset.querySyncResult(query).then((res: asset.SyncResult) => {
+  console.info(`sync result: ${JSON.stringify(res)}`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## TagType
 
 Enumerates the asset attribute types.
@@ -818,7 +867,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                                |
 | ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                        |
 | ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | Access control based on the lock screen status.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
 | AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | Type of user authentication required for accessing the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                              |
 | AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                            |
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
@@ -845,11 +894,12 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.|
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.<br>|
+| WRAP_TYPE<sup>18+</sup> | TagType.NUMBER &#124; 0x49 | Encrypted import/export type supported by the asset.<br>|
 
 ## Value
 
-type Value = boolean | number | Uint8Array;
+type Value = boolean | number | Uint8Array
 
 Represents the value of each attribute in [AssetMap](#assetmap).
 
@@ -933,7 +983,7 @@ Enumerates the type of information returned by an asset query operation.
 
 | Name      | Value  | Description                                                        |
 | ---------- | ---- | ------------------------------------------------------------ |
-| ALL        | 0    | The query result contains the asset plaintext and its attributes.<br>**NOTE**: Use this option when you need to query the plaintext of a single asset.|
+| ALL        | 0    | The query result contains the asset in plaintext and its attributes.<br>**NOTE**: Use this option when you need to query the plaintext of a single asset.|
 | ATTRIBUTES | 1    | The query result contains only the asset attributes.<br>**NOTE**: Use this option when you need to query attributes of multiple assets.|
 
 ## ConflictResolution
@@ -960,6 +1010,29 @@ Enumerates the types of additional operation to perform.
 | NEED_SYNC   | 0    | Sync.|
 | NEED_LOGOUT | 1    | Logout.|
 
+## WrapType<sup>18+</sup>
+
+Enumerates the encrypted import/export types supported by the asset.
+
+**System capability**: SystemCapability.Security.Asset
+
+| Name       | Value  | Description              |
+| ----------- | ---- | ------------------ |
+| NEVER   | 0    | Encrypted import/export is not allowed for the asset.|
+| TRUSTED_ACCOUNT | 1    | Encrypted import/export is allowed for the asset only on devices where a trusted account is logged in.|
+
+## SyncResult<sup>20+</sup>
+
+Represents the sync result of an asset.
+
+**System capability**: SystemCapability.Security.Asset
+
+| Name       | Type  | Read-Only| Optional|Description              |
+| ----------- | ---- | ---- | ---- | ------------------ |
+| resultCode   | number    | Yes| No| Sync result code of an asset. If the sync is successful, the result code is **0**. If the sync fails, see [ErrorCode](#errorcode) for the result code.|
+| totalCount | number    | Yes| Yes|  Total number of assets to be synced.|
+| failedCount | number    | Yes| Yes|  Number of assets that fail to be synced.|
+
 ## ErrorCode
 
 Enumerates the error codes.
@@ -971,7 +1044,7 @@ Enumerates the error codes.
 | PERMISSION_DENIED | 201     |The caller does not have the permission.|
 | NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |The caller is not a system application.|
 | INVALID_ARGUMENT | 401    |Incorrect parameters are detected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| SERVICE_UNAVAILABLE | 24000001    |The asset store service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| SERVICE_UNAVAILABLE | 24000001    |The asset service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | NOT_FOUND | 24000002    |Failed to find the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DUPLICATED | 24000003    |The specified asset already exists.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | ACCESS_DENIED | 24000004    |The access to the asset is denied.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -988,3 +1061,4 @@ Enumerates the error codes.
 | GET_SYSTEM_TIME_ERROR | 24000015   |Failed to obtain the system time.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | LIMIT_EXCEEDED | 24000016   |The number of cached records exceeds the upper limit.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | UNSUPPORTED | 24000017   |The feature is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| PARAM_VERIFICATION_FAILED<sup>20+</sup> | 24000018   |Parameter verification failed.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
