@@ -27,10 +27,7 @@
 
 本示例程序中使用的语音识别模型文件为tiny-encoder.ms、tiny-decoder-main.ms、tiny-decoder-loop.ms，放置在entry/src/main/resources/rawfile工程目录下。
 
-
-### 编写代码
-
-#### 播放音频
+### 编写播放音频代码
 
 1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md)，实现播放音频的功能。
 
@@ -129,7 +126,7 @@
    ```
 
 
-#### 识别音频
+### 编写识别音频代码
 
 调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，依次对3个模型进行推理，推理代码流程如下。
 
@@ -633,7 +630,7 @@
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### 使用N-API将C++动态库封装成ArkTS模块
+### 使用N-API将C++动态库封装成ArkTS模块
 
 1. 在 entry/src/main/cpp/types/libentry/Index.d.ts，定义ArkTS接口`runDemo()` 。内容如下：
 
@@ -657,7 +654,7 @@
    }
    ```
 
-#### 调用封装的ArkTS模块进行推理并输出结果
+### 调用封装的ArkTS模块进行推理并输出结果
 
 在 entry/src/main/ets/pages/Index.ets 中，调用封装的ArkTS模块，最后对推理结果进行处理。
 
