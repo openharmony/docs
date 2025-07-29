@@ -113,24 +113,32 @@
 
    ```ts
    // 为子窗口加载对应的目标页面。
-   let windowClass: window.Window = window.findWindow("test");
-   windowClass.setUIContent("pages/page2", (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in loading the content.');
-     // 显示子窗口。
-     windowClass.showWindow((err: BusinessError) => {
-       let errCode: number = err.code;
-       if (errCode) {
-         console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-         return;
-       }
-       console.info('Succeeded in showing the window.');
-     });
-   });
+   try {
+    let windowClass: window.Window = window.findWindow("test");
+    if (!windowClass) {
+        console.error('windowClass is null');
+    } else {
+      windowClass.setUIContent("pages/page2", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+        // 显示子窗口。
+        windowClass.showWindow((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in showing the window.');
+        });
+      });
+    }
+   } catch (exception) {
+    console.error(`Failed to load content. Cause code: ${exception.code}, message: ${exception.message}`);
+   }
    ```
 
 4. 销毁子窗口。

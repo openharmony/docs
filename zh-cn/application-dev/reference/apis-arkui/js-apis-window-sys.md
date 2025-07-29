@@ -215,14 +215,18 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 
 try {
-  window.minimizeAll(displayClass.id, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in minimizing all windows.');
-  });
+  if (!displayClass) {
+    console.error('displayClass is null');
+  } else {
+    window.minimizeAll(displayClass.id, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in minimizing all windows.');
+    });
+  }
 } catch (exception) {
   console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -1524,16 +1528,20 @@ try {
     }
     windowClass = data;
   });
-  windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  }, (err: BusinessError) => {
-    let errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in binding dialog target.');
-  });
+  if (!windowClass) {
+    console.error('windowClass is null');
+  } else {
+    windowClass.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+    }, (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in binding dialog target.');
+    });
+  }
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -1683,6 +1691,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         }
         windowClass = data;
       });
+      if (!windowClass) {
+        console.error('windowClass is null');
+        return;
+      }
       let requestInfo = dialogRequest.getRequestInfo(want)
       windowClass.bindDialogTarget(requestInfo, () => {
         console.info('Dialog Window Need Destroy.');
@@ -1757,6 +1769,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         }
         windowClass = data;
       });
+      if (!windowClass) {
+        console.error('windowClass is null');
+        return;
+      }
       let requestInfo = dialogRequest.getRequestInfo(want)
       let promise = windowClass.bindDialogTarget(requestInfo, () => {
         console.info('Dialog Window Need Destroy.');
