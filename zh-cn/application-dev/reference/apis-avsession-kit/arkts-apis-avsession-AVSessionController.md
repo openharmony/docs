@@ -1180,7 +1180,7 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'且Object为string类型的对象。 |
+| data   | Record<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'，且Object为string类型的对象。 |
 
 **错误码：**
 
@@ -2278,7 +2278,7 @@ avsessionController.off('extrasChange');
 
 ## on('customDataChange')<sup>20+</sup>
 
-on(type: 'customDataChange', callback: Callback<Record\<string, Object>>): void
+on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 注册从远程设备发送的自定义数据的监听器。
 
