@@ -2787,7 +2787,7 @@ struct UIServiceExtensionAbility {
       // 断开UIServiceExtension连接
       context.disconnectUIServiceExtensionAbility(this.comProxy)
         .then(() => {
-          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}`);
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -2859,20 +2859,25 @@ export default class EntryAbility extends UIAbility {
       }
 
       let newLabel: string = 'instance label';
-      let color = new ArrayBuffer(0);
-      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      });
+      let color = new ArrayBuffer(512 * 512 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
+      let opts: image.InitializationOptions = {
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
+      };
+      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, opts);
       this.context.setAbilityInstanceInfo(newLabel, imagePixelMap)
         .then(() => {
           console.info('setAbilityInstanceInfo success');
         }).catch((err: BusinessError) => {
-          console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
-        });
+        console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
       });
+    });
   }
 }
 ```

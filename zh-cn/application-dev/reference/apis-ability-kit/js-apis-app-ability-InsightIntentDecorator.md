@@ -139,7 +139,7 @@ export class ClassForLink {
 
 > **说明：**
 >
-> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、llmDescription、keywords、parameters、result字段均设置为标准意图的相应字段值。
+> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、domain、llmDescription、keywords、parameters、result字段均设置为标准意图的相应字段值。
 
 | 名称               | 类型            | 只读         | 可选 | 说明                                                         |
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |

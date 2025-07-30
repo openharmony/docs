@@ -211,10 +211,24 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
-captionsManager.on('enableChange', (data: boolean) => {
-  console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-})
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
+
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### on('styleChange')<sup>(deprecated)</sup>
@@ -249,11 +263,24 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.on('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('enableChange')<sup>(deprecated)</sup>
@@ -288,11 +315,29 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('enableChange', (data: boolean) => {
-  console.info(`Unsubscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('styleChange')<sup>(deprecated)</sup>
@@ -327,11 +372,29 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`Unsubscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ## EventInfo

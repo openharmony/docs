@@ -106,7 +106,7 @@ struct Index {
   }
   ```
 
-- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。注意，API version 19之前，\@Local无法和\@Observed装饰的类实例对象混用。API version 19及以后，支持部分状态管理V1V2混用能力，允许\@Local和\@Observed同时使用，详情见[状态管理V1V2混用文档](../state-management/arkts-v1-v2-mixusage.md)。
+- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。注意，API version 19之前，\@Local无法和[\@Observed](./arkts-observed-and-objectlink.md)装饰的类实例对象混用。API version 19及以后，支持部分状态管理V1V2混用能力，允许\@Local和\@Observed同时使用，详情见[状态管理V1V2混用文档](../state-management/arkts-v1-v2-mixusage.md)。
 
     ```ts
     class RawObject {
@@ -245,7 +245,7 @@ struct Index {
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push、pop、shift、unshift、splice、copyWithin、fill、reverse、sort |
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
@@ -336,7 +336,7 @@ struct Index {
 
 ### 装饰Array类型变量
 
-当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`,`sort`更新Array中的数据。
+当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`更新Array中的数据。
 
 ```ts
 @Entry
@@ -375,7 +375,7 @@ struct Index {
 
 ### 装饰Date类型变量
 
-当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性。
 
 ```ts
 @Entry
@@ -416,13 +416,13 @@ struct DatePickerExample {
 
 ### 装饰Map类型变量
 
-当装饰的对象是Map时，可以观察到对Map整体的赋值，同时可以通过调用Map的接口 set、clear、delete更新Map中的数据。
+当装饰的对象是Map时，可以观察到对Map整体的赋值，同时可以通过调用Map的接口`set`, `clear`, `delete`更新Map中的数据。
 
 ```ts
 @Entry
 @ComponentV2
 struct MapSample {
-  @Local message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 使用@Local装饰Map类型变量
+  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 使用@Local装饰Map类型变量
 
   build() {
     Row() {
@@ -433,16 +433,16 @@ struct MapSample {
           Divider()
         })
         Button('init map').onClick(() => { // 按钮1：重置Map为初始状态
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
         Button('set new one').onClick(() => { // 按钮2：添加新键值对(4, "d")
-          this.message.set(4, "d");
+          this.message.set(4, 'd');
         })
         Button('clear').onClick(() => { // 按钮3：清空Map
           this.message.clear();
         })
         Button('replace the first one').onClick(() => { // 按钮4：更新/添加键值为0的元素
-          this.message.set(0, "aa");
+          this.message.set(0, 'aa');
         })
         Button('delete the first one').onClick(() => { // 按钮5：删除元素0
           this.message.delete(0);
@@ -457,7 +457,7 @@ struct MapSample {
 
 ### 装饰Set类型变量
 
-当装饰的对象是Set时，可以观察到对Set整体的赋值，同时可以通过调用Set的接口add、clear、delete更新Set中的数据。
+当装饰的对象是Set时，可以观察到对Set整体的赋值，同时可以通过调用Set的接口`add`, `clear`, `delete`更新Set中的数据。
 
 ```ts
 @Entry
@@ -529,9 +529,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.info('dataObjFromList has changed');
   }
 
   build() {
@@ -560,9 +560,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.info('dataObjFromList has changed');
   }
 
   build() {

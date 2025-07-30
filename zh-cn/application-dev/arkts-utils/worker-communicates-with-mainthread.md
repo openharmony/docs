@@ -28,15 +28,13 @@
    ```ts
    // Index.ets
    import { worker } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
          resolve();
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+       }, 100);
+     });
      return p;
    }
    

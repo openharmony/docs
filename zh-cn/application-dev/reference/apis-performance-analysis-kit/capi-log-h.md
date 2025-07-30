@@ -2,7 +2,7 @@
 
 ## 概述
 
-HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。用户输出日志时，先定义日志所属业务领域、日志TAG，然后按照类型、级别选择对应API，指定参数隐私标识输出日志内容。<br> 业务领域：指定日志所对应的业务领域，用户自定义使用，用于标识业务的子系统、模块。16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。<br> 日志TAG：字符串常量，用于标识调用所在的类或者业务。<br> 日志级别：DEBUG、INFO、WARN、ERROR、FATAL。<br> 参数格式：类printf的%方式，包括格式字符串（包括参数类型标识）和变参。<br> 隐私参数标识：在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。注意：每个参数未指定隐私标识时，缺省为隐私。<br> 使用示例：<br> 定义业务领域、TAG：<br>     #include &lt;hilog/log.h&gt;<br>     #define LOG_DOMAIN 0x0201<br>     #define LOG_TAG "MY_TAG"<br> 日志打印：<br>     HILOG_WARN([LOG_APP](capi-log-h.md#logtype), "Failed to visit %{private}s, reason:%{public}d.", url, errno);<br> 结果输出：<br>     05-06 15:01:06.870 1051 1051 W 0201/MY_TAG: Failed to visit \<private>, reason:503.<br>
+HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。用户输出日志时，先定义日志所属业务领域、日志TAG，然后按照类型、级别选择对应API，指定参数隐私标识输出日志内容。<br> 业务领域：指定日志所对应的业务领域，用户自定义使用，用于标识业务的子系统、模块。16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。<br> 日志TAG：字符串常量，用于标识调用所在的类或者业务。<br> 日志级别：DEBUG、INFO、WARN、ERROR、FATAL。<br> 参数格式：类printf的%方式，包括格式字符串（包括参数类型标识）和变参。<br> 隐私参数标识：在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。注意：每个参数未指定隐私标识时，缺省为隐私。
 
 **库：** libhilog.so
 
@@ -102,7 +102,7 @@ int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *
 | unsigned int domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。 |
 | const char *tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | const char *fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中'%'符号后类型前增加{public}、{private}标识。 |
-| [](capi-log-h.md#).[](capi-log-h.md#).[](capi-log-h.md#).[](capi-log-h.md#) | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **返回：**
 

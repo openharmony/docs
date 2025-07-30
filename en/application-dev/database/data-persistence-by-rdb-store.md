@@ -1,4 +1,4 @@
-# Persisting RDB Store Data
+# Persisting RDB Store Data (ArkTS)
 
 
 ## When to Use
@@ -370,7 +370,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
      })
    }
    if(store != undefined) {
-      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
+      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH 'Text'", (err, resultSet) => {
         if (err) {
           console.error(`Query failed.`);
           return;
@@ -445,4 +445,3 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    });
    ```
 
-<!--no_check-->

@@ -26,7 +26,7 @@ Pass the correct parameters in the API.
 
 **Error Message**
 
-Memory allocation failure.
+Memory allocation failed.
 
 **Description**
 
@@ -46,26 +46,27 @@ When the API is called, the memory fails to be allocated or a null pointer occur
 
 **Error Message**
 
-Unsupported state.
+Operation not permitted at current state.
 
 **Description**
 
-This operation is not allowed in the current state.
+The current state of the object does not support this operation.
 
 **Possible Causes**
 
-The operation is not supported in the current state. For example, data is played before streams are started.
+The operation is not supported in the current state of the object, for example, attempting to play data without starting the stream.
 
 **Solution**
 
 1. Check whether this operation is supported in the current state.
-2. Switch the instance to the correct state and perform the operation.
+2. Transition the object to the correct state before performing the operation.
 
+<!--Del-->
 ## 6800104 Unsupported Parameter Value
 
 **Error Message**
 
-Unsupported parameter value.
+Unsupported option.
 
 **Description**
 
@@ -79,24 +80,27 @@ The value of the input parameter is not within the range supported.
 
 1. Check the enums or other input parameters supported by the API.
 2. Use a supported value.
+<!--DelEnd-->
 
 ## 6800105 Processing Timeout
 
 **Error Message**
 
-Processing timeout.
+Timeout.
 
 **Description**
 
-Waiting for external processing times out.
+The processing times out.
 
 **Possible Causes**
 
-Waiting for external processing times out. For example, waiting for the application to fill in audio data times out.
+1. An internal exception occurs in the system, triggering a timeout check of an internal interface.
+2. The system relies on timely callback processing by the application. If the application fails to return promptly, the system reports a timeout.
 
 **Solution**
 
-Control the time of the write operation, for example, adding delayed processing.
+1. For internal system timeouts, the application can only report the error.
+2. For interface implementations that depend on timely callback processing by the application, the application should check the callback execution and ensure prompt returns to avoid disrupting subsequent system processes.
 
 ## 6800201 Too Many Audio Streams
 
@@ -110,11 +114,12 @@ The number of audio streams reaches the upper limit.
 
 **Possible Causes**
 
-Invalid audio streams are not released in time.
+Excess audio streams are not released in a timely manner.
 
 **Solution**
 
-Release audio streams that are no longer used.
+1. Release unused audio stream resources and retry.
+2. If the system limit is reached due to other applications, report an error message to the user, asking them to close other applications.
 
 ## 6800301 System Error
 
@@ -132,4 +137,4 @@ The system processing is abnormal, for example, system service restart or IPC ex
 
 **Solution**
 
-Create the service again.
+This is a general internal system error with unclear circumstances. You are advised to try re-creating the service process or directly report a system error.

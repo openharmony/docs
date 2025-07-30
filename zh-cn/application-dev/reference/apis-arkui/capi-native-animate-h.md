@@ -2170,7 +2170,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity)
 
 | 参数项 | 描述 |
 | -- | -- |
-| float opacity | 透明度，取值范围： [0, 1]。 |
+| float opacity | 透明度，取值范围为[0, 1]。默认值为1。设置小于0的非法值按0处理，大于1的非法值按1处理，1表示不透明，0表示完全透明。 |
 
 **返回：**
 

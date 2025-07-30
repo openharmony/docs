@@ -310,7 +310,7 @@
             - [Worker和宿主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
             - [多级Worker间高性能消息通信](arkts-utils/worker-postMessage-sendable.md)
-        - 应用多线程开发<!--multithread-develop-guide-->
+        - 应用多线程开发实践<!--multithread-develop-guide-->
           - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
           - 耗时任务并发场景<!--time-consuming-task-->
             - [耗时任务并发场景简介](arkts-utils/time-consuming-task-overview.md)
@@ -443,10 +443,14 @@
               - [makeObserved接口：将非观察数据变为可观察数据](ui/state-management/arkts-new-makeObserved.md)
               - [addMonitor/clearMonitor接口：动态添加/取消监听](ui/state-management/arkts-new-addMonitor-clearMonitor.md)
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
-          - V1V2混用和迁移指导<!--v1v2-migration-->
+          - V1V2混用指导<!--v1v2-mixing-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
             - [状态管理V1V2混用文档](ui/state-management/arkts-v1-v2-mixusage.md)
-            - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
+          - V1->V2迁移指导<!--v1v2-migration-->
+            - [V1->V2迁移指导概述](ui/state-management/arkts-v1-v2-migration.md)
+            - [组件内状态变量迁移指导](ui/state-management/arkts-v1-v2-migration-inner-component.md)
+            - [数据对象状态变量的迁移指导](ui/state-management/arkts-v1-v2-migration-inner-class.md)
+            - [应用内状态变量和其他场景迁移指导](ui/state-management/arkts-v1-v2-migration-application-and-others.md)
         - 学习UI范式渲染控制<!--arkts-rendering-control-->
           - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
           - [if/else：条件渲染](ui/state-management/arkts-rendering-control-ifelse.md)
@@ -467,8 +471,8 @@
             - [相对布局 (RelativeContainer)](ui/arkts-layout-development-relative-layout.md)
             - [栅格布局 (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
-        - 列表与宫格<!--arkts-list-and-grid-->
-          - [列表与宫格概述](ui/arkts-list-grid-development-overview.md)
+        - 列表与网格<!--arkts-list-and-grid-->
+          - [列表与网格概述](ui/arkts-list-grid-development-overview.md)
           - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
           - [创建弧形列表 (ArcList)](ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
           - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
@@ -595,6 +599,7 @@
         - UI系统场景化能力<!--arkts-ui-system-scenarization-capability-->
           - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
           - [使用组件截图（ComponentSnapshot）](ui/arkts-uicontext-component-snapshot.md)
+          - [检查页面布局](ui/arkts-inspector-overview.md)
           - [媒体查询 (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - 嵌入式组件<!--arkts-ui-cross-process-->
             - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
@@ -780,10 +785,12 @@
         - [Web组件支持视频沉浸式全屏播放](web/web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
+        - [使用Web组件保存前端页面为PDF](web/web-createpdf.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
         - [使用Web组件菜单处理网页内容](web/web_menu.md)
         - [使用Web组件与系统剪贴板交互处理网页内容](web/web-clipboard.md)
+        - [使用Web组件的智能分词能力](web/web-data-detector.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
@@ -1429,6 +1436,7 @@
           - [AddrSanitizer（地址越界）检测](dfx/address-sanitizer-guidelines.md)
           - [AppFreeze（应用冻屏）检测](dfx/appfreeze-guidelines.md)
           - [任务超时检测](dfx/apptask-timeout-guidelines.md)
+          - [应用查杀检测](dfx/appkilled-guidelines.md)
         - 日志打印<!--hilog-dev-->
           - [使用HiLog打印日志（ArkTS）](dfx/hilog-guidelines-arkts.md)
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
@@ -1535,6 +1543,7 @@
           - [mediatool工具](tools/mediatool.md)
           - [devicedebug工具](tools/devicedebug-tool.md)
           - [rawheap_translator工具](tools/rawheap-translator.md)
+        - [二进制签名工具](tools/binary-sign-tool.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1642,6 +1651,7 @@
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
         - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
         - [相机启动恢复实践(ArkTS)](media/camera/camera-background-recovery.md)
+        - [自动切换摄像头实践(ArkTS)](media/camera/camera_auto_switch.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         - [高性能拍照实践(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -2197,8 +2207,8 @@
           - [@ohos.app.ability.abilityManager (Ability信息管理)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
           - [@ohos.app.ability.appManager (应用管理)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
           - [@ohos.app.ability.appRecovery (应用故障恢复)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
-          - [@ohos.app.ability.Configuration (系统环境信息)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
-          - [@ohos.app.ability.ConfigurationConstant (系统环境信息常量)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
+          - [@ohos.app.ability.Configuration (环境变量)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
+          - [@ohos.app.ability.ConfigurationConstant (环境变量相关的常量定义)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
           - [@ohos.app.ability.continueManager (跨端迁移)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
@@ -2244,35 +2254,35 @@
           <!--DelEnd-->
         - 接口依赖的元素及定义<!--ability-api-interface-depend-->
           - ability<!--ability-->
-            - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
-            - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
-            - [dataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
-            - [dataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
-            - [dataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
-            - [startAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
-            - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
+            - [AbilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
+            - [ConnectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
+            - [DataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
+            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
+            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
+            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
+            - [Want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
           - app<!--app-->
-            - [appVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
-            - [context](reference/apis-ability-kit/js-apis-inner-app-context.md)
-            - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
+            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
+            - [Context (FA模型的上下文基类)](reference/apis-ability-kit/js-apis-inner-app-context.md)
+            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application<!--ability-arkts-application-->
-            - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
+            - [AbilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
-            - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
+            - [AbilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
             - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
-            - [ApplicationContext](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
+            - [ApplicationContext (应用级别的上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
             - [ApplicationStateObserver](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md)
-            - [AppServiceExtensionContext](reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)
+            - [AppServiceExtensionContext (应用后台服务扩展组件上下文)](reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)
             - [AppStateData](reference/apis-ability-kit/js-apis-inner-application-appStateData.md)
             - [BaseContext](reference/apis-ability-kit/js-apis-inner-application-baseContext.md)
-            - [Context](reference/apis-ability-kit/js-apis-inner-application-context.md)
+            - [Context (Stage模型的上下文基类)](reference/apis-ability-kit/js-apis-inner-application-context.md)
             - [EmbeddableUIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-EmbeddableUIAbilityContext.md)
             - [ErrorObserver](reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)
             - [EventHub](reference/apis-ability-kit/js-apis-inner-application-eventHub.md)
             - [ExtensionContext](reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)
-            - [KioskStatus](reference/apis-ability-kit/js-apis-application-KioskStatus.md)
+            - [KioskStatus (Kiosk状态信息)](reference/apis-ability-kit/js-apis-application-KioskStatus.md)
             - [LoopObserver](reference/apis-ability-kit/js-apis-inner-application-loopObserver.md)
             - [ProcessInformation](reference/apis-ability-kit/js-apis-inner-application-processInformation.md)
             - [ProcessRunningInfo](reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md)
@@ -2343,6 +2353,7 @@
             - [dispatchInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-dispatchInfo-sys.md)
             - [LauncherAbilityResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
             - [permissionDef (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-permissionDef-sys.md)
+            - [PluginBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-pluginBundleInfo-sys.md)
             - [recoverableApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-recoverableApplicationInfo-sys.md)
             - [remoteAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-remoteAbilityInfo-sys.md)
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
@@ -2657,6 +2668,7 @@
             - [Interface (AtomicServiceBar)](reference/apis-arkui/arkts-apis-uicontext-atomicservicebar.md)
             - [Interfaces (其他)](reference/apis-arkui/arkts-apis-uicontext-i.md)
             - [Enums](reference/apis-arkui/arkts-apis-uicontext-e.md)
+            - [Types](reference/apis-arkui/arkts-apis-uicontext-t.md)
           - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
           - [@ohos.arkui.StateManagement (状态管理)](reference/apis-arkui/js-apis-StateManagement.md)
           - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
@@ -2768,7 +2780,8 @@
             - [布局约束](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
             - [Flex布局](reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
             - [安全区域](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
-            - [组件级像素取整](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
+            - [组件级像素取整](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForComponent.md)
+            - [页面级像素取整](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForPage.md)
             - [边框设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)
             - [图片边框设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md)
           - 视效与模糊<!--visual-effect-property-->
@@ -3749,19 +3762,22 @@
         - [@ohos.rpc (RPC通信)](reference/apis-ipc-kit/js-apis-rpc.md)
       - C API<!--ipc-c-->
         - 模块<!--ipc-moudle-->
-          - [OHIPCParcel](reference/apis-ipc-kit/_o_h_i_p_c_parcel.md)
-          - [OHIPCRemoteObject](reference/apis-ipc-kit/_o_h_i_p_c_remote_object.md)
-          - [OHIPCSkeleton](reference/apis-ipc-kit/_o_h_i_p_c_skeleton.md)
-          - [OHIPCErrorCode](reference/apis-ipc-kit/_o_h_i_p_c_error_code.md)
-          - [IPCKit](reference/apis-ipc-kit/_i_p_c_kit.md)
+          - [OHIPCParcel](reference/apis-ipc-kit/capi-ohipcparcel.md)
+          - [OHIPCRemoteObject](reference/apis-ipc-kit/capi-ohipcremoteobject.md)
+          - [OHIPCSkeleton](reference/apis-ipc-kit/capi-ohipcskeleton.md)
+          - [OHIPCErrorCode](reference/apis-ipc-kit/capi-ohipcerrorcode.md)
+          - [IPCKit](reference/apis-ipc-kit/capi-ipckit.md)
         - 头文件<!--ipc-headerfile-->
-            - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
-            - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
-            - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
-            - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
-            - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
+          - [ipc_cparcel.h](reference/apis-ipc-kit/capi-ipc-cparcel-h.md)
+          - [ipc_cremote_object.h](reference/apis-ipc-kit/capi-ipc-cremote-object-h.md)
+          - [ipc_cskeleton.h](reference/apis-ipc-kit/capi-ipc-cskeleton-h.md)
+          - [ipc_error_code.h](reference/apis-ipc-kit/capi-ipc-error-code-h.md)
+          - [ipc_kit.h](reference/apis-ipc-kit/capi-ipc-kit-h.md)
         - 结构体<!--ipc-struct-->
-            - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
+            - [OH_IPC_MessageOption](reference/apis-ipc-kit/capi-ohipcremoteobject-oh-ipc-messageoption.md)
+            - [OHIPCRemoteProxy](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md)
+            - [OHIPCRemoteStub](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremotestub.md)
+            - [OHIPCDeathRecipient](reference/apis-ipc-kit/capi-ohipcremoteobject-ohipcdeathrecipient.md)
       - 错误码<!--ipc-arkts-errcode-->
         - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
     - Localization Kit（本地化开发服务）<!--localization-api-->
@@ -4792,6 +4808,8 @@
           - [Interface (CameraOutput)](reference/apis-camera-kit/arkts-apis-camera-CameraOutput.md)
           - [Interface (ColorManagement)](reference/apis-camera-kit/arkts-apis-camera-ColorManagement.md)
           - [Interface (ColorManagementQuery)](reference/apis-camera-kit/arkts-apis-camera-ColorManagementQuery.md)
+          - [Interface (ControlCenter)](reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md)
+          - [Interface (ControlCenterQuery)](reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md)
           - [Interface (Flash)](reference/apis-camera-kit/arkts-apis-camera-Flash.md)
           - [Interface (FlashQuery)](reference/apis-camera-kit/arkts-apis-camera-FlashQuery.md)
           - [Interface (Focus)](reference/apis-camera-kit/arkts-apis-camera-Focus.md)
@@ -4856,6 +4874,7 @@
           - [Camera_FoldStatusInfo](reference/apis-camera-kit/capi-oh-camera-camera-foldstatusinfo.md)
           - [Camera_AutoDeviceSwitchStatusInfo](reference/apis-camera-kit/capi-oh-camera-camera-autodeviceswitchstatusinfo.md)
           - [Camera_ConcurrentInfo](reference/apis-camera-kit/capi-oh-camera-camera-concurrentinfo.md)
+          - [Camera_ControlCenterStatusInfo](reference/apis-camera-kit/capi-oh-camera-camera-controlcenterstatusinfo.md)
           - [Camera_Manager](reference/apis-camera-kit/capi-oh-camera-camera-manager.md)
           - [CameraInput_Callbacks](reference/apis-camera-kit/capi-oh-camera-camerainput-callbacks.md)
           - [Camera_Input](reference/apis-camera-kit/capi-oh-camera-camera-input.md)
@@ -5531,6 +5550,7 @@
   - 公共基础能力<!--common-basic-api-->
     - ArkTS API<!--common-basic-arkts-->
       - [Console (控制台)](reference/common/js-apis-logs.md)
+      - [loadNativeModule (同步动态加载系统库接口)](reference/common/js-apis-load-native-module.md)
       - [SysCap (系统能力)](reference/common/js-apis-syscap.md)
       - [Timer (定时器)](reference/common/js-apis-timer.md)
     - C API<!--common-basic-c-->

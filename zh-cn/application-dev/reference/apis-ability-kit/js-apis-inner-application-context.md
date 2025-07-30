@@ -1,4 +1,4 @@
-# Context（Stage模型的上下文基类）
+# Context (Stage模型的上下文基类)
 
 Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了Ability或Application的上下文的基础能力，包括访问特定应用程序的资源等。
 

@@ -144,6 +144,8 @@ getFont(): Font
 
 **示例：**
 
+完整示例请参考[Font](arkts-apis-uicontext-font.md)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getFont();
@@ -528,7 +530,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](arkts-apis-uicontext-t.md#context)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
+| [Context](arkts-apis-uicontext-t.md#context12)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -1405,11 +1407,9 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | get inspector failed  | 查询结果出错。系统内部存在异常，需要联系华为工程师处理。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1510,12 +1510,9 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | invalid filter depth  | depth参数需要大于或者等于0 |
-| 401      | get inspector failed  | 查询结果出错。如果传入的id不存在，接口会抛出此错误。请确保传入正确的组件id。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1624,6 +1621,8 @@ getMeasureUtils(): MeasureUtils
 | [MeasureUtils](arkts-apis-uicontext-measureutils.md) | 提供文本宽度、高度等相关计算。 |
 
 **示例：**
+
+完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
 
 <!--code_no_check-->
 ```ts

@@ -1248,11 +1248,6 @@ Native侧
                         "eglCreateWindowSurface: unable to create Surface");
             return false;
         }
-        if (eglSurface_ == nullptr) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender",
-                        "eglCreateWindowSurface: unable to create Surface");
-            return false;
-        }
         // 创建上下文。
         eglContext_ = eglCreateContext(eglDisplay_, eglConfig_, EGL_NO_CONTEXT, CONTEXT_ATTRIBS);
         if (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_)) {

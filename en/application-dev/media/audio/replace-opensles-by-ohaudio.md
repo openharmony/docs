@@ -1,10 +1,10 @@
 # Switching from OpenSL ES to OHAudio (C/C++)
 
-You are advised to use **OHAudio** APIs instead of OpenSL ES APIs to develop audio services, since the latter may fail to provide extended audio capabilities. This topic describes how to switch the audio service code from the OpenSL ES APIs to the **OHAudio** APIs.
+You are advised to use OHAudio APIs instead of OpenSL ES APIs to develop audio services, since the latter may fail to provide extended audio capabilities. This topic describes how to switch the audio service code from the OpenSL ES APIs to the OHAudio APIs.
 
 ## Differences in Features Supported
 
-Different from the OpenSL ES APIs, the **OHAudio** APIs support low-latency playback/recording and service change listening.
+Different from the OpenSL ES APIs, the OHAudio APIs support low-latency playback/recording and service change listening.
 
 The table below lists the differences in the features supported by the APIs.
 
@@ -25,13 +25,13 @@ The table below lists the differences in the features supported by the APIs.
 
 ## Differences in Development Modes
 
-This section describes the differences between **OHAudio** and OpenSL ES APIs in development modes based on the development procedure of audio playback. The implementation of audio recording is similar.
+This section describes the differences between OHAudio and OpenSL ES APIs in development modes based on the development procedure of audio playback. The implementation of audio recording is similar.
 
 ### Constructing Instances
 
 OpenSL ES:
 
-Obtain an **Engine** object through the global interface, and construct an audio playback object based on the **Engine** object and the input and output parameters.
+Obtain an Engine object through the global interface, and construct an audio playback object based on the Engine object and the input and output parameters.
 
 ```cpp
 // Generate an Engine object.

@@ -14,7 +14,7 @@ static close()
 
 >  **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getContextMenuController](../arkts-apis-uicontext-uicontext.md#getcontextmenucontroller12)获取[ContextMenuController](../arkts-apis-uicontext-contextmenucontroller.md)实例，再通过此实例调用替代方法[close](../arkts-apis-uicontext-contextmenucontroller.md#close)。
+> 从API version 18开始废弃，建议使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getContextMenuController](../arkts-apis-uicontext-uicontext.md#getcontextmenucontroller12)获取[ContextMenuController](../arkts-apis-uicontext-contextmenucontroller.md)实例，再通过此实例调用替代方法[close](../arkts-apis-uicontext-contextmenucontroller.md#close12)。
 >
 > 从API version 12开始，可以通过使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getContextMenuController](../arkts-apis-uicontext-contextmenucontroller.md)来明确UI的执行上下文。
 

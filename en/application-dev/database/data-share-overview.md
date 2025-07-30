@@ -23,16 +23,16 @@ Before you start, understand the following concepts:
 - **Predicates**: an object that specifies the conditions for updating, deleting, or querying data in a database.
 
 ## One-to-Many Cross-Application Data Sharing
-<!--RP1-->
-You can use **DataShare** to implement one-to-many data sharing across applications. Two implementation modes are provided, depending on whether the data provider is started in the cross-application data sharing.  
-<!--RP1End-->
-<!--Del-->
+
+You can use **DataShare** to implement one-to-many data sharing across applications. **DataShare** implements data sharing between data providers and data consumers. The following describes the implementation modes.
+
 ### Implementation
 
 The data provider can directly use **DataShare** to share data with other applications without complex encapsulation. The data consumer only needs to use a set of APIs because the **DataShare** access mode does not vary with the data provision mode. This greatly reduces the learning time and development difficulty.
 
 **DataShare** implements cross-application data sharing in either of the following ways:
 
+<!--RP1-->
 - [Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
 
   You need to implement an ExtensionAbility with callbacks in the HAP. When the data consumer calls an API, the ExtensionAbility of the data provider will be automatically started to invoke the registered callback.
@@ -44,14 +44,19 @@ The data provider can directly use **DataShare** to share data with other applic
   You need to configure database access rules in the HAP. When the data consumer calls an API, the system ability automatically obtains the access rules in the HAP and returns data without starting the data provider.
 
   You can use this mode when the cross-application data access involves only database operations (data addition, deletion, modification, and query) or data hosted to the DatamgrService.
+<!--RP1End-->
 
-### Restrictions
+- [Sharing Configurations Between Applications](share-config.md)
 
+  You need to manage common configuration information in a centralized manner and share the configurations between different applications to improve collaboration efficiency.
+
+### Constraints
+
+- Currently, **dataShare** supports development based on the stage model only.
+<!--Del-->
 - **DataShare** is subject to the limitations on the database used by the data provider. For example, the supported data models, length of the keys and values, and maximum number of databases that can be accessed at a time by each application vary with the database in use.
 
 - The payloads of **ValuesBucket**, **Predicates**, and **ResultSet** are restricted by IPC.
-
-- Currently, **dataShare** supports development based on the stage model only.
 <!--DelEnd-->
 
 ## Many-to-Many Cross-Application Data Sharing

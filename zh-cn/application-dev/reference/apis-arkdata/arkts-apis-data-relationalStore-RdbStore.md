@@ -5804,13 +5804,13 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。使用Promise异步回调。
 
-不支持非wal模式的数据库进行密钥更新。
+不支持对非WAL模式的数据库进行密钥更新。
 
 手动更新密钥时需要独占访问数据库，此时若存在任何未释放的结果集（ResultSet）、事务（Transaction）或其他进程打开的数据库均会引发失败。
 
-仅支持加密数据库进行密钥更新，不支持非加密库变加密库及加密库变非加密库，且需要保持加密参数和密钥生成方式与建库时一致。
+仅支持加密数据库进行密钥更新，不支持非加密数据库变加密数据库及加密数据库变非加密数据库，且需要保持加密参数和密钥生成方式与建库时一致。
 
-数据库越大，密钥更新的时间越长。
+数据库越大，密钥更新所需的时间越长。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5848,80 +5848,87 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // 示例1：使用默认的加密参数
-let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    const STORE_CONFIG1: relationalStore.StoreConfig = {
+      name: 'rdbstore1.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      encrypt: true
+    };
 
-const STORE_CONFIG1: relationalStore.StoreConfig = {
-  name: "rdbstore1.db",
-  securityLevel: relationalStore.SecurityLevel.S3;
-  encrypt: true,
-};
+    relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.');
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
-  console.info('Get RdbStore successfully.');
-}).catch((err: BusinessError) => {
-  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-});
+      let cryptoParam1: relationalStore.CryptoParam = {
+        encryptionKey: new Uint8Array()
+      };
 
-let cryptoParam1: relationalStore.CryptoParam = {
-    encryptionKey: new Uint8Array();
-};
-
-if(store != undefined) {
-  try {
-    (store as relationalStore.RdbStore).rekey(cryptoParam1);
-    console.info(`rekey is successful`);
-  } catch (err) {
-    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+      if (store != undefined) {
+        try {
+          (store as relationalStore.RdbStore).rekey(cryptoParam1);
+          console.info('rekey is successful');
+        } catch (err) {
+          console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+        }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    });
   }
 }
 ```
 
 ```ts
-// 示例2：使用自定义的加密参数
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let store: relationalStore.RdbStore | undefined = undefined;
+// 示例2：使用自定义的加密参数
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let cryptoParam: relationalStore.CryptoParam = {
+      encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
+      iterationCount: 1000,
+      encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+      hmacAlgo: relationalStore.HmacAlgo.SHA256,
+      kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+      cryptoPageSize: 1024
+    };
 
-let cryptoParam: relationalStore.CryptoParam = {
-  encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
-  iterationCount: 1000,
-  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
-  hmacAlgo: relationalStore.HmacAlgo.SHA256,
-  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
-  cryptoPageSize: 1024,
-};
+    const STORE_CONFIG2: relationalStore.StoreConfig = {
+      name: 'rdbstore2.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      encrypt: true,
+      cryptoParam: cryptoParam
+    };
 
-const STORE_CONFIG2: relationalStore.StoreConfig = {
-  name: "rdbstore2.db",
-  securityLevel: relationalStore.SecurityLevel.S3;
-  encrypt: true,
-  cryptoParam: cryptoParam,
-};
+    relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.');
+      let cryptoParam2: relationalStore.CryptoParam = {
+        encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+        iterationCount: 1000,
+        encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+        hmacAlgo: relationalStore.HmacAlgo.SHA256,
+        kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+        cryptoPageSize: 1024
+      };
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
-  console.info('Get RdbStore successfully.');
-}).catch((err: BusinessError) => {
-  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-});
-
-let cryptoParam2: relationalStore.CryptoParam = {
-  encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
-  iterationCount: 1000,
-  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
-  hmacAlgo: relationalStore.HmacAlgo.SHA256,
-  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
-  cryptoPageSize: 1024,
-};
-
-if(store != undefined) {
-  try {
-    (store as relationalStore.RdbStore).rekey(cryptoParam2);
-    console.info(`rekey is successful`);
-  } catch (err) {
-    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+      if (store != undefined) {
+        try {
+          (store as relationalStore.RdbStore).rekey(cryptoParam2);
+          console.info('rekey is successful');
+        } catch (err) {
+          console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+        }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    });
   }
 }
 ```

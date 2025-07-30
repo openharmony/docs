@@ -80,7 +80,7 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 对应组件收到按键事件时，会触发该回调，该按键事件不会分发给其子组件。不支持构造KeyEvent进行分发，只支持分发已有的按键事件。
 
-该回调的返回值为`true`时，视作该按键事件已被消费，不会冒泡给父组件处理。
+该回调的返回值为`true`时，视作该按键事件已被消费，不会[冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)给父组件处理。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -300,7 +300,7 @@ struct KeyEventExample {
           this.columnType = 'Up';
         }
         this.columnText = 'Column: \n' +
-          'KeyType:' + this.buttonType + '\n' +
+          'KeyType:' + this.columnType + '\n' +
           'KeyCode:' + event.keyCode + '\n' +
           'KeyText:' + event.keyText;
       }

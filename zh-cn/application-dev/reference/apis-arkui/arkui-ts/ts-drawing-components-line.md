@@ -45,7 +45,7 @@ Line(options?: LineOptions)
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp |
 
 ## 属性
 
@@ -157,7 +157,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                      |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]（空数组）<br/>默认单位：vp |
 
 ### strokeDashOffset
 

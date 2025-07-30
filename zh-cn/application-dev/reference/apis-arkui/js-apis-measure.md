@@ -87,7 +87,7 @@ static measureTextSize(options: MeasureOptions): SizeOptions
 
 > **说明：**
 >
-> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getMeasureUtils](arkts-apis-uicontext-uicontext.md#getmeasureutils12)获取[MeasureUtils](arkts-apis-uicontext-measureutils.md#measureutils12)实例，再通过此实例调用替代方法[measureTextSize](arkts-apis-uicontext-measureutils.md#measuretextsize12)。
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getMeasureUtils](arkts-apis-uicontext-uicontext.md#getmeasureutils12)获取[MeasureUtils](arkts-apis-uicontext-measureutils.md)实例，再通过此实例调用替代方法[measureTextSize](arkts-apis-uicontext-measureutils.md#measuretextsize12)。
 >
 > 从API version 12开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getMeasureUtils](arkts-apis-uicontext-uicontext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](arkts-apis-uicontext-measureutils.md)对象。
 
@@ -112,7 +112,7 @@ static measureTextSize(options: MeasureOptions): SizeOptions
 
 > **说明**
 >
-> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](arkts-apis-uicontext-uicontext.md)中的[getMeasureUtils](./arkts-apis-uicontext-uicontext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](arkts-apis-uicontext-measureutils.md#measureutils)实例。
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](arkts-apis-uicontext-uicontext.md)中的[getMeasureUtils](./arkts-apis-uicontext-uicontext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](arkts-apis-uicontext-measureutils.md)实例。
 
 ```ts
 import { MeasureText } from '@kit.ArkUI';

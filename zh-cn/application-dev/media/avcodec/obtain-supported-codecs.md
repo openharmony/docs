@@ -318,7 +318,7 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围。 |
+| OH_AVCapability_GetAudioSupportedSampleRateRanges     | 获取当前音频编解码器支持的采样率范围。 |
 | OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围。 |
 | OH_AVCapability_GetEncoderBitrateRange     | 获取当前编码器支持的码率范围。 |
 
@@ -333,15 +333,15 @@ if (capability == nullptr) {
    // 异常处理。
 }
 // 1. 确认待配置采样率是否支持。
-const int32_t *sampleRates = nullptr;
-uint32_t sampleRateNum = 0;
-int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
-if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum == 0) {
+OH_AVRange *sampleRateRanges = nullptr;
+uint32_t rangesNum = 0;
+int32_t ret = OH_AVCapability_GetAudioSupportedSampleRateRanges(capability, &sampleRateRanges, &rangesNum);
+if (ret != AV_ERR_OK || sampleRateRanges == nullptr || rangesNum == 0) {
    // 异常处理。
 }
 bool isMatched = false;
-for (int i = 0; i < sampleRateNum; i++) {
-   if (sampleRates[i] == sampleRate) {
+for (uint32_t i = 0; i < rangesNum; i++) {
+   if (sampleRate >= sampleRateRanges[i].minVal && sampleRate <= sampleRateRanges[i].maxVal) {
       isMatched = true;
    }
 }

@@ -247,9 +247,9 @@ aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 **参数：**
 
-| 参数名  | 类型                                      | 说明                |
-|--------|-------------------------------------------|---------------------|
-| params | Record\<string, Object \| undefined \| null> | 自定义组件的构造参数。|
+| 参数名  | 类型                                      | 必填 | 说明                |
+|--------|-------------------------------------------|-----|---------------------|
+| params | Record\<string, Object \| undefined \| null> |   否   | 自定义组件的构造参数。|
 
 ```ts
 // xxx.ets

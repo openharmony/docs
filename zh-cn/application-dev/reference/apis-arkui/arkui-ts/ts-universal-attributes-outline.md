@@ -66,11 +66,11 @@ outline(options: Optional\<OutlineOptions>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                            |
-| ------ | ----------------------------- |
-| SOLID  | 显示为一条实线。                      |
-| DASHED | 显示为一系列短的方形虚线。                 |
-| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+| 名称     | 值 | 说明                            |
+| ------ | ------ | ----------------------- |
+| SOLID  | 0 | 显示为一条实线。                      |
+| DASHED | 1 | 显示为一系列短的方形虚线。                 |
+| DOTTED | 2 | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
 
 ## outlineStyle
 

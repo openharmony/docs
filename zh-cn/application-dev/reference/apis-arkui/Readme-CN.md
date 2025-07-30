@@ -38,6 +38,7 @@
       - [Interface (AtomicServiceBar)](arkts-apis-uicontext-atomicservicebar.md)
       - [Interfaces (其他)](arkts-apis-uicontext-i.md)
       - [Enums](arkts-apis-uicontext-e.md)
+      - [Types](arkts-apis-uicontext-t.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -149,7 +150,8 @@
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
       - [Flex布局](arkui-ts/ts-universal-attributes-flex-layout.md)
       - [安全区域](arkui-ts/ts-universal-attributes-expand-safe-area.md)
-      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRound.md)
+      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRoundForComponent.md)
+      - [页面级像素取整](arkui-ts/ts-universal-attributes-pixelRoundForPage.md)
       - [边框设置](arkui-ts/ts-universal-attributes-border.md)
       - [图片边框设置](arkui-ts/ts-universal-attributes-border-image.md)
     - 视效与模糊<!--visual-effect-property-->
@@ -674,6 +676,7 @@
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
     - [XComponent组件错误码](errorcode-xcomponent.md)
     - [Video组件错误码](errorcode-video.md)
+    - [状态管理错误码](errorcode-stateManagement.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

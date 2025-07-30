@@ -239,6 +239,20 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 开发者等待一段时间后尝试再次触发调用。
 
+## 12000017 同名密钥已存在
+
+**错误信息**
+
+The key with same alias is already exist.
+
+**可能原因**
+
+指定了不覆写同名密钥，但同名密钥已存在。
+
+**处理步骤**
+
+请根据业务需要检查是否应该覆写同名密钥。
+
 ## 12000018 输入参数非法
 
 **错误信息**

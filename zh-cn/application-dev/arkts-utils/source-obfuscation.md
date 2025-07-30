@@ -49,7 +49,7 @@ class A2 {
 }
 
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 
 let a2 = new A2();
@@ -68,7 +68,7 @@ class A2 {
 }
 
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 
 let a2 = new A2();
@@ -361,7 +361,7 @@ let params = obj['ohos.want.action.home'];
   ```
   // 混淆前：
   if (flag) {
-    console.log("hello");
+    console.info("hello");
   }
   ```
 
@@ -376,20 +376,20 @@ let params = obj['ohos.want.action.home'];
 1. 文件顶层的调用。  
    例如：
    ```js
-   console.log("in tolevel");
+   console.info("in tolevel");
    ```
 2. 代码块中的调用。  
    例如：
    ```
    function foo() {
-    console.log('in block');
+    console.info('in block');
    }
    ```
 3. module或namespace中的调用。  
    例如：
    ```
    namespace ns {
-    console.log('in ns');
+    console.info('in ns');
    }
    ```
 4. switch语句中的调用。  
@@ -397,7 +397,7 @@ let params = obj['ohos.want.action.home'];
    ```js
    switch (value) {
      case 1:
-       console.log("in switch case");
+       console.info("in switch case");
        break;
      default:
        console.warn("default");
@@ -780,7 +780,7 @@ enum MyEnum {
 
 ### -keep-property-name
 
-指定想保留的属性名，支持使用名称类通配符。按如下方式进行配置，表示保留名称为`age`、`firstName`和`lastName`的属性：
+指定想保留的属性名，支持使用[名称类通配符](#保留选项支持的通配符)。按如下方式进行配置，表示保留名称为`age`、`firstName`和`lastName`的属性：
 
 ```
 -keep-property-name
@@ -901,7 +901,7 @@ class A {
 
 ### -keep-global-name
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符（详情参见[名称类通配符](#名称类通配符)）。配置方式如下：
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用[名称类通配符](#保留选项支持的通配符)。配置方式如下：
 
 ```
 -keep-global-name
@@ -953,12 +953,14 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 ### -keep-file-name
 
-指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用[名称类通配符](#名称类通配符)。例如：
+指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用[名称类通配符](#保留选项支持的通配符)。
 
-```
+以文件路径"utils/file.ets"为例，配置白名单的方法如下：
+
+```txt
 -keep-file-name
-index
-entry
+utils
+file
 ```
 
 **哪些文件名应该被保留?**
@@ -978,24 +980,64 @@ const module2 = import(moduleName)
 
 3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与第二种动态引用场景一致。若采用系统路由表进行跳转，则需将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
 
-```
-  {
-    "routerMap": [
-      {
-        "name": "PageOne",
-        "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
-        "buildFunction": "PageOneBuilder",
-        "data": {
-          "description" : "this is PageOne"
-        }
+```json
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description" : "this is PageOne"
       }
-    ]
-  }
+    }
+  ]
+}
+```
+
+4.在使用[应用启动框架AppStartup](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-startup)时，启动参数配置文件和启动任务文件的路径应保留。这些路径配置在本模块的`resources/base/profile/startup_config.json`文件中，分别对应`configEntry`字段和`startupTasks`对象的`srcEntry`字段。
+
+`startup_config.json`文件示例如下：
+
+```json
+{
+  "startupTasks": [
+    {
+      "name": "StartupTask_001",
+      "srcEntry": "./ets/startup/StartupTask_001.ets",
+      "dependencies": [
+        "StartupTask_002"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_002",
+      "srcEntry": "./ets/startup/StartupTask_002.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    }
+  ],
+  "configEntry": "./ets/startup/StartupConfig.ets"
+}
+```
+
+配置白名单方式如下：
+
+```txt
+-keep-file-name
+# 启动任务文件路径为："./ets/startup/StartupTask_001.ets" 和 "./ets/startup/StartupTask_002.ets"。
+startup
+StartupTask_001
+StartupTask_002
+
+# 启动参数配置文件路径为："./ets/startup/StartupConfig.ets"。
+StartupConfig
 ```
 
 ### -keep-comments
 
-保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用[名称类通配符](#名称类通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用[名称类通配符](#保留选项支持的通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 ```
 -keep-comments
 Human
@@ -1021,7 +1063,7 @@ export class exportClass {}
 ### -keep
 
 保留指定相对路径*filepath*中的所有名称（例如变量名、类名、属性名等）不被混淆。*filepath*可以是文件或文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
-*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#路径类通配符)。
+*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#保留选项支持的通配符)。
 
 ```
 -keep

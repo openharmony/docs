@@ -69,10 +69,14 @@
         - [makeObserved接口：将非观察数据变为可观察数据](state-management/arkts-new-makeObserved.md)
         - [addMonitor/clearMonitor接口：动态添加/取消监听](state-management/arkts-new-addMonitor-clearMonitor.md)
       - [MVVM模式（状态管理V2）](state-management/arkts-mvvm-V2.md)
-    - V1V2混用和迁移指导<!--v1v2-migration-->
+    - V1V2混用指导<!--v1v2-mixing-->
       - [自定义组件混用场景指导](state-management/arkts-custom-component-mixed-scenarios.md)
       - [状态管理V1V2混用文档](state-management/arkts-v1-v2-mixusage.md)
-      - [V1->V2迁移指导](state-management/arkts-v1-v2-migration.md)
+    - V1->V2迁移指导<!--v1v2-migration-->
+      - [V1->V2迁移指导概述](state-management/arkts-v1-v2-migration.md)
+        - [组件内状态变量迁移指导](state-management/arkts-v1-v2-migration-inner-component.md)
+        - [数据对象状态变量的迁移指导](state-management/arkts-v1-v2-migration-inner-class.md)
+        - [应用内状态变量和其他场景迁移指导](state-management/arkts-v1-v2-migration-application-and-others.md)
   - 学习UI范式渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](state-management/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](state-management/arkts-rendering-control-ifelse.md)
@@ -93,8 +97,8 @@
       - [相对布局 (RelativeContainer)](arkts-layout-development-relative-layout.md)
       - [栅格布局 (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
-  - 列表与宫格<!--arkts-list-and-grid-->
-    - [列表与宫格概述](arkts-list-grid-development-overview.md)
+  - 列表与网格<!--arkts-list-and-grid-->
+    - [列表与网格概述](arkts-list-grid-development-overview.md)
     - [创建列表 (List)](arkts-layout-development-create-list.md)
     - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
     - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
@@ -221,6 +225,7 @@
   - UI系统场景化能力<!--arkts-ui-system-scenarization-capability-->
     - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
     - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
+    - [检查页面布局](arkts-inspector-overview.md)
     - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
     - 嵌入式组件<!--arkts-ui-cross-process-->
       - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)

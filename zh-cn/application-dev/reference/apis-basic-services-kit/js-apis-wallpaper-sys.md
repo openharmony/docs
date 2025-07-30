@@ -64,11 +64,11 @@ import { wallpaper } from '@kit.BasicServicesKit';
 
 **系统接口**：此接口为系统接口。
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- |  -------- |
-| [FoldState](#foldstate14) | enum | 表示设备的折展状态。 |
-| [RotateState](#rotatestate14) | enum | 表示设备的横竖屏状态。 |
-| source | string | 表示壁纸资源uri，只支持应用沙箱目录。 |
+| 名称 | 类型 | 只读 | 可选 |说明 |
+| -------- | -------- |  -------- |  -------- |  -------- |
+| foldState | [FoldState](#foldstate14) | 否 | 否 |表示设备的折展状态。 |
+| rotateState | [RotateState](#rotatestate14)| 否 | 否 |表示设备的横竖屏状态。 |
+| source | string | 否 | 否 |表示壁纸资源uri，只支持应用沙箱目录。 |
 
 ## wallpaper.setVideo<sup>10+</sup>
 
@@ -98,7 +98,7 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -147,7 +147,7 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **返回值：**
 
@@ -200,7 +200,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -255,7 +255,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -298,7 +298,7 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -337,7 +337,7 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -395,7 +395,7 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例**：
 
@@ -495,7 +495,7 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -543,7 +543,7 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -585,7 +585,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -657,7 +657,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -719,7 +719,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -768,7 +768,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -816,7 +816,7 @@ getWallpaperByState(wallpaperType:WallpaperType, foldState:FoldState, rotateStat
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.The type must be WallpaperType, parameter range must be WALLPAPER_LOCKSCREEN or WALLPAPER_SYSTEM; 3.The type must be FoldState, parameter range must be NORMAL or UNFOLD_ONCE_STATE or UNFOLD_TWICE_STATE;4.The type must be RotateState, parameter range must be PORTRAIT or LANDSCAPE.  |
 
 **示例：**
 
@@ -848,7 +848,7 @@ setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: Wallpape
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperInfos | Array<[WallpaperInfo](#wallpaperinfo14)> | 是 | 所有壁纸的信息结构。 |
+| wallpaperInfos | Array\<[WallpaperInfo](#wallpaperinfo14)> | 是 | 所有壁纸的信息结构。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
@@ -865,7 +865,7 @@ setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: Wallpape
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.The first parameter type must be Array\<WallpaperInfo>. The second type must be WallpaperType; 3.The first parameter type must be Array\<WallpaperInfo>, must include wallpaper with FoldState NORMAL and RotateState PORTRAIT.|
 
 **示例：**
 

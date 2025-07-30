@@ -147,6 +147,7 @@ enableLeakWatcher(isEnabled: boolean, config: Array&lt;string&gt;, callback: Cal
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let config: Array<string> = ['XComponent'];
 // 监测js对象XComponent的内存泄漏

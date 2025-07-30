@@ -38,7 +38,7 @@ AtomicServiceSearch({
 | ----------- | :--------------- | ---- | ---------- | ------------------------------------------------------------ |
 | value       | [ResourceStr](ts-types.md#resourcestr) | No| @Prop | Text input in the search text box. The default value is an empty string.|
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | No| @Prop | Default prompt text displayed in the search box. The default value is **Search**.|
-| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | No  | - | Native **Search** component controller, which is used to set the position of the input cursor and exit the editing state. The default value is **undefined**.|
+| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | No  | - | **Search** component controller, which is used to set the position of the input cursor and exit the editing state. The default value is **undefined**.|
 | select      | [SelectParams](#selectparams) | No| @Prop | Content, event, and style of the selection area. The default value is **undefined**.|
 | search      | [SearchParams](#searchparams) | No| @Prop | Events and styles supported by the search area. The default value is **undefined**.|
 | operation   | [OperationParams](#operationparams) | No| - | Function setting items on the right of the selection area. The default value is **undefined**.|
@@ -58,7 +58,7 @@ Provides optional attributes for the selection area.
 | selected                | number| No| Index of the initially selected item in the drop-down list box. The index of the first item is 0. If this attribute is not set, the default value **-1** is used, indicating that the option is not selected.|
 | selectValue             | [ResourceStr](ts-types.md#resourcestr) | No| Text content of the drop-down list button itself. The default value is **undefined**.|
 | onSelect                | [OnSelectCallback](#onselectcallback) | No| Callback invoked when an item in the drop-down list box is selected. The default value is **undefined**.|
-| menuItemContentModifier | [ContentModifier\<MenuItemConfiguration>](ts-basic-components-select.md#menuitemconfiguration12)| No| 	Content modifier to apply to the drop-down list box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. The default value is **undefined**.|
+| menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12) | No| 	Content modifier to apply to the drop-down list box. Once it is applied, the drop-down list box content will be fully customizable by developers. Note that default style attributes (such as dividers, background color, and font styles) will no longer take effect.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. The default value is **undefined**.|
 | divider                 | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[DividerOptions](ts-basic-components-textpicker.md#divideroptions12)&gt; \| null | No| Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style. Default value: **{strokeWidth: '1px', color: '#33182431'}**<br>2. If this parameter is set to **null**, the divider is not displayed.<br>3. If the value of **strokeWidth** is too larger, the divider may overlap the text. The divider extends both upwards and downwards from the bottom of each item.<br>4. The default values for **startMargin** and **endMargin** are consistent with the style of the divider when the **divider** attribute is not set. If the sum of **startMargin** and **endMargin** is equal to the value of **optionWidth**, the divider is not displayed. If the sum of **startMargin** and **endMargin** exceeds the value of **optionWidth**, the divider line is displayed in the default style.|
 | font                    | [Font](ts-types.md#font) | No| Text font of the drop-down list button. Default value: **{size: $r('sys.float.ohos_id_text_size_body1')}**|
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | No| Font color of the selected option in the drop-down list box. Default value: **{fontColor: $r('sys.color.ohos_id_color_text_primary')}**  |
@@ -72,7 +72,7 @@ Provides optional attributes for the selection area.
 | optionHeight            | [Dimension](ts-types.md#dimension10) | No| Maximum height for the option in the drop-down list box. This attribute cannot be set in percentage. The default maximum height is 80% of the available height of the screen. The maximum height set cannot exceed the default maximum height.|
 | space                   | [Length](ts-types.md#length) | No| Spacing between the text and arrow of an option. Default value: **8**|
 | arrowPosition           | [ArrowPosition](ts-basic-components-select.md#arrowposition10)| No| Alignment between the text and arrow of an option. Default value: **ArrowPosition.END**|
-| menuAlign               | [MenuAlignParams](#menualignparams) | No| Alignment between the drop-down list button and the drop-down list box. Default value: **{alignType: MenuAlignType.START, offset: {dx: 0, dy: 0}}**|
+| menuAlign               | [MenuAlignParams](#menualignparams) | No| Alignment between the drop-down list button and the drop-down list box. Default value: **{alignType: MenuAlignType.START,   offset: {dx: 0, dy: 0}}**.|
 | menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | No| Background color of the drop-down list box. Default value: **Color.Transparent**  |
 | menuBackgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the drop-down list box. Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
 
@@ -96,17 +96,17 @@ Sets optional attributes for the search area.
 | textFont                 | [Font](ts-types.md#font) | No| Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported. Default value: **{size: $r('sys_float.ohos_id_text_size_body1')}**|
 | textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | No| Text alignment mode in the search text box. Default value: **TextAlign.Start**  |
 | copyOptions              | [CopyOptions](ts-appendix-enums.md#copyoptions9) | No| Whether copy and paste is allowed. Default value: **CopyOptions.LocalDevice**  |
-| searchIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Style of the search icon on the left.<!--RP1--><br>Default value in light mode: **{size: '16vp', color: '#99182431', src:' '}**<br>Default value in dark mode: **{size: '16vp', color: '#99ffffff', src:' '}**<!--RP1End--> |
+| searchIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Style of the search icon on the left.<br>Default value in light mode: **{size: '16vp', color: '#99182431', src:' '}**<br>Default value in dark mode: **{size: '16vp', color: '#99ffffff', src:' '}** |
 | cancelIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10)| No| Style of the cancel button on the right. Default value: **{style: CancelButtonStyle.INPUT, icon: {size: '16vp', color: '#99ffffff', src:' '}}**<br>When style is set to **CancelButtonStyle.CONSTANT**, the cancel button is displayed in a default style.  |
 | fontColor                | [ResourceColor](ts-types.md#resourcecolor) | No|  Font color of the input text. Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
 | caretStyle               | [CaretStyle](ts-text-common.md#caretstyle10) | No| Pointer style. Default value: **{width: '1.5vp', color: '#007DFF'}**  |
 | enableKeyboardOnFocus    | boolean | No| Whether to enable the input method when the **search** component obtains focus in a way other than clicking. Default value: **true**  |
 | hideSelectionMenu        | boolean | No| Whether to hide the system text selection menu.<br>**true**: The system text selection menu does not appear under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box. **false**: The system text selection menu appears under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box. Default value: **false**  |
 | type                     | [SearchType](ts-basic-components-search.md#searchtype11)| No| Text box type. Default value: **SearchType.Normal**  |
-| maxLength                | number | No| Maximum number of characters in the text input. By default, there is no maximum number of characters. When the maximum number is reached, no more characters can be entered. Default value: **-1**  |
+| maxLength                | number | No| Maximum number of characters in the text input. By default, there is no maximum number of characters. When the maximum number is reached, no more characters can be entered. Default value: **-1**. |
 | enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype)| No| Type of the Enter key. Default value: **EnterKeyType.Search**  |
 | decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12)| No|  Text decorative line options. Default value: **{type: TextDecorationType.None, color: Color.Black, style: TextDecorationStyle.SOLID}**  |
-| letterSpacing            | number \| string \| [Resource](ts-types.md#resource) | No| Letter spacing. If the value specified is a percentage or **0**, the default value is used. If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed. Default value: **0** |
+| letterSpacing            | number \| string \| [Resource](ts-types.md#resource) | No| Letter spacing. A positive value causes characters to spread farther apart, and a negative value bring characters closer together. The value for floating point numbers is **0.0**, in units of px. If the input is not a number and cannot be parsed as a number, the default value will be used. |
 | fontFeature              | [ResourceStr](ts-types.md#resourcestr) | No| Font feature, for example, monospaced digits.<br>Format: normal \| \<feature-tag-value\><br>Syntax for \<feature-tag-value\>: \<string\> \[ \<integer\> \| on \| off ]<br>There can be multiple **\<feature-tag-value\>** values, which are separated by commas (,).<br>For example, the input format for monospaced digits is "ss01" on. The default value is **undefined**.  |
 | selectedBackgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | No| Background color of the selected text. By default, a 20% opacity is applied.|
 | inputFilter              | [InputFilterParams](#inputfilterparams) | No| Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings. The default value is **undefined**.<br> - **value**: regular expression.<br> - **error**: Filtered-out content to return when regular expression matching fails.|
@@ -124,11 +124,10 @@ Sets optional attributes for the search area.
 | onTextSelectionChange    | [OnTextSelectionChangeCallback](#ontextselectionchangecallback) | No| Callback triggered when the position of the text selection changes or when the cursor position changes during the editing state. The default value is **undefined**.  |
 | onContentScroll          | [OnContentScrollCallback](#oncontentscrollcallback) | No| Callback triggered when the text content is scrolled. The default value is **undefined**.  |
 | onEditChange             | Callback&lt;boolean&gt; | No| Callback triggered when the input status changes. If a cursor is displayed, that is, the value of **isEditing** is **true**, the text box is in the editing state. The default value is **undefined**.  |
-| onWillInsert             | Callback&lt;InsertValue, boolean&gt; | No| Callback triggered when text is about to be inserted. The default value is **undefined**.  |
-| onDidInsert              | Callback&lt;InsertValue&gt; | No| Callback triggered when text is inserted. The default value is **undefined**.  |
-| onWillDelete             | Callback&lt;DeleteValue, boolean&gt; | No| Callback triggered when text is about to be deleted. The default value is **undefined**.  |
-| onDidDelete              | Callback&lt;DeleteValue&gt; | No| Callback triggered when text is deleted. The default value is **undefined**.  |
-
+| onWillInsert             | Callback&lt;[InsertValue](ts-text-common.md#insertvalue12), boolean&gt; | No| Callback triggered when text is about to be inserted. The default value is **undefined**.  |
+| onDidInsert              | Callback&lt;[InsertValue](ts-text-common.md#insertvalue12)&gt; | No| Callback triggered when text is inserted. The default value is **undefined**.  |
+| onWillDelete             | Callback&lt;[DeleteValue](ts-text-common.md#deletevalue12), boolean&gt; | No| Callback triggered when text is about to be deleted. The default value is **undefined**.  |
+| onDidDelete              | Callback&lt;[DeleteValue](ts-text-common.md#deletevalue12)&gt; | No| Callback triggered when text is deleted. The default value is **undefined**.  |
 
 ## OperationParams
 
@@ -199,7 +198,7 @@ Called when an item in the drop-down list box is selected.
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| index | number | Yes| Index of the selected option.|
+| index | number | Yes| Index of the selected option. The index is zero-based.|
 | selectValue | string | Yes| Value of the selected option.|
 
 
@@ -218,7 +217,7 @@ Called when a paste operation is performed.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | pasteValue | string | Yes| Text to be pasted.|
-| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent) | Yes| Custom paste event.|
+| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes| Custom paste event.|
 
 
 ## OnTextSelectionChangeCallback
@@ -253,11 +252,11 @@ Called when the text content is scrolled.
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| totalOffsetX | number | Yes| X coordinate offset of the text in the content area.|
-| totalOffsetY | number | Yes| Y coordinate offset of the text in the content area.|
+| totalOffsetX | number | Yes| Offset of the horizontal coordinate of the upper left corner of the text relative to the horizontal coordinate of the upper left corner of the entire content input area.|
+| totalOffsetY | number | Yes| Offset of the vertical coordinate of the upper left corner of the text relative to the vertical coordinate of the upper left corner of the entire content input area.|
 
 
-## Examples
+## Example
 
 ### Example 1: Adding a Selection Area to AtomicServiceSearch
 This example demonstrates how to use the **select** parameter to add a selection area on the left to the **AtomicServiceSearch** component.
@@ -274,7 +273,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -303,9 +302,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -329,7 +326,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
       
       AtomicServiceSearch({
         operation: {
@@ -353,9 +350,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -379,7 +374,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -422,9 +417,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -464,7 +457,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       Column({ space: 6 }) {
         Text('editing: ' + this.value).width('100%').height(25).borderRadius(15).padding({ left: 15 })
@@ -556,9 +549,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -570,7 +561,7 @@ struct Index {
 This example demonstrates how to use the **search**, **select**, **value**, and **placeholder** parameters to customize the style of the **AtomicServiceSearch** component.
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+import { AtomicServiceSearch, SearchParams, SelectParams } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -679,9 +670,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -709,7 +698,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch(
         {
@@ -737,9 +726,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -767,7 +754,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         placeholder: 'Enter key type as search',
@@ -784,9 +771,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -799,7 +784,7 @@ struct Index {
 This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+​​​​import { AtomicServiceSearch } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -810,33 +795,45 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is ss01 on : 0123456789',
         search: {
-          fontFeature: "\"ss012\" on"
+          fontFeature: "\"ss01\" on"
         }
       });
-      
+
       AtomicServiceSearch({
         value: 'This is ss01 off : 0123456789',
         search: {
           fontFeature: "\"ss01\" off"
         }
       });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" on"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" off"
+        }
+      });
     }.padding({ left: 16, right: 16 })
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
 
-![](figures/AtomicServiceSearchDemo08.png)
+![](figures/AtomicServiceSearchDemo08_frac.png)
 
 
 
@@ -855,7 +852,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is the text without the adaptive font',
@@ -872,9 +869,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -934,7 +929,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value:'Default input',
@@ -946,9 +941,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -974,7 +967,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'Search textAlign sample',
@@ -988,9 +981,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -1017,7 +1008,7 @@ struct Index {
           type: TextDecorationType.Underline,
           color: Color.Black,
           style: TextDecorationStyle.SOLID
-        }).margin({top:20, bottom: 20})
+        }).margin({ top: 20, bottom: 20 })
         AtomicServiceSearch({
           placeholder: 'please enter...',
           search: {
@@ -1034,9 +1025,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```

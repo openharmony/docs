@@ -1,6 +1,6 @@
 # HiDebug接口使用示例(C/C++)
 
-HiDebug C/C++接口功能相对比较独立，在需要获取调试信息时直接调用即可，具体调用示例请参考下文。
+HiDebug C/C++接口功能独立，需要获取调试信息时直接调用。具体调用示例请参考下文。
 
 ## 通用开发示例
 
@@ -8,7 +8,7 @@ HiDebug C/C++接口功能相对比较独立，在需要获取调试信息时直�
 
 步骤一：创建项目
 
-1. 使用DevEco Studio新建一个工程，选择“Native C++”。
+1. 使用DevEco Studio新建工程，选择“Native C++”选项。
 
 2. 编辑“CMakeLists.txt”文件，添加库依赖：
 
@@ -34,7 +34,7 @@ HiDebug C/C++接口功能相对比较独立，在需要获取调试信息时直�
 
    将测试方法注册为ArkTS接口：
 
-   ```
+   ```c++
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
@@ -51,10 +51,10 @@ HiDebug C/C++接口功能相对比较独立，在需要获取调试信息时直�
    export const testHiDebugNdk: () => void;
    ```
 
-5. 编辑“Index.ets”文件，给文本Text组件添加一个点击事件，示例代码如下：
+5. 编辑“Index.ets”文件，为Text组件添加点击事件。示例代码如下：
 
-   ```ts
-   import testNapi from 'libentry.so'
+   ```typescript
+   import testNapi from 'libentry.so';
    
    @Entry
    @Component
@@ -82,59 +82,58 @@ HiDebug C/C++接口功能相对比较独立，在需要获取调试信息时直�
 
 步骤二：运行工程
 
-1. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击“testHiDebugNdk”即可触发ndk接口调用。
+点击DevEco Studio界面中的运行按钮，运行应用工程，然后点击“testHiDebugNdk”触发NDK接口调用。
 
 ### 获取线程CPU使用率
 
-OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构，且获取到的数据在使用完毕后，需通过OH_HiDebug_FreeThreadCpuUsage接口回收内存，详情请参考如下示例。
+OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构。使用完毕后，需通过OH_HiDebug_FreeThreadCpuUsage接口回收内存。详情请参考如下示例。
 
-1.参考[通用开发示例](#通用开发示例)，并定义“TestHiDebugNdk”方法，在该方法中调用接口：
+1. 参考[通用开发示例](#通用开发示例)，并定义“TestHiDebugNdk”方法，在该方法中调用接口：
 
-```ts
-static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
-{
-    HiDebug_ThreadCpuUsagePtr cpuUsage = OH_HiDebug_GetAppThreadCpuUsage();
-    if (cpuUsage != nullptr) {
-        do {
-            OH_LOG_INFO(LogType::LOG_APP, 
-                        "GetAppThreadCpuUsage: threadId %{public}d, vssLimit: %{public}f", cpuUsage->threadId, cpuUsage->cpuUsage);
-            cpuUsage = cpuUsage->next; // 获取下一个线程的cpu使用率对象指针。
-        } while(cpuUsage != nullptr);
-        OH_HiDebug_FreeThreadCpuUsage(&cpuUsage); // 释放内存，防止内存泄露。
+   ```c++
+    static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
+    {
+        HiDebug_ThreadCpuUsagePtr cpuUsage = OH_HiDebug_GetAppThreadCpuUsage();
+        if (cpuUsage != nullptr) {
+            do {
+                OH_LOG_INFO(LogType::LOG_APP, 
+                            "GetAppThreadCpuUsage: threadId %{public}d, vssLimit: %{public}f", cpuUsage->threadId, cpuUsage->cpuUsage);
+                cpuUsage = cpuUsage->next; // 获取下一个线程的cpu使用率对象指针。
+            } while(cpuUsage != nullptr);
+            OH_HiDebug_FreeThreadCpuUsage(&cpuUsage); // 释放内存，防止内存泄露。
+        }
+        return nullptr;
     }
-    return nullptr;
-}
-```
+   ```
 
-2.触发接口调用并查看控制台输出，日志输出示例如下：
-
-```Text
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15025, vssLimit: 0.000762
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15143, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15144, vssLimit: 0.000055
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15152, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15154, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15155, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15156, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15157, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15158, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15159, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15160, vssLimit: 0.000033
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15161, vssLimit: 0.000077
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15162, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15163, vssLimit: 0.000033
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15171, vssLimit: 0.000000
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15175, vssLimit: 0.000011
-06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15176, vssLimit: 0.000033
-```
+2. 触发接口调用并查看控制台输出，日志输出示例如下：
+   ```Text
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15025, vssLimit: 0.000762
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15143, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15144, vssLimit: 0.000055
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15152, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15154, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15155, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15156, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15157, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15158, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15159, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15160, vssLimit: 0.000033
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15161, vssLimit: 0.000077
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15162, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15163, vssLimit: 0.000033
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15171, vssLimit: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15175, vssLimit: 0.000011
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15176, vssLimit: 0.000033
+   ```
 
 ### 获取堆栈信息
 
-下文将展示如何在应用内使用HiDebug对应用主线程进行栈回溯。
+下文展示如何在应用内使用HiDebug进行主线程栈回溯。
 
 步骤一：创建项目
 
-1. 新建Native C++工程，并新增文件“test_backtrace.cpp”与“test_backtrace.h”，目录结构如下：
+1. 使用DevEco Studio新建一个Native C++工程，并新增文件“test_backtrace.cpp”与“test_backtrace.h”，目录结构如下：
 
    ```yml
    entry:
@@ -142,22 +141,20 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        main:
          cpp:
            - types:
-             libentry:
+             - libentry:
                - index.d.ts
-               - CMakeLists.txt
-               - napi_init.cpp
-               - test_backtrace.cpp
-               - test_backtrace.h
-        ets:
-          - entryability:
-            - EntryAbility.ts
-          - pages:
-            - Index.ets
+           - CMakeLists.txt
+           - napi_init.cpp
+           - test_backtrace.cpp
+           - test_backtrace.h
+         ets:
+           pages:
+             - Index.ets
    ```
 
-2. 编辑“test_backtrace.h”文件如下：
+2. 编辑“test_backtrace.h”文件，内容如下：
 
-   ```
+   ```c++
    #ifndef MYAPPLICATION_TESTBACKTRACE_H
    #define MYAPPLICATION_TESTBACKTRACE_H
    
@@ -167,9 +164,9 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    #endif // MYAPPLICATION_TESTBACKTRACE_H
    ```
 
-3. 编辑“test_backtrace.cpp”文件如下：
+3. 编辑“test_backtrace.cpp”文件, 内容如下：
 
-   ```
+   ```c++
    #include "test_backtrace.h"
    #include <condition_variable>
    #include <csignal>
@@ -197,7 +194,7 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        bool Init(uint32_t size);
        void Release();
        int BackTraceFromFp(void* startFp, int size); // 该函数异步信号安全。
-       void SymbolicAddress(int index); // 该函数较为耗费性能，请避免频繁调用。
+       void SymbolicAddress(int index); // 该函数耗费性能，请避免频繁调用。
        void PrintStackFrame(void* pc, const HiDebug_StackFrame& frame);
    private:
        BackTraceObject() = default;
@@ -206,12 +203,12 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        void** pcs_ = nullptr;
    };
    
-   BackTraceObject& BackTraceObject::GetInstance() { // 单例模式，用于信号处理函数线程与请求抓栈线程共同访问，以进行数据交互，注意该类非异步信号安全，应在业务逻辑中保证同一时刻仅单个线程在访问该类。
+   BackTraceObject& BackTraceObject::GetInstance() { // 单例模式，用于信号处理和请求抓栈线程的数据交互。注意该类非异步信号安全，业务逻辑应确保同一时刻仅单个线程访问。
        static BackTraceObject instance;
        return instance;
    }
    
-   bool BackTraceObject::Init(uint32_t size) { // 初始化，申请资源。
+   bool BackTraceObject::Init(uint32_t size) { // 初始化资源。
        backtraceObject_ = OH_HiDebug_CreateBacktraceObject();
        if (backtraceObject_ == nullptr) {
            return false;
@@ -223,21 +220,21 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        return true;
    }
    
-   void BackTraceObject::Release() { // 释放栈回溯及栈解析的资源。
+   void BackTraceObject::Release() { // 释放资源。
        OH_HiDebug_DestroyBacktraceObject(backtraceObject_);
        backtraceObject_ = nullptr;
        delete[] pcs_;
        pcs_ = nullptr;
    }
    
-   int BackTraceObject::BackTraceFromFp(void* startFp, int size) { // 根据startFp进行栈回溯，获取pc地址。
+   int BackTraceObject::BackTraceFromFp(void* startFp, int size) { // 栈回溯获取pc地址。
        if (size <= MAX_FRAME_SIZE) {
            return OH_HiDebug_BacktraceFromFp(backtraceObject_, startFp, pcs_, size); // OH_HiDebug_BacktraceFromFp接口调用示例。
        }
        return 0;
    }
    
-   void BackTraceObject::PrintStackFrame(void* pc, const HiDebug_StackFrame& frame) { // 用来输出栈内容的函数。
+   void BackTraceObject::PrintStackFrame(void* pc, const HiDebug_StackFrame& frame) { // 输出栈内容。
        if (frame.type == HIDEBUG_STACK_FRAME_TYPE_JS) { // 根据栈帧的类型，区分不同的栈帧输出方式。
            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TestTag",
                "js stack frame info for pc: %{public}p is "
@@ -277,7 +274,7 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        }
    }
    
-   void BackTraceObject::SymbolicAddress(int index) { // 进行栈解析的接口。
+   void BackTraceObject::SymbolicAddress(int index) { // 栈解析接口。
        if (index < 0 || index >= MAX_FRAME_SIZE) {
            return;
        }
@@ -304,8 +301,8 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        sigaction(SIGUSR1, &action, nullptr); // 注意: 所使用的信号应避免与原有信号冲突。
    }
    
-   void BacktraceFrames() { // 该接口非线程安全，同一时刻仅能使用一个线程进行回栈。
-       if (!BackTraceObject::GetInstance().Init(MAX_FRAME_SIZE)) { // 注意：栈回溯前，需申请资源，且不可重复初始化。
+   void BacktraceFrames() { // 该接口非线程安全，同一时刻只能由一个线程使用。
+       if (!BackTraceObject::GetInstance().Init(MAX_FRAME_SIZE)) { // 注意：在调用栈回溯函数之前，需申请资源，且不可重复初始化。
            BackTraceObject::GetInstance().Release();         
            OH_LOG_Print(LOG_APP, LOG_WARN, LOG_PRINT_DOMAIN, "TestTag", "failed init backtrace object.");
            return;
@@ -337,7 +334,7 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhidebug.so)
    ```
 
-5. 编辑“napi_init.cpp”文件，导入依赖的文件，并定义测试方法：
+5. 编辑“napi_init.cpp”文件，导入依赖文件并定义测试方法。
 
    ```c++
    #include "napi/native_api.h"
@@ -366,9 +363,9 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    }
    ```
 
-   将“TestHiDebugNdk”注册为ArkTS接口，并初始化主线程的信号处理函数：
+   注册“TestHiDebugNdk”为ArkTS接口并初始化主线程的信号处理函数:
 
-   ```
+   ```c++
    static napi_value Init(napi_env env, napi_value exports) {
        napi_property_descriptor desc[] = {
            {"testHiDebugNdk", nullptr, TestHiDebugNdk, nullptr, nullptr, nullptr, napi_default, nullptr}};
@@ -384,9 +381,9 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    export const testHiDebugNdk: () => void;
    ```
 
-7. 编辑“Index.ets”文件，添加可以触发接口调用的按钮，示例代码如下：
+7. 编辑“Index.ets”文件，添加触发接口调用的按钮，示例代码如下：
 
-   ```
+   ```typescript
    import testNapi from 'libentry.so';
    function testJsFrame(i : number) : void {
      if (i > 0) {
@@ -418,9 +415,9 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
 
 步骤二：运行工程
 
-1. 点击DevEco Studio界面中的运行按钮，单击应用界面上的“Hello World”文本。
+1. 点击DevEco Studio界面中的运行按钮，然后单击应用界面上的“Hello World”文本。
 
-2. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“TestTag”，即可查看接口调用的相关日志：
+2. 在DevEco Studio底部切换到“Log”窗口，设置日志过滤条件为“TestTag”，即可查看相关日志：
 
    ```Text
    ...

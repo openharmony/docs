@@ -20,7 +20,7 @@ Hypertext Transfer Protocol Secure，是一种基于HTTP的安全通信协议，
 
 ### MDNS
 
-Multicast DNS，既多播DNS，用于在局域网中自动发现和配置设备。
+Multicast DNS，即多播DNS，用于在局域网中自动发现和配置设备。
 
 ## S
 
@@ -36,7 +36,7 @@ Transmission Control Protocol，是一种面向连接的、可靠的、基于字
 
 ### TLS
 
-TransportLayerSecurity，安全传输层，TLS是建立在传输层TCP协议之上的协议，服务于应用层，他的前身是SSL，实现了将应用层的报文进行加密后再交由TCP进行传输的功能。
+Transport Layer Security，安全传输层，TLS是建立在传输层TCP协议之上的协议，服务于应用层，他的前身是SSL，实现了将应用层的报文进行加密后再交由TCP进行传输的功能。
 
 ## U
 
