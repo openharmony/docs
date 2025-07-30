@@ -1,5 +1,11 @@
 # 安全控件通用属性
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 安全控件的基础属性，用于设置安全控件通用的属性。
 
 > **说明：**
