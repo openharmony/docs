@@ -2291,9 +2291,9 @@ import * as Index from '../pages/Index'; // 导入命名路由页面
 
 try {
   (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
-    const errCode: number = err.code;
+    const errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to load the content. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
     console.info('Succeeded in loading the content.');
@@ -5291,9 +5291,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let isPrivacyMode: boolean = true;
 try {
   windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
-    const errCode: number = err.code;
+    const errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to set the window to privacy mode. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to set the window to privacy mode. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
     console.info('Succeeded in setting the window to privacy mode.');
