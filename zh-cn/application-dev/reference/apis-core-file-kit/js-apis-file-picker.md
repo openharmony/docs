@@ -83,7 +83,7 @@ let documentPicker = new picker.DocumentViewPicker(); // 不推荐使用无参�
 
 constructor(context: Context, window: window.Window)
 
-应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。
+应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。（说明：从API version 19开始，2in1、Tablet设备支持该方法。）
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
