@@ -135,7 +135,7 @@
    this.calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
      //获取日历账户
      if (err) {
-       console.info(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
      } else {
        const config: calendarManager.CalendarConfig = {
          // 打开日程提醒
