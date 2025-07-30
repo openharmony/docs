@@ -201,6 +201,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 
 3. 按需订阅HTTP流式响应事件
 
+	服务器响应的数据在dataReceive回调中返回，可通过订阅该信息获取服务器响应的数据，其他流式响应可按需进行订阅。
     ```ts
 	// 用于订阅HTTP流式响应数据接收事件。
     let res = new ArrayBuffer(0);
@@ -211,7 +212,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       resView.set(new Uint8Array(data), res.byteLength);
       res = newRes;
       console.info('res length: ' + res.byteLength);
-      });
+    });
     // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
       console.info('No more data in response, data receive end');
@@ -233,49 +234,49 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     let streamInfo: http.HttpRequestOptions = {
       method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
       // 开发者根据自身业务需要添加header字段。
-   		 header: {
+   	  header: {
     	'Content-Type': 'application/json'
-   		 },
+   	  },
    	 // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
-        extraData: "data to send",
-        expectDataType: http.HttpDataType.STRING,// 可选，指定返回数据的类型。
-        usingCache: true, // 可选，默认为true。
-        priority: 1, // 可选，默认为1。
-        connectTimeout: 60000, // 可选，默认为60000ms。
-        readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
-        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定。
-        multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
-        {
-          name: "Part1", // 数据名，自API 11开始支持该属性。
-          contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-          data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
-          remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
-          }, {
-            name: "Part2", // 数据名，自API 11开始支持该属性。
-            contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
-            filePath: ${context.filesDir}/fileName.txt, // 可选，传入文件路径，自API 11开始支持该属性。
-            remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
-          }, {
-            name: "Part3", // 数据名，自API 11开始支持该属性。
-            contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
-            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
-            filePath: ${context.filesDir}/fileName.png, // 可选，传入文件路径，自API 11开始支持该属性。
-            remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
-          }, {
-            name: "Part4", // 数据名，自API 11开始支持该属性。
-            contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
-            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
-            filePath: ${context.filesDir}/fileName.mpeg, // 可选，传入文件路径，自API 11开始支持该属性。
-            remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
-          }, {
-            name: "Part5", // 数据名，自API 11开始支持该属性。
-            contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
-            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
-            filePath: ${context.filesDir}/fileName.mp4, // 可选，传入文件路径，自API 11开始支持该属性。
-            remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
-            }
-          ]
+      extraData: "data to send",
+      expectDataType: http.HttpDataType.STRING,// 可选，指定返回数据的类型。
+      usingCache: true, // 可选，默认为true。
+      priority: 1, // 可选，默认为1。
+      connectTimeout: 60000, // 可选，默认为60000ms。
+      readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
+      usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定。
+      multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
+      {
+        name: "Part1", // 数据名，自API 11开始支持该属性。
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+        data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
+        remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
+       }, {
+        name: "Part2", // 数据名，自API 11开始支持该属性。
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
+        filePath: ${context.filesDir}/fileName.txt, // 可选，传入文件路径，自API 11开始支持该属性。
+        remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
+        }, {
+        name: "Part3", // 数据名，自API 11开始支持该属性。
+        contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
+        filePath: ${context.filesDir}/fileName.png, // 可选，传入文件路径，自API 11开始支持该属性。
+        remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
+        }, {
+        name: "Part4", // 数据名，自API 11开始支持该属性。
+        contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
+        filePath: ${context.filesDir}/fileName.mpeg, // 可选，传入文件路径，自API 11开始支持该属性。
+        remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
+        }, {
+        name: "Part5", // 数据名，自API 11开始支持该属性。
+        contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
+        filePath: ${context.filesDir}/fileName.mp4, // 可选，传入文件路径，自API 11开始支持该属性。
+        remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+        }
+       ]
      }
 
  	 // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
@@ -292,7 +293,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
         httpRequest.off('dataEnd');
         // 当该请求使用完毕时，调用destroy方法主动销毁。
         httpRequest.destroy();
-        }).catch((err: Error) => {
+     }).catch((err: Error) => {
           console.error("requestInStream ERROR : err = " + JSON.stringify(err));
           // 取消订阅HTTP流式响应数据接收事件。
           httpRequest.off('dataReceive');
@@ -304,7 +305,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
           httpRequest.off('dataEnd');
           // 当该请求使用完毕时，调用destroy方法主动销毁。
           httpRequest.destroy();
-        });
+      });
     ```
 
 5. 取消步骤3中订阅HTTP流式响应事件
