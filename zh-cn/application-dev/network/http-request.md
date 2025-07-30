@@ -213,10 +213,12 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       res = newRes;
       console.info('res length: ' + res.byteLength);
     });
+    
     // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
       console.info('No more data in response, data receive end');
     });
+    
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
     httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
       console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
@@ -235,9 +237,9 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
       // 开发者根据自身业务需要添加header字段。
    	  header: {
-    	'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
    	  },
-   	 // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
+   	  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
       extraData: "data to send",
       expectDataType: http.HttpDataType.STRING,// 可选，指定返回数据的类型。
       usingCache: true, // 可选，默认为true。
@@ -251,7 +253,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
         data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
         remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
-       }, {
+      }, {
         name: "Part2", // 数据名，自API 11开始支持该属性。
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
@@ -279,7 +281,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
        ]
      }
 
- 	 // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
+ 	  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
       httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
         console.info("requestInStream OK!");
         console.info('ResponseCode :' + JSON.stringify(data));
@@ -293,18 +295,18 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
         httpRequest.off('dataEnd');
         // 当该请求使用完毕时，调用destroy方法主动销毁。
         httpRequest.destroy();
-     }).catch((err: Error) => {
-          console.error("requestInStream ERROR : err = " + JSON.stringify(err));
-          // 取消订阅HTTP流式响应数据接收事件。
-          httpRequest.off('dataReceive');
-          // 取消订阅HTTP流式响应数据发送进度事件。
-          httpRequest.off('dataSendProgress');
-          // 取消订阅HTTP流式响应数据接收进度事件。
-          httpRequest.off('dataReceiveProgress');
-          // 取消订阅HTTP流式响应数据接收完毕事件。
-          httpRequest.off('dataEnd');
-          // 当该请求使用完毕时，调用destroy方法主动销毁。
-          httpRequest.destroy();
+      }).catch((err: Error) => {
+        console.error("requestInStream ERROR : err = " + JSON.stringify(err));
+        // 取消订阅HTTP流式响应数据接收事件。
+        httpRequest.off('dataReceive');
+        // 取消订阅HTTP流式响应数据发送进度事件。
+        httpRequest.off('dataSendProgress');
+        // 取消订阅HTTP流式响应数据接收进度事件。
+        httpRequest.off('dataReceiveProgress');
+        // 取消订阅HTTP流式响应数据接收完毕事件。
+        httpRequest.off('dataEnd');
+        // 当该请求使用完毕时，调用destroy方法主动销毁。
+        httpRequest.destroy();
       });
     ```
 
