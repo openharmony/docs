@@ -26,7 +26,7 @@
 
 - 文档中示例代码片段已经在IDE中自验证，确保编译通过，并在下方给出截图证明。（ ）
 - API的定义与使用方式与配套版本的SDK严格一致，无文档与SDK不一致问题。（ ）
-- 文档需完成[AI辅助工具DocLinter扫描](https://gitee.com/openharmony/docs/wiki/HarmonyPilot-DocLinter_AI%E8%BE%85%E5%8A%A9%E5%86%99%E4%BD%9C%E6%8F%92%E4%BB%B6.md)并完成问题修改，并在此附加在线扫描报告的链接。
+- 文档需完成[AI辅助工具DocLinter扫描](https://gitcode.com/openharmony/docs/wiki/HarmonyPilot-DocLinter_AI%E8%BE%85%E5%8A%A9%E5%86%99%E4%BD%9C%E6%8F%92%E4%BB%B6.md)并完成问题修改，并在此附加在线扫描报告的链接。
 
 ## 示例代码编译通过截图证明（如涉及示例代码需提供）：
 

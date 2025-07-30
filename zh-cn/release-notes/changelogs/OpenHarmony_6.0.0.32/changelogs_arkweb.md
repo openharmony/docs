@@ -12,7 +12,7 @@
 
 **变更影响**
 
-从上游社区337项功能变更说明，以及社区200+问题单分析，WPT测试集结果分析，当前共发现50项需要开发者注意的变更点，请参考[ArkWeb版本的差异总结](https://gitee.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/ArkWeb_114_132.md)。
+从上游社区337项功能变更说明，以及社区200+问题单分析，WPT测试集结果分析，当前共发现50项需要开发者注意的变更点，请参考[ArkWeb版本的差异总结](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/ArkWeb_114_132.md)。
 
 **起始 API Level**
 
@@ -28,4 +28,4 @@ ArkWeb
 
 **适配指导**
 
-如果在应用中使用Web组件展示网页内容，则需要遵循[ArkWeb版本差异总结](https://gitee.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/ArkWeb_114_132.md)中所涉及的最新W3C规格变更。
+如果在应用中使用Web组件展示网页内容，则需要遵循[ArkWeb版本差异总结](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/ArkWeb_114_132.md)中所涉及的最新W3C规格变更。
