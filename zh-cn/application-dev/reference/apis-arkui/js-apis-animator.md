@@ -975,6 +975,7 @@ let animatorResult:AnimatorResult = animator.create(options);
 </div>
 ```
 
+<!--code_no_check-->
 <!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
