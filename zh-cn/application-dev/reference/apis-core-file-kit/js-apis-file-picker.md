@@ -87,7 +87,7 @@ constructor(context: Context, window: window.Window)
 
 > **说明：**
 >
->从API version 19开始，2in1、Tablet设备支持该方法。
+> 从API version 19开始，2in1和Tablet设备支持该方法。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -98,7 +98,7 @@ constructor(context: Context, window: window.Window)
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md)  | 是   | 应用创建的窗口实例。 |
 
-示例：**
+**示例：**
 
 ```ts
 import { common } from '@kit.AbilityKit';
