@@ -242,17 +242,21 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // EntryAbility.ets
-onWindowStageCreate(windowStage: window.WindowStage) {
-  windowStage.loadContent('pages/Index', (err) => {
-    if (err.code) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in loading the content.');
-  })
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    })
 
-  // 给Index页面传递windowStage
-  AppStorage.setOrCreate('windowStage', windowStage);
+    // 给Index页面传递windowStage
+    AppStorage.setOrCreate('windowStage', windowStage);
+  }
 }
 ```
 
@@ -386,12 +390,13 @@ struct SubWindow {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(20)
           .fontWeight(FontWeight.Bold)
       }
       .width('100%')
     }
     .height('100%')
+    .backgroundColor('#0D9FFB')
   }
 }
 ```
