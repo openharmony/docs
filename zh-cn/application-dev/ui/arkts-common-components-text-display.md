@@ -425,7 +425,7 @@ Text可通过以下两种方式来创建：
 
   ```ts
   @State number: number = 98;
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false };
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   Column() {
     Text(this.number + "")

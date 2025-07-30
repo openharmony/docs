@@ -1,6 +1,6 @@
-# @ohos.accessibility (辅助功能)
+# @ohos.accessibility (辅助应用)
 
-本模块提供辅助功能查询能力，包括获取辅助应用列表、辅助应用启用状态、无障碍字幕配置等。
+本模块提供辅助应用查询能力，包括获取辅助应用列表、获取辅助应用启用状态、获取无障碍字幕配置等。
 
 > **说明：**
 >
@@ -211,10 +211,24 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
-captionsManager.on('enableChange', (data: boolean) => {
-  console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-})
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
+
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### on('styleChange')<sup>(deprecated)</sup>
@@ -249,11 +263,24 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.on('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('enableChange')<sup>(deprecated)</sup>
@@ -288,11 +315,29 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('enableChange', (data: boolean) => {
-  console.info(`Unsubscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('styleChange')<sup>(deprecated)</sup>
@@ -327,11 +372,29 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`Unsubscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ## EventInfo
@@ -586,14 +649,48 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 | ------- | -------------------------------- |
 | 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**示例：**
+**参数示例：**
+| 辅助应用类型 \ 辅助应用状态      | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | 查询已启用的具有听觉反馈的辅助应用 |查询已禁用的具有听觉反馈的辅助应用|查询已安装的具有听觉反馈的辅助应用|
+|**generic**| 查询已启用的具有通用反馈的辅助应用 |查询已禁用的具有通用反馈的辅助应用|查询已安装的具有通用反馈的辅助应用|
+|**haptic**| 查询已启用的具有触觉反馈的辅助应用 |查询已禁用的具有触觉反馈的辅助应用|查询已安装的具有触觉反馈的辅助应用|
+|**spoken**| 查询已启用的具有语音反馈的辅助应用 |查询已禁用的具有语音反馈的辅助应用|查询已安装的具有语音反馈的辅助应用|
+|**visual**| 查询已启用的具有视觉反馈的辅助应用 |查询已禁用的具有视觉反馈的辅助应用|查询已安装的具有视觉反馈的辅助应用|
+|**all**| 查询所有已启用的辅助应用 |查询所有已禁用的辅助应用|查询所有已安装的辅助应用|
 
+**查询所有已安装的辅助应用示例：**
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'spoken';
-let abilityState: accessibility.AbilityState = 'enable';
+let abilityType: accessibility.AbilityType = 'all'; // 辅助应用类型为所有类型
+let abilityState: accessibility.AbilityState = 'install'; // 辅助应用状态为已安装
+
+accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data: accessibility.AccessibilityAbilityInfo[]) => {
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get accessibility extension list, Code is ${err.code}, message is ${err.message}`);
+});
+
+// 例如：系统内安装一个包名为com.example.myaccessibilityapp的辅助应用
+// 日志打印结果为：
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**查询所有已启用的具有语音反馈的辅助应用示例：**
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // 辅助应用类型为具有语音反馈类型
+let abilityState: accessibility.AbilityState = 'enable'; // 辅助应用状态为已启用
 
 accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data: accessibility.AccessibilityAbilityInfo[]) => {
   console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
@@ -626,14 +723,52 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 | ------- | -------------------------------- |
 | 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**示例：**
+**参数示例：**
+| 辅助应用类型 \ 辅助应用状态      | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | 查询已启用的具有听觉反馈的辅助应用 |查询已禁用的具有听觉反馈的辅助应用|查询已安装的具有听觉反馈的辅助应用|
+|**generic**| 查询已启用的具有通用反馈的辅助应用 |查询已禁用的具有通用反馈的辅助应用|查询已安装的具有通用反馈的辅助应用|
+|**haptic**| 查询已启用的具有触觉反馈的辅助应用 |查询已禁用的具有触觉反馈的辅助应用|查询已安装的具有触觉反馈的辅助应用|
+|**spoken**| 查询已启用的具有语音反馈的辅助应用 |查询已禁用的具有语音反馈的辅助应用|查询已安装的具有语音反馈的辅助应用|
+|**visual**| 查询已启用的具有视觉反馈的辅助应用 |查询已禁用的具有视觉反馈的辅助应用|查询已安装的具有视觉反馈的辅助应用|
+|**all**| 查询所有已启用的辅助应用 |查询所有已禁用的辅助应用|查询所有已安装的辅助应用|
+
+**查询所有已安装的辅助应用示例：**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'spoken';
-let abilityState: accessibility.AbilityState = 'enable';
+let abilityType: accessibility.AbilityType = 'all'; // 辅助应用类型为所有类型
+let abilityState: accessibility.AbilityState = 'install'; // 辅助应用状态为已安装
+
+accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: BusinessError, data: accessibility.AccessibilityAbilityInfo[]) => {
+  if (err) {
+    console.error(`failed to get accessibility extension list, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+});
+
+// 例如：系统内安装一个包名为com.example.myaccessibilityapp的辅助应用
+// 日志打印结果为：
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**查询所有已启用的具有语音反馈的辅助应用示例：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // 辅助应用类型为具有语音反馈类型
+let abilityState: accessibility.AbilityState = 'enable'; // 辅助应用状态为已启用
 
 accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: BusinessError, data: accessibility.AccessibilityAbilityInfo[]) => {
   if (err) {
@@ -648,7 +783,7 @@ accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: Busi
 
 getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilityState): Array&lt;AccessibilityAbilityInfo&gt;
 
-查询辅助应用列表同步接口。
+查询当前系统内辅助应用列表，支持按条件查询。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -665,14 +800,53 @@ getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilitySt
 | ---------------------------------------- | --------------------- |
 | Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt; | 返回辅助应用信息列表。 |
 
-**示例：**
+**参数示例：**
+| 辅助应用类型 \ 辅助应用状态      | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | 查询已启用的具有听觉反馈的辅助应用 |查询已禁用的具有听觉反馈的辅助应用|查询已安装的具有听觉反馈的辅助应用|
+|**generic**| 查询已启用的具有通用反馈的辅助应用 |查询已禁用的具有通用反馈的辅助应用|查询已安装的具有通用反馈的辅助应用|
+|**haptic**| 查询已启用的具有触觉反馈的辅助应用 |查询已禁用的具有触觉反馈的辅助应用|查询已安装的具有触觉反馈的辅助应用|
+|**spoken**| 查询已启用的具有语音反馈的辅助应用 |查询已禁用的具有语音反馈的辅助应用|查询已安装的具有语音反馈的辅助应用|
+|**visual**| 查询已启用的具有视觉反馈的辅助应用 |查询已禁用的具有视觉反馈的辅助应用|查询已安装的具有视觉反馈的辅助应用|
+|**all**| 查询所有已启用的辅助应用 |查询所有已禁用的辅助应用|查询所有已安装的辅助应用|
+
+**查询所有已安装的辅助应用示例：**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'all';
-let abilityState: accessibility.AbilityState = 'install';
+let abilityType: accessibility.AbilityType = 'all'; // 辅助应用类型为所有类型
+let abilityState: accessibility.AbilityState = 'install'; // 辅助应用状态为已安装
+let data: accessibility.AccessibilityAbilityInfo[];
+
+try {
+  data = accessibility.getAccessibilityExtensionListSync(abilityType, abilityState);
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+} catch (error) {
+  let err = error as BusinessError;
+  console.error(`error code: ${err.code}`);
+}
+
+// 例如：系统内安装一个包名为com.example.myaccessibilityapp的辅助应用
+// 日志打印结果为：
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**查询所有已启用的具有语音反馈的辅助应用示例：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // 辅助应用类型为具有语音反馈类型
+let abilityState: accessibility.AbilityState = 'enable'; // 辅助应用状态为已启用
 let data: accessibility.AccessibilityAbilityInfo[];
 
 try {
@@ -714,7 +888,7 @@ let captionsManager = accessibility.getCaptionsManager();
 
 on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
-监听辅助应用启用状态变化事件，使用callback异步回调。
+监听辅助应用启用状态变化事件，使用callback异步回调。如需获取系统内辅助应用信息，推荐使用[accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -738,6 +912,9 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
+// 系统内已安装一个或多个辅助应用时:
+// 1. 启用辅助应用场景：第一个辅助应用启用后，回调函数会返回true
+// 2. 禁用辅助应用场景：若一个或多个辅助应用已启用，最后一个已启用的辅助应用被禁用时，回调函数会返回false
 accessibility.on('accessibilityStateChange', (data: boolean) => {
   console.info(`subscribe accessibility state change, result: ${JSON.stringify(data)}`);
 });
@@ -747,7 +924,7 @@ accessibility.on('accessibilityStateChange', (data: boolean) => {
 
 on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
-监听触摸浏览功能启用状态变化事件，使用callback异步回调。
+监听触摸浏览功能启用状态变化事件，使用callback异步回调。如需获取系统内辅助应用信息，推荐使用[accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -771,6 +948,9 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
+// 系统内已安装一个或多个具备触摸浏览能力的辅助应用（Capability配置中含有'touchGuide'的辅助应用）时：
+// 1. 启用触摸浏览辅助应用场景：第一个触摸浏览辅助应用启用后，回调函数会返回true
+// 2. 禁用触摸浏览辅助应用场景：若一个或多个触摸浏览辅助应用已启用，最后一个已启用的触摸浏览辅助应用被禁用时，回调函数会返回false
 accessibility.on('touchGuideStateChange', (data: boolean) => {
   console.info(`subscribe touch guide state change, result: ${JSON.stringify(data)}`);
 });
@@ -1010,7 +1190,7 @@ struct Index {
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
-判断是否启用了辅助功能，使用Promise异步回调。
+判断是否启用了辅助应用，使用Promise异步回调。
 
 > **说明：**
 >
@@ -1024,7 +1204,7 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 
 | 类型                     | 说明                                       |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，如果辅助功能已启用，则返回 true；否则返回 false。 |
+| Promise&lt;boolean&gt; | Promise对象，如果辅助应用已启用，则返回 true；否则返回 false。 |
 
 **示例：**
 
@@ -1043,7 +1223,7 @@ accessibility.isOpenAccessibility().then((data: boolean) => {
 
 isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断是否启用了辅助功能，使用callback异步回调。
+判断是否启用了辅助应用，使用callback异步回调。
 
 > **说明：**
 >
@@ -1057,7 +1237,7 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                           | 必填   | 说明                                  |
 | -------- | ---------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，如果辅助功能已启用，则返回 true；否则返回 false。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，如果辅助应用已启用，则返回 true；否则返回 false。 |
 
 **示例：**
 
@@ -1078,7 +1258,7 @@ accessibility.isOpenAccessibility((err: BusinessError, data: boolean) => {
 
 isOpenAccessibilitySync(): boolean
 
-是否启用了辅助功能。
+查询当前系统内是否存在已开启的辅助应用。如需获取系统内辅助应用信息，推荐使用[accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1088,7 +1268,7 @@ isOpenAccessibilitySync(): boolean
 
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 表示是否启用了辅助功能。true表示启用了辅助功能，false表示未启用辅助功能。 |
+| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。 |
 
 **示例：**
 
@@ -1096,6 +1276,8 @@ isOpenAccessibilitySync(): boolean
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 1、系统内已安装多个辅助应用，若都没有开启，返回false
+// 2、系统内已安装多个辅助应用，若开启任意一个，返回true
 let status: boolean = accessibility.isOpenAccessibilitySync();
 ```
 

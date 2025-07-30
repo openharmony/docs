@@ -1,4 +1,9 @@
 # 使用TaskPool执行独立的耗时任务
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 对于独立运行的耗时任务，任务完成后将结果返回给宿主线程。可采用以下方式实现。
 

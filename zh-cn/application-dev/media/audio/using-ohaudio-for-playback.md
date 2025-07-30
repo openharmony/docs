@@ -363,13 +363,13 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 ```
 
-## 播放AudioVivid格式音源
+## 播放Audio Vivid格式音源
 
-播放AudioVivid格式音频文件时，需要使用与普通播放不同的数据写入回调函数，该回调可以同时写入PCM数据与元数据。
+播放Audio Vivid格式音频文件时，需要使用与普通播放不同的数据写入回调函数，该回调可以同时写入PCM数据与元数据。
 
 开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setwritedatawithmetadatacallback)设置PCM数据与元数据同时写入的回调函数，同时调用[OH_AudioStreamBuilder_SetEncodingType()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setencodingtype)设置编码类型为AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID。
 
-在播放AudioVivid时，帧长是固定的，不可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setframesizeincallback)设置回调帧长。同时，在设置播放声道数和声道布局时，需要将写入音源的声床数和对象数相加后进行设置。
+在播放Audio Vivid时，帧长是固定的，不可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setframesizeincallback)设置回调帧长。同时，在设置播放声道数和声道布局时，需要将写入音源的声床数和对象数相加后进行设置。
 
 ```cpp
 // 自定义同时写入PCM数据和元数据函数。

@@ -1,5 +1,11 @@
 # @ohos.abilityAccessCtrl (程序访问控制管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
 
 > **说明：**

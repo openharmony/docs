@@ -2674,7 +2674,7 @@ error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](../napi/ohos-abi.md#在编译架构中指定abi)中的配置，规则如下：
 
     <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。

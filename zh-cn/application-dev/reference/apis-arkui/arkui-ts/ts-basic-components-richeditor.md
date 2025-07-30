@@ -149,10 +149,7 @@ decoration:{
 对addBuilderSpan的节点文本，该功能不会生效。
 
 当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
-
-从API version 20开始，组件文本选择菜单支持显示AI菜单。
-当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE，组件在非编辑态选中内容，选中区包含单个AI实体时，根据AI实体的类型，在文本选择菜单中显示AI菜单选项。
-AI菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
+<!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -798,7 +795,7 @@ Span类型信息。
 | IMAGE | 1 | Span类型为图像。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span类型为图文混合。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BUILDER<sup>12+</sup> | 3 | Span类型为BuilderSpan。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| DEFAULT<sup>15+</sup> | 4 | 默认类型，不指定Span类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| DEFAULT<sup>15+</sup> | 4 | 注册此类型的菜单，但未册TEXT、IMAGE、MIXED、BUILDER菜单时，文字类型、图像类型、图文混合类型、BuilderSpan类型都会触发并显示此类型对应的菜单。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -811,7 +808,7 @@ Span类型信息。
 | RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | LONG_PRESS | 1 | 通过长按触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | SELECT | 2 | 通过鼠标选中触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>15+</sup> | 3 | 注册此响应类型的菜单，但未注册RIGHT_CLICK、LONG_PRESS、SELECT响应类型的菜单时，通过鼠标右键、长按、鼠标选中都会触发菜单弹出。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
 
 ## UndoStyle<sup>20+</sup>
 
@@ -1378,7 +1375,7 @@ deleteSpans(value?: RichEditorRange): void
 
 getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
-获取指定范围的段落。
+获取指定范围的段落信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4812,13 +4809,11 @@ struct LineBreakStrategyExample {
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
-import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
 struct Index {
   stringLength: number = 0;
-  imagePixelMap: image.PixelMap | undefined = undefined;
   @State selection: string = "";
   @State content: string = "";
   @State range: string = "";
@@ -4863,26 +4858,6 @@ struct Index {
       this.rangeAfter = '[ ' + rangeAfter.start + ' , ' + rangeAfter.end + ' ]';
     }
   }
-
-  async aboutToAppear() {
-    console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
-  }
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release()
-    return createPixelMap;
-  }
-
 
   build() {
     Column({space:6}) {
@@ -4936,13 +4911,13 @@ struct Index {
           Button("插入图片")
             .stateEffect(true)
             .onClick(() => {
-            if (this.imagePixelMap !== undefined) {
               let imageStyledString = new MutableStyledString(new ImageAttachment({
-                value: this.imagePixelMap,
+                resourceValue: $r('app.media.app_icon'),
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
-                objectFit: ImageFit.Contain
+                objectFit: ImageFit.Contain,
+                syncLoad: true
               }));
               // 获取组件展示的属性字符串
               this.richEditorStyledString = this.controller.getStyledString();
@@ -4950,7 +4925,6 @@ struct Index {
               // 使插入图片后的属性字符串展示在组件上
               this.controller.setStyledString(this.richEditorStyledString)
               this.controller.setCaretOffset(this.richEditorStyledString.length)
-            }
           })
           Button("插入文本").onClick(() => {
             // 获取组件展示的属性字符串

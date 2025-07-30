@@ -5,15 +5,15 @@ ArkTS supports the following basic data types: number, string, binary data, and 
 
 The **relationalStore** module provides the following functions:
 
-- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
-- [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
-- [ResultSet](js-apis-data-relationalStore.md#resultset): provides APIs for accessing the result set obtained from the RDB store.
+- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
+- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md): provides APIs for managing data in an RDB store.
+- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md): provides APIs for accessing the result set obtained from the RDB store.
 
 > **NOTE**
 > 
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.data.relationalStore](js-apis-data-relationalStore.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.data.relationalStore](arkts-apis-data-relationalStore.md).
 
 ## Modules to Import
 
@@ -29,8 +29,8 @@ Defines the configuration of an RDB store.
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
-| haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12.<br>|
+| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11. |
+| haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. |
 
 ## HAMode<sup>12+</sup>
 
@@ -70,7 +70,10 @@ Defines the configuration of the distributed mode of tables.
 ## RdbStore
 
 Provides APIs for managing data in an RDB store.
-Before using the **RdbStore** APIs, use [executeSql](js-apis-data-relationalStore.md#executesql) to initialize the database table structure and related data.
+
+Before using the following APIs, you should obtain a **RdbStore** instance by calling the [getRdbStore](arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore-1) method and then call the corresponding method through the instance.
+
+In addition, use [execute](arkts-apis-data-relationalStore-RdbStore.md#execute12) to initialize the database table structure and related data first, ensuring that the prerequisites for related API calls are met.
 
 ### update
 
@@ -89,7 +92,7 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | Yes  | Name of the target table.                                            |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows updated.                  |
 
@@ -100,12 +103,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -154,14 +157,14 @@ const valueBucket3: ValuesBucket = {
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -182,7 +185,7 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | Yes  | Name of the target table.                                            |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 
 **Return value**
@@ -198,12 +201,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -253,12 +256,12 @@ const valueBucket3: ValuesBucket = {
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -279,8 +282,8 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name    | Type                                                        | Mandatory| Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table, which cannot be an empty string.             |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows deleted.     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Deletion conditions specified by the **DataSharePredicates** object.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows deleted.|
 
 **Error codes**
 
@@ -289,12 +292,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -317,14 +320,14 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates, (err, rows) => {
     if (err) {
       console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Delete rows: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -345,7 +348,7 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name    | Type                                                        | Mandatory| Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                             |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Deletion conditions specified by the **DataSharePredicates** object.|
 
 **Return value**
 
@@ -360,12 +363,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**     |
 |-----------| --------------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -389,12 +392,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -416,7 +419,7 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
@@ -425,9 +428,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**          |
 |-----------| ------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -437,7 +440,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -454,7 +457,7 @@ if(store != undefined) {
     }
     // Release the dataset memory.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -477,7 +480,7 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
@@ -486,9 +489,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**     |
 |-----------| --------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -498,7 +501,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -515,7 +518,7 @@ if(store != undefined) {
     }
     // Release the dataset memory.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -543,7 +546,7 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
@@ -552,9 +555,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**        |
 |-----------| ----------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -565,7 +568,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -580,7 +583,7 @@ if(store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -594,7 +597,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 >
 > Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
 >
-> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](arkts-apis-data-relationalStore-RdbPredicates.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -604,9 +607,9 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 
 | Name        | Type                            | Mandatory| Description                           |
 |-------------|--------------------------------| ---- |-------------------------------|
-| mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
-| predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.          |
+| mode        | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)          | Yes  | Sync mode of the database.                  |
+| predicates  | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                  | Yes  | Conditions for data sync.                 |
+| progress    | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.          |
 | callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the sync result to the caller.|
 
 **Error codes**
@@ -618,7 +621,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202       | if permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.  |
-| 14800014  | Already closed.      |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 
 **Example 1**: Manually sync data on the local device with the cloud.
 
@@ -626,15 +629,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }, (err) => {
-     if (err) {
-       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-       return;
-     }
-     console.info('Cloud sync succeeded');
+  }, (err) => {
+    if (err) {
+      console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+      return;
+    }
+    console.info('Cloud sync succeeded');
   });
 };
 ```
@@ -643,26 +646,26 @@ if(store != undefined) {
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let asset : relationalStore.Asset = {
+let asset: relationalStore.Asset = {
   name: "name",
   uri: "uri",
   path: "path",
   createTime: new Date().getTime().toString(),
   modifyTime: new Date().getTime().toString(),
   size: "1024"
-}
+};
 // Specify the primary key and asset (asset column in the database) in the predicates.
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }, (err) => {
-     if (err) {
-       console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
-       return;
-     }
-     console.info('cloud sync succeeded');
+  }, (err) => {
+    if (err) {
+      console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+      return;
+    }
+    console.info('cloud sync succeeded');
   });
 };
 ```
@@ -677,7 +680,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 >
 > Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
 >
-> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](arkts-apis-data-relationalStore-RdbPredicates.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -687,9 +690,9 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 
 | Name       | Type                             | Mandatory| Description                 |
 |------------|---------------------------------| ---- |---------------------|
-| mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
+| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)           | Yes  | Sync mode of the database.        |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                   | Yes  | Conditions for data sync.               |
+| progress   | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
 
 **Return value**
 
@@ -706,7 +709,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202       | if permission verification failed, application which is not a system application uses system API.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
 | 801       | Capability not supported.       |
-| 14800014  | Already closed.      |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 
 **Example 1**: Manually sync data on the local device with the cloud.
 
@@ -716,7 +719,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -731,21 +734,21 @@ if(store != undefined) {
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let asset : relationalStore.Asset = {
+let asset: relationalStore.Asset = {
   name: "name",
   uri: "uri",
   path: "path",
   createTime: new Date().getTime().toString(),
   modifyTime: new Date().getTime().toString(),
   size: "1024"
-}
+};
 // Specify the primary key and asset (asset column in the database) in the predicates.
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }).then(() => {
+  }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
@@ -767,14 +770,14 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.   |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | Yes  | Query conditions.   |
 | columns    | Array&lt;string&gt;      | No  | Columns to be searched for. If this parameter is not specified, the returned result set contains only the shared resource ID.|
 
 **Return value**
 
 | Name   | Description                                              |
 | -------- | ------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result set.  |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise used to return the result set.  |
 
 **Error codes**
 
@@ -785,10 +788,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
 | 14800000  | Inner error.                      |
-| 14800011  | Database corrupted.           |
-| 14800014  | Already closed.                        |
+| 14800011  | Failed to open the database because it is corrupted.           |
+| 14800014  | The RdbStore or ResultSet is already closed.                        |
 | 14800015  | The database does not respond.          |
-| 14800021  | SQLite: Generic error.             |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.             |
 | 14800022  | SQLite: Callback routine requested an abort.          |
 | 14800023  | SQLite: Access permission denied.         |
 | 14800024  | SQLite: The database file is locked.         |
@@ -811,7 +814,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
     if (!resultSet.goToFirstRow()) {
       console.error(`resultSet error`);
@@ -822,9 +825,8 @@ if(store != undefined) {
     sharingResource = res;
   }).catch((err: BusinessError) => {
     console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
-
 ```
 
 ### querySharingResource<sup>11+</sup>
@@ -841,8 +843,8 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | Yes  | Query conditions.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set.|
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)              | Yes  | Query conditions.          |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
@@ -853,10 +855,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.                 |
 | 14800000  | Inner error.          |
-| 14800011  | Database corrupted.       |
-| 14800014  | Already closed.      |
+| 14800011  | Failed to open the database because it is corrupted.       |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 | 14800015  | The database does not respond.        |
-| 14800021  | SQLite: Generic error.        |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.        |
 | 14800022  | SQLite: Callback routine requested an abort.         |
 | 14800023  | SQLite: Access permission denied.                    |
 | 14800024  | SQLite: The database file is locked.            |
@@ -878,8 +880,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
-  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, (err, resultSet) => {
     if (err) {
       console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -891,9 +893,8 @@ if(store != undefined) {
     const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
-  })
+  });
 }
-
 ```
 
 ### querySharingResource<sup>11+</sup>
@@ -910,9 +911,9 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.          |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | Yes  | Query conditions.          |
 | columns    | Array&lt;string&gt;              | Yes  | Columns to be searched for.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set.|
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt;  | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
@@ -923,10 +924,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
 | 14800000  | Inner error.            |
-| 14800011  | Database corrupted.         |
-| 14800014  | Already closed.          |
+| 14800011  | Failed to open the database because it is corrupted.         |
+| 14800014  | The RdbStore or ResultSet is already closed.          |
 | 14800015  | The database does not respond.          |
-| 14800021  | SQLite: Generic error.           |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.           |
 | 14800022  | SQLite: Callback routine requested an abort.    |
 | 14800023  | SQLite: Access permission denied.     |
 | 14800024  | SQLite: The database file is locked.     |
@@ -948,7 +949,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
     if (err) {
       console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
@@ -961,9 +962,8 @@ if(store != undefined) {
     const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
-  })
+  });
 }
-
 ```
 
 
@@ -1000,12 +1000,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
     console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1038,12 +1038,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
     console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1071,11 +1071,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800010  | Failed to open or delete the database by an invalid database path. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -1095,14 +1095,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
-if(store != undefined) {
+if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore();
   promiseRestore.then(() => {
     console.info('Succeeded in restoring.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1114,7 +1113,7 @@ Provides APIs to access the **resultSet** object returned by **query()**.
 
 getFloat32Array(columnIndex: number): Float32Array
 
-Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector store](#storeconfig).
+Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector database](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1136,12 +1135,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID**| **Error Message**         |
 |-----------| ------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | The capability is not supported because the database is not a vector DB. |
-| 14800011  | Database corrupted. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -1160,7 +1159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let resultSet: relationalStore.ResultSet | undefined;
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getFloat32Array(0);
 }
 ```

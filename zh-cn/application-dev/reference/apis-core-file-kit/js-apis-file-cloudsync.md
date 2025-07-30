@@ -1129,7 +1129,13 @@ replaceFileWithHistoryVersion(originalUri: string, versionUri: string): Promise&
     }
   };
 
-  let versionUri = await fileVersion.downloadHistoryVersion(uri, versionId, callback);
+  let versionUri = "";
+  fileVersion.downloadHistoryVersion(uri, versionId, callback).then((fileUri: string) => {
+    versionUri = fileUri;
+    console.info("success to begin download, downloadFileUri: " + fileUri);
+  }).catch((err: BusinessError) => {
+    console.error(`download history version file failed with error message: ${err.message}, error code: ${err.code}`);
+  });
   fileVersion.replaceFileWithHistoryVersion(uri, versionUri).then(() => {
     console.info("replace file with history version success.");
   }).catch((err: BusinessError) => {
@@ -1236,7 +1242,13 @@ clearFileConflict(uri: string): Promise&lt;void&gt;
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  let isConflict = await fileVersion.isFileConflict(uri);
+  let isConflict = false;
+  fileVersion.isFileConflict(uri).then((isConflictRet: boolean) => {
+    isConflict = isConflictRet;
+    console.info("current file is conflict: " + isConflictRet);
+  }).catch((err: BusinessError) => {
+    console.error(`get current file conflict flag failed with error message: ${err.message}, error code: ${err.code}`);
+  });
   fileVersion.clearFileConflict(uri).then(() => {
     console.info("clean file conflict flag success");
   }).catch((err: BusinessError) => {

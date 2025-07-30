@@ -407,7 +407,21 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../arkts-apis-window-e.md#orientation9)&gt; | 是   | NavDestination页面对应的Orientation。 |
+| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](#orientation19)&gt; | 是   | NavDestination页面对应的Orientation。 |
+
+## Orientation<sup>19+</sup>
+
+type Orientation = Orientation
+
+Orientation实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [Orientation](../arkts-apis-window-e.md#orientation9) | 返回Orientation实例对象。 |
 
 ### enableStatusBar<sup>19+</sup>
 
@@ -1327,6 +1341,7 @@ import { window } from '@kit.ArkUI';
 
 @Component
 struct PortraitPage {
+  @State info: string = '';
   private stack: NavPathStack | undefined = undefined;
   build() {
     NavDestination() {
@@ -1342,6 +1357,9 @@ struct PortraitPage {
     .enableStatusBar(true) // 显示状态栏
     .enableNavigationIndicator(true) // 显示导航条
     .backgroundColor('#ffbaece9')
+    .onResult((result: ESObject)=>{
+      this.info = result as string;
+    })
     .onReady((ctx: NavDestinationContext) => {
       this.stack = ctx.pathStack;
     })

@@ -18,7 +18,7 @@ Before getting started, you need to understand the following basic concepts:
 
 ## Available APIs
 
-APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
+APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md).
 
 ### Context APIs
 
@@ -37,7 +37,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | API       | Description       |
 | ------------------ | ----------------- |
 |OH_AI_ModelHandle OH_AI_ModelCreate()|Creates a model object.|
-|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType odel_type, const OH_AI_ContextHandle model_context)|Loads and builds a MindSpore model from a model file.|
+|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|Loads and builds a MindSpore model from a model file.|
 |void OH_AI_ModelDestroy(OH_AI_ModelHandle *model)|Destroys a model object.|
 
 ### Tensor APIs
@@ -63,6 +63,7 @@ Before moving to the development process, you need to reference related header f
 ```c
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "mindspore/model.h"
 
 // Generate random input.
@@ -173,6 +174,12 @@ The development process consists of the following main steps:
     }
 
     // Load and build the inference model. The model type is OH_AI_MODELTYPE_MINDIR.
+    if (access(argv[1], F_OK) != 0) {
+        printf("model file not exists.\n");
+        OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
+        return OH_AI_STATUS_LITE_ERROR;
+    }
     int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_MODELTYPE_MINDIR, context);
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
@@ -233,6 +240,12 @@ The development process consists of the following main steps:
       printf("Tensor name: %s, tensor size is %zu ,elements num: %lld.\n", OH_AI_TensorGetName(tensor),
             OH_AI_TensorGetDataSize(tensor), element_num);
       const float *data = (const float *)OH_AI_TensorGetData(tensor);
+      if (data == NULL) {
+        printf("OH_AI_TensorGetData failed.\n");
+        OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
+        return OH_AI_STATUS_LITE_ERROR;
+      }
       printf("output data is:\n");
       const int max_print_num = 50;
       for (int j = 0; j < element_num && j <= max_print_num; ++j) {

@@ -1,4 +1,9 @@
 # 多级Worker间高性能消息通信
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 多级[Worker](worker-introduction.md)（即通过父Worker创建子Worker的机制形成层级线程关系）间通信是一种常见的需求，由于Worker线程生命周期由用户自行管理，因此需要注意多级Worker生命周期的正确管理，建议开发者确保销毁父Worker前先销毁所有子Worker。
 
@@ -141,16 +146,14 @@
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    import { CopyEntry } from './CopyEntry'
-
+   
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
          resolve();
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+       }, 100);
+     });
      return p;
    }
 

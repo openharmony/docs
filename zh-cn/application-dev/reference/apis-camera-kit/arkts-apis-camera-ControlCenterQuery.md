@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { camera } from '@kit.CamerKit';
+import { camera } from '@kit.CameraKit';
 ```
 
 ## isControlCenterSupported<sup>20+</sup>

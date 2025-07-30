@@ -966,7 +966,7 @@ struct ImageExample2 {
   }
 
   requestImageUrl(url: string) {
-    http.createHttp().request(url, (error: BusinessError, data: http.HttpResponse)=> {
+    http.createHttp().request(url, (error: BusinessError, data: http.HttpResponse) => {
       if (error) {
         console.error(`request image failed: url: ${url}, code: ${error.code}, message: ${error.message}`);
       } else {
@@ -987,8 +987,10 @@ struct ImageExample2 {
         imgSource.createPixelMap(options).then((pixelMap: PixelMap) => {
           console.error('image createPixelMap success');
           this.pixelMapImg = pixelMap;
+          imgSource.release();
+        }).catch(() => {
+          imgSource.release();
         })
-        imgSource.release()
       }
     })
   }
@@ -1027,7 +1029,7 @@ struct Index {
     try {
       // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。
       cacheDownload.download(this.src, options);
-      console.error(`successs to download the resource. `);
+      console.error(`success to download the resource. `);
     } catch (err) {
       console.error(`Failed to download the resource. err: ${JSON.stringify(err)}`);
     }
@@ -1124,11 +1126,7 @@ struct ImageExample4 {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1257,14 +1255,14 @@ struct drawingLatticeTest {
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
+import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageExample {
   pixelMaps: PixelMap[] = [];
-  options: AnimationOptions = { iterations: 1 };
+  @State options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
@@ -1281,6 +1279,7 @@ struct ImageExample {
             console.info('finish');
           })
       }.height('50%')
+
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
@@ -1295,11 +1294,7 @@ struct ImageExample {
   }
 
   private async getPixmapListFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap[] = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1309,11 +1304,7 @@ struct ImageExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1323,7 +1314,7 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let myPixelMaps:PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    let myPixelMaps: PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
@@ -1794,14 +1785,18 @@ struct Index {
     // 获取资源管理器中的媒体资源
     let img = this.getUIContext().getHostContext()?.resourceManager.getMediaByNameSync(this.imgUrl);
     // 创建图片源并获取图片信息
-    let imageSource = image.createImageSource(img?.buffer.slice(0));
-    let imageInfo = imageSource.getImageInfoSync();
-    // 检查图片信息是否获取成功
-    if (imageInfo == undefined) {
-      console.error(TAG, 'Failed to obtain the image information.');
+    if (img && img.buffer) {
+      let imageSource = image.createImageSource(img?.buffer.slice(0));
+      let imageInfo = imageSource.getImageInfoSync();
+      // 检查图片信息是否获取成功
+      if (imageInfo == undefined) {
+        console.error(TAG, 'Failed to obtain the image information.');
+      } else {
+        // 成功获取到图片信息，打印HDR状态
+        console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+      }
     } else {
-      // 成功获取到图片信息，打印HDR状态
-      console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+      console.error(TAG, 'Failed to obtain the image buffer.');
     }
   }
 
@@ -1809,7 +1804,7 @@ struct Index {
     Column() {
       Image($r('app.media.img_1')).width('50%')
         .height('auto')
-        .margin({top:160})
+        .margin({ top: 160 })
         .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
       Button('图片动态提亮 0->1')
         .onClick(() => {

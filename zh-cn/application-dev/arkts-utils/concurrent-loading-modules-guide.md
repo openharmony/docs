@@ -1,4 +1,9 @@
 # 业务模块并发加载场景
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 在应用启动时，多个业务模块需要加载，例如地图应用中的定位、打车、导航等模块。如果全部在UI主线程初始化，会严重影响冷启动时间。此时，应在不同子线程中并行加载这些模块，以降低启动耗时。
 
@@ -76,7 +81,7 @@
        return timer
      }
    
-     async Countdown(time: number) {
+     async countDown(time: number) {
        return new Promise((resolve: (value: boolean) => void) => {
          setTimeout(() => {
            resolve(true)
@@ -156,7 +161,7 @@
              })
              .onClick(async () => {
                console.info(`Timer start`)
-               await this.timer?.Countdown(1000);
+               await this.timer?.countDown(1000);
                console.info(`Timer end`)
              })
          }

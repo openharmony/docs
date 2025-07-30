@@ -126,8 +126,8 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    // CONTROL_CMD_PLAY = 0; 播放。
    // CONTROL_CMD_PAUSE = 1; 暂停。
    // CONTROL_CMD_STOP = 2;  停止。
-   // CONTROL_CMD_PLAY_NEXT = 3; 上一首。
-   // CONTROL_CMD_PLAY_PREVIOUS = 4; 下一首。
+   // CONTROL_CMD_PLAY_NEXT = 3; 下一首。
+   // CONTROL_CMD_PLAY_PREVIOUS = 4; 上一首。
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
        void* userData) -> AVSessionCallback_Result

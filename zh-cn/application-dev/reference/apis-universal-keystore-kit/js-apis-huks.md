@@ -115,6 +115,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -145,17 +146,14 @@ let properties: Array<huks.HuksParam> =[
 let options: huks.HuksOptions = {
     properties: properties
 };
-try {
-    huks.generateKeyItem(keyAlias, options, (error, data) => {
-        if (error) {
-            console.error(`callback: generateKeyItem failed`);
-        } else {
-            console.info(`callback: generateKeyItem key success`);
-        }
-    });
-} catch (error) {
-    console.error(`callback: generateKeyItem input arg invalid`);
-}
+huks.generateKeyItem(keyAlias, options, (error, data) => {
+    if (error) {
+        console.error(`callback: generateKeyItem failed`);
+    } else {
+        console.info(`callback: generateKeyItem key success`);
+    }
+});
+
 ```
 
 ## huks.generateKeyItem<sup>9+</sup>
@@ -199,6 +197,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -229,17 +228,10 @@ let properties: Array<huks.HuksParam> =[
 let options: huks.HuksOptions = {
     properties: properties
 };
-try {
-    huks.generateKeyItem(keyAlias, options)
-        .then((data) => {
-            console.info(`promise: generateKeyItem success`);
-        })
-        .catch((error: Error) => {
-            console.error(`promise: generateKeyItem failed`);
-        });
-} catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid`);
-}
+huks.generateKeyItem(keyAlias, options)
+    .then((data) => {
+        console.info(`promise: generateKeyItem success`);
+    });
 ```
 
 ## huks.deleteKeyItem<sup>9+</sup>
@@ -283,17 +275,13 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.deleteKeyItem(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: deleteKeyItem failed`);
-        } else {
-            console.info(`callback: deleteKeyItem key success`);
-        }
-    });
-} catch (error) {
-    console.error(`callback: deleteKeyItem input arg invalid`);
-}
+huks.deleteKeyItem(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+         console.error(`callback: deleteKeyItem failed`);
+    } else {
+        console.info(`callback: deleteKeyItem key success`);
+    }
+});
 ```
 
 ## huks.deleteKeyItem<sup>9+</sup>
@@ -342,17 +330,10 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.deleteKeyItem(keyAlias, emptyOptions)
-        .then ((data) => {
-            console.info(`promise: deleteKeyItem key success`);
-        })
-        .catch((error: Error) => {
-            console.error(`promise: deleteKeyItem failed`);
-        });
-} catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid`);
-}
+huks.deleteKeyItem(keyAlias, emptyOptions)
+    .then ((data) => {
+        console.info(`promise: deleteKeyItem key success`);
+    });
 ```
 
 ## huks.importKeyItem<sup>9+</sup>
@@ -389,11 +370,11 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -436,17 +417,13 @@ let options: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
-try {
-    huks.importKeyItem(keyAlias, options, (error, data) => {
-        if (error) {
-            console.error(`callback: importKeyItem failed`);
-        } else {
-            console.info(`callback: importKeyItem success`);
-        }
-    });
-} catch (error) {
-    console.error(`callback: importKeyItem input arg invalid`);
-}
+huks.importKeyItem(keyAlias, options, (error, data) => {
+    if (error) {
+        console.error(`callback: importKeyItem failed`);
+    } else {
+        console.info(`callback: importKeyItem success`);
+    }
+});
 ```
 
 ## huks.importKeyItem<sup>9+</sup>
@@ -486,11 +463,11 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -533,17 +510,10 @@ let huksOptions: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
-try {
-    huks.importKeyItem(keyAlias, huksOptions)
-        .then((data) => {
-            console.info(`promise: importKeyItem success`);
-        })
-        .catch((error: Error) => {
-            console.error(`promise: importKeyItem failed`);
-        });
-} catch (error) {
-    console.error(`promise: importKeyItem input arg invalid`);
-}
+huks.importKeyItem(keyAlias, huksOptions)
+    .then((data) => {
+        console.info(`promise: importKeyItem success`);
+    });
 ```
 
 ## huks.attestKeyItem<sup>9+</sup>
@@ -659,28 +629,20 @@ async function generateKeyThenAttestKey() {
     let attestOptions: huks.HuksOptions = {
         properties: attestProperties
     };
-    try {
-        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
-            if (error) {
-                console.error(`callback: generateKeyItem failed`);
-            } else {
-                console.info(`callback: generateKeyItem success`);
-                try {
-                    huks.attestKeyItem(aliasString, attestOptions, (error, data) => {
-                        if (error) {
-                            console.error(`callback: attestKeyItem failed`);
-                        } else {
-                            console.info(`callback: attestKeyItem success`);
-                        }
-                    });
-                } catch (error) {
-                    console.error(`callback: attestKeyItem input arg invalid`);
+    huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
+        if (error) {
+            console.error(`callback: generateKeyItem failed`);
+        } else {
+            console.info(`callback: generateKeyItem success`);
+            huks.attestKeyItem(aliasString, attestOptions, (error, data) => {
+                if (error) {
+                    console.error(`callback: attestKeyItem failed`);
+                } else {
+                    console.info(`callback: attestKeyItem success`);
                 }
-            }
-        });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid`);
-    }
+            });
+        }
+    });
 }
 ```
 
@@ -779,17 +741,10 @@ async function generateKey(alias: string) {
     let options: huks.HuksOptions = {
         properties: properties
     };
-    try {
-        await huks.generateKeyItem(alias, options)
-            .then((data) => {
-                console.info(`promise: generateKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: generateKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid`);
-    }
+    await huks.generateKeyItem(alias, options)
+        .then((data) => {
+            console.info(`promise: generateKeyItem success`);
+        });
 }
 async function attestKey() {
     let aliasString = keyAliasString;
@@ -816,17 +771,10 @@ async function attestKey() {
         properties: properties
     };
     await generateKey(aliasString);
-    try {
-        await huks.attestKeyItem(aliasString, options)
-            .then((data) => {
-                console.info(`promise: attestKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: attestKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`promise: attestKeyItem input arg invalid`);
-    }
+    await huks.attestKeyItem(aliasString, options)
+        .then((data) => {
+            console.info(`promise: attestKeyItem success`);
+        });
 }
 ```
 
@@ -946,28 +894,20 @@ async function generateKeyThenAttestKey(): Promise<void> {
     let anonAttestOptions: huks.HuksOptions = {
         properties: anonAttestProperties
     };
-    try {
-        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
-            if (error) {
-                console.error(`callback: generateKeyItem failed`);
-            } else {
-                console.info(`callback: generateKeyItem success`);
-                try {
-                    huks.anonAttestKeyItem(aliasString, anonAttestOptions, (error, data) => {
-                        if (error) {
-                            console.error(`callback: anonAttestKeyItem failed`);
-                        } else {
-                            console.info(`callback: anonAttestKeyItem success`);
-                        }
-                    });
-                } catch (error) {
-                    console.error(`callback: anonAttestKeyItem input arg invalid`);
+    huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
+        if (error) {
+            console.error(`callback: generateKeyItem failed`);
+        } else {
+            console.info(`callback: generateKeyItem success`);
+            huks.anonAttestKeyItem(aliasString, anonAttestOptions, (error, data) => {
+                if (error) {
+                    console.error(`callback: anonAttestKeyItem failed`);
+                } else {
+                    console.info(`callback: anonAttestKeyItem success`);
                 }
-            }
-        });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid`);
-    }
+            });
+        }
+    });
 }
 ```
 
@@ -1069,11 +1009,8 @@ async function generateKey(alias: string): Promise<void> {
     let options: huks.HuksOptions = {
         properties: properties
     };
-    try {
-        await huks.generateKeyItem(alias, options);
-    } catch (error) {
-        console.error(`promise: generateKeyItem failed`);
-    }
+
+    await huks.generateKeyItem(alias, options);
 }
 async function anonAttestKey(): Promise<void> {
     let aliasString = keyAliasString;
@@ -1099,12 +1036,9 @@ async function anonAttestKey(): Promise<void> {
     let options: huks.HuksOptions = {
         properties: properties
     };
+
     await generateKey(aliasString);
-    try {
-        await huks.anonAttestKeyItem(aliasString, options);
-    } catch (error) {
-        console.error(`promise: anonAttestKeyItem fail`);
-    }
+    await huks.anonAttestKeyItem(aliasString, options);
 }
 ```
 
@@ -1148,6 +1082,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -1156,90 +1091,64 @@ import { huks } from '@kit.UniversalKeystoreKit';
 
 let alias1 = "importAlias";
 let alias2 = "wrappingKeyAlias";
+
 async function TestGenFunc(alias: string, options: huks.HuksOptions) {
-    try {
-        await genKey(alias, options)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`callback: generateKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid`);
-    }
+    await genKey(alias, options)
+        .then((data) => {
+            console.info(`callback: generateKeyItem success`);
+        });
 }
+
 function genKey(alias: string, options: huks.HuksOptions) {
     return new Promise<void>((resolve, reject) => {
-        try {
-            huks.generateKeyItem(alias, options, (error, data) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throw (error as Error);
-        }
+        huks.generateKeyItem(alias, options, (error, data) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
     });
 }
+
 async function TestExportFunc(alias: string, options: huks.HuksOptions) {
-    try {
-        await exportKey(alias, options)
-            .then((data) => {
-                console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch((error: Error) => {
-                console.error(`callback: exportKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`callback: exportKeyItem input arg invalid`);
-    }
+    await exportKey(alias, options)
+        .then((data) => {
+            console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
+        });
 }
+
 function exportKey(alias: string, options: huks.HuksOptions) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-        try {
-            huks.exportKeyItem(alias, options, (error, data) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throw (error as Error);
-        }
+        huks.exportKeyItem(alias, options, (error, data) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
     });
 }
+
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
-    try {
-        await importWrappedKey(alias, wrappingAlias, options)
-            .then((data) => {
-                console.info(`callback: importWrappedKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`callback: importWrappedKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`callback: importWrappedKeyItem input arg invalid`);
-    }
+    await importWrappedKey(alias, wrappingAlias, options)
+        .then((data) => {
+            console.info(`callback: importWrappedKeyItem success`);
+        });
 }
+
 function importWrappedKey(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
     return new Promise<void>((resolve, reject) => {
-        try {
-            huks.importWrappedKeyItem(alias, wrappingAlias, options, (error, data) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throw (error as Error);
-        }
+        huks.importWrappedKeyItem(alias, wrappingAlias, options, (error, data) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
     });
 }
+
 async function TestImportWrappedKeyFunc(
         alias: string,
         wrappingAlias: string,
@@ -1382,6 +1291,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -1390,17 +1300,10 @@ import { huks } from '@kit.UniversalKeystoreKit';
 /* 处理流程与callback类似，主要差异点为如下函数： */
 /* 该处为示例代码，实际运行过程中，应使用实际导入密钥数据。数据构造方式由上注释可见说明 */
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
-    try {
-        await huks.importWrappedKeyItem(alias, wrappingAlias, options)
-            .then ((data) => {
-                console.info(`promise: importWrappedKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: importWrappedKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`promise: importWrappedKeyItem input arg invalid`);
-    }
+    await huks.importWrappedKeyItem(alias, wrappingAlias, options)
+        .then ((data) => {
+            console.info(`promise: importWrappedKeyItem success`);
+        });
 }
 ```
 
@@ -1451,17 +1354,14 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: exportKeyItem failed`);
-        } else {
-            console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
-        }
-    });
-} catch (error) {
-    console.error(`callback: exportKeyItem input arg invalid`);
-}
+
+huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+        console.error(`callback: exportKeyItem failed`);
+    } else {
+        console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
+    }
+});
 ```
 
 ## huks.exportKeyItem<sup>9+</sup>
@@ -1514,17 +1414,11 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.exportKeyItem(keyAlias, emptyOptions)
-        .then ((data) => {
-            console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
-        })
-        .catch((error: Error) => {
-            console.error(`promise: exportKeyItem failed`);
-        });
-} catch (error) {
-    console.error(`promise: exportKeyItem input arg invalid`);
-}
+
+huks.exportKeyItem(keyAlias, emptyOptions)
+    .then ((data) => {
+        console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
+    });
 ```
 
 ## huks.wrapKeyItem<sup>20+</sup>
@@ -1655,17 +1549,14 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: getKeyItemProperties failed`);
-        } else {
-            console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
-        }
-    });
-} catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid`);
-}
+
+huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+        console.error(`callback: getKeyItemProperties failed`);
+    } else {
+        console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
+    }
+});
 ```
 
 ## huks.getKeyItemProperties<sup>9+</sup>
@@ -1718,17 +1609,11 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-try {
-    huks.getKeyItemProperties(keyAlias, emptyOptions)
-        .then ((data) => {
-            console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
-        })
-        .catch((error: Error) => {
-            console.error(`promise: getKeyItemProperties failed`);
-        });
-} catch (error) {
-    console.error(`promise: getKeyItemProperties input arg invalid`);
-}
+
+huks.getKeyItemProperties(keyAlias, emptyOptions)
+    .then ((data) => {
+        console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
+    });
 ```
 
 ## huks.isKeyItemExist<sup>9+</sup>
@@ -1773,11 +1658,16 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
+
 huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
-    if (data) {
-        console.info(`keyAlias:${keyAlias} is existed!`)
+    if (error) {
+        console.error(`callback: isKeyItemExist failed`);
     } else {
-        console.error(`find key failed`)
+        if (data) {
+            console.info(`keyAlias:${keyAlias} is existed!`)
+        } else {
+            console.error(`find key failed`)
+        }
     }
 });
 ```
@@ -1830,11 +1720,10 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
+
 huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     console.info(`keyAlias:${keyAlias} is existed!`)
-}).catch((error: Error)=>{
-    console.error(`find key failed`)
-})
+});
 ```
 
 ## huks.hasKeyItem<sup>11+</sup>
@@ -1881,17 +1770,17 @@ let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 
-try {
-    huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
+huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+        console.error(`callback: hasKeyItem failed`);
+    } else {
         if (data) {
             console.info(`keyAlias:${keyAlias} is existed!`)
         } else {
             console.error(`find key failed`)
         }
-    });
-} catch (error) {
-    console.error(`callback: hasKeyItem input args may be invalid`);
-}
+    }
+});
 ```
 
 ## huks.hasKeyItem<sup>11+</sup>
@@ -1943,15 +1832,14 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
+
 huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
     if (data) {
         console.info(`keyAlias:${keyAlias} is existed!`)
     } else {
         console.info(`find key failed!`)
     }
-}).catch((error: Error)=>{
-    console.info(`find key failed!`)
-})
+});
 ```
 
 ## huks.initSession<sup>9+</sup>
@@ -2195,6 +2083,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -2235,6 +2124,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -2280,6 +2170,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.abortSession<sup>9+</sup>
 
@@ -2357,32 +2248,29 @@ async function huksAbort() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
-    try {
-        huks.generateKeyItem(keyAlias, options, (error, data) => {
-            if (error) {
-                console.error(`callback: generateKeyItem failed`);
-            } else {
-                console.info(`callback: generateKeyItem success`);
-                huks.initSession(keyAlias, options, (error, data) => { // 以initSession阶段进行abortSession为例。
-                    if (error) {
-                        console.error(`callback: initSession failed`);
-                    } else {
-                        console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
-                        handle = data.handle;
-                        huks.abortSession(handle, options, (error, data) => {
-                            if (error) {
-                                console.error(`callback: abortSession failed`);
-                            } else {
-                                console.info(`callback: abortSession success`);
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    } catch (error) {
-        console.error(`callback: huksAbort failed`);
-    }
+
+    huks.generateKeyItem(keyAlias, options, (error, data) => {
+        if (error) {
+            console.error(`callback: generateKeyItem failed`);
+        } else {
+            console.info(`callback: generateKeyItem success`);
+            huks.initSession(keyAlias, options, (error, data) => { // 以initSession阶段进行abortSession为例。
+                if (error) {
+                    console.error(`callback: initSession failed`);
+                } else {
+                    console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
+                    handle = data.handle;
+                    huks.abortSession(handle, options, (error, data) => {
+                        if (error) {
+                            console.error(`callback: abortSession failed`);
+                        } else {
+                            console.info(`callback: abortSession success`);
+                        }
+                    });
+                }
+            });
+        }
+    });
 }
 ```
 
@@ -2478,80 +2366,45 @@ async function generateKey() {
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
 
-    try {
-        await huks.generateKeyItem(keyAlias, options)
-            .then((data) => {
-                console.info(`promise: generateKeyItem success`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: generateKeyItem failed`);
-            });
-    } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid`);
-    }
+    await huks.generateKeyItem(keyAlias, options)
+        .then((data) => {
+            console.info(`promise: generateKeyItem success`);
+        });
 }
 
 async function huksInit() {
     console.info('enter huksInit');
-    try {
-        await huks.initSession(keyAlias, options)
-            .then((data) => {
-                console.info(`promise: initSession success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            })
-            .catch((error: Error) => {
-                console.error(`promise: initSession key failed`);
-            });
-    } catch (error) {
-        console.error(`promise: initSession input arg invalid`);
-    }
+    await huks.initSession(keyAlias, options)
+        .then((data) => {
+            console.info(`promise: initSession success, data = ${JSON.stringify(data)}`);
+            handle = data.handle;
+        });
 }
 
 async function huksUpdate() {
     console.info('enter huksUpdate');
     options.inData = stringToUint8Array("huksHmacTest");
-    try {
-        await huks.updateSession(handle, options)
-            .then((data) => {
-                console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: updateSession failed`);
-            });
-    } catch (error) {
-        console.error(`promise: updateSession input arg invalid`);
-    }
+    await huks.updateSession(handle, options)
+        .then((data) => {
+            console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
+        });
 }
 
 async function huksFinish() {
     console.info('enter huksFinish');
     options.inData = new Uint8Array(0);
-    try {
-        await huks.finishSession(handle, options)
-            .then((data) => {
-                console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: finishSession failed`);
-            });
-    } catch (error) {
-        console.error(`promise: finishSession input arg invalid`);
-    }
+    await huks.finishSession(handle, options)
+        .then((data) => {
+            console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
+        });
 }
 
 async function huksAbort() {
     console.info('enter huksAbort');
-    try {
-        await huks.abortSession(handle, options)
-            .then((data) => {
-                console.info(`promise: abortSession success`);
-            })
-            .catch((error: Error) => {
-                console.error(`promise: abortSession failed`);
-            });
-    } catch (error) {
-        console.error(`promise: abortSession input arg invalid`);
-    }
+    await huks.abortSession(handle, options)
+        .then((data) => {
+            console.info(`promise: abortSession success`);
+        });
 }
 
 async function testAbort() {
@@ -2612,14 +2465,9 @@ async function testListAliases() {
     properties: queryProperties
   };
 
-  try {
-    let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
-    console.info(`promise: listAliases success`);
-  } catch (error) {
-    console.error(`promise: listAliases fail , code: ` + error.code + `, msg: ` + error.message);
-  }
+  let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
+  console.info(`promise: listAliases success`);
 }
-
 ```
 
 
@@ -2653,6 +2501,7 @@ async function testListAliases() {
 | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
 | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
 | HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
+| HUKS_ERR_CODE_KEY_ALREADY_EXIST<sup>20+</sup>  | 12000017 | 同名密钥已存在。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core     |
 | HUKS_ERR_CODE_INVALID_ARGUMENT<sup>20+</sup>  | 12000018 | 输入参数非法。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core     |
 
 ## HuksKeyPurpose
@@ -3087,6 +2936,7 @@ API version 11系统能力为SystemCapability.Security.Huks.Extension；从API v
 | HUKS_TAG_ATTESTATION_ID_UDID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | 表示设备的UDID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO                      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_VERSION_INFO                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_OVERRIDE<sup>20+</sup>                         | HuksTagType.HUKS_TAG_TYPE_BOOL \| 520   | 表示是否覆写同名密钥。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_IS_KEY_ALIAS                                       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_KEY_STORAGE_FLAG                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_IS_ALLOWED_WRAP                                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core<sup>12+</sup> <br>SystemCapability.Security.Huks.Extension<sup>8-11</sup>|
@@ -3857,6 +3707,7 @@ let options: huks.HuksOptions = {
 };
 let handle: number = 0;
 let resultMessage = "";
+
 async function generateKey() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -3880,6 +3731,7 @@ async function generateKey() {
     };
     huks.generateKey(keyAlias, options);
 }
+
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -3888,14 +3740,14 @@ function stringToUint8Array(str: string) {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
 async function huksInit() {
     await huks.init(keyAlias, options).then((data) => {
         console.info(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
-    }).catch((err) => {
-        console.error("test init err information: " + JSON.stringify(err))
-    })
+    });
 }
+
 async function huksUpdate() {
     options.inData = stringToUint8Array("huksHmacTest");
     await huks.update(handle, options.inData, options).then((data) => {
@@ -3907,6 +3759,7 @@ async function huksUpdate() {
     });
     console.info(resultMessage);
 }
+
 function huksFinish() {
     options.inData = stringToUint8Array("HuksDemoHMAC");
     huks.finish(handle, options).then((data) => {
@@ -3917,10 +3770,9 @@ function huksFinish() {
             resultMessage = "finish fail errorCode: " + data.errorCode;
             console.error(resultMessage);
         }
-    }).catch((err) => {
-        resultMessage = "finish fail， catch errorMessage:" + JSON.stringify(err)
     });
 }
+
 async function huksAbort() {
     new Promise<huks.HuksResult>((resolve, reject) => {
         huks.abort(handle, options, (err, data) => {
@@ -3929,6 +3781,7 @@ async function huksAbort() {
         });
     });
 }
+
 ```
 
 ## huks.abort<sup>(deprecated)</sup>
@@ -4034,7 +3887,6 @@ async function huksUpdate() {
             }
         });
     });
-
 }
 
 async function huksFinish() {
@@ -4057,8 +3909,6 @@ function huksAbort() {
         } else {
             console.error("abort fail errorCode: " + data.errorCode);
         }
-    }).catch((err: Error) => {
-        console.error("abort fail， catch errorMessage:" + JSON.stringify(err));
     });
 }
 ```

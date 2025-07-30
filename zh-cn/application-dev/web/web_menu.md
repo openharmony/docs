@@ -22,10 +22,11 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
     onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
       let items = menuItems.filter((menuItem) => {
         // 过滤用户需要的系统按键
-        return
+        return (
           menuItem.id.equals(TextMenuItemId.CUT) ||
           menuItem.id.equals(TextMenuItemId.COPY) ||
-          menuItem.id.equals(TextMenuItemId.PASTE);
+          menuItem.id.equals(TextMenuItemId.PASTE)
+        );
       });
       let customItem1: TextMenuItem = {
         content: 'customItem1',
@@ -60,7 +61,7 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
         // 用户自定义行为
         console.log("拦截 id：customItem1")
         return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
-      } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.EntryAbility_label'))))){
+      } else if (menuItem.id.equals(TextMenuItemId.of($r('app.string.EntryAbility_label')))){
         // 用户自定义行为
         console.log("拦截 id：app.string.customItem2")
         return true;
@@ -608,7 +609,7 @@ struct WebComponent {
                 await phAccessHelper.applyChanges(assetChangeRequest);
               }
               catch (err) {
-                console.error(`create asset failed with error: ${err.code}}, ${err.message}}`);
+                console.error(`create asset failed with error: ${err.code}, ${err.message}`);
               }
             } else {
               console.error(`SaveButtonOnClickResult create asset failed`);

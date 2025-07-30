@@ -1432,9 +1432,9 @@ server端添加服务。该操作会在蓝牙子系统中注册该服务，表�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -1551,7 +1551,8 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 
 server端发送特征值变化通知或者指示给client端。使用Callback异步回调。
 
-- 建议该特征值的Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）的通知或指示能力已被开启。
+- 建议该特征值的Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）notification（通知）或indication（指示）能力已被使能。
+- 蓝牙标准协议规定Client Characteristic Configuration描述符的数据内容长度为2字节，bit0和bit1分别表示notification（通知）和indication（指示）能力是否使能，例如bit0 = 1表示notification enabled。
 - 该特征值数据内容变化时调用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
@@ -1613,7 +1614,8 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 
 server端发送特征值变化通知或者指示给对端设备。使用Promise异步回调。
 
-- 建议该特征值的Client Characteristic Configuration描述符通知或指示能力已被使能。
+- 建议该特征值的Client Characteristic Configuration描述符notification（通知）或indication（指示）能力已被使能。
+- 蓝牙标准协议规定Client Characteristic Configuration描述符的数据内容长度为2字节，bit0和bit1分别表示notification（通知）和indication（指示）能力是否使能，例如bit0 = 1表示notification enabled。
 - 该特征值数据内容变化时调用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
@@ -2682,12 +2684,12 @@ function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) 
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2756,12 +2758,12 @@ client端从指定的server端特征值读取数据。使用Promise异步回调�
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2833,13 +2835,13 @@ function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2900,13 +2902,13 @@ client端从指定的server端描述符读取数据。使用Promise异步回调�
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2964,12 +2966,12 @@ client端向指定的server端特征值写入数据。使用Callback异步回调
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -3044,12 +3046,12 @@ client端向指定的server端特征值写入数据。使用Promise异步回调�
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -3111,13 +3113,13 @@ client端向指定的server端描述符写入数据。使用Callback异步回调
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3184,13 +3186,13 @@ client端向指定的server端描述符写入数据。使用Promise异步回调�
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3396,9 +3398,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3474,9 +3476,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3541,9 +3543,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3619,9 +3621,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};

@@ -90,7 +90,7 @@ export struct PageOnePositive {
           if (comingIndex == 1) {
             this.requestByTaskPool();
             let context: Context = this.getUIContext().getHostContext() as Context;
-            this.text = context.resourceManager.getStringSync($r('app.string.startup_text2'));
+            this.text = context.resourceManager.getStringSync($r('app.string.startup_text2').id);
           }
           return true
         })
@@ -129,7 +129,7 @@ export struct PageTwoPositive {
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
     let context: Context = this.getUIContext().getHostContext() as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text4'));
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text4').id);
   }
 
   computeTask(): void {

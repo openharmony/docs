@@ -1,4 +1,9 @@
 # 普通对象
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 普通对象跨线程时通过拷贝形式传递，两个线程的对象内容一致，但指向各自线程的隔离内存区间，被分配在各自线程的虚拟机本地堆（LocalHeap）。例如，Ecmascript 262规范定义的Object、Array、Map等对象通过这种方式实现跨并发实例通信。通信过程如图所示：
 

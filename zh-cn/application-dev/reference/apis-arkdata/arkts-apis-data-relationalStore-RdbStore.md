@@ -3105,7 +3105,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM test WHERE age = ? OR age = ?", [21, 20]).then(() => {
       transaction.commit();
     }).catch((e: BusinessError) => {

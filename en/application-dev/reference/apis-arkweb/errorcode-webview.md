@@ -16,18 +16,22 @@ This error code is reported when the **WebviewController** object is not associa
 
 **Solution**
 
-Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) to check whether the **WebViewController** object is associated with the **Web** component.
+Use [onControllerAttached()](./arkts-basic-components-web-events.md#oncontrollerattached10) to check whether the **WebViewController** object is attached with the **Web** component.
 
 
 ## 17100002 Invalid URL
 
 **Error Message**
 
-URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
+URL error. Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **Description**
 
-This error code is reported when the URL format is incorrect.
+The URL is incorrect. Possible causes are as follows:
+
+1. No valid cookie is found for the specified URL.
+
+2. The web page corresponding to the URL is invalid, or the URL length exceeds 2048 characters.
 
 **Solution**
 
@@ -106,29 +110,6 @@ The port is closed.
 Make sure the port is open.
 
 
-## 17100007 Invalid Forward or Backward Operation
-
-**Error Message**
-
-Invalid backward or forward operation.
-
-**Description**
-
-This error code is reported when the specified forward or backward cannot be performed.
-
-**Possible Causes**
-
-1. The browsing history is cleared.
-
-2. There is no browsing operation corresponding to the forward or backward operation.
-
-**Solution**
-
-1. Check whether **clearHistory** has been performed.
-
-2. Check whether the number of pages specified by the forward or backward operation is available.
-
-
 ## 17100008 javaScriptProxy Does Not Exist
 
 **Error Message**
@@ -146,25 +127,6 @@ The target **javaScriptProxy** object is not yet registered.
 **Solution**
 
 Make sure the **javaScriptProxy** object is registered.
-
-
-## 17100009 Zoom Operation Failure
-
-**Error Message**
-
-The zoom operation failed.
-
-**Description**
-
-This error code is reported when the page cannot be zoomed in or out.
-
-**Possible Causes**
-
-The zoom ratio has reached its maximum or minimum.
-
-**Solution**
-
-Check whether the zoom ratio has reached its maximum or minimum.
 
 
 ## 17100010 Failure to Send Messages Through a Port
@@ -268,24 +230,6 @@ The value of the obtained message does not match the type of the message.
 Call the API based on the message type to obtain the message value. For example, if the type is **BOOLEAN**, call the **GetBoolean** API to obtain the Boolean value.
 
 
-## 17100015 Memory Allocation Failure
-
-**Error Message**
-
-Memory allocation failed.
-
-**Description**
-
-This error code is reported when memory allocation failed due to insufficient memory.
-
-**Possible Causes**
-
-The data to send is too large.
-
-**Solution**
-
-Check the length of the data to be sent.
-
 ## 17100016 Download Task Not Paused
 
 **Error Message**
@@ -304,23 +248,6 @@ This error code is reported when an attempt is made to resume a download task th
 
 N/A
 
-## 17100017 Invalid WebviewController
-
-**Error Message**
-
-No valid WebviewController is associated.
-
-**Description**
-
-This error code is reported when the current **WebviewController** object is invalid.
-
-**Possible Causes**
-
-The **WebviewController** object is not associated with a valid **Web** component.
-
-**Solution**
-
-Use a **WebviewController** object that is associated with a valid **Web** component.
 
 ## 17100018 No WebDownloadDelegate Available
 
@@ -416,3 +343,39 @@ The data carried in the POST request is invalid, for example, the data flow cont
 **Solution**
 
 Verify that the data carried in the POST request is valid.
+
+## 17100023 Port Number Not Allowed
+
+**Error Message**
+
+The port number is not within the allowed range.
+
+**Description**
+
+The port number is not within the allowed range.
+
+**Possible Causes**
+
+Some port numbers (for example, port numbers less than 1024) are well-known or system ports. These ports can be enabled on the operating system only when the privilege is granted. Therefore, applications are not allowed to use these port numbers.
+
+**Solution**
+
+Check whether the port number is within the allowed range.
+
+## 17100101 Incorrect Network Error Code
+
+**Error Message**
+
+The errorCode is either ARKWEB_NET_OK or outside the range of error codes in WebNetErrorList.
+
+**Description**
+
+The network error code is **ARKWEB_NET_OK** or out of the range in **WebNetErrorList**.
+
+**Possible Causes**
+
+The error code is not within the range of [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist), or **NET_OK** is used when the **didFail** API is called.
+
+**Solution**
+
+Check whether the error code is within the range of [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist) or whether **NET_OK** is used when the **difFail** API is called.

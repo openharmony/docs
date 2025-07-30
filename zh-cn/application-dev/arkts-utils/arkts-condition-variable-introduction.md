@@ -1,4 +1,9 @@
 # 异步等待
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ArkTS引入了异步任务的等待和被唤醒能力，以解决多线程任务时序控制问题。异步任务的等待和被唤醒[ConditionVariable](../reference/apis-arkts/arkts-apis-arkts-utils-locks.md#conditionvariable18)对象支持跨线程引用传递。
 

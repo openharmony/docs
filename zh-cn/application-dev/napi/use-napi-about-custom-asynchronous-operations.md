@@ -73,7 +73,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     }
     // 打开回调作用域
     napi_callback_scope scope = nullptr;
-    napi_open_callback_scope(env, resource, context, &scope);
+    status = napi_open_callback_scope(env, resource, context, &scope);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_open_callback_scope fail");
         return nullptr;
@@ -87,7 +87,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
         return nullptr;
     }
     // 关闭回调作用域
-    napi_close_callback_scope(env, scope);
+    status = napi_close_callback_scope(env, scope);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_close_callback_scope fail");
         return nullptr;
@@ -127,5 +127,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so )
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
