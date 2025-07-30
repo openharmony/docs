@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuth (用户认证)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
 
 > **说明：**

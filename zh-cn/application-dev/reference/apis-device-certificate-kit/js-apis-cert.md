@@ -4103,7 +4103,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -4178,7 +4178,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                   | 说明                             |
 | ---------------------- | -------------------------------- |
-| Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
