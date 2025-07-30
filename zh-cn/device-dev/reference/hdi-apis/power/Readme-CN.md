@@ -11,7 +11,7 @@
         - [IPowerInterface.idl](_i_power_interface_8idl.md)
     - Power (V1_2)
         - [IPowerHdiCallback.idl](_i_power_hdi_callback_8idl.md)
-        - [IPowerInterface.idl](_i_power_interface_8idl.md)
+        - [IPowerInterface.idl](_i_power_interface_8idl_v12.md)
         - [IPowerRunningLockCallback.idl](_i_power_running_lock_callback_8idl.md)
         - [PowerTypes.idl](_power_types_8idl.md)
         - [RunningLockTypes.idl](_running_lock_types_8idl.md)

@@ -1372,7 +1372,7 @@
           - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl.md)
         - Power (V1_2)
           - [IPowerHdiCallback.idl](reference/hdi-apis/power/_i_power_hdi_callback_8idl.md)
-          - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl.md)
+          - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl_v12.md)
           - [IPowerRunningLockCallback.idl](reference/hdi-apis/power/_i_power_running_lock_callback_8idl.md)
           - [PowerTypes.idl](reference/hdi-apis/power/_power_types_8idl.md)
           - [RunningLockTypes.idl](reference/hdi-apis/power/_running_lock_types_8idl.md)
