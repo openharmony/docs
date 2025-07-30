@@ -93,7 +93,7 @@ type ShortcutInfo = _ShortcutInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | 应用module.json5配置文件中定义的快捷方式信息。 |
 
 ## ShortcutWant
 
