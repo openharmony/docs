@@ -2081,7 +2081,7 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 > **NOTE**
 >
-> 1. When calling this API, if no valid value is provided for **targetId**, you won't be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
+> 1. When calling this API, if no valid value is provided for **targetId**, you will not be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
 >
 > 2. Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
 >
