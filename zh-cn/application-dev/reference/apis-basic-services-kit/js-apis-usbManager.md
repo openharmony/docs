@@ -445,7 +445,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 
 **说明：**
->
+
 > 一个USB接口（Interface）可以有多重选择模式，支持动态切换。不同模式主要区别为：接口带宽、端点配置等。
 >
 > 当调用该接口时，会完成对一个指定interface的可选模式重新配置的过程。
