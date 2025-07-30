@@ -532,6 +532,7 @@ cpp部分代码
 ```cpp
 #include <cstdlib>
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // 用于释放外部数据的回调函数
@@ -574,7 +575,7 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     // 返回带有外部数据的对象
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
         return nullptr;
     }
     return result;
