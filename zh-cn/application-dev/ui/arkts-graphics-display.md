@@ -258,11 +258,7 @@ struct Index {
 
   // 辅助方法：从资源获取PixelMap
   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap | undefined> {
-    const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent(resource.id);
     if (!unit8Array) {
       return undefined;
     }
