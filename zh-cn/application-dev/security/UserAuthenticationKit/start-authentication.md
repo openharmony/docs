@@ -75,7 +75,7 @@
 
 **示例1：**
 
- 发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏口令认证，获取认证结果：
+ 发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏口令认证，获取认证结果。
 
 ```ts
 // API version 10
@@ -86,7 +86,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16; // Generate a 16-byte random number.
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   // 设置认证参数。
   const authParam: userAuth.AuthParam = {
     challenge: randData,
@@ -118,7 +129,7 @@ try {
 ```
 **示例2：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的人脸+认证类型相关+复用设备解锁最大有效时长认证，获取认证结果。
 
 ```ts
 // API version 10
@@ -134,7 +145,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.FACE],
@@ -166,7 +188,7 @@ try {
 ```
 **示例3：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的人脸+任意应用认证类型相关+复用任意应用最大有效时长认证，获取认证结果。
 
 ```ts
 // API version 14
@@ -182,7 +204,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.FACE],
@@ -226,7 +259,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
