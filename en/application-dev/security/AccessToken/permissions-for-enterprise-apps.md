@@ -437,6 +437,36 @@ With this permission, the application can specify whether a network is identifie
 
 **Valid since**：20
 
+## ohos.permission.kernel.MANAGE_ANTIVIRUS
+
+Allows an enterprise application to manage antivirus software.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.kernel.REGISTER_ANTIVIRUS
+
+Allows enterprise antivirus software to register with the system and update basic information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.CALL_TPM_CMD
 
 Allows an application to call Trusted Platform Module(TPM) commands.
