@@ -78,11 +78,6 @@ const char *srcCallNative = R"JS(getVM())JS";
 JSVM OH_JSVM_GetVM: success
 ```
 
-预计的输出结果：
-```
-JSVM OH_JSVM_GetVM: success
-```
-
 ### OH_JSVM_GetHeapStatistics
 
 返回一组虚拟机堆的统计数据。
@@ -164,7 +159,7 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 以下接口的示例代码可以参考链接：
 
-[JSVM-API调试&定位](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+[JSVM-API调试&定位](./jsvm-debugger-cpuprofiler-heapsnapshot.md)
 
 ### OH_JSVM_StartCpuProfiler
 
