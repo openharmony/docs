@@ -1,4 +1,9 @@
 # Sendable对象简介
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 在传统JS引擎中，要优化对象的并发通信开销，唯一的方法是将实现下沉到Native侧，通过[Transferable对象](transferabled-object.md)的转移或共享来降低开销。然而，开发者仍有大量对象并发通信的需求，这个问题在业界JS引擎中尚未解决。

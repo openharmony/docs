@@ -1,4 +1,9 @@
 # CPU密集型任务开发指导 (TaskPool和Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 CPU密集型任务是指需要占用系统资源进行大量计算的任务，这类任务需要长时间运行，会阻塞线程中其他事件的处理，因此不适合在UI主线程中执行。例如图像处理、视频编码、数据分析等。

@@ -1,4 +1,9 @@
 # ArkTS线程间通信概述
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 线程间通信指并发多线程间的数据交换行为。由于ArkTS语言兼容TS/JS，其运行时实现与其它JS引擎一样，采用基于Actor内存隔离的并发模型。
 
