@@ -1,6 +1,6 @@
 # 申请使用受限权限
 
-<!--Kit: Ability Kit->
+<!--Kit: Ability Kit-->
 <!--Subsystem: Security->
 <!--Owner: @xia-bubai-->
 <!--SE: @linshuqing; @hehehe-li-->

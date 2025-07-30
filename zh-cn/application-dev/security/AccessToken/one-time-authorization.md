@@ -1,6 +1,6 @@
 # 向用户申请单次授权
 
-<!--Kit: Ability Kit->
+<!--Kit: Ability Kit-->
 <!--Subsystem: Security->
 <!--Owner: @xia-bubai-->
 <!--SE: @linshuqing; @hehehe-li-->

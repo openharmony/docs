@@ -1,6 +1,6 @@
 # 安全控件概述
 
-<!--Kit: Ability Kit->
+<!--Kit: ArkUI-->
 <!--Subsystem: Security->
 <!--Owner: @harylee-->
 <!--SE: @linshuqing; @hehehe-li-->

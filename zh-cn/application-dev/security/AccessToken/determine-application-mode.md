@@ -1,6 +1,6 @@
 # 选择申请权限的方式
 
-<!--Kit: Ability Kit->
+<!--Kit: Ability Kit-->
 <!--Subsystem: Security->
 <!--Owner: @xia-bubai-->
 <!--SE: @linshuqing; @hehehe-li-->
