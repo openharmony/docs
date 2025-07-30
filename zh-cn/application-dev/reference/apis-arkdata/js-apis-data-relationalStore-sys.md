@@ -1,4 +1,9 @@
 # @ohos.data.relationalStore (关系型数据库)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
 ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。

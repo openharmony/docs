@@ -1,4 +1,9 @@
 # 键值型数据库跨设备数据同步 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--SE: @dboy190; @houpengtao1-->
+<!--TSE: @logic42-->
 
 
 ## 场景介绍

@@ -1,4 +1,9 @@
 # 关系型数据库跨设备数据同步 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍
