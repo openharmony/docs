@@ -455,6 +455,36 @@
 
 **起始版本**：20
 
+## ohos.permission.MANAGE_ANTIVIRUS
+
+允许企业安全管理防病毒软件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.REGISTER_ANTIVIRUS
+
+允许企业防病毒软件向系统注册、更新基本信息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.CALL_TPM_CMD
 
 允许应用调用TPM（Trusted Platform Module）命令。
