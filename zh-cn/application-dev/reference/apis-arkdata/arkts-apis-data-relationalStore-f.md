@@ -557,8 +557,40 @@ isVectorSupported(): boolean
 
 **示例：**
 
-```
-let result = relationalStore.isVectorSupported();
+```ts
+import { contextConstant, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let supported = relationalStore.isVectorSupported();
+    if (supported) {
+      // 支持向量数据库
+      console.info("Vector database supported on current platform.");
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: "VectorTest.db",
+        securityLevel: relationalStore.SecurityLevel.S3,
+        vector: true
+      };
+      const context = this.context.getApplicationContext();
+      context.area = contextConstant.AreaMode.EL3;
+      relationalStore.getRdbStore(context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
+        if (err) {
+          console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Get RdbStore successfully.');
+        store = rdbStore;
+        // 成功获取到 rdbStore 后执行后续操作
+      });
+    } else {
+      console.info("Vector database not supported on current platform.");
+    }
+  }
+}
 ```
 
 ## relationalStore.isTokenizerSupported<sup>18+</sup>
