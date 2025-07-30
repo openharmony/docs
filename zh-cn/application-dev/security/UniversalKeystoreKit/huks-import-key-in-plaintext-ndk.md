@@ -66,9 +66,6 @@ static napi_value ImportKey(napi_env env, napi_callback_info info) {
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
         /* 4. Import Key */
         char newKey[] = "test_import";
         struct OH_Huks_Blob newKeyAlias = {.size = (uint32_t)strlen(newKey), .data = (uint8_t *)newKey};
