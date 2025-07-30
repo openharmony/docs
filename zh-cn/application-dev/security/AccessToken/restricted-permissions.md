@@ -1,11 +1,5 @@
 # 受限开放权限
 
-<!--Kit: Ability Kit->
-<!--Subsystem: Security->
-<!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
-
 ## 申请方式
 
 <!--RP1-->
