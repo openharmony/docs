@@ -1000,7 +1000,7 @@ The rendering process in the preceding example is as follows:
 
 5. The system does not respond for a long time, causing an App Freeze.
 
-Therefore, you are not advised to change the state variables in **build**. When the error "FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!" is reported, even if it does not bring serious consequences for now, you should pay attention to. Checking the application and modifying the corresponding error code to clear the error log are recommended.
+Therefore, you are not advised to change the state variables in **build**. When the error "FIX THIS APPLICATION ERROR: @Component ... has changed during render! It is illegal to change @Component state while build (initial render or re-render) is on-going. Application error!" is reported, even if it does not bring serious consequences for now, you should pay attention to. Checking the application and modifying the corresponding error code to clear the error log are recommended.
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
