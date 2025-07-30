@@ -6224,6 +6224,12 @@ void OH_ArkUI_AnimateOption_Dispose (ArkUI_AnimateOption * option)
 
 **起始版本：** 12
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| option | 动画效果参数。 |
+
 
 ### OH_ArkUI_AnimateOption_GetCurve()
 
