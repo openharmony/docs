@@ -1556,8 +1556,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
@@ -1565,14 +1564,13 @@ try {
       console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
-    windowClass = data;
-  });
-  if (!windowClass) {
-    console.error('windowClass is null');
-  } else {
-    windowClass.bindDialogTarget(token, () => {
+    if (!data) {
+      console.error('data is null');
+      return;
+    }
+    data.bindDialogTarget(token, () => {
       console.info('Dialog Window Need Destroy.');
-    }, (err: BusinessError) => {
+      }, (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
@@ -1580,7 +1578,7 @@ try {
       }
       console.info('Succeeded in binding dialog target.');
     });
-  }
+  });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -1651,7 +1649,6 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "test",
   windowType: window.WindowType.TYPE_DIALOG,
@@ -1664,15 +1661,18 @@ try {
       console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
-    windowClass = data;
-  });
-  let promise = windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  });
-  promise.then(() => {
-    console.info('Succeeded in binding dialog target.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    if (!data) {
+      console.error('data is null');
+      return;
+    }
+    let promise = data.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+    });
+    promise.then(() => {
+      console.info('Succeeded in binding dialog target.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    });
   });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1717,7 +1717,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
@@ -1728,22 +1727,21 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
           console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
-        windowClass = data;
-      });
-      if (!windowClass) {
-        console.error('windowClass is null');
-        return;
-      }
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
           return;
         }
-        console.info('Succeeded in binding dialog target.');
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
       });
     } catch (err) {
       console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
@@ -1795,7 +1793,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
@@ -1806,20 +1803,19 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
           console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
-        windowClass = data;
-      });
-      if (!windowClass) {
-        console.error('windowClass is null');
-        return;
-      }
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      let promise = windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      });
-      promise.then(() => {
-        console.info('Succeeded in binding dialog target.');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        let promise = data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        });
       });
     } catch (err) {
       console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)

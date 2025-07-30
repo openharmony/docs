@@ -72,6 +72,10 @@
      }
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
      windowClass = data;
+     if (!windowClass) {
+      console.error('windowClass is null');
+      return;
+     }
    });
    // 方式二：查找得到子窗口。
    try {
@@ -87,7 +91,6 @@
 
    ```ts
    // 移动子窗口位置。
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -113,32 +116,27 @@
 
    ```ts
    // 为子窗口加载对应的目标页面。
-   try {
-    let windowClass: window.Window = window.findWindow("test");
-    if (!windowClass) {
-        console.error('windowClass is null');
-    } else {
-      windowClass.setUIContent("pages/page2", (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content.');
-        // 显示子窗口。
-        windowClass.showWindow((err: BusinessError) => {
-          let errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in showing the window.');
-        });
-      });
-    }
-   } catch (exception) {
-    console.error(`Failed to load content. Cause code: ${exception.code}, message: ${exception.message}`);
-   }
+   windowClass.setUIContent("pages/page2", (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
+       console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+       return;
+     }
+     console.info('Succeeded in loading the content.');
+     if (!windowClass) {
+       console.error('windowClass is null');
+       return;
+     }
+     // 显示子窗口。
+     windowClass.showWindow((err: BusinessError) => {
+       let errCode: number = err.code;
+       if (errCode) {
+         console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+         return;
+       }
+       console.info('Succeeded in showing the window.');
+     });
+   });
    ```
 
 4. 销毁子窗口。
@@ -147,7 +145,6 @@
 
    ```ts
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
