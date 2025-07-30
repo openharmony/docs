@@ -442,7 +442,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -760,7 +760,7 @@ try {
 | 名称           | 类型            | 可读 | 可写 | 说明                           |
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
-| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
+| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的Y坐标上的位置。 |
 | displayWidth   | number         | 是   | 否   | 屏幕宽度，单位：px。                      |
 | displayHeight  | number         | 是   | 否   | 屏幕高度，单位：px。                      |
 
@@ -818,7 +818,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -862,7 +862,7 @@ prepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -906,7 +906,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -948,7 +948,7 @@ unprepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -992,7 +992,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1000,7 +1000,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 | callback             | AsyncCallback&lt;void&gt; |  是    | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
@@ -1041,7 +1041,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1049,7 +1049,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 
 
@@ -1058,7 +1058,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。     |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1097,7 +1097,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1142,7 +1142,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1158,7 +1158,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise&lt;void&gt; |  无返回结果的Promise对象。      |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -1193,7 +1193,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1239,7 +1239,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1292,7 +1292,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
+> 从API version 10开始不在再维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1339,7 +1339,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1404,7 +1404,7 @@ try {
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[CooperateMessage](#cooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[CooperateMessage](#cooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
