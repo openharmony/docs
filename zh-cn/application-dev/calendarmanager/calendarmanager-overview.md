@@ -62,4 +62,3 @@ Calendar Kit为用户提供了一系列接口来获取日历账户，并使用�
   | ohos.permission.WRITE_CALENDAR | - 添加、删除或修改当前应用创建的日历账户               | - 添加、删除或修改系统默认日历账户下当前应用创建的日程<br>- 添加、删除或修改当前应用创建的日历账户下当前应用创建的日程 |
   | ohos.permission.READ_WHOLE_CALENDAR | - 读取所有日历账户                      | - 读取所有应用创建的日程              |
   | ohos.permission.WRITE_WHOLE_CALENDAR | - 添加、删除或修改所有日历账户                | - 添加、删除或修改所有应用创建的日程          |
-- 支持设备：Phone | Tablet | TV | Wearable | PC/2in1

@@ -132,7 +132,7 @@
      displayName: 'MyCalendar'
    };
    // 日历配置信息
-   this.calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
+   calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
      //获取日历账户
      if (err) {
        console.error(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
