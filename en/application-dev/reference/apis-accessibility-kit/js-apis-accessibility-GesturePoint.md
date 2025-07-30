@@ -29,7 +29,7 @@ Defines a gesture touch point.
 
 constructor(positionX: number, positionY: number);
 
-A constructor used to create a **Highlights** album instance.
+A constructor used to create a **GesturePoint** instance.
 
 > **NOTE**
 >
