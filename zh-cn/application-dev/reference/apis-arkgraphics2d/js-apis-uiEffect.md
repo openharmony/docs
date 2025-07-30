@@ -77,8 +77,32 @@ blur(blurRadius: number): Filter
 **示例：**
 
 ```ts
-filter.blur(20)
-```
+// xxx.ts
+import { uiEffect } from '@kit.ArkGraphics2D';
 
+let filter: uiEffect.Filter = uiEffect.createFilter();
+filter.blur(10);
+
+@Entry
+@Component
+struct UIEffectFilterExample {
+    build(){
+        Column({ space: 15 }) {
+
+            Text('UIEffectFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+            Image($r('app.media.foreground'))
+                .width(100)
+                .height(100)
+                .backgroundImage($r('app.media.background'))
+                .backgroundImagePosition(Alignment.Center)
+                .backgroundImageSize({ width: 90, height: 90 })
+                .backgroundFilter(filter)
+        }
+        .height('100%')
+        .width('100%;')
+    }
+}
+```
+<!-- ![zh-ch_image_Top_Proportion_Colors.png](figures/zh-ch_image_Top_Proportion_Colors.png) -->
 ## VisualEffect
 VisualEffect效果类，用于将相应的效果添加到指定的组件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
