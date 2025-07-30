@@ -1,4 +1,9 @@
 # JSVM_PropertyHandlerConfigurationStruct
+<!--Kit: Common Basic Capability-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 概述
 
