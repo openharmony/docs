@@ -50,11 +50,10 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 
 ```js
 import {eap} from '@kit.NetworkKit';
-import {BusinessError} from '@kit.BaseicServicesKit';
 let netType = 1;
 let eapCode = 1;
 let eapType = 25;
-let  eapData = (eapData:EapData):void => {
+let  eapData = (eapData:eap.EapData):void => {
   console.info("rsp result",JSON.stringify(eapData))
 }
     
@@ -62,7 +61,7 @@ try {
   eap.regCustomEapHandler(netType, eapCode, eapType, eapData);
   console.info('regCustomEapHandler success');
 } catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 
@@ -102,11 +101,10 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 
 ```js
 import {eap} from '@kit.NetworkKit';
-import {BusinessError} from '@kit.BaseicServicesKit';
 let netType = 1;
 let eapCode = 1;
 let eapType = 25;
-let  eapData = (eapData:EapData):void => {
+let  eapData = (eapData:eap.EapData):void => {
   console.info("rsp result",JSON.stringify(eapData))
 }
     
@@ -114,7 +112,7 @@ try {
   eap.unregCustomEapHandler(netType, eapCode, eapType, eapData);
   console.info('unregCustomEapHandler success');
 } catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 
@@ -154,18 +152,18 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
 ```js
 import {eap} from '@kit.NetworkKit';
-import {BusinessError} from '@kit.BaseicServicesKit';
-let eapData : eap.EapData= {
+let eapData:eap.EapData= {
   msgId: 1,
   eapBuffer: new Uint8Array([1, 2, 3, 4, 5]),
   bufferLen: 5,
 };
 let result = 1;
+
 try {
   eap.replyCustomEapData(result, eapData);
   console.info('replyCustomEapData success');
 } catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 
@@ -203,7 +201,6 @@ startEthEap(netId: number, profile: EthEapProfile): void
 
 ```js
 import {eap} from '@kit.NetworkKit';
-import {BusinessError} from '@kit.BaseicServicesKit';
 let netId = 100;
 let profile: eap.EthEapProfile = {
   eapMethod: eap.EapMethod.EAP_TTLS,
@@ -227,7 +224,7 @@ try {
   eap.startEthEap(netId, profile);
   console.info('startEthEap success');
 } catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 
@@ -265,13 +262,12 @@ logOffEthEap(netId: number): void
 
 ```js
 import {eap} from '@kit.NetworkKit';
-import {BusinessError} from '@kit.BaseicServicesKit';
 let netId = 100;    
 try{
   eap.logOffEthEap(netId);
-  console.error("logOffEthEap succes");
+  console.info("logOffEthEap succes");
 } catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 

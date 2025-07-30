@@ -212,7 +212,7 @@ export struct LockUsage {
   startWrite(useLock: boolean): void {
     // 指明运行状态为“写入文件开始”
     this.result = (this.getUIContext()
-      .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_start'));  
+      .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_start').id);  
     // 初始化写入时的偏移量
     let whichLineToWrite: Int32Array = new Int32Array(this.sabForLine);
     Atomics.store(whichLineToWrite, 0, 0);
@@ -226,11 +226,11 @@ export struct LockUsage {
     taskpool.execute(taskPoolGroup).then(() => {
       // 指明运行状态为“写入文件成功”
       this.result = (this.getUIContext()
-        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success'));
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success').id);
     }).catch(() => {
       // 指明运行状态为“写入文件失败”
       this.result = (this.getUIContext()
-        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed'));
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed').id);
     })
   }
 }

@@ -885,25 +885,53 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1");
-uiContext.showDatePickerDialog({
-  start: new Date("2000-1-1"),
-  end: new Date("2100-12-31"),
-  selected: selectedDate,
-  onAccept: (value: DatePickerResult) => {
-    // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
-  },
-  onCancel: () => {
-    console.info("DatePickerDialog:onCancel()");
-  },
-  onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            },
+            onCancel: () => {
+              console.info("DatePickerDialog:onCancel()");
+            },
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()");
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()");
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()");
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()");
+            }
+          })
+        })
+    }.width('100%')
   }
-});
+}
 ```
 
 ## showTimePickerDialog
@@ -1407,11 +1435,9 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | get inspector failed  | 查询结果出错。系统内部存在异常，需要联系华为工程师处理。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1512,12 +1538,9 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | invalid filter depth  | depth参数需要大于或者等于0 |
-| 401      | get inspector failed  | 查询结果出错。如果传入的id不存在，接口会抛出此错误。请确保传入正确的组件id。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 

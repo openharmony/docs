@@ -14,7 +14,7 @@ ArkTS的Number类型是一个双精度64位二进制格式IEEE 754值。只有�
 
 ## 场景和功能介绍
 
-以下Node-API函数通常在开发ArkTS的Node-API模块时使用，以便处理数值类型值，帮助开发人员在Node-API模块中和JavaScrip数值进行交互：
+以下Node-API函数通常在开发ArkTS的Node-API模块时使用，以便处理数值类型值，帮助开发人员在Node-API模块中和ArkTS数值进行交互：
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_get_value_uint32 | 将ArkTS环境中number类型数据转为Node-API模块中的uint32类型数据。 |
@@ -432,5 +432,5 @@ hilog.info(0x0000, 'testTag','Test Node-API napi_create_double: ' + testNapi.cre
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

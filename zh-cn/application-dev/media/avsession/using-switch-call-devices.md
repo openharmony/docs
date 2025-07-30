@@ -87,7 +87,7 @@
     if (err) {
       console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
     } else {
-      console.error('audioRender start success');
+      console.info('audioRender start success');
     }
    });
    ```

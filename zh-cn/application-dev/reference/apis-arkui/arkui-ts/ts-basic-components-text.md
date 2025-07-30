@@ -653,12 +653,7 @@ decoration:{
 当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
-
-从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，该功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
-
-AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
-
-从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示问问小艺选项。当[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，若enableDataDetector设置为false，显示问问小艺选项。若enableDataDetector设置为true，此时选中范围内，没有包括一个完整的AI实体或包括超过一个完整的AI实体，才能展示对应的选项。相关选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
+<!--RP2--><!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2404,8 +2399,8 @@ struct TextExample14 {
 @Entry
 @Component
 struct TextNumberTransition {
-  @State number: number = 98
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false }
+  @State number: number = 98;
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   build() {
     Column() {
@@ -2415,7 +2410,7 @@ struct TextNumberTransition {
         .contentTransition(this.numberTransition)
       Button("chang number")
         .onClick(() => {
-          this.number++
+          this.number++;
         })
         .margin(10)
     }
@@ -2424,3 +2419,5 @@ struct TextNumberTransition {
   }
 }
 ```
+
+![Text_content_transition](figures/Text_content_transition.gif)
