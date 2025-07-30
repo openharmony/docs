@@ -848,7 +848,7 @@ Decimal函数使用错误。
 
 **错误信息**
 
-Load native module failed.
+Loading native module failed.
 
 **错误描述**
 
