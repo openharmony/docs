@@ -400,7 +400,7 @@ import { curves } from '@kit.ArkUI';
 
 class Data {
   item: string | null = null
-  isExpand: Boolean | false = false
+  isExpand: boolean = false
 }
 
 @Builder
