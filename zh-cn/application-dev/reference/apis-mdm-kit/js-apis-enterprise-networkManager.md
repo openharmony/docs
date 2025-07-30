@@ -579,7 +579,7 @@ let wantTemp: Want = {
 };
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -637,7 +637,7 @@ let wantTemp: Want = {
 
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
