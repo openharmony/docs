@@ -548,7 +548,7 @@ alignRules(alignRule: AlignRuleOption): T
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| alignRule | [AlignRuleOption](ts-universal-attributes-location.md#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+| alignRule | [AlignRuleOption](ts-universal-attributes-location.md#alignruleoption9对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
 **返回值：**
 
