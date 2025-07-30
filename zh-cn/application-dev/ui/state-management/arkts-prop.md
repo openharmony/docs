@@ -519,7 +519,7 @@ struct MyComponent {
           .width(288)
           .height(40)
           .margin({ left: 30, top: 12 })
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.customCounter2++;
           })
@@ -554,7 +554,7 @@ struct MainProgram {
             .width(288)
             .height(40)
             .margin({ left: 30, top: 12 })
-            .fontColor('#FFFFFF，90%')
+            .fontColor('#FFFFFF')
             .onClick(() => {
               this.mainCounter++;
             })
@@ -609,7 +609,7 @@ struct Person {
           .width(312)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.person.name = "Hi";
           })
@@ -617,7 +617,7 @@ struct Person {
           .width(312)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.person.son.title = "ArkUI";
           })
