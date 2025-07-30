@@ -956,7 +956,7 @@ ArrayBuffer已分离，或者ArrayBuffer为空。
 
 **错误信息**
 
-Load native module failed.
+Loading native module failed.
 
 **错误描述**
 

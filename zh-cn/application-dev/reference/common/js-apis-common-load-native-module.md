@@ -42,8 +42,8 @@ loadNativeModule(moduleName: string): Object
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 10200301 | Load native module failed.|
+| 401 | The parameter check failed.|
+| 10200301 | Loading native module failed.|
 
 **loadNativeModule支持的场景**
 
@@ -72,9 +72,9 @@ export const add: (a: number, b: number) => number;
 
 ```json
 {
-    "dependencies": {
-        "libentry.so": "file:../src/main/cpp/types/libentry"
-    }
+  "dependencies": {
+    "libentry.so": "file:./src/main/cpp/types/libentry"
+  }
 }
 ```
 
@@ -82,15 +82,15 @@ export const add: (a: number, b: number) => number;
 
 ```json
 {
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "libentry.so"
-                ]
-            }
-        }
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "libentry.so"
+        ]
+      }
     }
+  }
 }
 ```
 
