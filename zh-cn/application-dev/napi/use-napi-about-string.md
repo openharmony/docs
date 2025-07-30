@@ -1,4 +1,9 @@
 # 使用Node-API接口创建和获取string值
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 

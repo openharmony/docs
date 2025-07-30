@@ -1,4 +1,9 @@
 # ArkTS跨语言交互
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 除了支持使用ArkTS开发外，开发者还可以通过Node-API实现ArkTS与C/C++(Native)的跨语言交互能力。
 
