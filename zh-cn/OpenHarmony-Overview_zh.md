@@ -109,7 +109,7 @@ OpenHarmony支持如下几种系统类型：
 
     对子系统的进一步拆分，可复用的软件单元，它包含源码、配置文件、资源文件和编译脚本；能独立构建，以二进制方式集成，具备独立验证能力的二进制单元。
 
-以下为OpenHarmony中相关的子系统简介，详细介绍见子系统Readme文档，入口：[https://gitcode.com/openharmony/docs/tree/master/zh-cn/readme](https://gitcode.com/openharmony/docs/tree/master/zh-cn/readme)。
+以下为OpenHarmony中相关的子系统简介，详细介绍见子系统Readme文档，入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/readme](https://gitee.com/openharmony/docs/tree/master/zh-cn/readme)。
 
 
 | 子系统        | 简 介                                                        | 适用范围         |
@@ -175,13 +175,13 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 
 [访问官网](https://www.openharmony.cn/)
 
-简体中文：[OpenHarmony开发者文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn)
+简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/tree/master/zh-cn)
 
-[English Version](https://gitcode.com/openharmony/docs/tree/master/en)
+[English Version](https://gitee.com/openharmony/docs/tree/master/en)
 
 ## 源码下载
 
-获取OpenHarmony源码：[下载说明](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
+获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
 
 ## 示例教程
 
@@ -193,7 +193,7 @@ Codelabs：[教程指导](https://gitee.com/openharmony/codelabs)
 
 参与社区：[社区介绍](https://gitee.com/openharmony/community/blob/master/README.md)
 
-参与贡献：[如何贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
+参与贡献：[如何贡献](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
 
 ## 许可协议
 
