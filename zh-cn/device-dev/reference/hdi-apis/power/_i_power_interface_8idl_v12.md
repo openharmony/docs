@@ -19,4 +19,4 @@
 
 | 名称 | 描述                                                                       | 
 | -------- |--------------------------------------------------------------------------|
-| interface&nbsp;&nbsp;[IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。<br>服务创建此回调对象后，可以调用[IPowerInterface](interface_i_power_interface.md)的接口注册回调，从而订阅休眠/唤醒状态的变化。 | 
+| interface&nbsp;&nbsp;[IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。<br>服务创建此回调对象后，可以调用[IPowerInterface](interface_i_power_interface_v12.md)的接口注册回调，从而订阅休眠/唤醒状态的变化。 | 

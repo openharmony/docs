@@ -5,7 +5,7 @@
 
 表示运行中的锁定状态的回调。
 
-创建回调对象后，电源服务可以调用 [IPowerInterface](interface_i_power_interface.md) 来注册回调，以订阅运行锁状态变化。
+创建回调对象后，电源服务可以调用 [IPowerInterface](interface_i_power_interface_v12.md) 来注册回调，以订阅运行锁状态变化。
 
 **起始版本：** 4.1
 

@@ -1384,7 +1384,7 @@
       - 结构体
         - Power (V1_2)
           - [IPowerHdiCallback](reference/hdi-apis/power/interface_i_power_hdi_callback.md)
-          - [IPowerInterface](reference/hdi-apis/power/interface_i_power_interface.md)
+          - [IPowerInterface](reference/hdi-apis/power/interface_i_power_interface_v12.md)
           - [IPowerRunningLockCallback](reference/hdi-apis/power/interface_i_power_running_lock_callback.md)
           - [RunningLockInfo](reference/hdi-apis/power/_running_lock_info.md)
         - Power (V1_1)

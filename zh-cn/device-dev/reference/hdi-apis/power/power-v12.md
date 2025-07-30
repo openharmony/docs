@@ -28,9 +28,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。服务创建此回调对象后，可以调用[IPowerInterface](interface_i_power_interface.md)的接口注册回调，从而订阅休眠/唤醒状态的变化。 | 
-| interface&nbsp;&nbsp;[IPowerInterface](interface_i_power_interface.md) | 休眠/唤醒操作、订阅休眠/唤醒状态、运行锁管理的接口。 | 
-| interface&nbsp;&nbsp;[IPowerRunningLockCallback](interface_i_power_running_lock_callback.md) | 表示运行中的锁定状态的回调。创建回调对象后，电源服务可以调用 [IPowerInterface](interface_i_power_interface.md)来注册回调，以订阅运行锁状态变化。 | 
+| interface&nbsp;&nbsp;[IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。服务创建此回调对象后，可以调用[IPowerInterface](interface_i_power_interface_v12.md)的接口注册回调，从而订阅休眠/唤醒状态的变化。 | 
+| interface&nbsp;&nbsp;[IPowerInterface](interface_i_power_interface_v12.md) | 休眠/唤醒操作、订阅休眠/唤醒状态、运行锁管理的接口。 | 
+| interface&nbsp;&nbsp;[IPowerRunningLockCallback](interface_i_power_running_lock_callback.md) | 表示运行中的锁定状态的回调。创建回调对象后，电源服务可以调用 [IPowerInterface](interface_i_power_interface_v12.md)来注册回调，以订阅运行锁状态变化。 | 
 | struct&nbsp;&nbsp;[RunningLockInfo](_running_lock_info.md) | 定义运行锁的信息。 | 
 
 
