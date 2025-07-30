@@ -1060,11 +1060,7 @@ struct ImageExample4 {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1193,7 +1189,7 @@ struct drawingLatticeTest {
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
+import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -1217,6 +1213,7 @@ struct ImageExample {
             console.info('finish');
           })
       }.height('50%')
+
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
@@ -1231,11 +1228,7 @@ struct ImageExample {
   }
 
   private async getPixmapListFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap[] = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1245,11 +1238,7 @@ struct ImageExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -1259,7 +1248,7 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let myPixelMaps:PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    let myPixelMaps: PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
