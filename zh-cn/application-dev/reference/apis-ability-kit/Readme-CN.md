@@ -33,7 +33,7 @@
     - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](js-apis-app-ability-InsightIntentDecorator.md)
     - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
-    - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
+    - [@ohos.app.ability.InsightIntentExecutor (意图执行基类)](js-apis-app-ability-insightIntentExecutor.md)
     - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](js-apis-app-ability-photoEditorExtensionAbility.md)
     - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](js-apis-app-ability-openLinkOptions.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享详情页扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
