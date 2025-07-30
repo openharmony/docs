@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 ```
 
 ## cooperate.prepareCooperate<sup>11+</sup>
@@ -43,7 +43,7 @@ prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 示例：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepareCooperate((error: BusinessError) => {
@@ -87,7 +87,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepareCooperate().then(() => {
@@ -129,7 +129,7 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepareCooperate((error: BusinessError) => {
@@ -172,7 +172,7 @@ unprepareCooperate(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepareCooperate().then(() => {
@@ -219,7 +219,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
@@ -273,7 +273,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
@@ -320,7 +320,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivateCooperate(false, (error: BusinessError) => {
@@ -369,7 +369,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivateCooperate(false).then(() => {
@@ -414,7 +414,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
@@ -465,7 +465,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
@@ -511,7 +511,7 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callback(msg: cooperate.CooperateMessage) {
   console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
@@ -556,7 +556,7 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 
 ```ts
 // 取消注册单个回调函数
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callbackOn(msgOn: cooperate.CooperateMessage) {
   console.info(`Keyboard mouse crossing event: ${JSON.stringify(msgOn)}`);
   return false;
@@ -575,7 +575,7 @@ try {
 
 ```ts
 // 取消注册所有回调函数
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callbackOn(msg: cooperate.CooperateMessage) {
   console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
@@ -620,7 +620,7 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callback(data: cooperate.MouseLocation) {
   console.info('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
     data.displayWidth + 'displayHeight:' + data.displayHeight );
@@ -667,7 +667,7 @@ off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocat
 
 ```ts
 // 取消注册单个回调函数
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callbackOn(data: cooperate.MouseLocation) {
   console.info('Register mouse location listener');
   return false;
@@ -687,7 +687,7 @@ try {
 
 ```ts
 // 取消注册所有回调函数
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 function callbackOn(data: cooperate.MouseLocation) {
   console.info('Register mouse location listener');
 }
@@ -738,7 +738,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
@@ -855,7 +855,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare((error: BusinessError) => {
@@ -900,7 +900,7 @@ prepare(): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare().then(() => {
@@ -943,7 +943,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare((error: BusinessError) => {
@@ -988,7 +988,7 @@ unprepare(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare().then(() => {
@@ -1036,7 +1036,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
@@ -1093,7 +1093,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
@@ -1141,7 +1141,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
@@ -1193,7 +1193,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false).then(() => {
@@ -1239,7 +1239,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
@@ -1293,7 +1293,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
@@ -1340,7 +1340,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 **示例**：
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 class Data {
   networkId: string = "networkId";
   msg: cooperate.CooperateMsg = 0;
@@ -1388,7 +1388,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 ```ts
 // 取消注册单个回调函数
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 class Data {
   networkId: string = "networkId";
   msg: cooperate.CooperateMsg = 0;
