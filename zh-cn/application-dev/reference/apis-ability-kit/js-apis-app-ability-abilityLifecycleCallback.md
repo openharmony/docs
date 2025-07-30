@@ -2,6 +2,12 @@
 
 AbilityLifecycleCallback接口提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用实现AbilityLifecycleCallback接口后，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 
+[UIAbility](js-apis-app-ability-uiAbility.md)有自己的[生命周期](../../application-models/uiability-lifecycle.md)，当UIAbility状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化，如全局监听器、统计UIAbility页面时长、或者应用在此基础上对外提供sdk等场景。具体流程如下：
+1. 需要监听UIAbility生命周期变化的模块实现abilityLifecycleCallback接口，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
+2. 系统调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
+3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的abilityLifecycleCallback监听回调函数。
+4. 不需要监听UIAbility生命周期变化时，应用通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
+
 > **说明：**
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -9,18 +15,6 @@ AbilityLifecycleCallback接口提供监听[UIAbility](js-apis-app-ability-uiAbil
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口只能监听进程内UIAbility生命周期变化。
-
-## AbilityLifecycleCallback机制
-
-[UIAbility](js-apis-app-ability-uiAbility.md)中定义了[生命周期状态](js-apis-app-ability-uiAbility.md#uiability生命周期状态)，当UIAbility状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。流程如下：
-1. 需要监听UIAbility生命周期变化的模块，实现abilityLifecycleCallback接口，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
-2. UIAbility生命周期管理模块，调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
-3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的abilityLifecycleCallback监听回调函数。
-4. 不需要监听UIAbility生命周期变化时，应用通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
-
-> **说明：**
->
-> 接口中带有will的回调函数，在UIAbility生命周期执行之前被调用；不带will的，在UIAbility生命周期执行之后被调用。
 
 ## 导入模块
 
@@ -32,7 +26,7 @@ import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 
 onAbilityCreate(ability: UIAbility): void
 
-在UIAbility创建时触发回调。
+在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#oncreate)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -52,7 +46,7 @@ onAbilityCreate(ability: UIAbility): void
 
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
-在UIAbility关联的WindowStage创建时触发回调。
+在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindowstagecreate)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,7 +57,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -73,7 +67,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
-在UIAbility关联的WindowStage获焦时触发回调。
+在UIAbility主窗获焦时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,7 +78,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -94,7 +88,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
-在UIAbility关联的WindowStage失焦时触发回调。
+在UIAbility主窗失焦时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -105,7 +99,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -115,7 +109,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
-在UIAbility关联的WindowStage销毁时触发回调。
+在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#onwindowstagedestroy)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -126,7 +120,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -136,7 +130,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 onAbilityDestroy(ability: UIAbility): void
 
-在UIAbility销毁时触发回调。
+在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#ondestroy)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -156,7 +150,7 @@ onAbilityDestroy(ability: UIAbility): void
 
 onAbilityForeground(ability: UIAbility): void
 
-在UIAbility的状态从后台转到前台时触发回调。
+在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#onforeground)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -176,7 +170,7 @@ onAbilityForeground(ability: UIAbility): void
 
 onAbilityBackground(ability: UIAbility): void
 
-在UIAbility的状态从前台转到后台时触发回调。
+在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#onbackground)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -196,7 +190,7 @@ onAbilityBackground(ability: UIAbility): void
 
 onAbilityContinue(ability: UIAbility): void
 
-在UIAbility[迁移](../../application-models/hop-cross-device-migration.md)[onContinue](js-apis-app-ability-uiAbility.md#onontinue)时触发回调。
+在UIAbility的[onContinue](js-apis-app-ability-uiAbility.md#onontinue)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -247,7 +241,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -268,7 +262,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -409,7 +403,7 @@ onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ------ | ------ |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
@@ -430,7 +424,7 @@ onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ------ | ------ |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 回调事件对应的UIAbility对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility关联的WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 回调事件对应的UIAbility主窗管理器 |
 
 **示例：**
 
