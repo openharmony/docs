@@ -1,7 +1,7 @@
 # @ohos.userIAM.userAccessCtrl (用户访问控制)(系统接口)
 
 <!--Kit: User Authentication Kit-->
-<!--Subsystem: UserIAM->
+<!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
 <!--SE: @lichangting518-->
 <!--TSE: @jane_lz-->
