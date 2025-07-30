@@ -1463,7 +1463,7 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
@@ -1471,7 +1471,7 @@ struct WebComponent {
               console.info('url: ', e.url);
             }
           } catch (resError) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
     }
@@ -1555,12 +1555,12 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
           } catch (resError) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
