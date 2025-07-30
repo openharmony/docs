@@ -713,8 +713,7 @@
         - [UI显示异常调试](ui/arkts-layout-debug.md)
         - [UI预览](ui/ui-ide-previewer.md)
         - [UI调优](ui/ui-inspector-profiler.md)
-        - UI高性能开发<!--ui-performance-->
-          - [UI性能优化概览](ui/ui-performance-overview.md)
+        - [UI高性能开发](ui/ui-performance-overview.md)
       - 窗口管理<!--window-manager-->
         - [窗口开发概述](windowmanager/window-overview.md)
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)

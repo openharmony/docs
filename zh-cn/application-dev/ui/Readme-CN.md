@@ -338,7 +338,6 @@
   - [UI显示异常调试](arkts-layout-debug.md)
   - [UI预览](ui-ide-previewer.md)
   - [UI调优](ui-inspector-profiler.md)
-  - UI高性能开发<!--ui-performance-->
-    - [UI性能优化概览](ui-performance-overview.md)
+  - [UI高性能开发](ui-performance-overview.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
 - [屏幕管理](../displaymanager/Readme-CN.md)
