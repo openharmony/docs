@@ -466,6 +466,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -494,6 +497,9 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
