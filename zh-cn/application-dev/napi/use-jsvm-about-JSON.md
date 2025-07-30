@@ -85,7 +85,7 @@ JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
 
 ## 预期结果：
 ```cpp

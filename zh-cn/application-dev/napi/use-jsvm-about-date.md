@@ -76,7 +76,7 @@ const char *srcCallNative = R"JS(createDate())JS";
 JSVM CreateDate success:Mon Jul 7 10:42:34 2025
 ```
 
-<!-- @[oh_jsvm_create_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/createdate/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/createdate/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_GetDateValue
 
@@ -123,7 +123,7 @@ const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 JSVM GetDateValue success:Mon Jul 7 10:47:08 2025
 ```
 
-<!-- @[oh_jsvm_get_date_value](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/getdatevalue/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_date_value](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/getdatevalue/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsDate
 
@@ -163,4 +163,4 @@ const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
 JSVM IsDate success:1
 ```
 
-<!-- @[oh_jsvm_is_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/isdate/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/isdate/src/main/cpp/hello.cpp) -->

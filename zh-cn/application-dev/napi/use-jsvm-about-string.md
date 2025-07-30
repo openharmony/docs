@@ -83,7 +83,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf8(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
@@ -133,7 +133,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf8();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
@@ -197,7 +197,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf16(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
@@ -254,7 +254,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf16();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
@@ -308,7 +308,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringLatin1(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
@@ -363,7 +363,7 @@ const char *srcCallNative = R"JS(
     let script = createStringLatin1();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
