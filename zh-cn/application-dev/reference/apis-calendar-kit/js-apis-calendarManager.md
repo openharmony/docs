@@ -584,7 +584,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 editEvent(event: Event): Promise\<number>
 
-创建单个日程，入参Event不填日程id，通过跳转到日程创建页面创建单个日程，入参Event不填日程id，使用Promise异步回调。使用该接口创建的日程，三方应用无法查询和修改，只能通过系统日历进行查询和修改。
+通过跳转到日程创建页面创建单个日程，入参Event不填日程id，使用Promise异步回调。使用该接口创建的日程，三方应用无法查询和修改，只能通过系统日历进行查询和修改。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -687,7 +687,7 @@ calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
 
 addEvent(event: Event): Promise\<number>
 
-创建日程，入参Event不填日程id，使用Promise异步回调。
+创建日程，入参Event不填日程id、instanceStartTime和instanceEndTime，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -737,7 +737,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
-批量创建日程，入参Event不填日程id，使用callback异步回调。
+批量创建日程，入参Event不填日程id、instanceStartTime和instanceEndTime，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -789,7 +789,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 addEvents(events: Event[]): Promise\<void>
 
-批量创建日程，入参Event不填日程id，使用Promise异步回调。
+批量创建日程，入参Event不填日程id、instanceStartTime和instanceEndTime，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
