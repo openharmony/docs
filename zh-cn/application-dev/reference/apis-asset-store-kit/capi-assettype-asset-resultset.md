@@ -1,5 +1,11 @@
 # Asset_ResultSet
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 概述
 
 关键资产查询结果集合，用于定义多条关键资产。
