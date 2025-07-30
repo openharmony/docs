@@ -190,6 +190,10 @@
      }
      console.info('Succeeded in getting mainWindow. Data: ' + JSON.stringify(data));
      mainWindowClass = data;
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
    });
    ```
 
@@ -201,7 +205,6 @@
    ```ts
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setWindowSystemBarEnable(names)
     .then(() => {
       console.info('Succeeded in setting the system bar to be visible.');
@@ -241,7 +244,6 @@
 
    ```ts
    // 为沉浸式窗口加载对应的目标页面。
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -249,6 +251,10 @@
        return;
      }
      console.info('Succeeded in loading the content.');
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
      // 显示沉浸式窗口。
      mainWindowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
