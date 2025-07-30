@@ -8644,6 +8644,10 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius17)接口可以获得窗口默认圆角半径值。
 
+> **说明：**
+>
+> - 在API version 19及之前版本，<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->从API version 20开始，新增支持手机和平板设备。
+
 **系统能力**：SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
