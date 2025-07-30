@@ -1,4 +1,9 @@
 # 常驻任务并发场景简介
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 在应用业务实现中，对于耗时较长（超过3分钟）且并发量较小的常驻任务，建议使用Worker在后台线程中执行这些操作，以避免阻塞UI主线程，防止出现丢帧、卡顿等影响用户体验的问题。
 

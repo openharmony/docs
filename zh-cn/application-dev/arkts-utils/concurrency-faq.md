@@ -1,4 +1,9 @@
 # 并发常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## TaskPool任务不执行快速定位指导
 
