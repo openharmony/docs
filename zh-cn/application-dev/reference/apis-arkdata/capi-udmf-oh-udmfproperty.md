@@ -2,7 +2,7 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
-<!--SE: @junathuawei1; @zph00-->
+<!--SE: @junathuawei1; @zph000-->
 <!--TSE: @lj_liujing; @yippo; @logic42-->
 
 ## 概述
