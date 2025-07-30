@@ -608,11 +608,6 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
-        - UI开发调优<!--ui-inspector-profiler-->
-          - [预览](ui/ui-ide-previewer.md)
-          - [调试](ui/ui-inspector-profiler.md)
-        - UI高性能开发<!--ui-performance-->
-          - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
         - [NDK接口概述](ui/ndk-build-ui-overview.md)
         - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -710,6 +705,16 @@
         - [自定义组件](ui/ui-js-custom-components.md)
         - WebGL<!--ui-js-webgl-->
           - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
+      - UI开发调试调优<!--ui-debug-optimize-->
+        - UI稳定性故障调试<!--ui-stability-->
+          - [UI稳定性故障分析概述](ui/arkts-stability-guide.md)
+          - [UI相关应用崩溃常见问题](ui/arkts-stability-crash-issues.md)
+          - [UI相关应用无响应常见问题](ui/arkts-stability-freeze-issues.md)
+        - [UI显示异常调试](ui/arkts-layout-debug.md)
+        - [UI预览](ui/ui-ide-previewer.md)
+        - [UI调优](ui/ui-inspector-profiler.md)
+        - UI高性能开发<!--ui-performance-->
+          - [UI性能优化概览](ui/ui-performance-overview.md)
       - 窗口管理<!--window-manager-->
         - [窗口开发概述](windowmanager/window-overview.md)
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
@@ -1442,7 +1447,7 @@
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
         - 事件订阅<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
-          - 使用Hiappevent订阅事件<!--event-subscription-->
+          - 使用HiAppEvent订阅事件<!--event-subscription-->
             - [事件订阅简介](dfx/event-subscription-overview.md)
             - [事件订阅（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
             - [事件订阅（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
@@ -5550,7 +5555,7 @@
   - 公共基础能力<!--common-basic-api-->
     - ArkTS API<!--common-basic-arkts-->
       - [Console (控制台)](reference/common/js-apis-logs.md)
-      - [loadNativeModule (同步动态加载系统库接口)](reference/common/js-apis-load-native-module.md)
+      - [loadNativeModule (同步动态加载系统库接口)](reference/common/js-apis-common-load-native-module.md)
       - [SysCap (系统能力)](reference/common/js-apis-syscap.md)
       - [Timer (定时器)](reference/common/js-apis-timer.md)
     - C API<!--common-basic-c-->

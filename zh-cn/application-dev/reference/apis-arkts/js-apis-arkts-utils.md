@@ -1,4 +1,9 @@
 # @arkts.utils (ArkTS工具库)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供了各种ArkTS实用工具函数。
 

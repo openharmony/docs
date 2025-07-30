@@ -1,4 +1,9 @@
 # 语言基础类库错误码
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 > **说明：**
 >
@@ -956,7 +961,7 @@ ArrayBuffer已分离，或者ArrayBuffer为空。
 
 **错误信息**
 
-Load native module failed.
+Loading native module failed.
 
 **错误描述**
 

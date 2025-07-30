@@ -90,7 +90,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
-<!-- @[oh_jsvm_create_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createerror/src/main/cpp/hello.cpp) -->
 预期输出结果
 ```ts
 JSVM error message: HasError, error code: -1
@@ -139,7 +139,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
-<!-- @[oh_jsvm_throw_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_throw_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -189,7 +189,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
-<!-- @[oh_jsvm_throw_type_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwtypeerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_throw_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwtypeerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -235,7 +235,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
-<!-- @[oh_jsvm_throw_range_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwrangeerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_throw_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwrangeerror/src/main/cpp/hello.cpp) -->
 
 
 预期输出结果：
@@ -285,7 +285,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
-<!-- @[oh_jsvm_throw_syntax_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwsyntaxerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_throw_syntax_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwsyntaxerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -331,7 +331,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
-<!-- @[oh_jsvm_is_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/iserror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/iserror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -375,7 +375,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
-<!-- @[oh_jsvm_create_type_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createtypeerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createtypeerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -419,7 +419,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
-<!-- @[oh_jsvm_create_range_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createrangeerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createrangeerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -462,7 +462,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
-<!-- @[oh_jsvm_create_syntax_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createsyntaxerror/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_syntax_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createsyntaxerror/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -503,7 +503,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
-<!-- @[oh_jsvm_get_and_clear_last_exception](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getandclearlastexception/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_and_clear_last_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getandclearlastexception/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -556,7 +556,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
-<!-- @[oh_jsvm_is_exception_pending](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/isexceptionpending/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_exception_pending](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/isexceptionpending/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts
@@ -608,7 +608,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
-<!-- @[oh_jsvm_get_last_error_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getlasterrorinfo/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_last_error_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getlasterrorinfo/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```ts

@@ -535,12 +535,12 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManag
 
 
 [API参考-Accessibility kit]
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md @mupceet @RayShih @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md @mupceet @RayShih @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @lin-steven @A_qqq
 
 
 [API参考-ArkGraphics2D]

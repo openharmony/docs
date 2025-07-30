@@ -214,4 +214,4 @@ struct Index {
 
 针对短信的使用，有以下相关实例可供参考：
 
-- [短信服务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)
+- [短信服务（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)

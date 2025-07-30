@@ -1,4 +1,9 @@
 # @arkts.math.Decimal (高精度数学库Decimal)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Decimal用于提供高精度数学运算的能力，支持高精度浮点计算。
 

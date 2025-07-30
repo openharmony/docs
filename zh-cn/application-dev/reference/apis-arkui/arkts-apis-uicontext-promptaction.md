@@ -45,7 +45,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
@@ -109,7 +109,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   @State toastId: number = 0;
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
@@ -211,7 +211,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
@@ -290,7 +290,7 @@ import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
@@ -357,7 +357,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
@@ -379,10 +379,10 @@ struct toastExample {
               ]
             }, (err: BusinessError, data: promptAction.ActionMenuSuccessResponse) => {
               if (err) {
-                console.error('showDialog err: ' + err);
+                console.error('showActionMenu err: ' + err);
                 return;
               }
-              console.info('showDialog success callback, click button: ' + data.index);
+              console.info('showActionMenu success callback, click button: ' + data.index);
             });
           } catch (error) {
             let message = (error as BusinessError).message;
@@ -428,13 +428,13 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
-该示例通过调用showActionMenu接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
+该示例通过调用showActionMenu接口，展示了弹出操作菜单以及通过Promise获取操作菜单响应结果的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
-struct toastExample {
+struct Index {
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
@@ -1805,31 +1805,43 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
-该示例通过调用showActionMenu接口，展示了弹出对话框以及返回对话框响应结果的功能。
+该示例通过调用showActionMenu接口，展示了弹出操作菜单以及返回菜单响应结果的功能。
 
-<!--code_no_check-->
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, { index:0 });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, { index: 0 });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          }
+          ;
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```

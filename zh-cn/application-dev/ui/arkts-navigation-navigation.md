@@ -853,7 +853,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 自定义路由表
 
-自定义路由表是动态路由的一种实现方式。开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考<!--RP1-->[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)<!--RP1End--> 示例。
+自定义路由表是动态路由的一种实现方式。开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考<!--RP1-->[Navigation自定义动态路由](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)<!--RP1End--> 示例。
 
 **实现方案：**
 

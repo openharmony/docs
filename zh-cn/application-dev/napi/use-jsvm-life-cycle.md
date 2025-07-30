@@ -90,7 +90,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "HandleScopeFor()";
 ```
-<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 ```
@@ -153,7 +153,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "escapableHandleScopeTest()";
 ```
-<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 
@@ -241,7 +241,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "useReference()";
 ```
-<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
 
 预期结果：
 
@@ -305,7 +305,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
-<!-- @[oh_jsvm_add_finalizer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_add_finalizer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```ts

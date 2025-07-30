@@ -133,4 +133,4 @@ struct ProgressCase1 {
 
 针对进度条开发，有以下相关实例可供参考：
 
-- [进度条](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/InfoComponent/ProgressProject)
+- [进度条](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/InfoComponent/ProgressProject)

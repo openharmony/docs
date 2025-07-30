@@ -320,7 +320,7 @@ export default struct IndexSwiper {
 
 ## 快捷入口
 
-在不同的断点下，快捷入口的5个图标始终均匀排布，这是典型的均分能力使用场景。图标资源文件[获取](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/resources)。
+在不同的断点下，快捷入口的5个图标始终均匀排布，这是典型的均分能力使用场景。图标资源文件[获取](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/resources)。
 ```ts
 // /model/HomeData   在resourse文件中放置以下资源文件，
 interface AppItem{
@@ -676,7 +676,7 @@ export default struct Home {
 
 针对应用市场应用开发，有以下相关实例可以参考：
 
-- 应用市场开发：[典型页面场景：应用市场首页（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
+- 应用市场开发：[典型页面场景：应用市场首页（ArkTS）(API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
 
 
 

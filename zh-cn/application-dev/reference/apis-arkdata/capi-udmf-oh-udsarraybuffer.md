@@ -1,4 +1,9 @@
 # OH_UdsArrayBuffer
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--SE: @junathuawei1; @zph000-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 ## 概述
 

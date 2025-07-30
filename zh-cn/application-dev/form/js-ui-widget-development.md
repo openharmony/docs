@@ -628,7 +628,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 针对卡片开发，有以下相关实例可供参考：
 
-- [JS多设备自适应服务卡片（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
+- [JS多设备自适应服务卡片（JS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
 
 - [电影卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/MovieCard)
 

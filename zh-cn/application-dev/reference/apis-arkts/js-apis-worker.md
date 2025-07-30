@@ -1,4 +1,9 @@
 # @ohos.worker (启动一个Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Worker是与主线程并行的独立线程。创建Worker的线程称为宿主线程，Worker自身的线程称为Worker线程。创建Worker时传入的URL文件在Worker线程中执行，可以处理耗时操作，但不能直接操作UI。
 
@@ -141,7 +146,7 @@ const workerPort = worker.workerPort;
 // worker线程接收宿主线程信息
 workerPort.onmessage = (e: MessageEvents): void => {
   // data：宿主线程发送的信息
-  let data: number = e.data;
+  let data: ArrayBuffer = e.data;
   // 往收到的buffer里写入数据
   const view = new Int8Array(data).fill(3);
   // worker线程向宿主线程发送信息
@@ -181,7 +186,7 @@ struct Index {
             // 宿主线程接收worker线程信息
             workerInstance.onmessage = (e: MessageEvents): void => {
               // data：worker线程发送的信息
-              let data: number = e.data;
+              let data: Int8Array = e.data;
               console.info("main thread data is  " + data);
               // 销毁Worker对象
               workerInstance.terminate();
@@ -2547,7 +2552,7 @@ workerInstance.postMessage(buffer, [buffer]);
 // 宿主线程接收worker线程信息
 workerInstance.onmessage = (e: MessageEvents): void => {
     // data：worker线程发送的信息
-    let data: string = e.data;
+    let data: Int8Array = e.data;
     console.info("main thread onmessage");
 
     // 销毁Worker对象
@@ -2573,7 +2578,7 @@ const workerPort = worker.workerPort;
 // worker线程接收宿主线程信息
 workerPort.onmessage = (e: MessageEvents): void => {
     // data：宿主线程发送的信息
-    let data: number = e.data;
+    let data: ArrayBuffer = e.data;
     const view = new Int8Array(data).fill(3);
     console.info("worker.ets onmessage");
 
@@ -2621,7 +2626,7 @@ struct Index {
             // 宿主线程接收worker线程信息
             workerInstance.onmessage = (e: MessageEvents): void => {
               // data：worker线程发送的信息
-              let data: number = e.data;
+              let data: Int8Array = e.data;
               console.info("main thread data is  " + data);
               // 销毁Worker对象
               workerInstance.terminate();
@@ -2652,7 +2657,7 @@ const workerPort = worker.workerPort;
 // worker线程接收宿主线程信息
 workerPort.onmessage = (e: MessageEvents): void => {
   // data：宿主线程发送的信息
-  let data: number = e.data;
+  let data: ArrayBuffer = e.data;
   // 往收到的buffer里写入数据
   const view = new Int8Array(data).fill(3);
   // worker线程向宿主线程发送信息
