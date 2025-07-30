@@ -30,7 +30,7 @@ import { common } from '@kit.AbilityKit';
 开发者需要通过Context对象获取EventHub。以下示例通过UIAbility实例的Context对象获取其EventHub对象。
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { common, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   eventFunc() {
@@ -38,8 +38,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onCreate() {
+    // 调用方式一（推荐）
     this.context.eventHub.on('myEvent', this.eventFunc);
+
+    // 调用方式二
     let eventhub = this.context.eventHub as common.EventHub;
+    eventhub.on('myEvent', this.eventFunc);
   }
 }
 ```
