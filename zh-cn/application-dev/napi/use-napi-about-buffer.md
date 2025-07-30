@@ -154,6 +154,11 @@ static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
     std::string str("CreateExternalBuffer");
     // 在堆上分配内存，大小为字符串的长度
     void* data = malloc(str.size() + 1);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
+    memset(data, 0, str.size() + 1);
     // 将字符串复制到分配的内存中
     strcpy((char *)(data), (char*)(str.data()));
     // 使用napi_create_external_buffer接口创建并获取一个指定大小buffer

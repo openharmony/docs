@@ -564,6 +564,10 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     const size_t dataSize = 10;
     // 分配外部数据
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
     // 初始化外部数据
     memset(data, 0, dataSize);
     napi_value result = nullptr;

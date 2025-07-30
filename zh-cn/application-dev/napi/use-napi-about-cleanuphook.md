@@ -69,7 +69,17 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 分配内存并复制字符串数据到内存中
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
+    if (wrapper == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc for wrapper failed");
+        return nullptr;
+    }
     wrapper->data = static_cast<char *>(malloc(str.size() + 1));
+    if (wrapper->data == nullptr) {
+        free(wrapper);
+        OH_LOG_ERROR(LOG_APP, "malloc for wrapper->data failed");
+        return nullptr;
+    }
+    memset(wrapper->data, 0, str.size() + 1);
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
     // 创建外部缓冲区对象，并指定清理回调函数
