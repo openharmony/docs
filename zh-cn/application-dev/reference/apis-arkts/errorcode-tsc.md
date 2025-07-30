@@ -1,4 +1,9 @@
 # Typescript Compiler错误码介绍
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zju-wyx-->
+<!--SE: @xiao-peiyang; @liyancheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 TSC(Typescript Compiler)的错误码以'105'开头，是TSC编译流程中的报错提示，会在编辑器、控制台或日志文件中显示输出错误码和相对应的报错描述。
 

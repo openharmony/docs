@@ -1,4 +1,9 @@
 # ArkGuard源码混淆工具概述
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zju-wyx-->
+<!--SE: @xiao-peiyang; @dengxinyu-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ArkGuard是一款源码混淆工具，提供基础混淆功能。它将代码中的变量名、函数名、类名、文件名等替换为简短无意义的标识符，增加通过阅读代码推测其功能的难度。混淆后，工程源码中的元素名称简化，有助于减小程序包的体积。
 
