@@ -191,20 +191,21 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 ```ts
 import { audio } from '@kit.AudioKit';
 
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;
+
 function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;
 audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
   } else {
-    console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
+    console.error('Failed to getDevices.');
   }
 });
 ```
