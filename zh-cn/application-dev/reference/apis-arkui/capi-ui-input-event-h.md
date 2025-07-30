@@ -1708,7 +1708,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event
 **描述：**
 
 
-设置是否阻止事件冒泡。仅适用于接收基础事件的场景，如使用NODE_ON_TOUCH接收touch事件场景。对于通过 [OH_ArkUI_GestureEvent_GetRawInputEvent](capi-native-gesture-h.md#oh_arkui_gestureevent_getrawinputevent)接口从一个手势事件中获取到的ArkUI_UIInputEvent对象，无法使用该接口。
+设置是否阻止事件冒泡。仅适用于接收基础事件的场景，如使用NODE_ON_TOUCH接收touch事件场景，不适用于轴事件。对于通过[OH_ArkUI_GestureEvent_GetRawInputEvent](capi-native-gesture-h.md#oh_arkui_gestureevent_getrawinputevent)接口从一个手势事件中获取到的ArkUI_UIInputEvent对象，无法使用该接口。
 
 **起始版本：** 12
 
