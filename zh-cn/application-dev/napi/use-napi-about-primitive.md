@@ -119,10 +119,8 @@ let value = testNapi.coerceToNumber<string>('2556');
 let str = testNapi.coerceToNumber<string>('sssss');
 let bool = testNapi.coerceToNumber<boolean>(true);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', value);
-// 返回的为NAN
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);
-// 返回的是1
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);    // 返回的为NAN
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);   // 返回的是1
 ```
 
 ### napi_coerce_to_object
@@ -222,6 +220,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetBoolean(napi_env env, napi_callback_info info)
 {
@@ -229,14 +228,22 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value argv[2];
     napi_valuetype data, value;
-    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        return nullptr;
+    }
     // 判断两个参数类型值
     napi_typeof(env, argv[0], &data);
     napi_typeof(env, argv[1], &value);
 
     napi_value returnValue = nullptr;
     // 判断两个类型值是否相等,获取结果的布尔值
-    napi_get_boolean(env, data == value, &returnValue);
+    status = napi_get_boolean(env, data == value, &returnValue);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     // 返回结果
     return returnValue;
 }
@@ -246,7 +253,7 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getBoolean: <T>(data: T, value: String) => boolean;
+export const getBoolean: <T>(data: T, value: string) => boolean;
 ```
 
 ArkTS侧示例代码
@@ -269,6 +276,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetValueBool(napi_env env, napi_callback_info info)
 {
@@ -283,7 +291,11 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
         return nullptr;
     }
     napi_value boolNapi = nullptr;
-    napi_get_boolean(env, bool_c, &boolNapi);
+    status = napi_get_boolean(env, bool_c, &boolNapi);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     return boolNapi;
 }
 ```
@@ -430,5 +442,5 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_undefined:%{public}s', val
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

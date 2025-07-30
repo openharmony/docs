@@ -148,7 +148,12 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     size_t argc = 1;
     napi_value toWrap;
     // 调用napi_wrap将Node-API模块的object绑定到ArkTS object上
-    napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
+    napi_status status_cb = napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
+    if (status_cb != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        delete obj;
+        return nullptr;
+    }
     napi_status status = napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
     if (status != napi_ok) {
         // 主动释放内存
@@ -167,7 +172,6 @@ static napi_value RemoveWrap(napi_env env, napi_callback_info info)
     // 调用napi_remove_wrap从一个被包装的对象中解除包装
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
     napi_remove_wrap(env, wrapped, &data);
-
     return nullptr;
 }
 
@@ -178,8 +182,12 @@ static napi_value UnWrap(napi_env env, napi_callback_info info)
     napi_value wrapped = nullptr;
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
     // 调用napi_unwrap取出绑定在ArkTS object中的数据并打印
-    struct Object *data;
-    napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    struct Object *data = nullptr;
+    napi_status status = napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    if (status != napi_ok || data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_unwrap failed or data is nullptr");
+        return nullptr;
+    }
     OH_LOG_INFO(LOG_APP, "Node-API name: %{public}s", data->name.c_str());
     OH_LOG_INFO(LOG_APP, "Node-API age: %{public}d", data->age);
     return nullptr;
@@ -217,5 +225,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

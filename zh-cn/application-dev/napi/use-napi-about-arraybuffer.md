@@ -230,6 +230,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -247,7 +248,11 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
-        // 确保安全后才能使用data进行操作
+      // 确保安全后才能使用data进行操作
+    } else {
+      // 处理内存分配失败的情况
+      OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for ArrayBuffer");
+      return nullptr;
     }
     // 返回ArrayBuffer
     return result;
@@ -276,7 +281,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s'
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
 
 输出日志：
