@@ -14606,7 +14606,7 @@ int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue (ArkUI_NodeEvent * event, ArkUI_
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN 组件事件不支持返回值。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID 组件事件中不存在该数据。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID 组件事件中不存在该数据。
 
 
 ### OH_ArkUI_NodeUtils_AddCustomProperty()
