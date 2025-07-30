@@ -1,11 +1,5 @@
 # 企业类应用可用权限
 
-<!--Kit: Ability Kit->
-<!--Subsystem: Security->
-<!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
-
 以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
 企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
