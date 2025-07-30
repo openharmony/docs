@@ -734,7 +734,7 @@ class MyRenderNode extends RenderNode {
     let left = placeholderRects[0].rect.left
     // 获取第一个占位符的上边界
     let top = placeholderRects[0].rect.top
-    // 获取第一个占位符的有边界
+    // 获取第一个占位符的右边界
     let right = placeholderRects[0].rect.right
     // 获取第一个占位符的下边界
     let bottom = placeholderRects[0].rect.bottom
