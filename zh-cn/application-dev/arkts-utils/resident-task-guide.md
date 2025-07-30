@@ -1,4 +1,9 @@
 # 常驻任务开发指导（Worker）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 提供使用Worker进行常驻任务的开发指导。Worker将持续执行任务，直到宿主线程发送终止指令。
 
@@ -26,6 +31,7 @@
 
    ```ts
    // Index.ets
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    @Entry
    @Component
@@ -38,7 +44,7 @@
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
              workerInstance.postMessage({type: 'start'})
-             workerInstance.onmessage = (event) => {
+             workerInstance.onmessage = (event: MessageEvents) => {
                console.info('UI主线程收到消息:', event.data);
              }
              // 10秒后停止worker

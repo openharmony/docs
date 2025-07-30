@@ -1,5 +1,11 @@
 # ability_access_control.h
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## 概述
 
 声明管理进程访问控制的接口。

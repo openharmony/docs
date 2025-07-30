@@ -1,4 +1,9 @@
 # Worker简介
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Worker的主要作用是为应用程序提供一个多线程的运行环境，实现应用程序执行过程与宿主线程分离。通过在后台线程运行脚本处理耗时操作，避免计算密集型或高延迟任务阻塞宿主线程。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
 
@@ -14,8 +19,8 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 
 ## Worker注意事项
 
-- 创建Worker有手动和自动两种方式，推荐使用自动创建方式。手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
-- 使用Worker时，构造函数中传入的Worker线程文件路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
+- 创建Worker时，提供手动和自动两种创建方式，推荐使用自动创建方式。手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
+- 使用Worker能力时，构造函数中传入的Worker线程文件的路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
 - Worker创建后需要手动管理生命周期。同时运行的Worker子线程数量最多为64个，并且与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80。详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能在Worker子线程中使用。
 - 单次序列化传输的数据量大小限制为16MB。
@@ -26,6 +31,7 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 - 从API version 18开始，可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中指定Worker线程的优先级。
 - 在Worker文件中禁止使用export语法导出任何内容，否则会导致jscrash问题。
 
+除上述注意事项外，使用Worker时还需注意[并发注意事项](multi-thread-concurrency-overview.md#并发注意事项)。
 
 ### 创建Worker的注意事项
 

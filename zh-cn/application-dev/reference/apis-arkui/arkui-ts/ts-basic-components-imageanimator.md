@@ -367,8 +367,14 @@ struct ImageAnimatorExample {
   @State images: Array<ImageFrameInfo> = [];
 
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.1')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.2')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.3')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.4')));
     this.images.push({ src: this.imagePixelMap[0] });
+    this.images.push({ src: this.imagePixelMap[1] });
+    this.images.push({ src: this.imagePixelMap[2] });
+    this.images.push({ src: this.imagePixelMap[3] });
   }
 
   build() {
@@ -426,11 +432,7 @@ struct ImageAnimatorExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888

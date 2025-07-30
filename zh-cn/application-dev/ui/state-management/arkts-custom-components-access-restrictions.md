@@ -177,11 +177,11 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
 
     ```ts
-    Property 'local_prop_value' can not be decorated with both @LocalStorageProp and public.
-    Property 'local_link_value' can not be decorated with both @LocalStorageLink and public.
-    Property 'storage_prop_value' can not be decorated with both @StorageProp and public.
-    Property 'storage_link_value' can not be decorated with both @StorageLink and public.
-    Property 'consume_value' can not be decorated with both @Consume and public.
+    Property 'local_prop_value' can not be decorated with both '@LocalStorageProp' and public.
+    Property 'local_link_value' can not be decorated with both '@LocalStorageLink' and public.
+    Property 'storage_prop_value' can not be decorated with both '@StorageProp' and public.
+    Property 'storage_link_value' can not be decorated with both '@StorageLink' and public.
+    Property 'consume_value' can not be decorated with both '@Consume' and public.
     ```
     
     【正例】
@@ -255,8 +255,8 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
     
     ```ts
-    Property 'link_value' can not be decorated with both @Link and private.
-    Property 'objectLink_value' can not be decorated with both @ObjectLink and private.
+    Property 'link_value' can not be decorated with both '@Link' and private.
+    Property 'objectLink_value' can not be decorated with both '@ObjectLink' and private.
     ```
     
     【正例】
@@ -384,7 +384,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
     
     ```ts
-    Property 'prop_value' can not be decorated with both @Require and private.
+    Property 'prop_value' can not be decorated with both '@Require' and private.
     Property 'prop_value' is private and can not be initialized through the component constructor.
     ```
     

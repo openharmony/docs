@@ -1312,6 +1312,10 @@ export default class EntryAbility extends UIAbility {
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window. Cause: The data is undefined.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用maximize接口，设置窗口进入全屏模式。
@@ -1948,7 +1952,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的显示方向属性，使用callback异步回调。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
+设置主窗口的显示方向属性，使用callback异步回调。相关横竖屏开发实践查询[横竖屏切换](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-landscape-and-portrait-development)。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4746,7 +4750,7 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInf
 
 开启窗口旋转变化的监听。[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)不生效。
 
-同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)，系统不处理该返回值。
+该函数只允许在主线程注册。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)，系统不处理该返回值。
 
 <!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
@@ -5143,7 +5147,7 @@ try {
   let colorSpace = windowClass.getWindowColorSpace();
   console.info(`Succeeded in getting the window color space. ColorSpace: ${colorSpace}`);
 } catch (exception) {
-  console.error(`Failed to set the window to be focusable. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to get the window color space. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -6502,21 +6506,21 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      if (!windowClass) {
+        console.error('Failed to get main window.');
         return;
       }
-      windowClass = data;
       let promise = windowClass.recover();
       promise.then(() => {
         console.info('Succeeded in recovering the window.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
       });
-    });
+    } catch (exception) {
+      console.error(`Failed to recover the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -7157,7 +7161,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
-        if (data == null) {
+        if (!data) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
@@ -7697,6 +7701,10 @@ export default class EntryAbility extends UIAbility {
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window. Cause: The data is undefined.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用setWindowTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、关闭按钮。
@@ -8262,6 +8270,10 @@ struct Index {
             if (event.type === TouchType.Down) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
+                if (!windowClass) {
+                  console.error('Failed to find window.');
+                  return;
+                }
                 windowClass.startMoving().then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8279,8 +8291,16 @@ struct Index {
               this.isTouchDown = true;
             } else if (event.type === TouchType.Move && this.isTouchDown) {
               try {
-                let context = this.getUIContext().getHostContext();
+                let context = this.getUIContext()?.getHostContext();
+                if (!context) {
+                  console.error('Failed to get host context.');
+                  return;
+                }
                 window.getLastWindow(context).then((data)=>{
+                  if (!data) {
+                    console.error('Failed to get last window.');
+                    return;
+                  }
                   let windowClass: window.Window = data;
                   windowClass.startMoving().then(() => {
                     console.info('Succeeded in starting moving window.')
@@ -8364,6 +8384,10 @@ struct Index {
             if (event.type === TouchType.Down) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
+                if (!windowClass) {
+                  console.error('Failed to find window.');
+                  return;
+                }
                 windowClass.startMoving(100, 50).then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8381,7 +8405,11 @@ struct Index {
               this.isTouchDown = true;
             } else if (event.type === TouchType.Move && this.isTouchDown) {
               try {
-                let context = this.getUIContext().getHostContext();
+                let context = this.getUIContext()?.getHostContext();
+                if (!context) {
+                  console.error('Failed to get host context.');
+                  return;
+                }
                 window.getLastWindow(context).then((data)=>{
                   let windowClass: window.Window = data;
                   windowClass.startMoving(100, 50).then(() => {

@@ -4959,7 +4959,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 **返回值**：
@@ -5001,7 +5001,7 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 参数名          | 类型                                                         | 必填 | 说明       |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。   |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 **返回值**：
@@ -5009,7 +5009,6 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 类型                                                       | 说明           |
 | ---------------------------------------------------------- | -------------- |
 | Array&lt;[Sensor](#sensor9)&gt;           | 传感器属性列表。                  |
-
 
 **示例**：
 
@@ -6384,7 +6383,7 @@ try {
 
 | 名称      | 类型   | 只读 | 可选 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
-| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。 |
+| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。从设备开机开始计时到上报数据的时间，单位 : ns。 |
 | accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 否   | 传感器数据上报的精度挡位值。 |
 
 ## Sensor<sup>9+</sup>

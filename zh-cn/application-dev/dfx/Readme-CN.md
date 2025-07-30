@@ -16,7 +16,7 @@
   - [使用HiLog打印日志（C/C++）](hilog-guidelines-ndk.md)
 - 事件订阅<!--hiappevent-->
   - [HiAppEvent介绍](hiappevent-intro.md)
-  - 使用Hiappevent订阅事件<!--event-subscription-->
+  - 使用HiAppEvent订阅事件<!--event-subscription-->
     - [事件订阅简介](event-subscription-overview.md)
     - [事件订阅（ArkTS）](hiappevent-watcher-app-events-arkts.md)
     - [事件订阅（C/C++）](hiappevent-watcher-app-events-ndk.md)

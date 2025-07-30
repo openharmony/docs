@@ -81,7 +81,7 @@
 
   > **说明**：
   >
-  > 如果在`consumer-rules.txt`文件中配置了[混淆选项](source-obfuscation.md#混淆选项)，可能会对主模块产生影响。因此，建议仅在该文件中配置[保留选项](source-obfuscation.md#保留选项)。
+  > 如果在`consumer-rules.txt`文件中配置了[混淆选项](source-obfuscation.md#混淆选项)，可能会对依赖了HAR或HSP的主模块产生影响。因此，建议仅在该文件中配置[保留选项](source-obfuscation.md#保留选项)。
 
 * `obfuscation.txt`  
     不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR或HSP时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR或HSP包中。在其他应用依赖该发布包时，会合并其中的混淆规则应用于当前编译流程。`obfuscation.txt`内容的生成及合并逻辑请参考[混淆规则合并策略](source-obfuscation.md#混淆规则合并策略)。
@@ -108,14 +108,14 @@
           staticName: value  // 静态定义属性
         };
         const fieldName = 'static' + 'Name';  // 动态构建属性名
-        console.log(obj[fieldName]);  // 使用方括号语法动态访问属性
+        console.info(obj[fieldName]);  // 使用方括号语法动态访问属性
         ```
         ```
         // 动态定义，静态访问：属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
         const obj = {
           [dynamicExpression]: value  // 动态定义属性
         };
-        console.log(obj.dynamicPropertyName);  // 使用点语法静态访问属性
+        console.info(obj.dynamicPropertyName);  // 使用点语法静态访问属性
         ```
     2. 若代码中使用点语法访问未在ArkTS/TS/JS代码中定义的字段，比如访问native实现的so库，字段固定的json文件与数据库等场景：
         1. 若在代码中引用so库的api，如```import testNapi from 'library.so';testNapi.foo();```需要使用`-keep-property-name` foo保留属性名称。

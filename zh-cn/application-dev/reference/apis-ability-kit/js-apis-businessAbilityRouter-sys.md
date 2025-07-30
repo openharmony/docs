@@ -43,11 +43,11 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 **系统接口**：此接口为系统接口。
 
-| 名称         | 类型         | 只读 | 必填 | 说明                                   |
+| 名称         | 类型         | 只读 | 可选 | 说明                                   |
 | ------------ | ------------ | ---- | ---- | -------------------------------------- |
-| businessType | [BusinessType](#businesstype) | 否   | 是   | 标识ability信息的类型。           |
-| mimeType     | string       | 否   | 否   | 标识支持mime类型的ability信息。 |
-| uri          | string       | 否   | 否   | 标识ability信息支持的uri。        |
+| businessType | [BusinessType](#businesstype) | 否   | 否   | 标识ability信息的类型。           |
+| mimeType     | string       | 否   | 是   | 标识支持mime类型的ability信息。 |
+| uri          | string       | 否   | 是   | 标识ability信息支持的uri。        |
 
 ## businessAbilityRouter.queryBusinessAbilityInfo
 

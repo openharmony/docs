@@ -20,7 +20,7 @@
 animateTo(value: AnimateParam, event: () => void): void
 ```
 
-[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[AnimateParam对象](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[Curve](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
+[animateTo](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)接口参数中，value指定[AnimateParam对象](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[Curve](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
 > **说明：**
 > 

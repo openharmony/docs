@@ -86,7 +86,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 - 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用localstorage](#从ui内部使用localstorage)）。
 
-- 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+- 当装饰的对象是数组时，可以观察到数组添加、删除、更新数组单元的变化。
 
 - 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
 
@@ -154,7 +154,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 - 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用localstorage](#从ui内部使用localstorage)）。
 
-- 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+- 当装饰的对象是数组时，可以观察到数组添加、删除、更新数组单元的变化。
 
 - 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
 
@@ -762,11 +762,11 @@ struct MyNavigationTestStack {
   PageMap(name: string) {
     if (name === 'pageOne') {
       // 传递不同的LocalStorage实例
-      pageOneStack({}, localStorageA)
+      PageOneStack({}, localStorageA)
     } else if (name === 'pageTwo') {
-      pageTwoStack({}, localStorageB)
+      PageTwoStack({}, localStorageB)
     } else if (name === 'pageThree') {
-      pageThreeStack({}, localStorageC)
+      PageThreeStack({}, localStorageC)
     }
   }
 
@@ -791,7 +791,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropA') PropA: string = 'Hello World';
 
@@ -818,7 +818,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
@@ -846,7 +846,7 @@ struct pageTwoStack {
 }
 
 @Component
-struct pageThreeStack {
+struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
 

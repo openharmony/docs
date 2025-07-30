@@ -1,14 +1,10 @@
 # Downloading Files
 
-> **NOTE**
->
->Use [WebDownloadItem.start](../reference/apis-arkweb/js-apis-webview.md#start11) to specify the path for storing downloaded files. Note that **WebDownloadItem.start** does not start the download. The download process starts when the user clicks the page link. **WebDownloadItem.start** is used to move the content that has been downloaded to the temporary directory (**/data/storage/el2/base/cache/web/Temp/**) to the specified path, and directly save the remaining content to the specified path. Use [WebDownloadItem.cancel](../reference/apis-arkweb/js-apis-webview.md#cancel11) to cancel the current download. In this case, the temporary file is deleted.
->
->If you do not want to download the file to the temporary directory before **WebDownloadItem.start**, you can also use **WebDownloadItem.cancel** to interrupt the download. In addition, the interrupted download can be resumed by using [WebDownloadManager.resumeDownload](../reference/apis-arkweb/js-apis-webview.md#resumedownload11).
+To download files on the web page, you can use the following method to invoke the web APIs.
 
 ## Listening for Downloads Initiated from Pages
 
-Call [setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview.md#setdownloaddelegate11) to register a **DownloadDelegate** object with the **Web** component to listen for downloads initiated from pages. While the **Web** component downloads resources as requested, it notifies the application of the download progress through the **DownloadDelegate** object.
+Call [setDownloadDelegate()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setdownloaddelegate11) to register a **DownloadDelegate** object with the **Web** component to listen for downloads initiated from pages. While the **Web** component downloads resources as requested, it notifies the application of the download progress through the **DownloadDelegate** object.
 
 In the following example, the **index.html** and **download.html** files are added to the **rawfile** folder of the application. After the application is started, a **Web** component is created and the **index.html** file is loaded. After **setDownloadDelegate** is clicked, a **DownloadDelegate** object is registered with the **Web** component. This **DownloadDelegate** object listens for any downloads initiated by clicking the download button on the page.
 
@@ -38,14 +34,14 @@ struct WebComponent {
               // Unique ID of a download task.
               console.log("download update guid: " + webDownloadItem.getGuid());
               // Download progress.
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // Current download speed.
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // Error code of a download task failure.
-              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+              console.error("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -90,7 +86,7 @@ HTML file to be downloaded:
 
 ## Initiating a Download Task
 
-Call [startDownload()](../reference/apis-arkweb/js-apis-webview.md#startdownload11) to initiate a download task.
+Call [startDownload()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#startdownload11) to initiate a download task.
 For a download initiated by it, the **Web** component works out the referrer based on the currently displayed URL and its own default referrer policy.
 
   In the following example, clicking **setDownloadDelegate** registers a listener class with the **Web** component, and clicking **startDownload** initiates a download task.
@@ -121,7 +117,7 @@ struct WebComponent {
               console.log("download update guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -176,14 +172,14 @@ struct WebComponent {
               // Unique ID of a download task.
               console.log("download update guid: " + webDownloadItem.getGuid());
               // Download progress.
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // Current download speed.
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // Error code of a download task failure.
-              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+              console.error("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -227,8 +223,16 @@ function getDownloadPathFromPicker(): Promise<string> {
 }
 ```
 
+> **NOTE**
+>
+>Call [WebDownloadItem.start](../reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md#start11) to specify the path for storing downloaded files.
+>
+>Note that **WebDownloadItem.start** does not start the download. The download process starts when the user clicks the page link. **WebDownloadItem.start** is used to move the content that has been downloaded to the temporary directory (**/data/storage/el2/base/cache/web/Temp/**) to the specified path, and directly save the remaining content to the specified path. Call[WebDownloadItem.cancel](../reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md#cancel11) to cancel the current download task. In this case, the temporary file is deleted.
+>
+>If you do not want to download the file to the temporary directory before **WebDownloadItem.start**, you can also use **WebDownloadItem.cancel** to interrupt the download. In addition, the interrupted download can be resumed using [WebDownloadManager.resumeDownload](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11).
+
 ## Resuming Unfinished Download Tasks Due to Process Exit
-When the **Web** component is started, you can resume the unfinished download task through the [resumeDownload()](../reference/apis-arkweb/js-apis-webview.md#resumedownload11) API.
+When the **Web** component is started, you can resume the unfinished download task through the [resumeDownload()](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11) API.
 
 In the following example, the **record** button is used to save the current download task to a persistent file. After the application is restarted, the **recovery** button can be used to resume the persistent download task. If multiple download tasks need to be saved, the application can adjust the persistence time and mode as required.
 ```ts
@@ -246,6 +250,10 @@ struct WebComponent {
   // Used to record failed download tasks.
   failedData: Uint8Array = new Uint8Array();
 
+  aboutToAppear(): void {
+    downloadUtil.init(this.getUIContext());
+  }
+
   build() {
     Column() {
       Button('setDownloadDelegate')
@@ -261,7 +269,7 @@ struct WebComponent {
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download task to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
@@ -323,9 +331,13 @@ import fileStream from '@ohos.file.fs';
 
 const helper = new util.Base64Helper();
 
-export const filePath = getContext().filesDir;
+export let filePath : string;
 export const fileName = 'demoFile.txt';
 export namespace  downloadUtil {
+  
+  export function init(context: UIContext): void {
+    filePath = context.getHostContext()!.filesDir;
+  }
 
   export function uint8ArrayToStr(uint8Array: Uint8Array): string {
     return helper.encodeToStringSync(uint8Array);

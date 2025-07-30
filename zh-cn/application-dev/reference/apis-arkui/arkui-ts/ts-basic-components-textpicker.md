@@ -167,7 +167,7 @@ disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.CLIP<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 >  **说明：**
 >
@@ -219,7 +219,7 @@ textStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.CLIP<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 >  **说明：**
 >
@@ -271,7 +271,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.CLIP<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 ### selectedIndex<sup>10+</sup>
 
@@ -625,9 +625,9 @@ onCancel(callback: () => void)
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
-| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize与maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
-| maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最大显示字号。                     |
-|  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否    | 文本截断方式，设置为MARQUEE时不生效。                     |
+| minFontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize和maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。详细规则请参考Text的[minFontSize](ts-basic-components-text.md#minfontsize)属性。 |
+| maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | 否    | 文本最大显示字号。详细规则请参考Text的[maxFontSize](ts-basic-components-text.md#maxfontsize)属性。                     |
+| overflow | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 文本截断方式。当设置为MARQUEE时，该属性不生效。详细规则请参考Text组件的[textOverflow](ts-basic-components-text.md#textoverflow)属性。 |
 
 ## OnTextPickerChangeCallback<sup>18+</sup>
 
@@ -707,10 +707,12 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
-class bottom {
-  bottom:number = 50;
+
+class Bottom {
+  bottom: number = 50;
 }
-let bott:bottom = new bottom();
+
+let bott: Bottom = new Bottom();
 @Entry
 @Component
 struct TextPickerExample {
@@ -802,7 +804,7 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1;
+  private select: number = 0;
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
@@ -840,7 +842,7 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1;
+  private select: number = 0;
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
@@ -1120,3 +1122,49 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/TextPickerDemo10.gif)
+
+### 示例11（设置文本的最大字号、最小字号、超长文本截断方式）
+
+该示例通过配置[disappearTextStyle](#disappeartextstyle20)、[textStyle](#textstyle20)和[selectedTextStyle](#selectedtextstyle20)，设置文本的颜色、最大字号、最小字号、超长文本截断方式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private rangeValue: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE'];
+
+  build() {
+    RelativeContainer() {
+      TextPicker({
+        range: this.rangeValue
+      })
+        .disappearTextStyle({
+          color: '#fff52769',
+          // 设置minFontSize与maxFontSize时，font中的size属性将被忽略。
+          font: { size: 50 },
+          minFontSize: 12,
+          maxFontSize: 18,
+          overflow: TextOverflow.Ellipsis
+        })
+        .textStyle({
+          color: Color.Orange,
+          minFontSize: 12,
+          maxFontSize: 18,
+          overflow: TextOverflow.MARQUEE
+        })
+        .selectedTextStyle({
+          color: '#ff9eea48',
+          minFontSize: 12,
+          maxFontSize: 18,
+          overflow: TextOverflow.Clip
+        })
+        .width('100%')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo11.gif)

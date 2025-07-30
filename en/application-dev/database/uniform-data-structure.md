@@ -1,11 +1,11 @@
-# Uniform Data Structs
+# Uniform Data Structs (ArkTS)
 
 
 ## When to Use
 
 Uniform data structs are provided to define data of common [uniform data types](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype). For example, the data struct for the system-defined home screen icon (the uniform data type is **openharmony.app-item**) is provided to help you easily define the data.
 
-Applications can directly use the uniform data structs in certain scenarios. For example, in the drag-and-drop operation across applications, you can write the data (encapsulated in a uniform struct) to be dragged to [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent). The target application (application requesting the data) reads the data from **DragEvent** and parses the data in the uniform data struct. Using uniform data structs for data interaction between applications effectively reduces the development workload in your app experience.
+Applications can directly use the uniform data structs in certain scenarios. For example, in the drag-and-drop operation across applications, you can write the data (encapsulated in a uniform struct) to be dragged to [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7). The target application (application requesting the data) reads the data from **DragEvent** and parses the data in the uniform data struct. Using uniform data structs for data interaction between applications effectively reduces the development workload in your application experience.
 
 ## Uniform Data Structs
 
@@ -15,13 +15,15 @@ The following table lists the uniform data structs provided by the UDMF.
 |-----------------------------------------------------------------------------------------------------| :-------------------: |------|
 | [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext)                  |      'general.plain-text'        | Plain text. |
 | [Hyperlink](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#hyperlink)                  |       'general.hyperlink'       | Hyperlink. |
-| [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)                            |         'general.html'          | HyperText Markup Language (HTML). |
+| [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)                            |         'general.html'          | Rich text. |
 | [OpenHarmonyAppItem](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#openharmonyappitem) | 'openharmony.app-item'    | Icon.  |
 | [ContentForm](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#contentform14)            | 'general.content-form'    | Content widget.|
 
 ## How to Develop
 
 The following describes how to use the uniform data structs to define a hyperlink and a plaint text.
+
+The data provider can call **addRecord()** provided by the UMDF to add data records and call **getRecords()** to obtain all data records in the current data object.
 
   ```ts
   // 1. Import the unifiedDataChannel and uniformTypeDescriptor modules.

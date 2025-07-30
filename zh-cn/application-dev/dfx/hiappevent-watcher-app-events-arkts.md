@@ -1,10 +1,10 @@
 # 事件订阅（ArkTS）
 
-HiAppEvent提供了事件订阅接口，用于本地获取应用的事件。
+HiAppEvent提供了事件订阅接口，用于获取应用的事件。
 
 ## 接口说明
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+API接口使用说明，包括参数使用限制和具体取值范围。请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 **订阅接口功能介绍**：
 
@@ -22,9 +22,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 事件订阅开发指导
 
-以订阅一个崩溃事件（系统事件）和一个按钮点击事件（应用事件）为例，说明开发步骤。
+以订阅崩溃事件（系统事件）和按钮点击事件（应用事件）为例，说明开发步骤。
 
-1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入所需的依赖模块：
 
    ```ts
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
@@ -32,9 +32,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets” 文件，在onCreate函数中添加对崩溃事件、按钮点击事件的订阅。
 
-   订阅崩溃事件，采用OnReceive类型观察者的订阅方式，观察者接收到事件后回立即触发OnReceive()回调。编辑"EntryAbility.ets"文件，定义OnReceive类型观察者相关方法：
+   订阅崩溃事件，采用OnReceive类型观察者的订阅方式，观察者接收到事件后回立即触发OnReceive()回调。编辑“EntryAbility.ets”文件，定义OnReceive类型观察者相关方法：
 
-   ```
+   ```ts
    hiAppEvent.addWatcher({
      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
      name: "AppCrashWatcher",
@@ -63,9 +63,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    });
    ```
 
-   订阅按钮点击事件，采用OnTrigger类型观察者的订阅方式。需满足triggerCondition设置的条件，才能触发OnTrigger()回调。编辑 "EntryAbility.ets"文件，定义OnTrigger类型观察者相关方法：
+   订阅按钮点击事件，采用OnTrigger类型观察者的订阅方式。需满足triggerCondition设置的条件，才能触发OnTrigger()回调。编辑“EntryAbility.ets”文件，定义OnTrigger类型观察者相关方法：
 
-   ```
+   ```ts
    hiAppEvent.addWatcher({
      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
      name: "ButtonClickWatcher",
@@ -75,7 +75,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      triggerCondition: { row: 1 },
      // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
      onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
-       // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
+       // 如果返回的holder对象为null，表示订阅过程发生异常。因此，在记录错误日志后直接返回
        if (holder == null) {
          hilog.error(0x0000, 'testTag', "HiAppEvent holder is null");
          return;
@@ -104,22 +104,22 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，新增"appCrash"按钮触发崩溃事件；新增"buttonClick"按钮，在按钮点击的函数中进行事件打点。示例代码如下：
+4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，新增“appCrash”按钮触发崩溃事件；新增“buttonClick”按钮，在按钮点击的函数中进行事件打点。示例代码如下：
 
-   触发崩溃事件
+   触发崩溃事件。
 
-   ```
+   ```ts
      Button("appCrash")
        .onClick(()=>{
-         // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+         // 在按钮点击函数中构造一个crash场景，触发崩溃事件
          let result: object = JSON.parse("");
        })
        .position({ x: 50, y: 100 }) // 设置按钮位置
    ```
 
-   在按钮点击的函数中进行事件打点
+   在按钮点击的函数中进行事件打点。
 
-   ```
+   ```ts
      Button("buttonClick")
        .onClick(()=>{
          // 在按钮点击函数中进行事件打点，以记录按钮点击事件
@@ -146,11 +146,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 调测验证
 
-1. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。应用退出后再次打开应用。
+1. 点击DevEco Studio界面中的运行按钮，运行应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。应用退出后，重新打开应用。
 
-2. 在HiLog窗口搜索“HiAppEvent”关键字，可以看到应用收到崩溃事件回调后对事件数据的处理日志：
+2. 在HiLog窗口搜索“HiAppEvent”关键字，查看应用处理崩溃事件数据的日志：
 
-   ```
+   ```text
    HiAppEvent eventName=APP_CRASH
    HiAppEvent eventInfo.params.time=1750747995874
    HiAppEvent eventInfo.params.bundle_name="com.example.txxxxx"
@@ -158,11 +158,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ["/data/storage/el2/log/hiappevent/APP_CRASH_1750747996042_28962.log"]
    ```
 
-3. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“buttonClick”，触发一次按钮点击事件并打点。
+3. 点击DevEco Studio界面中的运行按钮，运行应用工程。在应用界面中点击“buttonClick”按钮，触发按钮点击事件并打点。
 
-4. 在HiLog窗口搜索“HiAppEvent”关键字，可以看到应用收到按钮点击事件的回调后，对打点事件数据的处理日志：
+4. 在HiLog窗口搜索“HiAppEvent”关键字，查看应用处理按钮点击事件数据的日志：
 
-   ```
+   ```text
    HiAppEvent write event
    HiAppEvent onTrigger: curRow=1, curSize=121
    HiAppEvent eventPkg.packageId=0

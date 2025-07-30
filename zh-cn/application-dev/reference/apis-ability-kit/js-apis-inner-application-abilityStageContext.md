@@ -24,7 +24,7 @@ import { common } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | AbilityStage对应的ModuleInfo对象。 |
-| config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 环境变化对象。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 环境变量。 |
 
 **示例：**
 

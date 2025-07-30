@@ -1,25 +1,22 @@
 # Invoking Application Functions on the Frontend Page
 
+Register your application code with frontend pages. Then you can invoke application methods with the registered object names on frontend pages.
 
-You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
+## Establishing an Interaction Channel Between the Application Side and the HTML5 Page
 
-Two methods are available for registering the application code:<br>
-
-- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
-- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization. This API must be used together with [deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister) to prevent memory leak.
-
+Two methods are available for registering the application code:<br>Call [javaScriptProxy()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy) during **Web** component initialization. Call [registerJavaScriptProxy()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#registerjavascriptproxy) after **Web** component initialization. The two methods must be used together with the [deleteJavaScriptRegister](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#deletejavascriptregister) API to prevent memory leaks.
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
 
 
-- Sample code for using [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy):
+- Sample code for using [javaScriptProxy()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy):
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -33,7 +30,7 @@ The following example registers the **test()** function with the frontend page. 
   struct WebComponent {
     webviewController: webview.WebviewController = new webview.WebviewController();
     // Declare the object to be registered.
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -65,16 +62,14 @@ The following example registers the **test()** function with the frontend page. 
     }
   }
   ```
-
-
-- Sample code for using [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy):
+- Sample code for the application using [registerJavaScriptProxy()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#registerjavascriptproxy) for registration:
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -91,7 +86,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -136,7 +131,7 @@ The following example registers the **test()** function with the frontend page. 
 
   > **NOTE**
   >
-  > - If you use [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh) for the function to take effect.
+  > - You need to call the [refresh()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#refresh) method for the registration to take effect after using the [registerJavaScriptProxy()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#registerjavascriptproxy) method.
 
 - The optional parameter permission is a JSON string. The following is an example:
   ```json
@@ -144,16 +139,16 @@ The following example registers the **test()** function with the frontend page. 
     "javascriptProxyPermission": {
       "urlPermissionList": [       // Object-level permission. If it is granted, all methods are available.
         {
-          "scheme": "resource",    // Exact match. The value cannot be empty.
-          "host": "rawfile",       // Exact match. The value cannot be empty.
-          "port": "",              // Exact match. If the value is empty, it is not checked.
-          "path": ""               // Prefix match. If the value is empty, it is not checked.
+          "scheme": "resource",    // Exact match. This field is mandatory and cannot be empty.
+          "host": "rawfile",       // Exact match. This field is mandatory and cannot be empty.
+          "port": "",              // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+          "path": ""               // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
         },
         {
-          "scheme": "https",       // Exact match. The value cannot be empty.
-          "host": "xxx.com",       // Exact match. The value cannot be empty.
-          "port": "",                  // Exact match. If the value is empty, it is not checked.
-          "path": "a/b/c"          // Prefix match. If the value is empty, it is not checked.
+          "scheme": "https",       // Exact match. This field is mandatory and cannot be empty.
+          "host": "xxx.com",       // Exact match. This field is mandatory and cannot be empty.
+          "port": "8080",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+          "path": "a/b/c"          // Prefix match. If the value is empty, the check is not performed. This parameter is mandatory.
         }
       ],
       "methodList": [
@@ -161,16 +156,16 @@ The following example registers the **test()** function with the frontend page. 
           "methodName": "test",
           "urlPermissionList": [   // Method-level permission.
             {
-              "scheme": "https",   // Exact match. The value cannot be empty.
-              "host": "xxx.com",   // Exact match. The value cannot be empty.
-              "port": "",          // Exact match. If the value is empty, it is not checked.
-              "path": ""           // Prefix match. If the value is empty, it is not checked.
+              "scheme": "https",   // Exact match. This field is mandatory and cannot be empty.
+              "host": "xxx.com",   // Exact match. This field is mandatory and cannot be empty.
+              "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+              "path": ""           // Prefix match. If the value is empty, the check is not performed. This parameter is mandatory.
             },
             {
-              "scheme": "resource",    // Exact match. The value cannot be empty.
-              "host": "rawfile",   // Exact match. The value cannot be empty.
-              "port": "",          // Exact match. If the value is empty, it is not checked.
-              "path": ""           // Prefix match. If the value is empty, it is not checked.
+              "scheme": "resource",// Exact match. This field is mandatory and cannot be empty.
+              "host": "rawfile",   // Exact match. This field is mandatory and cannot be empty.
+              "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+              "path": ""           // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
             }
           ]
         },
@@ -178,16 +173,16 @@ The following example registers the **test()** function with the frontend page. 
           "methodName": "test11",
           "urlPermissionList": [   // Method-level permission.
             {
-              "scheme": "q",       // Exact match. The value cannot be empty.
-              "host": "r",         // Exact match. The value cannot be empty.
-              "port": "",          // Exact match. If the value is empty, it is not checked.
-              "path": "t"          // Prefix match. If the value is empty, it is not checked.
+              "scheme": "q",       // Exact match. This field is mandatory and cannot be empty.
+              "host": "r",         // Exact match. This field is mandatory and cannot be empty.
+              "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+              "path": "t"          // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
             },
             {
-              "scheme": "u",       // Exact match. The value cannot be empty.
-              "host": "v",         // Exact match. The value cannot be empty.
-              "port": "",          // Exact match. If the value is empty, it is not checked.
-              "path": ""           // Prefix match. If the value is empty, it is not checked.
+              "scheme": "u",       // Exact match. This field is mandatory and cannot be empty.
+              "host": "v",         // Exact match. This field is mandatory and cannot be empty.
+              "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
+              "path": ""           // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
             }
           ]
         }
@@ -216,13 +211,16 @@ The following example registers the **test()** function with the frontend page. 
   </html>
   ```
 ## Usage of Complex Types
-- Sample code for passing arrays between the application side and the frontend page:
+
+### Passing Arrays Between the Application and the Frontend Page
+
+ Arrays can be used as parameters or return values of object registration methods and passed between applications and frontend pages.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -239,7 +237,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -288,24 +286,27 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
-- Sample code for passing data of primitive types (not of Function or any other complex type) between the application side and the frontend page:
+
+### Using Complex Types Excluding Functions
+
+  Sample code for passing complex types (excluding functions) as parameters or return values in object registration methods between the application and the frontend page:
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class student {
+  class Student {
     name: string = '';
     age: string = '';
   }
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
     // Data of primitive types to pass: name:"jeck", age:"12"
-    test(): student {
-      let st: student = { name: "jeck", age: "12" };
+    test(): Student {
+      let st: Student = { name: "jeck", age: "12" };
       return st;
     }
 
@@ -318,7 +319,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -367,14 +368,15 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
+### Invoking a Callback of the Frontend Page from the Application
 
-- Sample code for invoking a callback of the frontend page from the application side:
+  Callbacks can be used as parameters or return values of object registration methods and passed between applications and frontend pages.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -391,7 +393,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -440,14 +442,15 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
+### Calling the Function in an Object of the Frontend Page from the Application Side
 
-- Sample code for calling the function in an object of the frontend page from the application side:
+  The function in an object of the frontend page can be used as the parameter or return value of the registration object method and passed between the application side and the frontend page.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -464,7 +467,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -538,7 +541,9 @@ The following example registers the **test()** function with the frontend page. 
   </html>
   ```
 
-- Sample code for calling the function in an object of the application side from the frontend page:
+### Calling the Function in an Object of the Application Side from the Frontend Page
+
+  The function in an object of the application side can be used as the parameter or return value of the registration object method and passed between the application side and the frontend page.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -556,7 +561,7 @@ The following example registers the **test()** function with the frontend page. 
     }
   }
 
-  class testClass {
+  class TestClass {
     ObjReturn: ObjOther
 
     constructor() {
@@ -576,7 +581,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -626,14 +631,15 @@ The following example registers the **test()** function with the frontend page. 
   </html>
   ```
 
-- Examples of using a promise:<br>
-  With the first method, a promise is created on the application side.
+### Using Promises
+
+  Create a promise on the application side. Use the promise as the parameter or return value of the object method and pass it to the frontend page.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -656,7 +662,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -705,13 +711,13 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
-  With the first method, a promise is created on the frontend page.
+  Create a promise on the frontend page. Use the promise as the parameter or return value of the object method and pass it to the application side.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -728,7 +734,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -780,3 +786,14 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
+## Checking Whether the Channel Is Successfully Established
+
+1. Enable web debugging.
+
+   For details about how to enable web debugging, see [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md).
+
+2. Use an example to check whether the channel is successfully established.
+
+   The following example passes arrays between the application side and the frontend page described in [Usage of Complex Types](#usage-of-complex-types). The debugging result is shown in the following figure.
+
+   ![Example of successful verification using DevTools](figures/webtoolstest.png)

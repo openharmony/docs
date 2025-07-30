@@ -73,7 +73,7 @@ Video(value: VideoOptions)
 
 muted(value: boolean)
 
-设置视频是否静音。
+设置视频是否静音，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,8 @@ muted(value: boolean)
 
 autoPlay(value: boolean)
 
-设置视频是否自动播放。
+设置视频是否自动播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +110,8 @@ autoPlay(value: boolean)
 
 controls(value: boolean)
 
-设置控制视频播放的控制栏是否显示。
+设置控制视频播放的控制栏是否显示，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +131,8 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频的填充模式。
+设置视频的填充模式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +148,8 @@ objectFit(value: ImageFit)
 
 loop(value: boolean)
 
-设置是否单个视频循环播放。
+设置是否单个视频循环播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -198,7 +202,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 enableShortcutKey(enabled: boolean)
 
-设置组件支持快捷键响应。
+设置组件支持快捷键响应，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
@@ -517,7 +521,7 @@ setCurrentTime(value: number)
 
 | 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
-| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
+| value | number | 是    | 视频播放进度位置。<br>取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]<br>单位：秒<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
 
 ### requestFullscreen
 
@@ -563,7 +567,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
-| value    | number   | 是    | 视频播放进度位置，单位：秒。 |
+| value    | number   | 是    | 视频播放进度位置。<br>取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]<br>单位：秒 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明

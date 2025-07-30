@@ -147,7 +147,7 @@ multiAppMode标签示例：
 
 ## configuration标签
 
-该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。
+该标签对应一个profile文件资源，对应文件用于配置应用字体大小是否跟随系统变更。
 
 configuration标签示例：
 
@@ -159,7 +159,7 @@ configuration标签示例：
 }
 ```
 
-在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的文件资源对应。配置文件中列举了设置当前应用字体大小跟随系统变化所需要的属性。
 
    **表4** configuration标签说明
 

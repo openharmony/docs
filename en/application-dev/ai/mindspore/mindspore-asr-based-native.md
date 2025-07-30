@@ -2,7 +2,7 @@
 
 ## When to Use
 
-You can use [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to quickly deploy AI algorithms into your application to perform AI model inference for speech recognition.
+You can use [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to quickly deploy AI algorithms into your application to perform AI model inference for speech recognition.
 
 Speech recognition can convert an audio file into text, which is widely used in intelligent voice assistants, voice input, and voice search.
 
@@ -32,7 +32,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
 
 #### Playing Audio
 
-1. Call [@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md) and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
+1. Call **@ohos.multimedia.media** and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
 
    ```ts
    // player.ets
@@ -131,7 +131,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
 
 #### Recognizing Audio
 
-Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to perform inference on the three models in sequence. The inference process is as follows:
+Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to perform inference on the three models in sequence. The inference process is as follows:
 
 1. Include the corresponding header files. The third-party libraries **librosa**, **libsamplerate**, and **base64.h** are from [LibrosaCpp](https://github.com/ewan-xu/LibrosaCpp), [libsamplerate](https://github.com/libsndfile/libsamplerate), AudioFile.h, and [whisper.axera](https://github.com/ml-inory/whisper.axera/tree/main/cpp/src), respectively.
 
@@ -198,19 +198,23 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to perf
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           return BinBuffer(nullptr, 0);
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
        if (fileSize <= 0) {
            LOGE("MS_LITE_ERR: FileSize not correct");
+           return BinBuffer(nullptr, 0);
        }
        void *buffer = malloc(fileSize);
        if (buffer == nullptr) {
            LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           return BinBuffer(nullptr, 0);
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
            LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
+           return BinBuffer(nullptr, 0);
        }
        OH_ResourceManager_CloseRawFile(rawFile);
        BinBuffer res(buffer, fileSize);
@@ -781,4 +785,3 @@ After you tap the **Play Audio** button on the device screen, the sample audio f
 | :-----------------------: | :-----------------------: |
 | ![asr1](figures/asr1.png) | ![asr2](figures/asr2.png) |
 
-<!--no_check-->

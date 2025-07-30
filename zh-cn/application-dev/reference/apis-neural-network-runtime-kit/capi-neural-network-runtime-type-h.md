@@ -533,7 +533,7 @@ typedef void (*NN_OnRunDone)(void *userData, OH_NN_ReturnCode errCode, void *out
 | -- | -- |
 | void *userData | 异步推理执行的标识符，与调用异步推理[OH_NNExecutor_RunAsync](capi-neural-network-core-h.md#oh_nnexecutor_runasync)接口时传入的参数<b>userData</b>一致。 |
 | [ OH_NN_ReturnCode](capi-neural-network-runtime-type-h.md#oh_nn_returncode) errCode | 该次异步推理的返回状态（[OH_NN_ReturnCode](capi-neural-network-runtime-type-h.md#oh_nn_returncode)类型）。 |
-| outputTensor | 异步推理的输出张量，与调用异步推理[OH_NNExecutor_RunAsync](capi-neural-network-core-h.md#oh_nnexecutor_runasync)接口时传入的参数<b>outputTensor</b>一致。 |
+| void *outputTensor | 异步推理的输出张量，与调用异步推理[OH_NNExecutor_RunAsync](capi-neural-network-core-h.md#oh_nnexecutor_runasync)接口时传入的参数<b>outputTensor</b>一致。 |
 |  int32_t outputCount | 异步推理输出张量的数量，与调用异步推理[OH_NNExecutor_RunAsync](capi-neural-network-core-h.md#oh_nnexecutor_runasync)接口时传入的参数<b>outputCount</b>一致。 |
 
 ### NN_OnServiceDied()

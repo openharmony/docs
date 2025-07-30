@@ -2,17 +2,17 @@
 
 ## 事件介绍
 
-HiAppEvent可以订阅应用事件、系统事件。
+HiAppEvent能够订阅应用事件和系统事件。
 
 ### 应用事件
 
-应用事件是应用开发者自己定义的事件，比如点击按钮等。应用事件的事件参数对象params包含的字段来源于应用，由开发者自定义后通过打点接口write()进行配置设定，具体字段含义可结合开发者需求展开。
+应用事件由开发者自行定义，例如点击按钮。应用事件的事件参数对象params包含的字段来源于应用，由开发者通过打点接口write()自定义配置。具体字段含义根据开发者需求确定。
 
 ### 系统事件
 
-系统事件是指应用运行期间，应用进程发生的性能、功耗、稳定性等故障。系统事件的事件参数对象params包含的字段来源于系统服务，已有定义。此外，系统事件中的崩溃事件、应用冻屏事件还支持开发者通过接口setEventParam()向事件参数对象params中添加自定义的参数。
+系统事件是指应用运行期间发生的性能、功耗、稳定性等问题。系统事件的事件参数对象params包含的字段来源于系统服务，已定义。此外，系统事件中的崩溃事件和应用冻屏事件还支持开发者通过setEventParam()接口向事件参数对象params中添加自定义参数。
 
-已支持的各种系统事件介绍、检测原理、事件参数对象params包含的字段说明，具体请查阅各个系统事件介绍。
+已支持的系统事件介绍、检测原理及事件参数对象params包含的字段说明，请查阅各系统事件介绍的详细文档。
 
 [崩溃事件介绍](hiappevent-watcher-crash-events.md)
 
@@ -31,16 +31,16 @@ HiAppEvent可以订阅应用事件、系统事件。
 
 ## 事件订阅的三种方式
 
-HiAppEvent提供addWatcher()接口可以订阅系统事件，支持三种订阅方式。
+HiAppEvent通过addWatcher()接口提供系统事件的订阅功能，支持三种订阅方式。
 
-方式一：未设置回调条件参数，使用事件订阅返回的holder对象主动获取监听的事件。
+方式一：设置回调条件triggerCondition，实现onTrigger()回调。当满足回调条件时，系统将自动触发回调。
+
+方式二：未设置回调条件参数，使用事件订阅返回的holder对象主动获取监听的事件。
 
 > **说明：**
 >
-> 主动获取监听的事件，由于事件可能未生成或者日志信息未抓取完成，可能查询为空，可以尝试多次调用查询接口。
+> 主动获取监听的事件时，如果事件未生成或者日志信息未捕获完成，查询结果可能为空。此时，建议多次调用查询接口。
 
-方式二：设置回调条件triggerCondition，实现onTrigger()回调，满足回调条件自动触发回调。
-
-方式三：实现onReceive()回调，监听的事件生成后实时回调。
+方式三：实现onReceive()回调，当监听的事件发生后实时触发回调。
 
 ArkTS接口参考[hiAppEvent.addWatcher](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddwatcher)，C/C++接口参考[OH_HiAppEvent_AddWatcher()](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md#oh_hiappevent_addwatcher)。

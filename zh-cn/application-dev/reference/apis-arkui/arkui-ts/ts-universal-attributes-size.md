@@ -567,7 +567,7 @@ struct LayoutPolicyExample {
         .height(LayoutPolicy.wrapContent)
         .constraintSize({ maxWidth: 250, maxHeight: 250 })
 
-        // fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
+        // 从API version 20开始，layoutPolicy支持wrapContent和fixAtIdealSize。fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
         Text("fixAtIdealSize")
 
         Row() {
