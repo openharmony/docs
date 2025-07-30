@@ -1473,8 +1473,8 @@ try {
     console.info("query is " + query.getSqlLike());
     query.reset();
     console.info("query is " + query.getSqlLike());
-    query = null;
   }
+  query = null;
 } catch (e) {
   console.error("simply calls should be ok :" + e);
 }
@@ -1519,8 +1519,8 @@ try {
   if (query != null) {
     query.equalTo("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
-    query = null;
   }
+  query = null;
 } catch (e) {
   let error = e as BusinessError;
   console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1566,8 +1566,8 @@ try {
   if (query != null) {
     query.notEqualTo("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
-    query = null;
   }
+  query = null;
 } catch (e) {
   let error = e as BusinessError;
   console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1612,8 +1612,8 @@ try {
     if (query != null) {
       query.greaterThan("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1660,8 +1660,8 @@ try {
     if (query != null) {
       query.lessThan("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1708,8 +1708,8 @@ try {
     if (query != null) {
       query.greaterThanOrEqualTo("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1756,8 +1756,8 @@ try {
     if (query != null) {
       query.lessThanOrEqualTo("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1802,8 +1802,8 @@ try {
     if (query != null) {
       query.isNull("field");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1849,8 +1849,8 @@ try {
     if (query != null) {
       query.inNumber("field", [0, 1]);
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1896,8 +1896,8 @@ try {
     if (query != null) {
       query.inString("field", ['test1', 'test2']);
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1943,8 +1943,8 @@ try {
     if (query != null) {
       query.notInNumber("field", [0, 1]);
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -1990,8 +1990,8 @@ try {
     if (query != null) {
       query.notInString("field", ['test1', 'test2']);
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2037,8 +2037,8 @@ try {
     if (query != null) {
       query.like("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2084,8 +2084,8 @@ try {
     if (query != null) {
       query.unlike("field", "value");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2118,8 +2118,8 @@ try {
       query.and();
       query.notEqualTo("field", "value2");
       console.info("query is " + query.getSqlLike());
-      query = null;
     }
+    query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
 }
@@ -2151,8 +2151,8 @@ try {
       query.or();
       query.notEqualTo("field", "value2");
       console.info("query is " + query.getSqlLike());
-      query = null;
     }
+    query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
 }
@@ -2197,8 +2197,8 @@ try {
       query.notEqualTo("field", "value");
       query.orderByAsc("field");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2244,8 +2244,8 @@ try {
       query.notEqualTo("field", "value");
       query.orderByDesc("field");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2294,8 +2294,8 @@ try {
     query.notEqualTo("field", "value");
     query.limit(total, offset);
     console.info(`query is ${query.getSqlLike()}`);
-    query = null;
   }
+  query = null;
 } catch (e) {
   let error = e as BusinessError;
   console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2340,8 +2340,8 @@ try {
   if (query != null) {
     query.isNotNull("field");
     console.info(`query is ${query.getSqlLike()}`);
-    query = null;
   }
+  query = null;
 } catch (e) {
   let error = e as BusinessError;
   console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2374,8 +2374,8 @@ try {
       query.isNotNull("field");
       query.endGroup();
       console.info("query is " + query.getSqlLike());
-      query = null;
     }
+    query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
 }
@@ -2407,8 +2407,8 @@ try {
       query.isNotNull("field");
       query.endGroup();
       console.info("query is " + query.getSqlLike());
-      query = null;
     }
+    query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
 }
@@ -2453,8 +2453,8 @@ try {
       query.prefixKey("$.name");
       query.prefixKey("0");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2500,8 +2500,8 @@ try {
       query.setSuggestIndex("$.name");
       query.setSuggestIndex("0");
       console.info(`query is ${query.getSqlLike()}`);
-      query = null;
     }
+    query = null;
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);

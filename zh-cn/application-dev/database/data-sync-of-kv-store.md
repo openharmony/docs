@@ -204,8 +204,8 @@
        }
        console.info('Succeeded in getting KVStore.');
        kvStore = store;
-       // 请确保获取到键值数据库实例后，再进行相关数据操作
        if (kvStore !== undefined) {
+           // 请确保获取到键值数据库实例后，再进行相关数据操作
            // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
            // ...
        }

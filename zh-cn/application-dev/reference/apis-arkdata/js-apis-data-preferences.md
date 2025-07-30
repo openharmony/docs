@@ -1647,7 +1647,7 @@ dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' does not contain.");
+    console.info("The key 'startup' is not contained.");
   }
 })
 ```
