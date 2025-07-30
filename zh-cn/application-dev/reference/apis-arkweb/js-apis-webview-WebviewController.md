@@ -7213,7 +7213,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }
