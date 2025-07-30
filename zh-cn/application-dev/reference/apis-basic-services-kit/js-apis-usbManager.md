@@ -13,7 +13,8 @@ import { usbManager } from '@kit.BasicServicesKit';
 ```
 
 ## 使用说明
- 凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
+
+凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
  
 **在使用接口前：**
 
@@ -1324,6 +1325,12 @@ try {
 ## USBEndpoint
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
+
+**说明：**
+
+> 1. 主机控制器是按照Endpoint类型调度的；
+>
+> 2. 协议层打包时依赖Endpoint的传输特性。
 
 **系统能力：** SystemCapability.USB.USBManager
 

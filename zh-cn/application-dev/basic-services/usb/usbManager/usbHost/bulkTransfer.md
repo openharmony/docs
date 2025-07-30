@@ -46,14 +46,6 @@
 > **说明：** 
 >
 > 以下示例代码只是使用批量传输方式来传输数据的必要流程，需要放入具体的方法中执行。在实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
->
-> USB传输类型（Control/Bulk/Interrupt/Isochronous）由Endpoint的硬件属性决定，Bulk传输只能在配置为Bulk类型的Endpoint上进行，如果不匹配则会返回IO错误。原因如下：
->
-> 1. 主机控制器是按照Endpoint类型调度的；
->
-> 2. 协议层打包时依赖Endpoint的传输特性。
->
-> 在传输之前可以获取每个interface所属的endpoint的type，通过type对目标interface所属的endpoint是否支持对应传输类型进行监测。
 
 1. 导入模块。
 
@@ -113,7 +105,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 3,
+                   type: 3, // USB传输类型（Control/Bulk/Interrupt/Isochronous）由Endpoint的硬件属性决定，Bulk传输只能在配置为Bulk类型的Endpoint上进行，如果不匹配则会返回IO错误。
                    interfaceId: 0,
                  }
                ]
@@ -152,6 +144,12 @@
    ```
 
 5. 数据传输。
+
+**说明：**
+
+> 在传输之前可以获取每个interface所属的endpoint的type，通过type对目标interface所属的endpoint是否支持对应传输类型进行监测。
+>
+> 若调用传输接口失败，请先确认设备是否支持多个可选模式，如果支持多个可选模式，需要在传输前调用[usbManager.setInterface](#usbmanagersetinterface)正确设置可选模式，以保证端点正常通信。
 
     ```ts
     /*
