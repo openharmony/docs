@@ -1,5 +1,10 @@
 # 同步（备份恢复）关键资产(C/C++)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
 
 ## 添加依赖
 

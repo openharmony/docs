@@ -1,5 +1,11 @@
 # 删除关键资产(C/C++)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 接口介绍
 
 可通过API文档查看删除关键资产的接口[OH_Asset_Remove](../../reference/apis-asset-store-kit/capi-asset-api-h.md#oh_asset_remove)的详细介绍。
