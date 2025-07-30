@@ -128,7 +128,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
+    const halfHeight = context.size.height / 2;
     context.canvas.drawRect({
       left: this.uiContext.vp2px(halfWidth - 50 * this.scaleX),
       top: this.uiContext.vp2px(halfHeight - 50 * this.scaleY),
@@ -147,7 +147,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
+    const halfHeight = context.size.height / 2;
     context.canvas.drawRect({
       left: this.uiContext.vp2px(halfWidth - 30 * this.scaleX),
       top: this.uiContext.vp2px(halfHeight - 30 * this.scaleY),
@@ -166,7 +166,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
+    const halfHeight = context.size.height / 2;
     const radiusScale = (this.scaleX + this.scaleY) / 2;
     context.canvas.drawCircle(this.uiContext.vp2px(halfWidth), this.uiContext.vp2px(halfHeight), this.uiContext.vp2px(20 * radiusScale));
   }
@@ -192,7 +192,7 @@ class MyFrontDrawModifier extends DrawModifier {
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
+    const halfHeight = context.size.height / 2;
     const radiusScale = (this.scaleX + this.scaleY) / 2;
     context.canvas.drawCircle(this.uiContext.vp2px(halfWidth), this.uiContext.vp2px(halfHeight), this.uiContext.vp2px(20 * radiusScale));
   }
