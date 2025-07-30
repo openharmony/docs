@@ -2200,8 +2200,8 @@ struct TextAreaExample {
   }
 }
 ```
-<!--code_no_check-->
 <!--RP1-->
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { abilityManager, Configuration } from '@kit.AbilityKit';
