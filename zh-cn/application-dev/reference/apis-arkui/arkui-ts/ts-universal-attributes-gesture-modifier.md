@@ -45,11 +45,13 @@ applyGesture(event: UIGestureEvent): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数**：
 
-| 参数名            | 类型                                        | 说明                                       |
-| ------------- | ----------------------------------------  | ---------------------------------------- |
-| event        | [UIGestureEvent](./ts-uigestureevent.md#uigestureevent) |  UIGestureEvent对象，用于设置组件需要绑定的手势。      |
+| 参数名            | 类型                                       |          必填        | 说明                                       |
+| ------------- | ----------------------------------------  | ---------------------------------------- |-------------------------------- |
+| event        | [UIGestureEvent](./ts-uigestureevent.md#uigestureevent) |  是          |UIGestureEvent对象，用于设置组件需要绑定的手势。      |
 
 ## 示例
 
