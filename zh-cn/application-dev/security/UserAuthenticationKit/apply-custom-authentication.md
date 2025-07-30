@@ -1,7 +1,7 @@
 # 切换自定义认证
 
 <!--Kit: User Authentication Kit-->
-<!--Subsystem: UserIAM->
+<!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
 <!--SE: @lichangting518-->
 <!--TSE: @jane_lz-->

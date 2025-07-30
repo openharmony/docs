@@ -1,7 +1,7 @@
 # 查询用户注册凭据的状态
 
 <!--Kit: User Authentication Kit-->
-<!--Subsystem: UserIAM->
+<!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
 <!--SE: @lichangting518-->
 <!--TSE: @jane_lz-->
