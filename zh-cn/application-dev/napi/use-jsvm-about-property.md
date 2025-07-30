@@ -618,6 +618,11 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
+        if (buf == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "malloc failed");
+            return nullptr;
+        }
+        memset(buf, 0, length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
         free(buf);
@@ -630,6 +635,11 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
+        if (buf == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "malloc failed");
+            return nullptr;
+        }
+        memset(buf, 0, length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM getterCallback success:%{public}s", buf);
         free(buf);
