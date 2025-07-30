@@ -258,9 +258,9 @@ try {
     console.error('displayClass is null');
   } else {
     window.minimizeAll(displayClass.id, (err: BusinessError) => {
-      const errCode: number = err.code;
+      const errCode: number = err?.code;
       if (errCode) {
-        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to minimize all windows. Cause code: ${err?.code}, message: ${err?.message}`);
         return;
       }
       console.info('Succeeded in minimizing all windows.');
@@ -1559,9 +1559,9 @@ let token: TestRemoteObject = new TestRemoteObject('testObject');
 let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err.code;
+    let errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
     if (!data) {
@@ -1571,9 +1571,9 @@ try {
     data.bindDialogTarget(token, () => {
       console.info('Dialog Window Need Destroy.');
       }, (err: BusinessError) => {
-      let errCode: number = err.code;
+      let errCode: number = err?.code;
       if (errCode) {
-        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
         return;
       }
       console.info('Succeeded in binding dialog target.');
@@ -1656,9 +1656,9 @@ let config: window.Configuration = {
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
+    const errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
     if (!data) {
@@ -1671,7 +1671,7 @@ try {
     promise.then(() => {
       console.info('Succeeded in binding dialog target.');
     }).catch((err: BusinessError) => {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
     });
   });
 } catch (exception) {
@@ -1722,9 +1722,9 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        let errCode: number = err.code;
+        let errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
         if (!data) {
@@ -1735,16 +1735,16 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         data.bindDialogTarget(requestInfo, () => {
           console.info('Dialog Window Need Destroy.');
           }, (err: BusinessError) => {
-          let errCode: number = err.code;
+          let errCode: number = err?.code;
           if (errCode) {
-            console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
             return;
           }
           console.info('Succeeded in binding dialog target.');
         });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }
@@ -1798,9 +1798,9 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
+        const errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
         if (!data) {
@@ -1814,11 +1814,11 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         promise.then(() => {
           console.info('Succeeded in binding dialog target.');
         }).catch((err: BusinessError) => {
-          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
         });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }
