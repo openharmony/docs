@@ -1417,7 +1417,7 @@
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
         - 事件订阅<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
-          - 使用Hiappevent订阅事件<!--event-subscription-->
+          - 使用HiAppEvent订阅事件<!--event-subscription-->
             - [事件订阅简介](dfx/event-subscription-overview.md)
             - [事件订阅（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
             - [事件订阅（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
