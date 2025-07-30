@@ -1,7 +1,7 @@
 # @ohos.userIAM.userAuthIcon (嵌入式用户身份认证控件)
 
 <!--Kit: User Authentication Kit-->
-<!--Subsystem: UserIAM->
+<!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
 <!--SE: @lichangting518-->
 <!--TSE: @jane_lz-->
