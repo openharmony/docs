@@ -1,5 +1,11 @@
 # 申请使用受限权限
 
+<!--Kit: Ability Kit->
+<!--Subsystem: Security->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 受限开放的权限通常是不允许三方应用申请的。当应用在申请权限来访问必要的资源时，发现部分权限的等级比应用APL等级高，开发者可以选择通过ACL方式来解决等级不匹配的问题，从而使用受限权限。
 
 举例说明，如果应用需要使用全局悬浮窗，需要申请ohos.permission.SYSTEM_FLOAT_WINDOW权限，该权限属于system_basic等级。如果应用需要截取屏幕图像，则需要申请ohos.permission.CAPTURE_SCREEN权限，该权限属于system_core等级。此时，normal应用需要跨级别申请该权限。

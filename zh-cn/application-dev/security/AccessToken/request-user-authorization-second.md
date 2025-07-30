@@ -1,5 +1,11 @@
 # 二次向用户申请授权
 
+<!--Kit: Ability Kit->
+<!--Subsystem: Security->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 当应用通过[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)拉起弹框[请求用户授权](request-user-authorization.md)时，用户拒绝授权。应用将无法再次通过requestPermissionsFromUser()拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
 
 在“设置”应用中的路径：

@@ -1,5 +1,11 @@
 # 向用户申请单次授权
 
+<!--Kit: Ability Kit->
+<!--Subsystem: Security->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 基于授权最小化的原则，防止应用获取和滥用用户数据，针对部分应用敏感权限，在弹窗向用户申请授权时，新增“允许本次使用”的授权选项。
 
 开发者在开发应用时，无需额外配置，仍然调用requestPermissionsFromUser()[向用户申请授权](request-user-authorization.md)，系统会根据该能力[支持的权限](#支持范围)，弹出对应的弹窗。

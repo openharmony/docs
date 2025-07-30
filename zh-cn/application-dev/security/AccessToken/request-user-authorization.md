@@ -1,5 +1,11 @@
 # 向用户申请授权
 
+<!--Kit: Ability Kit->
+<!--Subsystem: Security->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 当应用需要访问用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应该向用户请求授权，这部分权限是user_grant权限。
 
 当应用申请user_grant权限时，需要完成以下步骤：
