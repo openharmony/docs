@@ -4,11 +4,7 @@
 
 ## 定位UI显示异常问题
 
-UI显示异常问题主要是通过分析UI布局信息来定位。
-
-### 分析UI布局
-
-当前分析UI布局主要通过getInspectorTree接口获取组件树信息，或者通过getRectangleById接口获取单个节点的信息。
+UI显示异常问题主要是通过分析UI布局信息来定位。当前分析UI布局主要通过getInspectorTree接口获取组件树信息，或者通过getRectangleById接口获取单个节点的信息。
 
 **组件树**
 
