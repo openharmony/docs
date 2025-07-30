@@ -1,5 +1,11 @@
 # ArkTS编程规范
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkTS-->
+<!--Owner: @yyytiancai-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ## 目标和适用范围
 
 本文参考业界标准和实践，结合ArkTS语言特点，提供编码指南，以提高代码的规范性、安全性和性能。
