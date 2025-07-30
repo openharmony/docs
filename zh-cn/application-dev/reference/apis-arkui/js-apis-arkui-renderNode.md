@@ -517,7 +517,7 @@ struct Index {
         .onClick(() => {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
-          if (child === null || nextSibling === null) {
+          if (nextSibling === null || child === null) {
             console.log('the child or nextChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
