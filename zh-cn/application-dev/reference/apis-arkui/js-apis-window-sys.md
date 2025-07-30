@@ -1652,7 +1652,7 @@ let token: TestRemoteObject = new TestRemoteObject('testObject');
 let config: window.Configuration = {
   name: "test",
   windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
+  ctx: getContext()
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
