@@ -2717,8 +2717,8 @@ struct TextInputExample {
   }
 }
 ```
-<!--code_no_check-->
 <!--RP3-->
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { abilityManager, Configuration } from '@kit.AbilityKit';
