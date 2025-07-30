@@ -54,7 +54,7 @@ static napi_value RunTest(napi_env env, napi_callback_info info)
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
-#### 示例代码
+**示例代码**
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 ```cpp
 #include "ark_runtime/jsvm.h"
@@ -156,7 +156,7 @@ void TestJSVM() {
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
-#### 代码示例
+**代码示例**
 
 对应的 enable inspector 替换为下面的即可
 ```cpp
@@ -254,7 +254,7 @@ static JSVM_CpuProfiler ProfilingBegin(JSVM_VM vm) {
     // 文件输出流，保存调优数据，/data/storage/el2/base/files为沙箱路径。以包名为com.example.helloworld为例。
     // 实际文件会保存到/data/app/el2/100/base/com.example.helloworld/files/heap-snapshot-begin.heapsnapshot。
     ofstream heapSnapshot("/data/storage/el2/base/files/heap-snapshot-begin.heapsnapshot",
-                          ios::out | ios:: binary | ios::trunc);
+                          ios::out | ios::binary | ios::trunc);
     // 执行JS前获取一次Heap Snapshot数据。
     OH_JSVM_TakeHeapSnapshot(vm, OutputStream, &heapSnapshot);
     JSVM_CpuProfiler cpuProfiler;
@@ -268,11 +268,11 @@ static void ProfilingEnd(JSVM_VM vm, JSVM_CpuProfiler cpuProfiler) {
     // 文件输出流，保存调优数据，/data/storage/el2/base/files为沙箱路径。以包名为com.example.helloworld为例。
     // 实际文件会保存到/data/app/el2/100/base/com.example.helloworld/files/cpu-profile.cpuprofile。
     ofstream cpuProfile("/data/storage/el2/base/files/cpu-profile.cpuprofile",
-                        ios::out | ios:: binary | ios::trunc);
+                        ios::out | ios::binary | ios::trunc);
     // 关闭CPU Profiler，获取数据。
     OH_JSVM_StopCpuProfiler(vm, cpuProfiler, OutputStream, &cpuProfile);
     ofstream heapSnapshot("/data/storage/el2/base/files/heap-snapshot-end.heapsnapshot",
-                              ios::out | ios:: binary | ios::trunc);
+                              ios::out | ios::binary | ios::trunc);
     // 执行JS后再获取一次Heap Snapshot数据，与执行前数据作对比，以分析内存问题或者进行内存调优。
     OH_JSVM_TakeHeapSnapshot(vm, OutputStream, &heapSnapshot);
 }
