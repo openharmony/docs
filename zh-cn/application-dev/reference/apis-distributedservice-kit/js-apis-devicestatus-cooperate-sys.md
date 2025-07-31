@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 ```
 
 ## cooperate.prepareCooperate<sup>11+</sup>
@@ -43,7 +43,7 @@ prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 示例：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.prepareCooperate((error: BusinessError) => {
     if (error) {
@@ -86,7 +86,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.prepareCooperate().then(() => {
     console.info(`Keyboard mouse crossing prepareCooperate success.`);
@@ -127,7 +127,7 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.unprepareCooperate((error: BusinessError) => {
     if (error) {
@@ -169,7 +169,7 @@ unprepareCooperate(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.unprepareCooperate().then(() => {
     console.info(`Keyboard mouse crossing unprepareCooperate success.`);
@@ -215,7 +215,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -268,7 +268,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -298,7 +298,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 | 参数名      | 类型                      | 必填 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| isUnchained | boolean                   | 是   | 是否关闭跨设备链路。 ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean                   | 是   | 是否关闭跨设备链路。 true表示关闭跨设备链路，false表示不关闭。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -314,7 +314,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.deactivateCooperate(false, (error: BusinessError) => {
     if (error) {
@@ -342,7 +342,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路。 ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是   | 是否关闭跨设备链路。 true表示关闭跨设备链路，false表示不关闭。 |
 
 **返回值：**
 
@@ -362,7 +362,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.deactivateCooperate(false).then(() => {
     console.info(`Stop Keyboard mouse crossing success.`);
@@ -391,7 +391,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 | 参数名    | 类型                         | 必填 | 说明                                                         |
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | networkId | string                       | 是   | 键鼠穿越目标设备描述符。                                     |
-| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -406,7 +406,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -441,7 +441,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -456,7 +456,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor).then((data: boolean) => {
@@ -723,7 +723,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -759,7 +759,7 @@ try {
 | 名称           | 类型            | 可读 | 可写 | 说明                           |
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
-| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
+| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的Y坐标上的位置。 |
 | displayWidth   | number         | 是   | 否   | 屏幕宽度，单位：px。                      |
 | displayHeight  | number         | 是   | 否   | 屏幕高度，单位：px。                      |
 
@@ -817,7 +817,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -839,7 +839,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.prepare((error: BusinessError) => {
     if (error) {
@@ -861,7 +861,7 @@ prepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -883,7 +883,7 @@ prepare(): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.prepare().then(() => {
     console.info(`Keyboard mouse crossing prepare success.`);
@@ -905,7 +905,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -925,7 +925,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.unprepare((error: BusinessError) => {
     if (error) {
@@ -947,7 +947,7 @@ unprepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -969,7 +969,7 @@ unprepare(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.unprepare().then(() => {
     console.info(`Keyboard mouse crossing unprepare success.`);
@@ -991,7 +991,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -999,7 +999,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。|
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 | callback             | AsyncCallback&lt;void&gt; |  是    | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
@@ -1016,7 +1016,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -1040,7 +1040,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1048,7 +1048,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 
 
@@ -1057,7 +1057,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。     |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -1072,7 +1072,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -1096,7 +1096,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1104,7 +1104,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> true表示关闭跨设备链路，false表示不关闭。 |
 | callback     | AsyncCallback&lt;void&gt; |  是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
@@ -1119,7 +1119,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
@@ -1141,7 +1141,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1149,7 +1149,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名      | 类型    | 必填 | 说明               |
 | ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是   | 是否关闭跨设备链路。<br> true表示关闭跨设备链路，false表示不关闭。 |
 
 
 
@@ -1170,7 +1170,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 try {
   cooperate.deactivate(false).then(() => {
     console.info(`Stop Keyboard mouse crossing success.`);
@@ -1192,7 +1192,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1201,7 +1201,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
 | networkId | string                       |  是    | 键鼠穿越目标设备描述符。             |
-| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -1215,7 +1215,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -1238,7 +1238,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1261,14 +1261,14 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { cooperate } from '@kit.DistributedServiceKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
@@ -1291,7 +1291,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1314,12 +1314,15 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 **示例**：
 
 ```ts
-function callback(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+import { cooperate } from '@kit.DistributedServiceKit';
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 try {
-  cooperate.on('cooperate', callback);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
 } catch (error) {
   console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -1335,7 +1338,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1359,33 +1362,36 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 ```ts
 // 取消注册单个回调函数
-function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 function callbackOff() {
   console.info(`Keyboard mouse crossing event`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callbackOn);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
   cooperate.off('cooperate', callbackOff);
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error)}`);
 }
 ```
 ```ts
 // 取消注册所有回调函数
-function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 try {
-  cooperate.on('cooperate', callbackOn);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
   cooperate.off('cooperate');
 } catch (error) {
   console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
 ```
 
 
@@ -1396,7 +1402,7 @@ try {
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[CooperateMessage](#cooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[CooperateMessage](#cooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
