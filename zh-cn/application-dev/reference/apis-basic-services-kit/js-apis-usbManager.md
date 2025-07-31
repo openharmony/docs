@@ -446,11 +446,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **说明：**
 
-> 一个USB接口（Interface）可以有多重选择模式，支持动态切换。不同模式主要区别为：接口带宽、端点配置等。
->
-> 当调用该接口时，会完成对一个指定interface的可选模式重新配置的过程。
->
-> 当进行传输时，需要所选模式所对应的端点配置支持传输类型，才会传输成功，否则会返回IO错误。
+> 一个USB接口可能存在多重选择模式，支持动态切换。使用的场景：数据传输时，通过该接口可重新设置端点，使端点与传输类型匹配。
 >
 > 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
@@ -1328,9 +1324,9 @@ try {
 
 **说明：**
 
-> 1. 主机控制器是按照Endpoint类型调度的；
+> 主机控制器按照Endpoint类型调度
 >
-> 2. 协议层打包时依赖Endpoint的传输特性。
+> 协议层打包时依赖type决定传输特性
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1342,7 +1338,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。         |
+| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype)       |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
