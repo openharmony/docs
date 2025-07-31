@@ -1,4 +1,9 @@
 # LocalStorage：页面级UI状态存储
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 
 LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage支持UIAbility实例内多个页面间状态共享。
