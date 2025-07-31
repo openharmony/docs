@@ -1,7 +1,7 @@
 # ArkTS语法适配背景
 
 <!--Kit: ArkTS-->
-<!--Subsystem: ArkTS-->
+<!--Subsystem: arkcompiler-->
 <!--Owner: @Fouckttt1-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

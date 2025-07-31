@@ -1,7 +1,7 @@
 # ArkTS编程规范
 
 <!--Kit: ArkTS-->
-<!--Subsystem: ArkTS-->
+<!--Subsystem: arkcompiler-->
 <!--Owner: @yyytiancai-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

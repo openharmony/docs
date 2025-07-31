@@ -1,7 +1,7 @@
 # 从Swift到ArkTS的迁移指导
 
 <!--Kit: ArkTS-->
-<!--Subsystem: ArkTS-->
+<!--Subsystem: arkcompiler-->
 <!--Owner: @fanglou-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

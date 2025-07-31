@@ -1,7 +1,7 @@
 # 初识ArkTS语言
 
 <!--Kit: ArkTS-->
-<!--Subsystem: ArkTS-->
+<!--Subsystem: arkcompiler-->
 <!--Owner: @liwentao_uiw-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
