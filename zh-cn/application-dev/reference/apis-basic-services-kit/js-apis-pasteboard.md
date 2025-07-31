@@ -566,15 +566,15 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListenerInfo success, progress:' + progress.progress);
                 signal.cancel();
-              }
+              };
               let params: pasteboard.GetDataParams = {
                 destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');
@@ -644,7 +644,7 @@ toPlainText(): string
 **示例：**
 
 ```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello<html>');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello</html>');
 let text: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Text: ${text}`);
 ```
@@ -3024,14 +3024,14 @@ struct PasteboardTest {
               let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
-              }
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListenerInfo success, progress:' + progress.progress);
+              };
               let params: pasteboard.GetDataParams = {
                 destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');
