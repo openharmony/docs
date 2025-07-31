@@ -1,4 +1,9 @@
 # RichText
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
+<!--TSE: @ghiker-->
 
 富文本组件，解析并显示HTML格式文本。
 
@@ -49,19 +54,28 @@ RichText(content:string &nbsp;|&nbsp; Resource)
 
 ### onStart
 
-onStart(callback: () => void)
-
-加载网页时触发。
+onStart(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名 | 类型 | 必填  | 说明 |
+| ------- | -------- | ------------- | -------- |
+|  callback | Callback\<void> | 是   | 加载网页时触发回调。 |
 
 ### onComplete
 
-onComplete(callback: () => void)
-
-网页加载结束时触发。
+onComplete(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名 | 类型 | 必填  | 说明 |
+| ------- | -------- | ------------- | -------- |
+|  callback | Callback\<void> | 是   | 网页加载结束时触发回调。 |
+
 
 ## 属性
 
