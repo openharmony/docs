@@ -83,7 +83,7 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
 
 [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess)
 
-[OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
+[OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/capi-ipc-cremote-object-h.md#oh_ipcremoteproxy_destroy)
 
 ### OH_Ability_OnNativeChildProcessExit
 
