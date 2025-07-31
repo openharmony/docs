@@ -1,4 +1,9 @@
 # 文本组件公共接口 (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 文本类组件公共接口。
 
