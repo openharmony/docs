@@ -88,7 +88,6 @@ filter.blur(10);
 struct UIEffectFilterExample {
     build(){
         Column({ space: 15 }) {
-
             Text('UIEffectFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
             Image($r('app.media.foreground'))
                 .width(100)
