@@ -166,7 +166,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。<br>-如果该参数设置为null，则会扫描周边所有可被发现的BLE设备，但是不建议使用此过滤方式，可能会扫描到非应用预期的设备，对功耗影响也较大。 |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。<br>-若该参数设置为null，将扫描所有可发现的周边BLE设备，但是不建议使用此方式，可能扫描到非预期设备，并增加功耗。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置。                     |
 
 **错误码**：
@@ -3890,7 +3890,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 扫描BLE广播的过滤条件集合，符合过滤条件的设备会被上报。<br>-如果该参数设置为null，则会扫描周边所有可被发现的BLE设备，但是不建议使用此过滤方式，可能会扫描到非应用预期的设备，对功耗影响也较大。 |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 扫描BLE广播的过滤条件集合，符合过滤条件的设备会被上报。<br>-若该参数设置为null，将扫描所有可发现的周边BLE设备，但是不建议使用此方式，可能扫描到非预期设备，并增加功耗。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 扫描的配置参数。                     |
 
 **返回值：**
