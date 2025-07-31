@@ -583,7 +583,7 @@
 
 **起始版本**：20
 
-## ohos.permission.MANAGE_PERINSTALLED_ANTIVIRUS
+## ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS
 
 允许MDM应用管理系统预装的防病毒软件。
 
@@ -594,7 +594,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：Phone | 2in1 | Tablet
 
 **起始版本**：20
 
