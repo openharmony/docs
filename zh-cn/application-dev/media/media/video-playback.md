@@ -1,4 +1,9 @@
 # 使用AVPlayer播放视频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 
 当前提供两种视频播放开发的方案：
 
