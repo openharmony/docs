@@ -2799,10 +2799,7 @@ APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函�
 
     let fenceRequest:geoLocationManager.BeaconFenceRequest = {
       beacon: beacon,
-      transitionCallback: (err : BusinessError, transition : geoLocationManager.GeofenceTransition) => {
-        if (err) {
-          console.error("transitionCallback: err" + JSON.stringify(err));
-        }
+      transitionCallback: (transition : geoLocationManager.GeofenceTransition) => {
         if (transition) {
           console.info("GeofenceTransition: err" + JSON.stringify(transition));
         }
