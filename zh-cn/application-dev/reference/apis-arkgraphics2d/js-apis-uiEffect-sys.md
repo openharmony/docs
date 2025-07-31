@@ -1150,6 +1150,7 @@ static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstR
 ```ts
 import { image } from "@kit.ImageKit";
 import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+import { BusinessError } from '@kit.BasicServicesKit'
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -1180,6 +1181,9 @@ image.createPixelMap(color, opts).then((pixelMap) => {
     alpha: 1
   }
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
+})
+  .catch((error: BusinessError)=>{
+    console.error('Failed to create pixelmap. code is ${error.code}, message is ${error.message}');
 })
 ```
 ### createRadialGradientMask<sup>20+</sup>
