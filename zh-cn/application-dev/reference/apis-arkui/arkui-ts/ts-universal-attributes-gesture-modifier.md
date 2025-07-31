@@ -53,6 +53,8 @@ applyGesture(event: UIGestureEvent): void
 
 ## 示例
 
+### 示例1（动态绑定手势）
+
 该示例通过gestureModifier动态设置组件绑定的手势。
 
 ```ts
@@ -66,14 +68,14 @@ class MyButtonModifier implements GestureModifier {
         new TapGestureHandler({ count: 2, fingers: 1 })
           .tag("aaa")
           .onAction((event: GestureEvent) => {
-            console.log("button tap ")
+            console.info("button tap ")
           })
       )
     } else {
       event.addGesture(
         new PanGestureHandler()
           .onActionStart(()=>{
-            console.log("Pan start");
+            console.info("Pan start");
           })
       )
     }
@@ -98,6 +100,74 @@ struct Index {
             this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
           })
           .margin({top: 10})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 示例2（动态绑定手势组）
+
+该示例通过gestureModifier动态设置组件绑定的手势组。
+
+```ts
+class MyButtonModifier implements GestureModifier {
+  isExclusive: boolean = true;
+
+  applyGesture(event: UIGestureEvent): void {
+    if (this.isExclusive) {
+      // 绑定互斥手势组
+      event.addGesture(new GestureGroupHandler({
+        mode: GestureMode.Exclusive,
+        gestures: [new TapGestureHandler({ count: 2, fingers: 1 }).onAction((event) => {
+          console.info('ExclusiveGroupGesture TapGesture is called');
+        }), new LongPressGestureHandler({ repeat: true, fingers: 1 }).onAction((event) => {
+          console.info('ExclusiveGroupGesture LongPressGesture is called');
+        }), new PanGestureHandler({ fingers: 1 }).onActionStart((event) => {
+          console.info('ExclusiveGroupGesture PanGesture onActionStart is called');
+        }).onActionEnd((event) => {
+          console.info('ExclusiveGroupGesture PanGesture onActionEnd is called');
+        })]
+      }))
+    } else {
+      // 绑定并行手势组
+      event.addGesture(new GestureGroupHandler({
+        mode: GestureMode.Parallel,
+        gestures: [new TapGestureHandler({ count: 2, fingers: 1 }).onAction((event) => {
+          console.info('ParallelGroupGesture TapGesture is called');
+        }), new LongPressGestureHandler({ repeat: true, fingers: 1 }).onAction((event) => {
+          console.info('ParallelGroupGesture LongPressGesture is called');
+        }), new PanGestureHandler({ fingers: 1 }).onActionStart((event) => {
+          console.info('ParallelGroupGesture PanGesture onActionStart is called');
+        }).onActionEnd((event) => {
+          console.info('ParallelGroupGesture PanGesture onActionEnd is called');
+        })]
+      }))
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Column()
+          .gestureModifier(this.modifier)
+          .width(500)
+          .height(500)
+          .backgroundColor(Color.Blue)
+
+        Button('changeGestureGroupType')
+          .onClick(() => {
+            this.modifier.isExclusive = !this.modifier.isExclusive;
+          })
+          .margin({ top: 10 })
       }
       .width('100%')
     }

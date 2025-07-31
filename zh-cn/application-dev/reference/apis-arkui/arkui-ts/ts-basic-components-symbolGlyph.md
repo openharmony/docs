@@ -583,14 +583,14 @@ struct Index {
           Text("整体缩放动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(1)
+            .effectStrategy(SymbolEffectStrategy.SCALE)
         }
 
         Column() {
           Text("层级动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(2)
+            .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
         }
       }
     }

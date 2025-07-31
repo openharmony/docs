@@ -6,7 +6,15 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 ## 接口说明
 
-备份恢复扩展能力API的接口使用指导请参见[BackupExtensionAbility API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)和[BackupExtensionContext API参考](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)。
+备份恢复扩展能力关键接口如下表所示。API的接口使用指导请参见[BackupExtensionAbility API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)和[BackupExtensionContext API参考](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)。
+
+| 接口名                                                       | 描述             |
+| ------------------------------------------------------------ | ---------------- |
+| onBackup(): void | 数据备份准备阶段，迁移备份数据前回调。 |
+| onBackupEx(backupInfo: string): string \| Promise&lt;string&gt; | 数据备份准备阶段，迁移备份数据前回调，支持传递备份信息和返回备份结果。     |
+| onRestore(bundleVersion: BundleVersion): void | 数据恢复阶段，备份数据迁移完成后回调。 |
+| onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string \| Promise&lt;string&gt; | 数据恢复阶段，备份数据迁移完成后回调，支持传递恢复信息和返回恢复结果。 |
+| onRelease(scenario: number): Promise&lt;void&gt; | 备份或恢复完成时的特殊处理，备份或恢复完成时回调。<br>**说明**：从API version 20开始支持该接口。 |
 
 ## 约束与限制
 
@@ -126,7 +134,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     }
     ```
 
-4. 开发者如需在应用备份恢复完成后执行一些特殊操作，例如清理备份或恢复时应用创建的临时文件，可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onRelease`方法，当备份或恢复完成时，会执行`onRelease`方法以执行开发者自定义的行为。
+4. 从API 20开始，开发者如需在应用备份恢复完成后执行一些特殊操作，例如清理备份或恢复时应用创建的临时文件，可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onRelease`方法，当备份或恢复完成时，会执行`onRelease`方法以执行开发者自定义的行为。
 
    `onRelease`具有超时机制，应用若在5秒内未完成`onRelease`操作，将触发备份恢复结束时的应用进程退出流程。
 

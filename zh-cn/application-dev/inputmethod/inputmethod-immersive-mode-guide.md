@@ -34,7 +34,7 @@
    - 如果输入法应用收到前台应用期望的沉浸模式为IMMERSIVE，建议输入法应用根据当前系统所处颜色模式，将最终沉浸模式设置为浅色沉浸模式（LIGHT_IMMERSIVE）或深色沉浸模式（DARK_IMMERSIVE）。
 
 
-   设置沉浸模式，示例代码如下。
+   设置沉浸模式，示例代码如下。setImmersiveMode接口需使用[createPanel](../reference/apis-ime-kit/js-apis-inputmethodengine.md#createpanel10)获取到Panel实例后，通过实例调用。
    ```ts
    panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
    ```

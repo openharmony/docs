@@ -646,7 +646,7 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 
 ## SwitchType<sup>12+</sup>
 
-表示全局开关类型。
+表示全局开关类型的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

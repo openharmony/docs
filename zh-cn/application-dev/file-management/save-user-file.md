@@ -11,7 +11,7 @@
 **系统隔离说明**
 
 - 通过Picker保存的文件存储在用户指定的目录。此类文件与图库管理的资源隔离，无法在图库中看到。
-- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
+- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件保存媒体库资源)。
 
 ## 保存图片或视频类文件
 
@@ -37,6 +37,8 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选）。 默认为空。
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
+   //指定保存的文件或者目录的URI（可选）。
+   documentSaveOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀（做大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```

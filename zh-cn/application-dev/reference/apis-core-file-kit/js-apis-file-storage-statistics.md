@@ -309,4 +309,4 @@ try {
 | --------- | ------ | --- | -------------- |
 | appSize   | number | 是 | 应用安装文件大小（单位为Byte）。    |
 | cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）。   |
-| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte）。 |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件）（单位为Byte）。 |

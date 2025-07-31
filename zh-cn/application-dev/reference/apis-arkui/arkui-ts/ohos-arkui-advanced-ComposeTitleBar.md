@@ -144,7 +144,7 @@ struct Index {
 ![zh-cn_image_composetitlebar_example01](figures/zh-cn_image_composetitlebar_example01.png)
 
 ### 示例2（右侧自定义按钮播报）
-该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
@@ -238,7 +238,7 @@ struct Index {
 
 ### 示例3（设置Symbol类型图标）
 
-该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';

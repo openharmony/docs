@@ -35,12 +35,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。/ |
-| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式/ |
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。/ |
-| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。/ |
-| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。/ |
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。/ |
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。 |
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式。 |
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。 |
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。 |
+| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。 |
 | [OH_Drawing_PlaceholderVerticalAlignment](#oh_drawing_placeholderverticalalignment) | OH_Drawing_PlaceholderVerticalAlignment | 占位符垂直对齐枚举。 |
 | [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle) | OH_Drawing_TextDecorationStyle | 文本装饰样式枚举。 |
 | [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal) | OH_Drawing_EllipsisModal | 省略号样式枚举。 |
@@ -3773,7 +3773,7 @@ void OH_Drawing_TypographyHandlerAddSymbol(OH_Drawing_TypographyCreate* handler,
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TypographyCreate](capi-drawing-oh-drawing-typographycreate.md)* handler | 指向[OH_Drawing_TypographyCreate](capi-drawing-oh-drawing-typographycreate.md)对象的指针，由[OH_Drawing_CreateTypographyHandler](capi-drawing-text-typography-h.md#oh_drawing_createtypographyhandler)获取。 |
-| uint32_t symbol | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。<br>https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.j |
+| uint32_t symbol | 设置的symbol码位值，详见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)列表视图下的unicode值。 |
 
 ### OH_Drawing_TextStyleAddFontFeature()
 

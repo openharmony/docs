@@ -10,7 +10,9 @@
 > 
 > 当前不支持在预览器中使用BuilderNode。
 > 
-> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)装饰器。
+> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器。不支持使用[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)装饰器来跨越BuilderNode同步外界的数据和状态。
+>
+> 如果BuilderNode的子节点是自定义组件，不支持该自定义组件使用[@Reusable](../../ui/state-management/arkts-reusable.md)装饰器，详细内容参见[BuilderNode在子自定义组件中使用@Reusable装饰器](../../ui/arkts-user-defined-arktsNode-builderNode.md#buildernode在子自定义组件中使用reusable装饰器)。
 > 
 > 从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 > 
@@ -40,9 +42,9 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 >
 > RENDER_TYPE_TEXTURE类型目前仅在[BuilderNode](#buildernode-1)持有组件树的根节点为自定义组件时以及[XComponentNode](./js-apis-arkui-xcomponentNode.md)中设置生效。
 >
-> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不含全屏播放能力）、Web、XComponent。
+> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：[Badge](arkui-ts/ts-container-badge.md)、[Blank](arkui-ts/ts-basic-components-blank.md)、[Button](arkui-ts/ts-basic-components-button.md)、[CanvasGradient](arkui-ts/ts-components-canvas-canvasgradient.md)、[CanvasPattern](arkui-ts/ts-components-canvas-canvaspattern.md)、[CanvasRenderingContext2D](arkui-ts/ts-canvasrenderingcontext2d.md)、[Canvas](arkui-ts/ts-components-canvas-canvas.md)、[CheckboxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)、[Checkbox](arkui-ts/ts-basic-components-checkbox.md)、[Circle](arkui-ts/ts-drawing-components-circle.md)、[ColumnSplit](arkui-ts/ts-container-columnsplit.md)、[Column](arkui-ts/ts-container-column.md)、[ContainerSpan](arkui-ts/ts-basic-components-containerspan.md)、[Counter](arkui-ts/ts-container-counter.md)、[DataPanel](arkui-ts/ts-basic-components-datapanel.md)、[Divider](arkui-ts/ts-basic-components-divider.md)、[Ellipse](arkui-ts/ts-drawing-components-ellipse.md)、[Flex](arkui-ts/ts-container-flex.md)、[Gauge](arkui-ts/ts-basic-components-gauge.md)、[Hyperlink](arkui-ts/ts-container-hyperlink.md)、[ImageBitmap](arkui-ts/ts-components-canvas-imagebitmap.md)、[ImageData](arkui-ts/ts-components-canvas-imagedata.md)、[Image](arkui-ts/ts-basic-components-image.md)、[Line](arkui-ts/ts-drawing-components-line.md)、[LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)、[Marquee](arkui-ts/ts-basic-components-marquee.md)、[Matrix2D](arkui-ts/ts-components-canvas-matrix2d.md)、[OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)、[OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)、[Path2D](arkui-ts/ts-components-canvas-path2d.md)、[Path](arkui-ts/ts-drawing-components-path.md)、[PatternLock](arkui-ts/ts-basic-components-patternlock.md)、[Polygon](arkui-ts/ts-drawing-components-polygon.md)、[Polyline](arkui-ts/ts-drawing-components-polyline.md)、[Progress](arkui-ts/ts-basic-components-progress.md)、[QRCode](arkui-ts/ts-basic-components-qrcode.md)、[Radio](arkui-ts/ts-basic-components-radio.md)、[Rating](arkui-ts/ts-basic-components-rating.md)、[Rect](arkui-ts/ts-drawing-components-rect.md)、[RelativeContainer](arkui-ts/ts-container-relativecontainer.md)、[RowSplit](arkui-ts/ts-container-rowsplit.md)、[Row](arkui-ts/ts-container-row.md)、[Shape](arkui-ts/ts-drawing-components-shape.md)、[Slider](arkui-ts/ts-basic-components-slider.md)、[Span](arkui-ts/ts-basic-components-span.md)、[Stack](arkui-ts/ts-container-stack.md)、[TextArea](arkui-ts/ts-basic-components-textarea.md)、[TextClock](arkui-ts/ts-basic-components-textclock.md)、[TextInput](arkui-ts/ts-basic-components-textinput.md)、[TextTimer](arkui-ts/ts-basic-components-texttimer.md)、[Text](arkui-ts/ts-basic-components-text.md)、[Toggle](arkui-ts/ts-basic-components-toggle.md)、[Video](arkui-ts/ts-media-components-video.md)（不含全屏播放能力）、[Web](../apis-arkweb/arkts-basic-components-web.md)、[XComponent](arkui-ts/ts-basic-components-xcomponent.md)。
 >
-> 从API version 12开始，新增以下组件支持纹理导出：DatePicker、ForEach、Grid、IfElse、LazyForEach、List、Scroll、Swiper、TimePicker、@Component修饰的自定义组件、NodeContainer以及NodeContainer下挂载的FrameNode和RenderNode。
+> 从API version 12开始，新增以下组件支持纹理导出：[DatePicker](arkui-ts/ts-basic-components-datepicker.md)、[ForEach](arkui-ts/ts-rendering-control-foreach.md)、[Grid](arkui-ts/ts-container-grid.md)、[IfElse](../../ui/state-management/arkts-rendering-control-ifelse.md)、[LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)、[List](arkui-ts/ts-container-list.md)、[Scroll](arkui-ts/ts-container-scroll.md)、[Swiper](arkui-ts/ts-container-swiper.md)、[TimePicker](arkui-ts/ts-basic-components-timepicker.md)、[@Component](../../ui/state-management/arkts-create-custom-components.md#component)修饰的自定义组件、[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)以及[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)下挂载的[FrameNode](./js-apis-arkui-frameNode.md)和[RenderNode](./js-apis-arkui-renderNode.md)。
 >
 > 使用方式可参考[同层渲染绘制](../../web/web-same-layer.md)。
 
@@ -56,9 +58,9 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
-| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
-| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage-oh-nativeimage.md)。 |
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。<br/>默认值：{ width: 0, height: 0 } |
+| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。<br/>默认值：NodeRenderType.RENDER_TYPE_DISPLAY |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage-oh-nativeimage.md)。<br/>surfaceId仅当type为NodeRenderType.RENDER_TYPE_TEXTURE时生效。<br/>默认值："" |
 
 ## BuilderNode
 
@@ -100,8 +102,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 > @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
 >
 > 最外层的@Builder只支持一个入参。
+>
+> build的参数是值传递，需要使用[update](#update)接口进行更新。
 > 
 > 需要操作BuilderNode中的对象时，需要保证其引用不被回收。当BuilderNode对象被虚拟机回收之后，它的FrameNode、RenderNode对象也会与后端节点解引用。即从BuilderNode中获取的FrameNode对象不对应任何一个节点。
+>
+> BuilderNode对象会持有实体节点的引用。如果不需要使用BuilderNode前端对象管理后端节点，可以调用[dispose](#dispose12)接口，实现前后端对象的解绑。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -112,7 +118,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
-| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
+| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。<br/>默认值：undefined |
 
 ### build<sup>12+</sup>
 
@@ -137,7 +143,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。   |
 | arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
-| options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
+| options | [BuildOptions](#buildoptions12)                                           | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
 **示例：**
 ```ts
@@ -613,7 +619,7 @@ function ButtonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            console.log("TapGesture");
+            console.info("TapGesture");
           })
       )
   }
@@ -649,7 +655,7 @@ class MyNodeController extends NodeController {
       }
     }
     let result = this.rootNode.postTouchEvent(event);
-    console.log("result " + result);
+    console.info("result " + result);
     return result;
   }
 }
@@ -709,11 +715,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error('aboutToAppear');
+    console.info('aboutToAppear');
   }
 
   aboutToDisappear() {
-    console.error('aboutToDisappear');
+    console.info('aboutToDisappear');
   }
 }
 
@@ -795,7 +801,7 @@ reuse(param?: Object): void
 recycle(): void
 
 - 触发BuilderNode中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
-- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
+- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[BuilderNode调用reuse和recycle接口实现节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#buildernode调用reuse和recycle接口实现节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -877,7 +883,7 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -886,7 +892,7 @@ struct ReusableChildComponent {
   }
 
   aboutToReuse(params: object): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -908,11 +914,11 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -930,11 +936,11 @@ struct ReusableChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -1092,10 +1098,10 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        console.log('onMemoryLevel');
+        console.info('onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        console.info('onConfigurationUpdated ' + JSON.stringify(config));
         this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     };
@@ -1251,7 +1257,7 @@ function ButtonBuilder(params: Params) {
           message: 'onMouse',
           duration: 3000
         });
-        console.log('onMouse')
+        console.info('onMouse')
       })
   }
   .width(500)
@@ -1344,7 +1350,7 @@ function ButtonBuilder(params: Params) {
           message: 'onTouch',
           duration: 3000
         });
-        console.log('onTouch')
+        console.info('onTouch')
       })
   }
   .width(500)
@@ -1448,7 +1454,7 @@ function ButtonBuilder(params: Params) {
           message: 'onAxisEvent',
           duration: 3000
         });
-        console.log('onAxisEvent')
+        console.info('onAxisEvent')
       })
   }
   .width(500)
@@ -1600,11 +1606,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error('aboutToAppear');
+    console.info('aboutToAppear');
   }
 
   aboutToDisappear() {
-    console.error('aboutToDisappear');
+    console.info('aboutToDisappear');
   }
 }
 

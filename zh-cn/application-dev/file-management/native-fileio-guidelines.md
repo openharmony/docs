@@ -14,7 +14,7 @@ FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc
 
 ## 接口说明
 
-接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/_file_i_o.md)。
+接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/capi-oh-fileio-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

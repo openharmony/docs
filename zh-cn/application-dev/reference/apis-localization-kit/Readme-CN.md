@@ -15,18 +15,22 @@
     - [SendableResource](js-apis-sendableResource.md)
 - C API<!--localization-c-->
   - 模块<!--localization-module-->
-    - [Rawfile](rawfile.md)
-    - [Resourcemanager](resourcemanager.md)
+    - [rawfile](capi-rawfile.md)
+    - [resourcemanager](capi-resourcemanager.md)
   - 头文件<!--localization-headerfile-->
-    - [raw_dir.h](raw__dir_8h.md)
-    - [raw_file_manager.h](raw__file__manager_8h.md)
-    - [raw_file.h](raw__file_8h.md)
-    - [ohresmgr.h](ohresmgr_8h.md)
-    - [resmgr_common.h](resmgr__common_8h.md)
+    - [ohresmgr.h](capi-ohresmgr-h.md)
+    - [raw_dir.h](capi-raw-dir-h.md)
+    - [raw_file.h](capi-raw-file-h.md)
+    - [raw_file_manager.h](capi-raw-file-manager-h.md)
+    - [resmgr_common.h](capi-resmgr-common-h.md)
   - 结构体<!--localization-struct-->
-    - [RawFileDescriptor](_raw_file_descriptor.md)
-    - [RawFileDescriptor64](_raw_file_descriptor64.md)
-    - [ResourceManager_Configuration](_resource_manager___configuration.md)
+    - [RawDir](capi-rawfile-rawdir.md)
+    - [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md)
+    - [RawFileDescriptor64](capi-rawfile-rawfiledescriptor64.md)
+    - [RawFile](capi-rawfile-rawfile.md)
+    - [RawFile64](capi-rawfile-rawfile64.md)
+    - [NativeResourceManager](capi-rawfile-nativeresourcemanager.md)
+    - [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md)
 - 错误码<!--localization-arkts-errcode-->
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)

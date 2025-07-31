@@ -138,7 +138,7 @@ struct PopupExample {
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
-          placementOnTop: true,
+          placement: Placement.Top,
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {

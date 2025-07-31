@@ -68,7 +68,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 >
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头，否则会返回-1错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回-1错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -157,13 +157,15 @@ let options: zlib.Options = {
 try {
   zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`compressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`compressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`compressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -242,7 +244,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -284,13 +286,15 @@ let options: zlib.Options = {
 try {
   zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`decompressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`decompressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -304,7 +308,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -370,7 +374,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -408,6 +412,8 @@ try {
   zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
     if (errData !== null) {
       console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
@@ -2558,7 +2564,7 @@ async function demo() {
           break;
         }
         console.info('have =  last = ', have, last)
-        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+        if (last != 31 || NEXT2() != 139 ) {
           ret = first ? -3 : -1;
           console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
           break;

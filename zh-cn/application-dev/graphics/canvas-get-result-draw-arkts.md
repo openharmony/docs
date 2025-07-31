@@ -90,7 +90,7 @@ struct RenderTest {
 
 2. 添加自定义[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)。
 
-3. 在MyNodeController的aboutToAppear()函数中创建PixeMap。
+3. 在MyNodeController的aboutToAppear()函数中创建PixelMap。
 
 4. 重写自定义RenderNode的[draw()](../reference//apis-arkui/js-apis-arkui-renderNode.md#draw)函数，在其中获取离屏Canvas进行绘制：
 
@@ -144,7 +144,7 @@ export class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   myRenderNode = new MyRenderNode();
 
-  // 3. 在MyNodeController的aboutToAppear中创建PixeMap
+  // 3. 在MyNodeController的aboutToAppear中创建PixelMap
   aboutToAppear(): void {
     let task = new taskpool.Task(CreatePixelMapAsync);
     taskpool.execute(task).then((pixel:Object)=>{

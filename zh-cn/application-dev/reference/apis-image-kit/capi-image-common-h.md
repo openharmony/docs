@@ -201,8 +201,6 @@
 | static const char* OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL = "YInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。<br>**起始版本：** 13 |
 | static const char* OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth" | 水印裁剪图的宽。<br>**起始版本：** 13 |
 | static const char* OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight" | 水印裁剪图的高。<br>**起始版本：** 13 |
-| static const char* IMAGE_PROPERTY_GIF_DELAY_TIME = "GifDelayTime" | GIF图片的每帧播放时长（单位为毫秒）。<br>**起始版本：** 20 |
-| static const char* IMAGE_PROPERTY_GIF_DISPOSAL_TYPE = "GifDisposalType" | GIF图片每帧的帧过渡模式。<br>**起始版本：** 20 |
 
 ## 枚举类型说明
 
@@ -265,7 +263,6 @@ enum Image_MetadataType
 | -- | -- |
 | EXIF_METADATA = 1 | EXIF元数据。 |
 | FRAGMENT_METADATA = 2 | 水印裁剪图元数据。 |
-| GIF_METADATA = 5 | GIF图片元数据。<br>**起始版本：** 20 |
 
 ### IMAGE_ALLOCATOR_MODE
 

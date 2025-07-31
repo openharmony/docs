@@ -154,6 +154,8 @@ getFont(): Font
 
 **示例：**
 
+完整示例请参考[Font](#font)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getFont();
@@ -176,10 +178,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentUtils();
-```
+完整示例请参考[getComponentUtils](js-apis-arkui-componentUtils.md)中的示例。
 
 ### getUIInspector
 
@@ -203,6 +202,7 @@ getUIInspector(): UIInspector
 ```ts
 uiContext.getUIInspector();
 ```
+完整示例请参考[UIInspector](#uiinspector)中的示例。
 
 ### getUIObserver<sup>11+</sup>
 
@@ -244,6 +244,8 @@ getMediaQuery(): MediaQuery
 | [MediaQuery](#mediaquery) | 返回MediaQuery实例对象。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts
@@ -290,6 +292,8 @@ getPromptAction(): PromptAction
 | [PromptAction](#promptaction) | 返回PromptAction实例对象。 |
 
 **示例：**
+
+完整示例请参考[PromptAction](#promptaction)中的示例。
 
 <!--code_no_check-->
 ```ts
@@ -900,25 +904,53 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1");
-uiContext.showDatePickerDialog({
-  start: new Date("2000-1-1"),
-  end: new Date("2100-12-31"),
-  selected: selectedDate,
-  onAccept: (value: DatePickerResult) => {
-    // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
-  },
-  onCancel: () => {
-    console.info("DatePickerDialog:onCancel()");
-  },
-  onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            },
+            onCancel: () => {
+              console.info("DatePickerDialog:onCancel()");
+            },
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()");
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()");
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()");
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()");
+            }
+          })
+        })
+    }.width('100%')
   }
-});
+}
 ```
 
 ### showTimePickerDialog
@@ -1211,7 +1243,17 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 | -------- | ---------- | ---- | ---- |
 | value | [KeyboardAvoidMode](#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
+>  **说明：**
+>
+>  KeyboardAvoidMode.RESIZE模式会压缩页面大小，页面中设置百分比宽高的组件会跟随页面压缩，而直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode的RESIZE模式时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
+>
+>  KeyboardAvoidMode.NONE模式配置页面不避让键盘，页面会被抬起的键盘遮盖。
+>
+>  setKeyboardAvoidMode针对页面生效，对于弹窗类组件不生效，比如Dialog、Popup、Menu、BindSheet、BindContentCover、Toast、OverlayManager。弹窗类组件的避让模式可以参考[CustomDialogControllerOptions对象说明](./arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)。
+
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -1251,6 +1293,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 | [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -1329,10 +1373,7 @@ getDragController(): DragController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getDragController();
-```
+完整示例请参考[DragController](#dragcontroller11)中的示例。
 
 ### keyframeAnimateTo<sup>11+</sup>
 
@@ -1369,10 +1410,7 @@ getFocusController(): FocusController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getFocusController();
-```
+完整示例请参考[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)中的示例。
 
 ### getFilteredInspectorTree<sup>12+</sup>
 
@@ -1528,12 +1566,15 @@ struct ComponentPage {
       Button('getFilteredInspectorTreeById').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         try {
-          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1);
-          console.log(`result1: ${inspectorStr}`);
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          console.info(`result1: ${inspectorStr}`);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.log(`result2: ${inspectorStr}`);
+          console.info(`result2: ${inspectorStr}`);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result3: ${inspectorStr}`);
         } catch(e) {
-          console.log(`getFilteredInspectorTreeById error: ${e}`);
+          console.info(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
     }
@@ -1545,10 +1586,11 @@ struct ComponentPage {
 返回的JSON字符串结构如下：
 <!--code_no_check-->
 ```ts
-result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}]}
-result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+result3: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
 ```
-若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。
+若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。通过result2和result3的结果对比可知，如果filters参数由["id", "src"]改为["src"]，获取到的\$attrs属性将缺少"id"这一key。
 
 
 ### getCursorController<sup>12+</sup>
@@ -1569,10 +1611,7 @@ getCursorController(): CursorController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.CursorController();
-```
+完整示例请参考[CursorController](#cursorcontroller12)中的示例。
 
 ### getContextMenuController<sup>12+</sup>
 
@@ -1615,6 +1654,8 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+完整示例请参考[MeasureUtils](#measureutils12)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
@@ -1640,10 +1681,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentSnapshot();
-```
+完整示例请参考[ComponentSnapshot](#componentsnapshot12)中的示例。
 
 ### vp2px<sup>12+</sup>
 
@@ -1657,7 +1695,7 @@ vp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1694,7 +1732,7 @@ px2vp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1733,7 +1771,7 @@ fp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1772,7 +1810,7 @@ px2fp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1807,7 +1845,7 @@ lpx2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1842,7 +1880,7 @@ px2lpx(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1953,9 +1991,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -2004,8 +2041,7 @@ struct Index {
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
-          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window heightBP: ${heightBp}`);
         })
       }
       .width('100%')
@@ -3032,6 +3068,8 @@ registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
 
+该接口为异步接口，不支持并发调用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -3046,13 +3084,32 @@ registerFont(options: font.FontOptions): void
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font:Font = uiContext.getFont();
-font.registerFont({
-  familyName: 'medium',
-  familySrc: '/font/medium.ttf'
-});
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+
+  aboutToAppear() {
+    this.font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
+    })
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
+    }.width('100%')
+  }
+}
 ```
 ### getSystemFontList
 
@@ -3078,11 +3135,27 @@ getSystemFontList(): Array\<string>
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getSystemFontList();
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontList: Array<string> = new Array<string>();
+
+  build() {
+    Column() {
+      Button("getSystemFontList")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontList = this.font.getSystemFontList();
+          console.log('getSystemFontList', JSON.stringify(this.fontList))
+        })
+    }.width('100%')
+  }
 }
 ```
 
@@ -3112,11 +3185,36 @@ getFontByName(fontName: string): font.FontInfo
 
 <!--code_no_check-->
 ```ts
-import { Font } from '@kit.ArkUI';
+// xxx.ets
+import { Font, font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getFontByName('Sans Italic');
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontInfo: font.FontInfo = this.font.getFontByName('')
+
+  build() {
+    Column() {
+      Button("getFontByName")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontInfo = this.font.getFontByName('HarmonyOS Sans Italic');
+          console.info("getFontByName(): path = " + this.fontInfo.path);
+          console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.info("getFontByName(): Family = " + this.fontInfo.family);
+          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): weight = " + this.fontInfo.weight);
+          console.info("getFontByName(): width = " + this.fontInfo.width);
+          console.info("getFontByName(): italic = " + this.fontInfo.italic);
+          console.info("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.info("getFontByName(): symbolic = " + this.fontInfo.symbolic);
+        })
+    }.width('100%')
+  }
 }
 ```
 
@@ -3145,6 +3243,10 @@ type Context = common.Context
 getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
+
+> **说明：**
+>
+> 该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3214,10 +3316,44 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 <!--code_no_check-->
 ```ts
-import { UIInspector } from '@kit.ArkUI';
+import { inspector, UIInspector } from '@kit.ArkUI'
 
-let inspector: UIInspector = uiContext.getUIInspector();
-let listener = inspector.createComponentObserver('COMPONENT_ID');
+@Entry
+@Component
+struct UIInspectorExample {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Text("UIInspector")
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('TEXT_ID')
+        }.width(80).width(80)
+      }.width(80).width(80)
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+
+  uiInspector: UIInspector = this.getUIContext().getUIInspector();
+  listener:inspector.ComponentObserver = this.uiInspector.createComponentObserver("TEXT_ID")
+
+  aboutToAppear() {
+    let onLayoutComplete:()=>void=():void=>{
+      console.info("TEXT_ID layout complete")
+    }
+    let onDrawComplete:()=>void=():void=>{
+      console.info("TEXT_ID draw complete")
+    }
+
+    this.listener.on('layout', onLayoutComplete)
+    this.listener.on('draw', onDrawComplete)
+
+    // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
+    // this.listener.off('layout', onLayoutComplete)
+    // this.listener.off('draw', onDrawComplete)
+  }
+}
 ```
 
 ## PageInfo<sup>12+</sup>
@@ -3695,6 +3831,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -3723,6 +3862,9 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -4199,13 +4341,83 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+// 定义监听回调函数
+function willClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example willClickCallback GestureEvent is called');
+}
 
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
+function willClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example willClickCallback ClickEvent is called');
+}
+
+function didClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example didClickCallback GestureEvent is called');
+}
+
+function didClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example didClickCallback ClickEvent is called');
+}
+
+@Entry
+@Component
+struct ClickExample {
+  @State clickCount: number = 0;
+  @State tapGestureCount: number = 0;
+
+  aboutToAppear(): void {
+    // 添加监听
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('willClick', willClickGestureCallback);
+    observer.on('willClick', willClickCallback);
+    observer.on('didClick', didClickGestureCallback);
+    observer.on('didClick', didClickCallback);
+  }
+
+  aboutToDisappear(): void {
+    // 取消监听
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('willClick', willClickGestureCallback);
+    observer.off('willClick', willClickCallback);
+    // 如果不选择回调，则会取消所有监听的回调
+    observer.off('didClick');
+  }
+
+  build() {
+    Column() {
+      /**
+       * onClick和TapGesture在后端的处理是一致的
+       * 所以无论是触发onClick还是触发TapGesture
+       * on('willClick')两种类型入参的回调（GestureEvent和ClickEvent）都会被触发
+       * 同理，on('didClick')的两种回调也会被触发
+       */
+      Column() {
+        Text('Click Count: ' + this.clickCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .onClick((event: ClickEvent) => {
+        this.clickCount++;
+        console.info('Example Click event is called');
+      })
+
+      Column() {
+        Text('TapGesture Count: ' + this.tapGestureCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .gesture(TapGesture({ count: 2 }).onAction((event: TapGestureEvent) => {
+        this.tapGestureCount++;
+        console.info('Example Click event is called');
+      }))
+    }
+  }
+}
 ```
 
 ### off('willClick')<sup>12+</sup>
@@ -4227,15 +4439,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('didClick')<sup>12+</sup>
 
@@ -4256,15 +4460,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4285,15 +4481,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('willClick')<sup>12+</sup>
 
@@ -4314,15 +4502,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('willClick')<sup>12+</sup>
 
@@ -4343,15 +4523,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('didClick')<sup>12+</sup>
 
@@ -4372,15 +4544,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4401,15 +4565,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('tabContentUpdate')<sup>12+</sup>
 
@@ -4724,15 +4880,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('beforePanStart', callback);
-```
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ### on('afterPanStart')<sup>19+</sup>
 
@@ -5142,6 +5290,8 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 | [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts
@@ -6428,8 +6578,12 @@ back(options?: router.RouterOptions ): void
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -6453,15 +6607,23 @@ back(index: number, params?: Object): void
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
@@ -6479,8 +6641,12 @@ clear(): void
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.clear();    
@@ -6504,8 +6670,12 @@ getLength(): string
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
@@ -6530,9 +6700,12 @@ getState(): router.RouterState
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let page = router.getState();
@@ -6565,9 +6738,12 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 **示例：** 
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
@@ -6602,9 +6778,12 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routers
 
 **示例：** 
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -6642,11 +6821,13 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -6671,9 +6852,12 @@ hideAlertBeforeBackPage(): void
 
 **示例：**
 
+完整示例请参考[PushUrl](#pushurl)中的示例。
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
@@ -6697,10 +6881,12 @@ getParams(): Object
 
 **示例：**
 
-<!--code_no_check-->
+完整示例请参考[PushUrl](#pushurl)中的示例。
 
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.getParams();
@@ -6770,22 +6956,33 @@ showToast(options: promptAction.ShowToastOptions): void
 
 该示例通过调用showToast接口，显示文本提示框。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showToast({            
-    message: 'Message Info',
-    duration: 2000 
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showToast args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showToast')
+        .onClick(() => {
+          try {
+            this.promptAction.showToast({
+              message: 'Message Info',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### openToast<sup>18+</sup>
@@ -6923,41 +7120,51 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **示例：**
 
-<!--code_no_check-->
-
 该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          try {
+            this.promptAction.showDialog({
+              title: 'showDialog Title Info',
+              message: 'Message Info',
+              buttons: [
+                {
+                  text: 'button1',
+                  color: '#000000'
+                },
+                {
+                  text: 'button2',
+                  color: '#000000'
+                }
+              ]
+            }, (err, data) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showDialog args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showDialog
@@ -6995,31 +7202,42 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 该示例通过调用showDialog接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000'
-    },
-    {
-      text: 'button2',
-      color: '#000000'
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showDialog error: ' + err);
-  })
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          this.promptAction.showDialog({
+            title: 'Title Info',
+            message: 'Message Info',
+            buttons: [
+              {
+                text: 'button1',
+                color: '#000000'
+              },
+              {
+                text: 'button2',
+                color: '#000000'
+              }
+            ],
+          })
+            .then(data => {
+              console.info('showDialog success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showDialog error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu<sup>11+</sup>
@@ -7050,37 +7268,48 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { PromptAction, promptAction  } from '@kit.ArkUI';
+import { PromptAction, promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, (err: BusinessError, data: promptAction.ActionMenuSuccessResponse) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu<sup>(deprecated)</sup>
@@ -7109,35 +7338,44 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
-**示例：**
+**示例：** 
 
-该示例通过调用showActionMenu接口，展示了弹出对话框以及返回对话框响应结果的功能。
-
-<!--code_no_check-->
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, { index:0 });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, { index:0 });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu
@@ -7173,32 +7411,42 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
-该示例通过调用showActionMenu接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
+该示例通过调用showActionMenu接口，展示了弹出操作菜单以及通过Promise获取菜单响应结果的功能。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666'
-    },
-    {
-      text: 'item2',
-      color: '#000000'
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showActionMenu error: ' + err);
-  })
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          this.promptAction.showActionMenu({
+            title: 'showActionMenu Title Info',
+            buttons: [
+              {
+                text: 'item1',
+                color: '#666666'
+              },
+              {
+                text: 'item2',
+                color: '#000000'
+              },
+            ]
+          })
+            .then(data => {
+              console.info('showActionMenu success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showActionMenu error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### openCustomDialog<sup>12+</sup>
@@ -8967,6 +9215,10 @@ cancelDataLoading(key: string): void
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
 
+**示例：**
+
+请参考[拖拽异步获取数据](./arkui-ts/ts-universal-events-drag-drop.md#示例3拖拽异步获取数据)。
+
 ### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): void
@@ -10526,7 +10778,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。<br/>builder的根组件宽高为0时，截图操作会失败并抛出100001错误码。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
@@ -10617,7 +10869,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。<br/>builder的根组件宽高为0时，截图操作会失败并抛出100001错误码。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒<br/> 取值范围：[0, +∞)，小于0时按默认值处理。|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |

@@ -421,26 +421,6 @@ Text可通过以下两种方式来创建：
 
   ![Text_font_family](figures/Text_font_family.png)
 
-- 从API version 20开始，支持通过[contentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#contenttransition20)属性设置数字翻牌效果。
-
-  ```ts
-  @State number: number = 98;
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false };
-
-  Column() {
-    Text(this.number + "")
-      .borderWidth(1)
-      .fontSize(40)
-      .contentTransition(this.numberTransition)
-    Button("chang number")
-      .onClick(() => {
-        this.number++
-      })
-      .margin(10)
-  }
-  ```
-  ![Text_content_transition](figures/Text_content_transition.gif)
-
 - 从API version 20开始，支持通过[optimizeTrailingSpace](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#optimizetrailingspace20)设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
 
   ```ts

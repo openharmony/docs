@@ -82,7 +82,7 @@
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.fillStyle = '#0000ff';
     ctx.fillRect(20, 20, 150, 100);
@@ -106,7 +106,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.lineWidth = 5;
     ctx.strokeRect(25, 25, 85, 105);
@@ -131,7 +131,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.lineWidth = 10;
     ctx.strokeStyle = '#0000ff';
@@ -156,7 +156,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.lineWidth = 8;
     ctx.beginPath();
@@ -183,7 +183,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.beginPath();
     ctx.lineWidth = 8;
@@ -211,7 +211,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.lineWidth =14;
     ctx.lineJoin = 'miter';
@@ -240,7 +240,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.font = '30px sans-serif';
     ctx.fillText("Hello World", 20, 60);
@@ -264,7 +264,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.strokeStyle = '#0000ff';
     ctx.moveTo(140, 10);
@@ -303,7 +303,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.strokeStyle = '#0000ff';
     ctx.moveTo(0, 120);
@@ -339,7 +339,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.fillStyle = 'rgb(255,0,0)';
     ctx.fillRect(0, 0, 50, 50);
@@ -366,7 +366,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.arc(100, 75, 50, 0, 6.28);
     ctx.setLineDash([10,20]);
@@ -409,7 +409,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.fillStyle = 'rgb(255,0,0)';
     ctx.fillRect(20, 20, 50, 50);
@@ -443,7 +443,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.shadowBlur = 30;
     ctx.shadowColor = 'rgb(0,0,0)';
@@ -468,7 +468,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.shadowBlur = 30;
     ctx.shadowColor = 'rgb(0,0,255)';
@@ -493,7 +493,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.shadowBlur = 10;
     ctx.shadowOffsetX = 20;
@@ -520,7 +520,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.shadowBlur = 10;
     ctx.shadowOffsetY = 20;
@@ -546,7 +546,7 @@ export default {
 // xxx.js
 export default {
   onShow() {
-    const el =this.$refs.canvas;
+    const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     var img = new Image();
     img.src = 'common/image/example.jpg';
@@ -593,7 +593,7 @@ fillRect(x: number, y: number, width:number, height: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.fillRect(20, 20, 200, 150);
     }
@@ -629,7 +629,7 @@ clearRect(x: number, y: number, width:number, height: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.fillStyle = 'rgb(0,0,255)';
       ctx.fillRect(0, 0, 400, 200);
@@ -668,7 +668,7 @@ strokeRect(x: number, y: number, width:number, height: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.strokeRect(30, 30, 200, 150);
     }
@@ -704,7 +704,7 @@ fillText(text: string, x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.font = '35px sans-serif';
       ctx.fillText("Hello World!", 10, 60);
@@ -740,7 +740,7 @@ strokeText(text: string, x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.font = '25px sans-serif';
       ctx.strokeText("Hello World!", 10, 60);
@@ -780,7 +780,7 @@ measureText(text: string): TextMetrics
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.font = '20px sans-serif';
       var txt = 'Hello World';
@@ -810,7 +810,7 @@ stroke(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.moveTo(25, 25);
       ctx.lineTo(25, 250);
@@ -841,7 +841,7 @@ beginPath(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();              
       ctx.lineWidth = '6';
@@ -880,7 +880,7 @@ moveTo(x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.moveTo(10, 10);
@@ -917,7 +917,7 @@ lineTo(x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.moveTo(10, 10);
@@ -947,7 +947,7 @@ closePath(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.moveTo(30, 30);
@@ -992,7 +992,7 @@ createPattern(image: Image, repetition: string): Object
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var img = new Image();
       img.src = 'common/images/example.jpg';
@@ -1034,7 +1034,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.moveTo(10, 10);
@@ -1073,7 +1073,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.moveTo(20, 20);
@@ -1114,7 +1114,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.arc(100, 75, 50, 0, 6.28);
@@ -1153,7 +1153,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.moveTo(100, 20);
       ctx.arcTo(150, 20, 150, 70, 50); // Create an arc
@@ -1195,7 +1195,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.beginPath();
       ctx.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
@@ -1233,7 +1233,7 @@ rect(x: number, y: number, width: number, height: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
       ctx.stroke(); // Draw it
@@ -1261,7 +1261,7 @@ fill(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
       ctx.fill(); // Draw it in default setting
@@ -1289,7 +1289,7 @@ clip(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.rect(0, 0, 200, 200);
       ctx.stroke();
@@ -1327,7 +1327,7 @@ rotate(rotate: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.rotate(45 * Math.PI / 180); // Rotate the rectangle 45 degrees
       ctx.fillRect(70, 20, 50, 50);
@@ -1362,7 +1362,7 @@ scale(x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.strokeRect(10, 10, 25, 25);
       ctx.scale(2, 2);// Scale to 200%
@@ -1409,10 +1409,10 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.fillStyle = 'rgb(0,0,0)';
-      ctx.fillRect(0, 0, 100, 100)
+      ctx.fillRect(0, 0, 100, 100);
       ctx.transform(1, 0.5, -0.5, 1, 10, 10);
       ctx.fillStyle = 'rgb(255,0,0)';
       ctx.fillRect(0, 0, 100, 100);
@@ -1454,10 +1454,10 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(0, 0, 100, 100)
+      ctx.fillRect(0, 0, 100, 100);
       ctx.setTransform(1,0.5, -0.5, 1, 10, 10);
       ctx.fillStyle = 'rgb(0,0,255)';
       ctx.fillRect(0, 0, 100, 100);
@@ -1492,7 +1492,7 @@ translate(x: number, y: number): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.fillRect(10, 10, 50, 50);
       ctx.translate(70, 70);
@@ -1532,7 +1532,7 @@ createPath2D(path: Path2D, cmds: string): Path2D
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var path1 = ctx.createPath2D();
       path1.moveTo(100, 100);
@@ -1611,7 +1611,7 @@ restore(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.restore();
     }
@@ -1636,7 +1636,7 @@ save(): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.save();
     }
@@ -1779,7 +1779,7 @@ createImageData(width: number, height: number, imageData: Object): Object
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var imageData = ctx.createImageData(50, 100);  // Create ImageData with 50px width and 100px height
       var newImageData = ctx.createImageData(imageData);  // Create ImageData using the input imageData
@@ -1938,7 +1938,7 @@ setLineDash(segments: Array): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.arc(100, 75, 50, 0, 6.28);
       ctx.setLineDash([10,20]);
@@ -1973,7 +1973,7 @@ getLineDash(): Array
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var info = ctx.getLineDash();
     }
@@ -2004,7 +2004,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
   //xxx.js
   export default {
     onShow() {
-      const el =this.$refs.canvas;
+      const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var canvas = this.$refs.canvas.getContext('2d');
       var offscreen = new OffscreenCanvas(500,500);

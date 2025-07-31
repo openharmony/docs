@@ -33,7 +33,7 @@
     ```
     <!-- @[query_database_return_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
 
-2. 封装一个瀑布流数据源，用于瀑布流组件加载数据。
+2. 封装一个瀑布流组件数据源，用于瀑布流组件加载数据。
 
     ```ts
     // WaterFlowDataSource.ets
@@ -149,7 +149,7 @@
       // 删除最后一个元素
       public deleteLastItem(): void {
         this.dataArray.splice(-1, 1);
-        this.notifyDataDelete(this.dataArray.length);
+        this.notifyDataDelete(this.dataArray.length - 1);
       }
 
       // 在指定索引位置删除一个元素

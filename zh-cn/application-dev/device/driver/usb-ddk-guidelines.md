@@ -53,7 +53,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex) | 激活接口的备用设置。 |
 | OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t \*settingIndex) | 获取接口当前激活的备用设置。 |
 | OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, uint8_t \*data, uint32_t \*dataLen) | 发送控制读请求，该接口为同步接口。 |
-| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t, const uint8_t \*data, uint32_t dataLen) | 发送控制写请求，该接口为同步接口。 |
+| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, const uint8_t \*data, uint32_t dataLen) | 发送控制写请求，该接口为同步接口。 |
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | 释放接口。 |
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | 创建缓冲区。请在缓冲区使用完后，调用OH_Usb_DestroyDeviceMemMap()销毁缓冲区，否则会造成资源泄露。 |
@@ -118,7 +118,7 @@ libusb_ndk.z.so
     OH_Usb_GetCurrentInterfaceSetting(interfaceHandle, &settingIndex);
 
     // 激活备用设置
-    OH_Usb_SelectInterfaceSetting(interfaceHandle, &settingIndex);
+    OH_Usb_SelectInterfaceSetting(interfaceHandle, settingIndex);
     ```
 4. 发送控制读请求、发送控制写请求。
 

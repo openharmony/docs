@@ -312,7 +312,6 @@ struct Gauge1 {
             .maxFontSize("16.0fp")
             .minFontSize("10.0vp")
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
             .fontWeight(FontWeight.Regular)
             .width('67.4%')
             .height('9.5%')

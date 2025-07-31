@@ -10,7 +10,7 @@
 
 onMove(handler: Optional\<OnMoveHandler\>)
 
-拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md#list)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
+拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ onMove(handler: Optional\<OnMoveHandler\>)
 
 onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler)
 
-拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md#list)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
+拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

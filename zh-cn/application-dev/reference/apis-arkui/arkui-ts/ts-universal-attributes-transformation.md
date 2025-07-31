@@ -210,7 +210,7 @@ transform(transform: Optional\<object>): T
 
 | 参数名 | 类型                                    | 必填 | 说明                     |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| transform | Optional\<object> |  | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
+| transform | Optional\<object> | 是 | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
 
 **返回值：**
 
@@ -265,7 +265,7 @@ type Matrix4Transit = Matrix4Transit
 | z                         | number                     | 否   | 旋转轴向量z坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | angle                     | number&nbsp;\|&nbsp;string | 是   | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | centerZ<sup>10+</sup>     | number                     | 否   | z轴锚点，即3D旋转中心点的z轴分量。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | perspective<sup>10+</sup> | number                     | 否   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 

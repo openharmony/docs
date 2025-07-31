@@ -597,7 +597,7 @@ export default class EntryAbility extends UIExtensionAbility {
   @Component
   struct Extension {
     @State message: string = 'UIExtensionAbility Index';
-    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private storage: LocalStorage | undefined = this.getUIContext()?.getSharedLocalStorage();
     private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionHostWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
     private subWindow: window.Window | undefined = undefined;

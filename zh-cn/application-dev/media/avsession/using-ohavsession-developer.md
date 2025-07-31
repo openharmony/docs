@@ -4,7 +4,7 @@ OHAVSession系统提供的通过使用C API实现媒体会话提供方，从而�
 
 ## 使用入门
 
-开发者要使用OHAVSession实现媒体会话，需要添加对应的头文件。
+开发者要使用[OHAVSession](../../reference/apis-avsession-kit/capi-native-avsession-h.md)实现媒体会话，需要添加对应的头文件。
 
 ### 在 CMake 脚本中链接动态库
 
@@ -71,6 +71,11 @@ target_link_libraries(entry PUBLIC libohavsession.so)
     * generate an AVMetadata 构造AVMetadata对象
     */
    OH_AVMetadataBuilder_GenerateAVMetadata(builder, &ohMetadata);
+
+   /**
+    * set AVMetadata 设置AVMetadata对象
+    */
+   OH_AVSession_SetAVMetadata(avsession, ohMetadata);
    ```
    
    在不使用AVMetadata之后，开发者应该执行OH_AVMetadataBuilder_Destroy接口来销毁元数据，且不要继续使用。
@@ -103,6 +108,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    > **说明：**
    >
    > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方认为该方法有效，因此在需要时会触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
+   > 调用注册接口后，在业务结束时需要调用取消注册接口，避免出现异常。
  
    Session侧目前支持的播控命令包括：
    - 播放

@@ -10,7 +10,7 @@
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../_ark_u_i___native_gesture_a_p_i__1.md#setinnergestureparallelto)。
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../capi-arkui-nativemodule-arkui-nativegestureapi-1.md#setinnergestureparallelto)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -648,7 +648,7 @@ type TouchTestDoneCallback = (event: BaseGestureEvent, recognizers: Array\<Gestu
 @Component
 struct FatherControlChild {
   scroller: Scroller = new Scroller();
-  scroller2: Scroller = new Scroller()
+  scroller2: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   private childRecognizer: GestureRecognizer = new GestureRecognizer();
   private currentRecognizer: GestureRecognizer = new GestureRecognizer();
@@ -730,23 +730,23 @@ struct FatherControlChild {
                     let panEvent = event as PanGestureEvent;
                     if (target.isEnd()) { // 根据当前组件状态以及移动方向动态控制识别器使能状态
                       if (panEvent && panEvent.offsetY < 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else if (target.isBegin()) {
                       if (panEvent.offsetY > 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else {
-                      this.childRecognizer.setEnabled(true)
-                      this.currentRecognizer.setEnabled(false)
+                      this.childRecognizer.setEnabled(true);
+                      this.currentRecognizer.setEnabled(false);
                     }
                   }
                 }
@@ -768,34 +768,34 @@ struct FatherControlChild {
             if (target instanceof ScrollableTargetInfo && currentTarget instanceof ScrollableTargetInfo) {
               if (target.isEnd()) { // 在移动过程中实时根据当前组件状态，控制识别器的开闭状态
                 if ((event.offsetY - this.lastOffset) < 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isEnd()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else if (target.isBegin()) {
                 if ((event.offsetY - this.lastOffset) > 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isBegin()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else {
-                this.childRecognizer.setEnabled(true)
-                this.currentRecognizer.setEnabled(false)
+                this.childRecognizer.setEnabled(true);
+                this.currentRecognizer.setEnabled(false);
               }
             }
-            this.lastOffset = event.offsetY
+            this.lastOffset = event.offsetY;
           })
       )
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

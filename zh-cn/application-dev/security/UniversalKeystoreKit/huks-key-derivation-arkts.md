@@ -56,6 +56,14 @@
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
+function StringToUint8Array(str: String) {
+  let arr: number[] = new Array();
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -77,7 +85,7 @@ let properties: Array<huks.HuksParam> = [
   value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
   value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
@@ -140,14 +148,6 @@ let finishProperties: Array<huks.HuksParam> = [{
 let finishOptions: huks.HuksOptions = {
   properties: finishProperties,
   inData: new Uint8Array(new Array())
-}
-
-function StringToUint8Array(str: String) {
-  let arr: number[] = new Array();
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
 }
 
 class throwObject {
@@ -360,6 +360,14 @@ async function testDerive() {
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
+function StringToUint8Array(str: String) {
+  let arr: number[] = new Array();
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -458,14 +466,6 @@ let finishProperties: Array<huks.HuksParam> = [
 let finishOptions: huks.HuksOptions = {
   properties: finishProperties,
   inData: new Uint8Array(new Array())
-}
-
-function StringToUint8Array(str: String) {
-  let arr: number[] = new Array();
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
 }
 
 class throwObject {

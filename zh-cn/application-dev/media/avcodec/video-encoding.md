@@ -170,7 +170,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 4. 全局变量。
 
-    仅做参考，可以根据实际情况将其封装到对象中。
+    仅作参考，可以根据实际情况将其封装到对象中。
 
     ```c++
     // 视频帧宽度。
@@ -195,7 +195,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
+参考以下示例代码，可以完成Surface模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 1. 添加头文件。
 
@@ -625,7 +625,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
+参考以下示例代码，可以完成Buffer模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 添加头文件。
 
@@ -699,7 +699,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码输入回调OH_AVCodecOnNeedInputBuffer实现。
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 获取视频宽、高跨距。
+        // 获取视频宽跨距、高跨距。
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
@@ -890,13 +890,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽、高跨距，通过接口OH_VideoEncoder_GetInputDescription获取。
+    struct DstRect // 目标内存区域的宽跨距、高跨距，通过接口OH_VideoEncoder_GetInputDescription获取。
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // 源内存区域的宽、高跨距，由开发者自行设置。
+    struct SrcRect // 源内存区域的宽跨距、高跨距，由开发者自行设置。
     {
         int32_t wStride;
         int32_t hStride;
@@ -999,4 +999,4 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Surface模式一致，请参考[Surface模式](#surface模式)的步骤14-17。
+后续流程（包括刷新、重置、停止和销毁编码器）与Surface模式一致，请参考[Surface模式](#surface模式)的步骤14-17。

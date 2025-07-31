@@ -176,6 +176,11 @@ getSystemResourceManager(): ResourceManager
 
 获取系统资源管理ResourceManager对象。
 
+> **说明**
+>
+> 当前接口获取到的系统资源管理ResourceManager对象中的Configuration为默认值。默认值如下：
+>{"locale":"","direction":-1,"deviceType":-1,"screenDensity":0,"colorMode":1,"mcc":0,"mnc":0}。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -7431,11 +7436,13 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 ## AsyncCallback<sup>(deprecated)</sup>
 
-  ```ts
-  AsyncCallback<T> {
-    (err: Error, data: T): void;
-  }
-  ```
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)替代。
+
+### (err: Error, data: T)<sup>(deprecated)</sup>
+
+(err: Error, data: T): void;
 
 异步回调函数，携带错误参数和异步返回值。
 
@@ -7444,6 +7451,8 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)替代。
 
 **系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |

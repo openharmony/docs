@@ -4,7 +4,7 @@
 
 ## 使用TaskPool进行传感器数据监听
 
-1. 导入需要用到的模块。
+1. 导入所需的模块。
 
    ```ts
    // Index.ets
@@ -51,7 +51,7 @@
              this.sensorTask = new taskpool.LongTask(SensorListener);
              emitter.on({ eventId: 0 }, (data) => {
                // Do something here
-               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}`);
+               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}}`);
              });
              taskpool.execute(this.sensorTask).then(() => {
                console.info("Add listener of ACCELEROMETER success");

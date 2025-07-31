@@ -64,7 +64,6 @@
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) | Camera_MetadataObjectType | 元数据对象类型的枚举。 |
 | [Camera_TorchMode](#camera_torchmode) | Camera_TorchMode | 手电筒模式的枚举。 |
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) | Camera_SmoothZoomMode | 平滑变焦模式的枚举。 |
-| [Camera_SystemPressureLevel](#camera_systempressurelevel) | Camera_SystemPressureLevel | 系统压力等级的枚举。 |
 | [Camera_PreconfigType](#camera_preconfigtype) | Camera_PreconfigType | 预配置照片分辨率的枚举。 |
 | [Camera_PreconfigRatio](#camera_preconfigratio) | Camera_PreconfigRatio | 预配置照片比例的枚举。 |
 | [Camera_HostDeviceType](#camera_hostdevicetype) | Camera_HostDeviceType | 远程设备类型枚举。 |
@@ -402,26 +401,6 @@ enum Camera_SmoothZoomMode
 | 枚举项 | 描述 |
 | -- | -- |
 | NORMAL = 0 | 贝塞尔曲线模式。 |
-
-### Camera_SystemPressureLevel
-
-```
-enum Camera_SystemPressureLevel
-```
-
-**描述**
-
-系统压力等级的枚举。
-
-**起始版本：** 20
-
-| 枚举项 | 描述 |
-| -- | -- |
-| SYSTEM_PRESSURE_NORMAL = 0 | 系统压力正常。 |
-| SYSTEM_PRESSURE_MILD = 1 | 系统压力升高，但是系统不会主动管控。 |
-| SYSTEM_PRESSURE_SEVERE = 2 | 系统压力可能对图像总质量、性能产生影响。 |
-| SYSTEM_PRESSURE_CRITICAL = 3 | 系统图像质量、性能产生显著影响。 |
-| SYSTEM_PRESSURE_SHUTDOWN = 4 | 系统压力过高，停止工作。 |
 
 ### Camera_PreconfigType
 

@@ -62,9 +62,12 @@ struct DragDrop {
         //完成通信端口注册后，向前端发送注册完成消息，完成双向的端口绑定
         this.controller.postMessage('__init_port__', [this.ports[0]], '*');
       })// onDrop 可做简单逻辑，例如暂存一些关键数据
-        .onDrop((event) => {
+        .onDrop((DragEvent: DragEvent) => {
           console.log("ETS onDrop!")
-          let data: UnifiedData = (event as DragEvent).getData() as UnifiedData;
+          let data: UnifiedData = DragEvent.getData();
+          if(!data) {
+            return false;
+          }
           let uriArr: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           if (!uriArr || uriArr.length <= 0) {
             return false;
@@ -93,8 +96,8 @@ html示例:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>H5 拖拽 Demo</title>
 </head>
-<title>H5 拖拽 Demo</title>
 <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,7 +130,6 @@ html示例:
       color: white;
     }
 </style>
-</head>
 <body>
 
 <h2>H5 拖拽 Demo</h2>
