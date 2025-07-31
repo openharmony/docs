@@ -2,7 +2,6 @@
 
 ## 概述
 
-
 本文提供应用性能敏感场景下的高性能编程建议，帮助开发者编写高性能应用。高性能编程实践是在开发过程中总结的一些高性能写法和建议。在实现业务功能时，应同步思考并理解高性能写法的原理，并将其应用于代码逻辑中。关于ArkTS编程规范，请参考[ArkTS编程规范](./arkts-coding-style-guide.md)。
 
 ## 声明与表达式
@@ -120,7 +119,7 @@ function add(left?: number, right?: number): number | undefined {
 }
 ```
 
-根据业务需求，将函数参数声明为必选参数。可以考虑使用默认参数。
+根据业务需求，将函数参数声明为必选参数。考虑使用默认参数。
 ``` TypeScript
 function add(left: number = 0, right: number = 0): number {
   return left + right;
