@@ -1,7 +1,7 @@
 # 使用保存控件
 
 <!--Kit: ArkUI-->
-<!--Subsystem: Security->
+<!--Subsystem: Security-->
 <!--Owner: @harylee-->
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->
