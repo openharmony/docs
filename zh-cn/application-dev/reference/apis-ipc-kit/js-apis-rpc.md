@@ -1,4 +1,9 @@
 # @ohos.rpc (RPC通信)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
