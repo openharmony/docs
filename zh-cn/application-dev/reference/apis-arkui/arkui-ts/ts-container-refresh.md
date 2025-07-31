@@ -1,5 +1,11 @@
 # Refresh
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
  可以进行页面下拉操作并显示刷新动效的容器组件。 
 
 >  **说明：**

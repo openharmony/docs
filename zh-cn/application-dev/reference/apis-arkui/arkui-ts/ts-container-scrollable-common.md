@@ -1,5 +1,11 @@
 # 滚动组件通用接口
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong; @zcdqs-->
+<!--SE: @yylong; @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 滚动组件通用属性和事件目前只支持[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)组件。
 
 >  **说明：**
