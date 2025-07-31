@@ -448,7 +448,7 @@ Allows an enterprise application to manage antivirus software.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone/2in1/Tablet
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -463,7 +463,7 @@ Allows enterprise antivirus software to register with the system and update basi
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone/2in1/Tablet
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
