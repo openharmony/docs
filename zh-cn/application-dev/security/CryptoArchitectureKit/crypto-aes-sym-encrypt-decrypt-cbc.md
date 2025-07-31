@@ -4,7 +4,7 @@
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
 <!--SE: @lanming-->
-<!--TSE: @PAFT-->   
+<!--TSE: @PAFT-->
 
 对应的算法规格请参见[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
 
