@@ -4,10 +4,10 @@ The **Web** component can be attached to and detached from the component trees i
 
 The offline **Web** component is created based on the custom placeholder component [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). The basic principle is as follows: **Web** components that are created using commands are not attached to the component tree immediately after being created. This means they are not displayed to users immediately, remaining in the **Hidden** or **InActive** state until explicitly attached. You can dynamically attach these components as required to implement more flexible usage.
 
-Offline **Web** components can be used to optimize the pre-start rendering process and pre-rendering of web pages.
+Offline **Web** components can be used to pre-start the rendering process and pre-render web pages.
 
 - Pre-start rendering process: By creating an empty **Web** component prior to the user's access of the web page, the rendering process is initiated in advance, preparing for subsequent use of the page. 
-- Pre-rendering of web pages: In the web page startup or redirection scenario, creating **Web** components in the background in advance allows for ahead-of-time data loading and rendering. In this way, web pages can be instantly displayed when being redirected to.
+- Pre-render web pages: In the web page startup or redirection scenario, creating **Web** components in the background in advance allows for ahead-of-time data loading and rendering. In this way, web pages can be instantly displayed when being redirected to.
 
 ## Overall Architecture
 
@@ -156,7 +156,7 @@ To save time required for starting the web rendering process when the **Web** co
 >
 > The optimization effect is obvious only when the single-rendering-process mode is used, that is, one web rendering process is globally shared. The web rendering process is terminated when all **Web** components are destroyed. Therefore, you are advised to keep at least one **Web** component active.
 
-In the following example, a **Web** component is pre-created during **onWindowStageCreate** phase to load a blank page. In this way, the rendering process is started in advance. When the index is redirected to index2, the time required for starting and initializing the rendering process of the **Web** component is reduced.
+In the following example, a **Web** component is pre-created during **onWindowStageCreate** phase to load a blank page. In this way, the rendering process is started in advance. When the index is redirected to index2, the time required for starting and initializing the rendering process of the Web component is reduced.
 
 Creating additional **Web** components causes memory overhead. Therefore, you are advised to reuse the **Web** components based on this solution.
 
@@ -263,17 +263,19 @@ export const getNWeb = (url: ResourceStr) : myNodeController | undefined => {
 ```
 
 ```ts
-import router from '@ohos.router'
+// index.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct Index1 {
-  WebviewController: webview.WebviewController = new webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Column() {
       // The rendering process has been pre-started.
       Button("Go to Web Page").onClick(()=>{
-        router.pushUrl({url: "pages/index2"})
+        this.getUIContext().getRouter().pushUrl({url: "pages/index2"});
       })
         .width('100%')
         .height('100%')
@@ -283,11 +285,13 @@ struct Index1 {
 ```
 
 ```ts
-import web_webview from '@ohos.web.webview'
+// index2.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct index2 {
-  WebviewController: webview.WebviewController = new webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Row() {
@@ -312,8 +316,8 @@ To pre-render a web page, create an offline **Web** component in advance and act
 > **NOTE**
 >
 > 1. For a web page to be pre-rendered successfully, identify the resources to be loaded beforehand.
-> 2. In this solution, the invisible **Web** component in the background is activated, which converts it to the **active** state. Due to this activation, avoid pre-rendering pages that automatically play audio or video, as this could inadvertently lead to unintended media playback. Check and manage the behavior of the page on the application side.
-> 3. In the background, the pre-rendered web page is continuously rendered. To prevent overheating and power consumption, you are advised to stop the rendering process immediately after the pre-rendering is complete. The following example shows how to use [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) to determine the time for stopping pre-rendering. This API can be used in HTTP and HTTPS online web pages.
+> 2. In this solution, the invisible **Web** component in the background is activated. Due to this activation, avoid pre-rendering pages that automatically play audio or video, as this could inadvertently lead to unintended media playback. Check and manage the behavior of the page on the application side.
+> 3. The pre-rendered web page is continuously rendered in the background. To prevent overheating and power consumption, you are advised to stop the rendering process immediately after the pre-rendering is complete. The following example shows how to use [onFirstMeaningfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstmeaningfulpaint12) to determine the time for stopping pre-rendering. This API can be used in HTTP and HTTPS online web pages.
 
 ```ts
 // Carrier ability
@@ -376,7 +380,7 @@ export class myNodeController extends NodeController {
   // This function must be overridden, which is used to construct the number of nodes, return the nodes and attach them to NodeContainer.
   // Call it when the NodeContainer is created or call rebuild() to refresh.
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.info(" uicontext is undifined : "+ (uiContext === undefined));
+    console.info(" uicontext is undefined : "+ (uiContext === undefined));
     if (this.rootnode != null) {
       // Return the FrameNode.
       return this.rootnode.getFrameNode();
@@ -434,7 +438,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // Use the pages of NodeController.
 // Index.ets
-import {createNWeb, getNWeb} from "./common"
+import {createNWeb, getNWeb} from "./common";
 
 @Entry
 @Component

@@ -1,4 +1,9 @@
 # @ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备管理扩展能力。
 

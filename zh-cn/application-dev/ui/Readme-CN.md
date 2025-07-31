@@ -64,7 +64,6 @@
         - [PersistenceV2: 持久化存储UI状态](state-management/arkts-new-persistencev2.md)
         - [!!语法：双向绑定](state-management/arkts-new-binding.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freezeV2.md)
-        - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](state-management/arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](state-management/arkts-new-makeObserved.md)
         - [addMonitor/clearMonitor接口：动态添加/取消监听](state-management/arkts-new-addMonitor-clearMonitor.md)
@@ -82,6 +81,8 @@
       - [if/else：条件渲染](state-management/arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](state-management/arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](state-management/arkts-rendering-control-lazyforeach.md)
+      - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
+      - [LazyForEach迁移Repeat指导文档](state-management/arkts-lazyForEach-repeat-migration-guide.md)
       - [ContentSlot：混合开发](state-management/arkts-rendering-control-contentslot.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
@@ -234,11 +235,6 @@
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
-  - UI开发调优<!--ui-inspector-profiler-->
-    - [预览](ui-ide-previewer.md)
-    - [调试](ui-inspector-profiler.md)
-  - UI高性能开发<!--ui-performance-->
-    - [UI性能优化概览](ui-performance-overview.md)
 - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
   - [NDK接口概述](ndk-build-ui-overview.md)
   - [接入ArkTS页面](ndk-access-the-arkts-page.md)
@@ -335,5 +331,14 @@
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
   - [WebGL](../webgl/Readme-CN.md)
+- UI开发调试调优<!--ui-debug-optimize-->
+  - UI稳定性故障调试<!--ui-stability-->
+    - [UI稳定性故障分析概述](arkts-stability-guide.md)
+    - [UI相关应用崩溃常见问题](arkts-stability-crash-issues.md)
+    - [UI相关应用无响应常见问题](arkts-stability-freeze-issues.md)
+  - [UI显示异常调试](arkts-layout-debug.md)
+  - [UI预览](ui-ide-previewer.md)
+  - [UI调优](ui-inspector-profiler.md)
+  - [UI高性能开发](ui-performance-overview.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
 - [屏幕管理](../displaymanager/Readme-CN.md)

@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行Well-known symbols相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -26,7 +31,7 @@ JSVM-API中Well-known symbols相关接口可以通过不同API直接获取对应
 
 ## 使用示例
 
-JSVM-API接口开发流程请参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
+参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)中的JSVM-API接口开发流程，本文仅展示接口对应的C++代码。
 
 ### 使用接口获取Well-known symbols（以OH_JSVM_GetSymbolToStringTag为例）
 

@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行任务队列相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -132,7 +137,7 @@ static int32_t TestJSVM() {
 }
 
 ```
-<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
 预期输出结果：
 ```
 JSVM API TEST: Called with instance [object Object]

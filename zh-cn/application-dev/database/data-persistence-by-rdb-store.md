@@ -1,4 +1,9 @@
 # 通过关系型数据库实现数据持久化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍

@@ -602,9 +602,7 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 ```ts
 import {image} from '@kit.ImageKit'
 import {common2D, uiEffect} from '@kit.ArkGraphics2D'
-
-const context = getContext(this)
-const resourceMgr =context.resourceManager
+import {common} from '@kit.AbilityKit'
 
 @Entry
 @Component
@@ -615,11 +613,12 @@ struct MaskDispersion {
   @State fillColor: uiEffect.Color = { red: 0, green: 0, blue: 0, alpha: 0 }
 
   onPageShow(): void {
-    resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    context.resourceManager.getMediaContent($r("app.media.mask_alpha")).then(val => {
       let buffer = val.buffer.slice(0, val.buffer.byteLength)
       let imageSource = image.createImageSource(buffer);
-      imageSource.createPixelMap().then(pixelmap => {
-        this.pixelMap_ = pixelmap
+      imageSource.createPixelMap().then(pixelMap => {
+        this.pixelMap_ = pixelMap
       })
     })
   }

@@ -1,4 +1,9 @@
 # ArkUI数据更新场景
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 当需要网络下载或者本地生成的数据需要发送到UI线程进行展示时，由于ArkUI的标注和[\@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)不能同时修饰变量和对象，因此需要使用[makeObserved](../ui/state-management/arkts-new-makeObserved.md)在ArkUI中导入可观察的Sendable共享数据。
 
@@ -19,7 +24,7 @@ export class SendableData {
   follow: boolean = false;
 }
 ```
-<!-- @[define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SendableData.ets) -->
+<!-- @[define_sendable_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SendableData.ets) -->
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -64,4 +69,4 @@ struct Index {
   }
 }
 ```
-<!-- @[update_arkui_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/MakeobservedSendable.ets) -->
+<!-- @[update_arkui_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/MakeobservedSendable.ets) -->

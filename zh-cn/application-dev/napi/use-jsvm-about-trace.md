@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行Trace相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -6,9 +11,9 @@ JSVM-API中trace相关接口用于在运行时采集并输出各种类型运行�
 
 ## 基本概念
 
-在JSVM-API中，Trace相关接口能够通过指定一系列分类，采集这些分类所属的JSVM内部事件信息，最后以JSON格式，按用户指定回调函数进行输出。
+JSVM-API中的Trace相关接口能够通过指定一系列分类，采集这些分类所属的JSVM内部事件信息，并以JSON格式通过用户指定的回调函数输出。
 
-在JSVM-API中，通过支持Trace相关能力，JSVM模块能够更紧密地与JavaScript环境集成，加深用户对JSVM的理解，提高复杂问题的定位能力与性能分析能力。
+在JSVM-API中，通过支持Trace相关能力，JSVM模块能够更紧密地与JavaScript环境集成，提高复杂问题定位和性能分析能力。
 
 ## 接口说明
 
@@ -23,7 +28,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### 使用Trace接口进行数据采集
 
-cpp部分代码：
+cpp 部分代码：
 
 ```cpp
 #include <vector>

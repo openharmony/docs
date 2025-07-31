@@ -805,5 +805,5 @@ struct Index {
 
 针对使用MindSpore Lite进行语音识别应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
+- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
 

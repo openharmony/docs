@@ -1,4 +1,9 @@
 # @ohos.url (URL字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 

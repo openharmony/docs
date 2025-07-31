@@ -1,4 +1,9 @@
 # JSVM-API 坚盾守护模式
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 坚盾守护模式是为高安全需求用户设计的系统级安全防护方案。该模式通过实施严格的功能限制，显著增强系统安全性，有效防范针对远程攻击面的各类威胁。在坚盾守护模式下，JSVM 增加了功能限制，需要开发者评估应用在坚盾守护模式下的可用性。
 

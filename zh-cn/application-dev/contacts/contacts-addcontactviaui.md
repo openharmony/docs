@@ -1,5 +1,10 @@
 # 使用picker管理联系人
 
+<!--Kit: contacts-kit-->
+<!--Subsystem: contacts-->
+<!--Owner: @librahCode-->
+<!--SE: @yanghaoqian-->
+<!--TSE: @shangzhijie-->
 ## 接口说明
 
 | 接口名                  | 描述                                       |

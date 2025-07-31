@@ -33,5 +33,5 @@
 
 针对账号管理开发，有以下相关实例可供参考：
 
-- [应用账号管理](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/AppAccountManager)
-- [分布式账号管理（仅支持系统应用）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)
+- [应用账号管理](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/AppAccountManager)
+- [分布式账号管理（仅支持系统应用）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)

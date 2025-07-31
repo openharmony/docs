@@ -1719,3 +1719,68 @@ struct Parent {
   }
 }
 ```
+
+### 在\@Watch函数中执行\@Builder函数
+
+在\@Watch函数中执行\@Builder函数，可能导致UI刷新异常。
+
+【反例】
+```ts
+@Entry
+@Component
+struct Child {
+  @Provide @Watch('provideWatch') content: string = 'Index: hello world';
+
+  @Builder
+  watchBuilder(content: string) {
+    Row() {
+      Text(`${content}`)
+    }
+  }
+
+  provideWatch() {
+    this.watchBuilder(this.content); // 错误写法，在@Watch函数中使用@Builder函数
+  }
+
+  build() {
+    Column() {
+      Button(`content value: ${this.content}`)
+        .onClick(() => {
+          this.content += '_world';
+        })
+      this.watchBuilder(this.content);
+    }
+  }
+}
+```
+Button按钮会出现UI异常的情况，开发者需要避免在\@Watch函数中使用\@Builder函数。
+
+【正例】
+```ts
+@Entry
+@Component
+struct Child {
+  @Provide @Watch('provideWatch') content: string = 'Index: hello world';
+
+  @Builder
+  watchBuilder(content: string) {
+    Row() {
+      Text(`${content}`)
+    }
+  }
+
+  provideWatch() {
+    console.info(`content value has changed.`);
+  }
+
+  build() {
+    Column() {
+      Button(`content value: ${this.content}`)
+        .onClick(() => {
+          this.content += '_world';
+        })
+      this.watchBuilder(this.content);
+    }
+  }
+}
+```

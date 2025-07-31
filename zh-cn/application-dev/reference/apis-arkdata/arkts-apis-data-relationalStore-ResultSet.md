@@ -1,4 +1,9 @@
 # Interface (ResultSet)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
@@ -580,7 +585,7 @@ if (resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前行中指定列的值，如果值类型是ValueType中指定的任意类型，返回指定类型的值，否则返回14800000。
+获取当前行中指定列的值，如果值类型是ValueType中指定的任意类型，返回指定类型的值，否则返回14800000。如果值类型为INTEGER，值大于 Number.MAX_SAFE_INTEGER 或小于 Number.MIN_SAFE_INTEGER 且不希望丢失精度，建议使用[getString](#getstring)接口获取。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -746,7 +751,7 @@ if (resultSet != undefined) {
 
 getLong(columnIndex: number): number
 
-以Long形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成Long类型返回指定值，如果该列内容为空时，会返回0，其他类型则返回14800000。
+以Long形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成Long类型返回指定值，如果该列内容为空时，会返回0，其他类型则返回14800000。如果当前列的数据类型为INTEGER，值大于 Number.MAX_SAFE_INTEGER 或小于 Number.MIN_SAFE_INTEGER 且不希望丢失精度，建议使用[getString](#getstring)接口获取。如果当前列的数据类型为DOUBLE且不希望丢失精度，建议使用[getDouble](#getdouble)接口获取。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -760,7 +765,7 @@ getLong(columnIndex: number): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 以Long形式返回指定列的值。<br>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议使用[getDouble](#getdouble)。 |
+| number | 以Long形式返回指定列的值。<br>该接口支持的精度范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议对于DOUBLE类型的值使用[getDouble](#getdouble)，对于INTEGER类型的值使用[getString](#getstring)。 |
 
 **错误码：**
 
@@ -772,7 +777,7 @@ getLong(columnIndex: number): number
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
-| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800013  | ResultSet is empty or column index is out of bounds. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -1223,91 +1228,6 @@ isColumnNull(columnIndex: number): boolean
 ```ts
 if (resultSet != undefined) {
   const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
-}
-```
-
-## getValueForFlutter<sup>20+</sup>
-
-getValueForFlutter(columnIndex: number): ValueType
-
-获取当前行中指定列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始的整数。 |
-
-**返回值：**
-
-| 类型       | 说明                             |
-| ---------- | -------------------------------- |
-| [ValueType](arkts-apis-data-relationalStore-t.md#valuetype) | 返回当前行中指定列对应数据字段类型的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**     |
-|-----------|---------|
-| 14800011  | Failed to open the database because it is corrupted.        |
-| 14800012  | ResultSet is empty or pointer index is out of bounds.       |
-| 14800013  | Resultset is empty or column index is out of bounds.   |
-| 14800014  | The RdbStore or ResultSet is already closed.       |
-| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.    |
-| 14800023  | SQLite: Access permission denied.    |
-| 14800024  | SQLite: The database file is locked.    |
-| 14800025  | SQLite: A table in the database is locked.  |
-| 14800028  | SQLite: Some kind of disk I/O error occurred.    |
-| 14800030  | SQLite: Unable to open the database file.    |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit.    |
-
-**示例：**
-
-```ts
-if (resultSet != undefined) {
-  const codes = (resultSet as relationalStore.ResultSet).getValueForFlutter((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
-}
-```
-
-## getRowForFlutter<sup>20+</sup>
-
-getRowForFlutter(): ValuesBucket
-
-获取指定行中所有列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**返回值：**
-
-| 类型              | 说明                           |
-| ---------------- | ---------------------------- |
-| [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 返回指定行中所有列的值。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-|-----------| ------------------------------------------------------------ |
-| 14800011  | Failed to open the database because it is corrupted. |
-| 14800012  | ResultSet is empty or pointer index is out of bounds. |
-| 14800014  | The RdbStore or ResultSet is already closed. |
-| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
-| 14800023  | SQLite: Access permission denied. |
-| 14800024  | SQLite: The database file is locked. |
-| 14800025  | SQLite: A table in the database is locked. |
-| 14800028  | SQLite: Some kind of disk I/O error occurred. |
-| 14800030  | SQLite: Unable to open the database file. |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
-
-**示例：**
-
-```ts
-if (resultSet != undefined) {
-  const row = (resultSet as relationalStore.ResultSet).getRowForFlutter();
 }
 ```
 

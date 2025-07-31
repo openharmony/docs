@@ -12,7 +12,7 @@
 
 ### 场景示例
 
-下面代码在申请短时任务后执行了一个耗时计算任务。源代码可访问[短时任务示例程序](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)获取。
+下面代码在申请短时任务后执行了一个耗时计算任务。源代码可访问[短时任务示例程序](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)获取。
 
 ```typescript
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
@@ -145,9 +145,9 @@ struct Index {
 
 ### 场景示例
 
-下面模拟一个后台定位的场景。应用订阅设备位置变化，每隔一秒获取位置信息，为了保证应用在退到后台后仍然可以使用定位服务，申请了定位类型的长时任务。源代码可访问[长时任务示例程序](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)获取。
+下面模拟一个后台定位的场景。应用订阅设备位置变化，每隔一秒获取位置信息，为了保证应用在退到后台后仍然可以使用定位服务，申请了定位类型的长时任务。源代码可访问[长时任务示例程序](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)获取。
 
-首先需要在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 配置文件中为需要使用长时任务的 EntryAbility 声明任务类型。
+首先需要在 [module.json5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 配置文件中为需要使用长时任务的 EntryAbility 声明任务类型。
 
 ```javascript
 {
@@ -174,7 +174,7 @@ struct Index {
 - ohos.permission.LOCATION
 - ohos.permission.KEEP_BACKGROUND_RUNNING
 
-权限申请方式参考[配置文件权限申明](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
+权限申请方式参考[配置文件权限申明](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，在 [module.json5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
 
 后台定位的实现代码如下：
 

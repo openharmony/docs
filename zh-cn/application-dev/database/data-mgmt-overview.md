@@ -1,4 +1,9 @@
 # ArkData简介
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--SE: @widecode-->
+<!--TSE: @logic42-->
 
 
 ## 功能介绍

@@ -1,4 +1,9 @@
 # E类加密数据库的使用 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997; @dboy190-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍

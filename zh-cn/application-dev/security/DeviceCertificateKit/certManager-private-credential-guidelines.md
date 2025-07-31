@@ -1,5 +1,11 @@
 # 应用证书凭据开发指导
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--SE: @chande-->
+<!--TSE: @zhangzhi1995-->
+
 > **说明**
 >
 > 本开发指导需使用API version 11及以上版本SDK。

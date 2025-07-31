@@ -1,4 +1,9 @@
 # 使用JSVM进行class相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -79,7 +84,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"newInstance", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-<!-- @[oh_jsvm_newinstance](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_newinstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 ```cpp
@@ -180,7 +185,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-<!-- @[oh_jsvm_defineclass](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_defineclass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 ```cpp
@@ -293,7 +298,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-<!-- @[oh_jsvm_removewrap](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_removewrap](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 ```cpp

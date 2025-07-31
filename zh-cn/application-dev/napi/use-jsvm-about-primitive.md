@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行primitive类相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -68,7 +73,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 ```
-<!-- @[oh_jsvm_coerce_to_bool](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetobool/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_coerce_to_bool](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetobool/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -115,7 +120,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(coerceToNumber(true))JS";
 ```
-<!-- @[oh_jsvm_coerce_to_number](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetonumber/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_coerce_to_number](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetonumber/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -161,7 +166,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(coerceToObject(123))JS";
 ```
-<!-- @[oh_jsvm_coerce_to_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetoobject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_coerce_to_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetoobject/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -207,7 +212,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(coerceToString(22222))JS";
 ```
-<!-- @[oh_jsvm_coerce_to_string](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetostring/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_coerce_to_string](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/coercetostring/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -266,7 +271,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getBoolean(1, 2);
                                  getBoolean(1, 1))JS";
 ```
-<!-- @[oh_jsvm_get_boolean](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getboolean/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_boolean](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getboolean/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -319,7 +324,7 @@ const char *srcCallNative = R"JS(getValueBool("abc");
                                 getValueBool(true);
                                 getValueBool(false);)JS";
 ```
-<!-- @[oh_jsvm_get_value_bool](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getvaluebool/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_bool](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getvaluebool/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -367,7 +372,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(getGlobal())JS";
 ```
-<!-- @[oh_jsvm_get_global](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getglobal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_global](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getglobal/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -408,7 +413,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(getNull())JS";
 ```
-<!-- @[oh_jsvm_get_null](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getnull/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_null](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getnull/src/main/cpp/hello.cpp) -->
 
 预期结果:
 ```
@@ -455,7 +460,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(getUndefined())JS";
 ```
-<!-- @[oh_jsvm_get_undefined](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getundefined/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_undefined](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getundefined/src/main/cpp/hello.cpp) -->
 
 预期结果:
 ```

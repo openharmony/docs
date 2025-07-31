@@ -4,9 +4,9 @@ The **Web** component provides the capability for applications to take over medi
 
 ## When to Use
 
-On web pages, media players are simple and provide few functions, with lower video quality and some videos cannot be played.
+On web pages, media player one provides limited features, the resolution of media playback is low, and some videos cannot be played.
 
-In this case, you can use your own or a third-party player to take over web page media playback to improve media playback experience.
+Through this capability, you can use a player of your own or a third party to take over web page media playback, improving playback experience.
 
 ## Implementation Principle
 
@@ -47,7 +47,7 @@ When web media playback takeover is enabled, the playback architecture of the Ar
 
 ### Enabling Web Media Playback Takeover
 
-You need to use the [enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12) API to enable the function of taking over web page media playback.
+Use the [enableNativeMediaPlayer](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#enablenativemediaplayer12) API to enable the feature of taking over web page media playback.
 
   ```ts
   // xxx.ets
@@ -69,16 +69,16 @@ You need to use the [enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-
 
 ### Creating a Native Media Player
 
-Once web media playback takeover is enabled, the ArkWeb kernel triggers the callback registered by [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12) each time a media file needs to be played on the web page.
+After this feature is enabled, the ArkWeb kernel triggers the callback registered by [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#oncreatenativemediaplayer12) when a media file needs to be played on the web page.
 
-You need to register a callback for creating a native media player by invoking **onCreateNativeMediaPlayer**.
+The application needs to register a callback for creating a native media player by invoking **onCreateNativeMediaPlayer**.
 
 The callback function determines whether to create a native media player to take over the web page media resources based on the media information.
 
-  * If the application does not take over the web page media resource, **null** is returned in the callback function.
-  * If the application takes over the web page media resource, a native media player instance is returned in the callback function.
+  * If the application does not take over the web page media resource, **null** is returned in the callback.
+  * If the application takes over the web page media resource, a native media player instance is returned in the callback.
 
-The native media player needs to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12) API so that the ArkWeb kernel can control the playback on the native media player.
+The native media player needs to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md) API so that the ArkWeb kernel can control the playback on the native media player.
 
   ```ts
   // xxx.ets
@@ -136,11 +136,11 @@ The native media player needs to implement the [NativeMediaPlayerBridge](../refe
 
 ### Drawing Native Media Player Components
 
-When an application takes over the media playback on web pages, you need to draw the native media player component and video images on the surface provided by the ArkWeb kernel. Then the ArkWeb kernel combines the surface with the web page and displays it on the screen.
+When an application takes over the media playback on web pages, it needs to draw the native media player component and video images on the surface provided by the ArkWeb kernel. The ArkWeb kernel combines the surface and the web page and displays them.
 
-This process is the same as that of [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md#)
+This process is the same as that of [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
 
-1. In the application startup phase, **UIContext** must be saved so that it can be used in subsequent rendering and drawing processes at the same layer.
+1. In the application startup phase, the application should save **UIContext** to use it in subsequent rendering and drawing processes at the same layer.
 
    ```ts
    // xxxAbility.ets
@@ -163,7 +163,7 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
    }
    ```
 
-2. Use the surface created by the ArkWeb kernel for rendering and drawing at the same layer.
+2. The application uses the surface created by the ArkWeb kernel for rendering and drawing at the same layer.
 
    ```ts
    // xxx.ets
@@ -239,7 +239,7 @@ For details about how to dynamically create components and draw them on the surf
 
 ### Executing Playback Control Commands Sent by ArkWeb Kernel to the Native Media Player
 
-To facilitate the control over native media player by the ArkWeb kernel, you need to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12) API on the native media player and operate the native media player based on the function of each API.
+To facilitate the control over native media player by the ArkWeb kernel, the application needs to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md) API on the native media player and operate the native media player based on the functionality of each API method.
 
   ```ts
   // xxx.ets
@@ -304,9 +304,9 @@ To facilitate the control over native media player by the ArkWeb kernel, you nee
 
 ### Notifying the Status Information of Native Media Player to the ArkWeb Kernel
 
-The ArkWeb kernel need to update the status information (such as the video width and height, playback time, and cache time) of the native player to the web page. Therefore, you need to notify the ArkWeb kernel of the status information of the native player.
+The ArkWeb kernel needs to update the status information (such as the video width and height, playback time, and cache time) of the native player to the web page. Therefore, the application needs to notify the ArkWeb kernel of the status information of the native player.
 
-Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12) API, the Ark Web kernel passes a [NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12) object to the application. You need to use this object to notify the ArkWeb kernel of the latest status information of the native media player.
+In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#oncreatenativemediaplayer12) API, the ArkWeb kernel passes a [NativeMediaPlayerHandler](../reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md) object to the application. The application needs to use this object to notify the ArkWeb kernel of the latest status information of the native media player.
 
   ```ts
   // xxx.ets
@@ -402,7 +402,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
       this.handler.handleMutedChanged(muted);
     }
 
-    // ...Listen for other status of the native player.
+    // ...Listen for other states of the native player.
   }
   @Entry
   @Component
@@ -458,13 +458,13 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
 
 ## Sample Code
 
-- Add the following permissions to **module.json5** before using it:
+- Add the following permission to the **module.json5** file:
 
   ```ts
   "ohos.permission.INTERNET"
   ```
 
-- Example of saving **UIContext** during application startup on the application side:
+- Save **UIContext** during application startup.
 
   ```ts
   // xxxAbility.ets
@@ -491,13 +491,12 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
 
   ```ts
   // Index.ets
-
   import { webview } from '@kit.ArkWeb';
-  import { BuilderNode, FrameNode, NodeController, NodeRenderType, UIContext } from '@kit.ArkUI';
+  import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@kit.ArkUI';
   import { AVPlayerDemo, AVPlayerListener } from './PlayerDemo';
 
   // Implement the webview.NativeMediaPlayerBridge API.
-  // The ArkWeb kernel calls the APIs to control playback on NativeMediaPlayer.
+  // The ArkWeb kernel calls the webview.NativeMediaPlayerBridge methods to control playback on NativeMediaPlayer.
   class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     private surfaceId: string;
     mediaSource: string;
@@ -505,8 +504,10 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
     nativePlayerInfo: NativePlayerInfo;
     nativePlayer: AVPlayerDemo;
     httpHeaders: Record<string, string>;
+    uiContext?: UIContext;
 
-    constructor(nativePlayerInfo: NativePlayerInfo, handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {
+    constructor(nativePlayerInfo: NativePlayerInfo, handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo, uiContext: UIContext) {
+      this.uiContext = uiContext;
       console.log(`NativeMediaPlayerImpl.constructor, surface_id[${mediaInfo.surfaceInfo.id}]`);
       this.nativePlayerInfo = nativePlayerInfo;
       this.mediaHandler = handler;
@@ -526,8 +527,8 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
     }
 
     updateRect(x: number, y: number, width: number, height: number): void {
-      let width_in_vp = px2vp(width);
-      let height_in_vp = px2vp(height);
+      let width_in_vp = this.uiContext!.px2vp(width);
+      let height_in_vp = this.uiContext!.px2vp(height);
       console.log(`updateRect(${x}, ${y}, ${width}, ${height}), vp:{${width_in_vp}, ${height_in_vp}}`);
 
       this.nativePlayerInfo.updateNativePlayerRect(x, y, width, height);
@@ -739,7 +740,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
       .height('100%')
   }
 
-  // Use NodeController to dynamically create a player component and draw the component content on the surface specified by surfaceId.
+  // Use NodeController to dynamically create a custom player component and draw the component content on the surface.
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[ComponentParams]> | undefined;
     playerInfo: NativePlayerInfo;
@@ -791,12 +792,12 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
     width: number = 0;
     height: number = 0;
 
-    static toNodeRect(rectInPx: webview.RectEvent) : Rect {
+    static toNodeRect(rectInPx: webview.RectEvent, uiContext: UIContext) : Rect {
       let rect = new Rect();
-      rect.x = px2vp(rectInPx.x);
-      rect.y = px2vp(rectInPx.x);
-      rect.width = px2vp(rectInPx.width);
-      rect.height = px2vp(rectInPx.height);
+      rect.x = uiContext.px2vp(rectInPx.x);
+      rect.y = uiContext.px2vp(rectInPx.x);
+      rect.width = uiContext.px2vp(rectInPx.width);
+      rect.height = uiContext.px2vp(rectInPx.height);
       return rect;
     }
   }
@@ -815,17 +816,17 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
 
     playerComponent?: NativeMediaPlayerComponent;
 
-    constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo) {
+    constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo, uiContext: UIContext) {
       this.web = web;
       this.embed_id = videoInfo.embedID;
 
-      let node_rect = Rect.toNodeRect(videoInfo.surfaceInfo.rect);
+      let node_rect = Rect.toNodeRect(videoInfo.surfaceInfo.rect, uiContext);
       this.node_pos_x = node_rect.x;
       this.node_pos_y = node_rect.y;
       this.node_width = node_rect.width;
       this.node_height = node_rect.height;
 
-      this.player = new NativeMediaPlayerImpl(this, handler, videoInfo);
+      this.player = new NativeMediaPlayerImpl(this, handler, videoInfo, uiContext);
     }
 
     updateNativePlayerRect(x: number, y: number, width: number, height: number) {
@@ -861,7 +862,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
     }
 
     updateNativePlayerRect(x: number, y: number, width: number, height: number) {
-      let node_rect = Rect.toNodeRect({x, y, width, height});
+      let node_rect = Rect.toNodeRect({x, y, width, height}, this.getUIContext());
       this.playerInfo.node_pos_x = node_rect.x;
       this.playerInfo.node_pos_y = node_rect.y;
       this.playerInfo.node_width = node_rect.width;
@@ -894,7 +895,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
             .onPageBegin(() => {
               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
                 console.log('onCreateNativeMediaPlayer(' + JSON.stringify(mediaInfo) + ')');
-                let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo);
+                let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo, this.getUIContext());
                 this.native_player_info_list.push(nativePlayerInfo);
                 return nativePlayerInfo.player;
               });
@@ -1056,7 +1057,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
       })
     }
 
-    // The following demo shows how to play live streams by setting the network address through the URL.
+    // The following example uses a URL to specify the network address for playing live streams.
     async avPlayerLiveDemo(playerParam: PlayerParam) {
       // Create an AVPlayer instance.
       this.avPlayer = await media.createAVPlayer();
@@ -1211,7 +1212,7 @@ Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview
   </head>
   <body>
   <div>
-      <!--Replace the URL with the actual URL of the video source.-->
+      <!-- Replace the URL with the actual URL of the video source. -->
       <video src='https://xxx.xxx/demo.mp4' style='width: 100%'></video>
   </div>
   </body>

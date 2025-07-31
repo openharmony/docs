@@ -1,5 +1,11 @@
 # 声明权限
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 应用在申请权限时，需要在项目的配置文件中，逐个声明需要的权限，否则应用将无法获取授权<!--RP2--><!--RP2End-->。
 
 ## 在配置文件中声明权限

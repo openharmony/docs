@@ -1,4 +1,9 @@
 # @arkts.lang (ArkTS语言基础能力)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供的ArkTS语言的基础类型定义。当前提供ISendable接口。
 

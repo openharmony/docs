@@ -1,4 +1,9 @@
 # @ohos.uri (URI字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供URI字符串解析功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
 

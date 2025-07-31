@@ -18,7 +18,7 @@
 
 >**说明：**
 >
-> 1. 关于本文中示例，可参考：[提升应用冷启动速度示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Ability/Performance/Startup)。  
+> 1. 关于本文中示例，可参考：[提升应用冷启动速度示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Ability/Performance/Startup)。  
 > 2. 如何使用SmartPerf工具分析冷启动可参考：[应用冷启动分析](performance-optimization-using-smartperf-host.md#应用冷启动分析)。
 
 
@@ -683,7 +683,7 @@ struct Index {
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
     let context = this.getUIContext().getHostContext();
-    this.text = context?.resourceManager.getStringSync($r('app.string.startup_text'));
+    this.text = context?.resourceManager.getStringSync($r('app.string.startup_text').id);
   }
 
   build() {
@@ -701,7 +701,7 @@ struct Index {
       this.count++;
     }
     let context = this.getUIContext().getHostContext();
-    this.text = context?.resourceManager.getStringSync($r('app.string.task_text'));
+    this.text = context?.resourceManager.getStringSync($r('app.string.task_text').id);
   }
 
   // 运算任务异步处理

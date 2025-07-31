@@ -786,27 +786,39 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.showAlertDialog(
-  {
-    title: 'title',
-    message: 'text',
-    autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: -20 },
-    gridCount: 3,
-    confirm: {
-      value: 'button',
-      action: () => {
-        console.info('Button-clicking callback')
-      }
-    },
-    cancel: () => {
-      console.info('Closed callbacks')
-    }
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showAlertDialog')
+        .onClick(() => {
+          this.uiContext.showAlertDialog(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback');
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks');
+              }
+            }
+          );
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }
-);
+}
 ```
 
 ## showActionSheet
@@ -827,44 +839,56 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.showActionSheet({
-  title: 'ActionSheet title',
-  message: 'message',
-  autoCancel: true,
-  confirm: {
-    value: 'Confirm button',
-    action: () => {
-      console.info('Get Alert Dialog handled');
-    }
-  },
-  cancel: () => {
-    console.info('actionSheet canceled');
-  },
-  alignment: DialogAlignment.Bottom,
-  offset: { dx: 0, dy: -10 },
-  sheets: [
-    {
-      title: 'apples',
-      action: () => {
-        console.info('apples');
-      }
-    },
-    {
-      title: 'bananas',
-      action: () => {
-        console.info('bananas');
-      }
-    },
-    {
-      title: 'pears',
-      action: () => {
-        console.info('pears');
-      }
-    }
-  ]
-});
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showActionSheet')
+        .onClick(() => {
+          this.uiContext.showActionSheet({
+            title: 'ActionSheet title',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              value: 'Confirm button',
+              action: () => {
+                console.info('Get ActionSheet handled');
+              }
+            },
+            cancel: () => {
+              console.info('ActionSheet canceled');
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.info('apples');
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.info('bananas');
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.info('pears');
+                }
+              }
+            ]
+          });
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## showDatePickerDialog
@@ -885,25 +909,53 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1");
-uiContext.showDatePickerDialog({
-  start: new Date("2000-1-1"),
-  end: new Date("2100-12-31"),
-  selected: selectedDate,
-  onAccept: (value: DatePickerResult) => {
-    // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
-  },
-  onCancel: () => {
-    console.info("DatePickerDialog:onCancel()");
-  },
-  onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            },
+            onCancel: () => {
+              console.info("DatePickerDialog:onCancel()");
+            },
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()");
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()");
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()");
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()");
+            }
+          })
+        })
+    }.width('100%')
   }
-});
+}
 ```
 
 ## showTimePickerDialog
@@ -1087,32 +1139,34 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 3,
-      begin: 200.0,
-      end: 400.0
-    };
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options:AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 3,
+        begin: 200.0,
+        end: 400.0
+      };
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1149,23 +1203,26 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 

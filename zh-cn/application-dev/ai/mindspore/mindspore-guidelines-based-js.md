@@ -379,6 +379,6 @@ struct Index {
 
 针对使用MindSpore Lite进行图像分类应用的开发，有以下相关实例可供参考：
 
-- [基于ArkTS接口的MindSpore Lite应用开发（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo)
+- [基于ArkTS接口的MindSpore Lite应用开发（ArkTS）（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo)
 
 <!--RP1--><!--RP1End-->

@@ -1,4 +1,9 @@
 # @ohos.enterprise.deviceSettings （设备设置管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备设置能力，包括设置、获取设备息屏时间等。
 

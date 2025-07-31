@@ -4,7 +4,7 @@
 
 在开发应用时，如果遇到数据量较大，并且需要多个线程同时操作的情况，推荐使用SharedArrayBuffer共享内存，可以减少数据在线程间传递时需要复制和序列化的额外开销。比如，音视频解码播放、多个线程同时读取写入文件等场景。由于内存是共享的，所以在多个线程同时操作同一块内存时，可能会引起数据的紊乱，这时就需要使用锁来确保数据操作的有序性。本文将基于此具体展开说明。关于多线程的使用和原理，可参考[OpenHarmony多线程能力场景化示例实践](./multi_thread_capability.md)，本文将不再详细讲述。
 ## 工作原理
-可共享对象SharedArrayBuffer，是拥有固定长度的原始二进制数据缓冲区，可以存储任何类型的数据，包括数字、字符串等。它支持在多线程之间传递，传递之后的SharedArrayBuffer对象和原始的SharedArrayBuffer对象可以指向同一块内存，进而达到共享内存的目的。SharedArrayBuffer对象存储的数据在子线程中被修改时，需要通过原子操作保证其同步性，即下个操作开始之前务必需要保证上个操作已经结束。下面将通过示例说明原子操作保证同步性的必要性，详细代码请参考[AtomicsUsage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/memoryShared/src/main/ets/pages/AtomicsUsage.ets)。
+可共享对象SharedArrayBuffer，是拥有固定长度的原始二进制数据缓冲区，可以存储任何类型的数据，包括数字、字符串等。它支持在多线程之间传递，传递之后的SharedArrayBuffer对象和原始的SharedArrayBuffer对象可以指向同一块内存，进而达到共享内存的目的。SharedArrayBuffer对象存储的数据在子线程中被修改时，需要通过原子操作保证其同步性，即下个操作开始之前务必需要保证上个操作已经结束。下面将通过示例说明原子操作保证同步性的必要性，详细代码请参考[AtomicsUsage.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/memoryShared/src/main/ets/pages/AtomicsUsage.ets)。
 ### 非原子操作
 
 ```javascript
@@ -212,7 +212,7 @@ export struct LockUsage {
   startWrite(useLock: boolean): void {
     // 指明运行状态为“写入文件开始”
     this.result = (this.getUIContext()
-      .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_start'));  
+      .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_start').id);  
     // 初始化写入时的偏移量
     let whichLineToWrite: Int32Array = new Int32Array(this.sabForLine);
     Atomics.store(whichLineToWrite, 0, 0);
@@ -226,11 +226,11 @@ export struct LockUsage {
     taskpool.execute(taskPoolGroup).then(() => {
       // 指明运行状态为“写入文件成功”
       this.result = (this.getUIContext()
-        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success'));
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success').id);
     }).catch(() => {
       // 指明运行状态为“写入文件失败”
       this.result = (this.getUIContext()
-        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed'));
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed').id);
     })
   }
 }

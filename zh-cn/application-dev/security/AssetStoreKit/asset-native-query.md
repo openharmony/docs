@@ -1,5 +1,11 @@
 # 查询关键资产(C/C++)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 接口介绍
 
 可通过API文档查看查询关键资产的接口[OH_Asset_Query](../../reference/apis-asset-store-kit/capi-asset-api-h.md#oh_asset_query)
