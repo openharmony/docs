@@ -1,5 +1,11 @@
 # crypto_architecture_kit.h
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 ## 概述
 
 提供对加密头文件的访问入口，开发者在使用时，可仅导入一个头文件，即可使用其他头文件中的接口。

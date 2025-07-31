@@ -1,5 +1,11 @@
 # CryptoSymKeyApi
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 ## 概述
 
 提供对称密钥相关功能接口。

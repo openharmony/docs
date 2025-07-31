@@ -1,5 +1,11 @@
 # crypto_kdf.h
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 ## 概述
 
 定义密钥派生接口。
