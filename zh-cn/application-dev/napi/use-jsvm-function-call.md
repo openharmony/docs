@@ -46,7 +46,7 @@ cpp测试全量代码，入口为TEST_FUNC
   }
 
 JSVM_Value NativeCreateFunctionTest(JSVM_Env env, JSVM_CallbackInfo info) {
-    void *data;
+    void *data = nullptr;
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     JSVM_Value thisArg;
