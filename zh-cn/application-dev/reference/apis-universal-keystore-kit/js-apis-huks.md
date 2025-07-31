@@ -1,5 +1,11 @@
 # @ohos.security.huks (通用密钥库系统)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。
 HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成。
 
