@@ -208,10 +208,6 @@ DevEco Studio的Profiler工具可抓取状态变量的变化打点。在Profiler
 
 <!--RP3-->
 
-> **说明：**
->
-> 由于隐私安全政策，已上架应用市场的应用不支持录制ArkUI State泳道。
-
 <!--RP3End-->
 
 ### 状态管理Inspector调试能力
@@ -232,10 +228,6 @@ DevEco Studio的ArkUI Inspector可以显示当前页面自定义组件内的状�
 ![UI-StateInspector](figures/UI-StateInspector.png)
 
 <!--RP4-->
-
-> **说明：**
->
-> 由于隐私安全政策，已上架应用市场的应用不支持使用ArkUI Inspector。
 
 <!--RP4End-->
 
