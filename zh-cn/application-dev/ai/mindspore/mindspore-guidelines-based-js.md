@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现图像分类（ArkTS）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[@ohos.ai.mindSporeLite](../../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现图像分类的应用。

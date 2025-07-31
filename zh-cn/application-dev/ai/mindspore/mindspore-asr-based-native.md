@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现语音识别（C/C++）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
