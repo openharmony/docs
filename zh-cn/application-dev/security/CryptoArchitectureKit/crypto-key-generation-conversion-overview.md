@@ -1,5 +1,11 @@
 # 密钥生成与转换介绍
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 在以下场景中，经常需要使用密钥生成操作：
 
 1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
