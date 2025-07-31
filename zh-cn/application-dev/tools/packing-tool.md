@@ -109,12 +109,13 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 **App打包时合法性校验：**
 - 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
 - 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 所有HAP的module.json文件中的debug字段值保持一致。当HAP的module.json文件中的debug字段值为false时，要求HSP的module.json文件中的debug字段值也必须为false；当HAP的module.json文件中的debug字段值为true时，对HSP的module.json文件中的debug字段值无要求。
 
 >**说明：**
 >
-> - 从API version 12开始，App打包不再对versionName校验。
+> - 随着鸿蒙生态的不断演进，为提升开发者的使用体验，调整了相关字段的一致性校验规则。
 > - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
-> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion、debug一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
