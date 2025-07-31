@@ -552,6 +552,7 @@ cancel(): void
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -567,11 +568,13 @@ struct PasteboardTest {
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListenerInfo success, progress:' + progress.progress);
+    		    console.log('progressListener success, progress:' + progress.progress);
                 signal.cancel();
               };
+              let dstPath: string = '/data/storage/el2/base/files/';
+              let dstUri : string = fileUri.getUriFromPath(dstPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
@@ -3011,6 +3014,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -3025,10 +3029,12 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListenerInfo success, progress:' + progress.progress);
+    		    console.log('progressListener success, progress:' + progress.progress);
               };
+              let dstPath: string = '/data/storage/el2/base/files/';
+              let dstUri : string = fileUri.getUriFromPath(dstPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: dstUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
