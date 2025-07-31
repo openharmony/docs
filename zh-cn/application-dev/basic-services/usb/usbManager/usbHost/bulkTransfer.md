@@ -105,7 +105,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 3,
+                   type: 3, // 决定传输类型，Bulk传输只能在type：3的Endpoint上进行，若不匹配会返回IO错误。
                    interfaceId: 0,
                  }
                ]
@@ -144,6 +144,12 @@
    ```
 
 5. 数据传输。
+
+**说明：**
+
+> 在数据传输前建议先获取interface所属endpointer的type，通过type判断interface是否支持所需的传输类型。
+>
+> 若调用传输接口失败，请先确认设备interface是否支持[模式切换](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbinterface)。若alternateSetting支持切换设置，可在传输前调用[usbManager.setInterface](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbmanagersetinterface)重新设置interface，使端点和传输类型匹配，保证端点正常通信。
 
     ```ts
     /*
