@@ -1,5 +1,11 @@
 # 方舟字节码函数命名规则
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--SE: @ctw-ian; @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ## 概述
 本文介绍字节码文件中[Method](arkts-bytecode-file-format.md#method)的`name_off`字段指向的字符串的命名规则，该规则从方舟字节码文件版本`12.0.4.0`开始生效。
 ## 入口函数
