@@ -237,268 +237,6 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 })
 ```
 
-## print.startDiscoverPrinter
-
-startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-加载特定的打印机扩展并开始发现打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let extensionList: string[] = [];
-//extensionList内无信息表示发现所有扩展
-print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to start Discover Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('start Discover Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.startDiscoverPrinter
-
-startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
-
-加载特定的打印机扩展并开始发现打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 加载特定的打印机扩展并开始发现打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let extensionList: string[] = [];
-//extensionList内无信息表示发现所有扩展
-print.startDiscoverPrinter(extensionList).then((data : void) => {
-    console.log('start Discovery success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to start Discovery because : ' + JSON.stringify(error));
-})
-```
-
-## print.stopDiscoverPrinter
-
-stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
-
-停止发现具有特定打印机扩展的打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步停止发现具有特定打印机扩展的打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.stopDiscoverPrinter((err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to stop Discover Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('stop Discover Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.stopDiscoverPrinter
-
-stopDiscoverPrinter(): Promise&lt;void&gt;
-
-停止发现具有特定打印机扩展的打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 停止发现具有特定打印机扩展的打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.stopDiscoverPrinter().then((data : void) => {
-    console.log('stop Discovery success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to stop Discovery because : ' + JSON.stringify(error));
-})
-```
-
-## print.connectPrinter
-
-connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
-
-连接特定打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步连接特定打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let printerId: string = 'printerId_32';
-print.connectPrinter(printerId, (err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to connect Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('start connect Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.connectPrinter
-
-connectPrinter(printerId: string): Promise&lt;void&gt;
-
-连接特定打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 连接特定打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let printerId: string = 'printerId_32';
-print.connectPrinter(printerId).then((data : void) => {
-    console.log('start connect Printer success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to connect Printer because : ' + JSON.stringify(error));
-})
-```
-
 ## print.disconnectPrinter
 
 disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -888,6 +626,51 @@ print.cancelPrintJob(jobId).then((data : void) => {
     console.log('cancelPrintJob success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.error('cancelPrintJob failed, because : ' + JSON.stringify(error));
+})
+```
+
+## print.restartPrintJob<sup>20+</sup>
+
+restartPrintJob(jobId: string): Promise&lt;void&gt;
+
+重新打印之前打印过的打印任务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 之前打印过的打印任务ID。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 重新开始打印任务的结果的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '121212';
+print.restartPrintJob(jobId).then(() => {
+    console.log('restartPrintJob success');
+}).catch((error: BusinessError) => {
+    console.error('restartPrintJob failed, because : ' + JSON.stringify(error));
 })
 ```
 
@@ -1910,6 +1693,45 @@ print.queryAllPrintJobs().then((data : void) => {
     console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.error('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
+})
+```
+
+## print.queryAllActivePrintJobList<sup>20+</sup>
+
+queryAllActivePrintJobList(): Promise&lt;[PrintJob](#printjob)[]&gt;
+
+查询所有活跃中的打印任务，使用Promise进行异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;[PrintJob](#printjob)[]&gt; | 包含所有活跃打印任务的列表的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.queryAllActivePrintJobList().then((printJobs : print.PrintJob[]) => {
+    console.log('queryPrinqueryAllActivePrintJobListtJobList success, data : ' + JSON.stringify(printJobs));
+}).catch((error: BusinessError) => {
+    console.error('queryAllActivePrintJobList failed, error : ' + JSON.stringify(error));
 })
 ```
 
