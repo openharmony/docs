@@ -1,4 +1,9 @@
 # MVVM模式（状态管理V2）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @katabanga-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 ## 概述
 

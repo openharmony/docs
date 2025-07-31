@@ -1,4 +1,9 @@
 # \@Event装饰器：规范组件输出
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。使用\@Event装饰回调方法是一种规范，表明子组件需要传入更新数据源的回调。
 
