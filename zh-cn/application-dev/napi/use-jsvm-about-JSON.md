@@ -66,7 +66,7 @@ static JSVM_Value JsonParseObject(JSVM_Env env, JSVM_CallbackInfo info)
     size_t needLen = totalLen + 1;
     char* buff = new char[needLen];
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, buff, needLen, &totalLen));
-    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseNumber: %{public}s", buff);
+    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseObject: %{public}s", buff);
     delete[] buff;
     return nullptr;
 }
@@ -91,5 +91,5 @@ JSVM_PropertyDescriptor descriptor[] = {
 ```cpp
 Test JSVM jsonParseNumber: 10.555000
 
-Test JSVM jsonParseNumber: {"first":"one","second":"two","third":"three"}
+Test JSVM jsonParseObject: {"first":"one","second":"two","third":"three"}
 ```
