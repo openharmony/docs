@@ -1,5 +1,11 @@
 # 账号管理概述
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 ## 简介
 
 系统支持在一台设备上创建多个本地系统账号，以允许多个用户使用同一台设备。多个用户的数据按系统账号进行隔离，以保证不同用户数据的安全性。
