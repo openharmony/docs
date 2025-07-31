@@ -11,7 +11,7 @@
 ### 示例代码
 - 模块注册
     ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <napi/common.h>
     #include <pthread.h>
@@ -142,7 +142,7 @@
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
 2. 需要在工程的build-profile.json5文件中进行以下配置
