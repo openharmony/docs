@@ -44,13 +44,13 @@ OpenHarmony还将长期通过Node-API来为开发者提供和主线程交互及�
 
 如果开发者对libuv非常熟悉，并自信能够处理好所有的内存管理和多线程问题，那么仍可以像使用原生libuv一样，自己启动线程，并在上面使用libuv完成自己的业务。在没有特殊版本要求的情况下，开发者不需要额外引入libuv库到自己的应用工程中。
 
-### 当前问题和解决方案
+## 当前问题和解决方案
 
 根据现有机制，一个线程上只能存在一个事件循环，为了适配系统应用的主事件循环，在主线程上的JS环境中，uvloop中的事件处理是由主事件循环监听其fd，触发一次`uv_run`来驱动的。因此部分依赖uvloop事件循环的功能无法生效。
 
 基于上述，比较常用的场景和解决方案有：
 
-#### 场景一、在JS主线程抛异步任务到工作线程执行，在主线程中执行JS代码处理返回结果
+### 场景一、在JS主线程抛异步任务到工作线程执行，在主线程中执行JS代码处理返回结果
 
 **错误示例：**
 
@@ -225,7 +225,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 export const test:() => number;
 ```
 
-#### 场景二、在Native侧向应用主循环抛fd事件，接口无法生效
+### 场景二、在Native侧向应用主循环抛fd事件，接口无法生效
 
 由于应用主循环仅仅接收fd事件，在监听了uvloop中的backend_fd后，只有该fd事件被触发才会执行一次`uv_run`。这就意味着，在应用主循环中调用uv接口，如果不触发一次fd事件，`uv_run`将永远不会被执行，最后导致libuv的接口正常调用时不生效（仅当应用中没有触发uvloop中的fd事件时）。
 
@@ -470,7 +470,7 @@ export const testClose:() => number;
 
 当前OpenHarmony提供了一些Node-API接口，可以替换libuv接口的使用。主要包括异步任务相关接口，线程安全的函数调用接口。
 
-#### 异步任务接口
+**1. 异步任务接口**
 
 当开发者需要执行一个比较耗时的操作但又不希望阻塞主线程执行时，libuv提供了底层接口`uv_queue_work`帮助开发者在异步线程中执行耗时操作，然后将结果回调到主线程上进行处理。
 
@@ -515,7 +515,7 @@ napi_status napi_queue_async_work(napi_env env, napi_async_work work);
 napi_status napi_delete_async_work(napi_env env, napi_async_work work);
 ```
 
-#### 跨线程共享和调用的线程安全函数
+**2. 跨线程共享和调用的线程安全函数**
 
 当开发者想在任意子线程传递某个回调函数到应用主线程上执行时，libuv的实现方式一般使用`uv_async_t`句柄用于线程间通信。
 
@@ -610,13 +610,9 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function,
 
 ### libuv单线程约束
 
-在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。
+在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。根据loop来源的不同，可分为两种情况，即开发者创建loop和从env获取loop。
 
-#### 单线程约束
-
-根据loop来源的不同，可分为两种情况，即开发者创建loop和从env获取loop。
-
-##### 开发者创建loop
+**1. 开发者创建loop**
 
 开发者可以通过调用`uv_loop_new`创建loop或者`uv_loop_init`接口初始化loop，loop的生命周期由开发者自行维护。在这种情况下，如前文所述，需要保证`uv_run`执行在与创建/初始化loop操作相同的线程上，即loop线程上。此外，其余非线程安全操作，如timer相关操作等，均需要在loop线程上进行。 
 
@@ -800,11 +796,11 @@ export const testTimerAsync:() => number;
 export const testTimerAsyncSend:() => number;
 ```
 
-##### 从env获取loop
+**2. 从env获取loop**
 
 开发者使用`napi_get_uv_event_loop`接口从env获取到的loop一般是系统创建的JS主线程的事件循环，因此应当避免在子线程中调用非线程安全函数。
 
-如因业务需要，必须在非loop线程上调用非线程安全函数，请使用线程安全函数`uv_async_send`将任务提交到loop线程。即定义一个uv_async_t*类型的句柄，初始化该句柄的时候，将需要在子线程调用的非线程安全函数在对应的async_cb中调用，然后在非loop线程上调用`uv_async_send`函数，并回到loop线程上执行async_cb。请参考[正确使用timer示例](#正确使用timer示例)的场景二。
+如因业务需要，必须在非loop线程上调用非线程安全函数，请使用线程安全函数`uv_async_send`将任务提交到loop线程。即定义一个uv_async_t*类型的句柄，初始化该句柄的时候，将需要在子线程调用的非线程安全函数在对应的async_cb中调用，然后在非loop线程上调用`uv_async_send`函数，并回到loop线程上执行async_cb。请参考[libuv中的handles和requests](#libuv中的handles和requests)章节关于**正确使用timer示例**的场景二内容。
 
 ### 线程安全函数
 
@@ -833,7 +829,7 @@ export const testTimerAsyncSend:() => number;
 
 事件循环是libuv中最核心的一个概念，loop负责管理整个事件循环的所有资源，它贯穿于整个事件循环的生命周期。通常将`uv_run`所在的线程称为该事件循环的主线程。
 
-#### 事件循环运行的三种方式
+**1. 事件循环运行的三种方式**
 
 `UV_RUN_DEFAULT`：默认轮询方式，该模式将会一直运行下去，直到loop中没有活跃的句柄和请求。
 
@@ -841,7 +837,7 @@ export const testTimerAsyncSend:() => number;
 
 `UV_RUN_NOWAIT`：非阻塞模式，该模式下不会执行pending_queue，而是直接执行一次I/O轮询（`uv__io_poll`）。
 
-#### 常用接口
+**2. 常用接口**
 
 ```cpp
 int uv_loop_init(uv_loop_t* loop);
@@ -871,7 +867,7 @@ uv_loop_t* uv_default_loop(void);
 int uv_run(uv_loop_t* loop, uv_run_mode mode);
 ```
 
-  启动事件循环。运行模式可查看[事件循环运行的三种方式](#事件循环运行的三种方式)。
+  启动事件循环。运行模式可查看事件循环运行的三种方式。
 
 ```cpp
 int uv_loop_alive(uv_loop_t loop);
@@ -946,14 +942,14 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 });
 ```
 
-#### libuv timer使用规范
+### libuv timer使用规范
 
 使用libuv timer需要遵守如下约定：
 
 1. 请不要在多个线程中使用libuv的接口（`uv_timer_start`、`uv_timer_stop`和`uv_timer_again`）同时操作同一个loop的timer heap，否则将导致崩溃，如果想要使用libuv的接口操作定时器，请**保持在与当前env绑定的loop所在线程上操作**；
 2. 如因业务需求往指定线程抛定时器，请使用`uv_async_send`线程安全函数实现。
 
-##### 错误使用timer示例
+**1. 错误使用timer示例**
 
 以下错误示例中，由于在多个线程操作同一个loop的timer heap，崩溃率极高。
 
@@ -1052,7 +1048,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 export const testTimer:() => number;
 ```
 
-##### 正确使用timer示例
+**2. 正确使用timer示例**
 
 **场景一：** 在上述场景中，需保证在JS主线程上进行timer的相关操作。将上述TestTimer函数的代码做如下修改，便可以避免崩溃发生。
 
@@ -1303,14 +1299,13 @@ after_work_cb：loop所在线程要执行的回调函数。
 
 **注意：** work_cb与after_work_cb的执行有一个时序问题，只有work_cb执行完，通过`uv_async_send(loop->wq_async)`触发fd事件，loop所在线程在下一次迭代中才会执行after_work_cb。只有执行到after_work_cb时，与之相关的uv_work_t生命周期才算结束。
 
-#### 异步任务提交
+**1. 异步任务提交**
 
 下图为原生libuv的线程池工作流程，图中流程已简化，默认句柄的pending标志为1，worker线程个数不代表线程池中线程的真实数量。
 
 ![libuv线程池工作原理](./figures/libuv-image-3.jpg)
 
-#### 异步任务提交注意事项
-##### uv_queue_work工作流程
+**2. 异步任务提交注意事项**
 
 在OpenHarmony中，`uv_queue_work`函数在UI线程的工作流程为：将`work_cb`抛到FFRT对应优先级的线程池中，然后待FFRT调度执行该任务，并将`after_work_cb`抛到eventhandler对应优先级的event queue中，等待eventhandler调度并回到loop线程执行。需要注意的是，`uv_queue_work`调用完后，并不代表其中的任何一个任务执行完，仅代表将work_cb插入到FFRT对应优先级的线程池中。taskpool和jsworker线程的工作流程和原生libuv逻辑保持一致。
 
@@ -1333,11 +1328,11 @@ uv_queue_work(loop, work, [](uv_work_t* work) {
     )
 ```
 
-##### uv_queue_work使用约束
+**3. uv_queue_work使用约束**
 
 特别强调，开发者需要明确，`uv_queue_work`函数仅用于抛异步任务，**异步任务的execute回调被提交到线程池后会经过调度执行，因此并不保证多次提交的任务及其回调按照时序关系执行**。
 
-`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](#跨线程共享和调用的线程安全函数)。
+另外，`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](../../napi/use-napi-thread-safety.md)。
 
 ### OpenHarmony中libuv的使用现状
 
