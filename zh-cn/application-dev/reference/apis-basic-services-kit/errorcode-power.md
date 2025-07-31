@@ -49,3 +49,21 @@ Operation failed. The system is shutting down.
 **处理步骤**
 
 在系统正常运行的状态下进行操作。
+
+## 4900201 调用间隔过短导致调用失败
+
+**错误信息**
+
+Failed to refresh the screen timeout time because the interval between two function calls is too short.
+
+**错误描述**
+
+刷新屏幕超时息屏时间失败，原因是两次调用间隔过短。
+
+**可能原因**
+
+两次刷新屏幕超时息屏时间的调用间隔过短。
+
+**处理步骤**
+
+此失败说明100ms内已经进行过刷新屏幕超时息屏时间，无需再次刷新屏幕超时息屏时间。
