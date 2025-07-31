@@ -553,7 +553,7 @@ beacon围栏信息类型。当前仅支持设备制造商数据过滤。
 
 ## BeaconManufactureData<sup>20+</sup>
 
-beacon设备制造商数据。
+beacon设备制造商数据。当前仅支持ibeacon数据类型
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
