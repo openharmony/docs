@@ -1,4 +1,9 @@
 # 状态变量组件定位工具实践
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--SE: @jiangwensai-->
+<!--TSE: @Lyuxin-->
 
 ## 概述
 
@@ -366,7 +371,7 @@ dumpAll命令携带-r和-viewId参数时，输出结果中对应各个命令的�
 
 ## 参考资料
 
-[场景示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/DFXStateManagement/src/main/ets/view)
+[场景示例代码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/DFXStateManagement/src/main/ets/view)
 
 [使用HiDumper命令行工具优化性能](performance-optimization-using-hidumper.md)
 
