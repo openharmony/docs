@@ -32,6 +32,7 @@ cpp部分代码：
 #include <chrono>
 #include <string.h>
 
+static int g_aa = 0;
 
 // 待执行的js代码
 static const char *STR_TASK = R"JS( 
