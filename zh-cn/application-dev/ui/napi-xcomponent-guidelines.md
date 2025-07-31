@@ -1,4 +1,9 @@
 # 自定义渲染 (XComponent)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 ## 概述
 

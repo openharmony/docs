@@ -1,4 +1,9 @@
 # LazyForEach：数据懒加载
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @maorh-->
+<!--SE: @lixingchi1-->
+<!--TSE: @TerryTsao-->
 
 API参数说明见：[LazyForEach API参数说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)。
 

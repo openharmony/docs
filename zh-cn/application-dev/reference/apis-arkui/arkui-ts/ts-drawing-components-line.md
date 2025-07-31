@@ -1,4 +1,9 @@
 # Line
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 直线绘制组件。
 
