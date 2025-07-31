@@ -1,4 +1,9 @@
 # Class (BackForwardCacheSupportedFeatures)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 选择性允许使用以下特性的页面进入前进后退缓存。完整示例代码参考[enableBackForwardCache](./arkts-apis-webview-WebviewController.md#enablebackforwardcache12)。
 

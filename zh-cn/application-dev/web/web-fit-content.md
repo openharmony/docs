@@ -1,4 +1,9 @@
 # Web组件大小自适应页面内容布局
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @yp99ustc-->
+<!--SE: @LongLie-->
+<!--TSE: @ghiker-->
 
 使用Web组件大小自适应页面内容布局模式`layoutMode(WebLayoutMode.FIT_CONTENT)`时，能使Web组件的大小根据页面内容自适应变化。
 

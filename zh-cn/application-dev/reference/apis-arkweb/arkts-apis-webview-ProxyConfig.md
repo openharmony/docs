@@ -1,4 +1,9 @@
 # Class (ProxyConfig)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 可以通过该类提供的接口对代理进行配置。
 

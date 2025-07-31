@@ -1,4 +1,9 @@
 # Web组件的生命周期
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
+<!--TSE: @ghiker-->
 
 ## 概述
 

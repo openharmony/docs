@@ -1,4 +1,9 @@
 # Class (WebSchemeHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 用于拦截指定scheme的请求的拦截器。
 

@@ -1,4 +1,9 @@
 # Class (PdfData)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhang-yinglie-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 createPdf函数输出数据流类。
 
