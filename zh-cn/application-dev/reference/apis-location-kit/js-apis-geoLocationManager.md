@@ -582,7 +582,7 @@ beacon围栏的参数配置。
 
 ## BeaconFenceRequest<sup>20+</sup>
 
-beacon围栏请求参数。
+beacon围栏请求参数。transitionCallback与fenceExtensionAbilityName任选其一，都不填则参数无效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -591,7 +591,7 @@ beacon围栏请求参数。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | beacon | [BeaconFence](#beaconfence20) | 否 | 否 | beacon围栏的参数配置。 |
-| transitionCallback | Callback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 是 | beacon围栏事件信息。 |
+| transitionCallback | Callback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 是 | beacon围栏事件信息。仅支持前台回调。 |
 | fenceExtensionAbilityName | string | 否 | 是 | [FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称。 |
 
 
