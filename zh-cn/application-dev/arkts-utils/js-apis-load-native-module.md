@@ -1,4 +1,9 @@
 # 同步方式动态加载native模块
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @shilei123-->
+<!--SE: @yao_dashuai-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 loadNativeModule接口的功能是同步方式动态加载native模块。它的主要目的是在需要某个native模块时才进行加载，从而避免在应用启动时加载不必要的模块。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
 

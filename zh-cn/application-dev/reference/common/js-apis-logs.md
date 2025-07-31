@@ -1,4 +1,9 @@
 # Console (控制台)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @yao_dashuai-->
+<!--SE: @yao_dashuai-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 本模块提供了一个简单的调试控制台，类似于浏览器提供的JavaScript控制台机制。
 

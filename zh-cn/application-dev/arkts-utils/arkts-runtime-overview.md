@@ -1,4 +1,9 @@
 # ArkTS运行时概述
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @guobingbing3-->
+<!--SE: @xwcai98-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 ArkTS运行时是OpenHarmony上应用默认语言运行时，运行着ArkTS、TS、JS语言的字节码和相关标准库，支持解释器、AOT和JIT高效执行方式，并提供完善的跨语言调用接口实现[Node-API](../napi/napi-introduction.md)，支持多语言混合开发。
 
