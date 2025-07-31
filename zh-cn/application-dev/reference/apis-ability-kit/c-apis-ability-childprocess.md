@@ -323,7 +323,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
 
 > **说明：**
 >
-> 当前仅支持2in1、tablet设备。
+> 从API version 14开始，支持2in1和tablet设备。API version 13及之前版本，仅支持2in1设备。
 
 **起始版本**：13
 
