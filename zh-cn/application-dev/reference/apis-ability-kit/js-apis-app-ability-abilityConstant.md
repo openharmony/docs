@@ -26,21 +26,21 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 ## LaunchParam
 
-启动参数，主要包括应用启动原因以及上次退出原因。Ability启动时由系统自动传入，开发者无需修改。
+启动参数，主要包括Ability启动原因以及上次退出原因。Ability启动时由系统自动传入，开发者无需修改。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示应用启动原因（如故障恢复拉起、意图调用拉起、原子化服务分享拉起等），详见[LaunchReason](#launchreason)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示应用启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示Ability启动原因（如故障恢复拉起、意图调用拉起、原子化服务分享拉起等），详见[LaunchReason](#launchreason)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示Ability启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示Ability上次退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示Ability上次退出的详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示Ability上次退出时的关键运行信息（含进程ID、退出时间戳、RSS内存值等）。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 
-应用启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
+Ability启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
