@@ -2,7 +2,7 @@
 
 AbilityLifecycleCallback接口提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用实现AbilityLifecycleCallback接口后，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 
-[UIAbility](js-apis-app-ability-uiAbility.md)有自己的[生命周期](../../application-models/uiability-lifecycle.md)，当UIAbility状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化，如全局监听器、统计UIAbility页面时长、或者应用在此基础上对外提供sdk等场景。具体流程如下：
+[UIAbility](js-apis-app-ability-uiAbility.md)有自己的[生命周期](../../application-models/uiability-lifecycle.md)，当UIAbility状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。比如作为全局监听器方便统计应用内每个UIAbility页面时长；或者做一些数据或者文件加载，想要和UIAbility业务逻辑解耦；或者应用在此基础上对外提供sdk，通知其他模块应用状态变化。具体流程如下：
 1. 需要监听UIAbility生命周期变化的模块实现abilityLifecycleCallback接口，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 2. 系统调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
 3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的abilityLifecycleCallback监听回调函数。
@@ -473,153 +473,196 @@ onAbilitySaveState?(ability: UIAbility): void
 ## AbilityLifecycleCallback使用
 
 **示例：**
-GlobalContext.ts
-全局Context
+AbilityLifecycleCallback提供在UIAbility外部监听UIAbility生命周期的能力，比如应用可以在[AbilityStage](../../application-models/abilitystage.md)加载的时候注册监听，这样能监听到应用内所有UIAbility的状态变化。
+示例代码在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听，在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听；监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源；此外UIAbility创建销毁、前后台状态切换时，做相关事件记录，对外发通知。
+MyStage.ets
 ```ts
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+import { AbilityLifecycleCallback, AbilityStage, application, UIAbility, Want } from "@kit.AbilityKit";
+import hilog from "@ohos.hilog";
+import { JSON } from "@kit.ArkTS";
+import { window } from "@kit.ArkUI";
+import { BusinessError } from "@kit.BasicServicesKit";
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
+const DOMAIN = 0x0000;
+const TAG = 'testTag';
 
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+function loadContent() {
+  // load something
 }
-```
 
-MyFirstAbility.ts
-应用的第一个Ability
-```ts
-import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
+function releaseContent() {
+  // release something
+}
 
-// 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext';
+function recordAbilityEvent(abilityName: string) {
+  // record something
+}
 
-// 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
+function publishEvent() {
+  // publish event to notify
+}
+
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
-  onAbilityCreate(ability){
-    console.log('AbilityLifecycleCallback onAbilityCreate.');
+  onAbilityCreate(ability: UIAbility){
+    hilog.info(DOMAIN, TAG, 'onAbilityCreate: ' + ability.context.abilityInfo.name);
+    // UIAbility事件打点记录
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    // 模拟入口UIAbility创建时，加载资源对外发布通知
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      loadContent();
+      publishEvent();
+    }
   },
-  onWindowStageCreate(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageCreate.');
+  onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageCreate.');
   },
-  onWindowStageActive(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageActive.');
+  onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageActive.');
   },
-  onWindowStageInactive(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageInactive.');
+  onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageInactive.');
   },
-  onWindowStageDestroy(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+  onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageDestroy.');
   },
-  onAbilityDestroy(ability){
-    console.log('AbilityLifecycleCallback onAbilityDestroy.');
+  onAbilityDestroy(ability: UIAbility){
+    hilog.info(DOMAIN, TAG, 'onAbilityDestroy: ' + ability.context.abilityInfo.name);
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    // 模拟入口UIAbility销毁时，释放资源
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      releaseContent();
+      publishEvent();
+    }
   },
-  onAbilityForeground(ability){
-    console.log('AbilityLifecycleCallback onAbilityForeground.');
+  onAbilityForeground(ability: UIAbility){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityForeground.');
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      publishEvent();
+    }
   },
-  onAbilityBackground(ability){
-    console.log('AbilityLifecycleCallback onAbilityBackground.');
+  onAbilityBackground(ability: UIAbility){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityBackground.');
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      publishEvent();
+    }
   },
-  onAbilityContinue(ability){
-    console.log('AbilityLifecycleCallback onAbilityContinue.');
+  onAbilityContinue(ability: UIAbility){
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityContinue.');
   },
-  onNewWant(ability) {
-    console.log('AbilityLifecycleCallback onNewWant');
+  onNewWant(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onNewWant');
   },
-  onWillNewWant(ability) {
-    console.log('AbilityLifecycleCallback onWillNewWant');
+  onWillNewWant(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWillNewWant');
   },
-  onAbilityWillCreate(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillCreate');
+  onAbilityWillCreate(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillCreate');
   },
-  onWindowStageWillCreate(ability, windowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillCreate');
+  onWindowStageWillCreate(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillCreate');
   },
-  onWindowStageWillDestroy(ability, windowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillDestroy');
+  onWindowStageWillDestroy(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillDestroy');
   },
-  onAbilityWillDestroy(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillDestroy');
+  onAbilityWillDestroy(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillDestroy');
   },
-  onAbilityWillForeground(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillForeground');
+  onAbilityWillForeground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillForeground');
   },
-  onAbilityWillBackground(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillBackground');
+  onAbilityWillBackground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillBackground');
   },
   onAbilityWillContinue(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilityWillContinue.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillContinue.');
   },
   onWindowStageWillRestore(ability: UIAbility, windowStage: window.WindowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillRestore.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillRestore.');
   },
   onWindowStageRestore(ability: UIAbility, windowStage: window.WindowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageRestore.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageRestore.');
   },
   onAbilityWillSaveState(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilityWillSaveState.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillSaveState.');
   },
   onAbilitySaveState(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilitySaveState.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilitySaveState.');
   }
 };
 
-export default class MyFirstAbility extends UIAbility {
-  onCreate() {
-    console.log('MyAbilityStage onCreate');
-    // 1.通过context属性获取applicationContext
-    let applicationContext = this.context.getApplicationContext();
-    // 2.通过applicationContext注册监听应用内生命周期
+let lifecycleId = -1;
+
+export default class MyStage extends AbilityStage {
+  onCreate(): void {
+    hilog.info(DOMAIN, TAG, 'AbilityStage onCreate')
+
+    // AbilityStage创建时注册监听，并把监听id保存起来
     try {
-      let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-      GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-      console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
-    } catch (paramError) {
-      console.error(`error: ${paramError.code}, ${paramError.message}`);
+      let applicationContext = application.getApplicationContext();
+      lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (e) {
+      hilog.error(DOMAIN, TAG, `register abilityLifecycle failed: ${JSON.stringify(e)}`);
     }
+  }
+
+  onDestroy(): void {
+    // AbilityStage销毁时取消注册
+    let applicationContext = application.getApplicationContext();
+    applicationContext. off('abilityLifecycle', lifecycleId).catch((e: BusinessError) => {
+      hilog.error(DOMAIN, TAG, `unregister abilityLifecycle failed: ${JSON.stringify(e)}`);
+    });
   }
 }
 ```
 
-MySecondAbility.ts
-应用的第二个Ability
+EntryAbility.ets
+应用入口UIAbility
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
-// 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext';
-import { BusinessError } from '@ohos.base';
+const DOMAIN = 0x0000;
+const TAG = 'testTag';
 
-export default class MySecondAbility extends UIAbility {
-  onDestroy() {
-    let applicationContext = this.context.getApplicationContext();
-    let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
-    try {
-    // 3.通过applicationContext注销监听应用内生命周期
-      applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-        if (error && error.code !== 0) {
-          console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-        } else {
-          console.log('unregisterAbilityLifecycleCallback success.');
-        }
-      });
-    } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
-    }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(DOMAIN, TAG, 'EntryAbility onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(DOMAIN, TAG, 'EntryAbility onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(DOMAIN, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      hilog.info(DOMAIN, TAG, 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(DOMAIN, TAG, 'EntryAbility onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(DOMAIN, TAG, 'EntryAbility  onBackground');
   }
 }
 ```
