@@ -105,7 +105,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 3, // 决定传输类型，Bulk传输只能在type：3的Endpoint上进行，若不匹配会返回IO错误。
+                   type: 2, // // 决定传输类型，批量传输只能在传输类型为2的端点上进行，若不匹配会返回IO错误。
                    interfaceId: 0,
                  }
                ]
