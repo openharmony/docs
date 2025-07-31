@@ -1,4 +1,9 @@
 #  ArcButton
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 弧形按钮组件用于圆形屏幕的穿戴设备。提供强调、普通、警告等样式按钮。
 
