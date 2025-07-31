@@ -1,5 +1,11 @@
 # 明文导入密钥(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 分别以导入AES256与RSA2048密钥为例，具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
 
 ## 开发步骤

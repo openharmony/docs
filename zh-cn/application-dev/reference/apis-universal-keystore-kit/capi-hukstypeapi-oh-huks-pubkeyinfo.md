@@ -1,5 +1,11 @@
 # OH_Huks_PubKeyInfo
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 ## 概述
 
 定义公钥信息的结构体类型。
