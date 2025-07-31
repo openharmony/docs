@@ -4,6 +4,6 @@ JIT(Just In Time) 即时编译功能会引入任意代码注入的安全风险�
 
 
 ## 适配注意事项
-1. 如果应用未申请相应的权限证书，却试图在配置文件中声明此权限，将会导致应用安装失败。
+1. 如果未申请相应的权限证书，但在配置文件中声明此权限，会导致应用安装失败。
 2. 若在编译时报以下错误日志`The ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY permission under requestPermissions must be a value that is predefined within the SDK or a custom one that you have included under definePermissions.`， 请将OpenHarmony SDK更新到最新版本(>=5.0.2.125版本)。
 3. 在坚盾守护模式开启期间，操作系统将在全局范围内禁用JIT（即时编译）功能，此限制适用于所有应用程序，包括已获得ACL权限的特权应用，具体技术实现细节请参阅[JSVM 坚盾守护模式](jsvm-secure-shield-mode.md)。
