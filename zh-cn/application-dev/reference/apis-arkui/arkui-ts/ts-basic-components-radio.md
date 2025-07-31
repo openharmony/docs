@@ -1,4 +1,9 @@
 # Radio
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 单选框，提供相应的用户交互选择项。
 

@@ -1,4 +1,9 @@
 # 弹窗概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 弹窗一般指打开应用时自动弹出或者用户行为操作时弹出的UI界面，用于短时间内展示用户需关注的信息或待处理的操作。
 
 ## 弹窗的种类

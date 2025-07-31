@@ -1,4 +1,9 @@
 # 菜单控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--SE: @zhanghaibo0-->
+<!--TSE: @lxl007-->
 
 为组件绑定弹出式菜单，支持长按、点击或鼠标右键来触发菜单的弹出，菜单项以垂直列表形式显示。
 
