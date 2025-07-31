@@ -1,5 +1,11 @@
 # 方舟字节码基本原理
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--SE: @ctw-ian; @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ## 总体设计
 ### 概述
 方舟字节码（Ark Bytecode），是由方舟编译器编译ArkTS/TS/JS生成的，提供给方舟运行时解释执行的二进制文件。字节码中的主要内容是方舟字节码指令。<br>
