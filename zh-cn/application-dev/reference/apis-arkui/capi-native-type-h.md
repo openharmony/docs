@@ -8245,7 +8245,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyle
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_ProgressLinearStyleOption](capi-arkui-nativemodule-arkui-progresslinearstyleoption.md)* option | 线性进度条样式信息。 |
-| float strokeWidth | 进度条宽度值（不支持百分比设置），默认值：4.0vp。 |
+| float strokeWidth | 进度条宽度值（不支持百分比设置），单位为vp，默认值：4.0vp。 |
 
 ### OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius()
 
@@ -8266,7 +8266,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyl
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_ProgressLinearStyleOption](capi-arkui-nativemodule-arkui-progresslinearstyleoption.md)* option | 线性进度条样式信息。 |
-| float strokeRadius | 进度条圆角半径值，取值范围[0, strokeWidth/2]。默认值：strokeWidth/2。 |
+| float strokeRadius | 进度条圆角半径值，单位为vp，取值范围[0, strokeWidth/2]。默认值：strokeWidth/2。 |
 
 ### OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled()
 
@@ -8344,7 +8344,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 进度条宽度值。 |
+| float | 进度条宽度值，单位为vp。 |
 
 ### OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius()
 
@@ -8370,7 +8370,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 进度条圆角半径值。 |
+| float | 进度条圆角半径值，单位为vp。 |
 
 ### OH_ArkUI_CreateSnapshotOptions()
 
