@@ -442,7 +442,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 设置设备接口。
 
 **说明：**
->
+
 > 一个USB接口可能存在多重选择模式，支持动态切换。使用的场景：数据传输时，通过该接口可重新设置端点，使端点与传输类型匹配。
 >
 > 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
