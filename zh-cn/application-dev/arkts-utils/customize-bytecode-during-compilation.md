@@ -1,4 +1,9 @@
 # 编译期自定义修改方舟字节码
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 开发者如果希望自定义修改方舟字节码文件的内容，可以使用ArkTS编译工具链提供的自定义修改方舟字节码文件能力。
 

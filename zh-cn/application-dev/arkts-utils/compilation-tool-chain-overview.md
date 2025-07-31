@@ -1,4 +1,9 @@
 # ArkTS编译工具链概述
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @chenmudan; @hufeng20; @ctw-ian-->
+<!--SE: @hufeng20;@ctw-ian-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 为了支持ArkTS应用编译，ArkTS应用SDK提供一套完整的编译工具链，通过将其部署在[Hvigor](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor)编译任务的编排工具上，实现将应用的ArkTS/TS/JS源码编译生成方舟字节码文件（\*.abc）。
 

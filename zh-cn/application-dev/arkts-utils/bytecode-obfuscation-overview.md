@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆工具概述
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao; @Valkisop_-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ArkGuard提供了基础字节码混淆能力，将代码中的函数名、类名、文件名等名字变成简短无意义的名字，提高通过阅读代码猜测其用途的难度。由于混淆后的工程源码中元素名称缩短，有时也可以通过混淆来降低包大小。
 
