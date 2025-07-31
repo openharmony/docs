@@ -437,7 +437,7 @@ With this permission, the application can specify whether a network is identifie
 
 **Valid since**：20
 
-## ohos.permission.kernel.MANAGE_ANTIVIRUS
+## ohos.permission.MANAGE_ANTIVIRUS
 
 Allows an enterprise application to manage antivirus software.
 
@@ -452,7 +452,7 @@ Allows an enterprise application to manage antivirus software.
 
 **Valid since**：20
 
-## ohos.permission.kernel.REGISTER_ANTIVIRUS
+## ohos.permission.REGISTER_ANTIVIRUS
 
 Allows enterprise antivirus software to register with the system and update basic information.
 
