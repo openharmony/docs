@@ -344,3 +344,43 @@ try {
     console.error('hibernate failed, err: ' + err);
 }
 ```
+
+## power.refreshActivity<sup>20+</sup>
+
+refreshActivity(refreshReason: string): void
+
+刷新屏幕超时息屏时间，保持亮屏。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.REFRESH_USER_ACTION
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| refreshReason | string | 是    | 刷新屏幕超时息屏时间的原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 4900201 | Failed to refresh the screen timeout time because the interval between two function calls is too short. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
+**示例：**
+
+```js
+try {
+    power.refreshActivity('refreshActivity test');
+} catch(err) {
+    console.error('refreshActivity failed, err: ' + err);
+}
+```
