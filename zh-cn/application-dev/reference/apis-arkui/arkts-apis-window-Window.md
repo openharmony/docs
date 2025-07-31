@@ -1551,9 +1551,11 @@ try {
 
 setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy&gt;
 
-设置窗口拖拽时的关键帧策略。使用Promise异步回调。仅支持PC主窗调用。
+设置窗口拖拽的关键帧策略，并使用Promise处理异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口支持2in1设备主窗口的正常调用。在非2in1设备中，将返回801错误码。在2in1设备的非主窗口中，将返回1300004错误码。
 
 **参数：**
 
@@ -1565,7 +1567,7 @@ setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy
 
 | 类型                                  | 说明                      |
 | ------------------------------------- | ------------------------- |
-| Promise&amp;lt;KeyFramePolicy&amp;gt; | Promise对象，返回生效的关键帧策略。 |
+| Promise&lt;[KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)&gt; | Promise对象，返回生效的关键帧策略的具体实例。 |
 
 **错误码：**
 
@@ -1573,7 +1575,7 @@ setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
