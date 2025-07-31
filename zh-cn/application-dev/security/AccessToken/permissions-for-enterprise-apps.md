@@ -481,7 +481,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：PC/2in1
+**支持设备**：Phone/2in1/Tablet
 
 **起始版本**：20
 
