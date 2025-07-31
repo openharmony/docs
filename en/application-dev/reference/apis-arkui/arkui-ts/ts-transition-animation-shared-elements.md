@@ -9,6 +9,7 @@ A shared element transition is a transition animation applied to a component tha
 
 ## Attributes
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name            | Type         | Mandatory                                   | Description                                                    |
 | ---------------- | -----------------|------------------------------------------- | ------------------------------------------------------------ |
@@ -25,6 +26,8 @@ A shared element transition is a transition animation applied to a component tha
 ## sharedTransitionOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name             | Type     | Mandatory      | Description                                                     |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
@@ -45,18 +48,15 @@ A shared element transition is a transition animation applied to a component tha
 @Entry
 @Component
 struct SharedTransitionExample {
-  @State active: boolean = false
 
   build() {
     Column() {
-      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
-        Image($r('app.media.ic_health_heart')).width(50).height(50)
-          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
-      }.padding({ left: 20, top: 20 })
-      .onClick(() => {
-        this.active = true
-      })
-    }
+      Image($r('app.media.ic_health_heart')).width(50).height(50).margin({ left: 20, top: 20 })
+        .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 }) 
+    }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/PageB' })
+    })
   }
 }
 ```

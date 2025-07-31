@@ -1,4 +1,9 @@
 # 数据库加密 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997; @dboy190-->
+<!--TSE: @yippo; @logic42-->
 
 ## 场景介绍
 
@@ -144,7 +149,7 @@ export default class EntryAbility extends UIAbility {
       cryptoParam: CRYPTO_PARAM
     }
     try {
-      let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
       if (store == null) {
         console.error('Failed to get RdbStore.');
       } else {

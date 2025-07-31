@@ -1,10 +1,15 @@
 # JSVM-API调试&定位
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
-JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/_j_s_v_m.md)。
+JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/capi-jsvm.md)。
 基于JSVM的JS代码调试调优能力包括：Debugger、CPU Profiler、Heap Snapshot、Heap Statistics。涉及以下接口：
 | 接口名  |  接口功能 |
 |---|---|
-| OH_JSVM_GetVM  |  将检索给定环境的虚拟机实例。 |
+| OH_JSVM_GetVM  |  获取给定环境的虚拟机实例。 |
 | OH_JSVM_GetHeapStatistics  |  返回一组虚拟机堆的统计数据。 |
 | OH_JSVM_StartCpuProfiler  |  创建并启动一个CPU profiler。 |
 | OH_JSVM_StopCpuProfiler  |  停止CPU profiler并将结果输出到流。 |
@@ -12,10 +17,10 @@ JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 | OH_JSVM_OpenInspector  |  在指定的主机和端口上激活inspector，将用来调试JS代码。 |
 | OH_JSVM_OpenInspectorWithName | 基于传入的 pid 和 name 激活 inspector。 |
 | OH_JSVM_CloseInspector  |  尝试关闭剩余的所有inspector连接。 |
-| OH_JSVM_WaitForDebugger  |  等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。 |
+| OH_JSVM_WaitForDebugger  |  等待主机与inspector建立socket连接，连接建立后程序将继续运行。执行Runtime.runIfWaitingForDebugger命令。 |
 
 
-本文将介绍调试、CPU Profiler、Heap Snapshot的使用方法。
+本文将介绍调试方法、CPU Profiler使用方法和Heap Snapshot使用方法。
 
 ## 调试能力使用方法
 
@@ -38,7 +43,7 @@ JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 
 2. 为避免debugger过程中的暂停被误报为无响应异常，可以开启DevEco Studio的Debug模式，参考[debug启动调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其它线程中运行JSVM。
 ```cpp
-// 在非主线程的其它线程中运行JSVM示例代码
+// 在非主线程的其他线程中运行JSVM示例代码
 static napi_value RunTest(napi_env env, napi_callback_info info)
 {
     std::thread testJSVMThread(TestJSVM);
@@ -60,7 +65,6 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 #include "ark_runtime/jsvm.h"
 
 #include <string>
-#include <thread>
 
 using namespace std;
 
@@ -147,7 +151,7 @@ void TestJSVM() {
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以开启DevEco Studio的Debug模式，参考[debug启动调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其它线程中运行JSVM。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
 3. 打开 inspector 端口，链接 devtools 用于调试，其流程如下:  在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, “test”)，创建 tcp socket 及其对应的 unixdomain 端口。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可，如: jsvm_devtools_remote_9229_123，其中 9229 为 tcp 端口号，123 为对应的 pid。
@@ -185,7 +189,7 @@ static void EnableInspector(JSVM_Env env) {
 ### 使用 websocket 端口进行调试
 除了使用上述打开 "devtoolsFrontendUrl" 字段url的方法通过网页端 chrome devtools 调试代码之外，如果读者了解如何使用 CDP 协议代替网页端 devtools 功能，也可以通过连接 inspector 提供的 websocket 端口进行调试。
 
-其中连接 websocket 的方法为，根据前面提供的网页端调试步骤，在做完端口映射之后（如映射到 9229 端口），在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车，获取"webSocketDebuggerUrl" 字段所对应的 url，然后使用标准的 websocket 客户端连接这个 url 即可发送 CDP 调试协议进行调试。需要注意的是，当前版本 inspector 提供的websocket 端口仅支持接收 Text Frame, Ping Frame 和 Connection Close Frame，所有其它类型的帧都会被视为错误帧而导致 websocket 连接中断。
+其中连接 websocket 的方法为，根据前面提供的网页端调试步骤，在做完端口映射之后（如映射到 9229 端口），在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车，获取"webSocketDebuggerUrl" 字段所对应的 url，然后使用标准的 websocket 客户端连接这个 url 即可发送 CDP 调试协议进行调试。需要注意的是，当前版本 inspector 提供的websocket 端口仅支持接收 Text Frame, Ping Frame 和 Connection Close Frame，所有其他类型的帧都会被视为错误帧而导致 websocket 连接中断。
 
 CDP 协议可以参考 chrome 的[官方文档](https://chromedevtools.github.io/devtools-protocol/)
 
@@ -199,7 +203,7 @@ CDP 协议可以参考 chrome 的[官方文档](https://chromedevtools.github.io
 
 ### Heap Snapshot接口使用方法
 
-1. 为分析某段JS代码的堆对象创建情况。可在执行JS代码前后，分别调用一次OH_JSVM_TakeHeapSnapshot。传入输出流回调及输出流指针。数据将会写入指定的输出流中。
+1. 为分析某段JS代码的堆对象创建情况，可在执行JS代码前后，分别调用一次OH_JSVM_TakeHeapSnapshot。传入输出流回调及输出流指针。数据将会写入指定的输出流中。
 2. 输出数据可存入.heapsnapshot文件中。该文件类型可导入Chrome浏览器-DevTools-Memory工具中解析成内存分析视图。
 
 ### 示例代码

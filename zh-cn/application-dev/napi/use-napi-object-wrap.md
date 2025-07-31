@@ -1,4 +1,9 @@
 # Native与ArkTS对象绑定
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 场景介绍
 
@@ -249,7 +254,7 @@
 4. ArkTS侧示例代码
 
    ```ts
-   import hilog from '@ohos.hilog';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import { MyObject } from 'libentry.so';
 
    let object : MyObject = new MyObject(0);

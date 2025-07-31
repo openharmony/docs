@@ -26,6 +26,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMode filterMode,OH_Drawing_MipmapMode mipmapMode)](#oh_drawing_samplingoptionscreate) | 创建一个采样选项对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>mipmapMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。 |
+| [OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions)](#oh_drawing_samplingoptionscopy) | 创建一个采样选项对象副本[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)，用于拷贝一个已有采样选项对象。<br> 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br> samplingOptions为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions* samplingOptions)](#oh_drawing_samplingoptionsdestroy) | 销毁采样选项对象并回收该对象占有内存。 |
 
 ## 枚举类型说明
@@ -95,6 +96,37 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMo
 | 类型 | 说明 |
 | -- | -- |
 | [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* | 函数会返回一个指针，指针指向创建的采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)。 |
+
+### OH_Drawing_SamplingOptionsCopy()
+
+```
+OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions)
+```
+
+**描述**
+
+创建一个采样选项对象副本[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)，用于拷贝一个已有采样选项对象。
+
+本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。
+
+samplingOptions为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| OH_Drawing_SamplingOptions* | 函数会返回一个指针，指针指向创建的采样选项对象副本[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是samplingOptions为NULL。 |
 
 ### OH_Drawing_SamplingOptionsDestroy()
 

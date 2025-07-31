@@ -1,6 +1,6 @@
 # @ohos.app.ability.quickFixManager (quickFixManager) (System API)
 
-The **quickFixManager** module provides APIs for quick fix. With quick fix, you can fix bugs in your application by applying patches, which is more efficient than by updating the entire application.
+The quickFixManager module provides APIs for quick fix. With quick fix, you can fix bugs in your application by applying patches, which is more efficient than by updating the entire application.
 
 > **NOTE**
 >
@@ -65,7 +65,7 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9).
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result).
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
@@ -74,7 +74,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 > **NOTE**
@@ -126,7 +126,7 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Error codes**
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9).
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result).
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
@@ -135,7 +135,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 **Example**

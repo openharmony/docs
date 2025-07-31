@@ -1,5 +1,11 @@
 # 滚动类组件错误码
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong; @zcdqs-->
+<!--SE: @yylong; @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。

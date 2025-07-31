@@ -72,6 +72,10 @@
      }
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
      windowClass = data;
+     if (!windowClass) {
+      console.error('windowClass is null');
+      return;
+     }
    });
    // 方式二：查找得到子窗口。
    try {
@@ -87,7 +91,6 @@
 
    ```ts
    // 移动子窗口位置。
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -113,7 +116,6 @@
 
    ```ts
    // 为子窗口加载对应的目标页面。
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -121,6 +123,10 @@
        return;
      }
      console.info('Succeeded in loading the content.');
+     if (!windowClass) {
+       console.error('windowClass is null');
+       return;
+     }
      // 显示子窗口。
      windowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
@@ -139,7 +145,6 @@
 
    ```ts
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -180,11 +185,15 @@
    window.getLastWindow(context, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
-       console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
+       console.error('Failed to get the mainWindow. Cause: ' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in getting mainWindow. Data: ' + JSON.stringify(data));
      mainWindowClass = data;
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
    });
    ```
 
@@ -196,7 +205,6 @@
    ```ts
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setWindowSystemBarEnable(names)
     .then(() => {
       console.info('Succeeded in setting the system bar to be visible.');
@@ -236,7 +244,6 @@
 
    ```ts
    // 为沉浸式窗口加载对应的目标页面。
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -244,6 +251,10 @@
        return;
      }
      console.info('Succeeded in loading the content.');
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
      // 显示沉浸式窗口。
      mainWindowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;

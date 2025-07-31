@@ -1,4 +1,9 @@
 # 使用AVPlayer播放音频(C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 
 使用[AVPlayer](media-kit-intro.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
 
@@ -75,7 +80,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 ## 运行完整示例
 
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDKAudio)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程，下载[示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDKAudio)，并将示例工程的以下资源复制到对应目录。
     ```
     AVPlayerNDKAudio
     entry/src/main/ets/

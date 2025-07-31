@@ -1,7 +1,9 @@
 # Interface (AudioLoopback)
 
 > **说明：**
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 20开始支持。
 
 提供音频返听的相关接口。
 
@@ -17,7 +19,7 @@
 import { audio } from '@kit.AudioKit';
 ```
 
-## getStatus
+## getStatus<sup>20+</sup>
 
 getStatus(): Promise<AudioLoopbackStatus\>
 
@@ -43,7 +45,7 @@ audioLoopback.getStatus().then((status: audio.AudioLoopbackStatus) => {
 })
 ```
 
-## setVolume
+## setVolume<sup>20+</sup>
 
 setVolume(volume: number): Promise&lt;void&gt;
 
@@ -83,7 +85,7 @@ audioLoopback.setVolume(0.5).then(() => {
 });
 ```
 
-## on('statusChange')
+## on('statusChange')<sup>20+</sup>
 
 on(type: 'statusChange', callback: Callback<AudioLoopbackStatus\>): void
 
@@ -122,7 +124,7 @@ audioLoopback.on('statusChange', (status: audio.AudioLoopbackStatus) => {
 });
 ```
 
-## off('statusChange')
+## off('statusChange')<sup>20+</sup>
 
 off(type: 'statusChange', callback?: Callback&lt;AudioLoopbackStatus&gt;): void
 
@@ -169,13 +171,15 @@ audioLoopback.on('statusChange', statusChangeCallback);
 audioLoopback.off('statusChange', statusChangeCallback);
 ```
 
-## enable
+## enable<sup>20+</sup>
 
 enable(enable: boolean): Promise<boolean\>
 
 启用或禁用音频返听器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**需要权限：** ohos.permission.MICROPHONE
 
 **参数：**
 

@@ -1,6 +1,6 @@
 # AbilityStateData
 
-The **AbilityStateData** module defines the ability state information, which can be obtained through the **onAbilityStateChanged** lifecycle callback of [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md). The callback can be invoked after a lifecycle change listener is registered through [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate).
+The module defines the ability state information, which can be obtained through the **onAbilityStateChanged** lifecycle callback of [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md). The callback can be invoked after a lifecycle change listener is registered through [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14).
 
 > **NOTE**
 > 
@@ -16,17 +16,17 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                    | Type    | Readable| Writable| Description                      |
+| Name                    | Type    | Read-Only| Optional| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid                     | number   | Yes  | No  | Process ID.                   |
-| bundleName              | string   | Yes  | No | Bundle name.         |
-| abilityName            | string   | Yes  | No  | Ability name.              |
-| uid                    | number   | Yes  | No  | User ID.                 |
-| state                   | number   | Yes  | No  | Ability state.<br>- In the stage model, the states of a UIAbility are described in [Ability States](#ability-states), and the states of an ExtensionAbility are described in [ExtensionAbility States](#extensionability-states).<br>- In the FA model, the states of an ability are described in [Ability States](#ability-states).               |
-| moduleName | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
-| abilityType | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
-| isAtomicService | boolean   | Yes | No | Whether the ability belongs to an atomic service.<br>**true**: The ability belongs to an atomic service.<br>**false**: The ability does not belong to an atomic service.    |
-| appCloneIndex          | number   | Yes  | No  | Index of an application clone.                 |
+| pid                     | number   | No  | No  | Process ID.                   |
+| bundleName              | string   | No  | No | Bundle name.         |
+| abilityName            | string   | No  | No  | Ability name.              |
+| uid                    | number   | No  | No  | User ID.                 |
+| state                   | number   | No  | No  | Ability state.<br>- In the stage model, the states of a UIAbility are described in [Ability States](#ability-states), and the states of an ExtensionAbility are described in [ExtensionAbility States](#extensionability-states).<br>- In the FA model, the states of an ability are described in [Ability States](#ability-states).               |
+| moduleName | string   | No  | No  | Name of the HAP file to which the ability belongs.   |
+| abilityType | number | No  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
+| isAtomicService | boolean   | No | No | Whether the ability belongs to an atomic service.<br>**true**: The ability belongs to an atomic service.<br>**false**: The ability does not belong to an atomic service.    |
+| appCloneIndex          | number   | No  | Yes  | Index of an application clone.                 |
 
 ### Ability States
 
@@ -52,7 +52,7 @@ import { appManager } from '@kit.AbilityKit';
 
 ### Ability Types
 
-| Value  | Type   | Description                 |
+| Value  | State   | Description                 |
 | ---- | ------- | --------------------- |
 | 0    | UNKNOWN | Unknown type.             |
 | 1    | PAGE    | Ability that has the UI.  |

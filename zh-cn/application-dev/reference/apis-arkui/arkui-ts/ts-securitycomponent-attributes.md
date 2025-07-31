@@ -1,10 +1,16 @@
 # 安全控件通用属性
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 安全控件的基础属性，用于设置安全控件通用的属性。
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## iconSize
 
@@ -548,7 +554,7 @@ alignRules(alignRule: AlignRuleOption): T
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| alignRule | [AlignRuleOption](ts-universal-attributes-location.md#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+| alignRule | [AlignRuleOption](ts-universal-attributes-location.md#alignruleoption9对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
 **返回值：**
 
@@ -800,6 +806,8 @@ enabled(respond: boolean): T
 
 ## SecurityComponentLayoutDirection枚举说明
 
+安全控件上图标和文字的排列方向。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -827,12 +835,12 @@ enabled(respond: boolean): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
-| Circle  | 圆形按钮。              |
-| Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
+| 名称      | 值 | 说明               |
+| ------- | -------- | ------------------ |
+| Normal  | 0 | 普通按钮（默认不带圆角）。      |
+| Capsule | 1 | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 2 | 圆形按钮。              |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 8 | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
 
 ## 示例
 

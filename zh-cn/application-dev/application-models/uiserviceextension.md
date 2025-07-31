@@ -1,28 +1,27 @@
-# UIServiceExtension
+# 使用通过UIServiceExtensionAbility实现的系统悬浮窗
 
 ## 概述
 
-UIServiceExtension是UIService类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)浮窗类组件，提供UI界面（例如预览界面）和后台服务能力。组件内部持有了一个UIServiceExtensionContext，通过UIServiceExtensionContext提供了丰富的接口供外部使用。
+从API version 14开始，支持使用通过UIServiceExtensionAbility实现的系统悬浮窗。UIServiceExtensionAbility是UIService类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)浮窗类组件。三方应用可以使用UIServiceExtensionAbility，不支持实现UIServiceExtensionAbility（需要系统权限）。
 
-本文描述中称被启动的UIServiceExtension为服务端，称启动UIServiceExtension的组件为客户端。
+本文描述中称被启动的UIServiceExtensionAbility为服务端，称启动UIServiceExtensionAbility的组件为客户端。
 
-应用可以通过启动和连接两种形式使用UIServiceExtension：
-- 通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)方法启动UIServiceExtension。
-- 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)方法连接UIServiceExtension。
+应用可以通过启动和连接两种形式使用UIServiceExtensionAbility：
+- 通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)方法启动UIServiceExtensionAbility。
+- 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)方法连接UIServiceExtensionAbility。
+
+## 约束限制
+
+- 当前仅支持2in1设备。
+
+- 三方应用需要在前台获焦的情况下才能连接系统提供的UIServiceExtensionAbility。
+
+- UIServiceExtensionAbility的生命周期与绑定的窗口强关联，窗口销毁后UIServiceExtensionAbility也一起销毁。
 
 
-> **说明：**
->
-> 1. 三方应用可以使用UIServiceExtension，不支持实现UIServiceExtension（需要系统权限）。
->
-> 2. 三方应用需要在前台获焦的情况下才能连接系统提供的UIServiceExtension。
->
-> 3. UIServiceExtension的生命周期与绑定的窗口强关联，窗口销毁后UIServiceExtension也一起销毁。
+## 启动UIServiceExtensionAbility
 
-
-## 启动UIServiceExtension
-
-应用通过[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)方法启动一个UIServiceExtension。UIServiceExtension启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行，窗口创建失败或销毁后该服务会被销毁。
+应用通过[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)方法启动一个UIServiceExtensionAbility。UIServiceExtensionAbility启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行，窗口创建失败或销毁后该服务会被销毁。
 
 
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
@@ -114,7 +113,7 @@ struct Index {
                     let msg = (err as BusinessError).message;
                     console.error(`sendData failed, err code:${code}, err msg:${msg}.`);
                   }
-                });
+                })
                 .catch((err: BusinessError) => {
                   console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
                 });

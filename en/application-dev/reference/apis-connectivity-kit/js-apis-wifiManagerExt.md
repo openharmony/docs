@@ -1,5 +1,5 @@
 # @ohos.wifiManagerExt (WLAN Extension)
-This **wifiext** module provides WLAN extension interfaces for non-universal products.
+The **wifiManagerExt** module provides WLAN extension APIs for non-universal products.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -12,9 +12,9 @@ The APIs described in this document are used only for non-universal products, su
 import { wifiManagerExt } from '@kit.ConnectivityKit';
 ```
 
-## wifiManagerExt.enableHotspot<sup>9+</sup>
+## wifiManagerExt.enableHotspot<sup>(deprecated)</sup>
 
-enableHotspot(): void;
+enableHotspot(): void
 
 Enables the WLAN hotspot.
 
@@ -43,13 +43,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   try {
       wifiManagerExt.enableHotspot();
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
-## wifiManagerExt.disableHotspot<sup>9+</sup>
+## wifiManagerExt.disableHotspot<sup>(deprecated)</sup>
 
-disableHotspot(): void;
+disableHotspot(): void
 
 Disables the WLAN hotspot.
 
@@ -78,7 +78,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   try {
       wifiManagerExt.disableHotspot();
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
@@ -162,7 +162,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   wifiManagerExt.getSupportedPowerMode().then(data => {
       console.info("get supported power mode info: " + JSON.stringify(data));
   }).catch((error:number) => {
-      console.info("get supported power mode error");
+      console.error("get supported power mode error");
   });
 ```
 
@@ -204,7 +204,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
       let model = wifiManagerExt.getPowerMode();
       console.info("model info:" + model);
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
@@ -241,7 +241,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
   wifiManagerExt.getPowerMode((err, data:wifiManagerExt.PowerMode) => {
       if (err) {
-          console.error("get linked info error");
+          console.error("Failed to get linked information");
           return;
       }
       console.info("get power mode info: " + JSON.stringify(data));
@@ -250,13 +250,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   wifiManagerExt.getPowerMode().then(data => {
       console.info("get power mode info: " + JSON.stringify(data));
   }).catch((error:number) => {
-      console.info("get power mode error");
+      console.error("get power mode error");
   });
 ```
 
-## wifiManagerExt.setPowerMode<sup>9+</sup>
+## wifiManagerExt.setPowerMode<sup>(deprecated)</sup>
 
-setPowerMode(mode: PowerMode) : void;
+setPowerMode(mode: PowerMode) : void
 
  Sets the power mode.
 
@@ -292,6 +292,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
       let model = 0;
       wifiManagerExt.setPowerMode(model);
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```

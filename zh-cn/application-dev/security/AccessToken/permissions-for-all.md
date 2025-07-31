@@ -487,6 +487,48 @@
 
 **起始版本**：20
 
+## ohos.permission.kernel.NET_RAW
+
+允许应用抓取网络数据包。
+
+获取此权限后，应用需用户认证后才可以进行网络抓包，无此权限不允许抓取。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.kernel.DEBUGGER
+
+允许应用获取调试能力。
+
+获取此权限后，应用作为主体进程可以获取PTRACE调试能力。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.kernel.ALLOW_DEBUG
+
+允许C/C++程序被调试。
+
+获取此权限后，应用中的C/C++程序将被允许调试，但存在运行内存被dump风险，请谨慎使用。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
 
 允许应用设置自身进程的省电模式。

@@ -1,7 +1,9 @@
 # Interface (AudioVolumeGroupManager)
 
 > **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 9开始支持。
 
 管理音频组音量。
 
@@ -13,11 +15,14 @@
 import { audio } from '@kit.AudioKit';
 ```
 
-## getVolume<sup>9+</sup>
+## getVolume<sup>(deprecated)</sup>
 
 getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
 获取指定流的音量。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -26,7 +31,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -42,11 +47,14 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessErr
 });
 ```
 
-## getVolume<sup>9+</sup>
+## getVolume<sup>(deprecated)</sup>
 
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的音量。使用Promise异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -60,7 +68,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -70,11 +78,14 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 });
 ```
 
-## getVolumeSync<sup>10+</sup>
+## getVolumeSync<sup>(deprecated)</sup>
 
 getVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的音量。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -88,7 +99,7 @@ getVolumeSync(volumeType: AudioVolumeType): number
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **错误码：**
 
@@ -113,11 +124,14 @@ try {
 }
 ```
 
-## getMinVolume<sup>9+</sup>
+## getMinVolume<sup>(deprecated)</sup>
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
 获取指定流的最小音量。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getMinVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getminvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -142,11 +156,14 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: Business
 });
 ```
 
-## getMinVolume<sup>9+</sup>
+## getMinVolume<sup>(deprecated)</sup>
 
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最小音量。使用Promise异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getMinVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getminvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -170,11 +187,14 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 });
 ```
 
-## getMinVolumeSync<sup>10+</sup>
+## getMinVolumeSync<sup>(deprecated)</sup>
 
 getMinVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最小音量。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getMinVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getminvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -213,11 +233,14 @@ try {
 }
 ```
 
-## getMaxVolume<sup>9+</sup>
+## getMaxVolume<sup>(deprecated)</sup>
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
 获取指定流的最大音量。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getMaxVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getmaxvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -242,11 +265,14 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: Business
 });
 ```
 
-## getMaxVolume<sup>9+</sup>
+## getMaxVolume<sup>(deprecated)</sup>
 
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最大音量。使用Promise异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[getMaxVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getmaxvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -270,11 +296,14 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: nu
 });
 ```
 
-## getMaxVolumeSync<sup>10+</sup>
+## getMaxVolumeSync<sup>(deprecated)</sup>
 
 getMaxVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最大音量。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getMaxVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getmaxvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -313,11 +342,14 @@ try {
 }
 ```
 
-## isMute<sup>9+</sup>
+## isMute<sup>(deprecated)</sup>
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定音量流静音状态。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isSystemMutedForStream](arkts-apis-audio-AudioVolumeManager.md#issystemmutedforstream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -342,11 +374,14 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError,
 });
 ```
 
-## isMute<sup>9+</sup>
+## isMute<sup>(deprecated)</sup>
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否被静音。使用Promise异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isSystemMutedForStream](arkts-apis-audio-AudioVolumeManager.md#issystemmutedforstream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -370,11 +405,14 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean
 });
 ```
 
-## isMuteSync<sup>10+</sup>
+## isMuteSync<sup>(deprecated)</sup>
 
 isMuteSync(volumeType: AudioVolumeType): boolean
 
 获取指定音量流是否被静音。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[isSystemMutedForStream](arkts-apis-audio-AudioVolumeManager.md#issystemmutedforstream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -735,11 +773,14 @@ let volumeAdjustSwitch: boolean = audioVolumeGroupManager.isVolumeUnadjustable()
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
-## getSystemVolumeInDb<sup>10+</sup>
+## getSystemVolumeInDb<sup>(deprecated)</sup>
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
 
 获取音量增益dB值。使用callback异步回调。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getVolumeInUnitOfDbByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumeinunitofdbbystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -776,11 +817,14 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 });
 ```
 
-## getSystemVolumeInDb<sup>10+</sup>
+## getSystemVolumeInDb<sup>(deprecated)</sup>
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
 
 获取音量增益dB值。使用Promise异步回调。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getVolumeInUnitOfDbByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumeinunitofdbbystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -820,11 +864,14 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 });
 ```
 
-## getSystemVolumeInDbSync<sup>10+</sup>
+## getSystemVolumeInDbSync<sup>(deprecated)</sup>
 
 getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): number
 
 获取音量增益dB值。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[getVolumeInUnitOfDbByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumeinunitofdbbystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 

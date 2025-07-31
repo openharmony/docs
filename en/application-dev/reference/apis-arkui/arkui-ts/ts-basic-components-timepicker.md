@@ -112,7 +112,7 @@ Sets whether to display time in 24-hour format. When the display time is in 12-h
 
 useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
-Sets whether to display time in 24-hour format. Compared to [useMilitaryTime](#usemilitarytime), this API supports the **undefined** type for the **isMilitaryTime** parameter.
+Sets whether to display time in 24-hour format. Compared with [useMilitaryTime](#usemilitarytime), this API supports the **undefined** type for the **isMilitaryTime** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -144,7 +144,7 @@ Sets the font color, font size, and font weight for the top and bottom items.
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for the top and bottom items. Compared with [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -176,7 +176,7 @@ Sets the font color, font size, and font weight for all items except the top, bo
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared with [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -208,7 +208,7 @@ Sets the font color, font size, and font weight for the selected item.
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for the selected item. Compared with [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -240,7 +240,7 @@ Sets whether to enable the loop mode.
 
 loop(isLoop: Optional\<boolean>)
 
-Sets whether to enable the loop mode. Compared to [loop](#loop11)<sup>11+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
+Sets whether to enable the loop mode. Compared with [loop](#loop11)<sup>11+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -272,7 +272,7 @@ Sets whether to display a leading zero for the hours, minutes, and seconds.
 
 dateTimeOptions(timeFormat: Optional\<DateTimeOptions>)
 
-Sets whether to display a leading zero for the hours, minutes, and seconds. Compared to [dateTimeOptions](#datetimeoptions12)<sup>12+</sup>, this API supports the **undefined** type for the **timeFormat** parameter.
+Sets whether to display a leading zero for the hours, minutes, and seconds. Compared with [dateTimeOptions](#datetimeoptions12)<sup>12+</sup>, this API supports the **undefined** type for the **timeFormat** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -302,7 +302,7 @@ Sets whether to enable haptic feedback.
 
 enableHapticFeedback(enable: Optional\<boolean>)
 
-Sets whether to enable haptic feedback. Compared to [enableHapticFeedback](#enablehapticfeedback12)<sup>12+</sup>, this API supports the **undefined** type for the **enable** parameter.
+Sets whether to enable haptic feedback. Compared with [enableHapticFeedback](#enablehapticfeedback12)<sup>12+</sup>, this API supports the **undefined** type for the **enable** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -378,7 +378,7 @@ Triggered when a time is selected.
 
 onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
-Triggered when the time options in the TimePicker rest on the selected position after scrolling. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Triggered when the time options in the TimePicker rest on the selected position after scrolling. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -396,7 +396,7 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
 Triggered during the scrolling of the time picker when an item enters the divider area.
 
-Compared to the **onChange** event, this event is triggered earlier, specifically when the scroll distance of the current column exceeds half the height of the selected item, which indicates that the item has entered the divider area. When **enableCascade** is set to **true**, using this callback is not recommended due to the interdependent relationship between the AM/PM and hour columns. This callback indicates the moment an option enters the divider area during scrolling, and only the value of the currently scrolled column will change. The values of other non-scrolled columns will remain unchanged.
+Compared with the **onChange** event, this event is triggered earlier, specifically when the scroll distance of the current column exceeds half the height of the selected item, which indicates that the item has entered the divider area. When **enableCascade** is set to **true**, using this callback is not recommended due to the interdependent relationship between the AM/PM and hour columns. This callback indicates the moment an option enters the divider area during scrolling, and only the value of the currently scrolled column will change. The values of other non-scrolled columns will remain unchanged.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

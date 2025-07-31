@@ -20,7 +20,7 @@ Audio Kit（音频服务）旨在提供场景化的音频播放和录制接口�
 <!--Del-->
 - 空间音频
 
-   提供空间音频能力，支持用户佩戴TWS耳机时，使用应用播放音源（立体声/多声道/AudioVivid格式），可主观感受到空间音频渲染效果（方位感/空间感）。
+   提供空间音频能力，支持用户佩戴TWS耳机时，使用应用播放音源（立体声/多声道/Audio Vivid格式），可主观感受到空间音频渲染效果（方位感/空间感）。
 <!--DelEnd-->
 - 音振协同
 
@@ -100,7 +100,7 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
 
 音频格式说明：
 
-- 支持的常用的音频采样率（Hz）：8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200<sup>12+</sup>、96000，176400<sup>12+</sup>、192000<sup>12+</sup>具体参考枚举[AudioSamplingRate](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiosamplingrate8)。
+- 支持的音频采样率（Hz）：8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200<sup>12+</sup>、96000，176400<sup>12+</sup>、192000<sup>12+</sup>具体参考枚举[AudioSamplingRate](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiosamplingrate8)。
   不同设备支持的采样率规格会存在差异。
 
 - 支持单声道、双声道，具体参考[AudioChannel](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiochannel8)。
@@ -114,4 +114,4 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
 
 针对Audio Kit开发，有以下相关实例可供参考：
 
-- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+- [音频管理（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)

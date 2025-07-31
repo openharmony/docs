@@ -186,7 +186,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 是   | 是否释放缓存。 |
+| isReleaseCache | boolean | 是   | 表示是否释放缓存。<br>true: 表示释放缓存。<br>false: 表示不释放缓存。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当释放指定的卡片成功，error为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -237,7 +237,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 否   | 是否释放缓存，默认为false。  |
+| isReleaseCache | boolean | 否   | 表示是否释放缓存，默认为false。<br>true: 表示释放缓存。<br>false: 表示不释放缓存。  |
 
 **返回值：**
 
@@ -1661,7 +1661,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isVisible | boolean | 是   | 是否可见。 |
+| isVisible | boolean | 是   | 表示卡片是否可见。<br>true: 表示卡片可见。<br>false: 表示卡片不可见。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否可见成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1711,7 +1711,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isVisible | boolean | 是   | 是否可见。 |
+| isVisible | boolean | 是   | 表示卡片是否可见。<br>true: 表示卡片可见。<br>false: 表示卡片不可见。 |
 
 **返回值：**
 
@@ -1766,7 +1766,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isEnableUpdate | boolean | 是   | 是否使能更新。 |
+| isEnableUpdate | boolean | 是   | 表示卡片是否使能更新状态。<br>true: 表示卡片使能更新状态。false: 表示卡片没有使能更新状态。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否启用更新状态成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1816,7 +1816,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isEnableUpdate | boolean | 是   | 是否使能更新。 |
+| isEnableUpdate | boolean | 是   | 表示卡片是否使能更新状态。<br>true: 表示卡片使能更新状态。<br>false: 表示卡片没有使能更新状态。 |
 
 **返回值：**
 
@@ -1977,7 +1977,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
-| isProtected | boolean | 是   | 是否进行隐私保护。 |
+| isProtected | boolean | 是   | 表示卡片是否进行隐私保护状态。<br>true: 表示卡片要进行隐私保护状态。<br>false: 表示卡片不需要进行隐私保护状态。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当指定卡片设置隐私保护属性成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2026,7 +2026,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formIds     | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
-| isProtected | boolean         | 是   | 是否进行隐私保护。               |
+| isProtected | boolean         | 是   | 表示卡片是否进行隐私保护状态。<br>true: 表示卡片要进行隐私保护状态。<br>false: 表示卡片不需要进行隐私保护状态。 |
 
 **返回值：**
 
@@ -2911,7 +2911,6 @@ on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): vo
 | 错误码ID | 错误信息                                                                                                  |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -2952,7 +2951,6 @@ off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): 
 | 错误码ID | 错误信息                                                                                                |
 | --- |-----------------------------------------------------------------------------------------------------------|
 | 202 | The application is not a system application.                                                              |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -2993,7 +2991,6 @@ on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeScene
 | 错误码ID | 错误信息                                                                                                  |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -3034,7 +3031,6 @@ off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeScen
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -3046,6 +3042,137 @@ try {
   formHost.off('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
     console.log(`formHost off changeSceneAnimationState, formId is ${request.formId}`);
   });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.on('getFormRect')<sup>20+</sup>
+
+on(type: 'getFormRect', callback: formInfo.GetFormRectInfoCallback): void
+
+订阅卡片位置尺寸查询请求事件。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                   |
+| ------ | ------ | ---- |------------------------------------------------------|
+| type | string | 是   | 事件回调类型，支持的事件为'getFormRect'，表示卡片位置尺寸查询。|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | 是 | 回调函数，卡片使用方对查询请求进行处理，返回卡片相对屏幕左上角的位置信息和卡片尺寸信息，单位vp。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                  |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+
+**示例：**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('getFormRect', (formId: string): Promise<formInfo.Rect> => {
+    // 卡片使用方需要对查询请求进行处理，计算并返回卡片尺寸、位置信息
+    return new Promise<formInfo.Rect>((resolve: Function) => {
+      console.log(`formHost on getFormRect, formId is ${formId}`);
+      let formRect: formInfo.Rect = {left: 0, top: 0, width: 0, height: 0};
+      resolve(formRect);
+    })
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.off('getFormRect')<sup>20+</sup>
+
+off(type: 'getFormRect', callback?: formInfo.GetFormRectInfoCallback): void
+
+取消订阅卡片位置尺寸查询请求事件。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ |----| ------- |
+| type | string | 是  | 事件回调类型，支持的事件为'getFormRect'，表示卡片位置尺寸查询。|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | 否  | 回调函数，对应已订阅卡片位置尺寸查询请求。缺省时，表示注销所有已注册卡片位置、尺寸查询事件回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('getFormRect');
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.updateFormSize<sup>20+</sup>
+
+updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
+
+调整卡片尺寸。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识。 |
+| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 卡片尺寸，例如 Dimension_1_2，表示 1 x 2 卡片。 |
+| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 是 | 卡片位置信息，包括卡片左上角顶点的xy坐标和卡片的宽高。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | Permissions denied.Called by non-system application. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501012 | The dimension parameter is incorrect. |
+
+**示例：**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let formId: string = '12400633174999288';
+  let newDimension = formInfo.FormDimension.Dimension_1_2;
+  let newRect: formInfo.Rect = {left: 1, top: 2, width: 100, height: 100};
+  formHost.updateFormSize(formId, newDimension, newRect);
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }

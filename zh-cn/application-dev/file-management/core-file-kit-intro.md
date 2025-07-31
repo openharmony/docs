@@ -46,7 +46,7 @@ Core File Kit常见的使用场景：
 ## 亮点/特征
 
 - 沙箱隔离：
-访问和管理应用文件，对于每个应用，系统会在内部存储空间映射出一个专属的“[应用沙箱目录](app-sandbox-directory.md#应用沙箱目录)”，它是“[应用文件目录](app-sandbox-directory.md#应用文件目录与应用文件路径)”与一部分系统文件（应用运行必需的少量系统文件）所在的目录组成的集合。有以下优点：
+访问和管理应用文件，对于每个应用，系统会在内部存储空间映射出一个专属的“[应用沙箱目录](app-sandbox-directory.md)”，它是“[应用文件目录](app-sandbox-directory.md#应用文件目录与应用文件路径)”与一部分系统文件（应用运行必需的少量系统文件）所在的目录组成的集合。有以下优点：
   - 隔离性：应用沙箱提供了一个完全隔离的环境，使用户可以安全地访问应用文件。
   - 安全性：应用沙箱限制了应用可见的数据的最小范围，保护了应用文件的安全。
 - 应用分享：
@@ -90,4 +90,4 @@ Ability Kit：Core File Kit中用户文件访问框架依赖Ability Kit提供的
 
 针对Core File Kit开发，有以下相关实例可供参考：
 
-- [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)
+- [文件管理（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)

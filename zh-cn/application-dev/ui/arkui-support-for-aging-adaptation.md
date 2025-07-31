@@ -50,8 +50,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct SideBarContainerExample {
   @State currentFontSizeScale: number = 1
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
+  selectedIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
   @State title: string = 'Index01';

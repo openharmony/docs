@@ -73,7 +73,7 @@
     background-position:right bottom;
   }
   100%{
-    background-position:left top;;
+    background-position:left top;
   }
 }
 ```

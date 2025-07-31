@@ -1,5 +1,11 @@
 # 使用DH进行密钥协商(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 对应的算法规格请查看[密钥协商算法规格：DH](crypto-key-agreement-overview.md#dh)。
 
 ## 开发步骤
@@ -14,7 +20,9 @@
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
+#include "CryptoArchitectureKit/crypto_key_agreement.h"
 #include <stdio.h>
+#include <cstring>
 
 static OH_Crypto_ErrCode doTestDHKeyAgreement()
 {

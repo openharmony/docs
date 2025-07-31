@@ -1,4 +1,4 @@
-# 标准意图接入规范
+# 附录：标准意图接入规范
 ## 影音垂域（MediaDomain）
 ### 播放视频  
 播放视频操作，支持指定视频实体、分集信息等参数，并返回播放结果状态。
@@ -37,7 +37,7 @@
 |--------------|-----------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
 | entityId | string | 否 | 意图实体ID，长度不超过64字符。                                                                                                                                                                                                                                                                       | "C10194368" |
 | entityGroupId | string | 否 | 确定歌单的UI形式，支持自定义，长度不超过64字符。                                                                                                                                                                                                                   | "C10194321312" |
-| sceneType | string | 否  | 场景类型。<br>- MORNING_SCENE：晨间。<br>- MIDDAY_SCENE：午间。<br>- EVENNING_SCENE：晚间。<br>- NIGHT_SCENE：夜间。<br>- WEEKEND_SCENE：周末。<br>- FESTIVAL_SCENE：节假日。<br>- BIRTHDAY_SCENE：生日。<br>- ANNIVERSARY_SCENE：纪念日。<br>- DRIVE_SCENE：驾驶。<br>- SUBWAY_SCENE：地铁。<br>- TRAVEL_SCENE：出行。<br>- CITY_SCENE：跨城。 | "MORNING_SCENE" |
+| sceneType | string | 否  | 场景类型。<br>- MORNING_SCENE：晨间。<br>- MIDDAY_SCENE：午间。<br>- EVENING_SCENE：晚间。<br>- NIGHT_SCENE：夜间。<br>- WEEKEND_SCENE：周末。<br>- FESTIVAL_SCENE：节假日。<br>- BIRTHDAY_SCENE：生日。<br>- ANNIVERSARY_SCENE：纪念日。<br>- DRIVE_SCENE：驾驶。<br>- SUBWAY_SCENE：地铁。<br>- TRAVEL_SCENE：出行。<br>- CITY_SCENE：跨城。 | "MORNING_SCENE" |
 |city | string | 否 | 城市名。  | "北京市" |
 
 **返回值**：

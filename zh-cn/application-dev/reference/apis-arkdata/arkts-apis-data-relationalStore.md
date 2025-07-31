@@ -1,4 +1,9 @@
 # 模块描述
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](arkts-apis-data-relationalStore-ResultSet.md#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
 
@@ -12,10 +17,10 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md#rdbstore)：提供管理关系数据库（RDB）方法的接口。
-- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
-- [Transaction](arkts-apis-data-relationalStore-Transaction.md#transaction14)：提供管理事务对象的接口。
+- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md)：提供管理关系数据库（RDB）方法的接口。
+- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [Transaction](arkts-apis-data-relationalStore-Transaction.md)：提供管理事务对象的接口。
 
 > **说明：**
 > 

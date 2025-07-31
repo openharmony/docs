@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility) (System API)
 
-UIServiceExtensionAbility, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), provides extension capabilities related to the floating window component. It is mainly used to provide services with UIs for third-party applications.
+UIServiceExtensionAbility provides extended capabilities related to the floating window component. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md). It is mainly used to provide services with UIs for third-party applications.
 
 
 > **NOTE**
@@ -9,7 +9,7 @@ UIServiceExtensionAbility, inherited from [ExtensionAbility](js-apis-app-ability
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
+> The APIs of this module must be used in the main thread, but not in child threads such as Worker and TaskPool.
 >
 > The APIs provided by this module are system APIs.
 
@@ -19,8 +19,9 @@ UIServiceExtensionAbility, inherited from [ExtensionAbility](js-apis-app-ability
 import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 ```
 
+## UIServiceExtensionAbility
 
-## Properties
+### Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,10 +29,10 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | Yes| No| Context environment for a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md).|
+| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | No| No| Context environment for a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). This context inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md).|
 
 
-## UIServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
@@ -55,17 +56,17 @@ import { UIServiceExtensionAbility, Want } from '@kit.AbilityKit';
 class UIServiceExt extends UIServiceExtensionAbility {
   // Create a UIServiceExtensionAbility.
   onCreate(want: Want) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void
 
-Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). If the UIServiceExtensionAbility is started by calling [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) or [startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14), this callback will be invoked after [onCreate](#uiserviceextensionabilityoncreate). The value of **startId** is incremented for each UIServiceExtensionAbility that is started.
+Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). If the UIServiceExtensionAbility is started by calling [startAbility](js-apis-inner-application-uiAbilityContext.md#startability) or [startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14), this callback will be invoked after [onCreate](#oncreate). The value of **startId** is incremented for each UIServiceExtensionAbility that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -76,7 +77,7 @@ Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiS
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | Yes| No|  [Want](js-apis-app-ability-want.md) information about the [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md), including the ability name and bundle name.|
-| startId | number | Yes| Number of UIServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each UIServiceExtensionAbility started.|
+| startId | number | Yes| Number of times the instance has been started. The initial value is **1** for the first start, and it increments automatically for subsequent starts.|
 
 **Example**
 
@@ -85,17 +86,17 @@ import { UIServiceExtensionAbility, Want} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.log('onRequest, want:' + want.abilityName + ', startId:' + startId);
+    console.info('onRequest, want:' + want.abilityName + ', startId:' + startId);
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want, proxy: UIServiceHostProxy): void
 
-Called when the connection to a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) is established. If the UIServiceExtensionAbility is started by calling [connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14), this callback will be invoked after [onCreate()](#uiserviceextensionabilityoncreate). This callback receives a [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) object for communication between the client and server.
+Called when the connection to a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) is established. If the UIServiceExtensionAbility is started by calling [connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14), this callback will be invoked after [onCreate()](#oncreate). This callback receives a [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) object for communication between the client and server.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -116,13 +117,13 @@ import { UIServiceExtensionAbility, Want, common} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onConnect(want: Want, proxy: common.UIServiceHostProxy){
-    console.log('onConnect, want:' + want.abilityName + '');
+    console.info('onConnect, want:' + want.abilityName + '');
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want, proxy: UIServiceHostProxy): void
 
@@ -146,13 +147,13 @@ import { UIServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onWindowWillCreate
+### onWindowWillCreate
 
 onWindowWillCreate(config: window.ExtensionWindowConfig): void
 
@@ -176,12 +177,12 @@ import { window } from '@kit.ArkUI';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onWindowWillCreate(config : window.ExtensionWindowConfig){
-    console.log('onWindowWillCreate');
+    console.info('onWindowWillCreate');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onWindowDidCreate
+### onWindowDidCreate
 
 onWindowDidCreate(window: window.Window): void
 
@@ -205,12 +206,12 @@ import { window } from '@kit.ArkUI';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onWindowDidCreate(window : window.Window){
-    console.log('onWindowDidCreate');
+    console.info('onWindowDidCreate');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onData
+### onData
 
 onData(proxy: UIServiceHostProxy, data: Record&lt;string, Object&gt;): void
 
@@ -234,12 +235,12 @@ import { UIServiceExtensionAbility, common} from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onData(proxy : common.UIServiceHostProxy, data : Record<string, Object> ){
-    console.log('onData');
+    console.info('onData');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
@@ -256,7 +257,7 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onDestroy() {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```

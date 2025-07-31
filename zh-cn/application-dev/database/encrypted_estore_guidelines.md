@@ -1,4 +1,9 @@
 # E类加密数据库的使用 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997; @dboy190-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍
@@ -490,7 +495,7 @@ struct Index {
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
@@ -930,7 +935,7 @@ struct Index {
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
           console.info(`ECDB_Encry current store : ${this.message}`);
         }).margin("5");
 

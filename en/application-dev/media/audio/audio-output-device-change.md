@@ -2,15 +2,15 @@
 
 To ensure a seamless user experience when there are changes in the audio output device, it is crucial to listen for such changes and adapt accordingly.
 
-You can use [outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11) of the AudioRenderer to listen for audio output device changes and obtain the change reason. When the audio output device is changed due to the online/offline status change, forcible user selection, device preemption, or device selection policy change, the system uses this API to notify the application of the change, including the audio output device information and change reason.
+You can use [outputDeviceChangeWithInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#onoutputdevicechangewithinfo11) of the AudioRenderer to listen for audio output device changes and obtain the change reason. When the audio output device is changed due to the online/offline status change, forcible user selection, device preemption, or device selection policy change, the system uses this API to notify the application of the change, including the audio output device information and change reason.
 
 ## Audio Output Device Information
 
-[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11) contains the information about the new audio output device, in the form of an array. Generally, the array contains information about only one device. For details, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
+[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#onoutputdevicechangewithinfo11) contains the information about the new audio output device, in the form of an array. Generally, the array contains information about only one device. For details, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/arkts-apis-audio-t.md#audiodevicedescriptors).
 
 ## Device Change Reason
 
-The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/js-apis-audio.md#audiostreamdevicechangereason11) to the application in any of the following cases:
+The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostreamdevicechangereason11) to the application in any of the following cases:
 
 - **REASON_NEW_DEVICE_AVAILABLE**: A new device is available.
 
@@ -24,7 +24,7 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
 
   **Trigger conditions**:
 
-  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are disconnected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are taken off; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and speakers) are unplugged; distributed devices are brought offline.
+  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are disconnected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are taken off; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and USB speakers) are unplugged; distributed devices are brought offline.
 
   The handling suggestions for typical service scenarios are as follows:
 

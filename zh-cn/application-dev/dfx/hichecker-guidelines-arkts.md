@@ -2,7 +2,7 @@
 
 ## 简介
 
-HiChecker可以作为应用开发阶段使用的检测工具，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中元能力资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验。
+HiChecker可以作为应用开发阶段使用的检测能力，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中元能力资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验。
 
 ## 基本概念
 
@@ -11,28 +11,33 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 ## 实现原理
 
 1. 应用程序通过HiChecker函数接口控制规则的增删查改。
+
 2. 子系统有耗时调用或者Ability资源泄露时通过HiChecker通知有对应规则的事件发生，HiChecker检测条件满足时做对应的操作。
 
 ## 约束与限制
 
 - 支持应用增加、删除不同的告警通知规则，目前支持记录流水日志（默认），应用崩溃两种规则。
+
 - 相关检测条件满足时，支持Native回栈到关键触发点，暂不支持JS回栈。
 
 ## 接口说明
 
-检测模式接口由HiChecker模块提供，详细API请参考[检测模式API参考](../reference/apis-performance-analysis-kit/js-apis-hichecker.md)。
+检测模式接口由HiChecker模块提供，详细API请参考[@ohos.hichecker (检测模式) ArkTS API参考](../reference/apis-performance-analysis-kit/js-apis-hichecker.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | 需要添加的规则。 |
-| hichecker.removeCheckRule(rule: bigint) | 需要删除的规则。 |
-| hichecker.containsCheckRule(rule: bigint) | 需要查询的规则。 |
+| hichecker.addCheckRule(rule: bigint): void | 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。 |
+| hichecker.removeCheckRule(rule: bigint): void | 删除一条或多条规则，删除的规则后续将不再生效。 |
+| hichecker.containsCheckRule(rule: bigint): boolean | 当前已添加的规则集中是否包含了某一个特定的规则。 |
+| hichecker.getRule(): bigint | 获取当前线程规则、进程规则、告警规则的合集。 |
 
 ## 开发步骤
 
-在应用启动执行页面加载后，开始检测；完成业务之后，停止检测。
+在应用启动执行页面加载后，开始检测；完成业务之后，停止检测。启动检测时，开发者可以根据需求配置不同的告警规则和检测规则。检测规则当前支持检测耗时函数调用、Ability泄漏和ArkUI性能。对于检测到问题之后触发的行为可通过告警规则来配置，当前支持日志和应用退出两种。
 
-1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; entryability ”，打开工程中的“EntryAbility.ets”文件；在页面执行加载后，在自己的业务中调用HiChecker的接口，添加检测规则， 示例代码如下：
+开发者如果期望检测耗时函数调用，并期望检测到时通过打印日志来记录，可参考如下步骤进行开发。
+
+1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry > src > main > ets > entryability ”，打开工程中的“EntryAbility.ets”文件；在页面执行加载后，在自己的业务中调用HiChecker的接口，添加检测规则， 示例代码如下：
 
    ```ts
    import { window } from '@kit.ArkUI';
@@ -86,15 +91,8 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
      }
    }
    ```
-   
-2. 在shell中依次执行如下命令：
 
-   ```shell
-   hdc shell
-   hilog|grep -i hichecker
-   ```
-
-   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）。
+2. 安装hap后运行，通过DevEco Studio Log插件过滤 HICHECKER 关键字日志或者通过 hdc shell "hilog | grep HICHECKER" 命令查询，有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）。
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:

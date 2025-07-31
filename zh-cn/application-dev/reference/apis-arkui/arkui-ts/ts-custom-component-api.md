@@ -21,7 +21,7 @@ getUIContext(): UIContext
 
 | 类型                                                      | 说明                    |
 | --------------------------------------------------------- | ----------------------- |
-| [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
+| [UIContext](../arkts-apis-uicontext-uicontext.md) | 返回UIContext实例对象。 |
 
 **示例：**
 
@@ -87,7 +87,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。 |
+| [NavDestinationInfo](#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。 |
 
 **示例：**
 
@@ -119,6 +119,7 @@ struct MyComponent {
 }
 ```
 
+
 ## queryNavDestinationInfo<sup>18+</sup>
 
 queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undefined
@@ -139,7 +140,7 @@ queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undef
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。|
+| [NavDestinationInfo](#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。|
 
 **示例：**
 
@@ -245,6 +246,21 @@ struct MyComponent {
 }
 ```
 
+## NavDestinationInfo
+
+type NavDestinationInfo = NavDestinationInfo
+
+NavDestinationInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) | 返回NavDestinationInfo实例对象。 |
+
+
 ## queryNavigationInfo<sup>12+</sup>
 
 queryNavigationInfo(): NavigationInfo | undefined
@@ -259,7 +275,7 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回NavigationInfo实例对象。 |
+| [NavigationInfo](#navigationinfo12) \| undefined | 返回NavigationInfo实例对象。 |
 
 **示例：**
 
@@ -301,6 +317,20 @@ export struct PageOne {
 }
 ```
 
+## NavigationInfo<sup>12+</sup>
+
+type NavigationInfo = NavigationInfo
+
+NavigationInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo12) | 返回NavigationInfo实例对象。 |
+
 ## queryRouterPageInfo<sup>12+</sup>
 
 queryRouterPageInfo(): RouterPageInfo | undefined;
@@ -315,7 +345,7 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 
 | 类型                                                         | 说明                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [RouterPageInfo](../js-apis-arkui-observer.md#routerpageinfo) \| undefined | 返回RouterPageInfo实例对象。 |
+| [RouterPageInfo](#routerpageinfo12) \| undefined | 返回RouterPageInfo实例对象。 |
 
 **示例：**
 
@@ -334,6 +364,20 @@ struct MyComponent {
   }
 }
 ```
+
+## RouterPageInfo<sup>12+</sup>
+
+type RouterPageInfo = RouterPageInfo
+
+RouterPageInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [RouterPageInfo](../js-apis-arkui-observer.md#routerpageinfo) | 返回RouterPageInfo实例对象。 |
 
 ## getDialogController<sup>18+</sup>
 

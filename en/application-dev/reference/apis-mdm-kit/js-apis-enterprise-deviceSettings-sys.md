@@ -4,13 +4,13 @@ The **deviceSettings** module provides APIs for setting enterprise devices, incl
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md).
 
 ## Modules to Import
 
@@ -51,6 +51,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -96,6 +97,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -149,6 +151,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -176,7 +179,7 @@ Installs a user certificate. This API uses a callback to return the result.
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
-| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
+| certificate    | [CertBlob](#certblob)     | Yes   | Certificate information. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
 | callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -194,9 +197,11 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -204,7 +209,9 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
     if (err) {
@@ -215,7 +222,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   });
 }).catch((error: BusinessError) => {
   console.error(`Failed to get row file content. message: ${error.message}`);
-  return
+  return;
 });
 ```
 
@@ -234,7 +241,7 @@ Installs a user certificate. This API uses a promise to return the result.
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
-| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
+| certificate    | [CertBlob](#certblob)     | Yes   | Certificate information. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
 
 **Return value**
 
@@ -257,9 +264,11 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -267,7 +276,9 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value
   deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -277,7 +288,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   })
 }).catch((error: BusinessError) => {
   console.error(`Failed to get row file content. message: ${error.message}`);
-  return
+  return;
 });
 ```
 
@@ -287,10 +298,10 @@ Represents the certificate information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ----- | ------------------------------- |
-| inData | Uint8Array | Yes| Binary content of the certificate.|
-| alias | string | Yes| Certificate alias.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| inData | Uint8Array | No| No|Binary content of the certificate.|
+| alias | string | No| No|Certificate alias.|
 
 ## deviceSettings.uninstallUserCertificate
 
@@ -327,6 +338,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -382,6 +394,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -428,6 +441,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -483,6 +497,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -502,10 +517,10 @@ Represents the power policy.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ----- | ------------------------------- |
-| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | Yes| Action to apply the power policy.|
-| delayTime | number | Yes| Delay time allowed.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | No| No| Action to apply the power policy.|
+| delayTime | number | No| No| Delay, in ms.|
 
 ## PowerScene<sup>11+</sup>
 

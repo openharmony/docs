@@ -1219,7 +1219,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调；调用失败返回错误对象。
+在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1228,7 +1228,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
-| callback     | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示支持该模板；返回false表示不支持该模板。 |
+| callback     | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示支持该模板；返回false表示不支持该模板；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -1748,6 +1748,17 @@ notificationManager.getNotificationSetting().then((data: notificationManager.Not
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。  |
 | OTHER_TYPES          | 0xFFFF | 其他。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |
 
+## NotificationSetting<sup>20+</sup>
+
+通知设置状态，包括是否开启振动、是否开启响铃。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+| 名称             | 类型     | 只读 | 可选 | 说明                                         |
+| ---------------- | ------- | ---- | ---- | ------------------------------------------- |
+| vibrationEnabled | boolean | 否   |  否  | 表示是否开启振动。<br/> - true：开启。<br/> - false：关闭。 |
+| soundEnabled     | boolean | 否   |  否  | 表示是否开启响铃。<br/> - true：开启。<br/> - false：关闭。 |
+
 ## BundleOption
 
 type BundleOption = _BundleOption
@@ -1951,15 +1962,3 @@ type NotificationProgress = _NotificationProgress
 | 类型 | 说明 |
 | --- | --- |
 | [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | 描述通知进度。 |
-
-## NotificationSetting<sup>20+</sup>
-
-通知设置状态，包括是否开启振动、是否开启响铃。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-
-| 名称    | 类型                                  | 必填 | 说明                   |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| vibrationEnabled | boolean | 是 | 表示是否开启振动。true表示开启，false表示关闭。 |
-| soundEnabled | boolean | 是 | 表示是否开启响铃。true表示开启，false表示关闭。 |

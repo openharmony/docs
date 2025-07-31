@@ -4,17 +4,11 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
-
-## 导入模块
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-```
-
-## Matrix<sup>12+</sup>
 
 矩阵对象。
 
@@ -27,7 +21,13 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ![matrix_xy](figures/matrix_xy.PNG)
 
-### constructor<sup>12+</sup>
+## 导入模块
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+```
+
+## constructor<sup>12+</sup>
 
 constructor()
 
@@ -43,7 +43,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let matrix = new drawing.Matrix();
 ```
 
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor(matrix: Matrix)
 
@@ -55,7 +55,7 @@ constructor(matrix: Matrix)
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| matrix      | [Matrix](#matrix12)                  | 是    | 被拷贝的矩阵。|
+| matrix      | [Matrix](arkts-apis-graphics-drawing-Matrix.md)                  | 是    | 被拷贝的矩阵。|
 
 **示例：**
 
@@ -66,7 +66,7 @@ let matrix = new drawing.Matrix();
 let matrix2 = new drawing.Matrix(matrix);
 ```
 
-### isAffine<sup>20+</sup>
+## isAffine<sup>20+</sup>
 
 isAffine(): boolean
 
@@ -91,7 +91,7 @@ let isAff = matrix.isAffine();
 console.info('isAff :', isAff);
 ```
 
-### rectStaysRect<sup>20+</sup>
+## rectStaysRect<sup>20+</sup>
 
 rectStaysRect(): boolean
 
@@ -117,7 +117,7 @@ let isRect = matrix2.rectStaysRect();
 console.info('isRect :', isRect);
 ```
 
-### setSkew<sup>20+</sup>
+## setSkew<sup>20+</sup>
 
 setSkew(kx: number, ky: number, px: number, py: number): void
 
@@ -144,7 +144,7 @@ matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
 matrix.setSkew(2, 0.5, 0.5, 2);
 ```
 
-### setSinCos<sup>20+</sup>
+## setSinCos<sup>20+</sup>
 
 setSinCos(sinValue: number, cosValue: number, px: number, py: number): void
 
@@ -170,7 +170,7 @@ let matrix = new drawing.Matrix();
 matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
 matrix.setSinCos(0, 1, 1, 0);
 ```
-### setRotation<sup>12+</sup>
+## setRotation<sup>12+</sup>
 
 setRotation(degree: number, px: number, py: number): void
 
@@ -203,7 +203,7 @@ let matrix = new drawing.Matrix();
 matrix.setRotation(90, 100, 100);
 ```
 
-### setScale<sup>12+</sup>
+## setScale<sup>12+</sup>
 
 setScale(sx: number, sy: number, px: number, py: number): void
 
@@ -237,7 +237,7 @@ let matrix = new drawing.Matrix();
 matrix.setScale(100, 100, 150, 150);
 ```
 
-### setTranslation<sup>12+</sup>
+## setTranslation<sup>12+</sup>
 
 setTranslation(dx: number, dy: number): void
 
@@ -269,7 +269,7 @@ let matrix = new drawing.Matrix();
 matrix.setTranslation(100, 100);
 ```
 
-### setMatrix<sup>12+</sup>
+## setMatrix<sup>12+</sup>
 
 setMatrix(values: Array\<number>): void
 
@@ -301,7 +301,7 @@ let value : Array<number> = [2, 2, 2, 2, 2, 2, 2, 2, 2];
 matrix.setMatrix(value);
 ```
 
-### preConcat<sup>12+</sup>
+## preConcat<sup>12+</sup>
 
 preConcat(matrix: Matrix): void
 
@@ -313,7 +313,7 @@ preConcat(matrix: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 表示矩阵对象，位于乘法表达式右侧。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 表示矩阵对象，位于乘法表达式右侧。 |
 
 **错误码：**
 
@@ -335,7 +335,7 @@ matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
 matrix1.preConcat(matrix2);
 ```
 
-### setMatrix<sup>20+</sup>
+## setMatrix<sup>20+</sup>
 
 setMatrix(matrix: Array\<number\> \| Matrix): void
 
@@ -345,7 +345,7 @@ setMatrix(matrix: Array\<number\> \| Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix | Array\<number\> \| [Matrix](#matrix12) | 是   | 用于更新的数组或矩阵。 |
+| matrix | Array\<number\> \| [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于更新的数组或矩阵。 |
 
 **示例：**
 
@@ -358,7 +358,7 @@ let matrix2 = new drawing.Matrix();
 matrix1.setMatrix(matrix2);
 ```
 
-### setConcat<sup>20+</sup>
+## setConcat<sup>20+</sup>
 
 setConcat(matrixA: Matrix, matrixB: Matrix): void
 
@@ -368,8 +368,8 @@ setConcat(matrixA: Matrix, matrixB: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrixA  | [Matrix](#matrix12) | 是   | 用于运算的矩阵A。 |
-| matrixB  | [Matrix](#matrix12) | 是   | 用于运算的矩阵B。 |
+| matrixA  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵A。 |
+| matrixB  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵B。 |
 
 **示例：**
 
@@ -383,7 +383,7 @@ matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
 matrix1.setConcat(matrix2, matrix1);
 ```
 
-### postConcat<sup>20+</sup>
+## postConcat<sup>20+</sup>
 
 postConcat(matrix: Matrix): void
 
@@ -393,7 +393,7 @@ postConcat(matrix: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix | [Matrix](#matrix12) | 是   | 用于运算的矩阵。 |
+| matrix | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵。 |
 
 **示例：**
 
@@ -413,7 +413,7 @@ matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
 matrix1.postConcat(matrix2);
 ```
 
-### isEqual<sup>12+</sup>
+## isEqual<sup>12+</sup>
 
 isEqual(matrix: Matrix): Boolean
 
@@ -425,7 +425,7 @@ isEqual(matrix: Matrix): Boolean
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 另一个矩阵。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 另一个矩阵。 |
 
 **返回值：**
 
@@ -457,7 +457,7 @@ if (matrix1.isEqual(matrix2)) {
 }
 ```
 
-### invert<sup>12+</sup>
+## invert<sup>12+</sup>
 
 invert(matrix: Matrix): Boolean
 
@@ -469,7 +469,7 @@ invert(matrix: Matrix): Boolean
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 矩阵对象，用于存储获取到的逆矩阵。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 矩阵对象，用于存储获取到的逆矩阵。 |
 
 **返回值：**
 
@@ -501,7 +501,7 @@ if (matrix1.invert(matrix2)) {
 }
 ```
 
-### isIdentity<sup>12+</sup>
+## isIdentity<sup>12+</sup>
 
 isIdentity(): Boolean
 
@@ -528,7 +528,7 @@ if (matrix.isIdentity()) {
 }
 ```
 
-### getValue<sup>12+</sup>
+## getValue<sup>12+</sup>
 
 getValue(index: number): number
 
@@ -567,7 +567,7 @@ for (let i = 0; i < 9; i++) {
 }
 ```
 
-### postRotate<sup>12+</sup>
+## postRotate<sup>12+</sup>
 
 postRotate(degree: number, px: number, py: number): void
 
@@ -604,7 +604,7 @@ matrix.postRotate(degree, px, py);
 console.info("matrix= "+matrix.getAll().toString());
 ```
 
-### postScale<sup>12+</sup>
+## postScale<sup>12+</sup>
 
 postScale(sx: number, sy: number, px: number, py: number): void
 
@@ -643,7 +643,7 @@ matrix.postScale(sx, sy, px, py);
 console.info("matrix= "+matrix.getAll().toString());
 ```
 
-### postTranslate<sup>12+</sup>
+## postTranslate<sup>12+</sup>
 
 postTranslate(dx: number, dy: number): void
 
@@ -678,7 +678,7 @@ matrix.postTranslate(dx, dy);
 console.info("matrix= "+matrix.getAll().toString());
 ```
 
-### preRotate<sup>12+</sup>
+## preRotate<sup>12+</sup>
 
 preRotate(degree: number, px: number, py: number): void
 
@@ -715,7 +715,7 @@ matrix.preRotate(degree, px, py);
 console.info("matrix= "+matrix.getAll().toString());
 ```
 
-### postSkew<sup>20+</sup>
+## postSkew<sup>20+</sup>
 
 postSkew(kx: number, ky: number, px: number, py: number): void
 
@@ -740,7 +740,7 @@ let matrix = new drawing.Matrix();
 matrix.postSkew(2.0, 1.0, 2.0, 1.0);
 ```
 
-### preSkew<sup>20+</sup>
+## preSkew<sup>20+</sup>
 
  preSkew(kx: number, ky: number, px: number, py: number): void
 
@@ -765,7 +765,7 @@ let matrix = new drawing.Matrix();
 matrix.preSkew(2.0, 1.0, 2.0, 1.0);
 ```
 
-### mapRadius<sup>20+</sup>
+## mapRadius<sup>20+</sup>
 
 mapRadius(radius: number): number
 
@@ -794,7 +794,7 @@ let radius = matrix.mapRadius(10);
 console.info('radius', radius);
 ```
 
-### preScale<sup>12+</sup>
+## preScale<sup>12+</sup>
 
 preScale(sx: number, sy: number, px: number, py: number): void
 
@@ -833,7 +833,7 @@ matrix.preScale(sx, sy, px, py);
 console.info("matrix"+matrix.getAll().toString());
 ```
 
-### preTranslate<sup>12+</sup>
+## preTranslate<sup>12+</sup>
 
 preTranslate(dx: number, dy: number): void
 
@@ -868,7 +868,7 @@ matrix.preTranslate(dx, dy);
 console.info("matrix"+matrix.getAll().toString());
 ```
 
-### reset<sup>12+</sup>
+## reset<sup>12+</sup>
 
 reset(): void
 
@@ -887,7 +887,7 @@ matrix.reset();
 console.info("matrix= "+matrix.getAll().toString());
 ```
 
-### mapPoints<sup>12+</sup>
+## mapPoints<sup>12+</sup>
 
 mapPoints(src: Array\<common2D.Point>): Array\<common2D.Point>
 
@@ -930,7 +930,7 @@ console.info("matrix= src: "+JSON.stringify(src));
 console.info("matrix= dst: "+JSON.stringify(dst));
 ```
 
-### getAll<sup>12+</sup>
+## getAll<sup>12+</sup>
 
 getAll(): Array\<number>
 
@@ -953,7 +953,7 @@ let matrix = new drawing.Matrix();
 console.info("matrix "+ matrix.getAll());
 ```
 
-### mapRect<sup>12+</sup>
+## mapRect<sup>12+</sup>
 
 mapRect(dst: common2D.Rect, src: common2D.Rect): boolean
 
@@ -997,7 +997,7 @@ if (matrix.mapRect(dst, src)) {
 }
 ```
 
-### setRectToRect<sup>12+</sup>
+## setRectToRect<sup>12+</sup>
 
 setRectToRect(src: common2D.Rect, dst: common2D.Rect, scaleToFit: ScaleToFit): boolean
 
@@ -1041,7 +1041,7 @@ if (matrix.setRectToRect(src, dst, scaleToFit)) {
 }
 ```
 
-### setPolyToPoly<sup>12+</sup>
+## setPolyToPoly<sup>12+</sup>
 
 setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: number): boolean
 

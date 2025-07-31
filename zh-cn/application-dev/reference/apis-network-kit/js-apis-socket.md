@@ -3537,6 +3537,59 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
 })
 ```
 
+### close<sup>20+</sup>
+
+close(): Promise\<void\>
+
+TCPSocketServer停止监听并释放通过[listen](#listen10)方法绑定的端口。若多次调用[listen](#listen10)方法，再调用此方法时会释放TCPSocketServer的所有监听端口。使用Promise异步回调。
+
+> **说明：**
+> 该方法不会关闭已有连接。如需关闭，请调用[TCPSocketConnection](#tcpsocketconnection10)的[close](#close10)方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                       |
+|  -------------- |  --------------------------------------------------------- |
+| Promise\<void\> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.on('connect', (connection: socket.TCPSocketConnection) => {
+  console.info("connection clientId: " + connection.clientId);
+  // 逻辑处理
+  tcpServer.close(); // 停止监听
+  connection.close(); // 关闭当前连接
+});
+tcpServer.listen(listenAddr).then(() => {
+  console.info('listen success');
+}).catch((err: BusinessError) => {
+  console.error('listen fail: ' + err.code);
+});
+```
+
 ## TCPSocketConnection<sup>10+</sup>
 
 TCPSocketConnection连接，即TCPSocket客户端与服务端的连接。在调用TCPSocketConnection的方法前，需要先获取TCPSocketConnection对象。
@@ -5150,6 +5203,7 @@ getState(): Promise\<SocketStateBase\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5211,6 +5265,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5270,6 +5325,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5325,6 +5381,7 @@ getLocalAddress(): Promise\<string\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -5501,6 +5558,61 @@ server.off('error', callback);
 server.off('error');
 ```
 
+### close<sup>20+</sup>
+
+close(): Promise\<void\>
+
+LocalSocketServer停止监听并释放通过[listen](#listen11)方法绑定的监听端口。使用Promise异步回调。
+
+> **说明：**
+> 该方法不会关闭已有连接。如需关闭，请调用[LocalSocketConnection](#localsocketconnection11)的[close](#close11-1)方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                       |
+|  -------------- |  --------------------------------------------------------- |
+| Promise\<void\> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+
+**示例：**
+
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
+```ts
+import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localserver: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
+let addr: socket.LocalAddress = {
+  address: sandboxPath
+}
+localserver.on('connect', (connection: socket.LocalSocketConnection) => {
+  console.info("connection clientId: " + connection.clientId);
+  // 逻辑处理
+  localserver.close(); // 停止监听
+  connection.close(); // 关闭当前连接
+});
+localserver.listen(addr).then(() => {
+  console.info('listen success');
+}).catch((err: BusinessError) => {
+  console.error('listen fail: ' + err.code);
+});
+```
 
 ## LocalSocketConnection<sup>11+</sup>
 
@@ -5635,6 +5747,7 @@ getLocalAddress(): Promise\<string\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -8792,6 +8905,73 @@ tlsServer.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tlsServer.off('error', callback);
 tlsServer.off('error');
+```
+
+### close<sup>20+</sup>
+
+close(): Promise\<void\>
+
+TLSSocketServer停止监听并释放通过[listen](#listen10-2)方法绑定的端口。使用Promise异步回调。
+
+> **说明：**
+> 该方法不会关闭已有连接。如需关闭，请调用[TLSSocketConnection](#tlssocketconnection10)的[close](#close10-2)方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                       |
+|  -------------- |  --------------------------------------------------------- |
+| Promise\<void\> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.on('connect', (connection: socket.TLSSocketConnection) => {
+  console.info("connection clientId: " + connection.clientId);
+  // 逻辑处理
+  tlsServer.close(); // 停止监听
+  connection.close(); // 关闭当前连接
+});
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.info("listen callback success");
+}).catch((err: BusinessError) => {
+  console.error("listen failed: " + err.code);
+});
 ```
 
 ## TLSSocketConnection<sup>10+</sup>

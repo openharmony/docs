@@ -1,5 +1,11 @@
 # 使用3DES对称密钥加解密(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
 
 ## 在CMake脚本中链接相关动态库
@@ -150,7 +156,7 @@ end:
     }
     
     // 加密。
-    ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
+    ret = OH_CryptoSymCipher_Create("3DES192|CBC|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }

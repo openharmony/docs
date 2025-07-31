@@ -1,5 +1,11 @@
 # @ohos.abilityAccessCtrl (程序访问控制管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
 
 > **说明：**
@@ -646,7 +652,7 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 
 ## SwitchType<sup>12+</sup>
 
-表示全局开关类型。
+表示全局开关类型的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

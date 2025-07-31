@@ -443,26 +443,30 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 ```js
 import { connectedTag } from '@kit.ConnectivityKit';
 
-// Register event
-connectedTag.on("notify", (rfState : number)=> {
-  console.log("connectedTag on Callback rfState: " + rfState);
-});
-try {
-    connectedTag.initialize();
-    let tag = [3, 1, 0];
-    console.log("connectedTag write: tag=" + tag);
-    await connectedTag.write(tag);
-    let data = await connectedTag.read();
-    console.log("connectedTag read: data=" + data);
-    connectedTag.uninitialize();
-} catch (error) {
-    console.error("connectedTag error: " + error);
+async function nfcTagTest(): Promise<void> {
+  // Register event
+  connectedTag.on("notify", (rfState : number)=> {
+    console.log("connectedTag on Callback rfState: " + rfState);
+  });
+  try {
+      connectedTag.initialize();
+      let tag = [3, 1, 0];
+      console.log("connectedTag write: tag=" + tag);
+      await connectedTag.write(tag);
+      let data = await connectedTag.read();
+      console.log("connectedTag read: data=" + data);
+      connectedTag.uninitialize();
+  } catch (error) {
+      console.error("connectedTag error: " + error);
+  }
+
+  // Unregister event
+  connectedTag.off("notify", (rfState : number)=> {
+    console.log("connectedTag off Callback rfState: " + rfState);
+  });
 }
 
-// Unregister event
-connectedTag.off("notify", (rfState : number)=> {
-  console.log("connectedTag off Callback rfState: " + rfState);
-});
+export { nfcTagTest }
 ```
 
 ## NfcRfType

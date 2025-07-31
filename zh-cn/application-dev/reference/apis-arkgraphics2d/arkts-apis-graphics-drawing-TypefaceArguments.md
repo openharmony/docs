@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 20开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+提供字体属性配置的结构体。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## TypefaceArguments<sup>20+</sup>
-
-提供字体属性配置的结构体。
-
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor()
 
@@ -33,7 +33,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let typeFaceArgument = new drawing.TypefaceArguments();
 ```
 
-### addVariation<sup>20+</sup>
+## addVariation<sup>20+</sup>
 
 addVariation(axis: string, value: number)
 

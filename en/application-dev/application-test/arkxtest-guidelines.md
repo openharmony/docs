@@ -187,7 +187,7 @@ After the test is complete, you can view the test result in DevEco Studio, as sh
 
 **Viewing the Test Case Coverage**
 
-After the test is complete, you can view the test coverage. For details, see the coverage statistics modes in [Code Test](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5).
+After the test is complete, you can view the test coverage. For details, see the coverage statistics modes in [Code Test](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-code-test).
 
 #### In the CMD
 

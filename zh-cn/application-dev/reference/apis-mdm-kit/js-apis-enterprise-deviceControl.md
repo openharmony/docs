@@ -1,4 +1,9 @@
 # @ohos.enterprise.deviceControl（设备控制管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备控制能力。
 
@@ -26,6 +31,7 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -49,14 +55,17 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   deviceControl.operateDevice(wantTemp, 'resetFactory');
 } catch (err) {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);

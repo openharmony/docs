@@ -70,7 +70,7 @@ import { ProgressButton } from '@kit.ArkUI';
 struct Index {
   @State progressIndex: number = 0;
   @State textState: string = '下载';
-  @State ButtonWidth: number = 200;
+  @State buttonWidth: number = 200;
   @State isRunning: boolean = false;
   @State enableState: boolean = true;
 
@@ -80,7 +80,7 @@ struct Index {
         Column({ space: 20 }) {
           ProgressButton({
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {
@@ -124,7 +124,7 @@ import { ProgressButton } from '@kit.ArkUI';
 struct Index {
   @State progressIndex: number = 0;
   @State textState: string = '下载';
-  @State ButtonWidth: number = 200;
+  @State buttonWidth: number = 200;
   @State isRunning: boolean = false;
   @State enableState: boolean = true;
 
@@ -141,7 +141,7 @@ struct Index {
               backgroundColor: Color.Pink
             },
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {
@@ -183,7 +183,7 @@ import { ProgressButton, LengthMetrics } from '@kit.ArkUI';
 struct Index {
   @State progressIndex: number = 0;
   @State textState: string = '下载';
-  @State ButtonWidth: number = 200;
+  @State buttonWidth: number = 200;
   @State isRunning: boolean = false;
   @State enableState: boolean = true;
 
@@ -194,7 +194,7 @@ struct Index {
           ProgressButton({
             progressButtonRadius: LengthMetrics.vp(8), //自定义圆角值为8vp
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {

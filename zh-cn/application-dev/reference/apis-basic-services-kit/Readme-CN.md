@@ -42,10 +42,10 @@
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
-    - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)](js-apis-selectionInput-selectionExtensionAbility.md)
-    - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)](js-apis-selectionInput-selectionExtensionContext.md)
-    - [@ohos.selectionInput.selectionManager (划词管理)](js-apis-selectionInput-selectionManager.md)
-    - [@ohos.selectionInput.SelectionPanel (划词面板)](js-apis-selectionInput-selectionPanel.md)
+    - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)](js-apis-selectionInput-selectionExtensionAbility-sys.md)
+    - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)(系统接口)](js-apis-selectionInput-selectionExtensionContext-sys.md)
+    - [@ohos.selectionInput.selectionManager (划词管理)(系统接口)](js-apis-selectionInput-selectionManager-sys.md)
+    - [@ohos.selectionInput.SelectionPanel (划词面板)(系统接口)](js-apis-selectionInput-selectionPanel-sys.md)
     <!--DelEnd-->
   - 进程线程通信<!--process-thread-communi-arkts-->
     - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
@@ -100,16 +100,16 @@
 - C API<!--basic-services-c-->
   - 模块<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
-    - [DeviceInfo](_device_info.md)
+    - [DeviceInfo](capi-deviceinfo.md)
     - [OsAccount](capi-osaccount.md)
-    - [OH_BatteryInfo](oh__batteryinfo.md)
+    - [OH_BatteryInfo](capi-oh-batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
     - [Pasteboard](capi-pasteboard.md)
-    - [TimeService](_time_service.md)
+    - [TimeService](capi-timeservice.md)
   - 头文件<!--basic-services-headerfile-->
-    - [deviceinfo.h](deviceinfo_8h.md)
-    - [ohbattery_info.h](ohbattery__info_8h.md)
+    - [deviceinfo.h](capi-deviceinfo-h.md)
+    - [ohbattery_info.h](capi-ohbattery-info-h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
     - [oh_pasteboard.h](capi-oh-pasteboard-h.md)
@@ -118,7 +118,7 @@
     - [os_account_common.h](capi-os-account-common-h.md)
     - [ohprint.h](ohprint_8h.md)
     - [ohscan.h](c-apis-scan.md)
-    - [time_service.h](time__service_8h.md)
+    - [time_service.h](capi-time-service-h.md)
   - 结构体<!--basic-services-struct-->
     - [Print_Margin](_print___margin.md)
     - [Print_PageSize](_print___page_size.md)

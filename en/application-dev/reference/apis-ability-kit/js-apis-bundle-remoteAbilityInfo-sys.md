@@ -1,6 +1,6 @@
 # RemoteAbilityInfo (System API)
 
-The RemoteAbilityInfo module provides information about a remote ability.
+The module provides information about a remote ability.
 
 > **NOTE**
 >

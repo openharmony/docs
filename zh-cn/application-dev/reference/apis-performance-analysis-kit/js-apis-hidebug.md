@@ -85,7 +85,7 @@ getPss(): bigint
 
 > **注意：**
 > 
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -132,7 +132,7 @@ getSharedDirty(): bigint
 
 > **注意：**
 > 
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -158,7 +158,7 @@ getPrivateDirty(): bigint
 
 > **注意：**
 >
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -182,6 +182,10 @@ getCpuUsage(): number
 获取进程的CPU使用率。
 
 如占用率为50%，则返回0.5。
+
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -317,6 +321,10 @@ try {
 dumpJsHeapData(filename: string) : void
 
 虚拟机堆导出。
+
+> **注意：**
+>
+> 由于虚拟机堆导出极其耗时，且该接口为同步接口，建议不要在上架版本中调用该接口，以避免应用卡死，影响用户体验。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -456,6 +464,10 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
 getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 获取应用线程CPU使用情况。
+
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -613,6 +625,10 @@ getSystemCpuUsage() : number
 
 例如，当系统资源CPU占用为50%时，将返回0.5。
 
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
+
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -700,7 +716,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 > **注意：**
 >
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于读取/proc/{pid}/smaps_rollup耗时较长，推荐使用异步接口[hidebug.getAppNativeMemInfoAsync](#hidebuggetappnativememinfoasync20)，以避免应用丢帧或卡顿。
 
 **返回值：**
 
@@ -714,6 +730,63 @@ getAppNativeMemInfo(): NativeMemInfo
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
+console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+  `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+  `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
+```
+
+## hidebug.getAppNativeMemInfoAsync<sup>20+</sup>
+
+getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
+
+使用异步方式获取应用进程内存信息。读取/proc/{pid}/smaps_rollup和/proc/{pid}/statm节点的数据。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型                                               | 说明                      |
+|--------------------------------------------------| -------------------------- |
+| Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，调用结束后返回应用进程内存信息。 |
+
+**示例**
+
+```ts
+hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
+  console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+    `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+    `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
+});
+```
+
+## hidebug.getAppNativeMemInfoWithCache<sup>20+</sup>
+
+getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
+
+获取应用进程内存信息。与`getAppNativeMemInfo`接口相比，该接口使用了缓存机制，以提高性能。缓存的有效期为5分钟。
+
+> **注意：**
+>
+> 由于读取 `/proc/{pid}/smaps_rollup` 比较耗时，建议不在主线程中使用该接口。可以通过 `@ohos.taskpool` 或 `@ohos.worker` 开启异步线程，以避免应用卡顿。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数**：
+
+| 参数名                     | 类型      | 必填 | 说明                                                                                                     |
+|-------------------------|---------|----|--------------------------------------------------------------------------------------------------------|
+| forceRefresh         | boolean | 否  | 是否需要无视缓存有效性，强制更新缓存值。默认值：false。</br>true：直接获取当前内存数据并更新缓存值。</br>false：缓存有效时，直接返回缓存值，缓存失效时获取当前内存数据并更新缓存值。 |
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
+
+**示例**
+
+```ts
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
 console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
   `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
   `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
@@ -828,12 +901,12 @@ try {
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用进程的驻留集的限制，以KB为单位。     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位。       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
-| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
+| 名称      | 类型   | 只读 | 可选 | 说明         |
+| --------- | ------ | --|----| ------------ |
+| rssLimit    | bigint |  否  | 否  | 应用进程的驻留集的限制，以KB为单位。     |
+| vssLimit  | bigint |  否  | 否  | 进程的虚拟内存限制，以KB为单位。       |
+| vmHeapLimit | bigint |  否  | 否  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
+| vmTotalHeapSize | bigint |  否  | 否  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -841,11 +914,11 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位。     |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位。    |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- | ---|----| ---------------------------------- |
+| totalHeap          | bigint  | 否  | 否  | 表示当前虚拟机的堆总大小，以KB为单位。     |
+| heapUsed           | bigint  | 否  | 否  | 表示当前虚拟机使用的堆大小，以KB为单位。    |
+| allArraySize       | bigint  | 否  | 否  | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -853,10 +926,10 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | 是   | 否   | 线程号。      |
-| cpuUsage           | number  | 是   | 否   | 线程CPU使用率。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- |----|----| ----------------------------------- |
+| threadId           | number  | 否  | 否  | 线程号。      |
+| cpuUsage           | number  | 否  | 否  | 线程CPU使用率。 |
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -909,15 +982,15 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                                                             |
-| --------- | ------ | ---- |--------------------------------------------------------------------------------|
-| pss  | bigint |  是  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
-| vss  | bigint |  是  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
-| rss  | bigint |  是  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
-| sharedDirty  | bigint |  是  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
-| privateDirty  | bigint |  是  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
-| sharedClean  | bigint |  是  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
-| privateClean  | bigint |  是  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
+| 名称      | 类型   | 只读  | 可选 | 说明                                                                             |
+| --------- | ------ | --|----|--------------------------------------------------------------------------------|
+| pss  | bigint |  否  | 否  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
+| vss  | bigint |  否  | 否  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
+| rss  | bigint |  否  | 否  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
+| sharedDirty  | bigint |  否  | 否  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
+| privateDirty  | bigint |  否  | 否  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
+| sharedClean  | bigint |  否  | 否  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
+| privateClean  | bigint |  否  | 否  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -925,11 +998,11 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                              |
-| --------- | ------ | ---- |-------------------------------------------------|
-| totalMem  | bigint |  是  | 系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
-| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
-| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
+| 名称      | 类型   | 只读  | 可选 | 说明                                              |
+| --------- | ------ | ---- |---- |-------------------------------------------------|
+| totalMem  | bigint |  否  |   否  |系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
+| freeMem  | bigint |  否  |   否  |系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
+| availableMem  | bigint |  否  |   否  |系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
 
 ## TraceFlag<sup>12+</sup>
 
@@ -1029,7 +1102,7 @@ getGraphicsMemorySync(): number
 
 > **注意：**
 >
-> 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口`getGraphicsMemory`。
+> 由于该接口涉及多次跨进程通信，其耗时可能达到秒级。为了避免引入性能问题，建议不要在主线程调用该接口，推荐使用异步接口`getGraphicsMemory`。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1074,6 +1147,8 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数**：
 
 | 参数名                     | 类型      | 必填 | 说明                                          |
 |-------------------------|---------|----|---------------------------------------------|
@@ -1130,6 +1205,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数**：
+
 | 参数名   | 类型   | 必填 | 说明   |
 |---------|---------|--------|-----|
 |options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
@@ -1171,7 +1247,7 @@ GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分
 
 | 名称         | 类型  | 只读  | 可选 | 说明 |
 |--------------|------|-------|-------|-----|
-|alwaysEnabled | bool | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
+|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
 |sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
 |maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
 
@@ -1194,6 +1270,8 @@ hidebug.disableGwpAsanGrayscale();
 getGwpAsanGrayscaleState(): number
 
 获取当前GWP-Asan剩余使能天数。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值**：
 

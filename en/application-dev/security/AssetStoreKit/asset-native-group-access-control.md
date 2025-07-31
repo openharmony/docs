@@ -1,21 +1,21 @@
-# Managing Assets in a Group
+# Managing Assets in a Group (C/C++)
 
 Before managing assets in a group, ensure that you are familiar with the following operations:
 
-  - [Adding an Asset (C/C++)](asset-native-add.md)
-  - [Removing Assets (C/C++)](asset-native-remove.md)
-  - [Updating an Asset (C/C++)](asset-native-update.md)
-  - [Querying Assets (C/C++)](asset-native-query.md)
+- [Adding an Asset (C/C++)](asset-native-add.md)
+- [Removing Assets (C/C++)](asset-native-remove.md)
+- [Updating an Asset (C/C++)](asset-native-update.md)
+- [Querying Assets (C/C++)](asset-native-query.md)
 
 ## Prerequisites
 
-The group ID, for example, **demo_group_id**, is configured in the **app.json** file of the HAP.
+Set the group ID **demo_group_id** in the **app.json5** file.
 
 ```json
 {
   "app": {
     // Other configuration items are omitted here.
-    "asset-access-groups": [
+    "assetAccessGroups": [
       "demo_group_id"
     ]
   }
@@ -24,7 +24,7 @@ The group ID, for example, **demo_group_id**, is configured in the **app.json** 
 
 ## Adding an Asset to a Group
 
-Add an asset to a group. The asset includes password **demo_pwd**, alias **demo_alias**, and additional information **demo_label**, and is accessible when the user unlocks the device for the first time.
+Add an asset to the group, with the password **demo_pwd**, alias **demo_alias**, and additional attribute **demo_label**. The asset can be accessed after the device is unlocked for the first time.
 
 ```c
 #include <string.h>

@@ -1,5 +1,11 @@
 # 非匿名密钥证明(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 在使用本功能前，需申请权限：[ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key)。请开发者根据应用的APL等级，参考具体的操作路径[权限申请](../AccessToken/determine-application-mode.md)。
 
 ## 开发步骤
@@ -17,6 +23,14 @@
  * 以下以attestKey的Promise接口操作验证为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 /* 1.确定密钥别名 */
 let keyAliasString = "key attest";
@@ -88,14 +102,6 @@ let attestKeyproperties: Array<huks.HuksParam> = [
 let huksOptions: huks.HuksOptions = {
   properties: attestKeyproperties
 };
-
-function StringToUint8Array(str: string) {
-  let arr: number[] = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
 
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<void>((resolve, reject) => {

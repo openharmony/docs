@@ -457,6 +457,48 @@ With this permission, the application can detect information such as the user's 
 
 **Valid since**: 20
 
+## ohos.permission.kernel.NET_RAW
+
+Allows an application to capture network data packets.
+
+With this permission, the application needs user authentication before it can capture network data packets. Otherwise, this operation is not allowed.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.kernel.DEBUGGER
+
+Allows an application to obtain the debugging capability.
+
+With this permission, the application, as the main process, can obtain the PTRACE debugging capability.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.kernel.ALLOW_DEBUG
+
+Allows a C/C++ program to be debugged.
+
+With this permission, the C/C++ program in the application can be debugged. However, the runtime memory may be dumped. Exercise caution when using this permission.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
 ## ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
 
 Allows an application to set its power-saving mode.

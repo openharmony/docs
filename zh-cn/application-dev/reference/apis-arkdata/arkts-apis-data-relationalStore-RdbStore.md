@@ -1,8 +1,19 @@
 # Interface (RdbStore)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+提供管理关系数据库（RDB）方法的接口。
+
+在使用以下API前，请先通过[getRdbStore](arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore-1)方法获取RdbStore实例，并使用该实例调用对应接口方法。
+
+在此基础上，建议优先使用[execute](arkts-apis-data-relationalStore-RdbStore.md#execute12)方法完成数据库表结构和初始数据的初始化，以确保相关接口调用的前置条件已满足。
 
 ## 导入模块
 
@@ -10,19 +21,13 @@
 import { relationalStore } from '@kit.ArkData';
 ```
 
-## RdbStore
-
-提供管理关系数据库（RDB）方法的接口。
-
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
-
-### 属性
+## 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称         | 类型            | 只读       | 可选 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | 否 | 否   | 设置和获取数据库版本，值为大于0的正整数。       |
+| version<sup>10+</sup>  | number | 否 | 否   | 设置和获取数据库版本，值为大于0的正整数。<br>读取和设置version属性会占用数据库连接，避免对该属性进行频繁操作。<br>使用临时变量保存读取到的version值，在数据库变更完成后将其赋值给RdbStore实例的version属性。数据库升级时变更version属性的场景，请参考[开发指南示例代码](../../database/data-persistence-by-rdb-store.md#开发步骤)。 |
 | rebuilt<sup>12+</sup> | [RebuildType](arkts-apis-data-relationalStore-e.md#rebuildtype12) | 是 | 否 | 用于获取数据库是否进行过重建或修复。 |
 
 **错误码：**
@@ -31,7 +36,7 @@ import { relationalStore } from '@kit.ArkData';
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -83,7 +88,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-### insert
+## insert
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
@@ -105,7 +110,7 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -165,7 +170,7 @@ if (store != undefined) {
 }
 ```
 
-### insert<sup>10+</sup>
+## insert<sup>10+</sup>
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
@@ -188,7 +193,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ---------------------------------------------------- |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -249,7 +254,7 @@ if (store != undefined) {
 }
 ```
 
-### insert
+## insert
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
@@ -276,7 +281,7 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -336,7 +341,7 @@ if (store != undefined) {
 }
 ```
 
-### insert<sup>10+</sup>
+## insert<sup>10+</sup>
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
 
@@ -364,7 +369,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -424,7 +429,7 @@ if (store != undefined) {
 }
 ```
 
-### insertSync<sup>12+</sup>
+## insertSync<sup>12+</sup>
 
 insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):number
 
@@ -452,7 +457,7 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -513,7 +518,7 @@ if (store != undefined) {
 }
 ```
 
-### insertSync<sup>12+</sup>
+## insertSync<sup>12+</sup>
 
 insertSync(table: string, values: sendableRelationalStore.ValuesBucket, conflict?: ConflictResolution):number
 
@@ -541,7 +546,7 @@ insertSync(table: string, values: sendableRelationalStore.ValuesBucket, conflict
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -585,7 +590,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsert
+## batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
@@ -609,7 +614,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -677,7 +682,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsert
+## batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
@@ -706,7 +711,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -793,7 +798,7 @@ for (let i = 0; i < 100; i++) { // 构造一个BucketArray用于写入
 await store!.batchInsert("test", valueBucketArray); // 执行批量写入
 ```
 
-### batchInsertSync<sup>12+</sup>
+## batchInsertSync<sup>12+</sup>
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 
@@ -820,7 +825,7 @@ batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -889,7 +894,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolution<sup>18+</sup>
+## batchInsertWithConflictResolution<sup>18+</sup>
 
 batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
 
@@ -917,7 +922,7 @@ batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&g
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted. |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -985,7 +990,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolutionSync<sup>18+</sup>
+## batchInsertWithConflictResolutionSync<sup>18+</sup>
 
 batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
 
@@ -1013,7 +1018,7 @@ batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBuck
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted. |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -1082,7 +1087,7 @@ if (store != undefined) {
 }
 ```
 
-### update
+## update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1095,7 +1100,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | 参数名     | 类型                                 | 必填 | 说明                                                         |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **错误码：**
@@ -1104,7 +1109,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1166,7 +1171,7 @@ if (store != undefined) {
 }
 ```
 
-### update<sup>10+</sup>
+## update<sup>10+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1179,7 +1184,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 是   | 指定冲突解决模式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
@@ -1189,7 +1194,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1251,7 +1256,7 @@ if (store != undefined) {
 }
 ```
 
-### update
+## update
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1264,7 +1269,7 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | 参数名       | 类型                                 | 必填 | 说明                                                         |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values       | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 
 **返回值**：
 
@@ -1278,7 +1283,7 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1340,7 +1345,7 @@ if (store != undefined) {
 }
 ```
 
-### update<sup>10+</sup>
+## update<sup>10+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
 
@@ -1353,7 +1358,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 是   | 指定冲突解决模式。                                           |
 
 **返回值**：
@@ -1368,7 +1373,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1430,7 +1435,7 @@ if (store != undefined) {
 }
 ```
 
-### updateSync<sup>12+</sup>
+## updateSync<sup>12+</sup>
 
 updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution):number
 
@@ -1443,7 +1448,7 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)             | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)             | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
 
 **返回值**：
@@ -1458,7 +1463,7 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -1521,7 +1526,7 @@ if (store != undefined) {
 }
 ```
 
-### delete
+## delete
 
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1533,7 +1538,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
@@ -1542,7 +1547,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1579,7 +1584,7 @@ if (store != undefined) {
 }
 ```
 
-### delete
+## delete
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1591,7 +1596,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1605,7 +1610,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1642,7 +1647,7 @@ if (store != undefined) {
 }
 ```
 
-### deleteSync<sup>12+</sup>
+## deleteSync<sup>12+</sup>
 
 deleteSync(predicates: RdbPredicates):number
 
@@ -1654,7 +1659,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | 参数名     | 类型                            | 必填 | 说明                                    |
 | ---------- | ------------------------------- | ---- | --------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1668,7 +1673,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -1706,7 +1711,7 @@ if (store != undefined) {
 }
 ```
 
-### query<sup>10+</sup>
+## query<sup>10+</sup>
 
 query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1718,8 +1723,8 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1727,7 +1732,7 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -1758,7 +1763,7 @@ if (store != undefined) {
 }
 ```
 
-### query
+## query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1770,9 +1775,9 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1780,7 +1785,7 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -1811,7 +1816,7 @@ if (store != undefined) {
 }
 ```
 
-### query
+## query
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -1823,8 +1828,14 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1832,16 +1843,10 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1869,7 +1874,7 @@ if (store != undefined) {
 }
 ```
 
-### querySync<sup>12+</sup>
+## querySync<sup>12+</sup>
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
@@ -1881,8 +1886,14 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
 | columns    | Array&lt;string&gt;             | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。默认值为空。 |
+
+**返回值**：
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md) | 如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1890,16 +1901,10 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-
-**返回值**：
-
-| 类型                    | 说明                                |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1928,7 +1933,7 @@ if (store != undefined) {
 }
 ```
 
-### remoteQuery
+## remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
 
@@ -1946,9 +1951,9 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
 | device     | string                                       | 是   | 指定的远程设备ID。                                        |
 | table      | string                                       | 是   | 指定的目标表名。                                          |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
 | columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1956,7 +1961,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -1973,7 +1978,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  if (deviceId != undefined) {
+  if (devices != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -2003,7 +2008,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### remoteQuery
+## remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
@@ -2021,14 +2026,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | device     | string                               | 是   | 指定的远程设备ID。                   |
 | table      | string                               | 是   | 指定的目标表名。                                 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
 | columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
 
 | 类型                                                         | 说明                                               |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2036,7 +2041,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -2083,7 +2088,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### querySql<sup>10+</sup>
+## querySql<sup>10+</sup>
 
 querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -2100,7 +2105,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 | 参数名   | 类型                                         | 必填 | 说明                                    |
 | -------- | -------------------------------------------- | ---- |---------------------------------------|
 | sql      | string                                       | 是   | 指定要执行的SQL语句。                          |
-| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2108,7 +2113,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -2155,7 +2160,7 @@ const querySql2 = "select * from test where id in (select id from test1)";
 let resultSet2 = await store.querySql(querySql2);
 ```
 
-### querySql
+## querySql
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -2173,7 +2178,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
 | bindArgs | Array&lt;[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
-| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
+| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
 
 **错误码：**
 
@@ -2181,7 +2186,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -2210,7 +2215,7 @@ if (store != undefined) {
 }
 ```
 
-### querySql
+## querySql
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
@@ -2233,7 +2238,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2241,7 +2246,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -2281,7 +2286,7 @@ const vectorValue: Float32Array = new Float32Array([1.5, 2.5]);
 let resultSet = await store.querySql(querySql, [vectorValue, 1, vectorValue, vectorValue]); 
 ```
 
-### querySqlSync<sup>12+</sup>
+## querySqlSync<sup>12+</sup>
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
@@ -2300,7 +2305,7 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
 | 类型                    | 说明                                |
 | ----------------------- | ----------------------------------- |
-| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
+| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md) | 如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2308,7 +2313,7 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
@@ -2338,11 +2343,11 @@ if (store != undefined) {
 }
 ```
 
-### executeSql<sup>10+</sup>
+## executeSql<sup>10+</sup>
 
 executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
+执行指定的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -2363,7 +2368,7 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2400,11 +2405,11 @@ if (store != undefined) {
 }
 ```
 
-### executeSql
+## executeSql
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
+执行指定的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -2426,7 +2431,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2463,11 +2468,11 @@ if (store != undefined) {
 }
 ```
 
-### executeSql
+## executeSql
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
-执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
+执行指定的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -2494,7 +2499,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2531,7 +2536,7 @@ if (store != undefined) {
 }
 ```
 
-### execute<sup>12+</sup>
+## execute<sup>12+</sup>
 
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
@@ -2566,7 +2571,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2641,7 +2646,7 @@ await store!.execute(insertSql, [0, vectorValue]);
 await store!.execute("insert into test values(1, '[3.5, 1.8]');");
 ```
 
-### execute<sup>12+</sup>
+## execute<sup>12+</sup>
 
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
@@ -2675,7 +2680,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2716,7 +2721,7 @@ if (store != null) {
 }
 ```
 
-### executeSync<sup>12+</sup>
+## executeSync<sup>12+</sup>
 
 executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
@@ -2749,7 +2754,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Failed to open the database because it is corrupted.                                          |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
@@ -2809,7 +2814,7 @@ if (store != undefined) {
 }
 ```
 
-### getModifyTime<sup>10+</sup>
+## getModifyTime<sup>10+</sup>
 
 getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void
 
@@ -2832,7 +2837,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr.3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
+| 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -2868,7 +2873,7 @@ if (store != undefined) {
 }
 ```
 
-### getModifyTime<sup>10+</sup>
+## getModifyTime<sup>10+</sup>
 
 getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;
 
@@ -2934,7 +2939,7 @@ if (store != undefined) {
 }
 ```
 
-### beginTransaction
+## beginTransaction
 
 beginTransaction():void
 
@@ -2949,7 +2954,7 @@ beginTransaction():void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: The RdbStore verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -2991,7 +2996,7 @@ if (store != undefined) {
 }
 ```
 
-### beginTrans<sup>12+</sup>
+## beginTrans<sup>12+</sup>
 
 beginTrans(): Promise&lt;number&gt;
 
@@ -3015,7 +3020,7 @@ beginTrans(): Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: The RdbStore verification failed. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -3056,7 +3061,7 @@ if (store != null) {
 }
 ```
 
-### createTransaction<sup>14+</sup>
+## createTransaction<sup>14+</sup>
 
 createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
@@ -3080,7 +3085,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Transaction](arkts-apis-data-relationalStore-Transaction.md#transaction14)&gt; | Promise对象，返回事务对象。 |
+| Promise&lt;[Transaction](arkts-apis-data-relationalStore-Transaction.md)&gt; | Promise对象，返回事务对象。 |
 
 **错误码：**
 
@@ -3105,7 +3110,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM test WHERE age = ? OR age = ?", [21, 20]).then(() => {
       transaction.commit();
     }).catch((e: BusinessError) => {
@@ -3113,12 +3118,12 @@ if (store != undefined) {
       console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
 ```
 
-### commit
+## commit
 
 commit():void
 
@@ -3133,7 +3138,7 @@ commit():void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: The RdbStore verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3174,7 +3179,7 @@ if (store != undefined) {
 }
 ```
 
-### commit<sup>12+</sup>
+## commit<sup>12+</sup>
 
 commit(txId : number):Promise&lt;void&gt;
 
@@ -3202,7 +3207,7 @@ commit(txId : number):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3241,7 +3246,7 @@ if (store != null) {
 }
 ```
 
-### rollBack
+## rollBack
 
 rollBack():void
 
@@ -3256,7 +3261,7 @@ rollBack():void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: The RdbStore verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3306,7 +3311,7 @@ if (store != undefined) {
 }
 ```
 
-### rollback<sup>12+</sup>
+## rollback<sup>12+</sup>
 
 rollback(txId : number):Promise&lt;void&gt;
 
@@ -3334,7 +3339,7 @@ rollback(txId : number):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3373,7 +3378,7 @@ if (store != null) {
 }
 ```
 
-### backup
+## backup
 
 backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -3396,7 +3401,7 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. The store must not be nullptr. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path. |
 | 14800011  | Failed to open the database because it is corrupted. |
@@ -3431,7 +3436,7 @@ if (store != undefined) {
 }
 ```
 
-### backup
+## backup
 
 backup(destName:string): Promise&lt;void&gt;
 
@@ -3459,7 +3464,7 @@ backup(destName:string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3494,7 +3499,7 @@ if (store != undefined) {
 }
 ```
 
-### restore
+## restore
 
 restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -3517,7 +3522,7 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3551,7 +3556,7 @@ if (store != undefined) {
 }
 ```
 
-### restore
+## restore
 
 restore(srcName:string): Promise&lt;void&gt;
 
@@ -3579,7 +3584,7 @@ restore(srcName:string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3614,7 +3619,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables
+## setDistributedTables
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3637,7 +3642,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3656,7 +3661,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables
+## setDistributedTables
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -3684,7 +3689,7 @@ if (store != undefined) {
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3703,7 +3708,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3727,7 +3732,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3747,7 +3752,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3772,7 +3777,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3794,7 +3799,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
  setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
@@ -3824,7 +3829,7 @@ if (store != undefined) {
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3846,7 +3851,7 @@ if (store != undefined) {
 }
 ```
 
-### obtainDistributedTableName
+## obtainDistributedTableName
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3874,7 +3879,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3909,7 +3914,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### obtainDistributedTableName
+## obtainDistributedTableName
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
@@ -3942,7 +3947,7 @@ if (store != undefined && deviceId != undefined) {
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -3975,7 +3980,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### sync
+## sync
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -3990,8 +3995,8 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)                             | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
-| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)               | 是   | 约束同步数据和设备。                                         |
+| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，1表示失败。 |
 
 **错误码：**
 
@@ -3999,7 +4004,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -4041,7 +4046,7 @@ if (store != undefined) {
 }
 ```
 
-### sync
+## sync
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
@@ -4056,13 +4061,13 @@ if (store != undefined) {
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
 | mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)               | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 约束同步数据和设备。           |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
 
 | 类型                                         | 说明                                                         |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，1表示失败。 |
 
 **错误码：**
 
@@ -4070,7 +4075,7 @@ if (store != undefined) {
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -4110,7 +4115,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4141,7 +4146,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
-    console.info(`Progess: ${progressDetails}`);
+    console.info(`Progress: ${progressDetails}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -4152,7 +4157,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
@@ -4199,7 +4204,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4233,7 +4238,7 @@ const tables = ["table1", "table2"];
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`Progess: ${progressDetail}`);
+    console.info(`Progress: ${progressDetail}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -4244,7 +4249,7 @@ if (store != undefined) {
 };
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
@@ -4294,7 +4299,7 @@ if (store != undefined) {
 };
 ```
 
-### on('dataChange')
+## on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -4316,7 +4321,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 | **错误码ID** | **错误信息**        |
 |-----------|-------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
 
@@ -4345,7 +4350,7 @@ try {
 }
 ```
 
-### on('dataChange')<sup>10+</sup>
+## on('dataChange')<sup>10+</sup>
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
@@ -4368,7 +4373,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | **错误码ID** | **错误信息**        |
 |-----------|-------------|
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
 
@@ -4441,7 +4446,7 @@ try {
 }
 ```
 
-### on<sup>10+</sup>
+## on<sup>10+</sup>
 
 on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
@@ -4463,7 +4468,7 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
 | **错误码ID** | **错误信息**        |
 |-----------|-------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error.    |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
@@ -4489,7 +4494,7 @@ try {
 }
 ```
 
-### on('autoSyncProgress')<sup>11+</sup>
+## on('autoSyncProgress')<sup>11+</sup>
 
 on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 
@@ -4534,7 +4539,7 @@ try {
 }
 ```
 
-### on('statistics')<sup>12+</sup>
+## on('statistics')<sup>12+</sup>
 
 on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -4555,7 +4560,7 @@ on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
 | **错误码ID** | **错误信息**    |
 |-----------|--------|
-| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.  |
 | 14800000  | Inner error.  |
 | 14800014  | The RdbStore or ResultSet is already closed.     |
@@ -4603,7 +4608,7 @@ try {
 }
 ```
 
-### on('sqliteErrorOccurred')<sup>20+</sup>
+## on('sqliteErrorOccurred')<sup>20+</sup>
 
 on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
 
@@ -4667,7 +4672,7 @@ try {
 
 ```
 
-### on('perfStat')<sup>20+</sup>
+## on('perfStat')<sup>20+</sup>
 
 on(event: 'perfStat', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -4734,7 +4739,7 @@ try {
 }
 ```
 
-### off('dataChange')
+## off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -4756,7 +4761,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 | **错误码ID** | **错误信息**        |
 |-----------|-------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
 
@@ -4795,7 +4800,7 @@ try {
 }
 ```
 
-### off('dataChange')<sup>10+</sup>
+## off('dataChange')<sup>10+</sup>
 
 off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
@@ -4818,7 +4823,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | **错误码ID** | **错误信息**        |
 |-----------|-------------|
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
 
@@ -4857,7 +4862,7 @@ try {
 }
 ```
 
-### off<sup>10+</sup>
+## off<sup>10+</sup>
 
 off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
@@ -4879,7 +4884,7 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000     | Inner error.                           |
 | 14800014  | The RdbStore or ResultSet is already closed.    |
@@ -4915,7 +4920,7 @@ try {
 }
 ```
 
-### off('autoSyncProgress')<sup>11+</sup>
+## off('autoSyncProgress')<sup>11+</sup>
 
 off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
@@ -4970,7 +4975,7 @@ try {
 }
 ```
 
-### off('statistics')<sup>12+</sup>
+## off('statistics')<sup>12+</sup>
 
 off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -4992,7 +4997,7 @@ off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 
 | **错误码ID** | **错误信息**    |
 |-----------|--------|
-| 401       | Parameter error.  |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.  |
 | 14800000  | Inner error.  |
 | 14800014  | The RdbStore or ResultSet is already closed.     |
@@ -5011,7 +5016,7 @@ try {
 }
 ```
 
-### off('sqliteErrorOccurred')<sup>20+</sup>
+## off('sqliteErrorOccurred')<sup>20+</sup>
 
 off(event: 'sqliteErrorOccurred', observer?: Callback&lt;ExceptionMessage&gt;): void
 
@@ -5051,7 +5056,7 @@ try {
 }
 ```
 
-### off('perfStat')<sup>20+</sup>
+## off('perfStat')<sup>20+</sup>
 
 off(event: 'perfStat', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -5090,7 +5095,7 @@ try {
 }
 ```
 
-### emit<sup>10+</sup>
+## emit<sup>10+</sup>
 
 emit(event: string): void
 
@@ -5110,7 +5115,7 @@ emit(event: string): void
 
 | **错误码ID** | **错误信息**                                                                                                      |
 | --------- |---------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.     |
 | 14800000  | Inner error.   |
 | 14800014  | The RdbStore or ResultSet is already closed.     |
@@ -5125,7 +5130,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5182,7 +5187,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5238,7 +5243,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
@@ -5254,6 +5259,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 | cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
 
 **返回值：**
+
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。        |
@@ -5299,7 +5305,7 @@ if (store != undefined) {
 }
 ```
 
-### attach<sup>12+</sup>
+## attach<sup>12+</sup>
 
 attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5333,7 +5339,7 @@ attach不能并发调用，否则可能出现未响应情况并报错14800015，
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path.               |
@@ -5371,7 +5377,7 @@ if (store != undefined) {
 }
 ```
 
-### attach<sup>12+</sup>
+## attach<sup>12+</sup>
 
 attach(context: Context, config: StoreConfig, attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5406,7 +5412,7 @@ attach不能并发调用，否则可能出现未响应情况并报错14800015，
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path.               |
@@ -5488,7 +5494,7 @@ if (store != undefined) {
 }
 ```
 
-### detach<sup>12+</sup>
+## detach<sup>12+</sup>
 
 detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5519,7 +5525,7 @@ detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**       |
 |-----------|------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.            |
 | 14800011  | Failed to open the database because it is corrupted.         |
 | 14800014  | The RdbStore or ResultSet is already closed.        |
@@ -5553,7 +5559,7 @@ if (store != undefined) {
 }
 ```
 
-### lockRow<sup>12+</sup>
+## lockRow<sup>12+</sup>
 
 lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
@@ -5569,7 +5575,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
 
 **返回值**：
 
@@ -5583,7 +5589,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                                                     |
 |-----------|----------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.                                                                                 |
 | 14800011  | Failed to open the database because it is corrupted.                                                                          |
 | 14800014  | The RdbStore or ResultSet is already closed.                                                                              |
@@ -5620,7 +5626,7 @@ if (store != undefined) {
 }
 ```
 
-### unlockRow<sup>12+</sup>
+## unlockRow<sup>12+</sup>
 
 unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
@@ -5636,7 +5642,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
 
 **返回值**：
 
@@ -5650,7 +5656,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -5687,7 +5693,7 @@ if (store != undefined) {
 }
 ```
 
-### queryLockedRow<sup>12+</sup>
+## queryLockedRow<sup>12+</sup>
 
 queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -5700,8 +5706,14 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -5709,7 +5721,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -5728,12 +5740,6 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | 14800032  | SQLite: Abort due to constraint violation. |
 | 14800033  | SQLite: Data type mismatch. |
 | 14800034  | SQLite: Library used incorrectly. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -5760,7 +5766,7 @@ if (store != undefined) {
   });
 }
 ```
-### close<sup>12+</sup>
+## close<sup>12+</sup>
 
 close(): Promise&lt;void&gt;
 
@@ -5780,7 +5786,7 @@ close(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                    |
 | ------------ | ----------------------------------------------- |
-| 401          | Parameter error. The store must not be nullptr. |
+| 401          | Parameter error. Possible causes: The RdbStore verification failed. |
 | 14800000     | Inner error.                                    |
 
 **示例：**
@@ -5797,19 +5803,19 @@ if (store != undefined) {
 }
 ```
 
-### rekey<sup>20+</sup>
+## rekey<sup>20+</sup>
 
 rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。使用Promise异步回调。
 
-不支持非wal模式的数据库进行密钥更新。
+不支持对非WAL模式的数据库进行密钥更新。
 
 手动更新密钥时需要独占访问数据库，此时若存在任何未释放的结果集（ResultSet）、事务（Transaction）或其他进程打开的数据库均会引发失败。
 
-仅支持加密数据库进行密钥更新，不支持非加密库变加密库及加密库变非加密库，且需要保持加密参数和密钥生成方式与建库时一致。
+仅支持加密数据库进行密钥更新，不支持非加密数据库变加密数据库及加密数据库变非加密数据库，且需要保持加密参数和密钥生成方式与建库时一致。
 
-数据库越大，密钥更新的时间越长。
+数据库越大，密钥更新所需的时间越长。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5829,95 +5835,105 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                                         |
-| ------------ | ----------------------------------------------------------------------------------- |
-| 801          | Capability not supported.                                                           |
-| 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
-| 14800011     | Failed to open the database because it is corrupted.                                |
-| 14800014     | The RdbStore or ResultSet is already closed.                                        |
-| 14800015     | The database does not respond.                                                      |
-| 14800021     | SQLite: Generic error.                                                              |
-| 14800023     | SQLite: Access permission denied.                                                   |
-| 14800024     | SQLite: The database file is locked.                                                |
-| 14800026     | SQLite: The database is out of memory.                                              |
-| 14800027     | SQLite: Attempt to write a readonly database.                                       |
-| 14800028     | SQLite: Some kind of disk I/O error occurred.                                       |
-| 14800029     | SQLite: The database is full.                                                       |
+| **错误码ID** | **错误信息**                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| 801          | Capability not supported.                                              |
+| 14800001     | Invalid arguments. Possible causes: 1.Parameter is out of valid range. |
+| 14800011     | Failed to open the database because it is corrupted.                   |
+| 14800014     | The RdbStore or ResultSet is already closed.                           |
+| 14800015     | The database does not respond.                                         |
+| 14800021     | SQLite: Generic error.                                                 |
+| 14800023     | SQLite: Access permission denied.                                      |
+| 14800024     | SQLite: The database file is locked.                                   |
+| 14800026     | SQLite: The database is out of memory.                                 |
+| 14800027     | SQLite: Attempt to write a readonly database.                          |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                          |
+| 14800029     | SQLite: The database is full.                                          |
 
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // 示例1：使用默认的加密参数
-let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    const STORE_CONFIG1: relationalStore.StoreConfig = {
+      name: 'rdbstore1.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      encrypt: true
+    };
 
-const STORE_CONFIG1: relationalStore.StoreConfig = {
-  name: "rdbstore1.db",
-  securityLevel: relationalStore.SecurityLevel.S3;
-  encrypt: true,
-};
+    relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.');
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
-  console.info('Get RdbStore successfully.');
-}).catch((err: BusinessError) => {
-  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-});
+      let cryptoParam1: relationalStore.CryptoParam = {
+        encryptionKey: new Uint8Array()
+      };
 
-let cryptoParam1: relationalStore.CryptoParam = {
-    encryptionKey: new Uint8Array();
-};
-
-if(store != undefined) {
-  try {
-    (store as relationalStore.RdbStore).rekey(cryptoParam1);
-    console.info(`rekey is successful`);
-  } catch (err) {
-    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+      if (store != undefined) {
+        try {
+          (store as relationalStore.RdbStore).rekey(cryptoParam1);
+          console.info('rekey is successful');
+        } catch (err) {
+          console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+        }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    });
   }
 }
+```
 
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // 示例2：使用自定义的加密参数
-let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let cryptoParam: relationalStore.CryptoParam = {
+      encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
+      iterationCount: 1000,
+      encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+      hmacAlgo: relationalStore.HmacAlgo.SHA256,
+      kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+      cryptoPageSize: 1024
+    };
 
-let cryptoParam: relationalStore.CryptoParam = {
-  encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
-  iterationCount: 1000,
-  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
-  hmacAlgo: relationalStore.HmacAlgo.SHA256,
-  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
-  cryptoPageSize: 1024,
-};
+    const STORE_CONFIG2: relationalStore.StoreConfig = {
+      name: 'rdbstore2.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      encrypt: true,
+      cryptoParam: cryptoParam
+    };
 
-const STORE_CONFIG2: relationalStore.StoreConfig = {
-  name: "rdbstore2.db",
-  securityLevel: relationalStore.SecurityLevel.S3;
-  encrypt: true,
-  cryptoParam: cryptoParam,
-};
+    relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.');
+      let cryptoParam2: relationalStore.CryptoParam = {
+        encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+        iterationCount: 1000,
+        encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+        hmacAlgo: relationalStore.HmacAlgo.SHA256,
+        kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+        cryptoPageSize: 1024
+      };
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
-  console.info('Get RdbStore successfully.');
-}).catch((err: BusinessError) => {
-  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-});
-
-let cryptoParam2: relationalStore.CryptoParam = {
-  encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
-  iterationCount: 1000,
-  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
-  hmacAlgo: relationalStore.HmacAlgo.SHA256,
-  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
-  cryptoPageSize: 1024,
-};
-
-if(store != undefined) {
-  try {
-    (store as relationalStore.RdbStore).rekey(cryptoParam2);
-    console.info(`rekey is successful`);
-  } catch (err) {
-    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+      if (store != undefined) {
+        try {
+          (store as relationalStore.RdbStore).rekey(cryptoParam2);
+          console.info('rekey is successful');
+        } catch (err) {
+          console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+        }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    });
   }
 }
 ```

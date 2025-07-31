@@ -43,9 +43,9 @@
    | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
    | -------- | -------- | -------- | -------- |
    | forms | 表示应用的全部卡片配置信息。<br/>最多支持配置16个卡片，若超过16个，则保留配置的前16个。 | 数组 | 否 |
-   | name | 表示卡片的名称，字符串最大长度为127字节。 | 字符串 | 否 |
-   | displayName | 表示卡片的展示名称。主要在卡片管理页面显示，用于展示卡片信息，建议能够体现卡片的核心功能或用途。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
-   | description | 表示卡片的描述。用于在卡片管理页面展示卡片功能描述。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
+   | name | 表示卡片的名称，字符串最大长度为127字节。用于开发者区分不同的卡片。 | 字符串 | 否 |
+   | displayName | 表示卡片的展示名称。主要在卡片管理页面显示，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片使用场景)中的<!--RP3-->"ArkTSCard"<!--RP3End-->，用于展示卡片信息，建议能够体现卡片的核心功能或用途。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
+   | description | 表示卡片的描述。用于在卡片管理页面展示卡片功能描述，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片使用场景)中的<!--RP4-->"This is a ArkTS card game by canvas."<!--RP4End-->。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
    | src | 表示卡片对应的UI代码的完整路径。当为ArkTS卡片时，完整路径需要包含卡片文件的后缀，如："./ets/widget/pages/WidgetCard.ets"。当为JS卡片时，完整路径无需包含卡片文件的后缀，如："./js/widget/pages/WidgetCard" | 字符串 | 否 |
    | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为“hml”。 |
    | [window](#window标签) | 用于定义与显示窗口相关的配置。<br/>**说明：**<br/>该字段仅对JS卡片生效。 | 对象 | 可缺省，缺省值见表2。 |
@@ -71,6 +71,8 @@
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
    |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
    |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
+   | resizable | 表示是否可以拖拽卡片调整大小。调整值必须在该卡片或者同groupId卡片的supportDimensions配置列表中。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 布尔类型 | 可缺省，缺省值为false。 |
+   | groupId | 表示一组卡片的共同id。多张卡片的groupId相同且resizable为true时，多张卡片的supportDimensions配置共享。例如，卡片A和B的groupId相同且resizable均为true，则卡片A可以调整为卡片A和B的supportDimensions配置中的任意尺寸。<br/>推荐多张卡片功能相同且需要调整卡片尺寸时配置。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 字符串 | 可缺省，缺省值为false。 |
 
 ### isDynamic标签
 
@@ -100,6 +102,20 @@
 | targetBundleName  | 字符串 | 是  | 趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。       |
 | subBundleName     | 字符串 | 否  | 趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)，默认为空。|
 | keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。                                               |
+
+```json
+{
+  "forms": [
+    {
+       // ...
+      "funInteractionParams": {
+         "targetBundleName": "com.example.funInteraction",
+         "subBundleName": "com.example.subFunInteraction"
+      }
+    }
+  ]
+}
+```
 
 ### sceneAnimationParams标签
 
@@ -158,11 +174,7 @@
          ],
          "formConfigAbility": "ability://EntryAbility",
          "isDynamic": true,
-         "metadata": [],
-         "funInteractionParams": {
-            "targetBundleName": "com.example.funInteraction",
-            "subBundleName": "com.example.subFunInteraction"
-         }
+         "metadata": []
        }
      ]
    }

@@ -1,10 +1,17 @@
 # SendableLruCache<K, V>
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 SendableLruCache在缓存空间不足时，会用新数据替换近期最少使用的数据。此设计基于资源访问的考虑：近期访问的数据可能在不久的将来再次访问，因此最少访问的数据价值最小，应优先移出缓存。SendableLruCache支持Sendable特性，可保存Sendable对象，确保跨线程安全访问。
 
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> SendableLruCache首批接口从API version 18开始支持。
 >
 > 此模块仅支持在ArkTS文件（文件后缀为.ets）中导入使用。
 
@@ -49,7 +56,15 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示缓冲区的自定义容量。不传时，默认值为64，最大值不能超过2147483647。 |
+| capacity | number | 否   | 指示缓冲区的自定义容量。不传时，默认值为64，最大值不能超过2147483647；小于等于0时会抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                                    |
+| -------- | ------------------------------------------|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -359,7 +374,7 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用内部默认接口，并返回其结果。如果内部默认接口返回undefined，则最终返回undefined。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用内部默认接口，生成一个键与值相同的对象，并返回其值。如果内部默认接口返回undefined，则最终返回undefined。 |
 
 **示例：**
 

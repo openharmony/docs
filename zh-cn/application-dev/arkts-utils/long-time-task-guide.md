@@ -1,10 +1,15 @@
 # 长时任务开发指导（TaskPool）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 此处提供使用TaskPool进行长时任务的开发指导，以定期采集传感器数据为例。
 
 ## 使用TaskPool进行传感器数据监听
 
-1. 导入需要用到的模块。
+1. 导入所需的模块。
 
    ```ts
    // Index.ets
@@ -51,7 +56,7 @@
              this.sensorTask = new taskpool.LongTask(SensorListener);
              emitter.on({ eventId: 0 }, (data) => {
                // Do something here
-               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}`);
+               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}}`);
              });
              taskpool.execute(this.sensorTask).then(() => {
                console.info("Add listener of ACCELEROMETER success");
@@ -78,6 +83,6 @@
      }
    }
    ```
-   <!-- @[taskpool_listen_sensor_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
+   <!-- @[taskpool_listen_sensor_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
    
    

@@ -1,12 +1,18 @@
 # 使用SCRYPT进行密钥派生(ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 对应的算法规格请查看[密钥派生算法规格：SCRYPT](crypto-key-derivation-overview.md#scrypt算法)。
 
 ## 开发步骤
 
 1. 构造[ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec18)对象，作为密钥派生参数进行密钥派生。
 
-   SCRYPTSpec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：
+   ScryptSpec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：
 
    - algName：指定算法名为'SCRYPT'。
    - passphrase：用于生成派生密钥的原始密码。

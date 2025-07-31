@@ -19,7 +19,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @li-yan339 @zengyawen @fang-jinxu
+zh-cn/device-dev/ @w_Machine_cc @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -63,9 +63,9 @@ zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @chang
 
 
 [开发-Accessibility Kit]
-zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md @li-yan339
-zh-cn/application-dev/application-models/accessibilityKit.md @li-yan339
-zh-cn/application-dev/application-models/accessibilityextensionability.md @li-yan339
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @lin-steven  @A_qqq
 
 
 [开发-ArkData]
@@ -289,8 +289,8 @@ zh-cn/application-dev/account/ @zengyawen
 zh-cn/application-dev/basic-services/common-event/  @huipeizi  @dong-qingran   @shine_hk
 
 [开发-Basic Services Kit-设备管理]
-zh-cn/application-dev/device/usb-overview.md @li-yan339 @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/device/usb-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-guidelines.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 [开发-Basic Services Kit-升级服务]
 zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13
@@ -322,12 +322,12 @@ zh-cn/application-dev/file-management/ @foryourself
 
 
 [开发-Driverdevelopment kit]
-zh-cn/application-dev/application-models/driverextensionability.md @li-yan339
-zh-cn/application-dev/device/externaldevice-guidelines.md @li-yan339
+zh-cn/application-dev/application-models/driverextensionability.md @w_Machine_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w00373942 @dong-dongzhen
 
 
 [开发-Form Kit]
-zh-cn/application-dev/form/  @ylsnow  @cmz001  @Brilliantry_Rui  
+zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln
 
 
 [开发-DFX]
@@ -347,16 +347,16 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
 
 [开发-Input kit]
-zh-cn/application-dev/device/input  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/device/input  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
@@ -435,7 +435,7 @@ zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @prin
 [开发-NDK]
 zh-cn/application-dev/napi/  @fang-jinxu
 zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @Buda-Liu @budda-wang @lpw_work
-zh-cn/application-dev/napi/usb-ddk-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 
 [开发-Notification Kit]
@@ -523,17 +523,24 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliant
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-bundle.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-zlib.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
+zh-cn/application-dev/reference/apis-ability-kit/_bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native__interface__bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_application_info.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_element_name.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_module_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+
 [API参考-Ability Kit-分布式]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManager.md @chenmingJay @nan-xiansen @iceice1001
 
 
 [API参考-Accessibility kit]
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @li-yan339
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @li-yan339
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @li-yan339
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md @mupceet @RayShih @mupceet @chengxingzhen @li-yan339
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md @mupceet @RayShih @mupceet @gaoxi785 @li-yan339
-zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @li-yan339
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @lin-steven @A_qqq
 
 
 [API参考-ArkGraphics2D]
@@ -639,7 +646,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@raulnaruto_admin	@cheng-feiwang	@yangfan229 @H-xinwei	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@raulnaruto_admin	@cheng-feiwang	@yangfan229 @H-xinwei	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md	@jyj-0306 @pssea 	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md		@laigerendaqiu @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
@@ -665,16 +672,16 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@jinweiliu	@lexiaoyao2	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md		@houguobiao	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md		@houguobiao	@li-xinlei007	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md @jyj-0306 @pssea @fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md @jyj-0306 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md		 @lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@jinweiliu	@lexiaoyao2 	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-divider.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md		@lexiaoyao2	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md		@lexiaoyao2	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md	 @jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md	 @jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md	@ileft201	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md	@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md			@li-xinlei007	@HelloCrease @zhanghaibo0
@@ -690,18 +697,18 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@holtens	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@yp99ustc @HelloCrease @patrickrubystar @GHiker
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @pssea @fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md		@liyi0309	@li-xinlei007	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md	@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md  @jyj-0306 @pssea	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md @jyj-0306 @pssea	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md	@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md	@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md  @jyj-0306	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md @jyj-0306	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md	@jyj-0306	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md	@ileft201	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md		@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md		@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md	@jinweiliu	@lexiaoyao2		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md	@jinweiliu	@lexiaoyao2		@HelloCrease
@@ -711,7 +718,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-componen
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md 	@crazyracing0726	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md @jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md @jyj-0306	@fredyuan0912	@HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-badge.md	@ileft20	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
@@ -720,14 +727,14 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-griditem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-hyperlink.md	@jyj-0306 @pssea	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-hyperlink.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitem.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
@@ -741,8 +748,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rong
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@huangxiaolinabc123	@jiangdayuan	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@zcdqs	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@zcdqs	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
@@ -780,7 +787,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObje
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md   @liyi0309 @li-xinlei007 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md   @youzhi92 @fredyuan0912 @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md  @jyj-0306 @pssea @fredyuan0912 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md  @jyj-0306 @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SubHeader.md    @HelloCrease
@@ -847,7 +854,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md  @sunfei20
 zh-cn/application-dev/reference/apis-arkui/js-apis-curve.md   @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease 
 zh-cn/application-dev/reference/apis-arkui/js-apis-font.md   @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-matrix4.md   @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-measure.md   @jyj-0306 @pssea  @fredyuan0912 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-measure.md   @jyj-0306  @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md     @laigerendaqiu  @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent.md  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md      @li-xinlei007	@HelloCrease
@@ -900,7 +907,7 @@ zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedul
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md  @Brilliantry_Rui @zhouben25 @fenglili18  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md  @Brilliantry_Rui @zhouben25 @fenglili18  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md  @Brilliantry_Rui @zhouben25 @fenglili18  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18  @geng_wd  @wzzqishi  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18 
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md  @Brilliantry_Rui @zhouben25 @fenglili18 
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @fenglili18 
@@ -929,47 +936,47 @@ zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventServ
 
 
 [API参考-Basic Services Kit-设备管理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-brightness.md  @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-thermal.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md @li-yan339 @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usb*.md @li-yan339 @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui  @lpw_work @caiminggang @li-yan339
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-brightness.md  @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-thermal.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usb*.md @w_Machine_cc @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui  @lpw_work @caiminggang @w_Machine_cc
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @w_Machine_cc  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @w_Machine_cc @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13  @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13  @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13  @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13  @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13  @murphy1984 @hu-kai45
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @murphy1984 @hu-kai45
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md @zhang_yixin13 @illybyy @murphy1984 
+zh-cn/application-dev/reference/common/js-apis-timer.md @zhang_yixin13  @murphy1984 
 zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13 @illybyy @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @zhang_yixin13  @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @zhang_yixin13  @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @zhang_yixin13 @illybyy @murphy1984 @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13  @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13  @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @zhang_yixin13   @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @zhang_yixin13 @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @zhang_yixin13 @murphy1984 @wangzhangjun
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @zhang_yixin13
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @zhang_yixin13 @illybyy @murphy1984 @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @zhang_yixin13 @illybyy @murphy1984 @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @zhang_yixin13 @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @zhang_yixin13  @murphy1984 @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @zhang_yixin13 @murphy1984 @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @zhang_yixin13  @murphy1984 @wangzhangjun 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-capability*.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 
 [API参考-Basic Services Kit-启动恢复]
@@ -1048,12 +1055,12 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 
 [API参考-Distributedservice Kit]
-zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @li-yan339
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
-
+zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 @w_Machine_cc
 
 [API参考-Driverdevelopment kit]
-zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @li-yan339
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen
+
 
 
 [API参考-Form Kit]
@@ -1066,7 +1073,7 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @zhang_yixin1
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui  @hanruofei @Lyuxin
 
 
 [API参考-IPC Kit]
@@ -1226,7 +1233,6 @@ zh-cn/application-dev/tools/restool.md  @Brilliantry_Rui @lliule21 @lpw_work @bu
 
 
 [FAQ]
-zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/faqs/faqs-ability.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
 zh-cn/application-dev/faqs/faqs-bundle-management.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @dong-qingran   @shine_hk

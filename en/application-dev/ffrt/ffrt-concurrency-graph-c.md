@@ -78,7 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```c
 #include <stdio.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 void func_TaskA(void* arg)
 {
@@ -153,7 +153,7 @@ Each number in the Fibonacci sequence is the sum of the first two numbers. The p
 
 ```c
 #include <stdio.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 typedef struct {
     int x;

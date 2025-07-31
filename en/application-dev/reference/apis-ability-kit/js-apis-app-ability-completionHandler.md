@@ -13,14 +13,17 @@
 ## Constraints
 
 Currently, this module can be used in the following APIs:
-- [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)
-- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)
+- [startAbility](js-apis-inner-application-uiAbilityContext.md#startability-2)
+- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2)
+- [UIAbilityContext.openAtomicService](js-apis-inner-application-uiAbilityContext.md#openatomicservice12)
+- [UIExtensionContext.openAtomicService](js-apis-inner-application-uiExtensionContext.md#openatomicservice12)
 
 <!--Del-->
-- [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilityforresultwithaccount-2)
-- [startAbilityWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilitywithaccount-2)
-- [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartrecentability-2)
-- [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilityascaller10-2)
+- [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilityforresultwithaccount-2)
+- [startAbilityWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilitywithaccount-2)
+- [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#startrecentability-2)
+- [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#startabilityascaller10-2)
+- [ServiceExtensionContext.openAtomicService](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextopenatomicservice18)
 <!--DelEnd-->
 
 ## Modules to Import
@@ -38,6 +41,8 @@ CompletionHandler provides two callback functions, [onRequestSuccess](#onrequest
 onRequestSuccess(elementName: ElementName, message: string): void
 
 Callback invoked when the application is successfully launched.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -58,6 +63,8 @@ onRequestFailure(elementName: ElementName, message: string): void
 
 Callback invoked when the application fails to be launched.
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -65,7 +72,7 @@ Callback invoked when the application fails to be launched.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes| Element name of the application that fails to be launched.|
-| message | string | Yes| Message displayed when the application fails to be launched. This message is in JSON format, as follows:<br>{<br>    "errMsg": "xxx"<br>}<br>The value of *xxx* is described as follows:<br>Failed to call \<api-name\>: An error occurs when calling the API. \<api-name\> is the specific API name, for example, **startAbility**.<br>User refused redirection: The user has closed the application redirection dialog box.<br>User closed the implicit startup picker: The user has closed the dialog box for selecting an application for implicit startup.<br>User closed the app clone picker: The user has closed the dialog box for selecting a cloned application.<br>Free installation failed: The free installation fails.<br>|
+| message | string | Yes| Message displayed when the application fails to be launched. This message is in JSON format, as follows:<br>{<br>    "errMsg": "xxx"<br>}<br>The value of *xxx* is described as follows:<br>Failed to call \<api-name\>: An error occurs when calling the API. \<api-name\> is the specific API name, for example, **startAbility** or **openAtomicService**.<br>User refused redirection: The user has closed the application redirection dialog box.<br>User closed the implicit startup picker: The user has closed the dialog box for selecting an application for implicit startup.<br>User closed the app clone picker: The user has closed the dialog box for selecting a cloned application.<br>Free installation failed: The free installation fails.<br>|
 
 **Example**
 

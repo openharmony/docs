@@ -1,4 +1,9 @@
 # IPC与RPC通信开发指导(C/C++)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 
 ## 场景介绍
@@ -24,7 +29,7 @@ IPC CAPI接口不直接提供获取通信代理对象的能力，该功能由[Ab
 |OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|创建用于监听远端OHIPCRemoteStub对象死亡的通知对象（OHIPCDeathRecipient对象）。|
 |int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|向OHIPCRemoteProxy对象注册死亡监听，用于接收远端OHIPCRemoteStub对象死亡时的回调通知。|
 
-详细的接口说明请参考[IPCKit](../reference/apis-ipc-kit/_i_p_c_kit.md)。
+详细的接口说明请参考[IPCKit](../reference/apis-ipc-kit/capi-ipckit.md)。
 
 
 ## 开发步骤

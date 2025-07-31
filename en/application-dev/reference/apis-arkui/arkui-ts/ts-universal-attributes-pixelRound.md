@@ -8,7 +8,7 @@ Component-level pixel rounding allows you to enable or disable system pixel roun
 
 ## pixelRound
 
-pixelRound(value: PixelRoundPolicy)
+pixelRound(value: PixelRoundPolicy): T
 
 Sets the pixel rounding policy for the current component in the specified direction. If a direction is not set, the pixels are rounded to the nearest whole number in that direction.
 
@@ -16,11 +16,11 @@ Sets the pixel rounding policy for the current component in the specified direct
 > 
 > In API version 11, this API uses half-pixel alignment (that is, 0\-0.25 rounds to 0, 0.25\-0.75 rounds to 0.5, 0.75\-1.0 rounds to 1). Since API version 12, this API rounds pixels to the nearest integers and allows you to disable pixel rounding for individual components.
 
-In normal calculations, the top and bottom directions correspond to the component height, and the left and right directions (the starting direction of mirroring is called left) and width correspond to each other. For ease of description, these two sets of directions are referred to as upper left and lower right.
+In normal calculations, the vertical direction (top and bottom) correspond to the component height, and the horizontal direction (the starting direction of mirroring is considered "left") correspond to the component width. For ease of description, these two sets of directions are referred to as top-left and bottom-right.
 
-- Calculate the upper left corner coordinates of the current component: offset of the upper left corner relative to the parent container.
-- Calculate the lower right corner coordinates of the current component: offset of the upper left corner relative to the parent container plus the size of the component itself.
-- Recalculate the size of the current component: lower right corner rounded value minus the upper left corner rounded value.
+- Calculate the top-left coordinates of the current component: offset of the top-left corner relative to the parent container.
+- Calculate the bottom-right coordinates of the current component: offset of the top-left corner relative to the parent container plus the size of the component itself.
+- Recalculate the size of the current component: bottom-right corner rounded value minus the top-left corner rounded value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -33,6 +33,12 @@ In normal calculations, the top and bottom directions correspond to the componen
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding policy for the bounds of the component.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing. The rounding result is related not only to the component's width and height but also to its position. Even if the component's width and height are set to be the same, due to different floating-point positions described, the final width and height of the component may also be different after rounding.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## FAQs
 

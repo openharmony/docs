@@ -1,7 +1,9 @@
 # Interface (AudioRoutingManager)
 
 > **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 9开始支持。
 
 音频路由管理。
 
@@ -528,7 +530,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boo
 
 **返回值：**
 
-| Type                   | Description                     |
+| 类型                   | 说明                             |
 | ---------------------- | ------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示设备已激活；返回false表示设备未激活。 |
 
@@ -556,7 +558,7 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 **返回值：**
 
-| Type                   | Description                     |
+| 类型                   | 说明                             |
 | ---------------------- | ------------------------------- |
 | boolean | 设备是否处于激活状态。true表示处于激活状态，false表示处于未激活状态。 |
 

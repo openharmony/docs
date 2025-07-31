@@ -256,7 +256,7 @@ static getSystemLanguage(): string
 
 **示例：**
   ```ts
-  let systemLanguage: string = i18n.System.getSystemLanguage();
+  let systemLanguage: string = i18n.System.getSystemLanguage(); // 如果系统语言为简体中文，systemLanguage = 'zh-Hans'
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -277,7 +277,7 @@ static getSystemRegion(): string
 
 **示例：**
   ```ts
-  let systemRegion: string = i18n.System.getSystemRegion();
+  let systemRegion: string = i18n.System.getSystemRegion(); // 如果系统地区为中国，systemRegion = 'CN'
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -298,7 +298,7 @@ static getSystemLocale(): string
 
 **示例：**
   ```ts
-  let systemLocale: string = i18n.System.getSystemLocale();
+  let systemLocale: string = i18n.System.getSystemLocale(); // 如果系统语言为简体中文、地区为中国，systemLocale = 'zh-Hans-CN'
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -321,7 +321,7 @@ static is24HourClock(): boolean
 
 **示例：**
   ```ts
-  let is24HourClock: boolean = i18n.System.is24HourClock();
+  let is24HourClock: boolean = i18n.System.is24HourClock(); // 如果系统时制是24小时制，is24HourClock = true
   ```
 
 
@@ -2058,7 +2058,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
@@ -2080,7 +2080,7 @@ let dateFormat: string =
 
 nextTransition(date?: number): ZoneOffsetTransition
 
-获取指定时间的下一个时间跳变对象。
+获取指定时间的下一个时区跳变对象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2096,7 +2096,7 @@ nextTransition(date?: number): ZoneOffsetTransition
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| [ZoneOffsetTransition](#zoneoffsettransition20) | 时间跳变对象。 |
+| [ZoneOffsetTransition](#zoneoffsettransition20) | 时区跳变对象。 |
 
 **示例：**
 ```ts
@@ -2118,7 +2118,7 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(d
 
 getMilliseconds(): number
 
-获取时间跳变点的时间戳。
+获取时区跳变点的时间戳。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2128,7 +2128,7 @@ getMilliseconds(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 从1970年1月1日0时0分0秒到时间跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。如果当前时区[原始偏移量](#getrawoffset)保持不变并且不使用夏令时，则返回0。|
+| number | 从1970年1月1日0时0分0秒到时区跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。如果当前时区[原始偏移量](#getrawoffset)保持不变并且不使用夏令时，则返回0。|
 
 **示例：**
 ```ts
@@ -2138,7 +2138,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 ```
 
@@ -2146,7 +2146,7 @@ zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 
 getOffsetAfter(): number
 
-获取时间跳变后的偏移量。
+获取时区跳变后的偏移量。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2156,7 +2156,7 @@ getOffsetAfter(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变后的偏移量，表示跳变后的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-28800000表示跳变后的时间比标准时间慢28800000毫秒（8小时）。 |
+| number | 时区跳变后的偏移量，表示跳变后的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-28800000表示跳变后的时间比标准时间慢28800000毫秒（8小时）。 |
 
 **示例：**
 ```ts
@@ -2166,7 +2166,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 ```
 
@@ -2174,7 +2174,7 @@ zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 
 getOffsetBefore(): number
 
-获取时间跳变前的偏移量。
+获取时区跳变前的偏移量。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2184,7 +2184,7 @@ getOffsetBefore(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变前的偏移量，表示跳变前的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-25200000表示跳变前的时间比标准时间慢25200000毫秒（7小时）。 |
+| number | 时区跳变前的偏移量，表示跳变前的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-25200000表示跳变前的时间比标准时间慢25200000毫秒（7小时）。 |
 
 **示例：**
 ```ts
@@ -2194,7 +2194,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
 ```
 

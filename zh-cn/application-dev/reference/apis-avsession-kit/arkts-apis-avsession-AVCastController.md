@@ -1,8 +1,14 @@
 # Interface (AVCastController)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 10开始支持。
 
 在投播建立后，调用[avSession.getAVCastController](arkts-apis-avsession-AVSession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
@@ -299,7 +305,6 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 
 通过会话控制器发送命令到其对应的会话。结果通过callback异步回调方式返回。
 
-
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -333,6 +338,44 @@ aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
     console.info('SendControlCommand successfully');
   }
 });
+```
+
+## sendCustomData<sup>20+</sup>
+
+sendCustomData(data: Record\<string, Object>): Promise\<void>
+
+发送私有数据到远端设备。使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'，且Object为string类型的对象。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.sendCustomData({customData : "This is custom data"});
 ```
 
 ## prepare<sup>10+</sup>
@@ -841,6 +884,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 设置播放状态变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -879,7 +924,7 @@ aVCastController.on('playbackStateChange', playbackFilter, (playbackState: avSes
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): void
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -913,6 +958,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 设置投播当前播放媒体内容的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -945,7 +992,7 @@ aVCastController.on('mediaItemChange', (item: avSession.AVQueueItem) => {
 
 off(type: 'mediaItemChange'): void
 
-取消设置投播当前播放媒体内容的监听事件。
+取消设置投播当前播放媒体内容事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -977,6 +1024,8 @@ aVCastController.off('mediaItemChange');
 on(type: 'playNext', callback: Callback\<void>): void
 
 设置播放下一首资源的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1010,7 +1059,7 @@ aVCastController.on('playNext', () => {
 
 off(type: 'playNext'): void
 
-取消设置播放下一首资源的监听事件。
+取消设置播放下一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1042,6 +1091,8 @@ aVCastController.off('playNext');
 on(type: 'playPrevious', callback: Callback\<void>): void
 
 设置播放上一首资源的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1075,7 +1126,7 @@ aVCastController.on('playPrevious', () => {
 
 off(type: 'playPrevious'): void
 
-取消设置播放上一首资源的监听事件。
+取消设置播放上一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1108,6 +1159,8 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 
 设置请求播放的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -1138,7 +1191,7 @@ aVCastController.on('requestPlay', (item: avSession.AVQueueItem) => {
 
 off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 
-取消设置请求播放的监听事件。
+取消设置请求播放事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1170,6 +1223,8 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 设置播放结束的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -1200,7 +1255,7 @@ aVCastController.on('endOfStream', () => {
 
 off(type: 'endOfStream', callback?: Callback\<void>): void
 
-取消设置播放结束的监听事件。
+取消设置播放结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1231,6 +1286,8 @@ aVCastController.off('endOfStream');
 on(type: 'seekDone', callback: Callback\<number>): void
 
 设置seek结束的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1264,7 +1321,7 @@ aVCastController.on('seekDone', (pos: number) => {
 
 off(type: 'seekDone'): void
 
-取消设置seek结束的监听事件。
+取消设置seek结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1296,6 +1353,8 @@ aVCastController.off('seekDone');
 on(type: 'validCommandChange', callback: Callback\<Array\<AVCastControlCommandType>>)
 
 会话支持的有效命令变化监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1329,7 +1388,7 @@ aVCastController.on('validCommandChange', (validCommands: avSession.AVCastContro
 
 off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommandType>>)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1356,11 +1415,75 @@ off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommand
 aVCastController.off('validCommandChange');
 ```
 
+## on('videoSizeChange')<sup>12+</sup>
+on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
+
+媒体控制器监听视频尺寸变化变化的事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
+系统能力： SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当检测到会话的合法命令发生改变时，触发该事件。 |
+| callback | (width: number, height: number) => void   | 是   | 回调函数。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+aVCastController.on('videoSizeChange', (width: number, height: number) => {
+  console.info(`videoSizeChange : SUCCESS : size : ${width}, ${height}`);
+});
+```
+
+## off('videoSizeChange')<sup>12+</sup>
+
+off(type: 'videoSizeChange'): void
+
+取消视频尺寸事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
+
+系统能力： SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当检测到会话的合法命令发生改变时，触发该事件。 |
+| callback | (width: number, height: number) => void   | 是   | 回调函数。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('videoSizeChange');
+```
+
 ## on('error')<sup>10+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 监听远端播放器的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1402,7 +1525,7 @@ aVCastController.on('error', (error: BusinessError) => {
 
 off(type: 'error'): void
 
-取消监听播放的错误事件。
+取消播放的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1441,6 +1564,8 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 在线DRM资源投播时，设置许可证请求的事件监听。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -1475,7 +1600,7 @@ aVCastController.on('keyRequest', keyRequestCallback);
 
 off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
-取消监听许可证请求的事件。
+取消许可证请求事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1508,6 +1633,8 @@ aVCastController.off('keyRequest');
 on(type: 'castControlGenericError', callback: ErrorCallback): void
 
 监听投播通用错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1552,7 +1679,7 @@ aVCastController.on('castControlGenericError', (error: BusinessError) => {
 
 off(type: 'castControlGenericError', callback?: ErrorCallback): void
 
-取消监听投播通用的错误事件。
+取消投播通用的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1582,6 +1709,8 @@ aVCastController.off('castControlGenericError');
 on(type: 'castControlIoError', callback: ErrorCallback): void
 
 监听投播输入/输出的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1629,7 +1758,7 @@ aVCastController.on('castControlIoError', (error: BusinessError) => {
 
 off(type: 'castControlIoError', callback?: ErrorCallback): void
 
-取消监听投播输入/输出的错误事件。
+取消投播输入/输出的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1659,6 +1788,8 @@ aVCastController.off('castControlIoError');
 on(type: 'castControlParsingError', callback: ErrorCallback): void
 
 监听投播解析的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1694,7 +1825,7 @@ aVCastController.on('castControlParsingError', (error: BusinessError) => {
 
 off(type: 'castControlParsingError', callback?: ErrorCallback): void
 
-取消监听投播解析的错误事件。
+取消投播解析的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1724,6 +1855,8 @@ aVCastController.off('castControlParsingError');
 on(type: 'castControlDecodingError', callback: ErrorCallback): void
 
 监听投播解码的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1760,7 +1893,7 @@ aVCastController.on('castControlDecodingError', (error: BusinessError) => {
 
 off(type: 'castControlDecodingError', callback?: ErrorCallback): void
 
-取消监听投播解码的错误事件。
+取消投播解码的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1790,6 +1923,8 @@ aVCastController.off('castControlDecodingError');
 on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
 
 监听投播音频渲染器的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1825,7 +1960,7 @@ aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
 
 off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
 
-取消监听投播音频渲染器的错误事件。
+取消投播音频渲染器的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1855,6 +1990,8 @@ aVCastController.off('castControlAudioRendererError');
 on(type: 'castControlDrmError', callback: ErrorCallback): void
 
 监听投播drm的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1895,7 +2032,7 @@ aVCastController.on('castControlDrmError', (error: BusinessError) => {
 
 off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
-取消监听投播drm的错误事件。
+取消投播drm的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1918,4 +2055,68 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
 ```ts
 aVCastController.off('castControlDrmError');
+```
+
+## on('customDataChange')<sup>20+</sup>
+
+on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
+
+注册从远端设备发送的自定义数据的监听器。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                         |
+| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| type | string | 是 | 事件回调类型，支持'customDataChange'事件。媒体提供方发送自定义数据时触发。 |
+| callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接收自定义数据。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+aVCastController.on('customDataChange', (callback) => {
+    console.info(`Caught customDataChange event,the new callback is: ${JSON.stringify(callback)}`);
+});
+```
+
+## off('customDataChange')<sup>20+</sup>
+
+off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): void
+
+取消对自定义数据的监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                         |
+| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                           | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
+| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+aVCastController.off('customDataChange');
 ```

@@ -107,7 +107,7 @@
       ],
       actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
     };
     // 创建WantAgent
     wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data:WantAgent) => {

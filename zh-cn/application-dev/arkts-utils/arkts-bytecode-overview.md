@@ -1,5 +1,11 @@
 # 方舟字节码概述
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--SE: @ctw-ian; @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 方舟字节码文件是ArkTS/TS/JS源码编译后的二进制产物。本章节介绍方舟字节码文件的各个部分，以帮助开发者深入了解字节码文件内容，进行字节码的分析和修改。
 
 - 方舟字节码文件格式：介绍字节码文件中包含的各个部分的结构信息，以及各种结构的存储方式和映射关系。

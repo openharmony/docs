@@ -102,8 +102,8 @@
        int32_t fd = open("/data/test/vibrator/coin_drop.json", O_RDONLY);
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Test fd:%{public}d", fd);
        struct stat64 statbuf = { 0 };
-       if (fd == 0) {
-           close(fd);
+       if (fd < 0) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "File open failed");
            return nullptr;
        }
        if (fstat64(fd, &statbuf) == 0) {

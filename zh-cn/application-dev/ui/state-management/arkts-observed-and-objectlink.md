@@ -1577,273 +1577,64 @@ struct ParentComp {
 
 ### \@Prop与\@ObjectLink的差异
 
-在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即this.value.subCounter和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter时，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
+\@Prop和\@ObjectLink都可以接收\@Observed装饰的类对象实例。\@Prop对对象进行深拷贝，修改深拷贝后的对象不会影响原对象及其关联的组件。\@ObjectLink获取对象的引用，修改引用对象会影响原对象及其关联的组件。
 
+下面的例子中，`UserChild`组件同时使用\@Prop与\@ObjectLink接收了来自父组件的\@Observed装饰的类对象实例作为数据源。对该数据源对象的修改将同时影响\@Prop与\@ObjectLink装饰的变量。依次点击`change @ObjectLink value`按钮和`change @Prop value`按钮可以观察到：
+
+1. 修改\@ObjectLink装饰的对象内容将影响数据源对象，并重新同步给\@Prop，因此两个Text组件都将刷新。
+2. 修改\@Prop装饰的对象内容仅影响使用该对象的Text2组件，不会影响数据源对象。
 
 ```ts
-let nextId = 1;
+let nextId = 0;
 
 @Observed
-class SubCounter {
-  counter: number;
-
-  constructor(c: number) {
-    this.counter = c;
-  }
-}
-
-@Observed
-class ParentCounter {
+class User {
   id: number;
-  counter: number;
-  subCounter: SubCounter;
 
-  incrCounter() {
-    this.counter++;
-  }
-
-  incrSubCounter(c: number) {
-    this.subCounter.counter += c;
-  }
-
-  setSubCounter(c: number): void {
-    this.subCounter.counter = c;
-  }
-
-  constructor(c: number) {
+  constructor() {
     this.id = nextId++;
-    this.counter = c;
-    this.subCounter = new SubCounter(c);
-  }
-}
-
-@Component
-struct CounterComp {
-  @ObjectLink value: ParentCounter;
-
-  build() {
-    Column({ space: 10 }) {
-      CountChild({ subValue: this.value.subCounter })
-      Text(`this.value.counter：increase 7 `)
-        .fontSize(30)
-        .onClick(() => {
-          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
-          this.value.incrSubCounter(7);
-        })
-      Divider().height(2)
-    }
-  }
-}
-
-@Component
-struct CountChild {
-  @ObjectLink subValue: SubCounter;
-
-  build() {
-    Text(`this.subValue.counter: ${this.subValue.counter}`)
-      .fontSize(30)
   }
 }
 
 @Entry
 @Component
-struct ParentComp {
-  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+struct Index {
+  @State users: User[] = [new User(), new User(), new User()];
 
   build() {
-    Row() {
-      Column() {
-        CounterComp({ value: this.counter[0] })
-        CounterComp({ value: this.counter[1] })
-        CounterComp({ value: this.counter[2] })
-        Divider().height(5)
-        ForEach(this.counter,
-          (item: ParentCounter) => {
-            CounterComp({ value: item })
-          },
-          (item: ParentCounter) => item.id.toString()
-        )
-        Divider().height(5)
-        Text('Parent: reset entire counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
-          })
-        Text('Parent: incr counter[0].counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].incrCounter();
-            this.counter[0].incrSubCounter(10);
-          })
-        Text('Parent: set.counter to 10')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].setSubCounter(10);
-          })
-      }
+    Column() {
+      UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] })
+    }
+  }
+}
+
+@Component
+struct UserChild {
+  @ObjectLink firstUserByObjectLink: User;
+  @Prop firstUserByProp: User;
+
+  build() {
+    Column() {
+      // 比较结果为false说明@Prop经过深拷贝后得到的对象与原对象已不是同一个对象
+      Text(`firstUserByObjectLink equals firstUserByProp? : ${this.firstUserByObjectLink === this.firstUserByProp}`)
+      Text(`UserChild firstUserByObjectLink.id: ${this.firstUserByObjectLink.id}`) // Text1
+      Text(`UserChild firstUserByProp.id: ${this.firstUserByProp.id}`) // Text2
+      Button('change @ObjectLink value')
+        .onClick(() => {
+          this.firstUserByObjectLink.id++;
+        })
+      Button('change @Prop value')
+        .onClick(() => {
+          this.firstUserByProp.id++;
+        })
     }
   }
 }
 ```
 
-\@ObjectLink图示如下：
+上面的示例关系如图所示：
 
-![zh-cn_image_0000001651665921](figures/zh-cn_image_0000001651665921.png)
-
-【反例】
-
-如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
-
-  this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
-
-```ts
-@Component
-struct CounterComp {
-  // @Prop对对象进行本地拷贝，导致与父组件对象不共享
-  @Prop value: ParentCounter = new ParentCounter(0);
-  @Prop subValue: SubCounter = new SubCounter(0);
-  build() {
-    Column({ space: 10 }) {
-      Text(`this.subValue.counter: ${this.subValue.counter}`)
-        .fontSize(20)
-        .onClick(() => {
-          // 修改本地拷贝对象，UI刷新
-          this.subValue.counter += 7;
-        })
-      Text(`this.value.counter：increase 7 `)
-        .fontSize(20)
-        .onClick(() => {
-          // 由于经过拷贝，修改无法触发UI刷新
-          this.value.incrSubCounter(7);
-        })
-      Divider().height(2)
-    }
-  }
-}
-```
-
-\@Prop拷贝的关系图示如下：
-
-![zh-cn_image_0000001602146116](figures/zh-cn_image_0000001602146116.png)
-
-【正例】
-
-可以通过从ParentComp到CounterComp仅拷贝一份\@Prop value: ParentCounter，同时必须避免再多拷贝一份SubCounter。
-
-- 在CounterComp组件中只使用一个\@Prop counter：Counter。
-
-- 添加另一个子组件SubCounterComp，其中包含\@ObjectLink subCounter: SubCounter。此\@ObjectLink可确保观察到SubCounter对象属性更改，并且UI更新正常。
-
-- \@ObjectLink subCounter: SubCounter与CounterComp中的\@Prop counter：Counter的this.counter.subCounter共享相同的SubCounter对象。
-
-  
-
-```ts
-let nextId = 1;
-
-@Observed
-class SubCounter {
-  counter: number;
-  constructor(c: number) {
-    this.counter = c;
-  }
-}
-
-@Observed
-class ParentCounter {
-  id: number;
-  counter: number;
-  subCounter: SubCounter;
-  incrCounter() {
-    this.counter++;
-  }
-  incrSubCounter(c: number) {
-    this.subCounter.counter += c;
-  }
-  setSubCounter(c: number): void {
-    this.subCounter.counter = c;
-  }
-  constructor(c: number) {
-    this.id = nextId++;
-    this.counter = c;
-    this.subCounter = new SubCounter(c);
-  }
-}
-
-@Component
-struct SubCounterComp {
-  @ObjectLink subValue: SubCounter;
-  build() {
-    Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
-      .onClick(() => {
-        this.subValue.counter = 7;
-      })
-  }
-}
-@Component
-struct CounterComp {
-  @Prop value: ParentCounter;
-  build() {
-    Column({ space: 10 }) {
-      Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
-        .fontSize(20)
-        .onClick(() => {
-          this.value.incrCounter();
-        })
-      SubCounterComp({ subValue: this.value.subCounter })
-      Text(`this.value.incrSubCounter()`)
-        .onClick(() => {
-          this.value.incrSubCounter(77);
-        })
-      Divider().height(2)
-    }
-  }
-}
-@Entry
-@Component
-struct ParentComp {
-  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
-  build() {
-    Row() {
-      Column() {
-        CounterComp({ value: this.counter[0] })
-        CounterComp({ value: this.counter[1] })
-        CounterComp({ value: this.counter[2] })
-        Divider().height(5)
-        ForEach(this.counter,
-          (item: ParentCounter) => {
-            CounterComp({ value: item })
-          },
-          (item: ParentCounter) => item.id.toString()
-        )
-        Divider().height(5)
-        Text('Parent: reset entire counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
-          })
-        Text('Parent: incr counter[0].counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].incrCounter();
-            this.counter[0].incrSubCounter(10);
-          })
-        Text('Parent: set.counter to 10')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].setSubCounter(10);
-          })
-      }
-    }
-  }
-}
-```
-
-
-拷贝关系图示如下：
-
-
-![zh-cn_image_0000001653949465](figures/zh-cn_image_0000001653949465.png)
+![zh-cn_image_0000001653949465](figures/zh-cn_image_0000001653949465.jpg)
 
 ### 在\@Observed装饰类的构造函数中延时更改成员变量
 

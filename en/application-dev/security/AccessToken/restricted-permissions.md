@@ -652,3 +652,61 @@ With this permission, the application can obtain the device name on the About sc
 **Supported devices**:  Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+<!--Del-->
+## ohos.permission.atomicService.MANAGE_STORAGE
+
+Allows an atomic service to request differentiated storage space.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+<!--DelEnd-->
+
+## ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM
+
+Allows an application to request continuous tasks of special types, such as computing tasks.
+
+<!--RP48--><!--RP48End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: General
+
+**Valid since**: 20
+
+## ohos.permission.LINKTURBO
+
+Allows an application to achieve multipath transmission.
+
+With this permission, the application can initiate operations such as multi-network activation, monitoring, and release for multipath transmission.
+
+<!--RP49--><!--RP49End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ACCESS_NET_TRACE_INFO
+
+Allows an application to detect the network and obtain the TraceRoute information to determine the possible causes of high network latency. 
+
+<!--RP50--><!--RP50End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: General
+
+**Valid since**: 20

@@ -1,4 +1,9 @@
 # @ohos.enterprise.deviceInfo（设备信息管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备信息管理能力，包括获取设备序列号、设备名称等。
 
@@ -25,6 +30,8 @@ getDeviceInfo(admin: Want, label: string): string
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -53,14 +60,17 @@ getDeviceInfo(admin: Want, label: string): string
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 需根据实际情况进行替换
   let result: string = deviceInfo.getDeviceInfo(wantTemp, 'deviceName');
   console.info(`Succeeded in getting device name, result : ${result}`);
 } catch (err) {

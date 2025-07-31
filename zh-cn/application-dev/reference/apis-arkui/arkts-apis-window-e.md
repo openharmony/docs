@@ -36,7 +36,7 @@
 
 ## Orientation<sup>9+</sup>
 
-窗口显示方向类型枚举。
+窗口显示方向类型枚举。<!--Del-->不同枚举值之间的区别可查询[窗口Orientation枚举值8\~10或12和枚举值13\~16的区别(API9)](../../faqs/faqs-window-manager.md#窗口orientation枚举值8~10或12和枚举值13~16的区别api9)。<!--DelEnd-->
 
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
@@ -146,6 +146,7 @@
 | ------------------- | ---- | ------------------------------------------------------------ |
 | LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中param选填，且不生效。 |
 | INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中duration选填，且不生效。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中param必填。 |
+| CUBIC_BEZIER | 2 | 表示贝塞尔曲线。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中的param和duration为必填项。 |
 
 ## WindowTransitionType<sup>20+</sup>
 
@@ -172,8 +173,6 @@
 ## WindowAnchor<sup>20+</sup>
 
 窗口锚点枚举。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 

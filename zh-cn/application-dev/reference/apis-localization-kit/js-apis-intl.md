@@ -208,7 +208,7 @@ minimize(): Locale
 | collation       | string  | 否   | 是     |区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。 |
 | hourCycle       | string  | 否   | 是     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | numberingSystem | string  | 否   | 是     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| numeric         | boolean | 否   | 是     | true表示将数字字符视为数字进行排序处理，false表示将数字字符视为普通字符进行排序处理。例如设置为true时，字符串“21”和字符串“123”比较，相当与数字21和123比较。默认值：false。                               |
+| numeric         | boolean | 否   | 是     | true表示将数字字符视为数字进行排序处理，false表示将数字字符视为普通字符进行排序处理。例如设置为true时，字符串“21”和字符串“123”比较，相当于数字21和123比较。默认值：false。                               |
 | caseFirst       | string  | 否   | 是     | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。 |
 
 >  **说明：**
@@ -219,9 +219,12 @@ minimize(): Locale
 
 ## DateTimeFormat
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)替代。
 
 创建时间、日期格式化对象。
 
@@ -237,9 +240,12 @@ constructor()
 let formatter: intl.DateTimeFormat = new intl.DateTimeFormat();
 ```
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)替代。
 
 创建时间、日期格式化对象。
 
@@ -254,7 +260,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [DateTimeOptions](#datetimeoptions) | 否    | 创建时间、日期格式化对象时可设置的配置项。<br>若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
+| options              | [DateTimeOptions](#datetimeoptionsdeprecated) | 否    | 创建时间、日期格式化对象时可设置的配置项。<br>若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：**
 ```ts
@@ -265,9 +271,12 @@ let formatter: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN', { dateStyl
 formatter = new intl.DateTimeFormat(['ban', 'zh'], { dateStyle: 'full', timeStyle: 'medium' });
 ```
 
-### format
+### format<sup>(deprecated)</sup>
 
 format(date: Date): string
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.DateTimeFormat.prototype.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format)替代。
 
 对时间、日期进行格式化。
 
@@ -301,9 +310,12 @@ formatter = new intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'me
 formattedDate = formatter.format(date); // formattedDate "Friday, 17 December 2021, 03:24:00"
 ```
 
-### formatRange
+### formatRange<sup>(deprecated)</sup>
 
 formatRange(startDate: Date, endDate: Date): string
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.DateTimeFormat.prototype.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange)替代。
 
 对时间段、日期段进行格式化。
 
@@ -335,9 +347,12 @@ let formatter: intl.DateTimeFormat = new intl.DateTimeFormat('en-GB');
 let formattedDateRange: string = formatter.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
 ```
 
-### resolvedOptions
+### resolvedOptions<sup>(deprecated)</sup>
 
 resolvedOptions(): DateTimeOptions
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)替代。
 
 获取创建时间、日期格式化对象时设置的配置项。
 
@@ -351,7 +366,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions) | 时间、日期格式化对象设置的配置项。 |
+| [DateTimeOptions](#datetimeoptionsdeprecated) | 时间、日期格式化对象设置的配置项。 |
 
 **示例：**
 ```ts
@@ -363,7 +378,10 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 ```
 
 
-## DateTimeOptions
+## DateTimeOptions<sup>(deprecated)</sup>
+
+>  **说明：**
+>  从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.DateTimeFormatOptions和Intl.ResolvedDateTimeFormatOptions替代。用法参考[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)和[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)。
 
 时间、日期格式化时可设置的配置项。从API version 9开始，DateTimeOptions的属性由必填改为可选。
 

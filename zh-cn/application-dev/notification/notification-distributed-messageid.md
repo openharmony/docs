@@ -4,7 +4,7 @@
 
 ## 实现原理
 
-应用发送通知时携带唯一标识字段[appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)，分布式通知接收到多渠道发布的通知后，会根据该字段进行判断，从而实现通知去重。
+应用发送通知时携带唯一标识字段[appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)，分布式通知接收到多渠道发布的通知后，会根据该字段进行判断，从而实现通知去重。
 
 设备只会展示第一条通知，后续收到的重复通知会被静默去重，不展示、不提醒。
 
@@ -14,8 +14,8 @@
 
 ## 约束条件
 
-- [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)字段的唯一性需由开发者保证，同一条通知在各个设备形态上需保证字段相同。
-- [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)字段仅在发布通知的24小时内有效，超过24小时或者设备重启时该字段会失效。
+- [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)字段的唯一性需由开发者保证，同一条通知在各个设备形态上需保证字段相同。
+- [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)字段仅在发布通知的24小时内有效，超过24小时或者设备重启时该字段会失效。
 
 ## 接口说明
 

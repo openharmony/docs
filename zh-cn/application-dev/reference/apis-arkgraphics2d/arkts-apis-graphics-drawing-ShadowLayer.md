@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+阴影层对象。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ShadowLayer<sup>12+</sup>
-
-阴影层对象。
-
-### create<sup>12+</sup>
+## create<sup>12+</sup>
 
 static create(blurRadius: number, x: number, y: number, color: common2D.Color): ShadowLayer
 
@@ -39,7 +39,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color): 
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+| [ShadowLayer](arkts-apis-graphics-drawing-ShadowLayer.md) | 返回创建的阴影层对象。 |
 
 **错误码：**
 
@@ -64,7 +64,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### create<sup>18+</sup>
+## create<sup>18+</sup>
 
 static create(blurRadius: number, x: number, y: number, color: common2D.Color | number): ShadowLayer
 
@@ -85,7 +85,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color | 
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+| [ShadowLayer](arkts-apis-graphics-drawing-ShadowLayer.md) | 返回创建的阴影层对象。 |
 
 **错误码：**
 

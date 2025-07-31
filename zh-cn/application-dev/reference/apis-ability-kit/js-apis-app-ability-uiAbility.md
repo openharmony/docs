@@ -106,7 +106,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -144,7 +144,7 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -207,7 +207,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -589,7 +589,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-当已在前台运行过的UIAbility实例切换至后台后，被再次拉起时（即[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)场景），会触发该生命周期回调。
+当已在前台运行过的UIAbility实例被再次拉起时，会触发该生命周期回调。若在特定场景下（参见[Scenarios](./js-apis-app-ability-contextConstant.md#scenarios20)），不需要触发该生命周期回调，可以使用[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口设置。
 
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -766,14 +766,12 @@ export default class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-当UIAbility即将关闭前，系统触发该回调，用于在UIAbility正式关闭前执行其他操作。开发者可以在该回调中返回true阻拦此次关闭，然后在合适时机主动调用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。例如，询问用户是否确认关闭UIAbility，再主动销毁UIAbility。
+在UIAbility即将关闭前（例如用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时），系统会触发该回调，用于在UIAbility正式关闭前执行其他操作。开发者可以在该回调中返回true阻拦此次关闭，然后在合适时机主动调用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。例如，询问用户是否确认关闭UIAbility，再主动销毁UIAbility。
 
 
 > **说明：**
 >
-> - 回调前提：该接口仅在2in1设备上生效，且需要应用申请ohos.permission.PREPARE_APP_TERMINATE权限。
->
-> - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
+> - 该接口仅在2in1和tablet设备上生效。
 >
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
@@ -827,16 +825,14 @@ export default class EntryAbility extends UIAbility {
 
 onPrepareToTerminateAsync(): Promise\<boolean>
 
-当UIAbility关闭前，系统触发该回调，用于在UIAbility正式关闭前执行其他操作。
+在UIAbility关闭前（例如用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时），系统会触发该回调，用于在UIAbility正式关闭前执行其他操作。
 
 开发者可以在该回调中返回true阻拦此次关闭，然后在合适时机主动调用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。例如，询问用户是否确认关闭UIAbility，再主动销毁UIAbility。
 
 
 > **说明：**
 >
-> - 回调前提：该接口仅在2in1设备上生效，且需要应用申请ohos.permission.PREPARE_APP_TERMINATE权限。
->
-> - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
+> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
@@ -984,9 +980,9 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据结构
-  name: string
-  str: string
-  num: number = 1
+  name: string;
+  str: string;
+  num: number = 1;
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
@@ -1003,9 +999,8 @@ class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据�
     console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function'; // 约定的通知消息字符串
-let caller: Caller;
 
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1014,7 +1009,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
       caller.call(method, msg)
         .then(() => {
@@ -1200,8 +1195,6 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1209,13 +1202,13 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRelease((str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
-        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+        console.error(`Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
@@ -1254,17 +1247,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-let dstDeviceId: string;
-
 export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
       deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
           console.info('Remote state changed ' + str);
@@ -1274,7 +1265,7 @@ export default class MainAbility extends UIAbility {
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-    })
+    });
   }
 }
 ```
@@ -1310,16 +1301,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
-      deviceId: ''
+      deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.on('release', (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1364,8 +1354,6 @@ import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1373,7 +1361,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1504,7 +1492,6 @@ class MyMessageAble implements rpc.Parcelable {
 let method = 'call_Function';
 
 function funcCallBack(pdata: rpc.MessageSequence) {
-  console.info(`Callee funcCallBack is called ${pdata}`);
   let msg = new MyMessageAble('test', '');
   pdata.readParcelable(msg);
   return new MyMessageAble('test1', 'Callee test');

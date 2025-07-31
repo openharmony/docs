@@ -3,80 +3,237 @@
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, such as [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (application information), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as <!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12) and <!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), <!--Del-->[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), <!--DelEnd-->and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md).
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) serves as the context environment for objects within an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (current application information), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context) (application file paths), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (file partitions).
+
+## Comparison of Different Context Types
+
+Both [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) components and various derived classes of [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) components have their own context classes. These include the base class Context, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), <!--Del-->[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), <!--DelEnd-->and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md). For details about their relationships, see [Inheritance and Holding Relationships of Different Context Types](../reference/apis-ability-kit/js-apis-inner-application-context.md#inheritance-and-holding-relationships-of-different-context-types).
+
+The following table describes how to obtain different types of context and their usage scenarios.
 
 > **NOTE**
 >
-> [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) refers to the context of a UI instance, which is used to associate windows with UI pages. It is not directly related to the application context discussed in this topic and does not involve inheritance or holding relationships.
+> Different types of context possess distinct capabilities and cannot be substituted for or forcibly converted into one another. For example, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) is bound to the [setFontSizeScale](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13) API, which is not available in [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). Therefore, even if you forcibly convert UIAbilityContext to ApplicationContext, you will not be able to call the **setFontSizeScale** API.
 
-- The figure below illustrates the inheritance relationship of application contexts. 
+**Table 1** Different context types
 
-  ![context-inheritance](figures/context-inheritance.png)
+| Context Type| Description| Acquisition Method| Usage Scenario|
+| -------- | -------- | -------- | -------- |
+| [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | Global context of an application, providing application-level information and capabilities.| - From API version 14 onwards, you can directly call [getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14) to obtain it.<br>- In versions earlier than API version 14, you can obtain it by calling [getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext) of a Context instance.| - [Obtain basic information about the current application](#obtaining-basic-information).<br>- [Obtain application file paths](#obtaining-application-file-paths).<br>- [Obtain and modifying encryption levels](#obtaining-and-modifying-encryption-levels).<br>- [Register a lifecycle listener](#listening-for-application-foregroundbackground-changes).|
+| [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) | Context of a module, providing module-level information and capabilities.| - To obtain the context of the current AbilityStage, you can directly access the [context](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#properties) property of the AbilityStage instance.<br> - To obtain the context of another module in the same application, you can call [createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12).| - Obtain basic information about the current module.<br>- [Obtain module file paths](#obtaining-application-file-paths).|
+| [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Context of a UIAbility, providing external information and capabilities of the UIAbility.| - You can directly access the [context](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#properties) property through a UIAbility instance.<br>- To load a UI component instance in the window of a UIAbility, call [getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12) of the UIContext.| - Obtain basic information about the current UIAbility.<br>- Start other applications or atomic services, and connect to or disconnect from ServiceExtensionAbility components created by system applications.<br>- Destroy the current UIAbility.|
+| [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) | Context of an ExtensionAbility. Each type of ExtensionContext provides different information and capabilities.| Directly access the context property through an ExtensionAbility instance.| The capabilities provided by the context corresponding to different types of ExtensionAbility vary. For example, [InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md) mainly provides the following capabilities:<br>- Obtain the basic information about the InputMethodExtensionAbility.<br>- Destroy the current input method.|
+| [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) | Context of a UI instance of ArkUI, providing capabilities related to UI operations. It is not directly related to the other types of context mentioned above.| - To obtain the UI context within a UI component, directly call [getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).<br>- If a Window instance exists, call [getUIContext](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) provided by the Window instance.| Use it for UI-related operations in the UI instance, for example:<br>- Obtain the font of the current UI instance.<br>- Display different types of dialog boxes.<br>- Set the UI avoid mode when the soft keyboard is displayed.|
+
+## Acquisition of Context
+
+If you need to obtain application resources, application paths, or use the methods provided by Context to implement operations such as application redirection, environment variable setting, data clearing, and permission obtaining, you need to obtain the corresponding context. This section describes how to obtain different types of context and where to use it.
+
+### Obtaining ApplicationContext (Global Application Context)
+
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides capabilities such as listening for lifecycle changes of application components within the application, system memory changes, system environment changes, setting application language, setting application color mode, clearing application data, and revoking permissions granted by the user. It can be obtained in [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md), and [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
+
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      let applicationContext = this.context.getApplicationContext();
+      //...
+    }
+  }
+  ```
+
+### Obtains AbilityStageContext (Module-Level Context)
+
+Compared with the base class Context, [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) additionally provides information such as [HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) and [Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties).
+
+  ```ts
+  import { AbilityStage } from '@kit.AbilityKit';
+
+  export default class MyAbilityStage extends AbilityStage {
+    onCreate(): void {
+      let abilityStageContext = this.context;
+      //...
+    }
+  }
+  ```
+
+### Obtaining Context of Another Module in the Current Application (Module-Level Context)
+
+Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+
+  ```ts
+  import { common, application } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let storageEventCall = new LocalStorage();
+
+  @Entry(storageEventCall)
+  @Component
+  struct Page_Context {
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    build() {
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              application.createModuleContext(this.context, moduleName2)
+                .then((data: common.Context) => {
+                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
+                  if (data !== null) {
+                    this.getUIContext().getPromptAction().showToast({
+                      message: ('Context obtained')
+                    });
+                  }
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                });
+            })
+          }
+          //...
+        }
+        //...
+      }
+      //...
+    }
+  }
+  ```
+
+### Obtaining UIAbilityContext (Context Corresponding to the UIAbility)
+
+The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) class has its own context, which is an instance of the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) class. The [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) class has attributes such as **abilityInfo** and **currentHapModuleInfo**. UIAbilityContext can be used to obtain the UIAbility configuration information, such as the code path, bundle name, ability name, and environment status required by the application. It can also be used to obtain methods to operate the UIAbility instance, such as [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability), [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability), and [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself).
+
+If you need to obtain the context of the current ability in the page, you can call [getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12) in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) to obtain the UIAbilityContext or [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) associated with the current page.
+
+- You can use **this.context** to obtain the context of a UIAbility instance.
   
-- The figure below illustrates the holding relationship of application contexts. 
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  ![context-holding](figures/context-holding.png)
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // Obtain the context of the UIAbility instance.
+      let context = this.context;
+      // ...
+    }
+  }
+  ```
   
-- The following describes how to obtain different contexts.
-  - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
-    
-    ```ts
-    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+- Import the context module and define the **context** variable in the component.
+  
+  ```ts
+  import { common, Want } from '@kit.AbilityKit';
 
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        let uiAbilityContext = this.context;
+  @Entry
+  @Component
+  struct Page_EventHub {
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    startAbilityTest(): void {
+      let want: Want = {
+        // Want parameter information.
+      };
+      this.context.startAbility(want);
+    }
+
+    // UI page display.
+    build() {
+      // ...
+    }
+  }
+  ```
+
+  You can also define variables after importing the context module but before using [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).
+
+  
+  ```ts
+  import { common, Want } from '@kit.AbilityKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    startAbilityTest(): void {
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      let want: Want = {
+        // Want parameter information.
+      };
+      context.startAbility(want);
+    }
+
+    // UI page display.
+    build() {
+      // ...
+    }
+  }
+  ```
+
+- To stop the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance after the service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself).
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    // UI page display.
+    build() {
+      Column() {
         //...
+        Button('FuncAbilityB')
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            try {
+              context.terminateSelf((err: BusinessError) => {
+                if (err.code) {
+                  // Process service logic errors.
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
+                  return;
+                }
+                // Carry out normal service processing.
+                console.info(`terminateSelf succeed.`);
+              });
+            } catch (err) {
+              // Capture the synchronization parameter error.
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
+            }
+          })
       }
     }
-    ```
-     
-     > **NOTE**
-     >
-     > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, FormExtensionContext, inherited from ExtensionContext, provides APIs related to widget services.
-    
-    ```ts
-    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
-    import { Want } from '@kit.AbilityKit';
+  }
+  ```
 
-    export default class MyFormExtensionAbility extends FormExtensionAbility {
-      onAddForm(want: Want) {
-        let formExtensionContext = this.context;
-        // ...
-        let dataObj1: Record<string, string> = {
-          'temperature': '11c',
-          'time': '11:00'
-        };
-        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
-        return obj1;
-      }
-    }
-    ```
-  - [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md): module-level context. It provides [HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) and [Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) in addition to those provided by the base class **Context**.
-    
-    ```ts
-    import { AbilityStage } from '@kit.AbilityKit';
+### Obtaining ExtensionAbilityContext (Component-Level Context)
 
-    export default class MyAbilityStage extends AbilityStage {
-      onCreate(): void {
-        let abilityStageContext = this.context;
-        //...
-      }
-    }
-    ```
-  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes, setting the application language and color mode, clearing application data, and revoking permissions requested from users. It can be obtained from [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md), and [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
-    
-    ```ts
-    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+Obtain a scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md). For example, FormExtensionContext, which inherits from ExtensionContext, provides APIs related to widget services.
 
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        let applicationContext = this.context.getApplicationContext();
-        //...
-      }
-    }
-    ```
+```ts
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formExtensionContext = this.context;
+    // ...
+    let dataObj1: Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00'
+    };
+    let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+    return obj1;
+  }
+}
+```
 
 
 ## Typical Usage Scenarios of Context
@@ -84,11 +241,33 @@
 
 This topic describes how to use the context in the following scenarios:
 
+- [Obtaining Basic Information](#obtaining-basic-information)
 - [Obtaining Application File Paths](#obtaining-application-file-paths)
 - [Obtaining and Modifying Encryption Levels](#obtaining-and-modifying-encryption-levels)
-- [Obtaining the Context of Other Modules in the Current Application](#obtaining-the-context-of-other-modules-in-the-current-application)
-- [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
+- [Listening for Application Foreground/Background Changes](#listening-for-application-foregroundbackground-changes)
+- [Listening for UIAbility Lifecycle Changes](#listening-for-uiability-lifecycle-changes)
 
+### Obtaining Basic Information
+
+Different types of Context classes, which inherit from [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md), default to inheriting the parent class's methods and properties, as well as having their own independent methods and properties.
+
+You can obtain basic information about the current application, module, UIAbility, or ExtensionAbility through the context property (such as the resource manager object and application information). Below is an example of acquiring information for the UIAbility.
+
+If you need to obtain resource objects across packages, see [Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
+
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // Obtain a resource manager.
+      let resourceManager = this.context.getApplicationContext().resourceManager;
+      // Obtain application information.
+      let applicationInfo = this.context.getApplicationContext().applicationInfo;
+      //...
+    }
+  }
+  ```
 
 ### Obtaining Application File Paths
 
@@ -105,7 +284,7 @@ The [base class Context](../reference/apis-ability-kit/js-apis-inner-application
 >
 > The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
-**Table 1** Description of application file paths obtained by different types of contexts
+  **Table 1** Description of application file paths obtained by different types of contexts
 | Name| Description| Path Obtained by ApplicationContext| Path Obtained by AbilityStageContext, UIAbilityContext, and ExtensionContext|
 | -------- | -------- | -------- | -------- |
 | bundleCodeDir | Bundle code directory.| \<Path prefix>/el1/bundle| \<Path prefix>/el1/bundle|
@@ -118,8 +297,47 @@ The [base class Context](../reference/apis-ability-kit/js-apis-inner-application
 | resourceDir<sup>11+<sup> | Resource directory.<br>**NOTE**<br> You are required to manually create the **resfile** directory in **\<module-name>\resource**.| N/A| \<Path prefix>/el1/bundle/**\<module-name>**/resources/resfile|
 | cloudFileDir<sup>12+</sup> | Cloud file directory.| \<Path prefix>/el2/cloud| \<Path prefix>/el2/cloud/|
 
-This section uses ApplicationContext as an example to describe how to obtain the application file path, create a file in the path, and read and write the file. The sample code is as follows:
+This section uses ApplicationContext to obtain **cacheDir** and **filesDir** as an example to describe how to obtain the application cache directory and application file directory, and how to use these paths to create and read/write files.
 
+- **Obtaining the Application Cache Directory**
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World';
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+          // ...
+          Button() {
+            Text('create file')
+              // ...
+              .onClick(() => {
+                let applicationContext = this.context.getApplicationContext();
+                // Obtain the application cache directory.
+                let cacheDir = applicationContext.cacheDir;
+              })
+          }
+          // ...
+        }
+        // ...
+      }
+      // ...
+    }
+  }
+  ```
+
+- **Obtaining the Application File Directory**
+  
   ```ts
   import { common } from '@kit.AbilityKit';
   import { buffer } from '@kit.ArkTS';
@@ -178,12 +396,11 @@ This section uses ApplicationContext as an example to describe how to obtain the
   }
   ```
 
-
 ### Obtaining and Modifying Encryption Levels
 
 Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security.  For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security. For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
 
 - EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.
 - EL2: For sensitive files, such as personal privacy data, the application can place them in a directory with the user-level encryption (EL2).
@@ -275,62 +492,45 @@ struct Page_Context {
 }
 ```
 
+### Listening for Application Foreground/Background Changes
 
-### Obtaining the Context of Other Modules in the Current Application
+You can use the capabilities of [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) to listen for changes in the application's foreground and background state. When the application switches between foreground and background, corresponding callback functions can be triggered to execute methods that depend on the foreground/background state or to collect data on the frequency of application state changes.
 
-Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+The following uses [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) as an example.
 
-  ```ts
-  import { common, application } from '@kit.AbilityKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+```ts
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let storageEventCall = new LocalStorage();
-
-  @Entry(storageEventCall)
-  @Component
-  struct Page_Context {
-    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let moduleName2: string = 'entry';
-              application.createModuleContext(this.context, moduleName2)
-                .then((data: common.Context) => {
-                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
-                  if (data !== null) {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: ('Context obtained')
-                    });
-                  }
-                })
-                .catch((err: BusinessError) => {
-                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
-                });
-            })
-          }
-          //...
-        }
-        //...
+export default class LifecycleAbility extends UIAbility {
+  onCreate() {
+    let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+      onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+      },
+      onApplicationBackground() {
+        console.info('applicationStateChangeCallback onApplicationBackground');
       }
-      //...
     }
+
+    // 1. Obtain an applicationContext object.
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
+      applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
+    console.log('Register applicationStateChangeCallback');
   }
-  ```
+}
+```
 
+### Listening for UIAbility Lifecycle Changes
 
-### Subscribing to UIAbility Lifecycle Changes in a Process
+You can use [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) to listen for lifecycle changes of a UIAbility. When the lifecycle of a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) changes, for example, a UIAbility is created, brought to the foreground, sent to the background, or destroyed, corresponding callback functions are invoked. In this way, the methods that depend on the UIAbility lifecycle can be executed, and the dwell time and access frequency of a specified page can be collected.
 
-In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) lifecycle changes in a process.
-
-[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) as an example.
-
+Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) as an example.
 
 ```ts
 import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';

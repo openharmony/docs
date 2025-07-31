@@ -42,7 +42,18 @@ resourceToSendableResource(resource: Resource): SendableResource
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
-**示例：** 
+**示例：**
+  ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```js
 import sendableResourceManager from '@ohos.sendableResourceManager';
 import { BusinessError } from '@ohos.base';
@@ -84,7 +95,18 @@ sendableResourceToResource(resource: SendableResource): Resource
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
-**示例：** 
+**示例：**
+  ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```js
 import sendableResourceManager from '@ohos.sendableResourceManager';
 import { BusinessError } from '@ohos.base';
@@ -100,7 +122,7 @@ try {
 
 ## Resource
 
-表示的Resource资源信息。
+表示Resource资源信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -122,5 +144,5 @@ type SendableResource = _SendableResource
 
 | 类型         | 说明     |
 | ---------- | ------ | 
-| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|表示的SendableResource资源信息。|
+| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|表示SendableResource资源信息。|
 

@@ -1,5 +1,11 @@
 # 匿名密钥证明(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 在使用本功能时，需确保网络通畅。
 
 ## 在CMake脚本中链接相关动态库
@@ -75,10 +81,10 @@ int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
         certChain->certs[i].data = (uint8_t *)malloc(certChain->certs[i].size);
         if (certChain->certs[i].data == nullptr) {
             FreeCertChain(certChain, i);
-            return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
+            return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
         }
     }
-    return 0;
+    return OH_HUKS_SUCCESS;
 }
 static struct OH_Huks_Param g_genAnonAttestParams[] = {
     { .tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_RSA },
@@ -121,7 +127,10 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
             break;
         }
         
-        (void)ConstructDataToCertChain(&certChain);
+        ohResult.errorCode = ConstructDataToCertChain(&certChain);
+        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+            break;
+        }
         /* 3.证明密钥 */
         ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, &certChain);
     } while (0);

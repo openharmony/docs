@@ -45,10 +45,12 @@ AudioCodec模块提供用于音频编解码功能的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 
-
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs)| 同步接口，查询编解码器可用的输入缓冲区。|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetInputBuffer](#oh_audiocodec_getinputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index)|通过输入缓冲区索引，获取编解码器对应的输入缓冲区。|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs)| 同步接口，查询编解码器可用的输出缓冲区。|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetOutputBuffer](#oh_audiocodec_getoutputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index)|通过输入缓冲区索引，获取编解码器对应的输入缓冲区。|
 
 ## 函数说明
-
 
 ### OH_AudioCodec_Configure()
 
@@ -191,6 +193,57 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index)
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 
+### OH_AudioCodec_GetInputBuffer()
+
+```
+OH_AVBuffer *OH_AudioCodec_GetInputBuffer(OH_AVCodec *codec, uint32_t index)
+```
+**描述**
+输入索引值，获取对应音频编解码器中该索引值对应的输入缓冲区，可在获取到的缓冲区中填充新的输入数据。
+该缓冲区填充后，使用[OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer)输入对应索引值，将缓冲区数据送到编解码器。
+送到编解码器后，该索引值对应的输入缓冲区无法再次访问。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioCodec
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输入缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)获取|
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
+
+
+### OH_AudioCodec_GetOutputBuffer()
+
+```
+OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(OH_AVCodec *codec, uint32_t index)
+```
+**描述**
+输入索引值，获取对应音频编解码器中该索引值对应的输出缓冲区。
+使用完缓冲区后，需要调用[OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer)接口进行释放。释放后无法再次使用，长期不释放会阻塞编解码流程。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioCodec
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输出缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)获取。|
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
+
+
 ### OH_AudioCodec_GetOutputDescription()
 
 ```
@@ -303,6 +356,75 @@ AV_ERR_INVALID_STATE：编解码器状态错误，调用[OH_AudioCodec_PushInput
 
 AV_ERR_UNKNOWN：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。
 
+
+### OH_AudioCodec_QueryInputBuffer()
+
+```
+OH_AVErrCode OH_AudioCodec_QueryInputBuffer(OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+```
+**描述**
+在设置的超时时间内，尝试查询对应音频编解码器可用的输入缓冲区的索引值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioCodec
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输出参数，获取到的输入缓冲区的索引值。|
+| timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
+
+**返回：**
+
+接口返回结果：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：执行失败，输入参数错误。
+
+AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。
+
+AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
+
+AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
+
+### OH_AudioCodec_QueryOutputBuffer()
+
+```
+OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+```
+**描述**
+在设置的超时时间内，尝试查询对应音频编解码器可用的输出缓冲区的索引值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioCodec
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输出参数，获取到的输出缓冲区的索引值。|
+| timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
+
+**返回：**
+
+接口返回结果：
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：执行失败，输入参数错误。
+
+AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。
+
+AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
+
+AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。
+
+AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
 
 ### OH_AudioCodec_RegisterCallback()
 

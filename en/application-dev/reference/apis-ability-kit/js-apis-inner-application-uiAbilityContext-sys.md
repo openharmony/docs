@@ -1,6 +1,6 @@
 # UIAbilityContext (System API)
 
-**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+UIAbilityContext provides the context environment for a [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. It inherits from [Context](js-apis-inner-application-context.md) and provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -16,9 +16,11 @@ import { common } from '@kit.AbilityKit';
 
 > **NOTE**
 >
-> In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+> In the sample code provided in this topic, **this.context** is used to obtain UIAbilityContext, where **this** indicates a UIAbility instance inherited from UIAbility. To use UIAbilityContext APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-## UIAbilityContext.startAbilityForResultWithAccount
+## UIAbilityContext
+
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
@@ -52,12 +54,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -72,7 +74,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -111,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResultWithAccount
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
@@ -145,13 +147,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -166,7 +166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -208,7 +208,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResultWithAccount
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
@@ -248,12 +248,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -268,7 +268,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -308,7 +308,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startServiceExtensionAbility
+### startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -334,7 +334,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -379,7 +379,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbility
+### startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -404,7 +404,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -449,7 +449,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbilityWithAccount
+### startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
@@ -483,7 +483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -529,7 +529,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbilityWithAccount
+### startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -562,7 +562,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -607,7 +607,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.stopServiceExtensionAbility
+### stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -633,7 +633,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -676,7 +676,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbility
+### stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -701,7 +701,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -742,7 +742,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbilityWithAccount
+### stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
@@ -775,7 +775,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -817,7 +817,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbilityWithAccount
+### stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -849,7 +849,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -891,7 +891,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectServiceExtensionAbilityWithAccount
+### connectServiceExtensionAbilityWithAccount
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
@@ -933,7 +933,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -984,7 +984,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -1018,12 +1018,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1038,7 +1038,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1077,7 +1077,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
@@ -1111,13 +1111,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1132,7 +1130,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1174,7 +1172,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
@@ -1208,12 +1206,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1228,7 +1226,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1269,11 +1267,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionIcon
+### setMissionIcon
 
 setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
-Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result. The maximum size of the icon is 600 MB.
+Sets an icon for this ability in the mission. The maximum size of the icon is 600 MB. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1325,11 +1323,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.setMissionIcon
+### setMissionIcon
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>
 
-Sets an icon for this ability in the mission. This API uses a promise to return the result. The maximum size of the icon is 600 MB.
+Sets an icon for this ability in the mission. The maximum size of the icon is 600 MB. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1389,7 +1387,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1419,20 +1417,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating a new instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1466,7 +1471,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1496,21 +1501,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating a new instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1548,7 +1558,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -1578,20 +1588,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating a new instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1629,7 +1646,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
+### startAbilityByCallWithAccount<sup>10+</sup>
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
@@ -1637,9 +1654,9 @@ Starts an ability with the account ID specified and obtains the caller object fo
 This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 Observe the following when using this API:
- - If an application needs to call this API to start an ability that belongs to another user, it must have the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** and **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permissions.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application needs to call this API to start an ability that belongs to another user, it must have the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS permissions.
+ - If an application running in the background needs to call this API to start an ability, it must have the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the ohos.permission.START_INVISIBLE_ABILITY permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
@@ -1670,8 +1687,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000004 | Cannot start an invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
@@ -1685,8 +1702,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16200001 | The caller has been released.        |
+| 16000080 | Creating a new instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1716,7 +1733,7 @@ export default class EntryAbility extends UIAbility {
         .then((obj: Caller) => {
           // Carry out normal service processing.
           caller = obj;
-          console.log('startAbilityByCallWithAccount succeed');
+          console.info('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // Process service logic errors.
         console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1729,7 +1746,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
@@ -1759,12 +1776,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1778,7 +1795,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1799,14 +1816,14 @@ export default class EntryAbility extends UIAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
@@ -1836,7 +1853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1854,7 +1871,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1878,14 +1895,14 @@ export default class EntryAbility extends UIAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
@@ -1921,12 +1938,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1940,7 +1957,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1963,7 +1980,7 @@ export default class EntryAbility extends UIAbility {
     // Start a new ability using the caller information.
     this.context.startAbilityAsCaller(localWant, option)
       .then(() => {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
@@ -1972,7 +1989,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+### requestModalUIExtension<sup>11+<sup>
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
@@ -2050,7 +2067,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+### requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. This API uses an asynchronous callback to return the result. It can be called only by the main thread.

@@ -1,4 +1,9 @@
 # @ohos.util.LightWeightMap (非线性容器LightWeightMap)  
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
@@ -60,7 +65,7 @@ LightWeightMap的构造函数。
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 ```
 
 
@@ -91,8 +96,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+const lightWeightMap = new LightWeightMap<string, number>();
 let result = lightWeightMap.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -130,12 +136,13 @@ hasAll(map: LightWeightMap<K, V>): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let map: LightWeightMap<string, number> = new LightWeightMap();
+let map = new LightWeightMap<string, number>();
 map.set("sparrow", 356);
-let result = lightWeightMap.hasAll(map);
+let result = lightWeightMap.hasAll(map); 
+console.info("result = ", result); // result = true
 ```
 
 
@@ -172,9 +179,10 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasKey("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -211,9 +219,10 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasValue(123);
+console.info("result:", result);  // result: true
 ```
 
 ### increaseCapacityTo
@@ -244,7 +253,7 @@ increaseCapacityTo(minimumCapacity: number): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.increaseCapacityTo(10);
 ```
 
@@ -281,10 +290,11 @@ get(key: K): V
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.get("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -321,10 +331,11 @@ getIndexOfKey(key: K): number
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfKey("sparrow");
+console.info("result:", result);  // result: 0
 ```
 
 
@@ -361,10 +372,11 @@ getIndexOfValue(value: V): number
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
+console.info("result:", result);  // result: 1
 ```
 
 
@@ -403,10 +415,11 @@ getKeyAt(index: number): K
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
+console.info("result:", result);  // result: squirrel
 ```
 
 
@@ -438,11 +451,13 @@ setAll(map: LightWeightMap<K, V>): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let map: LightWeightMap<string, number> = new LightWeightMap();
-map.setAll(lightWeightMap); // 将lightWeightMap中所有的元素添加到map中
+let map = new LightWeightMap<string, number>();
+map.setAll(lightWeightMap);   // 将lightWeightMap中所有的元素添加到map中
+let result = map.get("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -479,8 +494,9 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 let result = lightWeightMap.set("squirrel", 123);
+console.info("result:", result);  // result: squirrel:123
 ```
 
 
@@ -517,10 +533,10 @@ remove(key: K): V
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-lightWeightMap.set("squirrel", 123);
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("sparrow", 356);
-lightWeightMap.remove("sparrow");
+let result = lightWeightMap.remove("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -558,10 +574,11 @@ removeAt(index: number): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -601,10 +618,11 @@ setValueAt(index: number, newValue: V): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
+console.info("result:", lightWeightMap.get("squirrel"));  // result: 3546
 ```
 
 
@@ -643,10 +661,11 @@ getValueAt(index: number): V
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
+console.info("result:", result);  // result: 123
 ```
 
 
@@ -671,10 +690,12 @@ clear(): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
+let result = lightWeightMap.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -705,15 +726,15 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let iter = lightWeightMap.keys();
-let temp: IteratorResult<string, number> = iter.next();
-while(!temp.done) {
-  console.info("value:" + temp.value);
-  temp = iter.next();
+let keys = lightWeightMap.keys();
+for (let key of keys) {
+  console.info("key:", key);
 }
+// key: sparrow
+// key: squirrel
 ```
 
 
@@ -744,15 +765,15 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let iter = lightWeightMap.values();
-let temp: IteratorResult<number> = iter.next();
-while(!temp.done) {
-  console.info("value:" + temp.value);
-  temp = iter.next();
+let values = lightWeightMap.values();
+for (let value of values) {
+  console.info("value:", value);
 }
+// value: 356
+// value: 123
 ```
 
 
@@ -792,16 +813,19 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
-lightWeightMap.forEach((value?: number, key?: string) => {
+lightWeightMap.forEach((value: number, key: string) => {
   console.info("value:" + value, "key:" + key);
 });
+// value:123 key:sparrow
+// value:357 key:gull
 ```
+
 ```ts
 // 不建议在forEach中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 for(let i = 0; i < 10; i++) {
   lightWeightMap.set("sparrow" + i, 123);
 }
@@ -837,7 +861,7 @@ entries(): IterableIterator<[K, V]>
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
@@ -850,7 +874,7 @@ while(!temp.done) {
 ```
 ```ts
 // 不建议在entries中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 for(let i = 0; i < 10; i++) {
   lightWeightMap.set("sparrow" + i, 123);
 }
@@ -886,10 +910,11 @@ toString(): String
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.toString();
+console.info("result:", result);  // result: sparrow:356,squirrel:123
 ```
 
 ### [Symbol.iterator]
@@ -919,33 +944,37 @@ let result = lightWeightMap.toString();
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 
 // 使用方法一：
-let nums = Array.from(lightWeightMap.values());
-for (let item1 of nums) {
-  console.info("value:" + item1);
+for (let item of lightWeightMap) {
+  console.info("key:", item[0]);
+  console.info("value:", item[1]);
 }
-
-let key = Array.from(lightWeightMap.keys());
-for (let item2 of key) {
-  console.info("key:" + item2);
-}
+// key: sparrow
+// value: 356
+// key: squirrel
+// value: 123
 
 // 使用方法二：
 let iter = lightWeightMap[Symbol.iterator]();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.info("key:" + temp.value[0]);
-  console.info("value:" + temp.value[1]);
+  console.info("key:", temp.value[0]);
+  console.info("value:", temp.value[1]);
   temp = iter.next();
 }
+// key: sparrow
+// value: 356
+// key: squirrel
+// value: 123
 ```
+
 ```ts
 // 不建议在Symbol.iterator中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap = new LightWeightMap<string, number>();
 for(let i = 0; i < 10; i++) {
   lightWeightMap.set("sparrow" + i, 123);
 }

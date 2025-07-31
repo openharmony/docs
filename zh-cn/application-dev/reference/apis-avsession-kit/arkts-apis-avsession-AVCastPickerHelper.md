@@ -1,8 +1,14 @@
 # Class (AVCastPickerHelper)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **说明：**
 >
-> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Class首批接口从API version 14开始支持。
 
 投播半模态对象，可拉起半模态窗口，选择投播设备。在使用前，需要创建AVCastPickerHelper实例。
 
@@ -16,7 +22,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 constructor(context: Context)
 
-创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -120,6 +126,8 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 设置半模态窗口变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -158,7 +166,7 @@ async function onPickerStateChange(context: common.Context) {
 
 off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
-取消半模态窗口变化的监听事件，关闭后，不再进行该事件回调。
+取消半模态窗口变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

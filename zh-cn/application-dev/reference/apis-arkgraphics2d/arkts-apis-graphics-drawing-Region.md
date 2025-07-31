@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+区域对象，用于描述所绘制图形的区域信息。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Region<sup>12+</sup>
-
-区域对象，用于描述所绘制图形的区域信息。
-
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor()
 
@@ -44,7 +44,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor(region: Region)
 
@@ -56,7 +56,7 @@ constructor(region: Region)
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region     | [Region](#region12) | 是   | 用于拷贝的区域。 |
+| region     | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于拷贝的区域。 |
 
 **示例：**
 
@@ -79,7 +79,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor(left: number, top: number, right: number, bottom: number)
 
@@ -115,7 +115,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### isEqual<sup>20+</sup>
+## isEqual<sup>20+</sup>
 
 isEqual(other: Region): boolean
 
@@ -127,7 +127,7 @@ isEqual(other: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](#region12) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -161,7 +161,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### isComplex<sup>20+</sup>
+## isComplex<sup>20+</sup>
 
 isComplex(): boolean
 
@@ -202,7 +202,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### isEmpty<sup>20+</sup>
+## isEmpty<sup>20+</sup>
 
 isEmpty(): boolean
 
@@ -241,7 +241,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getBounds<sup>20+</sup>
+## getBounds<sup>20+</sup>
 
 getBounds(): common2D.Rect
 
@@ -264,7 +264,7 @@ let region = new drawing.Region();
 let rect = region.getBounds();
 ```
 
-### getBoundaryPath<sup>20+</sup>
+## getBoundaryPath<sup>20+</sup>
 
 getBoundaryPath(): Path
 
@@ -286,7 +286,7 @@ let region = new drawing.Region();
 let path = region.getBoundaryPath();
 ```
 
-### isPointContained<sup>12+</sup>
+## isPointContained<sup>12+</sup>
 
 isPointContained(x: number, y: number) : boolean
 
@@ -340,7 +340,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### offset<sup>20+</sup>
+## offset<sup>20+</sup>
 
 offset(dx: number, dy: number): void
 
@@ -377,7 +377,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### isRegionContained<sup>12+</sup>
+## isRegionContained<sup>12+</sup>
 
 isRegionContained(other: Region) : boolean
 
@@ -389,7 +389,7 @@ isRegionContained(other: Region) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](#region12) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -432,7 +432,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### op<sup>12+</sup>
+## op<sup>12+</sup>
 
 op(region: Region, regionOp: RegionOp) : boolean
 
@@ -444,7 +444,7 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 区域对象。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 | regionOp      | [RegionOp](arkts-apis-graphics-drawing-e.md#regionop12) | 是   | 区域合并操作类型。 |
 
 **返回值：**
@@ -487,7 +487,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickReject<sup>12+</sup>
+## quickReject<sup>12+</sup>
 
 quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
@@ -542,7 +542,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickRejectRegion<sup>20+</sup>
+## quickRejectRegion<sup>20+</sup>
 
 quickRejectRegion(region: Region): boolean
 
@@ -554,7 +554,7 @@ quickRejectRegion(region: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 指定的区域对象。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 指定的区域对象。 |
 
 **返回值：**
 
@@ -587,7 +587,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setPath<sup>12+</sup>
+## setPath<sup>12+</sup>
 
 setPath(path: Path, clip: Region) : boolean
 
@@ -600,7 +600,7 @@ setPath(path: Path, clip: Region) : boolean
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
 | path      | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 路径对象。 |
-| clip      | [Region](#region12) | 是   | 区域对象。 |
+| clip      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -642,7 +642,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setRegion<sup>20+</sup>
+## setRegion<sup>20+</sup>
 
 setRegion(region: Region): void
 
@@ -654,7 +654,7 @@ setRegion(region: Region): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 用于赋值的区域。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于赋值的区域。 |
 
 **示例：**
 
@@ -679,7 +679,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setEmpty<sup>20+</sup>
+## setEmpty<sup>20+</sup>
 
 setEmpty(): void
 
@@ -706,7 +706,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setRect<sup>12+</sup>
+## setRect<sup>12+</sup>
 
 setRect(left: number, top: number, right: number, bottom: number) : boolean
 

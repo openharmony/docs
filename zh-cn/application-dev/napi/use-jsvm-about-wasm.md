@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行WebAssembly模块相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 
 ## 简介
@@ -32,7 +37,7 @@ JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly �
 
 ## 使用示例
 
-JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 相关代码进行展示。
+参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md) 了解 JSVM-API 接口开发流程。本文仅展示接口对应的 C++ 代码。
 
 cpp 部分代码：
 
@@ -195,7 +200,7 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
     status = OH_JSVM_CompileWasmFunction(env, wasmModule2, functionIndex, JSVM_WASM_OPT_HIGH);
     CHECK_STATUS(status == JSVM_OK);
 
-    JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule);
+    JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule2);
     VerifyAddWasmInstance(env, wasmInstance2);
 
     JSVM_Value result;
@@ -217,7 +222,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
-<!-- @[jsvm_wasm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/webassembly/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_wasm](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/webassembly/src/main/cpp/hello.cpp) -->
 预期输出
 ```
 JSVM Init

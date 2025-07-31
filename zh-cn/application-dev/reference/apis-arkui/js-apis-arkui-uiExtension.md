@@ -339,7 +339,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](arkts-apis-window-Window.md#window)&gt; | Promise对象。返回当前WindowProxy下创建的子窗口对象。 |
+| Promise&lt;[window.Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前WindowProxy下创建的子窗口对象。 |
 
 **错误码：**
 
@@ -611,7 +611,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   @Component
   struct Extension {
     @State message: string = 'EmbeddedUIExtensionAbility Index';
-    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private storage: LocalStorage | undefined = this.getUIContext()?.getSharedLocalStorage();
     private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
     private subWindow: window.Window | undefined = undefined;

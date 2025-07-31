@@ -1,10 +1,15 @@
 # 多级Worker间高性能消息通信
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 多级[Worker](worker-introduction.md)（即通过父Worker创建子Worker的机制形成层级线程关系）间通信是一种常见的需求，由于Worker线程生命周期由用户自行管理，因此需要注意多级Worker生命周期的正确管理，建议开发者确保销毁父Worker前先销毁所有子Worker。
 
-本文介绍如何在多级Worker间实现高性能消息通信，高性能消息通信的关键在于[Sendable对象](arkts-sendable.md)，结合Worker的[postMessageWithSharedSendable接口](../reference/apis-arkts/js-apis-worker.md#postmessagewithsharedsendable12)，可以实现线程间高性能的对象传递。以数据克隆场景为例，假设有三个Worker，一个父Worker和两个子Worker，父Worker负责创建子Worker，并向子Worker发送数据克隆任务，子Worker负责接收任务并执行数据克隆操作，完成后将克隆结果返回给父Worker。
+本文介绍如何在多级Worker间实现高性能消息通信。高性能消息通信的关键在于[Sendable对象](arkts-sendable.md)，结合[postMessageWithSharedSendable接口](../reference/apis-arkts/js-apis-worker.md#postmessagewithsharedsendable12)，可以实现线程间高性能的对象传递。例如，在数据克隆场景中，假设有一个父Worker和两个子Worker。父Worker负责创建子Worker，并向子Worker发送数据克隆任务。子Worker接收任务并执行数据克隆操作，完成后将克隆结果返回给父Worker。
 
-1. 准备一个Sendable类CopyEntry，用于封装克隆任务数据。
+1. 准备一个Sendable类CopyEntry，封装克隆任务数据。
    
    ```ts
    // CopyEntry.ets
@@ -39,8 +44,8 @@
    // 异步锁
    const asyncLock = new ArkTSUtils.locks.AsyncLock();
    // 创建子Worker
-   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
-   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
+   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
+   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
 
    workerPort.onmessage = (e : MessageEvents) => {
      let array = e.data as collections.Array<CopyEntry>;
@@ -94,11 +99,11 @@
    }
 
    workerPort.onmessageerror = (e : MessageEvents) => {
-     console.info('onmessageerror:' + e.data);
+     console.error('onmessageerror:' + e.data);
    }
 
    workerPort.onerror = (e : ErrorEvent) => {
-     console.info('onerror:' + e.message);
+     console.error('onerror:' + e.message);
    }
    ```
    ```ts
@@ -116,34 +121,44 @@
    }
 
    workerPort.onmessageerror = (e : MessageEvents) => {
-     console.info('onmessageerror:' + e.data);
+     console.error('onmessageerror:' + e.data);
    }
 
    workerPort.onerror = (e : ErrorEvent) => {
-     console.info('onerror:' + e.message);
+     console.error('onerror:' + e.message);
+   }
+   ```
+3. 在模块级build-profile.json5中添加ParentWorker.ets和ChildWorker.ets信息，确保Worker线程文件被打包到应用中。
+
+   ```json
+   "buildOption": {
+     "sourceOption": {
+       "workers": [
+         "./src/main/ets/pages/ParentWorker.ets",
+         "./src/main/ets/pages/ChildWorker.ets"
+       ]
+     }
    }
    ```
 
-3. 在UI主进程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
+4. 在UI主进程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
 
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    import { CopyEntry } from './CopyEntry'
-
+   
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+         resolve();
+       }, 100);
+     });
      return p;
    }
 
    async function postMessageTest() {
-     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker");
+     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker.ets");
      let isTerminate = false;
      ss.onexit = () => {
        isTerminate = true;

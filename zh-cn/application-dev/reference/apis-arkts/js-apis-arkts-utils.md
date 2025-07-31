@@ -1,4 +1,9 @@
 # @arkts.utils (ArkTS工具库)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供了各种ArkTS实用工具函数。
 
@@ -822,7 +827,7 @@ stringify(value: Object | null | undefined): string
 >
 > 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

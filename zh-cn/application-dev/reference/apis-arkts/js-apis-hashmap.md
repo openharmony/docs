@@ -1,4 +1,9 @@
 # @ohos.util.HashMap (非线性容器HashMap)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 HashMap底层采用数组、链表和红黑树实现，支持高效查询、插入和删除。HashMap存储内容基于key-value的键值对映射，不允许重复的key，且一个key只能对应一个value。
 
@@ -57,7 +62,7 @@ HashMap的构造函数。
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 ```
 
 
@@ -88,8 +93,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 let result = hashMap.isEmpty();
+console.info("result = ", result) // result = true
 ```
 
 
@@ -126,9 +132,10 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasKey("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -165,9 +172,10 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasValue(123);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -204,10 +212,11 @@ get(key: K): V
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -239,12 +248,14 @@ setAll(map: HashMap<K, V>): void
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let newHashMap: HashMap<string, number> = new HashMap();
+let newHashMap = new HashMap<string, number>();
 newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
+let result = hashMap.hasKey("newMap");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -283,8 +294,9 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
-let result = hashMap.set("squirrel", 123);
+let hashMap = new HashMap<string, number>();
+hashMap.set("squirrel", 123)
+console.info("result:", hashMap.get("squirrel"));  // result: 123
 ```
 
 
@@ -321,10 +333,11 @@ remove(key: K): V
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -349,10 +362,12 @@ clear(): void
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
+let result = hashMap.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -383,15 +398,15 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let iter = hashMap.keys();
-let temp: IteratorResult<string,number> = iter.next();
-while(!temp.done) {
-  console.info("value:" + temp.value);
-  temp = iter.next();
+let keys = hashMap.keys();
+for (let key of keys) {
+  console.info("key:" + key);
 }
+// key:squirrel
+// key:sparrow
 ```
 
 
@@ -422,15 +437,15 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let iter = hashMap.values();
-let temp: IteratorResult<number> = iter.next();
-while(!temp.done) {
-  console.info("value:" + temp.value);
-  temp = iter.next();
+let values = hashMap.values();
+for (let value of values) {
+  console.info("value:", value)
 }
+// value: 123
+// value: 356
 ```
 
 
@@ -438,7 +453,7 @@ while(!temp.done) {
 
 replace(key: K, newValue: V): boolean
 
-对HashMap中一组数据进行更新（替换）。
+用于替换指定键对应的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -468,9 +483,10 @@ replace(key: K, newValue: V): boolean
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -478,7 +494,7 @@ let result = hashMap.replace("sparrow", 357);
 
 forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
+在遍历过程中对每个元素调用一次回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -494,8 +510,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
-| key | K | 否 | 当前遍历到的元素键值对的键，默认值为首个键值对的键。 |
+| value | V | 否 | 当前遍历到的元素键值对的值。 |
+| key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
@@ -510,16 +526,19 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
-hashMap.forEach((value?: number, key?: string) => {
-  console.info("value:" + value, "key:" + key);
+hashMap.forEach((value: number, key: string) => {
+  console.info("value: " + value, "key: " + key);
 });
+// value: 123 key: sparrow
+// value: 357 key: gull
 ```
+
 ```ts
 // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }
@@ -556,7 +575,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
@@ -569,7 +588,7 @@ while(!temp.done) {
 ```
 ```ts
 // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }
@@ -604,30 +623,37 @@ for(let i = 0; i < 10; i++) {
 
 **示例：**
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // 使用方法一：
-let keys = Array.from(hashMap.keys());
-for (let key of keys) {
-  console.info("key:" + key);
-  console.info("value:" + hashMap.get(key));
+for (let item of hashMap) {
+  console.info("key:", item[0]);
+  console.info("value:", item[1]);
 }
+// key: squirrel
+// value: 123
+// key: sparrow
+// value: 356
 
 // 使用方法二：
- let iter = hashMap[Symbol.iterator]();
- let temp: IteratorResult<Object[]> = iter.next();
- while(!temp.done) {
-   console.info("key:" + temp.value[0]);
-   console.info("value:" + temp.value[1]);
-   temp = iter.next();
- }
+let iter = hashMap[Symbol.iterator]();
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.info("key:", temp.value[0]);
+  console.info("value:", temp.value[1]);
+  temp = iter.next();
+}
+// key: squirrel
+// value: 123
+// key: sparrow
+// value: 356
 ```
 
 ```ts
 // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }

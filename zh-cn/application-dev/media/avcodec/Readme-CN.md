@@ -5,8 +5,11 @@
 - 音视频编解码<!--audio-video-codec-->
   - [获取支持的编解码能力](obtain-supported-codecs.md)
   - [音频编码](audio-encoding.md)
+  - [音频编码同步模式](synchronous-audio-encoding.md)
   - [音频解码](audio-decoding.md)
+  - [音频解码同步模式](synchronous-audio-decoding.md)
   - [视频编码](video-encoding.md)
+  - [视频编码同步模式](synchronous-video-encoding.md)
   - [时域可分层视频编码](video-encoding-temporal-scalability.md)
   - [典型场景的视频编码配置](video-encoding-configuration-typical-scenarios.md)
   - [ROI视频编码](video-encoding-ROI.md)

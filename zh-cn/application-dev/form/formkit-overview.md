@@ -8,11 +8,13 @@ Form Kit（卡片开发框架）提供了一种在桌面、锁屏等系统入口
 - 卡片使用步骤：
 
 1. 长按“桌面图标”，弹出操作菜单。
-2. 点击“服务卡片”选项，进入卡片管理页面，可以预览卡片。
+2. 点击“<!--Del-->服务<!--DelEnd-->卡片”选项，进入卡片管理页面，可以预览卡片。
 3. 点击“添加到桌面”按钮，即可在桌面上看到并操作新添加的卡片。
 
 **图1** 卡片常见使用步骤  
+<!--RP2-->
 ![WidgetUse](figures/WidgetUse.png)
+<!--RP2End-->
 
 ## 服务卡片架构
 **图2** 服务卡片架构  
@@ -55,11 +57,5 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 ## 与相关Kit的关系
 - Ability Kit: Form Kit内部实现依赖Ability Kit提供的Extension基础能力，与Ability Kit存在生命周期调度交互。
 - ArkUI: Form Kit卡片提供方在卡片页面中可以使用ArkUI提供的部分组件、事件、动效、状态管理等能力。
-
-## 相关实例
-
-针对ArkTS卡片开发，有以下相关实例可供参考：
-
-- [基于Form Kit实现音乐服务卡片](https://gitee.com/harmonyos_samples/MusicCard)
 
 <!--RP1--><!--RP1End-->

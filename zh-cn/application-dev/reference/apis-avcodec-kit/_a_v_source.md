@@ -7,7 +7,7 @@ AVSource模块提供用于构造媒体资源对象功能的函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
-**相关示例：** [AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
+**相关示例：** [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 **起始版本：** 10
 

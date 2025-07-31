@@ -254,14 +254,18 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 
 try {
-  window.minimizeAll(displayClass.id, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in minimizing all windows.');
-  });
+  if (!displayClass) {
+    console.error('displayClass is null');
+  } else {
+    window.minimizeAll(displayClass.id, (err: BusinessError) => {
+      const errCode: number = err?.code;
+      if (errCode) {
+        console.error(`Failed to minimize all windows. Cause code: ${err?.code}, message: ${err?.message}`);
+        return;
+      }
+      console.info('Succeeded in minimizing all windows.');
+    });
+  }
 } catch (exception) {
   console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -1552,26 +1556,28 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err.code;
+    let errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
-    windowClass = data;
-  });
-  windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  }, (err: BusinessError) => {
-    let errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    if (!data) {
+      console.error('data is null');
       return;
     }
-    console.info('Succeeded in binding dialog target.');
+    data.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+      }, (err: BusinessError) => {
+      let errCode: number = err?.code;
+      if (errCode) {
+        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+        return;
+      }
+      console.info('Succeeded in binding dialog target.');
+    });
   });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1643,28 +1649,30 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "test",
   windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
+  ctx: getContext()
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
+    const errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
-    windowClass = data;
-  });
-  let promise = windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  });
-  promise.then(() => {
-    console.info('Succeeded in binding dialog target.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    if (!data) {
+      console.error('data is null');
+      return;
+    }
+    let promise = data.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+    });
+    promise.then(() => {
+      console.info('Succeeded in binding dialog target.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+    });
   });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1709,32 +1717,34 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        let errCode: number = err.code;
+        let errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
-        windowClass = data;
-      });
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
           return;
         }
-        console.info('Succeeded in binding dialog target.');
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err?.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }
@@ -1783,30 +1793,32 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
+        const errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
-        windowClass = data;
-      });
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      let promise = windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      });
-      promise.then(() => {
-        console.info('Succeeded in binding dialog target.');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        let promise = data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+        });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }
@@ -2816,6 +2828,169 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### raiseMainWindowAboveTarget<sup>20+</sup>
+
+raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
+
+将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
+
+仅支持2in1设备的系统应用主窗口调用。
+
+传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一物理屏、层级低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
+
+- 应用主窗口或者它的子窗口如果是焦点窗口，此主窗口调用该接口降低层级后则自动失焦，由当前层级最高的应用窗口获焦。
+
+- 应用主窗口调用该接口调整层级后超过当前焦点窗口，则被抬升主窗口及其子窗口中，层级最高的窗口自动获焦；应用主窗口调用该接口调整层级后未超过当前焦点窗口，则焦点不做转移。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid Parameter range. 2. Invalid parameter length. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility, Want, StartOptions, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        let want: Want = {
+          abilityName: "RaiseMainWindowAbility",
+          bundleName: "com.example.myapplication"
+        };
+        let options: StartOptions = {
+          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+        };
+        this.context.startAbility(want, options);
+      } catch (err) {
+        console.error(`Failed to start the ability. Cause code: ${err.code}, message: ${err.message}.`);
+      }
+      setTimeout(async () => {
+        let mainWindow: window.Window | null | undefined = windowStage.getMainWindowSync();
+        let targetId: number | null | undefined = AppStorage.get('higher_window_id');
+        mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
+          console.info('Succeeded in raising main window above target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to raise main window above target. Cause code: ${err.code}, message: ${err.message}.`)
+        });
+      }, 3000)
+    });
+  }
+}
+```
+```ts
+// 新建文件src/main/ets/raisemainwindowability/RaiseMainWindowAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class RaiseMainWindowAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    AppStorage.setOrCreate('higher_window_id', windowStage.getMainWindowSync().getWindowProperties().id);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+  }
+}
+```
+```json5
+//module.json5
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "RaiseMainWindowAbility",
+        "launchType": "multiton",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -3336,10 +3511,18 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
+      if (err?.code) {
+        console.error(`Failed to load content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
       let mainWindow: window.Window | undefined = undefined;
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
         data => {
+          if (!data) {
+            console.error('Failed to get main window.');
+            return;
+          }
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用setTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、分屏按钮。
@@ -3589,7 +3772,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setImageForRecent<sup>20+</sup>
+### setImageForRecent<sup>19+</sup>
 
 setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 

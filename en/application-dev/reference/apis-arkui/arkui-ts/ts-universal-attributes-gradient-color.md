@@ -32,7 +32,7 @@ Creates a linear gradient.
 
 linearGradient(options: Optional\<LinearGradientOptions>)
 
-Creates a linear gradient. Compared to [linearGradient](#lineargradient), this API supports the **undefined** type for the **options** parameter.
+Creates a linear gradient. Compared with [linearGradient](#lineargradient), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -83,7 +83,7 @@ Creates a sweep gradient.
 
 sweepGradient(options: Optional\<SweepGradientOptions>)
 
-Creates a sweep gradient. Compared to [sweepGradient](#sweepgradient), this API supports the **undefined** type for the **options** parameter.
+Creates a sweep gradient. Compared with [sweepGradient](#sweepgradient), this API supports the **undefined** type for the **options** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -137,7 +137,7 @@ Creates a radial gradient.
 
 radialGradient(options: Optional\<RadialGradientOptions>)
 
-Creates a radial gradient. Compared to [radialGradient](#radialgradient), this API supports the **undefined** type for the **options** parameter.
+Creates a radial gradient. Compared with [radialGradient](#radialgradient), this API supports the **undefined** type for the **options** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

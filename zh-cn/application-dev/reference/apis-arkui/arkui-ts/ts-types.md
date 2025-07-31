@@ -28,7 +28,11 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
-  **说明：** 在引用资源类型时，注意其数据类型要与属性方法本身的类型一致，例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+>  **说明：**
+>
+>  引用资源类型时，需确保资源类型对象内的数据类型与当前以资源类型作为参数的属性方法本身的类型一致。例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+>
+>  引用资源类型时，需确保资源类型对象用法为当前支持的用法，否则当前以资源类型作为参数的属性效果将和不设置该属性相同。
 
 ## Length
 
@@ -323,7 +327,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
-| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。 |
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。<br>默认值：FontStyle.Normal             |
 
 ## Area<sup>8+</sup>
@@ -472,7 +476,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合[@Builder](../../../ui/state-management/arkts-builder.md)使用。 |
+| CustomBuilder | (()&nbsp;=&gt;&nbsp;any) \| void | 生成用户自定义组件，在使用时结合[@Builder](../../../ui/state-management/arkts-builder.md)使用。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -649,9 +653,9 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 扩展布局安全区域的枚举类型。
 
-| 名称     | 描述                                       |
-| -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| 名称     | 值   | 说明                                             |
+| -------- | --- |------------------------------------------ |
+| SYSTEM   |  0 |设置后，组件的布局范围可扩展至[组件级安全区（safeAreaPadding）](./ts-universal-attributes-size.md#safeareapadding14)和页面级安全区（状态栏、导航栏、挖孔区）。   |
 
 ## LayoutSafeAreaEdge<sup>12+</sup>
 
@@ -1006,34 +1010,26 @@ setTextSelection选中文字时的配置。
 
 ## LayoutPolicy<sup>15+</sup>
 
-用于设置布局策略。
+用于组件宽度和高度的布局策略。
 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型   | 只读 | 可选 | 说明 |
 | --------- | ------ | ---- | ---- |---------- |
-| matchParent | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应父组件布局，其大小与父组件内容区相等。<br>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等且不能超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等但可以超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| matchParent | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应父组件布局时，其大小与父组件内容区相等，不包括padding，border和safeAreaPadding。<br>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应子组件（内容）时，其大小与子组件（内容）相等，并且其大小受父组件内容区大小约束。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应子组件（内容）时，其大小与子组件（内容）相等，并且其大小不受父组件内容区大小约束。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 >  **说明：**
 >
 > - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
 >
-> - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
+> - wrapContent和fixAtIdealSize场景，组件无法通过内容确定大小时，如果组件大小有默认值，则按照默认值进行测算；如果没有默认值，则按照宽高(0,0)进行测算。
 > 
-> - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
-> 
-> - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他除宽高比外约束大小的属性将会失效。
+> - 容器设置wrapContent，并且有子组件设置matchParent时，容器先由确定大小的子组件撑大，设置matchParent的孩子再匹配父组件大小；如果没有确定大小的孩子，容器和孩子大小均为0。
 >
-> - matchParent的生效优先级为宽高比 > matchParent > [constraintSize](ts-universal-attributes-size.md#constraintsize) ，wrapContent的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > wrapContent，fixAtIdealSize的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > fixAtIdealSize。
->
-> - 设置了matchParent的组件会将其大小设置为其父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小相等。
->
->  **使用场景：**
-> 
-> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
+> - LayoutPolicy优先级低于constraintSize。
 
 ## TextContentControllerOptions<sup>15+</sup>
 
@@ -1046,3 +1042,16 @@ setTextSelection选中文字时的配置。
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
+
+## ScrollBarMargin<sup>20+</sup>对象说明
+
+滚动条边距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                         | 只读 | 可选 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条起始边距。<br/>默认值：0，单位：vp |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条末尾边距。<br/>默认值：0，单位：vp |

@@ -43,7 +43,7 @@ struct IfElseTransition {
           this.flag = !this.flag;
         })
       if (this.flag) {
-        Image($r('app.media.icon')).width(200).height(200)
+        Image($r('app.media.startIcon')).width(200).height(200)
       }
     }.height('100%').width('100%')
   }

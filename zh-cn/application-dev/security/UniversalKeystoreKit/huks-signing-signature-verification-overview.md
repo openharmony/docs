@@ -1,5 +1,11 @@
 # 签名/验签介绍及算法规格
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 为实现数据完整性保护和防抵赖，可使用生成/导入的密钥，对数据进行签名验签操作。
 
 ## 支持的算法
@@ -16,7 +22,7 @@
 | <!--DelRow-->RSA/MD5/PKCS1_V1_5<br/>RSA/SHA1/PKCS1_V1_5<br/>RSA/SHA224/PKCS1_V1_5<br/>RSA/SHA224/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10)。| 8+ | 否 |
 | RSA/SHA256/PKCS1_V1_5<br/>RSA/SHA384/PKCS1_V1_5<br/>RSA/SHA512/PKCS1_V1_5<br/>RSA/SHA256/PSS<br/>RSA/SHA384/PSS<br/>RSA/SHA512/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10)。 | 8+ | 是 |
 | RSA/NoDigest/PKCS1_V1_5 | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做哈希，再将哈希后的数据传入，哈希后的数据长度必须满足RSA签名验签支持的摘要算法规格。 | 9+ | 是 |
-| RSA/NoDigest/NoPadding | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做哈希，再将哈希后的数据传入，哈希后的数据长度必须等于密钥长度。 | 20+ | 是 |
+| RSA/NoDigest/NoPadding | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。明文长度必须等于密钥长度。 | 20+ | 是 |
 | <!--DelRow-->DSA/SHA1<br/>DSA/SHA224<br/>DSA/SHA256<br/>DSA/SHA384<br/>DSA/SHA512 | - | 8+ | 否 |
 | <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | 签名是ASN1格式。 | 8+ | 否 |
@@ -36,7 +42,7 @@
 | RSA/SHA256/PKCS1_V1_5 | - | 12+ |
 | RSA/SHA256/PSS | - | 12+ |
 | RSA/SHA1/ISO_IEC_9796_2 | 数据最小长度=密钥长度-21字节 | 12+ |
-| RSA/NoDigest/NoPadding | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做哈希，再将哈希后的数据传入，哈希后的数据长度必须等于密钥长度。 | 20+ |
+| RSA/NoDigest/NoPadding | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。明文长度必须等于密钥长度。 | 20+ |
 
 <!--RP1--><!--RP1End-->
 

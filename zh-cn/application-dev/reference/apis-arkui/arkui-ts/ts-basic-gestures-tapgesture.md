@@ -99,7 +99,7 @@ struct TapGestureExample {
         )
       Text(this.value)
     }
-    .height(200)
+    .height(300)
     .width(300)
     .padding(20)
     .border({ width: 3 })
@@ -128,12 +128,12 @@ struct TapGestureExample {
           TapGesture({ count: 1, fingers: 1 })
             .onAction((event: GestureEvent | undefined) => {
               if (event) {
-                console.log("x = ", JSON.stringify(event.tapLocation?.x))
-                console.log("y = ", event.tapLocation?.y)
-                console.log("windowX = ", event.tapLocation?.windowX)
-                console.log("windowY = ", event.tapLocation?.windowY)
-                console.log("displayX = ", event.tapLocation?.displayX)
-                console.log("displayY = ", event.tapLocation?.displayY)
+                console.info("x = ", JSON.stringify(event.tapLocation?.x))
+                console.info("y = ", event.tapLocation?.y)
+                console.info("windowX = ", event.tapLocation?.windowX)
+                console.info("windowY = ", event.tapLocation?.windowY)
+                console.info("displayX = ", event.tapLocation?.displayX)
+                console.info("displayY = ", event.tapLocation?.displayY)
               }
             })
         )

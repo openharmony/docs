@@ -1,4 +1,9 @@
 # Worker常驻线程通过TaskPool进行多任务并发处理
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务并发处理，也可以两种并发能力都选择。
 
@@ -8,7 +13,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
 
    ```ts
    // Index.ets
-   import { worker } from '@kit.ArkTS';
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    @Entry
    @Component
@@ -30,9 +35,9 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
              const myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
    
              // 2. 接收Worker返回的结果
-             myWorker.onmessage = (e) => {
+             myWorker.onmessage = (e: MessageEvents) => {
                console.info('主线程收到最终结果:', e.data.result);
-               myWorker.terminate(); // 销毁Worker
+               myWorker.terminate(); // 选择合适的时机销毁Worker
              };
    
              // 3. 向Worker发送启动指令

@@ -187,7 +187,7 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
    :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
    if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
+       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
        pause
        exit /b
    )
@@ -200,11 +200,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    pause >nul
 
    :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
+   start msedge chrome://inspect/#devices
 
    :: If Edge is not available, then open the page in Chrome
    if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
+       start chrome chrome://inspect/#devices
    )
 
    endlocal

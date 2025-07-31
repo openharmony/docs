@@ -1,5 +1,11 @@
 # @ohos.userIAM.faceAuth (人脸认证)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供人脸录入相关接口。
 
 > **说明：**

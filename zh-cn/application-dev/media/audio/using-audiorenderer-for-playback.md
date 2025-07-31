@@ -266,13 +266,22 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   };
 
   try {
-    fs.readSync(file.fd, buffer, options);
+    let bufferLength = fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
+    // 如果当前回调传入的数据不足一帧，空白区域需要使用静音数据填充，否则会导致播放出现杂音。
+    if (bufferLength < buffer.byteLength) {
+        let view = new DataView(buffer);
+        for (let i = bufferLength; i < buffer.byteLength; i++) {
+            // 空白区域填充静音数据。当使用音频采样格式为SAMPLE_FORMAT_U8时0x7F为静音数据，使用其他采样格式时0为静音数据。
+            view.setUint8(i, 0);
+        }
+    }
+    // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。
+    // 如果开发者不希望播放某段buffer，返回audio.AudioDataCallbackResult.INVALID即可。
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
+    // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。
     return audio.AudioDataCallbackResult.INVALID;
   }
 };

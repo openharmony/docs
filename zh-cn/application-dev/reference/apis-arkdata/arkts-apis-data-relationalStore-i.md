@@ -1,4 +1,9 @@
 # Interfaces (其他)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
@@ -153,7 +158,7 @@
 | 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
 | code<sup>20+</sup>      | number                        | 是   |   否   | 表示执行SQL返回的错误码，对应的取值和含义请见[sqlite错误码](https://www.sqlite.org/rescode.html) |
-| messgae<sup>20+</sup>       | string                        | 是   |   否   | 表示执行SQL返回的错误信息。                                         |
+| message<sup>20+</sup>       | string                        | 是   |   否   | 表示执行SQL返回的错误信息。                                         |
 | sql<sup>20+</sup>    | string                        | 是   |   否   | 表示报错执行的SQL语句。                         |
 
 ## TransactionOptions<sup>14+</sup>

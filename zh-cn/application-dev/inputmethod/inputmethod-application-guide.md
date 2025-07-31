@@ -327,7 +327,7 @@
            "icon": "$media:app_icon",
            "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
-           "exported": true,
+           "exported": true
          }
        ]
      }
@@ -349,4 +349,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+- [轻量级输入法](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)

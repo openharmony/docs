@@ -37,8 +37,8 @@ title参数的规格如下：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## RequestOptions<sup>11+</sup>
 
@@ -185,7 +185,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | ---- | ------- | ---- |  ---- | ----- |
 | albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否 | 变更前的相册数据。如果是新增相册，albumBeforeChange为null。 |
 | albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否  | 变更后的相册数据。如果是删除相册，albumAfterChange为null。 |
-| isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
 
 ## AlbumChangeInfos<sup>20+</sup>
 

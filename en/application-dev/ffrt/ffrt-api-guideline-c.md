@@ -2495,3 +2495,63 @@ Description
         return 0;
     }
     ```
+
+## Fiber
+
+### ffrt_fiber_t
+
+#### Declaration
+
+```c
+struct ffrt_fiber_t;
+```
+
+#### Description
+
+- A fiber is a lightweight user mode thread that enables efficient task scheduling and context switching within the user space.
+- `ffrt_fiber_t` is used to save and restore the execution context of the fiber.
+
+#### Methods
+
+##### ffrt_fiber_init
+
+Declaration
+
+```c
+FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* arg, void* stack, size_t stack_size);
+```
+
+Parameters
+
+- `fiber`: pointer to the fiber.
+- `func`: pointer to the function when the fiber is started.
+- `arg`: pointer to the argument when the fiber is started.
+- `stack`: pointer to the start address of the stack space used by the fiber during execution.
+- `stack_size`: size of the fiber stack, in bytes.
+
+Return Values
+
+- If the initialization is successful, `ffrt_success` is returned. Otherwise, `ffrt_error` is returned.
+- The common reason of the error is that `stack_size` does not meet the minimum stack space limit that varies by platform. It is recommended that the stack space size be set to 4 KB or larger.
+
+Description
+
+- Initializes a fiber. The pointer and arguments for starting the fiber process, and the stack space used at runtime need to be transferred. The fiber does not manage any memory; the lifecycle of the stack is managed by the caller.
+
+##### ffrt_fiber_switch
+
+Declaration
+
+```c
+FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
+```
+
+Parameters
+
+- `from`: pointer to the saved fiber context. The thread that calls this function suspends the current task.
+- `to`: pointer to the restored fiber context. The thread that calls this function executes the task specified by `to`.
+
+Description
+
+- When the fiber context is switched, the thread that calls this function suspends the current task, saves the context to the `from` fiber, restores the context of the `to` fiber, and executes the task specified by `to`.
+- Note that `from` and `to` are not verified. The caller must ensure the validity of these addresses to prevent process crashes.

@@ -41,7 +41,7 @@ Compared with Deep Linking, App Linking has higher security, reliability, and us
 | Capable of sharing or directly accessible on web pages| Yes| No. The function must be called in the code.|
 | Able to directly start the target application| Yes| Yes. However, this mode is not recommended due to spoofing risks.|
 
-Both Deep Linking and App Linking can be implemented using [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12). The redirection effect under different conditions is as follows:
+Both Deep Linking and App Linking can be implemented using [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12). The redirection effect under different conditions is as follows:
 
 > **NOTE**
 > 
@@ -54,3 +54,6 @@ Both Deep Linking and App Linking can be implemented using [openLink](../referen
 | The value of **appLinkingOnly** is **false** and the target application is not installed.| Redirect to the default browser to open a web page.|A failure message is returned, no redirection is performed, and the application is responsible for handling the request. Currently, a dialog box is displayed, indicating that the link cannot be opened.|
 | The value of **appLinkingOnly** is **true** and the target application is installed.| Directly redirect to and start the target application.|A failure message is returned, no redirection is performed, and the application is responsible for handling the request.|
 | The value of **appLinkingOnly** is **true** and the target application is not installed.| A failure message is returned, no redirection is performed, and the application is responsible for handling the request.| A failure message is returned, no redirection is performed, and the application is responsible for handling the request.|
+
+<!--RP1-->
+<!--RP1End-->

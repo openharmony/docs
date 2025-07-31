@@ -1,10 +1,10 @@
 # Page Transition (pageTransition)
 
-You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages. For details, see [Page Transition Animation](../../../ui/arkts-page-transition-animation.md).
+When performing route switching using the [router](../js-apis-router.md), you can customize entrance and exit transition animations between pages by implementing the **pageTransition** API. For details, see [Page Transition Animation](../../../ui/arkts-page-transition-animation.md).
 
 > **NOTE**
 >
-> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> This feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > To achieve a better transition effect, you are advised to use the [Navigation](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
 
@@ -48,7 +48,7 @@ Invoked on a per-frame basis until the entrance animation is complete, with the 
 
 | Name| Type                                                              | Mandatory| Description                                               |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback14) | Yes  | Callback invoked on a per-frame basis until the entrance animation is complete, with the **progress** parameter changing from 0 to 1.|
+| event  | [PageTransitionCallback](#pagetransitioncallback18) | Yes  | Callback invoked on a per-frame basis until the entrance animation is complete, with the **progress** parameter changing from 0 to 1.|
 
 **Example**
 
@@ -92,7 +92,7 @@ Invoked on a per-frame basis until the exit animation is complete, with the **pr
 
 | Name| Type                                                              | Mandatory| Description                                               |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback14) | Yes  | Callback invoked on a per-frame basis until the exit animation is complete, with the **progress** parameter changing from 0 to 1.|
+| event  | [PageTransitionCallback](#pagetransitioncallback18) | Yes  | Callback invoked on a per-frame basis until the exit animation is complete, with the **progress** parameter changing from 0 to 1.|
 
 **Example**
 
@@ -201,13 +201,13 @@ Sets the starting opacity value for entrance or the ending opacity value for exi
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | number | Yes  | Starting opacity value for entrance or the ending opacity value for exit.<br>Value range: [0, 1]|
 
-## PageTransitionCallback<sup>14+</sup>
+## PageTransitionCallback<sup>18+</sup>
 
 type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 Represents the callback for page transition events.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,14 +251,12 @@ Represents the callback for page transition events.
 Method 1: Configure different entrance and exit animations based on different transition types.
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
-
+// Index.ets
 @Entry
 @Component
 struct Index {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
@@ -269,7 +267,7 @@ struct Index {
     .scale({ x: this.scale1 })
     .opacity(this.opacity1)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Page1' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' });
     })
   }
 
@@ -277,15 +275,15 @@ struct Index {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale1 = progress
-          this.opacity1 = progress
+          this.scale1 = progress;
+          this.opacity1 = progress;
         }
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Push) {
-          this.scale1 = 1 - progress
-          this.opacity1 = 1 - progress
+          this.scale1 = 1 - progress;
+          this.opacity1 = 1 - progress;
         }
       })
   }
@@ -293,14 +291,12 @@ struct Index {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI';
-
+// Page1.ets
 @Entry
 @Component
 struct Page1 {
-  @State scale2: number = 1
-  @State opacity2: number = 1
+  @State scale2: number = 1;
+  @State opacity2: number = 1;
 
   build() {
     Column() {
@@ -311,7 +307,7 @@ struct Page1 {
     .scale({ x: this.scale2 })
     .opacity(this.opacity2)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Index' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
     })
   }
 
@@ -319,15 +315,15 @@ struct Page1 {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale2 = progress
+          this.scale2 = progress;
         }
-        this.opacity2 = progress
+        this.opacity2 = progress;
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Pop) {
-          this.scale2 = 1 - progress
-          this.opacity2 = 1 - progress
+          this.scale2 = 1 - progress;
+          this.opacity2 = 1 - progress;
         }
       })
   }
@@ -339,16 +335,17 @@ struct Page1 {
 Method 2: Configure the entrance animation of sliding in from the left and the exit animation of translating with opacity change.
 
 ```ts
-// index.ets 
+// Index.ets 
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r("app.media.transition_image2")).width('100%').height('100%') // The image is stored in the media folder.
-      }
+      Image($r('app.media.bg1')).width('100%').height('100%') // The image is stored in the media folder.
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' });
+    })
   }
 
   // Use the default effects provided by the system, such as translation, scaling, and opacity.
@@ -365,16 +362,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Page1 {
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%') // The image is stored in the media folder.
-      }
+      Image($r('app.media.bg2')).width('100%').height('100%') // The image is stored in the media folder.
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
+    })
   }
 
   // Use the default effects provided by the system, such as translation, scaling, and opacity.
@@ -397,20 +395,18 @@ struct PageTransitionExample1 {
 Method 1: Configure the various translation effects provided, with the system language layout mode set to right-to-left (RTL).
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+struct Index {
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("Page 1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
         })
       })
         .width(200)
@@ -440,21 +436,19 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+struct Page1 {
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("Page 2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)
@@ -486,21 +480,19 @@ struct PageTransitionExample {
 Method 2: Use the system's default entrance and exit effects, with the system language layout mode set to right-to-left (RTL).
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+struct Index {
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("Page 1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
-        })
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
+        });
       })
         .width(200)
         .height(60)
@@ -516,21 +508,19 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+struct Page1 {
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("Page 2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)

@@ -17805,7 +17805,7 @@ Adds the symbol to use in the typography creation process.
 | Name                        | Description                                                  |
 | --------------------------- | ------------------------------------------------------------ |
 | OH_Drawing_TypographyCreate | Pointer to an [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) object. The pointer is obtained by calling [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler). |
-| uint32_t                    | Symbol. For details about the supported symbols, see the value in the JSON file. For details about the configurable symbols (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/). |
+| uint32_t                    | Symbol. For details about the supported symbols, see the value in the JSON file. For details about the configurable symbols (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/). |
 
 
 ### OH_Drawing_TypographyHandlerAddText()

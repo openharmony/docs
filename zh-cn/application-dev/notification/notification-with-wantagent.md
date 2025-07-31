@@ -53,7 +53,7 @@
      ],
      actionType: wantAgent.OperationType.START_ABILITY,
      requestCode: 0,
-     wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+     actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
    ```
 
@@ -72,7 +72,7 @@
      ],
      actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
-     wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+     actionFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
    ```
 
@@ -136,5 +136,5 @@
 
 ## 示例代码
 
-  - [自定义通知](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/README_zh.md)
+  - [自定义通知](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/README_zh.md)
 <!--RP1End-->

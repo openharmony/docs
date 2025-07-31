@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ShaderEffect<sup>12+</sup>
-
-着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
-
-### createComposeShader<sup>20+</sup>
+## createComposeShader<sup>20+</sup>
 
 static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: ShaderEffect, blendMode: BlendMode): ShaderEffect
 
@@ -30,15 +30,15 @@ static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: Shade
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| dstShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为目标色的着色器。 |
-| srcShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为源色的着色器。   |
+| dstShaderEffect  | [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 是   | 在混合模式中作为目标色的着色器。 |
+| srcShaderEffect  | [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 是   | 在混合模式中作为源色的着色器。   |
 | blendMode  | [BlendMode](arkts-apis-graphics-drawing-e.md#blendmode) | 是   | 混合模式。 |
 
 **返回值：**
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -58,7 +58,7 @@ let srcShader = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 let shader = drawing.ShaderEffect.createComposeShader(dstShader, srcShader, drawing.BlendMode.SRC);
 ```
 
-### createImageShader<sup>20+</sup>
+## createImageShader<sup>20+</sup>
 
 static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileMode, samplingOptions: SamplingOptions, matrix?: Matrix | null): ShaderEffect
 
@@ -80,7 +80,7 @@ static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileM
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -97,19 +97,37 @@ import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
 
-  async draw(context : DrawContext) {
+    const colorData = new Uint8Array(color);
+    for (let i = 0; i < colorData.length; i += 4) {
+      colorData[i] = 255;
+      colorData[i+1] = 156;
+      colorData[i+2] = 0;
+      colorData[i+3] = 255;
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     let matrix = new drawing.Matrix();
     let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
-    if (this.pixelMap != null) {
-      let imageShader = drawing.ShaderEffect.createImageShader(this.pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
+    if (pixelMap != null) {
+      let imageShader = drawing.ShaderEffect.createImageShader(pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
     }
   }
 }
 ```
 
-### createColorShader<sup>12+</sup>
+## createColorShader<sup>12+</sup>
 
 static createColorShader(color: number): ShaderEffect
 
@@ -127,7 +145,7 @@ static createColorShader(color: number): ShaderEffect
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回具有单一颜色的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回具有单一颜色的着色器对象。 |
 
 **错误码：**
 
@@ -145,7 +163,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let shaderEffect = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 ```
 
-### createLinearGradient<sup>12+</sup>
+## createLinearGradient<sup>12+</sup>
 
 static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -172,7 +190,7 @@ static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colo
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -192,7 +210,7 @@ let endPt: common2D.Point = { x: 300, y: 300 };
 let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-### createRadialGradient<sup>12+</sup>
+## createRadialGradient<sup>12+</sup>
 
 static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -219,7 +237,7 @@ static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Ar
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -238,7 +256,7 @@ let centerPt: common2D.Point = { x: 100, y: 100 };
 let shaderEffect = drawing.ShaderEffect.createRadialGradient(centerPt, 100, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-### createSweepGradient<sup>12+</sup>
+## createSweepGradient<sup>12+</sup>
 
 static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>, mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -266,7 +284,7 @@ static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>, mod
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -285,7 +303,7 @@ let centerPt: common2D.Point = { x: 100, y: 100 };
 let shaderEffect = drawing.ShaderEffect.createSweepGradient(centerPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT, 100, 200);
 ```
 
-### createConicalGradient<sup>12+</sup>
+## createConicalGradient<sup>12+</sup>
 
 static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt: common2D.Point, endRadius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -314,7 +332,7 @@ static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **native_avscreen_capture_errors.h** file declares the error codes generated during screen capture.
+The file declares the error codes generated during screen capture.
 
 **Library**: libnative_avscreen_capture.so
 

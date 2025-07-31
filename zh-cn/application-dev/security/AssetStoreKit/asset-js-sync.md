@@ -1,5 +1,11 @@
 # 同步（备份恢复）关键资产(ArkTS)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 新增支持同步的关键资产
 
 新增密码demo_pwd（别名demo_alias），附属信息为demo_label，支持同步的关键资产。

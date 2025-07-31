@@ -2,7 +2,7 @@
 
 ArkTS是一种设计用于构建高性能应用的编程语言。它在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
 
-许多编程语言在设计之初没有考虑到移动设备，导致应用的运行缓慢、低效、功耗大，随着移动设备在人们的日常生活中变得越来越普遍，针对移动环境的编程语言优化需求也越来越多。ArkTS是专为解决这些问题而设计的，聚焦于提高运行效率。
+许多编程语言在设计之初未考虑移动设备，导致应用运行缓慢、低效且功耗大。随着移动设备在日常生活中越来越普遍，针对移动环境的编程语言优化需求日益增加。ArkTS专为解决这些问题而设计，聚焦提高运行效率。
 
 TypeScript是在JavaScript基础上通过添加类型定义扩展而来的，ArkTS则是TypeScript的进一步扩展。TypeScript提供了一种更结构化的JavaScript编码方法，深受开发者喜爱。ArkTS保持了TypeScript的大部分语法，旨在为现有的TypeScript开发者实现无缝过渡，帮助移动开发者快速上手。
 
@@ -41,7 +41,7 @@ const hello: string = 'hello';
 
 #### 自动类型推断
 
-如果变量或常量的声明包含了初始值，开发者就不需要显式指定其类型，因为ArkTS规范中列举了所有允许自动推断类型的场景。
+如果变量或常量的声明包含初始值，开发者无需显式指定类型，因为ArkTS规范已列举了所有允许自动推断类型的场景。
 
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
 
@@ -104,7 +104,7 @@ factorial(n4)  //  9.33262154439441e+157
 ```typescript
 
 let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
-console.log('bigIntger' + bigIntger.toString());
+console.info('bigIntger' + bigIntger.toString());
 
 ```
 
@@ -120,7 +120,7 @@ let isDone: boolean = false;
 // ...
 
 if (isDone) {
-  console.log ('Done!');
+  console.info('Done!');
 }
 ```
 
@@ -214,7 +214,7 @@ animal = undefined;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
-可以用不同的机制获取联合类型中特定类型的值。
+可以使用不同机制获取联合类型中的特定类型值。
 
 示例：
 
@@ -235,7 +235,7 @@ function foo(animal: Animal) {
 
 #### `Aliases`类型
 
-`Aliases`类型为匿名类型（数组、函数、对象字面量或联合类型）提供名称，或为已有类型提供替代名称。
+`Aliases`类型为匿名类型（如数组、函数、对象字面量或联合类型）提供名称，或为已定义的类型提供替代名称。
 
 ```typescript
 type Matrix = number[][];
@@ -274,9 +274,9 @@ type NullableObject = Object | null;
     let a:Object=1;
     let b:Object='1';
     // == 只比较值相等
-    console.log(a == b); // true
+    console.info(a == b); // true
     // === 比较值和类型都相等
-    console.log(a === b); // false
+    console.info(a === b); // false
 ```
 
 
@@ -338,12 +338,12 @@ if (condition1) {
 ```typescript
 let s1 = 'Hello';
 if (s1) {
-  console.log(s1); // 打印“Hello”
+  console.info(s1); // 打印“Hello”
 }
 
 let s2 = 'World';
 if (s2.length != 0) {
-  console.log(s2); // 打印“World”
+  console.info(s2); // 打印“World”
 }
 ```
 
@@ -402,12 +402,12 @@ let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 示例：
 
 ```typescript
-    console.log('a' ? 'true' : 'false'); // true
-    console.log('' ? 'true' : 'false'); // false
-    console.log(1 ? 'true' : 'false'); // true
-    console.log(0 ? 'true' : 'false'); // false
-    console.log(null ? 'true' : 'false'); // false
-    console.log(undefined ? 'true' : 'false'); // false
+    console.info('a' ? 'true' : 'false'); // true
+    console.info('' ? 'true' : 'false'); // false
+    console.info(1 ? 'true' : 'false'); // true
+    console.info(0 ? 'true' : 'false'); // false
+    console.info(null ? 'true' : 'false'); // false
+    console.info(undefined ? 'true' : 'false'); // false
 ```
 
 #### `For`语句
@@ -426,9 +426,9 @@ for ([init]; [condition]; [update]) {
 
 1、 执行`init`表达式（如有）。此表达式通常初始化一个或多个循环计数器。  
 2、 计算`condition`。如果它为真值（转换后为`true`的值），则执行循环主体的语句。如果它为假值（转换后为`false`的值），则`for`循环终止。  
-3、 执行循环主体的语句。  
+3、 执行循环主体的语句。
 4、 如果有`update`表达式，则执行该表达式。  
-5、 回到步骤2。  
+5、 返回步骤2。
 
 示例：
 
@@ -453,7 +453,7 @@ for (forVar of IterableExpression) {
 
 ```typescript
 for (let ch of 'a string object') {
-  console.log(ch);
+  console.info(ch);
 }
 ```
 
@@ -575,9 +575,9 @@ function divide (a: number, b: number): number{
 function process (a: number, b: number) {
   try {
     let res = divide(a, b);
-    console.log('result: ' + res);
+    console.info('result: ' + res);
   } catch (x) {
-    console.log('some error');
+    console.error('some error');
   }
 }
 ```
@@ -589,7 +589,7 @@ function processData(s: string) {
   let error: Error | null = null;
 
   try {
-    console.log('Data processed: ' + s);
+    console.info('Data processed: ' + s);
     // ...
     // 可能发生异常的语句
     // ...
@@ -601,7 +601,7 @@ function processData(s: string) {
   } finally {
     // 无论是否发生异常都会执行的代码
     if (error != null) {
-      console.log(`Error caught: input='${s}', message='${error.message}'`);
+      console.error(`Error caught: input='${s}', message='${error.message}'`);
     }
   }
 }
@@ -635,9 +635,9 @@ function add(x: string, y: string): string {
 ```typescript
 function hello(name?: string) {
   if (name == undefined) {
-    console.log('Hello!');
+    console.info('Hello!');
   } else {
-    console.log(`Hello, ${name}!`);
+    console.info(`Hello, ${name}!`);
   }
 }
 ```
@@ -654,7 +654,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
+函数的最后一个参数可以是rest参数，格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -685,8 +685,8 @@ function goo() { return 'goo'; }
 以下示例中两种函数声明方式都是有效的：
 
 ```typescript
-function hi1() { console.log('hi'); }
-function hi2(): void { console.log('hi'); }
+function hi1() { console.info('hi'); }
+function hi2(): void { console.info('hi'); }
 ```
 
 ### 函数的作用域
@@ -700,7 +700,7 @@ let outerVar = 'I am outer ';
 
 function func() {
     let outerVar = 'I am inside';
-    console.log(outerVar); // 输出: I am inside
+    console.info(outerVar); // 输出: I am inside
 }
 
 func();
@@ -723,7 +723,7 @@ function join(x: string, y: string): string {
 
 ```typescript
 let x = join('hello', 'world');
-console.log(x); // 输出: hello world
+console.info(x); // 输出: hello world
 ```
 
 ### 函数类型
@@ -817,7 +817,7 @@ class Person {
 
 ```typescript
 let p = new Person('John', 'Smith');
-console.log(p.fullName());
+console.info(p.fullName());
 ```
 
 或者，可以使用对象字面量创建实例：
@@ -883,10 +883,10 @@ Person.numberOfPersons;
 
 #### 字段初始化
 
-为了减少运行时错误并提高执行性能，
-ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和标准TS中的`strictPropertyInitialization`模式一样。
+为了减少运行时错误并提升执行性能，
+ArkTS要求所有字段在声明时或构造函数中显式初始化，与标准TS的`strictPropertyInitialization`模式相同。
 
-以下代码是在ArkTS中不合法的代码。
+以下代码在ArkTS中不合法。
 
 ```typescript
 class Person {
@@ -908,7 +908,7 @@ let jack = new Person();
 jack.getName().length; // 运行时异常：name is undefined
 ```
 
-在ArkTS中，应该这样写代码。
+在ArkTS中，开发者应该这样写代码。
 
 ```typescript
 class Person {
@@ -930,7 +930,7 @@ let jack = new Person();
 jack.getName().length; // 0, 没有运行时异常
 ```
 
-接下来的代码展示了当`name`的值可以是`undefined`时，应该如何编写代码。
+接下来的代码示例展示了当`name`的值可能为`undefined`时，如何正确编写代码。
 
 ```typescript
 class Person {
@@ -1018,7 +1018,7 @@ square.calculateArea(); // 输出：100
 
 #### 静态方法
 
-使用关键字`static`将方法声明为静态。静态方法属于类本身，只能访问静态字段。
+使用关键字 `static` 声明静态方法。静态方法属于类，只能访问静态字段。
 
 静态方法定义了类作为一个整体的公共行为。
 
@@ -1030,7 +1030,7 @@ class Cl {
     return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod());
+console.info(Cl.staticMethod());
 ```
 
 #### 继承
@@ -1375,7 +1375,7 @@ class Y {
 
 接口声明引入新类型。接口是定义代码协定的常见方式。
 
-任何一个类的实例只要实现了特定接口，就可以通过该接口实现多态。
+任何类的实例，只要实现了特定接口，即可通过该接口实现多态。
 
 接口通常包含属性和方法的声明。
 
@@ -1405,7 +1405,7 @@ class RectangleSize implements AreaSize {
   private width: number = 0;
   private height: number = 0;
   someMethod(): void {
-    console.log('someMethod called');
+    console.info('someMethod called');
   }
   calculateAreaSize(): number {
     this.someMethod(); // 调用另一个方法并返回结果
@@ -1492,26 +1492,26 @@ interface MyInterface {
     static staticMethod(): void; 
 
     // 错误：接口中不能包含静态代码块
-    static { console.log("static") }; 
+    static { console.info("static") }; 
 } 
 
 abstract class MyAbstractClass {
     // 正确：抽象类可以有静态方法
-    static staticMethod(): void { console.log("static");}
+    static staticMethod(): void { console.info("static");}
 
     // 正确：抽象类可以有静态代码块
-    static { console.log("static initialization block");}
+    static { console.info("static initialization block");}
 }
 ```
 * 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
 ```typescript
 abstract class MyAbstractClass {
    // 正确：抽象类里面可以有方法的实现
-   func(): void { console.log("func");}
+   func(): void { console.info("func");}
 }
 interface MyInterface {
    // 错误：接口完全都是抽象的，不存在方法的实现
-   func(): void { console.log("func");}
+   func(): void { console.info("func");}
 }
 ```
 * 抽象类可以有构造函数，而接口不能有构造函数。
@@ -1650,7 +1650,7 @@ if (x != null) { /* do something */ }
 
 后缀运算符`!`可用于断言其操作数为非空。
 
-应用于可空类型的值时，编译时类型变为非空类型。例如，类型从`T | null`变为`T`：
+当应用于可空类型的值时，编译时类型会变为非空类型。例如，类型从`T | null`变为`T`：
 
 ```typescript
 class A {
@@ -1669,7 +1669,7 @@ function foo(a: A | null) {
 
 换句话说，`a ?? b`等价于三元运算符`(a != null && a != undefined) ? a : b`。
 
-在以下示例中，`getNick`方法返回已设置的昵称，若未设置则返回空字符串。
+在以下示例中，`getNick`方法返回已设置的昵称。如果未设置，则返回空字符串。
 
 ```typescript
 class Person {
@@ -1732,7 +1732,7 @@ p.spouse?.nick; // undefined
 
 每个模块都有其自己的作用域，即，在模块中创建的任何声明（变量、函数、类等）在该模块之外都不可见，除非它们被显式导出。
 
-与此相对，从另一个模块导出的变量、函数、类、接口等必须首先导入到模块中。
+与此相对，必须首先将另一个模块导出的变量、函数、类、接口等导入到当前模块中。
 
 ### 导出
 
@@ -1766,7 +1766,7 @@ export function Distance(p1: Point, p2: Point): number {
 
 导入绑定可以有几种形式。
 
-假设模块具有路径“./utils”和导出实体“X”和“Y”。
+假设模块的路径为“./utils”，并且导出了实体“X”和“Y”。
 
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
@@ -1819,10 +1819,10 @@ import("./Calc").then((obj: ESObject) => {
 ```typescript
 // say.ts
 export function hi() {
-  console.log('Hello');
+  console.info('Hello');
 }
 export function bye() {
-  console.log('Bye');
+  console.info('Bye');
 }
 ```
 
@@ -1844,7 +1844,7 @@ async function test() {
 
 ### 顶层语句
 
-顶层语句是指在模块的最外层直接编写的语句，这些语句不被包裹在任何函数、类、块级作用域中。顶层语句包括变量声明、函数声明、表达式等。
+顶层语句是指在模块最外层编写的语句，不被任何函数、类或块级作用域包裹。这些语句包括变量声明、函数声明和表达式。
 
 ## 关键字
 
@@ -1954,7 +1954,7 @@ class MyClass {
 * 以上常量组成的数组
 >**说明：**
 >
-> 如果枚举值不能在编译时确定，将会出现编译报错。
+> 如果枚举值不能在编译时确定，会编译报错。
 ```typescript
 // a.ts
 export enum X {
@@ -1999,7 +1999,7 @@ class Position { // 编译错误：注解的名称不能与注解定义所在作
 @interface Position {}
 type Pos = Position; // 编译错误：注解不是类型
 ```
-注解不支持在类的getter和setter方法添加，若添加注解会编译报错。
+注解不支持在类的getter和setter方法中添加，若添加注解会编译报错。
 ```typescript
 @interface ClassAuthor {
   authorName: string;
@@ -2084,7 +2084,7 @@ class C3 {
   // ...
 }
 ```
-如果不需要定义注解字段，注解名称后的括号可省略。
+如果不需要定义注解字段，可以省略注解名称后的括号。
 ```typescript
 @MyAnno
 class C4 {
@@ -2119,7 +2119,7 @@ class C {
 ```typescript
 import { MyAnno as Anno } from './a'; // 编译错误：不允许在import中对注解进行重命名
 ```
-不允许对注解使用任何其他形式的import/export，会发生编译报错。
+不允许对注解使用任何其他形式的 import/export，这会导致编译报错。
 - 由于注解不是类型，因此禁止使用`type`符号进行导入和导出。
 ```typescript
 import type { MyAnno } from './a'; // 编译错误：注解不允许使用'type'符号进行导入和导出
@@ -2258,7 +2258,7 @@ class C {
 在最终编译产物中，class C没有注解。
 
 #### 重复注解和继承
-同一个实体不能重复使用同一个注解，否则会有编译报错。
+同一个实体不能重复使用同一注解，否则会导致编译错误。
 ```typescript
 @MyAnno({name: "123", value: 456})
 @MyAnno({name: "321", value: 654}) // 编译错误：不允许重复注释
@@ -2266,10 +2266,10 @@ class C {
   // ...
 }
 ```
-子类不会继承基类的注解和基类方法的注解。
+子类不会继承基类的注解，也不会继承基类方法的注解。
 
 #### 注解和抽象类、抽象方法
-不支持对抽象类和抽象方法使用注解，否则会有编译报错。
+不支持对抽象类或抽象方法使用注解，否则将导致编译错误。
 ```typescript
 @MyAnno // 编译错误：不允许在抽象类和抽象方法上使用注解
 abstract class C {

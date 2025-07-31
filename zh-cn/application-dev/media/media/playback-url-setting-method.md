@@ -1,4 +1,9 @@
 # 使用AVPlayer设置播放URL(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 本开发指导将介绍如何使用AVPlayer开发播放功能，在不同的场景下如何设置URL。
 
 当前指导仅介绍播放URL设置方法，其他场景及完整示例代码，请参考[视频播放](video-playback.md)。
@@ -55,7 +60,7 @@
  // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段。
  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,
    {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
- // 设置播放策略，设置缓冲区数据量为20s。
+ // 设置播放策略，设置缓冲区数据量为3s。
  let playbackStrategy : media.PlaybackStrategy =
    {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
  // 为avPlayer设置媒体来源和播放策略。
@@ -179,7 +184,7 @@
 ```
 
 ## 运行完整示例
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程，下载[示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL)，并将示例工程的以下资源复制到对应目录。
     ```
     AVPlayerArkTSURL
     entry/src/main/ets/

@@ -1,5 +1,11 @@
 # 标准C++库
 
+<!--Kit: Standard Libraries-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @eric96-->
+<!--SE: @liuyingying19huawei-->
+<!--TSE: @hwu-mc-->
+
 OpenHarmony使用llvm开源项目的C++标准库[libc++](https://libcxx.llvm.org/)作为C++运行时库。
 
 ## libc++版本
@@ -12,7 +18,7 @@ OpenHarmony使用llvm开源项目的C++标准库[libc++](https://libcxx.llvm.org
 
 ## C++语言支持能力
 
-C++11、C++14标准已完全支持，C++17和C++20标准正在完善，开发者可以通过[如何修改代码工程所支持的C++语言版本](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ndk-9-V5)来设置自己开发所需C++标准版本。具体语言特性支持标准可以参考[https://libcxx.llvm.org/](https://libcxx.llvm.org/)网站对应的Release Notes。
+C++11、C++14标准已完全支持，C++17和C++20标准的部分特性已支持。开发者可以通过[如何修改代码工程所支持的C++语言版本](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ndk-9-V5)来设置自己开发所需C++标准版本。如果将C++版本设置为C++17或者C++20，但使用了不支持的特性，会导致编译失败。具体语言特性支持标准可以参考[https://libcxx.llvm.org/](https://libcxx.llvm.org/)网站对应的Release Notes。
 
 
 ## 如何在CMake中选择C++

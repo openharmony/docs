@@ -1,7 +1,7 @@
-# Ability Kit（程序框架服务）
+# Ability Kit（程序框架服务）<!--ability-api-->
 
-- ArkTS API
-  - Stage模型能力的接口
+- ArkTS API<!--ability-arkts-->
+  - Stage模型能力的接口<!--stage-model-->
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](js-apis-app-ability-abilityLifecycleCallback.md)
@@ -42,7 +42,7 @@
     - [@ohos.app.appstartup.startupManager (启动框架管理能力)](js-apis-app-appstartup-startupManager.md)
     - [@ohos.app.appstartup.StartupTask (启动框架任务)](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
-    - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.application (Application)(系统接口)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](js-apis-app-ability-autoFillManager-sys.md)
@@ -56,7 +56,7 @@
     - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
-  - FA模型能力的接口
+  - FA模型能力的接口<!--fa-model-->
     - [@ohos.ability.ability (Ability模块)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
@@ -66,8 +66,8 @@
     - [@ohos.app.ability.abilityManager (Ability信息管理)](js-apis-app-ability-abilityManager.md)
     - [@ohos.app.ability.appManager (应用管理)](js-apis-app-ability-appManager.md)
     - [@ohos.app.ability.appRecovery (应用故障恢复)](js-apis-app-ability-appRecovery.md)
-    - [@ohos.app.ability.Configuration (系统环境信息)](js-apis-app-ability-configuration.md)
-    - [@ohos.app.ability.ConfigurationConstant (系统环境信息常量)](js-apis-app-ability-configurationConstant.md)
+    - [@ohos.app.ability.Configuration (环境变量)](js-apis-app-ability-configuration.md)
+    - [@ohos.app.ability.ConfigurationConstant (环境变量相关的常量定义)](js-apis-app-ability-configurationConstant.md)
     - [@ohos.app.ability.continueManager (跨端迁移)](js-apis-app-ability-continueManager.md)
     - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
     - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
@@ -111,8 +111,8 @@
     - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (隐私管理)(系统接口)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->
-  - 接口依赖的元素及定义
-    - ability
+  - 接口依赖的元素及定义<!--ability-api-interface-depend-->
+    - ability<!--ability-->
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
       - [connectOptions](js-apis-inner-ability-connectOptions.md)
       - [dataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)
@@ -120,11 +120,11 @@
       - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
       - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
       - [want](js-apis-inner-ability-want.md)
-    - app
+    - app<!--app-->
       - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
-    - application
+    - application<!--ability-arkts-application-->
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
@@ -212,6 +212,7 @@
       - [dispatchInfo (系统接口)](js-apis-bundleManager-dispatchInfo-sys.md)
       - [LauncherAbilityResourceInfo (系统接口)](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
       - [permissionDef (系统接口)](js-apis-bundleManager-permissionDef-sys.md)
+      - [PluginBundleInfo (系统接口)](js-apis-bundleManager-pluginBundleInfo-sys.md)
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
       - [remoteAbilityInfo (系统接口)](js-apis-bundleManager-remoteAbilityInfo-sys.md)
       - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo-sys.md)

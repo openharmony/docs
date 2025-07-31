@@ -29,7 +29,7 @@
   用于扩展应用的功能或实现跨设备协同。它允许应用在后台运行某些任务，或者将部分功能迁移到其他设备上执行，从而实现分布式能力。
 * **字节流**
   
-  字节流是数据类型为[ArrayBuffer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arraybuffer-object.md)类型的数据。可以被用于存储二进制数据，例如图像或音频数据。
+  字节流是数据类型为[ArrayBuffer](../arkts-utils/arraybuffer-object.md)类型的数据。可以被用于存储二进制数据，例如图像或音频数据。
 * **传输流**
   
   可进行图片、音频、文本信息和字节流。

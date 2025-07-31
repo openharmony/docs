@@ -33,7 +33,7 @@
   1. 安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在5.0及以上。
   2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->。
   3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
-  4. 打开设备A和设备B的Wifi并连接到同一个接入点上，互相识别，连接并组网。连接组网的具体操作可参见[创建会话并连接](abilityconnectmanager-guidelines.md#应用间创建会话并进行连接)。
+  4. 打开设备A和设备B的Wifi并连接到同一个接入点上，互相识别，连接并组网。连接组网的具体操作可参见[创建会话并连接](abilityconnectmanager-guidelines.md#开发步骤)。
 
 
 ### 检验环境是否搭建成功
@@ -61,14 +61,14 @@
 
 ### 开发步骤
 
-#### 导入相机和多媒体等模块文件
+**导入相机和多媒体等模块文件**
 
    ```ts
   import { camera } from '@kit.CameraKit';
   import { media } from '@kit.MediaKit';
    ```
 
-#### 赋予应用访问权限
+**赋予应用访问权限**
 
   应用需申请权限，包括但不限于下列权限类型：
   - 图片和视频  ohos.permission.MEDIA_LOCATION
@@ -95,9 +95,9 @@
   ```
 
 
-#### 启动分布式相机预览流及拍照流
+**启动分布式相机预览流及拍照流**
 
-#####  1. 获取远端设备相机信息
+**1. 获取远端设备相机信息**
 
   应用组网成功后，需获取远端设备信息，通过getCameraManager()方法获取相机管理器实例，getSupportedCameras()方法获取支持指定的相机设备对象。
 
@@ -142,7 +142,7 @@
   }
   ```
 
-#####  2. 创建CameraInput实例
+**2. 创建CameraInput实例**
 
   获取相机管理器实例和支持指定的相机设备对象后，通过createCameraInput()方法创建CameraInput实例。
 
@@ -169,7 +169,7 @@
   }
   ```
 
-#####  3. 获取预览输出对象
+**3. 获取预览输出对象**
 
   通过createPreviewOutput()方法创建预览输出对象。
 
@@ -204,7 +204,7 @@
   ```
 
 
-#####  4. 获取拍照输出对象
+**4. 获取拍照输出对象**
 
   通过createPhotoOutput()方法创建拍照输出对象，通过createImageReceiver()方法创建ImageReceiver实例。
 
@@ -283,9 +283,9 @@
     }
   ```
 
-#####  5. 创建CaptureSession实例
+**5. 创建CaptureSession实例**
 
-  通过createCaptureSession()方法创建CaptureSession实例。调用beginConfig()方法开始配置会话，使用addInput()和addOutput()方法将CameraInput()和CameraOutput()加入到会话，最后调用commitConfig()方法提交配置信息，通过Promise获取结果。
+通过createCaptureSession()方法创建CaptureSession实例。调用beginConfig()方法开始配置会话，使用addInput()和addOutput()方法将CameraInput()和CameraOutput()加入到会话，最后调用commitConfig()方法提交配置信息，通过Promise获取结果。
 
   ```ts
   private captureSession?: camera.CaptureSession;
@@ -325,7 +325,7 @@
   }
   ```
 
-##### 6. 开启会话工作
+**6. 开启会话工作**
 
   通过CaptureSession实例上的start()方法开始会话工作，通过Promise获取结果。
 
@@ -343,7 +343,7 @@
   }
   ```
 
-#### 释放分布式相机资源
+**释放分布式相机资源**
 
   业务协同完毕后需及时结束协同状态，释放分布式相机资源。
 

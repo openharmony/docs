@@ -1,4 +1,9 @@
 # 使用Node-API接口进行array相关开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -64,7 +69,7 @@ static napi_value CreateArray(napi_env env, napi_callback_info info)
     return jsArray;
 }
 ```
-<!-- @[napi_create_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -72,17 +77,17 @@ static napi_value CreateArray(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createArray: () => number[];
 ```
-<!-- @[napi_create_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_array_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
 ```
-<!-- @[ark_napi_create_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_array_with_length
 
@@ -109,7 +114,7 @@ static napi_value CreateArrayWithLength(napi_env env, napi_callback_info info)
     return jsArray;
 }
 ```
-<!-- @[napi_create_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_array_with_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -117,18 +122,18 @@ static napi_value CreateArrayWithLength(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createArrayWithLength: (length: number) => void[];
 ```
-<!-- @[napi_create_array_with_length_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_array_with_length_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let array = testNapi.createArrayWithLength(6);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{public}d', array.length);
 ```
-<!-- @[ark_napi_create_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_array_with_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_array_length
 
@@ -160,7 +165,7 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_array_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_array_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -168,18 +173,18 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getArrayLength: (arr: Array<any>) => number | undefined;
 ```
-<!-- @[napi_get_array_length_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_array_length_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const arr = [0, 1, 2, 3, 4, 5];
 hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testNapi.getArrayLength(arr));
 ```
-<!-- @[ark_napi_get_array_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_array_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_is_array
 
@@ -211,7 +216,7 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_is_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -219,12 +224,12 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isArray: <T>(data: Array<T> | T) => boolean | undefined;
 ```
-<!-- @[napi_is_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_array_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new Array<number>(1);
@@ -235,7 +240,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_array error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_is_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_set_element
 
@@ -271,19 +276,19 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
-<!-- @[napi_set_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_set_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void;
 ```
-<!-- @[napi_set_element_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_set_element_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let arr = [10, 20, 30];
 testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
@@ -302,7 +307,7 @@ testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
 let objAsString = JSON.stringify(arr[4]);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
 ```
-<!-- @[ark_napi_set_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_set_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_element
 
@@ -329,7 +334,7 @@ static napi_value NapiGetElement(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -337,12 +342,12 @@ static napi_value NapiGetElement(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiGetElement: <T>(arr: Array<T>, index: number) => number | string | Object | boolean | undefined;
 ```
-<!-- @[napi_get_element_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_element_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 interface MyObject {
@@ -361,7 +366,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[3]: %{public}s
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[4]: %{public}s', JSON.stringify(testNapi.napiGetElement(arr, 4)));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[null]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 5));
 ```
-<!-- @[ark_napi_get_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_has_element
 
@@ -390,7 +395,7 @@ static napi_value NapiHasElement(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_has_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_has_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -398,19 +403,19 @@ static napi_value NapiHasElement(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ```
-<!-- @[napi_has_element_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_has_element_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[7]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 7));
 ```
-<!-- @[ark_napi_has_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_has_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_delete_element
 
@@ -439,7 +444,7 @@ static napi_value NapiDeleteElement(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_delete_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_delete_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -447,13 +452,13 @@ static napi_value NapiDeleteElement(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiDeleteElement: <T>(arr: Array<T>, index: number) => boolean;
 ```
-<!-- @[napi_delete_element_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_delete_element_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
 // 需要同时导入前文示例代码中的napiHasElement、napiGetElement接口
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
@@ -462,7 +467,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_element arr[0]: %{publi
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element deleted arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[0]: %{public}d', testNapi.napiGetElement<number | string | null>(arr, 0));
 ```
-<!-- @[ark_napi_delete_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_delete_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_typedarray
 
@@ -486,7 +491,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     size_t elementSize = 0;
     // 根据传递的类型值选择创建对应的类型数组
     arrayType = static_cast<napi_typedarray_type>(typeNum);
-        switch (typeNum) {
+    switch (typeNum) {
     case napi_int8_array:
     case napi_uint8_array:
     case napi_uint8_clamped_array:
@@ -527,7 +532,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     return typedArray;
 }
 ```
-<!-- @[napi_create_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_typed_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -548,12 +553,12 @@ export const enum TypedArrayTypes {
 }
 export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ```
-<!-- @[napi_create_typed_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_typed_array_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传递要创建的类型值
@@ -566,7 +571,7 @@ if (uint8Array instanceof Uint8Array) {
     hilog.info(0x0000, 'testTag', ' Node-API napi_create_typedarray: Uint8Array');
 }
 ```
-<!-- @[ark_napi_create_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_typed_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 需要对use-napi-process.md中的模块初始化部分进行修改，具体见如下：
 
@@ -598,7 +603,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 
 ```
-<!-- @[change_use_napi_process](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[change_use_napi_process](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 ### napi_is_typedarray
 
@@ -630,7 +635,7 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_is_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_typed_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -638,12 +643,12 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isTypedarray: (data: Object) => boolean | undefined;
 ```
-<!-- @[napi_is_typed_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_typed_array_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
@@ -654,7 +659,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_is_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_typed_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_typedarray_info
 
@@ -713,7 +718,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_typed_array_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_typed_array_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -721,12 +726,12 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuffer | number | boolean;
 ```
-<!-- @[napi_get_typed_array_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_typed_array_info_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
@@ -747,7 +752,7 @@ hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', tes
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
 ```
-<!-- @[ark_napi_get_typed_array_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_typed_array_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_dataview
 
@@ -791,7 +796,7 @@ static napi_value CreateDataView(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_data_view](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_data_view](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -799,12 +804,12 @@ static napi_value CreateDataView(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined;
 ```
-<!-- @[napi_create_data_view_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_data_view_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const arrayBuffer = new ArrayBuffer(16);
@@ -812,7 +817,7 @@ const dataView = testNapi.createDataView(arrayBuffer) as DataView;
 hilog.info(0x0000, 'testTag', 'Test Node-API dataView：%{public}d', dataView.byteLength);
 hilog.info(0x0000, 'testTag', 'Test Node-API dataView第一个数据：%{public}d', dataView.getInt8(0));
 ```
-<!-- @[ark_napi_create_data_view](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_data_view](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_is_dataview
 
@@ -845,7 +850,7 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_is_data_view](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_data_view](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -853,12 +858,12 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isDataView: (date: DataView | string) => boolean | undefined;
 ```
-<!-- @[napi_is_data_view_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_data_view_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let buffer = new ArrayBuffer(16);
@@ -870,7 +875,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_dataview error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_is_data_view](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_data_view](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_dataview_info
 
@@ -922,7 +927,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_data_view_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_data_view_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -930,12 +935,12 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuffer | number;
 ```
-<!-- @[napi_get_data_view_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_data_view_info_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 创建一个ArrayBuffer
@@ -958,7 +963,7 @@ hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.t
 // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
 hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
 ```
-<!-- @[ark_napi_get_data_view_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_data_view_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArray/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
@@ -966,5 +971,5 @@ hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNa
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

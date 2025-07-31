@@ -1,5 +1,11 @@
 # 认证过程中取消认证
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 统一用户认证框架提供了cancel接口，当应用在认证过程中，需要取消认证时可调用该接口。
 
 ## 接口说明
