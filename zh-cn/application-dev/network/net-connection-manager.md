@@ -119,7 +119,7 @@ netConnection.on('netAvailable', (data: connection.NetHandle) => {
 
 <!--RP1End-->
 
-#### 原网络连接使用Socket模块建立连接
+1. 原网络连接使用Socket模块建立连接
 ```ts
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -183,9 +183,9 @@ function socketTest() {
 }
 ```
 
-#### 原网络连接使用Socket Library建立网络连接
+2. 原网络连接使用Socket Library建立网络连接
 
-监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
+   监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 
 ## 获取所有注册的网络
 
