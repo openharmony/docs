@@ -576,7 +576,7 @@ export default class EntryAbility extends UIAbility {
         vector: true
       };
       try {
-        const context = this.context.createAreaModeContext(contextConstant.AreaMode.EL3);
+        const context = this.context.getApplicationContext().createAreaModeContext(contextConstant.AreaMode.EL3);
         const rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
         console.info('Get RdbStore successfully.');
         store = rdbStore;
