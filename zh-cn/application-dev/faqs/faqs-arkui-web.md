@@ -419,4 +419,4 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[JSVM](../reference/common/_j_s_v_m.md)
+[JSVM](../reference/common/capi-jsvm.md)

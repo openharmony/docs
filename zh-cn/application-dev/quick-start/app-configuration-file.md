@@ -61,8 +61,8 @@ app.json5配置文件包含以下标签。
 | bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。命名规则如下&nbsp;：<br/>-&nbsp;必须为以点号（.）分隔的字符串，且至少包含三段，每段中仅允许使用英文字母、数字、下划线（_）。<br/>-&nbsp;首段以英文字母开头，非首段以数字或英文字母开头，每一段以数字或者英文字母结尾。<br/>-&nbsp;不允许多个点号（.）连续出现。<br/>-&nbsp;字符串最小长度为7字节，最大长度128字节。<br/>-&nbsp;推荐采用反域名形式命名（如“com.example.demo”，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。<br/>对于随系统源码编译的应用，建议命名为“com.ohos.demo”形式，其中的ohos标识系统应用。 | 字符串 | 该标签不可缺省。 |
 | bundleType| 标识应用的Bundle类型，用于区分应用或者原子化服务。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，预留字段。<!--Del--><br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅供系统应用使用。<!--DelEnd--><br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该字段。 | 字符串| 该标签可缺省，缺省值为app。 |
 | debug | 标识应用是否可调试。<br/>-&nbsp;true：可调试，一般用于开发阶段。<br/>-&nbsp;false：不可调试，一般用于发布阶段。 | 布尔值 | 由DevEco Studio编译构建时生成。该标签可缺省，缺省值为false。 |
-| [icon](#icon标签) | 标识[应用的图标](../application-models/application-component-configuration-stage.md)，取值为图标资源文件的索引。 | 字符串 | 该标签不可缺省。 |
-| label | 标识[应用的名称](../application-models/application-component-configuration-stage.md)，取值为字符串资源的索引，字符串长度不超过63字节。 | 字符串 | 该标签不可缺省。 |
+| icon | 标识应用的图标，取值为图标资源文件的索引。支持配置单层图标和分层图标，配置规则和示例请参考[配置应用图标和名称](layered-image.md)。 | 字符串 | 该标签不可缺省。 |
+| label | 标识应用的名称，取值为字符串资源的索引，以支持多语言，字符串长度不超过63字节，具体请参考[配置应用图标和名称](layered-image.md) 。 | 字符串 | 该标签不可缺省。 |
 | description | 标识应用的描述信息，取值为长度不超过255字节的字符串，内容为描述信息的字符串资源索引。该字段可用于应用信息展示，如在应用的关于页面，取该字段展示应用描述信息。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | vendor | 标识对应用开发厂商的描述，取值为长度不超过255字节的字符串。该字段可用于展示开发厂商信息，如在应用的关于页面，取该字段展示开发厂商信息。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | versionCode | 标识应用的版本号，取值为小于2^31次方的正整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。<br/>开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。 | 数值 | 该标签不可缺省。 |
@@ -94,38 +94,6 @@ app.json5配置文件包含以下标签。
 | assetAccessGroups | 配置应用的Group ID，它和Developer ID一起组成群组信息。<br/>打包HAP时，DevEco使用开发者证书对群组信息签名，其中群组信息由Developer ID（由应用市场分配）+ Group ID（开发者配置）组成。<br/>**说明：** <br/>从API version 18开始，支持该字段。| 字符串数组 | 该标签可缺省，缺省值为空。 |
 | appPreloadPhase | 配置应用预加载到不同阶段。支持的取值如下：<br/>-processCreated：预加载到进程创建完成阶段。<br/>-abilityStageCreated：预加载到[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)创建完成阶段。<br/>-windowStageCreated：预加载到[WindowStage](../reference/apis-arkui/arkts-apis-window-WindowStage.md)创建完成阶段。<br/>**说明：** <br/>从API version 20开始，支持该字段。<br>仅在[应用](../reference/apis-ability-kit/js-apis-bundleManager.md#bundletype)的entry模块配置有效。| 字符串| 该标签可缺省，缺省时不进行预加载。 |
 | [startMode](../application-models/application-component-configuration-stage.md#应用启动模式配置) | 配置应用的启动模式，支持的取值如下：<br/>-&nbsp;mainTask：主任务模式，表示图标启动后打开主UIAbility。<br/>-&nbsp;recentTask：最近任务模式，表示图标启动后打开最近使用的UIAbility。<br/>**说明：**<br/>从API version 20开始，支持该字段。<br/>仅在launchType为[单实例模式](../application-models/uiability-launch-type.md#singleton启动模式)时生效。<br/>该字段仅支持phone和tablet设备(不包含自由多窗)。 | 字符串 | 该标签可缺省，缺省值为mainTask。 |
-
-## icon标签
-
-此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)和对分层图标配置文件的索引。
-
-分层图标的配置方式如下：
-
-1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下，或使用目录下默认存放的前景资源和背景资源。
-
-2. 上述media目录下存在一个分层图标配置文件（layered_image.json），在文件中引用前景资源和背景资源，详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
-
-分层图标配置文件示例：
-
-```json
-{
-  "layered-image"：
-    {
-      "background":"$media:background", //背景资源
-      "foreground":"$media:foreground" //前景资源 
-    }    
-}
-```
-
-icon标签示例：
-
-```json
-{
-  "app":{
-    "icon":"$media:layered_image"
-  }
-}
-```
 
 ## appEnvironments标签
 
@@ -179,7 +147,7 @@ multiAppMode标签示例：
 
 ## configuration标签
 
-该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。
+该标签对应一个profile文件资源，对应文件用于配置应用字体大小是否跟随系统变更。
 
 configuration标签示例：
 
@@ -191,7 +159,7 @@ configuration标签示例：
 }
 ```
 
-在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的文件资源对应。配置文件中列举了设置当前应用字体大小跟随系统变化所需要的属性。
 
    **表4** configuration标签说明
 

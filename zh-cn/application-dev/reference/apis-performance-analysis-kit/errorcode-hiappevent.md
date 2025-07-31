@@ -309,3 +309,22 @@ Invalid size value.
 **处理步骤**
 
 传入自然数值的事件包大小。
+
+## 11105001 非法的参数值
+
+**错误信息**
+
+Invalid parameter value. Possible causes: 1. Incorrect parameter length; 2. Incorrect parameter format.
+
+**错误描述**
+
+在调用hiAppEvent接口进行传参时，由于传入了非法的参数值，系统将忽略此次设置。
+
+**可能原因**
+
+- 传入的参数长度不符合规格。
+- 传入的参数格式不符合规格。
+
+**处理步骤**
+
+传入符合规格的参数值。

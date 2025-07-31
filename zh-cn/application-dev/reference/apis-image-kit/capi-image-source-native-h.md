@@ -72,7 +72,6 @@
 | [Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSourceNative *source,OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap)](#oh_imagesourcenative_createpixelmapusingallocator) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br> 默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 |
 | [Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options,OH_PixelmapNative *resVecPixMap[], size_t size)](#oh_imagesourcenative_createpixelmaplist) | 通过图片解码参数创建OH_PixelmapNative数组。<br> 注意，此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。 |
 | [Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source, OH_DecodingOptionsForPicture *options,OH_PictureNative **picture)](#oh_imagesourcenative_createpicture) | 通过图片解码创建OH_PictureNative指针。 |
-| [Image_ErrorCode OH_ImageSourceNative_CreatePictureAtIndex(OH_ImageSourceNative *source, uint32_t index,OH_PictureNative **picture)](#oh_imagesourcenative_createpictureatindex) | 通过指定序号的图片解码创建OH_PictureNative指针。 |
 | [Image_ErrorCode OH_ImageSourceNative_GetDelayTimeList(OH_ImageSourceNative *source, int32_t *delayTimeList, size_t size)](#oh_imagesourcenative_getdelaytimelist) | 获取图像延迟时间数组。 |
 | [Image_ErrorCode OH_ImageSourceNative_GetImageInfo(OH_ImageSourceNative *source, int32_t index,OH_ImageSource_Info *info)](#oh_imagesourcenative_getimageinfo) | 获取指定序号的图片信息。 |
 | [Image_ErrorCode OH_ImageSourceNative_GetImageProperty(OH_ImageSourceNative *source, Image_String *key,Image_String *value)](#oh_imagesourcenative_getimageproperty) | 获取图片指定属性键的值。 |
@@ -940,7 +939,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
 
 | 参数项 | 描述 |
 | -- | -- |
-| [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) *rawFile | 指示raw文件的文件描述符。 |
+| [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) *rawFile | 指示raw文件的文件描述符。 |
 | [OH_ImageSourceNative](capi-image-imagesourcenative-.md) **res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 |
 
 **返回：**
@@ -1058,33 +1057,6 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 | 类型 | 说明 |
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。 <br>         IMAGE_BAD_PARAMETER：参数错误。<br>         IMAGE_DECODE_FAILED：解码失败。 |
-
-### OH_ImageSourceNative_CreatePictureAtIndex()
-
-```
-Image_ErrorCode OH_ImageSourceNative_CreatePictureAtIndex(OH_ImageSourceNative *source, uint32_t index,OH_PictureNative **picture)
-```
-
-**描述**
-
-通过指定序号的图片解码创建OH_PictureNative指针。
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_ImageSourceNative](capi-image-nativemodule-oh-imagesourcenative.md) *source | 被操作的OH_ImageSourceNative指针。 |
-| uint32_t index | 解码图片序号。 |
-| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) **picture | 指向c++本地层创建的OH_PictureNative对象的指针。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_SOURCE：数据源异常。<br>         IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE：不支持的MIME类型。<br>         IMAGE_SOURCE_TOO_LARGE：图像过大。<br>         IMAGE_SOURCE_UNSUPPORTED_OPTIONS：不支持的选项。例如，无效的图片序号。<br>         IMAGE_DECODE_FAILED：解码失败。 |
 
 ### OH_ImageSourceNative_GetDelayTimeList()
 

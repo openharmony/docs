@@ -1,12 +1,12 @@
 # 使用JSVM-API实现JS与C/C++语言交互开发流程
 
-使用JSVM-API实现跨语言交互，首先需要按照JSVM-API的机制实现模块的注册和加载等相关动作。
+使用JSVM-API实现跨语言交互，首先需按其机制注册和加载模块。
 
 - ArkTS/JS侧：实现C++方法的调用。代码比较简单，import一个对应的so库后，即可调用C++方法。
 
 - Native侧：.cpp文件，实现模块的注册。需要提供注册lib库的名称，并在注册回调方法中定义接口的映射关系，即Native方法及对应的JS/ArkTS接口名称等。
 
-此处以在ArkTS/JS侧实现RunJsVm()接口、在Native侧实现RunJsVm()接口，从而实现跨语言交互为例，呈现使用JSVM-API进行跨语言交互的流程。
+此处以在ArkTS/JS侧和Native侧实现RunJsVm()接口实现跨语言交互为例，展示使用JSVM-API进行跨语言交互的流程。
 
 ## 创建Native C++工程
 
@@ -22,7 +22,7 @@
   // entry/src/main/cpp/types/libentry/index.d.ts
   export const runTest: () => void;
   ```
-  <!-- @[export_native](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+  <!-- @[export_native](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
@@ -206,7 +206,7 @@
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
-  <!-- @[oh_jsvm_process](K3278code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/hello.cpp) -->
+  <!-- @[oh_jsvm_process](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/cpp/hello.cpp) -->
   
 ## ArkTS侧调用C/C++方法实现
 
@@ -237,7 +237,7 @@ struct Index {
   }
 }
 ```
-<!-- @[call_native_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[call_native_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/ets/pages/Index.ets) -->
 
 预期输出结果
 ```ts

@@ -4,9 +4,9 @@
 
 定义对称密钥加密API。
 
-**库：** libohcrypto.so
-
 **引用文件：** <CryptoArchitectureKit/crypto_sym_cipher.h>
+
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -20,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) | OH_CryptoSymCipher | 定义对称加解密结构体。 |
-| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) | OH_CryptoSymCipherParams | 定义对称加解密参数结构体。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) | OH_CryptoSymCipher | 定义对称加解密结构体。 |
+| [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md) | OH_CryptoSymCipherParams | 定义对称加解密参数结构体。 |
 
 ### 枚举
 
@@ -59,9 +59,9 @@ enum CryptoSymCipher_ParamsType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| CRYPTO_IV_DATABLOB = 100 | 加解密参数iv。 |
-| CRYPTO_AAD_DATABLOB = 101 | 加解密参数aad。 |
-| CRYPTO_TAG_DATABLOB = 102 | 加解密参数authTag。 |
+| CRYPTO_IV_DATABLOB = 100 | 表示iv等参数。 |
+| CRYPTO_AAD_DATABLOB = 101 | 表示GCM模式下的附加认证数据。 |
+| CRYPTO_TAG_DATABLOB = 102 | 表示加密操作的输出标签,用于完整性检查。 |
 
 
 ## 函数说明
@@ -83,13 +83,13 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **par
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) **params | 指向对称加解密参数实例的指针。 |
+| [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md) **params | 指向对称加解密参数实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSymCipherParams_SetParam()
 
@@ -108,7 +108,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *pa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
+| [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
 | [CryptoSymCipher_ParamsType](#cryptosymcipher_paramstype) paramsType | 设置对称密钥加解密参数类型。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value | 设置的参数值。 |
 
@@ -116,7 +116,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *pa
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSymCipherParams_Destroy()
 
@@ -135,7 +135,7 @@ void OH_CryptoSymCipherParams_Destroy(OH_CryptoSymCipherParams *params)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
+| [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
 
 ### OH_CryptoSymCipher_Create()
 
@@ -154,14 +154,14 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCi
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | algoName 用于生成加密实例的算法名称。<br>例如"AES128\|GCM\|PKCS7"。 |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) **ctx | 指向对称密钥加密实例的指针。 |
+| const char *algoName | 用于生成加密实例的算法名称。<br> 例如"AES128\|GCM\|PKCS7"。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) **ctx | 指向对称密钥加密实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSymCipher_Init()
 
@@ -180,20 +180,23 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_Cipher
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
 | [Crypto_CipherMode](capi-crypto-common-h.md#crypto_ciphermode) mod | 加解密模式。 |
-| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) *key | 对称密钥。 |
-| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥参数实例。 |
+| [OH_CryptoSymKey](capi-cryptosymkeyapi-oh-cryptosymkey.md) *key | 对称密钥。 |
+| [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥参数实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSymCipher_Update](#oh_cryptosymcipher_update)
+
 [OH_CryptoSymCipher_Final](#oh_cryptosymcipher_final)
+
 
 ### OH_CryptoSymCipher_Update()
 
@@ -212,7 +215,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_Data
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 加密或者解密的数据。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 更新的结果。 |
 
@@ -220,11 +223,14 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_Data
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSymCipher_Init](#oh_cryptosymcipher_init)
+
 [OH_CryptoSymCipher_Final](#oh_cryptosymcipher_final)
+
 
 ### OH_CryptoSymCipher_Final()
 
@@ -243,7 +249,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 要加密或解密的数据。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 返回剩余数据的加/解密结果。 |
 
@@ -251,11 +257,14 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSymCipher_Init](#oh_cryptosymcipher_init)
+
 [OH_CryptoSymCipher_Update](#oh_cryptosymcipher_update)
+
 
 ### OH_CryptoSymCipher_GetAlgoName()
 
@@ -274,13 +283,13 @@ const char *OH_CryptoSymCipher_GetAlgoName(OH_CryptoSymCipher *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| const char | 返回对称密钥加密算法名称。 |
+| const char * | 返回对称密钥加密算法名称。 |
 
 ### OH_CryptoSymCipher_Destroy()
 
@@ -299,6 +308,6 @@ void OH_CryptoSymCipher_Destroy(OH_CryptoSymCipher *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
 
 

@@ -29,9 +29,14 @@ Web组件能够实现在不同窗口的组件树上进行挂载或移除操作�
 import { createNWeb } from "../pages/common"
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+      return;
+    }
     // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-    createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-    if (err.code) {
+    createNWeb("https://www.example.com", windowClass.getUIContext());
+    if (err && err.code) {
       return;
     }
   });
@@ -48,7 +53,7 @@ import { webview } from '@kit.ArkWeb';
 // Data为入参封装类
 class Data{
   url: ResourceStr = "https://www.example.com";
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 
 @Builder
@@ -93,7 +98,7 @@ export class myNodeController extends NodeController {
 
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
-  initWeb(url:ResourceStr, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -107,7 +112,7 @@ export class myNodeController extends NodeController {
 // 创建Map保存所需要的NodeController
 let NodeMap:Map<ResourceStr, myNodeController | undefined> = new Map();
 // 创建Map保存所需要的WebViewController
-let controllerMap:Map<ResourceStr, WebviewController | undefined> = new Map();
+let controllerMap:Map<ResourceStr, webview.WebviewController | undefined> = new Map();
 
 // 初始化需要UIContext，需在Ability获取
 export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
@@ -155,10 +160,9 @@ struct Index {
 > **说明：**
 >
 > 仅在采用单渲染进程模式的应用中，即全局共享一个Web渲染进程时，优化效果显著。Web渲染进程仅在所有Web组件都被销毁后才会终止。因此，建议应用至少保持一个Web组件处于活动状态。
+> 创建额外的Web组件会产生内存开销。
 
 示例在onWindowStageCreate时预创建Web组件加载blank页面，提前启动Render进程，从index跳转到index2时，优化了Web渲染进程启动和初始化的耗时。
-
-由于创建额外的Web组件会产生内存开销，建议在此方案的基础上复用该Web组件。
 
 ```ts
 // 载体Ability
@@ -166,9 +170,14 @@ struct Index {
 import { createNWeb } from "../pages/common"
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+      return;
+    }
     // 创建空的Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-    createNWeb("about：blank", windowStage.getMainWindowSync().getUIContext());
-    if (err.code) {
+    createNWeb("about:blank", windowClass.getUIContext());
+    if (err && err.code) {
       return;
     }
   });
@@ -185,7 +194,7 @@ import { webview } from '@kit.ArkWeb';
 // Data为入参封装类
 class Data{
   url: ResourceStr = "https://www.example.com";
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 
 @Builder
@@ -230,7 +239,7 @@ export class myNodeController extends NodeController {
 
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
-  initWeb(url:ResourceStr, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -244,13 +253,13 @@ export class myNodeController extends NodeController {
 // 创建Map保存所需要的NodeController
 let NodeMap:Map<ResourceStr, myNodeController | undefined> = new Map();
 // 创建Map保存所需要的WebViewController
-let controllerMap:Map<ResourceStr, WebviewController | undefined> = new Map();
+let controllerMap:Map<ResourceStr, webview.WebviewController | undefined> = new Map();
 
 // 初始化需要UIContext 需在Ability获取
 export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
   // 创建NodeController
   let baseNode = new myNodeController();
-  let controller = new webview.WebviewController() ;
+  let controller = new webview.WebviewController();
   // 初始化自定义Web组件
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller)
@@ -329,9 +338,14 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
+      let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+      if (!windowClass) {
+        console.info('windowClass is null');
+        return;
+      }
       // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-      createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-      if (err.code) {
+      createNWeb("https://www.example.com", windowClass.getUIContext());
+      if (err && err.code) {
         return;
       }
     });
@@ -349,7 +363,7 @@ import { NodeController, BuilderNode, Size, FrameNode }  from '@kit.ArkUI';
 // Data为入参封装类
 class Data{
   url: string = 'https://www.example.com';
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染
 let shouldInactive: boolean = true;
@@ -404,7 +418,7 @@ export class myNodeController extends NodeController {
   }
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
-  initWeb(url:string, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:string, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -418,7 +432,7 @@ export class myNodeController extends NodeController {
 // 创建Map保存所需要的NodeController
 let NodeMap:Map<string, myNodeController | undefined> = new Map();
 // 创建Map保存所需要的WebViewController
-let controllerMap:Map<string, WebviewController | undefined> = new Map();
+let controllerMap:Map<string, webview.WebviewController | undefined> = new Map();
 // 初始化需要UIContext 需在Ability获取
 export const createNWeb = (url: string, uiContext: UIContext) => {
   // 创建NodeController

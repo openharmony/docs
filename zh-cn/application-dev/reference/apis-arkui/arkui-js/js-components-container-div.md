@@ -274,7 +274,7 @@
        top:0,
      },
      dragstart(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Start to be dragged'
        })
      },

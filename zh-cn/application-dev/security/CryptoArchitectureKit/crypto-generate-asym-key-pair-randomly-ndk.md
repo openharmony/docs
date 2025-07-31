@@ -103,6 +103,7 @@ static OH_Crypto_ErrCode randomGenerateSm2KeyPair()
         return ret;
     }
 
+    OH_Crypto_FreeDataBlob(&retBlob);
     OH_CryptoAsymKeyGenerator_Destroy(ctx);
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;

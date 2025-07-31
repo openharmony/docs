@@ -268,7 +268,7 @@ export default {
     },
 
     onInit() {
-        this.createPixelMap
+        this.createPixelMap()
     },
 
     dragStart(e) {

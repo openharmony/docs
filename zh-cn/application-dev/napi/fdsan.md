@@ -2,7 +2,7 @@
 
 ## 1. 功能介绍
 
-fdsan针对的操作对象是文件描述符，主要用于检测不同使用者对相同文件描述符的错误操作，包括多次关闭（double-close）和关闭后使用（use-after-close)。这些文件描述符可以是操作系统中的文件、目录、网络套接字和其他I/O设备等，在程序中，打开文件或套接字会生成一个文件描述符，如果此文件描述符在使用后出现反复关闭、或者关闭后使用等场景，就会造成内存泄露、文件句柄泄露等安全隐患问题。该类问题非常隐蔽，且难以排查，为了更好地检测此类问题，因此引入了此种针对文件描述符错误操作的检测工具fdsan。
+fdsan主要用于检测不同使用者对相同文件描述符的错误操作，如多次关闭（double-close）和关闭后使用（use-after-close）。这些文件描述符可以是操作系统中的文件、目录、网络套接字或其他I/O设备等。在程序中，打开文件或套接字会生成一个文件描述符。如果此文件描述符在使用后出现反复关闭或关闭后使用等情形，会导致内存泄露或文件句柄泄露等安全隐患。这类问题非常隐蔽，难以排查。为此，引入了fdsan这种检测工具。
 
 ## 2. 实现原理
 
@@ -10,9 +10,9 @@ fdsan针对的操作对象是文件描述符，主要用于检测不同使用者
 
 tag由两部分组成，最高位的8-bit构成type，后面的56-bit构成value。
 
-type，标识fd通过何种封装形式进行管理，例如 `FDSAN_OWNER_TYPE_FILE`就表示fd通过普通文件进行管理，type类型在 `fdsan_owner_type`进行定义。
+type标识fd通过何种封装形式进行管理，例如`FDSAN_OWNER_TYPE_FILE`表示fd通过普通文件进行管理。类型在`fdsan_owner_type`中定义。
 
-value，则用于标识实际的owner tag。
+value用于标识实际的owner tag。
 
  tag构成图示
 
@@ -77,9 +77,9 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 ```
 **描述：** 修改文件描述符的关闭tag。
 
-通过fd所以找到对应的FdEntry，判断close_tag值与expected_tag是否一致，一致说明符合预期，可以用new_tag值重新设定对应的FdEntry。
+通过fd找到对应的FdEntry，判断close_tag值与expected_tag是否一致。如果一致，说明符合预期，可以使用new_tag值重新设定对应的FdEntry。
 
-如果不符合，则说明检测到了异常，后续则进行对应的异常处理。
+如果不符合，说明检测到异常，后续进行对应的异常处理。
 
 **参数：**
 
@@ -98,7 +98,7 @@ int fdsan_close_with_tag(int fd, uint64_t tag);
 ```
 **描述：** 根据tag描述符关闭文件描述符。
 
-通过fd找到匹配的FdEntry。如果close_tag与tag相同，则符合预期，可以继续执行文件描述符关闭流程，否则意味着检测到异常。
+通过fd找到匹配的FdEntry。如果close_tag与tag相同，则符合预期，可以继续执行文件描述符关闭流程；否则，表示检测到异常。
 
 **参数：**
 
@@ -115,7 +115,7 @@ uint64_t fdsan_get_owner_tag(int fd);
 ```
 **描述：** 根据文件描述符获取tag信息。
 
-通过fd找到匹配的FdEntry，并获取其对应的close_tag。
+通过fd找到匹配的FdEntry，并获取其close_tag。
 
 **参数：**
 
@@ -131,7 +131,7 @@ const char* fdsan_get_tag_type(uint64_t tag);
 ```
 **描述：** 根据tag计算出对应的type类型。
 
-通过获取到的tag信息，通过计算获取对应tag中的type信息。
+获取tag信息后，计算并获取对应tag的type信息。
 
 **参数：**
 
@@ -162,12 +162,18 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 如何使用fdsan？这是一个简单的double-close问题：
 
 ```
+#include <unistd.h>
+#include <fcntl.h>
+#include <hilog/log.h>
+#include <vector>
+#include <thread>
+
 void good_write()
 {
     sleep(1);
-    int fd = open(DEV_NULL_FILE, O_RDWR);
+    int fd = open("log", O_WRONLY | O_APPEND);
     sleep(3);
-    ssize_t ret = write(fd, "fdsan test\n", 11);
+    ssize_t ret = write(fd, "fdsan test", 11);
     if (ret == -1) {
         OH_LOG_ERROR(LOG_APP, "good write but failed?!");
     }
@@ -176,7 +182,7 @@ void good_write()
 
 void bad_close()
 {
-    int fd = open(DEV_NULL_FILE, O_RDWR);
+    int fd = open("/dev/null", O_RDONLY);
     close(fd);
     sleep(2);
     // This close expected to be detect by fdsan
@@ -200,17 +206,17 @@ int main()
     return 0;
 }
 ```
-上述代码中的`good_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的。
+上述代码中的`good_write`函数会打开一个文件并写入一些字符串，而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行执行情况如下图。
 
 ![](./figures/fdsan-error-2.png)
 
-由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败。
+由于每次open返回的文件描述符（fd）是顺序分配的，进入主函数后第一个可用的fd是43。在`bad_close` 函数中，第一次open返回的fd也是43。关闭之后，43变成可用的fd。在`good_write`函数中，open返回了第一个可用的fd，即43。然而，由于`bad_close`函数中存在重复关闭问题，错误地关闭了另一个线程中打开的文件，导致写入失败。
 
-在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口。
+引入fdsan后，有两种检测方法：使用标准库接口或实现带有fdsan的函数接口。
 
 ### 使用标准库接口
 
-标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。在前述案例中可以使用fopen替代open：
+标准库接口中，fopen、fdopen、opendir、fdopendir已集成fdsan。使用这些接口而非直接使用open有助于检测问题。例如，可以使用fopen替代open。
 
 ```c
 #include <stdio.h>
@@ -235,7 +241,7 @@ void good_write()
     fclose(f);
 }
 ```
-#### 日志信息
+### 日志信息
 使用fopen打开的每个文件描述符都需要有一个与之对应的 `tag` 。`fdsan` 在 `close` 时会检查关闭的 `fd` 是否与 `tag` 匹配，不匹配就会默认提示相关日志信息。下面是上述代码的日志信息：
 
 ```
@@ -243,9 +249,9 @@ void good_write()
 04-30 15:03:41.760 10933  1624 E C03f00/MUSL-FDSAN: attempted to close file descriptor 43,                             expected to be unowned, actually owned by FILE* 0x00000000f7b90aa2
 ```
 
-从这里的错误信息中可以看出FILE接口体的文件被其他人错误的关闭了，FILE接口体的地址可以协助进一步定位。
+从这里的错误信息中可以看出，FILE接口的文件被其他人错误地关闭了。FILE接口的地址可以协助进一步定位。
 
-此外，可以在代码中使用`fdsan_set_error_level`设置错误等级error_level，设置为Fatal之后如果fdsan检测到错误会提示日志信息同时crash生成堆栈信息用于定位。下面是error_level设置为Fatal之后生成的crash堆栈信息：
+此外，可以在代码中使用`fdsan_set_error_level`设置错误等级error_level。设置为Fatal之后，如果fdsan检测到错误，会提示日志信息并crash生成堆栈信息，用于定位。下面是 error_level 设置为Fatal之后生成的crash堆栈信息：
 
 ```
 Reason:Signal:SIGABRT(SI_TKILL)@0x0000076e from:1902:20010043
@@ -263,8 +269,7 @@ Tid:15312, Name:e.myapplication
 #09 pc 00105a6c /system/lib/ld-musl-arm.so.1(start+248)(3de40c79448a2bbced06997e583ef614)
 #10 pc 000700b0 /system/lib/ld-musl-arm.so.1(3de40c79448a2bbced06997e583ef614)
 ```
-
-此时，从crash信息中可以看到是bad_close中存在问题，同时crash中也包含了所有打开的文件，协助进行定位，提升效率。
+此时，从crash信息中可以看到bad_close存在问题，同时crash中包含所有打开的文件，协助定位问题，提升效率。
 
 ```
 OpenFiles:
@@ -321,9 +326,9 @@ OpenFiles:
 
 ### 实现具有fdsan的函数接口
 
-除了直接使用具有fdsan功能的标准库函数之外，还可以实现具有fdsan的函数接口。fdsan机制主要通过两个接口实现：`fdsan_exchange_owner_tag`和`fdsan_close_with_tag`，fdsan_exchange_owner_tag可以设置对应fd的tag，而fdsan_close_with_tag可以在关闭文件时检查对应的tag是否正确。
+除了使用标准库函数，还可以实现具有fdsan的函数接口。fdsan机制通过`fdsan_exchange_owner_tag`和`fdsan_close_with_tag`实现。`fdsan_exchange_owner_tag`设置fd的tag，fdsan_close_with_tag检查关闭文件时的tag。
 
-下面是一个具有fdsan的函数接口实现实例：
+下面是一个实现具有fdsan功能的函数接口的示例：
 
 ```cpp
 #include <errno.h>
@@ -413,7 +418,7 @@ struct fdsan_fd {
 
 这里的实现中使用`fdsan_exchange_owner_tag`在开始时将fd与结构体对象地址绑定，然后在关闭文件时使用`fdsan_close_with_tag`进行检测，预期tag是结构体对象地址。
 
-在实现了具有fdsan的函数接口之后，可以使用该接口包装fd：
+在实现具有fdsan的函数接口后，可以使用该接口包装fd。
 
 ```cpp
 #define TEMP_FILE "/data/local/tmp/test.txt"
@@ -439,5 +444,5 @@ void good_write()
 ## 5. close函数信号安全性说明
 在POSIX标准中，`close`函数原本被定义为信号安全函数（async-signal-safe），这意味着它可以安全地在信号处理函数（signal handler）中调用。然而，在集成了fdsan（File Descriptor Sanitizer）机制的系统实现中，这一性质发生了变化。
 
-由于fdsan的实现依赖mmap系统调用，`mmap`本身不是信号安全函数，因此这会导致close函数不再是信号安全的。因此在信号处理函数中请避免使用`close`，可以通过系统调用实现相同功能。
+由于fdsan的实现依赖于mmap系统调用，而`mmap`本身不是信号安全函数，这会导致close函数也不再是信号安全的。因此，在信号处理函数中避免使用 `close`，可以通过其他系统调用来实现相同功能。
 

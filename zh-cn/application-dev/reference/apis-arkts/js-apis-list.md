@@ -59,7 +59,7 @@ List的构造函数。
 **示例：**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list = new List<string | number | boolean | object>();
 ```
 
 
@@ -96,7 +96,7 @@ add(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list = new List<string | number | boolean | object>();
 let result1 = list.add("a");
 let result2 = list.add(1);
 let b = [1, 2, 3];
@@ -141,10 +141,11 @@ insert(element: T, index: number): void
 **示例：**
 
 ```ts
-let list: List<string | number | boolean> = new List();
+let list = new List<string | number | boolean>();
 list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
+console.info("result:", list.get(1));  // result: 0
 ```
 
 ### has
@@ -180,9 +181,10 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<string> = new List();
+let list = new List<string>();
 list.add("squirrel");
 let result = list.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 ### get
@@ -219,7 +221,7 @@ get(index: number): T
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -228,6 +230,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.get(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### getLastIndexOf
@@ -263,7 +266,7 @@ getLastIndexOf(element: T): number
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -272,7 +275,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
-console.info("result = ", result); // result = 5
+console.info("result:", result); // result: 5
 ```
 
 ### getIndexOf
@@ -308,7 +311,7 @@ getIndexOf(element: T): number
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -316,8 +319,8 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-let result = list.getIndexOf(2); 
-console.info("result = ", result); // result = 0
+let result = list.getIndexOf(2);
+console.info("result:", result); // result: 0
 ```
 
 ### equal
@@ -353,15 +356,16 @@ equal(obj: Object): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
-let obj: List<number> = new List();
+let obj = new List<number>();
 obj.add(2);
 obj.add(4);
 obj.add(5);
 let result = list.equal(obj);
+console.info("result:", result);  // result: true
 ```
 
 ### removeByIndex
@@ -399,13 +403,14 @@ removeByIndex(index: number): T
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(2);
 list.add(4);
 let result = list.removeByIndex(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### remove
@@ -441,13 +446,13 @@ remove(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
-console.info("result = ", result); // result = true
+console.info("result:", result);  // result: true
 ```
 
 ### replaceAllElements
@@ -488,15 +493,20 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 list.replaceAllElements((value: number) => {
   // 用户操作逻辑根据实际场景进行添加。
+  if (value === 5) {
+    return value * 2;
+  }
   return value;
 });
+
+console.info("result:", list.get(2));  // result: 10
 ```
 
 ### forEach
@@ -537,14 +547,18 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.forEach((value: number, index?: number) => {
+list.forEach((value: number, index: number) => {
   console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### sort
@@ -582,13 +596,16 @@ comparator的参数说明：
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
+list.add(1);
+list.add(3);
 list.add(4);
-list.add(5);
-list.add(4);
-list.sort((a: number, b: number) => a - b); // 结果为升序排列
-list.sort((a: number, b: number) => b - a); // 结果为降序排列
+list.sort((a: number, b: number) => a - b);  // 结果为升序排列
+console.info("result:", list.convertToArray());  // result: 1,2,3,4
+
+list.sort((a: number, b: number) => b - a);  // 结果为降序排列
+console.info("result:", list.convertToArray());  // result: 4,3,2,1
 ```
 
 ### getSubList
@@ -627,12 +644,13 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
-list.add(5);
-list.add(4);
+list.add(6);
+list.add(8);
 let result = list.getSubList(1, 3);
+console.info("result:", result.convertToArray());  // result: 4,6
 ```
 
 ### clear
@@ -656,12 +674,14 @@ clear(): void
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 list.clear();
+let result = list.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 ### set
@@ -700,12 +720,13 @@ set(index: number, element: T): T
 **示例：**
 
 ```ts
-let list: List<number | string> = new List();
+let list = new List<number | string>();
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.set(2, "b");
+console.info("result:", JSON.stringify(list));  // result: {"0":2,"1":4,"2":"b","3":4}
 ```
 
 ### convertToArray
@@ -735,12 +756,13 @@ convertToArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.convertToArray();
+console.info("result:", result);  // result: 2,4,5,4
 ```
 
 ### isEmpty
@@ -770,12 +792,13 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.isEmpty();
+console.info("result:", result);  // result: false
 ```
 
 ### getFirst
@@ -805,12 +828,13 @@ getFirst(): T
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### getLast
@@ -840,12 +864,13 @@ getLast(): T
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getLast();
+console.info("result:", result);  // result: 4
 ```
 
 ### [Symbol.iterator]
@@ -875,17 +900,20 @@ let result = list.getLast();
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 
 // 使用方法一：
-let items = Array.from(list);
-for (let item of items) {
+for (let item of list) {
   console.info("value: " + item);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // 使用方法二：
 let iter = list[Symbol.iterator]();
@@ -894,4 +922,8 @@ while(!temp.done) {
   console.info("value: " + temp.value);
   temp = iter.next();
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

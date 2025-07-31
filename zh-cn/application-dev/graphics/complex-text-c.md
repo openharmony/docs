@@ -137,7 +137,7 @@ OH_Drawing_TypographyLayout(typographyBreakAll, layoutWidth);
 // 设置文本在画布上绘制的起始位置
 double positionBreakAll[2] = {0, 0};
 // 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyBreakAll, cCanvas_, positionBreakAll[0], positionBreakAll[1]);
+OH_Drawing_TypographyPaint(typographyBreakAll, canvas, positionBreakAll[0], positionBreakAll[1]);
 
 
 // 创建一个断词策略为 BREAK_WORD 的 TypographyStyle
@@ -188,7 +188,7 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 - **字体特性绘制：** 主要通过字体的变化，包括粗细、斜体等特性来改变文本的外观，增强文本的可读性和美观性。
 
-- **可变字体绘制：** 对应提供文本在不同的显示环境和设备上灵活灵活调整的能力，可满足更为精细的视觉效果。
+- **可变字体绘制：** 对应提供文本在不同的显示环境和设备上灵活调整的能力，可满足更为精细的视觉效果。
 
 - **文本阴影绘制：** 主要通过在文本周围添加阴影效果，以提升文本的层次感和立体感，从而使文本更具吸引力。
 
@@ -581,7 +581,7 @@ OH_Drawing_TypographyLayout(typographyWithPlaceholder, layoutWidth);
 // 设置文本在画布上绘制的起始位置
 double positionBreakAll[2] = {0, 0};
 // 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyWithPlaceholder, cCanvas_, positionBreakAll[0], positionBreakAll[1]);
+OH_Drawing_TypographyPaint(typographyWithPlaceholder, canvas, positionBreakAll[0], positionBreakAll[1]);
 
 // 创建 OH_Drawing_TypographyCreate
 OH_Drawing_TypographyCreate *handlerNoPlaceholder = OH_Drawing_CreateTypographyHandler(typoStyle, fc);

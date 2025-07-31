@@ -6,8 +6,8 @@ ArrayBuffer 是 JavaScript 中的一种数据类型，用于表示通用的、�
 
 ## 基本概念
 
-- **ArrayBuffer**：ArrayBuffer 对象用来表示一个通用的、固定长度的原始二进制数据缓冲区。不能直接操作 ArrayBuffer 的内容，而是需要通过包装成 TypedArray 对象或 DataView 对象来读写。ArrayBuffer 常用于处理大量的二进制数据，如文件、网络数据包等。
-- **生命周期和内存管理**：在使用 JSVM 处理 ArrayBuffer 时，需要特别注意生命周期和内存管理。
+- **ArrayBuffer**：ArrayBuffer 对象用来表示一个通用的、固定长度的原始二进制数据缓冲区。不能直接操作 ArrayBuffer 的内容，而是需要通过包装成 TypedArray 对象或 DataView 对象来读写。ArrayBuffer 常用于处理固定长度的原始二进制数据，如文件、网络数据包等。
+- **生命周期和内存管理**：在使用 JSVM 处理 ArrayBuffer 时，需要特别注意对象的生命周期管理，确保及时释放内存。
 
 ## 接口说明
 
@@ -82,7 +82,7 @@ JSVM GetArraybufferInfo: success
 
 ### OH_JSVM_IsArraybuffer
 
-判断一个JavaScript对象是否为Arraybuffer类型对象。
+判断一个 JavaScript 对象是否为 ArrayBuffer 类型对象。
 
 cpp部分代码：
 

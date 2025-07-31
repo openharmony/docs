@@ -20,6 +20,8 @@ registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
 
+该接口为异步接口，不支持并发调用。
+
 > **说明：**
 >
 > 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[registerFont](js-apis-arkui-UIContext.md#registerfont)。
@@ -70,6 +72,7 @@ struct FontExample {
     // familyName和familySrc都支持系统Resource
     this.uiContext.getFont().registerFont({
       // 建议使用 this.getUIContext().getFont().registerFont()接口
+      // 'app.string.font_name'和'app.string.font_src'仅作示例，请替换为实际使用资源字符串
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -77,7 +80,7 @@ struct FontExample {
     // familySrc支持RawFile
     this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
-      familySrc: $rawfile('font/medium.ttf')
+      familySrc: $rawfile('font/medium.ttf')// 'font/medium.ttf'仅作示例，请替换为实际使用资源字体文件
     })
 
     // 注册iconFont

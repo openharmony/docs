@@ -99,10 +99,6 @@
         "type": "public"
       }
     ],
-    "deviceFeatures": [
-      "multi_process",
-      "free_multi_window"
-    ],
     "fileContextMenu": "$profile:menu"
   }
 }
@@ -154,8 +150,7 @@ module.json5配置文件包含以下标签。
 | [systemTheme](#systemtheme标签) | 标识当前使用的系统主题配置项。只允许entry类型模块配置。取值为不超过255字节的字符串。<br/>**说明：** <br/>从API version 20开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| deviceFeatures | 标识当前Module需要的特定的设备能力，应用市场可以根据此配置，将应用分发给支持该能力的设备。该字段支持配置0-3个枚举值，无顺序要求，枚举值取值如下：<br/>-&nbsp;multi_process：多进程能力，表示设备支持创建子进程的能力。<br/>-&nbsp;free_multi_window：自由多窗能力，表示设备支持窗口最大化、最小化、悬浮、矩形区域变化的能力。<br/>-&nbsp;directory_permission：公共目录授权能力，表示当前Module需要被设备授权，能够访问文档、图片等公共目录。<br/>**说明：**<br/>1.从API version 19开始，支持该字段。<br/>2.不支持插件应用配置。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| crossAppSharedConfig | 标识应用间共享配置的配置文件名。取值为不超过255字节的字符串。用于发布配置给其他应用读取，在应用安装时生效，应用卸载时失效。详细使用方式见[共享配置使用](../database/share-config.md#配置发布方)。<br/>从API version 20开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
+<!--RP6--><!--RP6End-->
 
 ## deviceTypes标签
 
@@ -270,15 +265,15 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | srcEntry | 标识入口UIAbility的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签不可缺省。 |
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，支持的取值如下：<br/>-&nbsp;multiton：多实例模式，每次启动创建一个新实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。<br/>-&nbsp;standard：multiton的曾用名，效果与多实例模式一致。 | 字符串 | 该标签可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，开发者可以通过该字段描述当前组件的功能与作用，取值为长度不超过255字节的字符串。要求采用描述信息的资源索引，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| icon | 标识当前UIAbility组件的[图标](../application-models/application-component-configuration-stage.md#生成机制)，取值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| label | 标识当前UIAbility组件对用户显示的[名称](../application-models/application-component-configuration-stage.md#生成机制)，要求采用该名称的资源索引，以支持多语言。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| icon | 标识当前UIAbility组件的[图标](layered-image.md)，取值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| label | 标识当前UIAbility组件对用户显示的[名称](layered-image.md)，取值为字符串资源的索引，以支持多语言，长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称，权限名称采用反向域名格式（不超过255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) |标识当前UIAbility组件的元信息，典型使用场景详见[窗口元数据配置中的metadata标签](../windowmanager/window-config-m.md#metadata标签)。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用拉起。<br/>-&nbsp;true：表示可以被其他应用拉起。<br/>-&nbsp;false：表示不可以被其他应用拉起，只能由同应用或者具有ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用支持申请）的应用拉起。<br/> 例如，配置为false时，桌面具备该权限，桌面点击应用图标、快捷方式或push通知消息可以拉起当前UIAbility组件，但aa命令行工具没有权限无法拉起。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否支持跨端迁移。<br/>-&nbsp;true：表示支持迁移。<br/>-&nbsp;false：表示不支持迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [skills](#skills标签) | 标识当前UIAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合，指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>-&nbsp;audioPlayback：音频播放。<br/>-&nbsp;audioRecording：录音。<br/>-&nbsp;location：定位、导航。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联。<br/>-&nbsp;taskKeeping：计算。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| [startWindow](#startwindow标签) | 标识当前UIAbility组件启动页面profile资源，取值为长度不超过255字节的字符串，如果配置了该字段，startWindowIcon和startWindowBackground字段均不生效。<br/>**说明：** <br/>从API version 18开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [startWindow](#startwindow标签) | 标识当前UIAbility组件启动页面profile资源，取值为长度不超过255字节的字符串，如果配置了该字段，startWindowIcon和startWindowBackground字段均不生效。<!--RP4--><br/>**说明：** <br/>从API version 20开始，支持使用该字段配置增强启动页。<!--RP4End--> | 字符串 | 该标签可缺省，缺省值为空。 |
 | startWindowIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。 |
 | startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/>取值示例：$color:red。| 字符串 | 该标签不可缺省。 |
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后，是否从任务列表中移除任务。<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。<br/>**说明：**<br/>2in1设备和平板设备的自由多窗模式下配置不生效，默认移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -376,7 +371,7 @@ abilities示例：
 | entities | 标识能够接收的Entity值的集合。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。数组允许的最大数量为512。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称，权限名称采用反向域名格式（不超过255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| domainVerify | 标识是否开启域名校验。<br/>-&nbsp;true：表示开启域名校验。<br/>-&nbsp;false：表示不开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| domainVerify | 标识是否开启<!--RP7-->[域名校验](../application-models/app-linking-startup.md#实现原理)<!--RP7End-->。<br/>-&nbsp;true：表示开启域名校验。<br/>-&nbsp;false：表示不开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 
   **表8** uris标签说明
@@ -500,7 +495,7 @@ extensionAbilities示例：
 
 shortcuts标识应用的快捷方式信息。标签值为数组，包含四个子标签shortcutId、label、icon、wants。
 
-metadata中指定shortcut信息，其中：
+[metadata](#metadata标签)中指定shortcut信息，其中：
 
 - name：指定shortcuts的名称，使用ohos.ability.shortcuts作为shortcuts信息的标识。
 
@@ -1123,7 +1118,7 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 
 ## startWindow标签
 
-该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。从API version 18开始，支持该字段。
+该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。<!--RP4--><br/>**说明：** <br/>从API version 20开始，支持使用该字段配置增强启动页。<!--RP4End-->
 
 **表28** startWindow标签配置说明
 
@@ -1179,6 +1174,7 @@ resources/base/profile路径下的theme_config.json资源文件示例如下：
 }
 ```
 
+<!--RP5--><!--RP5End-->
 
 <!--Del-->
 ## definePermissions标签

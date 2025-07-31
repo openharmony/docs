@@ -4,7 +4,7 @@
 
 ### AMS
 
-  AMS（Ability Manager Service）用于协调各Ability运行关系、及对生命周期进行调度的系统服务。在驱动开发过程中用于拉起和关闭扩展驱动能力DriverExtensionAbility。
+  AMS（Ability Manager Service）用于协调各Ability运行关系及对生命周期进行调度的系统服务。在驱动开发过程中用于拉起和关闭扩展驱动能力DriverExtensionAbility。
 
 ## B
 

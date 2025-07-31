@@ -26,11 +26,9 @@ import { media } from '@kit.MediaKit';
 
 ### setUrlSource<sup>20+</sup>
 
-setUrlSource(url: string, headers?: Record\<string, string>): Promise\<void>
+setUrlSource(url: string, headers?: Record\<string, string>): void
 
-网络点播资源地址描述，通过该接口设置数据源。使用Promise异步回调。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）、[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
-
-**需要权限：** ohos.permission.INTERNET
+网络点播资源地址描述，通过该接口设置数据源。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）、[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -38,24 +36,8 @@ setUrlSource(url: string, headers?: Record\<string, string>): Promise\<void>
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| url | string       | 是   | 媒体资源URL。<br/>1. 支持的视频格式包括：mp4、mpeg-ts、mkv。<br/>2. 支持的音频格式包括：m4a、aac、mp3、ogg、wav、flac、amr。<br/>**支持路径示例**：<br/>1. http网络播放：http\://xx。<br/>2. https网络播放：https\://xx。<br/>**说明：**<br>- 不支持设置hls/dash、直播资源。<br/>- 设置网络资源路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。|
+| url | string       | 是   | 媒体资源URL。<br/>1. 支持的视频格式包括：mp4、mpeg-ts、mkv。<br/>2. 支持的音频格式包括：m4a、aac、mp3、ogg、wav、flac、amr。<br/>**支持路径示例**：<br/>1. http网络播放：http\://xx。<br/>2. https网络播放：https\://xx。<br/>**说明：**<br>- 不支持设置hls/dash、直播资源。
 | headers | Record\<string, string> | 否   | 支持访问网络资源HttpHeader自定义。默认为空。|
-
-**返回值：**
-
-| 类型           | 说明                                     |
-| -------------- | ---------------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 201      | Permission denied, requires internet access permission. Returned by promise.  |
-| 5400102  | Operation not allowed, the URL source has already been set and cannot be modified. Returned by promise. |
-| 5400108  | Parameter check failed. Returned by promise. |
 
 **示例：**
 
@@ -73,10 +55,7 @@ media.createAVMetadataExtractor(async (error: BusinessError, extractor: media.AV
     let headers: Record<string, string> = {
       "User-Agent" : "User-Agent-Value"
     };
-    await avMetadataExtractor.setUrlSource(url, headers).then(() => {
-    }).catch((error: BusinessError) => {
-      console.error(`Failed to setUrlSource, code: ${error.code} message: ${error.message}`);
-    });
+    avMetadataExtractor.setUrlSource(url, headers);
   } else {
     console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
@@ -95,7 +74,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
+| timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（us）。 |
 | options | [AVImageQueryOptions](arkts-apis-media-e.md#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
 | param | [PixelMapParams](arkts-apis-media-i.md#pixelmapparams12)    | 是   | 需要获取的缩略图的格式参数。 |
 

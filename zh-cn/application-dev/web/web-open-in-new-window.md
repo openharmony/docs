@@ -8,6 +8,10 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 >
 > - [allowWindowOpenMethod()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
 >
+> - 当在Web页面调用`window.open(url, name)`打开新窗口时，ArkWeb内核会根据`name`查找是否存在已绑定的Web组件。若存在，该Web组件将收到`onActivateContent()`接口通知，以便应用可将其展示至前台；若不存在，ArkWeb内核将通过`onWindowNew()`接口通知应用创建新窗口。
+>
+> - 如果在`onWindowNew()`接口通知中创建了新窗口，并将`ControllerHandler.setWebController()`接口的参数设置为新Web组件的`WebviewController`，则ArkWeb内核会完成name与该新Web组件的绑定。
+>
 > - 如果在`onWindowNew()`接口通知中没有创建新窗口，需要将`ControllerHandler.setWebController()`接口的参数设置为`null`。
 
 
@@ -39,6 +43,10 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
               this.controller.close();
             }
           })
+          .onActivateContent(() => {
+            //该Web需要展示到前台，建议应用在这里进行tab或window切换的动作
+            console.log("NewWebViewComp onActivateContent")
+          })
       }
     }
   }
@@ -62,7 +70,9 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController })
+              builder: NewWebViewComp({ webviewController1: popController }),
+              // isModal设置为false，防止新窗口被销毁而无法触发onActivateContent回调
+              isModal: false
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
@@ -91,8 +101,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
       function OpenNewWindow()
       {
           var txt = '打开的窗口';
-          let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write("<p>" + "<br><br>" + txt.fontsize(10) + "</p>");
+          let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollbars=no");
+          openedWindow.document.write("<p>" + "<br><br>" + txt + "</p>");
           openedWindow.focus();
       }
   </script>

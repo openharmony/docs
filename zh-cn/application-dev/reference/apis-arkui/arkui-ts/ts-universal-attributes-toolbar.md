@@ -76,7 +76,6 @@ struct SideBarContainerExample {
 
   @Builder
   PageNavDest(name: string) {
-    if (name = "1")
     NavDestination() {
       Column() {
         Text("add toolbar")
@@ -101,7 +100,7 @@ struct SideBarContainerExample {
           .onClick(() => {
             this.current = item
           })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')

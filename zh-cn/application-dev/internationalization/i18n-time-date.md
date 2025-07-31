@@ -212,7 +212,7 @@ let dateStyle: string | undefined = options.dateStyle; // dateStyle = 'full'
 
 ### 相对时间格式化
 
-格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatdeprecated)类的[format](../reference/apis-localization-kit/js-apis-intl.md#formatdeprecated-1)接口实现格式化，具体开发步骤如下：
+格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformat8)类的[format](../reference/apis-localization-kit/js-apis-intl.md#format8)接口实现格式化，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -242,7 +242,7 @@ let dateStyle: string | undefined = options.dateStyle; // dateStyle = 'full'
 
 **相对时间格式化选项**
 
-以相对时间：一天前，区域ID: fr-FR和en-GB为例，说明[RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptionsdeprecated)不同的取值和显示结果。
+以相对时间：一天前，区域ID: fr-FR和en-GB为例，说明[RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptions8)不同的取值和显示结果。
 
 **表11** 数值表示(numeric)
 

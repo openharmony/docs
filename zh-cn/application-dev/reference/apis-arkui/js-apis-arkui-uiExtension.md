@@ -350,6 +350,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
+| 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
@@ -611,7 +612,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   @Component
   struct Extension {
     @State message: string = 'EmbeddedUIExtensionAbility Index';
-    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private storage: LocalStorage | undefined = this.getUIContext()?.getSharedLocalStorage();
     private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
     private subWindow: window.Window | undefined = undefined;

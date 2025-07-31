@@ -141,7 +141,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   async function creatFile(): Promise<void> {
+   async function createFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
      let fileUri: string = '';
@@ -230,7 +230,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
      }
    }
    //注册监听设备,开发者可以根据提供的DEVICES_URI传入registerObserver()方法中，就能监听设备上线，下线状态。
-   async function UnregisterObserver03() {
+   async function RegisterObserver03() {
      try {
        // 监听设备的上下线
        fileAccessHelperAllServer.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);

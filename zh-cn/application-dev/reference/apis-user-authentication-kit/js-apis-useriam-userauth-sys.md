@@ -100,7 +100,7 @@ interface  EventData {
   payload: PayLoad;
 }
 interface PayLoad {
-  type: Object[];
+  type: string[];
 }
 try {
   const eventData : EventData = {

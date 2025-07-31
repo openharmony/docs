@@ -8,6 +8,8 @@
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
 >
+> 对于仅需根据条件设置组件单一属性的简单场景，可以使用[三目表达式](../../../ui/state-management/arkts-declarative-ui-description.md#配置属性)（如.width(isFullScreen ? 200 : 100)）。
+>
 > 从API version 20开始，attributeModifier支持自定义组件。
 
 ## attributeModifier
@@ -519,6 +521,7 @@ struct ChildComponent {
 | gesture                  | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
 | gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
 | onAccessibilityHover     | 不支持   | is not callable           | -                                         |
+| onDigitalCrown           | 不支持   | is not callable.          | -                                       |
 | onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
 | parallelGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
 | priorityGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |

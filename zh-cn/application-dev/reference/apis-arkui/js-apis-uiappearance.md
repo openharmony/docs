@@ -38,6 +38,8 @@ getDarkMode(): DarkMode
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
+**系统能力**：SystemCapability.ArkUI.UiAppearance
+
 **返回值：** 
 
 | 类型 | 说明 |
@@ -80,6 +82,8 @@ getFontScale(): number
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
+**系统能力**：SystemCapability.ArkUI.UiAppearance
+
 **返回值：** 
 
 | 类型 | 说明 |
@@ -121,6 +125,8 @@ getFontWeightScale(): number
 >
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
+
+**系统能力**：SystemCapability.ArkUI.UiAppearance
 
 **返回值：** 
 

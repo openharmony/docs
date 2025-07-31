@@ -2,11 +2,11 @@
 
 ## 概述
 
-定义密钥派生接口。 
-
-**库：** libohcrypto.so
+定义密钥派生接口。
 
 **引用文件：** <CryptoArchitectureKit/crypto_kdf.h>
+
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -85,14 +85,14 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfPa
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | KDF算法名称。<br>例如"HKDF\|SHA384\|EXTRACT_AND_EXPAND"、"PBKDF2\|SHA384"。 |
+| const char *algoName | KDF算法名称。<br> 例如"HKDF\|SHA384\|EXTRACT_AND_EXPAND"、"PBKDF2\|SHA384"。 |
 | [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) **params | KDF参数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKdfParams_SetParam()
 
@@ -119,7 +119,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKdfParams_Destroy()
 
@@ -164,7 +164,7 @@ OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKdf_Derive()
 
@@ -183,16 +183,16 @@ OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParam
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx |KDF实例。 |
-| const [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) *params | KDF参数。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx | KDF实例。 |
+| [const OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | int keyLen | 密钥派生长度。 |
-| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) key | 派生出的密钥。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *key | 派生出的密钥。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKdf_Destroy()
 
@@ -211,6 +211,6 @@ void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx |KDF实例。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx | KDF实例。 |
 
 

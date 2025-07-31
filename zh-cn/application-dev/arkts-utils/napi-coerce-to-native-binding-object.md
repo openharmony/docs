@@ -385,6 +385,7 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
 
    在共享模式下，跨线程传递后，原来的ArkTS对象还可以继续访问Native对象。示例如下：
    ```ts
+   // Index.ets
    import testNapi from 'libentry.so';
    import { taskpool } from '@kit.ArkTS';
    

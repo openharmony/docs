@@ -127,7 +127,7 @@
 3. 创建一个文本样式对象，即OH_Drawing_TextStyle对象，用于设置文本样式。
 
    ```c++
-   OH_Drawing_TextStyle textStyle = OH_Drawing_CreateTextStyle();
+   OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
    ```
 
 4. [获取系统字体信息](#获取系统字体信息)，取用系统字体的字体家族名，并在文本样式中切换设置为该系统字体。
@@ -203,7 +203,7 @@
    > 若不设置字体，文本会默认使用系统字体，而系统字体禁用后若不设置使用自定义字体，文本将无法正常显示。
 
    ```c++
-   OH_Drawing_TextStyle textStyle = OH_Drawing_CreateTextStyle();
+   OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
    // 禁用系统字体后的几种情况如下：
    // 情况一：如果此时设置使用了自定义字体，文本会正常显示
    const char* myFontFamilies[] = {"myFamilyName"}; //确保已成功注册自定义字体，填入自定义字体的字体家族名

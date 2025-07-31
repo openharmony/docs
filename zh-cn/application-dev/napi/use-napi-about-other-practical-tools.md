@@ -53,13 +53,13 @@ static napi_value GetModuleFileName(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getModuleFileName: () => string | void;
+export const getModuleFileName: () => string | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let filename = testNapi.getModuleFileName();
@@ -85,7 +85,7 @@ static napi_value StrictEquals(napi_env env, napi_callback_info info)
     bool result = true;
     napi_status status = napi_strict_equals(env, args[0], args[1], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
+        napi_throw_error(env, nullptr, "Node-API napi_strict_equals fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回
@@ -99,13 +99,13 @@ static napi_value StrictEquals(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const strictEquals : (lhs: string, rhs: string | number) => boolean | void;
+export const strictEquals: (lhs: string, rhs: string | number) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let lhs = "123";
@@ -117,7 +117,6 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_strict_equals: %{public}s', testNapi.strictEquals(lhs, num));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_strict_equals error: %{public}s', error.message);
-
 }
 ```
 
@@ -127,5 +126,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

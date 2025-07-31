@@ -1,12 +1,15 @@
 # 使用Node-API调用返回值为promise的ArkTS方法
 
 ## 场景介绍
-当ArkTS的返回值为promise，开发者可以按照以下方式在自己创建的ArkTS运行环境中调用异步的ArkTS接口。
+当ArkTS的返回值为Promise时，可以按以下方式在创建的ArkTS运行环境中调用异步接口。
 
 ## 调用异步的ArkTS接口示例
-从c++使用NAPI调用返回Promise的ArkTS方法。
-处理Promise对象：将Promise与c++回调绑定，处理异步结果。
+使用C++通过NAPI调用返回Promise的ArkTS方法。
+
+处理Promise对象：将Promise与C++回调绑定，处理异步结果。
+
 转换数据类型：在回调中将JavaScript结果转换为c++可用的数据。
+
 线程安全处理：确保跨线程操作的安全性。
 
 ### 示例代码
@@ -51,18 +54,22 @@
         size_t argc = 1;
         napi_value argv[1] = { nullptr };
         napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+        // 初始化Promise对象
         napi_value promise = nullptr;
         napi_call_function(env, nullptr, argv[0], 0, nullptr, &promise);
     
+        // 初始化thenFunc对象
         napi_value thenFunc = nullptr;
         if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
             return nullptr;
         }
-    
+        // 初始化onResolve对象
         napi_value onResolve = nullptr;
+        // 初始化onReject对象
         napi_value onReject = nullptr;
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
+        // 创建参数数组
         napi_value argv1[2] = {onResolve, onReject};
         napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
     
@@ -73,6 +80,7 @@
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
+        // 初始化属性描述数组
         napi_property_descriptor desc[] = {
             {"callArkTSAsync", nullptr, CallArkTSAsync, nullptr, nullptr, nullptr, napi_default, nullptr}
         };
@@ -81,6 +89,7 @@
     }
     EXTERN_C_END
     
+    // 初始化模块
     static napi_module nativeModule = {
         .nm_version = 1,
         .nm_flags = 0,
@@ -104,7 +113,7 @@
     ```
 
 - 编译配置
-1. CMakeLists.txt文件需要按照如下配置
+1. CMakeLists.txt文件需要按照以下配置：
     ```
     // CMakeLists.txt
     # the minimum version of CMake.
@@ -122,7 +131,7 @@
     add_library(entry SHARED hello.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
-2. 需要在工程的build-profile.json5文件中进行以下配置
+2. 需要在工程的build-profile.json5文件中进行以下配置：
     ```json
     {
         "buildOption" : {

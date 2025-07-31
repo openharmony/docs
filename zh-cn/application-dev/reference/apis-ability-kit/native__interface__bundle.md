@@ -1,13 +1,14 @@
 # native_interface_bundle.h
 
-
 ## 概述
 
 提供查询应用信息等相关功能。
 
-**起始版本：**
+**库：** libbundle.z.so
 
-9
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**起始版本：** 9
 
 **相关模块：**
 

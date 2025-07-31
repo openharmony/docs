@@ -38,7 +38,7 @@ static napi_value CreateDate(napi_env env, napi_callback_info info)
 {
     // 获取传入的Unix Time Stamp时间
     double value = 1501924876711;
-    // 调用napi_create_date接口将double值转换成表示日期时间，并创建成一个ArkTS对象放入returnValue中
+    // 调用napi_create_date接口将double值转换成表示日期时间的ArkTS对象，并放入returnValue中
     napi_value returnValue = nullptr;
     napi_create_date(env, value, &returnValue);
     return returnValue;
@@ -184,5 +184,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

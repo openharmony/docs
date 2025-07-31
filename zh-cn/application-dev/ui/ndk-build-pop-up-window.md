@@ -7,7 +7,7 @@
 [通过创建弹窗控制器显示自定义弹窗](#通过创建弹窗控制器显示自定义弹窗)：此时在命名为ArkUI_NativeDialogAPI_x （x表示版本）的结构体里，定义了弹窗接口集合，用于实现各种弹窗控制。
 
 
-[通过创建自定义弹窗的内容对象显示自定义弹窗](#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下弹窗接口定义在[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md#函数)的函数中。
+[通过创建自定义弹窗的内容对象显示自定义弹窗](#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下弹窗接口定义在[native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md#函数)的函数中。
 
 
 > **说明：**
@@ -16,14 +16,14 @@
 > 
 > - 通过创建自定义弹窗的内容对象来显示自定义弹窗，使用方式可以参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口。
 > 
-> - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
+> - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
 
 ## 创建和销毁自定义弹窗
 
 ### 通过创建弹窗控制器显示自定义弹窗
 
 - 创建弹窗控制器：
-  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md)的[create](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#create)接口创建一个弹窗控制器。
 该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```
   ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -41,7 +41,7 @@
 ### 通过创建自定义弹窗的内容对象显示自定义弹窗
 
 - 创建弹窗的内容对象：
-  [ArkUI_CustomDialogOptions](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_customdialogoptions)自定义弹窗的内容对象，可以通过调用[OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_createoptions)接口创建一个自定义弹窗的内容对象。
+  [ArkUI_CustomDialogOptions](../reference/apis-arkui/capi-arkui-nativemodule-arkui-customdialogoptions.md)自定义弹窗的内容对象，可以通过调用[OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_createoptions)接口创建一个自定义弹窗的内容对象。
 该方法返回ArkUI_CustomDialogOptions类型的指针。
   ```
   auto textNode = std::make_shared<ArkUITextNode>();
@@ -51,7 +51,7 @@
   > 
   > ArkUITextNode的声明方式可以查看[ArkUINode.h](../ui/ndk-access-the-arkts-page.md)文件中的实现文本组件。
 
-- 当不再需要弹窗操作时，需要主动调用[OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_disposeoptions)接口销毁弹窗控制器对象。
+- 当不再需要弹窗操作时，需要主动调用[OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_disposeoptions)接口销毁弹窗控制器对象。
   ```
   OH_ArkUI_CustomDialog_DisposeOptions(dialogOptions);
   ```
@@ -94,7 +94,7 @@
    }
    ```
 
-2. 以下介绍两种控制弹窗样式的方式，弹窗接口请参考[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
+2. 以下介绍两种控制弹窗样式的方式，弹窗接口请参考[native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md)。
 
 - 通过controller控制弹窗样式。
    ```

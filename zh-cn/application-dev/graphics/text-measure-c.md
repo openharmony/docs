@@ -74,15 +74,14 @@
    
    // case3:获取段落每行的度量信息
    OH_Drawing_LineMetrics* lineMetrics = OH_Drawing_TypographyGetLineMetrics(typography);
-   int lineCnt = OH_Drawing_LineMetricsGetSize(lineMetrics);
-   for (int i = 0; i < lineCnt; ++i) {
+   int lineMetricsSize = OH_Drawing_LineMetricsGetSize(lineMetrics);
+   for (int i = 0; i < lineMetricsSize; ++i) {
        // lineMetrics为经过排版测量的文字度量信息
        double curLineAscender = lineMetrics[i].ascender;
        double curLineWidth = lineMetrics[i].width;
    }
    
-   // case4:获取段落最长行宽度与带缩进最长行行宽
-   double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
+   // case4:获取段落带缩进最长行行宽
    double longestLineWithIndent = OH_Drawing_TypographyGetLongestLineWithIndent(typography);
    ```
 

@@ -101,20 +101,22 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
 </html>
 ```
 
@@ -260,7 +262,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | 是   | 需要加载的 URL。      |
-| headers | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否   | URL的附加HTTP请求头。 |
+| headers | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否   | URL的附加HTTP请求头。<br>默认值： [] |
 
 **错误码：**
 
@@ -551,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+  updataContent: string = '<body><div><image src="resource://rawfile/xxx.png" alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
     Column() {
@@ -1155,31 +1157,33 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
       <p id="asyncDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.asyncTestBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+
+          objAsyncName.asyncTest();
+          objAsyncName.asyncString("async test data");
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.asyncTestBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-
-      objAsyncName.asyncTest();
-      objAsyncName.asyncString("async test data");
-    }
-</script>
 </html>
 ```
 更多示例，请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。
@@ -1263,16 +1267,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1354,16 +1360,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1462,7 +1470,7 @@ struct WebComponent {
             if (e) {
               console.info('url: ', e.url);
             }
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
@@ -1551,7 +1559,7 @@ struct WebComponent {
                   }
                 }
               });
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
@@ -1869,18 +1877,20 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          let str=objName.test();
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      let str=objName.test();
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-    }
-</script>
 </html>
 ```
 
@@ -3540,12 +3550,12 @@ struct WebComponent {
 <button onclick="func()">click</button>
 <script>
     // 检测浏览器是否在线。
-    let online = navigator.onLine;
-    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    var online1 = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online1;
 
     function func(){
-      var online = navigator.onLine;
-      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+      var online2 = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online2;
     }
 </script>
 </body>
@@ -4548,7 +4558,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 | 参数名             | 类型                             | 必填  | 说明                      |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
-| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。|
+| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
 
 **错误码：**
 
@@ -5182,9 +5192,8 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
 本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
-<!--RP1End-->
 
 > **说明：**
 > 
@@ -5756,7 +5765,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](./arkts-apis-webview-e.md#renderprocessmode12)| 是   | 渲染子进程模式。<br>可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
+| mode        | [RenderProcessMode](./arkts-apis-webview-e.md#renderprocessmode12)| 是   | 渲染子进程模式。<br>可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>手机默认为单渲染子进程模式，平板和PC/2in1默认为多渲染子进程模式。<br>如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -6117,7 +6126,7 @@ setScrollable(enable: boolean, type?: ScrollType): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动。<br>true表示设置为允许滚动，false表示禁止滚动。 |
+| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动。<br>true表示设置为允许滚动，false表示禁止滚动。<br>默认值：true。 |
 | type       | [ScrollType](./arkts-apis-webview-e.md#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
@@ -6428,27 +6437,29 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.testBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
 
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
+    </body>
 </html>
 ```
 
@@ -6515,6 +6526,12 @@ struct WebComponent {
         timer = setInterval(function() {
             document.getElementById("show_num").value = ++num;
         }, 1000);
+    }
+    
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        num = 0;
     }
 </script>
 ```
@@ -7106,7 +7123,7 @@ struct WebComponent {
     <meta charset="UTF-8">
   </head>
   <body>
-    <video id="video" width="400px" height="400px" autoplay="autoplay">
+    <video id="video" width="400px" height="400px" autoplay>
     </video>
     <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
     <script>
@@ -7120,8 +7137,8 @@ struct WebComponent {
         }
         let video = document.getElementById("video");
         let promise = navigator.mediaDevices.getUserMedia(constraints);
-        promise.then(function(MediaStream) {
-          video.srcObject = MediaStream;
+        promise.then(function(mediaStream) {
+          video.srcObject = mediaStream;
           video.play();
         })
       }
@@ -7320,7 +7337,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -8834,10 +8851,8 @@ struct WebComponent {
           try {
             if (this.controller.getAttachState() == webview.ControllerAttachState.ATTACHED) {
               console.log('Controller is attached.');
-              this.controller.refresh();
             } else {
               console.log('Controller is unattached.');
-              this.controller.refresh();
             }
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8895,38 +8910,38 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-
+  // 构建回调函数
+  handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
+    if (state == webview.ControllerAttachState.UNATTACHED) {
+      console.log('handleControllerAttachStateChange: Controller is unattached.');
+    } else {
+      console.log('handleControllerAttachStateChange: Controller is attached.');
+    }
+  };
   aboutToAppear() {
-    // 构建回调函数
-    const handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
-      if (state == webview.ControllerAttachState.UNATTACHED) {
-        console.log('handleControllerAttachStateChange: Controller is unattached.');
-      } else {
-        console.log('handleControllerAttachStateChange: Controller is attached.');
-      }
-    };
     try {
-      // 注册回调以接收controller绑定状态更改通知
-      this.controller.on('controllerAttachStateChange', handleControllerAttachStateChange);
-      // 取消指定注册回调
-      this.controller.off('controllerAttachStateChange', handleControllerAttachStateChange);
+      this.controller.on('controllerAttachStateChange', this.handleControllerAttachStateChange);
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
     try {
       // 注册回调以接收controller绑定状态更改通知
-      this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState)=>{
+      this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState) => {
         if (state == webview.ControllerAttachState.UNATTACHED) {
           console.log('Controller is unattached.');
         } else {
           console.log('Controller is attached.');
-          // 取消所有注册回调
-          this.controller.off('controllerAttachStateChange');
         }
       })
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
+  }
+  aboutToDisappear() {
+    // 取消指定注册回调
+    // this.controller.off('controllerAttachStateChange', this.handleControllerAttachStateChange);
+    // 取消所有注册回调
+    this.controller.off('controllerAttachStateChange');
   }
 
   build() {
@@ -8948,7 +8963,7 @@ waitForAttached(timeout: number):Promise&lt;ControllerAttachState&gt;
 
 | 参数名        | 类型                                    | 必填 | 说明              |
 | ------------- | --------------------------------------- | ---- | ----------------- |
-| timeout | number | 是   | 异步等待时长（单位ms，取值范围0-300000）。 |
+| timeout | number | 是   | 异步等待时长。<br/>取值范围: [0, 65535]<br/>单位: ms |
 
 **返回值：**
 
@@ -8972,17 +8987,16 @@ struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
 
   async aboutToAppear() {
-    this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState)=>{
+    this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState) => {
       if (state == webview.ControllerAttachState.ATTACHED) {
+        //绑定完成或者超时都会触发回调
         console.log('Controller is attached.');
-        this.controller.refresh();
       }
     })
     try {
       const state = await this.controller.waitForAttached(1000);
       if (state == webview.ControllerAttachState.ATTACHED) {
         console.log('Controller is attached.');
-        this.controller.refresh();
       }
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9203,38 +9217,45 @@ struct WebComponent {
 }
 ```
 
-## avoidVisibleViewportBottom<sup>20+</sup>
+## getBlanklessInfoWithKey<sup>20+</sup>
 
-avoidVisibleViewportBottom(avoidHeight: number): void
+getBlanklessInfoWithKey(key: string): BlanklessInfo
 
-设置Web网页可视视口底部避让高度。
+获取页面首屏加载预测信息（详细说明见[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)），并开始本次加载过渡帧生成，应用根据此信息确定是否需要启用无白屏加载。必须与[setBlanklessLoadingWithKey](#setblanklessloadingwithkey20)接口配套使用，并且必须在触发加载页面的接口之前或在`onLoadIntercept`中调用。需在`WebViewController`与Web组件绑定后才能使用。
 
 > **说明：**
 >
-> - avoidHeight有效值区间为[0, Web组件高度]，超出有效值区间时取边界值。
-> - 该接口高度设置为非0时，Web组件位置和尺寸不变，可视视口向上避让avoidHeight，表现为Web网页内容抬升avoidHeight。该接口一般用于应用自定义网页底部避让区，不建议和点击web网页可编辑区拉起键盘的场景同时使用。同时使用时，键盘弹起避让模式将使用OVERLAYS_CONTENT。
-> - 该接口高度设置为0时，Web网页内容可恢复，键盘弹起避让模式将使用[keyboardAvoidMode()](./arkts-basic-components-web-attributes.md#keyboardavoidmode12)声明的模式。
+> - 当前仅支持手机设备。
+> - 持久缓存容量：默认大小为30MB（约30页），可以通过接口[setBlanklessLoadingCacheCapacity](#setblanklessloadingcachecapacity20)设置缓存容量，具体见该接口说明。超过容量时根据LRU（Least Recently Used，淘汰不常用缓存的策略）机制更新缓存。自动清理超过7天的持久缓存数据，缓存清除后第三次加载页面开始有优化效果。
+> - 如果发现快照相似度（即[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)中的similarity）极低，请确认key值是否传递正确。
+> - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
+> - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | -------- | ---- | ---------------------- |
-| avoidHeight   | number   | 是   | 设置Web网页可视视口底部避让高度。<br>默认值：0<br>单位：vp<br>合法取值范围：0~Web组件高度<br>非法值设置行为：超出合法取值范围时取边界值。 |
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| key | string | 是 | 唯一标识本页面的key值。<br>合法取值范围：非空，长度不超过2048个字符。<br>设置非法值时不生效。 |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| [BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20) | 页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，应用需根据此信息来决策是否启用无白屏加载插帧。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  801     | Capability not supported. |
 
 **示例：**
 
 ```ts
-// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -9242,28 +9263,209 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  avoidHeight: number = 100;
-
   build() {
     Column() {
-      Button('avoid')
-        .onClick(() => {
-          try {
-            this.controller.avoidVisibleViewportBottom(this.avoidHeight);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+      Web({ src: 'https://www.example.com', controller: this.controller })
+       .javaScriptAccess(true)
+       .onLoadIntercept((event) => {
+            // 当相似度超过50%，加载耗时小于1000ms时启用插帧，否则不启用。
+            try {
+              let info = this.controller.getBlanklessInfoWithKey('https://www.example.com/page1');
+              if (info.errCode == webview.WebBlanklessErrorCode.SUCCESS) {
+                if (info.similarity >= 0.5 && info.loadingTime < 1000) {
+                  this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', true);
+                } else {
+                  this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', false);
+                }
+              } else {
+                console.log('getBlankless info err');
+              }
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+            return false;
         })
-      Button('reset')
-        .onClick(() => {
-          try {
-            this.controller.avoidVisibleViewportBottom(0);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
     }
+  }
+}
+```
+
+## setBlanklessLoadingWithKey<sup>20+</sup>
+
+setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCode
+
+设置无白屏加载是否启用，本接口必须与[getBlanklessInfoWithKey](#getblanklessinfowithkey20)接口配套使用。
+
+> **说明：**
+>
+> - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
+> - 页面加载必须在调用本接口的组件中进行。
+> - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| key | string | 是 | 唯一标识本页面的key值。必须与getBlanklessInfoWithKey接口的key值相同。<br>合法取值范围：非空，长度不超过2048个字符。<br>非法值设置行为：返回错误码WebBlanklessErrorCode，方案不生效。 |
+| is_start | boolean | 是 | 是否启用开始插帧。true：启用，false：不启用。<br>默认值：false |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| [WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20) | 返回接口调用是否成功，具体见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'https://www.example.com', controller: this.controller })
+       .javaScriptAccess(true)
+       .onLoadIntercept((event) => {
+            // 当相似度超过50%，加载耗时小于1000ms时启用插帧，否则不启用。
+            try {
+              let info = this.controller.getBlanklessInfoWithKey('https://www.example.com/page1');
+              if (info.errCode == webview.WebBlanklessErrorCode.SUCCESS) {
+                if (info.similarity >= 0.5 && info.loadingTime < 1000) {
+                  this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', true);
+                } else {
+                  this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', false);
+                }
+              } else {
+                console.log('getBlankless info err');
+              }
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+            return false;
+        })
+    }
+  }
+}
+```
+
+## clearBlanklessLoadingCache<sup>20+</sup>
+
+static clearBlanklessLoadingCache(keys?: Array\<string\>): void
+
+清除指定key值页面无白屏优化缓存，本接口只清除缓存。
+
+在小程序或Web应用场景中，当页面加载时内容变化显著，可能会出现一次明显的跳变。若对此跳变有所顾虑，可使用该接口清除页面缓存。
+
+> **说明：**
+>
+> - 清除之后的页面，需在第三次加载页面时才会产生优化效果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| keys | Array\<string\> | 否 | 清除Blankless优化方案页面的key值列表，key值为[getBlanklessInfoWithKey](#getblanklessinfowithkey20)中指定过的。<br>默认值：所有Blankless优化方案缓存的页面key列表。<br>合法取值范围：长度不超过2048，key列表长度<=100。key和加载页面时输入给ArkWeb的相同。<br>非法值设置行为：key长度超过2048时该key不生效；长度超过100时，取前100个；当为空时，使用默认值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    // 假设应用的Web页面在2025/06/10会进行大幅改动，例如商品促销活动等，该提案清除白屏插帧优化缓存
+    webview.WebviewController.initializeWebEngine();
+    let pageUpdateTime: number = Date.UTC(2025, 5, 10, 0, 0, 0, 0);
+    let pageUpdateTime1: number = Date.UTC(2025, 5, 11, 0, 0, 0, 0);
+    let pageUpdateTimeNow: number = Date.now();
+    if (pageUpdateTimeNow > pageUpdateTime && pageUpdateTime < pageUpdateTime1) {
+      // 清除指定页面的白屏插帧方案缓存
+      try {
+        webview.WebviewController.clearBlanklessLoadingCache(["https://www.example.com", "https://www.example1.com"]);
+      } catch (error) {
+        console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+      }
+    }
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
+}
+```
+
+## setBlanklessLoadingCacheCapacity<sup>20+</sup>
+
+static setBlanklessLoadingCacheCapacity(capacity: number): number
+
+设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| capacity | number | 是 | 设置持久化缓存设置，单位MB，最大设置不超过100MB。<br>默认值：30MB。<br>合法取值范围：0~100，当设置为0时，无缓存空间，则功能全局不开启。<br>非法值设置行为：小于0时生效值为0，大于100时生效值为100。 |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| number | 返回实际生效的容量值，范围0~100。<br>小于0时生效值为0，大于100时生效值为100。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 设置缓存容量为10MB
+    try {
+      webview.WebviewController.setBlanklessLoadingCacheCapacity(10);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
   }
 }
 ```
