@@ -1324,9 +1324,9 @@ try {
 
 **说明：**
 
-> 主机控制器按照Endpoint类型调度
+> 主机控制器按照Endpoint类型调度。
 >
-> 协议层打包时依赖type决定传输特性
+> 协议层打包时依赖type决定传输特性。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1338,7 +1338,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype)       |
+| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype18)       |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
