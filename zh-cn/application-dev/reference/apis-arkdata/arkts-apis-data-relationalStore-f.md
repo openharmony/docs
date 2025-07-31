@@ -565,7 +565,7 @@ import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     let supported = relationalStore.isVectorSupported();
     if (supported) {
       // 支持向量数据库
@@ -575,17 +575,16 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S3,
         vector: true
       };
-      const context = this.context.getApplicationContext();
-      context.area = contextConstant.AreaMode.EL3;
-      relationalStore.getRdbStore(context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
-        if (err) {
-          console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-          return;
-        }
+      try {
+        const context = this.context.createAreaModeContext(contextConstant.AreaMode.EL3);
+        const rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
         console.info('Get RdbStore successfully.');
         store = rdbStore;
         // 成功获取到 rdbStore 后执行后续操作
-      });
+      } catch (error) {
+        const err = error as BusinessError;
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+      }
     } else {
       console.info("Vector database not supported on current platform.");
     }
