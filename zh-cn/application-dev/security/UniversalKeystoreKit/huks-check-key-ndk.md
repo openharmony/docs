@@ -1,5 +1,11 @@
 # 查询密钥是否存在(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 HUKS提供了接口供应用查询指定密钥是否存在。
 
 ## 在CMake脚本中链接相关动态库
