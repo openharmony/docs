@@ -4,7 +4,7 @@
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
 <!--SE: @lanming-->
-<!--TSE: @PAFT-->   
+<!--TSE: @PAFT-->
 
 本章说明系统支持的算法及其规格。
 
