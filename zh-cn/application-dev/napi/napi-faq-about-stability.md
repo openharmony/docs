@@ -1,4 +1,9 @@
 # 稳定性相关问题汇总
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 应用运行过程中出现高概率闪退怎么进行定位解决
 

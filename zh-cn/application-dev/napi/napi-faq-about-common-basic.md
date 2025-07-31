@@ -1,4 +1,9 @@
 # 常见基本功能问题汇总
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 模块加载失败，报错信息显示`Error message: is not callable`.
 
