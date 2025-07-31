@@ -3759,8 +3759,8 @@ enum ArkUI_NodeAttributeType
 | NODE_XCOMPONENT_SURFACE_RECT | 设置XComponent组件持有Surface的显示区域，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>**起始版本：** 18 |
 | NODE_XCOMPONENT_ENABLE_ANALYZER | 设置XComponent组件是否支持图像分析，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>**起始版本：** 18 |
 | NODE_DATE_PICKER_LUNAR  | 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历。 | 
-| NODE_DATE_PICKER_START  | 设置日期选择器组件选择器的起始日期，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期，默认值"1970-1-1"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期。<br/>**起始版本：** 18 |
-| NODE_DATE_PICKER_END  | 设置日期选择器组件选择器的结束日期，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期，默认值"2100-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期。<br/>**起始版本：** 18 |
+| NODE_DATE_PICKER_START  | 设置日期选择器组件选择器的起始日期，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期，默认值"1970-1-1"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期。|
+| NODE_DATE_PICKER_END  | 设置日期选择器组件选择器的结束日期，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期，默认值"2100-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期。|
 | NODE_DATE_PICKER_SELECTED  | 设置日期选择器组件选中项的日期，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期，默认值"2024-01-22"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 日期。 | 
 | NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE  | 设置日期选择器组件的所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 入参5个，格式为字符串，以 ';' 分割：<br/>入参1： 文本颜色，::argb类型<br/>入参2： 文本大小，数字类型，单位fp<br/>入参3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br/>入参4： 文本字体列表，使用 ',' 进行分割<br/>入参5： 文本样式，字符串枚举("normal", "italic")<br/>如 "\#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 参数5个，格式为字符串，以 ';' 分割：<br/>参数1： 文本颜色，::argb类型<br/>参数2： 文本大小，数字类型，单位fp<br/>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br/>参数4： 文本字体列表，使用 ',' 进行分割<br/>参数5： 文本样式，字符串枚举("normal", "italic")<br/>如 "\#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 | 
 | NODE_DATE_PICKER_TEXT_STYLE  | 设置日期选择器组件的所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 入参5个，格式为字符串，以 ';' 分割：<br/>入参1： 文本颜色，::argb类型<br/>入参2： 文本大小，数字类型，单位fp<br/>入参3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br/>入参4： 文本字体列表，使用 ',' 进行分割<br/>入参5： 文本样式，字符串枚举("normal", "italic")<br/>如 "\#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string： 参数5个，格式为字符串，以 ';' 分割：<br/>参数1： 文本颜色，::argb类型<br/>参数2： 文本大小，数字类型，单位fp<br/>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br/>参数4： 文本字体列表，使用 ',' 进行分割<br/>参数5： 文本样式，字符串枚举("normal", "italic")<br/>如 "\#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 | 
@@ -17813,7 +17813,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyle
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ProgressLinearStyleOption实例。  | 
-| strokeWidth | 进度条宽度值（不支持百分比设置），默认值：4.0vp。 |
+| strokeWidth | 进度条宽度值（不支持百分比设置），单位为vp，默认值：4.0vp。 |
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius
@@ -17833,7 +17833,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyl
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ProgressLinearStyleOption实例。  | 
-| strokeRadius | 进度条圆角半径值，取值范围[0, strokeWidth/2]。默认值：strokeWidth/2。 |
+| strokeRadius | 进度条圆角半径值，单位为vp，取值范围[0, strokeWidth/2]。默认值：strokeWidth/2。 |
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled
@@ -17899,7 +17899,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 
 **返回：**
 
-进度条宽度值。
+进度条宽度值，单位为vp。
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius
@@ -17921,7 +17921,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
 
 **返回：**
 
-进度条圆角半径值。
+进度条圆角半径值，单位为vp。
 
 
 ### OH_ArkUI_DragEvent_StartDataLoading()
