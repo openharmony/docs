@@ -637,9 +637,7 @@ Native侧
                             .id(this.xcomponentId)
                             .onAttach(() => {
                                 let node = this.getUIContext().getFrameNodeById(this.xcomponentId)
-                                if (node) {
-                                    native.bindNode(this.xcomponentId, node)
-                                }
+                                native.bindNode(this.xcomponentId, node)
                             })
                             .onDetach(() => {
                                 native.unbindNode(this.xcomponentId)
