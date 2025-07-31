@@ -26,187 +26,187 @@
 
 ### 开发准备
 
-1.一台支持MechanicKit协议的机械体配件设备。
+1. 一台支持MechanicKit协议的机械体配件设备。
 
-2.机械体配件设备与开发设备完成蓝牙连接。
+2. 机械体配件设备与开发设备完成蓝牙连接。
 
 ### 管理设备连接状态
 
 动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
 
-1.导入机械设备管理模块文件。
+1. 导入机械设备管理模块文件。
 
-```ts
-import mechanicManager from '@kit.MechanicKit';
-```
+    ```ts
+    import mechanicManager from '@kit.MechanicKit';
+    ```
 
-2.获取已连接的机械设备列表。
+2. 获取已连接的机械设备列表。
 
-```ts
-let savedMechanicIds: number[] = [];
+    ```ts
+    let savedMechanicIds: number[] = [];
 
-try {
-  const devices = mechanicManager.getAttachedMechDevices();
-  console.info('Connected devices:', devices);
+    try {
+    const devices = mechanicManager.getAttachedMechDevices();
+    console.info('Connected devices:', devices);
 
-  devices.forEach(device => {
-    console.info(`Device ID: ${device.mechId}`);
-    console.info(`Device Name: ${device.mechName}`);
-    console.info(`Device Type: ${device.mechDeviceType}`);
-    
-//保存设备类型为GIMBAL_DEVICE的设备的MechId
-    if (device.mechDeviceType === mechanicManager.MechDeviceType.GIMBAL_DEVICE) {
-      savedMechanicIds.push(device.mechId);
-      console.info(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
-    } else {
-      console.info(`Skip non-gimbal devices: ${device.mechId}`);
+    devices.forEach(device => {
+        console.info(`Device ID: ${device.mechId}`);
+        console.info(`Device Name: ${device.mechName}`);
+        console.info(`Device Type: ${device.mechDeviceType}`);
+        
+    //保存设备类型为GIMBAL_DEVICE的设备的MechId
+        if (device.mechDeviceType === mechanicManager.MechDeviceType.GIMBAL_DEVICE) {
+        savedMechanicIds.push(device.mechId);
+        console.info(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
+        } else {
+        console.info(`Skip non-gimbal devices: ${device.mechId}`);
+        }
+    });
+
+    console.info('List of saved gimbal device IDs:', savedMechanicIds);
+    } catch (err) {
+    console.error('Error getting attached devices:', err);
     }
-  });
+    ```
 
-  console.info('List of saved gimbal device IDs:', savedMechanicIds);
-} catch (err) {
-  console.error('Error getting attached devices:', err);
-}
-```
+3. 监听设备连接状态变化。
 
-3.监听设备连接状态变化。
+    ```ts
+    const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
+    if (info.state === mechanicManager.AttachState.ATTACHED) {
+        console.info('Device attached:', info.mechInfo);
+        // 处理设备连接逻辑
+        handleDeviceAttached(info.mechInfo);
+    } else if (info.state === mechanicManager.AttachState.DETACHED) {
+        console.info('Device detached:', info.mechInfo);
+        // 处理设备断开逻辑
+        handleDeviceDetached(info.mechInfo);
+    }
+    };
 
-```ts
-const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
-  if (info.state === mechanicManager.AttachState.ATTACHED) {
-    console.info('Device attached:', info.mechInfo);
-    // 处理设备连接逻辑
-    handleDeviceAttached(info.mechInfo);
-  } else if (info.state === mechanicManager.AttachState.DETACHED) {
-    console.info('Device detached:', info.mechInfo);
-    // 处理设备断开逻辑
-    handleDeviceDetached(info.mechInfo);
-  }
-};
+    // 注册监听
+    mechanicManager.on('attachStateChange', attachStateChangeCallback);
+    ```
 
-// 注册监听
-mechanicManager.on('attachStateChange', attachStateChangeCallback);
-```
+4. 处理设备连接和断开事件。
 
-4.处理设备连接和断开事件。
+    ```ts
+    function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
+    console.info(`New device is connected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
+    savedMechanicIds.push(mechInfo.mechId);
+    // To do sth.
+    }
 
-```ts
-function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
-  console.info(`New device is connected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
-  savedMechanicIds.push(mechInfo.mechId);
-  // To do sth.
-}
+    function handleDeviceDetached(mechInfo: mechanicManager.MechInfo) {
+    console.info(`Device disconnected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
+    savedMechanicIds.filter(id => id !== mechInfo.mechId);
+    // To do sth.
+    }
+    ```
 
-function handleDeviceDetached(mechInfo: mechanicManager.MechInfo) {
-  console.info(`Device disconnected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
-  savedMechanicIds.filter(id => id !== mechInfo.mechId);
-  // To do sth.
-}
-```
+5. 取消监听。
 
-5.取消监听。
-
-```ts
-// 取消特定回调的监听
-mechanicManager.off('attachStateChange', attachStateChangeCallback);
-```
+    ```ts
+    // 取消特定回调的监听
+    mechanicManager.off('attachStateChange', attachStateChangeCallback);
+    ```
 
 ### 控制设备智能跟踪拍摄
 
 开启智能拍摄功能，机械体设备将自动识别人脸进行跟踪拍摄。
 
-1.启用摄像头智能跟踪功能。
+1. 启用摄像头智能跟踪功能。
 
-```ts
-try {
-  //检查前判断savedMechIds不为空
-  // 检查跟踪状态
-  const isEnabled = mechanicManager.getCameraTrackingEnabled();
+    ```ts
+    try {
+    //检查前判断savedMechIds不为空
+    // 检查跟踪状态
+    const isEnabled = mechanicManager.getCameraTrackingEnabled();
 
-  if (isEnabled == false) {
-    // 开启摄像头跟踪
-    mechanicManager.setCameraTrackingEnabled(true);
-    console.info('Camera tracking enabled');
-  }
+    if (isEnabled == false) {
+        // 开启摄像头跟踪
+        mechanicManager.setCameraTrackingEnabled(true);
+        console.info('Camera tracking enabled');
+    }
 
-  console.info('Is tracking currently enabled:', isEnabled);
-} catch (err) {
-  console.error('Failed to enable camera tracking:', err);
-}
-```
+    console.info('Is tracking currently enabled:', isEnabled);
+    } catch (err) {
+    console.error('Failed to enable camera tracking:', err);
+    }
+    ```
 
-2.监听跟踪变化。
+2. 监听跟踪变化。
 
-```ts
-const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
-  switch (eventInfo.event) {
-    case mechanicManager.TrackingEvent.CAMERA_TRACKING_USER_ENABLED:
-      console.info('The user has enabled camera tracking');
-      handleTrackingEnabled();
-      break;
-    case mechanicManager.TrackingEvent.CAMERA_TRACKING_USER_DISABLED:
-      console.info('The user has disabled camera tracking');
-      handleTrackingDisabled();
-      break;
-    case mechanicManager.TrackingEvent.CAMERA_TRACKING_LAYOUT_CHANGED:
-      console.info('Tracking layout has changed');
-      handleLayoutChanged();
-      break;
-  }
-};
+    ```ts
+    const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
+    switch (eventInfo.event) {
+        case mechanicManager.TrackingEvent.CAMERA_TRACKING_USER_ENABLED:
+        console.info('The user has enabled camera tracking');
+        handleTrackingEnabled();
+        break;
+        case mechanicManager.TrackingEvent.CAMERA_TRACKING_USER_DISABLED:
+        console.info('The user has disabled camera tracking');
+        handleTrackingDisabled();
+        break;
+        case mechanicManager.TrackingEvent.CAMERA_TRACKING_LAYOUT_CHANGED:
+        console.info('Tracking layout has changed');
+        handleLayoutChanged();
+        break;
+    }
+    };
 
-// 注册跟踪状态监听
-mechanicManager.on('trackingStateChange', trackingStateCallback);
-```
+    // 注册跟踪状态监听
+    mechanicManager.on('trackingStateChange', trackingStateCallback);
+    ```
 
-3.处理跟踪事件。
+3. 处理跟踪事件。
 
-```ts
-function handleTrackingEnabled() {
-  console.info('Handling trace enable events');
-  // 可以在此处更新UI状态
-  updateTrackingUI(true);
-}
+    ```ts
+    function handleTrackingEnabled() {
+    console.info('Handling trace enable events');
+    // 可以在此处更新UI状态
+    updateTrackingUI(true);
+    }
 
-function handleTrackingDisabled() {
-  console.info('Handling trace disabled events');
-  // 可以在此处更新UI状态
-  updateTrackingUI(false);
-}
+    function handleTrackingDisabled() {
+    console.info('Handling trace disabled events');
+    // 可以在此处更新UI状态
+    updateTrackingUI(false);
+    }
 
-function handleLayoutChanged() {
-  try {
-    const newLayout = mechanicManager.getCameraTrackingLayout();
-    console.info('New Tracking Layout:', newLayout);
-    // 根据新布局更新UI
-    updateLayoutUI(newLayout);
-  } catch (err) {
-    console.error('Failed to get new layout:', err);
-  }
-}
+    function handleLayoutChanged() {
+    try {
+        const newLayout = mechanicManager.getCameraTrackingLayout();
+        console.info('New Tracking Layout:', newLayout);
+        // 根据新布局更新UI
+        updateLayoutUI(newLayout);
+    } catch (err) {
+        console.error('Failed to get new layout:', err);
+    }
+    }
 
-function updateTrackingUI(enabled: boolean) {
-  // 更新UI显示跟踪状态
-  // To do sth.
-  console.info('Update tracking UI status:', enabled);
-}
+    function updateTrackingUI(enabled: boolean) {
+    // 更新UI显示跟踪状态
+    // To do sth.
+    console.info('Update tracking UI status:', enabled);
+    }
 
-function updateLayoutUI(layout : mechanicManager.CameraTrackingLayout) {
-  // 更新UI显示布局状态
-  // To do sth.
-  console.info('Update layout UI:', layout);
-}
-```
+    function updateLayoutUI(layout : mechanicManager.CameraTrackingLayout) {
+    // 更新UI显示布局状态
+    // To do sth.
+    console.info('Update layout UI:', layout);
+    }
+    ```
 
-4.取消监听。
+4. 取消监听。
 
-```ts
-// 取消跟踪状态监听
-mechanicManager.off('trackingStateChange', trackingStateCallback);
+    ```ts
+    // 取消跟踪状态监听
+    mechanicManager.off('trackingStateChange', trackingStateCallback);
 
-// 或者取消所有跟踪状态监听
-mechanicManager.off('trackingStateChange');
-```
+    // 或者取消所有跟踪状态监听
+    mechanicManager.off('trackingStateChange');
+    ```
 
 ### 调试验证
 
