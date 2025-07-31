@@ -1,4 +1,9 @@
 # 文本通用 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 文本通用属性目前只针对包含文本元素的组件，设置文本样式。
 

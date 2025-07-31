@@ -1,4 +1,9 @@
 # TextInput (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 单行文本输入框组件。
 

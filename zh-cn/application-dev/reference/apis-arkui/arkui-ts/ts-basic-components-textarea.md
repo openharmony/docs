@@ -1,4 +1,9 @@
 # TextArea
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。
 
