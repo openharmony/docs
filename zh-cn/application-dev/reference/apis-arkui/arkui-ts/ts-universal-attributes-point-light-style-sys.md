@@ -1,4 +1,9 @@
 # 点光源设置 (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 设置点光源样式。
 

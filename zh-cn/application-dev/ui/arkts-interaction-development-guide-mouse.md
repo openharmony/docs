@@ -1,4 +1,9 @@
 # 支持鼠标输入事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ![mouse](figures/device_mouse.png)
 
