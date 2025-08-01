@@ -585,7 +585,7 @@
             - [内容修改器 (ContentModifier)](ui/arkts-common-attributes-content-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
-        - [使用镜像能力](ui/arkts-mirroring-display.md)
+        - [UI国际化](ui/arkts-internationalization.md)
         - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
           - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
           - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
@@ -604,6 +604,9 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
+        - UI开发调优<!--ui-inspector-profiler-->
+          - [预览](ui/ui-ide-previewer.md)
+          - [调试](ui/ui-inspector-profiler.md)
         - [UI高性能开发](ui/ui-performance-overview.md)
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
         - [NDK接口概述](ui/ndk-build-ui-overview.md)

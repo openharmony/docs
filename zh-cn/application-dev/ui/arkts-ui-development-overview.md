@@ -96,7 +96,7 @@
 | 添加交互响应 | 介绍了交互基础机制、输入设备与事件和手势响应的能力。 | -&nbsp;[交互基础机制](arkts-interaction-basic-principles.md)<br/>-&nbsp;[输入设备与事件](arkts-interaction-development-guide-raw-input-event.md)<br/>-&nbsp;[手势响应](arkts-interaction-development-guide-support-gesture.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [粒子动画](arkts-particle-animation.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md)<br>- [帧动画](arkts-animator.md) |
 | 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义组合](arkts-user-defined-composition.md)<br/>-&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>-&nbsp;[自定义扩展](arkts-user-defined-modifier.md)|
-| 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-mirroring-display.md) |
+| 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-internationalization.md) |
 | 无障碍与适老化      | 介绍了无障碍和适老化的使用场景和使用方法。   | -&nbsp;[支持无障碍](arkts-universal-attributes-accessibility.md)<br/>-&nbsp;[支持适老化](arkui-support-for-aging-adaptation.md)
 | 主题设置       | 介绍了应用级和页面级的主题设置能力。       | -&nbsp;[应用深浅色适配](ui-dark-light-color-adaptation.md)<br/>-&nbsp;[设置应用内主题换肤](theme_skinning.md) |
 | UI系统场景化能力 | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象，以及全屏方式拉起原子化服务的方法。 | -&nbsp;[使用UI上下文接口操作界面](arkts-global-interface.md)<br/>- [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
