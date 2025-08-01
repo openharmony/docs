@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)
 
-The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
+The module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
 > **NOTE**
 >
@@ -13,6 +13,62 @@ The sendablePhotoAccessHelper module provides APIs for album management, includi
 import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 ```
 
+## sendablePhotoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
+
+getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
+
+Obtains a PhotoAccessHelper instance for the specified user, letting you access and modify media files in an album.
+
+​**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| userId | number | Yes  | ID of the user.|
+
+**Return value**
+
+| Type                           | Description   |
+| ----------------------------- | :---- |
+| [PhotoAccessHelper](#photoaccesshelper) | PhotoAccessHelper instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+// The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        // 101 indicates the user ID of another user space.
+        let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context, 101);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+```
+​
 ## PhotoAccessHelper
 
 ### createAsset
@@ -59,10 +115,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -120,10 +176,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName:string = 'testFile' + Date.now() + '.jpg';
@@ -177,14 +233,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the preset hidden album.
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
@@ -201,7 +257,7 @@ async function getSysHiddenAlbum() {
 }
 
 // Obtain the hidden albums displayed by album, that is, the albums with hidden files. Such albums do not include the preset hidden album and the albums in the trash.
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
     if (fetchResult === undefined) {
@@ -266,12 +322,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requsetSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -326,12 +383,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getAnalysisDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -383,12 +441,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getFaceIdDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

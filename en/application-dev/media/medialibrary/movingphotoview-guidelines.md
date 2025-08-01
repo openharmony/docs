@@ -35,7 +35,7 @@ The restrictions on using the **MovingPhotoView** component are as follows:
    controller: MovingPhotoViewController = new MovingPhotoViewController();
    ```
 
-4. Create a **MovingPhotoView** instance.
+4. Create a MovingPhotoView instance.
 
    The values in the following sample code are only examples. For details about the value range of each parameter, see [@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md).
 
@@ -53,7 +53,6 @@ The restrictions on using the **MovingPhotoView** component are as follows:
           MovingPhotoView({
             movingPhoto: this.src,
             controller: this.controller
-            // imageAIOptions: this.options
           })
             // Whether to mute the playback. The default value is false. In this example, it is controlled by the button.
             .muted(this.isMuted)

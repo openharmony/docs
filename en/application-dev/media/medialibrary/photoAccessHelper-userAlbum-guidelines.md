@@ -4,9 +4,9 @@ The photoAccessHelper module provides APIs for user album management, including 
 
 > **NOTE**
 >
-> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> Before you get started, obtain a PhotoAccessHelper instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 >
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Unless otherwise specified, the PhotoAccessHelper instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call photoAccessHelper APIs. If the code for obtaining the PhotoAccessHelper instance is missing, an error will be reported to indicate that photoAccessHelper is not defined.
 
 To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -26,7 +26,7 @@ The album name must meet the following requirements:
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Create a user album.
@@ -41,11 +41,7 @@ Example: Create a user album.
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     let albumName = 'albumName';
     let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
@@ -65,7 +61,7 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain the user album **albumName**.
@@ -81,11 +77,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');
@@ -120,7 +112,7 @@ The new user album names must comply with the following requirements:
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Rename the user album **albumName**.
@@ -138,11 +130,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');
@@ -173,7 +161,7 @@ async function example() {
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Add an image to the user album **albumName**.
@@ -194,11 +182,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -238,7 +222,7 @@ async function example() {
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain an image in the user album **albumName**.
@@ -257,11 +241,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -299,7 +279,7 @@ Select the assets to remove, and use [MediaAlbumChangeRequest.removeAssets](../.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Remove an image from the user album **albumName**.
@@ -320,11 +300,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -365,7 +341,7 @@ async function example() {
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Delete the user album **albumName**.
@@ -382,11 +358,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');

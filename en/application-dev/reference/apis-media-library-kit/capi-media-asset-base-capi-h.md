@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **media_asset_base_capi.h** file declares the structs and enums for the media asset manager.
+The file declares the structs and enums for the media asset manager.
 
 **Library**: libmedia_asset_manager.so
 
@@ -21,7 +21,7 @@ The **media_asset_base_capi.h** file declares the structs and enums for the medi
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [MediaLibrary_RequestId](capi-medialibrary-requestid.md) | MediaLibrary_RequestId | Describes a request ID.<br>A value of this type is returned when a media asset is requested.<br>The request ID can be used to cancel a request.|
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md) | OH_MediaAssetManager | Describes the media asset manager.<br>You can use this struct to create a media asset manager instance.<br>If the creation fails, a null pointer is returned.|
+| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md) | OH_MediaAssetManager | Describes the media asset manager.<br>You can use this struct to create a media asset manager instance.<br>If the creation fails, nullptr is returned.|
 | [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md) | OH_MediaAssetChangeRequest | Describes a media asset change request.<br>This struct provides the capability of handling media asset change requests.|
 | [OH_MovingPhoto](capi-oh-movingphoto.md) | OH_MovingPhoto | Describes a moving photo.<br>This struct provides the capability of obtaining information about a moving photo.|
 | [OH_MediaAsset](capi-oh-mediaasset.md) | OH_MediaAsset | Describes a media asset.<br>This struct provides the capability of encapsulating media file attributes.|
@@ -171,6 +171,7 @@ Enumerates the image file types.
 | Enum| Description|
 | -- | -- |
 | MEDIA_LIBRARY_IMAGE_JPEG = 1 | JPEG.|
+| MEDIA_LIBRARY_FILE_VIDEO = 3 | MPEG type.<br>**Since**: 19|
 
 ### MediaLibrary_MediaQuality
 
