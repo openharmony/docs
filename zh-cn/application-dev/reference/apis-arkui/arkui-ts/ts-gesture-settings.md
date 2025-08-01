@@ -1,4 +1,9 @@
 # 绑定手势方法
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 为组件绑定不同类型的手势事件，并设置事件的响应方法。
 
