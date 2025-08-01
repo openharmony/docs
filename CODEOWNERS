@@ -533,6 +533,19 @@ zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_module_
 [API参考-Ability Kit-分布式]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManager.md @chenmingJay @nan-xiansen @iceice1001
 
+[API参考-Ability Kit-访问控制]
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-privacyManager-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-permissionrequestresult.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-screenLockFileManager.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/errorcode-screenLockFileManager.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/capi-abilityaccesscontrol.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/capi-ability-access-control-h.md @zengyawen
+
+
 
 [API参考-Accessibility kit]
 zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
@@ -1183,11 +1196,6 @@ zh-cn/application-dev/reference/apis-data-loss-prevention-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-device-certificate-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-universal-keystore-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-user-authentication-kit/ @zengyawen
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md @zengyawen
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md @zengyawen
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-privacyManager-sys.md @zengyawen
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-permissionrequestresult.md @zengyawen
-zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zengyawen
 
 
 [API参考-Sensor Service Kit]
