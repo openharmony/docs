@@ -5664,7 +5664,7 @@ createMac(macSpec: MacSpec): Mac
 
 Creates a **Mac** instance for message authentication code (MAC) operations.
 
-For details about the supported specifications, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
+For details about the supported specifications, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -5674,7 +5674,7 @@ For details about the supported specifications, see [MAC Overview and Algorithm 
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
+| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
 
 **Return value**
 
