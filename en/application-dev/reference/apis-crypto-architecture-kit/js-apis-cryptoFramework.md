@@ -5024,7 +5024,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 <!--code_no_check-->
 ```ts
-let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted.
+let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let setN = 20;
 verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 ```
