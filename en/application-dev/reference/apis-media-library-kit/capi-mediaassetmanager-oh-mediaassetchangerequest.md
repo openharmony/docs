@@ -1,10 +1,10 @@
-# OH_MediaAsset
+# OH_MediaAssetChangeRequest
 
 ## Overview
 
-The OH_MediaAsset struct describes a media asset.
+The struct describes a media asset change request.
 
-This struct provides the capability of encapsulating media file attributes.
+This struct provides the capability of handling media asset change requests.
 
 **Since**: 12
 

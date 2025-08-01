@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MediaLibrary_RequestId struct describes a request ID, which is a universally unique identifier (UUID) of a request.
+The struct describes a request ID.
 
 A value of this type is returned when a media asset is requested.
 

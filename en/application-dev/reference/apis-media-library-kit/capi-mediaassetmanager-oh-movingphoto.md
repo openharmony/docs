@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_MovingPhoto struct describes a moving photo.
+The struct describes a moving photo.
 
 This struct provides the capability of obtaining information about a moving photo.
 
