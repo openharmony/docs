@@ -16,7 +16,7 @@
 
 ### 货币和单位格式化
 
-货币和单位的格式化基于数字格式化，在创建货币和单位格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，对货币和度量衡进行格式化时也支持通过[options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)设置不同的格式。
+货币和单位的格式化基于数字格式化，在创建货币和单位格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，对货币和度量衡进行格式化时也支持通过[Intl.NumberFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)设置不同的格式。
 
 ### 度量衡转换
 

@@ -553,7 +553,7 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 
 ## NumberOptions<sup>(deprecated)</sup>
 
-> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
@@ -965,7 +965,7 @@ let style: string = options.style; // style = 'short'
 
 ## RelativeTimeFormatInputOptions<sup>(deprecated)</sup>
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
 
 创建相对时间格式化对象时可设置的配置项。
 
