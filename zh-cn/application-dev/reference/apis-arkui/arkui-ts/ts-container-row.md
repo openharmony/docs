@@ -1,4 +1,9 @@
 # Row
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 沿水平方向布局的容器。
 

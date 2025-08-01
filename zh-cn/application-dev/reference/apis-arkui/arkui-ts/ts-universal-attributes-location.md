@@ -1,4 +1,9 @@
 # 位置设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 设置组件对齐方式、布局方向及显示位置。
 
