@@ -204,7 +204,7 @@ static JSVM_Value GetValueBigintUint64(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowError(env, nullptr, "BigInt values have no lossless converted");
         return nullptr;
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueBigintUint64 success:%{public}d", lossLess);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueBigintUint64 success");
     }
     JSVM_Value returnValue = nullptr;
     OH_JSVM_CreateBigintUint64(env, value, &returnValue);
@@ -225,7 +225,7 @@ const char* srcCallNative = R"JS(getValueBigintUint64(BigInt(5555555555555555)))
 
 预期的输出结果
 ```ts
-JSVM GetValueBigintUint64 success:1
+JSVM GetValueBigintUint64 success
 ```
 
 ### OH_JSVM_CreateBigintInt64
@@ -297,7 +297,7 @@ static JSVM_Value GetBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowError(env, nullptr, "BigInt values have no lossless converted");
         return nullptr;
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetBigintInt64 success:%{public}d", lossLess);
+        OH_LOG_INFO(LOG_APP, "JSVM GetBigintInt64 success");
     }
     JSVM_Value returnValue = nullptr;
     OH_JSVM_CreateBigintInt64(env, value, &returnValue);
@@ -318,5 +318,5 @@ const char* srcCallNative = R"JS(getBigintInt64(BigInt(-5555555555555555)))JS";
 
 预期的输出结果
 ```ts
-JSVM GetBigintInt64 success:1
+JSVM GetValueBigintUint64 success
 ```
