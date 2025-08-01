@@ -40,7 +40,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
 | [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
-| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | pid为必选参数。触发ArkTS应用JS线程gc和堆内存快照导出。如果指定线程的tid，只触发该线程gc和堆内存快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则在应用开启泄露检测时可获取泄露对象的列表；如果指定--raw，堆快照按照rawheap格式导出。 |
+| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | pid为必选参数。触发ArkTS应用JS线程gc和堆内存快照导出。如果指定线程的tid，只触发该线程gc和堆内存快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则在应用开启泄露检测时可获取泄露对象的列表；文件命名为：jsheap-进程号-JS线程号-时间戳，文件内容是以JSON结构组织的JS堆快照。如果指定--raw，堆快照按照rawheap格式导出。 |
 | [--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
 <!--RP1End-->
 
