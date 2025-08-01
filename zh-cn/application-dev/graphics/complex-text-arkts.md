@@ -150,7 +150,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -364,7 +363,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -600,7 +598,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -775,7 +772,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
