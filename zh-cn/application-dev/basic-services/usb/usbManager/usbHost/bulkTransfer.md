@@ -56,6 +56,10 @@
    ```
    
 2. 获取设备列表。
+
+> **说明：** 
+>
+> 批量传输只能在传输类型[../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18]为2的端点上进行，若不匹配会返回IO错误。
    
     ```ts
    // 获取设备列表。
@@ -105,7 +109,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 2, // 决定传输类型[../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18]，批量传输只能在传输类型为2的端点上进行，若不匹配会返回IO错误。
+                   type: 2, // 决定传输类型。
                    interfaceId: 0,
                  }
                ]
