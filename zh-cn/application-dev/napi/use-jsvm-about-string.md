@@ -87,7 +87,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果：
 ```cpp
-![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
+JSVM GetValueStringUtf8 success: aaBC+-$%^你好123
 ```
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -137,7 +137,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果：
 ```cpp
-![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
+JSVM CreateStringUtf8 success: 你好, World!, successes to create UTF-8 string!
 ```
 ### OH_JSVM_GetValueStringUtf16
 
@@ -201,7 +201,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果：
 ```cpp
-![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
+JSVM GetValueStringUtf16 success: ahello。
 ```
 **注意事项**：`getValueStringUtf16(arg)`的参数`arg`必须是字符串，否则接口会调用失败。
 
@@ -258,7 +258,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果：
 ```cpp
-![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
+JSVM CreateStringUtf16 success: 你好, World!, successes to create UTF-16 string!
 ```
 ### OH_JSVM_GetValueStringLatin1
 
@@ -310,11 +310,10 @@ const char *srcCallNative = R"JS(
 ```
 <!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
-预期输出结果：
-```cpp
-*ISO-8859-1编码不支持中文，传入中文字符会导致乱码*
+预期输出结果（ISO-8859-1编码不支持中文，传入中文字符会导致乱码）：
+
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
-```
+
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则接口调用会失败。
 
 ### OH_JSVM_CreateStringLatin1
@@ -367,5 +366,5 @@ const char *srcCallNative = R"JS(
 
 预期输出结果：
 ```cpp
-![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
+JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
 ```

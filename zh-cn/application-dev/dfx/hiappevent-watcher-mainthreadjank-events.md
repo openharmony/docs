@@ -56,7 +56,7 @@
 
    ```
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
    let params: Record<string, hiAppEvent.ParamType> = {
    "log_type": "0"
    };
@@ -71,7 +71,7 @@
 
    ```
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
    let params: Record<string, hiAppEvent.ParamType> = {
      "log_type": "1",
      "sample_interval": "100",
@@ -90,7 +90,7 @@
 
    ```
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
    let params: Record<string, hiAppEvent.ParamType> = {
      "log_type": "2"
    };

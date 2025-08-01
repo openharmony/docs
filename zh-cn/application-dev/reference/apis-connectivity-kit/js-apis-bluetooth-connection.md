@@ -1,5 +1,11 @@
 # @ohos.bluetooth.connection (蓝牙connection模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 connection模块提供了蓝牙设备的配对、连接及状态查询等能力。
 
 > **说明：**

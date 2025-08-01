@@ -136,7 +136,7 @@ static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createBigintWords: () => bigint | void;
+export const createBigintWords: () => bigint | undefined;
 ```
 <!-- @[napi_create_bigint_words_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -193,7 +193,7 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined;
 ```
 <!-- @[napi_get_value_bigint_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -247,7 +247,7 @@ static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintUint64t: (bigUint64: bigint) => boolean | void;
+export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined;
 ```
 <!-- @[napi_get_value_bigint_uint64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -322,7 +322,7 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined;
 ```
 <!-- @[napi_get_value_bigint_words_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

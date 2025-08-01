@@ -21,7 +21,7 @@ setCursor(value: PointerStyle): void
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
 | value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是   | 设置的鼠标样式。 |
 
