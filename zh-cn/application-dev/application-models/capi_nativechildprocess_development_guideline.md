@@ -330,9 +330,9 @@ void ThreadFunc()
         return;
     }
     // 获取启动参数中的entryPrams
-    char *entryParams = args.entryParams;
+    char *entryParams = args->entryParams;
     // 获取fd列表
-    NativeChildProcess_Fd *current = args.fdList.head;
+    NativeChildProcess_Fd *current = args->fdList.head;
     while (current != nullptr) {
         char *fdName = current->fdName;
         int32_t fd = current->fd;
