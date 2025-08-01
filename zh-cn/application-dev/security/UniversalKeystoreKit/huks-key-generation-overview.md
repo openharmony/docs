@@ -1,5 +1,11 @@
 # 密钥生成介绍及算法规格
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 当业务需要使用HUKS生成随机密钥，并由HUKS进行安全保存时，可以调用HUKS的接口生成密钥。
 > **注意：**
 > - 密钥别名中禁止包含个人数据等敏感信息。

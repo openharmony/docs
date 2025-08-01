@@ -1,5 +1,11 @@
 # 查询需要用户认证的关键资产(ArkTS)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 接口介绍
 
 可通过API文档查看此功能的相关接口：

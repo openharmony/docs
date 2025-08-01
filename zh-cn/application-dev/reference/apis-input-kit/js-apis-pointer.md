@@ -786,22 +786,23 @@ struct Index {
       Text()
         .onClick(() => {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
-          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                let windowId = win.getWindowProperties().id;
-                try {
-                  pointer.setCustomCursor(windowId, pixelMap).then(() => {
-                    console.log(`setCustomCursor success`);
-                  });
-                } catch (error) {
-                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                }
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                  let windowId = win.getWindowProperties().id;
+                  try {
+                    pointer.setCustomCursor(windowId, pixelMap).then(() => {
+                      console.log(`setCustomCursor success`);
+                    });
+                  } catch (error) {
+                    console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                  }
+                });
               });
-            });
           });
         })
     }
@@ -877,22 +878,23 @@ struct Index {
       Text()
         .onClick(() => {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
-          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                let windowId = win.getWindowProperties().id;
-                try {
-                  pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
-                    console.log(`setCustomCursor success`);
-                  });
-                } catch (error) {
-                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                }
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                  let windowId = win.getWindowProperties().id;
+                  try {
+                    pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
+                      console.log(`setCustomCursor success`);
+                    });
+                  } catch (error) {
+                    console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                  }
+                });
               });
-            });
           });
         })
     }
@@ -941,21 +943,22 @@ struct Index {
       Text()
         .onClick(() => {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
-          const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                let windowId = win.getWindowProperties().id;
-                try {
-                  pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-                  console.log(`setCustomCursorSync success`);
-                } catch (error) {
-                  console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                }
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                  let windowId = win.getWindowProperties().id;
+                  try {
+                    pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+                    console.log(`setCustomCursorSync success`);
+                  } catch (error) {
+                    console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                  }
+                });
               });
-            });
           });
         })
     }

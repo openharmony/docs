@@ -1,5 +1,11 @@
 # 保护密码类数据
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 > **说明：**
 >
 > 密码类数据可以是密码、登录令牌、信用卡号等用户敏感数据。

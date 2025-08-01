@@ -1,7 +1,7 @@
 # 使用粘贴控件
 
 <!--Kit: ArkUI-->
-<!--Subsystem: Security->
+<!--Subsystem: Security-->
 <!--Owner: @harylee-->
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->

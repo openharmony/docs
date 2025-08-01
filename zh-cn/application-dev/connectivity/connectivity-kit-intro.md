@@ -80,4 +80,4 @@ Connectivity能力作为系统为应用提供的一种基础通信服务，需�
 
 针对蓝牙相关的业务，有以下相关实例可供参考：
 
-- [`bluetooth`](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+- [`bluetooth`](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)

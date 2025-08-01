@@ -1,4 +1,9 @@
 # RichEditor
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @carnivore233-->
+<!--SE: @pssea-->
+<!--TSE: @mateng_Holtens-->
 
 支持图文混排和文本交互式编辑的组件。
 
@@ -165,7 +170,7 @@ decoration:{
 
 dataDetectorConfig(config: TextDataDetectorConfig)
 
-设置文本识别配置。
+设置文本特殊实体识别配置，可配置识别类型、实体显示样式，并可选择是否开启长按预览功能。
 
 需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
 

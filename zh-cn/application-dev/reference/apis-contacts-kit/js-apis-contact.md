@@ -1,5 +1,10 @@
 # @ohos.contact (联系人)
 
+<!--Kit: contacts-kit-->
+<!--Subsystem: contacts-->
+<!--Owner: @librahCode-->
+<!--SE: @yanghaoqian-->
+<!--TSE: @shangzhijie-->
 本模块提供联系人管理能力，包括添加联系人、删除联系人、更新联系人等。
 
 > **说明：**

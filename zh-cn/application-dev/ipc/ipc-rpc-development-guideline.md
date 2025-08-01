@@ -1,4 +1,9 @@
 # IPC与RPC通信开发指导(ArkTS)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 ## 场景介绍
 
@@ -276,4 +281,4 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
 针对IPC与RPC通信开发，端到端的完整示例，请参考：
 
-- [IPC通信完整样例-使用Parcelable/ArrayBuffer通信](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)
+- [IPC通信完整样例-使用Parcelable/ArrayBuffer通信](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)

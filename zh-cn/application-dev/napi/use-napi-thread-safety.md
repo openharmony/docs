@@ -1,4 +1,9 @@
 # 使用Node-API接口进行线程安全开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 ## 场景介绍
@@ -49,7 +54,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        return nullptr;
    }
    ```
-   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
+   <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 2. 在工作线程中调用ExecuteWork并执行线程安全函数。
    ```c++
@@ -67,7 +72,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        }
    }
    ```
-   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
+   <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 3. 在JS线程中执行异步回调函数。
    ```c++
@@ -123,7 +128,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        napi_call_function(env, promise, thenFunc, INT_NUM_2, argv, nullptr);
    }
    ```
-   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
+   <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 4. 任务执行完成后，进行资源清理回收。
    ```c++
@@ -140,7 +145,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        delete callbackData;
    }
    ```
-   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
+   <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 5. 初始化模块并在ArkTS侧调用接口。
    ```c++
@@ -153,13 +158,13 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        return exports;
    }
    ```
-   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
+   <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
    ``` ts
    // 接口对应的.d.ts描述
    export const startThread: (callback: () => Promise<string>) => void;
    ```
-   <!-- @[napi_thread_safety_dts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
+   <!-- @[napi_thread_safety_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
 
    ``` ts
    // ArkTS侧调用接口
@@ -174,4 +179,4 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    }
    nativeModule.startThread(callback);
    ```
-   <!-- @[napi_thread_safety_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
+   <!-- @[napi_thread_safety_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

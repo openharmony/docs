@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAccessCtrl (用户访问控制)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供用户访问控制能力，用于应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
 > **说明：**
@@ -78,9 +84,9 @@ verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<Auth
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
+| 201      | Permission denied.        |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 | 12500015 | AuthToken integrity check failed.     |
 | 12500016 | AuthToken has expired.                |

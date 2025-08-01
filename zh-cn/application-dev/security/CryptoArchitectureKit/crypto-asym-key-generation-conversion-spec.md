@@ -1,5 +1,11 @@
 # 非对称密钥生成和转换规格
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 当前章节说明系统支持的算法及其对应规格。密钥生成指定规格的方式有两种：
 
 - 字符串参数：以字符串的形式描述开发者需要生成的密钥规格。

@@ -122,23 +122,23 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 
 通过应用跨设备管理模块，设备A拉起并连接设备B上的应用。连接成功后，设备A和设备B通过on接口注册相应事件的回调监听。设备A或设备B通过sendMessage<!--Del-->、sendData、sendImage、createStream等<!--DelEnd-->接口发送消息<!--Del-->、字节流、传输流<!--DelEnd-->。对端通过监听到的回调信息进行后续协同业务。
 
-#### 导入AbilityConnectionManager模块文件
+**导入AbilityConnectionManager模块文件**
 
    ```ts
    import { abilityConnectionManager } from '@kit.DistributedServiceKit';
    ```
 
 
-#### 发现设备
+**发现设备**
 
 设备A上的应用，需要发现并选择设备B的netWorkId来作为协同接口的入参。可调用分布式设备管理模块接口，进行对端设备的发现和选择，详情可参考[分布式设备管理模块](devicemanager-guidelines.md)进行开发。
 
 
-#### 应用间创建会话并进行连接
+**应用间创建会话并进行连接**
 
 设备A和设备B在创建会话和连接时要执行的操作不同，接下来的开发步骤中，以设备A作为连接发起方，设备B作为连接接收端。
 
-##### 设备A
+**1.设备A**
 
 应用主动调用createAbilityConnectionSession()接口创建会话，获得sessionId。之后调用connect()方法启动ability会话连接（此时设备B上应用会被拉起）。
 
@@ -216,7 +216,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   }
   ```
 
-##### 设备B
+**2.设备B**
 
 设备A的应用调用connect()后，设备B的应用会通过协同的方式被拉起，拉起时会触发协同生命周期函数onCollaborate()，可在该接口中配置createAbilityConnectionSession()接口以及acceptConnect()接口的调用。
 
@@ -274,7 +274,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   }
   ```
 
-#### 注册事件监听
+**注册事件监听**
 
 在应用创建会话成功并获得sessionId后，开发者可调用on()方法进行对应事件的监听，通过触发回调函数的方式通知监听者，以便执行对应业务。
 <!--RP1-->
@@ -297,11 +297,13 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   abilityConnectionManager.on("receiveImage", this.sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
   });
-<!--RP1End-->  ```
+```
+<!--RP1End-->  
 
-#### 发送数据
+**发送数据**
 
-##### 发送消息
+**1.发送消息**
+
 应用连接成功后，开发者可在设备A或者设备B上调用sendMessage()方法给对端应用发送文本信息。
 
   ```ts
@@ -315,7 +317,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   })
   ```
 <!--Del-->
-##### 发送字节流数据
+**2.发送字节流数据**
 
 应用连接成功后，开发者可在设备A或者设备B上调用sendData()方法给对端应用发送字节数据（仅支持系统应用调用）。
 
@@ -333,7 +335,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   })
   ```
 
-##### 发送图片
+**3.发送图片**
 
 应用连接成功后，开发者可在设备A或者设备B上调用sendImage()方法给对端应用发送图片（仅支持系统应用调用）。
 
@@ -373,7 +375,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   }
   ```
 
-##### 发送传输流
+**4.发送传输流**
 
 应用连接成功后，开发者可在设备A或者设备B上调用createStream()方法创建传输流(仅支持系统应用调用)，之后调用startStream()方法传输流给对端设备。
 
@@ -396,7 +398,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   })
   ```
 <!--DelEnd-->
-#### 结束协同
+**结束协同**
 
 业务协同完毕后需及时结束协同状态。若是后续短期内还有协同需要，可调用disconnect()方法断开应用间的连接，保留sessionId，以便下次继续使用该sessionId进行连接。若是短期无需使用协同业务，可直接调用destroyAbilityConnectionSession()接口销毁会话，此时会自动断开连接。
 

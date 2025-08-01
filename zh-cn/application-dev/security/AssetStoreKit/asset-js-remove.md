@@ -1,5 +1,11 @@
 # 删除关键资产(ArkTS)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 接口介绍
 
 可通过API文档查询删除关键资产的异步接口[remove(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetremove)、同步接口[removeSync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetremovesync12)的详细介绍。

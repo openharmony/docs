@@ -82,22 +82,24 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../ui/state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](../ui/state-management/arkts-state-management-overview.md)<br>- [渲染控制](../ui/state-management/arkts-rendering-control-ifelse.md) |
-| 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
-| 添加组件        | 介绍了几种常用的系统组件使用方法。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../ui/state-management/arkts-create-custom-components.md) |
-| 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。                | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md)|
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](state-management/arkts-state-management-overview.md)<br>- [渲染控制](state-management/arkts-rendering-control-overview.md) |
+| 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。 | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md) |
+| 组件布局   | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md) |
+| 列表与网格 | 介绍了几种列表与网格组件的使用方法。 | -&nbsp;[列表与网格](arkts-list-grid-development-overview.md) |
 | 使用文本 | 介绍了输入框、富文本和属性字符串等文本组件的使用方法。                | -&nbsp;[文本显示](arkts-common-components-text-display.md) <br/>- [文本输入](arkts-common-components-text-input.md)<br/>- [富文本](arkts-common-components-richeditor.md)<br/>- [图标小符号](arkts-common-components-symbol.md)<br/>- [属性字符串](arkts-styled-string.md)|
-| 使用弹窗 | 介绍了弹窗的应用场景与使用方法。 | -&nbsp;[弹出框](arkts-base-dialog-overview.md)<br/>-&nbsp;[菜单控制](arkts-popup-and-menu-components-menu.md)<br/>-&nbsp;[气泡提示](arkts-popup-and-menu-components-popup.md)<br/>-&nbsp;[绑定模态页面](arkts-modal-overview.md)<br/>-&nbsp;[即时反馈](arkts-create-toast.md)<br/>-&nbsp;[设置浮层](arkts-create-overlaymanager.md) |
+| 媒体展示 | 介绍了几种媒体展示组件的使用方法。 | -&nbsp;[显示图片 (Image)](arkts-graphics-display.md)<br/>-&nbsp;[视频播放 (Video)](arkts-common-components-video-player.md)<br/>-&nbsp;[创建轮播 (Swiper)](arkts-layout-development-create-looping.md)<br/>-&nbsp;[创建弧形轮播 (ArcSwiper)](arkts-layout-development-arcswiper.md) |
+| 表单选择 | 介绍了几种常用表单选择组件的使用方法。 | -&nbsp;[表单与选择组件](arkts-forms-overview.md) |
+| 添加组件 | 介绍了XComponent和Progress组件的使用方法。 | -&nbsp;[自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)<br/>-&nbsp;[进度条 (Progress)](arkts-common-components-progress-indicator.md) |
+| 使用弹窗 | 介绍了弹窗的应用场景与使用方法。 | -&nbsp;[使用弹出框](arkts-base-dialog-overview.md)<br/>-&nbsp;[菜单](arkts-menu-overview.md)<br/>-&nbsp;[气泡提示](arkts-popup-overview.md)<br/>-&nbsp;[绑定模态页面](arkts-modal-overview.md)<br/>-&nbsp;[即时反馈](arkts-create-toast.md)<br/>-&nbsp;[设置浮层](arkts-create-overlaymanager.md) |
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
+| 几何图形 | 介绍了如何绘制几何图形。 | -&nbsp;[几何图形绘制](arkts-shape-overview.md) |
+| 添加交互响应 | 介绍了交互基础机制、输入设备与事件和手势响应的能力。 | -&nbsp;[交互基础机制](arkts-interaction-basic-principles.md)<br/>-&nbsp;[输入设备与事件](arkts-interaction-development-guide-raw-input-event.md)<br/>-&nbsp;[手势响应](arkts-interaction-development-guide-support-gesture.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [粒子动画](arkts-particle-animation.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md)<br>- [帧动画](arkts-animator.md) |
-| 添加交互事件        | 介绍了交互基础机制、输入设备与事件和手势响应的能力。           | -&nbsp;[交互基础机制](arkts-interaction-basic-principles.md)<br/>-&nbsp;[输入设备与事件](arkts-interaction-development-guide-raw-input-event.md)<br/>-&nbsp;[手势响应](arkts-interaction-development-guide-support-gesture.md) |
 | 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义组合](arkts-user-defined-composition.md)<br/>-&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>-&nbsp;[自定义扩展](arkts-user-defined-modifier.md)|
 | UI国际化        | 介绍如何实现应用程序UI界面的国际化，包含资源配置和镜像布局。       | -&nbsp;[UI国际化](arkts-internationalization.md) |
-| 支持适老化        | 介绍了适老化的使用场景和使用方法。       | -&nbsp;[支持适老化](arkui-support-for-aging-adaptation.md) |
+| 无障碍与适老化      | 介绍了无障碍和适老化的使用场景和使用方法。   | -&nbsp;[支持无障碍](arkts-universal-attributes-accessibility.md)<br/>-&nbsp;[支持适老化](arkui-support-for-aging-adaptation.md) |
 | 主题设置       | 介绍了应用级和页面级的主题设置能力。       | -&nbsp;[应用深浅色适配](ui-dark-light-color-adaptation.md)<br/>-&nbsp;[设置应用内主题换肤](theme_skinning.md) |
-| 使用UI上下文接口操作界面       | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象。       | -&nbsp;[使用UI上下文接口操作界面](arkts-global-interface.md) |
-| 跨进程拉起页面 | 介绍了全屏方式拉起原子化服务的方法。 | - [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
-| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用列表](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
+| UI系统场景化能力 | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象，以及全屏方式拉起原子化服务的方法。 | -&nbsp;[使用UI上下文接口操作界面](arkts-global-interface.md)<br/>- [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
 
 ## 通用规则
 
@@ -117,7 +119,7 @@
 
 基于ArkTS的声明式开发范式，可参考以下实例：
 
-- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
 
 - [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 

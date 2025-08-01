@@ -37,7 +37,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
-<!-- @[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[promise_async_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，setTimeout函数模拟了一个异步操作，1秒后生成一个随机数。如果随机数大于0.5，调用resolve回调函数并传递该随机数；否则调用reject回调函数并传递一个错误对象。
 
@@ -61,13 +61,13 @@ promise.then((result: number) => {
   console.error(error.message); // 失败时执行
 });
 ```
-<!-- @[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[promise_then_catch_handling](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，then方法的回调函数接收Promise对象的成功结果，并输出到控制台。如果Promise对象进入rejected状态，catch方法的回调函数接收错误对象，并输出到控制台。
 
 > **说明：**
 >
-> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageroffunhandledrejection12)接口监听该事件，以全局捕获未处理的Promise reject。
+> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronunhandledrejection12)接口监听该事件，以全局捕获未处理的Promise reject。
 
 ## async/await
 
@@ -109,7 +109,7 @@ struct Index {
   }
 }
 ```
-<!-- @[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[async_await_sync_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述示例代码中，使用await等待Promise解析，并存储在result变量中。
 
@@ -121,6 +121,7 @@ async function myAsyncFunction(): Promise<void> {
     const result: string = await new Promise((resolve: Function) => {
       resolve('Hello, world!');
     });
+    console.info(result); // 输出： Hello, world!
   } catch (e) {
     console.error(`Get exception: ${e}`);
   }
@@ -128,4 +129,4 @@ async function myAsyncFunction(): Promise<void> {
 
 myAsyncFunction();
 ```
-<!-- @[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[async_operation_error_handling_with_try_catch](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->

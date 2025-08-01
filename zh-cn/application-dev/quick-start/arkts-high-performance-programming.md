@@ -1,5 +1,11 @@
 # ArkTS高性能编程实践
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zhanyi819-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ## 概述
 
 本文提供应用性能敏感场景下的高性能编程建议，帮助开发者编写高性能应用。高性能编程实践是在开发过程中总结的一些高性能写法和建议。在实现业务功能时，应同步思考并理解高性能写法的原理，并将其应用于代码逻辑中。关于ArkTS编程规范，请参考[ArkTS编程规范](./arkts-coding-style-guide.md)。
@@ -135,8 +141,8 @@ function add(left: number = 0, right: number = 0): number {
 
 优化前的代码示例：
 ``` TypeScript
-const arr1 = new Array<number>([1, 2, 3]);
-const arr2 = new Array<number>([4, 5, 6]);
+const arr1 = new Array<number>(1, 2, 3);
+const arr2 = new Array<number>(4, 5, 6);
 let res = new Array<number>(3);
 for (let i = 0; i < 3; i++) {
   res[i] = arr1[i] + arr2[i];
@@ -145,8 +151,8 @@ for (let i = 0; i < 3; i++) {
 
 优化后的代码示例：
 ``` TypeScript
-const typedArray1 = new Int8Array([1, 2, 3]);
-const typedArray2 = new Int8Array([4, 5, 6]);
+const typedArray1 = Int8Array.from([1, 2, 3]);
+const typedArray2 = Int8Array.from([4, 5, 6]);
 let res = new Int8Array(3);
 for (let i = 0; i < 3; i++) {
   res[i] = typedArray1[i] + typedArray2[i];

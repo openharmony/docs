@@ -1,4 +1,9 @@
 # 使用Node-API调用返回值为promise的ArkTS方法
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 场景介绍
 当ArkTS的返回值为Promise时，可以按以下方式在创建的ArkTS运行环境中调用异步接口。
@@ -9,8 +14,6 @@
 处理Promise对象：将Promise与C++回调绑定，处理异步结果。
 
 转换数据类型：在回调中将JavaScript结果转换为c++可用的数据。
-
-线程安全处理：确保跨线程操作的安全性。
 
 ### 示例代码
 - 模块注册
@@ -24,10 +27,10 @@
     static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
-        napi_value args[1];
+        napi_value args[1] = { nullptr };
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
-        int result;
+        int result = 0;
         napi_get_value_int32(env, args[0], &result);
         OH_LOG_INFO(LOG_APP, "Promise resolved with result:%{public}d", result);
         return nullptr;
@@ -37,10 +40,10 @@
     static napi_value RejectedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
-        napi_value args[1];
+        napi_value args[1] = { nullptr };
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
-        napi_value error;
+        napi_value error = nullptr;
         napi_coerce_to_string(env, args[0], &error);
         char errorMsg[1024];
         size_t len;
@@ -70,8 +73,8 @@
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
         // 创建参数数组
-        napi_value argv1[2] = {onResolve, onReject};
-        napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
+        napi_value argv[2] = {onResolve, onReject};
+        napi_call_function(env, promise, thenFunc, 2, argv, nullptr);
     
         return nullptr;
     }
@@ -129,7 +132,7 @@
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
     add_library(entry SHARED hello.cpp)
-    target_link_libraries(entry PUBLIC libace_napi.z.so)
+    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
     ```
 2. 需要在工程的build-profile.json5文件中进行以下配置：
     ```json

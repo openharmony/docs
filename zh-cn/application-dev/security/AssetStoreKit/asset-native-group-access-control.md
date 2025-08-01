@@ -1,5 +1,11 @@
 # 管理群组关键资产(C/C++)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 以下为管理群组关键资产使用示例，请先查看开发指导：
 
 - [新增关键资产(C/C++)](asset-native-add.md)

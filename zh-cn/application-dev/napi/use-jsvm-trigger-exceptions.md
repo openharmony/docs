@@ -1,23 +1,28 @@
 # 使用JSVM-API进行异常的定制化处理
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
-JSVM-API提供了一组用于处理JSVM异常的接口。用户可以通过这些接口，向JSVM中注册回调函数。当JSVM触发异常时，会触发对所注册的回调函数的回调。
-这些接口提供了对JS引擎中某些关键错误的定制化处理能力，可以帮助开发者在运行时更好地管理错误和异常情况。
+JSVM-API提供了一组用于处理JSVM异常的接口。通过这些接口，可以向JSVM注册回调函数。当JSVM触发异常时，会调用已注册的回调函数。
+这些接口提供对JS引擎错误的定制化处理，帮助开发者管理运行时错误和异常。
 
 ## 基本概念
 
-当JS引擎遇到内存不足的问题时，系统会抛出一个OOM Error，如果开发者提前向JS引擎中注册了OOM-Error的处理函数，系统就会调用这个设置的处理函数，开发者可以在处理函数中执行一些清理或者日志记录操作。
-当JS引擎发生致命错误时，例如执行JavaScript代码时出现无法恢复的错误，系统会抛出一个Fatal Error，同时系统会调用用户提前设置的处理Fatal Error的函数。在这个处理函数中，用户可以输出额外的日志或者报告错误，而不是让程序直接崩溃。
+当JS引擎遇到内存不足的问题时，系统会抛出一个OOM Error，如果开发者提前向JS引擎中注册了OOM Error的处理函数，系统就会调用这个设置的处理函数，开发者可以在处理函数中执行一些清理或者日志记录操作。
+当JS引擎发生致命错误，例如执行JavaScript代码时出现无法恢复的错误，系统会抛出一个Fatal Error，并调用用户预先设置的处理函数。在该处理函数中，可以输出额外日志或报告错误，避免程序直接崩溃。
 当JavaScript中的Promise被拒绝，而这个拒绝又没有被catch处理时，系统就会抛出一个Promise Reject，同时系统会调用用户提前设置的处理Promise Reject的函数。在这个处理函数中，用户可以处理未捕获的Promise拒绝。
 
 ## 接口说明
 
 | 接口                       | 功能说明                            |
 |----------------------------|-------------------------------------|
-| OH_JSVM_SetHandlerForOOMError         | 用于在VM中设置处理OOM-Error的函数|
-| OH_JSVM_SetHandlerForFatalError   | 用于在VM中设置处理Fatal-Error的函数|
-| OH_JSVM_SetHandlerForPromiseReject | 用于在VM中设置处理Promise-Reject的函数 |
+| OH_JSVM_SetHandlerForOOMError         | 用于在VM中设置处理OOM Error的函数|
+| OH_JSVM_SetHandlerForFatalError   | 用于在VM中设置处理Fatal Error的函数|
+| OH_JSVM_SetHandlerForPromiseReject | 用于在VM中设置处理Promise Reject的函数 |
 
 ## 使用示例
 
@@ -62,9 +67,9 @@ static JSVM_Value TriggerOOMError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (oomHandlerFinished) {
-        OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM Error: success");
     } else {
-        OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM Error: failed");
     }
     // 取消对OOM Error处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForOOMError(vm, NULL));
@@ -90,7 +95,7 @@ const char *srcCallNative = R"JS(triggerOOMError();)JS";
 
 在LOG中输出：　
 ```cpp
-JSVM Trigger OOM-Error: success
+JSVM Trigger OOM Error: success
 ```
 ### OH_JSVM_SetHandlerForFatalError
 通过OH_JSVM_SetHandlerForFatalError，用户可以设置处理Fatal Error的函数。当多次调用这个API进行函数设置时，仅最后一次设置会生效。当用户传入的设置函数为NULL时，则表示取消之前设置的处理函数。
@@ -129,9 +134,9 @@ static JSVM_Value TriggerFatalError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (fatalHandlerFinished) {
-        OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal Error: success");
     } else {
-        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal Error: failed");
     }
     // 取消对Fatal Error处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForFatalError(vm, NULL));
@@ -157,7 +162,7 @@ const char* srcCallNative = R"JS(triggerFatalError())JS";
 
 在LOG中输出：　
 ```cpp
-JSVM Trigger Fatal-Error: success
+JSVM Trigger Fatal Error: success
 ```
 ### OH_JSVM_SetHandlerForPromiseReject
 通过OH_JSVM_SetHandlerForPromiseReject，用户可以设置处理Promise Reject的函数。当多次调用这个API进行函数设置时，仅最后一次设置会生效。当用户传入的设置函数为NULL时，则表示取消之前设置的处理函数。
@@ -205,9 +210,9 @@ static JSVM_Value TriggerPromiseReject(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Status status = OH_JSVM_RunScript(env, script, &result);
 
     if (promiseRejectHandlerFinished) {
-        OH_LOG_INFO(LOG_APP, "JSVM Trigger PromiseReject: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger Promise Reject: success");
     } else {
-        OH_LOG_ERROR(LOG_APP, "JSVM Trigger PromiseReject: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Promise Reject: failed");
     }
     // 取消对Promise Reject处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForPromiseReject(vm, NULL));
@@ -233,5 +238,5 @@ const char* srcCallNative = R"JS(triggerPromiseReject())JS";
 
 在LOG中输出：　
 ```cpp
-JSVM Trigger PromiseReject: success
+JSVM Trigger Promise Reject: success
 ```

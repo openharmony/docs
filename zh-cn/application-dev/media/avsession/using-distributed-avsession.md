@@ -1,4 +1,9 @@
 # 使用分布式媒体会话(仅对系统应用开放)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 ## 基本概念
 

@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuth (用户认证)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
 
 > **说明：**
@@ -83,9 +89,9 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 
 **示例：**
@@ -147,7 +153,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -193,7 +199,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -249,9 +255,9 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
 | 12500002 | General operation error.                |
 
 **示例：**
@@ -387,8 +393,8 @@ queryReusableAuthResult(authParam: AuthParam): Uint8Array
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
 | 12500002 | General operation error.                |
 | 12500008 | The parameter is out of range.          |
 | 12500017 | Failed to reuse authentication result.       |

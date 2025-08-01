@@ -271,6 +271,8 @@ struct Index {
 }
 ```
 
+![styledstring_1_sys](figures/styledstring_1_sys.gif)
+
 ### 示例2 (带UserDataSpan的属性字符串序列化和反序列化)
 
 该示例通过marshalling、unmarshalling函数实现了属性字符串及其UserDataSpan序列化和反序列化的功能。
@@ -391,3 +393,5 @@ struct MarshallExample1 {
   }
 }
 ```
+
+![styledstring_2_sys](figures/styledstring_2_sys.gif)

@@ -1,5 +1,11 @@
 # @ohos.userIAM.faceAuth (人脸认证)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供人脸录入相关接口。
 
 > **说明：**
@@ -66,8 +72,8 @@ setSurfaceId(surfaceId: string): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
+| 201 | Permission denied. |
+| 202 | Permission denied. Called by non-system application. |
 | 12700001 | The service is unavailable. |
 
 **示例：**

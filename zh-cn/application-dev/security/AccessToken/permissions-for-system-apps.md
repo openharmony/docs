@@ -5055,3 +5055,19 @@
 **支持设备**：General
 
 **起始版本**：19
+
+## ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY
+
+允许HAP加载具有不同ownerid的独立二进制SO。
+
+该SO指具有开发者证书或AdHoc签名的独立二进制SO。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
