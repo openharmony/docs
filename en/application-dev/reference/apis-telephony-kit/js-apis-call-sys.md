@@ -6232,3 +6232,5 @@ Enumerates number mark types.
 | MARK_TYPE_OTHERS | 9 | Other.|
 | MARK_TYPE_YELLOW_PAGE | 10 | Yellow page.|
 | MARK_TYPE_ENTERPRISE<sup>14+</sup> | 11 | Enterprise contact.|
+
+<!--no_check-->
