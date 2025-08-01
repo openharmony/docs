@@ -1,4 +1,9 @@
 # 使用Web组件的下载能力
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 当需要通过Web页面进行文件下载时，可以通过此方式调用Web接口。
 
