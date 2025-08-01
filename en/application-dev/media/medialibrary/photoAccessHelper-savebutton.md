@@ -14,33 +14,41 @@ Call [phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-librar
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 @Entry
 @Component
-
 struct Index {
   @State outputText: string = 'Supported formats:\n';
 
-  async function example(){
-    try {
-      this.outputText = 'Supported formats:\n';
-      // The value 1 means the supported image formats, and 2 means the supported video formats.
-      let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
-      let result = "";
-      for (let i = 0; i < imageFormat.length; i++) {
-        result += imageFormat[i];
-        if (i !== imageFormat.length - 1) {
-          result += ', ';
-        }
-      }
-      this.outputText += result;
-      console.info('getSupportedPhotoFormats success, data is ' + outputText);
-    } catch (error) {
-      console.error('getSupportedPhotoFormats failed, errCode is', error);
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+        example(phAccessHelper);
+      }).width('100%')
     }
+    .height('90%')
   }
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  try {
+    let outputText = 'Supported formats:\n';
+    // The value 1 means the supported image formats, and 2 means the supported video formats.
+    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
+    let result = "";
+    for (let i = 0; i < imageFormat.length; i++) {
+      result += imageFormat[i];
+      if (i !== imageFormat.length - 1) {
+        result += ', ';
+      }
+    }
+    outputText += result;
+    console.info('getSupportedPhotoFormats success, data is ' + outputText);
+  } catch (error) {
+    console.error('getSupportedPhotoFormats failed, errCode is', error);
+  }
+}
 ```
 
 ## Creating a Media Asset Using SaveButton
@@ -108,6 +116,8 @@ The following walks you through on how to save an image using an authorization p
 1. Specify the URI of the [application file](../../file-management/app-file-access.md) to be saved to the media library. (The file must be in the application sandbox.)
 2. Set parameters such as the file name extension, image file type, title (optional) and image subtype (optional) of the image to save.
 3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to obtain the target [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) through an authorization pop-up.
+
+   To display the application name in the dialog box, the API relies on the configuration of **label** and **icon** under **abilities** in the **module.json5** file. If they are not configured, no application name is displayed in the dialog box. If the passed URI is a sandbox path, images or videos can be saved but cannot be previewed.
 4. Write the image content from the application sandbox directory to the file specified by the target URI in the media library.
 
 ```ts
@@ -115,11 +125,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
   try {
     // Specify the URI of the image in the application sandbox directory to be saved.
     let srcFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
