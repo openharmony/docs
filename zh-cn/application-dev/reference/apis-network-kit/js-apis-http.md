@@ -147,9 +147,9 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 > **说明：**
 >
->(1) 此接口仅支持数据大小为5M以内的数据接收，如果有超过5M的数据接收，需要主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。
-><br>(2) 如需传入cookies，请开发者自行在参数options中添加。
-> <br>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
+>(1) 此接口仅支持接收5MB以内的数据，如果需要接收超过5MB的数据，则需主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。<br>
+>(2) 如需传入cookies，请开发者自行在参数options中添加。<br>
+>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -233,9 +233,9 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 > **说明：**
 >
->(1) 此接口仅支持数据大小为5M以内的数据接收，如果有超过5M的数据接收，需要主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。
-><br>(2) 如需传入cookies，请开发者自行在参数options中添加。
-> <br>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
+>(1) 此接口仅支持接收5MB以内的数据，如果需要接收超过5MB的数据，则需主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。<br>
+>(2) 如需传入cookies，请开发者自行在参数options中添加。<br>
+>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -343,9 +343,9 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 > **说明：**
 >
->(1) 此接口仅支持数据大小为5M以内的数据接收，如果有超过5M的数据接收，需要主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。
-><br>(2) 如需传入cookies，请开发者自行在参数options中添加。
-> <br>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
+>(1) 此接口仅支持接收5MB以内的数据，如果需要接收超过5MB的数据，则需主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。<br>
+>(2) 如需传入cookies，请开发者自行在参数options中添加。<br>
+>(3) 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
