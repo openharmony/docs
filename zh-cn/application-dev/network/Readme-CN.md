@@ -19,6 +19,7 @@
 - 管理网络<!--network-kit-network-management-->
     - [统计网络流量消耗](net-statistics.md)
     - [使用网络防火墙](net-netfirewall.md)
+    - [扩展认证](net-eap.md)
   
     <!--Del-->
     - [网络共享（仅对系统应用开放）](net-sharing.md)
