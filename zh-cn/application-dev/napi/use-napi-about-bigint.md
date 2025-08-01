@@ -129,7 +129,7 @@ static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createBigintWords: () => bigint | void;
+export const createBigintWords: () => bigint | undefined;
 ```
 
 ArkTS侧示例代码
@@ -183,7 +183,7 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -234,7 +234,7 @@ static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintUint64t: (bigUint64: bigint) => boolean | void;
+export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -306,7 +306,7 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined;
 ```
 
 ArkTS侧示例代码
