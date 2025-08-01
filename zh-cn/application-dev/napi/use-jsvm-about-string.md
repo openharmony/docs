@@ -84,9 +84,9 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
+预期输出结果：
+```cpp
+JSVM GetValueStringUtf8 success: aaBC+-$%^你好123
 ```
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -133,9 +133,9 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
+预期输出结果：
+```cpp
+JSVM CreateStringUtf8 success: 你好, World!, successes to create UTF-8 string!
 ```
 ### OH_JSVM_GetValueStringUtf16
 
@@ -196,9 +196,9 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
+预期输出结果：
+```cpp
+JSVM GetValueStringUtf16 success: ahello。
 ```
 **注意事项**：`getValueStringUtf16(arg)`的参数`arg`必须是字符串，否则接口会调用失败。
 
@@ -252,9 +252,9 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
+预期输出结果：
+```cpp
+JSVM CreateStringUtf16 success: 你好, World!, successes to create UTF-16 string!
 ```
 ### OH_JSVM_GetValueStringLatin1
 
@@ -305,11 +305,10 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-*ISO-8859-1编码不支持中文，传入中文字符会乱码*
+预期输出结果（ISO-8859-1编码不支持中文，传入中文字符会导致乱码）：
+
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
-```
+
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则接口调用会失败。
 
 ### OH_JSVM_CreateStringLatin1
@@ -359,7 +358,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-预期输出结果
-```ts
-![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
+预期输出结果：
+```cpp
+JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
 ```

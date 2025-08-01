@@ -16,7 +16,7 @@
 
 ## onFocus
 
-onFocus(event: () => void)
+onFocus(event: () => void): T
 
 当前组件获取焦点时触发的回调。
 
@@ -24,9 +24,15 @@ onFocus(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onBlur
 
-onBlur(event:()&nbsp;=&gt;&nbsp;void)
+onBlur(event:()&nbsp;=&gt;&nbsp;void): T
 
 当前组件失去焦点时触发的回调。
 
@@ -34,6 +40,11 @@ onBlur(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 

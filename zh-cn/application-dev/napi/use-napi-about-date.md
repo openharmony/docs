@@ -99,7 +99,7 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getDateValue: (date: Date) => number | void;
+export const getDateValue: (date: Date) => number | undefined;
 ```
 
 ArkTS侧示例代码
@@ -151,7 +151,7 @@ static napi_value IsDate(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isDate: <T>(date: T) => boolean | void;
+export const isDate: <T>(date: T) => boolean | undefined;
 ```
 
 ArkTS侧示例代码

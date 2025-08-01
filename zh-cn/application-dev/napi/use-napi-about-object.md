@@ -333,7 +333,7 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiTypeOf : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -401,7 +401,7 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -502,7 +502,7 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
 

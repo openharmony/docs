@@ -834,7 +834,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-    console.log("v1 now redy to handle fetches.");
+    console.log("v1 now ready to handle fetches.");
 });
 ```
 

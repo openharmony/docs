@@ -8,7 +8,7 @@
 
 ## onAxisEvent
 
-onAxisEvent(event: (event: AxisEvent) => void): T
+onAxisEvent(event: Callback\<AxisEvent>): T
 
 鼠标滚轮滚动或触控板双指移动触发该回调。
 
@@ -22,7 +22,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [AxisEvent](#axisevent) | 是   | 获得[AxisEvent](#axisevent)对象。 |
+| event  | Callback\<[AxisEvent](#axisevent)> | 是   | 获得[AxisEvent](#axisevent)对象。 |
 
 **返回值：**
 

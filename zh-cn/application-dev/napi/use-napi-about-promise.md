@@ -182,8 +182,8 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createPromise: () => boolean | void;
-export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | void;
+export const createPromise: () => boolean | undefined;
+export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | undefined;
 ```
 
 ArkTS侧示例代码

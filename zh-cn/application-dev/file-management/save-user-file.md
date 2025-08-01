@@ -61,11 +61,11 @@
    > **注意**：
    >
    > 1. URI存储建议：
-   > - 避免在Picker回调中直接操作URI。
-   > - 建议使用全局变量保存URI以供后续使用。
+   >	 - 避免在Picker回调中直接操作URI。
+   >	 - 建议使用全局变量保存URI以供后续使用。
    >
    > 2. 快捷保存：
-   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
+   > 	- 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
 
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 
@@ -121,11 +121,11 @@
    > **注意**：
    >
    > 1. URI存储建议：
-   > - 避免在Picker回调中直接操作URI。
-   > - 建议使用全局变量保存URI以供后续使用。
+   > 	- 避免在Picker回调中直接操作URI。
+   > 	- 建议使用全局变量保存URI以供后续使用。
    >
    > 2. 快捷保存：
-   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
+   > 	- 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 

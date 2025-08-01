@@ -57,7 +57,7 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -133,7 +133,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: ArrayBuffer;
 }
-export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined;
 ```
 
 ArkTS侧示例代码
