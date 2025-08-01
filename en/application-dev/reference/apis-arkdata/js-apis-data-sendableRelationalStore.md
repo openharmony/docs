@@ -166,7 +166,9 @@ Converts the asset data that cannot be passed across threads into the data that 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **Error Code**| **Error Message**                                                                                                 |
+**Error codes**
+
+| **ID**| **Error Message**                                                                                                 |
 | ------------ | ------------------------------------------------------------------------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                                                                  |
@@ -208,7 +210,9 @@ Converts the asset data that can be passed across threads into the data that can
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **Error Code**| **Error Message**                                                                                                 |
+**Error codes**
+
+| **ID**| **Error Message**                                                                                                 |
 | ------------ | ------------------------------------------------------------------------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000     | Inner error.                                                                                                  |
@@ -275,7 +279,7 @@ Defines the types of the value in a KV pair. The type varies with the parameter 
 | [Asset](#asset)  | The value is an asset.<br>If the value type is **Asset**, the type in the SQL statement for creating a table must be **ASSET**.            |
 | [Assets](#assets) | The value is an array of assets.<br>If the value type is **Assets**, the type in the SQL statement for creating a table must be **ASSETS**.|
 | [collection.Float32Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | The value is an array of 32-bit floating-point numbers.<br>If the value type is **collection.Float32Array**, the type in the SQL statement for creating a table must be **floatvector(128)**.|
-| bigint | The value is an integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br><br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example, 'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
+| bigint | The value is an integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br><br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThan**, **lessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example, 'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
 
 ## ValuesBucket
 
