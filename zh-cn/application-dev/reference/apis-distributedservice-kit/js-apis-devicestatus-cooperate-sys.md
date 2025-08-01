@@ -298,7 +298,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 | 参数名      | 类型                      | 必填 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| isUnchained | boolean                   | 是   | 是否关闭跨设备链路。 ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean                   | 是   | 是否关闭跨设备链路。 true表示关闭跨设备链路，false表示不关闭。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -342,7 +342,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路。 ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是   | 是否关闭跨设备链路。 true表示关闭跨设备链路，false表示不关闭。 |
 
 **返回值：**
 
@@ -391,7 +391,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 | 参数名    | 类型                         | 必填 | 说明                                                         |
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | networkId | string                       | 是   | 键鼠穿越目标设备描述符。                                     |
-| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -717,7 +717,6 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | -------- | ----------------- |
 | 201 | Permission denied. |
 | 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **示例**：
@@ -1104,7 +1103,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> true表示关闭跨设备链路，false表示不关闭。 |
 | callback     | AsyncCallback&lt;void&gt; |  是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
@@ -1149,7 +1148,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名      | 类型    | 必填 | 说明               |
 | ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
+| isUnchained | boolean | 是   | 是否关闭跨设备链路。<br> true表示关闭跨设备链路，false表示不关闭。 |
 
 
 
@@ -1201,7 +1200,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
 | networkId | string                       |  是    | 键鼠穿越目标设备描述符。             |
-| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -1261,7 +1260,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 
 

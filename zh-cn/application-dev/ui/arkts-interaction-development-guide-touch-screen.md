@@ -47,7 +47,7 @@ struct Index {
       .height('100%')
       .width('100%')
       .onTouch((event:TouchEvent)=>{
-        console.log("touch event received on parent")
+        console.info("touch event received on parent")
       })
     }
     .height('100%')
@@ -68,7 +68,7 @@ struct Index {
 ![resample](figures/events-resample.png)
 
 - 按下时产生的事件会立即上报给应用；
-- 帧内的move报点并不会理解下发，而是会在送显帧到来时重采样合并后上报；
+- 帧内的move报点并不会立即下发，而是会在送显帧到来时重采样合并后上报；
 - 抬起时产生的事件会立即上报给应用，并在上报之前先将还未处理的move事件上报；
 
 重采样会合并同一个触点在同一帧内多次上报的move事件，并通过算法尽可能计算出一个合适的坐标上报给应用，因此经过重采样后的坐标信息，与底层设备真实上报的点会存在细微的差异，这些差异是有益的，经过重采样后的点通常具备更好的平顺性。
@@ -92,7 +92,7 @@ struct Index {
           let allHistoricalPoints = event.getHistoricalPoints();
           if (allHistoricalPoints.length != 0) {
             for (const point of allHistoricalPoints) {
-              console.log("historical point: [" + point.touchObject.windowX + ", " + point.touchObject.windowY + "]")
+              console.info("historical point: [" + point.touchObject.windowX + ", " + point.touchObject.windowY + "]")
             }
           }
         })
@@ -130,18 +130,18 @@ struct Index {
           let allFingers = event.touches;
           if (allFingers.length > 0 && this.currentFingerCount == 0) {
             // 第1根手指按下
-            console.log("fingers start to press down")
+            console.info("fingers start to press down")
             this.currentFingerCount = allFingers.length
           }
           if (allFingers.length != 0) {
             for (const finger of allFingers) {
               this.allFingerIds.push(finger.id)
             }
-            console.log("current all fingers : " + this.allFingerIds.toString())
+            console.info("current all fingers : " + this.allFingerIds.toString())
           }
           if (event.type == TouchType.Up && event.touches.length == 1) {
             // 所有手指都已抬起
-            console.log("all fingers already up")
+            console.info("all fingers already up")
             this.currentFingerCount = 0
           }
         })

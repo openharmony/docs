@@ -3,13 +3,13 @@
 
 ## Overview
 
-The **OH_NativeBundle_ApplicationInfo** struct defines the application information.
+The struct defines the application information.
 
 It is an output parameter of [OH_NativeBundle_GetCurrentApplicationInfo()](_bundle.md#oh_nativebundle_getcurrentapplicationinfo).
 
 **Since**: 9
 
-**Related module**: [Bundle](_bundle.md)
+**Related module**: [bundle](_bundle.md)
 
 **Header file**: [native_interface_bundle.h](native__interface__bundle.md)
 

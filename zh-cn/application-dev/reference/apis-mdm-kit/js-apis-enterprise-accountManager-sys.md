@@ -28,6 +28,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -53,11 +54,13 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
@@ -79,6 +82,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -109,12 +113,14 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
@@ -134,6 +140,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -159,14 +166,17 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   accountManager.disallowAddOsAccountByUser(wantTemp, 100, true);
   console.info(`Succeeded in disallowing user add os account`);
 } catch (err) {
@@ -184,6 +194,7 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -214,14 +225,17 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let isDisallowed: boolean = accountManager.isAddOsAccountByUserDisallowed(wantTemp, 100);
   console.info(`Succeeded in querying the user can add os account or not: ${isDisallowed}`);
 } catch (err) {
@@ -239,6 +253,7 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -271,15 +286,18 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { osAccount } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let info: osAccount.OsAccountInfo = accountManager.addOsAccount(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL);
   console.info(`Succeeded in creating os account: ${JSON.stringify(info)}`);
 } catch (err) {

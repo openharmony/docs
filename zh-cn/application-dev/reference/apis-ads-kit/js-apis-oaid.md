@@ -1,10 +1,10 @@
-# @ohos.identifier.oaid (广告标识服务)
+# @ohos.identifier.oaid (开放匿名设备标识服务)
 
-本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）的获取能力。
+本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, 以下简称OAID）的获取能力。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br/>
-> 使用获取开放匿名设备标识符接口，需[向用户申请授权](../../security/AccessToken/request-user-authorization.md)：ohos.permission.APP_TRACKING_CONSENT。
+> 使用开放匿名设备标识服务接口，需[向用户申请授权](../../security/AccessToken/request-user-authorization.md)：ohos.permission.APP_TRACKING_CONSENT。
 
 ## 导入模块
 
@@ -16,7 +16,7 @@ import { identifier } from '@kit.AdsKit';
 
 getOAID(): Promise&lt;string&gt;
 
-获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID），使用Promise异步返回。
+获取开放匿名设备标识符（OAID），使用Promise异步返回。
 
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
@@ -26,11 +26,11 @@ getOAID(): Promise&lt;string&gt;
 
 | 类型                  | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。 |
+| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（OAID）。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[开放匿名设备标识服务错误码参考](errorcode-oaid.md)。
 
 | 错误码ID | 错误信息                         |
 |----------|----------------------------------|
@@ -55,7 +55,7 @@ identifier.getOAID().then((data) => {
 
 getOAID(callback: AsyncCallback&lt;string&gt;): void
 
-获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID），使用callback异步回调。
+获取开放匿名设备标识符（OAID），使用回调函数异步获取。
 
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
@@ -65,11 +65,11 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |----------|-----------------------------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| callback | AsyncCallback&lt;string&gt; | 是   | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 异步获取开放匿名设备标识符（OAID）的回调。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[开放匿名设备标识服务错误码参考](errorcode-oaid.md)。
 
 | 错误码ID | 错误信息                         |
 |----------|----------------------------------|

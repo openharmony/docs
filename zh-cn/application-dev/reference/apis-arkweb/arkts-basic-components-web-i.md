@@ -620,7 +620,7 @@ Web组件进入全屏回调事件的详情。
 | height            | number                              | 否    | 同层标签的高，单位为px。          |
 | url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即embed.info?.param?.["name"]。  |
+| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
@@ -740,6 +740,27 @@ Web组件进入全屏回调事件的详情。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 页面的URL地址。                       |
+
+## OnPdfLoadEvent<sup>20+</sup>
+
+定义PDF加载成功或失败时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。  |
+| result | [PdfLoadResult](./arkts-basic-components-web-e.md#pdfloadresult20) | 否 | 否 | PDF页面加载结果。  |
+
+## OnPdfScrollEvent<sup>20+</sup>
+
+定义PDF页面滚动到底时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。    |
 
 ## Header
 

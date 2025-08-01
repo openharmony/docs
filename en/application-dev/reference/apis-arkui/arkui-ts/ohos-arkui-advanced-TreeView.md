@@ -10,12 +10,14 @@ This component is applicable in productivity applications, such as side navigati
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { TreeView } from "@kit.ArkUI"
+import { TreeView } from "@kit.ArkUI";
 ```
 
 
@@ -140,12 +142,12 @@ Refreshes the tree view. You can call this API to update the information about t
 | symbolEditIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Symbol edit icon, which has a higher priority than **editIcon**.<br>Default value: **undefined**<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Primary title.<br>The default value is an empty string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                         |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Secondary title.<br>The default value is an empty string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                          |
-| container | () =&gt; void | No| Right-click child component bound to the node. The child component is decorated with @Builder.<br>Default value: **() => void**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                               |
+| container | () =&gt; void | No| Right-click child component bound to the node. The child component is decorated with @Builder.<br>Default value: **() =&gt; void**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                               |
 
 
 ## TreeListenerManager
 
-Implements a **TreeListenerManager** object, which can be bound to a tree view component to listen for changes of tree nodes. One **TreeListenerManager** object can be bound to only one tree view component.
+Implements a **TreeListenerManager** object, which can be bound to a **TreeView** component to listen for changes of tree nodes. One **TreeListenerManager** object can be bound to only one tree view component.
 
 
 ### getInstance
@@ -184,7 +186,7 @@ Obtains a listener.
 
 ## TreeListener
 
-Listener of the tree view component. You can bind it to the **TreeView** component and use it to listen for changes of tree nodes. A listener can be bound to only one **TreeView** component.
+Listener of the tree view component. You can bind it to the **TreeView** component and use it to listen for changes of tree nodes. One listener can be bound to only one **TreeView** component.
 
 
 ### on
@@ -272,7 +274,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 This example showcases how to use **TreeController** to perform operations on tree nodes, such as adding, deleting, and renaming. It also demonstrates the effects of adding nodes with different parameters.
 
 ```ts
-import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
+import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -386,11 +388,11 @@ struct TreeViewDemo {
 
 ### Example 2: Setting the Symbol Icon
 
-This example demonstrates how to use **symbolIconStyle**, **symbolEditIconStyle**, and **symbolSelectedIconStyle** in **NodeParam** to set custom symbol icons.
+This example demonstrates how to use **symbolIconStyle**, **symbolEditIconStyle**, and **symbolSelectedIconStyle** in **NodeParam** to set custom symbol icons. This functionality is supported since API version 18.
 
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam,
-  SymbolGlyphModifier } from '@kit.ArkUI'
+  SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

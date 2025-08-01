@@ -147,7 +147,7 @@ interface TestStr {
  * 修改为`{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`。
  * */
 let jsonStr = `{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`;
-let obj2 = JSON.parse(jsonStr) as TestStr;;
+let obj2 = JSON.parse(jsonStr) as TestStr;
 console.info(JSON.stringify(obj2));    // {"info":"{\"name\": \"zhangsan\", \"age\": 18}"}
 // 获取JSON字符串中的name信息
 let obj3 = JSON.parse(obj2.info) as Info;

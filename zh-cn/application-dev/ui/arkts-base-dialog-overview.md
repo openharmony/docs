@@ -20,11 +20,12 @@
 | [弹出框层级管理](arkts-dialog-levelorder.md) | 从API version 18开始，可以通过设置[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框的显示顺序。 |
 | [弹出框控制器](arkts-dialog-controller.md) | 从API version 18开始，可以通过设置[controller](../reference/apis-arkui/js-apis-promptAction.md#dialogcontroller18)参数来绑定控制器，通过控制器可以对弹出框进行操作。 |
 | [弹出框焦点策略](arkts-dialog-focusable.md) | 从API version 19开始，可以通过设置[focusable](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框是否获取焦点。 |
+| [弹出框蒙层控制](arkts-dialog-mask.md) | 开发者可以通过设置maskColor、maskRect等参数来对弹出框蒙层进行定制。 |
 
 ## 规格约束
 
 * 建议<!--Del-->在除[ServiceExtensionAbility](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均<!--DelEnd-->使用UIContext中的弹出框方法。
-* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
+* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象。
 * 由于系统安全管控原因，当弹出系统权限弹窗等场景时，弹出框在此状态下无法显示。
 
 

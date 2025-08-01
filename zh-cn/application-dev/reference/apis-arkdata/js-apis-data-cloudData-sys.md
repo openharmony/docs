@@ -872,7 +872,7 @@ static cloudSync(bundleName: string, storeId: string, mode: relationalStore.Sync
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 801      | Capability not supported.|
-| 14800001 | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+| 14800001 | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 **示例：**
 

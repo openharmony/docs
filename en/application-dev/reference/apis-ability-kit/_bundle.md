@@ -26,7 +26,8 @@ The bundle module provides APIs for querying application information.
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Describes the application information.|
 | [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | Describes the application entry information.|
-
+| [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md) | Describes the metadata of the application.|
+| [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md) | Describes the module metadata of the application.|
 
 
 ### Functions
@@ -38,7 +39,8 @@ The bundle module provides APIs for querying application information.
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
 | [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | Obtains the entry information about the current application.|
 | [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the current application.|
-
+| [OH_NativeBundle_IsDebugMode](#oh_nativebundle_isdebugmode) | Checks whether the current application is in debug mode.|
+| [OH_NativeBundle_GetModuleMetadata](#oh_nativebundle_getmodulemetadata) | Obtains the metadata information of the application.|
 
 ## Function Description
 
@@ -122,3 +124,49 @@ Obtains the compatible device type of the current application. It helps you opti
 **Returns**
 
 Returns a string indicating the compatible device type.
+
+### OH_NativeBundle_IsDebugMode
+
+```
+bool OH_NativeBundle_IsDebugMode(bool* isDebugMode)
+```
+
+**Description**
+
+Checks whether the current application is in debug mode.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| isDebugMode | Pointer to the check result. The value **true** means that the application is in debug mode, and **false** means the opposite.|
+
+**Returns**
+
+Operation result. The value **true** is returned if the call is successful, and **false** is returned otherwise.
+
+### OH_NativeBundle_GetModuleMetadata
+
+```
+OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size)
+```
+
+**Description**
+
+Obtains the module metadata array of the current application. After using this function, you must manually release the pointer returned to prevent memory leakage.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| size | Pointer to the size of the module metadata array.|
+
+**Returns**
+
+An array of module metadata. If the returned object is NULL, the retrieval fails.
+
+The possible cause is that the application address space is full, causing space allocation to fail.

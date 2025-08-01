@@ -89,7 +89,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie';
   ```
 
-  具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
+  具体接口请参考[lottie](https://gitcode.com/openharmony-tpc/lottieArkTS)。
 
 
 ## 初始化画布组件
@@ -244,6 +244,42 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   ```
 
   ![measureTextAndRect](figures/measureTextAndRect.png)
+
+- 使用自定义字体绘制文本。
+
+  从API version 20开始，可以通过[getGlobalInstance](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#getglobalinstance)获取应用全局字体管理器的实例，然后使用[loadfontsync](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口从设置的路径中加载自定义字体并通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)（设置文本绘制中的字体样式）接口设置文本绘制中的字体样式，接着通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
+
+  ```ts
+  import { text } from '@kit.ArkGraphics2D';
+
+  @Entry
+  @Component
+  struct CustomFont {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#F5DC62')
+          .onReady(() => {
+            //加载自定义字体
+            let fontCollection = text.FontCollection.getGlobalInstance();
+            fontCollection.loadFontSync('customFont', $rawfile("customFont.ttf"))
+            this.context.font = '30vp customFont'
+            this.context.fillText("Hello World!", 20, 50)
+            this.context.strokeText("Hello World!", 20, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![customFont](figures/customFont.jpeg)
 
 - 绘制图片和图像像素信息处理。
 

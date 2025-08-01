@@ -2,7 +2,7 @@
 
 SelectionExtensionContext是[SelectionExtensionAbility](./js-apis-selectionInput-selectionExtensionAbility-sys.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
-每个SelectionExtensionAbility组件实例化时，系统都会自动创建对应的SelectionExtensionContext。开发者可以通过SelectionExtensionContext拉起其他Ability。
+每个SelectionExtensionAbility组件实例化时，系统都会自动创建对应的SelectionExtensionContext。开发者可以通过SelectionExtensionContext拉起同应用内其他Ability。
 
 > **说明：**
 >
@@ -72,12 +72,8 @@ import { rpc } from '@kit.IPCKit';
 import { Want } from '@kit.AbilityKit';
 
 class SelectionAbilityStub extends rpc.RemoteObject {
-  constructor(des) {
-    if (typeof des === 'string') {
-      super(des);
-    } else {
-      return null;
-    }
+  constructor(des: string) {
+    super(des);
   }
   onRemoteMessageRequest(
     code: number,
@@ -85,7 +81,7 @@ class SelectionAbilityStub extends rpc.RemoteObject {
     reply: rpc.MessageSequence,
     options: rpc.MessageOption
   ): boolean | Promise<boolean> {
-    console.error(`onRemoteMessageRequest error: ${error.code} ${error.message}`);
+    console.info(`onRemoteMessageRequest code: ${code}`);
     return true;
   }
 }

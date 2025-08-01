@@ -18,6 +18,8 @@ constructor(value: CustomDialogControllerOptions)
 > 自定义弹窗的所有参数，不支持动态刷新。
 >
 > 在CustomDialogController作为全局变量以实现全局自定义弹窗的场景下，若对controller重新赋值，则无法通过其关闭之前的弹窗。建议在重新赋值前先关闭弹窗。
+>
+> 在自定义弹窗内拉起另一个自定义弹窗时，不建议直接关闭拉起方。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

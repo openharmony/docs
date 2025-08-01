@@ -1,4 +1,4 @@
-# @ohos.app.ability.continueManager (continueManager)
+# @ohos.app.ability.continueManager (Cross-Device Migration)
 
 The continueManager module provides capabilities for managing cross-device application migration. For example, it allows you to obtain the result of quickly launching the target application during the cross-device migration process.
 
@@ -20,7 +20,7 @@ Registers a callback to obtain the quick start result when an application is lau
 
 > **NOTE**
 >
-> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5 file](../../quick-start/module-configuration-file.md) of the source application.
+> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5](../../quick-start/module-configuration-file.md) file of the source application.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -34,11 +34,10 @@ Registers a callback to obtain the quick start result when an application is lau
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **Example**
@@ -86,7 +85,7 @@ Unregisters the callback used to obtain the quick start result when an applicati
 
 > **NOTE**
 >
-> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5 file](../../quick-start/module-configuration-file.md) of the source application.
+> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5](../../quick-start/module-configuration-file.md) file of the source application.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -100,11 +99,10 @@ Unregisters the callback used to obtain the quick start result when an applicati
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID   | Error Message|
 |----------| -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **Example**

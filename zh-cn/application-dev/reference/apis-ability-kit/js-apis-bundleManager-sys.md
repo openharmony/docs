@@ -847,6 +847,8 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 
 根据给定的want、abilityFlags和userId获取多个AbilityInfo，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -911,6 +913,8 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 
 根据给定的want和abilityFlags获取一个或多个AbilityInfo，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -971,6 +975,8 @@ try {
 queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
 根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo，使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1062,6 +1068,8 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 
 以同步方法根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1147,6 +1155,8 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 
 根据给定的want列表、abilityFlags和userId获取一个或多个AbilityInfo，使用Promise异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1218,6 +1228,8 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取一个或多个ExtensionAbilityInfo，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1283,6 +1295,8 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 根据给定的want、extensionAbilityType和extensionAbilityFlags获取一个或多个ExtensionAbilityInfo，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1344,6 +1358,8 @@ try {
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1437,6 +1453,8 @@ try {
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 以同步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3462,6 +3480,8 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 获取指定bundleName、moduleName和abilityName的label，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3522,6 +3542,8 @@ try {
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
 
 获取指定bundleName、moduleName和abilityName的label，使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3587,6 +3609,8 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 以同步的方法获取指定bundleName、moduleName和abilityName的label。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3648,6 +3672,8 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3705,6 +3731,8 @@ try {
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : ApplicationInfo
 
 以同步方法根据给定的bundleName、applicationFlags获取ApplicationInfo。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3871,6 +3899,8 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 
 获取指定的共享包信息，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -3925,6 +3955,8 @@ try {
 getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>
 
 获取指定的共享包信息，使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口
 
@@ -4078,6 +4110,8 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInf
 
 获取指定bundleName的provision配置文件信息，使用callback异步回调。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -4129,6 +4163,8 @@ try {
 getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void
 
 获取指定bundleName和userId的provision配置文件信息，使用callback异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4185,6 +4221,8 @@ try {
 getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>
 
 根据bundleName和userId获取应用的provision配置文件信息，使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口
 
@@ -4256,6 +4294,8 @@ getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
 以同步方法根据bundleName和userId获取应用的provision配置文件信息并返回结果。
 
+获取调用方自身的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -4318,6 +4358,8 @@ try {
 getSpecifiedDistributionType(bundleName: string): string
 
 以同步的方法查询指定bundleName的[分发类型](../../security/app-provision-structure.md)，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4420,6 +4462,8 @@ try {
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4764,6 +4808,8 @@ try {
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 根据给定的extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5598,7 +5644,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
 
-bundleName是调用方自身时不需要权限。
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5662,6 +5708,8 @@ try {
 getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<Array\<BundleInfo>>;
 
 根据bundleName、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用和分身应用的BundleInfo列表。使用Promise异步回调。
+
+获取调用方自身的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 

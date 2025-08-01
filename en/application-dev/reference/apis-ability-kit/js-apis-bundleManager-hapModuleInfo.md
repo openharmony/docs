@@ -1,10 +1,16 @@
 # HapModuleInfo
 
-The **HapModuleInfo** module defines the HAP module information. A third-party application can obtain its own HAP module information through [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** passed in for [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The module defines the HAP module information. An application can obtain its own HAP module information through [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** passed in for [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
 
 ## HapModuleInfo
 
@@ -24,7 +30,7 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Yes  | No  | ExtensionAbility information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | Yes  | No  | Metadata of the ability. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices that can run the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| installationFree                  | boolean                                                      | Yes  | No  | Whether the module supports the installation-free freature. Installation-free means that the module does not need to be explicitly installed through an app market. The value **true** means that the module supports installation-free, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| installationFree                  | boolean                                                      | Yes  | No  | Whether the module supports the installation-free feature. Installation-free means that the module does not need to be explicitly installed through an app market. The value **true** means that the module supports installation-free, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | hashValue                         | string                                                       | Yes  | No  | Hash value of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

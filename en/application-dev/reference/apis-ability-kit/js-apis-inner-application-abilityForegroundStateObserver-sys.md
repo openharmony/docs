@@ -1,6 +1,6 @@
 # AbilityForegroundStateObserver (System API)
 
-The AbilityForegroundStateObserver module defines the listener used to listen for ability foreground and background state changes.
+The module defines the listener used to listen for ability foreground and background state changes.
 
 > **NOTE**
 >
@@ -13,13 +13,23 @@ The AbilityForegroundStateObserver module defines the listener used to listen fo
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## AbilityForegroundStateObserver
+
+### onAbilityStateChanged
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void
+
+Called when the ability is switched between foreground and background.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                            | Type                   | Readable| Writable| Description  |
-| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAbilityStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an ability changes. The parameter type passed in is [AbilityStateData](js-apis-inner-application-abilityStateData.md).|
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| ------ | ----- | ----- | ----- |
+| abilityStateData   | [AbilityStateData](js-apis-inner-application-abilityStateData.md)   | Yes| Ability state data.|
 
 **Example**
 ```ts
@@ -28,7 +38,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {

@@ -148,10 +148,8 @@ class TestWritable extends stream.Writable {
     console.info("Writable chunk is", chunk);
     callback();
   }
-/**
- * Writable chunk is test
- * Writable chunk is finish
- * */
+  // Writable chunk is test
+  // Writable chunk is finish
 }
 
 let writableStream = new TestWritable();
@@ -504,10 +502,8 @@ class TestWritable extends stream.Writable {
     console.info("Writable chunk", chunks);
     callback();
   }
-/**
- * Writable chunk data1
- * Writable chunk data2
-* */
+  // Writable chunk data1
+  // Writable chunk data2
 }
 
 let writableStream = new TestWritable();
@@ -836,8 +832,8 @@ class TestReadable extends stream.Readable {
   }
 
   doRead(size: number) {
-    readable.push('test');
-    readable.push(null);
+    this.push('test');
+    this.push(null);
   }
 }
 
@@ -896,8 +892,8 @@ class TestReadable extends stream.Readable {
   }
 
   doRead(size: number) {
-    readable.push('test');
-    readable.push(null);
+    this.push('test');
+    this.push(null);
   }
 }
 
@@ -916,9 +912,9 @@ let writable = new TestWritable();
 readable.pipe(writable);
 readable.unpipe(writable);
 readable.on('data', () => {
-  console.info("Readable test unpipe data event called");
+  console.info("Readable test unpipe data event triggered");
 });
-// unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event called"
+// unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event triggered"
 ```
 
 ### on
@@ -1393,6 +1389,7 @@ uncork(): boolean
 **示例：**
 
 ```ts
+let dataWritten = '';
 class TestDuplex extends stream.Duplex {
   constructor() {
     super();
@@ -1407,7 +1404,6 @@ class TestDuplex extends stream.Duplex {
   }
 }
 
-let dataWritten = '';
 let duplexStream = new TestDuplex();
 duplexStream.cork();
 duplexStream.write('a');
@@ -1574,7 +1570,7 @@ class TestTransform extends stream.Transform {
   doTransform(chunk: string, encoding: string, callback: Function) {
     let stringChunk = chunk.toString().toUpperCase();
     console.info("Transform test doTransform", stringChunk); // Transform test doTransform HELLO
-    tr.push(stringChunk);
+    this.push(stringChunk);
     callback();
   }
 }

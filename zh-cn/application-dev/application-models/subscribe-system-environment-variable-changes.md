@@ -1,28 +1,21 @@
 # 获取/设置环境变量
 
-## 基本概念
 
-环境变量包含系统环境变量和应用环境变量。
-- 系统环境变量：是指在应用程序运行期间，终端设备的系统设置（例如系统的语言环境、屏幕方向等）发生变化。
-- 应用环境变量：是指在应用程序运行期间，应用自身的属性（例如应用的语言）发生变化。
+环境变量涵盖了所有可能影响应用运行时的环境配置信息，包括应用可指定的内部环境变量（字体大小、外观、语言等）和应用可感知的外部环境变量（屏幕方向等）。
 
-通常条件下，应用环境变量与系统环境变量保持一致。开发者可以通过[设置应用环境变量](#设置应用环境变量)的方式，使当前应用的环境变量与系统环境变量相互独立。
+通常条件下，环境变量会跟随系统设置变化。
 
 ## 使用场景
+|  场景   |  说明       |  约束限制  | 场景举例   |
+|------------|-------------------|-------------|-----------------|
+| [获取环境变量](#获取环境变量) | 开发者可以使用[getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)主动获取当前环境变量，包括深浅色模式、屏幕方向、语言地区、屏幕密度、设备类型等。        | 当前仅支持同步获取，使用方式参考[ResourceManager.getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)。  |应用运行过程中，可以主动获取当前应用深浅色模式，以更新用户界面显示。  |
+| [设置环境变量](#设置环境变量) | 当前仅支持应用自定义字体大小、深浅色、语言。<br>- [设置字体大小](#设置字体大小)<br>- [设置深浅色模式](#设置深浅色模式)<br>- [设置应用语言](#设置应用语言) |  当应用设置环境变量后，应用将无法通过订阅感知到对应的环境变量在系统中的变化。   |  应用自定义字体大小，以提升用户体验。 |
+| [订阅环境变量](#订阅环境变量) | 通过订阅环境变量，及时感知系统环境变化 。支持订阅的环境变量包括语言、深浅色、屏幕方向等，详见参见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。                   |    - 如果开发者将环境变量配置为不跟随系统变化（即[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中的对应字段取值为“nonFollowSystem”），应用将无法通过订阅感知对应的环境变量在系统中的变化。<br>- 应用订阅环境变量后，当应用处于后台时，环境变量发生变更，应用将无法实时收到订阅通知。相关通知推送会被延迟处理，待应用切换回前台时，才会收到订阅通知。 | 当用户旋转设备屏幕时，应用可以通过订阅环境变量感知环境变化重新布局用户界面，以适应屏幕方向和尺寸。 |
 
-- 获取应用环境变量：开发者可以通过[getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)主动获取当前应用的环境变量，以进行相关处理。例如，应用运行过程中，可以主动获取当前应用深浅色模式，以更新用户界面显示。
-- 设置应用环境变量：针对字体大小、深浅色模式、应用语言等应用环境变量，开发者可以通过相关接口进行设置。
-- 订阅系统环境变量：开发者可以主动订阅系统环境变量，及时感知系统状态的变化，并做出相应处理。例如，当用户将设备旋转到横屏或者竖屏时，应用可以重新布局用户界面，以适应屏幕方向和尺寸。查看当前支持订阅变化的系统环境变量，请参见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。
 
-## 约束限制
+## 获取环境变量
 
-- 当应用通过接口设置应用自身环境变量后，将无法订阅对应的系统环境变量。
-- 当系统环境变量不跟随系统变化（即[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中的对应字段取值为“nonFollowSystem”）时，将无法订阅对应的系统环境变量。
-- 应用订阅系统环境变量后，如果应用处于后台时，系统环境变量发生变更，应用将无法实时收到订阅通知。相关通知推送会被延迟处理，待应用切换回前台时，才会收到订阅通知。
-
-## 获取应用环境变量
-
-开发者可以使用[getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)主动获取当前[应用环境变量](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#configuration)，包括深浅色模式、屏幕方向、语言地区、屏幕密度、设备类型等，对应用程序作出相应处理，提供更好的用户体验。
+开发者可以使用[getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)主动获取当前[环境变量](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#configuration)，包括深浅色模式、屏幕方向、语言地区、屏幕密度、设备类型等，对应用程序作出相应处理，提供更好的用户体验。
 
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -42,9 +35,9 @@
   }
   ```
   
-## 设置应用环境变量
+## 设置环境变量
 
-支持设置的应用环境变量包括[字体大小](#设置字体大小)、[深浅色模式](#设置深浅色模式)、[应用语言](#设置应用语言)，其他环境变量（例如屏幕方向等）均不支持直接设置。
+支持应用自定义的环境变量包括[字体大小](#设置字体大小)、[深浅色模式](#设置深浅色模式)、[应用语言](#设置应用语言)，其他环境变量（例如屏幕方向等）均不支持直接设置。
 
 ### 设置字体大小
 
@@ -73,7 +66,7 @@ export default class MyAbility extends UIAbility {
 
 应用深浅色模式默认跟随系统。开发者可以自定义应用或组件的深浅色模式。
 
-配置生效的优先级为：UIAbility的深浅色模式 > 应用的深浅色模式 > 系统的深浅色模式。
+配置生效的优先级为：UIAbility/UIExtensionAbility的深浅色模式 > 应用的深浅色模式 > 系统的深浅色模式。
 
 - **设置应用的深浅色模式：** 使用ApplicationContext的[setColorMode](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetcolormode11)接口，可以设置应用深浅色模式。
 
@@ -117,6 +110,20 @@ export default class MyAbility extends UIAbility {
     }
     ```
 
+- **设置UIExtensionAbility的深浅色模式：** 使用UIExtensionContext的[setColorMode](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#setcolormode18)，可以设置UIExtensionAbility的深浅色模式。
+
+    ```ts
+    // UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+    import { ShareExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
+
+    export default class MyAbility extends ShareExtensionAbility {
+      onForeground() {
+        let uiExtensionContext = this.context;
+        uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+      }
+    }
+    ```
+
 ### 设置应用语言
 
 应用语言默认跟随系统语言变化。开发者可以使用[setLanguage](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetlanguage11)设置应用语言。设置后，不再支持订阅系统语言变化。
@@ -140,11 +147,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## 订阅系统环境变量
+## 订阅环境变量
 
-系统配置的变化通常由“设置”中的选项或“控制中心”中的图标触发。订阅系统环境变量变化，可以使应用程序更加智能地响应系统环境变化，从而提供更好的用户体验。查看当前支持订阅变化的系统环境变量，请参见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。
+系统配置的变化通常由“设置”中的选项或“控制中心”中的图标触发。订阅环境变量变化，可以使应用程序更加智能地响应系统环境变化，从而提供更好的用户体验。查看当前支持订阅变化的环境变量，请参见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。
 
-基于当前的应用模型，可以通过以下几种方式来实现订阅系统环境变量的变化。
+基于当前的应用模型，可以通过以下几种方式来实现订阅环境变量的变化。
 
 - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
 - [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
@@ -153,9 +160,9 @@ export default class MyAbility extends UIAbility {
 
 ### 使用ApplicationContext订阅回调
 
-[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)提供了注册回调函数以订阅系统环境变量的变化，并且可以通过调用相应的方法来撤销该回调。这有助于在资源不再需要时释放相关资源，从而提高系统的可靠性和性能。
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)提供了注册回调函数以订阅环境变量的变化，并且可以通过调用相应的方法来撤销该回调。这有助于在资源不再需要时释放相关资源，从而提高系统的可靠性和性能。
 
-1. 使用[on](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextonenvironment)方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
+1. 使用[on](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextonenvironment)方法，应用程序可以通过在非应用组件模块中订阅环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
 
     ```ts
     import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
@@ -242,7 +249,7 @@ export default class MyAbility extends UIAbility {
 
 ### 在AbilityStage组件容器中订阅回调
 
-使用[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)回调方法订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。可以进行相应的界面适配等操作，从而提高系统的灵活性和可维护性。
+使用[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)回调方法订阅环境变量的变化。当环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的环境变量信息。可以进行相应的界面适配等操作，从而提高系统的灵活性和可维护性。
 
 > **说明：**
 >
@@ -281,11 +288,11 @@ export default class MyAbilityStage extends AbilityStage {
 
 ### 在UIAbility组件中订阅回调
 
-[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件提供了[UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件提供了[UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅环境变量的变化。当环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的环境变量信息，而无需重启UIAbility。
 
 > **说明：**
 >
-> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着UIAbility的生命周期而存在，在UIAbility销毁时一并销毁。
+> - 当应用通过回调方法订阅环境变量变化时，该订阅会随着所在UIAbility的生命周期持续有效。一旦UIAbility被销毁，之前注册的所有回调订阅将自动失效，同时应用将不会再收到订阅的回调信息。
 > - 如果使用该接口监听屏幕方向变化，需要在module.json5配置文件的[abilities标签](../quick-start/module-configuration-file.md#abilities标签)中将orientation字段配置为auto_rotation。
 
 例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现监测系统语言的变化。
@@ -319,13 +326,13 @@ export default class EntryAbility extends UIAbility {
 
 ### 在ExtensionAbility组件中订阅回调
 
-[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件提供了[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。
+[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件提供了[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅环境变量的变化。当环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的环境变量信息。
 
 > **说明：**
 >
-> 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着ExtensionAbility的生命周期而存在，在ExtensionAbility销毁时一并销毁。
+> 当应用通过回调方法订阅环境变量变化时，该订阅会随着所在ExtensionAbility的生命周期持续有效。一旦ExtensionAbility被销毁，之前注册的所有回调订阅将自动失效，同时应用将不会再收到订阅的回调信息。
 
-以[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)为例说明。例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现系统环境变量的变化。
+以[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)为例说明。例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现环境变量的变化。
 
 ```ts
 import { FormExtensionAbility } from '@kit.FormKit';

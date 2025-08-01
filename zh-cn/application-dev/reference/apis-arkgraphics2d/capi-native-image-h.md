@@ -573,7 +573,7 @@ int32_t OH_NativeImage_SetDropBufferMode(OH_NativeImage* image, bool isOpen)
 
 **描述**
 
-设置OH_NativeImage是否为渲染丢帧模式。<br>处于此模式时，大部分生产端生产的buffer将会被丢弃，最新的buffer会及时上屏渲染。<br>此模式不能同时保证帧率高的要求。<br>此接口建议在[OH_NativeImage_Create](capi-native-image-h.md#oh_nativeimage_create)接口调用后立即调用。<br>此接口在与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口一起使用的场景下才会生效。<br>本接口为非线程安全类型接口。<br>
+设置OH_NativeImage是否为渲染丢帧模式。<br>处于此模式时，大部分生产端生产的buffer将会被丢弃，最新的buffer会及时上屏渲染。<br>此模式不能同时保证帧率高的要求。<br>此接口建议在[OH_NativeImage_Create](capi-native-image-h.md#oh_nativeimage_create)接口调用后立即调用。<br>此接口在与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口一起使用的场景下才会生效。<br>本接口为非线程安全类型接口。<br>通过[OH_NativeImage_SetOnFrameAvailableListener](capi-native-image-h.md#oh_nativeimage_setonframeavailablelistener)设置的listener回调不会因为设置了丢帧模式而减少。<br>
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 

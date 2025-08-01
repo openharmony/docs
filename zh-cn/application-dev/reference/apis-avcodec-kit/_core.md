@@ -766,16 +766,13 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **返回：**
 
-返回函数结果：
+如果成功，则返回OH_AVFormat实例的指针，如果失败，则返回NULL。
 
-AV_ERR_OK：操作成功。
+可能失败的原因：
 
-AV_ERR_INVALID_VAL：
-
-    可能的原因：
-    1. 输入的buffer为空指针；
-    2. 输入buffer的meta为空指针；
-    3. buffer结构校验失败。
+1. 输入的buffer为空指针；
+2. 输入buffer的meta为空指针；
+3. buffer结构校验失败。
 
 
 ### OH_AVBuffer_SetBufferAttr()

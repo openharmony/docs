@@ -1329,8 +1329,6 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **需要权限**：ohos.permission.INTERNET
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1374,8 +1372,6 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1960,9 +1956,14 @@ if (netHandle.netId != 0) {
 网络连接的句柄。
 
 > **说明：**
-> 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
-> 设备从有网络到无网络状态会触发netLost事件；
-> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
+>
+>（1）设备从无网络状态转变为有网络状态时，将触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
+>
+>（2）接收到netAvailable事件后，若设备从有网络状态转变为无网络状态，将触发netLost事件；
+>
+>（3）若未接收到netAvailable事件，则将直接接收到netUnavailable事件；
+>
+>（4）设备从WiFi网络切换至蜂窝网络时，将先触发netLost事件（WiFi丢失），随后触发netAvailable事件（蜂窝可用）。
 
 ### register
 
@@ -2492,6 +2493,8 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\)
 
 使用当前NetHandle对应的网络解析主机名获取到的所有IP地址，使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -2542,6 +2545,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用当前NetHandle对应的网络解析主机名获取到的所有IP地址，使用Promise方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.INTERNET
 

@@ -39,6 +39,10 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 根命名域中的所有方法都可以作为AVSessionManager的方法。
 
 例如，媒体会话提供方通过AVSessionManager创建媒体会话的示例如下所示：
+
+> **说明：**
+>
+> 以下示例代码仅展示创建AVSession对象的接口调用，应用在真正使用时，需要确保AVSession对象实例在应用后台播放业务活动期间一直存在，避免被系统回收、释放，导致后台发声时被系统管控。
  
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

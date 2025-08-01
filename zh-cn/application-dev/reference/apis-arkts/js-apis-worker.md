@@ -1,12 +1,12 @@
 # @ohos.worker (启动一个Worker)
 
-Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
+Worker是与主线程并行的独立线程。创建Worker的线程称为宿主线程，Worker自身的线程称为Worker线程。创建Worker时传入的URL文件在Worker线程中执行，可以处理耗时操作，但不能直接操作UI。
 
-Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与宿主线程分离，在后台线程中运行一个脚本处理耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞宿主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
+Worker的主要作用是为应用程序提供多线程运行环境，使应用程序在执行过程中与宿主线程分离，在后台线程中运行脚本处理耗时操作，避免计算密集型或高延迟任务阻塞宿主线程。由于Worker一旦创建不会主动销毁，若不处于任务状态会一直运行，造成资源浪费，应及时关闭空闲的Worker。
 
-Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
+Worker的上下文对象和UI线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查看[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
+请查看[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)，了解Worker使用过程中的相关注意点。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -24,20 +24,20 @@ import { worker } from '@kit.ArkTS';
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 否   | 否   | worker线程用于与宿主线程通信的对象。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 否   | 否   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持，从API version 9开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 否   | 否   | Worker线程用于与宿主线程通信的对象。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                         |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 否   | 否   | Worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持，从API version 9开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
 
-Worker构造函数的选项信息，用于为Worker添加其他信息。
+Worker构造函数的选项，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
 | type | 'classic' \| 'module' | 否   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| name | string   | 否   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| name | string   | 否   | 是 | Worker的名称，默认值为undefined。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 否   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 否   | 是 | 表示Worker线程优先级。默认值为MEDIUM。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
@@ -48,19 +48,20 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
-
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 高优先级，对应QOS_USER_INITIATED。 |
-| MEDIUM | 1 | 中优先级，对应QOS_DEFAULT。 |
-| LOW | 2 | 低优先级，对应QOS_UTILITY。 |
-| IDLE | 3 | 后台优先级，对应QOS_BACKGROUND。 |
+| HIGH   | 0    | 适用于打开文档等用户触发并且可以看到进展的任务，任务在几秒钟之内完成。对应QOS_USER_INITIATED。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务完成需要几秒钟。对应QOS_DEFAULT。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 适用于下载等不需要立即看到响应效果的任务，任务完成需要几秒到几分钟。对应QOS_UTILITY。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| IDLE | 3 | 适用于数据同步等用户不可见的后台任务，任务完成需要几分钟甚至几小时。对应QOS_BACKGROUND。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| DEADLINE<sup>20+</sup> | 4 | 适用于页面加载等越快越好的关键任务，任务几乎是瞬间完成的。对应QOS_DEADLINE_REQUEST。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| VIP<sup>20+</sup> | 5 | 适用于UI线程、动画渲染等用户交互任务，任务是即时的。对应QOS_USER_INTERACTIVE。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+
 
 
 ## ThreadWorker<sup>9+</sup>
 
-使用以下方法前，均需先构造ThreadWorker实例，ThreadWorker类继承[WorkerEventTarget](#workereventtarget9)。
+使用以下方法前，需先构造ThreadWorker实例。ThreadWorker类继承自[WorkerEventTarget](#workereventtarget9)。
 
 ### constructor<sup>9+</sup>
 
@@ -91,7 +92,7 @@ ThreadWorker构造函数。
 
 **示例：**
 
-此处以在Stage模型的entry模块Index.ets文件中加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+以下示例展示了在Stage模型的entry模块Index.ets文件中加载Worker文件的方法，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
 import { worker } from '@kit.ArkTS';
@@ -206,7 +207,7 @@ struct Index {
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-宿主线程通过转移对象所有权或者拷贝数据的方式向Worker线程发送消息。在传递[Sendable对象](../../arkts-utils/arkts-sendable.md)时使用拷贝数据的方式传递。
+宿主线程可以通过转移对象所有权或拷贝数据的方式向Worker线程发送消息。在传递[Sendable对象](../../arkts-utils/arkts-sendable.md)时，使用拷贝数据的方式。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -217,7 +218,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用。<br>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到Worker线程。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，传输的数据将通过所有权转移的方式发送到Worker线程。这些数据在宿主线程中将变为不可用，仅在Worker线程中可用。<br>若不填入该参数，默认设置为 undefined，数据将通过拷贝的方式传输到Worker线程。 |
 
 **错误码：**
 
@@ -260,8 +261,8 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
-| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[序列化类型说明](#序列化支持类型)。如果需要共享数据，支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
+| transfer  | ArrayBuffer[] | 否   | 可转移的ArrayBuffer实例对象数组。该数组中对象的所有权将转移到Worker线程，在宿主线程中变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
 
@@ -365,7 +366,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 once(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听，该事件监听只执行一次便自动删除。
+向Worker添加一个事件监听，该事件监听只执行一次，执行完后会自动删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -408,7 +409,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 off(type: string, listener?: WorkerEventListener): void
 
-删除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
+移除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -460,7 +461,7 @@ workerInstance.off("alert");
 
 registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
-在宿主线程的ThreadWorker实例上注册一个对象，该对象上的方法可以在Worker线程中被调用，详细介绍请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
+在宿主线程的ThreadWorker实例上注册一个对象，该对象的方法可在Worker线程中调用。详情请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +471,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| instanceName  | string        | 是   | 注册对象时使用的键，调用时可以通过该键值找到相对应的被注册的对象。 |
+| instanceName  | string        | 是   | 注册对象时使用的键，调用时通过该键值找到被注册的对象。 |
 | globalCallObject | Object | 是   | 被注册的对象，ThreadWorker实例会持有被注册对象的强引用。 |
 
 **错误码：**
@@ -530,7 +531,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 unregisterGlobalCallObject(instanceName?: string): void
 
-取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配的对象的强引用。如果没有匹配的对象，该方法不会报错。
+取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配的对象的强引用。如果无匹配对象，该方法不会报错。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -540,7 +541,7 @@ unregisterGlobalCallObject(instanceName?: string): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| instanceName  | string        | 否   | 注册对象时使用的键，此参数不填时，会释放ThreadWorker实例中所有已注册的对象。 |
+| instanceName  | string        | 否   | 注册对象时使用的键。此参数不填时，会释放ThreadWorker实例中所有已注册的对象。 |
 
 **错误码：**
 
@@ -576,7 +577,7 @@ workerInstance.postMessage("start worker");
 
 terminate(): void
 
-销毁Worker线程，终止Worker接收消息。
+销毁Worker线程并停止Worker线程接收消息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -602,7 +603,7 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
+回调函数。表示Worker线程销毁时被调用的事件处理程序，该处理程序在宿主线程中执行。回调函数的code参数类型为number，异常退出时code为1，正常退出时code为0。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -690,9 +691,9 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 onAllErrors?: ErrorCallback
 
-回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
-[onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
-onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等过程中产生的全局异常，且onAllErrors捕获异常后Worker线程仍存活，可以继续使用。因此，推荐使用onAllErrors代替onerror。
+回调函数。表示Worker线程生命周期内发生异常时被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
+[onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，无法继续使用。<br/>
+onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等过程中产生的全局异常，且onAllErrors捕获异常后Worker线程仍可以继续使用。因此，推荐使用onAllErrors代替onerror。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -744,7 +745,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+回调函数。是宿主线程接收其创建的Worker通过workerPort.postMessage接口发送的消息时调用的事件处理程序。处理程序在宿主线程中执行，回调函数中的event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -792,7 +793,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+回调函数。用于处理Worker对象接收到的无法被序列化的消息。该处理程序在宿主线程中执行，event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -886,7 +887,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后执行的回调函数。 |
 
 **错误码：**
 
@@ -912,7 +913,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-将事件对象分发到Worker线程的事件系统。事件系统会自动触发该类型事件对应的所有监听器回调。
+将事件对象分发到Worker线程的事件系统，该系统会自动触发该类型事件对应的所有监听器回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1002,7 +1003,7 @@ workerInstance.dispatchEvent({type: "message", timeStamp: 0});
 
 removeAllListener(): void
 
-删除Worker所有的事件监听。
+移除Worker的所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1028,13 +1029,13 @@ workerInstance.removeAllListener();
 
 ## WorkerEventTarget<sup>9+</sup>
 
-处理Worker监听事件。
+用于管理Worker的监听事件。
 
 ### addEventListener<sup>9+</sup>
 
 addEventListener(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
+向Worker添加事件监听，该接口功能与[on<sup>9+</sup>](#on9)相同。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1071,7 +1072,7 @@ workerInstance.addEventListener("alert", () => {
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
+移除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1082,7 +1083,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调函数。 |
 
 **错误码：**
 
@@ -1108,7 +1109,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-将事件对象分发到Worker线程的事件系统。事件系统会自动触发该类型事件对应的所有监听器回调。
+将事件对象分发到Worker线程的事件系统，并触发该类型事件的所有监听器回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1143,7 +1144,7 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp暂未支持
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）配合使用，示例如下：
 
 ```ts
 import { worker, MessageEvents } from '@kit.ArkTS';
@@ -1276,7 +1277,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线程发送消息。在传递[Sendable对象](../../arkts-utils/arkts-sendable.md)时使用拷贝数据的方式传递。
+Worker线程通过转移对象所有权或拷贝数据的方式向宿主线程发送消息。在传递[Sendable对象](../../arkts-utils/arkts-sendable.md)时，使用拷贝数据的方式进行传递。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1287,7 +1288,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，其作用与传入ArrayBuffer[]相同，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **错误码：**
 
@@ -1399,7 +1400,7 @@ workerInstance.onmessage = (e: MessageEvents) => {
 
 callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object
 
-Worker线程调用注册在宿主线程上某个对象的指定方法，调用对于Worker线程是同步的，对于宿主线程是异步的，返回值通过拷贝数据的方式传递。
+Worker线程调用宿主线程上注册的对象的指定方法，此调用对Worker线程同步，对宿主线程异步，返回值通过数据拷贝传递。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1409,8 +1410,8 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| instanceName | string                                    | 是   | 注册对象时使用的键，用于在宿主线程查找对象。 |
-| methodName | string | 是 | 在已注册对象上调用的方法名，注意该方法不能为使用async或generator修饰的方法，或底层使用了异步机制等异步返回结果的方法，否则会抛出异常。 |
+| instanceName | string                                    | 是   | 注册对象时使用的键，用于在宿主线程中查找对象。 |
+| methodName | string | 是 | 在已注册对象上调用的方法名。该方法不能使用async或generator修饰，也不能基于底层异步机制返回结果，否则会抛出异常。 |
 | timeout | number | 是 | 本次同步调用的等待时间单位为ms，取整数，取值范围为[1-5000]ms。也可取特殊值0，此时表示本次调用等待时间为5000ms。 |
 | args | Object[] | 否 | 注册对象上所调用方法的参数数组。 |
 
@@ -1664,7 +1665,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 消息类，持有Worker线程间传递的数据，MessageEvents类继承[Event](#event)。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1701,7 +1702,7 @@ type ErrorCallback = (err: ErrorEvent) => void
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| err | ErrorEvent                          | 是   | 错误事件类，用于表示Worker执行过程中出现异常的详细信息。 |
+| err | ErrorEvent                          | 是   | 错误事件类，表示Worker执行过程中出现的异常信息。 |
 
 ## Worker<sup>(deprecated)</sup>
 
@@ -1725,7 +1726,7 @@ Worker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径，详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **示例：**
@@ -1754,8 +1755,8 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
-| transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。 |
+| message  | Object        | 是   | 发送至Worker的数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，所有权会转移到Worker线程，仅在该线程中可用。数组不可传入null。 |
 
 **示例：**
 
@@ -1782,7 +1783,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到Worker线程。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将变为不可用，仅在Worker线程中可用。<br/>若不填入该参数，默认设置为undefined，通过拷贝数据的方式传输信息到Worker线程。 |
 
 **示例：**
 
@@ -1828,7 +1829,7 @@ workerInstance.on("alert", () => {
 
 once(type: string, listener: EventListener): void
 
-向Worker添加一个事件监听，事件监听只执行一次便自动删除。
+向Worker添加一个事件监听，该事件监听只执行一次，执行完后会自动删除。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.once<sup>9+</sup>](#once9)替代。
@@ -1856,7 +1857,7 @@ workerInstance.once("alert", () => {
 
 off(type: string, listener?: EventListener): void
 
-删除类型为type的事件监听，该接口与[removeEventListener<sup>(deprecated)</sup>](#removeeventlistenerdeprecated)接口功能一致。
+移除类型为type的事件监听，该接口与[removeEventListener<sup>(deprecated)</sup>](#removeeventlistenerdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
@@ -1868,7 +1869,7 @@ off(type: string, listener?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                 |
 | -------- | ----------------------------------------- | ---- | -------------------- |
 | type     | string                                    | 是   | 需要删除的事件类型。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调事件。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 否   | 移除监听事件后所执行的回调事件。 |
 
 **示例：**
 
@@ -2015,7 +2016,7 @@ addEventListener(type: string, listener: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明             |
 | -------- | ----------------------------------------- | ---- | ---------------- |
 | type     | string                                    | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调的事件。     |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 事件触发时的回调函数。 |
 
 **示例：**
 
@@ -2035,7 +2036,7 @@ workerPort.addEventListener("alert", () => {
 
 removeEventListener(type: string, callback?: EventListener): void
 
-删除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。
+移除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
@@ -2046,8 +2047,8 @@ removeEventListener(type: string, callback?: EventListener): void
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | 是   | 需要删除的监听事件类型。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调事件。 |
+| type     | string                                    | 是   | 需要移除的事件类型。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调函数。 |
 
 **示例：**
 
@@ -2135,7 +2136,7 @@ workerPort.onmessage = (event: MessageEvents) => {
 
 removeAllListener(): void
 
-删除Worker所有的事件监听。
+移除Worker所有的事件监听。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[removeAllListener<sup>9+</sup>](#removealllistener9)替代。
@@ -2160,7 +2161,7 @@ workerPort.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口关闭Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
@@ -2360,7 +2361,7 @@ parentPort.onmessageerror = () => {
 
 ## PostMessageOptions
 
-明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer，发送它的上下文中将会变为不可用，仅在接收方可用。
+明确数据传递过程中需要转移所有权的对象，这些对象必须是ArrayBuffer，在发送方的上下文中将变为不可用，仅在接收方可用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2382,12 +2383,12 @@ parentPort.onmessageerror = () => {
 | 名称      | 类型   | 只读 | 可选 | 说明                                         |
 | --------- | ------ | ---- | ---- | -------------------------------------------- |
 | type      | string | 是   | 否   | 指定事件的类型。                             |
-| timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒），暂未支持。 |
+| timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒），目前不支持。 |
 
 
 ## EventListener<sup>(deprecated)</sup>
 
-事件监听类。
+事件监听类用于处理事件。
 
 > **说明：**
 >
@@ -2427,7 +2428,7 @@ workerInstance.addEventListener("alert", ()=>{
 
 ## ErrorEvent
 
-错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
+错误事件类用于表示Worker执行过程中出现异常的详细信息，该类继承[Event](#event)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2468,7 +2469,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
-| onerror | (ev: [ErrorEvent](#errorevent)) => void | 否 | 是 | Worker在执行过程中发生异常被调用的回调函数，在Worker线程中执行，ev表示收到的异常数据。默认值为undefined。 |
+| onerror | (ev: [ErrorEvent](#errorevent)) => void | 否 | 是 | Worker在执行过程中发生异常被调用的回调函数，在Worker线程中执行，ev表示收到的异常数据，默认值为undefined。 |
 
 
 ## 其他说明
@@ -2585,7 +2586,7 @@ workerPort.onerror = (err: ErrorEvent) => {
     console.error("worker.ets onerror");
 }
 ```
-在模块级entry/build-profile.json5配置文件添加如下配置:
+在模块级entry/build-profile.json5配置文件中添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {
@@ -2663,7 +2664,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   console.error("worker.ets onerror" + err.message);
 }
 ```
-在模块级entry/build-profile.json5配置文件添加如下配置:
+在模块级entry/build-profile.json5配置文件中添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {

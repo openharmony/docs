@@ -72,6 +72,11 @@ USB设备可作为Host连接Device进行设备管理，开发示例如下：
    ```ts
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
+   console.info(`deviceList: ${deviceList}`);
+   if(deviceList.length === 0) {
+     console.error('deviceList is empty');
+     return;
+   }
    /*
    deviceList结构示例
    [

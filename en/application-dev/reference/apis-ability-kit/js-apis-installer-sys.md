@@ -1,6 +1,6 @@
 # @ohos.bundle.installer (installer) (System API)
 
-The bundle.installer module provides APIs for you to install, uninstall, and recover bundles on devices.
+The module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
 >
@@ -11,29 +11,14 @@ The bundle.installer module provides APIs for you to install, uninstall, and rec
 ## Modules to Import
 
 ```js
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 ```
-
-## Required Permissions
-
-| Permission                          | APL   | Description            |
-| ------------------------------ | ----------- | ---------------- |
-| ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.|
-| ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | Permission to install enterprise InHouse applications.|
-| ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE | system_core | Permission to install enterprise MDM applications.|
-| ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE | system_core | Permission to install enterprise Normal applications.|
-| ohos.permission.UNINSTALL_BUNDLE | system_core | Allows an application to uninstall applications.|
-| ohos.permission.RECOVER_BUNDLE | system_core | Allows an application to restore pre-installed applications.|
-| ohos.permission.INSTALL_SELF_BUNDLE | system_core | Allows automatic updates of the enterprise MDM applications on enterprise devices.|
-| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | Allows an application to install beta applications.|
-
-For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## BundleInstaller.getBundleInstaller
 
 getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
-Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
+Obtains a BundleInstaller object. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -43,7 +28,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<BundleInstaller> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<BundleInstaller> | Yes  | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null** and **data** is the BundleInstaller object obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -57,7 +42,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -78,7 +63,7 @@ try {
 
 getBundleInstaller(): Promise\<BundleInstaller>
 
-Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
+Obtains a BundleInstaller object. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -87,7 +72,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 **Return value**
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<BundleInstaller> | Promise used to return the **BundleInstaller** object obtained.|
+| Promise\<BundleInstaller> | Promise used to return the BundleInstaller object obtained.|
 
 **Error codes**
 
@@ -100,7 +85,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -119,7 +104,7 @@ try {
 
 getBundleInstallerSync(): BundleInstaller
 
-Obtains a **BundleInstaller** object. This API is a synchronous API.
+Obtains a BundleInstaller object. This API is a synchronous API.
 
 **System API**: This is a system API.
 
@@ -128,7 +113,7 @@ Obtains a **BundleInstaller** object. This API is a synchronous API.
 **Return value**
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| BundleInstaller | **BundleInstaller** object.|
+| BundleInstaller | BundleInstaller object.|
 
 **Error codes**
 
@@ -141,7 +126,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -163,17 +148,17 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
-> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+> To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
-> To install an enterprise Normal application, you must have the **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE** or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise Normal application, you must have the ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise MDM application, you must have the ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+> To install a common application, you must have the ohos.permission.INSTALL_BUNDLE permission.
 >
-> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
+> To install a beta application, you must have the ohos.permission.INSTALL_INTERNALTESTING_BUNDLE permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -183,7 +168,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
 | installParam           | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                                    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -223,7 +208,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -260,17 +245,17 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
-> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+> To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
-> To install an enterprise Normal application, you must have the **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE** or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise Normal application, you must have the ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise MDM application, you must have the ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+> To install a common application, you must have the ohos.permission.INSTALL_BUNDLE permission.
 >
-> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
+> To install a beta application, you must have the ohos.permission.INSTALL_INTERNALTESTING_BUNDLE permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -279,7 +264,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 | Name          | Type                                                | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -318,7 +303,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -352,17 +337,17 @@ Installs a bundle. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
-> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+> To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
-> To install an enterprise Normal application, you must have the **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE** or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise Normal application, you must have the ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
+> To install an enterprise MDM application, you must have the ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE permission.
 >
-> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+> To install a common application, you must have the ohos.permission.INSTALL_BUNDLE permission.
 >
-> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
+> To install a beta application, you must have the ohos.permission.INSTALL_INTERNALTESTING_BUNDLE permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -417,7 +402,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -462,7 +447,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -485,7 +470,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -530,7 +515,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -551,7 +536,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -619,7 +604,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -664,7 +649,7 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -683,7 +668,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -729,7 +714,7 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                              |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -747,7 +732,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -811,7 +796,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -855,7 +840,7 @@ Uninstalls a shared package. This API uses an asynchronous callback to return th
 | Name        | Type                               | Mandatory| Description                                                    |
 | -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.                            |
-| callback       | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt;           | Yes  | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -873,7 +858,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let uninstallParam: installer.UninstallParam = {
@@ -938,7 +923,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let uninstallParam: installer.UninstallParam = {
@@ -1003,7 +988,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
@@ -1065,7 +1050,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
@@ -1105,7 +1090,7 @@ Updates the current bundle. This API uses an asynchronous callback to return the
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
 | installParam           | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                                    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1138,7 +1123,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1183,7 +1168,7 @@ Updates the current bundle. This API uses an asynchronous callback to return the
 | Name          | Type                                                | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1215,7 +1200,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1294,7 +1279,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1365,7 +1350,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1432,7 +1417,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1499,7 +1484,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1565,7 +1550,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1638,7 +1623,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1814,10 +1799,10 @@ Defines the hash parameters for bundle installation and uninstall.
 
 **System API**: This is a system API.
 
-| Name    | Type  | Mandatory| Description            |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | Yes| Module name of the bundle.|
-| hashValue  | string | Yes| Hash value.          |
+| Name    | Type  | Read-Only| Optional| Description            |
+| ---------- | ------ | ---------------- |------- | ---------------- |
+| moduleName | string | No| No| Module name of the bundle.|
+| hashValue  | string | No| No| Hash value.          |
 
 ## InstallParam
 
@@ -1827,19 +1812,19 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 **System API**: This is a system API.
 
-| Name                       | Type                          | Mandatory                        | Description              |
-| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
-| installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
-| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
-| hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
-| crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
-| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files. By default, no value is passed.|
-| specifiedDistributionType<sup>10+</sup> | string | No|[Distribution type](../../security/app-provision-structure.md) specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
-| additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
-| verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | No| Information about the code signature file. The default value is null.        |
-| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
-| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.enterpriseForAllUser**: If the value is **true**, the enterprise application is installed for all users.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.|
+| Name                       | Type                          |  Read-Only |  Optional | Description              |
+| ------------------------------ | ------------------------------ | ------------------| ------------------ | ------------------ |
+| userId                         | number                         | No                      | Yes | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
+| installFlag                    | number                         | No                      | Yes| Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
+| isKeepData                     | boolean                        | No                      | Yes| Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
+| hashParams        | Array<[HashParam](#hashparam)> | No| Yes| Hash parameters. By default, no value is passed.        |
+| crowdtestDeadline| number                         | No                      | Yes| End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
+| sharedBundleDirPaths<sup>10+</sup> | Array\<string> | No| Yes|Paths of the shared bundle files. By default, no value is passed.|
+| specifiedDistributionType<sup>10+</sup> | string | No| Yes|[Distribution type](../../security/app-provision-structure.md) specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
+| additionalInfo<sup>10+</sup> | string | No| Yes|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
+| verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | No| Yes| Information about the code signature file. The default value is null.        |
+| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Yes| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Yes| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.enterpriseForAllUser**: If the value is **true**, the enterprise application is installed for all users.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.<br> - **ohos.bms.param.enterpriseManifest**: The value is the sandbox path of the JSON file used to store the application's manifest, including the bundle name. It is used in the scenario of cloning enterprise applications. If this JSON file exists during cloning, the application package from the old device is copied to the new device for installation.|
 ## UninstallParam<sup>10+</sup>
 
 Defines the parameters required for the uninstall of a shared bundle.
@@ -1848,10 +1833,10 @@ Defines the parameters required for the uninstall of a shared bundle.
 
 **System API**: This is a system API.
 
-| Name       | Type  | Mandatory| Description                                                        |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string | Yes  | Name of the shared bundle.                                                |
-| versionCode | number | No  | Version number of the shared bundle. By default, no value is passed, and all shared bundles of the specified name are uninstalled.|
+| Name       | Type   |  Read-Only |  Optional | Description                                                        |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| bundleName  | string | No| No | Name of the shared bundle.                                                |
+| versionCode | number | No| Yes | Version number of the shared bundle. By default, no value is passed, and all shared bundles of the specified name are uninstalled.|
 
 ## VerifyCodeParam<sup>deprecated<sup>
 
@@ -1863,10 +1848,10 @@ Defines the information about the code signature file.
 
 **System API**: This is a system API.
 
-| Name    | Type  | Mandatory| Description            |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | Yes| Module name of the bundle.|
-| signatureFilePath  | string | Yes| Path of the code signature file.          |
+| Name    | Type  |  Read-Only |  Optional | Description            |
+| ---------- | ------ |------ | ---------------- | ---------------- |
+| moduleName | string |  No| No| Module name of the bundle.|
+| signatureFilePath  | string |  No| No| Path of the code signature file.          |
 
 ## PGOParam<sup>11+</sup>
 
@@ -1876,10 +1861,10 @@ Defines the parameters of the PGO configuration file.
 
 **System API**: This is a system API.
 
-| Name    | Type  | Mandatory| Description            |
-| ---------- | ------ | ---------------- | ---------------- |
-| moduleName | string | Yes| Module name of the bundle.|
-| pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
+| Name    | Type  | Read-Only |  Optional  | Description            |
+| ---------- | ------ | ------ | ---------------- | ---------------- |
+| moduleName | string |  No| No| Module name of the bundle.|
+| pgoFilePath  | string |  No| No| Path of the PGO configuration file.          |
 
 ## Parameters<sup>15+</sup>
 
@@ -1889,10 +1874,10 @@ Describes the extended parameter information.
 
 **System API**: This is a system API.
 
-| Name    | Type  | Mandatory| Description            |
-| ---------- | ------ | ---------------- | ---------------- |
-| key | string | Yes| Key of an extended parameter.|
-| value  | string | Yes| Value of the extended parameter. |
+| Name    | Type  | Read-Only |  Optional | Description            |
+| ---------- | ------ |------ | ---------------- | ---------------- |
+| key | string | No| No| Key of an extended parameter.|
+| value  | string | No| No| Value of the extended parameter. |
 
 ## CreateAppCloneParam<sup>12+</sup>
 
@@ -1902,10 +1887,10 @@ Describes the parameters used for creating an application clone.
 
 **System API**: This is a system API.
 
-| Name       | Type  | Mandatory| Description                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | ID of the user for whom the clone is to be created. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
-| appIndex    | number | No  | Index of the clone. The default value is the currently available minimum index.          |
+| Name       | Type  | Read-Only |  Optional| Description                                                         |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| userId      | number | No| Yes | ID of the user for whom the clone is to be created. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
+| appIndex    | number |  No| Yes  | Index of the clone. The default value is the currently available minimum index.          |
 
 ## DestroyAppCloneParam<sup>15+</sup>
 
@@ -1915,10 +1900,10 @@ Describes the parameters used for destroying an application clone.
 
 **System API**: This is a system API.
 
-| Name       | Type  | Mandatory| Description                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | ID of the user for whom the clone is to be destroyed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
-| parameters  | Array<[Parameters](#parameters15)> | No  | Extended parameters for destroying the clone. The default value is null.           |
+| Name       | Type  | Read-Only |  Optional| Description                                                         |
+| ----------- | ------ | ----| ---- | ------------------------------------------------------------ |
+| userId      | number | No| Yes | ID of the user for whom the clone is to be destroyed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
+| parameters  | Array<[Parameters](#parameters15)> | No| Yes  | Extended parameters for destroying the clone. The default value is null.           |
 
 ## PluginParam<sup>19+</sup>
 
@@ -1928,7 +1913,7 @@ Defines the parameters for installing or uninstalling a plugin.
 
 **System API**: This is a system API.
 
-| Name       | Type  | Mandatory| Description                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | ID of the user for whom the plugin is to be installed or uninstalled. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
-| parameters  | Array<[Parameters](#parameters15)> | No  | Extension parameters for installing or uninstalling the plugin. The default value is empty.           |
+| Name       | Type  | Read-Only |  Optional| Description                                                         |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| userId      | number | No| Yes  | ID of the user for whom the plugin is to be installed or uninstalled. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
+| parameters  | Array<[Parameters](#parameters15)> | No| Yes  | Extension parameters for installing or uninstalling the plugin. The default value is empty.           |

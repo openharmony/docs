@@ -863,7 +863,7 @@ Obtains the current security mode of the input method.
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800004 | not an input method. |
+| 12800004 | not an input method application. |
 
 **Example**
 
@@ -897,7 +897,7 @@ Creates an input method panel, which can be called only by input method applicat
 | ID  | Error Message                      |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method. |
+| 12800004   | not an input method application. |
 
 **Example**
 
@@ -940,14 +940,14 @@ Creates an input method panel, which can be called only by input method applicat
 **Return value**
 | Type  | Description                                                                |
 | ------- | ------------------------------------------------------------------ |
-| Promise\<[Panel](#panel10)> | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
+| Promise\<[Panel](#panel10)> | Promise used to return the result. If the operation is successful, the created input method panel is returned. |
 
 **Error codes**
 
 | ID  | Error Message                      |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method. |
+| 12800004   | not an input method application. |
 
 **Example**
 
@@ -1820,7 +1820,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 801 | capability not supported. |
-| 12800002 | input method engine error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
 
@@ -1856,7 +1856,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
 
 **Example**
@@ -2406,7 +2406,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
-| 12800002  | input method engine error.                                |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013  | window manager service error.                          |
 
 **Example**
@@ -2491,6 +2491,57 @@ try {
 }
 ```
 
+### setKeepScreenOn<sup>20+</sup>
+
+setKeepScreenOn(isKeepScreenOn: boolean): Promise\<void>
+
+Sets to keep the screen always on. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - When the keyboard is displayed, the screen stays on. When the keyboard is hidden, the screen turns off.
+> - You need to use this API properly. Set the attribute to **true** in necessary scenarios (for example, voice input) and reset this attribute to **false** after exiting necessary scenarios. In other scenarios, do not use this API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| isKeepScreenOn | boolean | Yes  | Whether to keep the screen always on. The value **true** means that the screen is always on; the value **false** means the opposite.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 12800013 | window manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let isKeepScreenOn = true;
+  this.panel.setKeepScreenOn(isKeepScreenOn).then(() => {
+    console.info(`setKeepScreenOn success.`);
+  }).catch((error: BusinessError) => {
+    console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+  })
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## KeyboardController
 
 In the following API examples, you must first use [on('inputStart')](#oninputstart9) to obtain a **KeyboardController** instance, and then call the APIs using the obtained instance.
@@ -2515,7 +2566,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -2551,7 +2602,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -2648,7 +2699,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 12800008 | input method manager service error.            |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
 
 **Example**
@@ -2685,7 +2736,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 12800008 | input method manager service error.            |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
 
 **Example**
@@ -2890,7 +2941,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
  **Example**
 
@@ -2942,7 +2993,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -2987,8 +3038,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3036,8 +3087,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3083,8 +3134,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3120,8 +3171,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3169,8 +3220,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3216,8 +3267,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -3253,8 +3304,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3306,8 +3357,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3351,8 +3402,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3388,8 +3439,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3441,8 +3492,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3482,8 +3533,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3519,8 +3570,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3567,8 +3618,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3611,8 +3662,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3645,7 +3696,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3682,7 +3733,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3721,7 +3772,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3757,7 +3808,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3804,7 +3855,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3843,7 +3894,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3878,7 +3929,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3926,7 +3977,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -3966,7 +4017,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -4002,7 +4053,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -4050,7 +4101,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -4090,7 +4141,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **Example**
 
@@ -4124,8 +4175,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -4161,8 +4212,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -4196,8 +4247,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -4236,8 +4287,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -4288,8 +4339,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **Example**
 
@@ -4339,7 +4390,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800010 | not the preconfigured default input method. |
 
 **Example**
@@ -4393,7 +4444,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
-| 12800003 | input method client error.        |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800012 | the input method panel does not exist. |
 | 12800013 | window manager service error.     |
 
@@ -4442,7 +4493,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                                   |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported.                               |
 
 **Example**
@@ -4484,7 +4535,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                                   |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported.                               |
 
 **Example**
@@ -4523,7 +4574,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported. |
 
 **Example**
@@ -4560,7 +4611,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported. |
 
 **Example**
@@ -4608,7 +4659,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
-| 12800003 | input method client error.                  |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
 | 12800015 | the other side does not accept the request. |
@@ -4705,13 +4756,9 @@ Obtains the additional options for binding an input method.
 | ---- | ------------ |
 | [AttachOptions](#attachoptions19) | Additional options for binding an input method.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message        |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
+> **NOTE**
+>
+> Error code `801 Capability not supported.` is removed since API version 20.
 
 **Example**
 
@@ -4739,13 +4786,9 @@ Subscribes to the event indicating that the additional options for binding an in
 | type     | string                                      | Yes  | Additional option change event when the input method is bound. The value is fixed to **'attachOptionsDidChange'**.|
 | callback | Callback\<[AttachOptions](#attachoptions19)> | Yes  | Callback used to return the additional options for binding an input method.      |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message        |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
+> **NOTE**
+>
+> Error code `801 Capability not supported.` is removed since API version 20.
 
 **Example**
 
@@ -4922,7 +4965,8 @@ Defines additional options for binding an input method.
 
 | Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
-| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | No  | Yes  | Reason for keyboard request.|
+| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | No  | Yes  | Reason for requesting the keyboard. This attribute is set by the edit box application. If this attribute is not set or is set to an invalid value, the keyboard will not be triggered by default.|
+| isSimpleKeyboardEnabled<sup>20+</sup>    | boolean | No  | Yes  | Whether to enable the simple keyboard. This attribute is set by the edit box application. The value **true** means that the simple keyboard is enabled, and the value **false** means the opposite.<br> If this attribute is not set or is set to an invalid value, the simple keyboard is disabled by default.|
 
 ## WindowInfo<sup>12+</sup>
 

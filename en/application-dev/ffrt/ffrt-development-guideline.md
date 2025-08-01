@@ -459,10 +459,10 @@ Risks exist when thread local variables are used in FFRT tasks. The details are 
 
 ### Synchronization Primitives in the Standard Library
 
-A deadlock may occur when the mutex of the standard library is used in the FFRT task. You need to use the mutex provided by the FFRT. The details are as follows:
+Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks. It is necessary to replace it with the recursive mutex provided by FFRT. The details are as follows:
 
-- When `lock()` is successfully executed, the mutex records the execution stack of the caller as the owner of the lock. If the caller is the current execution stack, a success message is returned to support nested lock obtaining in the same execution stack. In implementation of the standard library, the "execution stack" is represented by a thread identifier.
-- When the mutex of the standard library is used in the FFRT task, if the task (coroutine) exits between the outer and inner lock and the task is resumed on the FFRT Worker thread that is different from the thread that calls `lock()` for the first time, the calling thread is not the owner and `lock()` fails to be called, the FFRT Worker thread is suspended, and `unlock()` is not executed. As a result, a deadlock occurs.
+- When `lock()` is successfully executed, the recursive mutex records the execution stack of the caller as the lock owner. If the caller is the current execution stack, a success message is returned to support nested lock acquisition within the same execution stack. In the standard library, the execution stack is identified by the thread ID.
+- When using the standard library's recursive mutex in FFRT tasks, if a task (coroutine) exits between the outer and inner `lock()` calls and resumes execution on a different FFRT Worker thread than the one where `lock()` was initially called, the current thread will not be recognized as the owner. This causes the `lock()` to fail, suspends the FFRT Worker thread, and prevents the subsequent `unlock()` from executing, leading to a deadlock.
 
 ### Support for the Process `fork()` Scenario
 
@@ -636,4 +636,4 @@ Use the FFRT C++ API in the code.
 #include "ffrt/cpp/queue.h"
 ```
 
- <!--no_check--> 
+<!--no_check-->

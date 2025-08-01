@@ -2628,3 +2628,65 @@ try {
   console.error(`ERROR: ${error}`);
 }
 ```
+
+## setLoudnessGain<sup>20+</sup>
+
+setLoudnessGain(loudnessGain: number): Promise\<void>
+
+设置播放响度。使用Promise异步回调。
+
+> **说明：**
+>
+> - 该接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流。
+> - 该接口不支持高清通路的响度设置。
+> - 由于音频框架与硬件之间存在缓冲区，响度调节实际生效存在延迟，时长取决于缓冲区长度。
+> - 建议在不同音频开始播放前预先设置响度，以实现最佳均衡效果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名       | 类型    | 必填 | 说明                                      |
+| ------------ | -------| ---- |------------------------------------------ |
+| loudnessGain | number | 是   | 设置播放的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象，无返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation is not supported on this renderer, e.g. the stream usage of this renderer is not one of [STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), <br>[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or [STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or this renderer is routed through the high-resolution playback path. |
+
+**示例：**
+
+```ts
+audioRenderer.setLoudnessGain(1.0);
+```
+
+## getLoudnessGain<sup>20+</sup>
+
+getLoudnessGain(): number
+
+获取播放响度。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型    | 说明             |
+|------- |-----------------  |
+| number | 返回播放的响度值。 |
+
+**示例：**
+
+```ts
+let loudnessGain = audioRenderer.getLoudnessGain();
+```

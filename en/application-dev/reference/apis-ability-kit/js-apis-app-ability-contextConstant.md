@@ -1,6 +1,6 @@
-# @ohos.app.ability.contextConstant (ContextConstant)
+# @ohos.app.ability.contextConstant (Context-related Constants)
 
-The **ContextConstant** module defines context-related enums. Currently, it defines only the enum of encryption levels.
+The ContextConstant module defines context-related enums. Currently, it defines only the enum of encryption levels.
 
 > **NOTE**
 > 
@@ -33,7 +33,7 @@ Enumerates the data encryption levels.
 
 Enumerates the process modes. It takes effect only on 2-in-1 devices and tablets.
 
-As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and is used to specify the process mode of the target ability.
+As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1) and is used to specify the process mode of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -85,7 +85,7 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 
 Enumerates the visibility statuses of an ability after it is started. It takes effect only on 2-in-1 devices and tablets.
 
-As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started.
+As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1) and specifies the visibility of the target ability after it is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -97,3 +97,47 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupV
 **Example**
 
   See [ContextConstant.ProcessMode](#processmode12).
+
+## Scenarios<sup>20+</sup>
+
+Enumerates the scenarios where the [onNewWant](./js-apis-app-ability-uiAbility.md#onnewwant) lifecycle callback is not triggered. It is used in the [setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20) API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name | Value| Description                                                                                                                  |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| SCENARIO_MOVE_MISSION_TO_FRONT | 0x00000001 | <!--RP1-->A scenario where the system API [missionManager.moveMissionToFront](./js-apis-app-ability-missionManager-sys.md#missionmanagermovemissiontofront-2) is called to move the UIAbility to the foreground.<!--RP1End-->        |
+| SCENARIO_SHOW_ABILITY | 0x00000002 | A scenario where the [showAbility](./js-apis-inner-application-uiAbilityContext.md#showability12) API is called to move the UIAbility to the foreground.    |
+| SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT | 0x00000004 | A scenario where the [backToCallerAbilityWithResult](./js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) API is called to move the UIAbility to the foreground.    |
+
+**Example**
+
+```ts
+import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let scenarios: number = contextConstant.Scenarios.SCENARIO_MOVE_MISSION_TO_FRONT |
+      contextConstant.Scenarios.SCENARIO_SHOW_ABILITY |
+      contextConstant.Scenarios.SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT;
+
+    try {
+      this.context.setOnNewWantSkipScenarios(scenarios).then(() => {
+        // Carry out normal service processing.
+        console.info('setOnNewWantSkipScenarios succeed');
+      }).catch((err: BusinessError) => {
+        // Process service logic errors.
+        console.error(`setOnNewWantSkipScenarios failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setOnNewWantSkipScenarios failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

@@ -1,6 +1,6 @@
 # 使用AVMetadataExtractor提取音视频元数据信息(ArkTS)
 
-使用[AVMetadataExtractor](media-kit-intro.md#avmetadataextractor)可以实现从原始媒体资源中获取元数据。本指南将以获取一个音视频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
+使用[AVMetadataExtractor](media-kit-intro.md#avmetadataextractor)可以实现从原始媒体资源中获取元数据。本指南将以获取一个媒体资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。
 
 获取音视频资源的元数据的全流程包含：创建AVMetadataExtractor、设置资源、获取元数据、获取音频资源的专辑封面或获取视频缩略图、销毁资源。
 
@@ -82,7 +82,7 @@
    });
    ```
 
-3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
+3. 获取元数据：调用fetchMetadata()，可以获取到一个[AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i.md#avmetadata11)对象，通过访问该对象的各个属性，可以获取到元数据。
    ```ts
    // 获取元数据（callback模式）。
    avMetadataExtractor.fetchMetadata((error, metadata) => {
@@ -96,7 +96,15 @@
    let metadata = await avMetadataExtractor.fetchMetadata();
    ```
 
-4. （可选）获取专辑封面：调用fetchAlbumCover()，可以获取到专辑封面。
+4. 对于视频资源：可以通过fetchMetadata获取的AVMetadata对象metadata拿到视频资源的宽、高等数据。
+   ```ts
+   // 获取视频资源的宽和高。
+   let metadata = await avMetadataExtractor.fetchMetadata();
+   let width = metadata.videoWidth;
+   let height = metadata.videoHeight;
+   ```
+
+5. 对于音频资源而言，除了可以通过AVMetadata对象来获取音频资源的标题、时长等元数据外，还可以获取专辑封面（例如，调用fetchAlbumCover()，可以获取到专辑封面）。
    ```ts
    import { image } from '@kit.ImageKit';
    // pixelMap对象声明，用于图片显示。
@@ -114,7 +122,7 @@
    this.pixelMap = await avMetadataExtractor.fetchAlbumCover();
    ```
 
-5. （可选）获取视频缩略图：调用fetchFrameByTime，可以获取到视频缩略图。
+6. （可选）获取视频缩略图：调用fetchFrameByTime，可以获取到视频缩略图。
    ```ts
    import { image } from '@kit.ImageKit';
    // pixelMap对象声明，用于图片显示。
@@ -129,7 +137,7 @@
    // 获取视频缩略图（promise模式）。
    this.pixelMap = await avMetadataExtractor.fetchFrameByTime(timeUs, queryOption, param);
 
-6. 释放资源：调用release()销毁实例，释放资源。
+7. 释放资源：调用release()销毁实例，释放资源。
    ```ts
    // 释放资源（callback模式）。
    avMetadataExtractor.release((error) => {

@@ -522,7 +522,7 @@ startDataLoading(options: DataSyncOptions): string
 
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。 |
+| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../arkts-apis-uicontext-dragcontroller.md#canceldataloading15)接口取消。 |
 
 **错误码：**
 
@@ -806,7 +806,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -1111,7 +1111,7 @@ struct ImageExample {
           .height('90%')
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
-            console.log("enter onDrop")
+            console.info("enter onDrop")
             let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
@@ -1125,12 +1125,12 @@ struct ImageExample {
                     this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                   }
                 } else {
-                  console.log('dragData arr is null');
+                  console.info('dragData arr is null');
                 }
               } else {
-                console.log('dragData is undefined');
+                console.info('dragData is undefined');
               }
-              console.log(`percentage: ${progress.progress}`);
+              console.info(`percentage: ${progress.progress}`);
             };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1140,9 +1140,9 @@ struct ImageExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch(e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, {disableDataPrefetch: true})
         }
@@ -1155,7 +1155,7 @@ struct ImageExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({top: 10})
@@ -1183,7 +1183,7 @@ struct Index {
   @State startDisplayId: number = -1;
   @State enterDisplayId: number = -1;
   @State moveDisplayId: number = -1;
-  @State LeaveDisplayId: number = -1;
+  @State leaveDisplayId: number = -1;
   @State dropDisplayId: number = -1;
 
   @Builder
@@ -1209,7 +1209,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -1275,7 +1275,7 @@ struct Index {
           .height(50)
           .draggable(true)
           .margin({ left: 15 })
-        Text('displayID in onDragLeave: ' + this.LeaveDisplayId.toString())
+        Text('displayID in onDragLeave: ' + this.leaveDisplayId.toString())
           .width('100%')
           .height(50)
           .draggable(true)
@@ -1315,7 +1315,7 @@ struct Index {
           })
           .onDragLeave((event) => {
             let id = event.getDisplayId();
-            this.LeaveDisplayId = id;
+            this.leaveDisplayId = id;
           })
           .onDrop((dragEvent: DragEvent) => {
             let id = dragEvent.getDisplayId();
@@ -1534,15 +1534,27 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+              let loadHandler: unifiedDataChannel.DataLoadHandler = (acceptableInfo) => {
+                console.info('acceptableInfo recordCount', acceptableInfo?.recordCount);
+                if (acceptableInfo?.types) {
+                  console.info('acceptableInfo types', Array.from(acceptableInfo.types));
+                } else {
+                  console.error('acceptableInfo types is undefined');
+                }
                 let data = context.resourceManager.getRawFdSync('test1.mp4');
                 let filePath = context.filesDir + '/test1.mp4';
-                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-                let bufferSize = data.length as number;
-                let buf = new ArrayBuffer(bufferSize);
-                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-                fs.closeSync(file.fd);
+                let file: fs.File = null!;
+                try {
+                  file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                  let bufferSize = data.length as number;
+                  let buf = new ArrayBuffer(bufferSize);
+                  fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                  fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                } catch (error) {
+                  console.error(`openSync errorCode: ${error.code}, errorMessage: ${error.message}`);
+                } finally {
+                  fs.closeSync(file.fd);
+                }
                 context.resourceManager.closeRawFdSync('test1.mp4')
                 this.uri = fileUri.getUriFromPath(filePath);
                 let videoMp: uniformDataStruct.FileUri = {
@@ -1604,11 +1616,14 @@ struct VideoExample {
                 }
                 console.info(`percentage: ${progress.progress}`);
               };
+            let info: unifiedDataChannel.DataLoadInfo =
+              { types: new Set([uniformTypeDescriptor.UniformDataType.VIDEO]), recordCount: 100 }
             let options: DataSyncOptions = {
               destUri: destUri,
               fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
               progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
               dataProgressListener: progressListener,
+              acceptableInfo: info,
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
@@ -1622,6 +1637,7 @@ struct VideoExample {
         .width("90%")
         .border({ width: 1 })
       }
+
       Button('取消数据传输')
         .onClick(() => {
           try {

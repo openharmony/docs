@@ -8,6 +8,8 @@
 
 在需要展示内容（标题、描述、图片、应用信息）并在点击后跳转至对应来源时，可以使用内容卡片快速的展示信息。开发者只需要调用[ContentFormCard](../reference/apis-arkdata/js-apis-data-UdmfComponents.md#contentformcard)接口，传入[ContentForm](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#contentform14)数据、卡片宽高、点击事件回调函数即可获得良好的展示效果。
 
+从API version 20开始，支持使用[内容卡片控件](../reference/apis-arkdata/js-apis-data-UdmfComponents.md)。
+
 ### 接口说明
 
 以下为内容卡片接口介绍：

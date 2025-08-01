@@ -6,7 +6,7 @@
 
 - 可以通过调用UIContext或getUIContext，在非UI页面或某些异步回调中使用本文中的接口。CalendarPickerDialog当前不支持此操作。
 
-- 操作菜单 (showActionMenu)、对话框 (showDialog)需先使用UIContext中的[getPromptAction()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
+- 操作菜单 (showActionMenu)、对话框 (showDialog)需先使用UIContext中的[getPromptAction()](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
 
 - 列表选择弹出框 (ActionSheet)、警告弹出框 (AlertDialog)、选择器弹出框 (PickerDialog)中除CalendarPickerDialog都需先使用ohos.window中的[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)获取。
 
@@ -29,7 +29,7 @@
 
 ## 操作菜单 (showActionMenu)
 
-操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11)接口实现，支持在回调或开发者自定义类中使用。
+操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11)接口实现，支持在回调或开发者自定义类中使用。
 
 操作菜单中，title字段的字体最大放大倍数为2。
 
@@ -68,7 +68,7 @@ try {
 
 ## 对话框 (showDialog)
 
-对话框通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog)接口实现，支持在回调或开发者自定义类中使用。
+对话框通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog)接口实现，支持在回调或开发者自定义类中使用。
 
 对话框中，title字段的字体最大放大倍数为2。
 
@@ -115,7 +115,7 @@ try {
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。
 
-日历选择器弹窗的弹出依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
+日历选择器弹窗的弹出依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，具体约束参见[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)说明。
 
 通过配置 acceptButtonStyle、cancelButtonStyle可以实现自定义按钮样式。
 
@@ -163,7 +163,7 @@ struct CalendarPickerDialogExample {
 
 开发者可以利用指定的日期范围，创建日期滑动选择器弹窗，将日期信息清晰地展示在弹出的窗口上。
 
-日期滑动选择器弹窗通过UIContext中的[showDatePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdatepickerdialog)接口实现。
+日期滑动选择器弹窗通过UIContext中的[showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog)接口实现。
 
 弹窗中配置lunarSwitch、showTime为true时，会展示切换农历的开关和时间，当checkbox被选中时，会显示农历。当按下确定按钮时，弹窗会通过onDateAccept返回目前所选中的日期。如需弹窗再次弹出时显示选中的是上一次确定的日期，就要在回调中重新给selectTime进行赋值。
 
@@ -242,7 +242,7 @@ struct DatePickerDialogExample {
 
 开发者可根据24小时的时间区间，创建时间滑动选择器弹窗，将时间信息清晰地展示在弹出的窗口上。
 
-时间滑动选择器弹窗通过UIContext中的[showTimePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtimepickerdialog)接口实现。
+时间滑动选择器弹窗通过UIContext中的[showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog)接口实现。
 
 该示例通过配置disappearTextStyle、textStyle、selectedTextStyle、acceptButtonStyle、cancelButtonStyle实现了自定义文本以及按钮样式。
 
@@ -289,7 +289,7 @@ struct TimePickerDialogExample {
 
 开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。
 
-文本滑动选择器弹窗通过UIContext中的[showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog)接口实现。
+文本滑动选择器弹窗通过UIContext中的[showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog)接口实现。
 
 该示例通过设置range的参数类型为TextCascadePickerRangeContent[]，实现3列文本选择器弹窗。当按下确定按钮时，弹窗会通过onAccept返回目前所选中文本和索引值。如需弹窗再次弹出时显示选中的是上一次确定的文本，就要在回调中重新给select进行赋值。
 
@@ -339,7 +339,7 @@ struct TextPickerDialogExample {
 
 列表选择器弹窗适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。
 
-列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)接口实现。
+列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)接口实现。
 
 列表选择弹窗中，title字段的字体最大放大倍数为2。
 
@@ -411,7 +411,7 @@ struct showActionSheetExample {
 * 警告弹窗用来提示重要信息，但会中断当前任务，尽量提供必要的信息和有用的操作。
 * 避免仅使用警告弹窗提供信息，用户不喜欢被信息丰富但不可操作的警告打断。
 
-警告弹窗通过UIContext中的[showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog)接口实现。
+警告弹窗通过UIContext中的[showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog)接口实现。
 
 警告弹窗中，title和subtitle字段的字体最大放大倍数为2。
 

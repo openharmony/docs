@@ -2,10 +2,13 @@
 
 ## 概述
 
-提供rawfile目录相关功能。
+提供rawfile目录相关功能。功能包括遍历和关闭rawfile目录。
 
 **引用文件：** <rawfile/raw_dir.h>
- * 功能包括遍历和关闭rawfile目录。
+
+**库：** librawfile.z.so
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **起始版本：** 8
 
@@ -53,7 +56,7 @@ const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index)
 
 | 类型 | 说明                                                                                                                                                     |
 | -- |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| const char * | 通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](capi-raw-file-manager-h.md#oh_resourcemanager_openrawfile)的输入参数，<br> 如果遍历完所有文件仍未找到，则返回NULL。 |
+| const char * | 通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](capi-raw-file-manager-h.md#oh_resourcemanager_openrawfile)的输入参数。<br> 如果遍历完所有文件仍未找到，则返回NULL。 |
 
 **参考：**
 

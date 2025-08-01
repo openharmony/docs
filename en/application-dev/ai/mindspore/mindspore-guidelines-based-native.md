@@ -2,7 +2,7 @@
 
 ## When to Use
 
-You can use [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to quickly deploy AI algorithms into your application to perform AI model inference for image classification.
+You can use [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to quickly deploy AI algorithms into your application to perform AI model inference for image classification.
 
 Image classification can be used to recognize objects in images and is widely used in medical image analysis, auto driving, e-commerce, and facial recognition.
 
@@ -35,7 +35,7 @@ If you have other pre-trained models for image classification, convert the origi
 
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
-2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtain the image buffer, and standardizing the image.
+2. Based on the input image size, call [[@ohos.multimedia.image](../../reference/apis-image-kit/arkts-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtaining the image buffer, and standardizing the image.
 
    ```ts
    // Index.ets
@@ -163,7 +163,7 @@ If you have other pre-trained models for image classification, convert the origi
 
 #### Writing Inference Code
 
-Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to implement inference on the device. The operation process is as follows:
+Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to implement inference on the device. The operation process is as follows:
 
 1. Include the corresponding header file.
 
@@ -552,5 +552,8 @@ struct Index {
 
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
-<img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
+![stepc1](figures/stepc1.png)           ![step2](figures/step2.png)
+
+![step3](figures/step3.png)         ![stepc4](figures/stepc4.png) 
+
 

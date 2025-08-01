@@ -85,7 +85,7 @@ struct Index {
         // 内层column绑定触摸事件
         .onTouch((event:TouchEvent)=>{
           if (event.type == TouchType.Down) {
-            console.log("inner column touch down")
+            console.info("inner column touch down")
             this.messageInner = "inner column touch down"
           }
         })
@@ -96,7 +96,7 @@ struct Index {
       // 外层column绑定触摸事件
       .onTouch((event)=>{
         if (event.type == TouchType.Down) {
-          console.log("outside column touch down")
+          console.info("outside column touch down")
           this.messageOut = "inner column touch down"
         }
       })

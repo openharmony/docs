@@ -26,7 +26,7 @@ MultiNavigation({navDestination: navDestination, multiStack: MultiNavPathStack, 
 
 Creates and initializes a **MultiNavigation** component.
 
-The **MultiNavigation** component follows the default left-to-right stack clearing rule. This means that a click from the home page on the left triggers the loading of the detail page and simultaneously clears all other detail pages on the right, ensuring that only the most recently loaded detail page is displayed on the right. However, if a detail page loading operation is performed again on the right detail page, the system will not perform the stack clearing action.
+The **MultiNavigation** component follows the default left-to-right stack clearing rule. This means that a click from the home page on the left triggers the loading of the detail page and simultaneously clears all other detail pages on the right, ensuring that only the most recently loaded detail page is displayed on the right. However, if a detail page loading operation is performed again on the right detail page, the system will not perform the stack clearing action. For visual reference, see [Home-to-Detail Page Transition Demo](#example).
 
 **Decorator**: @Component
 
@@ -68,8 +68,8 @@ Pushes the specified navigation destination page to the navigation stack.
 |  Name  |                             Type                            | Mandatory| Description                                      |
 | :------: | :----------------------------------------------------------: | :--: | ----------------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  Yes | Information about the navigation destination page.               |
-| animated |                           boolean                            |  No | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.         |
-|  policy  |               [SplitPolicy](#splitpolicy)                |  No | Policy for the current page being pushed.<br>Default value: **DETAIL_PAGE**|
+| animated |                           boolean                            |  No | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.         |
+|  policy  |               [SplitPolicy](#splitpolicy)                |  No | Policy for the current page being pushed. Default value: **DETAIL_PAGE**.|
 
 ### pushPath
 
@@ -87,7 +87,7 @@ Pushes the specified navigation destination page to the navigation stack, with s
 | :-----: | :----------------------------------------------------------: | :--: | ------------------------------------------ |
 |  info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  Yes | Information about the navigation destination page.                |
 | options | [NavigationOptions](./ts-basic-components-navigation.md#navigationoptions12) |  No | Stack operation settings. Only the **animated** field is supported.|
-| policy  |               [SplitPolicy](#splitpolicy)                |  No | Policy for the current page being pushed.<br>Default value: **DETAIL_PAGE**   |
+| policy  |               [SplitPolicy](#splitpolicy)                |  No | Policy for the current page being pushed. Default value: **DETAIL_PAGE**.   |
 
 ### pushPathByName
 
@@ -105,8 +105,8 @@ Pushes the navigation destination page specified by **name** to the navigation s
 |:---------------------:|:------------:|:------:| --------------------- |
 |         name          |    string    |   Yes   | Name of the navigation destination page.  |
 |         param         |   Object    |   Yes   | Detailed parameters of the navigation destination page.|
-|       animated        |   boolean    |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
-|        policy         | [SplitPolicy](#splitpolicy)  |   No   | Policy for the current page being pushed.<br>Default value: **DETAIL_PAGE**      |
+|       animated        |   boolean    |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|        policy         | [SplitPolicy](#splitpolicy)  |   No   | Policy for the current page being pushed. Default value: **DETAIL_PAGE**.      |
 
 ### pushPathByName
 
@@ -125,8 +125,8 @@ Pushes the navigation destination page specified by **name** to the navigation s
 |   name    |                            string                             |   Yes   | Name of the navigation destination page.  |
 |   param   |                            Object                             |   Yes   | Detailed parameters of the navigation destination page.|
 |   onPop   | base.[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   No   | Callback used to handle the return result.|
-| animated  |                            boolean                            |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
-|  policy   |                          [SplitPolicy](#splitpolicy)                          |   No   | Policy for the current page being pushed.<br>Default value: **DETAIL_PAGE**      |
+| animated  |                            boolean                            |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|  policy   |                          [SplitPolicy](#splitpolicy)                          |   No   | Policy for the current page being pushed. Default value: **DETAIL_PAGE**.      |
 
 ### replacePath
 
@@ -143,7 +143,7 @@ Replaces the current top page on the stack with the specified navigation destina
 |  Name  |             Type               | Mandatory| Description          |
 | :------: | :----------------------------------------------------------: | :--: | -------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  Yes | Information about the navigation destination page.      |
-| animated |                           boolean                            |  No | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated |                           boolean                            |  No | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 ### replacePath
 
@@ -178,7 +178,7 @@ Replaces the current top page on the stack with the navigation destination page 
 |:--------:|:---------:|:------:|----------------------|
 |   name   |  string   |   Yes   | Name of the navigation destination page. |
 |  param   |  Object   |   Yes   | Detailed parameters of the navigation destination page.|
-| animated |  boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.  |
+| animated |  boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.  |
 
 ### removeByIndexes
 
@@ -194,7 +194,7 @@ Removes the navigation destination pages specified by **indexes** from the navig
 
 |  Name  |             Type               | Mandatory| Description          |
 |:--------:|:---------------:|:------:| --------------------- |
-| indexes  | Array<number\>  |   Yes   | Array of indexes of the navigation destination pages to remove.<br>Value range of the number type: [0, +∞)|
+| indexes  | Array<number\>  |   Yes   | Array of indexes of the navigation destination pages to remove.<br>Value range of the number type: [0, +∞).|
 
 **Return value**
 
@@ -242,7 +242,7 @@ Pops the top element out of the navigation stack.
 
 |  Name  |             Type               | Mandatory| Description          |
 |:-----------:|:--------:|:------:| -------------------- |
-|  animated   | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|  animated   | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -269,7 +269,7 @@ Pops the top element out of the navigation stack and invokes the **onPop** callb
 |  Name  |             Type               | Mandatory| Description          |
 |:---------:|:-------------------------------:|:------:| -------------------- |
 |  result   |             Object              |   No   | Custom processing result on the page.|
-| animated  |             boolean             |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated  |             boolean             |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -292,13 +292,13 @@ Pops pages until the first navigation destination page that matches **name** fro
 |  Name  |             Type               | Mandatory| Description          |
 |:----------:|:--------:|:------:| ------------------- |
 |    name    |  string  |   Yes   | Name of the navigation destination page.|
-|  animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|  animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if no such a page is found.<br>Value range: [-1, +∞)|
+| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if no such a page is found.<br>Value range: [-1, +∞).|
 
 ### popToName
 
@@ -316,7 +316,7 @@ Pops pages until the first navigation destination page that matches **name** fro
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   Yes   | Name of the navigation destination page.|
 |  result   |  Object  |   Yes   | Custom processing result on the page.|
-| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -338,8 +338,8 @@ Returns the navigation stack to the page specified by **index**.
 
 |  Name  |             Type               | Mandatory| Description          |
 |:------------:|:--------:|:------:| ---------------------- |
-|    index     |  number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞)|
-|   animated   | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|    index     |  number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞).|
+|   animated   | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 ### popToIndex
 
@@ -357,7 +357,7 @@ Returns the navigation stack to the page specified by **index** and invokes the 
 | ----- | ------ | ---- | ---------------------- |
 | index | number | Yes   | Index of the navigation destination page.|
 | result | Object | Yes| Custom processing result on the page.|
-| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 ### moveToTop
 
@@ -388,7 +388,7 @@ Moves the first navigation destination page that matches **name** from the botto
 |  Name  |             Type               | Mandatory| Description          |
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   Yes   | Name of the navigation destination page.|
-| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -424,8 +424,8 @@ Moves the navigation destination page specified by **index** to the top of the n
 
 |  Name  |             Type               | Mandatory| Description          |
 |:---------:|:-------:|:------:| ------------------- |
-|   index    | number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞)|
-| animated  | boolean |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+|   index    | number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞).|
+| animated  | boolean |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 ### clear
 
@@ -445,7 +445,7 @@ Clears the navigation stack.
 
 |  Name  |             Type               | Mandatory| Description          |
 |:---------:|:--------:|:------:| ---------------------- |
-| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
+| animated  | boolean  |   No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 ### getAllPathName
 
@@ -477,7 +477,7 @@ Obtains the parameter information of the navigation destination page specified b
 
 |  Name  |             Type               | Mandatory| Description          |
 |:-------:|:--------:|:------:| ---------------------- |
-|  index  |  number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞)|
+|  index  |  number  |   Yes   | Index of the navigation destination page.<br>Value range: [0, +∞).|
 
 **Return value**
 
@@ -528,7 +528,7 @@ Obtains the indexes of all the navigation destination pages that match **name**.
 
 | Type            | Description                               |
 | -------------- | --------------------------------- |
-| Array<number\> | Indexes of all the matching navigation destination pages.<br>Value range of the number type: [0, +∞)|
+| Array<number\> | Indexes of all the matching navigation destination pages.<br>Value range of the number type: [0, +∞).|
 
 ### size
 
@@ -544,7 +544,7 @@ Obtains the stack size.
 
 | Type    | Description    |
 | ------ | ------ |
-| number | Stack size.<br>Value range: [0, +∞)|
+| number | Stack size.<br>Value range: [0, +∞).|
 
 ### disableAnimation
 
@@ -560,7 +560,7 @@ Disables or enables the transition animation in the **MultiNavigation** componen
 
 |  Name  |             Type               | Mandatory| Description          |
 | ----- | ------ | ---- | ---------------------- |
-| disable | boolean | Yes   | Whether to disable the transition animation.<br>Default value: **false**<br>**true**:The transition animation is disabled.<br>**false**: The transition animation is not disabled.|
+| disable | boolean | Yes   | Whether to disable the transition animation.<br>Default value: **false**.<br>**true**:The transition animation is disabled.<br>**false**: The transition animation is not disabled.|
 
 ### switchFullScreenState
 
@@ -620,7 +620,7 @@ Sets whether to retain the bottom page when the **pop** or **clear** APIs is cal
 
 |  Name  |             Type               | Mandatory| Description          |
 |:-------------:|:--------:|:-----:|--------------------|
-| keepBottom  | boolean  |   Yes  | Whether to retain the bottom page.<br>Default value: **false**<br>**true**: The bottom page is retained.<br>**false**: The bottom page is not retained.|
+| keepBottom  | boolean  |   Yes  | Whether to retain the bottom page.<br>Default value: **false**.<br>**true**: The bottom page is retained.<br>**false**: The bottom page is not retained.|
 
 ### setPlaceholderPage
 
@@ -714,6 +714,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 
 This example demonstrates the basic usage of **MultiNavigation**.
 
+<!--code_no_check-->
 ```typescript
 // pages/Index.ets
 import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -731,7 +732,7 @@ struct Index {
   @Builder
   PageMap(name: string, param?: object) {
     if (name === 'PageHome1') {
-      PageHome1({ param: param })
+      PageHome1({ param: param });
     } else if (name === 'PageDetail1') {
       PageDetail1({ param: param });
     } else if (name === 'PageDetail2') {
@@ -767,7 +768,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageHome1 {
   @State message: string = 'PageHome1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   index: number = 0;
   param: Object = new Object();
@@ -792,6 +793,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageHome1 page.
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                     this.index++;
                   }
@@ -802,6 +804,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageDetail1 page.
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                     this.index++;
                   }
@@ -812,6 +815,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageFull1 page.
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -826,7 +830,7 @@ export struct PageHome1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -834,8 +838,9 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Return to the page with the specified index and remove all pages with a higher index.
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('OpenDetailWithName', { stateEffect: true, type: ButtonType.Capsule})
@@ -844,6 +849,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageDetail1 page.
                     this.pageStack.pushPathByName('PageDetail1', 'testParam', undefined, true);
                   }
                 })
@@ -862,6 +868,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Move the PageDetail1 page to the top of the stack.
                     let indexFound = this.pageStack.moveToTop('PageDetail1');
                     hilog.info(0x0000, 'demoTest', 'moveToTopByName,indexFound:' + indexFound);
                   }
@@ -872,6 +879,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove the page named PageHome1.
                     this.pageStack.removeByName('PageHome1');
                   }
                 })
@@ -881,6 +889,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove pages with indexes 0, 1, 3, and 5 from the stack.
                     this.pageStack.removeByIndexes([0,1,3,5]);
                   }
                 })
@@ -900,6 +909,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Obtain the parameters of the page with index 0.
                     let result = this.pageStack.getParamByIndex(0);
                     hilog.info(0x0000, 'demotest', 'getParamByIndex: ' + result);
                   }
@@ -910,6 +920,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Obtain the parameters of the page named PageHome1.
                     let result = this.pageStack.getParamByName('PageHome1');
                     hilog.info(0x0000, 'demotest', 'getParamByName: ' + result.toString());
                   }
@@ -920,6 +931,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Obtain the index of the page named PageHome1.
                     let result = this.pageStack.getIndexByName('PageHome1');
                     hilog.info(0x0000, 'demotest', 'getIndexByName: ' + result);
                   }
@@ -930,6 +942,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Set the bottom page of the stack to be unremovable.
                     this.pageStack.keepBottomPage(true);
                   }
                 })
@@ -939,6 +952,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Set the bottom page of the stack to be removable.
                     this.pageStack.keepBottomPage(false);
                   }
                 })
@@ -977,7 +991,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageDetail1 {
   @State message: string = 'PageDetail1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   param: Object = new Object();
 
@@ -1000,6 +1014,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageHome1 page.
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1009,6 +1024,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageDetail1 page.
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1018,6 +1034,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageFull1 page.
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1027,6 +1044,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Replace the current page with the PageDetail2 page.
                     this.pageStack.replacePathByName('PageDetail2', 'testParam');
                   }
                 })
@@ -1036,6 +1054,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove the page named PageDetail1 from the stack.
                     this.pageStack.removeByName('PageDetail1');
                   }
                 })
@@ -1045,6 +1064,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove pages with indexes 0, 1, 3, and 5 from the stack.
                     this.pageStack.removeByIndexes([0,1,3,5]);
                   }
                 })
@@ -1054,6 +1074,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Set the page to full-screen mode.
                     this.pageStack.switchFullScreenState(true);
                   }
                 })
@@ -1063,6 +1084,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Set the page to non-full-screen mode.
                     this.pageStack.switchFullScreenState(false);
                   }
                 })
@@ -1081,6 +1103,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Return to the page with the specified name and remove all other pages with a higher index.
                     this.pageStack.popToName('PageHome1');
                   }
                 })
@@ -1095,7 +1118,7 @@ export struct PageDetail1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1103,8 +1126,9 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Return to the page with the specified index and remove all pages with a higher index.
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule})
@@ -1113,8 +1137,9 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Move the page with the specified index to the top of the stack.
                     this.pageStack.moveIndexToTop(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('clear', { stateEffect: true, type: ButtonType.Capsule})
@@ -1123,6 +1148,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Clear the current route stack.
                     this.pageStack.clear();
                   }
                 })
@@ -1132,6 +1158,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Disable animations for stack operations corresponding to the current stack.
                     this.pageStack.disableAnimation(true);
                   }
                 })
@@ -1141,6 +1168,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Enable animations for stack operations corresponding to the current stack.
                     this.pageStack.disableAnimation(false);
                   }
                 })
@@ -1197,7 +1225,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageDetail2 {
   @State message: string = 'PageDetail2';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   param: Object = new Object();
 
@@ -1220,6 +1248,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageHome1 page.
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1229,6 +1258,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageDetail1 page.
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1238,6 +1268,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageFull1 page.
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1247,6 +1278,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Replace the current page with the PageDetail2 page.
                     this.pageStack.replacePathByName('PageDetail2', 'testParam');
                   }
                 })
@@ -1261,7 +1293,7 @@ export struct PageDetail2 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1269,8 +1301,9 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Move the page with the specified index to the top of the stack.
                     this.pageStack.moveIndexToTop(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('pop', { stateEffect: true, type: ButtonType.Capsule})
@@ -1293,7 +1326,7 @@ export struct PageDetail2 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1301,8 +1334,9 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Return to the page with the specified index and remove all pages with a higher index.
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('clear', { stateEffect: true, type: ButtonType.Capsule})
@@ -1311,6 +1345,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Clear the current route stack.
                     this.pageStack.clear();
                   }
                 })
@@ -1320,6 +1355,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Disable animations for stack operations corresponding to the current stack.
                     this.pageStack.disableAnimation(true);
                   }
                 })
@@ -1329,6 +1365,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Enable animations for stack operations corresponding to the current stack.
                     this.pageStack.disableAnimation(false);
                   }
                 })
@@ -1359,7 +1396,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageFull1 {
   @State message: string = 'PageFull1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
 
   build() {
@@ -1382,6 +1419,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageHome1 page.
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1391,6 +1429,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageDetail1 page.
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1400,6 +1439,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Navigate to the PageFull1 page.
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1409,6 +1449,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Replace the current page with the PageFull1 page.
                     this.pageStack.replacePathByName('PageFull1', 'testParam', true);
                   }
                 })
@@ -1418,6 +1459,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove the page named PageFull1 from the stack.
                     this.pageStack.removeByName('PageFull1');
                   }
                 })
@@ -1427,6 +1469,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // Remove pages with indexes 0, 1, 3, and 5 from the stack.
                     this.pageStack.removeByIndexes([0, 1, 3, 5]);
                   }
                 })
@@ -1450,7 +1493,7 @@ export struct PageFull1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule })
                 .width('50%')
@@ -1459,7 +1502,7 @@ export struct PageFull1 {
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
             }
@@ -1493,7 +1536,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PagePlaceholder {
   @State message: string = 'PagePlaceholder';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   lastBackTime: number = 0;
 
@@ -1528,3 +1571,15 @@ export struct PagePlaceholder {
   }
 }
 ```
+
+Demo of the split-screen effect
+
+![](figures/multi_navigation_1.gif)
+
+Demo of navigation from the home page to the detail page
+
+![](figures/multi_navigation_2.gif)
+
+Demo of a full-screen page
+
+![](figures/multi_navigation_3.gif)

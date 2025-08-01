@@ -8,7 +8,7 @@
 >
 > 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.arkui.UIContext (UIContext)](arkts-apis-uicontext-uicontext.md)。
 
 ## UIContext
 
@@ -456,7 +456,7 @@ struct IMEGradient {
 
 ## ComponentSnapshot<sup>12+</sup>
 
-以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getComponentSnapshot()](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
 
 缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
 
@@ -477,8 +477,8 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ------- |
-| start   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
-| end   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
+| start   | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
+| end   | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
 | isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。<br/>true表示以开始组件的外接矩形为准，false表示以结束组件的外接矩形为准。<br/>默认值为true。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数，不支持region参数。 |
 

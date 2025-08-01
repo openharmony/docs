@@ -46,7 +46,7 @@ import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onConnect(want: Want) {
-    console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
+    console.info(`WindowExtAbility onConnect, abilityName: ${want.abilityName}`);
   }
 }
 ```
@@ -74,7 +74,7 @@ import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onDisconnect(want: Want) {
-    console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
+    console.info(`WindowExtAbility onDisconnect, abilityName: ${want.abilityName}`);
   }
 }
 ```
@@ -104,7 +104,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {
     window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
       let pro = window.getWindowProperties();
-      console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+      console.info(`WindowExtension pro: ${JSON.stringify(pro)}`);
       window.showWindow();
     });
   }

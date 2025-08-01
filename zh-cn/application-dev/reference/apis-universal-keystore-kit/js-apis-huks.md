@@ -115,6 +115,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -199,6 +200,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -389,11 +391,11 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -486,17 +488,17 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-/* 以导入AES128为例 */
+/* 以导入AES256为例 */
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -587,10 +589,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
+
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -600,7 +599,12 @@ function stringToUint8Array(str: string) {
     return tmpUint8Array;
 }
 
-async function generateKeyThenattestKey(alias: string) {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
+async function generateKeyThenAttestKey() {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -658,7 +662,7 @@ async function generateKeyThenattestKey(alias: string) {
         properties: attestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -729,10 +733,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -741,6 +741,12 @@ function stringToUint8Array(str: string) {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
 async function generateKey(alias: string) {
     let properties: Array<huks.HuksParam> = [
         {
@@ -870,10 +876,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
+
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -883,7 +886,12 @@ function stringToUint8Array(str: string): Uint8Array {
     return tmpUint8Array;
 }
 
-async function generateKeyThenAttestKey(alias: string): Promise<void> {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
+async function generateKeyThenAttestKey(): Promise<void> {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -941,7 +949,7 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
         properties: anonAttestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -1015,10 +1023,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -1027,6 +1031,12 @@ function stringToUint8Array(str: string): Uint8Array {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
 async function generateKey(alias: string): Promise<void> {
     let properties: Array<huks.HuksParam> = [
         {
@@ -1062,7 +1072,7 @@ async function generateKey(alias: string): Promise<void> {
         properties: properties
     };
     try {
-        let data = await huks.generateKeyItem(alias, options);
+        await huks.generateKeyItem(alias, options);
     } catch (error) {
         console.error(`promise: generateKeyItem failed`);
     }
@@ -1093,7 +1103,7 @@ async function anonAttestKey(): Promise<void> {
     };
     await generateKey(aliasString);
     try {
-        let data = await huks.anonAttestKeyItem(aliasString, options);
+        await huks.anonAttestKeyItem(aliasString, options);
     } catch (error) {
         console.error(`promise: anonAttestKeyItem fail`);
     }
@@ -1140,6 +1150,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -1172,7 +1183,7 @@ function genKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1200,7 +1211,7 @@ function exportKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1228,7 +1239,7 @@ function importWrappedKey(alias: string, wrappingAlias: string, options: huks.Hu
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1374,6 +1385,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -1550,11 +1562,9 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occurred in crypto engine. |
+| 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 | 12000018 | the input parameter is invalid. |
@@ -1593,14 +1603,8 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occurred in crypto engine. |
-| 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify auth token failed. |
-| 12000009 | auth token is already timeout. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
@@ -2195,6 +2199,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -2235,6 +2240,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -2280,6 +2286,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000011 | queried entity does not exist. |
 | 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
+| 12000017 | The key with same alias is already exist. |
 
 ## huks.abortSession<sup>9+</sup>
 
@@ -2653,6 +2660,7 @@ async function testListAliases() {
 | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
 | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
 | HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
+| HUKS_ERR_CODE_KEY_ALREADY_EXIST<sup>20+</sup>  | 12000017 | 同名密钥已存在。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core     |
 | HUKS_ERR_CODE_INVALID_ARGUMENT<sup>20+</sup>  | 12000018 | 输入参数非法。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core     |
 
 ## HuksKeyPurpose
@@ -2971,7 +2979,7 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 
 | 名称                           | 值   | 说明                                                         |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
-| HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | 表示签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。 |
+| HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | 表示签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。<br>**注意**：携带的认证信息包含身份信息，开发者需在其隐私声明中对此身份信息的使用目的、存留策略和销毁方式进行说明。 |
 
 ## HuksAuthStorageLevel<sup>11+</sup>
 
@@ -3087,6 +3095,7 @@ API version 11系统能力为SystemCapability.Security.Huks.Extension；从API v
 | HUKS_TAG_ATTESTATION_ID_UDID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | 表示设备的UDID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO                      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_VERSION_INFO                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_OVERRIDE<sup>20+</sup>                         | HuksTagType.HUKS_TAG_TYPE_BOOL \| 520   | 表示是否覆写同名密钥。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_IS_KEY_ALIAS                                       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_KEY_STORAGE_FLAG                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_IS_ALLOWED_WRAP                                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core<sup>12+</sup> <br>SystemCapability.Security.Huks.Extension<sup>8-11</sup>|

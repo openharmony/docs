@@ -6,7 +6,7 @@
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./arkts-apis-uicontext-uicontext.md)说明。 
 
 ## 导入模块
 
@@ -21,9 +21,9 @@ getRectangleById(id: string): ComponentInfo
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)获取[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)实例，再通过此实例调用替代方法[getRectangleById](js-apis-arkui-UIContext.md#getrectanglebyid)。
+> 从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentUtils](arkts-apis-uicontext-uicontext.md#getcomponentutils)获取[ComponentUtils](arkts-apis-uicontext-componentutils.md)实例，再通过此实例调用替代方法[getRectangleById](arkts-apis-uicontext-componentutils.md#getrectanglebyid)。
 >
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[@ohos.arkui.inspector(布局回调)](js-apis-arkui-inspector.md)接收到布局完成的通知以后使用该接口。
+> 从API version 10开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentUtils](arkts-apis-uicontext-uicontext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](arkts-apis-uicontext-componentutils.md)对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -175,7 +175,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 > **说明：**
 >
-> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的ComponentUtils对象。
+> 推荐通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentUtils](./arkts-apis-uicontext-uicontext.md#getcomponentutils)方法获取当前UI上下文关联的ComponentUtils对象。
 
   ```ts
 import { matrix4, componentUtils } from '@kit.ArkUI';

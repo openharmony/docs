@@ -1,8 +1,8 @@
 # 使用AVMetadataExtractor获取元数据(C/C++)
 
-使用AVMetadataExtractor可以实现从原始媒体资源中获取元数据，本开发指导将以获取一个音频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
+使用AVMetadataExtractor可以实现从原始媒体资源中获取元数据，本开发指导将以获取一个媒体资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。
 
-获取音频资源的元数据的全流程包含：创建AVMetadataExtractor、设置资源、获取元数据、获取专辑封面、销毁资源。
+获取媒体资源的元数据的全流程包含：创建AVMetadataExtractor、设置资源、获取元数据、销毁资源。
 
 ## 开发步骤及注意事项
 在 CMake 脚本中链接动态库。
@@ -50,7 +50,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
     OH_AVMetadataExtractor* mainExtractor = OH_AVMetadataExtractor_Create();
     ```
 
-2. 设置视频资源的文件描述符：调用[OH_AVMetadataExtractor_SetFDSoucre()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_setfdsource)。
+2. 设置媒体资源的文件描述符：调用[OH_AVMetadataExtractor_SetFDSoucre()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_setfdsource)。
    > - 不同AVMetadataExtractor或者[AVImageGenerator](../../reference/apis-media-kit/capi-avimagegenerator.md)实例，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
     ```c
     #include "napi/native_api.h"
@@ -63,7 +63,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
     if (!GetInputParams(env, info, offset, fileDescribe, fileSize)) {
         return nullptr;
     }
-     // 设置视频资源的文件描述符。
+     // 设置媒体资源的文件描述符。
     OH_AVErrCode avErrCode = OH_AVMetadataExtractor_SetFDSource(mainExtractor, fileDescribe, offset, fileSize);
     // 异常处理。
     if (avErrCode != AV_ERR_OK) {
@@ -80,7 +80,16 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    avErrCode = OH_AVMetadataExtractor_FetchMetadata(mainExtractor, avMetadata);
    ```
 
-4. （可选）获取专辑封面：调用[OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchalbumcover)，可以获取到专辑封面。
+4. 对于视频资源：可以通过OH_AVMetadataExtractor_FetchMetadata设置的OH_AVFormat对象，根据每种元信息的类型，通过OH_AVFormat_GetIntValue、GetStringValueFromAVFormat等函数获取宽、高等数据。
+    ```c
+    // 从OH_AVFormat对象中解析出int32_t类型的视频资源宽高信息。
+    int32_t width = 0;
+    int32_t height = 0;
+    OH_AVFormat_GetIntValue(avMetadata, OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH, &width);
+    OH_AVFormat_GetIntValue(avMetadata, OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT, &height);
+    ```
+
+5. 对于音频资源而言，除了可以通过OH_AVFormat对象来获取音频资源的标题、时长等元数据外，还可以获取专辑封面（例如，调用[OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchalbumcover)，可以获取到专辑封面）。
    > - 使用完成需要调用OH_PixelmapNative_Release释放OH_PixelmapNative对象资源，详细使用方法请参阅[Image_NativeModule](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release)。
     ```c
     #include <multimedia/image_framework/image/pixelmap_native.h>
@@ -92,7 +101,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
     avErrCode = OH_AVMetadataExtractor_FetchAlbumCover(mainExtractor, &pixelMap);
     ```
 
-5. 释放资源：调用[OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_release)销毁实例，释放资源。
+6. 释放资源：调用[OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_release)销毁实例，释放资源。
     ```c
     // 释放OH_AVMetadataExtractor资源。
     OH_AVMetadataExtractor_Release(mainExtractor);

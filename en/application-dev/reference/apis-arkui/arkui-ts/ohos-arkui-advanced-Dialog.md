@@ -12,7 +12,7 @@ The dialog box is a modal window that commands attention while retaining the cur
 ## Modules to Import
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI';
 ```
 
 
@@ -27,7 +27,7 @@ The [universal attributes](ts-component-general-attributes.md) are not supported
 ## TipsDialog
 
 
-TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+TipsDialog({controller: CustomDialogController, imageRes: ResourceStr | PixelMap, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, onCheckedChange?: Callback\<boolean>, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 
 Displays an image-attached confirmation dialog box. If necessary, the confirmation dialog box can be displayed in a graphical manner.
@@ -38,25 +38,25 @@ Displays an image-attached confirmation dialog box. If necessary, the confirmati
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                         | Type                                                        | Mandatory| Decorator| Description                                                        |
-| ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
-| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -          | Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | -          | Image to be displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| imageSize                     | [SizeOptions](ts-types.md#sizeoptions)                       | No  | -          | Image size.<br>Default value: **64*64vp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| title                         | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| content                       | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | No  | -          | Event triggered when the selected status of the check box changes. You are advised to use **onCheckedChange<sup>12+</sup>** instead.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| primaryButton                 | [ButtonOptions](#buttonoptions)                              | No  | -          | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| secondaryButton               | [ButtonOptions](#buttonoptions)                              | No  | -          | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -          | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| -     | Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                |
+| Name                         | Type                                                        | Mandatory| Decorator| Description                                                                                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ---------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -          | Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                   |
+| imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes  | -          | Image to be displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                            |
+| imageSize                     | [SizeOptions](ts-types.md#sizeoptions)                       | No  | -          | Image size.<br>Default value: **64*64vp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                          |
+| title                         | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Title of the dialog box.<br>  **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                           |
+| content                       | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                          |
+| checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                    |
+| isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                       |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | No  | -          | Event triggered when the selected status of the check box changes. **isChecked** indicates whether the check box is selected. The value **true** means the check box is selected, and **false** means the opposite. You are advised to use **onCheckedChange<sup>12+</sup>** instead.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes. The value **Callback\<true>** means the check box is selected, and **Callback\<false>** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                |
+| primaryButton                 | [ButtonOptions](#buttonoptions)                              | No  | -          | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                          |
+| secondaryButton               | [ButtonOptions](#buttonoptions)                              | No  | -          | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                          |
+| theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -          | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                 |
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| -     | Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                       |
 
 ## SelectDialog
 
-SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;})
+SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 Displays a dialog box from which the user can select options presented in a list or grid.
 
@@ -66,8 +66,8 @@ Displays a dialog box from which the user can select options presented in a list
 
 | Name               | Type                                                        | Mandatory| Description                                                                                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------------|
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                    |
-| title               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                           |
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                    |
+| title               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                           |
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | No  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                           |
 | selectedIndex       | number                                                       | No  | Index of the selected option in the dialog box.<br>Value range: an integer no less than -1<br>The default value is **-1**, indicating that there is no selected option. Values less than -1 are treated as no selected option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | confirm             | [ButtonOptions](#buttonoptions)                              | No  | Button at the bottom of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                         |
@@ -77,7 +77,7 @@ Displays a dialog box from which the user can select options presented in a list
 
 ## ConfirmDialog
 
-ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 Displays an error dialog box that informs the user of an operational error (for example, a network error or low battery level) or an incorrect operation (for example, fingerprint enrollment).
 
@@ -88,11 +88,11 @@ Displays an error dialog box that informs the user of an operational error (for 
 | Name                         | Type                                                        | Mandatory| Decorator| Description                                                        |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
 | controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -          | Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| title                         | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | -          | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| title                         | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | -          | Title of the dialog box.<br>**NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes. The value **Callback\<true>** means the check box is selected, and **Callback\<false>** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | No  | -          | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | No  | -          | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -          | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -101,7 +101,7 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 Displays an alert dialog box to prompt the user to confirm an action that is irreversible and may cause serious consequences, such as deletion, reset, editing cancellation, and stop.
 
@@ -112,8 +112,8 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 | Name                        | Type                                                        | Mandatory| Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | No  | Primary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | No  | Secondary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | No  | Primary title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | No  | Secondary title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | content                      | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | primaryButton                | [ButtonOptions](#buttonoptions)                              | No  | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | secondaryButton              | [ButtonOptions](#buttonoptions)                              | No  | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -123,7 +123,7 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 ## LoadingDialog
 
-LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
+LoadingDialog({controller: CustomDialogController, content?: ResourceStr, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 Displays a loading dialog box to inform the user of the operation progress.
 
@@ -141,7 +141,7 @@ Displays a loading dialog box to inform the user of the operation progress.
 
 ## CustomContentDialog<sup>12+</sup>
 
-CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})
+CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[], theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 Displays a dialog box that contains custom content and operation area.
 
@@ -155,14 +155,19 @@ Displays a dialog box that contains custom content and operation area.
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -  | Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.                                              |
 | contentBuilder      | () => void                                                   | Yes  | @BuilderParam | Content of the dialog box.                                                |
-| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Primary title of the dialog box.                                                |
-| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Secondary title of the dialog box.                                            |
+| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Primary title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).                                                |
+| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Secondary title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).                                            |
 | localizedContentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | No  | -  | Padding of the content area of the dialog box.                                        |
 | contentAreaPadding  | [Padding](ts-types.md#padding)                               | No  | -  | Padding of the content area of the dialog box. This attribute does not take effect when **localizedContentAreaPadding** is set.|
 | buttons             | [ButtonOptions](#buttonoptions)[]                     | No  | -  | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.                         |
 | theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.|
 | themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| - | Theme color mode of the dialog box.|
 
+>  **NOTE**
+>
+> When the height of the dialog box is insufficient, the area defined by **contentBuilder** will be compressed. Global scrolling will be enabled if the compressed area's height falls below 100 vp.
+>
+> You must define scrolling of the content area in **CustomContentDialog**. In addition, the custom scrolling of the content area must be used in conjunction with the **nestedScroll** property, as in the **nestedScroll({ scrollForward: NestedScrollMode.PARALLEL, scrollBackward: NestedScrollMode.PARALLEL })** example.
 
 ## PopoverDialog<sup>14+</sup>
 
@@ -178,7 +183,7 @@ Displays a popover dialog box that is positioned relative to the target componen
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| visible | boolean | Yes| \@Link | Whether the popover dialog box is visible.<br>Default value: **false**, indicating that the popover dialog box is hidden|
+| visible | boolean | Yes| \@Link | Whether the popover dialog box is visible. The value **true** means that the popover dialog box is displayed, and **false** means the opposite.<br>Default value: **false**.|
 | popover | [PopoverOptions](#popoveroptions14) | Yes| \@Prop<br>\@Require | Options of the popover dialog box.|
 | targetBuilder | Callback\<void> | Yes| \@Require<br>\@BuilderParam | Target component relative to which the popover dialog box is positioned.|
 
@@ -187,15 +192,15 @@ Displays a popover dialog box that is positioned relative to the target componen
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                     | Type                                                        | Mandatory| Description                                                        |
-| ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                     | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Content of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| action                    | () =&gt; void                                      | No  | Click event of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| background                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Name                     | Type                                                        | Mandatory| Description                                                                                                                            |
+| ------------------------- | ------------------------------------------------------------ | ---- |--------------------------------------------------------------------------------------------------------------------------------|
+| value                     | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Content of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                    |
+| action                    | () =&gt; void                                      | No  | Click event of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                  |
+| background                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                    |
+| fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                  |
 | buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No  | Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12) | No  | Role of the button.<br>Default value: **ButtonRole.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
-| defaultFocus<sup>18+</sup> | boolean | No  | Whether the button gains focus by default.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                |
+| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12) | No  | Role of the button.<br>Default value: **ButtonRole.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                         |
+| defaultFocus<sup>18+</sup> | boolean | No  | Whether the button is the default focus.<br>**true**: The button is the default focus.<br>**false**: The button is not the default focus.<br>Default value: **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.         |
 
 >  **NOTE**
 >
@@ -280,7 +285,7 @@ struct Index {
 This example presents a dialog box consisting solely of a list defined with **selectedIndex** and **radioContent**.
 
 ```ts
-import { SelectDialog } from '@kit.ArkUI'
+import { SelectDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -346,7 +351,7 @@ struct Index {
 This example illustrates a dialog box that combines text content with check boxes defined with **content** and **checkTips**.
 
 ```ts
-import { ConfirmDialog } from '@kit.ArkUI'
+import { ConfirmDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -408,7 +413,7 @@ struct Index {
 This example demonstrates a simple text-only dialog box defined with **primaryTitle**, **secondaryTitle**, and **content**.
 
 ```ts
-import { AlertDialog } from '@kit.ArkUI'
+import { AlertDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -462,7 +467,7 @@ struct Index {
 This example implements a loading dialog box that contains a progress indicator.
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -502,7 +507,7 @@ struct Index {
 This example presents a dialog box with a custom theme, through the use of **content**, **theme**, and other properties.
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
+import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -558,7 +563,7 @@ struct Index {
 This example presents a dialog box in the specified light or dark mode, through the use of **content**, **themeColorMode**, and other properties.
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -599,7 +604,7 @@ struct Index {
 This example implements a dialog box with custom content defined with **contentBuilder** and **buttons**.
 
 ```ts
-import { CustomContentDialog } from '@kit.ArkUI'
+import { CustomContentDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -654,7 +659,7 @@ struct Index {
 ![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
 
 ### Example 9: Popover Dialog Box
-This example demonstrates a popover dialog box for alert purposes, through the use of **visible**, **popover**, **targetBuilder**, and other properties.
+This example demonstrates a popover dialog box for alert purposes, through the use of **visible**, **popover**, **targetBuilder**, and other properties. This functionality is supported since API version 14.
 
 ```ts
 import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
@@ -714,10 +719,10 @@ struct Index {
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
 
 ### Example 10: Setting the Default Focus Button for a Dialog Box
-This example demonstrates how to set a default focus button in a dialog box using **AlertDialog**, including the **defaultFocus** property.
+This example demonstrates how to set a default focus button in a dialog box using **AlertDialog**, including the **defaultFocus** property. This functionality is supported since API version 18.
 
 ```ts
-import { AlertDialog } from '@kit.ArkUI'
+import { AlertDialog } from '@kit.ArkUI';
 
 @Entry
 @Component

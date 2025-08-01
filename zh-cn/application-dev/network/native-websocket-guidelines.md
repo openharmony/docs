@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/net__websocket_8h.md)。
+WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md)。
 
 
 | 接口名 | 描述 |

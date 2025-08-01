@@ -37,7 +37,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 | 接口名称        | 描述        |
 | ------------------ | ----------------- |
 |OH_AI_ModelHandle OH_AI_ModelCreate()|创建一个模型对象。|
-|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType odel_type, const OH_AI_ContextHandle model_context)|通过模型文件加载并编译MindSpore模型。|
+|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|通过模型文件加载并编译MindSpore模型。|
 |void OH_AI_ModelDestroy(OH_AI_ModelHandle *model)|释放一个模型对象。|
 
 ### Tensor 相关接口
@@ -63,6 +63,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 ```c
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "mindspore/model.h"
 
 //生成随机的输入
@@ -173,6 +174,12 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     }
 
     // 加载与编译模型，模型的类型为OH_AI_MODELTYPE_MINDIR
+    if (access(argv[1], F_OK) != 0) {
+        printf("model file not exists.\n");
+        OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
+        return OH_AI_STATUS_LITE_ERROR;
+    }
     int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_MODELTYPE_MINDIR, context);
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
@@ -233,6 +240,12 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
       printf("Tensor name: %s, tensor size is %zu ,elements num: %lld.\n", OH_AI_TensorGetName(tensor),
             OH_AI_TensorGetDataSize(tensor), element_num);
       const float *data = (const float *)OH_AI_TensorGetData(tensor);
+      if (data == NULL) {
+        printf("OH_AI_TensorGetData failed.\n");
+        OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
+        return OH_AI_STATUS_LITE_ERROR;
+      }
       printf("output data is:\n");
       const int max_print_num = 50;
       for (int j = 0; j < element_num && j <= max_print_num; ++j) {

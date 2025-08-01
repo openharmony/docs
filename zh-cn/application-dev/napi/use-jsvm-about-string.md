@@ -2,11 +2,11 @@
 
 ## 简介
 
-使用JSVM-API的六个字符串接口，可以实现JSVM模块与JavaScript字符串的交互。
+使用JSVM-API的六个字符串接口，可以实现JSVM模块与JavaScript字符串的交互功能。
 
 ## 基本概念
 
-string是编程中常用的数据类型。它可以存储和操作文本数据，用于表示和处理字符序列。它还可以用于构建用户界面元素，如标签、按钮和文本框，处理用户输入，验证和格式化数据。不同的编码方案支持不同的字符集和语言，以下是一些主要的编码方案及其区别：
+string是编程中常用的数据类型。用于存储和操作文本数据，它可用于构建用户界面元素，如标签、按钮和文本框，处理用户输入，验证和格式化数据。不同的编码方案支持不同的字符集和语言，以下是一些主要的编码方案及其区别：
 
 - **ASCII**：ASCII是最早的字符编码方案之一，使用7位编码，只能表示英文字母、数字和一些基本符号。它是许多其他编码方案的基础。
 - **UTF-8**：UTF-8是一种变长编码方案，可以表示全球范围的字符集。它使用8位编码，根据字符的不同范围使用不同长度的字节序列。UTF-8是互联网上广泛使用的编码方案。
@@ -26,7 +26,7 @@ string是编程中常用的数据类型。它可以存储和操作文本数据�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)。本文仅展示接口对应的C++相关代码。
 
 ### OH_JSVM_GetValueStringUtf8
 
@@ -198,7 +198,7 @@ const char *srcCallNative = R"JS(
 ```cpp
 ![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
 ```
-**注意事项**：`getValueStringUtf16(arg)`入参`arg`非字符串型数据时接口会调用失败。
+**注意事项**：`getValueStringUtf16(arg)`的参数`arg`必须是字符串，否则接口会调用失败。
 
 ### OH_JSVM_CreateStringUtf16
 
@@ -310,7 +310,7 @@ const char *srcCallNative = R"JS(
 *ISO-8859-1编码不支持中文，传入中文字符会导致乱码*
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
 ```
-**注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则将导致调用失败。
+**注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则接口调用会失败。
 
 ### OH_JSVM_CreateStringLatin1
 

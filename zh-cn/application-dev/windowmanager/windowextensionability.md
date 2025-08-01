@@ -44,7 +44,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
         onWindowReady(window: window.Window) {
             window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
               let pro = window.getWindowProperties();
-              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              console.info(`WindowExtension pro: ${JSON.stringify(pro)}`);
               window.showWindow();
             });
         }

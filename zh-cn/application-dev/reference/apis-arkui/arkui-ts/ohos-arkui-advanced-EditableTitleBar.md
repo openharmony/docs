@@ -268,7 +268,7 @@ struct Index {
 ![zh-cn_image_editabletitlebar_example02](figures/zh-cn_image_editabletitlebar_example02.png)
 
 ### 示例3（右侧自定义按钮播报）
-该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 
 import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
@@ -329,7 +329,7 @@ struct Index1 {
 ![zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
 
 ### 示例4（左侧图标设置为默认焦点）
-该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
+从API version 18开始，该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
 ```ts
 
 import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
@@ -357,7 +357,7 @@ struct Index {
 ![editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
 
 ### 示例5（右侧自定义图标设置为默认焦点）
-该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
+从API version 18开始，该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
 ```ts
 
 import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
@@ -403,7 +403,7 @@ struct Index {
 
 ### 示例6（设置Symbol类型图标）
 
-该示例通过设置EditableTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置EditableTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { EditableLeftIconType, EditableTitleBar, Prompt, SymbolGlyphModifier } from '@kit.ArkUI';

@@ -367,8 +367,14 @@ struct ImageAnimatorExample {
   @State images: Array<ImageFrameInfo> = [];
 
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.1')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.2')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.3')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.4')));
     this.images.push({ src: this.imagePixelMap[0] });
+    this.images.push({ src: this.imagePixelMap[1] });
+    this.images.push({ src: this.imagePixelMap[2] });
+    this.images.push({ src: this.imagePixelMap[3] });
   }
 
   build() {

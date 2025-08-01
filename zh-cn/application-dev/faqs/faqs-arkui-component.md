@@ -176,17 +176,23 @@ TextInput，TextArea组件输入多字符后，需要实现点击清空。
 
 **代码示例**
 
-```
+```ts
+// xxx.ets
+@Entry
+@Component
 struct Index {
-@State text: string = 'Hello World'
-controller: TextInputController = new TextInputController()
+  @State text: string = 'Hello World';
+  controller: TextInputController = new TextInputController();
+
   build() {
     Row() {
       Column() {
-        TextInput({ placeholder: 'Please input your words.', text: this.text,
-          controller:this.controller}).onChange((value) => {
-            this.text = value
-          })
+        TextInput({
+          placeholder: 'Please input your words.', text: this.text,
+          controller: this.controller
+        }).onChange((value: string) => {
+          this.text = value;
+        })
         Button("Clear TextInput").onClick(() => {
           this.text = "";
         })
@@ -650,28 +656,30 @@ Scroll组件中的容器组件不设置尺寸，大小由内容撑开。
 
 ```
 class Model {
-  value: string
+  value: string = "";
 }
+
 @Entry
 @Component
 struct EntryComponent {
   test() {
     console.log('testTag test in my component');
   }
+
   build() {
     Column() {
-      MyComponent({ title: { value: 'Hello World 2' }, count: 7, onClick: this.test }) //初始化时传递定义的方法
+      MyComponent({ title: { value: 'Hello World 2' }, count: 7, click: this.test }) //初始化时传递定义的方法
     }
   }
 }
 
 @Component
 struct MyComponent {
-  @State title: Model = { value: 'Hello World' }
-  @State count: number = 0
-  onClick: any;
-  private toggle: string = 'Hello World'
-  private increaseBy: number = 1
+  @State title: Model = { value: 'Hello World' };
+  @State count: number = 0;
+  click: () => void = () => {
+  };
+  private increaseBy: number = 1;
 
   build() {
     Column() {
@@ -680,8 +688,8 @@ struct MyComponent {
         .margin(20)
         .onClick(() => {
           // 修改内部状态变量count
-          this.count += this.increaseBy
-          this.onClick.call();
+          this.count += this.increaseBy;
+          this.click();
         })
     }
   }

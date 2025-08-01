@@ -13,7 +13,7 @@
 setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): number
 
 设置一个定时器，该定时器在定时器到期后执行一个函数。  
-该定时器在回调被执行后自动删除，或使用clearTimeout接口手动删除。
+该定时器在回调被执行后自动删除，或使用clearTimeout()接口手动删除。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ clearTimeout(timeoutID?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| timeoutID | number | 否 | 要取消定时器的ID，需要与调用setTimeout设置定时器的返回值一致。如果省略该参数或指定的定时器ID不存在时，不会取消任何定时任务。|
+| timeoutID | number | 否 | 要取消定时器的ID，需要与调用setTimeout()设置定时器的返回值一致。如果省略该参数或指定的定时器ID不存在时，不会取消任何定时任务。|
 
 **示例：**
 
@@ -180,7 +180,7 @@ clearInterval(intervalID?: number): void
   After OH test setTimeout
   OH test foo is called
   ```
-这是因为，虽然setTimeout设置了0ms的延迟，但任务不会立即执行，而是被放入队列中，等待下一次事件循环。当前代码执行完毕后，队列中的函数才会被执行，因此最终的执行顺序可能与预期不一致。
+这是因为，虽然setTimeout()设置了0ms的延迟，但任务不会立即执行，而是被放入队列中，等待下一次事件循环。当前代码执行完毕后，队列中的函数才会被执行，因此最终的执行顺序可能与预期不一致。
 
 ### 最大延迟值
 定时器内部使用32位带符号整数存储延时。因此，当延时超过2147483647毫秒（约24.8天）时，定时器会溢出并立即执行。
@@ -188,4 +188,4 @@ clearInterval(intervalID?: number): void
 ### 定时器冻结
 定时器的触发受底层任务调度。当前应用被切换到后台后，定时器到期不会触发。应用被重新拉起到前台后，到期定时器会按序触发。可以使用trace查看进程是否还存在调度，如果没有调度，定时器会被冻结。
 ### 定时器ID
-setTimeout()和setInterval()使用同一个ID池，这意味着技术上可以混用clearTimeout()和clearInterval()。然而，为了代码的清晰性，建议不要混用它们。
+setTimeout()和setInterval()使用相同的ID池，因此技术上可以互相调用clearTimeout()和clearInterval()来清除。然而，为了提高代码的可读性和可维护性，建议分别使用各自对应的清除方法，以避免混淆。

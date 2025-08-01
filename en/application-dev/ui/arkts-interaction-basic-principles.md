@@ -47,7 +47,7 @@ The event interaction pipeline describes the end-to-end process where ArkUI rece
 ArkUI constructs event response chains through hit testing using a reverse post-order traversal (right-subtree-first) of the component tree. The pseudocode implementation is as follows:
 
 ```
-foreach((item, node.rbegin(),node.rend())=> {
+forEach((item, node.rbegin(),node.rend())=> {
     item.TouchTest();
 })
 node.collectEvent()

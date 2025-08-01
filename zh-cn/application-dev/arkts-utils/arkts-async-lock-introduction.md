@@ -12,7 +12,7 @@
 
 ## 使用示例
 
-为了防止[@Sendable共享对象](arkts-sendable.md)在不同线程修改共享变量导致的竞争问题，可以使用异步锁保护数据。示例如下：
+为了防止[@Sendable共享对象](arkts-sendable.md)在不同线程中修改共享变量导致的竞争问题，可以使用异步锁保护数据。示例如下：
 
 ```ts
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';
@@ -22,7 +22,7 @@ export class A {
   private count_: number = 0;
   lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
 
-  public async getCount(): Promise<number> {
+  public getCount(): Promise<number> {
     // 对需要保护的数据加异步锁
     return this.lock_.lockAsync(() => {
       return this.count_;
@@ -39,6 +39,7 @@ export class A {
 
 @Concurrent
 async function printCount(a: A) {
+  a.increaseCount();
   console.info("InputModule: count is:" + await a.getCount());
 }
 

@@ -85,6 +85,10 @@
            .height('5%')
            .onClick(() => {
              let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+             if (resMgr === null || resMgr === undefined){
+               console.error('MS_LITE_ERR: get resMgr failed.');
+               return
+             }
              resMgr?.getRawFileContent(this.modelName).then(modelBuffer => {
                // 获取相册图片
                // 1.创建图片文件选择实例
@@ -120,6 +124,10 @@
    
                    // 3.通过PixelMap预处理
                    let imageSource = image.createImageSource(file.fd);
+                   if (imageSource == undefined) {
+                     console.error('MS_LITE_ERR: createImageSource failed.')
+                     return
+                   }
                    imageSource.createPixelMap().then((pixelMap) => {
                      pixelMap.getImageInfo().then((info) => {
                        console.info('MS_LITE_LOG: info.width = ' + info.size.width);
@@ -245,6 +253,7 @@
 ```ts
 // Index.ets
 import modelPredict from './model';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -274,8 +283,11 @@ struct Index {
         .height('5%')
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+          if (resMgr === null || resMgr === undefined){
+            console.error('MS_LITE_ERR: get resMgr failed.');
+            return
+          }
           resMgr?.getRawFileContent(this.modelName).then(modelBuffer => {
-            let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
             // 图像输入和预处理。
             // 完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
             let inputs: ArrayBuffer[] = [float32View.buffer];
@@ -315,7 +327,9 @@ struct Index {
               }
               console.info('=========MS_LITE_LOG END=========');
             })
-          })
+          }).catch((error: BusinessError) => {
+            console.error("getRawFileContent promise error is " + error);
+          });
         })
       }
       .width('100%')

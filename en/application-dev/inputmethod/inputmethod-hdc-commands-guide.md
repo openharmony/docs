@@ -1,4 +1,4 @@
-# Managing Input Method Through hdc Commands
+# IME Tool
 
 **How to Use**<br>
 
@@ -14,7 +14,7 @@ hdc shell ime [option] [parameter]
 | -l   | NA         | Lists all input methods.|
 | -h   | NA         | Displays the help information.|
 
-## Sample Code
+## Managing Input Methods Using IME Tool
 
 1. Enabling an input method. You can enable a third-party input method as basic mode or full mode.
 

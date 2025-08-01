@@ -134,7 +134,7 @@ struct CanvasExample {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() => {
           this.context.canvas.drawCircle(200, 200, 100)
           this.context.invalidate()

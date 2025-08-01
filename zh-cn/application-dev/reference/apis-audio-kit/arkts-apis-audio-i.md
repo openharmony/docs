@@ -233,6 +233,19 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------------------- |
 | mute | boolean | 否 | 否 | 系统麦克风是否为静音状态。true表示静音，false表示非静音。          |
 
+
+## StreamVolumeEvent<sup>20+</sup>
+
+音频流音量变化时，应用接收到的事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+| 名称       | 类型                                | 只读 | 可选 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- |---|-------------------------------------------------------- |
+| streamUsage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 否 | 否 | 音量发生变化的音频流。          |
+| volume | number | 否 | 否 | 音量值。          |
+| updateUi | boolean | 否 | 否 | 是否在UI上展示音量变化。true表示展示，false表示不展示。          |
+
 ## DeviceChangeAction
 
 描述设备连接状态变化和设备信息。

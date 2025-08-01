@@ -87,7 +87,7 @@ Enumerates the data field types allowed in a unified data record.
 | number | Number.|
 | string | String.|
 | boolean | Boolean.|
-| image.PixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7).|
+| image.PixelMap | The value is of the [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) type.|
 | Want | [Want](../apis-ability-kit/js-apis-app-ability-want.md).|
 | ArrayBuffer | ArrayBuffer.|
 | object | Object.|
@@ -437,7 +437,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-A constructor used to create a data record with the specified type and value.<br>If **value** is of the [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) type, **type** must be the value of **OPENHARMONY_PIXEL_MAP** in [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).<br>If **value** is of the [Want](../apis-ability-kit/js-apis-app-ability-want.md) type, **type** must be the value of **OPENHARMONY_WANT** in [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).
+A constructor used to create a data record with the specified type and value.<br>If **value** is of the [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) type, **type** must be the value of **OPENHARMONY_PIXEL_MAP** in [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).<br>If **value** is of the [Want](../apis-ability-kit/js-apis-app-ability-want.md) type, **type** must be the value of **OPENHARMONY_WANT** in [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1159,7 +1159,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 ## SystemDefinedPixelMap
 
-Represents the image data type corresponding to [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) defined by the system. It is a child class of [SystemDefinedRecord](#systemdefinedrecord) and holds only binary data of PixelMap.
+Represents the image data type corresponding to [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) defined by the system. It is a child class of [SystemDefinedRecord](#systemdefinedrecord) and holds only binary data of PixelMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1176,31 +1176,31 @@ import { image } from '@kit.ImageKit';  // Module where the PixelMap class is de
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color = new ArrayBuffer(96); // Create a PixelMap object.
+const color = new ArrayBuffer(96); // Create a pixelMap object.
 let opts: image.InitializationOptions = {
   editable: true, pixelFormat: 3, size: {
     height: 4, width: 6
   }
 }
-image.createPixelMap(color, opts, (error, pixelmap) => {
+image.createPixelMap(color, opts, (error, pixelMap) => {
   if (error) {
-    console.error('Failed to create pixelmap.');
+    console.error('Failed to create pixelMap.');
   } else {
-    console.info('Succeeded in creating pixelmap.');
-    let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
-    pixelmap.readPixelsToBuffer(arrayBuf);
+    console.info('Succeeded in creating pixelMap.');
+    let arrayBuf = new ArrayBuffer(pixelMap.getPixelBytesNumber());
+    pixelMap.readPixelsToBuffer(arrayBuf);
     let u8Array = new Uint8Array(arrayBuf);
-    let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
-    sdpixel.rawData = u8Array;
-    let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+    let sdPixel = new unifiedDataChannel.SystemDefinedPixelMap();
+    sdPixel.rawData = u8Array;
+    let unifiedData = new unifiedDataChannel.UnifiedData(sdPixel);
 
     // Read the record of the pixelMap type from unifiedData.
     let records = unifiedData.getRecords();
     for (let i = 0; i < records.length; i++) {
       if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
-        let newArraybuf = pixelmapRecord.rawData.buffer;
-        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+        let pixelMapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArrayBuf = pixelMapRecord.rawData.buffer;
+        pixelMap.writeBufferToPixels(newArrayBuf).then(() => {
           console.info('Succeeded in writing data from buffer to a pixelMap');
         }).catch((error: BusinessError) => {
           console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
@@ -1243,13 +1243,27 @@ Enumerates the data channel types supported by the UDMF. It is used to identify 
 | Name      | Value        | Description     |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | Public data channel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| DRAG<sup>14+</sup> | 'Drag' | Channel in which data can be dragged and dropped.<br>**Model restriction**: This API can be used only in the stage model.|
+| DRAG<sup>14+</sup> | 'Drag' | Channel in which data can be dragged and dropped.<br>**Model restriction**: This API can be used only in the stage model.<br>**Use scenario**: This API is used to share data across applications in drag-and-drop scenarios.|
+| SYSTEM_SHARE<sup>20+</sup> | 'SystemShare' | Data channel of the system sharing type.<br>**Model restriction**: This API can be used only in the stage model.<br>**Use scenario**: This API is used to share data across applications in system sharing scenarios.|
+| PICKER<sup>20+</sup> | 'Picker' | Data channel of the picker type.<br>**Model restriction**: This API can be used only in the stage model.<br>**Use scenario**: This API is used to share data across applications in the scenarios where a picker is used.|
+| MENU<sup>20+</sup> | 'Menu' | Data channel of the menu type.<br>**Model restriction**: This API can be used only in the stage model.<br>**Use scenario**: This API is used to share data across applications in the shortcut menu.|
+
+## Visibility<sup>20+</sup> 
+
+Enumerates the data visibility levels.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name         | Value  | Description                         |
+| ------------- | ---- |------------------------------|
+| ALL           | 0    | Visible to all applications.<br>**Model restriction**: This API can be used only in the stage model.    |
+| OWN_PROCESS   | 1    | Visible only to the data provider.<br>**Model restriction**: This API can be used only in the stage model. |
 
 ## Options
 
-type Options = { intention?: Intention; key?: string; }
-
-Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters can be left unspecified. For details, see the parameter description of the specific API.
+Defines the data operation performed by the UDMF. It includes three optional parameters: **intention**, **key**, and **visibility**. The three parameters can be left unspecified. For details, see the parameter description of the specific API.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1259,6 +1273,7 @@ Defines the data operation performed by the UDMF. It includes two optional param
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | intention | [Intention](#intention) | No  | Type of the data channel related to the data operation.                            |
 | key       | string                  | No  | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
+| visibility<sup>20+</sup> | [Visibility](#visibility20) | No  | Data visibility level. This parameter is effective only when specified during data writing. If unspecified, the default value **Visibility.ALL** is used. |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -1313,10 +1328,10 @@ Represents the progress information.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name    | Type                                 | Readable| Writable| Description                                                            |
+| Name    | Type                                 | Read-Only| Optional| Description                                                            |
 | -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
-| progress | number                              | Yes  | No  | Progress of the drag task, in percentage. <br>The value is an integer ranging from -1 to 100. The value **-1** indicates a failure to obtain data, and the value **100** indicates data is obtained.|
-| status | [ListenerStatus](#listenerstatus15) | Yes  | No  | Status code of the drag task reported by the system.                                                 |
+| progress | number                              | No  | No  | Progress of the drag task, in percentage. <br>The value is an integer ranging from -1 to 100. The value **-1** indicates a failure to obtain data, and the value **100** indicates data is obtained.|
+| status | [ListenerStatus](#listenerstatus15) | No  | No  | Status code of the drag task reported by the system.                                                 |
 
 ## DataProgressListener<sup>15+</sup>
 
@@ -1341,7 +1356,26 @@ Represents the parameters for obtaining data from UDMF, including the destinatio
 
 For details, see [Obtaining Data Asynchronously Through Drag-and-Drop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-obtaining-data-asynchronously-through-drag-and-drop).
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name                  | Type                                             | Read-Only| Optional| Description                                                                                                                                                |
+|----------------------|-------------------------------------------------| ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| progressIndicator    | [ProgressIndicator](#progressindicator15)       | No  | No  | Progress indicator options. You can use the default progress indicator as required.<br>**Atomic service API**: This API can be used in atomic services since API version 15.                                                                                                                        |
+| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | No  | No  | Callback used to return the data retrieval progress and data obtained.<br>**Atomic service API**: This API can be used in atomic services since API version 15.                                                                                                                               |
+| destUri              | string                                          | No  | Yes  | Destination directory for the file copied. If file processing is not supported, leave this parameter unspecified, which is the default value of this parameter. If file processing is supported, pass in an existing directory. If complex file processing policies are involved or multipathing file storage is required, you are advised to leave this parameter unspecified and let the application handle file copying. If this parameter is not specified, the source URI is obtained. If this parameter is specified, the specified destination URI is obtained.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | No  | Yes  | Option for resolving file copy conflicts. The default value is **OVERWRITE**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.                                                                                                                        |
+| acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | No  | Yes  | Capability of the receiver to receive data types and data records. In the lazy loading scenario, the sender can generate and return more appropriate data content based on this information. The default value is empty, indicating that the receiver does not have the data receiving capability.<br>**Atomic service API**: This API can be used in atomic services since API version 20.  |
+
+## DataLoadInfo<sup>20+</sup>
+
+Defines type and quantity of the data to load.
+
+- Used by the **data sender** to define the data range that can be provided. This field is mandatory.
+- Used by the **data receiver** to define the expected data type and quantity. This field is optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -1349,10 +1383,45 @@ For details, see [Obtaining Data Asynchronously Through Drag-and-Drop](../apis-a
 
 | Name                  | Type                                             | Mandatory| Description                                                                                                                                                |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| progressIndicator    | [ProgressIndicator](#progressindicator15)       | Yes| Progress indicator options. You can use the default progress indicator as required.                                                                                                                        |
-| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | Yes| Callback used to return the data retrieval progress and data obtained.                                                                                                                               |
-| destUri              | string                                          | No| Destination directory for the file copied. If file processing is not supported, leave this parameter unspecified, which is the default value of this parameter. If file processing is supported, pass in an existing directory. If complex file processing policies are involved or multipathing file storage is required, you are advised to leave this parameter unspecified and let the application handle file copying. If this parameter is not specified, the source URI is obtained. If this parameter is specified, the specified destination URI is obtained.|
-| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | No  | Option for resolving file copy conflicts. The default value is **OVERWRITE**.                                                                                                                        |
+| types    | Set\<string\>       | No| Data type set. The default value is an empty set.                                                                                                                        |
+| recordCount | number | No| Maximum number of data records, ranging from 0 to 2<sup>32</sup>-1. The default value is **0**. If the value is out of the range, the default value is used. If the value is a floating point number, only the integer part is used. If the value is used for drag and drop, it is displayed as the number of badges with a maximum value of **2<sup>31</sup>-1**. If the value exceeds the maximum, no badge is displayed. In addition, the priority of this API is lower than the **numberBadge** method in [DragPreviewOptions](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11).                           |
+
+## DataLoadHandler<sup>20+</sup>
+
+type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
+
+Defines a processing function for lazy data loading. The data sender can dynamically generate data based on the information passed by the data receiver to implement more flexible and precise data interaction policies.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                           | Mandatory   | Description          |
+|----------|-------------------------------|-------|--------------|
+| acceptableInfo | [DataLoadInfo](#dataloadinfo20) | No    | Data type and quantity to receive. The default value is empty.|
+
+**Return value**
+
+| Type                   | Description                               |
+|-----------------------|-----------------------------------|
+| [UnifiedData](#unifieddata) \| null | Returns **UnifiedData** or **null** when the processing function for lazy data loading is triggered.|
+
+## DataLoadParams<sup>20+</sup>
+
+Defines the data loading policy for the data sender in the lazy loading scenario.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name                  | Type                                             | Mandatory| Description                                                                                                                                                |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | Yes| Processing function used for lazy data loading.            |
+| dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | Yes| Data type and quantity that can be generated by the sender.             |
 
 ## unifiedDataChannel.insertData
 
@@ -1486,7 +1555,7 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 | Name     | Type                         | Mandatory| Description                                 |
 |----------|-----------------------------|----|-------------------------------------|
 | options  | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.                    |
-| data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
+| data     | [UnifiedData](#unifieddata) | Yes | Data to update.                              |
 | callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1563,7 +1632,7 @@ Updates the data in the UDMF public data channel. This API uses a promise to ret
 | Name    | Type                         | Mandatory| Description             |
 |---------|-----------------------------|----|-----------------|
 | options | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.|
-| data    | [UnifiedData](#unifieddata) | Yes | New data.          |
+| data    | [UnifiedData](#unifieddata) | Yes | Data to update.          |
 
 **Return value**
 
@@ -1891,9 +1960,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 20400001     | Settings already exist, if need to reconfigure, please remove the previous share options.       |
+| 20400001     | Settings already exist. To reconfigure, remove the existing sharing options.       |
 
 **Example**
 
@@ -1932,7 +2001,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -1957,6 +2026,8 @@ Converts the provided data into a multi-style data structure, which is useful wh
 This API is used only when the following rules are met:
 1. The number of records in data is greater than 1.
 2. The value of **unifiedData.properties.tag** is **records_to_entries_data_format**.
+
+ 
 
 **Atomic service API**: This API can be used in atomic services since API version 17.
 

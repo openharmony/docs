@@ -539,7 +539,7 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions): T
 
 ## linearGradientBlur<sup>18+</sup> 
 
-linearGradientBlur(value: Optional\<number>, options: Optional\<LinearGradientBlurOptions>): T
+linearGradientBlur(blurRadius: Optional\<number>, options: Optional\<LinearGradientBlurOptions>): T
 
 为组件添加内容线性渐变模糊效果。与[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)相比，value参数新增了对undefined类型的支持。
 
@@ -551,7 +551,7 @@ linearGradientBlur(value: Optional\<number>, options: Optional\<LinearGradientBl
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | Optional\<number>                                            | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>当value的值为undefined时，恢复为渐变模糊为0的效果。 |
+| blurRadius   | Optional\<number>                                            | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>当blurRadius的值为undefined时，恢复为渐变模糊为0的效果。 |
 | options | Optional\<[LinearGradientBlurOptions](#lineargradientbluroptions12对象说明)> | 是   | 设置线性渐变模糊效果。<br/>当options的值为undefined时，恢复为渐变模糊为0的效果。<br/>线性梯度模糊包含[fractionStops](#lineargradientbluroptions12对象说明)和[direction](#lineargradientbluroptions12对象说明)。  |
 
 **返回值：**
@@ -569,6 +569,8 @@ renderGroup(value: boolean): T
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -591,6 +593,8 @@ renderGroup(isGroup: Optional\<boolean>): T
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -664,10 +668,10 @@ blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 描述                                                             |
-| ---------------| ---------------------------------------------------------------- |
-| FAST           |   在目标图像上按顺序混合视图的内容。                        |
-| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
+| 名称           | 值 | 说明                                                             |
+| ---------------| ------ | ---------------------------------------------------------------- |
+| FAST           | 0 | 在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      | 1 | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -888,42 +892,41 @@ systemBarEffect(): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                                   |
-| -------- | ---------------------------------------- |
-| COLOR    | 颜色。                                    |
-| BLUR     | 模糊。                                    |
+| 名称       | 值 | 说明                                   |
+| -------- | ------ | ---------------------------------- |
+| COLOR    | - | 颜色。                                    |
+| BLUR     | - | 模糊。                                    |
 
 
 ## ShadowOptions对象说明
 
 阴影属性集合，用于设置阴影的模糊半径、阴影的颜色、X轴和Y轴的偏移量。
 
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-| 名称      | 类型                                       | 必填   | 说明                                       |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10枚举说明)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-appendix-enums.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。true表示阴影在内部填充，false表示阴影在外部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称      | 类型                                       | 只读 | 可选   | 说明                                       |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| radius  | number \| [Resource](ts-types.md#resource) | 否 | 否    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| type<sup>10+</sup> | [ShadowType](#shadowtype10枚举说明)  |      否 | 是    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>11+</sup> ](ts-appendix-enums.md#coloringstrategy10) | 否  | 是  | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| offsetX | number \| [Resource](ts-types.md#resource) | 否  | 是  | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否 | 是   | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill<sup>11+</sup>     | boolean                                    | 否  | 是  | 阴影是否内部填充。true表示阴影在内部填充，false表示阴影在外部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                | 描述     |
-| ----------------- | ------ |
-| OUTER_DEFAULT_XS  | 超小阴影。  |
-| OUTER_DEFAULT_SM  | 小阴影。   |
-| OUTER_DEFAULT_MD  | 中阴影。   |
-| OUTER_DEFAULT_LG  | 大阴影。   |
-| OUTER_FLOATING_SM | 浮动小阴影。 |
-| OUTER_FLOATING_MD | 浮动中阴影。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                | 值 | 说明     |
+| ----------------- | ---- | ------ |
+| OUTER_DEFAULT_XS  | - | 超小阴影。  |
+| OUTER_DEFAULT_SM  | - | 小阴影。   |
+| OUTER_DEFAULT_MD  | - | 中阴影。   |
+| OUTER_DEFAULT_LG  | - | 大阴影。   |
+| OUTER_FLOATING_SM | - | 浮动小阴影。 |
+| OUTER_FLOATING_MD | - | 浮动中阴影。 |
 
 ## BlendMode<sup>11+</sup>枚举说明
 
@@ -935,51 +938,55 @@ systemBarEffect(): T
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称           | 描述                                                             |
-| ---------------| ------                                                        |
-| NONE            | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
-| CLEAR           | 将源像素覆盖的目标像素清除为完全透明。                      |
-| SRC             | r = s，只显示源像素。                    |
-| DST             | r = d，只显示目标像素。                  |
-| SRC_OVER        | r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                 |
-| DST_OVER        | r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
-| SRC_IN          | r = s * da，只显示源像素中与目标像素重叠的部分。                        |
-| DST_IN          | r = d * sa，只显示目标像素中与源像素重叠的部分。                        |
-| SRC_OUT         | r = s * (1 - da)，只显示源像素中与目标像素不重叠的部分。                |
-| DST_OUT         | r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。                |
-| SRC_ATOP        | r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。                 |
-| DST_ATOP        | r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。                 |
-| XOR             | r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。                     |
-| PLUS            | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                     |
-| MODULATE        | r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。                          |
-| SCREEN          | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                    |
-| OVERLAY         | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                                  |
-| DARKEN          | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。                 |
-| LIGHTEN         | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
-| COLOR_DODGE     | 使目标像素变得更亮来反映源像素。                     |
-| COLOR_BURN      | 使目标像素变得更暗来反映源像素。                     |
-| HARD_LIGHT      | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                  |
-| SOFT_LIGHT      | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。                                                             |
-| DIFFERENCE      | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。                      |
-| EXCLUSION       | rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。          |
-| MULTIPLY        | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                           |
-| HUE             | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                                   |
-| SATURATION      | 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。                                |
-| COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
-| LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值 | 说明                                                             |
+| ---------------| --- | ------                                                        |
+| NONE            | 0 | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
+| CLEAR           | 1 | 将源像素覆盖的目标像素清除为完全透明。                      |
+| SRC             | 2 |  r = s，只显示源像素。                    |
+| DST             | 3 |  r = d，只显示目标像素。                  |
+| SRC_OVER        | 4 |  r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                 |
+| DST_OVER        | 5 |  r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
+| SRC_IN          | 6 |  r = s * da，只显示源像素中与目标像素重叠的部分。                        |
+| DST_IN          | 7 |  r = d * sa，只显示目标像素中与源像素重叠的部分。                        |
+| SRC_OUT         | 8 |  r = s * (1 - da)，只显示源像素中与目标像素不重叠的部分。                |
+| DST_OUT         | 9 |  r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。                |
+| SRC_ATOP        | 10 |  r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。                 |
+| DST_ATOP        | 11 |  r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。                 |
+| XOR             | 12 |  r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。                     |
+| PLUS            | 13 |  r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                     |
+| MODULATE        | 14 |  r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。                          |
+| SCREEN          | 15 |  r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                    |
+| OVERLAY         | 16 |  根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                                  |
+| DARKEN          | 17 |  rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。                 |
+| LIGHTEN         | 18 |  rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
+| COLOR_DODGE     | 19 |  使目标像素变得更亮来反映源像素。                     |
+| COLOR_BURN      | 20 |  使目标像素变得更暗来反映源像素。                     |
+| HARD_LIGHT      | 21 |  根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                  |
+| SOFT_LIGHT      | 22 |  根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。                                                             |
+| DIFFERENCE      | 23 |  rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。                      |
+| EXCLUSION       | 24 |  rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。          |
+| MULTIPLY        | 25 |  r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                           |
+| HUE             | 26 |  保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                                   |
+| SATURATION      | 27 |  保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。                                |
+| COLOR           | 28 |  保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
+| LUMINOSITY      | 29 |  保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
 ## LinearGradientBlurOptions<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称          | 类型                                                        | 必填  | 说明                                                         |
-| ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
-| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 是    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                                        | 只读 | 可选  | 说明                                                         |
+| ------------- | ----------------------------------------------------------- | ----- | ----- |------------------------------------------------------------ |
+| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 否 | 否    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 否 | 否    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
 ## FractionStop<sup>12+</sup>
 
-FractionStop = [ number, number ]
+type FractionStop = [ number, number ]
 
 定义模糊段。
 
@@ -998,6 +1005,8 @@ FractionStop = [ number, number ]
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
 | low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0,1]                 |
@@ -1008,6 +1017,8 @@ FractionStop = [ number, number ]
 ## BackgroundImageOptions<sup>18+</sup>
 
 定义背景图选项。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

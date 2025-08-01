@@ -256,7 +256,7 @@ static getSystemLanguage(): string
 
 **示例：**
   ```ts
-  let systemLanguage: string = i18n.System.getSystemLanguage();
+  let systemLanguage: string = i18n.System.getSystemLanguage(); // 如果系统语言为简体中文，systemLanguage = 'zh-Hans'
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -277,7 +277,7 @@ static getSystemRegion(): string
 
 **示例：**
   ```ts
-  let systemRegion: string = i18n.System.getSystemRegion();
+  let systemRegion: string = i18n.System.getSystemRegion(); // 如果系统地区为中国，systemRegion = 'CN'
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -298,7 +298,7 @@ static getSystemLocale(): string
 
 **示例：**
   ```ts
-  let systemLocale: string = i18n.System.getSystemLocale();
+  let systemLocale: string = i18n.System.getSystemLocale(); // 如果系统语言为简体中文、地区为中国，systemLocale = 'zh-Hans-CN'
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -321,7 +321,7 @@ static is24HourClock(): boolean
 
 **示例：**
   ```ts
-  let is24HourClock: boolean = i18n.System.is24HourClock();
+  let is24HourClock: boolean = i18n.System.is24HourClock(); // 如果系统时制是24小时制，is24HourClock = true
   ```
 
 

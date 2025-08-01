@@ -34,7 +34,7 @@ API version 14及以后，设备宽度在600-840vp间时，默认显示居中弹
 
 **变更的接口/组件**
 
-bindSheet半模态面板。
+SheetType.POPUP
 
 **适配指导**
 
@@ -75,7 +75,7 @@ API version 14及以后，关闭按钮不显示时，关闭按钮区域放开限
 
 **变更的接口/组件**
 
-bindSheet半模态面板。
+showClose
 
 **适配指导**
 

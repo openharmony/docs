@@ -271,9 +271,9 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
     // 如果当前回调传入的数据不足一帧，空白区域需要使用静音数据填充，否则会导致播放出现杂音。
     if (bufferLength < buffer.byteLength) {
         let view = new DataView(buffer);
-        for (let i = bufferLength + 1; i <= buffer.byteLength; i++) {
-            // 空白区域填充静音数据。填充时选择的数据类型需要和sampleFormat设置的类型保持一致。
-            view.setUint16(i, 0);
+        for (let i = bufferLength; i < buffer.byteLength; i++) {
+            // 空白区域填充静音数据。当使用音频采样格式为SAMPLE_FORMAT_U8时0x7F为静音数据，使用其他采样格式时0为静音数据。
+            view.setUint8(i, 0);
         }
     }
     // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。

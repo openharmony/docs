@@ -46,8 +46,8 @@ static OH_Crypto_ErrCode doSm2Test() {
       return ret;
    }
 
-   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPriKey(keyPair);
-   ret = OH_CryptoSign_Create((const char *)"SM2|SM3", &sign);
+   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
+   ret = OH_CryptoSign_Create((const char *)"SM2_256|SM3", &sign);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       OH_CryptoKeyPair_Destroy(keyPair);
@@ -80,6 +80,7 @@ static OH_Crypto_ErrCode doSm2Test() {
    OH_CryptoSign_Destroy(sign);
    OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
    OH_CryptoKeyPair_Destroy(keyPair);
+   OH_Crypto_FreeDataBlob(&signBlob);
    return CRYPTO_SUCCESS;
 }
 ```

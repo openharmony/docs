@@ -1,6 +1,6 @@
 # ViewData (System API)
 
-ViewData defines the view data used for auto-fill.
+The module defines the view data used for auto-fill.
 
 > **NOTE**
 > 
@@ -12,13 +12,13 @@ ViewData defines the view data used for auto-fill.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | Yes  | Bundle name.                              |
-| moduleName    | string              | Yes  | Module name.                              |
-| abilityName    | string        | Yes  | Ability name.   |
-| pageUrl    | string              | Yes  | URL of the page.                              |
-| pageNodeInfos    | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;     | Yes  | Page node information.               |
-| pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | Yes  | Coordinates, width, and height of the page.               |
-| isUserSelected<sup>12+</sup> | boolean | Yes| Whether the content is selected by the user.|
-| isOtherAccount<sup>12+</sup> | boolean | Yes| Whether to display other account information saved in the password box for the user to select.|
+| Name       | Type                | Read-Only| Optional| Description                                                        |
+| ----------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName    | string            | No  | No  | Bundle name.                              |
+| moduleName    | string            | No  | No  | Module name.                              |
+| abilityName   | string            | No  | No  | Ability name.   |
+| pageUrl       | string            | No  | No  | URL of the page.                              |
+| pageNodeInfos | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;    | No  | No  | Page node information.               |
+| pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | No  | No  | Coordinates, width, and height of the page.               |
+| isUserSelected<sup>12+</sup> | boolean | No  | No  | Whether the content is selected by the user. The value **true** means that the content is selected by the user, and **false** means the opposite.|
+| isOtherAccount<sup>12+</sup> | boolean | No  | No  | Whether to display other account information saved in the password box for the user to select. The value **true** means to display other account information saved in the password box for the user to select, and **false** means the opposite.|

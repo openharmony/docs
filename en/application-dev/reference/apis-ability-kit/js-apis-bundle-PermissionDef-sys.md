@@ -1,6 +1,6 @@
 # PermissionDef (System API)
 
-The **PermissionDef** module provides permission details defined in the configuration file.
+The module provides permission details defined in the configuration file.
 
 > **NOTE**
 >

@@ -132,7 +132,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ### 支持类型
 
-- 支持未被@Observed或@ObserveV2装饰的类。
+- 支持未被@Observed或@ObservedV2装饰的类。
 - 支持Array、Map、Set和Date。
 - 支持collections.Array, collections.Set和collections.Map。
 - JSON.parse返回的Object。
@@ -373,7 +373,7 @@ struct CollectionMap {
 
   build() {
     Column() {
-      // this.mapCollect.keys()返回迭代器。Foreach不支持迭代器，所以要Array.From浅拷贝生成数据。
+      // this.mapCollect.keys()返回迭代器。Foreach不支持迭代器，所以要Array.from浅拷贝生成数据。
       ForEach(Array.from(this.mapCollect.keys()), (item: string) => {
         Text(`${this.mapCollect.get(item)?.id}`).onClick(() => {
           let value: Info|undefined = this.mapCollect.get(item);

@@ -35,7 +35,7 @@ import { HashSet } from '@kit.ArkTS';
 **示例：**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet = new HashSet<number>();
 hashSet.add(1);
 hashSet.add(2);
 hashSet.add(3);
@@ -65,7 +65,7 @@ HashSet的构造函数。
 **示例：**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet = new HashSet<number>();
 ```
 
 
@@ -96,8 +96,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashSet: HashSet<number> = new HashSet();
+const hashSet = new HashSet<number>();
 let result = hashSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -135,9 +136,10 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 let result = hashSet.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -175,8 +177,9 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 let result = hashSet.add("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -214,10 +217,11 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -242,10 +246,12 @@ clear(): void
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
+let result = hashSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -276,15 +282,15 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
-let iter = hashSet.values();
-let temp = iter.next();
-while(!temp.done) {
-  console.info("value:" + temp.value);
-  temp = iter.next();
+let values = hashSet.values();
+for (let value of values) {
+  console.info("value:", value);
 }
+// value: squirrel
+// value: sparrow
 ```
 
 
@@ -324,20 +330,22 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
-hashSet.forEach((value?: string, key?: string): void => {
+hashSet.forEach((value: string, key: string): void => {
   console.info("value:" + value, "key:" + key);
 });
+// value:squirrel key:squirrel
+// value:sparrow key:sparrow
 ```
 ```ts
 // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashSet : HashSet<string> = new HashSet();
-for(let i = 0;i < 10; i++) {
+let hashSet = new HashSet<string>();
+for(let i = 0; i < 10; i++) {
   hashSet.add("sparrow" + i);
 }
-for(let i = 0;i < 10; i++) {
+for(let i = 0; i < 10; i++) {
   hashSet.remove("sparrow" + i);
 }
 ```
@@ -368,7 +376,7 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
@@ -378,14 +386,18 @@ while(!temp.done) {
   console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
+// key:squirrel
+// value:squirrel
+// key:sparrow
+// value:sparrow
 ```
 ```ts
 // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashSet : HashSet<string> = new HashSet();
-for(let i = 0;i < 10; i++) {
+let hashSet = new HashSet<string>();
+for(let i = 0; i < 10; i++) {
   hashSet.add("sparrow" + i);
 }
-for(let i = 0;i < 10; i++) {
+for(let i = 0; i < 10; i++) {
   hashSet.remove("sparrow" + i);
 }
 ```
@@ -417,15 +429,16 @@ for(let i = 0;i < 10; i++) {
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // 使用方法一：
-let val: Array<string> = Array.from(hashSet.values());
-for (let item of val) {
+for (let item of hashSet) {
   console.info("value: " + item);
 }
+// value: squirrel
+// value: sparrow
 
 // 使用方法二：
 let iter = hashSet[Symbol.iterator]();
@@ -434,10 +447,13 @@ while(!temp.done) {
   console.info("value: " + temp.value);
   temp = iter.next();
 }
+// value: squirrel
+// value: sparrow
 ```
+
 ```ts
 // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashSet : HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 for(let i = 0;i < 10;i++) {
   hashSet.add("sparrow" + i);
 }

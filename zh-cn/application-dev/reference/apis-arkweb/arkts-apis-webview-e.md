@@ -335,3 +335,18 @@ Web组件的销毁模式，当Web组件销毁时，销毁模式会影响Web内�
 | ------------------------------- | - | ---------- |
 | NORMAL_MODE | 0 | 普通模式，由系统决定Web组件资源的销毁时机。 |
 | FAST_MODE   | 1 | 快速模式，当Web组件触发销毁时，立即销毁相关的内部资源。 |
+
+## WebBlanklessErrorCode<sup>20+</sup>
+
+无白屏加载的异常错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| SUCCESS | 0 | 成功。 |
+| ERR_UNKNOWN   | -1 | 未知错误，内部状态错误等。 |
+| ERR_INVALID_PARAM   | -2 | 参数不合法。 |
+| ERR_CONTROLLER_NOT_INITED   | -3 | WebViewController未绑定组件。 |
+| ERR_KEY_NOT_MATCH   | -4 | 未匹配到key值，对于[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)需与[getBlanklessInfoWithKey](./arkts-apis-webview-WebviewController.md#getblanklessinfowithkey20)配套使用并且key值一致，否则返回该错误码。 |
+| ERR_SIGNIFICANT_CHANGE   | -5 | 当相似度较低时，系统会判定为跳变太大，[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)接口不会成功启用插帧。 |

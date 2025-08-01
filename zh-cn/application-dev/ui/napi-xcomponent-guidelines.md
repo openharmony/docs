@@ -33,30 +33,32 @@ XComponent组件负责创建Surface，并通过回调将Surface的相关信息�
 > 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+> 
+> 4. 在onSurfaceCreated回调触发后，才能获取到有效的surfaceId。
 
 **生命周期**：
 
-- OnSurfaceCreated回调    	
+- onSurfaceCreated回调
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
-  ArkTS侧OnSurfaceCreated的时序如下图：
+  ArkTS侧onSurfaceCreated的时序如下图：
 
   ![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
 
-- OnSurfaceChanged回调
+- onSurfaceChanged回调
 
   触发时刻：Surface大小变化触发重新布局之后触发。
 
-  ArkTS侧OnSurfaceChanged的时序如下图：
+  ArkTS侧onSurfaceChanged的时序如下图：
 
   ![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
 
-- OnSurfaceDestroyed回调
+- onSurfaceDestroyed回调
 
   触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
 
-  ArkTS侧OnSurfaceDestroyed的时序图：
+  ArkTS侧onSurfaceDestroyed的时序图：
 
   ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed1.png)
 
@@ -520,7 +522,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后达成以下两个条件中的一个触发。
+  触发时刻：XComponent创建完成且创建好Surface后达成以下两个条件中的一个触发。
   1. 组件上树且autoInitialize = true。
   2. 调用OH_ArkUI_XComponent_Initialize。
 
@@ -573,7 +575,7 @@ Native侧
 
 **开发步骤**
 
-以下步骤通过在ArkTS侧创建SURFACE类型的XComponent为例（Native侧如何创建XComponent组件对应的ArkUI_NodeHandle可参考[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)），描述了如何使用`XComponent组件`调用OH_ArkUI_SurfaceHolder相关接口管理Surface生命周期，并在Native侧创建`EGL/GLES`环境，实现在主页面绘制图形，以及可以改变图形的颜色。
+以下步骤通过在ArkTS侧创建SURFACE类型的XComponent为例（Native侧如何创建XComponent组件对应的ArkUI_NodeHandle可参考[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)），描述了如何使用`XComponent组件`调用OH_ArkUI_SurfaceHolder相关接口管理Surface生命周期，并在Native侧创建`EGL/GLES`环境，实现在主页面绘制图形，以及可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
 
@@ -1114,7 +1116,7 @@ Native侧
     }
 
     GLuint LoadShader(GLenum type, const char *shaderSrc) {
-        if ((type <= 0) || (shaderSrc == nullptr)) {
+        if ((type == 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }
@@ -1239,11 +1241,6 @@ Native侧
         // 创建环境。
         // 创建 Surface。
         eglSurface_ = eglCreateWindowSurface(eglDisplay_, eglConfig_, eglWindow_, NULL);
-        if (eglSurface_ == nullptr) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender",
-                        "eglCreateWindowSurface: unable to create Surface");
-            return false;
-        }
         if (eglSurface_ == nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender",
                         "eglCreateWindowSurface: unable to create Surface");
@@ -1472,7 +1469,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
   Native侧OnSurfaceCreated的时序如下图：
 
@@ -1501,7 +1498,7 @@ Native侧
 | OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size) | 获取XComponent的id。                                         |
 | OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height) | 获取XComponent持有的Surface的大小。                          |
 | OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y) | 获取XComponent持有的Surface相对其父组件左顶点的偏移量。      |
-| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | 获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md)。 |
+| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | 获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-touchevent.md)。 |
 | OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType) | 获取XComponent触摸点的工具类型。                             |
 | OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX) | 获取XComponent触摸点处相对X轴的倾斜角度。                    |
 | OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY) | 获取XComponent触摸点处相对Y轴的倾斜角度。                    |
@@ -1717,30 +1714,30 @@ Native侧
     void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
         // ...
         // 初始化环境与绘制背景
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceCreated(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceCreated(component, window);
     }
    
     // 定义一个函数OnSurfaceChangedCB()
     void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 封装OnSurfaceChanged方法
-        pluginManger->OnSurfaceChanged(component, window);
+        pluginManager->OnSurfaceChanged(component, window);
     }
    
     // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceDestroyed(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceDestroyed(component, window);
     }
    
     // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
     void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->DispatchTouchEvent(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->DispatchTouchEvent(component, window);
     }
     ```
 
@@ -1757,6 +1754,7 @@ Native侧
         napi_value args[2] = { nullptr, nullptr };
         if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+            return nullptr;
         }
         if (argCnt != ARG_CNT) {
             napi_throw_type_error(env, NULL, "Wrong number of arguments");
@@ -1857,9 +1855,9 @@ Native侧
             return nullptr;
         }
 
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 调用绘制方法
-        pluginManger->eglcore_->Draw(hasDraw_);
+        pluginManager->eglcore_->Draw(hasDraw_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginManager", "render->eglCore_->Draw() executed");
         
         return nullptr;
@@ -1999,7 +1997,7 @@ Native侧
     }
     
     GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc) {
-        if ((type <= 0) || (shaderSrc == nullptr)) {
+        if ((type == 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }
