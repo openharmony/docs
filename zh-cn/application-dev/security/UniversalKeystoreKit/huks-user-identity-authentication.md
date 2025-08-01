@@ -4,7 +4,8 @@
 
 ## 开发步骤
 
-1. 生成密钥，指定指纹访问控制类型及相关属性。
+### 1. 生成密钥，指定指纹访问控制类型及相关属性。
+
    生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
 
 ```ts
@@ -54,11 +55,11 @@ let huksOptions: huks.HuksOptions = {
 /*
  * 生成密钥
  */
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false
 }
 
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -77,7 +78,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
 
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await generateKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -100,7 +101,7 @@ async function TestGenKeyForFingerprintAccessControl() {
 }
 ```
 
-2. 初始化密钥会话，发起指纹认证获取认证令牌。
+### 2. 初始化密钥会话，发起指纹认证获取认证令牌。
    
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
@@ -150,11 +151,11 @@ let huksOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -173,7 +174,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
 /* 初始化HUKS中的会话，获取挑战值 */
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await initSession(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -241,7 +242,7 @@ async function testInitAndAuthFinger() {
 }
 ```
 
-3. 传入认证令牌进行数据操作。
+### 3. 传入认证令牌进行数据操作。
    
 ```ts
 /*
@@ -258,7 +259,7 @@ let handle: number;
 let fingerAuthToken: Uint8Array;
 let finishOutData: Uint8Array;
 
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false;
 }
 
@@ -316,7 +317,7 @@ function Uint8ArrayToString(dataArray: Uint8Array) {
   return dataString;
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.updateSession(handle, huksOptions, token, (error, data) => {
@@ -335,7 +336,7 @@ function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
 
 async function publicUpdateFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doUpdate`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await updateSession(handle, huksOptions, token, throwObject)
       .then((data) => {
@@ -353,7 +354,7 @@ async function publicUpdateFunc(handle: number, token: Uint8Array, huksOptions: 
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, token, (error, data) => {
@@ -372,7 +373,7 @@ function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
 
 async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doFinish`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await finishSession(handle, huksOptions, token, throwObject)
       .then((data) => {
