@@ -47,7 +47,7 @@
    let eapCode = 1;
    let eapType = 25;
    let eapData = (eapData:eap.EapData):void => {
-       console.info("rsp result",JSON.stringify(eapData))
+       console.info("rsp result",JSON.stringify(eapData));
    }
    
    try {
@@ -66,18 +66,19 @@
     let eapCode= 1; // eap request
     let eapType= 25; // EAP_PEAP
     let eapData = (eapData:eap.EapData):void => {
-    try{
-       eap.replyCustomEapData(result, eapData);
-   	   console.info('replyCustomEapData success');   
-    } catch (err) {   
-       console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
+        try{
+        eap.replyCustomEapData(result, eapData);
+        console.info('replyCustomEapData success');   
+        } catch (err) {   
+        console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
+        }
     }
    
    try{
        eap.regCustomEapHandler(netType, eapCode, eapType, eapData);   
    	   console.info('regCustomEapHandler success');
    } catch (err) {
-       console.error('errCode: ' + err.code + errMessage: ' + err.message);
+       console.error('errCode: ' + err.code + 'errMessage: ' + err.message);
    }
    ```
 5. 若注册的报文类型是由客户端发给服务器的，则此时获取到的是原始的802.1X认证报文，应用需要在原始报文内容中加入自己的自定义内容，并将加入自定义内容后的报文内容调用[replyCustomEapData](../reference/apis-network-kit/js-apis-net-eap.md#replycustomeapdata)方法通知系统。
@@ -88,18 +89,19 @@
    let eapCode= 2; // eap response
    let eapType= 25; // EAP_PEAP
    let eapData = (eapData:eap.EapData):void => {
-   try{
-       eap.replyCustomEapData(result, eapData);
-       console.info('replyCustomEapData success');   
-   } catch (err) {   
-       console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
+        try{
+            eap.replyCustomEapData(result, eapData);
+            console.info('replyCustomEapData success');   
+        } catch (err) {   
+            console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
+        }
    }
    
    try{
        eap.regCustomEapHandler(netType, eapCode, eapType, eapData);   
        console.info('regCustomEapHandler success');
    } catch (err) {
-       console.error('errCode: ' + err.code + errMessage: ' + err.message);
+       console.error('errCode: ' + err.code + 'errMessage: ' + err.message);
    }
    ```
 6. 如此便从发送/接收两个方向上实现了对标准802.1X流程的定制化。需要取消定制化时，调用[unregCustomEapHandler](../reference/apis-network-kit/js-apis-net-eap.md#unregcustomeaphandler)方法。
@@ -110,7 +112,7 @@
    let eapCode = 1;
    let eapType = 25;
    let eapData = (eapData:eap.EapData):void => {
-       console.info("rsp result",JSON.stringify(eapData))
+       console.info("rsp result",JSON.stringify(eapData));
    }
    
    try {
