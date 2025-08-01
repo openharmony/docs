@@ -1,4 +1,4 @@
-# Repeat: Reusable Iterative Rendering
+# Repeat: Reusing Components for Repeated Content Rendering
 
 > **NOTE**
 > 
