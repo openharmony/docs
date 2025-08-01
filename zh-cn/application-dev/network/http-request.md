@@ -359,19 +359,19 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 * 和Linux的OpenSSL表现可能不同，OpenSSL可能会等待用户输入才会退出，按Enter键即可。
 * 如果没有sed命令，将输出中从`-----BEGIN CERTIFICATE-----`到`-----END CERTIFICATE-----`之间的部分复制下来保存即可（复制部分包括这两行）。
 
-1. 预置应用级证书
+**预置应用级证书**
 
-   直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
+直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
 
 > **注意：**
 >
 > 当前ohos.net.http和Image组件的证书锁定，会匹配证书链上所有证书的哈希值，如果服务器更新了任意一本证书，都会导致校验失败。如果服务器出现了更新证书的情况，APP版本应当随之更新并推荐消费者尽快升级APP版本，否则可能导致联网失败。
 
-2. 预置证书公钥哈希值
+**预置证书公钥哈希值**
 
-   通过在配置中指定域名证书公钥的哈希值，只允许使用公钥哈希值匹配的域名证书访问此域名。
+通过在配置中指定域名证书公钥的哈希值，只允许使用公钥哈希值匹配的域名证书访问此域名。
 
-   域名证书的公钥哈希值可以用如下的命令计算。假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
+域名证书的公钥哈希值可以用如下的命令计算。假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
 
 ```
 # 从证书中提取出公钥
@@ -382,9 +382,9 @@ openssl asn1parse -noout -inform pem -in www.example.com.pubkey.pem -out www.exa
 openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 ```
 
-3. JSON配置文件示例
+**JSON配置文件示例**
 
-   预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
+预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
 ```json
 {
