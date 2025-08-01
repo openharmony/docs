@@ -6,7 +6,13 @@
 
 ## 开发步骤
 
+### 数字格式化
+
 数字、货币格式化请参考[Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)。
+
+### 数字范围格式化
+
+数字范围格式化请参考[formatRange](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange)。
 
 ### 度量衡转换
 
