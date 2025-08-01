@@ -1,4 +1,9 @@
 # Web组件支持视频沉浸式全屏播放
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @GrowUpEveryday-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 Web组件提供了视频进入全屏和退出全屏的事件功能，应用可通过监听这些事件实现进入和退出沉浸式全屏模式。
 

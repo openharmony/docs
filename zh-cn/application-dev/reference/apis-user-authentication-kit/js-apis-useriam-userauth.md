@@ -142,7 +142,7 @@ try {
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | challenge      | Uint8Array                         | 是   | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md#生物认证可信等级划分原则)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用解锁认证的结果。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | skipLockedBiometricAuth<sup>20+</sup> | boolean | 否   | 是否跳过已禁用的认证方式自动切换至其它方式的认证，true表示已跳过，false表示未跳过，若无可切换的认证方式则关闭控件，返回认证冻结错误码。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
@@ -1756,7 +1756,7 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 表示认证结果的信任等级枚举。
 
-典型场景及举例可参考[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。
+典型场景及举例可参考[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md#生物认证可信等级划分原则)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

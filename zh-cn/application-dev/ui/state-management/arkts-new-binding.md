@@ -1,4 +1,10 @@
 # !!语法：双向绑定
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @Cuecuexiaoyu--> 
+<!--SE: @lixingchi1--> 
+<!--TSE: @TerryTsao-->
+
 在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
 在状态管理V2中，使用`!!`语法糖统一处理双向绑定。
 
@@ -91,11 +97,11 @@ struct Star {
   | [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | navBarWidth | 18   |
   | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |
   | [Checkbox](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
-  | [CheckboxGroup](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
-  | [Radio](../../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |  
-  | [Rating](../../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18对象说明) | rating | 18   |  
-  | [Slider](../../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions对象说明) | value | 18   |  
-  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
+  | [CheckboxGroup](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |
+  | [Radio](../../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |
+  | [Rating](../../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18对象说明) | rating | 18   |
+  | [Slider](../../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions对象说明) | value | 18   |
+  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |
   | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
   | [MenuItem](../../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。

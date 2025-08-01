@@ -21,7 +21,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
+> - This component uses [AVPlayer](../apis-media-kit/arkts-apis-media-AVPlayer.md) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -37,7 +37,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | Name     | Type                                                                                        | Mandatory| Description                                                                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| movingPhoto | [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md) | Yes  | MovingPhoto instance. For details, see [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
 | imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
@@ -60,7 +60,7 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite.|
+| isMuted | boolean | Yes  | Whether to mute the player.<br>The default value is **false**.<br>The value **true** means to mute the player, and **false** means the opposite.|
 
 ### objectFit
 
@@ -77,7 +77,7 @@ Sets the display mode of the moving photo.
 
 | Name| Type                                                                         | Mandatory| Description                            |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **Cover**|
+| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>The default value is **Cover**.|
 
 ### autoPlayPeriod<sup>13+</sup>
 
@@ -114,7 +114,7 @@ Sets autoplay. After the moving photo is played once, a static image is displaye
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false**|
+| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay, and **false** means the opposite.<br>The default value is **false**.|
 
 ### repeatPlay<sup>13+</sup>
 
@@ -131,7 +131,7 @@ Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **L
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false**|
+| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play, and **false** means the opposite.<br>The default value is **false**.|
 
 ### enableAnalyzer<sup>18+</sup> 
 
@@ -148,7 +148,7 @@ Sets the AI analyzer. Currently, the AI analyzer supports features, such as subj
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| Yes  | Whether to enable the AI analyzer.<br>The value **false** means to disable the AI analyzer; **true** means the opposite.<br>Default value: **true**|
+| enabled| boolean| Yes  | Whether to enable the AI analyzer.<br>The value **false** means to disable the AI analyzer, and **true** means the opposite.<br>The default value is **true**.|
 
 ## Events
 
@@ -256,6 +256,23 @@ Called when the playback is stopped by **stop()**.
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
 | callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the playback of a moving photo is stopped.|
 
+### onPrepared<sup>20+</sup>
+
+onPrepared(callback: MovingPhotoViewEventCallback)
+
+Called when the image of a moving photo is ready.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+
+| Name  | Type                                                         | Mandatory| Description                          |
+| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is ready.|
+
 ## MovingPhotoViewEventCallback
 
 declare type MovingPhotoViewEventCallback = () => void
@@ -264,7 +281,7 @@ Defines a callback to be invoked when the playback status of a moving photo chan
 
 ## MovingPhotoViewController
 
-A **MovingPhotoViewController** object can be used to control a **MovingPhotoView** component. For details, see [@ohos.multimedia.media](../apis-media-kit/js-apis-media.md).
+A MovingPhotoViewController object can be used to control a **MovingPhotoView** component. For details, see [@ohos.multimedia.media](../apis-media-kit/arkts-apis-media.md).
 
 ### startPlayback
 
@@ -441,6 +458,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
+![autoplay](figures/AutoPlay.gif)
 ## Example 2: Enable the AI analyzer.
 
 ```ts
@@ -594,6 +612,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
+![AiAnalysis](figures/AiAnalysis.gif)
 ## Example 3: Use moving photos in an atomic service.
 
 ```ts
@@ -685,3 +704,6 @@ struct Index {
   }
 }
 ```
+![AutomicEnergy](figures/AutomicEnergy.gif)
+
+<!--no_check-->

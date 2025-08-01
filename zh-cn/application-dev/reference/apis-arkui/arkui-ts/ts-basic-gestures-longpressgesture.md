@@ -1,4 +1,9 @@
 # LongPressGesture
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 用于触发长按手势事件，触发长按手势的最少手指数为1，最短长按时间为500毫秒。
 

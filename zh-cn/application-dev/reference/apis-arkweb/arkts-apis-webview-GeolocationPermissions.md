@@ -1,4 +1,9 @@
 # Class (GeolocationPermissions)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhang-yinglie-->
+<!--SE: @handyohos-->
+<!--TSE: @ghiker-->
 
 Web组件地理位置权限管理对象。
 

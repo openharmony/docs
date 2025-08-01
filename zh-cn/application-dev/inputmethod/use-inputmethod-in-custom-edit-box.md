@@ -65,15 +65,19 @@
            this.attachAndListener(); // 点击控件
          })
      }
-   
+
      async attachAndListener() { // 绑定和设置监听
        focusControl.requestFocus('CustomInput');
-       await this.inputController.attach(true, {
+       try {
+        await this.inputController.attach(true, {
          inputAttribute: {
            textInputType: inputMethod.TextInputType.TEXT,
            enterKeyType: inputMethod.EnterKeyType.SEARCH
          }
-       });
+       });       
+       } catch(err) {
+         console.error(`Failed to attach: code:${err.code}, message:${err.message}`);
+       }
        if (!this.isAttach) {
          this.inputController.on('insertText', (text) => {
            this.inputText += text;

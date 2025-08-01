@@ -1,4 +1,9 @@
 # 使用Web组件与系统剪贴板交互处理网页内容
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 开发者能够通过Web组件和系统剪贴板进行交互，实现各种类型数据的复制和粘贴。支持通过[菜单](web_menu.md)、键盘快捷键以及[W3C剪贴板接口](https://www.w3.org/TR/clipboard-apis/)对网页内容执行剪切、复制和粘贴操作。
 

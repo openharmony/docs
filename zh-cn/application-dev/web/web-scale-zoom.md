@@ -1,4 +1,9 @@
 # 使用Web组件管理网页缩放
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 Web组件支持手势缩放、鼠标滚轮、键盘缩放，以方便用户调整到舒适的显示大小。并对应用提供监听、控制页面缩放比例的功能，以便应用实现个性化的视觉效果。
 

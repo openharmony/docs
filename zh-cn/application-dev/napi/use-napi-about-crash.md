@@ -49,7 +49,7 @@
 
 > **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
-#### 基础工具类
+**基础工具类**
 
 定义一个工具类，便于在后续构造两种异常场景。
 
@@ -186,7 +186,7 @@ private:
 };
 ```
 
-#### napi_ref相关接口
+**napi_ref相关接口**
 
 napi_get_reference_value 和 napi_delete_reference 的示例代码
 
@@ -249,7 +249,7 @@ napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
 }
 ```
 
-#### napi_async_work相关接口
+**napi_async_work相关接口**
 
 napi_queue_async_work、napi_queue_async_work_with_qos 和 napi_cancel_async_work 的示例代码
 
@@ -307,7 +307,7 @@ EXPAND_ASYNC_WORK_CASE(TriggerDFXCancelWork,
 #undef EXPAND_ASYNC_WORK_CASE
 ```
 
-#### napi_threadsafe_function相关接口
+**napi_threadsafe_function相关接口**
 
 napi_call_threadsafe_function 和 napi_release_threadsafe_function 的示例代码
 
@@ -383,7 +383,7 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 > **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
-#### env_cleanup_hook相关接口
+**env_cleanup_hook相关接口**
 
 napi_add_env_cleanup_hook 和 napi_remove_env_cleanup_hook 的示例代码
 
@@ -461,7 +461,7 @@ napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info info)
 }
 ```
 
-#### async_cleanup_hook相关接口
+**async_cleanup_hook相关接口**
 
 napi_add_async_cleanup_hook示例代码
 
@@ -484,7 +484,7 @@ napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info info)
 }
 ```
 
-#### instance_data相关接口
+**instance_data相关接口**
 
 napi_set_instance_data、napi_get_instance_data示例代码
 

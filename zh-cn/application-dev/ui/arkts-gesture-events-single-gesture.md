@@ -1,4 +1,9 @@
 # 单一手势
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ## 点击事件（onClick）
 

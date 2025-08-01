@@ -1,4 +1,9 @@
 # 使用Web组件的PDF文档预览能力
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @Yuan_ss-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 Web组件支持在网页中预览PDF。应用通过Web组件的[src](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions)参数和[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口加载PDF文档。具体场景包括：网络PDF文档、应用沙箱内PDF文档和本地PDF文档。
 

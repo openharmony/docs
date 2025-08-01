@@ -1,4 +1,9 @@
 # TapGesture
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 支持单击、双击和多次点击事件的识别。
 

@@ -1,4 +1,9 @@
 # Class (MediaSourceInfo)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhangyao75477-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 表示媒体源的信息。
 

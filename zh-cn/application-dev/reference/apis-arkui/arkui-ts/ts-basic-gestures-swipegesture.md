@@ -1,4 +1,9 @@
 # SwipeGesture
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 用于触发滑动事件，滑动速度大于100vp/s时可识别成功。
 

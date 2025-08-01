@@ -1,4 +1,9 @@
 # 优化跳转至新Web组件过程中的页面闪烁现象
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @wangxinbao01-->
+<!--SE: @defeng20201-->
+<!--TSE: @ghiker-->
 应用使用Navigation等路由策略导航至Web组件页面时，在网页加载过程中，页面底部可能出现闪烁现象，这会影响用户体验。
 
 ## 闪烁原因

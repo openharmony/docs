@@ -1,6 +1,6 @@
 # Accessing and Managing Moving Photos
 
-A moving photo is a photo form that combines an image and a video, empowering a static image with dynamic video effect. It helps users capture dynamic moment and improves the fault tolerance rate of photographing.
+A moving photo is a photo form that combines an image and a video, empowering a static image with dynamic video effect. It helps users capture dynamic moments and improves the fault tolerance rate of photographing.
 
 The media library provides the capabilities of accessing and managing moving photo assets, including:
 
@@ -23,14 +23,14 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 
 1. Set the properties of the **SaveButton** security component.
 2. Create a button with **SaveButton**.
-3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
-4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo. The video duration of the moving photo cannot exceed 10s.
+3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
+4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11) to set the image and video of the moving photo. The video duration of the moving photo cannot exceed 10s.
    
    In the following example, the image and video of the moving photo are specified by **fileUri** of the [application file](../../file-management/app-file-access.md) in the application sandbox.
    
-   You can also specify the assets in **ArrayBuffer**. For details, see [MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1).
+   You can also specify the assets in **ArrayBuffer**. For details, see [MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11-1).
 
-5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply changes for the moving photo.
+5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to apply changes for the moving photo.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -95,19 +95,30 @@ After obtaining a moving photo object, you can use [MovingPhotoView](movingphoto
 ### Obtaining a Moving Photo Object from the Media Library
 
 1. Select the [URI of a media file](../../file-management/user-file-uri-intro.md#media-file-uri) by using **Picker**.
-2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
-3. Call [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestmovingphoto12) to obtain the moving photo object.
+2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
+3. Call [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestmovingphoto12) to obtain the moving photo object.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+        example(phAccessHelper, context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     // Use Picker to select the URI of the moving photo.
     let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -146,16 +157,29 @@ async function example() {
 
 ### Obtaining a Moving Photo object in an Application Sandbox Directory
 
-Call [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#loadmovingphoto12) to load the moving photo object in the application sandbox directory.
+Call [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#loadmovingphoto12) to load the moving photo object in the application sandbox directory.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+@Entry
+@Component
+struct Index {
+  @State outputText: string = 'Supported formats:\n';
 
-async function example() {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        example(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+
+async function example(context: Context) {
   try {
     let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/local_moving_photo.jpg';
     let videoFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/local_moving_photo.mp4';
@@ -169,7 +193,7 @@ async function example() {
 
 ## Reading Moving Photo Assets
 
-Call [MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12) to export the image and video of a moving photo to the application sandbox directory or read the image and video data from **ArrayBuffer**.
+Call [MovingPhoto.requestContent](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MovingPhoto.md#requestcontent12) to export the image and video of a moving photo to the application sandbox directory or read the image and video data from **ArrayBuffer**.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';

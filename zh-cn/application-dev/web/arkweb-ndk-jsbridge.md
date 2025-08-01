@@ -1,4 +1,9 @@
 # 应用侧与前端页面的相互调用(C/C++)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 本指导适用于ArkWeb应用侧与前端网页通信场景，开发者可根据应用架构选择使用ArkWeb Native接口完成业务通信机制（以下简称Native JSBridge）。
 针对JSBridge进行性能优化可参考[JSBridge优化解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-web-develop-optimization#section58781855115017)

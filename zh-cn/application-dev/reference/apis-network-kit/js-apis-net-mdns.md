@@ -25,7 +25,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的MDNS服务信息。      |
 
@@ -89,7 +89,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
 
 **返回值：**
@@ -158,7 +158,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的MDNS服务信息。      |
 
@@ -223,7 +223,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
 
 **返回值：**
@@ -290,7 +290,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|---------|-----------| ------------------------------------------------------------ |
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceType | string  | 是       | 需要发现的MDNS服务类型。|
 
 **返回值：**
@@ -342,7 +342,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的MDNS服务信息。      |
 
@@ -407,7 +407,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -541,7 +541,7 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 | 参数名      | 类型                             | 必填 | 说明                                                   |
 |-------------|---------------------------------|------|--------------------------------------------------------|
 | type        | string                          | 是   | 订阅事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的MDNS服务事件。|
-| callback    | Callback\<DiscoveryEventInfo\>  | 是   | MDNS服务的信息和事件错误信息。                           |
+| callback    | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | 是   | MDNS服务的信息和事件错误信息。                           |
 
 **示例：**
 
@@ -583,7 +583,7 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的MDNS服务事件。 |
-| callback | Callback\<DiscoveryEventInfo\>  | 否       |MDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。          |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | 否       |MDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。          |
 
 **示例：**
 
@@ -629,7 +629,7 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStop'。<br>discoveryStop：停止搜索局域网内的MDNS服务事件。 |
-| callback | Callback\<DiscoveryEventInfo\>  | 是       |MDNS服务的信息和事件错误信息。      |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | 是       |MDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -671,7 +671,7 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件'discoveryStop'。<br>discoveryStop：停止搜索局域网内的MDNS服务事件。 |
-| callback | Callback\<DiscoveryEventInfo\>  | 否       |MDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | 否       |MDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
