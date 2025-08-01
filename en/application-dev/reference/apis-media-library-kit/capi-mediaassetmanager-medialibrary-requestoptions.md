@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MediaLibrary_RequestOptions struct defines how media assets are requested and processed.
+The struct defines how media assets are requested and processed.
 
 You can use this struct to set options related to the media asset quality, delivery mode, and more.
 

@@ -2,11 +2,11 @@
 
 ## Overview
 
-The OH_MediaAssetManager struct describes the media asset manager.
+The struct describes the media asset manager.
 
 You can use this struct to create a media asset manager instance.
 
-If the creation fails, a null pointer is returned.
+If the creation fails, nullptr is returned.
 
 **Since**: 12
 
