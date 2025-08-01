@@ -1,4 +1,9 @@
 # OH_NativeBundle_ModuleMetadata
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @xuyicong-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 ## 概述
 

@@ -1,4 +1,9 @@
 # Native_Bundle
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @hanfeng6-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 ## 概述
 

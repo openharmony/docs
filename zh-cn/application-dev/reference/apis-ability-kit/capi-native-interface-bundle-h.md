@@ -1,4 +1,9 @@
 # native_interface_bundle.h
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @lihaitao-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 ## 概述
 
@@ -21,7 +26,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_NativeBundle_ApplicationInfo](capi-native-bundle-oh-nativebundle-applicationinfo.md) | OH_NativeBundle_ApplicationInfo | 应用包信息数据结构，包含应用包名和应用指纹信息。 |
-| [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md) | elementName信息。 |
+| [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md) | OH_NativeBundle_ElementName | elementName信息。 |
 | [OH_NativeBundle_Metadata](capi-native-bundle-oh-nativebundle-metadata.md) | OH_NativeBundle_Metadata | 元数据信息。 |
 | [OH_NativeBundle_ModuleMetadata](capi-native-bundle-oh-nativebundle-modulemetadata.md) | OH_NativeBundle_ModuleMetadata | 模块元数据的信息。 |
 

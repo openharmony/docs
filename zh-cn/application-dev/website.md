@@ -1,4 +1,10 @@
 # OpenHarmony应用开发文档
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
+
 - 入门<!--application-getting-started-->
   <!--Del-->
   - 快速入门<!--quick-start-->
