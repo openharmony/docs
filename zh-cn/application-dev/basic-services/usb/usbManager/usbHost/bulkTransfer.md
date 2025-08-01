@@ -61,7 +61,7 @@
 >
 > 批量传输只能在[传输类型](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18)为2的端点上进行，若不匹配会返回IO错误。
 
-    ```ts
+   ```ts
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    console.info(`deviceList: ${deviceList}`);
