@@ -59,7 +59,7 @@
 - 选择Share Library模版。<br>
 ![WidgetProjectView](figures/新建Moudule_2.png)
 - 保持默认选项，点击Finish按钮。<br>
-![WidgetProjectView](figures/新建Module_3.png)
+![WidgetProjectView](figures/新建module_3.png)
 3. [ArkTs卡片创建](./arkts-ui-widget-creation.md#arkts卡片创建)。
 ### 工程结构介绍
 **图2** 独立包ArkTS卡片工程目录<br>
