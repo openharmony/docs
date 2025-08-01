@@ -315,7 +315,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
         "domains": [
           {
             "include-subdomains": true,
-            "name": "server.com"
+            "name": "*.server.com"
           }
         ],
         "pin-set": {
