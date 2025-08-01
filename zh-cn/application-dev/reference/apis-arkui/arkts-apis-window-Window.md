@@ -1563,13 +1563,13 @@ setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| keyFramePolicy | [KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)  | 是   | 用于执行的关键帧策略。 |
+| keyFramePolicy | [KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)  | 是   | 用于设置拖拽的关键帧策略。 |
 
 **返回值：**
 
 | 类型                                  | 说明                      |
 | ------------------------------------- | ------------------------- |
-| Promise&lt;[KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)&gt; | Promise对象，返回生效的关键帧策略的具体实例。 |
+| Promise&lt;[KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)&gt; | Promise对象，返回实际生效的关键帧策略。 |
 
 **错误码：**
 
