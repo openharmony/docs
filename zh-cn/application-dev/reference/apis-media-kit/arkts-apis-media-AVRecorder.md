@@ -1,9 +1,9 @@
 # Interface (AVRecorder)
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xushubo; @chennotfound-->
-<!--SE: @dongyu_dy-->
-<!--TSE: @xchaosioda-->
+<!--Owner: @shiwei75-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xdlinc-->
 
 > **说明：**
 >

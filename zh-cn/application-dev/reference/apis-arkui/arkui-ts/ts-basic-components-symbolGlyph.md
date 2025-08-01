@@ -1,4 +1,9 @@
 # SymbolGlyph
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 显示图标小符号的组件。<!--RP1--><!--RP1End-->
 

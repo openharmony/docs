@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 字节码混淆与源码混淆差异
 

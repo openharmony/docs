@@ -1,4 +1,9 @@
 # 自定义渲染 (XComponent)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 ## 概述
 
@@ -637,9 +642,7 @@ Native侧
                             .id(this.xcomponentId)
                             .onAttach(() => {
                                 let node = this.getUIContext().getFrameNodeById(this.xcomponentId)
-                                if (node) {
-                                    native.bindNode(this.xcomponentId, node)
-                                }
+                                native.bindNode(this.xcomponentId, node)
                             })
                             .onDetach(() => {
                                 native.unbindNode(this.xcomponentId)

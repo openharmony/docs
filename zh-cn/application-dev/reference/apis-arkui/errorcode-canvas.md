@@ -1,4 +1,9 @@
 # Canvas组件错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @ZhangYu-Coder-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 > **说明：**
 >

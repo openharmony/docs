@@ -1,5 +1,11 @@
 # MindSpore Lite Kit算子支持列表
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 本文档介绍了MindSpore Lite Kit与ONNX Opset18相比所支持的CPU后端算子列表以及对应关系。在使用模型转换工具将ONNX模型转换为ms模型进行部署时，通过查询此表可以知道MindSpore Lite Kit所支持的常用ONNX算子，以确保模型转换成功。
 
 | MindSpore Lite算子名称 | 算子功能                                                     | 对应ONNX算子名称                                             |

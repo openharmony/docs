@@ -1,4 +1,9 @@
 # 警告弹窗 (AlertDialog)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 

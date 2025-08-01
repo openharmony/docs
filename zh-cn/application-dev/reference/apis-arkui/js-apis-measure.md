@@ -1,4 +1,9 @@
 # @ohos.measure (文本计算)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 本模块提供文本宽度、高度等相关计算。
 

@@ -493,7 +493,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
 
 **描述**
 
-获取本应用的应用级的资源目录。
+获取本应用的应用级的资源目录[resourceDir](js-apis-inner-application-context.md#context)。
 
 **起始版本：** 20
 
@@ -504,7 +504,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
 | moduleName  | 模块名。                                                     |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
 | bufferSize  | 缓冲区大小（单位：字节）。                                                 |
-| writeLength | 实际写入到缓冲区的字符串长度（单位：字节）。 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度（单位：字节）。 |
 
 **返回：**
 
@@ -512,7 +512,37 @@ ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
 
 ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
 
-ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前应用的上下文不存在。
+
+**示例代码：**
+```cpp
+#include <AbilityKit/ability_runtime/application_context.h>
+
+static napi_value GetResourceDirTest(napi_env env, napi_callback_info info)
+{
+    const char* moduleName = "entry";
+    const int32_t bufferSize = 1024;
+    char buffer[bufferSize] = {0};
+    int32_t writeLength = 0;
+
+    // 调用NDK接口获取指定模块的资源目录并保存到buffer中。如果资源路径不存在，buffer中保存空字符串。
+    AbilityRuntime_ErrorCode ret = OH_AbilityRuntime_ApplicationContextGetResourceDir(moduleName, buffer, bufferSize, &writeLength);
+    if (ret != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 接口调用异常处理
+        napi_throw_error(env, NULL, "Failed to get resource dir");
+        return nullptr;
+    }
+
+    // 创建JavaScript字符串对象返回路径
+    napi_value result;
+    napi_status status = napi_create_string_utf8(env, buffer, writeLength, &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Failed to create string");
+        return nullptr;
+    }
+    return result;
+}
+```
 
 ### OH_AbilityRuntime_StartSelfUIAbility
 

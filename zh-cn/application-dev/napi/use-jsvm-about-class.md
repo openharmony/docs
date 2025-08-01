@@ -44,7 +44,7 @@ cpp部分代码
 #include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -132,7 +132,7 @@ JSVM_Value CreateInstance(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -160,12 +160,12 @@ JSVM_Value DefineClass(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", str.c_str());
     
     // 作为普通的函数调用
-    JSVM_Value global;
+    JSVM_Value global = nullptr;
     JSVM_CALL(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value key;
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, "Constructor", JSVM_AUTO_LENGTH, &key));
     JSVM_CALL(OH_JSVM_SetProperty(env, global, key, cons));
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     JSVM_CALL(OH_JSVM_CallFunction(env, global, cons, 0, nullptr, &result));
     std::string buf = ToString(env, result);
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", buf.c_str());
@@ -333,6 +333,7 @@ JSVM deref_item
 #### cpp代码
 ```c++
 #include <string>
+#include <memory>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -370,11 +371,10 @@ std::string ToString(JSVM_Env jsvm_env, JSVM_Value val)
     size_t length = 0;
     OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, NULL, 0, &length);
     size_t capacity = length + 1;
-    char *buffer = new char[capacity];
+    auto buffer = std::make_unique<char[]>(capacity);
     size_t copy_length = 0;
-    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer, capacity, &copy_length);
-    std::string str(buffer);
-    delete[] buffer;
+    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer.get(), capacity, &copy_length);
+    std::string str(buffer.get());
     return str;
 }
 
@@ -387,7 +387,7 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_Script script;
     OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. 执行JS_Script。
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     OH_JSVM_RunScript(env, script, &result);
     return result;
 }
