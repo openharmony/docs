@@ -1954,6 +1954,13 @@ typedef void (*ArkUI_NodeContentCallback)(ArkUI_NodeContentEvent* event)
 
 **起始版本：** 12
 
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ArkUI_NodeContentEvent](capi-arkui-nativemodule-arkui-nodecontentevent.md)* event | NodeContent事件指针。 |
+
 ### OH_ArkUI_NodeContent_RegisterCallback()
 
 ```
