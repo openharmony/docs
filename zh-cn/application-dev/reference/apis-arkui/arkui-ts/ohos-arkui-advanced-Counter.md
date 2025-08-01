@@ -1,4 +1,9 @@
 # advanced.Counter
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @xieziang--> 
+<!--SE: @youzhi92--> 
+<!--TSE: @TerryTsao-->
 
 Counter是用于精确调节数值的组件。
 
