@@ -1,4 +1,9 @@
 # FoldSplitContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 
 FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开态、悬停态以及折叠态的区域控制。

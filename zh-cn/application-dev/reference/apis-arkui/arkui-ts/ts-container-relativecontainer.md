@@ -1,4 +1,9 @@
 # RelativeContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 相对布局组件，用于复杂场景中元素对齐的布局。
 
