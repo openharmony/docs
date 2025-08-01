@@ -240,21 +240,22 @@ struct SafeAreaExample3 {
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-    // 设置虚拟键盘抬起时压缩页面大小为减去键盘的高度
-  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-  });
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+      // 设置虚拟键盘抬起时压缩页面大小为减去键盘的高度
+    windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 }
 ```
 
@@ -282,21 +283,22 @@ struct KeyboardAvoidExample1 {
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-    // 设置虚拟键盘抬起时把页面上抬直到露出光标
-  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-  });
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+      // 设置虚拟键盘抬起时把页面上抬直到露出光标
+    windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 }
 ```
 
