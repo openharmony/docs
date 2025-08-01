@@ -1,4 +1,9 @@
 # Audio Kit（音频服务）
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 - ArkTS API<!--audio-arkts-->
   - @ohos.multimedia.audio (音频管理)<!--js-apis-audio-->

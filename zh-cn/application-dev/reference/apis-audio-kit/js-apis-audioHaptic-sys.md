@@ -1,4 +1,9 @@
 # @ohos.multimedia.audioHaptic (音振协同)(系统接口)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 音振协同，表示在播放声音时，同步发起振动。可用于来电通知、消息提醒等场景。
 
