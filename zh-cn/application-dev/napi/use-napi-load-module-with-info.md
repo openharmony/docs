@@ -1,7 +1,7 @@
 # 使用Node-API接口进行模块加载
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -43,9 +43,9 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 > 3. 如果在HAP/HSP中直接或间接使用了三方包，该三方包中使用napi_load_module_with_info接口加载其他模块A，则需要在HAP/HSP中也添加A的依赖。
 
 ## 异常场景
-1. 例如当hsp的moduleName错误时，会导致加载hsp失败，返回错误码`napi_generic_failure`。
-2. 在模块加载过程中，若出现链接关系错误或包内未找到对应文件等问题，该API将抛出referenceError异常，并返回错误码`napi_pending_exception`。
-3. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
+1. 在模块加载过程中，若出现包内未找到对应文件或build-profile.json5配置错误等问题，返回错误码`napi_generic_failure`，并打印报错日志。
+![napi_load_module_with_info](figures/napi_load_module_with_info.png)
+2. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
 
 ## 使用示例
 
@@ -94,7 +94,7 @@ export {value, test};
         // 1. 使用napi_load_module_with_info加载Test文件中的模块
         napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
         if (status != napi_ok) {
-        return nullptr;
+            return nullptr;
         }
 
         napi_value testFn;

@@ -1,7 +1,7 @@
 # 使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
