@@ -1,4 +1,9 @@
 # 使用HTTP访问网络
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 场景介绍
 
@@ -533,3 +538,5 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 * [上传和下载（ArkTS）(API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 * [Http（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
+
+* [Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)

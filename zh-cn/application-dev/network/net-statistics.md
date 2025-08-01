@@ -1,4 +1,9 @@
 # 统计网络流量消耗
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 简介
 
@@ -190,3 +195,9 @@ statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
 ```
 <!--DelEnd-->
+
+## 相关实例
+
+针对流量管理的开发，有以下相关实例可供参考：
+
+- [流量管理](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case)

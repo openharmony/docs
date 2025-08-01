@@ -1,4 +1,9 @@
 # VPN 管理（仅对系统应用开放）
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 简介
 
@@ -391,3 +396,9 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
     napi_module_register(&demoModule);
 }
 ```
+
+## 相关实例
+
+针对 VPN 管理的开发，有以下相关实例可供参考：
+
+- [VPN应用](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)
