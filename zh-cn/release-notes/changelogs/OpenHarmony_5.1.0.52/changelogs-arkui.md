@@ -100,7 +100,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 **适配指导**
 
-默认行为变更，无需适配。
+在全局复用场景中，当复用的自定义组件aboutToDisappear涉及节点移除操作时，应将节点移除操作安排在页面退出完成之后，例如onDetach生命周期。
 
 ## cl.arkui.4 修复fromHtml接口解析颜色rgb顺序错误的问题
 
