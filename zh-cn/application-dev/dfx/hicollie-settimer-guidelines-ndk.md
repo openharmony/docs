@@ -68,7 +68,7 @@
      int id;
      HiCollie_SetTimerParam param = {"testTimer", 1, CallBack, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};  // 设置HiCollieTimer 参数（Timer任务名，超时时间，回调函数，回调函数参数，超时发生后行为）
      HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // 注册HiCollieTimer函数执行时长超时检测一次性任务
-     if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTiimer任务注册成功
+     if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTimer任务注册成功
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // 打印任务id
        sleep(2);  // 模拟执行耗时函数，在这里简单的将线程阻塞2s
        OH_HiCollie_CancelTimer(id);  // 根据id取消已注册任务
