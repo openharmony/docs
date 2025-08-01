@@ -2,12 +2,16 @@
 
 ## 简介
 
-部分企业客户的PC网络接入认证使用802.1X认证方式，认证客户端由第三方厂商提供。
+部分企业用户的PC网络接入认证使用802.1X认证方式，认证客户端由第三方厂商提供。
+
+> **说明：**
+>
+> 扩展认证能力从API version 20开始支持。
 
 认证客户端有以下定制行为：
 
-1. 在EAP协议报文内封装私有数据，该私有数据与为客户端与认证服务器约定好的数据结构。
-2. 在认证过程中客户端在本地进行安检扫描等定制动作，定制动作结束后端侧给接入设备回复认证消息。
+1. 在EAP协议报文内封装私有数据，该私有数据遵循客户端与认证服务器约定的数据结构。
+2. 在认证过程中，客户端在本地进行安检扫描等定制动作，定制动作结束后，客户端向接入设备回复认证消息。
    在这种机制下，需要操作系统提供三方客户端介入802.1X认证流程的机制，支撑客户端的定制认证。
 
 
@@ -39,7 +43,7 @@
    ```ts
    import {eap} from '@kit.NetworkKit';
    ```
-2. 调用[regCustomEapHandler](../reference/apis-network-kit/js-apis-net-eap.md#eapregcustomeaphandler)方法，注册自己想要监听的EAP报文类型。在802.1X认证流程中，系统会将符合条件的EAP报文送入callback函数中供企业应用获取。
+2. 调用[regCustomEapHandler](../reference/apis-network-kit/js-apis-net-eap.md#eapregcustomeaphandler)方法，注册所需监听的EAP报文类型。在802.1X认证过程中，系统会将符合条件的EAP报文传递至callback函数中，供企业应用获取。
    
    ```ts
    import {eap} from '@kit.NetworkKit';
@@ -57,8 +61,8 @@
        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
    }
    ```
-3. 报文送入callback后，8021X认证流程会阻塞等待, 用户可以取到完整的报文内容。
-4. 若注册的是报文类型是由服务器发送给客户端的，则此时可以从报文中看到由服务器加入的自定义内容。应用根据自定义内容，判断认证是否应该继续往后续步骤进行，并调用[replyCustomEapData](../reference/apis-network-kit/js-apis-net-eap.md#eapreplycustomeapdata)方法通知系统。
+3. 报文传递至callback函数后，802.1X认证流程会阻塞等待, 用户能够获取到完整的报文内容。
+4. 若注册的是由服务器发送给客户端的报文类型，则此时可以从报文中看到由服务器加入的自定义内容。应用根据自定义内容，判断认证是否应该继续往后续步骤进行，并调用[replyCustomEapData](../reference/apis-network-kit/js-apis-net-eap.md#eapreplycustomeapdata)方法通知系统。
    
    ```ts
     import {eap} from '@kit.NetworkKit';
@@ -171,7 +175,7 @@
    let netId = 100;    
    try{
      	   eap.logOffEthEap(netId);
-     	   console.error("logOffEthEap succes");
+     	   console.error("logOffEthEap success");
    } catch (err) {
           console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
    }
