@@ -1196,7 +1196,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 > - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
-> - 前端页面传到native的string数据类型，需要调用JSON.parse反序列化。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1289,7 +1289,7 @@ runJavaScript(script: string): Promise\<string>
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 > - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
-> - 前端页面传到native的string数据类型，需要调用JSON.parse反序列化。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1377,7 +1377,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 > **说明：**
 >
-> - 前端页面传到native的string数据类型，需要调用JSON.parse反序列化。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1592,7 +1592,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 > **说明：**
 >
-> - 前端页面传到native的string数据类型，需要调用JSON.parse反序列化。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
