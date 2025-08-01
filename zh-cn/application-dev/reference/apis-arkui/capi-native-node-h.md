@@ -183,7 +183,7 @@ enum ArkUI_NodeType
 | ARKUI_NODE_SLIDER = 17 | 滑动条组件。                               |
 | ARKUI_NODE_RADIO = 18 | 单选框。                                 |
 | ARKUI_NODE_IMAGE_ANIMATOR = 19 | 帧动画组件。                               |
-| ARKUI_NODE_XCOMPONENT_TEXTURE | TEXTURE类型XComponent。<br>**起始版本：** 16 |
+| ARKUI_NODE_XCOMPONENT_TEXTURE | TEXTURE类型XComponent。<br>**起始版本：** 18 |
 | ARKUI_NODE_CHECKBOX_GROUP = 21 | 复选框组。<br>**起始版本：** 15                |
 | ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM | 堆叠容器。                                |
 | ARKUI_NODE_SWIPER | 翻页容器。                                |
