@@ -1,5 +1,11 @@
 # 使用MindSpore Lite进行模型转换
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 基本概念
 
 - MindSpore Lite：OpenHarmony内置AI推理引擎，提供深度学习模型的推理部署能力。

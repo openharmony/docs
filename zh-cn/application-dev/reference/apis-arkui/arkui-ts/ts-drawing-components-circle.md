@@ -1,4 +1,9 @@
 # Circle
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
  用于绘制圆形的组件。 
 

@@ -529,3 +529,17 @@ With this permission, the application can set the background color and shadow vi
 **Supported devices**: PC/2in1
 
 **Valid since**: 20
+
+## ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION
+
+Allows an independent binary program to load independent binary .so files with different owner IDs.
+
+This permission applies only to independent binary programs, not to HAPs.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20

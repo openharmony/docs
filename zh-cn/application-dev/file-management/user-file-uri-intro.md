@@ -145,7 +145,7 @@ async function example(context: common.UIAbilityContext) {
 
 ### 媒体文件URI的使用方式
 
-normal等级的应用使用此类URI可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限（ohos.permission.READ_IMAGEVIDEO），在使用中需要注意应用是否有此权限。<!--Del-->
+normal等级的应用使用此类URI可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限（[ohos.permission.READ_IMAGEVIDEO](../media/medialibrary/photoAccessHelper-overview.md#能力范围)），在使用中需要注意应用是否有此权限。<!--Del-->
 
 system_basic等级及以上的应用使用此类URI的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)进行进一步处理，接口详细使用方式见接口文档。
 <!--DelEnd-->

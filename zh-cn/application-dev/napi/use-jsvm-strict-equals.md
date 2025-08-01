@@ -1,4 +1,9 @@
 # 使用JSVM-API判断给定的两个JS value是否严格相等
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -44,7 +49,7 @@ static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_StrictEquals: success: %{public}d", result);
     }
-    JSVM_Value isStrictEqual;
+    JSVM_Value isStrictEqual = nullptr;
     OH_JSVM_GetBoolean(env, result, &isStrictEqual);
     return isStrictEqual;
 }

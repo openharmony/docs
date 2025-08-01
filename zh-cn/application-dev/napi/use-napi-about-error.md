@@ -1,4 +1,9 @@
 # 使用Node-API接口进行错误处理开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -405,7 +410,7 @@ static napi_value ThrowRangeError(napi_env env, napi_callback_info info)
 ```ts
 // index.d.ts
 export const throwRangeErrorMessage: () => void;
-export const throwRangeError: (num: number) => number | void;
+export const throwRangeError: (num: number) => number | undefined;
 ```
 <!-- @[napi_throw_range_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -507,7 +512,7 @@ static napi_value GetAndClearLastException(napi_env env, napi_callback_info info
 
 ```ts
 // index.d.ts
-export const getAndClearLastException: () => Error | void;
+export const getAndClearLastException: () => Error | undefined;
 ```
 <!-- @[napi_get_and_clear_last_exception_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -561,7 +566,7 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isExceptionPending: () => Object | void;
+export const isExceptionPending: () => Object | undefined;
 ```
 <!-- @[napi_is_exception_pending_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

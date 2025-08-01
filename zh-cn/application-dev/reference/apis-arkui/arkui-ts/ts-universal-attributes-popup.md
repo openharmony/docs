@@ -1,4 +1,9 @@
 # Popup控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 为组件绑定Popup气泡，并设置气泡内容，交互逻辑和显示状态。
 

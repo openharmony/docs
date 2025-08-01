@@ -1,4 +1,9 @@
 # IPC与RPC通信开发指导(ArkTS)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 ## 场景介绍
 

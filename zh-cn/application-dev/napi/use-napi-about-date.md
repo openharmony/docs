@@ -1,4 +1,9 @@
 # 使用Node-API接口进行Date相关开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -103,7 +108,7 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getDateValue: (date: Date) => number | void;
+export const getDateValue: (date: Date) => number | undefined;
 ```
 <!-- @[napi_get_date_value_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIDate/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -158,7 +163,7 @@ static napi_value IsDate(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isDate: <T>(date: T) => boolean | void;
+export const isDate: <T>(date: T) => boolean | undefined;
 ```
 <!-- @[napi_is_date_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIDate/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

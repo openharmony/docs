@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆原理及功能
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao; @u012789010-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 术语清单
 

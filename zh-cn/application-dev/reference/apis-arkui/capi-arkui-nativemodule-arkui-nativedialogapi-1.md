@@ -45,8 +45,11 @@ ArkUI_NativeDialogHandle (*create)()
 
 **描述：**
 
-
 创建自定义弹窗并返回指向自定义弹窗的指针。
+
+> **说明：** 
+>
+> create方法需要在调用[show](#show)方法之前调用。
 
 **返回：**
 
@@ -73,8 +76,11 @@ int32_t (*setContent)(ArkUI_NativeDialogHandle handle, ArkUI_NodeHandle content)
 
 **描述：**
 
-
 挂载自定义弹窗内容。
+
+> **说明：** 
+>
+> setContent方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -97,8 +103,11 @@ int32_t (*removeContent)(ArkUI_NativeDialogHandle handle)
 
 **描述：**
 
-
 卸载自定义弹窗内容。
+
+> **说明：** 
+>
+> removeContent方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -120,8 +129,11 @@ int32_t (*setContentAlignment)(ArkUI_NativeDialogHandle handle, int32_t alignmen
 
 **描述：**
 
-
 设置自定义弹窗对齐方式。
+
+> **说明：** 
+>
+> setContentAlignment方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -146,8 +158,11 @@ int32_t (*resetContentAlignment)(ArkUI_NativeDialogHandle handle)
 
 **描述：**
 
-
 重置setContentAlignment方法设置的属性，使用系统默认的对齐方式。
+
+> **说明：** 
+>
+> resetContentAlignment方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -169,8 +184,11 @@ int32_t (*setModalMode)(ArkUI_NativeDialogHandle handle, bool isModal)
 
 **描述：**
 
-
 设置自定义弹窗是否开启模态样式的弹窗。
+
+> **说明：** 
+>
+> setModalMode方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -193,8 +211,11 @@ int32_t (*setAutoCancel)(ArkUI_NativeDialogHandle handle, bool autoCancel)
 
 **描述：**
 
-
 设置自定义弹窗是否允许通过点击遮罩层退出。
+
+> **说明：** 
+>
+> setAutoCancel方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -217,8 +238,11 @@ int32_t (*setMask)(ArkUI_NativeDialogHandle handle, uint32_t maskColor, const Ar
 
 **描述：**
 
-
 设置自定义弹窗遮罩属性。
+
+> **说明：** 
+>
+> setMask方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -242,8 +266,11 @@ int32_t (*setBackgroundColor)(ArkUI_NativeDialogHandle handle, uint32_t backgrou
 
 **描述：**
 
-
 设置弹窗背景色。
+
+> **说明：** 
+>
+> setBackgroundColor方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -266,8 +293,11 @@ int32_t (*setCornerRadius)(ArkUI_NativeDialogHandle handle, float topLeft, float
 
 **描述：**
 
-
 设置弹窗背板圆角半径。
+
+> **说明：** 
+>
+> setCornerRadius方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -293,8 +323,11 @@ int32_t (*setGridColumnCount)(ArkUI_NativeDialogHandle handle, int32_t gridCount
 
 **描述：**
 
-
 设置弹窗宽度占栅格宽度的个数。
+
+> **说明：** 
+>
+> setGridColumnCount方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -317,8 +350,11 @@ int32_t (*enableCustomStyle)(ArkUI_NativeDialogHandle handle, bool enableCustomS
 
 **描述：**
 
-
 弹窗容器样式是否可以自定义。
+
+> **说明：** 
+>
+> enableCustomStyle方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -341,8 +377,11 @@ int32_t (*enableCustomAnimation)(ArkUI_NativeDialogHandle handle, bool enableCus
 
 **描述：**
 
-
 弹窗容器是否使用自定义弹窗动画。
+
+> **说明：** 
+>
+> enableCustomAnimation方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -365,8 +404,11 @@ int32_t (*registerOnWillDismiss)(ArkUI_NativeDialogHandle handle, ArkUI_OnWillDi
 
 **描述：**
 
-
 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册了该回调函数，弹窗不会立即关闭，而是由用户决定是否关闭。
+
+> **说明：** 
+>
+> registerOnWillDismiss方法需要在调用[show](#show)方法之前调用。
 
 **参数：**
 
@@ -388,7 +430,6 @@ int32_t (*show)(ArkUI_NativeDialogHandle handle, bool showInSubWindow)
 ```
 
 **描述：**
-
 
 显示自定义弹窗。
 

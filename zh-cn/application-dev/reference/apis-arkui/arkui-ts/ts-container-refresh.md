@@ -1,5 +1,11 @@
 # Refresh
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
  可以进行页面下拉操作并显示刷新动效的容器组件。 
 
 >  **说明：**
@@ -569,7 +575,7 @@ struct RefreshExample {
 
 ### 示例6（实现下拉刷新上拉加载更多）
 
-[Refresh](#refresh)组件与[List](ts-container-list.md)组件组合实现下拉刷新上拉加载更多效果。
+Refresh组件与[List](ts-container-list.md)组件组合实现下拉刷新上拉加载更多效果。
 
 ```ts
 // xxx.ets

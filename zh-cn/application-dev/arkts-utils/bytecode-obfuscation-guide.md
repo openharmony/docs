@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆开启指南
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 > **注意**：
 >

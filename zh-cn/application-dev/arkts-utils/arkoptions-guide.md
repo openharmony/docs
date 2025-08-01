@@ -1,4 +1,9 @@
 # 在build-profile.json5中配置arkOptions
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zju-wyx-->
+<!--SE: @xiao-peiyang; @liyancheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 概述
 

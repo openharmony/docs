@@ -1,4 +1,9 @@
 # 使用Node-API接口注册和使用环境清理钩子
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -122,7 +127,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiEnvCleanUpHook: () => Object | void;
+export const napiEnvCleanUpHook: () => Object | undefined;
 ```
 <!-- @[napi_remove_add_env_cleanup_hook_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -269,7 +274,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libuv.so)
 
 ```ts
 // index.d.ts
-export const napiAsyncCleanUpHook: () => boolean | void;
+export const napiAsyncCleanUpHook: () => boolean | undefined;
 ```
 <!-- @[napi_remove_add_env_cleanup_hook_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

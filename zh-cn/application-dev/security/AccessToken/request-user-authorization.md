@@ -1,7 +1,7 @@
 # 向用户申请授权
 
 <!--Kit: Ability Kit-->
-<!--Subsystem: Security->
+<!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->

@@ -1,24 +1,36 @@
 # EventHub
 
-EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件的能力。
+EventHub是绑定在特定Context对象上的事件中心，提供订阅、取消订阅、触发事件的能力。主要用于[UIAbility组件与UI的数据通信](../../application-models/uiability-data-sync-with-ui.md)。
+
+不同的Context对象拥有不同的EventHub对象，不同EventHub对象之间无法直接通信。事件的订阅、取消订阅、触发都作用在某一个具体的EventHub对象上。
+
+由于Worker、Taskpool通过Actor模型实现[多线程并发](../../arkts-utils/multi-thread-concurrency-overview.md#多线程并发模型)，不同虚拟机实例之间拥有独占的内存，因此EventHub对象不能用于线程间的数据通信。
+
 
 > **说明：**
 >
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 >  - 本模块接口仅可在Stage模型下使用。
 
-## 导入模块
+## 约束限制
 
+- 不支持在进程间通过Eventhub对象进行数据通信。
+- 不支持在Worker、TaskPool线程间通过EventHub对象进行数据通信。如需进行跨线程通信，参考[使用Emitter进行线程间通信](../../basic-services/common-event/itc-with-emitter.md)。
+- 不支持同一线程内不同Context对象的EventHub对象间进行数据通信。
+- 通过[sendableContextManager](js-apis-app-ability-sendableContextManager.md)转换后的Context对象与原先的Context对象属于不同Context对象，不支持其EventHub对象间的数据通信。
+
+## 导入模块
+ 
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
 
-在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
+开发者需要通过Context对象获取EventHub。以下示例通过UIAbility实例的Context对象获取其EventHub对象。
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { common, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   eventFunc() {
@@ -26,11 +38,15 @@ export default class EntryAbility extends UIAbility {
   }
 
   onCreate() {
+    // 调用方式一（推荐）
     this.context.eventHub.on('myEvent', this.eventFunc);
+
+    // 调用方式二
+    let eventhub = this.context.eventHub as common.EventHub;
+    eventhub.on('myEvent', this.eventFunc);
   }
 }
 ```
-EventHub不是全局的事件中心，不同的context对象拥有不同的EventHub对象，事件的订阅、取消订阅、触发都作用在某一个具体的EventHub对象上，因此不能用于虚拟机间或者进程间的事件传递。
 
 ## EventHub.on
 

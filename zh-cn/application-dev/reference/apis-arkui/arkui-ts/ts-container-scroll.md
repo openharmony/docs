@@ -1,5 +1,11 @@
 # Scroll
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @shengu_lancer; @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 可滚动的容器组件，当子组件的布局尺寸超过父组件的尺寸时，内容可以滚动。
 
 >  **说明：**
@@ -725,7 +731,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(options: [ScrollOptions](#scrolloptions18对象说明))
+scrollTo(options: ScrollOptions)
 
 
 滑动到指定位置。

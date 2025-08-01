@@ -1,4 +1,9 @@
 # 动态创建组件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--SE: @shiyu_huang-->
+<!--TSE: @TerryTsao-->
 
 提供在页面中动态添加组件，并为动态添加的组件设置属性与样式的能力。
 

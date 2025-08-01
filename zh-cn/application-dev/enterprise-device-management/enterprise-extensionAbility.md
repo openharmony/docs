@@ -103,9 +103,9 @@ async function unsubscribeManagedEventPromise() {
   await adminManager.unsubscribeManagedEvent(admin,
     [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
     adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
-    console.log('Succeeded in subscribing managed event');
+    console.log('Succeeded in unsubscribing managed event');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+    console.error(`Failed to unsubscribe managed event. Code: ${error.code}, message: ${error.message}`);
   })
 }
 ```

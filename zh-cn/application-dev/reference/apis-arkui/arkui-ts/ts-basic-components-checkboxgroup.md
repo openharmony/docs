@@ -1,4 +1,9 @@
 # CheckboxGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 多选框群组，用于控制多选框全选或者不全选状态。
 
