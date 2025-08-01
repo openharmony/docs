@@ -322,6 +322,8 @@ hasType(type: string): boolean
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
+**参数：**
+
 | 参数名 | 类型                            | 必填 | 说明                                          |
 | ------ | ------------------------------- | ---- |---------------------------------------------|
 | type | string | 是   | 要查询的数据类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。|
