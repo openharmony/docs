@@ -55,12 +55,8 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
    
-2. 获取设备列表。
+2. 获取设备列表。 
 
-> **说明：** 
->
-> 批量传输只能在(传输类型)[../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18]为2的端点上进行，若不匹配会返回IO错误。
-   
     ```ts
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -109,7 +105,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 2, // 决定传输类型。
+                   type: 2, // 决定[传输类型](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18)，批量传输只能在传输类型为2的端点上进行，若不匹配会返回IO错误。
                    interfaceId: 0,
                  }
                ]
