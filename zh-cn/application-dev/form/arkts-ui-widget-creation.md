@@ -1,5 +1,6 @@
 # 创建ArkTS卡片
-## 创建ArkTS卡片
+## 卡片和应用共hap包方式创建
+### 应用工程创建
 创建卡片当前有两种入口：
 
 - 创建工程时，选择Application，可以在创建工程后右键新建卡片。
@@ -10,6 +11,7 @@
 >
 >基于不同版本的DevEco Studio，请以实际界面为准。
 
+### ArkTS卡片创建
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
 
 1. 右键新建卡片。  
@@ -26,11 +28,9 @@
    
    建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。  
    ![WidgetProjectView](figures/WidgetProjectView.png)
-## 工程结构介绍
+### 工程结构介绍
 **图1** ArkTS卡片工程目录、相关模块  
 ![WidgetModules](figures/WidgetModules.png)
-
-
 - [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
 - [FormExtensionContext](../reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)：FormExtensionAbility的上下文环境，提供FormExtensionAbility具有的接口和能力。
@@ -49,4 +49,19 @@
    - 在[module.json5配置文件](../quick-start/module-configuration-file.md)中的extensionAbilities标签下，配置FormExtensionAbility相关信息。
    - 在resources/base/profile/目录下的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，配置卡片（WidgetCard.ets）相关信息。
 
+## 卡片独立包方式创建
+
+### 工程创建步骤
+1. [应用工程创建](./arkts-ui-widget-creation.md#应用工程创建)。
+2. 新建module<br>
+- 右键新建moudle。<br>
+![WidgetProjectView](figures/新建Module_1.png)
+- 选择Share Library模版。<br>
+![WidgetProjectView](figures/新建Moudule_2.png)
+- 保持默认选项，点击Finish按钮。<br>
+![WidgetProjectView](figures/新建Module_3.png)
+3. [ArkTs卡片创建](./arkts-ui-widget-creation.md#arkts卡片创建)。
+### 工程结构介绍
+**图2** 独立包ArkTS卡片工程目录<br>
+![WidgetModules](figures/独立包卡片目录结构.png)<br>
 

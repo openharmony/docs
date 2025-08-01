@@ -523,7 +523,7 @@ getPublishedFormInfoById(formId: string): Promise&lt;formInfo.FormInfo&gt;
 
 | 类型                                                                | 说明                                |
 |-------------------------------------------------------------------| ---------------------------------- |
-| Promise&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
