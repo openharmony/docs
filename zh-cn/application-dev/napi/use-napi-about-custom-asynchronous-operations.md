@@ -103,7 +103,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | void;
+export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | undefined;
 ```
 <!-- @[napi_async_open_close_callback_scope_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICustomAsynchronousOperations/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

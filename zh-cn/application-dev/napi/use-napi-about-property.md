@@ -65,7 +65,7 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getPropertyNames: (obj: Object) => Array<string> | void;
+export const getPropertyNames: (obj: Object) => Array<string> | undefined;
 ```
 <!-- @[napi_get_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -128,7 +128,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const setProperty: (obj: Object, key: string, value: string) => Object | void;
+export const setProperty: (obj: Object, key: String, value: string) => Object | undefined;
 ```
 <!-- @[napi_set_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -182,7 +182,7 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getProperty: (obj: Object, key: string) => string | void;
+export const getProperty: (obj: Object, key: string) => string | undefined;
 ```
 <!-- @[napi_get_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -240,7 +240,7 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const hasProperty: (obj: Object, key: number | string) => boolean | void;
+export const hasProperty: (obj: Object, key: number | string) => boolean | undefined;
 ```
 <!-- @[napi_has_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -380,7 +380,7 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiHasOwnProperty: (obj: Object, key:string) => boolean | void;
+export const napiHasOwnProperty: (obj: Object, key:string) => boolean | undefined;
 ```
 <!-- @[napi_has_own_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -447,7 +447,7 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiSetNamedProperty: (key: string) => Object | void;
+export const napiSetNamedProperty: (key: string) => Object | undefined;
 ```
 <!-- @[napi_set_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -500,7 +500,7 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiGetNamedProperty: (obj: Object, key:string) => boolean | number | string | Object | void;
+export const napiGetNamedProperty: (obj: Object, key: string) => boolean | number | string | Object | undefined;
 ```
 <!-- @[napi_get_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -571,7 +571,7 @@ static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiHasNamedProperty: (obj: Object, key:string) => boolean | void;
+export const napiHasNamedProperty: (obj: Object, key:string) => boolean | undefined;
 ```
 <!-- @[napi_has_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -761,7 +761,7 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getAllPropertyNames : (obj: Object) => Array<string> | void;
+export const getAllPropertyNames : (obj: Object) => Array<string> | undefined;
 ```
 <!-- @[napi_get_all_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

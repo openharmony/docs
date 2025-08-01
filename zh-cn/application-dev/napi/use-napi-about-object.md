@@ -346,7 +346,7 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiTypeOf : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | undefined;
 ```
 <!-- @[napi_typeof_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -417,7 +417,7 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined;
 ```
 <!-- @[napi_instanceof_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -521,7 +521,7 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
 <!-- @[napi_type_tag_object_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
