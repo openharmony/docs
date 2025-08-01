@@ -1551,11 +1551,13 @@ try {
 
 setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy&gt;
 
-设置窗口拖拽的关键帧策略，并使用Promise处理异步回调。
+设置主窗口拖拽的关键帧策略，并使用Promise处理异步回调。
+
+非主窗口调用时，返回1300004错误码。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口支持2in1设备主窗口的正常调用。在非2in1设备中，将返回801错误码。在2in1设备的非主窗口中，将返回1300004错误码。
+**设备行为差异：** 该接口在2in1设备可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
