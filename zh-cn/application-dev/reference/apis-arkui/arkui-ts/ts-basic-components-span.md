@@ -297,10 +297,10 @@ baselineOffset(value: LengthMetrics): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型     | 必填 | 说明         |
-| ------ | ------- | ---- | ------------ |
-| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
+| 名称   | 类型     | 只读 | 可选 | 说明         |
+| ------ | ------- | ---- | ---- | ------------ |
+| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 是 | 文本背景色。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 是 | 文本背景圆角。 |
 
 ## 示例
 ### 示例1（设置文本样式）
