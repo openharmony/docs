@@ -1,4 +1,9 @@
 # 支持无障碍
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 ## 概述
 
