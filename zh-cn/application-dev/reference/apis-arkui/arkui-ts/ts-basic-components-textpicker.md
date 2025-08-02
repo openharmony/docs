@@ -1022,53 +1022,57 @@ struct TextPickerExample {
 该示例通过配置[selectedBackgroundStyle](#selectedbackgroundstyle20)实现文本选择器选中项的背景样式。
 
 ```ts
+import { LengthUnit } from "@kit.ArkUI"
+
 // xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
   private showText1: string [] =
-    ['Text1', 'Text1', 'Text1', 'Text1']
+    ["Text1", "Text1", "Text1", "Text1"]
   private showText2: string[] [] =
     [
-      ['Text2', 'Text2', 'Text2', 'Text2'],
-      ['Text3', 'Text3', 'Text3', 'Text3']
+      ["Text2", "Text2", "Text2", "Text2"],
+      ["Text3", "Text3", "Text3", "Text3"]
     ]
+
   build() {
     Column() {
       Row() {
         TextPicker({ range: this.showText1 })
           .selectedBackgroundStyle({
-            color:"#FFD5D5D5",
-            borderRadius: { value:0, unit :1 }
+            color: "#FFD5D5D5",
+            borderRadius: { value: 0, unit: LengthUnit.VP }
           })
         Column()
           .width("10%")
         TextPicker({ range: this.showText1 })
           .selectedBackgroundStyle({
-            color:"#FFE3F8F9",
+            color: "#FFE3F8F9",
             borderRadius: {
-              topStart: { value:5, unit:1 },
-              topEnd: { value:10, unit:1 },
-              bottomStart: { value:15, unit:1 },
-              bottomEnd: { value:20, unit:1 },
+              topStart: { value: 5, unit: LengthUnit.VP },
+              topEnd: { value: 10, unit: LengthUnit.VP },
+              bottomStart: { value: 15, unit: LengthUnit.VP },
+              bottomEnd: { value: 20, unit: LengthUnit.VP },
             }
           })
       }
+
       Row()
         .height("10%")
       Row() {
         TextPicker({ range: this.showText2 })
           .selectedBackgroundStyle({
             borderRadius: {
-              topLeft:8,
-              topRight:8,
-              bottomLeft:8,
-              bottomRight:8
+              topLeft: 8,
+              topRight: 8,
+              bottomLeft: 8,
+              bottomRight: 8
             },
             color: "#FFFFEEF6"
           })
       }
-    }.height('100%')
+    }.height("100%")
   }
 }
 ```
