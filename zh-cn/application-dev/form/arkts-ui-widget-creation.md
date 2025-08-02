@@ -73,6 +73,22 @@
 ```ts
 {
   "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "pages": "$profile:main_pages",
+    "formExtensionModule": "entry"
+  }
+}
+```
+- 应用包卡片后端在module.json5里面配置formWidgetModule字段。
+```ts
+{
+  "module": {
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -117,25 +133,22 @@
             "resource": "$profile:backup_config"
           }
         ],
+      },
+      {
+        "name": "EntryFormAbility",
+        "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
+        "label": "$string:EntryFormAbility_label",
+        "description": "$string:EntryFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
       }
     ],
     "formWidgetModule": "library"
-  }
-}
-```
-- 应用包卡片后端在module.json5里面配置formWidgetModule字段。
-```ts
-{
-  "module": {
-    "name": "library",
-    "type": "shared",
-    "description": "$string:shared_desc",
-    "deviceTypes": [
-      "phone"
-    ],
-    "deliveryWithInstall": true,
-    "pages": "$profile:main_pages",
-    "formExtensionModule": "entry"
   }
 }
 ```
