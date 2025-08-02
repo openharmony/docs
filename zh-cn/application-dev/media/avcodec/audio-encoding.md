@@ -169,17 +169,19 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    配置选项key值说明：
 
-   |             key               |       描述       |  AAC  |  Flac | MPEG(MP3) | G711mu | lbvc |
-   | ----------------------------- | :--------------: | :---: | :---: | :------: | :---: | :---: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE     |      采样率      |  必须  |  必须 |   必须   |  必须  |  必须  |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT   |      声道数      |  必须  |  必须 |   必须   |  必须  |  必须  |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT |  输出音频流格式   |  必须  |  必须 |   必须   |  必须  |  必须  |
-   | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |  必须  |
-   | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |   -   |
-   | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |  可选  |
-   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -  |    -     |   -    |   -   |
-   | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |   -   |
-   
+<!--RP2-->
+   |             key               |       描述       |  AAC  |  Flac | MPEG(MP3) | G711mu |
+   | ----------------------------- | :--------------: | :---: | :---: | :------: | :---: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE     |      采样率      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT   |      声道数      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT |  输出音频流格式   |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |
+   | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |
+   | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |
+   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -   |    -    |   -    |
+   | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |
+<!--RP2End-->
+
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
    | ----------- | ------------------------------------------------------------------------------- | :----------------: |
@@ -255,7 +257,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-    <!--RP2--><!--RP2End-->
+    <!--RP1--><!--RP1End-->
 
 5. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
@@ -321,7 +323,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    > flac编码的样点数建议参考表格根据采样率对应的样点数进行设置，否则可能出现编码文件损坏问题。
 
    ```c++
-    // 声道数，对于amr编码声道数只支持单声道的音频输入。
+    // 声道数。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
     // 采样点数，这里以AAC-LC为例，采样点数为1024。
     constexpr int32_t SAMPLES_PER_FRAME = 1024;
