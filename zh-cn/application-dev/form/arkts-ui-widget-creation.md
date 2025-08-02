@@ -58,9 +58,9 @@
 | formExtensionModule | 卡片包前端关联卡片后端的模块名 | 字符串 | 可缺省 |
 | formWidgetModule | 应用包卡片后端关联卡片前端模块名 | 字符串 | 可缺省 |
 ### 工程创建步骤
-1. 用工程创建](./arkts-ui-widget-creation.md#应用工程创建)， 称为应用包卡片后端。
-2. [ArkTs卡片创建](./arkts-ui-widget-creation.md#arkts卡片创建)。
-3. 新建module， 卡片包前端。<br>
+1. [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)， 称为应用包卡片后端。
+2. [创建ArkTs卡片](./arkts-ui-widget-creation.md#arkts卡片创建)。
+3. 新建module， 称为卡片包前端。<br>
 - 右键新建moudle。<br>
 ![WidgetProjectView](figures/新建Module_1.png)
 - 选择Share Library模版。<br>
