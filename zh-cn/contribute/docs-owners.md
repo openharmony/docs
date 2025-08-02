@@ -1,5 +1,6 @@
 # owners清单
 
+[common][common]
 [Ability Kit][Ability]
 [Ability Kit][BundleManager]
 [Ability Kit][ResourceSchedule]
@@ -90,12 +91,3 @@
 [Universal Keystore Kit][Security]
 [User Authentication Kit][Ability]
 [User Authentication Kit][UserIAM]
-
-[Ability Kit][Ability]
-@wkljy
-@xuzhihao666
-@ccllee
-@lixueqing513
-
-[安全 Kit][安全 Ability]
-@albee1213
