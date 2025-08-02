@@ -67,7 +67,7 @@
 ![WidgetProjectView](figures/新建Moudule_2.png)
 - 保持默认选项，点击Finish按钮。<br>
 ![WidgetProjectView](figures/新建module_3.png)
-4. 在卡片包前端[创建ArkTs卡片](./arkts-ui-widget-creation.md#arkts卡片创建)。
+4. 在卡片包前端目录右键[创建ArkTs卡片](./arkts-ui-widget-creation.md#arkts卡片创建)。
 5. 关联卡片包前端与应用包卡片后端。
 - 卡片包前端在module.json5里面配置formExtensionModule字段。
 ```ts
