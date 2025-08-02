@@ -511,6 +511,7 @@
     - [native_key_event.h](capi-native-key-event-h.md)
     - [native_node.h](capi-native-node-h.md)
     - [native_node_napi.h](capi-native-node-napi-h.md)
+    - [native_render.h](capi-native-render-h.md)
     - [native_type.h](capi-native-type-h.md)
     - [native_xcomponent_key_event.h](capi-native-xcomponent-key-event-h.md)
     - [styled_string.h](capi-styled-string-h.md)
