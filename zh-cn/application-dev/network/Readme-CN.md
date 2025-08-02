@@ -2,7 +2,7 @@
 
 - [Network Kit简介](net-mgmt-overview.md)
 
-- [术语](terminology.md)
+- [术语](network-terminology.md)
 
 - 访问网络<!--network-kit-data-transmission-->
     - [使用HTTP访问网络](http-request.md)
