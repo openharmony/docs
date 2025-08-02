@@ -1,5 +1,11 @@
 # 自定义声明式节点 (BuilderNode)
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
+
 ## 概述
 
 自定义声明式节点 ([BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md))提供能够挂载系统组件的能力，支持采用无状态的UI方式，通过[全局自定义构建函数](../ui/state-management/arkts-builder.md#全局自定义构建函数)@Builder定制组件树。组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点可通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取，该节点既可直接由[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)返回并挂载于[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，亦可在FrameNode树与[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树中嵌入声明式组件，实现混合显示。同时，BuilderNode具备纹理导出功能，导出的纹理可在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中实现同层渲染。
@@ -376,6 +382,254 @@ struct MyComponent {
             this.nodeController.postTouchEvent(event);
           }
         })
+    }
+  }
+}
+```
+
+## BuilderNode内的BuilderProxyNode导致树结构发生变化
+
+若传入的Builder的根节点为语法节点（if/else/foreach/…）或自定义组件，将额外生成一个FrameNode，在节点树中显示为“BuilderProxyNode”，这会导致树结构变化，影响某些测试的传递过程。
+
+在以下示例中，Column和Row绑定了触摸事件，同时Column设置了[hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior)属性为[HitTestMode.Transparent](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#hittestmode9)。然而，由于生成了BuilderProxyNode，且BuilderProxyNode无法设置属性，因此在触摸Column时，Column的触摸测试无法传递到Row上。
+
+![BuilderNode_BuilderProxyNode_1](figures/BuilderNode_BuilderProxyNode_1.png)
+
+```ts
+import { BuilderNode, typeNode, NodeController, UIContext } from '@kit.ArkUI';
+
+@Component
+struct BlueRowComponent {
+  build() {
+    Row() {
+      Row() {
+      }
+      .width('100%')
+      .height('200vp')
+      .backgroundColor(0xFF2787D9)
+      .onTouch((event: TouchEvent) => {
+        // 触摸绿色Column，蓝色Row的触摸事件不触发
+        console.info("blue touched: " + event.type);
+      })
+    }
+  }
+}
+
+@Component
+struct GreenColumnComponent {
+  build() {
+    Column() {
+    }
+    .width('100%')
+    .height('100vp')
+    .backgroundColor(0xFF17A98D)
+    .hitTestBehavior(HitTestMode.Transparent)
+    .onTouch((event: TouchEvent) => {
+      console.info("green touched: " + event.type);
+    })
+  }
+}
+
+@Builder
+function buildBlueRow() {
+  // Builder直接挂载自定义组件，生成BuilderProxyNode
+  BlueRowComponent()
+}
+
+@Builder
+function buildGreenColumn() {
+  // Builder直接挂载自定义组件，生成BuilderProxyNode
+  GreenColumnComponent()
+}
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    const relativeContainer = typeNode.createNode(uiContext, 'RelativeContainer');
+
+    const blueRowNode = new BuilderNode(uiContext);
+    blueRowNode.build(wrapBuilder(buildBlueRow));
+
+    const greenColumnNode = new BuilderNode(uiContext);
+    greenColumnNode.build(wrapBuilder(buildGreenColumn));
+
+    // greenColumnNode覆盖在blueRowNode上
+    relativeContainer.appendChild(blueRowNode.getFrameNode());
+    relativeContainer.appendChild(greenColumnNode.getFrameNode());
+
+    return relativeContainer;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      NodeContainer(new MyNodeController())
+    }
+  }
+}
+```
+
+在上述场景中，若要实现触摸测试的传递，可以使用一个容器组件包裹语法节点或自定义组件，以避免生成BuilderProxyNode，并将容器组件的hitTestBehavior设置为HitTestMode.Transparent，从而向兄弟节点传递触摸测试。
+
+![BuilderNode_BuilderProxyNode_2](figures/BuilderNode_BuilderProxyNode_2.png)
+
+```ts
+import { BuilderNode, typeNode, NodeController, UIContext } from '@kit.ArkUI';
+
+@Component
+struct BlueRowComponent {
+  build() {
+    Row() {
+      Row() {
+      }
+      .width('100%')
+      .height('200vp')
+      .backgroundColor(0xFF2787D9)
+      .onTouch((event: TouchEvent) => {
+        // 触摸绿色Column，蓝色Row的触摸事件触发
+        console.info("blue touched: " + event.type);
+      })
+    }
+  }
+}
+
+@Component
+struct GreenColumnComponent {
+  build() {
+    Column() {
+    }
+    .width('100%')
+    .height('100vp')
+    .backgroundColor(0xFF17A98D)
+    .hitTestBehavior(HitTestMode.Transparent)
+    .onTouch((event: TouchEvent) => {
+      console.info("green touched: " + event.type);
+    })
+  }
+}
+
+@Builder
+function buildBlueRow() {
+  // Builder直接挂载自定义组件，生成BuilderProxyNode
+  BlueRowComponent()
+}
+
+@Builder
+function buildGreenColumn() {
+  // Builder根节点为容器组件，不会生成BuilderProxyNode，可以设置属性
+  Stack() {
+    GreenColumnComponent()
+  }
+  .hitTestBehavior(HitTestMode.Transparent)
+}
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    const relativeContainer = typeNode.createNode(uiContext, 'RelativeContainer');
+
+    const blueRowNode = new BuilderNode(uiContext);
+    blueRowNode.build(wrapBuilder(buildBlueRow));
+
+    const greenColumnNode = new BuilderNode(uiContext);
+    greenColumnNode.build(wrapBuilder(buildGreenColumn));
+
+    // greenColumnNode覆盖在blueRowNode上
+    relativeContainer.appendChild(blueRowNode.getFrameNode());
+    relativeContainer.appendChild(greenColumnNode.getFrameNode());
+
+    return relativeContainer;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      NodeContainer(new MyNodeController())
+    }
+  }
+}
+```
+
+此外，对于自定义组件，可以直接设置属性，此时将额外生成节点__Common__，自定义组件的属性将挂载于__Common__上，同样能够实现上述效果。
+
+![BuilderNode_BuilderProxyNode_3](figures/BuilderNode_BuilderProxyNode_3.png)
+
+```ts
+import { BuilderNode, typeNode, NodeController, UIContext } from '@kit.ArkUI';
+
+@Component
+struct BlueRowComponent {
+  build() {
+    Row() {
+      Row() {
+      }
+      .width('100%')
+      .height('200vp')
+      .backgroundColor(0xFF2787D9)
+      .onTouch((event: TouchEvent) => {
+        // 触摸绿色Column，蓝色Row的触摸事件触发
+        console.info("blue touched: " + event.type);
+      })
+    }
+  }
+}
+
+@Component
+struct GreenColumnComponent {
+  build() {
+    Column() {
+    }
+    .width('100%')
+    .height('100vp')
+    .backgroundColor(0xFF17A98D)
+    .hitTestBehavior(HitTestMode.Transparent)
+    .onTouch((event: TouchEvent) => {
+      console.info("green touched: " + event.type);
+    })
+  }
+}
+
+@Builder
+function buildBlueRow() {
+  // Builder直接挂载自定义组件，生成BuilderProxyNode
+  BlueRowComponent()
+}
+
+@Builder
+function buildGreenColumn() {
+  // 给自定义组件设置属性生成__Common__节点，Builder根节点为__Common__节点，不会生成BuilderProxyNode
+  GreenColumnComponent()
+    .hitTestBehavior(HitTestMode.Transparent)
+}
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    const relativeContainer = typeNode.createNode(uiContext, 'RelativeContainer');
+
+    const blueRowNode = new BuilderNode(uiContext);
+    blueRowNode.build(wrapBuilder(buildBlueRow));
+
+    const greenColumnNode = new BuilderNode(uiContext);
+    greenColumnNode.build(wrapBuilder(buildGreenColumn));
+
+    // greenColumnNode覆盖在blueRowNode上
+    relativeContainer.appendChild(blueRowNode.getFrameNode());
+    relativeContainer.appendChild(greenColumnNode.getFrameNode());
+
+    return relativeContainer;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      NodeContainer(new MyNodeController())
     }
   }
 }
