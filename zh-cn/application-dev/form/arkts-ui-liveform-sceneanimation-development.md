@@ -281,11 +281,16 @@
     } from '@kit.FormKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { Constants } from '../common/Constants';
-    
+
     export default class EntryFormAbility extends FormExtensionAbility {
       async onFormEvent(formId: string, message: string) {
-        let shortMessage: string = JSON.parse(message)['message'];
-    
+        let shortMessage: string = '';
+        try {
+          shortMessage = JSON.parse(message)['message'];
+        } catch (e) {
+          console.log(`onFormEvent JSON parse catch error` + `, code: ${e.code}, message: ${e.message}`);
+          return;
+        }
         // 当接收的 message 为 requestOverflow，触发互动卡片动效
         if (shortMessage === 'requestOverflow') {
           let formRect: formInfo.Rect = await formProvider.getFormRect(formId);
@@ -293,20 +298,20 @@
           return;
         }
       }
-    
+
       private requestOverflow(formId: string, formWidth: number, formHeight: number): void {
         if (formWidth <= 0 || formHeight <= 0) {
           console.log('requestOverflow failed, form size is not correct.');
           return;
         }
-    
+
         // 基于卡片自身尺寸信息，计算卡片动效渲染区域
         let left: number = -Constants.OVERFLOW_LEFT_RATIO * formWidth;
         let top: number = -Constants.OVERFLOW_TOP_RATIO * formHeight;
         let width: number = Constants.OVERFLOW_WIDTH_RATIO * formWidth;
         let height: number = Constants.OVERFLOW_HEIGHT_RATIO * formHeight;
         let duration: number = Constants.OVERFLOW_DURATION;
-    
+
         // 发起互动卡片动效申请
         try {
           formProvider.requestOverflow(formId, {
