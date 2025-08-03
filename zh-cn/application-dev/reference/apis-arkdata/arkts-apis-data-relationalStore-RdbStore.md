@@ -68,13 +68,13 @@ class EntryAbility extends UIAbility {
       await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
       console.info('Get RdbStore successfully.');
 
-      // 设置数据库版本
+    // 设置数据库版本
     if (store != undefined) {
       (store as relationalStore.RdbStore).version = 3;
       // 获取数据库版本
       console.info(`RdbStore version is ${store.version}`);
       // 获取数据库是否重建
-      console.info(`RdbStore rebuilt is ${store.rebuilt} `);
+      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
     }
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
