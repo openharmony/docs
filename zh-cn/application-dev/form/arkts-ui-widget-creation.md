@@ -60,7 +60,7 @@
 ### 工程创建步骤
 1. [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)， 称为应用包卡片后端。
 2. 创建卡片包。
-- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynameic Widget(Standalone)】。<br>
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_1.png)
 - 选择模版之后点击【Next】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_2.png)
