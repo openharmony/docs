@@ -54,105 +54,29 @@
 | 属性名称        | 含义    | 数据类型  | 是否缺省  |
 | ------------ | --------- | ---------- | ---------- |
 | type | 卡片包应配置为hsp类型shared（当前entry/feature/har/shared） | 字符串 | 不可缺省 |
-| deviceTypes | 分布式卡片包应包含可流转设备类型 | 字符串数组 | 不可缺省 |
+| deviceTypes | 卡片包应包含可流转设备类型 | 字符串数组 | 不可缺省 |
 | formExtensionModule | 卡片包前端关联卡片后端的模块名 | 字符串 | 可缺省 |
 | formWidgetModule | 应用包卡片后端关联卡片前端模块名 | 字符串 | 可缺省 |
 ### 工程创建步骤
 1. [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)， 称为应用包卡片后端。
-2. [创建ArkTs卡片](./arkts-ui-widget-creation.md#arkts卡片创建)。
-3. 新建module， 称为卡片包前端。<br>
-- 右键新建moudle。<br>
-![WidgetProjectView](figures/新建Module_1.png)
-- 选择Share Library模版。<br>
-![WidgetProjectView](figures/新建Moudule_2.png)
-- 保持默认选项，点击Finish按钮。<br>
-![WidgetProjectView](figures/新建module_3.png)
-4. 在卡片包前端目录右键[创建ArkTs卡片](./arkts-ui-widget-creation.md#arkts卡片创建)。
-5. 关联卡片包前端与应用包卡片后端。
-- 卡片包前端在module.json5里面配置formExtensionModule字段。
-```ts
-{
-  "module": {
-    "name": "library",
-    "type": "shared",
-    "description": "$string:shared_desc",
-    "deviceTypes": [
-      "phone"
-    ],
-    "deliveryWithInstall": true,
-    "pages": "$profile:main_pages",
-    "formExtensionModule": "entry"
-  }
-}
-```
-- 应用包卡片后端在module.json5里面配置formWidgetModule字段。
-```ts
-{
-  "module": {
-    "name": "entry",
-    "type": "entry",
-    "description": "$string:module_desc",
-    "mainElement": "EntryAbility",
-    "deviceTypes": [
-      "phone"
-    ],
-    "deliveryWithInstall": true,
-    "installationFree": false,
-    "pages": "$profile:main_pages",
-    "abilities": [
-      {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ets",
-        "description": "$string:EntryAbility_desc",
-        "icon": "$media:layered_image",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
-        "startWindowBackground": "$color:start_window_background",
-        "exported": true,
-        "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "ohos.want.action.home"
-            ]
-          }
-        ]
-      }
-    ],
-    "extensionAbilities": [
-      {
-        "name": "EntryBackupAbility",
-        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
-        "type": "backup",
-        "exported": false,
-        "metadata": [
-          {
-            "name": "ohos.extension.backup",
-            "resource": "$profile:backup_config"
-          }
-        ],
-      },
-      {
-        "name": "EntryFormAbility",
-        "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
-        "label": "$string:EntryFormAbility_label",
-        "description": "$string:EntryFormAbility_desc",
-        "type": "form",
-        "metadata": [
-          {
-            "name": "ohos.extension.form",
-            "resource": "$profile:form_config"
-          }
-        ]
-      }
-    ],
-    "formWidgetModule": "library"
-  }
-}
-```
+2. 创建卡片包。
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynameic Widget(Standalone)】。<br>
+![WidgetProjectCreate2](figures/分布式卡片工程_1.png)
+- 选择模版之后点击【Next】。<br>
+![WidgetProjectCreate2](figures/分布式卡片工程_2.png)
+- 填写卡片配置之后点击【Finish】。<br>
+![WidgetProjectCreate2](figures/分布式卡片工程_3.png)
 ### 工程结构介绍
-**图2** 独立包ArkTS卡片工程目录<br>
-![WidgetModules](figures/独立包卡片目录结构.png)<br>
-
+**图2** 独立包ArkTS卡片工程目录。<br>
+![WidgetModules](figures/独立包卡片目录结构_1_.png)<br>
+### 工程构建
+1. 应用包构建安装。
+- 应用包构建安装步骤。<br>
+![WidgetProjectCreate2](figures/应用包构建安装.png)
+- 应用包产物。<br>
+![WidgetProjectCreate2](figures/应用包卡片后端产物.png)
+2. 卡片包构建安装。
+- 卡片包构建安装步骤。<br>
+![WidgetProjectCreate2](figures/卡片包构建安装.png)
+- 卡片包编译产物。<br>
+![WidgetProjectCreate2](figures/卡片包前端产物.png)
