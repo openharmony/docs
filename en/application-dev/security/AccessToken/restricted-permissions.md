@@ -573,7 +573,7 @@ Allows an application to customize the icon and text of SaveButton.
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: General
 
 **Valid since**: 20
 
