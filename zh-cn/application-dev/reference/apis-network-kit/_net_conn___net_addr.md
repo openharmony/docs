@@ -21,7 +21,7 @@
 | [family](#family) | 网络地址族。 | 
 | [prefixlen](#prefixlen) | 前缀长度。 | 
 | [port](#port) | 端口号。 | 
-| [address](#address) [NETCONN_MAX_STR_LEN] | 地址。 | 
+| [address](#address) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 地址。 | 
 
 
 ## 结构体成员变量说明

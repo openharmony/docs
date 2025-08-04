@@ -1,4 +1,4 @@
-# 网络连接管理
+# 管理网络连接
 
 ## 简介
 
@@ -154,7 +154,7 @@ async function test() {
 ### 默认网络变化后重新建立网络连接
 
 
-#### 原网络连接使用Socket模块建立连接
+**原网络连接使用Socket模块建立连接**
 
 ```ts
 import { connection, socket } from '@kit.NetworkKit';
@@ -209,7 +209,7 @@ async function socketTest() {
 }
 ```
 
-#### 原网络连接使用Socket Library建立网络连接
+**原网络连接使用Socket Library建立网络连接**
 
 请在监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 

@@ -14,6 +14,7 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat14)    | No  | Decoding format of the cover image of the **MovingPhotoView** component.                 |
 | dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode14) | No  | Range mode of the cover image of the **MovingPhotoView** component.|
+| playWithMask<sup>19+</sup>  | boolean | No  | Whether the watermark is shown when a moving photo with a watermark is playing.<br>The default value is **false**.<br>**false**: The moving photo fills the component while keeping its aspect ratio; the watermark is hidden.<br>**true**: The watermark is shown.|
 
 ## PixelMapFormat<sup>14+</sup>
 
@@ -84,7 +85,8 @@ struct Index {
             movingPhoto: data,
             controller: this.controller,
             movingPhotoFormat: this.format,
-            dynamicRangeMode: this.mode
+            dynamicRangeMode: this.mode,
+            playWithMask: false
           })
         }
       }

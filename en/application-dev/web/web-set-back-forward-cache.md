@@ -1,4 +1,4 @@
-# Setting Backward-Forward Cache
+# Setting the Backward-Forward Cache
 
 The **Web** component provides the function of enabling and configuring the back-forward cache (BFCache), which can significantly improve the speed of returning to the previous web page, especially for users with poor network conditions.
 
@@ -6,7 +6,7 @@ After BFCache is enabled, the **Web** component saves the snapshot of the curren
 
 ## Enabling BFCache
 
-You need to call [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enablebackforwardcache12) to enable BFCache before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) to initialize the ArkWeb kernel. The **enableBackForwardCache** function receives the [BackForwardCacheSupportedFeatures](../reference/apis-arkweb/js-apis-webview.md#backforwardcachesupportedfeatures12) parameter, which is used to control whether to allow pages with the same-layer rendering feature and video takeover feature to enter the BFCache.
+Before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) to initialize the ArkWeb kernel, you need to call [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enablebackforwardcache12) to enable BFCache. The **enableBackForwardCache** function receives the [BackForwardCacheSupportedFeatures](../reference/apis-arkweb/js-apis-webview.md#backforwardcachesupportedfeatures12) parameter, which is used to control whether to allow pages with the same-layer rendering feature and video takeover feature to enter the BFCache.
 
 ```ts
 // EntryAbility.ets

@@ -1,4 +1,4 @@
-# HTTP数据请求
+# 使用HTTP访问网络
 
 ## 场景介绍
 
@@ -315,7 +315,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
         "domains": [
           {
             "include-subdomains": true,
-            "name": "server.com"
+            "name": "*.server.com"
           }
         ],
         "pin-set": {

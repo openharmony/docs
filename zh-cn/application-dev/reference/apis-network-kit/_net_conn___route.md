@@ -18,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [iface](#iface) [NETCONN_MAX_STR_LEN] | 网络接口。 | 
+| [iface](#iface) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 网络接口。 | 
 | [destination](#destination) | 目标地址。 | 
 | [gateway](#gateway) | 网关地址。 | 
 | [hasGateway](#hasgateway) | 是否存在网关。 | 

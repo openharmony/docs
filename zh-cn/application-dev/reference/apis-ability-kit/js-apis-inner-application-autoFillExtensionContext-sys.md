@@ -22,7 +22,9 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
+## AutoFillExtensionContext
+
+### reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 
@@ -67,8 +69,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   // ...
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storage_fill: LocalStorage = new LocalStorage(
@@ -79,7 +81,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
           'viewData': request.viewData,
           'autoFillExtensionContext': this.context,
           'customData': request.customData
-        });
+        } as Record<string, Object>);
       if (request.customData == undefined) {
         // 加载自动填充处理界面
         session.loadContent('pages/AccountPage', storage_fill);
