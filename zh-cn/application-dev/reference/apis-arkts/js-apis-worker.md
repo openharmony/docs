@@ -1,6 +1,6 @@
 # @ohos.worker (启动一个Worker)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -56,7 +56,7 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HIGH   | 0    | 适用于打开文档等用户触发并且可以看到进展的任务，任务在几秒钟之内完成。对应QOS_USER_INITIATED。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
-| MEDIUM | 1 | 任务完成需要几秒钟。对应QOS_DEFAULT。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务完成需要几秒钟。是[ThreadWorkerPriority](#threadworkerpriority18)的默认值。对应QOS_DEFAULT。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | LOW | 2 | 适用于下载等不需要立即看到响应效果的任务，任务完成需要几秒到几分钟。对应QOS_UTILITY。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | IDLE | 3 | 适用于数据同步等用户不可见的后台任务，任务完成需要几分钟甚至几小时。对应QOS_BACKGROUND。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | DEADLINE<sup>20+</sup> | 4 | 适用于页面加载等越快越好的关键任务，任务几乎是瞬间完成的。对应QOS_DEADLINE_REQUEST。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
@@ -67,6 +67,20 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 ## ThreadWorker<sup>9+</sup>
 
 使用以下方法前，需先构造ThreadWorker实例。ThreadWorker类继承自[WorkerEventTarget](#workereventtarget9)。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
+| onexit<sup>9+</sup> | (code: number) => void | 否 | 是 | 回调函数。表示Worker线程销毁时被调用的事件处理程序，该处理程序在宿主线程中执行。回调函数的code参数类型为number，异常退出时code为1，正常退出时code为0。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onerror<sup>9+</sup> | (err: [ErrorEvent](#errorevent)) => void | 否 | 是 | 回调函数，用于处理onmessage回调函数中同步代码产生的异常，处理程序在宿主线程中执行。回调函数的err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onAllErrors<sup>18+</sup> | [ErrorCallback](#errorcallback18) | 否 | 是 | 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>**原子化服务API**：从API version 18开始，该属性支持在原子化服务中使用。|
+| onmessage<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage或workerPort.[postMessageWithSharedSendable](#postmessagewithsharedsendable12-1)接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessageerror<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。用于处理Worker对象接收到的无法被序列化的消息。该处理程序在宿主线程中执行，event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+
+请查看[onAllErrors接口与onerror接口之间的行为差异](../../arkts-utils/worker-introduction.md#onallerrors接口与onerror接口之间的行为差异)以了解onerror与onAllErrors的差异。
 
 ### constructor<sup>9+</sup>
 
@@ -100,6 +114,7 @@ ThreadWorker构造函数。
 以下示例展示了在Stage模型的entry模块Index.ets文件中加载Worker文件的方法，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
 // worker文件所在路径："entry/src/main/ets/workers/worker.ets"
@@ -238,16 +253,18 @@ postMessage(message: Object, options?: PostMessageOptions): void
 **示例：**
 
 ```ts
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
 let buffer = new ArrayBuffer(8);
 
-// 填入options参数，buffer的所有权会转移到worker线程，在宿主线程中将不可用
+// 填入options参数，buffer的所有权会转移到Worker线程，在宿主线程中将不可用
 workerInstance.postMessage(buffer, [buffer]);
 
-// 未填入options参数，默认值为undefined，通过拷贝数据的方式将buffer发送到worker线程
+// 未填入options参数，默认值为undefined，通过拷贝数据的方式将buffer发送到Worker线程
 workerInstance.postMessage(buffer);
 ```
 
@@ -283,8 +300,8 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 <!--code_no_check-->
 ```ts
-// index.ets
-// 新建SendableObject实例并通过宿主线程传递至worker线程
+// Index.ets
+// 新建SendableObject实例并通过宿主线程传递至Worker线程
 
 import { worker } from '@kit.ArkTS';
 import { SendableObject } from './sendable';
@@ -311,7 +328,7 @@ export class SendableObject {
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
-// 接收宿主线程传递至worker线程的数据并访问
+// 接收宿主线程传递至Worker线程的数据并访问
 
 import { SendableObject } from '../pages/sendable';
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -329,7 +346,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 on(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
+向宿主线程的Worker实例对象添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -355,6 +372,9 @@ on(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.on("alert", () => {
@@ -371,7 +391,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 once(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听，该事件监听只执行一次，执行完后会自动删除。
+向宿主线程的Worker实例对象添加一个事件监听，该事件监听只执行一次，执行完后会自动删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -397,6 +417,9 @@ once(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.once("alert", () => {
@@ -414,7 +437,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 off(type: string, listener?: WorkerEventListener): void
 
-移除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
+移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -440,6 +463,9 @@ off(type: string, listener?: WorkerEventListener): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 const handler1 = () => console.info("Handler 1");
@@ -491,6 +517,8 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 **示例：**
 ```ts
 //Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj";
@@ -559,6 +587,9 @@ unregisterGlobalCallObject(instanceName?: string): void
 
 **示例：**
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj";
@@ -599,248 +630,19 @@ terminate(): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.terminate();
 ```
 
-
-### onexit<sup>9+</sup>
-
-onexit?: (code: number) =&gt; void
-
-回调函数。表示Worker线程销毁时被调用的事件处理程序，该处理程序在宿主线程中执行。回调函数的code参数类型为number，异常退出时code为1，正常退出时code为0。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.onexit = (code) => {
- console.info("onexit");
-}
-
-//onexit被执行两种方式：
-// main thread：
-workerInstance.terminate();
-
-// worker线程：
-//workerPort.close();
-```
-
-
-### onerror<sup>9+</sup>
-
-onerror?: (err: ErrorEvent) =&gt; void
-
-回调函数。在执行[onmessage](#onmessage9)回调函数中同步代码产生异常时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-// Index.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-// 注册onerror接口的回调
-workerInstance.onerror = (err: ErrorEvent) => {
-  // main thread onerror is:  "Error: error test"
-  console.error("main thread onerror is: ", JSON.stringify(err.message));
-}
-
-workerInstance.postMessage(1);
-```
-
-```ts
-// worker.ets
-import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-
-const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-
-workerPort.onmessage = (e: MessageEvents) => {
-  console.info("worker thread data is: ", e.data);
-  // 在worker线程的onmessage回调中抛出异常
-  throw new Error("error test");
-}
-```
-
-
-### onAllErrors<sup>18+</sup>
-
-onAllErrors?: ErrorCallback
-
-回调函数。表示Worker线程生命周期内发生异常时被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
-[onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，无法继续使用。<br/>
-onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等过程中产生的全局异常，且onAllErrors捕获异常后Worker线程仍可以继续使用。因此，推荐使用onAllErrors代替onerror。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-// Index.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-// 注册onerror接口的回调
-workerInstance.onerror = (err: ErrorEvent) => {
-  console.error("main thread onerror is: ", JSON.stringify(err.message));
-}
-
-// 当onerror与onAllErrors同时注册时只触发onAllErrors的回调
-workerInstance.onAllErrors = (err: ErrorEvent) => {
-  console.error("main thread onAllErrors is: ", JSON.stringify(err.message));
-}
-
-workerInstance.postMessage(1);
-```
-
-```ts
-import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-
-const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-workerPort.onmessage = (e: MessageEvents) => {
-  console.info("worker thread data is: ", e.data);
-  // 在worker线程的onmessage回调中抛出异常
-  throw new Error("error test");
-}
-```
-
-
-### onmessage<sup>9+</sup>
-
-onmessage?: (event: MessageEvents) =&gt; void
-
-回调函数。是宿主线程接收其创建的Worker通过workerPort.postMessage接口发送的消息时调用的事件处理程序。处理程序在宿主线程中执行，回调函数中的event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-// Index.ets
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-workerInstance.onmessage = (e: MessageEvents) => {
-  console.info("main thread recv data is: ", e.data);
-}
-
-workerInstance.postMessage("main thread postMessage to worker thread.");
-```
-
-```ts
-// worker.ets
-import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-
-const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-
-workerPort.onmessage = (e: MessageEvents) => {
-  console.info("worker thread recv data is: ", e.data);
-  workerPort.postMessage("worker thread postMessage to main thread.");
-}
-```
-
-
-### onmessageerror<sup>9+</sup>
-
-onmessageerror?: (event: MessageEvents) =&gt; void
-
-回调函数。用于处理Worker对象接收到的无法被序列化的消息。该处理程序在宿主线程中执行，event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-import { MessageEvents, worker, HashMap } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-// 注册onmessageerror回调
-workerInstance.onmessageerror = (e: MessageEvents) => {
-  console.error("main thread onmessageerror execute.");
-}
-
-let hashMap: HashMap<string, number> = new HashMap();
-let result = hashMap.set("squirrel", 123);
-
-try {
-  workerInstance.postMessage(result);
-} catch (err) {
-  console.error("catch error is: ", JSON.stringify(err));
-}
-```
 
 ### addEventListener<sup>9+</sup>
 
 addEventListener(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
+向宿主线程的Worker实例对象添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -866,6 +668,9 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.addEventListener("alert", () => {
@@ -881,7 +686,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
+移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -906,10 +711,17 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+
 workerInstance.addEventListener("alert", () => {
-    console.info("alert listener callback");
+  console.info("alert listener callback");
 })
+
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未支持
+
 workerInstance.removeEventListener("alert");
 ```
 
@@ -918,7 +730,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-将事件对象分发到Worker线程的事件系统，该系统会自动触发该类型事件对应的所有监听器回调。
+在宿主线程将事件对象分发到Worker线程的事件系统，该系统会自动触发该类型事件对应的所有监听器回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -948,6 +760,9 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.addEventListener("alert", () => {
@@ -959,56 +774,14 @@ let result: Boolean = workerInstance.dispatchEvent({type: "alert", timeStamp: 0}
 console.info("dispatchEvent result is: ", result);
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
-
-```ts
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-// 用法一:
-workerInstance.on("alert_on", () => {
-    console.info("alert listener callback");
-})
-workerInstance.once("alert_once", () => {
-    console.info("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", () => {
-    console.info("alert listener callback");
-})
-
-// once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type: "alert_once", timeStamp: 0}); // timeStamp暂未支持
-// on接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
-workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
-// addEventListener接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
-workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
-
-// 用法二:
-// event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
-// 当type = "message"，onmessage接口定义的方法同时会执行。
-// 当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
-// 当type = "error"，onerror接口定义的方法同时会执行。
-// 若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
-
-workerInstance.addEventListener("message", () => {
-    console.info("message listener callback");
-})
-workerInstance.onmessage = (e: MessageEvents): void => {
-    console.info("onmessage : message listener callback");
-}
-// 调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
-workerInstance.dispatchEvent({type: "message", timeStamp: 0});
-```
+分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，完整示例请参考[分发事件与监听接口搭配使用示例](#分发事件与监听接口搭配使用示例)。
 
 
 ### removeAllListener<sup>9+</sup>
 
 removeAllListener(): void
 
-移除Worker的所有事件监听。
+移除宿主线程中Worker实例对象的所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1025,6 +798,9 @@ removeAllListener(): void
 **示例：**
 
 ```ts
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", () => {
     console.info("alert listener callback");
@@ -1040,7 +816,7 @@ workerInstance.removeAllListener();
 
 addEventListener(type: string, listener: WorkerEventListener): void
 
-向Worker添加事件监听，该接口功能与[on<sup>9+</sup>](#on9)相同。
+向Worker线程的实例对象添加事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1066,10 +842,16 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", () => {
+// worker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.addEventListener("alert", () => {
     console.info("alert listener callback");
-})
+  })
+};
 ```
 
 
@@ -1077,7 +859,7 @@ workerInstance.addEventListener("alert", () => {
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-移除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
+移除Worker线程实例对象中类型为type的事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1102,11 +884,18 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", () => {
+// worker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.addEventListener("alert", () => {
     console.info("alert listener callback");
-})
-workerInstance.removeEventListener("alert");
+  });
+
+  workerPort.removeEventListener("alert");
+};
 ```
 
 
@@ -1114,7 +903,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-将事件对象分发到Worker线程的事件系统，并触发该类型事件的所有监听器回调。
+在Worker线程将事件对象分发到Worker线程的事件系统，并触发该类型事件的所有监听器回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1144,61 +933,28 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+// worker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp暂未支持
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.addEventListener("alert", () => {
+    console.info("alert listener callback");
+  });
+
+  workerPort.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未支持
+};
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）配合使用，示例如下：
-
-```ts
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-
-//用法一:
-workerInstance.on("alert_on", () => {
-    console.info("alert listener callback");
-})
-workerInstance.once("alert_once", () => {
-    console.info("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", () => {
-    console.info("alert listener callback");
-})
-
-//once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type: "alert_once", timeStamp: 0});// timeStamp暂未支持
-//on接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
-workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
-//addEventListener接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
-workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
-
-//用法二:
-//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
-//当type = "message"，onmessage接口定义的方法同时会执行。
-//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
-//当type = "error"，onerror接口定义的方法同时会执行。
-//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
-
-workerInstance.addEventListener("message", () => {
-    console.info("message listener callback");
-})
-workerInstance.onmessage = (e: MessageEvents): void => {
-    console.info("onmessage : message listener callback");
-}
-//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
-workerInstance.dispatchEvent({type: "message", timeStamp: 0});
-```
+分发事件（dispatchEvent）可与监听接口（addEventListener）搭配使用，完整示例请参考[分发事件与监听接口搭配使用示例](#分发事件与监听接口搭配使用示例)。
 
 
 ### removeAllListener<sup>9+</sup>
 
 removeAllListener(): void
 
-删除Worker所有的事件监听。
+移除Worker线程的实例对象所有的事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1215,17 +971,33 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", () => {
+// worker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.addEventListener("alert", () => {
     console.info("alert listener callback");
-})
-workerInstance.removeAllListener();
+  });
+
+  workerPort.removeAllListener();
+};
 ```
 
 
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、[close接口](#close9)销毁Worker线程。ThreadWorkerGlobalScope类继承[GlobalScope](#globalscope9)。
+Worker线程用于与宿主线程通信的类。ThreadWorkerGlobalScope类继承[GlobalScope](#globalscope9)。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
+| onmessage<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示Worker线程收到来自其宿主线程通过postMessage或[postMessageWithSharedSendable](#postmessagewithsharedsendable12)接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的宿主线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessageerror<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示当Worker线程的Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 
 ### postMessage<sup>9+</sup>
 
@@ -1257,7 +1029,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 **示例：**
 
 ```ts
-// main thread
+// Index.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
@@ -1308,7 +1080,7 @@ Worker线程通过转移对象所有权或拷贝数据的方式向宿主线程�
 **示例：**
 
 ```ts
-// main thread
+// Index.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
@@ -1362,7 +1134,7 @@ Worker线程向宿主线程发送消息，消息中的[Sendable对象](../../ark
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
-// 新建SendableObject实例并通过worker线程传递至宿主线程
+// 新建SendableObject实例并通过Worker线程传递至宿主线程
 
 import { SendableObject } from '../pages/sendable';
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -1387,7 +1159,7 @@ export class SendableObject {
 <!--code_no_check-->
 ```ts
 // Index.ets
-// 接收worker线程传递至宿主线程的数据并访问其属性
+// 接收Worker线程传递至宿主线程的数据并访问其属性
 
 import { worker, MessageEvents } from '@kit.ArkTS';
 import { SendableObject } from './sendable';
@@ -1416,8 +1188,8 @@ Worker线程调用宿主线程上注册的对象的指定方法，此调用对Wo
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | instanceName | string                                    | 是   | 注册对象时使用的键，用于在宿主线程中查找对象。 |
-| methodName | string | 是 | 在已注册对象上调用的方法名。该方法不能使用async或generator修饰，也不能基于底层异步机制返回结果，否则会抛出异常。 |
-| timeout | number | 是 | 本次同步调用的等待时间单位为ms，取整数，取值范围为[1-5000]ms。也可取特殊值0，此时表示本次调用等待时间为5000ms。 |
+| methodName | string | 是 | 在已注册对象上调用的方法名。该方法不能使用async修饰，也不能基于底层异步机制返回结果，否则会抛出异常。 |
+| timeout | number | 是 | 表示从Worker线程发起调用开始到在主线程中执行目标方法的最大等待时间，单位为ms，取整数，取值范围为[1-5000]ms。也可取特殊值0，此时表示本次调用等待时间为5000ms。 |
 | args | Object[] | 否 | 注册对象上所调用方法的参数数组。 |
 
 **返回值：**
@@ -1442,6 +1214,8 @@ Worker线程调用宿主线程上注册的对象的指定方法，此调用对Wo
 **示例：**
 ```ts
 //Index.ets
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj";
@@ -1504,47 +1278,7 @@ close(): void
 **示例：**
 
 ```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-```
-
-```ts
-// worker.ets
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-const workerPort = worker.workerPort;
-workerPort.onmessage = (e: MessageEvents): void => {
-    workerPort.close();
-}
-```
-
-
-### onmessage<sup>9+</sup>
-
-onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
-
-回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-// main thread
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
@@ -1557,47 +1291,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
-    console.info("receive main thread message");
-}
-```
-
-
-### onmessageerror<sup>9+</sup>
-
-onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
-
-回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
-
-**示例：**
-
-```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-```
-
-```ts
-// worker.ets
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-const workerPort = worker.workerPort;
-workerPort.onmessageerror = (err: MessageEvents) => {
-    console.error("worker.ets onmessageerror");
+    workerPort.close();
 }
 ```
 
@@ -1639,6 +1333,7 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 **示例：**
 
 ```ts
+// Index.ets
 import { worker, Event } from "@kit.ArkTS"
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
@@ -1716,6 +1411,17 @@ type ErrorCallback = (err: ErrorEvent) => void
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
 
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
+| onexit<sup>(deprecated)</sup> | (code: number) => void | 否 | 是 | 回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onexit](#属性-1)替代。|
+| onerror<sup>(deprecated)</sup> | (err: [ErrorEvent](#errorevent)) => void | 否 | 是 | 回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onerror](#属性-1)替代。|
+| onmessage<sup>(deprecated)</sup> | (event: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessage](#属性-1)替代。|
+| onmessageerror<sup>(deprecated)</sup> | (event: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessageerror](#属性-1)替代。|
+
 ### constructor<sup>(deprecated)</sup>
 
 constructor(scriptURL: string, options?: WorkerOptions)
@@ -1739,6 +1445,7 @@ Worker构造函数。
 此处以在Stage模型的entry模块Index.ets文件中加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
 // worker文件所在路径："entry/src/main/ets/workers/worker.ets"
@@ -1766,7 +1473,10 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -1793,7 +1503,10 @@ postMessage(message: Object, options?: PostMessageOptions): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
@@ -1823,7 +1536,10 @@ on(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.on("alert", () => {
     console.info("alert listener callback");
 })
@@ -1851,7 +1567,10 @@ once(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.once("alert", () => {
     console.info("alert listener callback");
 })
@@ -1879,7 +1598,10 @@ off(type: string, listener?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
@@ -1899,105 +1621,11 @@ terminate(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.terminate();
-```
-
-
-### onexit<sup>(deprecated)</sup>
-
-onexit?: (code: number) =&gt; void
-
-回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.onexit = (code) => {
-    console.info("onexit");
-}
-
-//onexit被执行两种方式：
-//main thread：
-workerInstance.terminate();
-
-//worker线程：
-//parentPort.close()
-```
-
-
-### onerror<sup>(deprecated)</sup>
-
-onerror?: (err: ErrorEvent) =&gt; void
-
-回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.onerror = (err: ErrorEvent) => {
-  console.error("onerror" + err.message);
-}
-```
-
-
-### onmessage<sup>(deprecated)</sup>
-
-onmessage?: (event: MessageEvent) =&gt; void
-
-回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.onmessage = (): void => {
-    console.info("onmessage");
-}
-```
-
-
-### onmessageerror<sup>(deprecated)</sup>
-
-onmessageerror?: (event: MessageEvent) =&gt; void
-
-回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.onmessageerror = (err) => {
-    console.error("onmessageerror");
-}
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
+workerInstance.terminate();
 ```
 
 
@@ -2112,10 +1740,10 @@ workerPort.dispatchEvent({type: 'alert_add', timeStamp: 0}); // timeStamp暂未�
 分发事件（dispatchEvent）可与监听接口（addEventListener）搭配使用，示例如下：
 
 ```ts
-// main thread
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (): void => {
     console.info("receive data from worker.ets");
@@ -2166,10 +1794,19 @@ workerPort.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口关闭Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
+Worker线程用于与宿主线程通信的类。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
+| onmessage<sup>(deprecated)</sup> | (this: DedicatedWorkerGlobalScope, ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessage](#属性-2)替代。 |
+| onmessageerror<sup>(deprecated)</sup> | (this: DedicatedWorkerGlobalScope, ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。从API version 7开始支持，默认值为undefined。<br/>**说明**：从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessageerror](#属性-2)替代。 |
 
 ### postMessage<sup>(deprecated)</sup>
 
@@ -2210,10 +1847,10 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 **示例：**
 
 ```ts
-// main thread
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (): void => {
     // let data = e.data;
@@ -2222,9 +1859,10 @@ workerInstance.onmessage = (): void => {
 ```
 ```ts
 // worker.ets
-import { worker } from '@kit.ArkTS';
+import { DedicatedWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-const workerPort = worker.workerPort;
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
 workerPort.onmessage = (): void => {
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
@@ -2254,7 +1892,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 <!--no_check-->
 ```ts
-// main thread
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
@@ -2287,40 +1925,10 @@ close(): void
 **示例：**
 
 ```ts
-// main thread
+// Index.ets
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
-```
-```ts
-// worker.ets
-import { worker } from '@kit.ArkTS';
-
-const parentPort = worker.parentPort;
-parentPort.onmessage = (): void => {
-    parentPort.close()
-}
-```
-
-
-### onmessage<sup>(deprecated)</sup>
-
-onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
-
-回调函数，DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 ```ts
@@ -2329,37 +1937,7 @@ import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (): void => {
-    console.info("receive main thread message");
-}
-```
-
-
-### onmessageerror<sup>(deprecated)</sup>
-
-onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
-
-DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets");
-```
-```ts
-// worker.ets
-import { worker } from '@kit.ArkTS';
-
-const parentPort = worker.parentPort;
-parentPort.onmessageerror = () => {
-    console.error("worker.ets onmessageerror")
+    parentPort.close()
 }
 ```
 
@@ -2424,7 +2002,10 @@ parentPort.onmessageerror = () => {
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// Index.ets
+import { worker } from '@kit.ArkTS';
+
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", ()=>{
     console.info("alert listener callback");
 })
@@ -2488,13 +2069,13 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 > 以API version 9的FA工程为例。
 
 ```ts
-// main thread
+// Index.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
-  // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
+  // 当Worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
   let data: string  = d.data;
 }
 ```
@@ -2528,7 +2109,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 ```
 
 ### 内存模型
-Worker基于Actor并发模型实现。在Worker的交互流程中，JS宿主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
+Worker基于Actor并发模型实现。在Worker的交互流程中，宿主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化、引用传递或转移所有权的方式传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
 
 Actor并发模型的交互原理：各个Actor并发地处理宿主线程任务，每个Actor内部都有一个消息队列和单线程执行模块。消息队列负责接收宿主线程及其他Actor的请求，而单线程执行模块则负责串行地处理这些请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离且没有数据竞争，因此Actor可以高并发运行。
 
@@ -2680,3 +2261,104 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 <!--no_check-->
+
+
+### 分发事件与监听接口搭配使用示例
+
+```ts
+// Index.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+
+          // 用法一:
+          workerInstance.on("alert_on", () => {
+            console.info("alert listener callback: alert_on");
+          })
+          workerInstance.once("alert_once", () => {
+            console.info("alert listener callback: alert_once");
+          })
+          workerInstance.addEventListener("alert_add", () => {
+            console.info("alert listener callback: alert_add");
+          })
+
+          // once接口创建的事件执行一次便会删除。
+          workerInstance.dispatchEvent({type: "alert_once", timeStamp: 0}); // timeStamp暂未支持
+          // on接口创建的事件可以一直被分发，不能主动删除。
+          workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0}); // timeStamp暂未支持
+          workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0}); // timeStamp暂未支持
+          // addEventListener接口创建的事件可以一直被分发，不能主动删除。
+          workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0}); // timeStamp暂未支持
+          workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0}); // timeStamp暂未支持
+
+          // 用法二:
+          // event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
+          // 当type = "message"，onmessage接口定义的方法同时会执行。
+          // 当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
+          // 当type = "error"，onerror接口定义的方法同时会执行。
+          // 若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
+
+          workerInstance.addEventListener("message", () => {
+            console.info("message listener callback");
+          })
+          workerInstance.onmessage = (e: MessageEvents): void => {
+            console.info("onmessage : message listener callback");
+          }
+          // 调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
+          workerInstance.dispatchEvent({type: "message", timeStamp: 0}); // timeStamp暂未支持
+
+          // 向worker线程发送消息
+          workerInstance.postMessage("test");
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+```ts
+// worker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (event: MessageEvents) => {
+  console.info("worker thread recv data is: ", event.data);
+  let data: string = event.data;
+  const workerHandler1 = () => console.info("Handler 1 is: ", data);
+  const workerHandler2 = () => console.info("Handler 2 is: ", data);
+
+  // 注册两个监听器
+  workerPort.addEventListener("workerListener", workerHandler1);
+  workerPort.addEventListener("workerListener", workerHandler2);
+
+  // 事件workerListener注册了两个监听器，两个监听器都会执行
+  workerPort.dispatchEvent({type: "workerListener", timeStamp: 0}); // timeStamp暂未支持
+
+  // 删除workerHandler1监听器
+  workerPort.removeEventListener("workerListener", workerHandler1); // timeStamp暂未支持
+
+  // workerHandler1监听器已删除，只有workerHandler2执行
+  workerPort.dispatchEvent({type: "workerListener", timeStamp: 0}); // timeStamp暂未支持
+
+  // 删除所有事件监听
+  workerPort.removeAllListener();
+};
+```

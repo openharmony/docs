@@ -1,6 +1,6 @@
 # Worker简介
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -14,7 +14,7 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 
 ![worker](figures/worker.png)
 
-创建Worker的线程称为宿主线程（不局限于主线程，Worker线程也支持创建Worker子线程）。Worker子线程（或Actor线程、工作线程）是Worker自身运行的线程。每个Worker子线程和宿主线程拥有独立的实例，包含独立执行环境、对象、代码段等。因此，启动每个Worker存在一定的内存开销，需要限制Worker子线程的数量。Worker子线程和宿主线程通过消息传递机制通信，利用序列化机制完成命令和数据的交互。
+创建Worker的线程称为宿主线程（不局限于主线程，Worker线程也支持创建Worker子线程）。Worker子线程（或Actor线程、工作线程）是Worker自身运行的线程。每个Worker子线程和宿主线程拥有独立的实例，包含独立执行环境、对象、代码段等。因此，启动每个Worker存在一定的内存开销，需要限制Worker子线程的数量。Worker子线程和宿主线程通过消息传递机制通信，利用序列化、引用传递或转移所有权的机制完成命令和数据的交互。
 
 
 ## Worker注意事项
@@ -272,7 +272,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         let data: string = e.data;
         console.info('workerPort onmessage is: ', data);
 
-        // 向主线程发送消息
+        // 向宿主线程发送消息
         workerPort.postMessage('2');
       }
 
@@ -367,15 +367,14 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 ### 推荐使用示例
 
 ```ts
-// 在主线程中创建Worker线程（父Worker），在worker线程中再次创建Worker线程（子Worker）
-// main thread
+// 在宿主线程中创建Worker线程（父Worker），在worker线程中再次创建Worker线程（子Worker）
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-// 主线程中创建父worker对象
+// 宿主线程中创建父worker对象
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('主线程收到父worker线程信息 ' + e.data);
+  console.info('宿主线程收到父worker线程信息 ' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -383,10 +382,10 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('主线程接收到父worker报错 ' + err);
+  console.error('宿主线程接收到父worker报错 ' + err.message);
 }
 
-parentworker.postMessage('主线程发送消息给父worker-推荐示例');
+parentworker.postMessage('宿主线程发送消息给父worker-推荐示例');
 ```
 <!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/recommend.ets) -->
 
@@ -394,17 +393,17 @@ parentworker.postMessage('主线程发送消息给父worker-推荐示例');
 // parentworker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// 创建父Worker线程中与主线程通信的对象
+// 创建父Worker线程中与宿主线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  if (e.data == '主线程发送消息给父worker-推荐示例') {
+  if (e.data == '宿主线程发送消息给父worker-推荐示例') {
     let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
 
     childworker.onmessage = (e: MessageEvents) => {
       console.info('父Worker收到子Worker的信息 ' + e.data);
       if (e.data == '子Worker向父Worker发送信息') {
-        workerPort.postMessage('父Worker向主线程发送信息');
+        workerPort.postMessage('父Worker向宿主线程发送信息');
       }
     }
 
@@ -415,7 +414,7 @@ workerPort.onmessage = (e : MessageEvents) => {
     }
 
     childworker.onAllErrors = (err: ErrorEvent) => {
-      console.error('子Worker发生报错 ' + err);
+      console.error('子Worker发生报错 ' + err.message);
     }
 
     childworker.postMessage('父Worker向子Worker发送信息-推荐示例');
@@ -447,13 +446,12 @@ workerPort.onmessage = (e: MessageEvents) => {
 不建议在父Worker销毁后，子Worker继续向父Worker发送消息。
 
 ```ts
-// main thread
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('主线程收到父Worker信息' + e.data);
+  console.info('宿主线程收到父Worker信息' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -461,10 +459,10 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('主线程接收到父Worker报错 ' + err);
+  console.error('宿主线程接收到父Worker报错 ' + err.message);
 }
 
-parentworker.postMessage('主线程发送消息给父Worker');
+parentworker.postMessage('宿主线程发送消息给父Worker');
 ```
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
@@ -475,7 +473,7 @@ import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  console.info('父Worker收到主线程的信息 ' + e.data);
+  console.info('父Worker收到宿主线程的信息 ' + e.data);
 
   let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets')
 
@@ -485,11 +483,11 @@ workerPort.onmessage = (e : MessageEvents) => {
 
   childworker.onexit = () => {
     console.info('子Worker退出');
-    workerPort.postMessage('父Worker向主线程发送信息');
+    workerPort.postMessage('父Worker向宿主线程发送信息');
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.error('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err.message);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');
@@ -521,13 +519,12 @@ workerPort.onmessage = (e: MessageEvents) => {
 不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，建议在确定父Worker未发起销毁操作的情况下创建子Worker。
 
 ```ts
-// main thread
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('主线程收到父Worker信息' + e.data);
+  console.info('宿主线程收到父Worker信息' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -535,10 +532,10 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('主线程接收到父Worker报错 ' + err);
+  console.error('宿主线程接收到父Worker报错 ' + err.message);
 }
 
-parentworker.postMessage('主线程发送消息给父Worker');
+parentworker.postMessage('宿主线程发送消息给父Worker');
 ```
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
 
@@ -549,7 +546,7 @@ import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  console.info('父Worker收到主线程的信息 ' + e.data);
+  console.info('父Worker收到宿主线程的信息 ' + e.data);
 
   // 父Worker销毁后创建子Worker，行为不可预期
   workerPort.close();
@@ -565,11 +562,11 @@ workerPort.onmessage = (e : MessageEvents) => {
 
   childworker.onexit = () => {
     console.info('子Worker退出');
-    workerPort.postMessage('父Worker向主线程发送信息');
+    workerPort.postMessage('父Worker向宿主线程发送信息');
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.error('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err.message);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');
