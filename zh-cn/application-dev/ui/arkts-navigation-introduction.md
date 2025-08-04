@@ -47,7 +47,7 @@
 | 清理指定路由                                  | removeByIndexes & removeByName        | 不支持                                 |
 | 转场动画                                      | 支持                                  | 支持                                   |
 | 自定义转场动画                                | 支持                                  | 支持，动画类型受限                     |
-| 屏蔽转场动画                                  | 支持全局和单次                        | 支持 设置pageTransition方法duration为0 |
+| 屏蔽转场动画                                  | 支持全局和单次                        | 支持，设置pageTransition方法duration为0 |
 | geometryTransition共享元素动画                | 支持（NavDestination之间共享）        | 不支持                                 |
 | 页面生命周期监听                              | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
 | 获取页面栈对象                                | 支持                                  | 不支持                                 |
