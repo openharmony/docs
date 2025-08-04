@@ -983,11 +983,13 @@ try {
 
 setWindowContainerColor(activeColor: string, inactiveColor: string): void
 
-设置主窗口容器在焦点态和非焦点态时的背景色，仅支持2in1设备。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
+设置主窗口容器在焦点态和非焦点态时的背景色。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
 
 窗口容器背景色覆盖整个窗口区域，包括标题栏和内容区域。当同时使用该接口和[setWindowBackgroundColor()](#setwindowbackgroundcolor9)设置背景色时，内容区域显示窗口背景色，标题栏显示窗口容器背景色。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口仅支持2in1设备，其他设备返回801错误码。
 
 **需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
@@ -5290,9 +5292,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置主窗口是否显示阴影，使用Promise异步回调，仅支持2in1设备。未调用该接口时，主窗口默认显示阴影。
+设置主窗口是否显示阴影，使用Promise异步回调。未调用该接口时，主窗口默认显示阴影。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口仅支持2in1设备，其他设备返回801错误码。
 
 **需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
