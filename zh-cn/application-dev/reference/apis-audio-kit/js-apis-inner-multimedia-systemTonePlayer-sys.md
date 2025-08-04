@@ -63,9 +63,9 @@ getTitle(): Promise&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.getTitle().then((value: string) => {
-  console.info(`Promise returned to indicate that the value of the system tone player title is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system tone player title ${err}`);
+  console.info('Succeeded in doing getTitle.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getTitle. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -101,9 +101,9 @@ prepare(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.prepare().then(() => {
-  console.info(`Promise returned to indicate a successful prepareing of system tone player.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to prepareing system tone player. ${err}`);
+  console.info('Succeeded in doing prepare.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to prepare. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -154,9 +154,9 @@ class SystemToneOptions {
 let systemToneOptions: SystemToneOptions = {muteAudio: true, muteHaptics: false};
 
 systemTonePlayer.start(systemToneOptions).then((value: number) => {
-  console.info(`Promise returned to indicate that the value of the system tone player streamID is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to start system tone player. ${err}`);
+  console.info('Succeeded in doing start.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to start. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -199,9 +199,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let streamID: number = 0; //streamID为start方法返回的streamID,此处只做初始化。
 systemTonePlayer.stop(streamID).then(() => {
-  console.info(`Promise returned to indicate a successful stopping of system tone player.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to stop system tone player. ${err}`);
+  console.info('Succeeded in doing stop.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -235,9 +235,9 @@ release(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.release().then(() => {
-  console.info(`Promise returned to indicate a successful releasing of system tone player.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to release system tone player. ${err}`);
+  console.info('Succeeded in doing release.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to release. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -271,11 +271,15 @@ setAudioVolumeScale(scale: number): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let scale: number = 0.5;
 try {
   systemTonePlayer.setAudioVolumeScale(scale);
+  console.info('Succeeded in doing setAudioVolumeScale.');
 } catch (err) {
-  console.error(`Failed to set audio volume scale. ${err}`);
+  let error = err as BusinessError;
+  console.error(`Failed to setAudioVolumeScale. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -307,11 +311,14 @@ getAudioVolumeScale(): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let scale: number = systemTonePlayer.getAudioVolumeScale();
-  console.info(` get audio volume scale. ${scale}`);
+  console.info('Succeeded in doing getAudioVolumeScale.');
 } catch (err) {
-  console.error(`Failed to get audio volume scale. ${err}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getAudioVolumeScale. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -343,12 +350,11 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 **示例：**
 
 ```ts
-try {
-  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
-  console.info(` get supported haptics features. ${features}`);
-} catch (err) {
-  console.error(`Failed to get supported haptics features. ${err}`);
-}
+systemTonePlayer.getSupportedHapticsFeatures().then((features: Array<systemSoundManager.ToneHapticsFeature>) => {
+  console.info('Succeeded in doing getSupportedHapticsFeatures.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSupportedHapticsFeatures. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setHapticsFeature<sup>13+</sup>
@@ -383,17 +389,16 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 **示例：**
 
 ```ts
-try {
-  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
-  if (features.lenght == 0) {
-    return;
+systemTonePlayer.getSupportedHapticsFeatures().then((features: Array<systemSoundManager.ToneHapticsFeature>) => {
+  console.info('Succeeded in doing getSupportedHapticsFeatures.');
+  if (features.length > 0) {
+    let feature: systemSoundManager.ToneHapticsFeature = features[0];
+    systemTonePlayer.setHapticsFeature(feature);
+    console.info('Succeeded in doing setHapticsFeature.');
   }
-  let feature: systemSoundManager.ToneHapticsFeature = features[0];
-  systemTonePlayer.setHapticsFeature(feature);
-  console.info(` set haptics feature success`);
-} catch (err) {
-  console.error(`Failed to set haptics feature. ${err}`);
-}
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSupportedHapticsFeatures. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### getHapticsFeature<sup>13+</sup>
@@ -425,11 +430,14 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let feature: systemSoundManager.ToneHapticsFeature = systemTonePlayer.getHapticsFeature();
-  console.info(` get haptics feature success. ${features}`);
+  console.info('Succeeded in doing getHapticsFeature.');
 } catch (err) {
-  console.error(`Failed to get haptics feature. ${err}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getHapticsFeature. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
