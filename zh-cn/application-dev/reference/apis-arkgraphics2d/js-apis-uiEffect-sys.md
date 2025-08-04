@@ -1181,9 +1181,8 @@ image.createPixelMap(color, opts).then((pixelMap) => {
     alpha: 1
   }
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
-})
-  .catch((error: BusinessError)=>{
-    console.error('Failed to create pixelmap. code is ${error.code}, message is ${error.message}');
+}).catch((error: BusinessError)=>{
+  console.error('Failed to create pixelmap. code is ${error.code}, message is ${error.message}');
 })
 ```
 ### createRadialGradientMask<sup>20+</sup>
