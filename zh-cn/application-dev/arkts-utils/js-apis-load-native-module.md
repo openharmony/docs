@@ -1,6 +1,6 @@
 # 同步方式动态加载native模块
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @shilei123-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->

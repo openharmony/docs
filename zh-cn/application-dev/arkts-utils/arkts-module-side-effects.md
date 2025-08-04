@@ -1,6 +1,6 @@
 # 模块加载副作用及优化
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @wangchen965-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->

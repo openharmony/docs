@@ -14,6 +14,8 @@
 [ArkGraphics 2D][Multimedia]<br>
 [ArkGraphics 3D][ArkUI]<br>
 [ArkTS][Utils]<br>
+[ArkTS][ArkCompiler]<br>
+[ArkTS][CommonLibrary]<br>
 [ArkUI][Ability]<br>
 [ArkUI][ArkUI]<br>
 [ArkUI][Msdp]<br>
