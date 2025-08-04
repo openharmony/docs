@@ -48,22 +48,24 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.application.formBindingData';
+import { formBindingData } from '@kit.FormKit';
 import fs from '@ohos.file.fs';
-import Base from '@ohos.base';
 
 try {
-  let fd = fs.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, object> = {
+  let context = getContext(this);
+  let pathDir = context.filesDir;
+  let filePath = pathDir + "/form.png";
+  let fd: fs.File = fs.openSync('/path/to/form.png');
+  let formImagesParam: Record<string, fs.File> = {
     'image': fd
   };
-  let createFormBindingDataParam: Record<string, string | Object> = {
+  let createFormBindingDataParam: Record<string, string | Record<string, fs.File>> = {
     'name': '21°',
     'formImages': formImagesParam
   };
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  console.error(`catch error, error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`catch error, error: ${JSON.stringify(error)}`);
 }
 ```
