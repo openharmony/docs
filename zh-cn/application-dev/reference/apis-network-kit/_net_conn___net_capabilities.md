@@ -20,9 +20,9 @@
 | -------- | -------- |
 | [linkUpBandwidthKbps](#linkupbandwidthkbps) | 上行带宽。 | 
 | [linkDownBandwidthKbps](#linkdownbandwidthkbps) | 下行带宽。 | 
-| [netCaps](#netcaps) [NETCONN_MAX_CAP_SIZE] | 网络能力列表。 | 
+| [netCaps](#netcaps) [[NETCONN_MAX_CAP_SIZE]](_net_connection.md#宏定义) | 网络能力列表。 | 
 | [netCapsSize](#netcapssize) | 网络能力列表的实际size。 | 
-| [bearerTypes](#bearertypes) [NETCONN_MAX_BEARER_TYPE_SIZE] | 承载类型列表。 | 
+| [bearerTypes](#bearertypes) [[NETCONN_MAX_BEARER_TYPE_SIZE]](_net_connection.md#宏定义) | 承载类型列表。 | 
 | [bearerTypesSize](#bearertypessize) | 承载类型列表的实际size。 | 
 
 
