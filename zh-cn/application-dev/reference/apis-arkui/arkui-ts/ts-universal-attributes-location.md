@@ -59,7 +59,7 @@ direction(value: Direction): T
 
 position(value: Position | Edges | LocalizedEdges): T
 
-绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。
+绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。position对位置的影响作用在组件的尺寸测量完成之后。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
