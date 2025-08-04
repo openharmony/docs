@@ -1,4 +1,9 @@
 # @ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy; @xuzhihao666-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
 
 AbilityLifecycleCallback类提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用创建AbilityLifecycleCallback对象，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 
@@ -192,7 +197,7 @@ onAbilityBackground(ability: UIAbility): void
 
 onAbilityContinue(ability: UIAbility): void
 
-在UIAbility的[onContinue](js-apis-app-ability-uiAbility.md#onontinue)触发后回调。
+在UIAbility的[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)触发后回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -475,11 +480,13 @@ onAbilitySaveState?(ability: UIAbility): void
 ### AbilityLifecycleCallback使用
 
 **示例：**
+
 AbilityLifecycleCallback提供在UIAbility外部监听UIAbility生命周期的能力，比如应用可以在[AbilityStage](../../application-models/abilitystage.md)加载的时候注册监听，这样能监听到应用内所有UIAbility的状态变化。</br>
 示例代码展示在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听，在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听；监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源；此外UIAbility创建销毁、前后台状态切换时，做相关事件记录和对外发通知。</br>
 MyStage.ets
+AbilityStage文件
 ```ts
-import { AbilityLifecycleCallback, AbilityStage, application, UIAbility, Want } from "@kit.AbilityKit";
+import { AbilityLifecycleCallback, AbilityStage, application, UIAbility } from "@kit.AbilityKit";
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { JSON } from "@kit.ArkTS";
 import { window } from "@kit.ArkUI";
@@ -505,7 +512,7 @@ function publishEvent() {
 }
 
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
-  onAbilityCreate(ability: UIAbility){
+  onAbilityCreate(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'onAbilityCreate: ' + ability.context.abilityInfo.name);
     // UIAbility事件打点记录
     recordAbilityEvent(ability.context.abilityInfo.name);
@@ -515,19 +522,19 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
       publishEvent();
     }
   },
-  onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage){
+  onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageCreate.');
   },
-  onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage){
+  onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageActive.');
   },
-  onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage){
+  onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageInactive.');
   },
-  onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage){
+  onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageDestroy.');
   },
-  onAbilityDestroy(ability: UIAbility){
+  onAbilityDestroy(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'onAbilityDestroy: ' + ability.context.abilityInfo.name);
     recordAbilityEvent(ability.context.abilityInfo.name);
     // 模拟入口UIAbility销毁时，释放资源
@@ -536,21 +543,21 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
       publishEvent();
     }
   },
-  onAbilityForeground(ability: UIAbility){
+  onAbilityForeground(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityForeground.');
     recordAbilityEvent(ability.context.abilityInfo.name);
     if (ability.context.abilityInfo.name === 'EntryAbility') {
       publishEvent();
     }
   },
-  onAbilityBackground(ability: UIAbility){
+  onAbilityBackground(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityBackground.');
     recordAbilityEvent(ability.context.abilityInfo.name);
     if (ability.context.abilityInfo.name === 'EntryAbility') {
       publishEvent();
     }
   },
-  onAbilityContinue(ability: UIAbility){
+  onAbilityContinue(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityContinue.');
   },
   onNewWant(ability: UIAbility) {
@@ -612,7 +619,7 @@ export default class MyStage extends AbilityStage {
   onDestroy(): void {
     // AbilityStage销毁时取消注册
     let applicationContext = application.getApplicationContext();
-    applicationContext. off('abilityLifecycle', lifecycleId).catch((e: BusinessError) => {
+    applicationContext.off('abilityLifecycle', lifecycleId).catch((e: BusinessError) => {
       hilog.error(DOMAIN, TAG, `unregister abilityLifecycle failed: ${JSON.stringify(e)}`);
     });
   }
