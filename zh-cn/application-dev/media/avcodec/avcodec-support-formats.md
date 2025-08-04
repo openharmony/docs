@@ -1,5 +1,11 @@
 # AVCodec支持的格式
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @dpy2650-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
+
 ## 媒体编解码
 
 ### 视频解码
@@ -10,9 +16,16 @@
 | --------------------- | ---------------- |
 | AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、H.263、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)、H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，<!--RP15-->则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)、H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End-->硬件解码能力。
+通过MimeType创建解码器时，系统会优先创建硬件解码器实例。如果系统平台不支持或者硬件解码器资源不足时，系统会创建软件解码器实例。
+当前系统支持的软件解码器格式包括：
+- MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)
+- MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)
+- H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)
+- H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)
+<!--RP13--><!--RP13End-->
 
-每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
+系统提供的硬件解码能力和平台硬件能力强相关，开发者可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取系统硬件解码的能力和能力规格。
+例如可以通过<!--RP15-->OH_AVCODEC_MIMETYPE_VIDEO_AVC、OH_AVCODEC_MIMETYPE_VIDEO_HEVC<!--RP15End-->来查询系统支持的<!--RP16-->H.264、H.265的硬件解码能力。<!--RP16End-->
 
 具体开发指导请参考[视频解码](video-decoding.md)。
 
