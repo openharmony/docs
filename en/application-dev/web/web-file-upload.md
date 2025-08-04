@@ -62,7 +62,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
   </body>
   </html>
   ```
-![web-app-document](./figures/web-app-document.gif)
+
 
 ## Starting Gallery Using onShowFileSelector
 
@@ -126,7 +126,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
   </body>
   </html>
   ```
-![web-app-photo](./figures/web-app-photo.gif)
+
 
 ## Starting Camera Using onShowFileSelector
 
@@ -219,7 +219,7 @@ HTML page code:
 </body>
 </html>
 ```
-![web-app-camera](./figures/web-app-camera.gif)
+
 
 ## Processing File Upload Requests Using the Default ArkWeb Mode
 
@@ -315,7 +315,7 @@ struct Index {
   }
 }
 ```
-![web-default-camera](./figures/web-default-camera.gif)
+
 
 ## FAQs
 
