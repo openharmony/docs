@@ -200,7 +200,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60,61}; // 表示期望同时录制60、61号窗口。
+    vector<int32_t> missionIds = {60, 61}; // 表示期望同时录制60、61号窗口。
     config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
     config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
     ```

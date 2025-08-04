@@ -33,11 +33,11 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
 ### 开发步骤
 
-1. 引入编码器头文件：image_packer_ndk.h。
+1. 引入编码器头文件：image_packer_mdk.h。
 
    ```cpp
-   // 引入编码器image_packer_ndk.h头文件。
-   #include "multimedia/image_framework/image_packer_ndk.h"
+   // 引入编码器image_packer_mdk.h头文件。
+   #include "multimedia/image_framework/image_packer_mdk.h"
    ```
 
 2. 创建编码器实例对象。
