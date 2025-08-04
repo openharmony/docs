@@ -499,7 +499,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 应用侧代码，视频托管使用示例。
+- 应用侧代码，视频托管使用示例，示例中使用[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放。
 
   ```ts
   // Index.ets
@@ -1212,7 +1212,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 前端页面示例。
+- 前端页面示例，文档中使用[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放，支持的媒体资源可以参考AVPlayer[支持的格式与协议](../media/media/media-kit-intro.md#支持的格式与协议)。
 
   ```html
   <html>
