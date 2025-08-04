@@ -41,6 +41,17 @@ Promise对象创建后，可以使用then方法和catch方法指定fulfilled状�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+  setTimeout(() => {
+    const randomNumber: number = Math.random();
+    if (randomNumber > 0.5) {
+      resolve(randomNumber);
+    } else {
+      reject(new Error('Random number is too small'));
+    }
+  }, 1000);
+})
+
 // 使用 then 方法定义成功和失败的回调
 promise.then((result: number) => {
   console.info(`The number for success is ${result}`); // 成功时执行
