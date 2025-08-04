@@ -1,5 +1,11 @@
 # ohresmgr.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Localization-->
+<!--Owner: @liule_123-->
+<!--SE: @buda_wy-->
+<!--TSE: @lpw_work-->
+
 ## 概述
 
 提供资源管理native侧获取资源的能力。
