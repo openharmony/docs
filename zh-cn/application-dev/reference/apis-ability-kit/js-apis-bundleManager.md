@@ -1468,6 +1468,8 @@ getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
+**设备行为差异：** 该接口仅在PC/2in1设备中可正常调用，在其他设备中返回201错误码。
+
 **参数：**
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
