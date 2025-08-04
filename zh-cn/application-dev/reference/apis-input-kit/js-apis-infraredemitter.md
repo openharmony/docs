@@ -74,7 +74,7 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 **返回值**：
 
-| 参数                  | 说明                  |
+| 类型                  | 说明                  |
 | ------------------- | ------------------- |
 | Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | 频率范围，包含多组最大和最小频率。 |
 

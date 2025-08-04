@@ -87,7 +87,7 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
@@ -240,7 +240,7 @@ getPointerSpeed(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise实例，异步返回鼠标移动速度。 |
 
@@ -281,7 +281,7 @@ getPointerSpeedSync(): number
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | number | 返回鼠标移动速度。 |
 
@@ -391,7 +391,7 @@ setHoverScrollState(state: boolean): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
@@ -491,7 +491,7 @@ getHoverScrollState(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
@@ -602,7 +602,7 @@ setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
@@ -702,7 +702,7 @@ getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise实例，异步返回鼠标主键。 |
 
@@ -813,7 +813,7 @@ setMouseScrollRows(rows: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
@@ -913,7 +913,7 @@ getMouseScrollRows(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise实例，异步返回鼠标滚动行数。 |
 
@@ -1024,7 +1024,7 @@ setTouchpadScrollSwitch(state: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -1124,7 +1124,7 @@ getTouchpadScrollSwitch(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
@@ -1235,7 +1235,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -1335,7 +1335,7 @@ getTouchpadScrollDirection(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。 |
 
@@ -1446,7 +1446,7 @@ setTouchpadTapSwitch(state: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -1546,7 +1546,7 @@ getTouchpadTapSwitch(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态，true代表开启，false代表关闭，默认开启。 |
 
@@ -1657,7 +1657,7 @@ setTouchpadPointerSpeed(speed: number): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -1757,7 +1757,7 @@ getTouchpadPointerSpeed(): Promise\<number>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<number> | Promise实例，异步返回触控板光标移动速度。 |
 
@@ -1868,7 +1868,7 @@ setTouchpadPinchSwitch(state: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -1968,7 +1968,7 @@ getTouchpadPinchSwitch(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
@@ -2079,7 +2079,7 @@ setTouchpadSwipeSwitch(state: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -2179,7 +2179,7 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
@@ -2290,7 +2290,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
@@ -2390,7 +2390,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
@@ -2501,7 +2501,7 @@ setPointerSize(size: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
@@ -2650,7 +2650,7 @@ getPointerSize(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise对象，异步返回鼠标光标大小。 |
 
@@ -2700,7 +2700,7 @@ getPointerSizeSync(): number
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | number | 鼠标光标大小。 |
 
@@ -2818,7 +2818,7 @@ setPointerColor(color: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
@@ -2971,7 +2971,7 @@ getPointerColor(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise对象，异步返回鼠标光标颜色。 |
 
@@ -3021,7 +3021,7 @@ getPointerColorSync(): number
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | number | 鼠标光标颜色。 |
 
@@ -3131,7 +3131,7 @@ setTouchpadDoubleTapAndDragState(isOpen: boolean): Promise\<void>
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
@@ -3231,7 +3231,7 @@ getTouchpadDoubleTapAndDragState(): Promise\<boolean>
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板双击拖拽开启状态。true代表开启，false代表关闭。|
 

@@ -86,7 +86,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                 | 说明                     |
+| 类型                 | 说明                     |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
 
@@ -203,7 +203,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **返回值**：
 
-| 参数名                  | 说明                             |
+| 类型                  | 说明                             |
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise对象，异步返回键鼠穿越启动、关闭结果。       |
 
@@ -309,7 +309,7 @@ stop(): Promise\<void>
 
 **返回值**：
 
-| 参数名                | 说明                            |
+| 类型                | 说明                            |
 | --------             | ----------------------------   |
 | Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      |
 
@@ -412,7 +412,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 **返回值**：
 
-| 参数                        | 说明                     |
+| 类型                        | 说明                     |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。ture 表示键鼠穿越开关打开，false表示键鼠穿越开关关闭。       |
 

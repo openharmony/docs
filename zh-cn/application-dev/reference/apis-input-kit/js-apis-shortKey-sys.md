@@ -86,7 +86,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数          | 说明          |
+| 类型          | 说明          |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
