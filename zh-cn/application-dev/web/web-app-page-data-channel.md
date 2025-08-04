@@ -30,7 +30,7 @@
     build() {
       Column() {
         // 展示接收到的来自HTML的内容
-        Text(this.receivedFromHtml)
+        Text(this.receivedFromHtml);
         // 输入框的内容发送到HTML
         TextInput({ placeholder: 'Send this message from ets to HTML' })
           .onChange((value: string) => {
