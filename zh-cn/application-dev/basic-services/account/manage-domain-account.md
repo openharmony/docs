@@ -1,5 +1,11 @@
 # 管理域账号（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 用户可以在系统中添加域账号，后续可以域账号身份登录、使用系统。
 
 ## 开发准备
