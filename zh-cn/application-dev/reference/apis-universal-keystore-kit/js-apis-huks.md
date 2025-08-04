@@ -17,40 +17,34 @@ import { huks } from '@kit.UniversalKeystoreKit';
 
 调用接口使用的options中的properties数组中的param。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| tag    | [HuksTag](#hukstag)                 | 是   | 标签。       |
-| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。 |
+| tag    | [HuksTag](#hukstag)                 | 是   | 标签。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksOptions
 
 调用接口使用的options。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称     | 类型              | 必填 | 说明                     |
 | ---------- | ----------------- | ---- | ------------------------ |
-| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。 |
-| inData     | Uint8Array        | 否   | 输入数据。               |
+| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| inData     | Uint8Array        | 否   | 输入数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 
 ## HuksSessionHandle<sup>9+</sup>
 
 huks Handle结构体。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
-| handle    | number     | 是   | 表示uint64类型的handle值。                                       |
-| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。 |
+| handle    | number     | 是   | 表示无符号整数类型的handle值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
+| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksReturnResult<sup>9+</sup>
 
@@ -68,16 +62,13 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Security.Huks.Extension
 
 
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
-| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。 |
-
+| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## huks.generateKeyItem<sup>9+</sup>
 
@@ -257,7 +248,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -311,7 +302,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。            |
 
 **返回值：**
 
@@ -1421,7 +1412,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
-| options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
+| options  | [HuksOptions](#huksoptions)                          | 是   | 用于导出密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需导出密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **错误码：**
@@ -1663,7 +1654,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -1714,7 +1705,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。 |
 
 **返回值：**
 
@@ -1771,7 +1762,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，data为false。 |
 
 **错误码：**
@@ -1828,7 +1819,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 
 **返回值：**
 
@@ -3983,7 +3974,7 @@ huks Handle结构体。
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | 是   | 表示错误码。 |
-| handle    | number       | 是 | 表示uint64类型的handle值。 |
+| handle    | number       | 是 | 表示无符号整数类型的handle值。 |
 | token | Uint8Array | 否 | 表示[init](#huksinitdeprecated)操作之后获取到的challenge信息。 |
 
 ## HuksResult<sup>(deprecated)</sup>
