@@ -200,7 +200,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口。
+    vector<int32_t> missionIds = {60,61}; // 表示期望同时录制60、61号窗口。
     config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
     config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
     ```
@@ -605,7 +605,7 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 获取数组长度。
     uint32_t array_length;
     napi_get_array_length(env, args[0], &array_length);
-    // 读初窗口id。
+    // 读出窗口id。
     for (int32_t i = 0; i < array_length; i++) {
         napi_value temp;
         napi_get_element(env, args[0], i, &temp);

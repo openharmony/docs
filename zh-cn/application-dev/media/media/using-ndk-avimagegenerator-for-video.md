@@ -7,7 +7,7 @@
 ## 开发步骤及注意事项
 在 CMake 脚本中链接动态库。
 ```
-target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.z.so)
+target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.so)
 ```
 
 使用[OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_convertpixelmapnativetonapi)接口将nativePixelMap对象转换为PixelMapnapi对象、[OH_PixelmapNative_Release()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release)接口释放OH_PixelmapNative对象资源，需引入如下头文件。
