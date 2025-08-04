@@ -1,4 +1,9 @@
 # 背景设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件的背景样式。
 
@@ -451,7 +456,7 @@ backgroundEffect(options: BackgroundEffectOptions): T
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
-## backgroundEffect<sup>18+</sup> 
+## backgroundEffect<sup>18+</sup>
 
 backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 
@@ -477,7 +482,7 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 
 backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions): T
 
-设置组件背景属性，包括背景模糊半径、亮度、饱和度和颜色等参数。与[backgroundEffect<sup>18+</sup>](#backgroundeffect18 )相比，新增了sysOptions参数，即支持系统自适应调节参数。
+设置组件背景属性，包括背景模糊半径、亮度、饱和度和颜色等参数。与[backgroundEffect<sup>18+</sup>](#backgroundeffect18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
 
 > **说明：**
 >
