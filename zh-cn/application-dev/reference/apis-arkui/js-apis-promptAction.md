@@ -984,7 +984,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 <!--Del-->不支持在ServiceExtension中使用。<!--DelEnd-->
 
-暂不支持isModal = true与showInSubWindow = true同时使用。
+暂不支持isModal = true与showInSubWindow = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
 弹窗宽度在设备竖屏时默认为 所在窗口宽度 - 左右margin（16vp，设备为2in1时为40vp），最大默认宽度为400vp。
 
