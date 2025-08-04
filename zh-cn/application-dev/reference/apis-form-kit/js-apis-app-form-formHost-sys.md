@@ -2165,8 +2165,8 @@ try {
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+} catch (e) {
+  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
 
