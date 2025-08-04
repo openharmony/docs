@@ -571,10 +571,10 @@ struct PasteboardTest {
     		    console.log('progressListener success, progress:' + progress.progress);
                 signal.cancel();
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: dstUri,
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
@@ -3031,10 +3031,10 @@ struct PasteboardTest {
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
     		    console.log('progressListener success, progress:' + progress.progress);
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: dstUri,
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
