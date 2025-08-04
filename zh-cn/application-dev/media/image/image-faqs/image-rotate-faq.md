@@ -1,4 +1,9 @@
 # 如何获取图片的旋转角度信息
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## 图片旋转角度介绍
 
