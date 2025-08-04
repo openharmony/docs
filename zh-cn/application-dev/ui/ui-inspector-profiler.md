@@ -205,9 +205,10 @@ DevEco Studio的Profiler工具可抓取状态变量的变化打点。在Profiler
 **图2** ArkUI State泳道图示意图
 
 ![UI-StateProfiler2](figures/UI-StateProfiler2.png)
-> **说明：**
->
-> 由于隐私安全政策，已上架应用市场的应用不支持录制ArkUI State泳道。
+
+<!--RP3-->
+
+<!--RP3End-->
 
 
 ### 状态管理Inspector调试能力
@@ -227,19 +228,17 @@ DevEco Studio的ArkUI Inspector可以显示当前页面自定义组件内的状�
 
 ![UI-StateInspector](figures/UI-StateInspector.png)
 
-> **说明：**
->
-> 由于隐私安全政策，已上架应用市场的应用不支持使用ArkUI Inspector。
+<!--RP4-->
 
-更多Inspector使用方法及案例，请参考：[ArkUI Inspector使用指导](../performance/arkUI-inspector.md)。
+<!--RP4End-->
 
 
 以上主要介绍了状态管理的hidumper、调试与调优能力，这些工具方便开发者调测，有助于提升开发高性能应用的效率。
 
 ## Trace调试能力
 
-ArkUI内部针对关键的UI处理流程添加了Trace信息，帮助开发者通过Trace工具观测应用的UI耗时，辅助定位问题。详细Trace说明及案例参考：[常用Trace使用指导](../performance/common-trace-using-instructions.md)。
+ArkUI内部针对关键的UI处理流程添加了Trace信息，帮助开发者通过Trace工具观测应用的UI耗时，辅助定位问题。详细Trace说明及案例参考：<!--RP1-->[常用Trace使用指导](../performance/common-trace-using-instructions.md)<!--RP1End-->。
 
 ## Inspector调试能力
 
-ArkUI Inspector是DevEco Studio内置的页面布局检查工具，帮助开发者查看应用的UI层级结构、组件属性和布局效果。详细Inspector使用方法及案例参考：[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)。
+ArkUI Inspector是DevEco Studio内置的页面布局检查工具，帮助开发者查看应用的UI层级结构、组件属性和布局效果。详细Inspector使用方法及案例参考：<!--RP2-->[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)<!--RP2End-->。
