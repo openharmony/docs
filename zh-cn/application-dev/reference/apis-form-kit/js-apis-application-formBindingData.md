@@ -60,7 +60,7 @@ try {
   let context = getContext(this);
   let pathDir = context.filesDir;
   let filePath = pathDir + "/form.png";
-  let fd: fs.File = fs.openSync('/path/to/form.png');
+  let fd: fs.File = fs.openSync(filePath);
   let formImagesParam: Record<string, fs.File> = {
     'image': fd
   };
