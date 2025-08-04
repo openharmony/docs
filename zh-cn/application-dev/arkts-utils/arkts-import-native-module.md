@@ -1,4 +1,4 @@
-# 静态方式加载native模块
+# 静态方式加载Native模块
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yao_dashuai-->
