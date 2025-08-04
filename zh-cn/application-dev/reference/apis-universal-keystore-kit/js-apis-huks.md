@@ -56,8 +56,6 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。具体字段在原子化服务中受支持的起始版本详见下表。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称     | 类型                            | 必填 | 说明             |
