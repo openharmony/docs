@@ -1,7 +1,7 @@
 # 资源分类与访问
 
 <!--Kit: Localization Kit-->
-<!--Subsystem: Localization-->
+<!--Subsystem: Global-->
 <!--Owner: @liule_123-->
 <!--SE: @buda_wy-->
 <!--TSE: @lpw_work-->
