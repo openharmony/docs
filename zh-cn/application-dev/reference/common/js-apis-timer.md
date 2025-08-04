@@ -1,6 +1,6 @@
 # Timer (定时器)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @yao_dashuai-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->

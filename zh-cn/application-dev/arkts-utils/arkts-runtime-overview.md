@@ -1,6 +1,6 @@
 # ArkTS运行时概述
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @guobingbing3-->
 <!--SE: @xwcai98-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->
