@@ -1228,6 +1228,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   <body>
   <div>
       <!-- 使用时需要自行替换视频链接 -->
+      <!-- 文档中使用AVPlayer托管Web媒体的播放，详情参考AVPlayer组件[支持的格式和协议](../media/media/media-kit-intro.md#支持的格式与协议) -->
       <video src='https://xxx.xxx/demo.mp4' style='width: 100%'></video>
   </div>
   </body>
