@@ -128,7 +128,8 @@ struct WebComponent {
     try {
       webview.WebviewController.initializeWebEngine();
       let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-      let appUA = " appUA";
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
       webview.WebviewController.setUserAgentForHosts(
         appUA,
         [
