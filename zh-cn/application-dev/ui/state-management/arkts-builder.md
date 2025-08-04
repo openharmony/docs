@@ -1,4 +1,9 @@
 # \@Builder装饰器：自定义构建函数
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--SE: @zhangboren-->
+<!--TSE: @TerryTsao-->
 
 ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递。开发者可将重复使用的UI元素抽象成函数，在build函数中调用。
 

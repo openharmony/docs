@@ -99,7 +99,7 @@
     - [@ohos.systemTime(系统时间、时区)](js-apis-system-time.md)
 - C API<!--basic-services-c-->
   - 模块<!--basic-services-module-->
-    - [CommonEvent](capi-common-event.md)
+    - [OH_CommonEvent](capi-oh-commonevent.md)
     - [DeviceInfo](capi-deviceinfo.md)
     - [OsAccount](capi-osaccount.md)
     - [OH_BatteryInfo](capi-oh-batteryinfo.md)
@@ -110,8 +110,8 @@
   - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](capi-deviceinfo-h.md)
     - [ohbattery_info.h](capi-ohbattery-info-h.md)
-    - [oh_commonevent.h](oh_commonevent_8h.md)
-    - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
+    - [oh_commonevent.h](capi-oh-commonevent-h.md)
+    - [oh_commonevent_support.h](capi-oh-commonevent-support-h.md)
     - [oh_pasteboard.h](capi-oh-pasteboard-h.md)
     - [oh_pasteboard_err_code.h](capi-oh-pasteboard-err-code-h.md)
     - [os_account.h](capi-os-account-h.md)
@@ -125,6 +125,9 @@
     - [Print_PrintAttributes](_print___print_attributes.md)
     - [Print_PrintDocCallback](_print___print_doc_callback.md)
     - [Print_Range](_print___range.md)
+    - [CommonEvent_SubscribeInfo](capi-oh-commonevent-commonevent-subscribeinfo.md)
+    - [CommonEvent_PublishInfo](capi-oh-commonevent-commonevent-publishinfo.md)
+    - [CommonEvent_RcvData](capi-oh-commonevent-commonevent-rcvdata.md)
     - [Pasteboard_ProgressInfo](capi-pasteboard-progressinfo.md)
     - [Pasteboard_GetDataParams](capi-pasteboard-getdataparams.md)
     - [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)

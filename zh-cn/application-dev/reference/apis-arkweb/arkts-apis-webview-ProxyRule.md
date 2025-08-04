@@ -1,4 +1,9 @@
 # Class (ProxyRule)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 [insertProxyRule](./arkts-apis-webview-ProxyConfig.md#insertproxyrule15)中使用的代理规则。
 

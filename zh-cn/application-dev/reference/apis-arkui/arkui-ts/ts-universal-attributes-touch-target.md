@@ -1,4 +1,9 @@
 # 触摸热区设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 适用于支持通用点击事件、通用触摸事件和通用手势处理的组件。
 

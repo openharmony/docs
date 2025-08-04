@@ -19,6 +19,6 @@
 | uint8_t family | 网络地址族。 |
 | uint8_t prefixlen | 前缀长度。 |
 | uint8_t port | 端口号。 |
-| char address[NETCONN_MAX_STR_LEN] | 地址。 |
+| char address[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#宏定义) | 地址。 |
 
 

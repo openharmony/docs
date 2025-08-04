@@ -1,4 +1,9 @@
 # 应用侧调用前端页面函数
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 应用侧可以通过[runJavaScript()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascriptext10)方法调用前端页面的JavaScript相关函数。
 

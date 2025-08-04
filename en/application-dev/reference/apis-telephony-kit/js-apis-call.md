@@ -157,7 +157,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// The tel URI format is supported since API version 15, for example, tel:13xxxx.
 call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
         console.error(`makeCall fail, err->${JSON.stringify(err)}`);
@@ -206,7 +206,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// The tel URI format is supported since API version 15, for example, tel:13xxxx.
 call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {
@@ -249,10 +249,16 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use UIAbilityContext APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 // Obtain the application context.
-let context = getContext(this) as Context;
+let context = this.getUIContext().getHostContext() as Context;
+// The tel URI format is supported since API version 15, for example, tel:13xxxx.
 call.makeCall(context, "138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {

@@ -1,4 +1,9 @@
 # 点击事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 组件被点击时触发的事件。
 
@@ -6,7 +11,7 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。
+>  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md)分发流程，触摸事件支持屏蔽、透传等自定义行为。
 >
 >  事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 >

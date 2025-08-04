@@ -491,7 +491,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     size_t elementSize = 0;
     // 根据传递的类型值选择创建对应的类型数组
     arrayType = static_cast<napi_typedarray_type>(typeNum);
-    switch (typeNum) {
+    switch (arrayType) {
     case napi_int8_array:
     case napi_uint8_array:
     case napi_uint8_clamped_array:
@@ -549,7 +549,7 @@ export const enum TypedArrayTypes {
   FLOAT32_ARRAY,
   FLOAT64_ARRAY,
   BIGINT64_ARRAY,
-  BIGuINT64_ARRAY,
+  BIGUINT64_ARRAY,
 }
 export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ```

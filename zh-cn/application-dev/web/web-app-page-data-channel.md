@@ -1,4 +1,9 @@
 # 建立应用侧与前端页面数据通道
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 
 前端页面和应用侧之间可以用[createWebMessagePorts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebmessageports)接口创建消息端口来实现两端的通信。
@@ -25,7 +30,7 @@
     build() {
       Column() {
         // 展示接收到的来自HTML的内容
-        Text(this.receivedFromHtml)
+        Text(this.receivedFromHtml);
         // 输入框的内容发送到HTML
         TextInput({ placeholder: 'Send this message from ets to HTML' })
           .onChange((value: string) => {

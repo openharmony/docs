@@ -1,4 +1,9 @@
 # Class (WebDownloadManager)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 可以通过该类提供的接口来恢复失败的下载任务。
 

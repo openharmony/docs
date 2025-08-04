@@ -1,4 +1,9 @@
 # 自定义组件使用说明
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--SE: @shiyu_huang-->
+<!--TSE: @TerryTsao-->
 
 
 >  **说明：**

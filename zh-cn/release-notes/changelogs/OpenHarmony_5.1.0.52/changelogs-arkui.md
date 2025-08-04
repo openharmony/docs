@@ -80,7 +80,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 **变更影响**
 
-此变更不涉及应用适配，仅针对Router和Navigation页面默认的退出动画场景。
+此变更涉及应用适配，仅针对Router和Navigation页面默认的退出动画场景需要适配。
 
 - 变更前：页面退出动画结束后，依次执行自定义组件生命周期aboutToDisappear、onDisappear。
   
@@ -100,7 +100,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 **适配指导**
 
-默认行为变更，无需适配。
+在全局复用场景中，当复用的自定义组件的aboutToDisappear生命周期回调中涉及节点移除操作时，应将节点移除操作安排在页面退出完成后，例如onDetach生命周期。
 
 ## cl.arkui.4 修复fromHtml接口解析颜色rgb顺序错误的问题
 

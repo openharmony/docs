@@ -1,4 +1,9 @@
 # Popup控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 为组件绑定Popup气泡，并设置气泡内容，交互逻辑和显示状态。
 
@@ -13,6 +18,8 @@
 >  - 多个气泡同时弹出时，子窗内显示的气泡比主窗内显示的气泡层级高，所处窗口相同时，后面弹出的气泡层级比先弹出的气泡层级高。
 >
 >  - 2in1设备默认有双描边，其他设备默认无双描边且不支持双描边。
+>
+>  - 子窗弹窗里不能再弹出子窗弹窗，例如bindPopup设置了showInSubWindow为true时，则不能再弹出另一个设置了showInSubWindow为true的弹窗。
 
 ## bindPopup
 

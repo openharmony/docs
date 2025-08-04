@@ -1,4 +1,9 @@
 # 管理位置权限
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhang-yinglie-->
+<!--SE: @handyohos-->
+<!--TSE: @ghiker-->
 
 
 Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../device-dev/security/security-privacy-protection.md)<!--RP1End-->）。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/arkts-basic-components-web-events.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。

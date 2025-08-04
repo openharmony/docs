@@ -261,7 +261,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     uint32_t result = 0;
     napi_value count = nullptr;
     napi_reference_unref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_ref, count = %{public}d.", result);
+    OH_LOG_INFO(LOG_APP, "napi_reference_unref, count = %{public}d.", result);
     if (result != 1) {
         // 若传入引用的引用计数未减少，则抛出错误
         napi_throw_error(env, nullptr, "napi_reference_unref fail");
@@ -284,9 +284,9 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createReference: () => Object | void;
-export const useReference: () => Object | void;
-export const deleteReference: () => string | void;
+export const createReference: () => Object | undefined;
+export const useReference: () => Object | undefined;
+export const deleteReference: () => string | undefined;
 ```
 <!-- @[napi_create_delete_reference_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

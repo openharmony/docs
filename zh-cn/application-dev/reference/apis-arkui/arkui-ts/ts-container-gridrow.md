@@ -1,4 +1,9 @@
 # GridRow
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 栅格布局可以为布局提供规律性的结构，解决多尺寸多设备的动态布局问题，保证不同设备上各个模块的布局一致性。
 

@@ -1,4 +1,9 @@
 # 弹性布局 (Flex)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 
 ## 概述

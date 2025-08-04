@@ -1,4 +1,9 @@
 # 悬浮事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 光标滑动或手写笔在屏幕上悬浮移动扫过组件时触发。
 

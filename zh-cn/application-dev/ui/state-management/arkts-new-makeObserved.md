@@ -1,4 +1,9 @@
 # makeObserved接口：将非观察数据变为可观察数据
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
 

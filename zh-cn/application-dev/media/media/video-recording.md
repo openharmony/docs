@@ -1,4 +1,9 @@
 # 使用AVRecorder录制视频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xdlinc-->
 
 当前仅支持[AVRecorder](media-kit-intro.md#avrecorder)开发视频录制，集成了音频捕获，音频编码，视频编码，音视频封装功能，适用于实现简单视频录制并直接得到视频本地文件的场景。
 

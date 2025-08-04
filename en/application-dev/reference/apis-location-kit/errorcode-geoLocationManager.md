@@ -77,7 +77,7 @@ Increase the value of **maxAccuracy** for [LocationRequest](./js-apis-geoLocatio
 
 **Error Message**
 
-The system does not have a cache locaiton.
+The system does not have a cache location.
 
 **Description**
 
@@ -275,7 +275,7 @@ Disable and then enable Wi-Fi or Bluetooth.
 
 **Error Message**
 
-Failed to obtain the hotpot MAC address because the Wi-Fi is not connected.
+Failed to obtain the hotspot MAC address because the Wi-Fi is not connected.
 
 **Description**
 
