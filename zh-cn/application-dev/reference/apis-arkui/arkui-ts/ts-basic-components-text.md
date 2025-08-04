@@ -1032,9 +1032,9 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- |---- | ------------------------------------------------------------ |
+| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 否  | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
 
@@ -1097,9 +1097,9 @@ Text初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| controller | [TextController](#textcontroller11)  | 是 | 文本控制器。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| controller | [TextController](#textcontroller11)  | 否 | 否 | 文本控制器。 |
 
 ## TextController<sup>11+</sup>
 
@@ -1178,15 +1178,15 @@ Marquee初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型                                              | 必填 | 说明                                                                                  |
-|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
-| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
-| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
-| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。<br/>true表示支持渐隐效果，false表示不支持渐隐效果。<br/>当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
-| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+| 名称                | 类型                                              | 只读 | 可选 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 否  | 否 | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
+| step               | number                                          | 否  | 是 | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 是 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 是 | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
+| delay              | number                                          | 否  | 是 | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
+| fadeout            | boolean                                         | 否  | 是 | 设置文字超长时的渐隐效果。<br/>true表示支持渐隐效果，false表示不支持渐隐效果。<br/>当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 是 | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>18+</sup>枚举说明
 

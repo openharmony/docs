@@ -218,10 +218,10 @@ ScaleSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -254,9 +254,9 @@ HierarchicalSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 是 | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ### constructor<sup>12+</sup>
 
@@ -288,9 +288,9 @@ AppearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -322,9 +322,9 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -356,10 +356,10 @@ BounceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -392,9 +392,9 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
