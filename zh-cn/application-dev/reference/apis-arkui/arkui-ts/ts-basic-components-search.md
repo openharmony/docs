@@ -38,12 +38,12 @@ Search初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型         | 必填 | 说明        |
-| ----------- | ------------- | ---- | ------------- |
-| value<sup>8+</sup>       | [ResourceStr](ts-types.md#resourcestr)   | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>从API version 20开始，支持Resource类型。|
-| placeholder<sup>8+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| icon<sup>8+</sup>        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| controller<sup>8+</sup>  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| 名称      | 类型         | 只读 | 可选 | 说明        |
+| ----------- | ------------- | ---- | ---- | ------------- |
+| value<sup>8+</sup>       | [ResourceStr](ts-types.md#resourcestr)   | 否   | 是 | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>从API version 20开始，支持Resource类型。|
+| placeholder<sup>8+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 是 | 设置无输入时的提示文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon<sup>8+</sup>        | string                                               | 否   | 是 | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| controller<sup>8+</sup>  | [SearchController](#searchcontroller) | 否   | 是 | 设置Search组件控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 
 ## 属性
 
@@ -535,7 +535,7 @@ halfLeading(halfLeading: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -551,7 +551,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例19设置最小字体范围与最大字体范围](#示例19设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例19设置最小字体范围与最大字体范围](#示例19设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -567,7 +567,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>设置maxFontScale属性后，search组件内容最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例19设置最小字体范围与最大字体范围](#示例19设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>设置maxFontScale属性后，search组件内容最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例19设置最小字体范围与最大字体范围](#示例19设置最小字体范围与最大字体范围)。 |
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -664,7 +664,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### strokeWidth<sup>20+</sup>
 
@@ -680,7 +680,7 @@ strokeWidth(width: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
 
 ### strokeColor<sup>20+</sup>
 
@@ -696,7 +696,7 @@ strokeColor(color: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
+| color  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
 
 ### stopBackPress<sup>15+</sup>
 
@@ -712,7 +712,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -728,7 +728,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -736,21 +736,21 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                   | 必填 | 说明    |
-| ------ | ------------------------------------------ | ---- | ----------- |
-| size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
-| src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
+| 名称 | 类型                                   | 只读 | 可选 | 说明    |
+| ------ | ------------------------------------------ | ---- | ---- | ----------- |
+| size   | [Length](ts-types.md#length)               | 否   | 是 | 图标尺寸，不支持百分比。    |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是 | 图标颜色。    |
+| src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 是 | 图标/图片源。 |
 
 ## SearchButtonOptions<sup>10+</sup>对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                   | 必填 | 说明         |
-| --------- | ------------------------------------------ | ---- | ---------------- |
-| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| autoDisable<sup>18+</sup>  | Boolean                   | 否   | Search无文本内容时按钮置灰且不可点击。<br/>默认值：false <br>true表示开启按钮置灰功能，false表示不开启。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| 名称    | 类型                                   | 只读 | 可选 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---- | ---------------- |
+| fontSize  | [Length](ts-types.md#length)               | 否   | 是 | 文本按钮字体大小，不支持百分比。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是 | 文本按钮字体颜色。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| autoDisable<sup>18+</sup>  | Boolean                   | 否   | 是 | Search无文本内容时按钮置灰且不可点击。<br/>默认值：false <br>true表示开启按钮置灰功能，false表示不开启。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -784,10 +784,10 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                   | 必填 | 说明         |
-| --------- | ------------------------------------------ | ---- | ---------------- |
-| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
-| icon | [IconOptions](#iconoptions10对象说明) | 否   | 右侧清除按钮图标。 |
+| 名称    | 类型                                   | 只读 | 可选 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 是 | 右侧清除按钮显示状态。 |
+| icon | [IconOptions](#iconoptions10对象说明) | 否   | 是 | 右侧清除按钮图标。 |
 
 ## CancelButtonSymbolOptions<sup>12+</sup>对象说明
 
@@ -795,10 +795,10 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                   | 必填 | 说明         |
-| --------- | ------------------------------------------ | ---- | ---------------- |
-| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
-| icon | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 右侧清除按钮Symbol图标。 |
+| 名称    | 类型                                   | 只读 | 可选 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 是 | 右侧清除按钮显示状态。 |
+| icon | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 是 | 右侧清除按钮Symbol图标。 |
 
 ## 事件
 

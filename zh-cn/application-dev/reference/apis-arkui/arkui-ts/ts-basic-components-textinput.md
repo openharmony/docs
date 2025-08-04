@@ -36,11 +36,11 @@ TextInput初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
-| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 是 | 设置无输入时的提示文本。                             |
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 是 | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 是 | 设置TextInput控制器。                          |
 
 ## 属性
 
@@ -1012,7 +1012,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### strokeWidth<sup>20+</sup>
 
@@ -1028,7 +1028,7 @@ strokeWidth(width: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
 
 ### strokeColor<sup>20+</sup>
 
@@ -1044,7 +1044,7 @@ strokeColor(color: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
+| color  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
 
 ### stopBackPress<sup>15+</sup>
 
@@ -1060,7 +1060,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -1076,7 +1076,7 @@ halfLeading(halfLeading: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -1092,7 +1092,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -1108,7 +1108,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>当设置maxFontScale属性后，showError最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>当设置maxFontScale属性后，showError最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### cancelButton<sup>18+</sup>
 
@@ -1142,7 +1142,7 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ### enableAutoFillAnimation<sup>20+</sup>
 
@@ -1158,7 +1158,7 @@ enableAutoFillAnimation(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -1174,7 +1174,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## InputType枚举说明
 
@@ -1253,10 +1253,10 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
-| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码不可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- |---- |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 是   | 密码输入模式时，能够切换密码可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 是 | 密码输入模式时，能够切换密码不可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
 
 ## EnterKeyType枚举说明
 
@@ -1621,12 +1621,12 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
-| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
+| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -1642,9 +1642,9 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| text              | string     | 是   | 输入框文本内容。                                   |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| text              | string     | 否   | 否 | 输入框文本内容。                                   |
 
 ### keepEditableState
 
