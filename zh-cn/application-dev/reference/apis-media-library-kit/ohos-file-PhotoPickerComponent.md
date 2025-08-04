@@ -398,7 +398,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向。（该能力暂不支持）
+Picker宫格页面滑动预览的方向。（该能力从API20开始支持）
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
