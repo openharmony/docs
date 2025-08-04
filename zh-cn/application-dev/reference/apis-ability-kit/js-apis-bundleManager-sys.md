@@ -3844,7 +3844,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 
