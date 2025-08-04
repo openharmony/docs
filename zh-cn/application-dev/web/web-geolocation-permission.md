@@ -48,7 +48,7 @@ Web组件根据[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webv
           var locationInfo=document.getElementById("locationInfo");
           function getLocation(){
               if (navigator.geolocation) {
-                  <!-- 访问设备地理位置 -->
+                  // 访问设备地理位置
                   navigator.geolocation.getCurrentPosition(showPosition);
               }
           }
@@ -138,7 +138,7 @@ Web组件根据[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webv
   ```
 
 ## 管理位置权限
-查看、删除和增加指定源的位置权限。
+通过Web组件的[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md)类管理网页的位置权限，提供了新增（[allowgeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#allowgeolocation)）、查看（[getaccessiblegeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#getaccessiblegeolocation)）和删除（[deleteallgeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#deleteallgeolocation)）的方法。例如查看网页是否已申请位置权限、将网页已申请的位置权限删除。
 
 
 ```ts
@@ -153,7 +153,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      // 增加指定源的位置权限，再次获取位置信息时则不再触发onGeolocationShow的回调
+      // 新增指定源的位置权限，再次获取位置信息时则不再触发onGeolocationShow的回调
       Button('allowGeolocation')
         .onClick(() => {
           try {
