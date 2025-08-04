@@ -6540,14 +6540,13 @@ export default class EntryAbility extends UIAbility {
 
 restore(): Promise&lt;void&gt;
 
-将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。
-此接口仅在多窗层叠布局效果下生效，仅在主窗口为最小化状态且UIAbility生命周期为onForeground时生效。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+主窗口为最小化状态且UIAbility生命周期为onForeground时，将主窗口从最小化状态，恢复到前台显示，并恢复到进入最小化状态之前的大小和位置。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -6692,13 +6691,15 @@ try {
 
 setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;WindowLimits&gt;
 
-设置当前应用窗口的尺寸限制，使用Promise异步回调。
+该接口仅在自由窗口模式下生效，用于设置当前应用窗口的尺寸限制，使用Promise异步回调。
+
 默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
-此接口仅支持2in1设备。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 19开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -7239,13 +7240,13 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在自由窗口模式下生效，用于设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 18开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
