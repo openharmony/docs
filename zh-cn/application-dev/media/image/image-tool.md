@@ -1,4 +1,9 @@
 # 编辑图片EXIF信息
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 Image Kit提供图片EXIF信息的读取与编辑能力。
 

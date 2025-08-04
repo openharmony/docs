@@ -1,4 +1,9 @@
 # 如何处理HEIF图片
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## HEIF图片介绍
 
