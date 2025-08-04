@@ -1,5 +1,11 @@
 # 扩展认证
 
+<!--Kit: Network Kit-->
+<!--Subsystem: communication-->
+<!--Owner: @foredward-->
+<!--SE: @h00918518-->
+<!--TSE: @WIFIroam-test-->
+
 ## 简介
 
 部分企业用户的PC网络接入认证使用802.1X认证方式，认证客户端由第三方厂商提供。
