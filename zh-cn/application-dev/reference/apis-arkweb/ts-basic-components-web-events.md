@@ -1119,7 +1119,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
-当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。onInterceptRequest可以拦截所有跳转，需要根据具体业务去做判断。
+当Web组件加载URL之前触发该回调，用于拦截URL并返回响应数据。`onInterceptRequest`可拦截所有跳转请求并返回响应数据，但无法访问POST请求体（Body）内容，且不支持分片缓冲（buffer）类型数据获取。此类场景需改用[WebSchemeHandler](./js-apis-webview.md#webschemehandler12)实现，依据具体业务需求进行判断。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
