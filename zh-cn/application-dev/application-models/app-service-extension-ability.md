@@ -2,18 +2,18 @@
 
 ## 概述
 
-从API version 20开始，支持使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。
+从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。
 
 只支持2in1设备上的[企业普通应用](../security/AccessToken/permissions-for-enterprise-apps.md)进行后台服务开发，例如，用于保障网络安全的企业EDR软件，或者管理设备的企业MDM软件等。
 
 ## 接口说明
 
-开发者可以在UIAbility中以启动或连接的方式来拉起AppServiceExtensionAbility组件。两种方式对比如下：
+开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中以启动或连接的方式来拉起AppServiceExtensionAbility组件。两种方式对比如下：
 
 | 拉起方式 | 接口名 | 说明 |
 | -------- | -------- | -------- |
 | 启动 | [startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20) | 在UIAbility中启动一个AppServiceExtensionAbility组件。UIAbility退出后，AppServiceExtensionAbility组件可以继续存在。|
-| 连接 | [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) | 在UIAbility中连接一个组件后，UIAbility退出后，AppServiceExtensionAbility组件也将一起退出。 |
+| 连接 | [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) | 在UIAbility中连接一个AppServiceExtensionAbility组件后，UIAbility退出后，AppServiceExtensionAbility组件也将一起退出。 |
 
 ## 约束限制
 
