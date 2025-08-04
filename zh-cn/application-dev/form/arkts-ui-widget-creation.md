@@ -5,7 +5,7 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 ### 创建应用工程
 创建卡片当前有两种入口：
 - 创建工程时，选择Application，可以在创建工程后右键新建卡片。
-- 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片。
+- 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片。<br>
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**说明：** 
@@ -15,22 +15,22 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 ### ArkTS卡片创建
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
 
-1. 右键新建卡片。
+1. 右键新建卡片。<br>
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
 >在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
    
-2. 根据实际业务场景，选择一个卡片模板。
+2. 根据实际业务场景，选择一个卡片模板。<br>
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
 
-3. 在选择卡片的开发语言类型（Language）时，选择ArkTS选项。选择卡片支持的外观规格（Support dimension）时，选择期望的卡片尺寸，再选择默认的外观规格（Default dimension）。详细的卡片外观规格，可参考[form_config.json配置文件](arkts-ui-widget-configuration.md)，后续也可以在form_config.json配置文件中修改卡片规格。然后单击“Finish”，即可完成ArkTS卡片创建。
+3. 在选择卡片的开发语言类型（Language）时，选择ArkTS选项。选择卡片支持的外观规格（Support dimension）时，选择期望的卡片尺寸，再选择默认的外观规格（Default dimension）。详细的卡片外观规格，可参考[form_config.json配置文件](arkts-ui-widget-configuration.md)，后续也可以在form_config.json配置文件中修改卡片规格。然后单击“Finish”，即可完成ArkTS卡片创建。<br>
    ![WidgetProjectCreate3](figures/WidgetProjectCreate3.png)
    
-   建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。  
+   建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。<br>
    ![WidgetProjectView](figures/WidgetProjectView.png)
 ### 工程结构介绍
-**图1** ArkTS卡片工程目录、相关模块
+**图1** ArkTS卡片工程目录、相关模块<br>
 ![WidgetModules](figures/WidgetModules.png)
 - [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
