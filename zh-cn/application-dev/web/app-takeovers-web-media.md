@@ -1,6 +1,6 @@
 # 托管网页中的媒体播放
 <!--Kit: ArkWeb-->
-<!--Subsystem:Web-->
+<!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->
