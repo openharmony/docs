@@ -12,7 +12,7 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 >
 >基于不同版本的DevEco Studio，请以实际界面为准。
 
-### ArkTS卡片创建
+### 新建卡片
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
 
 1. 右键新建卡片。<br>
@@ -53,7 +53,7 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 ## 独立卡片包形态
 最终编译的产物分为卡片包和应用包，已达到卡片的前端和后端解耦目的。
 ### [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)
-### ArkTS卡片创建
+### 新建卡片
 1. 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_1.png)
 2. 选择模版之后点击【Next】。<br>
