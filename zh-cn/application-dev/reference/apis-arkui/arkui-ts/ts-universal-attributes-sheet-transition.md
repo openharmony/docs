@@ -450,7 +450,7 @@ bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss。
 @Entry
 @Component
 struct bindSheetExample {
-  @State isShow: Boolean = false;
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
