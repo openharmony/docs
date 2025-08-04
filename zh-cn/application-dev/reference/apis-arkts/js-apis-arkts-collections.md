@@ -1,6 +1,6 @@
 # @arkts.collections (ArkTS容器集)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -696,9 +696,8 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
-| 10200201 | Concurrent modification exception.      |
+| 10200201 | Concurrent modification error.|
 
 **示例：**
 
@@ -4004,8 +4003,8 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
