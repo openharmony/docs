@@ -1,4 +1,9 @@
 # 数据类型说明
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--SE: @shiyu_huang-->
+<!--TSE: @TerryTsao-->
 
 ## 长度类型
 

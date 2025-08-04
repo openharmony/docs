@@ -1,4 +1,9 @@
 # 安全区域
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @WendongPang-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 安全区域是指页面的显示区域，默认情况下开发者开发的界面都布局在安全区域内，不与系统设置的避让区比如状态栏、导航栏区域重叠。提供属性方法允许开发者设置组件绘制内容突破安全区域的限制，通过[expandSafeArea](#expandsafearea)属性支持组件不改变布局情况下扩展其绘制区域至安全区外，通过设置[setKeyboardAvoidMode](#setkeyboardavoidmode11)来配置虚拟键盘弹出时页面的避让模式。页面中有标题栏等文字不希望和避让区重叠时，建议对组件设置expandSafeArea属性实现沉浸式效果，也可以直接通过窗口接口[setWindowLayoutFullScreen](../arkts-apis-window-Window.md#setwindowlayoutfullscreen9)设置全屏沉浸式。
 

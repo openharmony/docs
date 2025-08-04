@@ -1781,7 +1781,7 @@ The input bundleName is not a system HSP.
 
 **错误描述**
 
-通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
+通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#createsystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
 
 **可能原因**
 

@@ -553,7 +553,7 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 
 ## NumberOptions<sup>(deprecated)</sup>
 
-> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
@@ -563,30 +563,26 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 | ------------------------ | ------- | ---- | ---- |  ---------------------------------------- |
 | locale                   | string  | 否    | 是    | 合法的区域ID，&nbsp;如："zh-Hans-CN"。<br>默认值：系统当前区域ID。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。               |
 | currency                 | string  | 否    | 是    | 货币单位，&nbsp;取值符合[ISO-4217标准](https://www.iso.org/iso-4217-currency-codes.html)，如："EUR"，"CNY"，"USD"等。<br>从API version 12开始支持三位数字代码，如："978"，"156"，"840"等。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。    |
-| currencySign             | string  | 否    | 是    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。<br>默认值：standard。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| currencyDisplay          | string  | 否    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。<br>默认值：symbol。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| currencySign             | string  | 否    | 是    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。<br>默认值：standard。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表19](#附录)。 |
+| currencyDisplay          | string  | 否    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。<br>默认值：symbol。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表20](#附录)。 |
 | unit                     | string  | 否    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。<br>从API version 18开始新增支持的组合单位有： "beat-per-minute", "body-weight-per-second", "breath-per-minute", "foot-per-hour", "jump-rope-per-minute", "meter-per-hour", "milliliter-per-minute-per-kilogram", "rotation-per-minute", "step-per-minute", "stroke-per-minute"。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
-| unitDisplay              | string  | 否    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值：short。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| unitUsage<sup>8+</sup>   | string  | 否    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。<br>默认值：default。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| unitDisplay              | string  | 否    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值：short。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表21](#附录)。 |
+| unitUsage<sup>8+</sup>   | string  | 否    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。<br>默认值：default。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表22](#附录)。 |
 | signDisplay              | string  | 否    | 是    | 数字符号的显示格式，取值包括：<br>"auto"：自动判断是否显示正负符号。<br>"never"：不显示正负号。<br>"always"：总是显示正负号。<br>"exceptZero"：除了0都显示正负号。<br>默认值："auto"。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| compactDisplay           | string  | 否    | 是    | 紧凑显示格式，取值包括："long",&nbsp;"short"。<br>默认值：short。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。      |
-| notation                 | string  | 否    | 是    | 数字的表示方法，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。<br>默认值：standard。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| compactDisplay           | string  | 否    | 是    | 紧凑显示格式，取值包括："long",&nbsp;"short"。<br>默认值：short。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表18](#附录)。      |
+| notation                 | string  | 否    | 是    | 数字的表示方法，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。<br>默认值：standard。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表17](#附录)。 |
 | localeMatcher            | string  | 否    | 是    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。<br>默认值：best fit。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | style                    | string  | 否    | 是    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。<br>默认值：decimal。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | numberingSystem          | string  | 否    | 是    | 数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。<br>默认值：区域的默认数字系统。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| useGrouping              | boolean | 否    | 是    | true表示分组显示，false表示不分组显示。<br>默认值：true。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                  |
-| minimumIntegerDigits     | number  | 否    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
-| minimumFractionDigits    | number  | 否    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
-| maximumFractionDigits    | number  | 否    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
-| minimumSignificantDigits | number  | 否    | 是    | 表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
-| maximumSignificantDigits | number  | 否    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
+| useGrouping              | boolean | 否    | 是    | true表示分组显示，false表示不分组显示。<br>默认值：true。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表16](#附录)。                                  |
+| minimumIntegerDigits     | number  | 否    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表11](#附录)。                  |
+| minimumFractionDigits    | number  | 否    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表12](#附录)。                  |
+| maximumFractionDigits    | number  | 否    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表13](#附录)。                  |
+| minimumSignificantDigits | number  | 否    | 是    | 表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表14](#附录)。                 |
+| maximumSignificantDigits | number  | 否    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。<br>不同取值的显示效果请参考[附录表15](#附录)。                  |
 | roundingPriority<sup>18+</sup>   | string  | 否    | 是    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto"，"morePrecision"&nbsp;取最大分数位数，"lessPrecision"&nbsp;取最大有效位数。<br>默认值：auto。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
 | roundingIncrement<sup>18+</sup>  | number  | 否    | 是    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>默认值：1。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
 | roundingMode<sup>18+</sup>       | string  | 否    | 是    | 表示舍入模式，取值包括：<br>"ceil"：向上取整。<br>"floor"：向下取整。<br>"expand"：远离零取整。<br>"trunc"：向零取整。<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整。<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整。<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整。<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整。<br>"halfEven"：半向偶数取整，大于增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
-
->  **说明：**
->
->  - 各属性不同取值代表的含义或呈现效果，请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。
 
 ## Collator<sup>8+</sup>
 
@@ -969,7 +965,7 @@ let style: string = options.style; // style = 'short'
 
 ## RelativeTimeFormatInputOptions<sup>(deprecated)</sup>
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
 
 创建相对时间格式化对象时可设置的配置项。
 
@@ -1002,13 +998,9 @@ let style: string = options.style; // style = 'short'
 | 名称              | 类型     | 只读  | 可选   |说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | locale          | string | 否    | 否    | 表示区域ID的字符串，包括语言以及可选的脚本和区域。             |
-| numeric         | string | 否    | 否    | 输出消息的格式，表示格式化结果中是否使用数字表示相对日期或时间。取值包括："always",&nbsp;"auto"。      |
-| style           | string | 否    | 否    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| numeric         | string | 否    | 否    | 输出消息的格式，表示格式化结果中是否使用数字表示相对日期或时间。取值包括："always",&nbsp;"auto"。<br>不同取值的显示效果请参考[附录表23](#附录)。      |
+| style           | string | 否    | 否    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>不同取值的显示效果请参考[附录表24](#附录)。 |
 | numberingSystem | string | 否    | 否    | 使用的数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-
-> **说明**
->
-> numeric、style不同参数取值显示的效果，请参考[相对时间格式化选项](../../internationalization/i18n-time-date.md#相对时间格式化)。
 
 ## 附录
 
@@ -1108,3 +1100,126 @@ let style: string = options.style; // style = 'short'
 | long | 详细的时段表述。 | 下午 | in the afternoon |
 | short | 简短的时段表示。 | 下午 | in the afternoon |
 | narrow | 最简短的时段表示。 | 下午 | in the afternoon |
+
+**数字格式化选项**
+
+通过数字格式化选项可以设置最小整数位数、最小小数位数、最大小数位数、最小有效位数、最大有效位数、是否分组显示、数字的表示方法、紧凑显示格式、舍入模式、舍入优先级、舍入增量以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)和unit(单位)。
+
+以123000.123为例，各选项取值和显示效果如下表所示：
+
+**表11** 最小整数位数(minimumIntegerDigits)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 6 | 123,000.123 | 
+| 7 | 0,123,000.123 | 
+
+**表12** 最小小数位数(minimumFractionDigits)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 3 | 123,000.123 | 
+| 4 | 123,000.1230 | 
+
+**表13** 最大小数位数(maximumFractionDigits)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 3 | 123,000.123 | 
+| 2 | 123,000.12 | 
+
+**表14** 最小有效位数(minimumSignificantDigits)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 9 | 123,000.123 | 
+| 10 | 123,000.1230 | 
+
+**表15** 最大有效位数(maximumSignificantDigits)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 9 | 123,000.123 | 
+| 8 | 123,000.12 | 
+
+**表16** 是否分组显示(useGrouping)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| true | 123,000.123 | 
+| false | 123000.123 | 
+
+**表17** 数字的表示方法(notation)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| standard | 123,000.123 | 
+| scientific | 1.230001E5 | 
+| engineering | 123.000123E3 | 
+| compact | 123K | 
+
+**表18** 紧凑显示格式(compactDisplay)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| short | 123K | 
+| long | 123 thousand | 
+
+**货币格式化选项**
+
+以货币单位USD，数字大小-12300为例。
+
+**表19** 货币单位的符号(currencySign)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| standard | -US$12,300.00 | 
+| accounting | (US$12,300.00) | 
+
+**表20** 货币的显示方式(currencyDisplay)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| symbol | -US$12,300.00 | 
+| narrowSymbol | -$12,300.00 | 
+| code | -USD 12,300.00 | 
+| name | -12,300.00 US dollars | 
+
+**单位格式化选项**
+
+以单位hectare，数字大小-12300为例。
+
+**表21** 单位的显示格式(unitDisplay)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| long | -12,3000 hectares | 
+| short | -12,300 ha | 
+| narrow | -12,300ha | 
+
+**表22** 单位的使用场景(unitUsage)
+
+| 取值 | 显示效果 | 
+| -------- | -------- |
+| 未设置 | -12,300 ha | 
+| default | -47.491 sq mi | 
+| area-land-agricult | -30,393.962 ac | 
+
+**相对时间格式化选项**
+
+以相对时间：一天前，区域ID: fr-FR和en-GB为例。
+
+**表23** 数值表示(numeric)
+
+| 取值   | 描述                                          | 显示效果(fr-FR) | 显示效果(en-GB) |
+| ------ | -------------------------------------------- | -------------- | --------------- |
+| always | 使用数值表示相对时间。                         | il y a 1 jour  | 1 day ago       |
+| auto   | 根据区域ID自适应选择短语或数值表示相对时间。 | hier           | yesterday       |
+
+**表24** 相对时间样式(style)
+
+| 取值   | 描述                  | 显示效果(fr-FR) | 显示效果(en-GB) |
+| ------ | -------------------- | -------------- | --------------  |
+| long   | 详细的相对时间显示。   | il y a 1 jour  | 1 day ago       |
+| short  | 简短的相对时间显示。   | il y a 1 j     | 1 day ago       |
+| narrow | 最简短的相对时间显示。 | -1 j           | 1 day ago       |

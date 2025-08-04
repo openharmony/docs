@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
-The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
+The module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-Obtains a **PhotoAccessHelper** instance, which can be used for accessing and modifying media files in an album.
+Obtains a PhotoAccessHelper instance, which can be used for accessing and modifying media files in an album.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -34,7 +34,7 @@ Obtains a **PhotoAccessHelper** instance, which can be used for accessing and mo
 
 | Type                                   | Description                |
 | --------------------------------------- | :------------------- |
-| [PhotoAccessHelper](#photoaccesshelper) | **PhotoAccessHelper** instance obtained.|
+| [PhotoAccessHelper](#photoaccesshelper) | PhotoAccessHelper instance obtained.|
 
 **Error codes**
 
@@ -50,8 +50,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
 // Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
 import { common } from '@kit.AbilityKit';
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 ```
 
 ## PhotoAccessHelper
@@ -72,7 +84,7 @@ If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use 
 
 | Name | Type                                                     | Mandatory| Description                |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the media assets.|
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes  | Retrieval options.|
 
 **Return value**
 
@@ -92,14 +104,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -135,8 +147,8 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys). The value is a string of 36 characters.|
-| options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
+| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys). The value is a string of 36 characters.|
+| options  | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes  | Retrieval options.                                          |
 
 **Return value**
 
@@ -156,14 +168,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getBurstAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -214,7 +226,7 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
 | extension | string                                                      | Yes  | File name extension, for example, **'jpg'**. The value contains 1 to 255 characters.       |
-| options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
+| options   | [photoAccessHelper.CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
 
 **Return value**
 
@@ -234,13 +246,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let photoType: sendablePhotoAccessHelper.PhotoType = sendablePhotoAccessHelper.PhotoType.IMAGE;
@@ -275,7 +287,7 @@ Before the operation, ensure that the albums to obtain exist.
 | ------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | type    | [AlbumType](#albumtype)                                   | Yes  | Type of the albums to obtain.                            |
 | subtype | [AlbumSubtype](#albumsubtype)                             | Yes  | Subtype of the album.                          |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | No  | Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.|
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | No  | Retrieval options. If this parameter is not specified, the albums are obtained based on the album type by default.|
 
 **Return value**
 
@@ -295,7 +307,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -303,7 +315,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -342,7 +354,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name | Type                                                     | Mandatory| Description    |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes  | Retrieval options.|
 
 **Return value**
 
@@ -362,7 +374,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -370,7 +382,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -397,8 +409,8 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-Releases this **PhotoAccessHelper** instance. This API uses a promise to return the result.
-Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
+Releases this PhotoAccessHelper instance. This API uses a promise to return the result.
+Call this API when the APIs of the PhotoAccessHelper instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -418,11 +430,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('releaseDemo');
   try {
     console.info('use function...');
@@ -445,21 +457,19 @@ Provides APIs for encapsulating file asset attributes.
 
 ### Properties
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name       | Type                   | Read-Only| Optional| Description                                                        |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri<sup>12+</sup>         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
-| photoType<sup>12+</sup>   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
-| displayName<sup>12+</sup> | string                  | Yes  | No  | File name, including the file name extension, to display. The value contains 1 to 255 characters.                                    |
+| uri<sup>12+</sup>         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
+| displayName | string                  | Yes  | No  | File name, including the file name extension, to display. The value contains 1 to 255 characters.                                    |
 
 ### convertToPhotoAsset
 
 convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
-Converts a Sendable **PhotoAsset** object to a non-Sendable **PhotoAsset** object.
+Converts a Sendable PhotoAsset object to a non-Sendable PhotoAsset object.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -467,7 +477,7 @@ Converts a Sendable **PhotoAsset** object to a non-Sendable **PhotoAsset** objec
 
 | Type                        | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-Sendable type.|
+| photoAccessHelper.PhotoAsset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md) of the non-Sendable type.|
 
 **Error codes**
 
@@ -480,14 +490,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('convertToPhotoAssetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -517,13 +527,13 @@ Obtains a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the member parameter to obtain. <br>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**.|
+| member | string | Yes  | Name of the member parameter to obtain. <br>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**.|
 
 **Return value**
 
 | Type                                                 | Description                        |
 | ----------------------------------------------------- | ---------------------------- |
-| [photoAccessHelper.MemberType](js-apis-photoAccessHelper.md#membertype) | **PhotoAsset** member parameter obtained.|
+| [photoAccessHelper.MemberType](arkts-apis-photoAccessHelper-t.md#membertype) | **PhotoAsset** member parameter obtained.|
 
 **Error codes**
 
@@ -535,14 +545,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetGetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -573,8 +583,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE. The value contains 1 to 255 characters.|
-| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
+| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE. The value contains 1 to 255 characters.|
+| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -586,14 +596,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetSetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -641,14 +651,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -685,13 +695,13 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Name| Type                                                 | Mandatory| Description        |
 | ------ | ----------------------------------------------------- | ---- | ------------ |
-| size   | [image.Size](../apis-image-kit/js-apis-image.md#size) | No  | Size of the thumbnail.|
+| size   | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | No  | Size of the thumbnail.|
 
 **Return value**
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -705,7 +715,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -714,7 +724,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -761,14 +771,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getCountDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -805,14 +815,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -834,7 +844,7 @@ async function example() {
 
 close(): void
 
-Closes this **FetchFileResult** instance to invalidate it. After this instance is closed, the APIs in this instance cannot be invoked.
+Closes this FetchResult instance to invalidate it. After this instance is closed, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -848,14 +858,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('fetchResultCloseDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -896,14 +906,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -941,14 +951,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -986,14 +996,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1037,14 +1047,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getObjectByPositionDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1081,14 +1091,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1130,7 +1140,7 @@ Converts this Sendable album to a non-Sendable album.
 
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | Album of the non-Sendable type.|
+| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | Album of the non-Sendable type.|
 
 **Error codes**
 
@@ -1143,7 +1153,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -1151,7 +1161,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('convertToPhotoAlbumDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -1187,7 +1197,7 @@ Obtains media assets. This API uses a promise to return the result.
 
 | Name | Type                                                     | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes  | Retrieval options.|
 
 **Return value**
 
@@ -1208,7 +1218,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -1216,7 +1226,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('albumGetAssetsDemoPromise');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -1264,7 +1274,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a **phAccessHelper** instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper).
 
 <!--code_no_check-->
 ```ts
@@ -1272,7 +1282,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {

@@ -1,4 +1,9 @@
 # 同层渲染
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @ding-xin88-->
+<!--SE: @LongLie-->
+<!--TSE: @ghiker-->
 
 在系统中，应用可以使用Web组件加载Web网页。当非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染技术，通过ArkUI组件渲染这些组件（简称为同层组件）。
 

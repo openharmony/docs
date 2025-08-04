@@ -1475,7 +1475,7 @@ struct Index {
 
 get commonAttribute(): CommonAttribute
 
-获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)。
+获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)和[通用事件](./arkui-ts/ts-component-general-events.md)。
 
 仅可以修改自定义节点的属性。
 
@@ -1487,13 +1487,13 @@ get commonAttribute(): CommonAttribute
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
+| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性和通用事件。|
 
 > **说明：**
 >
 > FrameNode的效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
 >
-> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)。
+> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#attribute支持范围)。
 
 **示例：**
 

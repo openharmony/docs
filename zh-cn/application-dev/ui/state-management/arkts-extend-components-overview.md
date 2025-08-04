@@ -1,4 +1,9 @@
 # 组件扩展概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--SE: @zhangboren-->
+<!--TSE: @TerryTsao-->
 
 ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装饰器不仅能通过模块化封装简化UI开发流程，还衍生出@BuilderParam装饰器、@LocalBuilder装饰器和wrapBuilder，形成完整的可复用的UI结构体系。
 

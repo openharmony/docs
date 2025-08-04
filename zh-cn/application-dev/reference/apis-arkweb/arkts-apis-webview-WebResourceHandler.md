@@ -1,4 +1,9 @@
 # Class (WebResourceHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 通过WebResourceHandler，可以提供自定义的返回头以及返回体给Web组件。
 

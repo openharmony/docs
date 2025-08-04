@@ -45,7 +45,6 @@ export default class EntryAbility extends UIAbility {
       console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
     }
     if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
       try {
         const options: distributedKVStore.Options = {
           createIfMissing: true,
@@ -63,16 +62,15 @@ export default class EntryAbility extends UIAbility {
           }
           console.info('Succeeded in getting KVStore.');
           kvStore = store;
+          if (kvStore !== undefined) {
+            //进行后续操作
+            //...
+          }
         });
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-    }
-    if (kvStore !== undefined) {
-      kvStore = kvStore as distributedKVStore.SingleKVStore;
-      //进行后续操作
-      //...
     }
   }
 }

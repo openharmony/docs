@@ -1,4 +1,9 @@
 # Circle
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
  用于绘制圆形的组件。 
 
@@ -119,7 +124,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 ### strokeDashOffset
 
-strokeDashOffset(value: Length)
+strokeDashOffset(value: number | string)
 
 设置边框绘制起点的偏移量，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。异常值按照默认值处理。
 
@@ -133,7 +138,7 @@ strokeDashOffset(value: Length)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -173,7 +178,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 ### strokeMiterLimit
 
-strokeMiterLimit(value: Length)
+strokeMiterLimit(value: number | string)
 
 设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Circle组件无法设置尖角图形，该属性设置无效。
 
@@ -187,7 +192,7 @@ strokeMiterLimit(value: Length)
 
 | 参数名 | 类型                       | 必填 | 说明                                           |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
 
 ### strokeOpacity
 

@@ -1,4 +1,9 @@
 # 触摸事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 手指在组件上按下、滑动或抬起时触发。
 

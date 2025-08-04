@@ -1,4 +1,9 @@
 # Class (WebMessageExt)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 [WebMessagePort](./arkts-apis-webview-WebMessagePort.md)接口接收、发送的数据对象。
 

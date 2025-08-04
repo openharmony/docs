@@ -3279,7 +3279,7 @@ try {
     console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribing imeChange. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 

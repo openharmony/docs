@@ -1,4 +1,9 @@
 # 菜单控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--SE: @zhanghaibo0-->
+<!--TSE: @lxl007-->
 
 为组件绑定弹出式菜单，支持长按、点击或鼠标右键来触发菜单的弹出，菜单项以垂直列表形式显示。
 
@@ -22,6 +27,8 @@
 >  - 菜单最大宽度受设备所占栅格限制，即使设置宽度100%，也不会占满屏幕。
 >
 >  - 菜单绑定的组件对象销毁时，菜单消失。
+>
+>  - [bindContextMenu](#bindcontextmenu8)仅支持在子窗中显示，[bindMenu](#bindmenu)可以通过配置[MenuOptions](#menuoptions10)中的showInSubWindow属性设置是否在子窗中显示。
 
 
 ## bindMenu
