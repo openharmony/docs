@@ -1,4 +1,9 @@
 # \@Prop装饰器：父子单向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 \@Prop装饰的变量可以和父组件建立单向同步关系。\@Prop变量允许在本地修改，但修改后的变化不会同步回父组件。
 

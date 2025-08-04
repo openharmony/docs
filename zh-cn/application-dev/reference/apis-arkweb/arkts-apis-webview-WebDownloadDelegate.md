@@ -1,4 +1,9 @@
 # Class (WebDownloadDelegate)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 下载任务的状态会通过该类的回调接口通知给用户。
 

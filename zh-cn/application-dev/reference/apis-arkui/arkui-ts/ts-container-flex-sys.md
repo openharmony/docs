@@ -1,4 +1,9 @@
 # Flex (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 以弹性方式布局子组件的容器组件。
 

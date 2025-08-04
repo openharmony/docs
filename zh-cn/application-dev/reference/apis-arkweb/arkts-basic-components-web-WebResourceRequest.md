@@ -1,4 +1,9 @@
 # Class (WebResourceRequest)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](./arkts-basic-components-web-events.md#onerrorreceive)。
 

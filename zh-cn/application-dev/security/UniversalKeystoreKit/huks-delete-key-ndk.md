@@ -1,5 +1,11 @@
 # 密钥删除(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 为保证数据安全性，当不需要使用该密钥时，应该删除密钥。
 
 ## 在CMake脚本中链接相关动态库

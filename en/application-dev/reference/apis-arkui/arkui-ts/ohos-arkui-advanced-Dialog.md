@@ -364,7 +364,7 @@ struct Index {
       // Selected state of the check box
       isChecked: this.isChecked,
       // Content of the check box
-      checkTips: 'Don't ask again after denying',
+      checkTips: 'Do not ask me again',
       primaryButton: {
         value: 'Deny',
         action: () => {},

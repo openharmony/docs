@@ -1,5 +1,11 @@
 # ArkUI_WaterFlowSectionOption
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fangyuhao-->
+<!--SE: @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 ## 概述
 
 定义FlowItem分组配置信息。

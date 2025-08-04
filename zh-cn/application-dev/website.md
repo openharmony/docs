@@ -2417,22 +2417,29 @@
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
-          - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
-          - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
+          - [AbilityBase](reference/apis-ability-kit/capi-abilitybase.md)
+          - [AbilityRuntime](reference/apis-ability-kit/capi-abilityruntime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
-          - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
+          - [ChildProcess](reference/apis-ability-kit/capi-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
-          - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
-          - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
-          - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
-          - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
+          - [ability_base_common.h](reference/apis-ability-kit/capi-ability-base-common-h.md)
+          - [ability_runtime_common.h](reference/apis-ability-kit/capi-ability-runtime-common-h.md)
+          - [application_context.h](reference/apis-ability-kit/capi-application-context-h.md)
+          - [context_constant.h](reference/apis-ability-kit/capi-context-constant-h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
-          - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
-          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
-          - [want.h](reference/apis-ability-kit/want__8h.md)
+          - [native_child_process.h](reference/apis-ability-kit/capi-native-child-process-h.md)
+          - [start_options.h](reference/apis-ability-kit/capi-start-options-h.md)
+          - [want.h](reference/apis-ability-kit/capi-want-h.md)
         - 结构体<!--ability-struct-->
-          - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
+          - [AbilityBase_Element](reference/apis-ability-kit/capi-abilitybase-element.md)
+          - [AbilityBase_Want](reference/apis-ability-kit/capi-abilitybase-want.md)
+          - [AbilityRuntime_Startoptions](reference/apis-ability-kit/capi-abilityruntime-startoptions.md)
+          - [NativeChildProcess_Fd](reference/apis-ability-kit/capi-nativechildprocess-fd.md)
+          - [NativeChildProcess_FdList](reference/apis-ability-kit/capi-nativechildprocess-fdlist.md)
+          - [NativeChildProcess_Options](reference/apis-ability-kit/capi-nativechildprocess-options.md)
+          - [NativeChildProcess_Args](reference/apis-ability-kit/capi-nativechildprocess-args.md)
+          - [Ability_ChildProcessConfigs](reference/apis-ability-kit/capi-ability-childprocessconfigs.md)
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
           - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
           - [OH_NativeBundle_Metadata](reference/apis-ability-kit/native_interface_bundle_metadata.md)
@@ -3486,6 +3493,7 @@
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           - [XComponent组件错误码](reference/apis-arkui/errorcode-xcomponent.md)
           - [Video组件错误码](reference/apis-arkui/errorcode-video.md)
+          - [状态管理错误码](reference/apis-arkui/errorcode-stateManagement.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
@@ -4275,7 +4283,7 @@
             - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
-            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
+            - [OH_CommonEvent](reference/apis-basic-services-kit/capi-oh-commonevent.md)
             - [DeviceInfo](reference/apis-basic-services-kit/capi-deviceinfo.md)
             - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/capi-oh-batteryinfo.md)
@@ -4286,8 +4294,8 @@
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/capi-deviceinfo-h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/capi-ohbattery-info-h.md)
-            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
-            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
+            - [oh_commonevent.h](reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/capi-oh-commonevent-support-h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/capi-oh-pasteboard-h.md)
             - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md)
             - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
@@ -4301,6 +4309,9 @@
             - [Print_PrintAttributes](reference/apis-basic-services-kit/_print___print_attributes.md)
             - [Print_PrintDocCallback](reference/apis-basic-services-kit/_print___print_doc_callback.md)
             - [Print_Range](reference/apis-basic-services-kit/_print___range.md)
+            - [CommonEvent_SubscribeInfo](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-subscribeinfo.md)
+            - [CommonEvent_PublishInfo](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-publishinfo.md)
+            - [CommonEvent_RcvData](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-rcvdata.md)
             - [Pasteboard_ProgressInfo](reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md)
             - [Pasteboard_GetDataParams](reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md)
             - [OH_PasteboardObserver](reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md)
@@ -5503,7 +5514,7 @@
         - 模块<!--notification-module-->
           - [Notification](reference/apis-notification-kit/capi-notification.md)
         - 头文件<!--notification-struct-->
-          - [notification.h](reference/apis-notification-kit/notification_8h.md)
+          - [notification.h](reference/apis-notification-kit/capi-notification-h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->

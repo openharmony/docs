@@ -1,4 +1,9 @@
 # 输入设备与事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 不同的输入设备会产生不同的事件类型。只有在用户操作特定输入设备和工具时，才会触发基础事件。通过输入设备和工具类型，可以区分这些事件。
 

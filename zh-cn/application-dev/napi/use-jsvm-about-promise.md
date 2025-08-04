@@ -1,4 +1,9 @@
 # 使用JSVM-API接口处理异步操作
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -240,8 +245,10 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     // 解析 promise
     JSVM_Value resolveValue;
     CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
-    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
-    deferred = nullptr;
+    if (deferred != nullptr) {
+        OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+        deferred = nullptr;
+    }
 
     // 获取 promise 解析后 x1 和 x2 的值
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));

@@ -1,4 +1,9 @@
 # 工具栏设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 设置组件对应的工具栏。
 

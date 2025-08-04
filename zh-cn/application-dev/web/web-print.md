@@ -1,4 +1,9 @@
 # 使用Web组件打印前端页面
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhang-yinglie-->
+<!--SE: @handyohos-->
+<!--TSE: @ghiker-->
 
 Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。
 

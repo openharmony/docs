@@ -1,4 +1,9 @@
 # 托管网页中的媒体播放
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhangyao75477-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 Web组件提供了应用接管网页中媒体播放的能力，用来支持应用增强网页的媒体播放，如画质增强等。
 

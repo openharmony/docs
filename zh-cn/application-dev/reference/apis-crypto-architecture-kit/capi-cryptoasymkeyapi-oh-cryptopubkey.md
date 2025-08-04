@@ -1,5 +1,11 @@
 # OH_CryptoPubKey
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 ## 概述
 
 定义公钥结构体。

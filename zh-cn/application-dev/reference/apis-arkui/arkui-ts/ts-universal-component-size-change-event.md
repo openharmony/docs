@@ -1,4 +1,9 @@
 # 组件尺寸变化事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 该事件指组件显示的尺寸发生变化时触发的事件。
 

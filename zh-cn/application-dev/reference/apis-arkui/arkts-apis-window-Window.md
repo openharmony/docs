@@ -1547,6 +1547,79 @@ try {
 }
 ```
 
+## setDragKeyFramePolicy<sup>20+</sup>
+
+setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy&gt;
+
+设置主窗口拖拽的关键帧策略，并使用Promise处理异步回调。
+
+非主窗口调用时，返回1300004错误码。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备可正常调用，在其他设备中返回801错误码。
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| keyFramePolicy | [KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)  | 是   | 用于设置拖拽的关键帧策略。 |
+
+**返回值：**
+
+| 类型                                  | 说明                      |
+| ------------------------------------- | ------------------------- |
+| Promise&lt;[KeyFramePolicy](arkts-apis-window-i.md#keyframepolicy20)&gt; | Promise对象，返回实际生效的关键帧策略。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. The parameter format is incorrect.|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let keyFramePolicy: window.KeyFramePolicy = {
+        enable: true
+      }
+      try {
+        let promise = windowClass.setDragKeyFramePolicy(keyFramePolicy);
+        promise.then((ret: window.KeyFramePolicy) => {
+          console.info(`Succeeded in setting key frame: ${JSON.stringify(ret)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set key frame. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set key frame. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
 ## setWindowSystemBarEnable<sup>9+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
@@ -2290,7 +2363,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -2336,7 +2409,7 @@ windowClass.loadContent('pages/page2', storage, (err: BusinessError) => {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -2385,7 +2458,7 @@ promise.then(() => {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -2471,7 +2544,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -2541,7 +2614,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -6540,14 +6613,13 @@ export default class EntryAbility extends UIAbility {
 
 restore(): Promise&lt;void&gt;
 
-将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。
-此接口仅在多窗层叠布局效果下生效，仅在主窗口为最小化状态且UIAbility生命周期为onForeground时生效。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+主窗口为最小化状态且UIAbility生命周期为onForeground时，将主窗口从最小化状态，恢复到前台显示，并恢复到进入最小化状态之前的大小和位置。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -6692,13 +6764,15 @@ try {
 
 setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;WindowLimits&gt;
 
-设置当前应用窗口的尺寸限制，使用Promise异步回调。
+该接口仅在自由窗口模式下生效，用于设置当前应用窗口的尺寸限制，使用Promise异步回调。
+
 默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
-此接口仅支持2in1设备。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 19开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -7239,13 +7313,13 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在自由窗口模式下生效，用于设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 18开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -8677,11 +8751,14 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 设置子窗或悬浮窗的圆角半径值，使用Promise异步回调。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
 
 在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius17)接口可以获得窗口默认圆角半径值。
+
+> **说明：**
+>
+> - 在API version 20之前，<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+> - 从API version 20开始，此接口支持在手机设备、2in1设备和平板设备下使用。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -10480,7 +10557,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+为当前窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 > **说明：**
 >
@@ -10514,7 +10591,7 @@ windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
 
 loadContent(path: string): Promise&lt;void&gt;
 
-为当前窗口加载具体页面内容，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+为当前窗口加载具体页面内容，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。当前UI的执行上下文可能不明确，所以不建议在回调函数中做UI相关的操作。
 
 > **说明：**
 >

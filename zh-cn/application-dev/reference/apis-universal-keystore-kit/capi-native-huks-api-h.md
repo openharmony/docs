@@ -1,5 +1,11 @@
 # native_huks_api.h
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 ## 概述
 
 声明用于访问HUKS的API。

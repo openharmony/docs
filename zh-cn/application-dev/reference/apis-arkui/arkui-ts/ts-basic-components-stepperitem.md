@@ -1,4 +1,9 @@
 # StepperItem
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 用作[Stepper](ts-basic-components-stepper.md)组件的页面子组件。
 

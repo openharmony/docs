@@ -941,8 +941,8 @@ struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t
 | 名称 | 描述 | 
 | -------- | -------- |
 | mimeType | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
-| width | 亮度的宽度，单位为pixel。 | 
-| height | 亮度的高度，单位为pixel。 | 
+| width | 图像的宽度，单位为pixel。 | 
+| height | 图像的高度，单位为pixel。 | 
 
 **返回：**
 

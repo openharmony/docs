@@ -1,4 +1,9 @@
 # 属性字符串错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 > **说明：**
 >

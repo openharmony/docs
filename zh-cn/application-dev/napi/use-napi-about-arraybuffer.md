@@ -1,4 +1,9 @@
 # 使用Node-API接口进行ArrayBuffer相关开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -58,7 +63,7 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined;
 ```
 <!-- @[napi_is_arraybuffer_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -91,6 +96,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include <cstring>
 
 static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
@@ -123,6 +129,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value bufferData = nullptr;
     void *newData = nullptr;
     napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
+    memcpy(newData, data, byteLength);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -137,7 +144,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: ArrayBuffer;
 }
-export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined;
 ```
 <!-- @[napi_get_arraybuffer_info_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -147,8 +154,15 @@ ArkTS侧示例代码
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
-const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
+try {
+  let typedArray = new Uint8Array([1, 2, 3, 4, 5]);
+  let buffer = typedArray.buffer;
+  let result = testNapi.getArrayBufferInfo(buffer) as testNapi.ArrayBufferInfo;
+  let resBuffer = new Uint8Array(result.buffer);
+  hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info byteLength: %{public}d buffer: %{public}s', result.byteLength, JSON.stringify(resBuffer));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info error: %{public}s', error.message);
+}
 ```
 <!-- @[ark_napi_get_arraybuffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/ets/pages/Index.ets) -->
 

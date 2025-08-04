@@ -1,4 +1,9 @@
 # 不依赖UI组件的全局自定义弹出框 (openCustomDialog)（推荐）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12)接口在相对应用复杂的场景来实现自定义弹出框，相较于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)优势点在于页面解耦，支持[动态刷新](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#update)。
 
@@ -10,7 +15,7 @@
 > 
 > 本文介绍通过入参形式为ComponentContent创建自定义弹出框，传builder形式的弹出框使用方法可参考[openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12-1)。
 
-弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[isModal](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12)来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
+弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[promptAction.BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)类型中的isModal属性来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
 
 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
@@ -77,7 +82,7 @@
 
 ## 更新自定义弹出框的内容
 
-ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](../../application-dev/ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../application-dev/ui/state-management/arkts-link.md)、[@Provide](../../application-dev/ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../application-dev/ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
+ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](state-management/arkts-reusable.md)、[@Link](state-management/arkts-link.md)、[@Provide](state-management/arkts-provide-and-consume.md)、[@Consume](state-management/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
 
 ```ts
 this.contentNode.update(new Params('update'))

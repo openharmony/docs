@@ -1,4 +1,9 @@
 # 使用扩展的Node-API接口在异步线程中运行和停止事件循环
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 场景介绍
 开发者在自己创建的ArkTS运行环境中调用异步的ArkTS接口时，可以通过使用Node-API中的扩展接口napi_run_event_loop和napi_stop_event_loop来运行和停止ArkTS实例中的事件循环。
@@ -11,7 +16,7 @@
 ### 示例代码
 - 模块注册
     ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <napi/common.h>
     #include <pthread.h>
@@ -40,7 +45,7 @@
         // 2. 加载自定义的模块
         napi_value objectUtils;
         // 'com.example.myapplication' 为当前应用的bundleName
-        ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
+        ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
         if (ret != napi_ok) {
             return nullptr;
         }
@@ -142,10 +147,10 @@
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
-2. 需要在工程的build-profile.json5文件中进行以下配置
+2. 需要在模块的build-profile.json5文件中进行以下配置
     ```json
     {
         "buildOption" : {

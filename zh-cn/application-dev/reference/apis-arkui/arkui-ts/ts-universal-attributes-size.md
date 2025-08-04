@@ -1,4 +1,9 @@
 # 尺寸设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 设置组件的宽高、边距。
 

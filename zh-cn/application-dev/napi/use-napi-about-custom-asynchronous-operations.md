@@ -1,4 +1,9 @@
 # 使用Node-API进行自定义异步操作相关开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -103,7 +108,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | void;
+export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | undefined;
 ```
 <!-- @[napi_async_open_close_callback_scope_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICustomAsynchronousOperations/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

@@ -1,5 +1,11 @@
 # Grid
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zcdqs; @fangyuhao-->
+<!--SE: @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
 >  **说明：**

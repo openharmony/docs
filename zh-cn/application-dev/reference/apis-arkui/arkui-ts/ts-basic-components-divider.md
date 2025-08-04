@@ -1,4 +1,9 @@
 # Divider
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 提供分隔器组件，分隔不同内容块/内容元素。
 

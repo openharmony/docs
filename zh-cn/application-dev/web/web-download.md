@@ -1,4 +1,9 @@
 # 使用Web组件的下载能力
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 当需要通过Web页面进行文件下载时，可以通过此方式调用Web接口。
 
@@ -34,7 +39,7 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
@@ -172,7 +177,7 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })

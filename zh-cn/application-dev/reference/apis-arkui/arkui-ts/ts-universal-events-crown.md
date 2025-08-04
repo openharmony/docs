@@ -1,4 +1,9 @@
 # 表冠事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
    指扭动表冠时触发的事件，事件的分发依赖于应用焦点，开发者可以通过[焦点事件](ts-universal-attributes-focus.md)自定义事件处理。
 
 >  **说明：**
@@ -44,7 +49,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                   | 类型       | 只读    |  可选   |  说明                                                       |
-| --------------------- | ------------- | ---------- |- ---------- |-------------------------------------- |
+| --------------------- | ------------- | ---------- |------------ |-------------------------------------- |
 | timestamp	        | number	 |  否     | 否    |时间戳。                                  |
 | angularVelocity	| number	 |  否     | 否    |旋转角速度，每秒转的角度(°/s)。                   |
 | degree	        | number 	 |  否     | 否    |相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |

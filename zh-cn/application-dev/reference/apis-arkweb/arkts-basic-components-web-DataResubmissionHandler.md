@@ -1,4 +1,9 @@
 # Class (DataResubmissionHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 

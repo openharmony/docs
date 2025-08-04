@@ -1,4 +1,9 @@
 # Class (NativeMediaPlayerSurfaceInfo)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zhangyao75477-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 [应用接管网页媒体播放功能](./arkts-basic-components-web-attributes.md#enablenativemediaplayer12)中用于同层渲染的 surface 信息。
 

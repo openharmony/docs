@@ -1363,6 +1363,14 @@ drawSingleCharacterWithFeatures(text: string, font: Font, x: number, y: number, 
 | y | number | 是 | 所绘制字符基线左端点的纵坐标，该参数为浮点数。 |
 | features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error. Possible causes: Incorrect parameter range. |
+
 **示例：**
 
 ```ts

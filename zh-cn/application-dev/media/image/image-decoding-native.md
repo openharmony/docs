@@ -1,4 +1,9 @@
 # 图片解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 将所支持格式的图片文件解码成PixelMap，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF（不同硬件设备支持情况不同）。
 

@@ -1,4 +1,9 @@
 # User-Agent开发指导
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 <!--RP1-->
 User-Agent（简称UA）是一个特殊的字符串，包含设备类型、操作系统及版本等关键信息。在Web开发中，这个字符串使服务器能够识别请求的来源设备及其特性，从而根据这些信息提供定制化的内容和服务。如果页面无法正确识别UA，可能会导致多种异常情况。例如，为移动设备优化的页面布局可能会在桌面设备上显示错乱，反之亦然。此外，某些特定的浏览器功能或CSS样式可能仅在特定的浏览器版本中受支持，如果页面无法根据UA字符串做出正确的判断，就可能导致渲染问题或逻辑错误。
 
@@ -123,7 +128,8 @@ struct WebComponent {
     try {
       webview.WebviewController.initializeWebEngine();
       let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-      let appUA = " appUA";
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
       webview.WebviewController.setUserAgentForHosts(
         appUA,
         [

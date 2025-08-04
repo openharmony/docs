@@ -1,4 +1,9 @@
 # \@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 \@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不用拘泥于组件层级。
 \@Provider和\@Consumer属于状态管理V2装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
@@ -127,7 +132,9 @@ struct Child {
 ## 使用场景
 
 ### \@Provider和\@Consumer双向同步
-#### 建立双向绑定
+
+**建立双向绑定**
+
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
@@ -167,7 +174,8 @@ struct Child {
   }
 }
 ```
-#### 未建立双向绑定
+
+**未建立双向绑定**
 
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化：

@@ -1,5 +1,11 @@
 # 蓝牙服务子系统错误码
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。

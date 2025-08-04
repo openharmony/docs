@@ -1,4 +1,9 @@
 # @ohos.arkui.componentSnapshot (组件截图)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
@@ -530,3 +535,54 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 | top    | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的y轴坐标，布局方向为RTL时表示截图区域矩形右下角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
 | end    | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的x轴坐标，布局方向为RTL时表示截图区域矩形左下角的x轴坐标。<br>单位：px <br>取值范围：[0, 组件宽度] |
 | bottom | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的y轴坐标，布局方向为RTL时表示截图区域矩形左下角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
+
+**示例：**
+
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](arkts-apis-uicontext-uicontext.md)实例，并使用[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
+```ts
+import { image } from '@kit.ImageKit';
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  build() {
+    Column() {
+      Row() {
+        Column(){
+          TextClock()
+          Button("Button ABCDE").type(ButtonType.Normal)
+          Row() {
+            Checkbox()
+            Text("√")
+            Text(" | ")
+            Checkbox()
+            Text("×")
+          }.align(Alignment.Start)
+          TextInput()
+        }
+        .align(Alignment.Start)
+        .id("component1")
+        .width("600px")
+        .height("600px")
+        .borderRadius(6)
+        .borderWidth(2)
+        .borderColor(Color.Green)
+
+      }
+      Button("get capture")
+      .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("component1",
+              {scale : 2, waitUntilRenderFinished : true,region: {start:20,top:20, end:200,bottom:240}})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+      Image(this.pixmap).border({ color: Color.Black, width: 2 }).width("600px")
+    }.width("100%").align(Alignment.Center)
+  }
+}

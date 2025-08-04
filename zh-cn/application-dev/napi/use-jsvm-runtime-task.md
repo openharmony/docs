@@ -1,4 +1,9 @@
 # 使用JSVM-API接口创建多个引擎执行JS代码并销毁
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 场景介绍
 
@@ -139,6 +144,7 @@ static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &resu
     char *resultStr = new char[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
     result = resultStr;
+    delete[] resultStr;
     return 0;
 }
 
