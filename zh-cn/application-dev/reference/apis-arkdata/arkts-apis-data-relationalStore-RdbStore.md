@@ -73,14 +73,14 @@ class EntryAbility extends UIAbility {
       await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
       console.info('Get RdbStore successfully.');
 
-    // 设置数据库版本
-    if (store != undefined) {
-      (store as relationalStore.RdbStore).version = 3;
-      // 获取数据库版本
-      console.info(`RdbStore version is ${store.version}`);
-      // 获取数据库是否重建
-      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
-    }
+      // 设置数据库版本
+      if (store != undefined) {
+        (store as relationalStore.RdbStore).version = 3;
+        // 获取数据库版本
+        console.info(`RdbStore version is ${store.version}`);
+        // 获取数据库是否重建
+        console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+      }
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
     });
@@ -2762,10 +2762,14 @@ if (store != null) {
     txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3103,10 +3107,14 @@ if (store != null) {
     txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3289,10 +3297,14 @@ if (store != null) {
     txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3422,10 +3434,14 @@ if (store != null) {
     txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -4693,13 +4709,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   if (store != undefined) {
-    let errorMessage: relationalStore.ExceptionMessage;
     store.on('sqliteErrorOccurred', exceptionMessage => {
       let sqliteCode = exceptionMessage.code;
       let sqliteMessage = exceptionMessage.message;
       let errSQL = exceptionMessage.sql;
       console.error(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
-      errorMessage = exceptionMessage;
     })
   }
 } catch (err) {
@@ -5504,20 +5518,19 @@ const STORE_CONFIG1: relationalStore.StoreConfig = {
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
   attachStore = rdbStore;
   console.info('Get RdbStore successfully.');
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+      console.info(`attach succeeded, number is ${number}`);
+    }).catch((err: BusinessError) => {
+      console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    });
+  }
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 });
-
-if (store != undefined) {
-  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
-    console.info(`attach succeeded, number is ${number}`);
-  }).catch((err: BusinessError) => {
-    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-  });
-}
 ```
 
 **示例2：非加密数据库附加加密数据库**
@@ -5533,20 +5546,19 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
   attachStore = rdbStore;
   console.info('Get RdbStore successfully.');
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+      console.info(`attach succeeded, number is ${number}`);
+    }).catch((err: BusinessError) => {
+      console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    });
+  }
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 });
-
-if (store != undefined) {
-  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
-    console.info(`attach succeeded, number is ${number}`);
-  }).catch((err: BusinessError) => {
-    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-  });
-}
 ```
 
 ## detach<sup>12+</sup>
