@@ -1,5 +1,11 @@
 # @ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 AutoFillExtensionAbility模块提供账号和密码的自动填充和保存功能, 继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)。
 
 > **说明：**
@@ -78,7 +84,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
                 callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
-    hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
+    hilog.info(0x0000, 'testTag', 'get request viewData: %{public}s', JSON.stringify(request.viewData));
     try {
       let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
       autoFillManager.ViewData | common.AutoFillExtensionContext> = {
