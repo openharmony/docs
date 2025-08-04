@@ -1,4 +1,9 @@
 # TimePicker
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 时间选择组件支持根据指定参数创建选择器，可选择小时和分钟。
 

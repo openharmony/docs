@@ -1,4 +1,9 @@
 # OpenMP应用构建和运行指南
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yangming4249-->
+<!--SE: @ychen3--->
+<!--TSE: @zsw_zhushiwei-->
 
 OpenHarmony NDK中提供了OpenMP的动态库和静态库文件，支持开发者在Native应用中使用OpenMP。本文用于指导开发者在[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中调用库文件使用OpenMP的并行化能力，更详细的使用示例和API标准请查看官方文档[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
 
@@ -9,14 +14,14 @@ OpenHarmony NDK中提供了OpenMP的动态库和静态库文件，支持开发�
 
 ### 2. 添加依赖
 
-OpenMP库的引入有静态链接和动态链接两种方式。
+OpenMP库的引入可以通过静态链接和动态链接两种方式实现。
 
 > **注意：**
 > 
 > [OMPT(OpenMP Tools Interface)](https://www.openmp.org/spec-html/5.0/openmpsu15.html#x25-240001.5.1)工具目前仅支持静态链接时使用。
 >
 
-#### 静态链接
+**静态链接**
 
 （1）打开entry/src/main/cpp/CMakeLists.txt，在target\_link\_libraries依赖中添加静态库libomp.a以及日志依赖libhilog\_ndk.z.so。
 
@@ -36,7 +41,7 @@ target_link_libraries(entry PUBLIC libomp.a libace_napi.z.so libhilog_ndk.z.so)
   }
 ```
 
-#### 动态链接
+**动态链接**
 
 （1）打开entry/src/main/cpp/CMakeLists.txt，在target\_link\_libraries依赖中添加动态库libomp.so以及日志依赖libhilog\_ndk.z.so。
 
@@ -146,7 +151,7 @@ struct Index {
 
 ### 4. 运行并校验结果
 
-运行前请检查设备连接并配置好[Signature](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)信息。直接点击右上角运行按钮，应用启动后设备进入“Hello OpenMP”界面，点击“Hello OpenMP”标签，打开Dev Eco下方“Log”查看页面，即可看到并行打印的“Hello OpenMP！”消息。
+运行前请检查设备连接并配置好[Signature](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)信息。直接点击右上角运行按钮，应用启动后设备进入“Hello OpenMP”界面，点击“Hello OpenMP”标签，打开DevEco Studio下方“Log”查看页面，即可看到并行打印的“Hello OpenMP！”消息。
 
 ![image1](./figures/omp-result.png)
 

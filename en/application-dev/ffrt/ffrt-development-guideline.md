@@ -1,5 +1,11 @@
 # Function Flow Runtime Development
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## Overview
 
 Function Flow Runtime (FFRT) is a task-based and data-driven concurrent programming model that allows you to develop an application by creating tasks and describing their dependencies.
@@ -24,8 +30,8 @@ The APIs are as follows:
 
 | C++ API                                                                                                                                  | C API                                                                               | Description                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------- |
-| [queue_attr::timeout](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-timeout)   | [ffrt_queue_attr_set_timeout](ffrt-api-guideline-c.md#ffrt_queue_attr_set_timeout)   | Sets the queue timeout.    |
-| [queue_attr::callback](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-callback) | [ffrt_queue_attr_set_callback](ffrt-api-guideline-c.md#ffrt_queue_attr_set_callback) | Sets the queue timeout callback.|
+| [queue_attr::timeout](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-timeout)   | [ffrt_queue_attr_set_timeout](ffrt-api-guideline-c.md#ffrt_queue_attr_t)   | Sets the queue timeout.    |
+| [queue_attr::callback](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-callback) | [ffrt_queue_attr_set_callback](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | Sets the queue timeout callback.|
 
 ### Long-Time Task Monitoring
 
@@ -635,5 +641,3 @@ Use the FFRT C++ API in the code.
 #include "ffrt/cpp/sleep.h"
 #include "ffrt/cpp/queue.h"
 ```
-
-<!--no_check-->

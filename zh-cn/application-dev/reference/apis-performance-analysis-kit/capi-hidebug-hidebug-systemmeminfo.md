@@ -1,5 +1,11 @@
 # HiDebug_SystemMemInfo
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 系统内存信息结构类型定义。

@@ -1,4 +1,9 @@
 # Progress
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 进度条组件，用于显示内容加载或操作处理等进度。
 

@@ -1,4 +1,9 @@
 # CalendarPicker
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 日历选择器组件，提供下拉日历弹窗，可以让用户选择日期。
 

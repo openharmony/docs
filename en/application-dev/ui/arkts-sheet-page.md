@@ -4,13 +4,13 @@ A semi-modal page, implemented using [bindSheet](../reference/apis-arkui/arkui-t
 
 Semi-modal pages are suitable for displaying simple tasks or information panels, such as personal information, text introductions, sharing panels, creating schedules, and adding content. If a semi-modal page needs to be displayed in a way that could potentially affect the parent view, it can be configured to use a non-modal interaction form.
 
-Semi-modal pages have different form capabilities on devices of different widths. For details about the form requirements on devices with different widths, see the [preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) property. You can use **bindSheet** to build semi-modal transition effects. For details, see [Modal Transition](arkts-modal-transition.md#creating-sheet-transition-with-bindsheet). For complex or lengthy user processes, consider other transition methods instead of semi-modals, such as [full-modal transition](arkts-contentcover-page.md) and [navigation transition](arkts-navigation-transition.md).
+Semi-modal pages have different form capabilities on devices of different widths. For details about the form requirements on devices with different widths, see the [preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) property. You can use **bindSheet** to build semi-modal transition effects. For details, see [Modal Transition](arkts-modal-transition.md#creating-sheet-transition-with-bindsheet). For complex or lengthy user processes, consider other transition methods instead of semi-modals, such as [full-modal transition](arkts-contentcover-page.md) and [navigation transition](arkts-navigation-navigation.md).
 
 ## Constraints
 
  - When a [UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md) is embedded in a semi-modal, launching another semi-modal or popup window within the UIExtension is not allowed.
 
- - In scenarios without secondary confirmation or custom close behavior, avoid using the [shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) API.
+ - In scenarios without secondary confirmation or custom close behavior, avoid using the [shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) API.
 
 ## Lifecycle
 
@@ -42,7 +42,7 @@ The priority of operations during scrolling in the content area of a semi-modal 
 
    Swiping down: The content will scroll until it reaches the top.
 
-The default nested mode for the above semi-modal interactions is: {Forward：PARENT\_FIRST，Backward：SELF\_FIRST}.
+By default, the nested scrolling mode for the half-modal panel is as follows: {Forward: PARENT\_FIRST, Backward: SELF\_FIRST}
 
 If you want to define a scrollable container, such as **List** or **Scroll**, in the panel content builder, and combine it with the semi-modal's interaction capabilities, you must set the nested scrolling attributes for the scrollable container in the vertical direction.
 
@@ -61,8 +61,8 @@ The sample code is as follows:
 @Entry
 @Component
 struct SheetDemo {
-  @State isShowSheet: boolean = false
-  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State isShowSheet: boolean = false;
+  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   @Builder
   SheetBuilder() {
@@ -98,7 +98,7 @@ struct SheetDemo {
     Column() {
       Button('Open Sheet').width('90%').height('80vp')
         .onClick(() => {
-          this.isShowSheet = !this.isShowSheet
+          this.isShowSheet = !this.isShowSheet;
         })
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
@@ -123,7 +123,7 @@ To implement the secondary confirmation capability, you are advised to use the *
 // Step 1: Declare the onWillDismiss callback.
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 // Step 2: Implement the secondary confirmation interaction, using an AlertDialog component to prompt the user for confirmation.
-  AlertDialog.show(
+  this.getUIContext().showAlertDialog(
     {
       message: 'Do you want to close the semi-modal?',
       autoCancel: true,
@@ -133,7 +133,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
       primaryButton: {
         value: 'cancel',
         action: () => {
-          console.info('Callback when the cancel button is clicked')
+          console.info('Callback when the cancel button is clicked');
         }
       },
       secondaryButton: {
@@ -144,12 +144,12 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
         // Step 3: Define the logic for closing the semi-modal within the AlertDialog button callback.
         action: () => {
           // Step 4: Call dismiss() to close the semi-modal when the logic in step 3 is triggered.
-          DismissSheetAction.dismiss()
-          console.info('Callback when the ok button is clicked')
+          DismissSheetAction.dismiss();
+          console.info('Callback when the ok button is clicked');
         }
       },
       cancel: () => {
-        console.info('AlertDialog Closed callbacks')
+        console.info('AlertDialog Closed callbacks');
       }
     }
   )
@@ -158,30 +158,30 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 
 ## Blocking Specific Dismiss Behavior
 
-After the **onWillDismiss** API is declared, it takes control over all dismiss behaviors of the semi-modal. This means that the semi-modal can be dismissed only when you explicitly call the **dismiss** API. This allows you to implement custom logic to control when the semi-modal should close.
-For example, you might want the semi-modal to close only when the user swipes down. Here's how you can implement this:
+After the **onWillDismiss** API is declared, it takes control over all dismiss behaviors of the semi-modal. This means that the semi-modal can be dismissed only when you explicitly call the **dismiss** API. You can customize the dismissal logic using **if** statements or other logic.
+For example, you might want the semi-modal to be dismissed only when the user swipes down. Here's how you can implement this:
 
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-  if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() // Register the dismiss behavior.
+  if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
+    DismissSheetAction.dismiss(); // Register the dismiss behavior.
   }
 }),
 ```
 
 To enhance the user experience during the swiping down action, you can use the **onWillSpringBackWhenDismiss** API.
-This API allows you to control the rebound effect when the semi-modal is swiped down. By default, the semi-modal will rebound when swiped down, but you can prevent this behavior by not calling **SpringBackAction.springBack()**.
+Just like with **onWillDismiss**, after **onWillSpringBackWhenDismiss** is declared, the rebound operation during a swipe-down of the half-modal requires handling with **SpringBackAction.springBack()**; without this logic, no rebound will occur.
 
 Here is the specific code to prevent the rebound effect when the semi-modal is swiped down:
 
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-  if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() // Register the dismiss behavior.
+  if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
+    DismissSheetAction.dismiss(); // Register the dismiss behavior.
   }
 }),
 
 onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
- // Do not call SpringBackAction.springBack(), so no rebound behavior occurs.
+ // No springBack is registered, so the half-modal will not bounce back when swiped down.
 }),
 ```

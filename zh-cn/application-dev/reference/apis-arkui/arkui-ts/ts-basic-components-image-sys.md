@@ -1,4 +1,9 @@
 # Image (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 Image为图片组件，常用于在应用中显示图片。
 

@@ -124,7 +124,7 @@ struct Index {
     }
     .height(200)
     .width('100%')
-    // 以下组合手势为并行并别，单击手势识别成功后，若在规定时间内再次点击，双击手势也会识别成功
+    // 以下组合手势为并行识别，单击手势识别成功后，若在规定时间内再次点击，双击手势也会识别成功
     .gesture(
       GestureGroup(GestureMode.Parallel,
         TapGesture({ count: 1 })
@@ -177,7 +177,7 @@ struct Index {
     }
     .height(200)
     .width('100%')
-    //以下组合手势为互斥并别，单击手势识别成功后，双击手势会识别失败
+    //以下组合手势为互斥识别，单击手势识别成功后，双击手势会识别失败
     .gesture(
       GestureGroup(GestureMode.Exclusive,
         TapGesture({ count: 1 })

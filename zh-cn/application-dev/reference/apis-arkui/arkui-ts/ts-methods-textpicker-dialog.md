@@ -1,4 +1,9 @@
 # 文本滑动选择器弹窗 (TextPickerDialog)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 根据指定的选择范围创建文本选择器，展示在弹窗上。
 

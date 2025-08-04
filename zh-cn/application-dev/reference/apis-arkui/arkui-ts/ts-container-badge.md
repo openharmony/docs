@@ -1,4 +1,9 @@
 # Badge
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 信息标记组件，可以附加在单个组件上用于信息提醒的容器组件。
 

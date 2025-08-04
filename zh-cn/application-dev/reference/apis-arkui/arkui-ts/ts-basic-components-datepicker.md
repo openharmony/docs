@@ -1,4 +1,9 @@
 # DatePicker
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 日期选择器组件，用于根据指定日期范围创建日期滑动选择器。
 

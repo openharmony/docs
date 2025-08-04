@@ -1,4 +1,9 @@
 # 日期滑动选择器弹窗 (DatePickerDialog)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 根据指定的日期范围创建日期滑动选择器并展示在弹窗上。
 
