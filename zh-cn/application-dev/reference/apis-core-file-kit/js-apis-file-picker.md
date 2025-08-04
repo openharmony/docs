@@ -1,4 +1,9 @@
 # @ohos.file.picker (选择器)
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 > **说明：**
 >
