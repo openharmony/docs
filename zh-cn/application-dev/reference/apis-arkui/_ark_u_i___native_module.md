@@ -1318,6 +1318,12 @@ typedef void(* ArkUI_GestureRecognizerDisposeNotifyCallback) (ArkUI_GestureRecog
 
 **起始版本：** 12
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ArkUI_GestureRecognizer](_ark_u_i___native_module.md#arkui_gesturerecognizer)* recognizer | 手势识别器指针。 |
+| void* userData | 用户自定义数据。 |
 
 ### ArkUI_GestureRecognizerHandle
 
