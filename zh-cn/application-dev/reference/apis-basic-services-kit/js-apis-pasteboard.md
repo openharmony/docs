@@ -574,7 +574,7 @@ struct PasteboardTest {
               let dstPath: string = '/data/storage/el2/base/files/';
               let dstUri : string = fileUri.getUriFromPath(dstPath);
               let params: pasteboard.GetDataParams = {
-                destUri: destUri,
+                destUri: dstUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
@@ -3034,7 +3034,7 @@ struct PasteboardTest {
               let dstPath: string = '/data/storage/el2/base/files/';
               let dstUri : string = fileUri.getUriFromPath(dstPath);
               let params: pasteboard.GetDataParams = {
-                destUri: destUri,
+                destUri: dstUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
