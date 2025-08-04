@@ -1,6 +1,6 @@
 # @ohos.graphics.uiEffect (效果级联)(系统接口)
 
-<!--Kit: ArkGraphics2D-->
+<!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hanamaru-->
 <!--SE: @comicchang-->
