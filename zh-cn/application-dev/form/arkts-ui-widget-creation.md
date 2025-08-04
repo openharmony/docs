@@ -19,7 +19,7 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
->在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
+>在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态卡片或静态卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
    
 2. 根据实际业务场景，选择一个卡片模板。<br>
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
@@ -51,7 +51,7 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
    - 在resources/base/profile/目录下的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，配置卡片（WidgetCard.ets）相关信息。
 
 ## 独立卡片包形态
-最终编译的产物分为卡片包和应用包，已达到卡片的前端和后端解耦目的。
+最终编译的产物分为卡片包和应用包，以达到卡片前端和后端解耦的目的。
 ### [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)
 ### 新建卡片
 1. 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
@@ -77,4 +77,4 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 - 卡片包编译产物。<br>
 ![WidgetProjectCreate2](figures/卡片包前端产物.png)
 >**说明：**
->独立卡片包把应用包和卡片包区分开了，我们可以单独编译安装其中一个包。需要注意同事安装的应用包和卡片包要保持一致。
+>独立卡片包把应用包和卡片包区分开了，我们可以单独编译安装其中一个包。需要注意同时安装的应用包和卡片包要保持同一版本。
