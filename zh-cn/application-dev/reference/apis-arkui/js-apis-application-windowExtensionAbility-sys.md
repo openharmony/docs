@@ -1,5 +1,5 @@
 # @ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)
-<!--Kit: ArkUI Kit-->
+<!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @chbchb12-->
 <!--SE: @stupidb-->
