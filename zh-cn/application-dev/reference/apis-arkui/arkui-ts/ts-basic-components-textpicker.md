@@ -1022,7 +1022,7 @@ struct TextPickerExample {
 该示例通过配置[selectedBackgroundStyle](#selectedbackgroundstyle20)实现文本选择器选中项的背景样式。
 
 ```ts
-import { LengthUnit } from "@kit.ArkUI"
+import { LengthUnit } from '@kit.ArkUI'
 
 // xxx.ets
 @Entry
