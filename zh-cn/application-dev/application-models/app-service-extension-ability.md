@@ -137,7 +137,7 @@
     }
     ```
 
-### 启动一个后台服务
+## 启动一个后台服务
 
 应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
 
@@ -266,7 +266,7 @@
     }
     ```
 
-### 连接一个后台服务
+## 连接一个后台服务
 
 客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接服务端（在Want对象中指定启动的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立连接。
 
@@ -389,11 +389,11 @@
   }
   ```
 
-## 客户端与服务端通信
+### 客户端与服务端通信
 
 客户端在[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)中获取到[rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象后便可与服务端进行通信。
 
-### 客户端
+#### 客户端
 使用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息。
 
 ```ts
@@ -473,7 +473,7 @@ struct Page_CollaborateAbility {
 }
 ```
 
-### 服务端
+#### 服务端
 使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
 
 ```ts
