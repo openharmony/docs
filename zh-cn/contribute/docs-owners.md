@@ -47,6 +47,7 @@
 [Basic Services Kit][ResourceSchedule]<br>
 [Basic Services Kit][SelectionInput]<br>
 [Basic Services Kit][Startup]<br>
+[Basic Services Kit][Time]<br>
 [Basic Services Kit][Update]<br>
 [Basic Services Kit][USB]<br>
 [Basic Services Kit][XTS]<br>
