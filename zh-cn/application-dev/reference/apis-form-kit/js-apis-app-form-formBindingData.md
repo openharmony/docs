@@ -81,12 +81,13 @@ import { formBindingData } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 
+const IMG_PATH = '/path/to/form.png';
 try {
-  let file = fileIo.openSync('/path/to/form.png');
+  let file = fileIo.openSync(IMG_PATH);
   let formImagesParam: Record<string, number> = {
     'image': file.fd
   };
-  let createFormBindingDataParam: Record<string, string | Object> = {
+  let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
     'name': '21°',
     'imgSrc': 'image',
     'formImages': formImagesParam
