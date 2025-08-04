@@ -1,4 +1,4 @@
-# 同步方式动态加载native模块
+# 同步方式动态加载Native模块
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @shilei123-->
