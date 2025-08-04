@@ -1,6 +1,6 @@
 # oh_pasteboard.h
 <!--Kit: basic-services-->
-<!--Subsystem: 剪贴板-->
+<!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
 <!--SE: @guo867-->
 <!--TSE: @maxiaorong2-->
