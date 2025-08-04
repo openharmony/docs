@@ -262,7 +262,7 @@
     - [AbilityAccessControl](capi-abilityaccesscontrol.md)
     - [AbilityBase](_ability_base.md)
     - [AbilityRuntime](_ability_runtime.md)
-    - [Bundle](_bundle.md)
+    - [Native_Bundle](capi-native-bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件<!--ability-headerfile-->
     - [ability_access_control.h](capi-ability-access-control-h.md)
@@ -270,14 +270,14 @@
     - [ability_runtime_common.h](ability__runtime__common_8h.md)
     - [application_context.h](application__context_8h.md)
     - [context_constant.h](context__constant_8h.md)
-    - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_interface_bundle.h](capi-native-interface-bundle-h.md)
     - [native_child_process.h](native__child__process_8h.md)
     - [start_options.h](start__options_8h.md)
     - [want.h](want__8h.md)
   - 结构体<!--ability-struct-->
     - [AbilityBase_Element](_ability_base_element.md)
-    - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
+    - [OH_NativeBundle_ApplicationInfo](capi-native-bundle-oh-nativebundle-applicationinfo.md)
+    - [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
