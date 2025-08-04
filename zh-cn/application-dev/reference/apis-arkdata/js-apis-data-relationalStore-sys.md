@@ -393,7 +393,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -631,10 +631,10 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloudSync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('Cloud sync succeeded');
@@ -659,10 +659,10 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('cloud sync succeeded');
@@ -721,11 +721,11 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('cloud sync succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+    console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
   });
 };
 ```
@@ -747,7 +747,7 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
@@ -1001,7 +1001,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
     console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
