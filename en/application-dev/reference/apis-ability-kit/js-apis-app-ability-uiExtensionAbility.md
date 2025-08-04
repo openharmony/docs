@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)
 
-UIExtensionAbility is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md). You cannot inherit from UIExtensionAbility. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
+UIExtensionAbility is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md). You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 >
