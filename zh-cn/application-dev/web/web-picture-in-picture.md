@@ -1,6 +1,6 @@
 # Web组件支持画中画
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @gzweioh-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->

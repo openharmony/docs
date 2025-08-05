@@ -1,6 +1,6 @@
 # 同层渲染
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @ding-xin88-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->

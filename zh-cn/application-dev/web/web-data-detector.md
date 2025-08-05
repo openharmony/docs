@@ -1,6 +1,6 @@
 # 使用Web组件的智能分词能力
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--SE: @zhufenghao-->
 <!--TSE: @ghiker-->

@@ -1,6 +1,6 @@
 # 使用Web组件与系统剪贴板交互处理网页内容
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--SE: @zhufenghao-->
 <!--TSE: @ghiker-->
