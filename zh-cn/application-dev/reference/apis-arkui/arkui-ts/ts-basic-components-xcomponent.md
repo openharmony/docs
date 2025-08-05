@@ -282,7 +282,7 @@ getXComponentSurfaceId(): string
 
 **返回值：**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | string | XComponent持有Surface的ID。 |
 
@@ -344,7 +344,7 @@ getXComponentContext(): Object
 
 **返回值：**
 
-| 类型   | 描述                                                         |
+| 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义，context内容与onLoad回调中的第一个参数一致。 |
 
@@ -384,7 +384,7 @@ getXComponentSurfaceRect(): SurfaceRect
 
 **返回值：**
 
-| 类型                                 | 描述                                  |
+| 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRect](#surfacerect12对象说明) | 获取XComponent持有Surface的显示区域。 |
 
@@ -539,7 +539,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 **返回值：**
 
-| 类型                                 | 描述                                  |
+| 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
 | Required<[SurfaceRotationOptions](#surfacerotationoptions12对象说明)> | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
 
