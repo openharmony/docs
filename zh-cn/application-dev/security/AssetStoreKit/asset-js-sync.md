@@ -26,10 +26,10 @@ attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 attr.set(asset.Tag.SYNC_TYPE, asset.SyncType.TRUSTED_DEVICE); // 需指定在可信设备间同步（如新旧设备间克隆）。
 
-try {	
-  asset.add(attr).then(() => {	
-    console.info(`Succeeded in adding Asset.`);	
-  }).catch((err: BusinessError) => {	
+try {
+  asset.add(attr).then(() => {
+    console.info(`Succeeded in adding Asset.`);
+  }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);	
   })
 } catch (error) {

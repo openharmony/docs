@@ -766,7 +766,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
-  console.info(`sync result: ${JSON.stringify(res)} sussessfully`);
+  console.info(`Succeeded in querying sync result: ${JSON.stringify(res)}`);
 });
 ```
 
