@@ -1433,7 +1433,7 @@ struct ListExample {
 ### 示例5（跳转准确）
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
-如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#list)。
+如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#list)。
 ```ts
 // xxx.ets
 @Entry
