@@ -1,5 +1,11 @@
 # @ohos.i18n (国际化-I18n)(系统接口)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
+
  本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 >  **说明：**
@@ -59,7 +65,7 @@ static setSystemLanguage(language: string): void
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
- 
+
   // 订阅公共事件
   let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
@@ -77,7 +83,7 @@ static setSystemLanguage(language: string): void
       })
   }).catch((err: BusinessError) => {
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });  
+  });
   ```
 
 ### setSystemRegion<sup>9+</sup>
@@ -124,9 +130,11 @@ static setSystemRegion(region: string): void
 
 
 
-### setSystemLocale<sup>9+</sup>
+### setSystemLocale<sup>(deprecated)</sup>
 
 static setSystemLocale(locale: string): void
+
+> 从API version 9开始支持，从API version 20开始废弃。
 
 设置系统区域。
 
