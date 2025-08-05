@@ -32,7 +32,6 @@ import { ChildProcessOptions } from '@kit.AbilityKit';
 import { ChildProcess, ChildProcessArgs } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
-
   onStart(args?: ChildProcessArgs) {
     let entryParams = args?.entryParams;
     let fd = args?.fds?.key1;
@@ -74,7 +73,7 @@ struct Index {
                 })
                 .catch((err: BusinessError) => {
                   console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
-                })
+                });
             } catch (err) {
               console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
             }
