@@ -59,7 +59,7 @@ export default class EntryAbility extends UIAbility {
 
 isAvailable(): boolean
 
-判断UIContext对象对应的UI实例是否有效。使用[getUIContext](arkts-apis-window-Window.md#getuicontext10)方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次[loadContent](arkts-apis-window-Window.md#loadcontent9)后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
+判断UIContext对象对应的UI实例是否有效。使用[getUIContext](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对象无对应的UI实例；多次[loadContent](arkts-apis-window-Window.md#loadcontent9)后，旧的UI实例会失效。多窗口应用场景，当窗口关闭后，该窗口的UI实例失效。总而言之，当UIContext对象没有对应的后端UI实例时，该对象是无效的。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -636,7 +636,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
-完整示例请参考[获取根节点示例](js-apis-arkui-frameNode#获取根节点示例)
+完整示例请参考[获取根节点示例](js-apis-arkui-frameNode.md#获取根节点示例)。
 
 <!--code_no_check-->
 ```ts
