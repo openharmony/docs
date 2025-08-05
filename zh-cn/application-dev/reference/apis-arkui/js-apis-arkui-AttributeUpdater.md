@@ -122,6 +122,7 @@ struct Index {
             // 需要注意先通过组件的attributeModifier属性方法建立组件与AttributeUpdater绑定关系
             this.modifier.attribute?.backgroundColor('#ff2787d9').labelStyle({ maxLines: 5 });
           })
+          .margin('10%')
         Button('Change The message to flush the Button')
           .width('80%')
           .labelStyle({ maxLines: 2 })
