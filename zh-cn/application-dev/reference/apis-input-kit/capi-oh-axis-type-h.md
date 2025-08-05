@@ -4,6 +4,8 @@
 
 输入设备的轴事件结构和枚举。
 
+**引用文件：** <multimodalinput/oh_axis_type.h>
+
 **库：** libohinput.so
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core

@@ -10,6 +10,8 @@
 
 提供事件注入和关键状态查询等功能。
 
+**引用文件：** <multimodalinput/oh_input_manager.h>
+
 **库：** libohinput.so
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
