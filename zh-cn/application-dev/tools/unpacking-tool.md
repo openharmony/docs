@@ -6,12 +6,6 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @Brilliantry_Rui-->
 
-<!--Kit: Ability Kit-->
-<!--Subsystem: BundleManager-->
-<!--Owner: @jsjzju-->
-<!--Designer: @jsjzju-->
-<!--Tester: @lixueqing513-->
-
 拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将HAP、HSP、App等文件解压成文件夹，并且提供Java接口对HAP、HSP、App等文件进行解析。
 
 
@@ -29,13 +23,13 @@
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将HAP包解压出来。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -49,13 +43,13 @@ java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> 
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将App包解压出来。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode app --app-path <path> --out-path <path> [--force true]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令       | 是否必选项 | 选项          | 描述                                                        |
 | ---------- | ---------- |-------------| ----------------------------------------------------------- |
@@ -68,13 +62,13 @@ java -jar app_unpacking_tool.jar --mode app --app-path <path> --out-path <path> 
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，获取应用的rpcid。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out-path <path> [--force true]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -88,13 +82,13 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out
 
 开发者可以使用拆包工具将hap包按照libs包含的架构类型拆包再打包，得到若干仅包含单架构类型库的hap包。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -109,13 +103,13 @@ java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> 
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将HSP包解压出来。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------| ---------- | ------------- |------------------------------------|
@@ -128,13 +122,13 @@ java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> 
 
 开发者可以使用拆包工具将hsp包按照libs包含的架构类型拆包再打包，得到若干仅包含单架构类型库的hsp包。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -149,13 +143,13 @@ java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> 
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将APPQF包解压出来。
 
-#### 示例
+**示例**
 
 ```
 java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <path> [--force true]
 ```
 
-#### 参数含义及规范
+**参数含义及规范**
 
 | 指令           | 是否必选项 | 选项          | 描述                                 |
 |--------------| ---------- |-------------|------------------------------------|
