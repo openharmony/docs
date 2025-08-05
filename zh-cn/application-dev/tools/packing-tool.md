@@ -1,4 +1,9 @@
 # 打包工具
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jsjzju-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 打包工具用于在程序编译完成后，对编译出的文件等进行打包，以供安装发布。开发者可以使用DevEco Studio进行打包，也可使用打包工具的JAR包进行打包，JAR包通常存放在SDK路径下的toolchains目录中。
 
@@ -106,14 +111,22 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug、minAPIVersion保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表4** App打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
+| versionName                | 从API version 12开始，不再对versionName校验。      |
 
 >**说明：**
 >
-> - 从API version 12开始，App打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
@@ -124,7 +137,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
 ```
 
-**表4** App打包指令参数说明
+**表5** App打包指令参数说明
 
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -145,14 +158,22 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
-**多工程打包合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug、minAPIVersion保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表6** 多工程打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
+| versionName                | 从API version 12开始，不再对versionName校验。      |
 
 >**说明：**
 >
-> - 从API version 12开始，多工程打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 示例：
@@ -161,7 +182,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true] [--encrypt-path <path>]
 ```
 
-**表5** 多工程打包指令参数说明
+**表7** 多工程打包指令参数说明
 
 | 指令         | 是否必选项 | 选项        | 描述                                                        |
 |------------|-------|-----------|----------------------------------------------------------------|
@@ -185,7 +206,7 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>] [--ets-path <path>] [--resources-path <path>] --out-path <path> [--force true]
 ```
 
-**表6** HQF打包指令参数说明
+**表8** HQF打包指令参数说明
 
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
@@ -213,7 +234,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> [--force true]
 ```
 
-**表7** APPQF打包指令参数说明
+**表9** APPQF打包指令参数说明
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
@@ -231,7 +252,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
 ```
 
-**表8** versionNormalize指令参数说明
+**表10** versionNormalize指令参数说明
 
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|
@@ -250,7 +271,7 @@ java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2
 java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hsp,path\2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path path\out\
 ```
 
-**表9**  参数含义及规范
+**表11**  参数含义及规范
 
 | 指令             | 是否必选项 | 选项            | 描述                                                  |
 |----------------|-------|---------------|-----------------------------------------------------|
@@ -270,7 +291,7 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-path <path> --out-path <path> [--force true]
 ```
 
-**表11** 参数含义及规范
+**表12** 参数含义及规范
 
 | 指令               | 是否必选项 | 选项            | 描述                                 |
 |------------------|-------|---------------|------------------------------------|
@@ -284,13 +305,21 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug、minAPIVersion保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表13** fastApp打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 
 >**说明：**
 >
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
@@ -301,7 +330,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
 ```
 
-**表12** 参数含义及规范
+**表14** 参数含义及规范
 
 | 指令                 | 是否必选项 | 选项         | 描述                                                     |
 |--------------------|-------|------------|----------------------------------------------------|
