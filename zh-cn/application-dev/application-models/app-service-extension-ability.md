@@ -2,27 +2,31 @@
 
 ## 概述
 
-从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。
-
-只支持2in1设备上的[企业普通应用](../security/AccessToken/permissions-for-enterprise-apps.md)进行后台服务开发，例如，用于保障网络安全的企业EDR软件，或者管理设备的企业MDM软件等。
+从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。例如，用于保障网络安全的企业EDR软件，或者管理设备的企业MDM软件等。
 
 > **说明**
 >
->本文将被启动的AppServiceExtensionAbility组件为服务端，将启动AppServiceExtensionAbility组件的称为客户端。
+>本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
 
-## 约束限制
+## 约束与限制
 
-- AppServiceExtensionAbility组件当前仅支持2in1设备。
+### 设备限制
+
+本AppServiceExtensionAbility组件当前仅支持2in1设备。
+
+### 规格限制
 
 - 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](../security/AccessToken/permissions-for-enterprise-apps.md)开放申请。
 
 - AppServiceExtensionAbility组件内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
 
-## 运行机制
+## 相关实例
 
 - 开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中以[启动](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)或[连接](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)的方式来拉起AppServiceExtensionAbility组件。
 
 - 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+
+下表展示了拉起和连接的几种场景
 
 | 客户端操作 | 服务端状态 | 客户端是否配置在服务端appIdentifierAllowList中 | 拉起结果 | 说明 |
 | --------- | --------- | -------------------------------------------- | ------- | ---- |
@@ -40,26 +44,28 @@
 
 在DevEco Studio（需要支持API20以上的DevEco Studio）工程中手动新建一个AppServiceExtensionAbility组件，具体步骤如下：
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为AppServiceExtAbility。
+1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为MyAppServiceExtAbility。
 
-2. 在AppServiceExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为AppServiceExtAbility.ets。
+2. 在MyAppServiceExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为MyAppServiceExtAbility.ets。
 ![](figures/app-service-extension-ability-create-new-file.png)
+
+其目录结构如下所示：
 
     ```
     ├── ets
-    │ ├── AppServiceExtAbility
-    │ │   ├── AppServiceExtAbility.ets
+    │ ├── MyAppServiceExtAbility
+    │ │   ├── MyAppServiceExtAbility.ets
     └
     ```
 
-3. 在AppServiceExtAbility.ets文件中，增加导入[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)的依赖包，自定义类继承AppServiceExtensionAbility组件并实现生命周期回调。
+3. 在MyAppServiceExtAbility.ets文件中，增加导入[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)的依赖包，自定义类继承AppServiceExtensionAbility组件并实现生命周期回调。
 
     ```ts
     import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+    const TAG: string = '[MyAppServiceExtAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
 
     class StubTest extends rpc.RemoteObject {
@@ -76,7 +82,7 @@
       }
     }
 
-    export default class AppServiceExtAbility extends AppServiceExtensionAbility {
+    export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
       onCreate(want: Want): void {
         let appServiceExtensionContext = this.context;
         hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
@@ -109,12 +115,12 @@
         // ...
         "extensionAbilities": [
           {
-            "name": "AppServiceExtAbility",
+            "name": "MyAppServiceExtAbility",
             "icon": "$media:icon",
             "description": "appService",
             "type": "appService",
             "exported": true,
-            "srcEntry": "./ets/AppServiceExtAbility/AppServiceExtAbility.ets",
+            "srcEntry": "./ets/MyAppServiceExtAbility/MyAppServiceExtAbility.ets",
             "appIdentifierAllowList": [
               // 此处填写允许启动该后台服务的客户端应用的appIdentifier列表
             ],
@@ -126,7 +132,7 @@
 
 ## 启动一个后台服务
 
-应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
+应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。（因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。）
 
 >**说明：**
 >
@@ -158,7 +164,7 @@
               let want: Want = {
                 deviceId: '',
                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'AppServiceExtAbility'
+                abilityName: 'MyAppServiceExtAbility'
               };
               context.startAppServiceExtensionAbility(want).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting AppServiceExtensionAbility.');
@@ -210,7 +216,7 @@
               let want: Want = {
                 deviceId: '',
                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'AppServiceExtAbility'
+                abilityName: 'MyAppServiceExtAbility'
               };
               context.stopAppServiceExtensionAbility(want).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping AppServiceExtensionAbility.');
@@ -242,9 +248,9 @@
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtensionAbility]';
+    const TAG: string = '[MyAppServiceExtAbility]';
 
-    export default class AppServiceExtension extends AppServiceExtensionAbility {
+    export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
       onCreate() {
       // 执行业务逻辑
         this.context.terminateSelf().then(() => {
@@ -276,7 +282,7 @@
   let want: Want = {
     deviceId: '',
     bundleName: 'com.samples.stagemodelabilitydevelop',
-    abilityName: 'AppServiceExtAbility'
+    abilityName: 'MyAppServiceExtAbility'
   };
 
   let options: common.ConnectOptions = {
@@ -400,7 +406,7 @@ let connectionId: number;
 let want: Want = {
   deviceId: '',
   bundleName: 'com.samples.stagemodelabilitydevelop',
-  abilityName: 'AppServiceExtAbility'
+  abilityName: 'MyAppServiceExtAbility'
 };
 let options: common.ConnectOptions = {
   onConnect(elementName, remote): void {
@@ -465,6 +471,7 @@ struct Page_CollaborateAbility {
 ```
 
 **服务端**
+
 使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
 
 ```ts
