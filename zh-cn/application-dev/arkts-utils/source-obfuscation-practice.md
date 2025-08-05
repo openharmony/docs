@@ -1,6 +1,6 @@
 # 不同包类型的源码混淆建议
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
