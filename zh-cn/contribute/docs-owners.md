@@ -1,6 +1,7 @@
 # owners清单
 
 [Common][Common]<br>
+[Common][Demo&Sample]<br>
 [Ability Kit][Ability]<br>
 [Ability Kit][BundleManager]<br>
 [Ability Kit][ResourceSchedule]<br>
@@ -47,6 +48,7 @@
 [Basic Services Kit][ResourceSchedule]<br>
 [Basic Services Kit][SelectionInput]<br>
 [Basic Services Kit][Startup]<br>
+[Basic Services Kit][Time]<br>
 [Basic Services Kit][Update]<br>
 [Basic Services Kit][USB]<br>
 [Basic Services Kit][XTS]<br>
@@ -65,6 +67,7 @@
 [Driver Development Kit][Driver]<br>
 [Drm Kit][Multimedia]<br>
 [Form Kit][Ability]<br>
+[Function Flow Runtime Kit][Resourceschedule]<br>
 [Image Kit][Multimedia]<br>
 [IME Kit][MiscServices]<br>
 [Input Kit][MultimodalInput]<br>
@@ -94,3 +97,4 @@
 [User Authentication Kit][Ability]<br>
 [User Authentication Kit][UserIAM]<br>
 [NDK Development][arkcompiler]<br>
+[NDK][arkcompiler]<br>

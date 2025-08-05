@@ -1,4 +1,9 @@
 # @ohos.fileio (文件管理)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
@@ -39,7 +44,7 @@ stat(path: string): Promise&lt;Stat&gt;
 
 获取文件信息，使用Promise异步回调。
 
-> **说明**： 
+> **说明**：
 >
 > 从API version 9开始废弃，请使用[fs.stat](js-apis-file-fs.md#stat)替代。
 

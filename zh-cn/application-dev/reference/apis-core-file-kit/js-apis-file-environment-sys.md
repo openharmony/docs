@@ -1,4 +1,9 @@
 # @ohos.file.environment (目录环境能力)(系统接口)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 该模块提供环境目录能力：获取内存存储根目录、公共文件根目录的JS接口。
 

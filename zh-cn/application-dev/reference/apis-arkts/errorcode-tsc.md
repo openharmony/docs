@@ -1,6 +1,6 @@
 # Typescript Compiler错误码介绍
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @liyancheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

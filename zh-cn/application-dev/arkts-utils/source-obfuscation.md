@@ -1,6 +1,6 @@
 # ArkGuard混淆原理及功能
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

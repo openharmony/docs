@@ -316,7 +316,7 @@ OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构。使用完�
        pcSize = -1; // 初始化pcSize为-1。
        siginfo_t si{0};
        si.si_signo = SIGUSR1;
-       if (syscall(SYS_rt_sigqueueinfo, getpid(), si.si_signo, &si) != 0) { // 发送信号给主线程以触发信号处理函数。
+       if (syscall(SYS_rt_tgsigqueueinfo, getpid(), getpid(), si.si_signo, &si) != 0) { // 发送信号给主线程以触发信号处理函数。
            BackTraceObject::GetInstance().Release();   
            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TestTag", "failed send sig");
            return;
