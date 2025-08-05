@@ -1,6 +1,7 @@
 # owners清单
 
 [Common][Common]<br>
+[Common][Demo&Sample]<br>
 [Ability Kit][Ability]<br>
 [Ability Kit][BundleManager]<br>
 [Ability Kit][ResourceSchedule]<br>
