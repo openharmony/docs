@@ -1,7 +1,7 @@
 # 使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 Node-API中的napi_call_threadsafe_function_with_priority接口的功能是从异步线程向ArkTS线程投递指定优先级和入队方式的任务，底层队列会根据任务的优先级和入队方式来处理任务。

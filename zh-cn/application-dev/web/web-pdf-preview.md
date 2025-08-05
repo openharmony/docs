@@ -1,6 +1,6 @@
 # 使用Web组件的PDF文档预览能力
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @Yuan_ss-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->

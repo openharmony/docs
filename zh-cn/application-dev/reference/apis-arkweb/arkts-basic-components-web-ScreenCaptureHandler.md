@@ -1,6 +1,6 @@
 # Class (ScreenCaptureHandler)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @qq_42700029-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->

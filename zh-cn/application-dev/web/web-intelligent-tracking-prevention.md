@@ -1,6 +1,6 @@
 # 使用智能防跟踪功能
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->

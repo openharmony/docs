@@ -1,6 +1,6 @@
 # 使用DevTools工具调试前端页面
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
