@@ -76,7 +76,7 @@ try {
 
 getDisallowedPolicy(admin: Want, feature: string): boolean
 
-获取某特性的禁用状态。 
+获取某特性的是否被禁用。 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
@@ -122,9 +122,9 @@ let wantTemp: Want = {
 try {
   // 参数需根据实际情况进行替换
   let result: boolean = restrictions.getDisallowedPolicy(wantTemp, 'printer');
-  console.info(`Succeeded in querying is the printing function disabled : ${result}`);
+  console.info(`Successfully queried the printing function status. Disabled status: ${result}`);
 } catch (err) {
-  console.error(`Failed to set printer disabled. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to get printer disabled status. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
