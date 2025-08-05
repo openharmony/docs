@@ -1,6 +1,6 @@
 # TaskPool简介
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
