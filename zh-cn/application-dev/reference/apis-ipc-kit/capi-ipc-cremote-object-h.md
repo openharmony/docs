@@ -99,7 +99,7 @@ Stub端用于处理远端数据请求的回调函数。
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 否则返回用户自定义错误码或系统错误码，自定义错误码范围：[1909001, 1909999]；<br> 如果用户自定义错误码超出范围，将返回[OH_IPC_ErrorCode#OH_IPC_INVALID_USER_ERROR_CODE](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 否则返回用户自定义错误码或系统错误码，自定义错误码范围：[1909001, 1909999]；<br> 如果用户自定义错误码超出范围，将返回[OH_IPC_ErrorCode#OH_IPC_INVALID_USER_ERROR_CODE](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_OnRemoteDestroyCallback()
 
@@ -218,7 +218,7 @@ IPC消息发送函数。
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 发送成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 远端OHIPCRemoteStub对象死亡返回[OH_IPC_ErroeCode#OH_IPC_DEAD_REMOTE_OBJECT](capi-ipc-error-code-h.md)；<br> code超出范围返回[OH_IPC_ErroeCode#OH_IPC_CODE_OUT_OF_RANGE](capi-ipc-error-code-h.md)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERRORT](capi-ipc-error-code-h.md)或用户自定义错误码。 |
+| int | 发送成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 远端OHIPCRemoteStub对象死亡返回[OH_IPC_ErroeCode#OH_IPC_DEAD_REMOTE_OBJECT](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> code超出范围返回[OH_IPC_ErroeCode#OH_IPC_CODE_OUT_OF_RANGE](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERRORT](capi-ipc-error-code-h.md#oh_ipc_errorcode)或用户自定义错误码。 |
 
 ### OH_IPCRemoteProxy_GetInterfaceDescriptor()
 
@@ -247,7 +247,7 @@ int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **des
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 发送成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 远端OHIPCRemoteStub对象死亡返回[OH_IPC_ErroeCode#OH_IPC_DEAD_REMOTE_OBJECT](capi-ipc-error-code-h.md)；<br> 内存分配失败返回[OH_IPC_ErroeCode#OH_IPC_MEM_ALLOCATOR_ERROR](capi-ipc-error-code-h.md)；<br> 序列化读失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)或用户自定义错误码。 |
+| int | 发送成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 远端OHIPCRemoteStub对象死亡返回[OH_IPC_ErroeCode#OH_IPC_DEAD_REMOTE_OBJECT](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 内存分配失败返回[OH_IPC_ErroeCode#OH_IPC_MEM_ALLOCATOR_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 序列化读失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)或用户自定义错误码。 |
 
 ### OH_OnDeathRecipientCallback()
 
@@ -362,7 +362,7 @@ int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecip
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCRemoteProxy_RemoveDeathRecipient()
 
@@ -389,7 +389,7 @@ int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRe
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它返回[OH_IPC_ErroeCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCRemoteProxy_IsRemoteDead()
 

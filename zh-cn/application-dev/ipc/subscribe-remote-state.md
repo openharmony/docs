@@ -76,6 +76,10 @@ IPC/RPC的订阅机制适用于以下场景：</br>
 
     let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
+    let deviceList: Array<distributedDeviceManager.DeviceBasicInfo> | undefined;
+    let networkId: string | undefined;
+    let want: Want | undefined;
+    let connect: common.ConnectOptions | undefined;
 
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
@@ -86,26 +90,32 @@ IPC/RPC的订阅机制适用于以下场景：</br>
 
     // 使用distributedDeviceManager获取目标设备NetworkId
     if (dmInstance != undefined) {
-      let deviceList = dmInstance.getAvailableDeviceListSync();
-      let networkId = deviceList[0].networkId;
-      let want: Want = {
-        bundleName: "ohos.rpc.test.server",
-        abilityName: "ohos.rpc.test.service.ServiceAbility",
-        deviceId: networkId,
-      };
-
-      let connect: common.ConnectOptions = {
-        onConnect: (elementName, remoteProxy) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-          proxy = remoteProxy;
-        },
-        onDisconnect: (elementName) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-        },
-        onFailed: () => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      try {
+        deviceList = dmInstance.getAvailableDeviceListSync();
+        if (deviceList.length !== 0) {
+          networkId = deviceList[0].networkId;
+          want = {
+            bundleName: "ohos.rpc.test.server",
+            abilityName: "ohos.rpc.test.service.ServiceAbility",
+            deviceId: networkId,
+          };
+          connect = {
+            onConnect: (elementName, remoteProxy) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+              proxy = remoteProxy;
+            },
+            onDisconnect: (elementName) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+            },
+            onFailed: () => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+            }
+          };
         }
-      };
+      }catch(error) {
+        let err: BusinessError = error as BusinessError;
+        hilog.error(0x0000, 'testTag', 'createDeviceManager err:' + err);
+      }
     }
   ```
 
@@ -120,7 +130,7 @@ IPC/RPC的订阅机制适用于以下场景：</br>
   ```
 
   Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)接口连接Ability。
-  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+  在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
@@ -144,7 +154,7 @@ IPC/RPC的订阅机制适用于以下场景：</br>
   }
   let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
-    // 此处的0为注册死亡监听的死亡通知的保留标志，暂无实际意义
+    // 此处的0为注册死亡监听的死亡通知的保留标志，暂无实际意义。且移除监听仅为示例，实际移除时机由业务自行判断
     proxy.registerDeathRecipient(deathRecipient, 0);
     proxy.unregisterDeathRecipient(deathRecipient, 0);
   }
