@@ -1,4 +1,4 @@
-# 管理全局音频输出设备
+# 通过AudioRoutingManager管理全局音频输出设备
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
@@ -73,7 +73,7 @@ audioRoutingManager.off('deviceChange');
 选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/arkts-apis-audio-t.md#audiodevicedescriptors)。
 
 > **说明：**
-> 
+>
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备ID。
 
 ```ts
@@ -149,4 +149,103 @@ audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, 
 
 // 取消监听最高优先级输出设备变化。
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+```
+
+# 通过AudioSession管理全局音频输出设备
+一些应用使用播放器的sdk播放音频流，应用本身不持有AudioRenderer
+对象，无法灵活控制播放设备的选择和设备状态的监听。
+因此，从API20开始，AudioSession除了增加焦点管理能力外，也提供了音频输出设备管理能力，包括设置本机默认输出设备信息、监听输出设备变化等。具体API说明可参考文档[AudiSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)。
+
+## 创建AudioSession实例
+在使用AudioSessionManager管理音频设备前，需要先导入模块并创建实例。
+```ts
+import { audio } from '@kit.AudioKit';  // 导入audio模块。
+
+let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
+
+let audioSessionManager = audioManager.getSessionManager();  // 再调用AudioManager的方法创建AudioSessionManager实例。
+```
+
+## 设置本机默认音频输出设备
+
+应用可以通过[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setdefaultoutputdevice20)设置本机默认输出设备。
+> **说明：**
+>
+> - 由于AudioSession是应用级设置，如果调用了本接口设置默认输出设备，会覆盖通过AudioRenderer的setDefaultOutputDevice接口设置的设备信息。
+> - setDefaultOutputDevice设置输出设备后，如果要取消，可以将入参设置成audio.DeviceType.DEFAULT，将设备选择交还给系统默认设置。否则，每次调用activateAudioSession，就会生效应用选择的默认输出设备。
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 设置默认输出设备为本机扬声器。
+audioSessionManager.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
+  console.info('setDefaultOutputDevice Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setDefaultOutputDevice Fail: ${err}`);
+});
+
+// 设置默认输出设备为默认设备，即取消应用设置的默认设备，交由系统选择设备。
+audioSessionManager.setDefaultOutputDevice(audio.DeviceType.DEFAULT).then(() => {
+  console.info('setDefaultOutputDevice Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setDefaultOutputDevice Fail: ${err}`);
+});
+```
+
+## 获取本机默认音频输出设备
+
+应用可以通过[getDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#getdefaultoutputdevice20)获取本机默认输出设备。
+> **说明：**
+>
+> 本接口用于查询通过setDefaultOutputDevice接口设置的DeviceType。
+
+```ts
+let deviceType = audioSessionManager.getDefaultOutputDevice();
+console.info('getDefaultOutputDevice Success, deviceType: ${deviceType}');
+```
+
+## 监听输出设备变化
+
+应用可以通过注册[currentOutputDeviceChangedCallback](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#currentoutputdevicechangedcallback20)监听输出设备的变化。
+
+> **说明：**
+>
+> currentOutputDeviceChangedCallback中携带了设备变更的原因以及推荐的后续操作，为了更好的体验，建议应用对各种不同的设备变更原因做相应的处理并且根据系统推荐操作继续/停止当前播放。
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let currentOutputDeviceChangedCallback = (currentOutputDeviceChangedEvent: audio.CurrentOutputDeviceChangedEvent) => {
+  console.info(`reason of audioSessionStateChanged: ${currentOutputDeviceChangedEvent.changeReason} `);
+
+  switch (currentOutputDeviceChangedEvent.changeReason) {
+    case audio.AudioStreamDeviceChangeReason.REASON_OLD_DEVICE_UNAVAILABLE:
+      // 响应设备不可用事件，如果应用处于播放状态，应暂停播放，更新UX界面。
+      // await audioRenderer.pause();
+      break;
+    case audio.AudioStreamDeviceChangeReason.REASON_NEW_DEVICE_AVAILABLE:
+      // 应用根据业务情况响应设备可用事件。
+      break;
+    case audio.AudioStreamDeviceChangeReason.REASON_OVERRODE:
+      // 应用根据业务情况响应设备强选事件。
+      break;
+    case audio.AudioStreamDeviceChangeReason.REASON_SESSION_ACTIVATED:
+      // 应用根据业务情况响应audio session激活时的输出设备信息。
+      break;
+    case audio.AudioStreamDeviceChangeReason.REASON_STREAM_PRIORITY_CHANGED:
+      // 应用根据业务情况响应其它更高优先级的音频流触发的设备变更事件。
+      break;
+    case audio.AudioStreamDeviceChangeReason.REASON_UNKNOWN:
+      // 应用根据业务情况响应未知原因事件。
+      break;
+  }
+};
+
+audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedCallback);
+
+audioSessionManager.off('currentOutputDeviceChanged', currentOutputDeviceChangedCallback);
+
+// 取消该事件的所有监听。
+audioSessionManager.off('currentOutputDeviceChanged');
 ```
