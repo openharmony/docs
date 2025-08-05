@@ -71,7 +71,9 @@ ToolBarV2Item的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                            | 必填 | 说明       |
+**参数**：
+
+| 参数名       | 类型                                            | 必填 | 说明       |
 | :------ |:----------------------------------------------| :- | :------- |
 | options | [ToolBarV2ItemOptions](#toolbarv2itemoptions) | 是  | 工具栏子项信息。 |
 
@@ -137,7 +139,9 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                    | 必填 | 说明         |
+**参数**：
+
+| 参数名       | 类型                                                    | 必填 | 说明         |
 | :------ |:------------------------------------------------------| :- | :--------- |
 | options | [ToolBarV2ItemTextOptions](#toolbarv2itemtextoptions) | 是  | 工具栏子项文本信息。 |
 
@@ -183,7 +187,9 @@ ToolBarV2ItemImage的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                    | 必填 | 说明         |
+**参数**：
+
+| 参数名       | 类型                                                    | 必填 | 说明         |
 | :------ | :------------------------------------------------------ | :- | :--------- |
 | options | [ToolBarV2ItemImageOptions](#toolbarv2itemimageoptions) | 是  | 工具栏子项图标信息。 |
 
@@ -350,6 +356,8 @@ ToolBarV2SymbolGlyph的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**：
 
 | 参数名     | 类型                                                        | 必填 | 说明          |
 | :------ | :---------------------------------------------------------- | :- | :---------- |

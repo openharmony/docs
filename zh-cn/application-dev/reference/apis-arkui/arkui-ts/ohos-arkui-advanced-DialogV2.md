@@ -250,7 +250,9 @@ AdvancedDialogV2Button的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                              | 必填 | 说明      |
+**参数**：
+
+| 参数名       | 类型                                                              | 必填 | 说明      |
 | :------ | :-------------------------------------------------------------- | :- | :------ |
 | options | [AdvancedDialogV2ButtonOptions](#advanceddialogv2buttonoptions) | 是  | 按钮配置信息。 |
 
