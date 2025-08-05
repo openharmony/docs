@@ -1,6 +1,6 @@
 # 使用Web组件打印前端页面
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--SE: @handyohos-->
 <!--TSE: @ghiker-->

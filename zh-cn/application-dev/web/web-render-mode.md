@@ -1,6 +1,6 @@
 # Web组件渲染模式
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhou-ke13-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->

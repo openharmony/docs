@@ -1,6 +1,6 @@
 # 使用运动和方向传感器监测设备状态
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--SE: @handyohos-->
 <!--TSE: @ghiker-->

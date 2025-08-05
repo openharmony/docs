@@ -1,6 +1,6 @@
 # Web组件大小自适应页面内容布局
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yp99ustc-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->
