@@ -1,4 +1,9 @@
 # Ability Kit（程序框架服务）<!--ability-api-->
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 - ArkTS API<!--ability-arkts-->
   - Stage模型能力的接口<!--stage-model-->
@@ -274,7 +279,7 @@
     - [AbilityAccessControl](capi-abilityaccesscontrol.md)
     - [AbilityBase](capi-abilitybase.md)
     - [AbilityRuntime](capi-abilityruntime.md)
-    - [Bundle](_bundle.md)
+    - [Native_Bundle](capi-native-bundle.md)
     - [ChildProcess](capi-childprocess.md)
   - 头文件<!--ability-headerfile-->
     - [ability_access_control.h](capi-ability-access-control-h.md)
@@ -283,7 +288,7 @@
     - [application_context.h](capi-application-context-h.md)
     - [context_constant.h](capi-context-constant-h.md)
     - [native_child_process.h](capi-native-child-process-h.md)
-    - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_interface_bundle.h](capi-native-interface-bundle-h.md)
     - [start_options.h](capi-start-options-h.md)
     - [want.h](capi-want-h.md)
   - 结构体<!--ability-struct-->
@@ -295,10 +300,10 @@
     - [NativeChildProcess_Options](capi-nativechildprocess-options.md)
     - [NativeChildProcess_Args](capi-nativechildprocess-args.md)
     - [Ability_ChildProcessConfigs](capi-ability-childprocessconfigs.md)
-    - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
-    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
-    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
+    - [OH_NativeBundle_ApplicationInfo](capi-native-bundle-oh-nativebundle-applicationinfo.md)
+    - [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md)
+    - [OH_NativeBundle_Metadata](capi-native-bundle-oh-nativebundle-metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](capi-native-bundle-oh-nativebundle-modulemetadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

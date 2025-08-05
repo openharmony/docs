@@ -1,4 +1,9 @@
 # TextPicker
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 滑动选择文本内容的组件。
 
@@ -38,12 +43,12 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，[Resource](ts-types.md#resource)，[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
-| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
-| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>从API version 20开始，支持[Resource](ts-types.md#resource)类型。<br/> **说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>多列、多列联动数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
-| columnWidths<sup>18+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等。<br/>**说明**：如果文本长度大于列宽时，文本被截断。<br/>当设置为异常值时，列宽按照默认值处理，此时TextPicker组件多列等宽，每一列宽度为组件宽度除以列数。默认值支持Undefined和Null，不支持Undefined[]和Null[]。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 否 | 否 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，[Resource](ts-types.md#resource)，[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
+| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 是 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
+| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 是 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>从API version 20开始，支持[Resource](ts-types.md#resource)类型。<br/> **说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>多列、多列联动数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
+| columnWidths<sup>18+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)[] | 否 | 是 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等。<br/>**说明**：如果文本长度大于列宽时，文本被截断。<br/>当设置为异常值时，列宽按照默认值处理，此时TextPicker组件多列等宽，每一列宽度为组件宽度除以列数。默认值支持Undefined和Null，不支持Undefined[]和Null[]。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -53,10 +58,10 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                 | 必填 | 说明       |
-| ---- | ---------------------------------------------------- | ---- | ---------- |
-| icon | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 图片资源。 icon是string类型时，表示图片存放的路径，例如"/common/hello.png"。 |
-| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。<br/>默认值：空字符串<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
+| 名称 | 类型                                                 | 只读 | 可选 | 说明                                                         |
+| ---- | ---------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| icon | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 否   | 图片资源。 icon是string类型时，表示图片存放的路径，例如"/common/hello.png"。 |
+| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 是   | 文本信息。<br/>默认值：空字符串<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
 
 ## TextCascadePickerRangeContent<sup>10+</sup>对象说明
 
@@ -66,10 +71,10 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                 | 必填 | 说明   |
-| ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本信息。<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
-| children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[] | 否   | 联动数据。 |
+| 名称 | 类型                                                 | 只读 | 可选 | 说明   |
+| ------ | -------------------------------------------------------- | ---- | ---------- | ---------- |
+| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否  | 否  | 文本信息。<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
+| children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[] | 否  | 是  | 联动数据。 |
 ## DividerOptions<sup>12+</sup>对象说明
 
 分割线的信息。
@@ -78,12 +83,12 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                 | 必填 | 说明                                                         |
-| ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
-| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
-| color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。<br/>默认值：'#33000000'
+| 名称        | 类型                                       | 只读 | 可选 | 说明                                                         |
+| ----------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
+| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 分割线的颜色。<br/>默认值：'#33000000'                       |
 
 ## 属性
 
@@ -621,19 +626,21 @@ onCancel(callback: () => void)
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 类型                                     | 必填   | 说明                      |
-| ----- | ---------------------------------------- | ---- | ------------------------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
-| font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
-| minFontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize和maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。详细规则请参考Text的[minFontSize](ts-basic-components-text.md#minfontsize)属性。 |
-| maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | 否    | 文本最大显示字号。详细规则请参考Text的[maxFontSize](ts-basic-components-text.md#maxfontsize)属性。                     |
-| overflow | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 文本截断方式。当设置为MARQUEE时，该属性不生效。详细规则请参考Text组件的[textOverflow](ts-basic-components-text.md#textoverflow)属性。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型                                     | 只读 | 可选 | 说明                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- | ------------------------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 文本颜色。                     |
+| font  | [Font](ts-types.md#font)                 | 否   | 是   | 文本样式。 |
+| minFontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 是 | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize和maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。详细规则请参考Text的[minFontSize](ts-basic-components-text.md#minfontsize)属性。 |
+| maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 是   | 文本最大显示字号。详细规则请参考Text的[maxFontSize](ts-basic-components-text.md#maxfontsize)属性。                     |
+| overflow | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 是 | 文本截断方式。当设置为MARQUEE时，该属性不生效。详细规则请参考Text组件的[textOverflow](ts-basic-components-text.md#textoverflow)属性。 |
 
 ## OnTextPickerChangeCallback<sup>18+</sup>
 
-type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
+type OnTextPickerChangeCallback = (selectItem: string | string[], index: number | number[]) => void
 
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，selectItem值为选中项中的文本值，当显示图片列表时，selectItem值为空。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -641,10 +648,10 @@ type OnTextPickerChangeCallback = (value: string | string[], index: number | num
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
+| 参数名     | 类型                                       | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| selectItem | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，selectItem为数组类型。         |
+| index      | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
 
 ## TextPickerScrollStopCallback<sup>14+</sup>
 
@@ -694,10 +701,10 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------- |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 选项背景颜色，默认值为'#0C182431'。   |
-| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 选项边框圆角半径。[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；[BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24 unit:1 }，即四个圆角半径均为24VP。 |
+| 名称 | 类型                                       | 只读 | 可选 | 说明                                              |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------- | ------------------------------------------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选项背景颜色，默认值为'#0C182431'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选项边框圆角半径。[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；[BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24 unit:1 }，即四个圆角半径均为24VP。 |
 ## 示例
 
 ### 示例1（设置选择器列数）
@@ -1070,53 +1077,57 @@ struct TextPickerExample {
 该示例通过配置[selectedBackgroundStyle](#selectedbackgroundstyle20)实现文本选择器选中项的背景样式。
 
 ```ts
+import { LengthUnit } from '@kit.ArkUI'
+
 // xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
   private showText1: string [] =
-    ['Text1', 'Text1', 'Text1', 'Text1']
+    ["Text1", "Text1", "Text1", "Text1"]
   private showText2: string[] [] =
     [
-      ['Text2', 'Text2', 'Text2', 'Text2'],
-      ['Text3', 'Text3', 'Text3', 'Text3']
+      ["Text2", "Text2", "Text2", "Text2"],
+      ["Text3", "Text3", "Text3", "Text3"]
     ]
+
   build() {
     Column() {
       Row() {
         TextPicker({ range: this.showText1 })
           .selectedBackgroundStyle({
-            color:"#FFD5D5D5",
-            borderRadius: { value:0, unit :1 }
+            color: "#FFD5D5D5",
+            borderRadius: { value: 0, unit: LengthUnit.VP }
           })
         Column()
           .width("10%")
         TextPicker({ range: this.showText1 })
           .selectedBackgroundStyle({
-            color:"#FFE3F8F9",
+            color: "#FFE3F8F9",
             borderRadius: {
-              topStart: { value:5, unit:1 },
-              topEnd: { value:10, unit:1 },
-              bottomStart: { value:15, unit:1 },
-              bottomEnd: { value:20, unit:1 },
+              topStart: { value: 5, unit: LengthUnit.VP },
+              topEnd: { value: 10, unit: LengthUnit.VP },
+              bottomStart: { value: 15, unit: LengthUnit.VP },
+              bottomEnd: { value: 20, unit: LengthUnit.VP },
             }
           })
       }
+
       Row()
         .height("10%")
       Row() {
         TextPicker({ range: this.showText2 })
           .selectedBackgroundStyle({
             borderRadius: {
-              topLeft:8,
-              topRight:8,
-              bottomLeft:8,
-              bottomRight:8
+              topLeft: 8,
+              topRight: 8,
+              bottomLeft: 8,
+              bottomRight: 8
             },
             color: "#FFFFEEF6"
           })
       }
-    }.height('100%')
+    }.height("100%")
   }
 }
 ```

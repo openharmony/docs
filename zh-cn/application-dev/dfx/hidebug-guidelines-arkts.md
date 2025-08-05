@@ -1,5 +1,11 @@
 # HiDebug接口使用示例(ArkTS)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 HiDebug ArkTS接口功能独立，需要获取调试信息时直接调用。具体调用方式请参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)中的示例。
 
 ## 开发示例

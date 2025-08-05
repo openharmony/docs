@@ -1,4 +1,9 @@
 # IsolatedComponent (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 IsolatedComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在受限worker线程中运行。
 

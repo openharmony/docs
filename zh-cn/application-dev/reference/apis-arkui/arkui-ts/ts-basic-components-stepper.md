@@ -1,4 +1,9 @@
 # Stepper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 步骤导航器组件，适用于引导用户按照步骤完成任务的导航场景。
 

@@ -1,14 +1,19 @@
 # 崩溃事件介绍
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @chenshi51-->
+<!--SE: @Maplestory-->
+<!--TSE: @yufeifei-->
 
 ## 简介
 
-崩溃是指应用进程非预期退出。以下两种场景会生成崩溃事件：
+崩溃是指应用进程非预期退出，以下两种场景会生成崩溃事件：
 
 1. Native代码未处理[崩溃信号](cppcrash-guidelines.md#系统处理的崩溃信号)时，会生成NativeCrash类型崩溃事件。
 
 2. ArkTS/JS代码未处理异常时，会生成JsError类型崩溃事件。
 
-本文面向开发者介绍崩溃事件检测原理和各字段的含义及规格。如需了解如何使用HiAppEvent接口订阅系统崩溃事件，请参考以下文档。目前提供ArkTs和C/C++两种接口，按需选择。
+本文面向开发者介绍崩溃事件检测原理，以及各字段的含义和规格。如需了解如何使用HiAppEvent接口订阅系统崩溃事件，请参考以下文档。目前提供ArkTS和C/C++两种接口，按需选择。
 
 - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)。
 
@@ -18,13 +23,13 @@
 
 ### NativeCrash崩溃类型检测原理
 
-系统的进程崩溃检测能力主要基于posix信号机制，当进程崩溃后收到崩溃信号，进入系统注册信号处理流程，进行崩溃信息收集、事件生成、事件上报等操作，最终将崩溃事件发布给应用进程的崩溃事件订阅者。
+系统的进程崩溃检测能力主要基于POSIX信号机制，当进程崩溃后收到崩溃信号，进入系统注册信号处理流程，进行崩溃信息收集、事件生成、事件上报等操作，最终将崩溃事件发布给应用进程的崩溃事件订阅者。
 
 系统检测进程崩溃的详细流程如下：
 
 1. 进程运行时崩溃后收到来自内核发送的崩溃信号，由进程在启动时注册的信号处理模块进行处理。
 
-2. 进程接收到崩溃信号后，保存当前进程上下文，fork出子进程执行ProcessDump二进制抓取崩溃信息。
+2. 进程接收到崩溃信号后，保存当前进程上下文并fork出子进程执行ProcessDump二进制抓取崩溃信息。
 
 3. ProcessDump进程收集完崩溃信息后，上报给Hiview进程。Hiview进程将事件信息存储到[应用沙箱目录](../file-management/app-sandbox-directory.md)。
 
@@ -38,7 +43,7 @@
 
 从**API version 20**开始支持设置崩溃日志规格自定义设置。
 
-当前系统提供了通用的NativeCrash崩溃日志生成功能，但一些应用对NativeCrash崩溃日志打印内容有个性化的需求，因此需要设置崩溃日志配置参数。
+当前系统提供了通用的NativeCrash崩溃日志生成功能。然而，一些应用对NativeCrash崩溃日志打印内容有个性化的需求，因此需要设置崩溃日志配置参数。
 
 ### **接口说明**
 
@@ -52,7 +57,7 @@
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| extend_pc_lr_printing | boolean | 否 | true：64位系统打印pc和lr寄存器地址向前248字节、向后256字节范围的内存值。32位系统打印pc和lr寄存器地址向前124字节、向后128字节范围的内存值。<br/>false：64位系统打印pc和lr寄存器地址向前16字节、向后232字节范围的内存值。32位系统化打印pc和lr寄存器地址向前8字节、向后116字节范围的内存值。<br/>缺省时默认为false。 |
+| extend_pc_lr_printing | boolean | 否 | true：64位系统打印pc和lr寄存器地址向前248字节、向后256字节范围的内存值。32位系统打印pc和lr寄存器地址向前124字节、向后128字节范围的内存值。<br/>false：64位系统打印pc和lr寄存器地址向前16字节、向后232字节范围的内存值。32位系统打印pc和lr寄存器地址向前8字节、向后116字节范围的内存值。<br/>缺省时默认为false。 |
 | log_file_cutoff_sz_bytes | number | 否 | 单位为byte，取值范围为[0-5242880]。<br/>如果设置，按设置的参数值截断崩溃日志大小。<br/>如果不设置，默认值取0表示不截断崩溃日志。 |
 | simplify_vma_printing | boolean | 否 | true：只打印崩溃日志中出现的地址所属的VMA（Virtual Memory Area，进程地址空间中的区域）映射信息，即崩溃日志中Maps，以减小日志大小。<br/>false：打印所有VMA映射信息。<br/>缺省时默认为false。 |
 
@@ -90,7 +95,7 @@ Timestamp:2025-05-17 19:17:07.000
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | time | number | 事件触发时间，单位为ms。 |
-| crash_type | string | 崩溃类型。支持NativeCrash（native代码异常）和JsError（js代码异常）两种崩溃类型。崩溃检测方法请分别参见[CppCrash（NativeCrash）检测](cppcrash-guidelines.md)和[Js Crash（JsError）检测](jscrash-guidelines.md)。 |
+| crash_type | string | 崩溃类型，支持NativeCrash（native代码异常）和JsError（js代码异常）两种类型。检测方法请参见[CppCrash（NativeCrash）检测](cppcrash-guidelines.md)和[Js Crash（JsError）检测](jscrash-guidelines.md)。 |
 | foreground | boolean | 应用是否处于前台状态。true表示应用处于前台状态；false表示应用处于后台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
@@ -98,10 +103,10 @@ Timestamp:2025-05-17 19:17:07.000
 | uid | number | 应用的用户ID。 |
 | uuid | string | 根据故障信息生成的故障特征码，用于标识特征相同的崩溃故障。 |
 | exception | object | 异常信息, 详见[exception字段说明](#exception字段说明)。包含故障简要信息，全量故障信息见external_log文件。 |
-| hilog | string[] | 日志信息，最多显示100行hilog日志。更多日志请查看故障日志文件。 |
-| threads | object[] | 全量线程调用栈，详见[thread字段说明](#thread字段说明)。仅NativeCrash类型的崩溃事件提供。 |
+| hilog | string[] | 日志信息，最多显示100行hilog日志。更多日志见故障日志文件。 |
+| threads | object[] | 全量线程调用栈，详见[thread字段说明](#thread字段说明)。仅在NativeCrash类型的崩溃事件提供。 |
 | external_log<sup></sup> | string[] | 故障日志文件[应用沙箱路径](../file-management/app-sandbox-directory.md)。开发者可通过路径读取故障日志文件内容。**为避免目录空间超限导致新生成的日志文件写入失败，日志文件处理完后请及时删除，超限规格请参考log_over_limit字段。** |
-| log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
+| log_over_limit | boolean | 生成的与已存在的故障日志文件的大小总和是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 ### exception字段说明
 
@@ -125,7 +130,7 @@ Timestamp:2025-05-17 19:17:07.000
 
 ### signal字段说明
 
-信号详细介绍请参考[CppCrash（进程崩溃）检测实现原理](cppcrash-guidelines.md#实现原理)。
+具体内容请参考[CppCrash（进程崩溃）检测实现原理](cppcrash-guidelines.md#实现原理)。
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -143,7 +148,7 @@ Timestamp:2025-05-17 19:17:07.000
 
 ### frame字段说明
 
-**Native帧frame字段说明**
+**Native frame字段说明**
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -153,7 +158,7 @@ Timestamp:2025-05-17 19:17:07.000
 | pc | string | 程序执行的指令在文件内的偏移十六进制字节数。 |
 | offset | number | 程序执行的指令在函数内偏移字节数。 |
 
-**Js帧frame字段说明**
+**Js frame字段说明**
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |

@@ -1,4 +1,9 @@
 # 特效绘制合并
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 用于对背景模糊等特效进行绘制合并。
 

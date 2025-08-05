@@ -1,4 +1,9 @@
 # Swiper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
  滑块视图容器，提供子组件滑动轮播显示的能力。 
 

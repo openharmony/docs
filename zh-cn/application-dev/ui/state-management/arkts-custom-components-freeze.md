@@ -555,7 +555,8 @@ struct NavigationContentMsgStack {
 
 [组件复用](./arkts-reusable.md)通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
 
-#### 组件复用、if和组件冻结混用场景
+**组件复用、if和组件冻结混用场景**
+
 下面是组件复用、if组件和组件冻结混合使用场景的例子，if组件绑定的状态变量变化成false时，触发子组件`ChildComponent`的下树，由于`ChildComponent`被标记了组件复用，所以不会被销毁，而是进入复用池，这个时候如果同时开启了组件冻结，则可以使在复用池里不再刷新。
 具体流程如下：
 1. 点击`change flag`，改变`flag`为false：
@@ -623,7 +624,8 @@ struct Page {
   }
 }
 ```
-#### LazyForEach、组件复用和组件冻结混用场景
+**LazyForEach、组件复用和组件冻结混用场景**
+
 在数据很多的长列表滑动场景下，开发者会使用LazyForEach来按需创建组件，同时配合组件复用降低在滑动过程中因创建和销毁组件带来的开销。
 但是开发者如果根据其复用类型不同，设置了[reuseId](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md#reuseid)，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
 在这种情况下，如果开发者触发List下所有子节点的刷新，就会带来节点刷新数量过大的问题，这个时候，可以考虑搭配组件冻结使用。
@@ -792,7 +794,7 @@ struct Page {
   }
 }
 ```
-#### LazyForEach、if、组件复用和组件冻结混用场景
+**LazyForEach、if、组件复用和组件冻结混用场景**
 
 下面的场景中展示了LazyForEach、if、组件复用和组件冻结混用场景。在同一个父自定义组件下，可复用的节点可能通过不同的方式进入复用池，比如：
 - 通过滑动从LazyForEach的缓存区域下树，进入复用池。
@@ -983,7 +985,7 @@ struct Page {
 
 组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点。
 
-#### Navigation和TabContent的混用
+**Navigation和TabContent的混用**
 
 代码示例如下：
 
@@ -1371,7 +1373,7 @@ struct Page {
 
 如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
 
-```
+```ts
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 
 // 定义一个Params类，用于传递参数

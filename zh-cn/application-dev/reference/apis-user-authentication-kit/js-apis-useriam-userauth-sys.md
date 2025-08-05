@@ -98,6 +98,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface  EventData {
   widgetContextId: number;
@@ -122,7 +123,8 @@ try {
   userAuth.sendNotice(noticeType, jsonEventData);
   console.info('sendNotice success');
 } catch (error) {
-  console.error(`sendNotice catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`sendNotice catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -160,6 +162,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -172,7 +175,8 @@ try {
   })
   console.info('subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -206,6 +210,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -218,7 +223,8 @@ try {
   })
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -264,13 +270,15 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.info('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -298,6 +306,7 @@ sendCommand(cmdData: string): void
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -310,7 +319,8 @@ try {
   })
   console.info('subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -326,7 +336,7 @@ try {
 
 **示例：**
 
-发起用户认证，采用认证可信等级≥ATL3的隐私密码认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的隐私密码认证，获取认证结果。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -423,7 +433,8 @@ try {
   let authToken = userAuth.queryReusableAuthResult(authParam);
   console.info('query reuse auth result success');
 } catch (error) {
-  console.error(`query reuse auth result catch error. Code is ${error?.code}, message is ${error?.message}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`query reuse auth result catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 

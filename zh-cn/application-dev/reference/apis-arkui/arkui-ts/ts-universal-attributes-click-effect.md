@@ -1,4 +1,9 @@
 # 点击回弹效果
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件点击时的回弹效果。
 
