@@ -112,7 +112,7 @@
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap。
+       // 获取缩略图pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -131,7 +131,7 @@
    ```ts
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
-       // 创建 photoAsset。
+       // 创建photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);

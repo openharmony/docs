@@ -166,7 +166,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
     console.error('createOutput photoProfilesArray == null || undefined');
   }
 
-  // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
+  // 创建预览输出流,其中参数surfaceId参考上文XComponent组件，预览流为XComponent组件提供的surface。
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
