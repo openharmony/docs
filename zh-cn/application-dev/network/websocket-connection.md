@@ -1,4 +1,4 @@
-# WebSocket连接
+# 使用WebSocket访问网络
 
 ## 场景介绍
 
@@ -339,4 +339,4 @@ localServer.stop().then((success: boolean) => {
 
 针对WebSocket连接的开发，有以下相关实例可供参考：
 
-- [WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
+- [WebSocket（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)

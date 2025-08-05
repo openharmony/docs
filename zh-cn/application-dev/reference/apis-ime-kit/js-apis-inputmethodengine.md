@@ -5136,7 +5136,7 @@ textInputClient.getBackward(length, (err: BusinessError, text: string) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in getting borward, text: ' + text);
+  console.info('Succeeded in getting backward, text: ' + text);
 });
 ```
 
@@ -5518,7 +5518,7 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
   console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```

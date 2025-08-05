@@ -1,4 +1,9 @@
 # Video
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 用于播放视频文件并控制其播放状态的组件。 
 

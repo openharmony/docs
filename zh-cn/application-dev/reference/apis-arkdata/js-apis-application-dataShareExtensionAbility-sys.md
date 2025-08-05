@@ -1,4 +1,9 @@
 # @ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 **DataShareExtensionAbility**基于ExtensionAbility框架，提供支持数据共享业务的能力。
 

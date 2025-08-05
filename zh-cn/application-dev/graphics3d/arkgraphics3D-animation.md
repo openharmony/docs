@@ -88,5 +88,5 @@ function callBacks() : void {
 ## 相关实例
 
 对于3D动画更详细的使用可以参考以下实例：
-- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d)
+- [3D引擎接口示例（ArkTS）（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d)
 <!--RP1End-->

@@ -27,7 +27,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 2. Device-daemon端执行需连接硬件设备，Device-hap端需在有屏幕设备使用。
 
-3. <!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
+3. Device-daemon端执行前需完成[hdc环境配置](../dfx/hdc.md)。
 
 <!--RP3-->
 ## SmartPerf Device-hap端

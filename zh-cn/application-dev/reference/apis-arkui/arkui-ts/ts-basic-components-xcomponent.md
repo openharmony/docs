@@ -1,4 +1,9 @@
 # XComponent
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 提供用于图形绘制和媒体数据写入的[Surface](../../../ui/napi-xcomponent-guidelines.md#自绘制原理说明)，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
@@ -644,7 +649,7 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 <!--RP1-->
 > **说明：**
 >
-> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)。
 <!--RP1End-->
 
 ```ts
@@ -776,7 +781,7 @@ struct XComponentExample {
 
 > **说明：**
 >
-> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)。<!--RP2End-->
 
 ```ts
 // xxx.ets

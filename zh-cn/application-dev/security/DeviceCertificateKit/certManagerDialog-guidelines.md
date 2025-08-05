@@ -1,5 +1,11 @@
 # 证书管理对话框开发指导
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--SE: @chande-->
+<!--TSE: @zhangzhi1995-->
+
 > **说明**
 >
 > 本开发指导需使用API version 13及以上版本SDK。

@@ -1,7 +1,7 @@
 # 安全控件概述
 
 <!--Kit: ArkUI-->
-<!--Subsystem: Security->
+<!--Subsystem: Security-->
 <!--Owner: @harylee-->
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->

@@ -1,4 +1,9 @@
 # Ability Kit（程序框架服务）<!--ability-api-->
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 - ArkTS API<!--ability-arkts-->
   - Stage模型能力的接口<!--stage-model-->
@@ -42,7 +47,7 @@
     - [@ohos.app.appstartup.startupManager (启动框架管理能力)](js-apis-app-appstartup-startupManager.md)
     - [@ohos.app.appstartup.StartupTask (启动框架任务)](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
-    - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.application (Application)(系统接口)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](js-apis-app-ability-autoFillManager-sys.md)
@@ -272,26 +277,33 @@
 - C API<!--ability-c-->
   - 模块<!--ability-module-->
     - [AbilityAccessControl](capi-abilityaccesscontrol.md)
-    - [AbilityBase](_ability_base.md)
-    - [AbilityRuntime](_ability_runtime.md)
-    - [Bundle](_bundle.md)
-    - [ChildProcess](c-apis-ability-childprocess.md)
+    - [AbilityBase](capi-abilitybase.md)
+    - [AbilityRuntime](capi-abilityruntime.md)
+    - [Native_Bundle](capi-native-bundle.md)
+    - [ChildProcess](capi-childprocess.md)
   - 头文件<!--ability-headerfile-->
     - [ability_access_control.h](capi-ability-access-control-h.md)
-    - [ability_base_common.h](ability__base__common_8h.md)
-    - [ability_runtime_common.h](ability__runtime__common_8h.md)
-    - [application_context.h](application__context_8h.md)
-    - [context_constant.h](context__constant_8h.md)
-    - [native_interface_bundle.h](native__interface__bundle.md)
-    - [native_child_process.h](native__child__process_8h.md)
-    - [start_options.h](start__options_8h.md)
-    - [want.h](want__8h.md)
+    - [ability_base_common.h](capi-ability-base-common-h.md)
+    - [ability_runtime_common.h](capi-ability-runtime-common-h.md)
+    - [application_context.h](capi-application-context-h.md)
+    - [context_constant.h](capi-context-constant-h.md)
+    - [native_child_process.h](capi-native-child-process-h.md)
+    - [native_interface_bundle.h](capi-native-interface-bundle-h.md)
+    - [start_options.h](capi-start-options-h.md)
+    - [want.h](capi-want-h.md)
   - 结构体<!--ability-struct-->
-    - [AbilityBase_Element](_ability_base_element.md)
-    - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
-    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
-    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
+    - [AbilityBase_Element](capi-abilitybase-element.md)
+    - [AbilityBase_Want](capi-abilitybase-want.md)
+    - [AbilityRuntime_Startoptions](capi-abilityruntime-startoptions.md)
+    - [NativeChildProcess_Fd](capi-nativechildprocess-fd.md)
+    - [NativeChildProcess_FdList](capi-nativechildprocess-fdlist.md)
+    - [NativeChildProcess_Options](capi-nativechildprocess-options.md)
+    - [NativeChildProcess_Args](capi-nativechildprocess-args.md)
+    - [Ability_ChildProcessConfigs](capi-ability-childprocessconfigs.md)
+    - [OH_NativeBundle_ApplicationInfo](capi-native-bundle-oh-nativebundle-applicationinfo.md)
+    - [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md)
+    - [OH_NativeBundle_Metadata](capi-native-bundle-oh-nativebundle-metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](capi-native-bundle-oh-nativebundle-modulemetadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

@@ -1,4 +1,9 @@
 # @ohos.window (窗口)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。
 
@@ -55,9 +60,12 @@ import { window } from '@kit.ArkUI';
 
 创建子窗口或系统窗口时的参数。
 
+**系统能力：** SystemCapability.Window.SessionManager
+
 | 名称 | 类型 | 必填 | 说明                       |
 | ---------- | --------- | ---- | -------------- |
-| zIndex<sup>20+</sup>       | number | 否 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| zIndex<sup>20+</sup>       | number | 否 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。|
+| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建的系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不受[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>当创建的系统窗口设置此参数为false时，表示当前窗口不使用系统默认Density，且会受到[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>默认为false。|
 
 ## WindowMode<sup>7+</sup>
 
@@ -254,14 +262,18 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 
 try {
-  window.minimizeAll(displayClass.id, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in minimizing all windows.');
-  });
+  if (!displayClass) {
+    console.error('displayClass is null');
+  } else {
+    window.minimizeAll(displayClass.id, (err: BusinessError) => {
+      const errCode: number = err?.code;
+      if (errCode) {
+        console.error(`Failed to minimize all windows. Cause code: ${err?.code}, message: ${err?.message}`);
+        return;
+      }
+      console.info('Succeeded in minimizing all windows.');
+    });
+  }
 } catch (exception) {
   console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -838,7 +850,7 @@ try {
 ## window.setWaterMarkImage<sup>10+</sup>
 setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置水印图片显示状态。使用callback异步回调。
+设置屏幕水印图片显示状态。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -849,7 +861,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
 | pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口获取。|
-| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
+| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。设置显示水印后需主动设置为false才能关闭水印图片显示。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
 **错误码：**
@@ -898,7 +910,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 ## window.setWaterMarkImage<sup>10+</sup>
 setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt;
 
-设置水印图片显示状态。使用Promise异步回调。
+设置屏幕水印图片显示状态。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -909,7 +921,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
 | pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口获取。|
-| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
+| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。设置显示水印后需主动设置为false才能关闭水印图片显示。|
 
 **返回值：**
 
@@ -1552,26 +1564,28 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err.code;
+    let errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
-    windowClass = data;
-  });
-  windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  }, (err: BusinessError) => {
-    let errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    if (!data) {
+      console.error('data is null');
       return;
     }
-    console.info('Succeeded in binding dialog target.');
+    data.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+      }, (err: BusinessError) => {
+      let errCode: number = err?.code;
+      if (errCode) {
+        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+        return;
+      }
+      console.info('Succeeded in binding dialog target.');
+    });
   });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1643,28 +1657,30 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "test",
   windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
+  ctx: getContext()
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
+    const errCode: number = err?.code;
     if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
       return;
     }
-    windowClass = data;
-  });
-  let promise = windowClass.bindDialogTarget(token, () => {
-    console.info('Dialog Window Need Destroy.');
-  });
-  promise.then(() => {
-    console.info('Succeeded in binding dialog target.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+    if (!data) {
+      console.error('data is null');
+      return;
+    }
+    let promise = data.bindDialogTarget(token, () => {
+      console.info('Dialog Window Need Destroy.');
+    });
+    promise.then(() => {
+      console.info('Succeeded in binding dialog target.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+    });
   });
 } catch (exception) {
   console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1709,32 +1725,34 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        let errCode: number = err.code;
+        let errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
-        windowClass = data;
-      });
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
           return;
         }
-        console.info('Succeeded in binding dialog target.');
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err?.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }
@@ -1783,30 +1801,32 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
+        const errCode: number = err?.code;
         if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
           return;
         }
-        windowClass = data;
-      });
-      let requestInfo = dialogRequest.getRequestInfo(want)
-      let promise = windowClass.bindDialogTarget(requestInfo, () => {
-        console.info('Dialog Window Need Destroy.');
-      });
-      promise.then(() => {
-        console.info('Succeeded in binding dialog target.');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let requestInfo = dialogRequest.getRequestInfo(want);
+        let promise = data.bindDialogTarget(requestInfo, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
+        });
       });
     } catch (err) {
-      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`)
     }
   }
 }

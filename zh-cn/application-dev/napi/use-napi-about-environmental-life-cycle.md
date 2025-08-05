@@ -1,4 +1,9 @@
 # 使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -64,7 +69,7 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_set_instance_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_set_instance_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -72,7 +77,7 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
 // index.d.ts
 export const setInstanceData: (data: number) => boolean;
 ```
-<!-- @[napi_set_instance_data_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_set_instance_data_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -83,7 +88,7 @@ let data = 5;
 let value = testNapi.setInstanceData(data);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
 ```
-<!-- @[ark_napi_set_instance_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_set_instance_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_instance_data
 
@@ -106,7 +111,7 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
-<!-- @[napi_get_instance_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_instance_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -114,7 +119,7 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const getInstanceData: () => number | undefined;
 ```
-<!-- @[napi_get_instance_data_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_instance_data_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -126,7 +131,7 @@ testNapi.setInstanceData(data);
 let value = testNapi.getInstanceData();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}d', value);
 ```
-<!-- @[ark_napi_get_instance_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_instance_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

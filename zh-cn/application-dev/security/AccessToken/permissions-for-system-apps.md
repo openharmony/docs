@@ -1,4 +1,10 @@
-# 可ACL申请的系统应用可用权限（系统授权）
+# 可使用ACL申请的系统应用可用权限（系统授权）
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
 
 在申请目标权限前，建议开发者先了解[不同权限的申请路径](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -5055,3 +5061,19 @@
 **支持设备**：General
 
 **起始版本**：19
+
+## ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY
+
+允许HAP加载具有不同ownerid的独立二进制SO。
+
+该SO指具有开发者证书或AdHoc签名的独立二进制SO。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20

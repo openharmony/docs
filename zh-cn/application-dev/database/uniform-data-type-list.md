@@ -1,4 +1,9 @@
 # UTD预置列表
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--SE: @junathuawei1; @zph000-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述，详情可见[UTD基础类型](#基础类型)表格。
 

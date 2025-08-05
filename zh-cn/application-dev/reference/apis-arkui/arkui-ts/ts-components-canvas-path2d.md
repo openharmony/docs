@@ -1,4 +1,9 @@
 # Path2D
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口或者fill接口进行绘制。
 

@@ -1,4 +1,9 @@
 # LazyForEach
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @maorh-->
+<!--SE: @lixingchi1-->
+<!--TSE: @TerryTsao-->
 
 > **说明**
 >
@@ -369,19 +374,6 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | index  | [MoveIndex](#moveindex)        | 是   | 移动位置。取值范围是[0, 数据源长度-1]。|
 | key | string              | 否   | 为被移动的数据分配新的键值，默认使用原键值。 |
 
-#### MoveIndex
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明            |
-| ------ | --------------- | ---- | ------- |
-| from   | number | 是   | 起始移动位置。取值范围是[0, 数据源长度-1]。|
-| to  | number           | 是   | 目的移动位置。取值范围是[0, 数据源长度-1]。|
-
 ### DataExchangeOperation
 
 交换数据操作。
@@ -397,32 +389,6 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | type   | [DataOperationType](#dataoperationtype枚举说明).EXCHANGE | 是   | 数据交换类型。                 |
 | index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置。取值范围是[0, 数据源长度-1]。|
 | key    | [ExchangeKey](#exchangekey)              | 否   | 分配新的键值，默认使用原键值。 |
-
-#### ExchangeIndex
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明            |
-| ------ | --------------- | ---- | ------- |
-| start   | number | 是   | 第一个交换位置。取值范围是[0, 数据源长度-1]。|
-| end  | number           | 是   | 第二个交换位置。取值范围是[0, 数据源长度-1]。|
-
-#### ExchangeKey
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明            |
-| ------ | --------------- | ---- | ------- |
-| start   | string | 是   | 为第一个交换的位置分配新的键值，默认使用原键值。        |
-| end  | string   | 是   | 为第二个交换的位置分配新的键值，默认使用原键值。           |
 
 ### DataReloadOperation
 
@@ -454,3 +420,42 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | MOVE | move | 数据移动。 |
 | EXCHANGE | exchange | 数据交换。 |
 | RELOAD | reload | 全部数据重载。 |
+
+## MoveIndex
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                       | 必填 | 说明            |
+| ------ | --------------- | ---- | ------- |
+| from   | number | 是   | 起始移动位置。取值范围是[0, 数据源长度-1]。|
+| to  | number           | 是   | 目的移动位置。取值范围是[0, 数据源长度-1]。|
+
+## ExchangeIndex
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                       | 必填 | 说明            |
+| ------ | --------------- | ---- | ------- |
+| start   | number | 是   | 第一个交换位置。取值范围是[0, 数据源长度-1]。|
+| end  | number           | 是   | 第二个交换位置。取值范围是[0, 数据源长度-1]。|
+
+## ExchangeKey
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                       | 必填 | 说明            |
+| ------ | --------------- | ---- | ------- |
+| start   | string | 是   | 为第一个交换的位置分配新的键值，默认使用原键值。        |
+| end  | string   | 是   | 为第二个交换的位置分配新的键值，默认使用原键值。           |

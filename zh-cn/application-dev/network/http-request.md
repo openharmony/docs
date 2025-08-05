@@ -1,4 +1,4 @@
-# HTTP数据请求
+# 使用HTTP访问网络
 
 ## 场景介绍
 
@@ -199,35 +199,26 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     let httpRequest = http.createHttp();
     ```
 
-3. 订阅HTTP流式响应头事件
+3. 按需订阅HTTP流式响应事件
 
-    调用该对象的on()方法，订阅HTTP响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
-
+	服务器响应的数据在dataReceive回调中返回，可通过订阅该信息获取服务器响应的数据，其他流式响应可按需进行订阅。
     ```ts
-    // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
-    // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
-    httpRequest.on('headersReceive', (header) => {
-      console.info('header: ' + JSON.stringify(header));
-    });
-    ```
-
-4. 发起HTTP流式请求，解析服务器响应事件
-
-    ```ts
-    // 用于订阅HTTP流式响应数据接收事件。
+	// 用于订阅HTTP流式响应数据接收事件。
     let res = new ArrayBuffer(0);
     httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-       const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
-       const resView = new Uint8Array(newRes);
-       resView.set(new Uint8Array(res));
-       resView.set(new Uint8Array(data), res.byteLength);
-       res = newRes;
-       console.info('res length: ' + res.byteLength);
+      const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+      const resView = new Uint8Array(newRes);
+      resView.set(new Uint8Array(res));
+      resView.set(new Uint8Array(data), res.byteLength);
+      res = newRes;
+      console.info('res length: ' + res.byteLength);
     });
+    
     // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
       console.info('No more data in response, data receive end');
     });
+    
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
     httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
       console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
@@ -237,16 +228,20 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
       console.log("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
     });
+    ```
 
+4. 发起HTTP流式请求，解析服务器响应事件
+
+    ```ts
     let streamInfo: http.HttpRequestOptions = {
-      method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
+      method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
       // 开发者根据自身业务需要添加header字段。
-      header: {
+   	  header: {
         'Content-Type': 'application/json'
-      },
-      // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
+   	  },
+   	  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
       extraData: "data to send",
-      expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型。
+      expectDataType: http.HttpDataType.STRING,// 可选，指定返回数据的类型。
       usingCache: true, // 可选，默认为true。
       priority: 1, // 可选，默认为1。
       connectTimeout: 60000, // 可选，默认为60000ms。
@@ -262,38 +257,38 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
           name: "Part2", // 数据名，自API 11开始支持该属性。
           contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
           // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
-          filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+          filePath: ${context.filesDir}/fileName.txt, // 可选，传入文件路径，自API 11开始支持该属性。
           remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
         }, {
           name: "Part3", // 数据名，自API 11开始支持该属性。
           contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
           // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
-          filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
+          filePath: ${context.filesDir}/fileName.png, // 可选，传入文件路径，自API 11开始支持该属性。
           remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
         }, {
           name: "Part4", // 数据名，自API 11开始支持该属性。
           contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
           // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
-          filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
+          filePath: ${context.filesDir}/fileName.mpeg, // 可选，传入文件路径，自API 11开始支持该属性。
           remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
         }, {
           name: "Part5", // 数据名，自API 11开始支持该属性。
           contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
           // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
-          filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
+          filePath: ${context.filesDir}/fileName.mp4, // 可选，传入文件路径，自API 11开始支持该属性。
           remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
         }
       ]
     }
 
-    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
-    httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
+   httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
       console.info("requestInStream OK!");
       console.info('ResponseCode :' + JSON.stringify(data));
-      // 取消订阅HTTP响应头事件。
-      httpRequest.off('headersReceive');
       // 取消订阅HTTP流式响应数据接收事件。
       httpRequest.off('dataReceive');
+      // 取消订阅HTTP流式响应数据发送进度事件。
+      httpRequest.off('dataSendProgress');
       // 取消订阅HTTP流式响应数据接收进度事件。
       httpRequest.off('dataReceiveProgress');
       // 取消订阅HTTP流式响应数据接收完毕事件。
@@ -302,24 +297,40 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       httpRequest.destroy();
     }).catch((err: Error) => {
       console.error("requestInStream ERROR : err = " + JSON.stringify(err));
-    });
+      // 取消订阅HTTP流式响应数据接收事件。
+      httpRequest.off('dataReceive');
+      // 取消订阅HTTP流式响应数据发送进度事件。
+      httpRequest.off('dataSendProgress');
+      // 取消订阅HTTP流式响应数据接收进度事件。
+      httpRequest.off('dataReceiveProgress');
+      // 取消订阅HTTP流式响应数据接收完毕事件。
+      httpRequest.off('dataEnd');
+      // 当该请求使用完毕时，调用destroy方法主动销毁。
+      httpRequest.destroy();
+   });
     ```
 
-5. 取消订阅HTTP流式响应头事件
+5. 取消步骤3中订阅HTTP流式响应事件
 
-    调用该对象的off()方法，取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
+    调用该对象的off()方法，取消订阅步骤3中的事件，该方法调用的时机，可以参考步骤4中的示例代码。
 
     ```ts
-    // 取消订阅HTTP响应头事件。
-    httpRequest.off('headersReceive');
+    // 取消订阅HTTP流式响应数据接收事件。
+    httpRequest.off('dataReceive');
+    // 取消订阅HTTP流式响应数据发送进度事件。
+    httpRequest.off('dataSendProgress');
+    // 取消订阅HTTP流式响应数据接收进度事件。
+    httpRequest.off('dataReceiveProgress');
+    // 取消订阅HTTP流式响应数据接收完毕事件。
+    httpRequest.off('dataEnd');
     ```
 
 6. 调用destroy()方法销毁流式HTTP请求
 
-    当该请求使用完毕时，调用destroy()方法销毁。
+    当该请求使用完毕时，调用destroy()方法销毁，该方法调用的时机，可以参考步骤4中的示例代码。
 
     ```ts
-    // 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
+    // 当该请求使用完毕时，调用destroy方法主动销毁。
     httpRequest.destroy();
     ```
 
@@ -346,7 +357,7 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 * 和Linux的OpenSSL表现可能不同，OpenSSL可能会等待用户输入才会退出，按Enter键即可。
 * 如果没有sed命令，将输出中从`-----BEGIN CERTIFICATE-----`到`-----END CERTIFICATE-----`之间的部分复制下来保存即可（复制部分包括这两行）。
 
-#### 预置应用级证书
+**预置应用级证书**
 
 直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
 
@@ -354,7 +365,7 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 >
 > 当前ohos.net.http和Image组件的证书锁定，会匹配证书链上所有证书的哈希值，如果服务器更新了任意一本证书，都会导致校验失败。如果服务器出现了更新证书的情况，APP版本应当随之更新并推荐消费者尽快升级APP版本，否则可能导致联网失败。
 
-#### 预置证书公钥哈希值
+**预置证书公钥哈希值**
 
 通过在配置中指定域名证书公钥的哈希值，只允许使用公钥哈希值匹配的域名证书访问此域名。
 
@@ -369,7 +380,7 @@ openssl asn1parse -noout -inform pem -in www.example.com.pubkey.pem -out www.exa
 openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 ```
 
-#### JSON配置文件示例
+**JSON配置文件示例**
 
 预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
@@ -412,7 +423,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
         "domains": [
           {
             "include-subdomains": true,
-            "name": "server.com"
+            "name": "*.server.com"
           }
         ],
         "pin-set": {
@@ -463,7 +474,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
         "domains": [
           {
             "include-subdomains": true,
-            "name": "server.com"
+            "name": "*.server.com"
           }
         ],
         "pin-set": {
@@ -519,6 +530,6 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 针对HTTP数据请求，有以下相关实例可供参考：
 
-* [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
+* [上传和下载（ArkTS）(API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
-* [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
+* [Http（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)

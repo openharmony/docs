@@ -1,4 +1,9 @@
 # MultiNavigation
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 MultiNavigation用于在大尺寸设备上分栏显示、进行路由跳转。
 

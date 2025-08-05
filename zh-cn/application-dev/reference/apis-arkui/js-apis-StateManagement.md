@@ -1,4 +1,9 @@
 # @ohos.arkui.StateManagement (状态管理)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926; @liwenzhen3; @zzq212050299-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态、工具。
 
@@ -727,6 +732,7 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 下面的示例：
 1. 在`ObservedClass`的构造方法里，添加对`name`属性的同步监听回调`onChange`。
 2. 点击Text组件，将`name`改为`Jack`和`Jane`，触发两次`onChange`回调，打印日志如下。
+<!--code_no_check-->
 ```
 ObservedClass property name change from Tom to Jack
 ObservedClass property name change from Jack to Jane
@@ -798,6 +804,7 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 在下面的示例中：
 1. 在`ObservedClass`的构造方法中，添加对`age`属性的同步监听回调`onChange`。
 2. 点击Text组件，触发`age`自增，`onChange`的监听回调函数被触发。打印日志如下。
+<!--code_no_check-->
 ```
 ObservedClass property age change from 10 to 11
 ```

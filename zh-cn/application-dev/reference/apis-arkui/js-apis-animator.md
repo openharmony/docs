@@ -1,4 +1,9 @@
 # @ohos.animator (动画)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 本模块提供组件动画效果，包括定义动画、启动动画和以相反的顺序播放动画等。
 
@@ -975,6 +980,7 @@ let animatorResult:AnimatorResult = animator.create(options);
 </div>
 ```
 
+<!--code_no_check-->
 <!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';

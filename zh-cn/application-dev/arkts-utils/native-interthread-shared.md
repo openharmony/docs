@@ -1,6 +1,6 @@
 # C++线程间数据共享场景
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -27,7 +27,7 @@ export class SendableObjTest {
   }
 }
 ```
-<!-- @[arkts_define_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
+<!-- @[arkts_define_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
 
 
 实现Native加载ArkTS模块的能力。
@@ -78,7 +78,7 @@ static void *CreateArkRuntimeFunc(void *arg)
     return nullptr;
 }
 ```
-<!-- @[native_load_arkts_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[native_load_arkts_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
 
 主要步骤包括：创建执行环境、加载模块、查找并调用模块函数（或直接通过Node-API接口创建Sendable对象），最后销毁执行环境。加载模块的详细信息，请参见[使用Node-API接口进行模块加载](../napi/use-napi-load-module-with-info.md)。查找并调用函数及更多Node-API接口能力，请参见[Node-API](../reference/native-lib/napi.md)。
 
@@ -99,7 +99,7 @@ export class SendableObjTest {
   }
 }
 ```
-<!-- @[arkts_define_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
+<!-- @[arkts_define_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
 
 在Native中实现两个线程的序列化和反序列化Sendable的逻辑。
 
@@ -212,14 +212,14 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
     napi_module_register(&demoModule);
 }
 ```
-<!-- @[native_deserialize_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[native_deserialize_sendable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
 
 
 ```
 // Index.d.ts
 export const testSendSendable: () => void;
 ```
-<!-- @[native_deserialize_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[native_deserialize_sendable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 UI主线程发起调用。
 
@@ -253,7 +253,7 @@ struct Index {
   }
 }
 ```
-<!-- @[main_thread_init_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[main_thread_init_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/Index.ets) -->
 
 整个过程主要包括的逻辑实现为：
 

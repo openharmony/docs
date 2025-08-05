@@ -1,5 +1,10 @@
 # WaterFlow
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fangyuhao-->
+<!--SE: @zcdqs-->
+<!--TSE: @liuzhenshuo-->
 
 瀑布流容器，由“行”和“列”分割的单元格所组成，通过容器自身的排列规则，将不同大小的“项目”自上而下，如瀑布般紧密布局。
 
@@ -481,6 +486,12 @@ onReachStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达起始位置时触发的回调。 |
+
 ### onReachEnd
 
 onReachEnd(event: () => void)
@@ -490,6 +501,12 @@ onReachEnd(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达末尾位置时触发的回调。 |
 
 ### onScrollFrameBegin<sup>10+</sup>
 

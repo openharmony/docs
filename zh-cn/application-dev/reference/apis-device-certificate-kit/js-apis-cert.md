@@ -1,5 +1,11 @@
 # @ohos.security.cert (证书模块)
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 证书算法库框架提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md)。
 
 > **说明：**
@@ -4103,7 +4109,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -4178,7 +4184,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                   | 说明                             |
 | ---------------------- | -------------------------------- |
-| Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 

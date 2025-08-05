@@ -1,4 +1,9 @@
 # 使用Node-API接口创建和获取string值
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -77,7 +82,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -85,7 +90,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueStringUtf8: (param: string | number) => string | undefined;
 ```
-<!-- @[napi_get_value_string_utf8_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_string_utf8_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -96,7 +101,7 @@ import testNapi from 'libentry.so';
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_string %{public}s', testNapi.getValueStringUtf8('aaBC+-$%^你好123'));
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_not_string %{public}s', testNapi.getValueStringUtf8(50));
 ```
-<!-- @[ark_napi_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_string_utf8
 
@@ -121,7 +126,7 @@ static napi_value CreateStringUtf8(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -129,7 +134,7 @@ static napi_value CreateStringUtf8(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createStringUtf8: () => string | undefined;
 ```
-<!-- @[napi_create_string_utf8_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_string_utf8_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -139,7 +144,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf8:%{public}s', testNapi.createStringUtf8());
 ```
-<!-- @[ark_napi_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_string_utf16
 
@@ -173,7 +178,7 @@ static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
     return result; 
 }
 ```
-<!-- @[napi_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -181,7 +186,7 @@ static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueStringUtf16: (data: string) => string;
 ```
-<!-- @[napi_get_value_string_utf16_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_string_utf16_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -192,7 +197,7 @@ import testNapi from 'libentry.so';
 let result = testNapi.getValueStringUtf16('hello,');
 hilog.info(0x0000,'testTag','Node-API napi_get_value_string_utf16:%{public}s', result);
 ```
-<!-- @[ark_napi_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_string_utf16
 
@@ -216,7 +221,7 @@ static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -224,7 +229,7 @@ static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createStringUtf16: () => string | undefined;
 ```
-<!-- @[napi_create_string_utf16_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_string_utf16_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -234,7 +239,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s ', testNapi.createStringUtf16());
 ```
-<!-- @[ark_napi_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_string_latin1
 
@@ -264,7 +269,7 @@ static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
     return napi_Res;
 }
 ```
-<!-- @[napi_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -272,7 +277,7 @@ static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueStringLatin1: (param: number | string) => string | undefined;
 ```
-<!-- @[napi_get_value_string_latin1_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_string_latin1_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -286,7 +291,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string_chin
 // 传入其他字符，不会乱码
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string %{public}s', testNapi.getValueStringLatin1('abo ABP=-&*/'));
 ```
-<!-- @[ark_napi_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_string_latin1
 
@@ -311,7 +316,7 @@ static napi_value CreateStringLatin1(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -319,7 +324,7 @@ static napi_value CreateStringLatin1(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createStringLatin1: () => string | undefined;
 ```
-<!-- @[napi_create_string_latin1_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_string_latin1_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -329,7 +334,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s', testNapi.createStringLatin1());
 ```
-<!-- @[ark_napi_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIString/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

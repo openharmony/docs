@@ -39,15 +39,15 @@ import { intl } from '@kit.LocalizationKit';
 | caseFirst       | string  | Yes   | Whether case is taken into account for the locale's collation rules. The value can be:<br>**upper**: Uppercase letters come first.<br>**lower**: Lowercase letters come first.<br>**false**: The default collation rules of the locale are used.|
 | calendar        | string  | Yes   | Calendar for the locale. The value can be:<br>The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.<br>For details about their meanings, see Table 1 in [Calendar Setting](../../internationalization/i18n-calendar.md).|
 | collation       | string  | Yes   | Collation rules for the locale. The value can be:<br>**big5han**: Pinyin sorting for Latin letters.<br>**compat**: compatibility sorting, only for Arabic.<br>**dict**: dictionary-style sorting, only for Singhalese.<br>**direct**: binary code point sorting.<br>**ducet**: sorting according to the Unicode collation element table.<br>**eor**: sorting according to the European collation rules.<br>**gb2312**: Pinyin sorting, only for Chinese.<br>**phonebk**: phone book-style sorting.<br>**phonetic**: phonetic sorting.<br>**pinyin**: Pinyin sorting.<br>**reformed**: reformed sorting, only for Swedish.<br>**searchjl**: special sorting for Korean initial consonant search.<br>**stroke**: stroke sorting for Chinese.<br>**trad**: traditional-style sorting, for example, Spanish.<br>unihan: radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.<br>zhuyin: Zhuyin sorting, only for Chinese.|
-| hourCycle       | string  | Yes   | Time system for the locale. The value can be:<br>"h11", "h12", "h23", or "h24".<br>For details about their display effects, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| hourCycle       | string  | Yes   | Time system for the locale. The value can be:<br>"h11", "h12", "h23", or "h24".<br>For details about their display effects, see [Table 5](#appendix).|
 | numberingSystem | string  | Yes   | Numbering system for the locale. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
-| numeric         | boolean | Yes   | Wether to use special sorting rules for digits. The value **true** means to use special sorting rules for digits, and the value **false** means the opposite.<br>The default value is **false**.                     |
+| numeric         | boolean | Yes   | Whether to use special sorting rules for digits. The value **true** means to use special sorting rules for digits, and the value **false** means the opposite.<br>The default value is **false**.                     |
 
 ### constructor<sup>(deprecated)</sup>
 
 constructor()
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale) instead.
 
 Creates a **Locale** object.
 
@@ -69,7 +69,7 @@ Creates a **Locale** object.
 
 constructor(locale: string, options?: LocaleOptions)
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale) instead.
 
 Creates a **Locale** object.
 
@@ -98,7 +98,7 @@ Creates a **Locale** object.
 
 toString(): string
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/toString) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/toString) instead.
 
 Obtains the string that represents a **Locale** object.
 
@@ -125,7 +125,7 @@ Obtains the string that represents a **Locale** object.
 
 maximize(): Locale
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.maximize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/maximize) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.maximize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/maximize) instead.
 
 Maximizes locale information by supplementing the missing script and country/region information.
 
@@ -161,7 +161,7 @@ Maximizes locale information by supplementing the missing script and country/reg
 
 minimize(): Locale
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.minimize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Locale.prototype.minimize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize) instead.
 
 Minimizes locale information by removing the script and country/region information.
 
@@ -194,7 +194,9 @@ Minimizes locale information by removing the script and country/region informati
 
 ## LocaleOptions<sup>(deprecated)</sup>
 
-Options for initializing the **Locale** object. Since API version 9, the **LocaleOptions** attribute is changed from mandatory to optional. This API is supported since API version 8 and is deprecated since API version 20. Taking calendar as an example, you are advised to use [Intl.Locale.prototype.calendar()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar).
+> This API is supported since API version 8 and is deprecated since API version 20. Taking calendar as an example, you are advised to use [Intl.Locale.prototype.calendar()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar).
+
+Options for initializing the **Locale** object. Since API version 9, the **LocaleOptions** attribute is changed from mandatory to optional.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -205,17 +207,15 @@ Options for initializing the **Locale** object. Since API version 9, the **Local
 | Name             | Type     | Read-Only  | Optional  |  Description                                      |
 | --------------- | ------- | ---- | ---- |---------------------------------------- |
 | calendar        | string  | No  | Yes  |Calendar parameter. The value can be:<br>"buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", or "islamicc".|
-| collation       | string  | No  | Yes    |Collation rules for the locale. The value can be:<br>**big5han**: Pinyin sorting for Latin letters.<br>**compat**: Compatibility sorting, only for Arabic.<br>**dict**: dictionary-style sorting, only for Singhalese.<br>**direct**: binary code point sorting.<br>**ducet**: sorting according to the Unicode collation element table.<br>**eor**: sorting according to the European collation rules.<br>**gb2312**: Pinyin sorting, only for Chinese.<br>**phonebk**: phone book-style sorting.<br>**phonetic**: phonetic sorting.<br>**pinyin**: Pinyin sorting.<br>**reformed**: reformed sorting, only for Swedish.<br>**searchjl**: special sorting for Korean initial consonant search.<br>**stroke**: stroke sorting for Chinese.<br>**trad**: traditional-style sorting, for example, Spanish.<br>**unihan**: radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.<br>**zhuyin**: Zhuyin sorting, only for Chinese.|
+| collation       | string  | No  | Yes    |Collation rules for the locale. The value can be:<br>**big5han**: Pinyin sorting for Latin letters.<br>**compat**: compatibility sorting, only for Arabic.<br>**dict**: dictionary-style sorting, only for Singhalese.<br>**direct**: binary code point sorting.<br>**ducet**: sorting according to the Unicode collation element table.<br>**eor**: sorting according to the European collation rules.<br>**gb2312**: Pinyin sorting, only for Chinese.<br>**phonebk**: phone book-style sorting.<br>**phonetic**: phonetic sorting.<br>**pinyin**: Pinyin sorting.<br>**reformed**: reformed sorting, only for Swedish.<br>**searchjl**: special sorting for Korean initial consonant search.<br>**stroke**: stroke sorting for Chinese.<br>**trad**: traditional-style sorting, for example, Spanish.<br>unihan: radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.<br>zhuyin: Zhuyin sorting, only for Chinese.|
 | hourCycle       | string  | No  | Yes    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".|
 | numberingSystem | string  | No  | Yes    |Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
-| numeric         | boolean | No  | Yes    | Wether to treat numeric characters as numbers for sorting. The value true means to treat numeric characters as numbers for sorting, and the value **false** means to treat numeric characters as ordinary characters for sorting. For example, when this parameter is set to **true**, comparing the string **21** with the string **123** is equivalent to comparing the number 21 with the number 123. The default value is **false**.                              |
+| numeric         | boolean | No  | Yes    | Whether to treat numeric characters as numbers for sorting. The value true means to treat numeric characters as numbers for sorting, and the value **false** means to treat numeric characters as ordinary characters for sorting. For example, when this parameter is set to **true**, comparing the string **21** with the string **123** is equivalent to comparing the number 21 with the number 123. The default value is **false**.                              |
 | caseFirst       | string  | No  | Yes    | Whether case is taken into account for the locale's collation rules. The value can be:<br>**upper**: Uppercase letters come first.<br>**lower**: Lowercase letters come first.<br>**false**: The default collation rules of the locale are used.|
 
 >  **NOTE**
 >
 >  - For details about **calendar**, see Table 1 in [Calendar Setting](../../internationalization/i18n-calendar.md).
->
->  - For details about **hourCycle**, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
 ## DateTimeFormat
 
@@ -223,8 +223,7 @@ Options for initializing the **Locale** object. Since API version 9, the **Local
 
 constructor()
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) instead.
 
 Creates a **DateTimeOptions** object for the specified locale.
 
@@ -244,8 +243,7 @@ let formatter: intl.DateTimeFormat = new intl.DateTimeFormat();
 
 constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) instead.
 
 Creates a **DateTimeOptions** object for the specified locale.
 
@@ -275,8 +273,7 @@ formatter = new intl.DateTimeFormat(['ban', 'zh'], { dateStyle: 'full', timeStyl
 
 format(date: Date): string
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format) instead.
 
 Formats the date and time.
 
@@ -314,8 +311,7 @@ formattedDate = formatter.format(date); // formattedDate "Friday, 17 December 20
 
 formatRange(startDate: Date, endDate: Date): string
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange) instead.
 
 Formats date and time ranges.
 
@@ -351,8 +347,7 @@ let formattedDateRange: string = formatter.formatRange(startDate, endDate); // f
 
 resolvedOptions(): DateTimeOptions
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions) instead.
 
 Obtains the options for creating a **DateTimeOptions** object.
 
@@ -380,8 +375,7 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 
 ## DateTimeOptions<sup>(deprecated)</sup>
 
->  **NOTE**
->  This API is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.DateTimeFormatOptions** or **Intl.ResolvedDateTimeFormatOptions** instead. For details, see [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) and [Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions).
+> This API is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.DateTimeFormatOptions** or **Intl.ResolvedDateTimeFormatOptions** instead. For details, see [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) and [Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions).
 
 Defines the options for a **DateTimeOptions** object. Since API version 9, the **DateTimeOptions** attribute is changed from mandatory to optional.
 
@@ -394,22 +388,22 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 | Name             | Type     | Read-Only  | Optional  | Description                                      |
 | --------------- | ------- | ---- | ---- |  ---------------------------------------- |
 | locale          | string  | No   | Yes   |Valid locale ID, for example, **zh-Hans-CN**.<br>The default value is the current system locale.          |
-| dateStyle       | string  | No   | Yes    |Date display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 1 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
-| timeStyle       | string  | No   | Yes    |Time display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 2 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
-| hourCycle       | string  | No   | Yes    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".<br>For details about the display effect when **dateStyle** or **timeStyle** is not set, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).<br>For details about the display effect when **dateStyle** or **timeStyle** is set, see Table 6 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| dateStyle       | string  | No   | Yes    |Date display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see [Table 1](#appendix).|
+| timeStyle       | string  | No   | Yes    |Time display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see [Table 2](#appendix).|
+| hourCycle       | string  | No   | Yes    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".<br>For the display effects when **dateStyle** or **timeStyle** is not set, see [Table 5](#appendix).<br>For the display effects when **dateStyle** or **timeStyle** is not set, see [Table 6](#appendix).|
 | timeZone        | string  | No   | Yes    |Time zone in use. The value is a valid IANA time zone ID.                     |
 | numberingSystem | string  | No   | Yes    |Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
 | hour12          | boolean | No   | Yes    | Whether to use the 12-hour clock. The value **true** means to use the 12-hour clock, and the value **false** means the opposite.<br>If both **hour12** and **hourCycle** are set, **hourCycle** does not take effect.<br>If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.|
-| weekday         | string  | No   | Yes    | Week display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 4 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
-| era             | string  | No   | Yes    | Epoch display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 9 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
-| year            | string  | No   | Yes    | Year display format. The value can be:<br>"numeric" or &nbsp;"2-digit".<br>For details about their display effects, see Table 3 in [Date and Time Formatting](../../internationalization/i18n-time-date.md). |
-| month           | string  | No   | Yes   | Month display format. The value can be:<br>"numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 6 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| weekday         | string  | No   | Yes    | Week display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see [Table 4](#appendix).|
+| era             | string  | No   | Yes    | Epoch display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see [Table 9](#appendix).|
+| year            | string  | No   | Yes    | Year display format. The value can be:<br>"numeric" or &nbsp;"2-digit".<br>For details about their display effects, see [Table 3](#appendix). |
+| month           | string  | No   | Yes   | Month display format. The value can be:<br>"numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see [Table 7](#appendix).|
 | day             | string  | No   | Yes    | Day display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
 | hour            | string  | No   | Yes    | Hour display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
 | minute          | string  | No   | Yes    | Minute display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
 | second          | string  | No   | Yes    | Second display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
-| timeZoneName    | string  | No   | Yes    | Localized representation of a time zone name. The value can be:<br>"long",&nbsp;"short", or &nbsp;"auto".<br>For details about their display effects, see Table 8 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).  |
-| dayPeriod       | string  | No   | Yes    | Time period display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 10 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| timeZoneName    | string  | No   | Yes    | Localized representation of a time zone name. The value can be:<br>"long",&nbsp;"short", or &nbsp;"auto".<br>For details about their display effects, see [Table 8](#appendix). |
+| dayPeriod       | string  | No   | Yes    | Time period display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see [Table 10](#appendix).|
 | localeMatcher   | string  | No   | Yes    | Locale matching algorithm. The value can be:<br>- **lookup**: exact match.<br>- "best fit": best match.|
 | formatMatcher   | string  | No   | Yes    | Format matching algorithm. The value can be:<br>- **basic**: exact match.<br>- "best fit": best match.|
 
@@ -419,7 +413,7 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 
 constructor()
 
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) instead.
 
 Creates a **NumberFormat** object for the specified locale.
 
@@ -438,7 +432,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat();
 
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) instead.
 
 Creates a **NumberFormat** object for the specified locale.
 
@@ -463,7 +457,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'deci
 
 format(number: number): string
 
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.NumberFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format) instead.
 
 Formats a number.
 
@@ -502,7 +496,7 @@ let result: string = formatter.format(1.23456); // result = 1.23
 
 formatRange(startRange: number, endRange: number): string
 
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.NumberFormat.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange) instead.
 
 Formats a number range.
 
@@ -531,11 +525,9 @@ let formattedRange: string = formatter.formatRange(0, 3); // formattedRange: 0�
 ```
 
 
-### resolvedOptions<sup>(deprecated)</sup>
+### resolvedOptions
 
 resolvedOptions(): NumberOptions
-
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/resolvedOptions) instead.
 
 Obtains the options for creating a **NumberFormat** object.
 
@@ -561,7 +553,7 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 
 ## NumberOptions<sup>(deprecated)</sup>
 
-This API is deprecated since API version 20. You are advised to use [Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options) instead.
 
 Options for creating the **NumberFormat** object. Since API version 9, the **NumberOptions** attribute is changed from mandatory to optional.
 
@@ -602,7 +594,7 @@ Options for creating the **NumberFormat** object. Since API version 9, the **Num
 
 constructor()
 
-This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.Collator() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Collator() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator) instead.
 
 Creates a **Collator** object.
 
@@ -621,7 +613,7 @@ Creates a **Collator** object.
 
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
-This API is supported since API version 8 and is deprecated since API version 20. You are advised to use [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator) instead.
+> This method is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator) instead.
 
 Creates a **Collator** object.
 
@@ -647,7 +639,7 @@ Creates a **Collator** object.
 
 compare(first: string, second: string): number
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/compare) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/compare) instead.
 
 Compares two strings based on the specified collation rules.
 
@@ -681,7 +673,7 @@ Compares two strings based on the specified collation rules.
 
 resolvedOptions(): CollatorOptions
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/resolvedOptions) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/resolvedOptions) instead.
 
 Obtains the options for creating a **Collator** object.
 
@@ -721,9 +713,9 @@ Since API version 9, the attributes in **CollatorOptions** are optional.
 | usage<sup>(deprecated)</sup>             | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.usage** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Purpose of comparison. The options are as follows:<br>- **sort**: sorting.<br>- **search**: search for matched strings.<br>The default value is **sort**.       |
 | sensitivity<sup>(deprecated)</sup>       | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.sensitivity** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Differences in the strings that lead to non-zero return values. The options are as follows:<br>- **base**: Different letters are considered unequal, for example, 'a' ≠ 'b', 'a' = 'á', 'a' = 'A'.<br>- **accent**: Different letters or same letters with different pronunciations are considered unequal, for example, 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'.<br>- **case**: Different letters or same letters with different cases are considered unequal, for example, 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'.<br>- **variant**: Different letters, pronunciations, other distinguishing marks, or cases are all considered unequal, for example, 'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'.<br>The default value is **variant**.       |
 | ignorePunctuation<sup>(deprecated)</sup> | boolean | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.ignorePunctuation** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Whether to ignore punctuation. The value **true** means to ignore punctuation, and the value **false** means the opposite.<br>The default value is **false**.       |
-| collation<sup>(deprecated)</sup>         | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.collation** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Collation rules for the locale. The value can be:<br>**big5han**: Pinyin sorting for Latin letters.<br>**compat**: compatibility sorting, only for Arabic.<br>**dict**: dictionary-style sorting, only for Singhalese.<br>**direct**: binary code point sorting.<br>**ducet**: sorting according to the Unicode collation element table.<br>**eor**: sorting according to the European collation rules.<br>**gb2312**: Pinyin sorting, only for Chinese.<br>**phonebk**: phone book-style sorting.<br>**phonetic**: phonetic sorting.<br>**pinyin**: Pinyin sorting.<br>**reformed**: reformed sorting, only for Swedish.<br>**searchjl**: special sorting for Korean initial consonant search.<br>**stroke**: stroke sorting for Chinese.<br>**trad**: traditional-style sorting, for example, Spanish.<br>**unihan**: radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.<br>**zhuyin**: Zhuyin sorting, only for Chinese.<br>The default value is **default**.|
+| collation<sup>(deprecated)</sup>         | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.collation** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Collation rules for the locale. The value can be:<br>**big5han**: Pinyin sorting for Latin letters.<br>**compat**: compatibility sorting, only for Arabic.<br>**dict**: dictionary-style sorting, only for Singhalese.<br>**direct**: binary code point sorting.<br>**ducet**: sorting according to the Unicode collation element table.<br>**eor**: sorting according to the European collation rules.<br>**gb2312**: Pinyin sorting, only for Chinese.<br>**phonebk**: phone book-style sorting.<br>**phonetic**: phonetic sorting.<br>**pinyin**: Pinyin sorting.<br>**reformed**: reformed sorting, only for Swedish.<br>**searchjl**: special sorting for Korean initial consonant search.<br>**stroke**: stroke sorting for Chinese.<br>**trad**: traditional-style sorting, for example, Spanish.<br>unihan: radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.<br>**zhuyin**: Zhuyin sorting, only for Chinese.<br>The default value is **default**.|
 | numeric<sup>(deprecated)</sup>           | boolean | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.numeric** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Whether numeric sorting is used. The options are as follows:<br>- **true**: Numeric sorting is used. For example, '1' &lt; '2' &lt; '10' &lt; '11'.<br>- **false**: Numeric sorting is not used. For example, '1' &lt; '10' &lt; '11' &lt; '2'.<br>The default value is **false**.         |
-| caseFirst<sup>(deprecated)</sup>         | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.caseFirst** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Whether case is taken into account for the locale's collation rules. The value can be:<br>- **upper**: Uppercase letters come first.<br>- **lower**: Lowercase letters come first.<br>- **false**: The default collation rules of the locale are used.<br>The default value is **false**.|
+| caseFirst<sup>(deprecated)</sup>         | string  | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.CollatorOptions.caseFirst** instead. For details, see [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options).<br>Whether case is taken into account for the locale's collation rules. The value can be:<br>**upper**: Uppercase letters come first.<br>**lower**: Lowercase letters come first.<br>- **false**: The default collation rules of the locale are used.<br>The default value is **false**.|
 
 
 ## PluralRules<sup>8+</sup>
@@ -732,7 +724,7 @@ Since API version 9, the attributes in **CollatorOptions** are optional.
 
 constructor()
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules) instead.
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
@@ -751,7 +743,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules) instead.
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
@@ -776,7 +768,7 @@ let pluralRules: intl.PluralRules = new intl.PluralRules('zh-CN', { localeMatche
 
 select(n: number): string
 
-This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/select) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/select) instead.
 
 Obtains the singular-plural type of the specified number.
 
@@ -825,7 +817,7 @@ Defines the options for creating a **PluralRules** object. Since API version 9, 
 | minimumIntegerDigits<sup>(deprecated)</sup>     | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.minimumIntegerDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.<br>The default value is **1**.                 |
 | minimumFractionDigits<sup>(deprecated)</sup>    | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.minimumFractionDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.<br>The default value is **0**.                 |
 | maximumFractionDigits<sup>(deprecated)</sup>    | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.maximumFractionDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**.<br>The default value is **3**.                 |
-| minimumSignificantDigits<sup>(deprecated)</sup> | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.minimumSignificantDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Minimum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value is **1**.                 |
+| minimumSignificantDigits<sup>(deprecated)</sup> | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.maximumFractionDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Minimum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value is **1**.                 |
 | maximumSignificantDigits<sup>(deprecated)</sup> | number | No   | Yes   | This parameter is supported since API version 8 and is deprecated since API version 20. You are advised to use **Intl.PluralRulesOptions.maximumSignificantDigits** instead. For details, see [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options).<br>Maximum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value is **21**.               |
 
 
@@ -835,7 +827,7 @@ Defines the options for creating a **PluralRules** object. Since API version 9, 
 
 constructor()
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat) instead.
 
 Creates a **RelativeTimeFormat** object.
 
@@ -854,7 +846,7 @@ let formatter: intl.RelativeTimeFormat = new intl.RelativeTimeFormat();
 
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat) instead.
 
 Creates a **RelativeTimeFormat** object.
 
@@ -884,7 +876,7 @@ let formatter: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('zh-CN', {
 
 format(value: number, unit: string): string
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/format) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/format) instead.
 
 Formats a relative time.
 
@@ -918,7 +910,7 @@ let formatResult: string = formatter.format(3, 'quarter'); // formatResult = '3 
 
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.formatToParts()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/formatToParts) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.formatToParts()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/formatToParts) instead.
 
 Formats the relative time
 
@@ -951,7 +943,7 @@ let parts: Array<object> = formatter.formatToParts(10, 'seconds'); // parts = [ 
 
 resolvedOptions(): RelativeTimeFormatResolvedOptions
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions) instead.
 
 Defines the formatting options for a **RelativeTimeFormat** object.
 
@@ -977,7 +969,7 @@ let style: string = options.style; // style = 'short'
 
 ## RelativeTimeFormatInputOptions<sup>(deprecated)</sup>
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options) instead.
 
 Defines the configuration options for a **RelativeTimeFormat** object.
 
@@ -999,7 +991,7 @@ Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are op
 
 ## RelativeTimeFormatResolvedOptions<sup>(deprecated)</sup>
 
-This API is deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions#return_value) instead.
+> This API is supported since API version 8 and deprecated since API version 20. You are advised to use [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions#return_value) instead.
 
 Represents the formatting options for the **RelativeTimeFormat** object.
 
@@ -1017,3 +1009,104 @@ Represents the formatting options for the **RelativeTimeFormat** object.
 > **NOTE**
 >
 > For details about the display effects of **numeric** and **style**, see [Date and Time Formatting](../../internationalization/i18n-time-date.md#relative-time-formatting).
+
+## Appendix
+
+**Date and Time Formatting Options**
+
+The following tables use 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-CN** and **en** as examples to illustrate the values and display results of [DateTimeOptions](#datetimeoptionsdeprecated).
+
+**Table 1** Date display format (dateStyle)
+
+| Value  | Description                                   | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| ------ | --------------------------------------- | ------------------------------------------  | ---------------------------------------- |
+| full   | Complete date display, including the year, month, day, and week.| 2021年9月17日星期五                          | Friday, September 17, 2021               |
+| long   | Long date display, including the year, month, and day.    | 2021年9月17日                                | September 17, 2021                       |
+| short  | Short date display, including the year, month, and day.    | 2021/9/17                                   | 9/17/21                                  |
+| medium | Medium date display, including the year, month, and day.  | 2021年9月17日                                | Sep 17, 2021                             |
+
+**Table 2** Time display format (timeStyle)
+
+| Value  | Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| ------ | ------------- | -------- | -------- |
+| full   | Complete time display, including the time zone and time accurate to seconds.| 中国标准时间 13:04:00 | 13:04:00 China Standard Time |
+| long   | Long time display, including the time zone expressed in the format of GMT + time zone offset and time accurate to seconds.| GMT+8 13:04:00 | 13:04:00 GMT+8 |
+| short  | Short time display, including hour and minute.| 13:04 | 13:04 |
+| medium | Medium time display, including hour, minute, and second.| 13:04:00 | 13:04:00 |
+
+**Table 3** Year display format (year)
+
+| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| -------- | --------- | -------- | -------- |
+| numeric | Complete year| 2021年 | 2021 |
+| 2-digit | 2-digit year display| 21年 | 21 |
+
+**Table 4** Weekday display format (weekday)
+
+| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| -------- | ------- | -------- | -------- |
+| long | Long weekday display| 星期五 | Friday |
+| short | Short weekday display.| 周五 | Fri |
+| narrow | Narrow weekday display.| 五 | F |
+
+**Table 5** Hour cycle format (hourCycle)
+
+| Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
+| --- | --------------- | -------------------------------------------- | ------------------------------------------- |
+| h11 | Use of 0 to 11 to indicate the hour| 下午1:04                                     |  上午0:25                                    |
+| h12 | Use of 1 to 12 to indicate the hour| 下午1:04                                     |  上午12:25                                   |
+| h23 | Use of 0 to 23 to indicate the hour| 13:04                                        | 00:25                                       |
+| h24 | Use of 1 to 24 to indicate the hour| 13:04                                        | 24:25                                       |
+
+> **NOTE**
+>
+> The preceding table shows the display effect for different values of **hourCycle** when **dateStyle** or **timeStyle** is not set.
+
+
+**Table 6** Hour cycle format (hourCycle)
+
+| Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
+| --- | --------------- | -------------------------------------------- | ------------------------------------------- |
+| h11 | Use of 1 to 24 to indicate the hour| 下午13:04                                    |  上午24:25                                   |
+| h12 | Use of 1 to 12 to indicate the hour| 下午1:04                                     |  上午12:25                                   |
+| h23 | Use of 0 to 11 to indicate the hour| 1:04                                         |  0:25                                       |
+| h24 | Use of 0 to 23 to indicate the hour| 13:04                                        |  0:25                                       |
+
+> **NOTE**
+>
+> The preceding table shows the display effect for different values of **hourCycle** when **dateStyle** or **timeStyle** is set.
+
+**Table 7** Month format (month)
+
+| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| -------- | --------- | -------- | -------- |
+| numeric | Display of the month as a number| 9月 | 9 |
+| 2-digit | Display of the month in two digits| 09月 | 09 |
+| long | Long month display| 九月 | September |
+| short | Short month display| 9月 | Sep |
+| narrow | Narrow month display| 9 | S |
+
+**Table 8** Localized representation of time zone names (timeZoneName)
+
+| Value | Description               | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| ----- | ------------------ | -------------------------------------------- | ---------------------------------------- |
+| long  | Long time zone name| 中国标准时间                                  | China Standard Time                      |
+| short | Short time zone name| GMT+8                                        | GMT+8                                    |
+
+**Table 9** Era display format (era)
+
+| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| -------- | ------ | -------- | -------- |
+| long | Long epoch display| 公元 | Anno Domini |
+| short | Short epoch display| 公元 | AD |
+| narrow | Narrow epoch display| 公元 | A |
+
+**Table 10** Time period format (dayPeriod)
+
+| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| -------- | ------ | -------- | -------- |
+| long | Long time period display| 下午 | in the afternoon |
+| short | Short time period display| 下午 | in the afternoon |
+| narrow | Narrow time period display| 下午 | in the afternoon |
+
+<!--no_check-->

@@ -1,4 +1,9 @@
 # SymbolSpan
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 作为Text组件的子组件，用于显示图标小符号的组件。
 

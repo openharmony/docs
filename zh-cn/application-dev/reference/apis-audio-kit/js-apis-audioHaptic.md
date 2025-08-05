@@ -206,21 +206,12 @@ unregisterSource(id: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
-let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
-let id = 0;
-
-audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
-  id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
-});
+let id = 0; // 需要通过registerSource方法获取。
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
-  console.info(`Promise returned to indicate that unregister source successfully`);
+  console.info('Succeeded in doing unregisterSource.');
 }).catch ((err: BusinessError) => {
-  console.error(`Failed to unregistere source ${err}`);
+  console.error(`Failed to unregisterSource. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -253,16 +244,7 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
-let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
-let id = 0;
-
-audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
-  id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
-});
+let id = 0; // 需要通过registerSource方法获取。
 
 let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;
 
@@ -299,16 +281,7 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
-let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
-let id = 0;
-
-audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
-  id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
-});
+let id = 0; // 需要通过registerSource方法获取。
 
 let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
 
@@ -357,25 +330,16 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
-let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
-let id = 0;
-
-audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
-  id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
-});
+let id = 0; // 需要通过registerSource方法获取。
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
 let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
 audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
   audioHapticPlayerInstance = value;
-  console.info(`Create the audio haptic player successfully.`);
+  console.info('Succeeded in doing createPlayer.');
 }).catch ((err: BusinessError) => {
-  console.error(`Failed to create the audio haptic player. ${err}`);
+  console.error(`Failed to createPlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -704,9 +668,9 @@ let isDucked: boolean; // 标识符，表示是否被降低音量。
 
 audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
   // 在发生音频打断事件时，audioHapticPlayerInstance收到interruptEvent回调，此处根据其内容做相应处理。
-  // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
-  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
-  // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
+  // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注意：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
     // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
     switch (interruptEvent.hintType) {
@@ -727,7 +691,7 @@ audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptE
         break;
       case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
         // 音频流已被恢复正常音量渲染。
-        console.info('Force ducked. Update volume status');
+        console.info('Force unducked. Update volume status');
         isDucked = false; // 简化处理，代表应用更新音量状态的若干操作。
         break;
       default:
@@ -777,9 +741,9 @@ let isPlaying: boolean; // 标识符，表示是否正在渲染。
 let isDucked: boolean; // 标识符，表示是否被降低音量。
 let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
   // 在发生音频打断事件时，audioHapticPlayerInstance收到interruptEvent回调，此处根据其内容做相应处理。
-  // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
-  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
-  // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
+  // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注意：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
     // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
     switch (interruptEvent.hintType) {
@@ -800,7 +764,7 @@ let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
         break;
       case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
         // 音频流已被恢复正常音量渲染。
-        console.info('Force ducked. Update volume status');
+        console.info('Force unducked. Update volume status');
         isDucked = false; // 简化处理，代表应用更新音量状态的若干操作。
         break;
       default:

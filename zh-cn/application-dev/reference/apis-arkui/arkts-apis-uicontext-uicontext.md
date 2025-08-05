@@ -1139,32 +1139,34 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 3,
-      begin: 200.0,
-      end: 400.0
-    };
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options:AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 3,
+        begin: 200.0,
+        end: 400.0
+      };
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1201,23 +1203,26 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1281,20 +1286,22 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getKeyboardAvoidMode<sup>11+</sup>
@@ -1322,22 +1329,23 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
+        hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getAtomicServiceBar<sup>11+</sup>
@@ -3025,20 +3033,22 @@ setPixelRoundMode(mode: PixelRoundMode): void
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getPixelRoundMode<sup>18+</sup>
@@ -3064,19 +3074,21 @@ getPixelRoundMode(): PixelRoundMode
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 

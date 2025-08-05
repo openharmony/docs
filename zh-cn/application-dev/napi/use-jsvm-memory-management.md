@@ -1,4 +1,9 @@
 # 使用JSVM-API进行内存管理
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -63,7 +68,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
-<!-- @[oh_jsvm_adjust_external_memory](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_adjust_external_memory](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
 ```cpp
@@ -110,7 +115,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
-<!-- @[oh_jsvm_memory_pressure_notification](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_memory_pressure_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
 ```cpp

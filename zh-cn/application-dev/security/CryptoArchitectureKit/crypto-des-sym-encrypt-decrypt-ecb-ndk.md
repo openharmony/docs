@@ -1,5 +1,11 @@
 # 使用DES对称密钥（ECB模式）加解密(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 对应的算法规格请查看[对称密钥加解密算法规格：DES](crypto-sym-encrypt-decrypt-spec.md#des)。
 
 ## 在CMake脚本中链接相关动态库

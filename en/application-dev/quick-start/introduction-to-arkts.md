@@ -926,8 +926,8 @@ let jack = new Person()
 // jack.setName('Jack')
 
 // Compile-time(!) error: Compiler suspects that we
-// may possibly access something undefined and won't build the code:
-jack.getName().length; // The code won't build and run
+// may possibly access something undefined and will not build the code:
+jack.getName().length; // The code will not build and run
 
 jack.getName()?.length; // Builds ok, no runtime error
 ```

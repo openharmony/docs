@@ -1,4 +1,9 @@
 # \@Once：初始化同步一次
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 想要实现仅从外部初始化一次且不接受后续同步变化的能力，可以使用\@Once装饰器搭配\@Param装饰器。
 

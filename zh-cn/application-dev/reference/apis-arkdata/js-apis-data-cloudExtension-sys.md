@@ -1,4 +1,9 @@
 # @ohos.data.cloudExtension (端云共享Extension)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--SE: @lvcong_oh-->
+<!--TSE: @ltttjs; @logic42-->
 
 端云共享Extension，提供三方厂商适配共享云服务的能力。通过实现端云共享Extension提供的接口，对接端侧的数据共享到服务端，实现端云共享的发起、取消或退出，更改共享数据的操作权限、查询共享参与者、根据共享邀请码查询共享参与者、确认或更改共享邀请，并支持返回共享云服务的相关结果。
 

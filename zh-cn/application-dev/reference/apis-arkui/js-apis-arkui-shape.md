@@ -1,4 +1,9 @@
 # @ohos.arkui.shape (形状)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 在 clipShape 和 maskShape 接口中可以传入对应的形状。
 

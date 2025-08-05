@@ -1,4 +1,9 @@
 # 点击事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 组件被点击时触发的事件。
 
@@ -6,9 +11,11 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。
+>  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md)分发流程，触摸事件支持屏蔽、透传等自定义行为。
 >
 >  事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
+>
+>  当该点击事件由键盘或者手柄触发时，不会触发[onGestureJudgeBegin](./ts-gesture-customize-judge.md#ongesturejudgebegin)，[onGestureRecognizerJudgeBegin](./ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)和[willClick](../arkts-apis-uicontext-uiobserver.md#onwillclick12)的回调。
 
 ## onClick<sup>12+</sup>
 

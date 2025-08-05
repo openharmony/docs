@@ -1,4 +1,9 @@
 # 使用JSVM-API接口获取JSVM API的版本号
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -80,4 +85,4 @@ JSVM API version: 13.2.152.41
 JSVM API cachedDataVersionTag: 0x81ff9402
 ```
 
-<!-- @[oh_jsvm_get_version_and_vm_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_version_and_vm_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->

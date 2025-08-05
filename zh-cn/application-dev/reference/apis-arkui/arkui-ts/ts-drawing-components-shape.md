@@ -1,4 +1,9 @@
 # Shape
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 绘制组件的父组件，父组件中会描述所有绘制组件均支持的通用属性。
 

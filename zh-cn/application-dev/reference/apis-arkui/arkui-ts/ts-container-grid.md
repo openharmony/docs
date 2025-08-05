@@ -1,5 +1,11 @@
 # Grid
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zcdqs; @fangyuhao-->
+<!--SE: @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
 >  **说明：**
@@ -719,6 +725,12 @@ Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Gri
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格到达起始位置时触发的回调。 |
+
 ### onReachEnd<sup>10+</sup>
 
 onReachEnd(event: () => void)
@@ -730,6 +742,12 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格到达末尾位置时触发的回调。 |
 
 ### onScrollFrameBegin<sup>10+</sup>
 
@@ -776,6 +794,12 @@ onScrollStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格滑动开始时触发的回调。 |
+
 ### onScrollStop<sup>10+</sup>
 
 onScrollStop(event: () => void)
@@ -785,6 +809,12 @@ onScrollStop(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格滑动停止时触发的回调。 |
 
 ### onScroll<sup>(deprecated)</sup>
 onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 

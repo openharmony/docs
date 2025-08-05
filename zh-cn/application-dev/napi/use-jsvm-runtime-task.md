@@ -1,14 +1,19 @@
 # 使用JSVM-API接口创建多个引擎执行JS代码并销毁
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 场景介绍
 
-开发者通过createJsCore方法来创建一个新的JS运行时环境，并通过该方法获得一个CoreID。然后，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数。最后，使用releaseJsCore方法来释放CoreID对应的运行环境。
+开发者通过createJsCore方法来创建一个新的JS运行时环境，并通过该方法获得一个CoreID。然后，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数。最后，使用releaseJsCore方法来销毁CoreID对应的运行环境。
 
 ## 使用示例
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
-新建多个JS运行时环境并运行JS代码
+创建多个JS运行时环境并运行JS代码
 
   ```cpp
 #include <map>
@@ -21,6 +26,7 @@ static map<int, JSVM_Env *> g_envMap;
 static map<int, JSVM_CallbackStruct *> g_callBackStructMap;
 static uint32_t ENVTAG_NUMBER = 0;
 static std::mutex envMapLock;
+static int g_aa = 0;
 
 #define CHECK_COND(cond)                                                                                               \
     do {                                                                                                               \
@@ -135,9 +141,10 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
     size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
-    char resultStr[size + 1];
+    char *resultStr = new char[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
     result = resultStr;
+    delete[] resultStr;
     return 0;
 }
 
@@ -329,7 +336,7 @@ static int32_t TestJSVM() {
     return 0;
 }
 ```
-<!-- @[runtime_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
+<!-- @[runtime_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM CreateJsCore START

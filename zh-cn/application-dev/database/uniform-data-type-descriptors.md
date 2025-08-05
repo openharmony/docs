@@ -1,4 +1,9 @@
 # 标准化数据类型 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--SE: @junathuawei1; @zph000-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 
 ## 场景介绍
@@ -193,8 +198,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 function uniformTypeDescriptorTest() {
   try {
     // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
-    let fileExtention = '.mp3';
-    let typeIds1 = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtention);
+    let fileExtension = '.mp3';
+    let typeIds1 = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
     if (typeIds1.length == 0) {
       return;
     }
@@ -206,8 +211,8 @@ function uniformTypeDescriptorTest() {
     console.info('mimeTypes:' + typeObj1.mimeTypes);
 
     // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
-    let mineType = 'audio/mp3';
-    let typeIds2 = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mineType);
+    let mimeType = 'audio/mp3';
+    let typeIds2 = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
     if (typeIds2.length == 0) {
       return;
     }
@@ -251,8 +256,8 @@ function uniformTypeDescriptorTest() {
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “.ts” 文件后缀查询对应UTD数据类型。
-  let fileExtention = '.ts';
-  let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtention);
+  let fileExtension = '.ts';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
   for (let typeId of typeIds) {
     // 3.根据UTD数据类型查询对应的MIMEType列表。
     let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
@@ -276,8 +281,8 @@ try {
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “text/plain” MIMEType查询对应UTD数据类型。
-  let mineType = 'text/plain';
-  let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mineType);
+  let mimeType = 'text/plain';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
   for (let typeId of typeIds) {
     // 3. 根据UTD数据类型查询对应的MIMEType列表
     let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
@@ -293,4 +298,4 @@ try {
 
 针对标准化数据定义的开发，有以下相关实例可供参考：
 
-- [标准化数据定义与描述（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)
+- [标准化数据定义与描述（ArkTS）（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)

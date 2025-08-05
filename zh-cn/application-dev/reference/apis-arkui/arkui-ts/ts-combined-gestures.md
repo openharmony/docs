@@ -1,10 +1,15 @@
 # 组合手势
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 手势识别组合，即多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -16,10 +21,10 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode    | [GestureMode](#gesturemode枚举说明)                          | 是   | 设置组合手势识别模式。<br/>默认值：GestureMode.Sequence      |
-| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md)<br/>\|&nbsp;[SwipeGesture](ts-basic-gestures-swipegesture.md)<br/>\|&nbsp;[GestureGroup](#组合手势) | 否   | 设置1个或者多个基础手势类型时，这些手势会被识别为组合手势。若此参数不填则组合手势识别功能不生效。<br/>**说明：**  <br/>当需要为一个组件同时添加单击和双击手势时，可在组合手势中添加两个TapGesture，需要双击手势在前，单击手势在后，否则不生效。 |
+| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md)<br/>\|&nbsp;[SwipeGesture](ts-basic-gestures-swipegesture.md)<br/>\|&nbsp;GestureGroup | 否   | 设置1个或者多个基础手势类型时，这些手势会被识别为组合手势。若此参数不填则组合手势识别功能不生效。<br/>**说明：**  <br/>当需要为一个组件同时添加单击和双击手势时，可在组合手势中添加两个TapGesture，需要双击手势在前，单击手势在后，否则不生效。 |
 
 ## GestureMode枚举说明
 
@@ -27,11 +32,11 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 描述                                       |
-| --------- | ---------------------------------------- |
-| Sequence  | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。若有一个手势识别失败，后续手势识别均失败。<br>顺序识别手势组仅有最后一个手势可以响应onActionEnd。 |
-| Parallel  | 并发识别，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。     |
-| Exclusive | 互斥识别，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。       |
+| 名称    | 值    | 说明                                       |
+| --------- | -------| ------------------------------------- |
+| Sequence | - | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。若有一个手势识别失败，后续手势识别均失败。<br>顺序识别手势组仅有最后一个手势可以响应onActionEnd。 |
+| Parallel | - | 并发识别，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。     |
+| Exclusive| - | 互斥识别，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。       |
 
 
 ## 事件

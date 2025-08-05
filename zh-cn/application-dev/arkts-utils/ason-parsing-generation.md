@@ -1,6 +1,6 @@
 # ASON解析与生成
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -31,4 +31,4 @@ let jsonText = '{"largeNumber":112233445566778899}';
 let map = ArkTSUtils.ASON.parse(jsonText, undefined, options2);
 ArkTSUtils.ASON.stringify(map);
 ```
-<!-- @[example_serialize](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/AsonParsingGeneration.ets) -->
+<!-- @[example_serialize](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/AsonParsingGeneration.ets) -->

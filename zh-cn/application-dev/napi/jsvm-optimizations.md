@@ -1,14 +1,19 @@
 # JSVM 通用调优实践
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## JSVM 调用结构
 
-小程序使用 JSVM 执行 JS 代码的过程大概可以分为 native，JSVM-API，JSVM 三层：
+小程序使用 JSVM 执行 JS 代码的过程大概可以分为 Native，JSVM-API，JSVM 三层：
 
-- native：小程序运行 JS 的逻辑层，使用 JSVM 提供的接口完成 JS 代码编译，运行，code cache 生成等操作的逻辑排布和组合
+- Native：小程序运行 JS 的逻辑层，使用 JSVM 提供的接口完成 JS 代码编译，运行，code cache 生成等操作的逻辑排布和组合
 - JSVM-API：连接 native 和 v8 的接口兼容层，保持对不同版本 JS 引擎的兼容，提供 JS 引擎标准化的使用实践
 - JSVM：JS 引擎层，负责 JS 代码实际的编译运行
 
-使用 JSVM 的过程中，可能由于各种原因产生一些不必要的开销导致启动变慢，其中的原因可以从以上三层的角度进行拆分。
+使用 JSVM 的过程中，可能会因为多种原因产生不必要的开销，导致启动速度变慢。可以从以下三个层面进行分析。
 
 ## 提升启动速度
 
@@ -18,7 +23,7 @@
 
 ### 减少 JS 引擎层的开销
 
-引擎层的开销很大的一部分来源于编译，通过合理调整调用 JSVM-API 时传入的选项，可以减少主线程上 JS 引擎的编译开销，
+引擎层的开销很大程度上来源于编译。通过合理调整调用 JSVM-API 时传入的选项，可以降低主线程上 JS 引擎的编译开销。
 以下面的编译接口为例，其中 eagerCompile 这个参数的开关可以调控编译行为，通过在不同的启动场景打开这个选项可以实现优化效果。
 
 ```cpp
@@ -38,32 +43,32 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 同时 code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
 
-#### 热启动：生成足够多的 code cache
+**热启动：生成足够多的 code cache**
 
 热启动场景下，我们会在热启动前生成 code cache 以减少编译带来的开销。这个时候生成的 code cache 的覆盖率会影响 code cache 对热启动的优化效果。
 
-有一个简单的策略可以生成足量的 code cache，就是在生成 code cache 前的那次编译打开 `eager compile` 选项，这样 v8 会在编译时进行全量的编译，这样生成 code cache 一定是全量的。
+有一个简单的策略可以生成足够的 code cache：在生成 code cache 之前的那次编译中，打开 `eager compile` 选项。这样，V8 会在编译时进行全量编译，确保生成的 code cache 是全量的。
 
-这个方法会带来额外的编译时间开销，可能影响冷启动的时间，这一点会在下面对 native 层的冷启动优化方法中提到。
+这个方法会增加额外的编译时间开销，可能影响冷启动时间。后续将详细讨论 native 层的冷启动优化方法。
 
-#### 冷启动：使用 lazy compile 代替 eager compile
+**冷启动：使用 lazy compile 代替 eager compile**
 
 在冷启动时，`eager compile` 会增加不必要的编译时间。这其中主要的原因是没有拿到 v8 lazy compile 优化效果：v8 会将不在必经路径上的函数推迟编译，在实际运行到的时候才进行编译，这样会减少一些不被运行到函数的编译，从而优化冷启动的时间。
 
-因此在冷启动时，会阻塞主线程的部分可以关闭 `eager compile` 选项，从而拿到足够的冷启动优化效果。
+因此，在冷启动时，可以通过关闭 `eager compile` 选项来避免阻塞主线程，从而获得足够的冷启动优化效果。
 
 ### 在 native 层减少时间开销
-#### 冷启动：减少 code cache 的影响
+**冷启动：减少 code cache 的影响**
 
 上面在考虑减少 v8 层开销的时候，提到了为了热启动的性能可以开启 `eager compile` 进行编译，而为了冷启动性能却又需要关闭 `eager compile` 选项，看起来是矛盾的。为了解决这个矛盾，避免在冷热启动性能上的权衡，关键点是在 code cache 生成本身。
 
-首先 code cache 的生成是需要前置的编译的，其次生成 code cache 本身也存在开销；
+首先，生成 code cache 需要进行前置编译，其次，生成 code cache 本身也会产生开销。
 
-那么在 native 层，要解决冷启动和生成 code cache 之间的矛盾，首先我们可以另起一个线程用于生成 code cache，这样避免了生成 code cache 这个操作本身对冷启动的影响；
+在 native 层，要解决冷启动与生成 code cache 之间的矛盾，可以另起一个线程用于生成 code cache，这样可以避免生成 code cache 操作对冷启动的影响。
 
-然后，有两个方法可以参考(下面的伪代码仅用于展示逻辑流程，不涉及真正的 api 调用)：
+有两个方法可以参考（以下伪代码仅用于展示逻辑流程，不涉及实际的 API 调用）：
 
-- 将生成 code cache 必需的前置编译也放到新增的线程上，这样编译选项可以分开使用：生成 code cache 打开 `eager compile`，冷启动运行则关闭，这样做的缺点是可能进一步提高运行时的峰值资源占用，优点是 code cache 生成和运行可以完全解耦，不再需要考虑生成 code cache 的时间点。这个流程的伪代码如下所示
+- 将生成 code cache 必需的前置编译也放到新增的线程上，这样编译选项可以分开使用：生成 code cache 打开 `eager compile`，冷启动运行则关闭，这样做的缺点是可能进一步提高运行时的峰值资源占用，优点是 code cache 生成和运行可以完全解耦，不再需要考虑生成 code cache 的时间点。该流程的伪代码如下所示
 
 ```
 async_create_code_cache() {
@@ -110,13 +115,13 @@ if (script_run_completed) {
 
 ### 使用更高效的 JSVM-API
 
-在能达到相同效果时，使用更高效的 JSVM-API 是简单有效的性能优化方法，以下实践是在优化实践过程中发现的一些例子
+在能达到相同效果时，使用更高效的 JSVM-API 是一种有效的性能优化方法，以下是一些具体的实践示例。
 
-#### 使用 IsXXX 代替 TypeOf
+**使用 IsXXX 代替 TypeOf**
 
-过去发现，针对仅需要判断对象原生类型的场景，存在一种相对低效的使用方法：
+过去发现，针对仅需要判断对象类型的场景，存在一种相对低效的使用方法：
 
-从 OH_JSVM_TypeOf 接口获取对象类型后，再判断是否与某个类型相同。
+从 OH_JSVM_TypeOf 接口获取类型后，再判断是否与某个类型相同。
 
 这种方法需要先查询 object 的类型，这种方法相对于直接使用 is 方法会更慢，因此我们新增了针对基础类型的 IsXXX 系列方法，用更高效的接口代替了相对低效的接口。下面的示例中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
 
@@ -146,15 +151,15 @@ bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
 
 以某生态应用小程序场景为例，这个优化可以带来的性能收益端到端有 150ms，总占比约 5%。
 
-#### 直接使用 OH_JSVM_CreateReference，避免创建冗余的 object
+**直接使用 OH_JSVM_CreateReference，避免创建冗余的 object**
 
 过去存在这样一种创建 reference 的路径：
 
 创建一个新的 object -> 设置 object 的值 -> 创建 object 的 reference。
 
-这种在已经有值的情况下创建一个新的 object 的操作是冗余的，直接创建对值的引用即可。
+在已有值的情况下，直接创建值的引用即可。
 
-下面的示例中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
+下面的示例中使用的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md)，这里仅展示调用的步骤。
 
 
 - 低效用例

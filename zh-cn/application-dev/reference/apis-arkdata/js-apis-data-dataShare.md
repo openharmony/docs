@@ -1,4 +1,9 @@
 # @ohos.data.dataShare (数据共享)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 **DataShare**用于应用管理其自身数据，同时支持同个设备上不同应用间的数据共享。
 

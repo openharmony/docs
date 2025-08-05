@@ -1,5 +1,11 @@
 # ListItemGroup
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 该组件用来展示列表item分组，宽度默认充满[List](ts-container-list.md)组件，必须配合List组件来使用。
 
 > **说明：**

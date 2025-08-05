@@ -1,5 +1,11 @@
 # 查询密钥是否存在(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 HUKS提供了接口供应用查询指定密钥是否存在。
 
 ## 开发步骤

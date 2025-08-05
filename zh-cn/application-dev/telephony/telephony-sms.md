@@ -166,7 +166,7 @@ sms:106XXXXXXXXXX?body=发送短信内容
 
 ### 拉起方开发步骤
 
-#### 从网页拉起
+ **从网页拉起**
 
 网页中的超链接需要满足sms协议。示例如下：
 
@@ -176,7 +176,7 @@ sms:106XXXXXXXXXX?body=发送短信内容
 
 实际开发时，需要将收件人号码替换为真实的号码，短信内容可以根据需要进行配置。
 
-#### 从应用拉起
+ **从应用拉起**
 
 保证sms字符串传入uri参数即可，在应用中page页面可通过 this.getUIContext().getHostContext() 获取context，在ability中可通过this.context获取context。
 
@@ -214,4 +214,4 @@ struct Index {
 
 针对短信的使用，有以下相关实例可供参考：
 
-- [短信服务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)
+- [短信服务（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)

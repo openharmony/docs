@@ -1,4 +1,9 @@
 # AddrSanitizer（地址越界）检测
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mlkgeek-->
+<!--SE: @StevenLai1994-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 ## 简介
 
@@ -6,7 +11,7 @@
 
 ## 常见越界类型与影响
 
-常见地址越界类型和影响可参看[地址越界经典问题类型](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-address-illegal-way)。
+常见地址越界类型和影响可参看[地址越界经典问题类型](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-address-sanitizer-catagory)。
 
 ## 地址越界检测原理
 
