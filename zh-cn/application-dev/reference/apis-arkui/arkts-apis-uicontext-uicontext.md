@@ -1,5 +1,9 @@
 # Class (UIContext)
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 UIContext实例对象。
 
 > **说明：**
@@ -1368,20 +1372,23 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 ```ts
 // EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-    } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      } else {
+        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 ## getDragController<sup>11+</sup>
