@@ -604,10 +604,10 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
-        - UI开发调优<!--ui-inspector-profiler-->
-          - [预览](ui/ui-ide-previewer.md)
-          - [调试](ui/ui-inspector-profiler.md)
-        - [UI高性能开发](ui/ui-performance-overview.md)
+        - UI开发调试调优<!--ui-debug-optimize-->
+          - [UI预览](ui/ui-ide-previewer.md)
+          - [UI调优](ui/ui-inspector-profiler.md)
+          - [UI高性能开发](ui/ui-performance-overview.md)
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
         - [NDK接口概述](ui/ndk-build-ui-overview.md)
         - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
