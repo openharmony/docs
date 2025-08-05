@@ -1,4 +1,9 @@
 # 悬浮事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 光标滑动或手写笔在屏幕上悬浮移动扫过组件时触发。
 
@@ -21,8 +26,7 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | 是   | 鼠标或手写笔是否悬浮在组件上，进入时为true，&nbsp;离开时为false。 |
-| event<sup>11+</sup> | [HoverEvent](#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性，并获取鼠标或手写笔悬浮的位置坐标。         |
+| event  | (isHover: boolean, event: [HoverEvent](#hoverevent10对象说明)) => void  | 是   | 鼠标的状态信息。<br />event表示设置阻塞事件冒泡属性，并获取鼠标或手写笔悬浮的位置坐标，从API version 11开始支持。<br />isHover表示鼠标或手写笔是否悬浮在组件上，进入时为true，&nbsp;离开时为false。 |
 
 **返回值：**
 
@@ -44,7 +48,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| event | [HoverEvent](#hoverevent10对象说明) | 是   |设置阻塞事件冒泡属性，并获取手写笔悬浮的位置坐标。                              |
+| event | Callback<[HoverEvent](#hoverevent10对象说明)> | 是   |设置阻塞事件冒泡属性，并获取手写笔悬浮的位置坐标。         |
 
 **返回值：**
 

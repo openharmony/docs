@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行函数创建和调用
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -46,7 +51,7 @@ cpp测试全量代码，入口为TEST_FUNC
   }
 
 JSVM_Value NativeCreateFunctionTest(JSVM_Env env, JSVM_CallbackInfo info) {
-    void *data;
+    void *data = nullptr;
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     JSVM_Value thisArg;
@@ -125,7 +130,7 @@ static int32_t TEST_FUNC() {
     return 0;
 }
 ```
-<!-- @[jsvm_function_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_function_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
 
 预期的输出
 ```

@@ -1,4 +1,9 @@
 # 多线程并发概述
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 多线程并发是指在单个程序中同时运行多个线程，通过并行或交替执行任务来提升性能和资源利用率的编程模型。在ArkTS应用开发中，多线程并发适用于多种业务场景，常见的业务场景主要分为以下三类。更详细的使用请参考[多线程开发实践案例](batch-database-operations-guide.md)。
 
@@ -200,7 +205,7 @@ struct Index {
   }
 }
 ```
-<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[actor_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 也可以等待生产者完成所有任务，通过序列化通信将结果发送给UI线程。UI线程接收后，由消费者统一消费结果。
 
@@ -261,3 +266,25 @@ struct Index {
 ## TaskPool和Worker
 
 ArkTS提供了TaskPool和Worker两种并发能力供开发者选择，各自的运作机制和注意事项请见[TaskPool简介](taskpool-introduction.md)和[Worker简介](worker-introduction.md)，两者之间实现的特点和适用场景也存在差异，请见[TaskPool和Worker的对比](taskpool-vs-worker.md)。
+
+## 并发注意事项
+
+- 避免在并发线程中操作UI
+
+  UI操作必须在主线程中执行。并发线程中操作UI可能导致界面异常或崩溃。
+
+- 数据传递需支持序列化/反序列化
+
+  并发任务间传递数据时，对象必须是可序列化的（如基本类型、普通对象等），不可传递函数、循环引用、特殊对象（如Promise、Error）等。已完成（fulfilled或rejected）状态的 Promise可以被传递，因为其结果是可序列化的。
+
+- 合理控制并发粒度
+
+  频繁创建和销毁并发任务（如Worker、Task）会带来额外性能开销，建议复用或使用任务池机制。
+
+- 注意内存泄漏风险
+
+  避免在并发任务中持有外部对象的强引用，防止内存泄漏。
+
+- 并发任务应具备独立性
+
+  并发任务应尽量不依赖外部状态，减少竞态条件（Race Condition）和同步开销。竞态条件是指多个线程或任务同时访问并修改共享数据，执行结果依赖于任务调度的顺序，可能导致数据不一致或不可预期的行为。

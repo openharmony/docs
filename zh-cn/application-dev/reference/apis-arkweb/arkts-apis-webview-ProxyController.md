@@ -1,4 +1,9 @@
 # Class (ProxyController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 此类用于为应用程序设置代理。
 

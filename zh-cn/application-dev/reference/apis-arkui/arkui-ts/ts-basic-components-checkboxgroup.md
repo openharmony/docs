@@ -1,4 +1,9 @@
 # CheckboxGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 多选框群组，用于控制多选框全选或者不全选状态。
 
@@ -40,9 +45,9 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| group | string | 否 | 群组名称。<br/>**说明：** <br/>具有相同群组名称的多个CheckboxGroup，仅第一个CheckboxGroup生效。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| group | string | 否 | 是 | 群组名称。<br/>**说明：** <br/>具有相同群组名称的多个CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
 ## 属性
 
@@ -91,7 +96,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组将全部被选中；值为false时，多选框群组将全部取消选中。 |
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组将全部被选中；值为false时，多选框群组将全部取消选中。 |
 
 ### selectedColor
 
@@ -127,7 +132,7 @@ selectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 被选中或部分选中状态的颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 被选中或部分选中状态的颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
@@ -159,7 +164,7 @@ unselectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 非选中状态边框颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 非选中状态边框颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
@@ -191,7 +196,7 @@ mark(style: Optional\<MarkStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。<br/>当style的值为undefined时，维持上次取值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。<br/>当style的值为undefined时，维持上次取值。 |
 
 ### checkboxShape<sup>12+</sup>
 
@@ -227,7 +232,7 @@ checkboxShape(shape: Optional\<CheckBoxShape>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。<br />**说明：**<br/>CheckboxGroup组件将按照设置的形状显示。<br/>CheckboxGroup内所有未单独设置shape类型的Checkbox，其形状将与CheckboxGroup保持一致。<br/>CheckboxGroup内已单独设置shape类型的Checkbox，其形状将优先于CheckboxGroup的设置，按照自身设置显示。 |
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。<br />**说明：**<br/>CheckboxGroup组件将按照设置的形状显示。<br/>CheckboxGroup内所有未单独设置shape类型的Checkbox，其形状将与CheckboxGroup保持一致。<br/>CheckboxGroup内已单独设置shape类型的Checkbox，其形状将优先于CheckboxGroup的设置，按照自身设置显示。 |
 
 ## 事件
 
@@ -267,7 +272,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18)> | 是   | 多选框群组的信息。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18)> | 是   | 多选框群组的信息。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnCheckboxGroupChangeCallback<sup>18+</sup>
 

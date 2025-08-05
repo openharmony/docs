@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行array相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -86,7 +91,7 @@ const char *srcCallNative = R"JS(
   testCreateArray();
 )JS";
 ```
-<!-- @[oh_jsvm_create_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarray/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarray/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -147,7 +152,7 @@ function testCreateArrayWithLength(num){
 testCreateArrayWithLength(num);
 )JS";
 ```
-<!-- @[oh_jsvm_create_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarraywithlength/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_array_with_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarraywithlength/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -251,7 +256,7 @@ createTypedArray(type.INT8_ARRAY);
 createTypedArray(type.INT32_ARRAY);
 )JS";
 ```
-<!-- @[oh_jsvm_create_typedarray](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createtypedarray/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_typedarray](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createtypedarray/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -297,12 +302,12 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
     size_t returnLength = 0;
     JSVM_Value returnArrayBuffer = nullptr;
     size_t returnOffset = 0;
-    enum InfoType { BYTE_LENGTHE, ARRAY_BUFFERE, BYTE_OFFSET };
+    enum InfoType { BYTE_LENGTH, ARRAY_BUFFER, BYTE_OFFSET };
     // 获取dataview信息
     OH_JSVM_GetDataviewInfo(env, result, &returnLength, (void **)&data, &returnArrayBuffer, &returnOffset);
     JSVM_Value returnResult = nullptr;
     switch (infoType) {
-        case BYTE_LENGTHE:
+        case BYTE_LENGTH:
             JSVM_Value len;
             OH_JSVM_CreateInt32(env, returnLength, &len);
             returnResult = len;
@@ -312,7 +317,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
                 OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnLength: %{public}d", returnLength);
             }
             break;
-        case ARRAY_BUFFERE:
+        case ARRAY_BUFFER:
             {
                 bool isArraybuffer = false;
                 OH_JSVM_IsArraybuffer(env, returnArrayBuffer, &isArraybuffer);
@@ -360,7 +365,7 @@ const char *srcCallNative = R"JS(
  createDataView(new ArrayBuffer(16), BYTE_OFFSET);
 )JS";
 ```
-<!-- @[oh_jsvm_create_dataview](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createdataview/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_dataview](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createdataview/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -423,7 +428,7 @@ let data = [0, 1, 2, 3, 4, 5];
 getArrayLength(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_array_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getarraylength/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_array_length](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getarraylength/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -538,7 +543,7 @@ getTypedArrayInfo(new Int8Array(5), 2);
 getTypedArrayInfo(new Int8Array(1), 3);
 )JS";
 ```
-<!-- @[oh_jsvm_get_typedarray_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/gettypedarrayinfo/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_typedarray_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/gettypedarrayinfo/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -573,12 +578,12 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value arrayBuffer = nullptr;
     size_t byteOffset = 0;
     // 定义枚举类型与ArkTS侧枚举类型infoType顺序含义一致
-    enum infoTypeEnum { BYTE_LENGTHE, ARRAY_BUFFERE, BYTE_OFFSET };
+    enum infoTypeEnum { BYTE_LENGTH, ARRAY_BUFFER, BYTE_OFFSET };
     // 获取dataview信息
     JSVM_Status status = OH_JSVM_GetDataviewInfo(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
     JSVM_Value result = nullptr;
     switch (infoType) {
-        case BYTE_LENGTHE:
+        case BYTE_LENGTH:
             // 返回查询DataView的长度
             JSVM_Value len;
             OH_JSVM_CreateInt32(env, byteLength, &len);
@@ -589,7 +594,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
                 OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, byteLength: %{public}d", byteLength);
             }
             break;
-        case ARRAY_BUFFERE:
+        case ARRAY_BUFFER:
             {
                 // 判断DataView的Info里的arraybuffer是否为arraybuffer
                 bool isArrayBuffer = false;
@@ -647,7 +652,7 @@ isarraybuffer = 2;
 getDataViewInfo(data, isarraybuffer);
 )JS";
 ```
-<!-- @[oh_jsvm_get_dataview_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getdataviewinfo/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_dataview_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getdataviewinfo/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -699,7 +704,7 @@ let data = [1, 2, 3, 4, 5];
 isArray(data);
 )JS";
 ```
-<!-- @[oh_jsvm_is_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isarray/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isarray/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -747,7 +752,7 @@ const char *srcCallNative = R"JS(
 setElement(3);
 )JS";
 ```
-<!-- @[oh_jsvm_set_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/setelement/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_set_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/setelement/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -798,7 +803,7 @@ let arr = [10, 'hello', null, true];
 getElement(arr, 3);
 )JS";
 ```
-<!-- @[oh_jsvm_get_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getelement/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getelement/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -853,7 +858,7 @@ hasElement(arr, 0);
 hasElement(arr, 4);
 )JS";
 ```
-<!-- @[oh_jsvm_has_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/haselement/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_has_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/haselement/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -908,7 +913,7 @@ let arr = [10, 'hello', null, true];
 deleteElement(arr, 0);
 )JS";
 ```
-<!-- @[oh_jsvm_delete_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/deleteelement/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_delete_element](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/deleteelement/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -958,7 +963,7 @@ let dataView = new DataView(buffer);
 isDataView(dataView);
 )JS";
 ```
-<!-- @[oh_jsvm_is_dataview](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isdataview/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_dataview](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isdataview/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -1005,7 +1010,7 @@ const char *srcCallNative = R"JS(
 isTypedarray(new Uint16Array([1, 2, 3, 4]));
 )JS";
 ```
-<!-- @[oh_jsvm_is_typedarray](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/istypedarray/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_typedarray](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/istypedarray/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```

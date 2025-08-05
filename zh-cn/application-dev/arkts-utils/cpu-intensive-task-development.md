@@ -1,7 +1,12 @@
 # CPU密集型任务开发指导 (TaskPool和Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
-CPU密集型任务是指需要占用系统资源进行大量计算的任务，这类任务需要长时间运行，会阻塞线程中其他事件的处理，因此不适宜在UI主线程中进行。例如图像处理、视频编码、数据分析等。
+CPU密集型任务是指需要占用系统资源进行大量计算的任务，这类任务需要长时间运行，会阻塞线程中其他事件的处理，因此不适合在UI主线程中执行。例如图像处理、视频编码、数据分析等。
 
 
 基于多线程并发机制处理CPU密集型任务可以提高CPU利用率，提升应用程序响应速度。
@@ -71,7 +76,7 @@ struct Index {
   }
 }
 ```
-<!-- @[process_image_histogram](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+<!-- @[process_image_histogram](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
 
 ## 使用Worker进行长时间数据分析
@@ -91,30 +96,32 @@ struct Index {
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
     ```
 
-3. 在宿主线程中通过调用[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
+3. 在宿主线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
    例如，向Worker线程发送训练和预测的消息，并接收Worker线程发送回来的消息。
 
     ```ts
     // Index.ets
+    import { ErrorEvent, MessageEvents, taskpool, worker } from '@kit.ArkTS';
+
     let done = false;
 
     // 接收Worker子线程的结果
-    workerInstance.onmessage = (() => {
+    workerInstance.onmessage = (event: MessageEvents) => {
       console.info('MyWorker.ets onmessage');
       if (!done) {
         workerInstance.postMessage({ 'type': 1, 'value': 0 });
         done = true;
       }
-    })
+    }
 
-    workerInstance.onAllErrors = (() => {
+    workerInstance.onAllErrors = (err: ErrorEvent) => {
       // 接收Worker子线程的错误信息
-    })
+    }
 
     // 向Worker子线程发送训练消息
     workerInstance.postMessage({ 'type': 0 });
     ```
-    <!-- @[call_worker_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+    <!-- @[call_worker_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
 4. 在MyWorker.ets文件中绑定Worker对象，当前线程即为Worker线程。
 
@@ -125,11 +132,15 @@ struct Index {
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
-5. 在Worker线程中通过调用[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
+5. 在Worker线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
     例如，在Worker线程中定义预测模型及其训练过程，并与宿主线程进行信息交互。
 
     ```ts
-    // MyWorker.ets
+    // MyWorker1.ts
+    import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
     // 定义训练模型及结果
     let result: Array<number>;
     // 定义预测函数
@@ -162,7 +173,7 @@ struct Index {
      }
     }
     ```
-    <!-- @[interact_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
+    <!-- @[interact_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
 
 6. 在Worker线程中完成任务后，可以执行销毁操作。销毁方式有两种：一是在宿主线程中销毁Worker线程；二是在Worker线程中主动销毁。
 
@@ -191,4 +202,4 @@ struct Index {
     // 销毁线程
     workerPort.close();
     ```
-    <!-- @[after_destroy_callback](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+    <!-- @[after_destroy_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->

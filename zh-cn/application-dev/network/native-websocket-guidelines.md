@@ -1,4 +1,4 @@
-# WebSocket连接(C/C++)
+# 使用WebSocket访问网络(C/C++)
 
 ## 场景介绍
 

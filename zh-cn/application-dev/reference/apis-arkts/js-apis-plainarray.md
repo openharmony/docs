@@ -1,4 +1,9 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 PlainArray可用于存储具有关联关系的key-value键值对集合，其中key值唯一且类型为number，每个key对应一个value。
 
@@ -665,7 +670,7 @@ callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
+| index | number | 否 | 当前遍历到的下标值。 |
 | PlainArray | PlainArray&lt;T&gt;| 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**

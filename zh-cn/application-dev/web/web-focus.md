@@ -1,4 +1,9 @@
 # Web组件焦点管理
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 开发者可利用Web组件的焦点管理功能，有效管理Web组件的聚焦与失焦，同时利用H5侧的W3C标准接口，管理网页界面上唯一可交互的元素聚焦与失焦。
 
@@ -43,7 +48,7 @@ Web组件焦点、焦点链和走焦的详情说明请参考[ArkUI焦点基础�
   开发者或用户可通过手势、鼠标或触摸板点击Web组件，使其主动获得焦点。当具体点击到Web组件内的某个元素时，该元素能够获得焦点，例如：点击网页内的输入框，可使其从不可编辑状态转变为可编辑状态，并激活输入法。
 
 ### 被动走焦
-被动走焦指焦点因系统获其他操作而转移，无需开发者直接干预，是焦点系统的默认行为。
+被动走焦指焦点因系统或其他操作而转移，无需开发者直接干预，是焦点系统的默认行为。
 
 被动走焦的场景有：
 
@@ -81,8 +86,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
   controller2: webview.WebviewController = new webview.WebviewController();
-  @State webborderColor: Color = Color.Red;
-  @State webborderColor2: Color = Color.Red;
+  @State webBorderColor: Color = Color.Red;
+  @State webBorderColor2: Color = Color.Red;
 
   build() {
     Column() {
@@ -106,26 +111,26 @@ struct WebComponent {
       }
       Web({ src: 'www.example.com', controller: this.controller })
         .onFocus(() => {
-          this.webborderColor = Color.Green;
+          this.webBorderColor = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor = Color.Red;
+          this.webBorderColor = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor)
+        .borderColor(this.webBorderColor)
         .height("45%")
 
       Web({ src: 'www.example.com', controller: this.controller2 })
         .onFocus(() => {
-          this.webborderColor2 = Color.Green;
+          this.webBorderColor2 = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor2 = Color.Red;
+          this.webBorderColor2 = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor2)
+        .borderColor(this.webBorderColor2)
         .height("45%")
     }
   }
@@ -133,7 +138,7 @@ struct WebComponent {
 ```
 **示例图1**  组件焦点获焦/失焦事件
 
-通过requestfocus接口主动请求获焦，并监听通用接口onFocus和onBlur事件，改变Web组件边框颜色。
+通过requestFocus接口主动请求获焦，并监听通用接口onFocus和onBlur事件，改变Web组件边框颜色。
 
 ![web-focus1.gif](figures/web-focus1.gif)
 

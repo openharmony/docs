@@ -1,4 +1,9 @@
 # Sendable对象冻结
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Sendable对象支持冻结操作。冻结后，对象变为只读，不能增删改属性。因此，多个并发实例间访问时无需加锁。可以通过调用[Object.freeze](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)接口冻结对象。
 
@@ -16,7 +21,7 @@ Sendable对象支持冻结操作。冻结后，对象变为只读，不能增删
      Object.freeze(obj);
    }
    ```
-   <!-- @[provide_encapsulate_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/helper.ts) -->
+   <!-- @[provide_encapsulate_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/helper.ts) -->
 
 2. 调用freeze方法冻结对象，然后将其发送到子线程。
 
@@ -55,7 +60,7 @@ Sendable对象支持冻结操作。冻结后，对象变为只读，不能增删
      }
    }
    ```
-   <!-- @[freeze_obj_send_child_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/SendableFreeze.ets) -->
+   <!-- @[freeze_obj_send_child_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/SendableFreeze.ets) -->
 
 3. 子线程直接操作对象，不加锁。
 
@@ -70,4 +75,4 @@ Sendable对象支持冻结操作。冻结后，对象变为只读，不能增删
      // 使用gConfig对象
    }
    ```
-   <!-- @[directly_operate_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/workers/Worker.ets) -->
+   <!-- @[directly_operate_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/workers/Worker.ets) -->

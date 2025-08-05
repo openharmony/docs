@@ -19,7 +19,7 @@
 
 > **说明：**
 >
-> 当前仅支持2in1设备。
+> 从API version 14开始，支持2in1和tablet设备。API version 13及之前版本，仅支持2in1设备。
 > 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
 ### 开发步骤
@@ -110,7 +110,7 @@ libchild_process.so
     }
     ```
 
-    回调函数传递的第二个参数OHIPCRemoteProxy对象，会与子进程实现的**NativeChildProcess_OnConnect**方法返回的OHIPCRemoteStub对象间建立IPC通道，具体使用方法参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述；OHIPCRemoteProxy对象使用完毕后，需要调用[OH_IPCRemoteProxy_Destroy](../reference/apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)函数释放。
+    回调函数传递的第二个参数OHIPCRemoteProxy对象，会与子进程实现的**NativeChildProcess_OnConnect**方法返回的OHIPCRemoteStub对象间建立IPC通道，具体使用方法参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述；OHIPCRemoteProxy对象使用完毕后，需要调用[OH_IPCRemoteProxy_Destroy](../reference/apis-ipc-kit/capi-ipc-cremote-object-h.md#oh_ipcremoteproxy_destroy)函数释放。
 
 4. 主进程-启动Native子进程。
 
@@ -330,9 +330,9 @@ void ThreadFunc()
         return;
     }
     // 获取启动参数中的entryPrams
-    char *entryParams = args.entryParams;
+    char *entryParams = args->entryParams;
     // 获取fd列表
-    NativeChildProcess_Fd *current = args.fdList.head;
+    NativeChildProcess_Fd *current = args->fdList.head;
     while (current != nullptr) {
         char *fdName = current->fdName;
         int32_t fd = current->fd;

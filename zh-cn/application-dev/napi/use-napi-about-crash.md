@@ -1,6 +1,11 @@
 # 使用Node-API接口产生的异常日志/崩溃分析
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
-以下维测手段依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法请参考文档[分析CppCrash（进程崩溃）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
+以下维测手段多数依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
 
 若无特殊说明，本章节描述的维测手段会在启用ArkTS运行时多线程检测开关的情况下，立即中断进程。
 
@@ -10,13 +15,13 @@
 
 该维测手段主要包含以下两种场景：
 
-1. 调用napi方法使用已创建的napi数据结构时，入参napi_env与创建时不一致。
+1. 调用napi方法的入参napi_env与创建napi数据结构时所使用的napi_env不一致。
 
    > **关键日志**
    > param env not equal to its owner.
    >
 
-2. 调用napi方法使用已创建的napi数据结构时，入参的napi_env地址与创建时一致，但原始的napi_env已释放。
+2. 调用napi方法的入参napi_env与创建napi数据结构时所使用的napi_env一致，但原始napi_env已释放。
 
    > **关键日志**
    >
@@ -38,13 +43,13 @@
 6. napi_call_threadsafe_function*
 7. napi_release_threadsafe_function*
 
-> \*：具有此标志的接口，仅触发第二种场景的维测信息。
+> 具有\*标志的接口，仅能触发第二种场景的维测信息，不含有\*标志的接口，能触发以上两种场景的维测信息。
 
 ### 案例及示例代码
 
 > **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
-#### 基础工具类
+**基础工具类**
 
 定义一个工具类，便于在后续构造两种异常场景。
 
@@ -181,7 +186,7 @@ private:
 };
 ```
 
-#### napi_ref相关接口
+**napi_ref相关接口**
 
 napi_get_reference_value 和 napi_delete_reference 的示例代码
 
@@ -200,12 +205,19 @@ napi_value TriggerDFXGetRef(napi_env env, napi_callback_info cbinfo)
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
+        // napi_create_reference为js对象创建了强引用，需要使用napi_delete_reference主动销毁，否则会导致js对象无法被回收，造成内存泄漏
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.Recreate(same)) {
+            if (ref != nullptr) {
+                napi_delete_reference(localEnv, ref);
+            }
             return;
-        };
+        }
         napi_value result = nullptr;
         napi_get_reference_value(localEnv, ref, &result);
+        if (ref != nullptr) {
+            napi_delete_reference(localEnv, ref);
+        }
     }, same).detach();
     return nullptr;
 }
@@ -214,24 +226,30 @@ napi_value TriggerDFXGetRef(napi_env env, napi_callback_info cbinfo)
  * 接口声明 index.d.ts
  * const triggerDFXDelRef: () => void;
  */
-napi_value TriggerDFXDelRef(napi_env, napi_callback_info)
+napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
 {
     std::thread([]() {
         EngineProxy localEnv;
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
+        // 在使用完成后调用napi_delete_reference来释放引用，避免内存泄露
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.RecreateSame()) {
+            if (ref != nullptr) {
+                napi_delete_reference(localEnv, ref);
+            }
             return;
         };
-        napi_delete_reference(localEnv, ref);
+        if (ref != nullptr) {
+            napi_delete_reference(localEnv, ref);
+        }
     }).detach();
     return nullptr;
 }
 ```
 
-#### napi_async_work相关接口
+**napi_async_work相关接口**
 
 napi_queue_async_work、napi_queue_async_work_with_qos 和 napi_cancel_async_work 的示例代码
 
@@ -254,14 +272,21 @@ napi_value name(napi_env env, napi_callback_info cbinfo)                        
             napi_value taskName = nullptr;                                         \
             napi_create_string_utf8(localEnv, #name, NAPI_AUTO_LENGTH, &taskName); \
             /* 不建议使用空的 execute 回调创建 napi_async_work */                    \
+            /* 此处可能出现内存泄漏，仅为复现 dfx 维测 */                            \
             napi_create_async_work(localEnv, nullptr, taskName,                    \
                 [](napi_env, void*) {}, [](napi_env, napi_status, void* ) {},      \
                 nullptr, &work);                                                   \
             if (!localEnv.Recreate(same)) {                                        \
+                if (work != nullptr) {                                             \
+                    napi_delete_async_work(localEnv, work);                        \
+                }                                                                  \
                 return;                                                            \
             }                                                                      \
         }                                                                          \
         (op);                                                                      \
+        if (work != nullptr) {                                                     \
+            napi_delete_async_work(localEnv, work);                                \
+        }                                                                          \
     }, same).detach();                                                             \
     return nullptr;                                                                \
 }
@@ -282,7 +307,7 @@ EXPAND_ASYNC_WORK_CASE(TriggerDFXCancelWork,
 #undef EXPAND_ASYNC_WORK_CASE
 ```
 
-#### napi_threadsafe_function相关接口
+**napi_threadsafe_function相关接口**
 
 napi_call_threadsafe_function 和 napi_release_threadsafe_function 的示例代码
 
@@ -293,17 +318,23 @@ napi_call_threadsafe_function 和 napi_release_threadsafe_function 的示例代�
  * @variable napi_threadsafe_function tsfn
  */
 #define EXPAND_THREADSAFE_FUNCTION_CASE(name, op)                                       \
-    napi_value name(napi_env, napi_callback_info) {                                     \
+    napi_value name(napi_env, napi_callback_info info) {                                \
         std::thread([]() {                                                              \
             EngineProxy localEnv;                                                       \
             napi_threadsafe_function tsfn = nullptr;                                    \
             {                                                                           \
                 napi_value taskName = nullptr;                                          \
                 napi_create_string_utf8(localEnv, "Test", NAPI_AUTO_LENGTH, &taskName); \
+                // napi_create_threadsafe_function创建线程安全函数，任务执行完成后，      \
+                // 需调用napi_release_threadsafe_function释放
                 napi_create_threadsafe_function(                                        \
                     localEnv, nullptr, nullptr, taskName, 0, 1, nullptr,                \
                     [](napi_env, void *, void *) {}, nullptr,                           \
                     [](napi_env, napi_value, void *, void *) {}, &tsfn);                \
+                if (status != napi_ok) {                                                \
+                    OH_INFO_ERROR(LOG_APP,"napi_create_threadsafe_function failed");    \
+                    return nullptr;                                                     \
+                }                                                                       \
                 if (!localEnv.RecreateSame()) {                                         \
                     return;                                                             \
                 };                                                                      \
@@ -352,7 +383,7 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 > **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
-#### env_cleanup_hook相关接口
+**env_cleanup_hook相关接口**
 
 napi_add_env_cleanup_hook 和 napi_remove_env_cleanup_hook 的示例代码
 
@@ -366,7 +397,7 @@ static void EnvCLeanUpCallback(void *arg) {
  * 接口声明 index.d.ts
  * const triggerDFXClnAddXT: () => void;
  */
-napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -383,7 +414,7 @@ napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info)
  * 接口声明 index.d.ts
  * const triggerDFXClnAddMT: () => void;
  */
-napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -399,7 +430,7 @@ napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info)
  * 接口声明 index.d.ts
  * const triggerDFXClnRmXT: () => void;
  */
-napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -416,7 +447,7 @@ napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info)
  * 接口声明 index.d.ts
  * const triggerDFXClnRmMT: () => void;
  */
-napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -430,7 +461,7 @@ napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info)
 }
 ```
 
-#### async_cleanup_hook相关接口
+**async_cleanup_hook相关接口**
 
 napi_add_async_cleanup_hook示例代码
 
@@ -444,7 +475,7 @@ static void AsyncCleanupCallback(napi_async_cleanup_hook_handle handle, void *)
  * 接口声明 index.d.ts
  * const triggerDFXAsyncAddXT: () => void;
  */
-napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info info) 
 {
     std::thread([](napi_env env) {
         napi_add_async_cleanup_hook(env, AsyncCleanupCallback, nullptr, nullptr);
@@ -453,7 +484,7 @@ napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info)
 }
 ```
 
-#### instance_data相关接口
+**instance_data相关接口**
 
 napi_set_instance_data、napi_get_instance_data示例代码
 
@@ -462,7 +493,7 @@ napi_set_instance_data、napi_get_instance_data示例代码
  * 接口声明 index.d.ts
  * const triggerDFXInsSetXT: () => void;
  */
-napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info)
+napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info info)
 {
     std::thread([](napi_env env) {
         napi_set_instance_data(env, nullptr, [](napi_env, void *, void *) {}, nullptr);
@@ -474,7 +505,7 @@ napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info)
  * 接口声明 index.d.ts
  * const triggerDFXInsGetXT: () => void;
  */
-napi_value TriggerDFXInsGetXT(napi_env env, napi_callback_info)
+napi_value TriggerDFXInsGetXT(napi_env env, napi_callback_info info)
 {
     std::thread([](napi_env env) {
         void *data = nullptr;

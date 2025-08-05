@@ -1,4 +1,9 @@
 # ArkGuard混淆常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--SE: @xiao-peiyang; @dengxinyu-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 如何排查功能异常
 

@@ -1,5 +1,11 @@
 # OH_Huks_Result
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 ## 概述
 
 表示状态返回数据，包括返回码和消息。

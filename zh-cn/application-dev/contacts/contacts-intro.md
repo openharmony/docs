@@ -1,5 +1,10 @@
 # Contacts Kit开发概述
 
+<!--Kit: contacts-kit-->
+<!--Subsystem: contacts-->
+<!--Owner: @librahCode-->
+<!--SE: @yanghaoqian-->
+<!--TSE: @shangzhijie-->
 Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能。该Kit提供了一系列API，可以让开发者在应用中快速集成联系人管理功能。
 
 详情请参考[@ohos.contact API](../reference/apis-contacts-kit/js-apis-contact.md)。

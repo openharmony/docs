@@ -1,4 +1,9 @@
 # @ohos.enterprise.applicationManager（应用管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供应用管理能力，包括添加应用运行禁止名单、获取应用运行禁止名单、移除应用运行禁止名单等。
 
@@ -233,7 +238,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.addAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in adding auto start applications.`);
+  console.info('Succeeded in adding auto start applications.');
 } catch(err) {
   console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -290,7 +295,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in removing auto start applications.`);
+  console.info('Succeeded in removing auto start applications.');
 } catch(err) {
   console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -347,7 +352,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.removeAutoStartApps(wantTemp, autoStartApps, 100);
-  console.info(`Succeeded in removing auto start applications.`);
+  console.info('Succeeded in removing auto start applications.');
 } catch(err) {
   console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
 }
@@ -461,7 +466,7 @@ let autoStartApps: Array<Want> = [
 
 try {
   applicationManager.addAutoStartApps(wantTemp, autoStartApps, 100, true);
-  console.info(`Succeeded in adding auto start applications and set disllowModify.`);
+  console.info('Succeeded in adding auto start applications and set disllowModify.');
 } catch(err) {
   console.error(`Failed to add auto start applications and set disallowModify. Code: ${err.code}, message: ${err.message}`);
 }
@@ -923,7 +928,7 @@ try {
 
 ## applicationManager.setAllowedKioskApps<sup>20+</sup>
 
-setAllowedKioskApps(admin: Want, bundleNames: Array&lt;string&gt;): void
+setAllowedKioskApps(admin: Want, appIdentifiers: Array&lt;string&gt;): void
 
 设置允许在Kiosk模式下运行的应用。
 
@@ -940,7 +945,7 @@ Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| bundleNames | Array&lt;string&gt;                                   | 是   | 应用包名数组，设置允许在Kiosk模式下运行的应用。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
+| appIdentifiers | Array&lt;string&gt;                                   | 是   | 应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)的数组，可以通过接口[bundleManager.getBundleInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfo14-2)获取bundleInfo.signatureInfo.appIdentifier。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
 
 **错误码**：
 
@@ -966,8 +971,8 @@ let wantTemp: Want = {
 
 try {
   // 需根据实际情况进行替换
-  let bundleNames: Array<string> = ['com.example.test'];
-  applicationManager.setAllowedKioskApps(wantTemp, bundleNames);
+  let appIdentifiers: Array<string> = ['6917****3569'];
+  applicationManager.setAllowedKioskApps(wantTemp, appIdentifiers);
   console.info('Succeeded in setting allowed kiosk apps.');
 } catch (err) {
   console.error(`Failed to set allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
@@ -986,7 +991,6 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -997,7 +1001,7 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用包名清单。 |
+| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)清单。 |
 
 **错误码**：
 
@@ -1022,8 +1026,8 @@ let wantTemp: Want = {
 };
 
 try {
-  let bundleNames: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
-  console.info(`Succeeded in getting allowed kiosk apps, bundleNames: ${JSON.stringify(bundleNames)}`);
+  let appIdentifiers: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
+  console.info(`Succeeded in getting allowed kiosk apps, appIdentifiers: ${JSON.stringify(appIdentifiers)}`);
 } catch (err) {
   console.error(`Failed to get allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
 }
@@ -1031,7 +1035,7 @@ try {
 
 ## applicationManager.isAppKioskAllowed<sup>20+</sup>
 
-isAppKioskAllowed(bundleName: string): boolean
+isAppKioskAllowed(appIdentifier: string): boolean
 
 查询某应用是否允许在Kiosk模式下运行。
 
@@ -1039,12 +1043,11 @@ isAppKioskAllowed(bundleName: string): boolean
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                                                 | 是   | 应用包名。                                       |
+| appIdentifier | string                                                 | 是   | 应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)，可以通过接口[bundleManager.getBundleInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfo14-2)获取bundleInfo.signatureInfo.appIdentifier。                                       |
 
 **返回值：**
 
@@ -1059,7 +1062,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 try {
   // 需根据实际情况进行替换
-  let isAllowed: boolean = applicationManager.isAppKioskAllowed('com.example.test');
+  let isAllowed: boolean = applicationManager.isAppKioskAllowed('6917****3569');
   console.info(`Succeeded in querying if the app is allowed kiosk, isAllowed: ${isAllowed}`);
 } catch (err) {
   console.error(`Failed to query if the app is allowed kiosk. Code is ${err.code}, message is ${err.message}`);

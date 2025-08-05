@@ -583,6 +583,21 @@
 
 **起始版本**：20
 
+## ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS
+
+允许MDM应用管理系统预装的防病毒软件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
 ## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
 允许设备管理应用（MDM）设置user_grant类权限策略。

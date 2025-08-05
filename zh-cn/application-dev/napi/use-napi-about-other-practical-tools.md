@@ -1,4 +1,9 @@
 # 使用Node-API其他实用接口
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -85,7 +90,7 @@ static napi_value StrictEquals(napi_env env, napi_callback_info info)
     bool result = true;
     napi_status status = napi_strict_equals(env, args[0], args[1], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
+        napi_throw_error(env, nullptr, "Node-API napi_strict_equals fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回
@@ -126,5 +131,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

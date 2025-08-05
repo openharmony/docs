@@ -5,7 +5,7 @@
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 选择器(Picker)是一个封装DocumentViewPicker、AudioViewPicker、PhotoViewPicker的API模块，具有选择与保存的能力。应用可以选择使用以下API来实现文件的选择和保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起FilePicker应用、AudioPicker应用或PhotoPicker应用。
-调用本模块接口返回的URI数组，路径中的中文及非数字字母的特殊字符会被编码为对应的ASCII码，然后拼接到URI中。
+调用本模块接口返回的URI数组，URI中的中文及非数字字母的特殊字符会被编码为对应的ASCII码并拼接到URI中。
 
 ## 导入模块
 
@@ -85,18 +85,18 @@ constructor(context: Context, window: window.Window)
 
 应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。
 
+> **说明：**
+>
+> 从API version 19开始，2in1和Tablet设备支持该方法。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 **参数：**
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md)  | 是   | 应用创建的窗口实例。 |
-
-> **说明：**
->
-> 当前仅支持手机。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **示例：**
 
@@ -787,7 +787,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 | 名称                    | 类型                                          | 只读 | 可选 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
 | maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限为500个，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是500。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   |  是 | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。           |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   |  是 | 指定选择的文件或者目录的URI。默认为空（效果为拉起最近打开页）。           |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   |  是 | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100，例如：['图片(.png, .jpg)\|\.png,.jpg', '文档\|\.txt', '视频\|\.mp4', '.pdf']。<br>默认不过滤，即显示所有文件。此外2in1设备支持通配符方式['所有文件(\*.\*)\|\.*']（说明：从API version 17开始，手机支持该配置），表示为显示所有文件。<br>仅对具有该系统能力的设备开放。**系统能力**：SystemCapability.FileManagement.UserFileService   |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   |  是 | 仅支持2in1设备。默认值是FILE(文件类型)。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
 | authMode<sup>12+</sup>    | boolean                              | 否   |  是 | 拉起授权Picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权URI。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
@@ -836,7 +836,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名。若无此参数，则默认需要用户自行输入。  |
-| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径。  |
+| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录的URI。  |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为要保存的后缀。没有"\|\"则没有描述，该项整体是一个保存的后缀。默认没有后缀类型。 |
 | pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效。 |
 

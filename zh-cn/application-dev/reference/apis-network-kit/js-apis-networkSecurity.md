@@ -16,6 +16,7 @@ import { networkSecurity } from '@kit.NetworkKit';
 
 ```ts
 import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
 const cert: networkSecurity.CertBlob = {

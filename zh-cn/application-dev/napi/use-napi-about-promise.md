@@ -1,4 +1,9 @@
 # 使用Node-API接口处理异步操作
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -61,7 +66,7 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_is_promise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -69,7 +74,7 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isPromise: <T>(value: T) => boolean;
 ```
-<!-- @[napi_is_promise_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_promise_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -82,7 +87,7 @@ let value = Promise.resolve();
 hilog.info(0x0000, 'Node-API', 'napi_is_promise %{public}s', testNapi.isPromise(value));
 hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isPromise(''));
 ```
-<!-- @[ark_napi_is_promise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_promise
 
@@ -138,7 +143,11 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     // 调用napi_is_promise判断napi_create_promise接口创建的是不是Promise对象
     bool isPromise = false;
     napi_value returnIsPromise = nullptr;
-    napi_is_promise(env, promise, &isPromise);
+    status = napi_is_promise(env, promise, &isPromise);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_is_promise failed");
+        return nullptr;
+    }
     // 将布尔值转为可以返回的napi_value
     napi_get_boolean(env, isPromise, &returnIsPromise);
     return returnIsPromise;
@@ -152,12 +161,17 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
     bool status;
-    napi_get_value_bool(env, args[INT_ARG_2], &status);
+    napi_status status = napi_get_value_bool(env, args[INT_ARG_2], &status);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_get_value_bool failed");
+        return nullptr;
+    }
+
     // 创建Promise对象
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
-    napi_status createStatus = napi_create_promise(env, &deferred, &promise);
-    if (createStatus != napi_ok) {
+    status = napi_create_promise(env, &deferred, &promise);
+    if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Create promise failed");
         return nullptr;
     }
@@ -171,16 +185,16 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     return promise;
 }
 ```
-<!-- @[napi_resolve_reject_deferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_resolve_reject_deferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明示例
 
 ```ts
 // index.d.ts
-export const createPromise: () => boolean | void;
-export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | void;
+export const createPromise: () => boolean | undefined;
+export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | undefined;
 ```
-<!-- @[napi_resolve_reject_deferred_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_resolve_reject_deferred_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -206,7 +220,7 @@ promiseFail.then((res) => {
   hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
 })
 ```
-<!-- @[ark_napi_resolve_reject_deferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_resolve_reject_deferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
@@ -214,5 +228,5 @@ promiseFail.then((res) => {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

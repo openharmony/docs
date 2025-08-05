@@ -1,5 +1,11 @@
 # List
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。
 
 > **说明：**
@@ -519,7 +525,7 @@ syncLoad(enable: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，异步加载仅在首次显示等非滑动场景生效。 |
+| enable   | boolean | 是   | 是否同步加载List区域内所有子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，在首次显示、不带动画scrollToIndex跳转场景，若当帧布局耗时超过50ms，会将List区域内尚未布局的子组件延后到下一帧进行布局。 |
 
 ### editMode<sup>(deprecated)</sup>
 
@@ -1523,7 +1529,7 @@ struct ListExample {
 ### 示例5（跳转准确）
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
-如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#list)。
+如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#滑动组件)。
 
 <!--code_no_check-->
 ```ts

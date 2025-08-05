@@ -1,4 +1,9 @@
 # 状态管理合理使用开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 由于对状态管理当前的特性并不了解，许多开发者在使用状态管理进行开发时会遇到UI不刷新、刷新性能差的情况。对此，本篇将从两个方向，对一共五个典型场景进行分析，同时提供相应的正例和反例，帮助开发者学习如何合理使用状态管理进行开发。
 
@@ -28,7 +33,7 @@ struct Index {
   }
 
   isRenderText(index: number) : number {
-    console.log(`index ${index} is rendered`);
+    console.info(`index ${index} is rendered`);
     return 1;
   }
 
@@ -90,7 +95,7 @@ struct Index {
 
 页面内通过ForEach显示了20条信息，当点击某一条信息中age的Text组件时，可以通过日志发现其他的19条信息中age的Text组件也进行了刷新(这体现在日志上，所有的age的Text组件都打出了日志)，但实际上其他19条信息的age的数值并没有改变，也就是说其他19个Text组件并不需要刷新。
 
-这是因为当前状态管理的一个特性。假设存在一个被@State修饰的number类型的数组Num[]，其中有20个元素，值分别为0到19。这20个元素分别绑定了一个Text组件，当改变其中一个元素，例如第0号元素的值从0改成1，除了0号元素绑定的Text组件会刷新之外，其他的19个Text组件也会刷新，即使1到19号元素的值并没有改变。
+这是因为当前状态管理的一个特性。假设存在一个被[@State](./arkts-state.md)修饰的number类型的数组Num[]，其中有20个元素，值分别为0到19。这20个元素分别绑定了一个Text组件，当改变其中一个元素，例如第0号元素的值从0改成1，除了0号元素绑定的Text组件会刷新之外，其他的19个Text组件也会刷新，即使1到19号元素的值并没有改变。
 
 这个特性普遍的出现在简单类型数组的场景中，当数组中的元素够多时，会对UI的刷新性能有很大的负面影响。这种“不需要刷新的组件被刷新”的现象即是“冗余刷新”，当“冗余刷新”的节点过多时，UI的刷新效率会大幅度降低，因此需要减少“冗余刷新”，也就是做到**精准控制组件的更新范围**。
 
@@ -117,7 +122,7 @@ struct Information {
   @ObjectLink info: Info;
   @State index: number = 0;
   isRenderText(index: number) : number {
-    console.log(`index ${index} is rendered`);
+    console.info(`index ${index} is rendered`);
     return 1;
   }
 
@@ -209,7 +214,7 @@ struct Page {
 
 ```typescript
 @Observed
-class UIStyle {
+class UiStyle {
   translateX: number = 0;
   translateY: number = 0;
   scaleX: number = 0.3;
@@ -228,9 +233,9 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
@@ -247,22 +252,22 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UiStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
 
@@ -273,15 +278,15 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-              .opacity(this.uiStyle.alpha)
-              .scale({
-                x: this.uiStyle.scaleX,
-                y: this.uiStyle.scaleY
-              })
-              .padding(this.isRenderImage())
-              .width(300)
-              .height(300)
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+            .opacity(this.uiStyle.alpha)
+            .scale({
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
+            })
+            .padding(this.isRenderImage())
+            .width(300)
+            .height(300)
         }
         .width('100%')
         .position({ y: -80 })
@@ -349,7 +354,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -369,7 +374,7 @@ struct Page {
 
 ![img](figures/properly-use-state-management-to-develope-11.PNG)
 
-在上面的示例中，UIStyle定义了多个属性，并且这些属性分别被多个组件关联。当点击任意一个按钮更改其中的某些属性时，会导致所有这些关联uiStyle的组件进行刷新，虽然它们其实并不需要进行刷新（因为组件的属性都没有改变）。通过定义的一系列isRender函数，可以观察到这些组件的刷新。当点击“move”按钮进行平移动画时，由于translateY的值的多次改变，会导致每一次都存在“冗余刷新”的问题，这对应用的性能有着很大的负面影响。
+在上面的示例中，UiStyle定义了多个属性，并且这些属性分别被多个组件关联。当点击任意一个按钮更改其中的某些属性时，会导致所有这些关联uiStyle的组件进行刷新，虽然它们其实并不需要进行刷新（因为组件的属性都没有改变）。通过定义的一系列isRender函数，可以观察到这些组件的刷新。当点击“move”按钮进行平移动画时，由于translateY的值的多次改变，会导致每一次都存在“冗余刷新”的问题，这对应用的性能有着很大的负面影响。
 
 这是因为当前状态管理的一个刷新机制，假设定义了一个有20个属性的类，创建类的对象实例，将20个属性绑定到组件上，这时修改其中的某个属性，除了这个属性关联的组件会刷新之外，其他的19个属性关联的组件也都会刷新，即使这些属性本身并没有发生变化。
 
@@ -416,7 +421,7 @@ class NeedRenderTranslate { // 在一起使用的属性可以划分为相同的�
   public translateY: number = 0;
 }
 @Observed
-class UIStyle {
+class UiStyle {
   // 使用NeedRenderxxx类
   needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
@@ -429,14 +434,14 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle : UIStyle;
+  @ObjectLink uiStyle : UiStyle;
   @ObjectLink needRenderImage: NeedRenderImage // 从其父组件接收新类
   private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.background')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.needRenderImage.imageWidth) // 使用this.needRenderImage.xxx
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -449,7 +454,7 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
@@ -459,19 +464,19 @@ struct PageChild {
   @ObjectLink needRenderScale: NeedRenderScale;
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
 
@@ -483,7 +488,7 @@ struct PageChild {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image($r('app.media.background')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // 使用this.needRenderXxx.xxx
@@ -569,7 +574,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -600,13 +605,13 @@ struct Page {
 - 经常被同时使用的属性可以被拆分进同一个新类，即示例中的NeedRenderScale、NeedRenderTranslate、NeedRenderPos、NeedRenderSize。适用于属性经常成对出现，或者被作用在同一个样式上的情况，例如.translate、.position、.scale等（这些样式通常会接收一个对象作为参数）。
 - 可能被用在多个组件上或相对较独立的属性应该被单独拆分进一个新类，即示例中的NeedRenderAlpha，NeedRenderBorderRadius、NeedRenderFontSize。适用于一个属性作用在多个组件上或者与其他属性没有联系的情况，例如.opacity、.borderRadius等（这些样式通常相对独立）。
 
-属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。<!--Del-->关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../../performance/precisely-control-render-scope.md)。<!--DelEnd-->
+属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用[@Observed](./arkts-observed-and-objectlink.md)和[@ObjectLink](./arkts-observed-and-objectlink.md)在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。<!--Del-->关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../../performance/precisely-control-render-scope.md)。<!--DelEnd-->
 
-使用@Track装饰器则无需做属性拆分，也能达到同样控制组件更新范围的作用。
+使用[@Track](./arkts-track.md)装饰器则无需做属性拆分，也能达到同样控制组件更新范围的作用。
 
 ```ts
 @Observed
-class UIStyle {
+class UiStyle {
   @Track translateX: number = 0;
   @Track translateY: number = 0;
   @Track scaleX: number = 0.3;
@@ -625,13 +630,13 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.foreground')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -644,25 +649,25 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UiStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
-  
+
   build() {
     Column() {
       SpecialImage({
@@ -670,15 +675,15 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-              .opacity(this.uiStyle.alpha)
-              .scale({
-                x: this.uiStyle.scaleX,
-                y: this.uiStyle.scaleY
-              })
-              .padding(this.isRenderImage())
-              .width(300)
-              .height(300)
+          Image($r('app.media.foreground')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+            .opacity(this.uiStyle.alpha)
+            .scale({
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
+            })
+            .padding(this.isRenderImage())
+            .width(300)
+            .height(300)
         }
         .width('100%')
         .position({ y: -80 })
@@ -746,7 +751,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -835,11 +840,11 @@ struct CompList {
   @ObjectLink@Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
-    console.log('CompList ChildList change');
+    console.info('CompList ChildList change');
   }
 
   isRenderCompChild(index: number) : number {
-    console.log("Comp Child is render" + index);
+    console.info("Comp Child is render" + index);
     return 1;
   }
 
@@ -1000,11 +1005,11 @@ struct CompList {
   @ObjectLink@Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
-    console.log('CompList ChildList change');
+    console.info('CompList ChildList change');
   }
 
   isRenderCompChild(index: number) : number {
-    console.log("Comp Child is render" + index);
+    console.info("Comp Child is render" + index);
     return 1;
   }
 
@@ -1402,7 +1407,7 @@ struct Page {
           for (let i = 0; i < this.styleList.length; i++) {
             this.styleList[i].fontSize++;
           }
-          console.log("change font size");
+          console.info("change font size");
         })
       List() {
         ForEach(this.styleList, (item: TextStyles) => {
@@ -1459,7 +1464,7 @@ struct Page {
           for (let i = 0; i < this.styleList.length; i++) {
             this.styleList[i].fontSize++;
           }
-          console.log("change font size");
+          console.info("change font size");
         })
       List() {
         ForEach(this.styleList, (item: TextStyles) => {

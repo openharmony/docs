@@ -730,9 +730,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type).then(() => {
-  console.info(`Promise returned to indicate a successful setting of the system ringtone uri.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set the system ringtone uri ${err}`);
+  console.info('Succeeded in doing setSystemRingtoneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setSystemRingtoneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -815,9 +815,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of the system ringtone uri is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system ringtone uri ${err}`);
+  console.info('Succeeded in doing getSystemRingtoneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSystemRingtoneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -903,10 +903,10 @@ let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefi
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
-  console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
+  console.info('Succeeded in doing getSystemRingtonePlayer.');
   systemRingtonePlayer = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system ringtone player ${err}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSystemRingtonePlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -957,9 +957,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setRingtoneUri(context, uri, type).then(() => {
-  console.info(`Promise returned to indicate a successful setting of the system ringtone uri.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set the system ringtone uri ${err}`);
+  console.info('Succeeded in doing setRingtoneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setRingtoneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1008,9 +1008,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtoneUri(context, type).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of the system ringtone uri is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system ringtone uri ${err}`);
+  console.info('Succeeded in doing getRingtoneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getRingtoneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1059,10 +1059,10 @@ let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefi
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
-  console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
+  console.info('Succeeded in doing getRingtonePlayer.');
   systemRingtonePlayer = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system ringtone player ${err}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getRingtonePlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1113,9 +1113,9 @@ let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setSystemToneUri(context, uri, type).then(() => {
-  console.info(`Promise returned to indicate a successful setting of the system tone uri.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set the system tone uri ${err}`);
+  console.info('Succeeded in doing setSystemToneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setSystemToneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1164,9 +1164,9 @@ let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemToneUri(context, type).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of the system tone uri is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system tone uri ${err}`);
+  console.info('Succeeded in doing getSystemToneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSystemToneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1215,10 +1215,10 @@ let systemTonePlayer: systemSoundManager.SystemTonePlayer | undefined = undefine
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: systemSoundManager.SystemTonePlayer) => {
-  console.info(`Promise returned to indicate that the value of the system tone player is obtained.`);
+  console.info('Succeeded in doing getSystemTonePlayer.');
     systemTonePlayer = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system tone player ${err}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSystemTonePlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1267,9 +1267,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
-  console.info(`Promise returned to indicate that the value of the attributes of the default ringtone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the default ring tone attrs ${err}`);
+  console.info('Succeeded in doing getDefaultRingtoneAttrs.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getDefaultRingtoneAttrs. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1318,9 +1318,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of ringtone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of ringtone ${err}`);
+  console.info('Succeeded in doing getRingtoneAttrList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getRingtoneAttrList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1369,9 +1369,9 @@ let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
-  console.info(`Promise returned to indicate that the value of the attributes of the system ringtone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the system tone attrs ${err}`);
+  console.info('Succeeded in doing getDefaultSystemToneAttrs.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getDefaultSystemToneAttrs. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1420,9 +1420,9 @@ let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of system tone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of system tone ${err}`);
+  console.info('Succeeded in doing getSystemToneAttrList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getSystemToneAttrList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1469,9 +1469,9 @@ let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: systemSoundManager.ToneAttrs) => {
-  console.info(`Promise returned to indicate that the value of the attributes of the default alarm tone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the default alarm tone attrs ${err}`);
+  console.info('Succeeded in doing getDefaultAlarmToneAttrs.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getDefaultAlarmToneAttrs. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1510,9 +1510,9 @@ let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
-  console.info(`Promise returned to indicate a successful setting of the alarm tone uri.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set the alarm tone uri ${err}`);
+  console.info('Succeeded in doing setAlarmToneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setAlarmToneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1549,9 +1549,9 @@ let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of alarm tone uri.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the alarm tone uri ${err}`);
+  console.info('Succeeded in doing getAlarmToneUri.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getAlarmToneUri. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1598,9 +1598,9 @@ let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getAlarmToneAttrList(context).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of alarm tone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of alarm tone ${err}`);
+  console.info('Succeeded in doing getAlarmToneAttrList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getAlarmToneAttrList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1650,9 +1650,9 @@ let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
-  console.info(`Promise returned to indicate the value of fd.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to open alarm tone ${err}`);
+  console.info('Succeeded in doing openAlarmTone.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to openAlarmTone. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1700,9 +1700,9 @@ let fd = 50; // 需更改为目标铃声的fd。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.close(fd).then(() => {
-  console.info(`Promise returned to indicate that the fd has been close.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to close fd ${err}`);
+  console.info('Succeeded in doing close.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to close. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1768,9 +1768,9 @@ let path = 'file://data/test.ogg'; // 需更改为实际铃音uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to add customized tone ${err}`);
+  console.info('Succeeded in doing addCustomizedTone.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addCustomizedTone. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1840,9 +1840,9 @@ let length = 50; // 需更改为实际所需数据长度。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, length).then((value: string) => {
-  console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to add customized tone ${err}`);
+  console.info('Succeeded in doing addCustomizedTone.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addCustomizedTone. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1895,9 +1895,9 @@ let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
-  console.info(`Promise returned to indicate that the customized tone has been deleted.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to delete customized tone ${err}`);
+  console.info('Succeeded in doing removeCustomizedTone.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to removeCustomizedTone. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1947,9 +1947,9 @@ let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsTyp
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: systemSoundManager.ToneHapticsSettings) => {
-  console.info(`Promise returned to indicate that the value of the tone haptics settings is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the tone haptics settings ${err}`);
+  console.info('Succeeded in doing getToneHapticsSettings.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getToneHapticsSettings. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2005,9 +2005,9 @@ let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSettings).then(() => {
-  console.info(`Promise returned to indicate a successful setting of the tone haptics.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set the tone haptics settings ${err}`);
+  console.info('Succeeded in doing setToneHapticsSettings.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setToneHapticsSettings. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2056,9 +2056,9 @@ let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getToneHapticsList(context, false).then((value: systemSoundManager.ToneHapticsAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of tone haptics is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of tone haptics ${err}`);
+  console.info('Succeeded in doing getToneHapticsList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getToneHapticsList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2109,9 +2109,9 @@ let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // 需�
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then((value: systemSoundManager.ToneHapticsAttrs) => {
-  console.info(`Promise returned to indicate that the value of the attribute of tone haptics is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute of tone haptics ${err}`);
+  console.info('Succeeded in doing getHapticsAttrsSyncedWithTone.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getHapticsAttrsSyncedWithTone. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2162,9 +2162,9 @@ let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json';
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {
-  console.info(`Promise returned to indicate the value of fd.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to open haptics ${err}`);
+  console.info('Succeeded in doing openToneHaptics.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to openToneHaptics. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2208,9 +2208,9 @@ let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RING
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getCurrentRingtoneAttribute(type).then((value: systemSoundManager.ToneAttrs) => {
-  console.info(`Promise returned to indicate that the value of the attributes of the current ringtone is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the current ringtone attribute ${err}`);
+  console.info('Succeeded in doing getCurrentRingtoneAttribute.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getCurrentRingtoneAttribute. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2256,9 +2256,9 @@ let result: systemSoundManager.ToneAttrs = systemSoundManagerInstance.getCurrent
 ringPath = result.getUri();
 
 systemSoundManagerInstance.openToneList([ringPath]).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of system ringtones is obtained.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of system ringtones ${err}`);
+  console.info('Succeeded in doing openToneList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to openToneList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2307,9 +2307,9 @@ let result: systemSoundManager.ToneAttrs = systemSoundManagerInstance.getCurrent
 ringPath = result.getUri();
 
 systemSoundManagerInstance.removeCustomizedToneList([ringPath]).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the customized tone list has been deleted.`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to delete customized tone list ${err}`);
+  console.info('Succeeded in doing removeCustomizedToneList.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to removeCustomizedToneList. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

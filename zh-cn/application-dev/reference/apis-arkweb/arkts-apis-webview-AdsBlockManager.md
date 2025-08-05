@@ -1,4 +1,9 @@
 # Class (AdsBlockManager)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
 
@@ -35,7 +40,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
-| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。<br>默认值：false。 |
 
 **错误码：**
 

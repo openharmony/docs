@@ -1,4 +1,9 @@
 # 在新窗口中打开页面
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
+<!--TSE: @ghiker-->
 
 
 Web组件提供了在新窗口打开页面的能力，开发者可以通过[multiWindowAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#multiwindowaccess9)接口来设置是否允许网页在新窗口打开。当有新窗口打开时，应用侧会在`onWindowNew()`接口中收到Web组件新窗口事件。开发者需要在此接口事件中新建窗口来处理Web组件的窗口请求。
@@ -119,4 +124,4 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 针对创建新窗口，有以下相关实例可供参考：
 
-- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
+- [浏览器（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)

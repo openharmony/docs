@@ -1,4 +1,9 @@
 # 使用DevTools工具调试前端页面
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 
 Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
@@ -71,7 +76,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
    ```
 
 ### 端口转发
-当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118)。  
+当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section48387420516)。  
 Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
@@ -187,7 +192,7 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
    :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
    if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
+       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
        pause
        exit /b
    )

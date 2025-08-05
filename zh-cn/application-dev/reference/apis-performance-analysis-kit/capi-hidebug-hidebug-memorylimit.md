@@ -1,5 +1,11 @@
 # HiDebug_MemoryLimit
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 应用程序进程内存限制结构类型定义。

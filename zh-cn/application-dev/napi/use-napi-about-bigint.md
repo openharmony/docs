@@ -1,4 +1,9 @@
 # 使用Node-API接口操作bigint类型值
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
@@ -47,7 +52,7 @@ static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_create_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -55,7 +60,7 @@ static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createBigintInt64t: () => bigint;
 ```
-<!-- @[napi_create_bigint_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -65,7 +70,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}d', testNapi.createBigintInt64t());
 ```
-<!-- @[ark_napi_create_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_bigint_uint64
 
@@ -86,7 +91,7 @@ static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_create_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -94,7 +99,7 @@ static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createBigintUint64t: () => bigint;
 ```
-<!-- @[napi_create_bigint_uint64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -104,7 +109,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public}d', testNapi.createBigintUint64t());
 ```
-<!-- @[ark_napi_create_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_bigint_words
 
@@ -130,15 +135,15 @@ static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_create_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 // index.d.ts
-export const createBigintWords: () => bigint | void;
+export const createBigintWords: () => bigint | undefined;
 ```
-<!-- @[napi_create_bigint_words_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -151,7 +156,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_create_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_bigint_int64
 
@@ -178,19 +183,24 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
     }
     // 如果接口调用成功正常调用则返回true给ArkTS侧
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, status == napi_ok, &returnValue);
-    return returnValue;
+    if (status == napi_ok) {
+      napi_get_boolean(env, true, &returnValue);
+      return returnValue;
+    } else {
+      napi_throw_error(env, nullptr, "napi_get_value_bigint_int64 failed");
+      return nullptr;
+    }
 }
 ```
-<!-- @[napi_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 // index.d.ts
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined;
 ```
-<!-- @[napi_get_value_bigint_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -205,7 +215,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_bigint_uint64
 
@@ -236,15 +246,15 @@ static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_get_value_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 // index.d.ts
-export const getValueBigintUint64t: (bigUint64: bigint) => boolean | void;
+export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined;
 ```
-<!-- @[napi_get_value_bigint_uint64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -259,7 +269,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_value_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_bigint_words
 
@@ -278,33 +288,48 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int signBit = 0;
     size_t wordCount = 0;
-    uint64_t words = 0;
     // 调用napi_get_value_bigint_words接口获取wordCount
     napi_status status = napi_get_value_bigint_words(env, args[0], nullptr, &wordCount, nullptr);
     OH_LOG_INFO(LOG_APP, "Node-API , wordCount:%{public}d.", wordCount);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , get wordCount fail, status:%{public}d.", status);
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words call failed");
+        return nullptr;
+    }
+    if (wordCount == 0) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , wordCount is 0, invalid BigInt or empty value.");
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words returned wordCount 0");
+        return nullptr;
+    }
+    // 分配足够空间存储所有word
+    uint64_t* words = new uint64_t[wordCount];
     // 调用napi_get_value_bigint_words接口获取传入bigInt相关信息，如：signBit传入bigInt正负信息
-    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, &words);
+    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, words);
     OH_LOG_INFO(LOG_APP, "Node-API , signBit: %{public}d.", signBit);
     if (status != napi_ok) {
         OH_LOG_ERROR(LOG_APP, "Node-API , reason:%{public}d.", status);
-        napi_throw_error(env, nullptr, "napi_get_date_value fail");
+        delete[] words;
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words fail");
         return nullptr;
     }
-    // 将符号位转化为int类型传出去
+    // 可在此处处理words数组内容，如日志输出等
+    // ...
+     // 将符号位转化为int类型传出去
     napi_value returnValue = nullptr;
     napi_create_int32(env, signBit, &returnValue);
+    delete[] words;
     return returnValue;
 }
 ```
-<!-- @[napi_get_value_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 // index.d.ts
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined;
 ```
-<!-- @[napi_get_value_bigint_words_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -320,7 +345,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_value_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
@@ -328,5 +353,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

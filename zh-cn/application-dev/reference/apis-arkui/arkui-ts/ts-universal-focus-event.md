@@ -1,4 +1,9 @@
 # 焦点事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 焦点事件指页面焦点在可获焦组件间移动时触发的事件，组件可使用焦点事件来处理相关逻辑。
 
@@ -16,7 +21,7 @@
 
 ## onFocus
 
-onFocus(event: () => void)
+onFocus(event: () => void): T
 
 当前组件获取焦点时触发的回调。
 
@@ -24,9 +29,15 @@ onFocus(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onBlur
 
-onBlur(event:()&nbsp;=&gt;&nbsp;void)
+onBlur(event:()&nbsp;=&gt;&nbsp;void): T
 
 当前组件失去焦点时触发的回调。
 
@@ -34,6 +45,11 @@ onBlur(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 

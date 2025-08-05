@@ -1,4 +1,9 @@
 # ArkTSUtils.ASON
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发实例引用传递，同时也支持将共享数据转换为JSON字符串。
 
@@ -168,7 +173,7 @@ stringify(value: Object | null | undefined): string
 
 > **说明：**
 >
-> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型。
+> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型（除[collections.TypedArray](js-apis-arkts-collections.md#collectionstypedarray)外）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

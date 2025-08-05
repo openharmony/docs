@@ -121,7 +121,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
-| -l | 可选参数，查询指定Bundle名称的label值（应用的名称），需要与-n或者-a参数组合使用。 |
+| -l | 可选参数，用于查询指定Bundle名称的label值（应用的名称），需要与`-n`或`-a`参数组合使用。<br/>**说明**：<br/>从API version 20开始支持该命令。如果在Windows环境下输出结果包含特殊字符或中文乱码，需在cmd控制台中手动执行命令`chcp 65001`，将cmd控制台编码修改为UTF-8。 |
 
 
 示例：
@@ -2674,16 +2674,14 @@ error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](../napi/ohos-abi.md#在编译架构中指定abi)中的配置，规则如下：
 
     <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
-    <!--RP4-->
       ```
       cd /system/
       ls
       ```
-    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->

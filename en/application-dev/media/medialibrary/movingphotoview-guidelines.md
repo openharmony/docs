@@ -9,7 +9,7 @@ The restrictions on using the **MovingPhotoView** component are as follows:
 - Currently, live properties cannot be set.
 - Currently, the ArkUI [expandSafeArea](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea) cannot be set.
 - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-- This component uses [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
+- This component uses [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
 
 ## How to Develop
 
@@ -19,7 +19,7 @@ The restrictions on using the **MovingPhotoView** component are as follows:
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
 
-2. Obtain a [MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12) object.
+2. Obtain a [MovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MovingPhoto.md) object.
 
    Use the **photoAccessHelper** APIs to create or obtain a moving photo object. The **MovingPhotoView** receives only the constructed moving photo object.
 
@@ -35,7 +35,7 @@ The restrictions on using the **MovingPhotoView** component are as follows:
    controller: MovingPhotoViewController = new MovingPhotoViewController();
    ```
 
-4. Create a **MovingPhotoView** instance.
+4. Create a MovingPhotoView instance.
 
    The values in the following sample code are only examples. For details about the value range of each parameter, see [@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md).
 
@@ -53,7 +53,6 @@ The restrictions on using the **MovingPhotoView** component are as follows:
           MovingPhotoView({
             movingPhoto: this.src,
             controller: this.controller
-            // imageAIOptions: this.options
           })
             // Whether to mute the playback. The default value is false. In this example, it is controlled by the button.
             .muted(this.isMuted)

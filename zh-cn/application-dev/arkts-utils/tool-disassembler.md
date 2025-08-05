@@ -1,8 +1,13 @@
 # Disassembler反汇编工具
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao; @luobohua-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 
-Disassembler是ArkTS反汇编工具。如果需要分析方舟字节码文件（\*.abc）相关问题，开发者可以使用Disassembler将字节数据反编译为可读的汇编指令。
+Disassembler是ArkTS反汇编工具。如果需要分析方舟字节码文件（\*.abc）相关问题，开发者可以使用Disassembler将方舟字节码文件反编译为可读的汇编指令。
 
 工具随DevEco Studio SDK发布。以Windows平台为例，Disassembler工具位于DevEco Studio/sdk/default/openharmony/toolchains/ark_disasm.exe。
 
@@ -26,13 +31,13 @@ options选项说明：
 
 | 选项 | 必填 | 存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
-| --debug | 否  | 否  | 使能输出调试信息，默认输出到屏幕。 |
+| --debug | 否  | 否  | 启用输出调试信息，默认输出到屏幕。 |
 | --debug-file | 否 | 是 | 如果使能了--debug，指定调试信息的输出文件。 |
 | --help | 否 | 否 | 打印帮助提示。 |
 | --skip-string-literals | 否 | 否 | 跳过对字符串字面量的反汇编。 |
 | --quiet | 否 | 否 | 使能所有'--skip-'开头的选项。 |
 | --verbose | 否 | 否 | 使能输出额外信息（字节位置、方舟字节码格式、操作码）。 |
-| --version | 否 | 否 | 显示配套方舟字节码文件版本号以及最低支持的方舟字节码文件版本。 |
+| --version | 否 | 否 | 显示配套的方舟字节码文件版本号以及最低支持的方舟字节码文件版本。 |
 
 ## 使用示例
 

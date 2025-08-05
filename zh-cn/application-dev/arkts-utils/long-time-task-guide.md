@@ -1,4 +1,9 @@
 # 长时任务开发指导（TaskPool）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 此处提供使用TaskPool进行长时任务的开发指导，以定期采集传感器数据为例。
 
@@ -78,6 +83,6 @@
      }
    }
    ```
-   <!-- @[taskpool_listen_sensor_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
+   <!-- @[taskpool_listen_sensor_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
    
    

@@ -1,4 +1,9 @@
 # Transferable对象（NativeBinding对象）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS对象，其主要功能由C++提供，JS对象壳则分配在虚拟机的本地堆（LocalHeap）中。跨线程传输时复用同一个C++对象，相比JS对象的拷贝模式，传输效率更高。因此，可共享或转移的NativeBinding对象被称为Transferable对象。开发者可以自定义Transferable对象，详细示例请参考[自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)。
@@ -12,7 +17,7 @@ Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS�
 ![nativeBinding](figures/nativeBinding.png)
 
 
-常见的共享模式NativeBinding对象包括Context对象，它包含应用程序组件的上下文信息，提供访问系统服务和资源的方法，使应用程序组件能够与系统进行交互。获取Context信息的方法可以参考[获取上下文信息](../application-models/application-context-stage.md)。
+常见的共享模式NativeBinding对象包括：应用上下文（ApplicationContext）、窗口上下文（WindowContext）、组件上下文（AbilityContext或ComponentContext）等Context类型对象。这些上下文对象封装了应用程序组件的上下文信息，提供了访问系统服务和资源的能力，使得应用程序组件可以与系统进行交互。获取Context信息的方法可以参考[获取上下文信息](../application-models/application-context-stage.md)。
 
 示例可参考[使用TaskPool进行频繁数据库操作](batch-database-operations-guide.md#使用taskpool进行频繁数据库操作)。
 
@@ -24,8 +29,6 @@ Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS�
 ![nativeBinding_transfer](figures/nativeBinding_transfer.png)
 
 常见的转移模式NativeBinding对象包括[PixelMap对象](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)，它可以读取或写入图像数据，获取图像信息，常用于显示图片。
-
-### 使用示例
 
 这里提供了一个跨线程传递PixelMap对象的示例。首先从rawfile文件夹中获取图片资源，然后在子线程中创建PixelMap对象并传递给主线程，具体实现如下：
 
@@ -62,25 +65,22 @@ struct Index {
   }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: 'container', align: VerticalAlign.Center },
-          middle: { anchor: 'container', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.loadImageFromThread();
-        })
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.loadImageFromThread();
+          })
+      }
+      .width('100%')
     }
     .height('100%')
-    .width('100%')
   }
 }
 ```
-<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
+<!-- @[example_pass_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
 // PixelMapTest.ets
@@ -100,4 +100,4 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   return pixelMap;
 }
 ```
-<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->
+<!-- @[example_pass_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->

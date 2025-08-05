@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如英国采用0时区，中国采用东8时区，中国时间要比英国快8个小时，中国北京中午12:00是英国伦敦凌晨4点。时区模块可用于获取时区列表，应用可基于时区列表实现业务逻辑，如双时钟应用。<br/>从API version 20开始，时区模块还可用于获取时区跳变时间点、偏移量等，时区的跳变逻辑参考[夏令时跳变](./i18n-dst-transition.md)。
+全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如，英国采用0时区，中国采用东8时区，中国时间要比英国快8小时，中国北京中午12:00，对应英国伦敦是凌晨4:00。时区模块可用于获取时区列表，应用可基于该列表实现业务逻辑，如双时钟应用。<br/>从API version 20开始，时区模块还可用于获取时区跳变时间点和偏移量等，时区的跳变逻辑参考[夏令时跳变](./i18n-dst-transition.md)。
 
 ## 接口说明
 
@@ -35,17 +35,17 @@
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 开发实例，包括获取特定时区、计算固定和实际时区偏移量、获取和遍历时区列表等。
+2. 开发实例，包括获取特定时区、计算固定和实际时区偏移量、遍历时区列表。
    ```ts
    // 获取巴西时区
-   let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区类
+   let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区对象
    let timezoneId: string = timezone.getID(); // timezoneId = 'America/Sao_Paulo'
 
    // 获取城市ID对应的时区对象
    let aucklandTimezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity('Auckland');
    timezoneId = aucklandTimezone.getID(); // timezoneId = 'Pacific/Auckland'
 
-   // 时区的本地化名称
+   // 获取时区的本地化名称
    let timeZoneName: string = timezone.getDisplayName('zh-Hans', true); // timeZoneName = '巴西利亚标准时间'
 
    // 本地化城市名称
@@ -90,10 +90,10 @@
    // 指定地理坐标所在的时区对象数组
    let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5);
 
-   // 获取指定时间的下一个时间跳变点
+   // 获取指定时间的下一个时区跳变点
    let tijuanaTzId: string = 'America/Tijuana';
-   let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone(tijuanaTzId); // 获取蒂华纳时区
-   let zoneRules: i18n.ZoneRules = tijuanaTimeZone.getZoneRules(); // 获取蒂华纳时区的时间跳变规则
+   let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone(tijuanaTzId); // 获取蒂华纳时区对象
+   let zoneRules: i18n.ZoneRules = tijuanaTimeZone.getZoneRules(); // 获取蒂华纳时区的时区跳变规则
    let someTime = new Date(2025, 4, 13);
    let zoneOffsetTrans: i18n.ZoneOffsetTransition = zoneRules.nextTransition(someTime.getTime());
    zoneOffsetTrans.getMilliseconds(); // 跳变点的时间戳: 1762074000000
@@ -117,7 +117,7 @@
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 选择时区列表中的时区放入应用偏好时区列表中。
+2. 选择时区列表中的时区，添加到应用偏好时区列表。
    ```ts
    let pauloTimezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo');
    let defaultTimezone: i18n.TimeZone = i18n.getTimeZone();
@@ -126,7 +126,7 @@
    appPreferredTimeZoneList.push(defaultTimezone);
    ```
 
-3. 遍历应用偏好时区列表，获取各时区时间。
+3. 遍历应用偏好时区列表，获取各时区的时间。
    ```ts
    let locale: string = i18n.System.getSystemLocale();
    for (let i = 0; i < appPreferredTimeZoneList.length; i++) {

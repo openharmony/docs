@@ -1,4 +1,9 @@
 # 使用扩展的Node-API接口在异步线程中运行和停止事件循环
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 场景介绍
 开发者在自己创建的ArkTS运行环境中调用异步的ArkTS接口时，可以通过使用Node-API中的扩展接口napi_run_event_loop和napi_stop_event_loop来运行和停止ArkTS实例中的事件循环。
@@ -11,7 +16,7 @@
 ### 示例代码
 - 模块注册
     ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <napi/common.h>
     #include <pthread.h>
@@ -40,7 +45,7 @@
         // 2. 加载自定义的模块
         napi_value objectUtils;
         // 'com.example.myapplication' 为当前应用的bundleName
-        ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
+        ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
         if (ret != napi_ok) {
             return nullptr;
         }
@@ -117,14 +122,14 @@
         napi_module_register(&nativeModule);
     }
     ```
-    <!-- @[napi_event_loop_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
+    <!-- @[napi_event_loop_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 - 接口声明
     ```ts
     // index.d.ts
     export const runEventLoop: (isDefault: boolean) => object;
     ```
-    <!-- @[napi_event_loop_dts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+    <!-- @[napi_event_loop_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - 编译配置
 1. CMakeLists.txt文件需要按照如下配置
@@ -142,10 +147,10 @@
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
-2. 需要在工程的build-profile.json5文件中进行以下配置
+2. 需要在模块的build-profile.json5文件中进行以下配置
     ```json
     {
         "buildOption" : {
@@ -159,7 +164,7 @@
         }
     }
     ```
-    <!-- @[napi_event_loop_build](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/build-profile.json5) -->
+    <!-- @[napi_event_loop_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/build-profile.json5) -->
 
 - ArkTS代码示例
     ```ts
@@ -168,7 +173,7 @@
 
     testNapi.runEventLoop(true);
     ```
-    <!-- @[napi_event_loop_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
+    <!-- @[napi_event_loop_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
 
     ```ts
     // ets/pages/ObjectUtils.ets
@@ -182,4 +187,4 @@
         })
     }
     ```
-    <!-- @[napi_event_loop_utils](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/ObjectUtils.ets) -->
+    <!-- @[napi_event_loop_utils](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/ObjectUtils.ets) -->

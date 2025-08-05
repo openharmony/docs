@@ -1,5 +1,11 @@
 # ArkTS语言介绍
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @LeechyLiang-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ArkTS是一种设计用于构建高性能应用的编程语言。它在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
 
 许多编程语言在设计之初未考虑移动设备，导致应用运行缓慢、低效且功耗大。随着移动设备在日常生活中越来越普遍，针对移动环境的编程语言优化需求日益增加。ArkTS专为解决这些问题而设计，聚焦提高运行效率。

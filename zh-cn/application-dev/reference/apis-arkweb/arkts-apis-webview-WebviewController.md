@@ -1,4 +1,9 @@
 # Class (WebviewController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
+<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
+<!--TSE: @ghiker-->
 
 通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
@@ -262,7 +267,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | 是   | 需要加载的 URL。      |
-| headers | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否   | URL的附加HTTP请求头。 |
+| headers | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否   | URL的附加HTTP请求头。<br>默认值： [] |
 
 **错误码：**
 
@@ -1463,7 +1468,7 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
@@ -1471,7 +1476,7 @@ struct WebComponent {
               console.info('url: ', e.url);
             }
           } catch (resError) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
     }
@@ -1555,12 +1560,12 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
           } catch (resError) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -4558,7 +4563,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 | 参数名             | 类型                             | 必填  | 说明                      |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
-| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。|
+| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
 
 **错误码：**
 
@@ -5192,9 +5197,8 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
-本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
-<!--RP1End-->
+启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
 
 > **说明：**
 > 

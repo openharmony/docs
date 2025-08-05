@@ -1,5 +1,11 @@
 # 随机生成对称密钥(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 以AES和SM4为例，随机生成对称密钥（OH_CryptoSymKey）。
 
 对称密钥对象可用于后续加解密操作，二进制数据可用于存储或运输。

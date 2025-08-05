@@ -786,27 +786,39 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.showAlertDialog(
-  {
-    title: 'title',
-    message: 'text',
-    autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: -20 },
-    gridCount: 3,
-    confirm: {
-      value: 'button',
-      action: () => {
-        console.info('Button-clicking callback')
-      }
-    },
-    cancel: () => {
-      console.info('Closed callbacks')
-    }
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showAlertDialog')
+        .onClick(() => {
+          this.uiContext.showAlertDialog(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback');
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks');
+              }
+            }
+          );
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }
-);
+}
 ```
 
 ## showActionSheet
@@ -827,44 +839,56 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.showActionSheet({
-  title: 'ActionSheet title',
-  message: 'message',
-  autoCancel: true,
-  confirm: {
-    value: 'Confirm button',
-    action: () => {
-      console.info('Get Alert Dialog handled');
-    }
-  },
-  cancel: () => {
-    console.info('actionSheet canceled');
-  },
-  alignment: DialogAlignment.Bottom,
-  offset: { dx: 0, dy: -10 },
-  sheets: [
-    {
-      title: 'apples',
-      action: () => {
-        console.info('apples');
-      }
-    },
-    {
-      title: 'bananas',
-      action: () => {
-        console.info('bananas');
-      }
-    },
-    {
-      title: 'pears',
-      action: () => {
-        console.info('pears');
-      }
-    }
-  ]
-});
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showActionSheet')
+        .onClick(() => {
+          this.uiContext.showActionSheet({
+            title: 'ActionSheet title',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              value: 'Confirm button',
+              action: () => {
+                console.info('Get ActionSheet handled');
+              }
+            },
+            cancel: () => {
+              console.info('ActionSheet canceled');
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.info('apples');
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.info('bananas');
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.info('pears');
+                }
+              }
+            ]
+          });
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## showDatePickerDialog
@@ -885,25 +909,53 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1");
-uiContext.showDatePickerDialog({
-  start: new Date("2000-1-1"),
-  end: new Date("2100-12-31"),
-  selected: selectedDate,
-  onAccept: (value: DatePickerResult) => {
-    // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
-  },
-  onCancel: () => {
-    console.info("DatePickerDialog:onCancel()");
-  },
-  onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            },
+            onCancel: () => {
+              console.info("DatePickerDialog:onCancel()");
+            },
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()");
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()");
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()");
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()");
+            }
+          })
+        })
+    }.width('100%')
   }
-});
+}
 ```
 
 ## showTimePickerDialog
@@ -1087,32 +1139,34 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 3,
-      begin: 200.0,
-      end: 400.0
-    };
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options:AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 3,
+        begin: 200.0,
+        end: 400.0
+      };
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1149,23 +1203,26 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 创建主窗口，设置此功能的主页
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1229,20 +1286,22 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getKeyboardAvoidMode<sup>11+</sup>
@@ -1270,22 +1329,23 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
+        hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getAtomicServiceBar<sup>11+</sup>
@@ -1407,11 +1467,9 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | get inspector failed  | 查询结果出错。系统内部存在异常，需要联系华为工程师处理。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1512,12 +1570,9 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | invalid filter depth  | depth参数需要大于或者等于0 |
-| 401      | get inspector failed  | 查询结果出错。如果传入的id不存在，接口会抛出此错误。请确保传入正确的组件id。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -2978,20 +3033,22 @@ setPixelRoundMode(mode: PixelRoundMode): void
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getPixelRoundMode<sup>18+</sup>
@@ -3017,19 +3074,21 @@ getPixelRoundMode(): PixelRoundMode
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 

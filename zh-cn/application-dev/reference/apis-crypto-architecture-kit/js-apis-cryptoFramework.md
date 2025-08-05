@@ -1,5 +1,11 @@
 # @ohos.security.cryptoFramework (加解密算法库框架)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 提供统一的密码算法库加解密接口，以屏蔽底层硬件和算法库。
 
 > **说明：**
@@ -3322,7 +3328,7 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode)                       | 是   | 加密或者解密模式。                                           |
 | key    | [Key](#key)                                     | 是   | 指定加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec)  | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+| params | [ParamsSpec](#paramsspec)  \| null| 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3689,7 +3695,7 @@ doFinalSync(data: DataBlob | null): DataBlob
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob)  | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
+| data   | [DataBlob](#datablob)  \| null| 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
 
 **返回值：**
 
@@ -3859,7 +3865,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型 | 说明                               |
 | ---- | ---------------------------------- |
-| Sign | 返回由输入算法指定生成的Sign对象。 |
+| [Sign](#sign) | 返回由输入算法指定生成的Sign对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -5362,7 +5368,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
+传入消息进行Md更新摘要状态，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
@@ -5396,7 +5402,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
+传入消息进行Md更新摘要状态，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
@@ -5433,7 +5439,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 updateSync(input: DataBlob): void
 
-传入消息进行Md更新计算，通过同步方式更新。updateSync和digestSync为两段式接口，需要成组使用。其中digestSync必选，updateSync可选。
+传入消息进行Md更新摘要状态，通过同步方式更新。updateSync和digestSync为两段式接口，需要成组使用。其中digestSync必选，updateSync可选。
 
 > **说明：**
 >
@@ -5768,7 +5774,7 @@ API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
-| key      | [SymKey](#symkey)    | 是   | 共享对称密钥。 |
+| key      | [SymKey](#symkey)    | 是   | 对称密钥。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当HMAC初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
@@ -5796,7 +5802,7 @@ API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
+| key    | [SymKey](#symkey) | 是   | 对称密钥。 |
 
 **返回值：**
 
@@ -5827,7 +5833,7 @@ initSync(key: SymKey): void
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
+| key    | [SymKey](#symkey) | 是   | 对称密钥。 |
 
 **返回值：**
 
@@ -5848,7 +5854,7 @@ initSync(key: SymKey): void
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Mac更新计算，通过注册回调函数获取结果。
+传入消息进行Mac更新消息认证码状态，通过注册回调函数获取结果。
 
 > **说明：**
 >
@@ -5880,7 +5886,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Mac更新计算，通过Promise获取结果。
+传入消息进行Mac更新消息认证码状态，通过Promise获取结果。
 
 > **说明：**
 >
@@ -5917,7 +5923,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 updateSync(input: DataBlob): void
 
-传入消息进行Mac更新计算，通过同步方式获取结果。
+传入消息进行Mac更新消息认证码状态，通过同步方式获取结果。
 
 > **说明：**
 >
@@ -6163,7 +6169,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型   | 说明                                            |
 | ------ | ----------------------------------------------- |
-| Random | 返回由输入算法指定生成的[Random](#random)对象。 |
+| [Random](#random) | 返回由输入算法指定生成的[Random](#random)对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)

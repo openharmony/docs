@@ -1,5 +1,11 @@
 # MindSpore Lite Kit（昇思推理框架服务）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 - ArkTS API<!--mindspore-lite-arkts-->
   - [@ohos.ai.mindSporeLite (端侧AI框架)](js-apis-mindSporeLite.md)
 - C API<!--mindspore-lite-c-->

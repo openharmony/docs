@@ -1,4 +1,9 @@
 # transform样式动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置transform属性对组件进行旋转、缩放、移动和倾斜。
 
@@ -587,7 +592,7 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
+- [`JsClock`：时钟（JS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
 
 - [动画样式（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 

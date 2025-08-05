@@ -1,12 +1,17 @@
 # 使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
-JSVM-API中新增创建和使用external string的接口。
+JSVM-API中新增创建和使用外部字符串的接口。
 
 ## 基本概念
 
-在JSVM-API中，在用户提供的Latin1/UTF16格式字符串所在内存上直接创建对应的JS字符串，和正常的JS字符串能够进行同样的操作。
+在JSVM-API中，在用户提供的Latin1/UTF16格式字符串所在内存上直接创建对应的JavaScript字符串，和正常的JavaScript字符串能够进行同样的操作。
 
 ## 接口说明
 

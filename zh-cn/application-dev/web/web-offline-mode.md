@@ -1,4 +1,9 @@
 # 使用离线Web组件
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @wang-yanhan-->
+<!--SE: @qianlf-->
+<!--TSE: @ghiker-->
 
 Web组件能够实现在不同窗口的组件树上进行挂载或移除操作，这一能力使得开发者可以预先创建Web组件，从而实现性能优化。例如，Tab页为Web组件时，页面预先渲染，便于即时显示。
 
@@ -26,7 +31,7 @@ Web组件能够实现在不同窗口的组件树上进行挂载或移除操作�
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
@@ -133,7 +138,7 @@ export const getNWeb = (url: ResourceStr) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import { getNWeb } from "./common"
+import { getNWeb } from './common'
 @Entry
 @Component
 struct Index {
@@ -167,7 +172,7 @@ struct Index {
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
@@ -331,7 +336,7 @@ struct index2 {
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common";
+import {createNWeb} from '../pages/common';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -452,7 +457,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import {createNWeb, getNWeb} from "./common";
+import {createNWeb, getNWeb} from './common';
 
 @Entry
 @Component

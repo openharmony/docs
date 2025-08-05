@@ -1,8 +1,11 @@
 # @ohos.util.ArrayList (线性容器ArrayList)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会根据实际需要动态调整容量，每次扩容增加50%。
-
-ArrayList和[Vector](js-apis-vector.md)相似，都是基于数组实现。它们都可以动态调整容量，但Vector每次扩容增加1倍。
 
 ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作可能会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
 

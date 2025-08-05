@@ -1,4 +1,9 @@
 # 内存泄漏相关问题汇总
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 当前是否有机制来检查是否有泄漏的napi_ref
 

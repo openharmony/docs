@@ -1,4 +1,9 @@
 # 通过用户首选项实现数据持久化 (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--SE: @houpengtao1-->
+<!--TSE: @yippo; @logic42-->
 
 ## 场景介绍
 用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。如果存在大量数据场景，请考虑使用键值型数据库或关系型数据库。

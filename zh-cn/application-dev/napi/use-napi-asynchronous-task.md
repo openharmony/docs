@@ -1,4 +1,9 @@
 # 使用Node-API接口进行异步任务开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 场景介绍
 
@@ -58,7 +63,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
       return promise;
    }
    ```
-   <!-- @[napi_create_async_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
+   <!-- @[napi_create_async_work](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 2. 定义异步任务的第一个回调函数，该函数在工作线程中执行，处理具体的业务逻辑。
 
@@ -69,7 +74,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        callbackData->result = callbackData->args;
    }
    ```
-   <!-- @[napi_first_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
+   <!-- @[napi_first_call_back_work](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 3. 定义异步任务的第二个回调函数，该函数在主线程执行，将结果传递给ArkTS侧。
 
@@ -90,7 +95,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        callbackData = nullptr;
    }
    ```
-   <!-- @[napi_second_call_back_main](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
+   <!-- @[napi_second_call_back_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 4. 模块初始化和ArkTS侧调用接口。
 
@@ -105,7 +110,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        return exports;
    }
     ```
-   <!-- @[napi_value_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
+   <!-- @[napi_value_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
     ```ts
    // 接口对应的.d.ts描述
@@ -156,7 +161,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        return nullptr;
    }
    ```
-   <!-- @[napi_create_queue_async_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
+   <!-- @[napi_create_queue_async_work](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 2. 定义异步任务的第一个回调函数，该函数在工作线程中执行，处理具体的业务逻辑。
 
@@ -167,7 +172,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        callbackData->result = callbackData->args[0] + callbackData->args[1];
    }
    ```
-   <!-- @[napi_async_first_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
+   <!-- @[napi_async_first_call_back_work](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 3. 定义异步任务的第二个回调函数，该函数在主线程执行，将结果传递给ArkTS侧。
 
@@ -191,7 +196,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        callbackData = nullptr;
    }
    ```
-   <!-- @[napi_async_second_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
+   <!-- @[napi_async_second_call_back_work](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 4. 模块初始化以及ArkTS侧调用接口。
 
@@ -206,7 +211,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
        return exports;
    }
    ```
-   <!-- @[napi_value_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
+   <!-- @[napi_value_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
    ```ts
    // 接口对应的.d.ts描述

@@ -1,4 +1,9 @@
 # @ohos.pasteboard (剪贴板)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
@@ -552,6 +557,7 @@ cancel(): void
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -566,15 +572,17 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
     		    console.log('progressListener success, progress:' + progress.progress);
                 signal.cancel();
-              }
+              };
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');
@@ -644,7 +652,7 @@ toPlainText(): string
 **示例：**
 
 ```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello<html>');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello</html>');
 let text: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Text: ${text}`);
 ```
@@ -3011,6 +3019,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -3024,14 +3033,16 @@ struct PasteboardTest {
               let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
     		    console.log('progressListener success, progress:' + progress.progress);
-              }
+              };
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');

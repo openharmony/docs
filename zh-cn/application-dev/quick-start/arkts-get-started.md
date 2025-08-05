@@ -1,7 +1,16 @@
 # 初识ArkTS语言
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @liwentao_uiw-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
-ArkTS是OpenHarmony优选的主力应用开发语言，它在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格，通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。
+ArkTS是OpenHarmony优选的主力应用开发语言，在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格。通过规范定义，从而强化了开发期的静态检查和分析，提升了程序执行的稳定性和性能。
+
+![ArkTS](figures/arkts.png)
+
+深入学习请看[ArkTS学习路线](https://developer.huawei.com/consumer/cn/arkts/)和[ArkTS视频课程](https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101717496870909384?pathId=101667550095504391)。
 
 
 自API version 10起，ArkTS进一步通过规范强化静态检查和分析，其主要特性及标准TS的差异包括[从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)：

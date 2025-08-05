@@ -1,4 +1,10 @@
 # OpenHarmony应用开发文档
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @zhang_yixin13-->
+<!--SE: @lingminghw-->
+<!--TSE: @RayShih-->
+
 - 入门<!--application-getting-started-->
   <!--Del-->
   - 快速入门<!--quick-start-->
@@ -443,10 +449,14 @@
               - [makeObserved接口：将非观察数据变为可观察数据](ui/state-management/arkts-new-makeObserved.md)
               - [addMonitor/clearMonitor接口：动态添加/取消监听](ui/state-management/arkts-new-addMonitor-clearMonitor.md)
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
-          - V1V2混用和迁移指导<!--v1v2-migration-->
+          - V1V2混用指导<!--v1v2-mixing-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
             - [状态管理V1V2混用文档](ui/state-management/arkts-v1-v2-mixusage.md)
-            - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
+          - V1->V2迁移指导<!--v1v2-migration-->
+            - [V1->V2迁移指导概述](ui/state-management/arkts-v1-v2-migration.md)
+            - [组件内状态变量迁移指导](ui/state-management/arkts-v1-v2-migration-inner-component.md)
+            - [数据对象状态变量的迁移指导](ui/state-management/arkts-v1-v2-migration-inner-class.md)
+            - [应用内状态变量和其他场景迁移指导](ui/state-management/arkts-v1-v2-migration-application-and-others.md)
         - 学习UI范式渲染控制<!--arkts-rendering-control-->
           - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
           - [if/else：条件渲染](ui/state-management/arkts-rendering-control-ifelse.md)
@@ -604,11 +614,6 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
-        - UI开发调优<!--ui-inspector-profiler-->
-          - [预览](ui/ui-ide-previewer.md)
-          - [调试](ui/ui-inspector-profiler.md)
-        - UI高性能开发<!--ui-performance-->
-          - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
         - [NDK接口概述](ui/ndk-build-ui-overview.md)
         - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -706,6 +711,15 @@
         - [自定义组件](ui/ui-js-custom-components.md)
         - WebGL<!--ui-js-webgl-->
           - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
+      - UI开发调试调优<!--ui-debug-optimize-->
+        - UI稳定性故障调试<!--ui-stability-->
+          - [UI稳定性故障分析概述](ui/arkts-stability-guide.md)
+          - [UI相关应用崩溃常见问题](ui/arkts-stability-crash-issues.md)
+          - [UI相关应用无响应常见问题](ui/arkts-stability-freeze-issues.md)
+        - [UI显示异常调试](ui/arkts-layout-debug.md)
+        - [UI预览](ui/ui-ide-previewer.md)
+        - [UI调优](ui/ui-inspector-profiler.md)
+        - [UI高性能开发](ui/ui-performance-overview.md)
       - 窗口管理<!--window-manager-->
         - [窗口开发概述](windowmanager/window-overview.md)
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
@@ -956,18 +970,18 @@
             - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
             - [声明权限](security/AccessToken/declare-permissions.md)
             - [向用户申请授权](security/AccessToken/request-user-authorization.md)
-            - [二次向用户申请授权](security/AccessToken/request-user-authorization-second.md)
+            - [再次向用户申请授权](security/AccessToken/request-user-authorization-second.md)
             - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
             <!--Del-->
-            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            - [申请受限权限](security/AccessToken/declare-permissions-in-acl.md)
             <!--DelEnd-->
           - [应用权限列表](security/AccessToken/app-permissions.md)
             - [开放权限（系统授权）](security/AccessToken/permissions-for-all.md)
             - [开放权限（用户授权）](security/AccessToken/permissions-for-all-user.md)
             - [受限开放权限](security/AccessToken/restricted-permissions.md)
             <!--Del-->
-            - [可ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps.md)
-            - [不可ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps-no-acl.md)
+            - [可使用ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps.md)
+            - [不可通过ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps-no-acl.md)
             - [系统应用可用权限（用户授权）](security/AccessToken/permissions-for-system-apps-user.md)
             <!--DelEnd-->
             - [企业类应用可用权限](security/AccessToken/permissions-for-enterprise-apps.md)
@@ -1438,7 +1452,7 @@
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
         - 事件订阅<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
-          - 使用Hiappevent订阅事件<!--event-subscription-->
+          - 使用HiAppEvent订阅事件<!--event-subscription-->
             - [事件订阅简介](dfx/event-subscription-overview.md)
             - [事件订阅（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
             - [事件订阅（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
@@ -2179,7 +2193,7 @@
           - [@ohos.app.appstartup.startupManager (启动框架管理能力)](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
           - [@ohos.app.appstartup.StartupTask (启动框架任务)](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
           <!--Del-->
-          - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
+          - [@ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
           - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
@@ -2349,6 +2363,7 @@
             - [dispatchInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-dispatchInfo-sys.md)
             - [LauncherAbilityResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
             - [permissionDef (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-permissionDef-sys.md)
+            - [PluginBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-pluginBundleInfo-sys.md)
             - [recoverableApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-recoverableApplicationInfo-sys.md)
             - [remoteAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-remoteAbilityInfo-sys.md)
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
@@ -2408,26 +2423,33 @@
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
-          - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
-          - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
-          - [Bundle](reference/apis-ability-kit/_bundle.md)
-          - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
+          - [AbilityBase](reference/apis-ability-kit/capi-abilitybase.md)
+          - [AbilityRuntime](reference/apis-ability-kit/capi-abilityruntime.md)
+          - [Native_Bundle](reference/apis-ability-kit/capi-native-bundle.md)
+          - [ChildProcess](reference/apis-ability-kit/capi-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
-          - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
-          - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
-          - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
-          - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
-          - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
-          - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
-          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
-          - [want.h](reference/apis-ability-kit/want__8h.md)
+          - [ability_base_common.h](reference/apis-ability-kit/capi-ability-base-common-h.md)
+          - [ability_runtime_common.h](reference/apis-ability-kit/capi-ability-runtime-common-h.md)
+          - [application_context.h](reference/apis-ability-kit/capi-application-context-h.md)
+          - [context_constant.h](reference/apis-ability-kit/capi-context-constant-h.md)
+          - [native_interface_bundle.h](reference/apis-ability-kit/capi-native-interface-bundle-h.md)
+          - [native_child_process.h](reference/apis-ability-kit/capi-native-child-process-h.md)
+          - [start_options.h](reference/apis-ability-kit/capi-start-options-h.md)
+          - [want.h](reference/apis-ability-kit/capi-want-h.md)
         - 结构体<!--ability-struct-->
-          - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
-          - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
-          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
-          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/native_interface_bundle_metadata.md)
-          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/native_interface_bundle_module_metadata.md)
+          - [AbilityBase_Element](reference/apis-ability-kit/capi-abilitybase-element.md)
+          - [AbilityBase_Want](reference/apis-ability-kit/capi-abilitybase-want.md)
+          - [AbilityRuntime_Startoptions](reference/apis-ability-kit/capi-abilityruntime-startoptions.md)
+          - [NativeChildProcess_Fd](reference/apis-ability-kit/capi-nativechildprocess-fd.md)
+          - [NativeChildProcess_FdList](reference/apis-ability-kit/capi-nativechildprocess-fdlist.md)
+          - [NativeChildProcess_Options](reference/apis-ability-kit/capi-nativechildprocess-options.md)
+          - [NativeChildProcess_Args](reference/apis-ability-kit/capi-nativechildprocess-args.md)
+          - [Ability_ChildProcessConfigs](reference/apis-ability-kit/capi-ability-childprocessconfigs.md)
+          - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-applicationinfo.md)
+          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-elementname.md)
+          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-metadata.md)
+          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-modulemetadata.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -3477,6 +3499,7 @@
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           - [XComponent组件错误码](reference/apis-arkui/errorcode-xcomponent.md)
           - [Video组件错误码](reference/apis-arkui/errorcode-video.md)
+          - [状态管理错误码](reference/apis-arkui/errorcode-stateManagement.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
@@ -4266,7 +4289,7 @@
             - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
-            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
+            - [OH_CommonEvent](reference/apis-basic-services-kit/capi-oh-commonevent.md)
             - [DeviceInfo](reference/apis-basic-services-kit/capi-deviceinfo.md)
             - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/capi-oh-batteryinfo.md)
@@ -4277,8 +4300,8 @@
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/capi-deviceinfo-h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/capi-ohbattery-info-h.md)
-            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
-            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
+            - [oh_commonevent.h](reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/capi-oh-commonevent-support-h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/capi-oh-pasteboard-h.md)
             - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md)
             - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
@@ -4292,6 +4315,9 @@
             - [Print_PrintAttributes](reference/apis-basic-services-kit/_print___print_attributes.md)
             - [Print_PrintDocCallback](reference/apis-basic-services-kit/_print___print_doc_callback.md)
             - [Print_Range](reference/apis-basic-services-kit/_print___range.md)
+            - [CommonEvent_SubscribeInfo](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-subscribeinfo.md)
+            - [CommonEvent_PublishInfo](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-publishinfo.md)
+            - [CommonEvent_RcvData](reference/apis-basic-services-kit/capi-oh-commonevent-commonevent-rcvdata.md)
             - [Pasteboard_ProgressInfo](reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md)
             - [Pasteboard_GetDataParams](reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md)
             - [OH_PasteboardObserver](reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md)
@@ -5494,7 +5520,7 @@
         - 模块<!--notification-module-->
           - [Notification](reference/apis-notification-kit/capi-notification.md)
         - 头文件<!--notification-struct-->
-          - [notification.h](reference/apis-notification-kit/notification_8h.md)
+          - [notification.h](reference/apis-notification-kit/capi-notification-h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->
@@ -5545,7 +5571,7 @@
   - 公共基础能力<!--common-basic-api-->
     - ArkTS API<!--common-basic-arkts-->
       - [Console (控制台)](reference/common/js-apis-logs.md)
-      - [loadNativeModule (同步动态加载系统库接口)](reference/common/js-apis-load-native-module.md)
+      - [loadNativeModule (同步动态加载系统库接口)](reference/common/js-apis-common-load-native-module.md)
       - [SysCap (系统能力)](reference/common/js-apis-syscap.md)
       - [Timer (定时器)](reference/common/js-apis-timer.md)
     - C API<!--common-basic-c-->

@@ -1,4 +1,9 @@
 # arkweb_scheme_handler.h
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 ## 概述
 
@@ -12,7 +17,7 @@
 
 **相关模块：** [Web](capi-web.md)
 
-**相关示例：** <!--RP1-->[ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
+**相关示例：** <!--RP1-->[ArkWebSchemeHandler](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
 
 ## 汇总
 
@@ -723,7 +728,7 @@ void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream* httpBodyStre
 
 **描述：**
 
-将请求的上传数据读取到buffer。buffer的大小必须大于bufLen。buffer的大小必须大于bufLen。数据将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
+将请求的上传数据读取至buffer，buffer的大小必须超过bufLen。数据将由工作线程读取至buffer，因此在回调函数返回前，不应在其他线程中使用缓冲区，以避免并发问题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

@@ -1,12 +1,41 @@
 # 组件描述
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
+<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
+<!--TSE: @ghiker-->
 
-提供具有网页显示能力的Web组件，[@ohos.web.webview](arkts-apis-webview.md)提供web控制能力。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](arkts-apis-webview.md)提供Web控制能力。
 
 > **说明：**
 >
 > - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+
+该模块提供以下Web组件网页显示相关的常用功能：
+
+- [ClientAuthenticationHandler](./arkts-basic-components-web-ClientAuthenticationHandler.md)：客户端证书请求事件。
+- [ConsoleMessage](./arkts-basic-components-web-ConsoleMessage.md)：控制台信息。
+- [ControllerHandler](./arkts-basic-components-web-ControllerHandler.md)：新建Web组件的WebviewController对象。
+- [DataResubmissionHandler](./arkts-basic-components-web-DataResubmissionHandler.md)：表单数据操作对象。
+- [EventResult](./arkts-basic-components-web-EventResult.md)：同层事件消费结果。
+- [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md)：Web组件获取文件对象。
+- [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md)：Web组件文件选择结果。
+- [FullScreenExitHandler](./arkts-basic-components-web-FullScreenExitHandler.md)：Web组件退出全屏的操作对象。
+- [HttpAuthHandler](./arkts-basic-components-web-HttpAuthHandler.md)：HttpAuth认证请求相关操作功能对象。
+- [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md)：地理位置信息权限功能。
+- [JsResult](./arkts-basic-components-web-JsResult.md)：弹窗操作。
+- [PermissionRequest](./arkts-basic-components-web-PermissionRequest.md)：权限请求。
+- [ScreenCaptureHandler](./arkts-basic-components-web-ScreenCaptureHandler.md)：屏幕捕获相关权限操作。
+- [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md)：SSL错误事件操作功能。
+- [WebContextMenuParam](./arkts-basic-components-web-WebContextMenuParam.md)：长按或鼠标右键弹出菜单信息。
+- [WebContextMenuResult](./arkts-basic-components-web-WebContextMenuResult.md)：控制长按或鼠标右键弹出菜单。
+- [WebCookie](./arkts-basic-components-web-WebCookie.md)：当前应用中Web组件的Cookie管理操作。
+- [WebKeyboardController](./arkts-basic-components-web-WebKeyboardController.md)：控制自定义键盘。
+- [WebResourceError](./arkts-basic-components-web-WebResourceError.md)：资源管理错误。
+- [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md)：资源获取请求。
+- [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)：资源获取响应。
 
 ## 需要权限
 

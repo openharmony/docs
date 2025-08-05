@@ -1,5 +1,11 @@
 # 密钥派生(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 以HKDF256密钥为例，完成密钥派生。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 开发步骤
@@ -85,7 +91,7 @@ let properties: Array<huks.HuksParam> = [
   value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
   value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,

@@ -1,10 +1,17 @@
 # Text
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 显示一段文本的组件。
 
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  <!--RP3--><!--RP3End-->
 
 
 ## 子组件
@@ -86,7 +93,7 @@ textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
 
 ### textOverflow
 
@@ -653,12 +660,7 @@ decoration:{
 当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
-
-从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，该功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
-
-AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
-
-从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示问问小艺选项。当[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，若enableDataDetector设置为false，显示问问小艺选项。若enableDataDetector设置为true，此时选中范围内，没有包括一个完整的AI实体或包括超过一个完整的AI实体，才能展示对应的选项。相关选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
+<!--RP2--><!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -674,7 +676,7 @@ AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能�
 
 dataDetectorConfig(config: TextDataDetectorConfig)
 
-设置文本识别配置。
+设置文本识别配置，可配置识别类型、实体显示样式，以及是否开启长按预览等。
 
 需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
 
@@ -1011,7 +1013,7 @@ optimizeTrailingSpace(optimize: Optional\<boolean>)
 
 | 参数名           | 类型             | 必填 | 说明                                            |
 | ---------------- | ------- | ---- | ----------------------------------------------- |
-| optimize         | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否优化每行末尾的空格。<br/>true表示优化末尾空格，false则不优化。<br/>默认值：false |
+| optimize         | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否优化每行末尾的空格。<br/>true表示优化末尾空格，false则不优化。<br/>默认值：false |
 
 ### caretColor<sup>14+</sup>
 
@@ -1061,7 +1063,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -1077,7 +1079,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ### shaderStyle<sup>20+</sup>
 
@@ -1151,9 +1153,9 @@ shaderStyle(shader: ShaderStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- |---- | ------------------------------------------------------------ |
+| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 否  | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
 
@@ -1216,9 +1218,9 @@ Text初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| controller | [TextController](#textcontroller11)  | 是 | 文本控制器。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| controller | [TextController](#textcontroller11)  | 否 | 否 | 文本控制器。 |
 
 ## TextController<sup>11+</sup>
 
@@ -1297,15 +1299,15 @@ Marquee初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型                                              | 必填 | 说明                                                                                  |
-|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
-| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
-| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
-| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。<br/>true表示支持渐隐效果，false表示不支持渐隐效果。<br/>当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
-| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+| 名称                | 类型                                              | 只读 | 可选 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 否  | 否 | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
+| step               | number                                          | 否  | 是 | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 是 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 是 | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
+| delay              | number                                          | 否  | 是 | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
+| fadeout            | boolean                                         | 否  | 是 | 设置文字超长时的渐隐效果。<br/>true表示支持渐隐效果，false表示不支持渐隐效果。<br/>当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 是 | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>18+</sup>枚举说明
 
@@ -2404,8 +2406,8 @@ struct TextExample14 {
 @Entry
 @Component
 struct TextNumberTransition {
-  @State number: number = 98
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false }
+  @State number: number = 98;
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   build() {
     Column() {
@@ -2415,7 +2417,7 @@ struct TextNumberTransition {
         .contentTransition(this.numberTransition)
       Button("chang number")
         .onClick(() => {
-          this.number++
+          this.number++;
         })
         .margin(10)
     }
@@ -2424,3 +2426,5 @@ struct TextNumberTransition {
   }
 }
 ```
+
+![Text_content_transition](figures/Text_content_transition.gif)

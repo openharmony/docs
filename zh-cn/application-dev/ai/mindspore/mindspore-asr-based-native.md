@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现语音识别（C/C++）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
@@ -27,10 +33,7 @@
 
 本示例程序中使用的语音识别模型文件为tiny-encoder.ms、tiny-decoder-main.ms、tiny-decoder-loop.ms，放置在entry/src/main/resources/rawfile工程目录下。
 
-
-### 编写代码
-
-#### 播放音频
+### 编写播放音频代码
 
 1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md)，实现播放音频的功能。
 
@@ -129,7 +132,7 @@
    ```
 
 
-#### 识别音频
+### 编写识别音频代码
 
 调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，依次对3个模型进行推理，推理代码流程如下。
 
@@ -633,7 +636,7 @@
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### 使用N-API将C++动态库封装成ArkTS模块
+### 使用N-API将C++动态库封装成ArkTS模块
 
 1. 在 entry/src/main/cpp/types/libentry/Index.d.ts，定义ArkTS接口`runDemo()` 。内容如下：
 
@@ -657,7 +660,7 @@
    }
    ```
 
-#### 调用封装的ArkTS模块进行推理并输出结果
+### 调用封装的ArkTS模块进行推理并输出结果
 
 在 entry/src/main/ets/pages/Index.ets 中，调用封装的ArkTS模块，最后对推理结果进行处理。
 
@@ -808,5 +811,5 @@ struct Index {
 
 针对使用MindSpore Lite进行语音识别应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
+- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
 

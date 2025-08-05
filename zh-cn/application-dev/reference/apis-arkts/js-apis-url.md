@@ -1,4 +1,9 @@
 # @ohos.url (URL字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
@@ -358,7 +363,7 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 sort(): void
 
-对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+对包含在此对象中的所有键值对进行排序。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法（保留具有相等键的键值对之间的相对顺序）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +382,7 @@ console.info(paramsObject.toString()); // Display the sorted query string // Out
 
 keys(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的name的ES6迭代器。
+返回一个包含所有键值对的name的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -387,7 +392,7 @@ keys(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的name的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的name的ES6迭代器。 |
 
 **示例：**
 
@@ -406,7 +411,7 @@ for (let key of keys) {
 
 values(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的value的ES6迭代器。
+返回一个包含所有键值对的value的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +421,7 @@ values(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的value的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的value的ES6迭代器。 |
 
 **示例：**
 
@@ -509,6 +514,19 @@ console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
+> **说明：**
+>
+> 在解析URL字符串时，如果入参中的port内容是当前protocol的默认端口，那么port将被解析为空字符串。默认端口为：
+>
+> | 协议 | 默认端口 |
+> | -------- | -------- |
+> | http: | 80 |
+> | https: | 443 |
+> | ftp: | 21 |
+> | gopher: | 70 |
+> | ws: | 80 |
+> | wss: | 443 |
+
 **示例：**
 
 ```ts
@@ -526,6 +544,10 @@ console.info("search " + that.search); // search ?foo=1&bar=2
 console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
 console.info("params: foo " + that.params.get("foo")); // params: foo 1
+
+let urlObj = url.URL.parseURL('http://testhost:80/directory/file?foo=1');
+console.info("port " + that.port); // port 
+console.info("toString " + that.port); // toString http://testhost/directory/file?foo=1
 ```
 
 ### constructor<sup>(deprecated)</sup>

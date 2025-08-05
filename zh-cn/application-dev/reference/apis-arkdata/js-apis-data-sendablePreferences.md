@@ -1,4 +1,9 @@
 # @ohos.data.sendablePreferences (共享用户首选项)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--SE: @houpengtao1-->
+<!--TSE: @yippo; @logic42-->
 
 
 共享用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
@@ -612,7 +617,7 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.error("The key 'startup' dose not contain.");
+    console.error("The key 'startup' does not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to check the key 'startup'. code: ${err.code}, message: ${err.message}`);
@@ -657,7 +662,7 @@ let isExist: boolean = preferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.error("The key 'startup' dose not contain.");
+  console.error("The key 'startup' does not contain.");
 }
 ```
 

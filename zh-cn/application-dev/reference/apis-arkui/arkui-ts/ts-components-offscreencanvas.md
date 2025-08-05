@@ -1,4 +1,9 @@
 #  OffscreenCanvas
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 OffscreenCanvas组件用于绘制自定义图形。
 

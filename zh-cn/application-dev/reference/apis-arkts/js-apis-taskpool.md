@@ -1,4 +1,9 @@
 # @ohos.taskpool（启动任务池）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 任务池（taskpool）的作用是为应用程序提供多线程运行环境，降低资源消耗并提升系统性能，且您无需关心线程的生命周期。您可以使用任务池API创建后台任务（Task），并进行如执行任务或取消任务等操作。理论上，任务池API允许创建的任务数量不受限制，但由于内存限制，不建议这样做。此外，不建议在任务中执行阻塞操作，尤其是无限期阻塞操作，因为长时间的阻塞操作会占用工作线程，可能阻塞其他任务的调度，影响应用性能。
 
@@ -371,7 +376,7 @@ function printArgs(args: number): void {
 let t: number = Date.now();
 console.info("taskpool start time is: " + t);
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed(1000, task).then(() => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -429,7 +434,7 @@ function printArgs(args: number): string {
 }
 
 let task: taskpool.Task = new taskpool.GenericsTask<[number], string>(printArgs, 100); // 100: test number
-taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -2673,8 +2678,6 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import { taskpool } from '@kit.ArkTS';
-
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();

@@ -1,4 +1,9 @@
 # 布局概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 
 组件按照布局的要求依次排列，构成应用的页面。在声明式UI中，所有的页面都是由自定义组件构成，开发者可以根据自己的需求，选择合适的布局进行页面开发。
@@ -44,7 +49,7 @@
 
 ## 如何选择布局
 
-声明式UI提供了以下10种常见布局，开发者可根据实际应用场景选择合适的布局进行页面开发。
+声明式UI提供了以下几种常见布局，开发者可根据实际应用场景选择合适的布局进行页面开发。
 
 | 布局                                                         | 应用场景                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -53,8 +58,7 @@
 | [弹性布局](arkts-layout-development-flex-layout.md)（Flex）  | 弹性布局是与线性布局类似的布局方式。区别在于弹性布局默认能够使子组件压缩或拉伸。在子组件需要计算拉伸或压缩比例时优先使用此布局，可使得多个容器内子组件能有更好的视觉上的填充效果。 |
 | [相对布局](arkts-layout-development-relative-layout.md)（RelativeContainer） | 相对布局是在二维空间中的布局方式，不需要遵循线性布局的规则，布局方式更为自由。通过在子组件上设置锚点规则（AlignRules）使子组件能够将自己在横轴、纵轴中的位置与容器或容器内其他子组件的位置对齐。设置的锚点规则可以天然支持子元素压缩、拉伸、堆叠或形成多行效果。在页面元素分布复杂或通过线性布局会使容器嵌套层数过深时推荐使用。 |
 | [栅格布局](arkts-layout-development-grid-layout.md)（GridRow、GridCol） | 栅格是多设备场景下通用的辅助定位工具，可将空间分割为有规律的栅格。栅格不同于网格布局固定的空间划分，可以实现不同设备下不同的布局，空间划分更随心所欲，从而显著降低适配不同屏幕尺寸的设计及开发成本，使得整体设计和开发流程更有秩序和节奏感，同时也保证多设备上应用显示的协调性和一致性，提升用户体验。推荐内容相同但布局不同时使用。 |
-| [媒体查询](arkts-layout-development-media-query.md)（\@ohos.mediaquery） | 媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。例如根据设备和应用的不同属性信息设计不同的布局，以及屏幕发生动态改变时更新应用的页面布局。 |
-| [选项卡](arkts-navigation-tabs.md)（Tabs） | 选项卡可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。       |
+| [选项卡](arkts-navigation-tabs.md)（Tabs）                   | 选项卡可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。 |
 
 
 ## 布局位置
@@ -100,7 +104,7 @@ position、offset等属性影响了布局容器相对于自身或其他组件的
 
 针对布局开发，有以下相关实例可供参考：
 
-- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+- [页面布局和连接（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
 
 - [ArkUI常用布局容器对齐方式（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/OHLayoutAlign)
 

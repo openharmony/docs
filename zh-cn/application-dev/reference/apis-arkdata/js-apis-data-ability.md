@@ -1,4 +1,9 @@
 # @ohos.data.dataAbility (DataAbility谓词)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 DataAbility谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
 

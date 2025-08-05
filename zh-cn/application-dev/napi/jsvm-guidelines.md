@@ -1,4 +1,9 @@
 # JSVM-API使用规范
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 生命周期管理
 
@@ -256,7 +261,7 @@ static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
     // 业务代码
     // ... ...
     // argv 为 new 创建的对象，在使用完成后手动释放
-    delete argv;
+    delete[] argv;
     return nullptr;
 }
 
@@ -264,7 +269,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value* argv[2] = {nullptr};
     // OH_JSVM_GetCbInfo 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    OH_JSVM_GetCbInfo(env, info, &argc, nullptr, nullptr, nullptr);
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;

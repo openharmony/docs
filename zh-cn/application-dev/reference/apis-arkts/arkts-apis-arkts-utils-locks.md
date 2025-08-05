@@ -1,4 +1,9 @@
 # ArkTSUtils.locks
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 为了解决多并发实例间的数据竞争问题，ArkTS语言基础库引入了异步锁能力。为了开发者的开发效率，AsyncLock对象支持跨并发实例引用传递。
 
@@ -401,19 +406,27 @@ let s: ArkTSUtils.locks.AbortSignal<string> = { aborted: false, reason: 'Aborted
 let options = new ArkTSUtils.locks.AsyncLockOptions<string>();
 options.isAvailable = false;
 options.signal = s;
+let lock = new ArkTSUtils.locks.AsyncLock();
+let p = lock.lockAsync<void, string>(
+  () => {
+    // 执行某些操作
+  },
+  ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE,
+  options,
+);
 ```
 
 ### 属性
 
-| 名称        | 类型                                  | 只读 | 可选 | 说明                                                                                                                      |
-| ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | 否   | 否   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 否   | 否   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 否   | 否   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| 名称        | 类型                                  | 只读 | 可选 | 说明                                                                                                                                                                 |
+| ----------- | ------------------------------------- | ---- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isAvailable | boolean                               | 否   | 否   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。                                            |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 否   | 否   | 用于终止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。 |
+| timeout     | number                                | 否   | 否   | 锁的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。                                           |
 
 ## AsyncLockState
 
-用于存储特定异步锁实例上当前执行的所有锁操作的信息的类。
+用于存储异步锁实例上当前执行的所有锁操作的信息的类。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -452,10 +465,10 @@ options.signal = s;
 
 ### 属性
 
-| 名称    | 类型    | 只读 | 可选 | 说明                                                             |
-| ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 否   | 否   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
-| reason  | T   | 否   | 否   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
+| 名称    | 类型    | 只读 | 可选 | 说明                                                                        |
+| ------- | ------- | ---- | ---- | --------------------------------------------------------------------------- |
+| aborted | boolean | 否   | 否   | 是否终止异步操作。为true时表示终止异步操作，为false时表示异步操作未被终止。 |
+| reason  | T       | 否   | 否   | 终止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。            |
 
 ## ConditionVariable<sup>18+</sup>
 
@@ -582,6 +595,7 @@ const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.loc
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
+// 通知所有等待的线程。
 conditionVariable.notifyAll();
 ```
 
@@ -602,5 +616,6 @@ const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.loc
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread a being awakened, then continue...`); //被唤醒后输出日志
 });
+// 通知第一个等待的线程。
 conditionVariable.notifyOne();
 ```

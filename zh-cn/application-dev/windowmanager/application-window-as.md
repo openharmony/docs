@@ -102,8 +102,8 @@ export default class EntryAbility extends UIAbility {
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
 
 > **说明：**  
-> 由于以下几种情况，移动设备场景下不推荐使用子窗口，优先推荐使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
-> - 移动设备场景下子窗不能超出主窗口范围，与控件一致。  
+> 以下几种场景不建议使用子窗口，建议优先考虑使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
+> - 移动设备（手机、在非自由模式下的平板设备）场景下子窗不能超出处于悬浮窗、分屏状态的主窗口范围，与控件一致。  
 > - 分屏窗口与自由窗口模式下，主窗口位置大小发生改变时控件实时跟随变化能力优于子窗。  
 > - 部分设备平台下根据实际的系统配置限制，子窗只有系统默认的动效和圆角阴影，应用无法设置，自由度低。
 
@@ -138,8 +138,7 @@ export default class EntryAbility extends UIAbility {
     // 1.创建应用子窗口。
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
-    }
-    else {
+    } else {
       windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -147,6 +146,10 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -173,8 +176,12 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in loading the content.');
+          if (!sub_windowClass) {
+            console.error('sub_windowClass is null');
+            return;
+          }
           // 3.显示子窗口。
-          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+          sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
               console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -188,8 +195,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   destroySubWindow() {
+    if (!sub_windowClass) {
+      console.error('sub_windowClass is null');
+      return;
+    }
     // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
-    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+    sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));

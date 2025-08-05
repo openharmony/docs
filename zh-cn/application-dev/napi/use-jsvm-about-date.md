@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行Date相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -35,7 +40,7 @@ cpp部分代码：
 // OH_JSVM_CreateDate的样例方法
 static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
     // 通过c接口获取Unix纪元以来经过的秒数，并转化为毫秒数为单位
-    double value = static_cast<double>(time(NULL) * 1000);
+    double value = static_cast<double>(static_cast<uint64_t>(time(NULL)) * 1000ULL);
     // 调用OH_JSVM_CreateDate接口将double值转换成表示日期时间的JavaScript值返回出去
     JSVM_Value returnValue = nullptr;
 
@@ -76,7 +81,7 @@ const char *srcCallNative = R"JS(createDate())JS";
 JSVM CreateDate success:Mon Jul 7 10:42:34 2025
 ```
 
-<!-- @[oh_jsvm_create_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/createdate/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/createdate/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_GetDateValue
 
@@ -123,7 +128,7 @@ const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 JSVM GetDateValue success:Mon Jul 7 10:47:08 2025
 ```
 
-<!-- @[oh_jsvm_get_date_value](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/getdatevalue/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_date_value](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/getdatevalue/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsDate
 
@@ -163,4 +168,4 @@ const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
 JSVM IsDate success:1
 ```
 
-<!-- @[oh_jsvm_is_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/isdate/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/isdate/src/main/cpp/hello.cpp) -->

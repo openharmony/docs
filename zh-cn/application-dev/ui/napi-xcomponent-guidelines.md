@@ -1,4 +1,9 @@
 # 自定义渲染 (XComponent)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 ## 概述
 
@@ -35,6 +40,20 @@ XComponent组件负责创建Surface，并通过回调将Surface的相关信息�
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
 > 
 > 4. 在onSurfaceCreated回调触发后，才能获取到有效的surfaceId。
+
+**效果预览**
+
+| 主页                                   | 绘制五角星                                         | 改变颜色                                                |
+|--------------------------------------|-----------------------------------------------|-----------------------------------------------------|
+| ![main](figures/main.png) | ![draw star](figures/drawStar.png) | ![change color](figures/changeColor.png) |
+
+>**说明：**
+>
+>1. 安装编译生成的hap包，并打开应用。
+>
+>2. 点击页面底部“Draw Star”按钮，页面将绘制一个五角星。
+>
+>3. 点击XComponent组件区域（页面中灰色区域）改变五角星颜色。
 
 **生命周期**：
 
@@ -82,9 +101,13 @@ Native侧
 
 **开发步骤**
 
+核心开发流程如下图所示：
+
+![开发流程](figures/XComponent开发流程图.png)
+
 以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`在ArkTS侧传入SurfaceId，在Native侧创建NativeWindow实例，然后创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
 
-1. 在界面中定义XComponent。
+1. 在界面中定义XComponent，在cpp/types/libnativerender/Index.d.ts中声明接口，具体实现位于Native侧。
    
     ```javascript
     // 函数声明，在cpp/types/libnativerender/Index.d.ts中定义
@@ -229,7 +252,7 @@ Native侧
     }
     ```
     
-3. 上述注册的六个函数在Native侧具体实现。
+3. 上述注册的六个函数在Native侧的具体实现如下：ChangeColor和DrawPattern利用OpenGL(https://developer.huawei.com/consumer/cn/doc/harmonyos-references/opengl)进行五角星的绘制；ChangeSurface根据传入的surfaceId、width、height调整Surface的大小；SetSurfaceId基于SurfaceId完成NativeWindow的初始化；DestroySurface销毁与Surface相关的资源；GetXComponentStatus获取xcomponent状态并返回至ArkTS侧。
 
     ```cpp
     // PluginManager类定义
@@ -511,10 +534,12 @@ Native侧
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
+上述用例具体实现可参考<!--RP2-->[ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2nd-->。
+
 ## 使用OH_ArkUI_SurfaceHolder管理Surface生命周期
 
-与使用XComponentController管理Surface生命周期场景不同，本场景允许应用根据XComponent组件对应的ArkUI_NodeHandle中创建OH_ArkUI_SurfaceHolder，并通过OH_ArkUI_SurfaceHolder上的相关接口注册Surface生命周期，XComponent组件相关的无障碍、可变帧率等能力也可根据ArkUI_NodeHandle通过相关接口来实现。同时，XCompoennt组件上的基础/手势事件也可通过ArkUI_NodeHandle对象使用ArkUI NDK接口来监听（具体可参考：[监听组件事件](./ndk-listen-to-component-events.md)）。主要开发场景如下：
-- 在ArkTS侧创建的XComponent组件可将其对应的FrameNode节点传递至Native侧获取ArkUI_NodeHandle/在Native侧直接创建XComponent组件对应的ArkUI_NodeHandle，然后调用OH_ArkUI_SurfaceHolder_Create接口创建OH_ArkUI_SurfaceHolder实例。
+与使用XComponentController管理Surface生命周期场景不同，本场景允许应用根据XComponent组件对应的ArkUI_NodeHandle中创建OH_ArkUI_SurfaceHolder，并通过OH_ArkUI_SurfaceHolder上的相关接口注册Surface生命周期，XComponent组件相关的无障碍、可变帧率等能力也可根据ArkUI_NodeHandle通过相关接口来实现。同时，XComponent组件上的基础/手势事件也可通过ArkUI_NodeHandle对象使用ArkUI NDK接口来监听（具体可参考：[监听组件事件](./ndk-listen-to-component-events.md)）。主要开发场景如下：
+- 在ArkTS侧创建的XComponent组件可以将其对应的FrameNode节点传递到Native侧以获取ArkUI_NodeHandle，或者在Native侧直接创建XComponent组件对应的ArkUI_NodeHandle，然后调用OH_ArkUI_SurfaceHolder_Create接口创建OH_ArkUI_SurfaceHolder实例。
 - 基于OH_ArkUI_SurfaceHolder实例注册相应的生命周期回调、事件回调，获取NativeWindow实例。
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
 
@@ -806,7 +831,7 @@ Native侧
         provider_ = OH_ArkUI_AccessibilityProvider_Create(handle); // 创建一个ArkUI_AccessibilityProvider类型的对象
         /**
         * 获取ArkUI_AccessibilityProvider后，如果注册无障碍回调函数请参考：
-        * https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/ndk-accessibility-xcomponent.md
+        * https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/ndk-accessibility-xcomponent.md
         * **/
         return nullptr;
     }
@@ -2377,13 +2402,13 @@ Native侧
 
 针对Native XComponent的使用，有以下相关实例可供参考：
 
-- [XComponent3D（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
-- [XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
-- [Native XComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
-- [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
+- [XComponent3D（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
+- [XComponent（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
+- [Native XComponent（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
+- [OpenGL三棱椎（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
 
 针对ArkTS XComponent的使用，有以下相关实例可供参考：
 
-- [ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+- [ArkTSXComponent（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
 
 <!--RP1--><!--RP1End-->

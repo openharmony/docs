@@ -1,5 +1,11 @@
 # crypto_asym_key.h
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT--> 
+
 ## 概述
 
 声明非对称密钥接口。

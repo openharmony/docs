@@ -1,4 +1,9 @@
-# 路径动画 (motionPath) 
+# 路径动画 (motionPath)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件进行位移动画时的运动路径。
 

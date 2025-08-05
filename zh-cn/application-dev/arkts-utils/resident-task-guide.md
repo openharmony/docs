@@ -1,4 +1,9 @@
 # 常驻任务开发指导（Worker）
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 提供使用Worker进行常驻任务的开发指导。Worker将持续执行任务，直到宿主线程发送终止指令。
 
@@ -26,6 +31,7 @@
 
    ```ts
    // Index.ets
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    @Entry
    @Component
@@ -38,7 +44,7 @@
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
              workerInstance.postMessage({type: 'start'})
-             workerInstance.onmessage = (event) => {
+             workerInstance.onmessage = (event: MessageEvents) => {
                console.info('UI主线程收到消息:', event.data);
              }
              // 10秒后停止worker
@@ -52,7 +58,7 @@
      }
    }
    ```
-   <!-- @[worker_receive_child_thread_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/ResidentTaskGuide.ets) -->
+   <!-- @[worker_receive_child_thread_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/ResidentTaskGuide.ets) -->
 
 5. 在Worker线程中，当接收到宿主线程发送的消息为'start'时，开始执行某个长时间不定期运行的任务，并实时向宿主线程返回消息。当接收到的消息为'stop'时，结束该任务的执行并返回相应的消息给宿主线程。
 
@@ -86,4 +92,4 @@
      workerPort.postMessage('Worker has stopped performing the task');
    }
    ```
-   <!-- @[worker_correspond_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/Worker.ets) -->
+   <!-- @[worker_correspond_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/Worker.ets) -->

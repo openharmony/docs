@@ -1,4 +1,9 @@
 # 显式动画 (animateTo)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
@@ -36,7 +41,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | value | [AnimateParam](#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 | event | () => void                        | 是    | 指定动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
-## AnimateParam对象说明 
+## AnimateParam对象说明
 
 动画效果相关参数。
 
@@ -111,9 +116,9 @@ interpolate(fraction:&nbsp;number): number
 
 | 名称  | 类型     |  只读 | 可选    | 说明      |
 |-----|--------|---------|------- |---------|
-| min | number | 否 | 否 | 期望的最小帧率，单位为FPS，取值范围为(0, 设备最大帧率]。 |
-| max | number | 否 | 否 | 期望的最大帧率，单位为FPS，取值范围为[min, 设备最大帧率]。 |
-| expected | number | 否 | 否 | 期望的最优帧率，单位为FPS，取值范围为[min, max]。 |
+| min | number | 否 | 否 | 期望的最小帧率，单位为帧/秒（fps），取值范围为[0, 设备最大帧率]。 |
+| max | number | 否 | 否 | 期望的最大帧率，单位为帧/秒（fps），取值范围为[min, 设备最大帧率]。 |
+| expected | number | 否 | 否 | 期望的最优帧率，单位为帧/秒（fps），取值范围为[min, max]。设置为0时，将跟随应用的帧率。 |
 
 ## 示例
 

@@ -1,4 +1,9 @@
 # Node-API开发规范
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @shilei123-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 获取JS传入参数及其数量
 
@@ -209,11 +214,11 @@ napi_wrap(napi_env env, napi_value js_object, void* native_object, napi_finalize
 
 ```cpp
 // 用法1：napi_wrap不需要接收创建的napi_ref，最后一个参数传递nullptr，创建的napi_ref是弱引用，由系统管理，不需要用户手动释放
-napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr)；
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 
 // 用法2：napi_wrap需要接收创建的napi_ref，最后一个参数不为nullptr，返回的napi_ref是强引用，需要用户手动释放，否则会内存泄漏
 napi_ref result;
-napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result)；
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // 当js_object和result后续不再使用时，及时调用napi_remove_wrap释放result
 void* nativeObjectResult = nullptr;
 napi_remove_wrap(env, jsobject, &nativeObjectResult);
@@ -405,7 +410,7 @@ extern "C" void napi_onLoad()
 **错误示例**
 
 ```cpp
-static void MyFinalizeCB(napi_env env, void *finalize_data, void *finalize_hint) { return; };
+static void MyFinalizeCB(napi_env env, void *finalize_data, void *finalize_hint) { return; }
 
 static napi_value CreateMyExternal(napi_env env, napi_callback_info info) {
     napi_value result = nullptr;
@@ -413,7 +418,7 @@ static napi_value CreateMyExternal(napi_env env, napi_callback_info info) {
     return result;
 }
 
-// 此处已省略模块注册的代码, 你可能需要自行注册 CreateMyExternal 方法
+// 此处已省略模块注册的代码，你可能需要自行注册 CreateMyExternal 方法
 ```
 
 ```ts
@@ -434,7 +439,7 @@ const mWorker = new worker.ThreadWorker('../workers/Worker');
 }
 
 // 关闭worker线程
-// 应用可能在此步骤崩溃, 或在后续引擎进行GC的时候崩溃
+// 应用可能在此步骤崩溃，或在后续引擎进行GC的时候崩溃
 mWorker.terminate();
 // Worker的实现为默认模板，此处省略
 ```

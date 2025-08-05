@@ -1,5 +1,11 @@
 # 应用权限管控概述
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## 简介
 
 系统提供了一种允许应用访问系统资源（如：通讯录等）和系统能力（如：访问摄像头、麦克风等）的通用权限访问方式，来保护系统数据（包括用户个人数据）或功能，避免它们被不当或恶意使用。

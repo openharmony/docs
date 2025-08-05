@@ -1,4 +1,9 @@
 # TaskPool和Worker的对比 (TaskPool和Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 TaskPool和Worker的作用是为应用程序提供多线程运行环境，用于处理耗时计算任务或其他密集型任务，避免任务阻塞宿主线程，提高系统性能和资源利用率。
@@ -44,7 +49,7 @@ TaskPool偏向于独立任务，任务在线程中执行时，无需关注线程
 
 - 有关联的一系列同步任务：例如在一些需要创建、使用句柄的场景中，每次创建的句柄都不同，必须永久保存该句柄，以确保后续操作正确执行，需要使用Worker。场景示例可参考[使用Worker处理关联的同步任务](sync-task-development.md#使用worker处理关联的同步任务)。
 
-- 需要设置优先级的任务：在API version 18 之前，Worker不支持设置调度优先级，需要使用TaskPool。从API version 18开始，Worker支持设置调度优先级，开发者可以根据使用场景和任务特性选择使用TaskPool或Worker。例如[图库直方图绘制场景](cpu-intensive-task-development.md#使用taskpool进行图像直方图处理)，后台计算的直方图数据会用于前台界面的显示，影响用户体验，需要高优先级处理，且任务相对独立，推荐使用TaskPool。
+- 需要设置优先级的任务：在API version 18 之前，Worker不支持设置调度优先级，需要使用TaskPool。从API version 18开始，Worker支持设置调度优先级，开发者可以根据使用场景和任务特性选择使用TaskPool或Worker。例如[图像直方图绘制场景](cpu-intensive-task-development.md#使用taskpool进行图像直方图处理)，后台计算的直方图数据会用于前台界面的显示，影响用户体验，需要高优先级处理，且任务相对独立，推荐使用TaskPool。
 
 - 需要频繁取消的任务：如图库大图浏览场景。为提升体验，系统会同时缓存当前图片左右各两张图片。当往一侧滑动跳到下一张图片时，需取消另一侧的缓存任务，此时需使用TaskPool。
 

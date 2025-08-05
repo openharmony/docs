@@ -1,6 +1,12 @@
 # 方舟字节码文件格式
-本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入了解构成字节码文件的各个部分，从而指导开发者进行字节码的分析和修改工作。
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--SE: @ctw-ian; @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
+本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入理解字节码的组成结构，以指导字节码的分析和修改。
 
 ## 约束
 本文内容基于方舟字节码版本号12.0.6.0（版本号为方舟编译器内部保留字段，开发者无需关注，仅供准确对照之用）。
@@ -47,9 +53,9 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 
 
 ## 字节码文件布局
-字节码文件起始于[Header](#header)结构。文件中的所有结构均可以从`Header`出发，直接或间接地访问到。字节码文件中结构的引用方式包括偏移量和索引。偏移量是一个32位长度的值，表示当前结构的起始位置在字节码文件中相对于文件头的偏移，从0开始计算。索引是一个16位长度的值，表示当前结构在索引区域中的位置，此机制将在[IndexSection](#indexsection)章节描述。
+字节码文件起始于[Header](#header)结构。文件中的所有结构均可以从`Header`出发，直接或间接地访问到。字节码文件中结构的引用方式包括偏移量和索引。偏移量是一个32位长度的值，表示当前结构的起始位置在字节码文件中相对于文件头的字节偏移量，从0开始计算。索引是一个16位长度的值，表示当前结构在索引区域中的位置，此机制将在[IndexSection](#indexsection)章节描述。
 
-字节码文件中所有的多字节值均采用小端字节序。
+字节码文件中所有多字节数值类型（如u16、u32和i32等）均采用小端字节序（Little-endian）存储。
 
 
 ### Header
@@ -69,7 +75,6 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 | `class_idx_off`     | `uint32_t`       | 偏移量，指向[ClassIndex](#classindex)。 |
 | `num_lnps`          | `uint32_t`       | [LineNumberProgramIndex](#linenumberprogramindex)结构中元素的数量，即文件中定义的Line number program的数量。 |
 | `lnp_idx_off`       | `uint32_t`       | 偏移量，指向[LineNumberProgramIndex](#linenumberprogramindex)。 |
-| `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
 | `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
 | `num_index_regions` | `uint32_t`       | [IndexSection](#indexsection)结构中元素的数量，即文件中[IndexHeader](#indexheader)的数量。 |
 | `index_section_off` | `uint32_t`       | 偏移量，指向[IndexSection](#indexsection)。 |
@@ -116,7 +121,7 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 
 
 ### ClassIndex
-ClassIndex结构的作用是通过名称快速地定位到Class的定义。
+ClassIndex结构能通过名称快速定位到Class的定义。
 
 - 对齐方式：4个字节。
 - 格式：
@@ -160,7 +165,7 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 | **名称** | **值** | **数量** | **格式** | **说明**                                               |
 | -------------- | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | `NOTHING`        | `0x00`  | `1`  | `none`    | 拥有此标记的[TaggedValue](#taggedvalue)，是其所在`class_data`的最后一项。 |
-| `SOURCE_LANG`    | `0x02`  | `0-1 ` | `uint8_t` | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是0，表示源码语言是ArkTS/TS/JS。 |
+| `SOURCE_LANG`    | `0x02`  | `0-1` | `uint8_t` | 拥有此标记的[TaggedValue](#taggedvalue)的`data`的值为0时，表示源码语言是ArkTS/TS/JS。 |
 | `SOURCE_FILE`    | `0x07`  | `0-1`  | `uint32_t`| 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[字符串](#字符串)，表示源文件的名称。 |
 
 > **注意：**
@@ -200,7 +205,7 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 
 > **注意：**
 > 
-> FieldTag是`field_data`中元素（[TaggedValue](#taggedvalue)）所具备的标记，表头中的“数量”指的是在某一个[Field](#field)的`field_data`中拥有此标记的元素出现的次数。
+> FieldTag是`field_data`中元素（[TaggedValue](#taggedvalue)）的标记。表头中的“数量”表示在某个[Field](#field)的`field_data`中拥有此标记的元素出现的次数。
 
 
 ### Method
@@ -250,14 +255,14 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | **名称** | **值** | **数量** | **格式** | **说明**                                               |
 | -------------- | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | `NOTHING`        | `0x00`         | `1`             | `none`           | 拥有此标记的[TaggedValue](#taggedvalue)，是其所在`method_data`的最后一项。 |
-| `CODE`           | `0x01`         | `0-1 `           | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[Code](#code)，表示方法的代码段。 |
-| `SOURCE_LANG`    | `0x02`         | `0-1`            | `uint8_t`        | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是0，表示源码语言是ArkTS/TS/JS。 |
+| `CODE`           | `0x01`         | `0-1`           | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[Code](#code)，表示方法的代码段。 |
+| `SOURCE_LANG`    | `0x02`         | `0-1`            | `uint8_t`        | 拥有此标记的[TaggedValue](#taggedvalue)的`data`为0时，表示源码语言是ArkTS/TS/JS。 |
 | `DEBUG_INFO`     | `0x05`         | `0-1`            | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[DebugInfo](#debuginfo)，表示方法的调试信息。 |
 | `ANNOTATION`     | `0x06`         | `>=0`            | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[Annotation](#annotation)， 表示方法的注解。 |
 
 > **注意：**
 > 
-> MethodTag是`method_data`中元素（[TaggedValue](#taggedvalue)）所具备的标记，表头中的“数量”指的是在某一个[Method](#method)的`method_data`中拥有此标记的元素出现的次数。
+> MethodTag是`method_data`中元素（[TaggedValue](#taggedvalue)）的标记。表头中的“数量”表示在某个[Method](#method)的`method_data`中，具有此标记的元素出现的次数。
 
 
 ### Code
@@ -267,12 +272,12 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 | **名称** | **格式** | **说明**                                               |
 | -------------- | -------------- | ------------------------------------------------------------ |
-| `num_vregs`      | `uleb128`        | 寄存器的数量，存放入参和默认参数的寄存器不计算在内。         |
-| `num_args`       | `uleb128`        | 入参和默认参数的总数量。                                     |
-| `code_size`      | `uleb128`        | 所有指令的总大小，以字节为单位。                             |
-| `tries_size`     | `uleb128`        | `try_blocks`数组的长度，即[TryBlock](#tryblock)的数量。    |
+| `num_vregs`      | `uleb128`        | 表示寄存器的数量，不包括存放入参和默认参数的寄存器。         |
+| `num_args`       | `uleb128`        | 表示入参和默认参数的总数。                                     |
+| `code_size`      | `uleb128`        | 表示所有指令的总大小，以字节为单位。                             |
+| `tries_size`     | `uleb128`        | `try_blocks`数组的长度，表示[TryBlock](#tryblock)的数量。 |
 | `instructions`   | `uint8_t[]`      | 所有指令的数组。                                           |
-| `try_blocks`     | `TryBlock[]`     | 一个数组，数组中每一个元素都是TryBlock类型。 |
+| `try_blocks`     | `TryBlock[]`     | 一个数组，数组中每个元素均为TryBlock类型。|
 
 
 ### TryBlock
@@ -295,7 +300,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 | **名称** | **格式** | **说明**                                  |
 | -------------- | -------------- | ----------------------------------------------- |
-| `type_idx`       | `uleb128`        | 值是0，表示此CatchBlock块捕获了所有类型的异常。 |
+| `type_idx`       | `uleb128`        | 值为0，表示此CatchBlock块捕获所有类型的异常。 |
 | `handler_pc`     | `uleb128`        | 异常处理逻辑的第一条指令的程序计数器。          |
 | `code_size`      | `uleb128`        | 此CatchBlock的大小，以字节为单位。              |
 
@@ -303,7 +308,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 ### Annotation
 描述一个注解结构。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式**      | **说明**                                               |
@@ -348,7 +353,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | **名称** | **格式** | **说明**                                               |
 | -------------- | -------------- | ------------------------------------------------------------ |
 | `name_off`       | `uint32_t`       | 一个偏移量，指向[字符串](#字符串)，表示注解元素的名称。 |
-| `value`          | `uint32_t`       | 注解元素的值，若值的宽度不超过32位，则此处存储值本身。否则，此处存储的值为指向[Value formats](#value-formats)格式的偏移量。 |
+| `value`          | `uint32_t`       | 注解元素的值，若该值的宽度不超过32位，则此处存储值本身。否则，此处存储的值为指向[Value formats](#value-formats)格式的偏移量。 |
 
 
 ### Value formats
@@ -364,7 +369,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 
 ### LineNumberProgramIndex
-行号程序索引（LineNumberProgramIndex）结构是一个数组，便于使用更紧凑的索引访问行号程序（Line number program）。
+行号程序索引（LineNumberProgramIndex）的结构是一个数组，便于使用更紧凑的索引访问行号程序（Line number program）。
 
 - 对齐方式：4个字节。
 - 格式：
@@ -375,7 +380,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 
 ### DebugInfo
-调试信息（DebugInfo）包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机（State machine）的执行模型对行号程序（Line number program)进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池（Constant pool）中。
+调试信息（DebugInfo）包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机（State machine）的执行模型对行号程序（Line number program）进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池（Constant pool）中。
 
 - 对齐方式：单字节对齐。
 - 格式：
@@ -384,7 +389,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | ----------------------- | -------------- | ------------------------------------------------------------ |
 | `line_start`              | `uleb128`        | 状态机的行号寄存器的初始值。                                 |
 | `num_parameters`          | `uleb128`        | 入参和默认参数的总数量。                                     |
-| `parameters`              | `uleb128[]`      | 存放方法入参的名称的数组，数组长度是`num_parameters`。每一个元素的值是字符串的偏移量或者0，如果是0，则代表对应的参数不具有名称。 |
+| `parameters`              | `uleb128[]`      | 存储方法入参名称的数组，长度为`num_parameters`。每个元素表示字符串的偏移量或0，0表示对应参数无名称。 |
 | `constant_pool_size`      | `uleb128`        | 常量池的大小，以字节为单位。                                 |
 | `constant_pool`           | `uleb128[]`      | 存放常量池数据的数组，数组长度是`constant_pool_size`。         |
 | `line_number_program_idx` | `uleb128`        | 一个索引，指向一个在[LineNumberProgramIndex](#linenumberprogramindex)中的位置，该位置的值是一个指向Line number program的偏移量。Line number program的长度可变，以`END_SEQUENCE`操作码结束。 |
@@ -404,7 +409,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `column`            | 0                                                            | 无符号整数，对应源码中的列号。                               |
 | `file`              | `class_data`（参见[Class](#class)）中`SOURCE_FILE`标记的值，或者0 | 一个偏移量，指向[字符串](#字符串)，表示源文件的名称。如果没有文件名信息（[Class](#class)中没有`SOURCE_FILE`标记），那么寄存器的值是0。 |
 | `source_code`       | 0                                                            | 一个偏移量，指向[字符串](#字符串)，表示源文件的源码。如果没有源码信息，那么寄存器的值是0。 |
-| `constant_pool_ptr` | [DebugInfo](#debuginfo)中常量池的第一个字节的地址 | 指向当前常量值的指针。                                       |
+| `constant_pool_ptr` | [DebugInfo](#debuginfo)中常量池的起始地址 | 指向当前常量值的指针。                                       |
 
 
 #### Line number program
@@ -415,11 +420,11 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `END_SEQUENCE`         | `0x00`  |       |          |        | 标记行号程序的结束。    |
 | `ADVANCE_PC`           | `0x01`  |    | `uleb128 addr_diff`   | `addr_diff`：`address`寄存器的值待增加的数值。    | `address`寄存器中的值加上`addr_diff`，指向下一个地址，而不生成位置条目。 |
 | `ADVANCE_LINE`         | `0x02` |     | `sleb128 line_diff`  | `line_diff`：`line`寄存器的值待增加的数值。    | `line`寄存器中的值加上`line_diff`，指向下一个行位置，而不生成位置条目。 |
-| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。 | 在当前地址中引入一个带有名称和类型的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`和`type_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。<br>`sig_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的签名。 | 在当前地址中引入一个带有名称、类型和签名的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`、`type_idx`和`sig_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | `register_num`：包含局部变量的寄存器。  | 在当前地址将指定寄存器中的局部变量标记为超出范围。寄存器的编号为-1，则意味着是累加器寄存器。 |
-| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | `name_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的名称。 | 设置file寄存器的值。`name_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | `source_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的源码。 | 设置`source_code`寄存器的值。`source_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
+| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。 | 在当前地址中引入一个带有名称和类型的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则表示这个寄存器是累加器寄存器。`name_idx`和`type_idx`的值可能为0，如果为0，则代表对应的信息不存在。 |
+| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。<br>`sig_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的签名。 | 在当前地址中引入一个带有名称、类型和签名的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则表示这个寄存器是累加器寄存器。`name_idx`、`type_idx`和`sig_idx`的值可能为0，如果为0，则代表对应的信息不存在。 |
+| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | `register_num`：包含局部变量的寄存器。  | 在当前地址将指定寄存器中的局部变量标记为超出范围。寄存器的编号为-1，则表示这个寄存器是累加器寄存器。 |
+| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | `name_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的名称。 | 设置`file`寄存器的值。`name_idx`的值可能为0，如果为0，则代表对应的信息不存在。 |
+| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | `source_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的源码。 | 设置`source_code`寄存器的值。`source_idx`的值可能为0，如果为0，则代表对应的信息不存在。 |
 | `SET_COLUMN`           | `0x0b` |    | `uleb128 column_num`   | `column_num`：待设置的列号。   | 设置`column`寄存器的值，并生成一个位置条目。  |
 | 特殊操作码           | `0x0c..0xff`   |   |  |   | 使 `line` 和 `address` 寄存器指向下一个地址，并生成一个位置条目。详情参阅下文中的说明。 |
 
@@ -464,10 +469,6 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `method_string_literal_region_idx_size` | `uint32_t`       | 该区域的[MethodStringLiteralRegionIndex](#methodstringliteralregionindex)中元素的数量，最大值为65536。 |
 | `method_string_literal_region_idx_off`  | `uint32_t`       | 一个偏移量，指向[MethodStringLiteralRegionIndex](#methodstringliteralregionindex)。 |
 | `reserved`                              | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
-| `reserved`                              | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
-| `reserved`                              | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
-| `reserved`                              | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
-
 
 ### ClassRegionIndex
 ClassRegionIndex结构的作用是允许通过更紧凑的索引，找到对应的[Type](#type)。
@@ -509,7 +510,7 @@ MethodStringLiteralRegionIndex结构的作用是允许通过更紧凑的索引�
 
 | **名称** | **格式** | **说明**                                               |
 | -------------- | -------------- | ------------------------------------------------------------ |
-| `offsets`      | `uint32_t[]`   | 一个数组，数组中每个元素的值是一个偏移量，指向方法、字符串或者字面量数组。数组长度由[IndexHeader](#indexheader)中的`method_string_literal_region_idx_size`指定。 |
+| `offsets`      | `uint32_t[]`   | 一个数组，数组中每个元素的值都是一个偏移量，指向方法、字符串或者字面量数组。数组长度由[IndexHeader](#indexheader)中的`method_string_literal_region_idx_size`指定。 |
 
 
 ### LiteralArray
@@ -525,7 +526,7 @@ MethodStringLiteralRegionIndex结构的作用是允许通过更紧凑的索引�
 
 
 ### Literal
-描述字节码文件中的字面量，根据字面量值的字节数的不同，有四种编码格式，分别是单字节编码、双字节编码、四字节编码、八字节编码。根据不同数值长度对应相适应的编译格式，优化字节码文件大小。
+描述字节码文件中的字面量，根据字面量值的字节数的不同，有四种编码格式。分别是单字节编码、双字节编码、四字节编码和八字节编码。根据不同数值长度对应相应的编译格式，优化字节码文件大小。
 
 - 对齐方式：每种格式都有对应的对齐规则。
 - 格式：

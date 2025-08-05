@@ -1,4 +1,9 @@
 # Class (WebCookieManager)
+<!--Kit: ArkWeb-->
+<!--Subsystem: ArkWeb-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
 
@@ -39,7 +44,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
-| incognito    | boolean | 否   | true表示获取隐私模式下webview的内存cookies，false表示正常非隐私模式下的cookies。 |
+| incognito    | boolean | 否   | true表示获取隐私模式下webview的内存cookies，false表示正常非隐私模式下的cookies。<br>默认值：false。 |
 
 **返回值：**
 
@@ -296,7 +301,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
 | value  | string | 是   | 要设置的cookie的值。      |
-| incognito    | boolean | 否   | true表示设置隐私模式下对应url的cookies，false表示设置正常非隐私模式下对应url的cookies。 |
+| incognito    | boolean | 否   | true表示设置隐私模式下对应url的cookies，false表示设置正常非隐私模式下对应url的cookies。<br>默认值：false。 |
 
 **错误码：**
 
@@ -925,7 +930,7 @@ static existCookie(incognito?: boolean): boolean
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示隐私模式下查询是否存在cookies，false表示正常非隐私模式下查询是否存在cookies。 |
+| incognito<sup>11+</sup>    | boolean | 否   | true表示隐私模式下查询是否存在cookies，false表示正常非隐私模式下查询是否存在cookies。<br>默认值：false。 |
 
 **返回值：**
 
@@ -969,7 +974,7 @@ static clearAllCookiesSync(incognito?: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito    | boolean | 否   | true表示清除隐私模式下Webview的所有内存cookies，false表示清除正常非隐私模式下的持久化cookies。 |
+| incognito    | boolean | 否   | true表示清除隐私模式下Webview的所有内存cookies，false表示清除正常非隐私模式下的持久化cookies。<br>默认值：false。 |
 
 **示例：**
 

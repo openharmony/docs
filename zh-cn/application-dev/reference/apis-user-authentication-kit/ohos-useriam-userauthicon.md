@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuthIcon (嵌入式用户身份认证控件)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供应用界面上展示的人脸、指纹认证图标，具体功能如下：
 
 1. 提供嵌入式的人脸、指纹认证控件图标，可被应用集成。
