@@ -1,4 +1,9 @@
 # 无障碍属性
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 设置组件的无障碍属性和事件，以充分利用无障碍功能。
 

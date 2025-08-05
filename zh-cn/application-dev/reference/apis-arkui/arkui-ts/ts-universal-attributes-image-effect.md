@@ -1,4 +1,9 @@
 # 图像效果
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件的模糊、阴影、球面效果以及设置图片的图像效果。
 
@@ -608,7 +613,7 @@ renderGroup(isGroup: Optional\<boolean>): T
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
-## blendMode<sup>11+</sup> 
+## blendMode<sup>11+</sup>
 
 blendMode(value: BlendMode, type?: BlendApplyType): T
 

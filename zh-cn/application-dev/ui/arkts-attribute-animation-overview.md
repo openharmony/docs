@@ -1,10 +1,15 @@
 # 属性动画概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 
 属性接口（以下简称属性）包含尺寸属性、布局属性、位置属性等多种类型，用于控制组件的行为。针对当前界面上的组件，其部分属性（如位置属性）的变化会引起UI的变化。添加动画可以让属性值从起点逐渐变化到终点，从而产生连续的动画效果。根据变化时是否能够添加动画，可以将属性分为可动画属性和不可动画属性。判断一种属性是否适合作为可动画属性主要有两个标准：
 
 
-1. 属性变化能够引起UI的变化。例如，[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)属性用于控制组件是否可以响应点击、触摸等事件，但enable属性的变化不会引起UI的变化，因此不适合作为可动画属性。
+1. 属性变化能够引起UI的变化。例如，[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)属性用于控制组件是否可以响应点击、触摸等事件，但enabled属性的变化不会引起UI的变化，因此不适合作为可动画属性。
 
 2. 属性在变化时适合添加动画作为过渡。例如，[focusable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)属性决定当前组件是否可以获得焦点，当focusable属性发生变化时，应立即切换到终点值以响应用户行为，不应该加入动画效果，因此不适合作为可动画属性。
 

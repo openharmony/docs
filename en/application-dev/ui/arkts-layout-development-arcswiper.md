@@ -12,7 +12,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## Setting the Navigation Point Indicator Style
@@ -90,7 +90,7 @@ The **ArcSwiper** component supports four page switching modes: swiping with fin
   @Entry
   @Component
   struct SwiperCustomAnimationExample {
-    private wearableSwiperController: ArcSwiperController = new ArcSwiperController()
+    private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
 
     build() {
       Column() {
@@ -191,20 +191,27 @@ When **vertical** is set to **true**, swiping occurs in the vertical direction. 
 Use the [customContentTransition](../reference/apis-arkui/arkui-ts/ts-container-arcswiper.md#customcontenttransition) attribute to set a custom transition animation for **ArcSwiper**. Define the animation by adjusting opacity, scale, translation, and rendering layer for all pages within the viewport frame by frame in the callback.
 
 ```ts
-import { Decimal } from '@kit.ArkTS'
+import { Decimal } from '@kit.ArkTS';
+import {
+  ArcSwiper,
+  ArcSwiperAttribute,
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
+} from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private MIN_SCALE: number = 0.1
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
+  private MIN_SCALE: number = 0.1;
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
     }
   }
 
@@ -227,13 +234,13 @@ struct SwiperCustomAnimationExample {
         transition: (proxy: SwiperContentTransitionProxy) => {
           if (proxy.position <= -1 || proxy.position >= 1) {
             // When a group of pages is completely scrolled out of the viewport, reset the attribute values.
-            this.opacityList[proxy.index] = 1.0
-            this.scaleList[proxy.index] = 1.0
+            this.opacityList[proxy.index] = 1.0;
+            this.scaleList[proxy.index] = 1.0;
           } else {
-            let position: number = Decimal.abs(proxy.position).toNumber()
-            this.opacityList[proxy.index] = 1 - position
+            let position: number = Decimal.abs(proxy.position).toNumber();
+            this.opacityList[proxy.index] = 1 - position;
             this.scaleList[proxy.index] =
-              this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - position)
+              this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - position);
           }
         }
       })
@@ -249,11 +256,19 @@ struct SwiperCustomAnimationExample {
 The swipe gesture of the **ArcSwiper** component may conflict with the swipe-to-return functionality. To resolve this, you can use [gesture judgment](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin) to determine whether **ArcSwiper** has scrolled to the beginning. This allows you to intercept the swipe gesture and enable the swipe-to-return functionality.
 
 ```ts
+import {
+  ArcSwiper,
+  ArcSwiperAttribute,
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
+} from '@kit.ArkUI';
+
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  innerSelectedIndex: number = 0
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  innerSelectedIndex: number = 0;
 
   build() {
     Column() {
@@ -268,18 +283,18 @@ struct SwiperCustomAnimationExample {
         })
       }
       .onAnimationStart((index: number, targetIndex: number) => {
-        this.innerSelectedIndex = targetIndex
+        this.innerSelectedIndex = targetIndex;
       })
       .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
         others: Array<GestureRecognizer>): GestureJudgeResult => { // When the implementation is about to succeed, set the recognizer enabling state based on the current component state.
         if (current) {
           let target = current.getEventTargetInfo();
           if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-            let swiperTaget = target as ScrollableTargetInfo
-            if (swiperTaget instanceof ScrollableTargetInfo &&
-              (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) { // This condition checks whether ArcSwiper has scrolled to the beginning.
+            let swiperTarget = target as ScrollableTargetInfo;
+            if (swiperTarget instanceof ScrollableTargetInfo &&
+              (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) { // Check whether the ArcSwiper has scrolled to the beginning: swiperTarget.isBegin() or innerSelectedIndex === 0.
               let panEvent = event as PanGestureEvent;
-              if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
+              if (panEvent && panEvent.offsetX > 0 && (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
                 return GestureJudgeResult.REJECT;
               }
             }

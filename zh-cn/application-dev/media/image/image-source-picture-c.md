@@ -1,4 +1,9 @@
 # 使用Image_NativeModule完成多图对象解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 创建ImageSource，解码得到Picture，以及释放ImageSource实例。
 

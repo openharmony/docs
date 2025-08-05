@@ -1,4 +1,9 @@
 # @ohos.file.fs (文件管理)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 该模块为基础文件操作API，提供基础文件操作能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 

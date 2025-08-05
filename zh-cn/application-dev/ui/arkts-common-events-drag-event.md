@@ -130,7 +130,7 @@
     })
     ```
    
-   pixmap的生成可以调用[this.getUIContext().getComponentSnapshot().createFromBuilder()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilderdeprecated)来实现。
+   pixmap的生成可以调用[this.getUIContext().getComponentSnapshot().createFromBuilder()](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfrombuilder12)来实现。
 
       ```ts
       @Builder
@@ -474,7 +474,7 @@ struct Index {
     })
     ```
 
-   截图的获取可以在选中组件时通过调用[this.getUIContext().getComponentSnapshot().get()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotgetdeprecated)方法获取。以下示例通过获取组件对应id的方法进行截图。
+   截图的获取可以在选中组件时通过调用[this.getUIContext().getComponentSnapshot().get()](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#get12)方法获取。以下示例通过获取组件对应id的方法进行截图。
 
     ```ts
     @State previewData: DragItemInfo[] = []

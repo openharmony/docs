@@ -651,6 +651,7 @@ let firewallRule: networkManager.FirewallRule = {
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
 };
+
 // 移除指定的规则
 try {
   networkManager.removeFirewallRule(wantTemp, firewallRule);
@@ -658,7 +659,6 @@ try {
 } catch (err) {
   console.error(`Failed to remove firewall rule. Code: ${err.code}, message: ${err.message}`);
 }
-
 
 // 清空所有规则
 try {
