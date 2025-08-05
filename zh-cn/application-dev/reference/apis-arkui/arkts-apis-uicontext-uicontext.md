@@ -217,7 +217,6 @@ getUIObserver(): UIObserver
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Component
 struct PageOne {
@@ -671,7 +670,6 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -1324,7 +1322,6 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -1837,7 +1834,6 @@ vp2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -1894,7 +1890,6 @@ px2vp(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -1953,7 +1948,6 @@ fp2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -2012,7 +2006,6 @@ px2fp(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -2067,7 +2060,6 @@ lpx2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -2122,7 +2114,6 @@ px2lpx(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -2415,7 +2406,6 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
