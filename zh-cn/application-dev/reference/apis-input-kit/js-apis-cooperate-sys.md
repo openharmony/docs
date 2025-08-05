@@ -88,7 +88,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 | 类型                 | 说明                     |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
+| Promise&lt;void&gt;      | 无返回结果的Promise对象。        |
 
 **错误码**：
 
