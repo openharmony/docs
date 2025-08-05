@@ -54,23 +54,35 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 ```ts
 import { formBindingData } from '@kit.FormKit';
-import fs from '@ohos.file.fs';
-
-try {
-  let context = getContext(this);
-  let pathDir = context.filesDir;
-  let filePath = pathDir + "/form.png";
-  let fd: fs.File = fs.openSync(filePath);
-  let formImagesParam: Record<string, fs.File> = {
-    'image': fd
-  };
-  let createFormBindingDataParam: Record<string, string | Record<string, fs.File>> = {
-    'name': '21°',
-    'formImages': formImagesParam
-  };
-
-  formBindingData.createFormBindingData(createFormBindingDataParam);
-} catch (error) {
-  console.error(`catch error, error: ${JSON.stringify(error)}`);
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  content = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  pathDir: string = this.content.filesDir;
+  createFormBindingData() {
+    try {
+      let filePath = this.pathDir + "/form.png";
+      let file = fileIo.openSync(filePath);
+      let formImagesParam: Record<string, number> = {
+        'image': file.fd
+      };
+      let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
+        'name': '21°',
+        'imgSrc': 'image',
+        'formImages': formImagesParam
+      };
+      formBindingData.createFormBindingData(createFormBindingDataParam);
+    } catch (error) {
+      console.error(`catch error, error: ${JSON.stringify(error)}`);
+    }
+  }
+  build() {
+    Button('createFormBindingData')
+      .onClick((event: ClickEvent)=>{
+        this.createFormBindingData();
+      })
+  }
 }
 ```
