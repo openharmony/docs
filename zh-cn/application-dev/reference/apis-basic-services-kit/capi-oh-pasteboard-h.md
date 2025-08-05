@@ -1,5 +1,5 @@
 # oh_pasteboard.h
-<!--Kit: basic-services-->
+<!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
 <!--SE: @guo867-->

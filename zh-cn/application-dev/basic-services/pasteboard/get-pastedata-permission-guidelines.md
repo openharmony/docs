@@ -1,5 +1,5 @@
 # 申请访问剪贴板权限
-<!--Kit: basic-services-->
+<!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
 <!--SE: @guo867-->

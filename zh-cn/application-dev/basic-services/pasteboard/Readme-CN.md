@@ -1,5 +1,5 @@
 # 剪贴板服务<!--pasteboard-->
-<!--Kit: basic-services-->
+<!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
 <!--SE: @guo867-->
