@@ -1,4 +1,9 @@
 # app.json5配置文件
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @hanfeng6-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 ## 配置文件示例
 

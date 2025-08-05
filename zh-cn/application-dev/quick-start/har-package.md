@@ -1,4 +1,10 @@
 # HAR
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
+
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
 ## 使用场景
