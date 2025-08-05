@@ -30,7 +30,7 @@ try {
   asset.add(attr).then(() => {
     console.info(`Succeeded in adding Asset.`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);	
+    console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);
   })
 } catch (error) {
   let err = error as BusinessError;

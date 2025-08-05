@@ -22,7 +22,7 @@ import { asset } from '@kit.AssetStoreKit';
 
 add(attributes: AssetMap): Promise\<void>
 
-新增一条关键资产，使用Promise方式异步返回结果。
+新增一条关键资产。使用Promise异步回调。
 
 设置[IS_PERSISTENT](#tag)属性时，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
@@ -150,7 +150,7 @@ asset.addSync(attr);
 
 remove(query: AssetMap): Promise\<void>
 
-删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
+删除符合条件的一条或多条关键资产。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -260,7 +260,7 @@ asset.removeSync(query);
 
 update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
-更新符合条件的一条关键资产，使用Promise方式异步返回结果。
+更新符合条件的一条关键资产。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ asset.updateSync(query, attrsToUpdate);
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
-查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise方式异步返回结果。
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -502,7 +502,7 @@ let challenge: Uint8Array = asset.preQuerySync(query);
 
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
-查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -555,14 +555,13 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-let res: Array<asset.AssetMap> = await asset.query(query);
-let accessibility: number;
-for (let i = 0; i < res.length; i++) {
-  // parse the attribute.
-  if (res[i] != null) {
-    accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+asset.query(query).then((res: Array<asset.AssetMap>) => {
+  for (let i = 0; i < res.length; i++) {
+    // parse the attribute.
+    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
-}
+  console.info(`Succeeded in querying Asset.`);
+});
 ```
 
 ## asset.querySync<sup>12+</sup>
@@ -626,17 +625,16 @@ let res: Array<asset.AssetMap> = asset.querySync(query);
 let accessibility: number;
 for (let i = 0; i < res.length; i++) {
   // parse the attribute.
-  if (res[i] != null) {
-    accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-  }
+  let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
 }
+console.info(`Succeeded in querying Asset.`);
 ```
 
 ## asset.postQuery
 
 postQuery(handle: AssetMap): Promise\<void>
 
-查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise方式异步返回结果。
+查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

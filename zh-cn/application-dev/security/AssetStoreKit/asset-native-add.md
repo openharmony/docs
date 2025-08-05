@@ -88,7 +88,7 @@
 
        int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
        if (ret == ASSET_SUCCESS) {
-           // Asset added successfully.
+           // Succeeded in adding Asset.
        } else {
            // Failed to add Asset.
        }

@@ -66,7 +66,7 @@
 
        int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
        if (ret == ASSET_SUCCESS) {
-           // Asset removed successfully.
+           // Succeeded in removing Asset.
        } else {
            // Failed to remove Asset.
        }

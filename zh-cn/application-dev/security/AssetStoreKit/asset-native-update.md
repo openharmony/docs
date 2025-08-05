@@ -89,7 +89,7 @@
        int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
                                      sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
        if (ret == ASSET_SUCCESS) {
-          // Asset updated successfully.
+          // Succeeded in updating Asset.
        } else {
           // Failed to update Asset.
        }

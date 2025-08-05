@@ -57,7 +57,7 @@ void AddAsset() {
 
     int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
     if (ret == ASSET_SUCCESS) {
-        // Asset added to the group successfully.
+        // Succeeded in adding Asset to the group.
     } else {
         // Failed to add Asset to the group.
     }
@@ -86,7 +86,7 @@ void RemoveAsset() {
 
     int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
     if (ret == ASSET_SUCCESS) {
-        // Asset removed from the group successfully.
+        // Succeeded in removing Asset from the group.
     } else {
         // Failed to remove Asset from the group.
     }
@@ -124,7 +124,7 @@ void UpdateAsset() {
     int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
                                 sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
     if (ret == ASSET_SUCCESS) {
-        // Asset updated in the group successfully.
+        // Succeeded in updating Asset in the group.
     } else {
         // Failed to update Asset in the group.
     }
