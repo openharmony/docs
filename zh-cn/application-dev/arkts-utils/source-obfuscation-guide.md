@@ -1,6 +1,6 @@
 # ArkGuard混淆开启指南
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
