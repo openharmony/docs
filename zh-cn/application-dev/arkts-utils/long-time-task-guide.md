@@ -35,7 +35,17 @@
    }
    ```
 
-3. 宿主线程定义注册及销毁的行为。
+3. 给sensor添加ohos.permission.ACCELEROMETER权限。
+
+   ```json
+   // module.json5
+   "requestPermissions": [
+     {
+       "name": "ohos.permission.ACCELEROMETER",
+     }
+   ]
+   ```
+4. 宿主线程定义注册及销毁的行为。
    - 注册：发起长时任务，并通过emitter接收监听数据。
    - 销毁：发送取消传感器监听的事件，并结束长时任务。
 
