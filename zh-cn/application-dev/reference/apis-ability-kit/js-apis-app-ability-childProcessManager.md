@@ -1,4 +1,9 @@
 # @ohos.app.ability.childProcessManager (子进程管理)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 childProcessManager模块提供子进程管理能力，支持子进程启动操作。当前仅支持2in1、tablet设备。
 

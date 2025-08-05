@@ -1,4 +1,9 @@
 # 获取Native子进程退出信息
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 ## 场景介绍
 
