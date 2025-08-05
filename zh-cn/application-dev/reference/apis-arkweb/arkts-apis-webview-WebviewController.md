@@ -1032,15 +1032,6 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 异步的作用在于：H5线程将异步JavaScript任务提交给ETS主线程后，无需等待任务执行完成并返回结果，H5线程即可继续执行后续任务。这在执行耗时较长的JavaScript任务或ETS线程较为拥堵的情况下，可以有效减少H5线程因JavaScript任务而被阻塞的情况。然而，异步JavaScript任务无法返回值，且任务执行的顺序无法保证，因此需要根据具体情境判断是否使用同步或异步方式。
 > - 当网页发生整页跳转（非单页应用的路由切换）加载新页面时，原页面上下文会被完全重置。因此，之前注册到windows上的自定义JavaScript对象会丢失，需要在页面加载后重新注册。需要监听页面加载完成，重新注入对象。
 
-> **permission参数说明：**
->
-> - scheme（协议）和host（域名）参数不可为空，且host不支持通配符，只能填写完整的host。
-> - 可以只配置object级的白名单，该白名单对所有JsBridge方法生效。
-> - 若JsBridge方法A设置了method级白名单，则方法A的最终白名单为object级白名单与其method级白名单的交集。例如：
->    - 如果方法A的method级配置了scheme为file、host为docs的白名单，则object级也必须设置scheme为file、host为docs的白名单。
->    - 反之亦然：若object级配置了scheme为file、host为docs的白名单，而方法A需要在相应场景下允许调用，则方法A的method级也需配置相同的scheme和host白名单。
-> - 对于file协议，host为第一级目录名称，path（路径）可为空，不为空时需要注意object级和method级白名单的交集原则，object级和method级的path不能冲突（完全相同或method级path为object级path的子目录）。
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -1051,7 +1042,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
-| permission<sup>12+</sup> | string | 否   | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。|
+| permission<sup>12+</sup> | string | 否   | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>scheme（协议）和host（域名）参数不可为空，且host不支持通配符，只能填写完整的host。<br>可以只配置object级的白名单，该白名单对所有JsBridge方法生效。<br>若JsBridge方法A设置了method级白名单，那么方法A最终的白名单是object级白名单与其method级白名单的交集。比如方法A的method级配置了scheme为file、host为docs的白名单，那么object级也必须设置scheme为file、host为docs的白名单；反过来也是如此，若object级配置了scheme为file、host为docs的白名单，而方法A需要在对应场景允许调用的话，方法A的method级也需要配置同样scheme和host的白名单<br>对于file协议，host为第一级目录名称，path（路径）可为空，不为空时需要注意object级和method级白名单的交集原则，object级和method级的path不能冲突（完全相同或method级path为object级path的子目录）。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。|
 
 **错误码：**
 
