@@ -64,17 +64,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 采集前提
 
-#### 进入shell
 
   ```
   C:\Users\issusser>hdc shell
   $
-  ```
-
-#### 拉起和查看daemon进程
-
-  ```
-  C:\Users\issusser>hdc shell
   // 拉起daemon进程
   $ SP_daemon 
   // 查看daemon进程是否存在
@@ -82,11 +75,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   shell          1584     1 0 21:50:05 ?     00:00:00 SP_daemon
   shell          1595  1574 3 21:51:02 pts/0 00:00:00 grep SP_daemon
   $
-  ```
-
-#### 执行和查看帮助命令
-
-  ```
+  //执行和查看帮助命令
   $ SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
    Usage: SP_daemon [options] [arguments]
@@ -153,9 +142,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    $
   ```
 
-### 基础采集
-
-#### 通过-N开启采集
+### 秒级采集示例
+通过命令行对整机或者应用的cpu，ram，fps，gpu，ddr，温度，截图，网络速率应用子线程数量，应用文件描述符数量，cpu指令数进行一秒一次的数据采集。
 
 | 命令参数   |必选| 说明                   |
 | :-----| :-----| :--------------------- |
@@ -176,7 +164,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -d    |否| 采集DDR。                 |
 | -sections|否| 设置分段采集。          |
 
-##### 使用示例
 - 设置包名并采集1次应用的线程数量
 
   ```
@@ -816,7 +803,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >- 使用该命令采集时需进入被测应用内。
 
 
-#### 通过-start开启采集
+### 启停采集示例
 
 先执行start开始采集命令，然后操作设备或应用，最后执行stop结束采集命令。
 
@@ -826,7 +813,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -stop |是| 结束采集，执行后会生成采集报告。              |
 | -print |否| 一秒打印一次启停采集信息。              |
 
-##### 使用示例
   
 - 启停采集整机CPU大中小核频率、各核使用率
 
@@ -919,7 +905,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
 
-#### 查看csv采集结果
+### 查看csv采集结果
 
 若采集结果保存在csv文件中，可以按照如下操作导出和查看结果内容。
 
@@ -943,7 +929,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     C:\Users\issusser>
     ```
-
   - 打开data.csv查看采集数据
 
     在自定义导出路径里找到data.csv文件打开查看采集数据表，data.csv数据名描述如下：
@@ -1035,8 +1020,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -completeTime|否|    完成时延。         |
 | -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次。       |
 
-#### 使用示例
-
 - 应用响应时延（命令仅支持RK）
 
   ```
@@ -1071,7 +1054,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 执行命令后需滑动或切换当前页面，等待10s后打印采集结果。
 
-### 其他采集
+### 其他采集示例
 
 当前设备电量采集结果可写入csv文件，其它命令需单独采集，采集结果不写入data.csv，仅在命令框显示。
 
@@ -1085,8 +1068,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -editorServer|否|    editor工具用来拉起daemon进程。         |
 | -recordcapacity|否|    获取当前设备电量。         |
 | -profilerfps |否| 采集当前界面fps。          |
-
-#### 使用示例
 
 - 获取屏幕分辨率
 
