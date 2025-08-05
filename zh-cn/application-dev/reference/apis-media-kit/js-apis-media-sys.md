@@ -140,8 +140,8 @@ class JsonData {
   public choice: string = 'true';
   public displayId: number | null = -1;
   public missionId: number | null = -1;
-  public checkBoxSelected: string = 'ture';
-  public isInnerAudioBoxSelected: string = 'ture';
+  public checkBoxSelected: string = 'true';
+  public isInnerAudioBoxSelected: string = 'true';
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -183,7 +183,7 @@ getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | Promise对象。可用于查询系统隐私保护和应用隐私保护状态。异步返回String对象，失败时返回null。 |
+| Promise\<string> | Promise对象。可用于查询系统隐私保护和应用隐私保护状态。异步返回String对象，失败时返回空字符串。 |
 
 **错误码：**
 
