@@ -1,5 +1,11 @@
 # oh_axis_type.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 ## 概述
 
 输入设备的轴事件结构和枚举。

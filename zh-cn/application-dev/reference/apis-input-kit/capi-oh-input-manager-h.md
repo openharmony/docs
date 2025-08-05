@@ -1,5 +1,11 @@
 # oh_input_manager.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 ## 概述
 
 提供事件注入和关键状态查询等功能。
