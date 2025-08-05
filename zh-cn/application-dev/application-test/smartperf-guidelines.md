@@ -64,10 +64,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 采集前提
 
+- 进入shell
 
   ```
   C:\Users\issusser>hdc shell
   $
+  ```
+
+- 拉起和查看daemon进程
+
+  ```
+  C:\Users\issusser>hdc shell
   // 拉起daemon进程
   $ SP_daemon 
   // 查看daemon进程是否存在
@@ -75,7 +82,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   shell          1584     1 0 21:50:05 ?     00:00:00 SP_daemon
   shell          1595  1574 3 21:51:02 pts/0 00:00:00 grep SP_daemon
   $
-  //执行和查看帮助命令
+  ```
+
+- 执行和查看帮助命令
+
+  ```
   $ SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
    Usage: SP_daemon [options] [arguments]
@@ -142,7 +153,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    $
   ```
 
+
 ### 秒级采集示例
+
 通过命令行对整机或者应用的cpu，ram，fps，gpu，ddr，温度，截图，网络速率应用子线程数量，应用文件描述符数量，cpu指令数进行一秒一次的数据采集。
 
 | 命令参数   |必选| 说明                   |
