@@ -74,7 +74,7 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
-  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+  photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
     console.info('getPhotoAsset start');
     console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
@@ -82,11 +82,12 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
       return;
     }
     // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片。
-    mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
+    await mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理。
     // mediaLibRequestBuffer(photoAsset, context);
   });
 }
+
 
 async function deferredCaptureCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
@@ -338,14 +339,14 @@ async function releaseCamSession() {
   // 停止当前会话。
   await photoSession?.stop();
 
-  // 释放相机输入流。
-  await cameraInput?.close();
+  // 释放拍照输出流。
+  await photoOutput?.release();
 
   // 释放预览输出流。
   await previewOutput?.release();
 
-  // 释放拍照输出流。
-  await photoOutput?.release();
+  // 释放相机输入流。
+  await cameraInput?.close();
 
   // 释放会话。
   await photoSession?.release();

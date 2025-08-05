@@ -152,9 +152,14 @@
       * 获取doSurfaceShot得到的截图
       * @returns
       */
-     public static getSurfaceShot(): image.PixelMap {
-       return BlurAnimateUtil.surfaceShot;
+    public static getSurfaceShot(): image.PixelMap | undefined {
+       if (BlurAnimateUtil.surfaceShot === null || BlurAnimateUtil.surfaceShot === undefined) {
+          console.error("SurfaceShot is null!");
+          return undefined;
+        }
+        return BlurAnimateUtil.surfaceShot;
      }
+  
    }
    ```
 

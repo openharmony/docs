@@ -41,7 +41,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
    
    async function initCamera(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
       console.info('onForeGround recovery begin.');
-      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+      let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
       if (!cameraManager) {
         console.error("camera.getCameraManager error");
         return;
@@ -108,12 +108,14 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
       if (!previewProfilesArray) {
-        console.error("createOutput previewProfilesArray == null || undefined");
+        console.error("createOutput previewProfilesArray is null!");
+        return;
       }
 
       let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
       if (!photoProfilesArray) {
-        console.error("createOutput photoProfilesArray == null || undefined");
+        console.error("createOutput photoProfilesArray is null!");
+        return;
       }
 
       // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
