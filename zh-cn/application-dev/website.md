@@ -1,9 +1,9 @@
 # OpenHarmony应用开发文档
-<!--Kit: Ability Kit-->
-<!--Subsystem: Ability-->
-<!--Owner: @wanghang-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @zhang_yixin13-->
+<!--SE: @lingminghw-->
+<!--TSE: @RayShih-->
 
 - 入门<!--application-getting-started-->
   <!--Del-->
