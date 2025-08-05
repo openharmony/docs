@@ -37,8 +37,8 @@ background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions):
 >  **说明：**
 >
 > - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
-> - 同时设置了background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
->   - 若background为ResourceColor类型，或设置了ignoresLayoutSafeAreaEdges属性，则background位于最底层。
+> - 同时设置background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
+>   - 若background为ResourceColor类型，或设置ignoresLayoutSafeAreaEdges属性，则background位于最底层。
 >   - 其他情况下，background位于最上层。
 
 ## BackgroundOptions<sup>20+</sup>对象说明
@@ -50,11 +50,11 @@ background配置选项。
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
 | align<sup>10+</sup>          | [Alignment](ts-appendix-enums.md#alignment) | 否   | 自定义背景与组件的对齐方式。该属性仅对CustomBuilder类型的背景生效。如果设置了ignoresLayoutSafeAreaEdges，则背景的布局区域为包含了扩展安全区的范围。<br/>默认值：Alignment.Center<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。<br/> 默认值：<br/>- CustomBuilder背景：[]，不扩展。<br/>- ResourceColor背景：[LayoutSafeAreaEdge.ALL]，扩展至所有方向。<br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区，包括：状态栏，导航栏和[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。<br/> 默认值：<br/>- CustomBuilder背景：[]，不扩展。<br/>- ResourceColor背景：[LayoutSafeAreaEdge.ALL]，扩展至所有方向。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
-> 背景设置ignoreLayoutSafeArea之后生效的条件为父组件设置了对应方向的[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。
+> Shape, RowSplit, ColumnSplit, SideBarContainer, Stepper, List, Grid, WaterFlow, Scroll, Refresh, Swiper, Tabs组件的clip属性默认值为true，子组件的背景扩展会被裁剪。
 
 ## backgroundColor
 
