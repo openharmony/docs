@@ -668,6 +668,12 @@ List初始化时如果initialIndex为0会触发一次，List滚动到起始位�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表到达起始位置时触发的回调。 |
+
 ### onReachEnd
 
 onReachEnd(event: () => void)
@@ -681,6 +687,12 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表到达末尾位置时触发的回调。 |
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -733,6 +745,12 @@ onScrollStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表滑动开始时触发的回调。 |
+
 ### onScrollStop
 
 onScrollStop(event: () => void)
@@ -744,6 +762,12 @@ onScrollStop(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表滑动停止时触发的回调。 |
 
 ### onItemMove
 
