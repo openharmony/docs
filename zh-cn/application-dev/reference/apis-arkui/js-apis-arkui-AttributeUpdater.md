@@ -1,4 +1,9 @@
 # AttributeUpdater
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
 
