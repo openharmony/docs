@@ -45,9 +45,16 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import fs from '@ohos.file.fs';
+
+public getFileFd(): number {
+    let filesDir = '/data/storage/el2/base/haps';
+    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    return file.fd;
+}
 
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
-    fd: 0, // 文件需要先由调用者创建，通常是MP4文件，赋予写权限，将文件fd传给此参数。
+    fd: this.getFileFd(), // 文件需要先由调用者创建，通常是MP4文件，赋予写权限，将文件fd传给此参数。
     frameWidth: 640,
     frameHeight: 480
     // 补充其他参数。
@@ -72,7 +79,7 @@ startRecording(): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | 异步开始录屏方法的Promise返回值. |
+| Promise\<void> | 异步开始录屏方法的Promise返回值。 |
 
 **错误码：**
 
@@ -145,7 +152,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | 豁免隐私窗口的Promise返回值. |
+| Promise\<void> | 豁免隐私窗口的Promise返回值。 |
 
 **错误码：**
 

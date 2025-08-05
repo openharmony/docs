@@ -102,7 +102,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 
 reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
 
-上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“取消”则不进行录屏，如果用户选择“确定”则开始录屏。
+上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“不允许”则不进行录屏，如果用户选择“允许”则开始录屏。
 
 此接口提供给创建弹窗的系统应用调用。
 
@@ -115,7 +115,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id等。可见示例中JsonData样例。|
 
 **返回值：**
 
@@ -140,6 +140,8 @@ class JsonData {
   public choice: string = 'true';
   public displayId: number | null = -1;
   public missionId: number | null = -1;
+  public checkBoxSelected: string = 'ture';
+  public isInnerAudioBoxSelected: string = 'ture';
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -148,10 +150,61 @@ try {
     choice: 'true',  // 替换成用户的选择内容。
     displayId: -1,   // 替换成用户选择的屏幕Id。
     missionId: -1,   // 替换成用户选择的窗口Id。
+    checkBoxSelected: 'true',   // 替换成用户是否开启屏幕保护
+    isInnerAudioBoxSelected: 'true',   // 替换成用户是否开启内部音频录制
   }
   await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
   console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+}
+```
+
+## media.getAVScreenCaptureConfigurableParameters<sup>20+</sup>
+
+getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
+
+从服务器获取用户可更改的系统隐私保护和应用隐私保护配置。使用Promise异步回调。
+
+>**注意：**
+>
+> 此接口仅提供给创建弹窗的系统应用调用。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                          |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| sessionId | number | 是   | AVScreenCapture服务会话Id，由AVScreenCapture拉起隐私弹窗时传给应用。 |
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<string> | Promise对象。可用于查询系统隐私保护和应用隐私保护状态。异步返回String对象，失败时返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202      | Called from Non-System applications. Return by promise.               |
+| 5400109  | Sessions not exist. Return by promise.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+let sessionId: number = 0; // 替换成拉起此进程的sessionId。
+
+try {
+  let privacyResult: string = await media.getAVScreenCaptureConfigurableParameters(sessionId);
+} catch (error: BusinessError) {
+  console.error(`getAVScreenCaptureConfigurableParameters error, error message: ${error.message}`);
 }
 ```
 
