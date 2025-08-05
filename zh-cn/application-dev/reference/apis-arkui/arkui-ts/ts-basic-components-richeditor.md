@@ -1205,7 +1205,7 @@ addTextSpan(content: ResourceStr, options?: RichEditorTextSpanOptions): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 添加完成的TextSpan所在的位置。 |
+| number | 添加完成的TextSpan在所有Span中的索引位置。 |
 
 ### addImageSpan
 
@@ -1230,7 +1230,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 添加完成的ImageSpan所在的位置。 |
+| number | 添加完成的ImageSpan在所有Span中的索引位置。 |
 
 ### addBuilderSpan<sup>11+</sup>
 
@@ -1268,7 +1268,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
-| number | 添加完成的builderSpan所在的位置。 |
+| number | 添加完成的builderSpan在所有Span中的索引位置。 |
 
 ### addSymbolSpan<sup>11+</sup>
 
@@ -1293,7 +1293,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 | 类型     | 说明                    |
 | ------ | --------------------- |
-| number | 添加完成的SymbolSpan所在的位置。 |
+| number | 添加完成的SymbolSpan在所有Span中的索引位置。 |
 
 ### updateSpanStyle
 
