@@ -1,9 +1,11 @@
 # 创建ArkTS卡片
 ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
+- 卡片和应用共包最终编译产物是同一个hap包。
+- 独立卡片包最终编译的产物分为卡片包和应用包，以达到卡片前端和后端解耦的目的。
 ## 卡片和应用共包形态
-最终的编译产物是同一个hap包。
-### 创建应用工程
-创建卡片当前有两种入口：
+### 创建卡片和应用共包卡片
+1. 新建应用工程
+应用工程可以分为Application（普通应用），Atomic Service（元服务）两种。这两种应用都支持创建卡片。
 - 创建工程时，选择Application，可以在创建工程后右键新建卡片。
 - 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片。<br>
 
@@ -12,19 +14,19 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 >
 >基于不同版本的DevEco Studio，请以实际界面为准。
 
-### 新建卡片
+2. 新建卡片
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
 
-1. 右键新建卡片。<br>
+- 右键新建卡片。<br>
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
 >在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态卡片或静态卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
    
-2. 根据实际业务场景，选择一个卡片模板。<br>
+- 根据实际业务场景，选择一个卡片模板。<br>
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
 
-3. 在选择卡片的开发语言类型（Language）时，选择ArkTS选项。选择卡片支持的外观规格（Support dimension）时，选择期望的卡片尺寸，再选择默认的外观规格（Default dimension）。详细的卡片外观规格，可参考[form_config.json配置文件](arkts-ui-widget-configuration.md)，后续也可以在form_config.json配置文件中修改卡片规格。然后单击“Finish”，即可完成ArkTS卡片创建。<br>
+- 在选择卡片的开发语言类型（Language）时，选择ArkTS选项。选择卡片支持的外观规格（Support dimension）时，选择期望的卡片尺寸，再选择默认的外观规格（Default dimension）。详细的卡片外观规格，可参考[form_config.json配置文件](arkts-ui-widget-configuration.md)，后续也可以在form_config.json配置文件中修改卡片规格。然后单击“Finish”，即可完成ArkTS卡片创建。<br>
    ![WidgetProjectCreate3](figures/WidgetProjectCreate3.png)
    
    建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。<br>
@@ -51,17 +53,27 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
    - 在resources/base/profile/目录下的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，配置卡片（WidgetCard.ets）相关信息。
 
 ## 独立卡片包形态
-最终编译的产物分为卡片包和应用包，以达到卡片前端和后端解耦的目的。
-### [创建应用工程](./arkts-ui-widget-creation.md#应用工程创建)
-### 新建卡片
-1. 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
+### 创建独立卡片包卡片
+1. 新建应用工程
+应用工程可以分为Application（普通应用），Atomic Service（元服务）两种。这两种应用都支持创建卡片。
+- 创建工程时，选择Application，可以在创建工程后右键新建卡片。
+- 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片。<br>
+
+![WidgetCreateProject](figures/WidgetCreateProject.png)
+>**说明：** 
+>
+>基于不同版本的DevEco Studio，请以实际界面为准。
+2. 新建卡片
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_1.png)
-2. 选择模版之后点击【Next】。<br>
+>**说明：** 
+>在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态卡片或静态卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
+- 选择模版之后点击【Next】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_2.png)
-3. 填写卡片配置之后点击【Finish】。<br>
+- 填写卡片配置之后点击【Finish】。<br>
 ![WidgetProjectCreate2](figures/分布式卡片工程_3.png)
 >**说明：**
->在卡片创建成功之后。entry模块称为应用包卡片后端，主要包含应用和卡片后端能力。library模块称为卡片包前端，主要包含卡片UI侧能力。entry模块下module.json5配置文件里面的formExtensionModule字段需要关联library，library模块下module.json5配置文件里面的formWidgetModule字段需要关联entry以满足卡片包前端和应用包卡片后端相互关联。
+>在卡片创建成功之后。entry模块称为应用包卡片后端，主要包含应用和卡片后端能力。library模块称为卡片包前端，主要包含卡片UI侧能力。entry模块下module.json5配置文件里面的formExtensionModule字段需要关联library，library模块下module.json5配置文件里面的formWidgetModule字段需要关联entry以满足卡片包前端和应用包卡片后端相互关联，系统会自动关联。
 ### 工程结构介绍
 **图2** 独立卡片包工程目录。<br>
 ![WidgetModules](figures/独立包卡片目录结构_1_.png)<br>
@@ -77,4 +89,4 @@ ArkTS卡片有卡片和应用共包、独立卡片包两种形态。
 - 卡片包编译产物。<br>
 ![WidgetProjectCreate2](figures/卡片包前端产物.png)
 >**说明：**
->独立卡片包把应用包和卡片包区分开了，我们可以单独编译安装其中一个包。需要注意同时安装的应用包和卡片包要保持同一版本。
+>独立卡片包把应用包和卡片包区分开了，我们可以单独编译安装其中一个包。需要注意同时安装的应用包和卡片包要保持同一应用版本。
