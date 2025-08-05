@@ -1034,12 +1034,12 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 > **permission参数说明：**
 >
-> - scheme(协议)和host(域名)参数不可为空，且host不支持通配符，只能填写完整的host。
+> - scheme（协议）和host（域名）参数不可为空，且host不支持通配符，只能填写完整的host。
 > - 可以只配置object级的白名单，该白名单对所有JsBridge方法生效。
 > - 若JsBridge方法A设置了method级白名单，则方法A的最终白名单为object级白名单与其method级白名单的交集。例如：
 >    - 如果方法A的method级配置了scheme为file、host为docs的白名单，则object级也必须设置scheme为file、host为docs的白名单。
 >    - 反之亦然：若object级配置了scheme为file、host为docs的白名单，而方法A需要在相应场景下允许调用，则方法A的method级也需配置相同的scheme和host白名单。
-> - 对于file协议，host为第一级目录名称，path(路径)可为空，不为空时需要注意object级和method级白名单的交集原则，object级和method级的path不能冲突(完全相同或method级path为object级path的子目录)。
+> - 对于file协议，host为第一级目录名称，path（路径）可为空，不为空时需要注意object级和method级白名单的交集原则，object级和method级的path不能冲突（完全相同或method级path为object级path的子目录）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
