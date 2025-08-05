@@ -130,7 +130,7 @@ struct Index {
   }
 }
 ```
-![attributeUpdater1](figures/attribute-updater1.PNG)
+![attributeUpdater1](figures/attribute-updater1.gif)
 
 
 ### attribute

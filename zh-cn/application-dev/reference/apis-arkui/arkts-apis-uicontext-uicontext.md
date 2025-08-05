@@ -214,7 +214,49 @@ getUIObserver(): UIObserver
 
 <!--code_no_check-->
 ```ts
-uiContext.getUIObserver();
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## getMediaQuery
@@ -581,6 +623,8 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+完整示例请参考[获取根节点示例](js-apis-arkui-frameNode#获取根节点示例)
+
 <!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode");
@@ -616,7 +660,30 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 <!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode");
+@Entry
+@Component
+struct MyComponent {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          let node = this.getUIContext().getAttachedFrameNodeById("HelloWorld");
+          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ## getFrameNodeByUniqueId<sup>12+</sup>
@@ -1745,7 +1812,27 @@ vp2px(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.vp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().vp2px(50),
+          centerY: this.getUIContext().vp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2vp<sup>12+</sup>
@@ -1782,7 +1869,27 @@ px2vp(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.px2vp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2vp(50),
+          centerY: this.getUIContext().px2vp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## fp2px<sup>12+</sup>
@@ -1821,7 +1928,27 @@ fp2px(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.fp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().fp2px(50),
+          centerY: this.getUIContext().fp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2fp<sup>12+</sup>
@@ -1860,7 +1987,27 @@ px2fp(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.px2fp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2fp(50),
+          centerY: this.getUIContext().px2fp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## lpx2px<sup>12+</sup>
@@ -1895,7 +2042,27 @@ lpx2px(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.lpx2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().lpx2px(50),
+          centerY: this.getUIContext().lpx2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2lpx<sup>12+</sup>
@@ -1930,7 +2097,27 @@ px2lpx(value : number) : number
 
 <!--code_no_check-->
 ```ts
-uiContext.px2lpx(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2lpx(50),
+          centerY: this.getUIContext().px2lpx(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## getWindowName<sup>12+</sup>
@@ -2203,7 +2390,51 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 <!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene");
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
+        })
+      }
+
+      Button("set frame")
+        .onClick(() => {
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION);
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE);
+            }
+          });
+        })
+    }
+  }
+}
 ```
 
 ## openBindSheet<sup>12+</sup>
@@ -2920,6 +3151,8 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 import { UIContext } from '@kit.ArkUI';
 
@@ -2944,6 +3177,8 @@ static destroyUIContextWithoutWindow(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 UIContext.destroyUIContextWithoutWindow();
 ```
