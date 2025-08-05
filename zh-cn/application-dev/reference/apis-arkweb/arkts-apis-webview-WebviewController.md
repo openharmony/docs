@@ -1016,6 +1016,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
 <br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。
 
 > **说明：**
 >
@@ -1033,11 +1034,11 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 | 参数名     | 类型       | 必填 | 说明                                        |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以单独声明方法和属性，但无法同时进行注册与使用。对象只包含属性时，H5可以访问对象中的属性。对象只包含方法时，H5可以访问对象中的方法。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
+| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以单独声明方法和属性，但无法同时进行注册与使用。对象只包含属性时，H5可以访问对象中的属性。对象只包含方法时，H5可以访问对象中的方法。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
-| permission<sup>12+</sup> | string | 否   | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>scheme（协议）和host（域名）参数不可为空，且host不支持通配符，只能填写完整的host。<br>可以只配置object级的白名单，该白名单对所有JsBridge方法生效。<br>若JsBridge方法A设置了method级白名单，那么方法A最终的白名单是object级白名单与其method级白名单的交集。比如方法A的method级配置了scheme为file、host为docs的白名单，那么object级也必须设置scheme为file、host为docs的白名单；反过来也是如此，若object级配置了scheme为file、host为docs的白名单，而方法A需要在对应场景允许调用的话，方法A的method级也需要配置同样scheme和host的白名单<br>对于file协议，host为第一级目录名称，path（路径）可为空，不为空时需要注意object级和method级白名单的交集原则，object级和method级的path不能冲突（完全相同或method级path为object级path的子目录）。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。|
+| permission<sup>12+</sup> | string | 否   | JSON字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object和method级别的URL白名单。<br>scheme（协议）和host（域名）参数不可为空，且host不支持通配符，只能填写完整的host。<br>可以仅配置object级别的白名单，该白名单对所有JSBridge方法生效。<br>若JSBridge方法A设置了method级别的白名单，那么方法A最终的白名单是object级别白名单与method级别白名单的交集。例如，方法A的method级别配置了scheme为file、host为docs的白名单，那么object级别也必须设置相同的scheme和host的白名单；反之亦然，若object级别配置了scheme为file、host为docs的白名单，而方法A需要在对应场景下允许调用，则方法A的method级别也需配置相同的scheme和host的白名单。<br>对于file协议，host为第一级目录名称，path（路径）可为空，若不为空，则需注意object级别和method级别白名单的交集原则，object级别和method级别的path不能冲突（完全相同或method级别的path为object级别path的子目录）。|
 
 **错误码：**
 
