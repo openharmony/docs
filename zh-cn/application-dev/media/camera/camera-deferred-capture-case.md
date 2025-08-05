@@ -73,7 +73,7 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
 }
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
-  //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
+  // 监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
   photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
     console.info('getPhotoAsset start');
     console.error(`err: ${err}`);
@@ -193,10 +193,10 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
     return;
   }
 
-  //注册监听photoAssetAvailable回调。
+  // 注册监听photoAssetAvailable回调。
   setPhotoOutputCb(photoOutput, context);
 
-  //创建会话。
+  // 创建会话。
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
