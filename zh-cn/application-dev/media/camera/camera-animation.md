@@ -67,7 +67,7 @@
 3. 实现闪黑动效。
 
    ```ts
-   // @Component修饰组件的内部方法
+   // @Component修饰组件的内部方法。
    flashBlackAnim() {
      console.info('flashBlackAnim E');
      this.flashBlackOpacity = 1; // 闪黑组件不透明。
@@ -122,7 +122,7 @@
      public static surfaceShot: image.PixelMap;
    
      /**
-      * 获取surface截图
+      * 获取surface截图。
       * @param surfaceId
       * @returns
       */
@@ -149,7 +149,7 @@
      }
    
      /**
-      * 获取doSurfaceShot得到的截图
+      * 获取doSurfaceShot得到的截图。
       * @returns
       */
     public static getSurfaceShot(): image.PixelMap | undefined {
@@ -284,7 +284,7 @@
 
    ```ts
    /**
-    * 先向外翻转90°，前后置切换触发
+    * 先向外翻转90°，前后置切换触发。
     */
    async rotateFirstAnim() {
      console.info('rotateFirstAnim E');
@@ -330,7 +330,7 @@
    }
    
    /**
-    * 再向内翻转90°
+    * 再向内翻转90°。
     */
    async rotateSecondAnim() {
      console.info('rotateSecondAnim E');
@@ -369,7 +369,7 @@
    }
    
    /**
-    * 向外翻转90°同时
+    * 向外翻转90°同时。
     */
    blurFirstAnim() {
      console.info('blurFirstAnim E');
@@ -396,7 +396,7 @@
    }
    
    /**
-    * 向内翻转90°同时
+    * 向内翻转90°同时。
     */
    blurSecondAnim() {
      console.info('blurSecondAnim E');
