@@ -91,7 +91,7 @@ struct Index {
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
     ```
 
-3. 在宿主线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
+3. 在宿主线程中通过注册onmessage回调接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
    例如，向Worker线程发送训练和预测的消息，并接收Worker线程发送回来的消息。
 
     ```ts
@@ -127,7 +127,7 @@ struct Index {
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
-5. 在Worker线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
+5. 在Worker线程中通过注册onmessage回调接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
     例如，在Worker线程中定义预测模型及其训练过程，并与宿主线程进行信息交互。
 
     ```ts
@@ -172,7 +172,7 @@ struct Index {
 
 6. 在Worker线程中完成任务后，可以执行销毁操作。销毁方式有两种：一是在宿主线程中销毁Worker线程；二是在Worker线程中主动销毁。
 
-    在宿主线程中通过调用[onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
+    在宿主线程中通过注册onexit回调定义Worker线程销毁后的处理逻辑。
 
     ```ts
     // Index.ets
