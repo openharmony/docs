@@ -1,4 +1,9 @@
 # @ohos.file.PhotoPickerComponent (PhotoPicker组件)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda-->
+<!--SE: @guxinggang-->
+<!--TSE: @wangbeibei-->
 
 应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可实现媒体文件选择功能。在用户选择媒体文件后，应用即可访问用户选中的图片或视频文件。仅包含读权限。
 需要注意的是PhotoPickerComponent不能嵌套使用，且不建议在PhotoPickerComponent上覆盖设置了overlay属性的组件，将导致PhotoPickerComponent无法接受手势事件。
@@ -398,7 +403,9 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向。（该能力从API20开始支持）
+Picker宫格页面滑动预览的方向。
+
+从API20开始，该能力支持配置；在API12-19，该能力设置不生效，默认为竖直方向。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
