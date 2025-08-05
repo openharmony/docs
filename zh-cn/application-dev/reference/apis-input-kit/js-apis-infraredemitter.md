@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.infraredEmitter (红外管理)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 红外管理模块提供产生特定频率和大小的红外信号，以及查询设备支持的频率范围等功能。
 
 > **说明**：

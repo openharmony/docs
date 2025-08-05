@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
 > **说明**
