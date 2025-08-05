@@ -42,7 +42,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 > **说明：**
 >
-> 当USB服务正常运行但无设备接入时，那么将会返回一个空的列表，这是正常情况，表示调用成功但当前没有连接的 USB 设备。
+> 当USB服务正常运行但无设备接入时，那么将会返回一个空的列表，这是正常情况，表示调用成功但当前没有连接的USB设备。
 >
 > 在USB主机模式未开启、USB服务未正确初始化、USB服务连接失败（如开发者模式关闭）、权限不足或其他系统错误时，接口会返回`undefined`，注意需要对接口返回值做判空处理。
 
@@ -304,7 +304,6 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 声明对USB设备某个接口的控制权。
 
-
 > **说明：**
 >
 > 在USB编程中，claim interface是一个常见操作，指的是应用程序请求操作系统将某个USB接口从内核驱动中释放并交由用户空间程序控制。<br>
@@ -356,7 +355,6 @@ console.log(`claimInterface = ${ret}`);
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 释放claim过的通信接口。
-
 
 > **说明：**
 >
@@ -1349,7 +1347,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
+| type          | number                                      | 是 |端点类型。取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
