@@ -1507,6 +1507,12 @@ generateSymKeySync(): SymKey
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [SymKey](#symkey) | 返回对称密钥SymKey。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
 
@@ -5409,6 +5415,8 @@ update(input: DataBlob): Promise\<void>
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
 | input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
@@ -5442,15 +5450,11 @@ updateSync(input: DataBlob): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
 | input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
-
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -5476,6 +5480,8 @@ digest(callback: AsyncCallback\<DataBlob>): void
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
+
+**参数：**
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
@@ -5827,12 +5833,6 @@ initSync(key: SymKey): void
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
 | key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
-
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -6364,6 +6364,8 @@ setSeed(seed: DataBlob): void
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
