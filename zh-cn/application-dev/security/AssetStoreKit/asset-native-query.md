@@ -71,8 +71,8 @@
        static const char *ALIAS = "demo_alias";
        Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
        Asset_Attr attr[] = {
-           {.tag = ASSET_TAG_ALIAS, .value.blob = alias},  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-           {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL},  // 此处表示需要返回关键资产的所有信息，即属性+明文
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
+           {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL}, // 此处表示需要返回关键资产的所有信息，即属性+明文
        };
 
        Asset_ResultSet resultSet = {0};

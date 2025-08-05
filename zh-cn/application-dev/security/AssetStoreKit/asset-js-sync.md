@@ -26,10 +26,16 @@ attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 attr.set(asset.Tag.SYNC_TYPE, asset.SyncType.TRUSTED_DEVICE); // 需指定在可信设备间同步（如新旧设备间克隆）。
 
-asset.add(attr).then(() => {
-  console.info(`Asset added with sync successfully.`);
-});
-
+try {	
+  asset.add(attr).then(() => {	
+    console.info(`Succeeded in adding Asset.`);	
+  }).catch((err: BusinessError) => {	
+    console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);	
+  })
+} catch (error) {
+  let err = error as BusinessError;
+  console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## 接入备份恢复扩展能力
@@ -57,7 +63,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
-  console.info(`sync result: ${JSON.stringify(res)} successfully`);
+  console.info(`Succeeded in querying sync result: ${JSON.stringify(res)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
 });

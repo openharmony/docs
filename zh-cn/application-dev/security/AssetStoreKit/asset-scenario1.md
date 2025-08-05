@@ -16,7 +16,7 @@
 
 用户再次打开登录界面时，应用/浏览器可以从ASSET中查询用户密码，并将其自动填充到密码输入框，用户只需点击“登录”按钮即可完成账号登录，极大地提升了用户体验。
 
-<img src=figures/asset-scenario.png align="center" width=600>
+<img src=figures/asset-scenario.png width="50%">
 
 ## 关键流程
 

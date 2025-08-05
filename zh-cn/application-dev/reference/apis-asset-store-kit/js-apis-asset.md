@@ -40,7 +40,7 @@ add(attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -82,9 +82,8 @@ attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 asset.add(attr).then(() => {
-  console.info(`Asset added successfully.`);
+  console.info(`Succeeded in adding Asset.`);
 });
-
 ```
 
 ## asset.addSync<sup>12+</sup>
@@ -167,7 +166,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -202,7 +201,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.remove(query).then(() => {
-  console.info(`Asset removed successfully.`);
+  console.info(`Succeeded in removing Asset.`);
 });
 ```
 
@@ -278,7 +277,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -317,7 +316,7 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 asset.update(query, attrsToUpdate).then(() => {
-  console.info(`Asset updated successfully.`);
+  console.info(`Succeeded in updating Asset.`);
 });
 ```
 
@@ -435,7 +434,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.preQuery(query).then((challenge: Uint8Array) => {
-  console.info(`Pre-querying Asset successfully.`);
+  console.info(`Succeeded in pre-querying Asset.`);
 });
 ```
 
@@ -561,7 +560,7 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
     // parse the attribute.
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
-  console.info(`Asset queried successfully.`);
+  console.info(`Succeeded in querying Asset.`);
 });
 ```
 
@@ -652,7 +651,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -678,7 +677,7 @@ let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 asset.postQuery(handle).then(() => {
-  console.info(`Post-querying Asset successfully.`);
+  console.info(`Succeeded in post-querying Asset.`);
 });
 ```
 

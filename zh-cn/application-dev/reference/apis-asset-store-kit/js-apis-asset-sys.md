@@ -42,7 +42,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -86,7 +86,7 @@ attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 asset.addAsUser(userId, attr).then(() => {
-  console.info(`Asset added to user space successfully.`);
+  console.info(`Succeeded in adding Asset to user space.`);
 });
 ```
 
@@ -111,7 +111,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -149,9 +149,8 @@ let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.removeAsUser(userId, query).then(() => {
-  console.info(`Asset removed from user space successfully.`);
+  console.info(`Succeeded in removing Asset from user space.`);
 });
-
 ```
 
 ## asset.updateAsUser
@@ -176,7 +175,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -218,7 +217,7 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
-  console.info(`Asset updated in user space successfully.`);
+  console.info(`Succeeded in updating Asset in user space.`);
 });
 ```
 
@@ -284,9 +283,8 @@ let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
-  console.info(`Pre-querying Asset from user space successfully.`);
+  console.info(`Succeeded in pre-querying Asset from user space.`);
 });
-
 ```
 
 ## asset.queryAsUser
@@ -355,9 +353,8 @@ asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
     // parse the attribute.
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
-  console.info(`Querying Asset from user space successfully.`);
+  console.info(`Succeeded in querying Asset from user space.`);
 });
-
 ```
 
 ## asset.postQueryAsUser
@@ -381,7 +378,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -410,6 +407,6 @@ let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQueryAsUser执行成功返回的挑战值
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 asset.postQueryAsUser(userId, handle).then(() => {
-  console.info(`Post-querying Asset from user space successfully.`);
+  console.info(`Succeeded in post-querying Asset from user space.`);
 });
 ```

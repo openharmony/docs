@@ -161,7 +161,7 @@ async function postQueryAsset(challenge: Uint8Array) {
   handle.set(asset.Tag.AUTH_CHALLENGE, challenge);
   try {
     await asset.postQuery(handle);
-    console.info(`Post-querying Asset successfully.`);
+    console.info(`Succeeded in post-querying Asset.`);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);

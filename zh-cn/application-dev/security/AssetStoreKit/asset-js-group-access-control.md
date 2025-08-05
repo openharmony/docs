@@ -50,7 +50,7 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 attr.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.add(attr).then(() => {
-    console.info(`Asset added to the group successfully.`);
+    console.info(`Succeeded in adding Asset to the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset to the group. Code is ${err.code}, message is ${err.message}`);
   })
@@ -79,7 +79,7 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名�
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.remove(query).then(() => {
-    console.info(`Asset removed from the group successfully.`);
+    console.info(`Succeeded removing in Asset from the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
@@ -111,7 +111,7 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
 try {
   asset.update(query, attrsToUpdate).then(() => {
-    console.info(`Asset in the group updated successfully.`);
+    console.info(`Succeeded in updating Asset in the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset in the group. Code is ${err.code}, message is ${err.message}`);
   });

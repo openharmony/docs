@@ -82,7 +82,7 @@ attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.add(attr).then(() => {
-    console.info(`Asset added successfully.`);
+    console.info(`Succeeded in adding Asset.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })
