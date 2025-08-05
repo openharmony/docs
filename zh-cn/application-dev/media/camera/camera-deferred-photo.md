@@ -59,7 +59,7 @@
       console.error(`Failed to createPhotoOutput. error: ${err}`);
     }
     return photoOutput;
-  }
+   }
    ```
 
 3. 查询当前设备当前模式是否支持相应分段式能力。

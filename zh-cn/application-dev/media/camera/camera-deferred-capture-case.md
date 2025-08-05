@@ -398,7 +398,7 @@ struct Index {
               console.info(`onLoad surfaceId: ${this.surfaceId}`);
               deferredCaptureCase(this.context, this.surfaceId);
             }
-          })// The width and height of the surface are opposite to those of the XComponent.
+          })
           .renderFit(RenderFit.RESIZE_CONTAIN)
         }
       }
