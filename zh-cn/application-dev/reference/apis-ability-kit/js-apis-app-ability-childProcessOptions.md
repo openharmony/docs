@@ -62,7 +62,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             try {
-              DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
+              DemoProcess.toString(); // 这里调用DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
               let options: ChildProcessOptions = {
                 isolationMode: false
               };
