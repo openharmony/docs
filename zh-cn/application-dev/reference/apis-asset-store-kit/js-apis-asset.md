@@ -40,7 +40,7 @@ add(attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -81,16 +81,10 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.add(attr).then(() => {
-    console.info(`Asset added successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-  })
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.add(attr).then(() => {
+  console.info(`Asset added successfully.`);
+});
+
 ```
 
 ## asset.addSync<sup>12+</sup>
@@ -150,12 +144,7 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.addSync(attr);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.addSync(attr);
 ```
 
 ## asset.remove
@@ -178,7 +167,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -212,16 +201,9 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.remove(query).then(() => {
-    console.info(`Asset removed successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.remove(query).then(() => {
+  console.info(`Asset removed successfully.`);
+});
 ```
 
 ## asset.removeSync<sup>12+</sup>
@@ -272,12 +254,7 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.removeSync(query);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.removeSync(query);
 ```
 
 ## asset.update
@@ -301,7 +278,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -339,16 +316,9 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.update(query, attrsToUpdate).then(() => {
-    console.info(`Asset updated successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.update(query, attrsToUpdate).then(() => {
+  console.info(`Asset updated successfully.`);
+});
 ```
 
 ## asset.updateSync<sup>12+</sup>
@@ -404,12 +374,7 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.updateSync(query, attrsToUpdate);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.updateSync(query, attrsToUpdate);
 ```
 
 ## asset.preQuery
@@ -469,16 +434,9 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.preQuery(query).then((challenge: Uint8Array) => {
-    console.info(`Succeeded in pre-querying Asset.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.preQuery(query).then((challenge: Uint8Array) => {
+  console.info(`Pre-querying Asset successfully.`);
+});
 ```
 
 ## asset.preQuerySync<sup>12+</sup>
@@ -538,12 +496,7 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  let challenge: Uint8Array = asset.preQuerySync(query);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+let challenge: Uint8Array = asset.preQuerySync(query);
 ```
 
 ## asset.query
@@ -603,20 +556,13 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.query(query).then((res: Array<asset.AssetMap>) => {
-    for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
-      let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
-    console.info(`Asset query succeeded.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.query(query).then((res: Array<asset.AssetMap>) => {
+  for (let i = 0; i < res.length; i++) {
+    // parse the attribute.
+    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  }
+  console.info(`Asset queried successfully.`);
+});
 ```
 
 ## asset.querySync<sup>12+</sup>
@@ -676,18 +622,13 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  let res: Array<asset.AssetMap> = asset.querySync(query);
-  let accessibility: number;
-  for (let i = 0; i < res.length; i++) {
-    // parse the attribute.
-    if (res[i] != null) {
-      accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
+let res: Array<asset.AssetMap> = asset.querySync(query);
+let accessibility: number;
+for (let i = 0; i < res.length; i++) {
+  // parse the attribute.
+  if (res[i] != null) {
+    accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -711,7 +652,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -736,16 +677,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQuery(handle).then(() => {
-    console.info(`Succeeded in post-querying Asset.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQuery(handle).then(() => {
+  console.info(`Post-querying Asset successfully.`);
+});
 ```
 
 ## asset.postQuerySync<sup>12+</sup>
@@ -787,12 +721,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQuerySync(handle)
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQuerySync(handle)
 ```
 
 ## asset.querySyncResult<sup>20+</sup>
@@ -838,9 +767,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
-  console.info(`sync result: ${JSON.stringify(res)}`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
+  console.info(`sync result: ${JSON.stringify(res)} sussessfully`);
 });
 ```
 

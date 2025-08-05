@@ -85,7 +85,7 @@ try {
       // parse uint8array to string
       let secretStr: string = arrayToString(secret);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
@@ -117,7 +117,7 @@ try {
       // parse the attribute.
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
@@ -152,7 +152,7 @@ try {
       // parse the attribute.
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {

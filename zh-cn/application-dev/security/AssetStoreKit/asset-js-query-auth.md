@@ -161,7 +161,7 @@ async function postQueryAsset(challenge: Uint8Array) {
   handle.set(asset.Tag.AUTH_CHALLENGE, challenge);
   try {
     await asset.postQuery(handle);
-    console.info(`Succeeded in post-querying Asset.`);
+    console.info(`Post-querying Asset successfully.`);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
@@ -193,7 +193,7 @@ async function queryAsset() {
       // step5. preQuery成功，后续操作失败，也需要调用asset.postQuery进行查询的后置处理。
       postQueryAsset(challenge);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
   })
 }

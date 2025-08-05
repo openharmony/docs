@@ -42,7 +42,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -85,16 +85,9 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.addAsUser(userId, attr).then(() => {
-    console.info(`Asset added to user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to add Asset to user space. Code is ${err.code}, message is ${err.message}`);
-  })
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset to user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.addAsUser(userId, attr).then(() => {
+  console.info(`Asset added to user space successfully.`);
+});
 ```
 
 ## asset.removeAsUser
@@ -118,7 +111,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -155,16 +148,10 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.removeAsUser(userId, query).then(() => {
-    console.info(`Asset removed from user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to remove Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.removeAsUser(userId, query).then(() => {
+  console.info(`Asset removed from user space successfully.`);
+});
+
 ```
 
 ## asset.updateAsUser
@@ -189,7 +176,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -230,16 +217,9 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
-    console.info(`Asset updated in user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to update Asset in user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset in user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
+  console.info(`Asset updated in user space successfully.`);
+});
 ```
 
 ## asset.preQueryAsUser
@@ -303,16 +283,10 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
-    console.info(`Succeeded in pre-querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to pre-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
+  console.info(`Pre-querying Asset from user space successfully.`);
+});
+
 ```
 
 ## asset.queryAsUser
@@ -376,20 +350,14 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
-    for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
-      let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
-    console.info(`Succeeded in querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
+  for (let i = 0; i < res.length; i++) {
+    // parse the attribute.
+    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  }
+  console.info(`Querying Asset from user space successfully.`);
+});
+
 ```
 
 ## asset.postQueryAsUser
@@ -413,7 +381,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -441,14 +409,7 @@ let userId: number = 100;
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQueryAsUser执行成功返回的挑战值
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQueryAsUser(userId, handle).then(() => {
-    console.info(`Succeeded in post-querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to post-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQueryAsUser(userId, handle).then(() => {
+  console.info(`Post-querying Asset from user space successfully.`);
+});
 ```

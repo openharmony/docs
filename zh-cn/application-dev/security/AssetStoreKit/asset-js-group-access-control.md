@@ -153,7 +153,7 @@ try {
       // parse uint8array to string
       let secretStr: string = arrayToString(secret);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
@@ -177,7 +177,7 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));       // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产
 query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回群组关键资产属性，不包含群组关键资产明文
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
@@ -186,7 +186,7 @@ try {
       // parse the attribute.
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
