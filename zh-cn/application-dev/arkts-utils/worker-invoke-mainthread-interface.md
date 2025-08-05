@@ -1,6 +1,6 @@
 # Worker同步调用宿主线程的接口
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
