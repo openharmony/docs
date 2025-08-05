@@ -251,3 +251,46 @@ struct Index {
 }
 ```
 
+使用OnKeyPreIme实现回车提交（建议使用物理键盘）。
+
+```ts
+@Entry
+@Component
+struct TextAreaDemo {
+  @State content: string = '';
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
+
+  build() {
+    Column() {
+      Text('Submissions: ' + this.content)
+      TextArea({ controller: this.controller, text: this.text })
+        .onKeyPreIme((event: KeyEvent) => {
+          console.log(`${JSON.stringify(event)}`);
+          if (event.keyCode === 2054 && event.type === KeyType.Down) { // 回车键物理码
+            const hasCtrl = event?.getModifierKeyState?.(['Ctrl']);
+            if (hasCtrl) {
+              console.log('Line break');
+            } else {
+              console.log('Submissions：' + this.text);
+              this.content = this.text;
+              this.text = '';
+              event.stopPropagation();
+            }
+            return true;
+          }
+          return false;
+        })
+        .onChange((value: string) => {
+          this.text = value
+        })
+    }
+  }
+}
+```
+
+![onKeyPreIme1](figures/onKeyPreIme1.png)
+
+在输入框中输入内容后回车。
+
+![onKeyPreIme2](figures/onKeyPreIme2.png)
