@@ -4832,7 +4832,6 @@ setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4887,7 +4886,6 @@ isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
