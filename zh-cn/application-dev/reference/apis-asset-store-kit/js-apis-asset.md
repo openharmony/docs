@@ -555,13 +555,14 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-asset.query(query).then((res: Array<asset.AssetMap>) => {
-  for (let i = 0; i < res.length; i++) {
-    // parse the attribute.
-    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+let res: Array<asset.AssetMap> = await asset.query(query);
+let accessibility: number;
+for (let i = 0; i < res.length; i++) {
+  // parse the attribute.
+  if (res[i] != null) {
+    accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
-  console.info(`Succeeded in querying Asset.`);
-});
+}
 ```
 
 ## asset.querySync<sup>12+</sup>
