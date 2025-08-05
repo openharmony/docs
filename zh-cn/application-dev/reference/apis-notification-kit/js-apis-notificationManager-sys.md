@@ -1,4 +1,9 @@
 # @ohos.notificationManager (NotificationManager模块)(系统接口)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--SE: @dongqingran; @wulong158-->
+<!--TSE: @wanghong1997-->
 
 本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知渠道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 
