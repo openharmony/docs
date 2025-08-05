@@ -67,6 +67,7 @@
 [Driver Development Kit][Driver]<br>
 [Drm Kit][Multimedia]<br>
 [Form Kit][Ability]<br>
+[Function Flow Runtime Kit][Resourceschedule]<br>
 [Image Kit][Multimedia]<br>
 [IME Kit][MiscServices]<br>
 [Input Kit][MultimodalInput]<br>
