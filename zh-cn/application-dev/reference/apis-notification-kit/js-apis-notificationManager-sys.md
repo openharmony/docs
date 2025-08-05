@@ -1,5 +1,5 @@
 # @ohos.notificationManager (NotificationManager模块)(系统接口)
-<!--Kit: Basic Services Kit-->
+<!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @michael_woo888-->
 <!--SE: @dongqingran; @wulong158-->
