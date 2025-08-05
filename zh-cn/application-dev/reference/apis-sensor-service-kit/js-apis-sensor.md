@@ -1043,7 +1043,7 @@ on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): voi
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| type     |  'sensorStatusChange'         | 是   | 固定传入'sensorStatusChange'，状态监听固定参数。             |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 是   | 回调函数，异步上报的传感器事件数据SensorStatusEvent。 |
 
 **错误码**：
@@ -4903,7 +4903,7 @@ off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| type     |  'sensorStatusChange'         | 是   | 固定传入'sensorStatusChange'，状态监听固定参数。             |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 否   | sensor.on传入的回调函数，不传则取消所有监听。 |
 
 **错误码**：
@@ -6052,9 +6052,9 @@ try {
 
 **返回值**：
 
-| 参数名  | 类型                                     | 必填 | 说明             |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，使用异步方式返回传感器属性列表。 |
+| 类型                                     | 说明             |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Promise对象，使用异步方式返回传感器属性列表。 |
 
 **错误码**：
 
@@ -6096,9 +6096,9 @@ getSensorListSync(): Array&lt;Sensor&gt;
 
 **返回值**：
 
-| 类型                                    | 必填 | 说明                             |
-| --------------------------------------- | ---- | -------------------------------- |
-| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 使用同步方式返回传感器属性列表。 |
+| 类型                                    | 说明                             |
+| --------------------------------------- | -------------------------------- |
+| Array&lt;[Sensor](#sensor9)&gt; | 使用同步方式返回传感器属性列表。 |
 
 **错误码**：
 
@@ -6188,9 +6188,9 @@ try {
 
 **返回值**：
 
-| 参数名  | 类型                              | 必填 | 说明                         |
-| ------- | --------------------------------- | ---- | ---------------------------- |
-| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 使用异步方式返回传感器信息。 |
+| 类型                              | 说明                         |
+| --------------------------------- | ---------------------------- |
+| Promise&lt;[Sensor](#sensor9)&gt; | 使用异步方式返回传感器信息。 |
 
 **错误码**：
 
@@ -6237,9 +6237,9 @@ getSingleSensorSync(type: SensorId): Sensor
 
 **返回值**：
 
-| 类型   | 必填 | 说明                         |
-| ------ | ---- | ---------------------------- |
-| Sensor | 是   | 使用同步方式返回传感器信息。 |
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| Sensor | 使用同步方式返回传感器信息。 |
 
 **错误码**：
 
