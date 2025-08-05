@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_NativeBuffer struct defines the native video stream class for screen capture.
+The struct describes the native video stream class for screen capture.
 
 **Since**: 10
 

@@ -119,7 +119,7 @@ ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createLongPressGesture) (in
 | 名称 | 描述 | 
 | -------- | -------- |
 | fingersNum | 触发长按的最少手指数，最小为1指， 最大取值为10指。  | 
-| repeatResult | 是否连续触发事件回调。  | 
+| repeatResult | 是否连续触发事件回调。true表示连续触发，false表示不连续触发。  | 
 | durationNum | 触发长按的最短时间，单位为毫秒（ms）。设置小于等于0时，按照默认值500处理。  | 
 
 **返回：**

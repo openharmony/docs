@@ -12,7 +12,6 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 
-
 ## 子组件
 
 可以包含子组件。
@@ -522,7 +521,7 @@ enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
+| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。<br/>默认值：true<br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -742,6 +741,10 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
+> **说明：**
+>
+> - 在[aboutToAppear](ts-custom-component-lifecycle.md#abouttoappear)里面不建议使用栈操作。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -775,6 +778,10 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+> **说明：**
+>
+> - 在[aboutToAppear](ts-custom-component-lifecycle.md#abouttoappear)里面不建议使用栈操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -810,6 +817,10 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
+> **说明：**
+>
+> - 在[aboutToAppear](ts-custom-component-lifecycle.md#abouttoappear)里面不建议使用栈操作。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -844,6 +855,10 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的onPop回调，使用Promise异步回调返回接口调用结果。
+
+> **说明：**
+>
+> - 在[aboutToAppear](ts-custom-component-lifecycle.md#abouttoappear)里面不建议使用栈操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3647,7 +3662,7 @@ class DerivedNavPathStack extends NavPathStack {
   // other function of base class...
 }
 
-class param {
+class Param {
   info: string = "__default_param__";
 
   constructor(info: string) {
@@ -3674,7 +3689,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
+          param: new Param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -3709,7 +3724,7 @@ struct PageOne {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+          param: new Param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
     }.title('Page One')
@@ -3858,7 +3873,7 @@ export struct NavigationMenu {
 import { LengthMetrics } from '@kit.ArkUI';
 import { TextModifier } from '@ohos.arkui.modifier';
 
-class MainTitleTextModfier extends TextModifier {
+class MainTitleTextModifier extends TextModifier {
   useStyle1: boolean = true;
 
   applyNormalAttribute(instance: TextModifier): void {
@@ -3881,7 +3896,7 @@ class MainTitleTextModfier extends TextModifier {
   }
 }
 
-class SubTitleTextModfier extends TextModifier {
+class SubTitleTextModifier extends TextModifier {
   useStyle1: boolean = true;
 
   applyNormalAttribute(instance: TextModifier): void {
@@ -3912,9 +3927,9 @@ struct NavigationExample {
   // 初始化标题栏结束端内间距
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
   // 主标题样式修改器
-  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  @State mainTitleModifier: MainTitleTextModifier = new MainTitleTextModifier();
   // 副标题样式修改器
-  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State subTitleModifier: SubTitleTextModifier = new SubTitleTextModifier();
   @State applyModifier: boolean = false;
   @State useStyle1: boolean = true;
 
@@ -4004,9 +4019,9 @@ export struct NavDestinationExample {
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
   // 主标题样式修改器
-  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  @State mainTitleModifier: MainTitleTextModifier = new MainTitleTextModifier();
   // 副标题样式修改器
-  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State subTitleModifier: SubTitleTextModifier = new SubTitleTextModifier();
   @State applyModifier: boolean = false;
   @State useStyle1: boolean = true;
 
@@ -4247,7 +4262,7 @@ export struct PageContainer {
 }
 ```
 ```ts
-// src/main/pages/CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
+// src/main/pages/CustomTransitionUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;

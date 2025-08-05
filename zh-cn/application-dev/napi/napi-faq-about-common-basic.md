@@ -226,7 +226,7 @@ ArkTS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callab
 
 ## napi_value和napi_ref的生命周期有何区别
 
-- Native_value由HandleScope管理，一般开发者不需要自己加HandleScope（uv_queue_work的complete callback除外）。
+- napi_value由HandleScope管理，一般开发者不需要自己加HandleScope（uv_queue_work的complete callback除外）。
 
 - napi_ref由开发者自己管理，需要手动delete。
 

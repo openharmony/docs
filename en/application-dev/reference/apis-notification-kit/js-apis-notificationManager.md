@@ -1399,7 +1399,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 Requests notification to be enabled for this application in a modal. This API uses an asynchronous callback to return the result.
 
-This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
+This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#loadcontent) is successfully called).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1461,7 +1461,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 Requests notification to be enabled for this application in a modal. This API uses a promise to return the URI of the file in the destination directory.
 
-This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
+This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#loadcontent) is successfully called).
 
 **Model restriction**: This API can be used only in the stage model.
 

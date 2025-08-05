@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_interface_bundle.h** file declares the APIs for querying application information.
+The file declares the APIs for querying application information.
 
 **Since**
 

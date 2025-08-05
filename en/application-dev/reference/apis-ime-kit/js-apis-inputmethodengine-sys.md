@@ -50,7 +50,7 @@ Listens for the panel size change. This API uses an asynchronous callback to ret
 | Name  | Type                                       | Mandatory| Description                                                  |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                      | Yes  | Event type, which is **'sizeUpdate'**.|
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | Yes  | Callback used to return the result, the size of the soft keyboard panel, including the width and height.|
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | Yes  | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -85,7 +85,7 @@ Disables listening for the panel size change. This API uses an asynchronous call
 | Name  | Type                                       | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type, which is **'sizeUpdate'**.|
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | No  | Callback used to return the result, the size of the soft keyboard panel, including the width and height.  |
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.  |
 
 **Example**
 

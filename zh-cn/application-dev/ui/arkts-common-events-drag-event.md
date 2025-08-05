@@ -141,7 +141,7 @@
         this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
-              console.log("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap;
@@ -204,7 +204,7 @@
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None；
+        this.imgState = Visibility.None;
         // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -226,7 +226,7 @@
          callback(event);
          return true;
        } catch (e) {
-         console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+         console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
          return false;
        }
     }
@@ -296,7 +296,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+      console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
       return false;
     }
   }
@@ -314,7 +314,7 @@ struct Index {
     this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
-          console.log("error: " + JSON.stringify(error))
+          console.error("error: " + JSON.stringify(error))
           return;
         }
         this.pixmap = pixmap;
@@ -714,9 +714,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              console.log('Drag Success');
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              console.log('Drag failed');
+              console.info('Drag failed');
             }
           })
       }.width('45%')
@@ -832,7 +832,6 @@ struct DropAnimationExample {
         this.numberBadge--;
         for (let i=0; i<this.isSelectedGrid.length; i++) {
           if (this.isSelectedGrid[i] === true) {
-            this.isSelectedGrid[i] = true;
             let data: UDC.Image = new UDC.Image();
             data.uri = '/resource/image.jpeg';
             if (!this.unifiedData) {
@@ -996,7 +995,6 @@ struct GridEts {
               this.numberBadge--;
               for (let i=0; i<this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
-                  this.isSelectedGrid[i] = true;
                   let data: UDC.Image = new UDC.Image();
                   data.uri = '/resource/image.jpeg';
                   if (!this.unifiedData) {

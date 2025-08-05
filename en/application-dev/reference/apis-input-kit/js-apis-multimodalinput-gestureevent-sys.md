@@ -20,10 +20,10 @@ Defines a touchscreen gesture event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name              | Type                     | Readable| Writable| Description            |
+| Name              | Type                     | Read-Only| Optional| Description            |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| action | [TouchGestureAction](#touchgestureaction18) | Yes  | No  | Enumerates touchscreen gesture types.|
-| touches | [Touch](js-apis-touchevent.md#touch)[] | Yes| No| Touch point information.|
+| action | [TouchGestureAction](#touchgestureaction18) | No  | No  | Enumerates touchscreen gesture types.|
+| touches | [Touch](js-apis-touchevent.md#touch)[] | No| No| Defines the touch point information.|
 
 ## TouchGestureAction<sup>18+</sup>
 

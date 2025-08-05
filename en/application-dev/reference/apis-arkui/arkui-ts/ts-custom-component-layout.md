@@ -5,28 +5,10 @@ The custom layout of a custom component is used to lay out its child components 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-## onPlaceChildren<sup>10+</sup>
-
-onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
-
-Invoked when the custom component lays out its child components. Through this callback the component receives its child component size constraints from the ArkUI framework. State variables should not be changed in this callback.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name           | Type                                                        |Mandatory| Description              |
-|----------------|------------------------------------------------------------|---|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |Yes|Layout information of the custom component itself after measurement.        |
-| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |Yes|Layout information of the child components after measurement.        |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |Yes|Size constraint of the parent component.|
-
-**Example**
-
-See the [example for customizing a layout](#onmeasuresize10).
+> 
+> A custom component is considered to have a custom layout when either of the **onMeasureSize** or **onPlaceChildren** methods is implemented. For complete layout control, implement both methods simultaneously. For details about the specifications, see the API descriptions for these methods.
+> 
+> Lazy loading (including [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)) is not supported in custom layouts.
 
 ## onMeasureSize<sup>10+</sup>
 
@@ -51,6 +33,24 @@ Invoked when the custom component needs to determine its size. Through this call
 | Type                       | Description          |
 | --------------------------- | -------------- |
 | [SizeResult](#sizeresult10) | Component size information.|
+
+## onPlaceChildren<sup>10+</sup>
+
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
+
+Invoked when the custom component needs to determine the positions of its child components. Through this callback the component receives its child component size constraints from the ArkUI framework. State variables should not be changed in this callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name           | Type                                                        |Mandatory| Description              |
+|----------------|------------------------------------------------------------|---|------------------|
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |Yes|Layout information of the custom component itself after measurement.        |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |Yes|Layout information of the child components after measurement.        |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |Yes|Size constraint of the parent component.|
 
 **Example 1**
 This example demonstrates how to customize a layout.
@@ -311,8 +311,6 @@ Provides the parent component layout information. Inherits from [SizeResult](#si
 
 Provides the child component layout information.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Properties
@@ -320,6 +318,7 @@ Provides the child component layout information.
 | Name        | Type      | Read-Only|Optional|  Description                                                     |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      |   No|No| Measurement result of the child component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>Unit: vp    |
+| uniqueId<sup>18+</sup>| number | No|No| Unique ID that the system assigns to the child component.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ### layout
 

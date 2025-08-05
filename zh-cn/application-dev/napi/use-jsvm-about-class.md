@@ -15,7 +15,7 @@
 
 | 接口                | 功能说明                           |
 | ------------------- | ---------------------------------- |
-| OH_JSVM_NewInstance   | 通过给定的构造函数，构建一个实例。|
+| OH_JSVM_NewInstance   | 通过给定的构造函数，创建一个实例。|
 | OH_JSVM_GetNewTarget  | 获取函数的元属性new.target。|
 | OH_JSVM_DefineClass   | 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持。|
 | OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
@@ -80,7 +80,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
@@ -89,7 +89,7 @@ const char *srcCallNative = R"JS(
    newInstance(Fruit, "apple");
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -180,13 +180,13 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 ```
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -208,7 +208,7 @@ NewInstance:{"name":"lilei"}
 
 ### OH_JSVM_Unwrap
 
-解包先前封装在JavaScript对象中的原生实例
+解包JavaScript对象中先前封装的原生实例
 
 ### OH_JSVM_RemoveWrap
 
@@ -292,7 +292,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
@@ -300,7 +300,7 @@ const char *srcCallNative = R"JS(
     removeWrap(new Obj());
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -322,7 +322,7 @@ JSVM deref_item
 - JSVM_DEFINE_CLASS_NORMAL: 按正常模式创建Class。默认缺省状态为JSVM_DEFINE_CLASS_NORMAL状态。
 - JSVM_DEFINE_CLASS_WITH_COUNT: 为所创建的Class预留interfield槽位。
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
-#### cpp代码
+**cpp代码**
 ```c++
 #include <string>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
@@ -491,11 +491,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp

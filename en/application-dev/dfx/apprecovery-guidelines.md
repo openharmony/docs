@@ -67,7 +67,7 @@ The figure below does not illustrate the time when [faultLogger](../reference/ap
 
 It is recommended that you call [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
 If you do not register an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) instance or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
-If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
+If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onsavestate) of the [ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
 
 ### Supported Application Recovery Scenarios
 

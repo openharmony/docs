@@ -403,8 +403,8 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     ```c++
     // ArkUIListItemNode.h 
     //提供列表项的封装类。 
-    #ifndef MYAPPLICATION_ARKUISTACKNODE_H 
-    #define MYAPPLICATION_ARKUISTACKNODE_H 
+    #ifndef MYAPPLICATION_ARKUILISTITEMNODE_H 
+    #define MYAPPLICATION_ARKUILISTITEMNODE_H 
     #include "ArkUINode.h" 
     namespace NativeModule{ 
     class ArkUIListItemNode : public ArkUINode { 
@@ -437,7 +437,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
     }; 
     }// namespace NativeModule 
-    #endif// MYAPPLICATION_ARKUISTACKNODE_H
+    #endif// MYAPPLICATION_ARKUILISTITEMNODE_H
     ```
 
 2. 创建ListItem时，创建ListItem的划出组件，并绑定点击事件，在点击事件中执行删除数据源操作。ListItem复用时，更新划出组件的绑定事件。

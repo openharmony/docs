@@ -18,8 +18,8 @@
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- 状态管理V1中，会给\@Observed装饰的类对象以及使用状态变量装饰器如\@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。
-- 状态管理V2中，会给使用状态变量装饰器如\@Trace、\@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。
+- 状态管理V1中，会给\@Observed装饰的类对象以及使用状态变量装饰器如[\@State](./arkts-state.md)装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。
+- 状态管理V2中，会给使用状态变量装饰器如[\@Trace](./arkts-new-observedV2-and-trace.md)、[\@Local](./arkts-new-local.md)装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。
 
 使用getTarget接口可以获取这些代理对象的原始对象。
 

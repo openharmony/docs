@@ -10,7 +10,7 @@ A process is the basic unit for a system to allocate resources, and is the basis
 >
 > For 2-in-1 devices and tablets, you can set a specific HAP or UIAbility to run in an independent process.
 > - To enable a HAP to run in an independent process, set the **isolationMode** field in the [module.json5 file](../quick-start/module-configuration-file.md#tags-in-the-configuration-file) to **isolationOnly** (running only in an independent process) or **isolationFirst** (running in an independent process preferentially).
-> - To enable a UIAbility to run in an independent process, set the **isolationProcess** field in the **module.json5** file to **true** and return a unique process ID in the [onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonnewprocessrequest11) callback.
+> - To enable a UIAbility to run in an independent process, set the **isolationProcess** field in the **module.json5** file to **true** and return a unique process ID in the [onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11) callback.
 
 **Figure 1** Process model
 

@@ -27,6 +27,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -49,11 +50,13 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 **示例：**
 
 ```ts
+import { locationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -73,6 +76,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -100,11 +104,13 @@ getLocationPolicy(admin: Want): LocationPolicy
 **示例：**
 
 ```ts
+import { locationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {

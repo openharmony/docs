@@ -1,4 +1,4 @@
-# Global Menus Independent of UI Components (openMenu)
+# Global Menu Independent of UI Components (openMenu)
 
 The [Menu](arkts-popup-and-menu-components-menu.md) component is a great option for creating menus, but it relies on a bound UI component to work. Since API version 18, however, the global API [openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18) offers a more flexible solution. This API can be used directly or encapsulated in scenarios where no bound UI components are available, making it ideal for use cases such as event callbacks or when integrating with external systems.
 

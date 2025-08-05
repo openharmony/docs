@@ -53,7 +53,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
-    console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
   }
@@ -106,7 +106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 ## usageStatistics.isIdleStateSync<sup>10+<sup>
@@ -194,7 +194,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 usageStatistics.queryAppGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -239,7 +239,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
   }
@@ -336,7 +336,7 @@ let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -383,7 +383,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
   }
@@ -487,7 +487,7 @@ let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
   console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -536,7 +536,7 @@ let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
 usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
   }
@@ -585,7 +585,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
   if (err) {
-    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
     console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
@@ -642,7 +642,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -695,7 +695,7 @@ usageStatistics.queryAppStatsInfos(0, 20000000000000).then((res:usageStatistics.
   console.log('queryAppStatsInfos promise success.');
   console.log('queryAppStatsInfos promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -743,11 +743,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
+// Replace com.ohos.camera with the actual bundle name.
+usageStatistics.queryLastUseTime({"com.ohos.camera": [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.log('queryLastUseTime promise success.');
   console.log('queryLastUseTime promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -794,7 +795,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
   if (err) {
-    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
     for (let i = 0; i < res.length; i++) {
@@ -858,7 +859,7 @@ usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: 
     console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
   }
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -904,7 +905,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
-    console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
     for (let i = 0; i < res.length; i++) {
@@ -967,7 +968,7 @@ usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStati
     console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
   }
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1010,7 +1011,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
-    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
     for (let i = 0; i < res.length; i++) {
@@ -1070,7 +1071,7 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usa
     console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
   }
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1123,7 +1124,7 @@ usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageS
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1169,7 +1170,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
     console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
@@ -1226,7 +1227,7 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1272,7 +1273,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
     console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
@@ -1328,7 +1329,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
   }
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1368,7 +1369,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
     for (let i = 0; i < res.length; i++) {
@@ -1430,7 +1431,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
   }
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1475,7 +1476,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
     for (let i = 0; i < res.length; i++) {
@@ -1541,7 +1542,7 @@ function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
 usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1594,7 +1595,7 @@ function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
 };
 usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err: BusinessError) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
   }
@@ -1641,7 +1642,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 usageStatistics.unregisterAppGroupCallBack().then( () => {
   console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
 }).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  console.error('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -1684,7 +1685,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
   if(err) {
-    console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    console.error('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
     console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
   }

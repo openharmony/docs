@@ -216,7 +216,9 @@ fontFamily(value: ResourceStr)
 
 inputFilter(value: ResourceStr, error?: (value: string) => void)
 
-通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
+
+单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1808,7 +1810,7 @@ struct TextAreaExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
@@ -2031,11 +2033,11 @@ struct TextAreaExample {
 }
 ```
 ![textCustomPaste](figures/textarea_custom_paste.PNG)
-<!--RP1-->
+
 ### 示例17（设置最小字体范围与最大字体范围）
 
 该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
-
+<!--code_no_check-->
 ```json
 // 开启应用缩放跟随系统
 // AppScope/resources/base，新建文件夹profile。
@@ -2048,7 +2050,7 @@ struct TextAreaExample {
   }
 }
 ```
-
+<!--code_no_check-->
 ```json
 // AppScope/app.json5，修改如下代码。
 {
@@ -2063,7 +2065,8 @@ struct TextAreaExample {
   }
 }
 ```
-
+<!--RP1-->
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { abilityManager, Configuration } from '@kit.AbilityKit';

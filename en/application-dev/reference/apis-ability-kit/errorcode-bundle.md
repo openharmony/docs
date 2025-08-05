@@ -326,7 +326,7 @@ When an API for querying the profile is called, the profile does not exist.
 The specified type is invalid.
 
 **Description**<br>
-When an API of the **defaultAppManager** module is called, the type passed in is invalid.
+When an API of the defaultAppManager module is called, the type passed in is invalid.
 
 **Possible Causes**<br>
 1. The type passed in the API is misspelled.
@@ -432,7 +432,7 @@ The target application and the to-be-installed application with the overlay feat
 The specified bundle does not contain any overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object of another application, but that application does not contain a module with the overlay feature.
+An API is called to obtain the overlayModuleInfo object of another application, but that application does not contain a module with the overlay feature.
 
 **Possible Causes**<br>
 The specified application does not contain a module with the overlay feature.
@@ -446,7 +446,7 @@ Check whether the application contains a module with the overlay feature.
 The specified module is not an overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object of a module, but the module is not configured with the overlay feature.
+An API is called to obtain the overlayModuleInfo object of a module, but the module is not configured with the overlay feature.
 
 **Possible Causes**<br>
 The specified module is not a module with the overlay feature.
@@ -460,7 +460,7 @@ Check whether the module is configured with the overlay feature.
 The specified module is an overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object based on the target module name, but that module is configured with the overlay feature.
+An API is called to obtain the overlayModuleInfo object based on the target module name, but that module is configured with the overlay feature.
 
 **Possible Causes**<br>
 The specified module is configured with the overlay feature.
@@ -474,7 +474,7 @@ Check whether the specified module is configured with the overlay feature.
 The specified bundle is an overlay bundle.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object based on the target module name of another application, but that application contains only modules with the overlay feature.
+An API is called to obtain the overlayModuleInfo object based on the target module name of another application, but that application contains only modules with the overlay feature.
 
 **Possible Causes**<br>
 The specified application contains only modules with the overlay feature.
@@ -937,7 +937,7 @@ It is not allowed to install enterprise applications through a [specific install
 Due to policy control, enterprise applications cannot be installed through the specific API.
 
 **Solution**<br>
-Use the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API instead.
+Use the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API instead.<!--DelEnd-->
 
 
 ## 17700072 Launch Want Does Not Exist
@@ -948,11 +948,12 @@ The launch want is not found.
 The launch want does not exist.
 
 **Possible Causes**<br>
-The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **ohos.want.action.home**.
 
 **Solution**<br>
-Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **ohos.want.action.home** for the application.
 
+<!--Del-->
 ## 17700073 Installation Failure Caused by an Application with the Same Bundle Name but Different Signature Information
 **Error Message**<br>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
@@ -1143,22 +1144,32 @@ Bundle manager service is excepted.
 The Bundle Manager service is abnormal.
 
 **Possible Causes**<br>
+Scenario 1:
+
 An unknown system exception occurs.
+
+Scenario 2:
+
+The system throws an uncaught error code, such as IPC failure or file copy failure.
 
 **Solution**<br>
 1. Restart the phone and try again.
 
 2. If the request still fails after the preceding steps are performed for three to five times, check whether a crash file containing **foundation** exists in the **/data/log/faultlog/faultlogger/** directory of the device.
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+    ```
+    hdc shell
+    cd /data/log/faultlog/faultlogger/
+    ls -ls
+    ```
+
 3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+    ```
+    hdc file recv /data/log/faultlog/faultlogger/
+    hdc file recv /data/log/hilog/
+    ```
+
 <!--Del-->
 ## 17700201 .abc File Verification Failure
 **Error Message**<br>

@@ -137,7 +137,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
        // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
-     // 延迟任务结束回调
+     // 延迟任务结束回调。当延迟任务2分钟超时或应用调用stopWork接口取消任务时，触发该回调。
      onWorkStop(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
      }
@@ -213,42 +213,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    ```
 
 ### 延迟任务调度功能验证
-1. 确认延时任务是否申请成功
-
-   startWork接口调用成功之后，可以通过以下命令验证延迟任务是否申请成功。如果[hidumper命令](../dfx/hidumper.md)返回结果中包含对应应用的bundleName、abilityName、workId，说明对应workId的延迟任务申请成功。
-
-   ```ts
-   $ hidumper -s 1904 -a '-a'
-   uid: 20010045:
-   {
-   "workId":u20010045_1,
-   "bundleName":com.example.application,
-   "status":0,
-   "paused":false,
-   "priority":10000,
-   "conditionMap":{
-   },
-   "workInfo":
-   {
-           "abilityName" : "MyWorkSchedulerExtensionAbility",
-           "appIndex" : 0,
-           "bundleName" : "com.example.application",
-           "callBySystemApp" : false,
-           "conditions" :
-           {
-                   "network" : 2
-           },
-           "extension" : true,
-           "parameters" : null,
-           "parametersType" : null,
-           "persisted" : false,
-           "preinstalled" : false,
-           "uriKey" : "",
-           "workId" : 1
-   }}
-   ```
-
-2. 确认延迟任务WorkSchedulerExtensionAbility回调方法onWorkStart、onWorkStop实现是否正确、是否可以成功回调
+确认延迟任务WorkSchedulerExtensionAbility回调方法onWorkStart、onWorkStop实现是否正确、是否可以成功回调
 
    延迟任务申请成功之后，需要等到条件满足后才可以执行延迟任务回调，为了快速验证延迟任务回调功能是否正确，可以通过以下[hidumper命令](../dfx/hidumper.md)手动触发延迟任务执行回调。
 

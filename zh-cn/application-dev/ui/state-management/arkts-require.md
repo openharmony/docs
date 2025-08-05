@@ -12,7 +12,7 @@
 
 ## 概述
 
-当\@Require装饰器和\@Prop、\@State、\@Provide、\@Param、\@BuilderParam、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@Param、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
+当\@Require装饰器和[\@Prop](./arkts-prop.md)、[\@State](./arkts-state.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Param](./arkts-new-param.md)、[\@BuilderParam](./arkts-builderparam.md)、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@Param、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
 
 ## 限制条件
 

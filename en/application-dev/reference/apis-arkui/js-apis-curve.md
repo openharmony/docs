@@ -38,7 +38,7 @@ Implements initialization for the interpolation curve, which is used to create a
 
 ## Curve
 
-Defines an interpolation curve. For details about the animation, see <!--RP1-->[Bezier Curve](../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
+Defines an interpolation curve. For details about the curves and animations, see <!--RP1-->[Bezier Curve](../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -83,7 +83,7 @@ Creates a step curve.
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | Yes  | Number of steps. The value must be a positive integer.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 evaluates to the value **1**.|
-| end    | boolean | Yes  | Whether jumping occurs when the interpolation ends.<br>- **true**: Jumping occurs when the interpolation ends.<br>- **false**: Jumping occurs when the interpolation starts.|
+| end    | boolean | Yes  | Whether the step change occurs at the start or end of each interval.<br>- **true**: The step change occurs at the end of each interval.<br>- **false**: The step change occurs at the start of each interval.|
 
 **Return value**
 
@@ -103,7 +103,7 @@ curves.stepsCurve(9, true)  // Create a step curve.
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-Creates a cubic Bezier curve. The curve values must be between 0 and 1.
+Creates a cubic Bezier curve, with x-coordinates automatically normalized between 0 and 1.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -235,7 +235,7 @@ curves.responsiveSpringMotion() // Create a responsive spring animation curve wi
 ```
 
 
-##  curves.interpolatingSpring<sup>10+</sup>
+## curves.interpolatingSpring<sup>10+</sup>
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -300,13 +300,13 @@ let curve = curves.customCurve(interpolate) // Create a custom interpolation cur
 
 ## ICurve<sup>9+</sup>
 
-Curve.
+Represents a curve object. Different types of curve objects can be created using APIs in this module, including [curves.cubicBezierCurve](#curvescubicbeziercurve9) and [curves.interpolatingSpring](#curvesinterpolatingspring10). The curve object provides interpolation functionality through its member method [interpolate](#interpolate9).
 
 ### interpolate<sup>9+</sup>
 
 interpolate(fraction: number): number
 
-Implements calculation.
+Calculates the interpolated value along the curve at the specified normalized time point.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -316,7 +316,7 @@ Implements calculation.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**.|
+| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1].<br>**NOTE**<br>A value less than 0 is treated as **0**. A value greater than 1 is treated as **1**.|
 
 **Return value**
 
@@ -363,7 +363,7 @@ Creates a step curve. This API is deprecated since API version 9. You are advise
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | Yes  | Number of steps. The value must be a positive integer.                                  |
-| end    | boolean | Yes  | Whether jumping occurs when the interpolation ends.<br>- **true**: Jumping occurs when the interpolation ends.<br>- **false**: Jumping occurs when the interpolation starts.|
+| end    | boolean | Yes  | Whether the step change occurs at the start or end of each interval.<br>- **true**: The step change occurs at the end of each interval.<br>- **false**: The step change occurs at the start of each interval.|
 
 
 ## curves.cubicBezier<sup>(deprecated)</sup>

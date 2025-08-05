@@ -200,11 +200,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    pause >nul
 
    :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
+   start msedge chrome://inspect/#devices
 
    :: If Edge is not available, then open the page in Chrome
    if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
+       start chrome chrome://inspect/#devices
    )
 
    endlocal

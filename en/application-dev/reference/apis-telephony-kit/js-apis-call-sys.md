@@ -111,7 +111,7 @@ let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
-    dialType: 0,
+    dialType: 0
 }
 call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     if (err) {
@@ -173,7 +173,7 @@ let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
-    dialType: 0,
+    dialType: 0
 }
 call.dialCall("138xxxxxxxx", dialCallOptions).then(() => {
     console.log(`dialCall success.`);
@@ -1599,7 +1599,7 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.                      |
+| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                      |
 | callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br>The value can be:<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Error codes**
@@ -1647,7 +1647,7 @@ Obtains the call waiting status. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -1697,7 +1697,7 @@ Specifies whether to enable the call waiting service. This API uses an asynchron
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.                      |
+| slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                      |
 | activate | boolean              | Yes  | Whether to enable call waiting.<br>- **false**: Disable call waiting.<br>- **true**: Enable call waiting.|
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                    |
 
@@ -1746,7 +1746,7 @@ Specifies whether to enable the call waiting service. This API uses a promise to
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| slotId   | number  | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.                      |
+| slotId   | number  | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                      |
 | activate | boolean | Yes  | Whether to enable call waiting.<br>- **false**: Disable call waiting.<br>- **true**: Enable call waiting.|
 
 **Return value**
@@ -1987,7 +1987,7 @@ the system reports a **postDialDelay** event when the call is connected. The app
 | Name  | Type                     | Mandatory| Description                                                          |
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | callId   | number                    | Yes  | Call ID.                                                      |
-| proceed  | boolean                   | Yes  | Whether to send DTMF tones.|
+| proceed  | boolean                   | Yes  | Whether to send DTMF tones. The default value is **false**.<br>- **true**: Send DTMF tones.<br>- **false**: Do not send DTMF tones.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                   |
 
 **Error codes**
@@ -2035,7 +2035,7 @@ the system reports a **postDialDelay** event when the call is connected. The app
 | Name  | Type                     | Mandatory| Description                   |
 | -------- | ------------------------- | ---- | ----------------------- |
 | callId   | number                    | Yes  | Call ID.               |
-| proceed  | boolean                   | Yes  | Whether to send DTMF tones.|
+| proceed  | boolean                   | Yes  | Whether to send DTMF tones. The default value is **false**.<br>- **true**: Send DTMF tones.<br>- **false**: Do not send DTMF tones.|
 
 **Return value**
 
@@ -2085,7 +2085,7 @@ Checks whether a call is an emergency call. This API uses an asynchronous callba
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback function used to return the result. The value **true** indicates an emergency call, and the value **false** indicates a non-emergency call.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates an emergency call, and the value **false** indicates a non-emergency call.|
 
 **Error codes**
 
@@ -2666,7 +2666,7 @@ Checks whether a new call is allowed. This API uses an asynchronous callback to 
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback function used to return the result. The value **true** indicates that the call is allowed, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the call is allowed, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -2845,7 +2845,7 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | type     | [CallRestrictionType](#callrestrictiontype8)                 | Yes  | Call restriction type.                       |
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | Yes  | Callback used to return the result.                |
 
@@ -2894,7 +2894,7 @@ Obtains the call restriction status. This API uses a promise to return the resul
 
 | Name| Type                                        | Mandatory| Description                                  |
 | ------ | -------------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | type   | [CallRestrictionType](#callrestrictiontype8) | Yes  | Call restriction type.                       |
 
 **Return value**
@@ -2945,7 +2945,7 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 
 | Name  | Type                                       | Mandatory| Description                                  |
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | Yes  | Call restriction information.                        |
 | callback | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.|
 
@@ -2999,7 +2999,7 @@ Sets the call restriction status. This API uses a promise to return the result.
 
 | Name| Type                                        | Mandatory| Description                                  |
 | ------ | -------------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | info   | [CallRestrictionInfo](#callrestrictioninfo8) | Yes  | Call restriction information.                        |
 
 **Return value**
@@ -3055,7 +3055,7 @@ Changes the call barring password. This API uses an asynchronous callback to ret
 
 | Name         | Type                                       | Mandatory| Description                                  |
 | --------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | oldPassword     | string                                      | Yes  | Old password for call barring.                      |
 | newPassword     | string                                      | Yes  | New password for call barring.                      |
 | callback        | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.   |
@@ -3104,7 +3104,7 @@ Changes the call barring password. This API uses a promise to return the result.
 
 | Name         | Type                                       | Mandatory| Description                                  |
 | --------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | oldPassword     | string                                      | Yes  | Old password for call barring.                      |
 | newPassword     | string                                      | Yes  | New password for call barring.                      |
 
@@ -3156,7 +3156,7 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | type     | [CallTransferType](#calltransfertype8)                       | Yes  | Call transfer type.                        |
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | Yes  | Callback used to return the result.            |
 
@@ -3205,7 +3205,7 @@ Obtains call transfer information. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description                                  |
 | ------ | -------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                 | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number                                 | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | type   | [CallTransferType](#calltransfertype8) | Yes  | Call transfer type.                        |
 
 **Return value**
@@ -3256,7 +3256,7 @@ Sets call transfer information. This API uses an asynchronous callback to return
 
 | Name  | Type                                 | Mandatory| Description                                  |
 | -------- | ------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | info     | [CallTransferInfo](#calltransferinfo8) | Yes  | Call transfer information.                       |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.     |
 
@@ -3310,7 +3310,7 @@ Sets call transfer information. This API uses a promise to return the result.
 
 | Name| Type                                 | Mandatory| Description                                  |
 | ------ | ------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number                                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | info   | [CallTransferInfo](#calltransferinfo8) | Yes  | Call transfer information.                       |
 
 **Return value**
@@ -3366,7 +3366,7 @@ Checks whether the ringtone is playing. This API uses an asynchronous callback t
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value true indicates that the **ringtone** is playing, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value true indicates that the ringtone is playing, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -3413,7 +3413,7 @@ Checks whether the ringtone is playing. This API uses a promise to return the re
 
 | Type                  | Description                       |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value true indicates that the **ringtone** is playing, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value true indicates that the ringtone is playing, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -3916,7 +3916,7 @@ Enables the IMS service. This API uses an asynchronous callback to return the re
 
 | Name  | Type                     | Mandatory| Description                                  |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.         |
 
 **Error codes**
@@ -3963,7 +3963,7 @@ Enables the IMS service. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -4013,7 +4013,7 @@ Disables the IMS service. This API uses an asynchronous callback to return the r
 
 | Name  | Type                     | Mandatory| Description                                  |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.              |
 
 **Error codes**
@@ -4060,7 +4060,7 @@ Disables the IMS service. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2. |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2 |
 
 **Return value**
 
@@ -4108,7 +4108,7 @@ Checks whether the IMS service is enabled. This API uses an asynchronous callbac
 
 | Name  | Type                        | Mandatory| Description                                  |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
-| slotId   | number                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                       | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
@@ -4152,7 +4152,7 @@ Checks whether the IMS service is enabled. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -4199,7 +4199,7 @@ Checks whether the IMS service is enabled. This API returns the result synchrono
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -4250,7 +4250,7 @@ Cancels the unfinished USSD services. This API uses an asynchronous callback to 
 
 | Name  | Type                     | Mandatory| Description                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2. |
+| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                             |
 
 **Error codes**
@@ -4298,7 +4298,7 @@ Cancels the unfinished USSD services. This API uses a promise to return the resu
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2. |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2 |
 
 **Return value**
 
@@ -4350,7 +4350,7 @@ Sets the status of the VoNR switch. This API uses an asynchronous callback to re
 
 | Name     | Type                          | Mandatory| Description                                                |
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
-| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.               |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2               |
 | state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                           |
 | callback    | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
 
@@ -4401,7 +4401,7 @@ Sets the status of the VoNR switch. This API uses a promise to return the result
 
 | Name     | Type                          | Mandatory| Description                                       |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.    |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2    |
 | state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                  |
 
 **Return value**
@@ -4455,7 +4455,7 @@ Obtains the status of the VoNR switch. This API uses an asynchronous callback to
 
 | Name     |                     Type                     | Mandatory | Description                                                  |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| slotId      | number                                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.                 |
+| slotId      | number                                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                 |
 | callback    | AsyncCallback&lt;[VoNRState](#vonrstate10)&gt;| Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -4504,7 +4504,7 @@ Obtains the status of the VoNR switch. This API uses a promise to return the res
 
 | Name     | Type                          | Mandatory| Description                                       |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.    |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2    |
 
 **Return value**
 
@@ -4556,7 +4556,7 @@ Checks whether the call forwarding time can be set. This API uses an asynchronou
 
 | Name     | Type                          | Mandatory| Description                                                 |
 | ----------- | ----------------------------- | ---- | ----------------------------------------------------- |
-| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.                |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                |
 | callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
 
 **Error codes**
@@ -4605,7 +4605,7 @@ Checks whether the call forwarding time can be set. This API uses a promise to r
 
 | Name     | Type                          | Mandatory| Description                                       |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.    |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2    |
 
 **Return value**
 
@@ -4885,7 +4885,7 @@ Provides an option for determining whether a call is a video call.
 
 |        Name             | Type                              | Mandatory| Description                                                                                            |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
-| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.<br> This is a system API.                                  |
+| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2<br> This is a system API.                                  |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                                                                 |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                                                     |
 | dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                                                     |
@@ -4900,7 +4900,7 @@ Provides an option for determining whether a call is a video call.
 
 |        Name             | Type                              | Mandatory| Description                                        |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------- |
-| accountId <sup>9+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.   |
+| accountId <sup>9+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2   |
 | videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type.                              |
 | dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario.                                  |
 | dialType <sup>9+</sup>   | [DialType](#dialtype8)             | No  | Dialup type.                                  |
@@ -4959,9 +4959,9 @@ Enumerates audio device types.
 
 | Name                | Value  | Description        |
 | -------------------- | ---- | ----------- |
-| DEVICE_EARPIECE      | 0    | Headset device.    |
-| DEVICE_SPEAKER       | 1    | Speaker device.  |
-| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
+| DEVICE_EARPIECE      | 0    | Headset.    |
+| DEVICE_SPEAKER       | 1    | Speaker.  |
+| DEVICE_WIRED_HEADSET | 2    | Wired headset.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
 | DEVICE_DISTRIBUTED_AUTOMOTIVE<sup>11+</sup> | 4    | Distributed head unit.|
 
@@ -5612,7 +5612,7 @@ Sets the local preview window. This API uses a promise to return the result.
 | Name| Type                        | Mandatory| Description          |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
-| surfaceId | string                    | Yes  | Preview window ID. For details about how to obtain **surfaceId**, see [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).  |
+| surfaceId | string                    | Yes  | Preview window ID. For details about how to obtain **surfaceId**, see [getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9).  |
 
 **Return value**
 
@@ -5663,7 +5663,7 @@ Sets the remote display window. This API uses a promise to return the result.
 | Name| Type                        | Mandatory| Description          |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
-| surfaceId | string                    | Yes  | Display window ID. For details about how to obtain **surfaceId**, see [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).  |
+| surfaceId | string                    | Yes  | Display window ID. For details about how to obtain **surfaceId**, see [getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9).  |
 
 **Return value**
 
@@ -5701,7 +5701,7 @@ call.setDisplaySurface(1, "surfaceId1").then(() => {
 
 setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\<void\>
 
-Sets the video call screen to follow the device direction. This API uses a promise to return the result.
+Sets the video image to follow the device direction. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -6207,7 +6207,7 @@ Defines a number mark.
 | markContent | string | No | Mark content. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the returned information consists of the employee name and ID.|
 | markCount | number       | No | Mark count.|
 | markSource | string | No| Mark source.|
-| isCloud | boolean | No| Whether the number mark is from the cloud.|
+| isCloud | boolean | No| Whether the number mark is from the cloud. The default value is **false**.<br>- **true**: Send DTMF tones.<br>- **false**: The automatic retry is disabled.|
 | markDetails<sup>14+</sup> | string | No| Mark details. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the value of this parameter is the department position.|
 
 ## MarkType<sup>12+</sup>

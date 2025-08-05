@@ -123,7 +123,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
     })
     ```
    
-   To generate a pixel map, you can use the [componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder) API.
+   To generate a pixel map, you can use the [this.getUIContext().getComponentSnapshot().createFromBuilder()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilderdeprecated) API.
 
       ```ts
       @Builder
@@ -466,7 +466,7 @@ The following uses **Grid** as an example to describe the basic procedure for mu
     })
     ```
 
-   To obtain a snapshot of a component, you can call the [get](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotget-1) API of **componentSnapshot** when the component is selected. The following shows how to use the component ID to obtain the snapshot.
+   To obtain a snapshot of a component, you can call the [this.getUIContext().getComponentSnapshot().get()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotgetdeprecated) API of **componentSnapshot** when the component is selected. The following shows how to use the component ID to obtain the snapshot.
 
     ```ts
     @State previewData: DragItemInfo[] = []

@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)
 
-**UIExtensionContentSession** is an instance created when the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md) loads UI content. When the UIExtensionComponent starts a UIExtensionAbility, the UIExtensionAbility creates a UIExtensionContentSession instance and returns it through the [onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) callback. One UIExtensionComponent corresponds to one **UIExtensionContentSession** instance, which provides methods such as UI loading and result notification. The **UIExtensionContentSession** instances of multiple UIExtensionAbilities are operated separately.
+UIExtensionContentSession is an instance created when the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md) loads UI content. When the UIExtensionComponent starts a UIExtensionAbility, the UIExtensionAbility creates a UIExtensionContentSession instance and returns it through the [onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) callback. One UIExtensionComponent corresponds to one UIExtensionContentSession instance, which provides methods such as UI loading and result notification. The UIExtensionContentSession instances of multiple UIExtensionAbilities are operated separately.
 
 > **NOTE**
 >
@@ -14,7 +14,9 @@
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContentSession.loadContent
+## UIExtensionContentSession
+
+### loadContent
 
 loadContent(path: string, storage?: LocalStorage): void
 
@@ -41,9 +43,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -56,11 +59,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.loadContentByName<sup>18+</sup>
+### loadContentByName<sup>18+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) lifecycle of the UIExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -73,22 +76,22 @@ Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExten
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------ | ------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
 **Example**
 
 Implementation of the UIExtensionAbility:
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import './pages/UIExtensionPage'; // Import the named route page. The ./pages/UIExtensionPage.ets file is used as an example in the sample code. Change the path and file name to the actual ones during your development.
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // Other lifecycles and implementations
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -135,11 +138,11 @@ struct UIExtensionPage {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-Stops the window object corresponding to this **UIExtensionContentSession** instance. This API uses an asynchronous callback to return the result.
+Stops the window object corresponding to this UIExtensionContentSession instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -191,11 +194,11 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
-Stops the window object corresponding to this **UIExtensionContentSession** instance. This API uses a promise to return the result.
+Stops the window object corresponding to this UIExtensionContentSession instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -239,11 +242,11 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-Stops the window object corresponding to this **UIExtensionContentSession** instance and returns the result to the UIExtensionComponent. This API uses an asynchronous callback to return the result.
+Stops the window object corresponding to this UIExtensionContentSession instance and returns the result to the UIExtensionComponent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -306,11 +309,11 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-Stops the window object corresponding to this **UIExtensionContentSession** instance and returns the result to the UIExtensionComponent. This API uses a promise to return the result.
+Stops the window object corresponding to this UIExtensionContentSession instance and returns the result to the UIExtensionComponent. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -378,7 +381,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
@@ -412,10 +415,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -439,7 +443,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -468,10 +472,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -495,7 +500,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
@@ -525,10 +530,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -557,7 +563,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback): Promise\<void>
@@ -592,10 +598,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -624,7 +631,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+### getUIExtensionWindowProxy<sup>12+</sup>
 
 getUIExtensionWindowProxy(): uiExtension.WindowProxy
 

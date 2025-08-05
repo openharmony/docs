@@ -1,6 +1,6 @@
 # GC垃圾回收
 
-GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是指识别并释放内存中的不再使用的对象，以回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
+GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是指识别并释放内存中的不再使用的对象，以回收内存空间。目前广泛使用的编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
 
 ## GC算法简述
 
@@ -8,10 +8,10 @@ GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是
 
 #### 引用计数
 
-当对象B指向对象A时，A的引用计数加1；当该指向断开时，A的引用计数减1。如果A的引用计数为0，回收对象A。  
+当对象B指向对象A时，A的引用计数加1；当该指向断开时，A的引用计数减1。如果A的引用计数为0，则回收对象A。
 
-- 优点：引用计数算法设计简单，内存回收及时，在对象成为垃圾时立即回收，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
-- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在由循环引用导致的内存泄漏问题。
+- 优点：引用计数算法设计简单，而且会在对象成为垃圾时及时回收该部分内存，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
+- 缺点：在对象操作时插入了计数环节，增加了内存分配和赋值的开销，影响性能。存在因循环引用而导致的内存泄漏问题。
 ```
 class Parent {
   constructor() {
@@ -34,61 +34,62 @@ function main() {
   child.parent = parent;
 }
 ```
-在上述代码中，对象parent被对象child持有，parent的引用计数加1。同时，child也被parent持有，child的引用计数也加1。这导致了循环引用，直到main函数结束，parent和child仍无法释放，从而引发内存泄漏。
+在上述代码中，对象parent被对象child持有，parent的引用计数加1。同时，child也被parent持有，child的引用计数也会加1。这形成了循环引用，导致直到main函数结束，parent和child都无法释放，从而引发内存泄漏。
 #### 对象追踪
 
 ![image](./figures/tracing-gc.png)
 
-根对象包括程序运行中的栈内对象和全局对象等当前时刻一定存活的对象。被根对象引用的对象也是存活状态。通过遍历可以找到所有存活的对象。如图所示，从根对象开始遍历对象及其域，所有可达的对象标记为蓝色，即为活对象；剩下的不可达对象标记为黄色，即为垃圾。
-- 优点：对象追踪算法可以解决循环引用的问题，且对内存的分配和赋值没有额外的开销。
-- 缺点：和引用计数算法相反，对象追踪算法较为复杂，且有短暂的STW阶段。此外，回收会有延迟，导致比较多的浮动垃圾。
+根对象包括程序运行中的栈内对象和全局对象等当前时刻一定存活的对象。被根对象引用的对象也是存活状态。通过遍历可以找到所有存活对象。如图所示，从根对象开始遍历，所有可达对象标记为蓝色，即为活对象。剩下的不可达对象标记为黄色，即为垃圾。
+- 优点：对象追踪算法可以解决循环引用问题，并且对内存的分配和赋值没有额外开销。
+- 缺点：和引用计数算法相比，对象追踪算法较为复杂，有短暂的STW阶段。而且回收有延迟，会导致较多的浮动垃圾。
 
 引用计数和对象追踪算法各有优劣。由于引用计数存在内存泄漏问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
 
 ### 对象追踪的三种类型
 
-对象追踪算法通过遍历对象图标记出垃圾，而根据垃圾回收方式的不同，对象追踪可以分为三种基本类型：标记-清扫回收、标记-复制回收、标记-整理回收。以下图示中蓝色标记为可达对象，黄色标记为不可达对象。
+对象追踪算法通过遍历对象图标记出垃圾，而根据垃圾回收方式的不同，对象追踪可以分为三种基本类型：标记-清扫回收、标记-复制回收、标记-整理回收。下图中蓝色标记为可达对象，黄色标记为不可达对象。
 
 #### 标记-清扫回收
 
 ![image](./figures/mark-clearn.png)
   
-完成对象图遍历后，擦除不可达对象内容，并将其放入空闲队列，以便下次对象分配。  
-该回收方式不搬移对象，因此效率高。但因回收对象内存地址不连续，会导致内存碎片化，降低分配效率。极端情况下，即使有大量空闲内存，也可能无法放入较大的对象。  
+完成对象图遍历后，删除不可达对象内容，并将其放入空闲队列，以便下次对象分配。
+该回收方式不搬移对象，效率高。但回收对象内存地址不连续，导致内存碎片化，降低分配效率。极端情况下，即使有大量空闲内存，也可能无法放入较大对象。  
 
 #### 标记-复制回收
 
 ![image](./figures/mark-copy.png)
 
-遍历对象图时，将可达对象复制到新内存空间。遍历完成后，一次回收旧内存空间。  
-这种方式可以解决内存碎片问题，并通过一次遍历完成整个GC过程，效率较高。但在极端情况下，需要预留一半的内存空间以确保所有活动对象可以被拷贝，导致空间利用率较低。  
+遍历对象图时，将可达对象复制到新内存空间。遍历完成后，回收旧内存空间。  
+这种方式可以解决内存碎片问题，通过一次遍历完成整个GC过程，效率较高。但在极端情况下，需要预留一半内存空间以确保所有活动对象都可以被拷贝，这会导致空间利用率较低。
 
 #### 标记-整理回收
 
 ![image](./figures/mark-shuffle.png)
 
-完成对象图遍历后，将可达对象（蓝色）往本区域（或指定区域）的头部空闲位置复制，然后将已经完成复制的对象回收整理到空闲队列中。  
-这种回收方式既解决了“标记-清扫回收”导致的大量内存碎片问题，同时避免了“标记-复制回收”浪费一半内存空间的缺点，但性能开销比“标记-复制回收”高。  
+完成对象图遍历后，将可达对象（蓝色）复制到本区域或指定区域的头部空闲位置，然后将已复制的对象回收整理到空闲队列中。
+- 优点：解决了“标记-清扫回收”导致的大量内存碎片问题，避免了“标记-复制回收”浪费一半内存空间。
+- 缺点：和“标记-复制回收”相比，性能开销较高。
 ### HPP GC
 
-HPP GC（High Performance Partial Garbage Collection），即高性能部分垃圾回收，其中“High Performance”主要体现在三方面，分代模型、混合算法和GC流程优化。在算法方面，HPP GC会根据不同对象区域、采取不同的回收方式。
+HPP GC（High Performance Partial Garbage Collection），即高性能部分垃圾回收，其中“High Performance”主要体现在分代模型、混合算法和GC流程优化这三个方面。HPP GC根据不同对象区域采取不同的回收方式。
 
 #### 分代模型
 
-ArkTS运行时采用传统的分代模型，将对象进行分类。考虑到大多数新分配的对象都会在一次GC之后被回收，而大多数经过多次GC之后依然存活的对象会继续存活，ArkTS运行时将对象划分为年轻代对象和老年代对象，并将对象分配到不同的空间。
+ArkTS运行时采用传统的分代模型，将对象进行分类。大多数新分配的对象会在一次GC后被回收，而大多数经过多次GC后依然存活的对象会继续存活。ArkTS运行时将对象划分为年轻代和老年代对象，并分配到不同空间。
 
 ![image](./figures/generational-model.png)
 
-ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间。而经过再次GC后依然存活的对象，会被移动到老年代（Old Space）。
+ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间。经过再次GC后依然存活的对象，会被移动到老年代（Old Space）。
 
 #### 混合算法
 
-HPP GC是部分复制、部分整理和部分清扫的混合算法，根据年轻代和老年代对象特点采取不同的回收方式。  
+HPP GC是部分复制、部分整理和部分清扫的混合算法。根据年轻代和老年代对象特点，采取不同的回收方式。  
 
 - 部分复制
 考虑到年轻代对象生命周期短、回收频繁且大小有限，ArkTS运行时对年轻代对象采用“标记-复制回收”算法。
 - 部分整理+部分清扫
-根据老年代对象的特点，引入启发式Collection Set（简称CSet）选择算法。此选择算法的基本原理是：在标记阶段对每个区域的存活对象进行大小统计，然后在回收阶段优先选出存活对象少、回收代价小的区域进行对象整理回收，再对剩下的区域进行清扫回收。
+根据老年代对象的特点，引入启发式Collection Set（简称CSet）选择算法。该算法在标记阶段统计每个区域的存活对象大小，然后在回收阶段优先选择存活对象少、回收代价小的区域进行对象整理回收，再对剩余区域进行清扫回收。
 
 回收策略如下：
 
@@ -118,7 +119,9 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 - SnapshotSpace：快照空间，转储堆快照时使用的空间。
 - MachineCodeSpace：机器码空间，存放程序机器码。
 
-注：每个空间由一个或多个Region进行分区域管理，Region是空间向内存分配器申请的单位。
+> **说明：**
+>
+> 每个空间由一个或多个Region进行分区域管理。Region是空间向内存分配器申请的单位。
 
 ### 相关参数
 
@@ -126,7 +129,7 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 > 
 > 以下参数未提示可配置的均为不可配置项，由系统自行设定。
 
-根据系统分配堆空间总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随堆空间总大小变化。手机设备堆空间总大小默认为大于256MB。  
+根据系统分配堆空间总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随堆空间总大小变化。手机设备堆空间总大小默认为大于256MB。
 开发者可以查阅[hidebug接口文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
 #### 堆大小相关参数
 
@@ -145,11 +148,11 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 | HeapSize  | 768 MB | worker类型线程堆空间大小。 |
 
 #### Semi Space
-heap中生成两个Semi Space供copying使用。
+heap中生成两个Semi Space，供copying使用。
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
 | semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | SemiSpace空间大小，会根据堆总大小有不同的范围限制。 |
-| semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
+| semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M | 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
 | semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小。 |
 
 #### Old Space 和 Huge Object Space
@@ -157,40 +160,40 @@ heap中生成两个Semi Space供copying使用。
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| oldSpaceOvershootSize | 4MB/8MB/8MB | OldSpace允许过冲最大大小。 |
+| oldSpaceOvershootSize | 4MB/8MB | OldSpace允许过冲最大大小。 |
 
 #### 其他空间
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| defaultReadOnlySpaceSize | 256 KB | ReadOnlySpace默认空间大小。 |
-| defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | NonMovableSpace默认空间大小。|
-| defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | SnapshotSpace默认空间大小。|
-| defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | MachineCodeSpace默认空间大小。|
+| defaultReadOnlySpaceSize | 256KB | ReadOnlySpace默认空间大小。 |
+| defaultNonMovableSpaceSize | 2MB/6MB/64MB | NonMovableSpace默认空间大小。|
+| defaultSnapshotSpaceSize | 512KB/4MB | SnapshotSpace默认空间大小。|
+| defaultMachineCodeSpaceSize | 2MB/8MB | MachineCodeSpace默认空间大小。|
 
 #### 解释器栈大小
 
-| 参数名 | 范围 | 作用 |
+| 参数名 | 值 | 作用 |
 | --- | --- | --- |
-| maxStackSize | 128KB | 控制解释器栈大小。 |
+| maxStackSize | 128KB | 控制解释器栈的大小。 |
 
 #### 并发参数
 
 | 参数名 | 值 | 作用 |
 | --- | --- | --- |
-| gcThreadNum | 7 | gc线程数量，默认为7。可通过`gc-thread-num`参数自行设定该参数值。 |
+| gcThreadNum | 7 | gc线程数量，默认为7。可通过`gc-thread-num`参数设置。 |
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
-注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程数的上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
+该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合考虑gcThreadNum和线程数的上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
 
 #### 其他参数
 
 | 参数名 | 值 | 作用 |
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2M/4M/8M | heap整体重新计算空间大小限制时，控制oldSpace、heapObject和globalNative的最小增长步长。 |
-| minGrowingStep | 4M/8M/16M | 调整oldSpace的最小增长步长。 |
-| longPauseTime | 40ms | 判断是否为超长GC界限，超长GC会触发完整GC日志信息打印，方便开发者定位分析。可通过`gc-long-paused-time`进行配置。 |
+| minAllocLimitGrowingStep | 2MB/4MB/8MB | heap 整体重新计算空间大小限制时，此参数用于控制oldSpace、heapObject和globalNative的最小增长步长。 |
+| minGrowingStep | 4MB/8MB/16MB | 调整oldSpace的最小增长步长。 |
+| longPauseTime | 40ms | 判断是否为超长GC界限。超长GC会触发完整GC日志信息的打印，便于开发者定位和分析。可通过`gc-long-paused-time`进行配置。 |
 
 ## GC流程
 
@@ -200,26 +203,26 @@ heap中生成两个Semi Space供copying使用。
 
 #### Young GC
 
-- **触发机制**：年轻代GC触发阈值在2MB-16MB变化，根据分配速度和存活率等会变化。
-- **说明**：主要回收semi space新分配的年轻代对象。
+- **触发机制**：年轻代GC触发阈值在2MB-16MB，根据分配速度和存活率变化。
+- **说明**：主要回收semi Space新分配的年轻代对象。
 - **场景**：前台场景。
 - **日志关键词**：`[ HPP YoungGC ]`
 
 #### Old GC
 
-- **触发机制**：老年代GC触发阈值在20MB-300多MB变化，大部分情况，第一次Old GC的阈值在20M左右，之后会根据对象存活率，内存占用大小进行阈值调整。
+- **触发机制**：老年代GC触发阈值在20MB到300MB之间变化。通常，第一次Old GC的阈值约为20MB，之后会根据对象存活率和内存占用情况进行调整。
 - **说明**：对年轻代和部分老年代空间做整理压缩，其他空间做sweep清理。触发频率比年轻代GC低很多，由于会做全量mark，因此GC时间会比年轻代GC长，单次耗时约5ms~10ms。
 - **场景**：前台场景。
 - **日志关键词**：`[ HPP OldGC ]`
 
 #### Full GC
 
-- **触发机制**：不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和ArkTS 也有接口可以触发。
-- **说明**：会对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存空间。
+- **触发机制**：不会由内存阈值触发。应用切换到后台场景之后，若预测可回收对象大小超过2M，则会触发一次Full GC。DumpHeapSnapshot和AllocationTracker工具默认会触发Full GC。Native接口和ArkTS接口也可触发。
+- **说明**：对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存。
 - **场景**：后台场景。
 - **日志关键词**：`[ CompressGC ]`
 
-此后的Smart GC或IDLE GC都会从上述三种GC中选择。
+此后，Smart GC或IDLE GC会从上述三种GC中选择。
 
 ### 触发策略
 
@@ -227,19 +230,19 @@ heap中生成两个Semi Space供copying使用。
 
 - 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数。
 - 限制参数：对应的空间阈值。
-- 说明：对象申请空间到达对应空间阈值时触发GC。
+- 说明：对象申请空间到达阈值时触发GC。
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT。
 
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
 - 限制参数：`globalSpaceNativeLimit`。
-- 说明：影响是否进行全量mark，以及是否开始并发mark。
+- 说明：影响是否进行全量mark以及是否开启并发mark。
 
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
-- 说明：切换后台后主动触发一次Full GC。
+- 说明：切换到后台场景后主动触发一次Full GC。
 - 典型日志：`app is inBackground` 和 `app is not inBackground`。
   GC 日志中可区分GCReason::SWITCH_BACKGROUND。
 
@@ -254,25 +257,25 @@ heap中生成两个Semi Space供copying使用。
 #### new space GC前后的阈值调整
 
 - 函数方法：`AdjustCapacity`
-- 说明：GC后调整SemiSpace的触发水线，优化空间结构。
-- 典型日志：无直接日志，可以通过GC统计日志看出，GC前young space的阈值有动态调整。
+- 说明：GC后，调整SemiSpace的触发水线，优化空间结构。
+- 典型日志：无直接日志。可以通过GC统计日志看出，GC前young space的阈值有动态调整。
 
 #### 第一次OldGC后阈值的调整
 
 - 函数方法：`AdjustOldSpaceLimit`
 - 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
-- 日志关键词：`AdjustOldSpaceLimit`。
+- 日志关键词：`AdjustOldSpaceLimit`
 
-#### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
+#### 第二次及以后的OldGC对old Space和global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
-- 说明：根据当前GC统计的数据变化，重新计算并调整`newOldSpaceLimit`、`newGlobalSpaceLimit`、`globalSpaceNativeLimit`和增长因子。
-- 日志关键词：`RecomputeLimits`。
+- 说明：根据当前 GC 统计数据的变化，重新计算并调整newOldSpaceLimit、newGlobalSpaceLimit、globalSpaceNativeLimit及增长因子。
+- 日志关键词：`RecomputeLimits`
 
-#### PartialGC的CSet 选择策略
+#### Partial Old GC的CSet 选择策略
 
 - 函数方法：`OldSpace::SelectCSet()`
-- 说明：PartialGC执行时采用该策略，优先选择存活对象数量少、回收代价小的Region进行GC。
+- 说明：PartialGC执行时，优先选择存活对象数量少、回收代价小的Region进行回收。
 - 典型日志：
     - `Select CSet failure: number is too few`
     - `Max evacuation size is 6_MB. The CSet Region number`
@@ -284,7 +287,7 @@ heap中生成两个Semi Space供copying使用。
 
 ![image](./figures/gc-shared-heap.png)
 
-- SharedOldSpace：共享老年代空间（这里并不区分年轻代老年代），存放一般的共享对象。
+- SharedOldSpace：共享老年代空间（不区分年轻代老年代），存放一般的共享对象。
 - SharedHugeObjectSpace：共享大对象空间，使用单独的Region存放一个大对象的空间。
 - SharedReadOnlySpace：共享只读空间，存放运行期间的只读数据。
 - SharedNonMovableSpace：共享不可移动空间，存放不可移动的对象。
@@ -306,21 +309,21 @@ heap中生成两个Semi Space供copying使用。
 - 应用点击页面跳转。
 - 超长帧。
 
-当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
+该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
-日志关键词: `SmartGC`。
+日志关键词: `SmartGC`
 
 #### 交互流程
 
 ![image](./figures/gc-smart-feature.png)
 
-标记性能敏感场景，在进入和退出性能敏感场景时，在堆上标记，避免不必要的GC，维持高性能表现。
+标记性能敏感场景。在进入和退出性能敏感场景时，在堆上标记，避免不必要的GC，维持高性能表现。
 
 ## 日志解释
 
 ### 开启全量日志
 
-默认情况下，详细的GC日志仅在GC耗时超过40毫秒时才会打印。若需开启所有GC执行的日志，需使用命令在设备中开启。
+默认情况下，详细的GC日志仅在GC耗时超过40毫秒时才会打印。若需开启所有GC日志，需使用命令在设备中开启。
 
 **使用样例：**
 
@@ -333,7 +336,7 @@ hdc shell reboot
 
 ### 典型日志
 
-以下日志统计了GC完整执行后的信息，不同GC类型可能有所差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关日志，或搜索关键词`ArkCompiler`查看更全面的虚拟机相关日志。
+以下日志统计了GC完整执行后的信息，不同GC类型可能有所差异。在导出的日志文件中搜索关键词`[gc]`查看GC日志，或搜索关键词`ArkCompiler`查看更全面的虚拟机日志。
 
 ```
 // GC前对象实际占用大小（Region实际占用大小）->GC后对象实际占用大小（Region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
@@ -394,16 +397,16 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC开发者调试接口
 
 > **注意：**
-> 
+>
 > 以下接口仅供调试使用，非正式对外SDK接口，不应在应用正式版本中使用。
 
 ### ArkTools.hintGC()
 
 - 调用方式：`ArkTools.hintGC()`
 - 接口类型：ArkTS接口。
-- 作用：调用后，VM主动判断是否适合进行full GC。如果后台场景中内存预期存活率低于设定值，则触发full GC；若判断为敏感状态，则不触发。
+- 调用后，VM会判断是否适合进行full GC。如果后台场景中内存预期存活率低于设定值，则触发full GC；若判断为敏感状态，则不触发。
 - 使用场景：开发者提示系统进行GC。
-- 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）。
+- 典型日志：无直接日志，仅区分外部触发（`GCReason::TRIGGER_BY_JS`）。
 
 
 **使用参考：**
@@ -439,18 +442,18 @@ struct Index {
 
 ### GC稳定性问题排查指导
 
-GC稳定性问题大多由两种异常引起：一是非法多线程操作导致的对象异常。二是踩内存问题导致的存储的指针异常。这两种问题在GC任务中的表现通常为堆栈中的地址访问异常。 
+GC稳定性问题主要由两种异常引起：一是非法多线程操作导致的对象异常，二是内存访问错误导致的指针异常。这两种问题在GC任务中通常表现为堆栈中的地址访问异常。 
 
-可通过线程名称和堆栈内的方法来识别GC任务：`OS_GC_Thread`线程主要执行GC任务和PGO相关任务（采集型任务）；或者通过堆栈内包含`GCTask`等关键词识别GC任务。GC任务上报地址异常类型的崩溃时，开发者应首先应排查非法多线程问题和踩内存问题。 
+可以通过线程名称和堆栈中的方法来识别GC任务：`OS_GC_Thread`线程主要执行GC任务和PGO相关任务（采集型任务）；或者通过堆栈中包含`GCTask`等关键词识别GC任务。GC任务上报地址异常类型的崩溃时，开发者应首先排查非法多线程问题和内存访问问题。
 
 - 检测非法多线程操作：[方舟运行时检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
 - 检测踩内存问题：[HWASan检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hwasan)。
 
-以下示例仅列举部分情况，实际问题上报的地址异常类型多种多样，此处不再赘述。
+以下示例列举部分情况，实际问题上报的地址异常类型多样，不再赘述。
 
-对象异常问题典型堆栈信息： 
+对象异常问题常见堆栈信息： 
 
-0xffff000000000048 为对象异常偏移出错。
+0xffff000000000048 是对象的异常偏移地址。
 
 ``` text
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffff000000000048 
@@ -467,9 +470,9 @@ Tid:6490, Name:OS_GC_Thread
 #08 pc 000000000064f718 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
 #09 pc 00000000001ba6b8 /system/lib/ld-musl-aarch64.so.1(start+236)(8102fa8a64ba5e1e9f2257469d3fb251)
 ```
-指针异常问题典型堆栈信息：
+指针异常问题常见堆栈信息：
 
-0x000056c2fffc0008 为指针异常，指针映射出错。
+0x000056c2fffc0008 指针出现异常，指针映射出错。
 
 ``` text
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x000056c2fffc0008 

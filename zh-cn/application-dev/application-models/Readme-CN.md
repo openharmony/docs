@@ -21,7 +21,7 @@
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->
-      - [UIServiceExtension](uiserviceextension.md)
+      - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)

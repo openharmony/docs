@@ -28,6 +28,8 @@ getSecurityPatchTag(admin: Want): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统API：** 此接口为系统接口。
 
 **参数：**
@@ -57,11 +59,13 @@ getSecurityPatchTag(admin: Want): string
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -80,6 +84,8 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统API：** 此接口为系统接口。
 
@@ -110,11 +116,13 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -132,6 +140,8 @@ getPasswordPolicy(): PasswordPolicy
 获取设备口令策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统API：** 此接口为系统接口。
 
@@ -152,6 +162,8 @@ getPasswordPolicy(): PasswordPolicy
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
+
 try {
     let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy();
     console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
@@ -165,6 +177,8 @@ try {
 设备管理应用的文件系统加密状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统API**: 此接口为系统接口。
 

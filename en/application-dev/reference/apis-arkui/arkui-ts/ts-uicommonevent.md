@@ -1,4 +1,4 @@
-# Common Event Callback
+# Common Event Callbacks
 
 >**NOTE**
 >

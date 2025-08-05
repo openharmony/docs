@@ -1,6 +1,6 @@
-# @ohos.app.appstartup.startupManager
+# @ohos.app.appstartup.startupManager (AppStartup Management)
 
-The startupManager module provides APIs to manage startup tasks in AppStartup. It can be called only in the main thread.
+The module provides APIs to manage startup tasks in AppStartup. It can be called only in the main thread.
 
 > **NOTE**
 >
@@ -25,10 +25,10 @@ Runs startup tasks or loads .so files.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task and names of .so files to be preloaded.|
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Configuration for the AppStartup timeout and startup task listener.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| startupTasks | Array\<string\> | Yes| Array of [StartupTask](js-apis-app-appstartup-startupTask.md) names and names of .so files to be preloaded.|
+| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Configuration for the AppStartup timeout and startup task listener.|
 
 **Return value**
 
@@ -59,23 +59,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ["StartupTask_001", "libentry_001"];
+    let startParams = ['StartupTask_001', 'libentry_001'];
     try {
       // Manually call the run method.
       startupManager.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ');
+        console.log(`StartupTest startupManager run then, startParams = ${startParams}.`);
       }).catch((error: BusinessError) => {
-        console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
-        console.info("StartupTest promise catch error, startParams = "
-          + JSON.stringify(startParams));
-      })
+        console.error(`StartupTest promise catch failed, error code: ${error.code}, error msg: ${error.message}.`);
+      });
     } catch (error) {
-      let errMsg = JSON.stringify(error);
-      let errCode: number = error.code;
-      console.log('Startup catch error , errCode= ' + errCode);
-      console.log('Startup catch error ,error= ' + errMsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error(`Startup.run failed, err code: ${errCode}, err msg: ${errMsg}.`);
     }
   }
+
   // ...
 }
 ```
@@ -266,7 +264,7 @@ Removes the initialization result of a startup task or .so file preloading task.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name.|
-  
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).

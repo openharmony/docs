@@ -2,11 +2,11 @@
 
 ## 简介
 
-JSVM-API中装箱类型(Wrapper object)判断相关接口可以通过不同API对object的装箱类型进行快速判断。
+JSVM-API中，装箱类型(Wrapper object)判断相关接口支持通过不同API快速判断object的装箱类型。
 
 ## 基本概念
 
-在JSVM-API中，装箱类型相关接口能够给用户提供快速判断5个不同装箱类型能力。
+在JSVM-API中，装箱类型相关接口提供快速判断5种装箱类型的能力。
 
 ## 接口说明
 
@@ -20,7 +20,7 @@ JSVM-API中装箱类型(Wrapper object)判断相关接口可以通过不同API�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++代码。
 
 ### 使用接口判断是否是Number Object
 

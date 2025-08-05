@@ -221,7 +221,7 @@ Moves to a specific navigation index.
 ## Example
 
 ### Example 1: Using a Dot Indicator with a Swiper Component
-This example shows how to bind a dot-style **Indicator** component to a **Swiper **component using **IndicatorComponentController**.
+This example shows how to bind a dot-style **Indicator** component to a **Swiper** component using **IndicatorComponentController**.
 ```
 @Entry
 @Component
@@ -284,7 +284,7 @@ struct DotIndicatorDemo {
 
 ### Example 2: Using a Digit Indicator with a Swiper Component
 
-This example shows how to bind a digit-style **Indicator** component to a **Swiper **component using **IndicatorComponentController**.
+This example shows how to bind a digit-style **Indicator** component to a **Swiper** component using **IndicatorComponentController**.
 
 ```
 @Entry

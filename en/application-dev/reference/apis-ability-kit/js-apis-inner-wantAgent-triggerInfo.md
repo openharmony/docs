@@ -1,6 +1,6 @@
 # TriggerInfo
 
-The **TriggerInfo** module defines the information required for triggering the WantAgent. The information is used as an input parameter of [trigger](js-apis-app-ability-wantAgent.md#wantagenttrigger).
+The module defines the information required for triggering the WantAgent. The information is used as an input parameter of [trigger](js-apis-app-ability-wantAgent.md#wantagenttrigger).
 
 > **NOTE**
 > 
@@ -18,10 +18,10 @@ import { wantAgent } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name      | Type                | Mandatory| Description       |
-| ---------- | --- |-------------------- | ----------- |
-| code       | number               | Yes  | Custom result code provided for the target WantAgent.|
-| want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
-| permission | string               | No  | Permission.   |
-| extraInfo  | { [key: string]: any } | No  | Extra information.   |
-| extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this property to replace **extraInfo**. When this property is set, **extraInfo** does not take effect.   |
+| Name      | Type                | Read-Only| Optional| Description       |
+| ---------- | ------------------- | ---- | ---- | ----------- |
+| code       | number               | No| No| Custom result code provided for the target WantAgent.|
+| want       | Want                 | No| Yes| Carrier for information transfer between objects (application components).   |
+| permission | string               | No| Yes| Permission.   |
+| extraInfo  | { [key: string]: any } | No| Yes| Extra information.   |
+| extraInfos<sup>11+<sup>  | Record\<string, Object> | No| Yes| Extra information. You are advised to use this property to replace **extraInfo**. When this property is set, **extraInfo** does not take effect.   |

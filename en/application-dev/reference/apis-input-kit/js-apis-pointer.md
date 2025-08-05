@@ -305,7 +305,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| windowId | number                                   | Yes   | Window ID. The value is an integer greater than or equal to **-1**. The value **-1** indicates the global window.   |
+| windowId | number                                   | Yes   | Window ID. The value is an integer greater than or equal to **-1**. The value **-1** indicates the global window.|
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the mouse pointer style.|
 
 **Error codes**
@@ -783,7 +783,7 @@ struct Index {
     RelativeContainer() {
       Text()
         .onClick(() => {
-          // app_icon为示例资源，请开发者根据实际需求配置资源文件。
+          // app_icon is an example resource. Configure the resource file based on the actual requirements.
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
             const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
             let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -811,7 +811,7 @@ struct Index {
 Pixel map resource.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
-| Name    | Type    | Readable    | Writable    | Description    |
+| Name    | Type    | Read-Only    | Optional    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
 | focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum width of the image. The default value is **0** if the parameter is left empty.|
@@ -823,7 +823,7 @@ Defines the custom cursor configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name    | Type    | Readable    | Writable    | Description    |
+| Name    | Type    | Read-Only    | Optional    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **true** means to adjust the cursor size based on system settings, and the value **false** means to use the custom cursor size. The adjustment range is [size of the cursor image, 256 x 256].|
 
@@ -857,7 +857,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId. |
+| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
 
 **Example**
 

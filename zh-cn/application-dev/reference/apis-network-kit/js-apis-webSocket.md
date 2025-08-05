@@ -1499,7 +1499,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
+| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 
@@ -1576,6 +1576,8 @@ type HttpProxy = connection.HttpProxy
 | clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 

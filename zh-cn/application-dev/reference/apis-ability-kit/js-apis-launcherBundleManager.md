@@ -12,7 +12,7 @@
 import { launcherBundleManager } from '@kit.AbilityKit';
 ```
 
-## launcherBundleManager.getLauncherAbilityInfoSync<sup>18+</sup>
+## launcherBundleManager.getLauncherAbilityInfoSync
 
 getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>
 
@@ -62,7 +62,7 @@ try {
 }
 ```
 
-## LauncherAbilityInfo<sup>18+</sup>
+## LauncherAbilityInfo
 
 type LauncherAbilityInfo = _LauncherAbilityInfo
 

@@ -20,7 +20,7 @@ The figure below shows the procedure. You only need to implement step 1 and step
 | **API** | **Description**|
 | -------- | -------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | Publishes a notification. |
-| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)(method: string, callback: CalleeCallback): void       | Registers a caller notification callback, which is invoked when the target ability registers a function. |
+| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)(method: string, callback: CalleeCallback): void       | Registers a caller notification callback, which is invoked when the target ability registers a function. |
 
 ## How to Develop
 

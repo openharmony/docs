@@ -13,7 +13,7 @@ You can use either of the following ways to build a task graph:
 
 > **NOTE**
 >
-> When a task handle appears in `in_deps`, the corresponding task is the previous task. When a task handle appears in `out_deps`, the corresponding task is the subsequent task.
+> - When a task handle appears in `in_deps`, the corresponding task is the previous task. When a task handle appears in `out_deps`, the corresponding task is the subsequent task.
 
 Task dependency applies to scenarios where tasks have specific sequence or logical process requirements. For example:
 
@@ -25,8 +25,8 @@ Task dependency applies to scenarios where tasks have specific sequence or logic
 
 > **NOTE**
 >
-> When the signature of a data object appears in `in_deps` of a task, the task is referred to as a consumer task that executes without modifying the original input data object.
-> When the signature of a data object appears in `out_deps` of a task, the task is referred to as a producer task that updates the output data object's content to create a new version.
+> - When the signature of a data object appears in `in_deps` of a task, the task is referred to as a consumer task that executes without modifying the original input data object.
+> - When the signature of a data object appears in `out_deps` of a task, the task is referred to as a producer task that updates the output data object's content to create a new version.
 
 Data dependency applies to scenarios where tasks are triggered by data production and consumption relationships.
 
@@ -78,7 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```c
 #include <stdio.h>
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
     void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
@@ -140,6 +140,11 @@ int main()
 
     // Wait until all tasks are complete.
     ffrt_wait();
+
+    ffrt_task_handle_destroy(hTaskA);
+    ffrt_task_handle_destroy(hTaskB);
+    ffrt_task_handle_destroy(hTaskC);
+    ffrt_task_handle_destroy(hTaskD);
     return 0;
 }
 ```
@@ -280,11 +285,16 @@ Each task forms a call tree in the FFRT.
 
 The main FFRT APIs involved in the preceding example are as follows:
 
-| Name                                                            | Description                                  |
+| Name                                                             | Description                            |
 | ---------------------------------------------------------------- | -------------------------------------- |
-| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | Submits a task.                    |
-| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | Submits a task, and obtains the task handle.      |
-| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | Waits until the dependent tasks are complete.|
+| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | Submits a task.                   |
+| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | Submits a task, and obtains the task handle.|
+| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | Waits until the dependent tasks are complete.            |
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

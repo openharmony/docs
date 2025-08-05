@@ -12,7 +12,7 @@ The **uiAppearance** module provides basic capabilities for managing the system 
 ## Modules to Import
 
 ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 ```
 
 
@@ -59,7 +59,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
@@ -111,7 +111,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
@@ -155,7 +155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let darkMode = uiAppearance.getDarkMode();
@@ -167,7 +167,7 @@ try {
   ```
 
 
-## uiAppearance.setFontScale<sup>12+<sup>
+## uiAppearance.setFontScale<sup>12+</sup>
 
 setFontScale(fontScale: number): Promise\<void>
 
@@ -205,7 +205,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let fontScale = 10;
@@ -223,7 +223,7 @@ try {
   ```
 
 
-## uiAppearance.getFontScale<sup>12+<sup>
+## uiAppearance.getFontScale<sup>12+</sup>
 
 getFontScale(): number
 
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let fontScale = uiAppearance.getFontScale();
@@ -266,7 +266,7 @@ try {
 }
   ```
 
-## uiAppearance.setFontWeightScale<sup>12+<sup>
+## uiAppearance.setFontWeightScale<sup>12+</sup>
 
 setFontWeightScale(fontWeightScale: number): Promise\<void>
 
@@ -304,7 +304,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let fontWeightScale = 1;
@@ -322,7 +322,7 @@ try {
   ```
 
 
-## uiAppearance.getFontWeightScale<sup>12+<sup>
+## uiAppearance.getFontWeightScale<sup>12+</sup>
 
 getFontWeightScale(): number
 
@@ -354,7 +354,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let fontWeightScale = uiAppearance.getFontWeightScale();

@@ -1,8 +1,8 @@
 # @ohos.app.ability.wantAgent (WantAgent)
 
-app.ability.WantAgent is a class that encapsulates a [Want](./js-apis-app-ability-want.md) object and allows the application to execute the Want at a future time point. The module provides APIs for creating and comparing WantAgent objects, and obtaining the user ID and bundle name of a WantAgent object.
+WantAgent is a class that encapsulates a [Want](./js-apis-app-ability-want.md) object and allows the application to execute the Want at a future time point.
 
-A typical use scenario of WantAgent is notification processing. For example, when a user touches a notification, the [trigger](#wantagenttrigger) API of WantAgent is triggered and the target application is started. For details, see [Notification](../../notification/notification-with-wantagent.md). You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
+This module provides the APIs for creating a WantAgent object, obtaining the bundle name and UID of the application to which a WantAgent object belongs, proactively triggering a WantAgent object, and checking whether two WantAgent objects are the same. A typical use scenario of WantAgent is notification processing. For example, when a user touches a notification, the [trigger](#wantagenttrigger) API of WantAgent is triggered and the target application is started. For details, see [Notification](../../notification/notification-with-wantagent.md).
 
 > **NOTE**
 >
@@ -18,9 +18,7 @@ import { wantAgent } from '@kit.AbilityKit';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Obtains a WantAgent object. This API uses an asynchronous callback to return the result. If the creation fails, a null WantAgent object is returned.
-
-Third-party applications can set only their own abilities.
+Obtains a WantAgent object. This API uses an asynchronous callback to return the result. If the creation fails, a null value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -30,7 +28,7 @@ Third-party applications can set only their own abilities.
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the WantAgent object to obtain.          |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Configuration information required for creating the WantAgent object, including the target UIAbility, operation type, and request code. In **WantAgentInfo**, a third-party application is only allowed to specify its own UIAbility.|
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the WantAgent object.|
 
 **Error codes**
@@ -100,9 +98,7 @@ try {
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Obtains a WantAgent object. This API uses a promise to return the result. If the creation fails, a null WantAgent object is returned.
-
-Third-party applications can set only their own abilities.
+Obtains a WantAgent object. This API uses a promise to return the result. If the creation fails, a null value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -112,7 +108,7 @@ Third-party applications can set only their own abilities.
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the WantAgent object to obtain.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Configuration information required for creating the WantAgent object, including the target UIAbility, operation type, and request code. In **WantAgentInfo**, a third-party application is only allowed to specify its own UIAbility.|
 
 **Return value**
 
@@ -183,7 +179,7 @@ try {
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-Obtains the bundle name of a WantAgent object. This API uses an asynchronous callback to return the result.
+Obtains the bundle name of the application to which the WantAgent object belongs. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -276,7 +272,7 @@ try {
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-Obtains the bundle name of a WantAgent object. This API uses a promise to return the result.
+Obtains the bundle name of the application to which the WantAgent object belongs. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -369,7 +365,7 @@ try {
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
-Obtains the user ID of a WantAgent object. This API uses an asynchronous callback to return the result.
+Obtains the UID of the application to which the WantAgent object belongs. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -380,7 +376,7 @@ Obtains the user ID of a WantAgent object. This API uses an asynchronous callbac
 | Name    | Type                   | Mandatory| Description                               |
 | -------- | ----------------------- | ---- | ----------------------------------- |
 | agent    | WantAgent               | Yes  | Target WantAgent object.                      |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the UID of the application.|
 
 **Error codes**
 
@@ -432,29 +428,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   // getUid callback
   let getUidCallback = (err: BusinessError, data: number) => {
     if (err) {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`getUid failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`getUid ok, data: ${JSON.stringify(data)}.`);
     }
   }
   try {
     wantAgent.getUid(wantAgentData, getUidCallback);
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getUid failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -462,7 +462,7 @@ try {
 
 getUid(agent: WantAgent): Promise\<number\>
 
-Obtains the user ID of a WantAgent object. This API uses a promise to return the result.
+Obtains the UID of the application to which the WantAgent object belongs. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -476,9 +476,9 @@ Obtains the user ID of a WantAgent object. This API uses a promise to return the
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | Promise used to return the user ID.|
+| Type             | Description                                             |
+| ----------------- | ------------------------------------------------- |
+| Promise\<number\> | Promise used to return the UID of the application.|
 
 **Error codes**
 
@@ -530,25 +530,29 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   try {
     wantAgent.getUid(wantAgentData).then((data) => {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`getUid ok, data: ${JSON.stringify(data)}.`);
     }).catch((err: BusinessError) => {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`getUid failed, err code: ${err.code}, err msg: ${err.message}.`);
     });
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getUid failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -619,29 +623,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   // cancel callback
   let cancelCallback = (err: BusinessError, data: void) => {
     if (err) {
-      console.error(`cancel failed! ${err.code} ${err.message}`);
+      console.error(`cancel failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.info(`cancel ok!`);
+      console.info(`cancel sucecss.`);
     }
   }
   try {
     wantAgent.cancel(wantAgentData, cancelCallback);
   } catch (err) {
-    console.error(`cancel failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`cancel failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -717,25 +725,29 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   try {
     wantAgent.cancel(wantAgentData).then((data) => {
-      console.info('cancel ok!');
+      console.info('cancel success.');
     }).catch((err: BusinessError) => {
-      console.error(`cancel failed! ${err.code} ${err.message}`);
+      console.error(`cancel failed, err code: ${err.code}, err msg: ${err.message}.`);
     });
   } catch (err) {
-    console.error(`cancel failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`cancel failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -754,7 +766,7 @@ Proactively triggers a WantAgent object. This API uses an asynchronous callback 
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | Target WantAgent object.                  |
-| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | TriggerInfo object.                |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | Information carried when the WantAgent object is triggered, for example, **extraInfos**.|
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
 **Error codes**
@@ -937,7 +949,7 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two WantAgent objects are equal, so as to determine whether the same operation is from the same application. This API uses a promise to return the result.
+Checks whether two WantAgent object are equal, so as to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1154,8 +1166,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 

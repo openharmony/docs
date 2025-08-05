@@ -212,3 +212,16 @@ The development of deferred task scheduling consists of two steps: implementing 
    }
    ```
 
+### Verifying Deferred Task Scheduling
+Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExtensionAbility are correctly implemented and can be successfully called.
+
+   After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually with the following [hidumper](../dfx/hidumper.md) command.
+
+   ```ts
+   $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
+
+   -------------------------------[ability]-------------------------------
+
+
+   ----------------------------------WorkSchedule----------------------------------
+   ```

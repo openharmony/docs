@@ -187,7 +187,7 @@ Copy the following information to create a .bat file, enable application debuggi
 
    :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
    if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
+       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/en/application-dev/web/web-debugging-with-devtools.md]
        pause
        exit /b
    )

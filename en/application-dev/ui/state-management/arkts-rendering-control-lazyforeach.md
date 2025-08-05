@@ -827,6 +827,7 @@ struct MyComponent {
       }, (item: StringData, index: number) => index.toString())
     }.cachedCount(5)
   }
+}
 ```
 
 @ObservedV2 and @Trace are used to decorate classes and properties in the classes. They can be used together to deeply observe the decorated classes and properties. In the example, @ObservedV2 and @Trace are used to observe the changes of multi-layer nested properties and re-render child components in the in-depth nested class structure. When you click child component **Text** to change the innermost @Trace decorated class member property of the nested class, only the components that depend on the property are re-rendered.
@@ -1239,7 +1240,7 @@ struct MyComponent {
           Column() {
             Text(item.message).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item.message)
+                console.info(`appear: ${item.message}`);
               })
             Image(item.imgSrc)
               .width(500)
@@ -1250,7 +1251,7 @@ struct MyComponent {
           item.message += '00';
           this.data.reloadData();
         })
-      }, (item: StringData, index: number) => JSON.stringify(item))
+      }, (item: StringData, index: number) => item.message)
     }.cachedCount(5)
   }
 }
@@ -1330,7 +1331,7 @@ struct ChildComponent {
     Column() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
-          console.info("appear:" + this.data.message)
+          console.info(`appear: ${this.data.message}`);
         })
       Image(this.data.imgSrc)
         .width(500)
@@ -1404,7 +1405,7 @@ struct MyComponent {
         .onClick(() => {
           item.message.message += '0';
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }

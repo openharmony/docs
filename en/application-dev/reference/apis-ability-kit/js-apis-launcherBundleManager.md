@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager)
 
-The bundle.launcherBundleManager module providers APIs for the launcher application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md).
+The module providers APIs for the launcher application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md).
 
 > **NOTE**
 >
@@ -27,13 +27,13 @@ Obtains the launcher ability information based on the given bundle name and user
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID.|
+| userId     | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
 
 **Returns**
 
 | Type                         | Description                                              |
 | ----------------------------- | -------------------------------------------------- |
-| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\> | Array of the **LauncherAbilityInfo** objects obtained.|
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\> | Array of the LauncherAbilityInfo objects obtained.|
 
 **Error codes**
 
@@ -54,7 +54,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
+    console.info("data is " + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;

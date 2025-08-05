@@ -22,13 +22,13 @@ Distributed device management provides the following functionalities:
 
 ### Working Principles
 
-When discovering a device, the application initiates a request for binding the device to establish a trust relationship. When the service ends, the service determines whether to unbind the device.
+  When discovering a device, the application initiates a request for binding the device to establish a trust relationship. When the service ends, the service determines whether to unbind the device.
 
 ### Constraints
 
-The distributed service is available only for the devices connected to the same LAN or have Bluetooth enabled.
+  The distributed service is available only for the devices connected to the same LAN or have Bluetooth enabled.
 
-Device information is sensitive user data. Even if the devices are connected to the same LAN or have Bluetooth enabled, the application must request the ohos.permission.DISTRIBUTED_DATASYNC permission from the user before obtaining the device location. The system provides the device management capabilities for the application only after the user has granted the permission.
+  Device information is sensitive user data. Even if the devices are connected to the same LAN or have Bluetooth enabled, the application must request the ohos.permission.DISTRIBUTED_DATASYNC permission from the user before obtaining the device location. The system provides the device management capabilities for the application only after the user has granted the permission.
 
 ## Requesting Permissions
 
@@ -36,7 +36,9 @@ Device information is sensitive user data. Even if the devices are connected to 
 
 To use the distributed device management capabilities, your application must have the ohos.permission.DISTRIBUTED_DATASYNC permission, which allows application data to be exchanged between devices. This permission is a user_grant permission, which means the application must apply for user authorization.
 
-Before using the distributed device management capabilities, the application must be checked for the required permission.
+Before using the distributed device management capabilities, the application must be checked for the
+
+required permission.
 
 ### How to Develop
 
@@ -62,25 +64,25 @@ The APIs used in this section are based on the stage model.
      }
    }
    ```
-2. Import the **common** and **abilityAccessCtrl** modules.
+2. Import the **abilityAccessCtrl** module, which is used to obtain the capability of applying for permissions.
 
    ```ts
-   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   import { abilityAccessCtrl } from '@kit.AbilityKit';
    ```
 
 3. Use **requestPermissionsFromUser** to request user authorization for the ohos.permission.DISTRIBUTED_DATASYNC permission.
 
    ```ts
-   let context = getContext(this) as common.UIAbilityContext;
+   let context = this.getUIContext().getHostContext();
    let atManager = abilityAccessCtrl.createAtManager();
    try {
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
        console.log('data: ' + JSON.stringify(data));
      }).catch((err: object) => {
-       console.log('err: ' + JSON.stringify(err));
+       console.error('err: ' + JSON.stringify(err));
      })
    } catch (err) {
-     console.log('catch err->' + JSON.stringify(err));
+     console.error('catch err->' + JSON.stringify(err));
    }
    ```
 
@@ -124,7 +126,7 @@ Starts to discover the devices that are in the same LAN or have Bluetooth enable
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
    }
-   ```
+   ``` 
 
 5. Start to discover devices. The discovery process lasts 2 minutes, and a maximum of 99 devices can be discovered.
    
@@ -145,6 +147,7 @@ Starts to discover the devices that are in the same LAN or have Bluetooth enable
      'availableStatus': 0
    };
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.startDiscovering(discoverParam, filterOptions);
    } catch (err) {
      let e: BusinessError = err as BusinessError;
@@ -173,6 +176,9 @@ Binds a device. For details, see [bindTarget](../reference/apis-distributedservi
 3. Bind an untrusted device.
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    class Data {
      deviceId: string = '';
    }
@@ -185,6 +191,7 @@ Binds a device. For details, see [bindTarget](../reference/apis-distributedservi
      'customDescription': 'xxxx'
    };
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
        if (err) {
          console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
@@ -196,7 +203,7 @@ Binds a device. For details, see [bindTarget](../reference/apis-distributedservi
      let e: BusinessError = err as BusinessError;
      console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
    }
-   ```
+   ``` 
 
 ## Querying Device Information
 
@@ -221,13 +228,17 @@ Obtains information about all the available devices. For details, see [getAvaila
 4. Obtain information about all the online and trusted devices.
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    } catch (err) {
      let e: BusinessError = err as BusinessError;
      console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
    }
-   ```
+   ``` 
 
 ## Listening for Device Online/Offline Status
 
@@ -267,4 +278,4 @@ Listens for device online/offline status. For details, see [on('deviceStateChang
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
    }
-   ```
+   ``` 

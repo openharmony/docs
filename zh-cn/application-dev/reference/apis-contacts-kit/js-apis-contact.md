@@ -752,7 +752,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -787,7 +787,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 

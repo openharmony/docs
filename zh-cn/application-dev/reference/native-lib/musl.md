@@ -39,13 +39,15 @@ libdl：dlopen等动态链接器接口，当前在OpenHarmony中是一个链接�
 ### 调试能力
 libc提供了动态使能维测log功能（默认关闭），供开发者需要的时候查看libc库异常。使用libc提供的动态使能维测log功能，不需要重新编译libc库，只需设置param属性即可。在正式发布版本中，不建议使能，会影响运行性能。
 
-#### 1. musl.log功能
+**1. musl.log功能**
+
 设置musl.log.enable属性为true，打开musl维测log打印。打印其他日志，需先打开此开关。
 ```
 param set musl.log.enable true
 ```
 
-#### 2. 加载器log功能
+**2. 加载器log功能**
+
 加载器是libc中负责程序引导，dlopen，dlclose等动态链接程序，如需要查看动态加载过程异常，可以打开加载器log。用法如下：
 * 使能全部应用的加载器log，log量比较大，请谨慎使用。
 ```

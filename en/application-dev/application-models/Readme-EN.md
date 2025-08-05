@@ -21,7 +21,7 @@
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
       - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
       <!--DelEnd-->
-      - [UIServiceExtensionAbility](uiserviceextension.md)
+      - [Using UIServiceExtensionAbility for System Floating Windows](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
@@ -39,7 +39,7 @@
       - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration](hop-multi-device-collaboration.md)
     <!--DelEnd-->
-    - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
+    - [Obtaining/Setting Environment Variables](subscribe-system-environment-variable-changes.md)
   - Inter-Application Redirection<!--inter-app-redirection-->
     - [Overview of Application Redirection](link-between-apps-overview.md)
     - Starting a Specified Application<!--directional-redirection-->
@@ -149,4 +149,4 @@
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
 <!--DelEnd-->
-- [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)
+    - [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)

@@ -26,6 +26,8 @@ setNTPServer(admin: Want, server: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -47,12 +49,15 @@ setNTPServer(admin: Want, server: string): void
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let server: string = "ntpserver.com";
 try {
   systemManager.setNTPServer(wantTemp, server);
@@ -71,6 +76,8 @@ getNTPServer(admin: Want): string
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -98,12 +105,14 @@ getNTPServer(admin: Want): string
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   systemManager.getNTPServer(wantTemp);
@@ -122,6 +131,8 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -144,11 +155,13 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 // 默认升级策略
 let otaUpdatePolicy1: systemManager.OtaUpdatePolicy = {
@@ -222,6 +235,8 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明               |
@@ -248,11 +263,13 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let policy: systemManager.OtaUpdatePolicy= systemManager.getOtaUpdatePolicy(wantTemp);
@@ -271,6 +288,8 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -300,29 +319,35 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let notify: systemManager.NotifyDescription = {
+  // 需根据实际情况进行替换
   "installTips": "installTips",
   "installTipsDetail": "installTips detail"
-}
+};
 let description: systemManager.PackageDescription = {
-  "notify": notify,
-}
+  // 需根据实际情况进行替换
+  "notify": notify
+};
 let updatePackages: Array<systemManager.Package> = [{
+  // 需根据实际情况进行替换
   "type": systemManager.PackageType.FIRMWARE,
   "path": "path",
-  "fd": 60,
-}]
+  "fd": 60
+}];
 let updatePackageInfo: systemManager.UpdatePackageInfo = {
+  // 需根据实际情况进行替换
   "version" : "1.0",
   "packages" : updatePackages,
-  "description" : description,
+  "description" : description
 };
 systemManager.notifyUpdatePackages(wantTemp, updatePackageInfo).then(() => {
   console.info('Succeeded in notifying update packages.');
@@ -340,6 +365,8 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -368,12 +395,14 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.UpdateResult) => {
     console.info(`Succeeded in getting update result: ${JSON.stringify(result)}`);

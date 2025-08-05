@@ -1,6 +1,6 @@
 # @ohos.app.ability.AtomicServiceOptions (AtomicServiceOptions)
 
-**AtomicServiceOptions** is used as an input parameter of [openAtomicService()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenatomicservice12) to carry arguments. It inherits from [StartOptions](js-apis-app-ability-startOptions.md).
+**AtomicServiceOptions** is used as an input parameter of [openAtomicService()](js-apis-inner-application-uiAbilityContext.md#openatomicservice12) to carry arguments. It inherits from [StartOptions](js-apis-app-ability-startOptions.md).
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@
 import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
-## Properties
+## AtomicServiceOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

@@ -30,9 +30,9 @@ type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 否 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
 
 ### onWorkStart
 
@@ -64,7 +64,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
 onWorkStop(work: workScheduler.WorkInfo): void
 
-结束延迟任务调度回调。
+结束延迟任务调度回调。当延迟任务2分钟超时或应用调用[stopWork](js-apis-resourceschedule-workScheduler.md#workschedulerstopwork)接口取消任务时，触发该回调。
 
 **系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
 

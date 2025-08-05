@@ -15,7 +15,7 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 
 ### How to Develop
 
-1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
+1. Obtain an AudioHapticManager instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
    import { audio, audioHaptic } from '@kit.AudioKit';
@@ -45,7 +45,7 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
    audioHapticManagerInstance.setStreamUsage(id, usage);
    ```
 
-3. Create an **AudioHapticPlayer** instance.
+3. Create an AudioHapticPlayer instance.
 
    ```ts
    let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
@@ -80,7 +80,7 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
    });
    ```
 
-6. Release the **AudioHapticPlayer** instance.
+6. Release the AudioHapticPlayer instance.
 
    ```ts
    audioHapticPlayer.release().then(() => {

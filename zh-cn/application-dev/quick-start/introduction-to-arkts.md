@@ -2,7 +2,7 @@
 
 ArkTS是一种设计用于构建高性能应用的编程语言。它在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
 
-许多编程语言在设计之初没有考虑到移动设备，导致应用的运行缓慢、低效、功耗大，随着移动设备在人们的日常生活中变得越来越普遍，针对移动环境的编程语言优化需求也越来越多。ArkTS是专为解决这些问题而设计的，聚焦于提高运行效率。
+许多编程语言在设计之初未考虑移动设备，导致应用运行缓慢、低效且功耗大。随着移动设备在日常生活中越来越普遍，针对移动环境的编程语言优化需求日益增加。ArkTS专为解决这些问题而设计，聚焦提高运行效率。
 
 TypeScript是在JavaScript基础上通过添加类型定义扩展而来的，ArkTS则是TypeScript的进一步扩展。TypeScript提供了一种更结构化的JavaScript编码方法，深受开发者喜爱。ArkTS保持了TypeScript的大部分语法，旨在为现有的TypeScript开发者实现无缝过渡，帮助移动开发者快速上手。
 
@@ -43,7 +43,7 @@ const hello: string = 'hello';
 
 由于ArkTS是一种静态类型语言，所有数据的类型都必须在编译时确定。
 
-如果变量或常量的声明包含了初始值，开发者就不需要显式指定其类型，因为ArkTS规范中列举了所有允许自动推断类型的场景。
+如果变量或常量的声明包含初始值，开发者无需显式指定类型，因为ArkTS规范已列举了所有允许自动推断类型的场景。
 
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
 
@@ -216,7 +216,7 @@ animal = undefined;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
-可以用不同的机制获取联合类型中特定类型的值。
+可以使用不同机制获取联合类型中的特定类型值。
 
 示例：
 
@@ -237,7 +237,7 @@ function foo(animal: Animal) {
 
 #### `Aliases`类型
 
-`Aliases`类型为匿名类型（数组、函数、对象字面量或联合类型）提供名称，或为已有类型提供替代名称。
+`Aliases`类型为匿名类型（如数组、函数、对象字面量或联合类型）提供名称，或为已定义的类型提供替代名称。
 
 ```typescript
 type Matrix = number[][];
@@ -428,9 +428,9 @@ for ([init]; [condition]; [update]) {
 
 1、 执行`init`表达式（如有）。此表达式通常初始化一个或多个循环计数器。  
 2、 计算`condition`。如果它为真值（转换后为`true`的值），则执行循环主体的语句。如果它为假值（转换后为`false`的值），则`for`循环终止。  
-3、 执行循环主体的语句。  
+3、 执行循环主体的语句。
 4、 如果有`update`表达式，则执行该表达式。  
-5、 回到步骤2。  
+5、 返回步骤2。
 
 示例：
 
@@ -656,7 +656,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
+函数的最后一个参数可以是rest参数，格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -885,10 +885,10 @@ Person.numberOfPersons;
 
 #### 字段初始化
 
-为了减少运行时错误并提高执行性能，
-ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和标准TS中的`strictPropertyInitialization`模式一样。
+为了减少运行时错误并提升执行性能，
+ArkTS要求所有字段在声明时或构造函数中显式初始化，与标准TS的`strictPropertyInitialization`模式相同。
 
-以下代码是在ArkTS中不合法的代码。
+以下代码在ArkTS中不合法。
 
 ```typescript
 class Person {
@@ -910,7 +910,7 @@ let jack = new Person();
 jack.getName().length; // 运行时异常：name is undefined
 ```
 
-在ArkTS中，应该这样写代码。
+在ArkTS中，开发者应该这样写代码。
 
 ```typescript
 class Person {
@@ -932,7 +932,7 @@ let jack = new Person();
 jack.getName().length; // 0, 没有运行时异常
 ```
 
-接下来的代码展示了当`name`的值可以是`undefined`时，应该如何编写代码。
+接下来的代码示例展示了当`name`的值可能为`undefined`时，如何正确编写代码。
 
 ```typescript
 class Person {
@@ -1020,7 +1020,7 @@ square.calculateArea(); // 输出：100
 
 #### 静态方法
 
-使用关键字`static`将方法声明为静态。静态方法属于类本身，只能访问静态字段。
+使用关键字 `static` 声明静态方法。静态方法属于类，只能访问静态字段。
 
 静态方法定义了类作为一个整体的公共行为。
 
@@ -1377,7 +1377,7 @@ class Y {
 
 接口声明引入新类型。接口是定义代码协定的常见方式。
 
-任何一个类的实例只要实现了特定接口，就可以通过该接口实现多态。
+任何类的实例，只要实现了特定接口，即可通过该接口实现多态。
 
 接口通常包含属性和方法的声明。
 
@@ -1652,7 +1652,7 @@ if (x != null) { /* do something */ }
 
 后缀运算符`!`可用于断言其操作数为非空。
 
-应用于可空类型的值时，编译时类型变为非空类型。例如，类型从`T | null`变为`T`：
+当应用于可空类型的值时，编译时类型会变为非空类型。例如，类型从`T | null`变为`T`：
 
 ```typescript
 class A {
@@ -1671,7 +1671,7 @@ function foo(a: A | null) {
 
 换句话说，`a ?? b`等价于三元运算符`(a != null && a != undefined) ? a : b`。
 
-在以下示例中，`getNick`方法返回已设置的昵称，若未设置则返回空字符串。
+在以下示例中，`getNick`方法返回已设置的昵称。如果未设置，则返回空字符串。
 
 ```typescript
 class Person {
@@ -1734,7 +1734,7 @@ p.spouse?.nick; // undefined
 
 每个模块都有其自己的作用域，即，在模块中创建的任何声明（变量、函数、类等）在该模块之外都不可见，除非它们被显式导出。
 
-与此相对，从另一个模块导出的变量、函数、类、接口等必须首先导入到模块中。
+与此相对，必须首先将另一个模块导出的变量、函数、类、接口等导入到当前模块中。
 
 ### 导出
 
@@ -1768,7 +1768,7 @@ export function Distance(p1: Point, p2: Point): number {
 
 导入绑定可以有几种形式。
 
-假设模块具有路径“./utils”和导出实体“X”和“Y”。
+假设模块的路径为“./utils”，并且导出了实体“X”和“Y”。
 
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
@@ -1846,7 +1846,7 @@ async function test() {
 
 ### 顶层语句
 
-顶层语句是指在模块的最外层直接编写的语句，这些语句不被包裹在任何函数、类、块级作用域中。顶层语句包括变量声明、函数声明、表达式等。
+顶层语句是指在模块最外层编写的语句，不被任何函数、类或块级作用域包裹。这些语句包括变量声明、函数声明和表达式。
 
 ## 关键字
 
@@ -1890,3 +1890,403 @@ function foo(arg1: number) {
 
 * 调用实例方法的对象
 * 正在构造的对象
+
+## 注解
+
+注解（Annotation）是一种语言特性，它通过添加元数据来改变应用声明的语义。
+注解的声明和使用如下所示：
+
+**示例：**
+
+```typescript
+// 注解的声明：
+@interface ClassAuthor {
+  authorName: string
+}
+
+// 注解的使用：
+@ClassAuthor({authorName: "Bob"})
+class MyClass {
+  // ...
+}
+```
+
+- 注解`ClassAuthor`需要将元信息添加到类声明中。
+- 注解必须放置在声明之前。
+- 注解可以包含上述示例中所示的参数。
+
+对于要使用的注解，其名称必须以符号`@`（例如：@MyAnno）为前缀。符号`@`和名称之间不允许有空格和行分隔符。
+```typescript
+ClassAuthor({authorName: "Bob"}) // 编译错误：注解需要'@'为前缀
+@ ClassAuthor({authorName: "Bob"}) // 编译错误：符号`@`和名称之间不允许有空格和行分隔符
+```
+如果在使用位置无法访问注解名称，则会发生编译错误。
+注解声明可以导出并在其他文件中使用。
+
+多个注解可以应用于同一个声明（注解间的先后顺序不影响使用）。
+```typescript
+@MyAnno()
+@ClassAuthor({authorName: "John Smith"})
+class MyClass {
+  // ...
+}
+```
+注解不是Typescript中的特性，只能在`.ets/.d.ets`文件中使用。
+
+### 用户自定义注解
+
+#### 用户自定义注解的声明
+`用户自定义注解`的定义与`interface`的定义类似，其中的`interface`关键字以符号`@`为前缀。<br>
+注解字段仅限于下面列举的类型：
+* number
+* boolean
+* string
+* 枚举
+* 以上类型的数组
+>**说明：**
+>
+> - 如果使用其他类型用作注解字段的类型，则会发生编译错误。
+> - 注解字段类型不支持bigint。
+
+注解字段的默认值必须使用常量表达式来指定。<br>常量表达式的场景如下所示：
+* 数字字面量
+* 布尔字面量
+* 字符串字面量
+* 枚举值（需要在编译时确定值）
+* 以上常量组成的数组
+>**说明：**
+>
+> 如果枚举值不能在编译时确定，会编译报错。
+```typescript
+// a.ts
+export enum X {
+  x = foo(); // x不是编译时能确定的常量
+}
+
+// b.ets
+import {X} from './a';
+
+@interface Position {
+  data: number = X.x; // 编译错误：注解字段的默认值必须使用常量表达式
+}
+```
+注解必须定义在顶层作用域（top-level），否则会出现编译报错。<br>
+注解的名称不能与注解定义所在作用域内可见的其他实体名称相同，否则会出现编译报错。<br>
+注解不支持类型Typescript中的合并，否则会出现编译报错。
+```typescript
+namespace ns {
+  @interface MataInfo { // 编译错误：注解必须定义在顶层作用域
+    // ...
+  }
+}
+
+@interface Position {
+  // ...
+}
+
+class Position { // 编译错误：注解的名称不能与注解定义所在作用域内可见的其他实体名称相同
+  // ...
+}
+
+@interface ClassAuthor {
+  name: string;
+}
+
+@interface ClassAuthor { // 编译错误：注解的名称不能与注解定义所在作用域内可见的其他实体名称相同
+  data: sting;
+}
+```
+注解不是类型，把注解当类型使用时会出现编译报错（例如：对注解使用类型别名）。
+```typescript
+@interface Position {}
+type Pos = Position; // 编译错误：注解不是类型
+```
+注解不支持在类的getter和setter方法中添加，若添加注解会编译报错。
+```typescript
+@interface ClassAuthor {
+  authorName: string;
+}
+
+@ClassAuthor({authorName: "John Smith"})
+class MyClass {
+  private _name: string = "Bob";
+
+  @ClassAuthor({authorName: "John Smith"}) // 编译错误：注解不支持在类的getter和setter方法添加
+  get name() {
+    return this._name;
+  }
+
+  @ClassAuthor({authorName: "John Smith"}) // 编译错误：注解不支持在类的getter和setter方法添加
+  set name(authorName: string) {
+    this._name = authorName;
+  }
+}
+```
+
+#### 用户自定义注解的使用
+注解声明示例如下：
+```typescript
+@interface ClassPreamble {
+  authorName: string;
+  revision: number = 1;
+}
+@interface MyAnno {}
+```
+当前仅允许对`class declarations`和`method declarations`使用注解，对类和方法可以同时使用同一个注解。<br>注解用法示例如下：
+```typescript
+@ClassPreamble({authorName: "John", revision: 2})
+class C1 {
+  // ...
+}
+
+@ClassPreamble({authorName: "Bob"}) // revision的默认值为1
+class C2 {
+  // ...
+}
+
+@MyAnno() // 对类和方法可以同时使用同一个注解
+class C3 {
+  @MyAnno()
+  foo() {}
+  @MyAnno()
+  static bar() {}
+}
+```
+注解中的字段顺序不影响使用。
+```typescript
+@ClassPreamble({authorName: "John", revision: 2})
+// the same as:
+@ClassPreamble({revision: 2, authorName: "John"})
+```
+使用注解时，必须给所有没有默认值的字段赋值，否则会发生编译错误。
+>**说明：**
+>
+> 赋值应当与注解声明的类型一致，所赋的值与注解字段默认值的要求一样，只能使用常量表达式。
+```typescript
+@ClassPreamble() // 编译错误：authorName字段未定义
+class C1 {
+  // ...
+}
+```
+如果注解中定义了数组类型的字段，则使用数字字面量来设置该字段的值。
+```typescript
+@interface ClassPreamble {
+  authorName: string;
+  revision: number = 1;
+  reviewers: string[];
+}
+
+@ClassPreamble(
+  {
+    authorName: "Alice",
+    reviewers: ["Bob", "Clara"]
+  }
+)
+class C3 {
+  // ...
+}
+```
+如果不需要定义注解字段，可以省略注解名称后的括号。
+```typescript
+@MyAnno
+class C4 {
+  // ...
+}
+```
+
+#### 导入和导出注解
+注解也可以被导入导出。针对导出，当前仅支持在定义时的导出，即`export @interface`的形式。<br>
+**示例：**
+```typescript
+export @interface MyAnno {}
+```
+针对导入，当前仅支持`import {}`和`import * as`两种方式。<br>
+**示例：**
+```typescript
+// a.ets
+export @interface MyAnno {}
+export @interface ClassAuthor {}
+
+// b.ets
+import { MyAnno } from './a';
+import * as ns from './a';
+
+@MyAnno
+@ns.ClassAuthor
+class C {
+  // ...
+}
+```
+- 不允许在import中对注解进行重命名。
+```typescript
+import { MyAnno as Anno } from './a'; // 编译错误：不允许在import中对注解进行重命名
+```
+不允许对注解使用任何其他形式的 import/export，这会导致编译报错。
+- 由于注解不是类型，因此禁止使用`type`符号进行导入和导出。
+```typescript
+import type { MyAnno } from './a'; // 编译错误：注解不允许使用'type'符号进行导入和导出
+```
+
+- 如果仅从模块导入注解，则不会触发模块的副作用。
+```typescript
+// a.ets
+export @interface Anno {}
+
+export @interface ClassAuthor {}
+
+console.info("hello");
+
+// b.ets
+import { Anno } from './a';
+import * as ns from './a';
+
+@MyAnno
+@ns.ClassAuthor // 仅引用了ns的注解，不会导致a.ets的console.info执行
+class X {
+  // ...
+}
+```
+
+#### .d.ets文件中的注解
+注解可以出现在.d.ets文件中。
+可以在.d.ets文件中用环境声明（ambient declaration）来声明注解。
+```typescript
+ambientAnnotationDeclaration:
+  'declare' userDefinedAnnotationDeclaration
+  ;
+```
+
+**示例：**
+```typescript
+// a.d.ets
+export declare @interface ClassAuthor {}
+```
+上述声明中：
+- 不会引入新的注解定义，而是提供注解的类型信息。
+- 注解需定义在其他源代码文件中。
+- 注解的环境声明和实现需要完全一致，包括字段的类型和默认值。
+```typescript
+// a.d.ets
+export declare @interface NameAnno{name: string = ""}
+
+// a.ets
+export @interface NameAnno{name: string = ""} // ok
+```
+环境声明的注解和class类似，也可以被import使用。
+```typescript
+// a.d.ets
+export declare @interface MyAnno {}
+
+// b.ets
+import { MyAnno } from './a';
+
+@MyAnno
+class C {
+  // ...
+}
+```
+
+**编译器自动生成的.d.ets文件**<br>
+当编译器根据ets代码自动生成.d.ets文件时，存在以下2种情况。
+1. 当注解定义被导出时，源代码中的注解定义会在.d.ets文件中保留。
+```typescript
+// a.ets
+export @interface ClassAuthor {}
+
+@interface MethodAnno { // 没导出
+  data: number;
+}
+
+// a.d.ets 编译器生成的声明文件
+export declare @interface ClassAuthor {}
+```
+2. 当下面所有条件成立时，源代码中实体的注解实例会在.d.ets文件中保留。<br>
+    2.1 注解的定义被导出（import的注解也算作被导出）。<br>
+    2.2 如果实体是类，则类被导出。<br>
+    2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
+```typescript
+// a.ets
+import { ClassAuthor } from './author';
+
+export @interface MethodAnno {
+  data: number = 0;
+}
+
+@ClassAuthor
+class MyClass {
+  @MethodAnno({data: 123})
+  foo() {}
+
+  @MethodAnno({data: 456})
+  private bar() {}
+}
+
+// a.d.ets 编译器生成的声明文件
+import {ClassAuthor} from "./author";
+
+export declare @interface MethodAnno {
+  data: number = 0;
+}
+
+@ClassAuthor
+export declare class C {
+  @MethodAnno({data: 123})
+  foo(): void;
+
+  bar; // 私有方法不保留注解
+}
+```
+
+**开发者生成的.d.ets文件**<br>
+开发者生成的.d.ets文件中的注解信息不会自动应用到实现的源代码中。<br>
+**示例：**
+```typescript
+// b.d.ets 开发者生成的声明文件
+@interface ClassAuthor {}
+
+@ClassAuthor // 声明文件中有注解
+class C {
+  // ...
+}
+
+// b.ets 开发者对声明文件实现的源代码
+@interface ClassAuthor {}
+
+// 实现文件中没有注解
+class C {
+  // ...
+}
+```
+在最终编译产物中，class C没有注解。
+
+#### 重复注解和继承
+同一个实体不能重复使用同一注解，否则会导致编译错误。
+```typescript
+@MyAnno({name: "123", value: 456})
+@MyAnno({name: "321", value: 654}) // 编译错误：不允许重复注释
+class C {
+  // ...
+}
+```
+子类不会继承基类的注解，也不会继承基类方法的注解。
+
+#### 注解和抽象类、抽象方法
+不支持对抽象类或抽象方法使用注解，否则将导致编译错误。
+```typescript
+@MyAnno // 编译错误：不允许在抽象类和抽象方法上使用注解
+abstract class C {
+  @MyAnno
+  abstract foo(): void; // 编译错误：不允许在抽象类和抽象方法上使用注解
+}
+```
+
+## ArkUI支持
+
+本节演示ArkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
+
+
+### ArkUI示例
+
+[MVVM代码示例](../ui/state-management/arkts-mvvm.md#代码示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
+
+有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](../ui/state-management/arkts-basic-syntax-overview.md)。

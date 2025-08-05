@@ -18,6 +18,8 @@ constructor(value: CustomDialogControllerOptions)
 > 自定义弹窗的所有参数，不支持动态刷新。
 >
 > 在CustomDialogController作为全局变量以实现全局自定义弹窗的场景下，若对controller重新赋值，则无法通过其关闭之前的弹窗。建议在重新赋值前先关闭弹窗。
+>
+> 在自定义弹窗内拉起另一个自定义弹窗时，不建议直接关闭拉起方。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -193,8 +195,8 @@ struct CustomDialogExample {
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -262,8 +264,8 @@ struct CustomDialogUser {
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -348,8 +350,8 @@ struct CustomDialogUser {
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -434,8 +436,8 @@ struct CustomDialogUser {
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.info("dialog onWillDismiss")
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss')
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -542,8 +544,8 @@ struct CustomDialogUser {
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -969,8 +971,8 @@ struct Example3 {
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -980,19 +982,19 @@ struct Example3 {
     },
     onDidAppear: () => {
       this.log += '# onDidAppear';
-      console.info("CustomDialog,is onDidAppear!");
+      console.info('CustomDialog,is onDidAppear!');
     },
     onDidDisappear: () => {
       this.log += '# onDidDisappear';
-      console.info("CustomDialog,is onDidDisappear!");
+      console.info('CustomDialog,is onDidDisappear!');
     },
     onWillAppear: () => {
       this.log = 'Log information:onWillAppear';
-      console.info("CustomDialog,is onWillAppear!");
+      console.info('CustomDialog,is onWillAppear!');
     },
     onWillDisappear: () => {
       this.log += '# onWillDisappear';
-      console.info("CustomDialog,is onWillDisappear!");
+      console.info('CustomDialog,is onWillDisappear!');
     },
     offset: { dx: 0, dy: -20 },
     customStyle: false,
@@ -1066,10 +1068,10 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button("change  customStyle:" + this.customStyle).onClick(() => {
+      Button('change  customStyle:' + this.customStyle).onClick(() => {
         this.customStyle = !this.customStyle;
       })
-      Button("show dialog").onClick(() => {
+      Button('show dialog').onClick(() => {
         if (this.dialogController != null) {
           this.dialogController.close();
         }

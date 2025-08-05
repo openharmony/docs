@@ -4,11 +4,11 @@ The **networkManager** module provides APIs for network management of enterprise
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 >
 
 ## Modules to Import
@@ -55,6 +55,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -107,6 +108,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -159,6 +161,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -211,6 +214,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -259,6 +263,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -306,6 +311,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -361,6 +367,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -418,6 +425,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +479,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -488,7 +497,7 @@ try {
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-Adds firewall rules for the device.<br>
+Adds firewall rules for the device. Only IPv4 is supported.<br>
 After a rule with [Action](#action) set to **ALLOW** is added, a rule with **Action** set to **DENY** is added by default to discard or intercept all network data packets that do not meet the **ALLOW** rule.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -541,7 +550,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-Removes a firewall rule.<br>
+Removes the firewall rules for the device. Only IPv4 is supported.<br>
 If there is no rule with [Action](#action) being **ALLOW** after the rule is removed, the **DENY** rules that are added by default with [addFirewallRule](#networkmanageraddfirewallrule) will be removed.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -597,7 +606,7 @@ networkManager.removeFirewallRule(wantTemp);
 
 getFirewallRules(admin: Want): Array\<FirewallRule>
 
-Queries firewall rules of a device.
+Queries firewall rules of a device. Only IPv4 is supported.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -793,16 +802,16 @@ Represents a firewall rule.
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| Name     | Type                   | Mandatory| Description                                                        |
-| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| srcAddr   | string                  | No  | Source IP address. An IP address segment, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200** is supported.|
-| destAddr  | string                  | No  | Destination IP address. An IP address segment, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200** is supported.|
-| srcPort   | string                  | No  | Source port.                                                    |
-| destPort  | string                  | No  | Destination port.                                                  |
-| appUid    | string                  | No  | UID of the application.                                                   |
-| direction | [Direction](#direction) | No  | Direction chains to which the rule applies.<br>This parameter is mandatory when a firewall filtering rule is added.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Direction](#direction) chains are cleared, and **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must be also left empty.|
-| action    | [Action](#action)       | No  | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when a firewall rule is added.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Action](#action) chains are cleared, and **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must be also left empty.|
-| protocol  | [Protocol](#protocol)   | No  | Network protocol. If this parameter is set to **ALL** or **ICMP**, **srcPort** and **destPort** cannot be set.|
+| Name     | Type                   | Read-only| Optional| Description                                                        |
+| --------- | ----------------------- | ---- | ---- |------------------------------------------------------------ |
+| srcAddr   | string                  | No  | Yes|Source IP address. An IP address segment, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200** is supported.|
+| destAddr  | string                  | No  | Yes|Destination IP address. An IP address segment, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200** is supported.|
+| srcPort   | string                  | No  | Yes|Source port.                                                    |
+| destPort  | string                  | No  | Yes|Destination port.                                                  |
+| appUid    | string                  | No  | Yes|UID of the application.                                                   |
+| direction | [Direction](#direction) | No  | Yes|Direction chains to which the rule applies.<br>This parameter is mandatory when a firewall rule is added.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Direction](#direction) chains are cleared, and **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must be also left empty.|
+| action    | [Action](#action)       | No  | Yes|Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when a firewall rule is added.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Action](#action) chains are cleared, and **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must be also left empty.|
+| protocol  | [Protocol](#protocol)   | No  | Yes|Network protocol. If this parameter is set to **ALL** or **ICMP**, **srcPort** and **destPort** cannot be set.|
 
 ## DomainFilterRule
 
@@ -811,12 +820,12 @@ Represents a domain name filtering rule.
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| Name      | Type             | Mandatory| Description                                                        |
-| ---------- | ----------------- | ---- | ------------------------------------------------------------ |
-| domainName | string            | No  | Domain name. This parameter is mandatory when a domain name filtering rule is added.                              |
-| appUid     | string            | No  | UID of the application.                                                   |
-| action     | [Action](#action) | No  | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when a domain name filtering rule is added.<br>This parameter is optional when a domain name filtering rule is removed. If this parameter is left empty, all [Action](#action) chains are cleared, and **domainName** and **appUid** must be also left empty.|
-| direction<sup>15+</sup> | [Direction](#direction) | No|Direction chains to which the rule applies.<br>This parameter is mandatory when you add a firewall rule.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Direction](#direction) chains are cleared, and **domainName** and **appUid** must be also left empty.|
+| Name      | Type             | Read-only| Optional| Description                                                        |
+| ---------- | ----------------- | ---- | ---- | ------------------------------------------------------------ |
+| domainName | string            | No  | Yes|Domain name. This parameter is mandatory when a domain name filtering rule is added.                              |
+| appUid     | string            | No  | Yes|UID of the application.                                                   |
+| action     | [Action](#action) | No  | Yes|Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when a domain name filtering rule is added.<br>This parameter is optional when a domain name filtering rule is removed. If this parameter is left empty, all [Action](#action) chains are cleared, and **domainName** and **appUid** must be also left empty.|
+| direction<sup>15+</sup> | [Direction](#direction) | No| Yes|Direction chains to which the rule applies.<br>This parameter is mandatory when a firewall rule is added.<br>This parameter is optional when a firewall is removed. If this parameter is left empty, all [Direction](#direction) chains are cleared, and **domainName** and **appUid** must be also left empty.|
 
 ## Direction
 

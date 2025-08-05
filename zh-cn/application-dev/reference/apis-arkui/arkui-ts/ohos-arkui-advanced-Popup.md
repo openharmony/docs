@@ -78,7 +78,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 是   | 设置按钮内容。         |
 | action    | () => void                                           | 否   | 设置按钮click回调。 |
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')` |
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')`<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'），不支持设置百分比字符串。<br/>异常值时取默认值。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor)           | 否   | 设置按钮文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_primary_activated')` |
 
 ##  PopupIconOptions

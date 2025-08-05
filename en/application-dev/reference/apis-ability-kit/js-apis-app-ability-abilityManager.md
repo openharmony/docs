@@ -1,4 +1,4 @@
-# @ohos.app.ability.abilityManager (AbilityManager)
+# @ohos.app.ability.abilityManager (Ability Information Management)
 
 The AbilityManager module provides APIs for obtaining ability information and running status information.
 
@@ -72,3 +72,27 @@ try {
   console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(code)}, error msg: ${JSON.stringify(msg)}`);
 }
 ```
+
+## AbilityRunningInfo<sup>14+</sup>
+
+type AbilityRunningInfo = _AbilityRunningInfo
+
+Defines the level-2 module AbilityRunningInfo.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | AbilityRunningInfo, a level-2 module that provides the information and state related to an ability.|
+
+## AbilityStateData<sup>14+</sup>
+
+type AbilityStateData = _AbilityStateData.default
+
+Defines the level-2 module AbilityStateData.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityStateData.default](js-apis-inner-application-abilityStateData.md) | AbilityStateData, a level-2 module that provides the ability state information.|

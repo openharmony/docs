@@ -1,4 +1,4 @@
-# @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
+# @ohos.app.ability.EnvironmentCallback (System Environment Change Listener)
 
 The EnvironmentCallback module provides APIs for the application context to listen for system environment changes.
 
@@ -30,7 +30,7 @@ Called when the system environment changes.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| **Configuration** object after the change.|
+  | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| Configuration object after the change.|
 
 **Example**
 

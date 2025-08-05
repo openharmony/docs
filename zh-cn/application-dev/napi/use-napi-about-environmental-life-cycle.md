@@ -57,7 +57,7 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
     // 调用napi_set_instance_data将实例数据关联到Node-API环境，并指定FinalizeCallback函数
     napi_status status = napi_set_instance_data(env, instanceData, FinalizeCallback, nullptr);
     bool success = true;
-    napi_value result;
+    napi_value result = nullptr;
     if (status == napi_ok) {
         napi_get_boolean(env, success, &result);
     }
@@ -94,7 +94,10 @@ cpp部分代码
 static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
     InstanceData *resData = nullptr;
     // napi_get_instance_data获取之前想关联的数据项
-    napi_get_instance_data(env, (void **)&resData);
+    napi_status status = napi_get_instance_data(env, (void **)&resData);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     napi_value result;
     napi_create_int32(env, resData->value, &result);
     return result;
@@ -105,7 +108,7 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
 
 ```ts
 // index.d.ts
-export const getInstanceData: () => number;
+export const getInstanceData: () => number | undefined;
 ```
 
 ArkTS侧示例代码
@@ -125,5 +128,5 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}d',
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

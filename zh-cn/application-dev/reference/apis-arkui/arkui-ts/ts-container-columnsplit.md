@@ -40,7 +40,7 @@ resizeable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 分割线是否可拖拽。设置为true时表示分割线可拖拽，设置为false时表示分割线不可拖拽。<br/>默认值：false |
+| value  | boolean | 是   | 分割线是否可拖拽。设置为true时表示分割线可拖拽，设置为false时表示分割线不可拖拽。<br/>默认值：false <br />非法值：按默认值处理。 |
 
 ### divider<sup>10+</sup>
 
@@ -56,7 +56,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin。<br/>默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。 |
+| value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin。<br/>默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。<br />非法值：按默认值处理。 |
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
 
@@ -66,10 +66,10 @@ divider(value: ColumnSplitDividerStyle | null)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型      | 必填 | 说明                       |
-| ----------- | ------------- | ---- |--------------------------|
-| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其上方子组件的距离。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其下方子组件的距离。<br/>默认值：0 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| startMargin | [Dimension](ts-types.md#dimension10)       | 否 | 是  | 分割线与其上方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
+| endMargin   | [Dimension](ts-types.md#dimension10)       | 否 | 是  | 分割线与其下方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
 
 >  **说明：**
 >
@@ -77,6 +77,9 @@ divider(value: ColumnSplitDividerStyle | null)
 >
 > 支持[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[margin](ts-universal-attributes-size.md#margin)等通用属性，未设置clip属性时，其默认值为true。
 
+## 事件
+
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

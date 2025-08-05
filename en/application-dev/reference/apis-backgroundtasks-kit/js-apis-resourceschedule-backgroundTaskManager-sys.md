@@ -122,14 +122,14 @@ Describes the parameters for requesting efficiency resources.
 
 **System API**: This is a system API.
 
-| Name            | Type    | Mandatory  | Description                                      |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| resourceTypes   | number  | Yes   | Type of the resource to request.                              |
-| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources.|
-| timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
-| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time.|
-| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application.        |
-| reason          | string  | Yes   | Reason for requesting the resource.               |
+| Name            | Type    | Read-Only  | Optional  | Description                                      |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| resourceTypes   | number  | No   | No   | Type of the resource to request.                              |
+| isApply         | boolean | No   | No   | Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources.|
+| timeOut         | number  | No   | No   | Duration for which the resource will be used, in milliseconds.               |
+| isPersist       | boolean | No   | Yes   | Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time.|
+| isProcess       | boolean | No   | Yes   | Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application.        |
+| reason          | string  | No   | No   | Reason for requesting the resource.               |
 
 ## ResourceType
 

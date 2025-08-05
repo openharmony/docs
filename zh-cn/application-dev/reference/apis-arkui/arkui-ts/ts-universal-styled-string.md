@@ -16,6 +16,7 @@
 * 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
 * 建议将StyledString定义为成员变量，从而避免应用退后台后被销毁。
+* 不支持在[loadContent()](../js-apis-window.md#loadcontent9)之前创建。
 
 ## StyledString
 
@@ -584,11 +585,11 @@ constructor(value?: TextStyleInterface)
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
-| fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。 |
-| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。<br/>默认为主题色。 |
+| fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。<br/>默认为主题字体。 |
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。<br/>默认字体大小为16fp。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。 |
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。<br/>默认值：FontStyle.Normal |
 
 ## GestureStyle
 
@@ -889,7 +890,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -918,7 +919,7 @@ ResourceStr类型图片设置项。
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  是  | 设置图片数据源。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
 | colorFilter  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
 | syncLoad  | boolean |  否  | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
@@ -1066,12 +1067,12 @@ constructor(value?: ParagraphStyleInterface)
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxLines   | number   | 否    | 设置文本段落的最大行数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxLines   | number   | 否    | 设置文本段落的最大行数，默认不限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br/>默认值：TextOverflow.None<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>默认值：WordBreak.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 设置文本段落的段落间距。<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 ## UserDataSpan
@@ -1180,14 +1181,14 @@ constructor(url: string)
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo1 {
+struct styled_string_process_demo {
   @State height1: number = 450;
   @State fontSize1: number = 16;
   @State fontWeight1: number = 400;
   @State color1: Color = Color.Blue;
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
-  fontStyleAttr2: StyledStringValue = new TextStyle({ fontColor: Color.Orange });
+  fontStyleAttr2: TextStyle = new TextStyle({ fontColor: Color.Orange });
   // 创建可读写属性字符串的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟");
   // 创建构造入参有字符串和样式的对象mutableStyledString2
@@ -1356,7 +1357,7 @@ struct styled_string_demo1 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo2 {
+struct styled_string_bind_events_demo {
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   private uiContext: UIContext = this.getUIContext();
@@ -1445,16 +1446,16 @@ import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo3 {
+struct styled_string_set_text_style_demo {
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
-  fontStyleAttr2: StyledStringValue = new TextStyle({
+  fontStyleAttr2: TextStyle = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Bolder,
     fontStyle: FontStyle.Italic,
     fontFamily: "Arial"
   });
-  fontStyleAttr3: StyledStringValue = new TextStyle({
+  fontStyleAttr3: TextStyle = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Lighter,
@@ -1632,7 +1633,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo4 {
+struct styled_string_set_image_demo {
   @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State imagePixelMap3: image.PixelMap | undefined = undefined;
@@ -1788,7 +1789,7 @@ class LeadingMarginCreator {
 }
 @Entry
 @Component
-struct Index {
+struct styled_string_set_lineheight_paragraphstyle_demo {
   private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
   leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
@@ -1971,11 +1972,10 @@ class MyCustomSpan extends CustomSpan {
 
 @Entry
 @Component
-struct styled_string_demo6 {
+struct styled_string_set_customspan_demo {
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
   customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style: MutableStyledString = new MutableStyledString(this.customSpan1);
-  textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
   isPageShow: boolean = true;
 
@@ -2044,7 +2044,7 @@ struct styled_string_demo6 {
 
 ```ts
 // xxx.ets
-class MyUserDateSpan extends UserDataSpan {
+class MyUserDataSpan extends UserDataSpan {
   constructor(name: string, age: number) {
     super();
     this.name = name;
@@ -2057,7 +2057,7 @@ class MyUserDateSpan extends UserDataSpan {
 
 @Entry
 @Component
-struct styled_string_demo7 {
+struct styled_string_set_userdataspan_demo {
   @State name: string = "world";
   @State age: number = 10;
   controller: TextController = new TextController();
@@ -2065,7 +2065,7 @@ struct styled_string_demo7 {
     start: 0,
     length: 11,
     styledKey: StyledStringKey.USER_DATA,
-    styledValue: new MyUserDateSpan("hello", 21)
+    styledValue: new MyUserDataSpan("hello", 21)
   }]);
 
   onPageShow(): void {
@@ -2077,7 +2077,7 @@ struct styled_string_demo7 {
       Text(undefined, { controller: this.controller })
       Button("get user data").onClick(() => {
         let arr = this.styleString.getStyles(0, this.styleString.length);
-        let userDataSpan = arr[0].styledValue as MyUserDateSpan;
+        let userDataSpan = arr[0].styledValue as MyUserDataSpan;
         this.name = userDataSpan.name;
         this.age = userDataSpan.age;
       })
@@ -2101,12 +2101,12 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo8 {
+struct styled_string_html_convert_demo {
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State html: string | undefined = undefined;
   @State styledString: StyledString | undefined = undefined;
-  controller1: TextController = new TextController;
-  controller2: TextController = new TextController;
+  controller1: TextController = new TextController();
+  controller2: TextController = new TextController();
   private uiContext: UIContext = this.getUIContext();
 
   async aboutToAppear() {
@@ -2140,7 +2140,7 @@ struct styled_string_demo8 {
             styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
           }]);
           if (this.imagePixelMap !== undefined) {
-            let mutableStyledString2 = new MutableStyledString(new ImageAttachment({
+            let mutableStyledString2: MutableStyledString = new MutableStyledString(new ImageAttachment({
               value: this.imagePixelMap,
               size: { width: 50, height: 50 },
             }));
@@ -2176,8 +2176,8 @@ struct styled_string_demo8 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo9 {
-  urlString: StyledStringValue = new UrlStyle("https://www.example.com");
+struct styled_string_set_urlstyle_demo {
+  urlString: UrlStyle = new UrlStyle("https://www.example.com");
   mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
     start: 0,
     length: "Hello".length,
@@ -2214,7 +2214,7 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
-struct styled_string_demo10 {
+struct styled_string_set_image_colorfilter_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('origin image:');
   mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
@@ -2280,7 +2280,7 @@ struct styled_string_demo10 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo11 {
+struct styled_string_modify_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('123456', [{
     start: 0,

@@ -4,7 +4,7 @@ The **backgroundProcessManager** module provides APIs for background child proce
 
 >  **NOTE**
 >
-> The initial APIs of this module are supported since API version 15. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 17. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -29,9 +29,9 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 
 **Return value**
 
-| Value             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -72,9 +72,9 @@ Unsuppresses the child process. In this case, the child process follows the sche
 
 **Return value**
 
-| Value             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -100,3 +100,4 @@ Specifies the child process priority.
 |----------------------| -------- |--------------------------------------------------------------------------------|
 | PROCESS_BACKGROUND   | 1        | Compared with **PROCESS_INACTIVE**, this priority has a more obvious suppression effect. Child processes can obtain less CPU resources. You are advised to set this priority when executing background child processes that cannot be perceived by users, such as background image-text pages. |
 | PROCESS_INACTIVE     | 2        | You are advised to set this priority when executing background child processes that can be perceived by users, such as audio playback and navigation.                                            |
+

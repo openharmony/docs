@@ -11,7 +11,7 @@ Using the Contacts Kit, you can manage contacts, including adding, deleting, mod
 
 The following capabilities are opened to all applications:
 
-- [Contact Selection with Picker](#contact-selection)
+- [Contact Selection with Picker](#contact-selection-with-picker)
 
 The following capabilities are restrictedly opened to third-party applications:
 
@@ -23,10 +23,8 @@ The following capabilities are restrictedly opened to third-party applications:
 
 - [Contact Management](#contact-management-restricted-permission)
 
-- [Contact Selection](#contact-selection-restricted-permission)
 
-
-## Contact Selection
+## Contact Selection with Picker
 
 When you select a contact, the contact list is displayed in Picker mode to facilitate selection. You do not need to apply for permissions for using the API.
 
@@ -44,43 +42,15 @@ When you select a contact, the contact list is displayed in Picker mode to facil
      isMultiSelect:false
    },(err: BusinessError, data) => {
        if (err) {
-         console.error(`selectContact callback: err->${JSON.stringify(err)}`);
+         console.error('selectContact callback, errCode:' + err.code + ', errMessage:' + err.message);
            return;
        }
-       console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+       console.info(`selectContact callback: success data->${JSON.stringify(data)}`);
    });
 
    ```
 
 3. View the returned contact data.
-
-
-## Contact Selection (Restricted Permission)
-
-1. Declare the required permission:
-   <!--RP2-->
-   To select a contact, you need to declare the **ohos.permission.WRITE_CONTACTS** permission to call the **selectContacts** API. This permission is of the **system_basic** level. Before declaring the required permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
-   <!--RP2End-->
-2. Include an array of required permissions in **Permissions**.
-
-3. Perform the corresponding operation on the contact.
-
-  ```ts
-  import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
-  import { contact } from '@kit.ContactsKit';
-
-  let context = getContext(this) as common.UIAbilityContext;
-  const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
-
-  abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then(() => {
-      try {
-          contact.selectContacts();
-      } catch(err) {
-          console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
-      }
-  })
-
-  ```
 
 
 ## Contact Management (Restricted Permission)
@@ -108,7 +78,7 @@ To implement contact management for an application, use the **permissions** API 
   @Component
   struct Contact {
     addContactByPermissions() {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
       const contactInfo: contact.Contact = {
         name: { fullName: 'Wang Xiaoming' },
@@ -118,10 +88,10 @@ To implement contact management for an application, use the **permissions** API 
         try {
           contact.addContact(context, contactInfo, (err, data) => {
             if (err) {
-              console.log('addContact callback: err->' + JSON.stringify(err));
+              console.error('addContact callback, errCode:' + err.code + ', errMessage:' + err.message);
               return;
             }
-            console.log('addContact callback: data->' + JSON.stringify(data));
+            console.info('addContact callback: data->' + JSON.stringify(data));
           })
         } catch (err) {
           console.error('errCode: ' + err.code + ', errMessage: ' + err.message);

@@ -26,6 +26,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名  | 类型                                                    | 必填 | 说明                              |
@@ -54,13 +56,16 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
@@ -78,6 +83,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -108,16 +115,18 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 <!--code_no_check-->
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -143,6 +152,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -173,16 +184,18 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 <!--code_no_check-->
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -204,6 +217,8 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -231,12 +246,15 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let accountId: number = 100;
 try {
   let result: Array<string> = securityManager.getUserCertificates(wantTemp, accountId);
@@ -255,6 +273,8 @@ getSecurityStatus(admin: Want, item: string): string
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -283,11 +303,13 @@ getSecurityStatus(admin: Want, item: string): string
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -307,6 +329,8 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -329,18 +353,20 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 let policy: securityManager.PasswordPolicy = {
   complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$',
   validityPeriod: 1,
   additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
-}
+};
 try {
     securityManager.setPasswordPolicy(wantTemp, policy);
     console.info(`Succeeded in setting password policy.`);
@@ -358,6 +384,8 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -385,11 +413,13 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -410,12 +440,14 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| tokenId | number | 是 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)再去获取accessTokenId获得。当前只支持最多100个tokenId被保存策略。 |
+| tokenId | number | 是 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获取accessTokenId。当前只支持最多100个tokenId被保存策略。 |
 | policy | [ClipboardPolicy](#clipboardpolicy) | 是 | 剪贴板策略。 |
 
 **错误码**：
@@ -432,12 +464,15 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let tokenId: number = 586874394;
 try {
     securityManager.setAppClipboardPolicy(wantTemp, tokenId, securityManager.ClipboardPolicy.IN_APP);
@@ -457,12 +492,14 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
-| tokenId | number | 否 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)再去获取accessTokenId获得。当前只支持最多100个tokenId被保存策略。 |
+| tokenId | number | 否 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获取accessTokenId。当前只支持最多100个tokenId被保存策略。 |
 
 **返回值：**
 
@@ -484,12 +521,15 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let tokenId: number = 586874394;
 try {
     let result: string = securityManager.getAppClipboardPolicy(wantTemp, tokenId);
@@ -503,11 +543,13 @@ try {
 
 setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy: ClipboardPolicy): void
 
-设置指定包名和用户Id的设备剪贴板策略。当前只支持最多保存100个策略。
+设置指定用户下指定应用的设备剪贴板策略。当前只支持最多保存100个策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -531,12 +573,15 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
@@ -551,11 +596,13 @@ try {
 
 getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): string
 
-获取指定包名和用户Id的设备剪贴板策略。
+获取指定用户下指定应用的设备剪贴板策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -584,12 +631,15 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
@@ -604,11 +654,13 @@ try {
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-设置水印策略，当前仅支持2in1设备使用。
+给指定用户设置水印策略。当前只支持最多保存100个策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -633,12 +685,15 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let source: string = '/data/storage/el1/base/test.png';
 let accountId: number = 100;
@@ -654,11 +709,13 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-取消水印策略，当前仅支持2in1设备使用。
+取消指定用户的水印策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -682,12 +739,15 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
@@ -729,7 +789,7 @@ try {
 
 | 名称         | 值 | 说明                            |
 | ----------- | -------- | ------------------------------- |
-| DEFAULT | 0  | 默认。 |
+| DEFAULT | 0  | 默认，表示无策略。 |
 | IN_APP | 1  | 剪贴板可在同一应用使用。 |
 | LOCAL_DEVICE | 2  | 剪贴板可在同一设备使用。 |
 | CROSS_DEVICE | 3  | 剪贴板可跨设备使用。 |

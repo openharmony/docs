@@ -846,7 +846,7 @@ type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets 
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。 |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。<br/>当字段类型是Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型字段不能比较大小，不适用以下谓词操作：between、notBetween、greaterThan、lessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -4083,6 +4083,12 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -4093,12 +4099,6 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -4141,6 +4141,12 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
 | columns    | Array&lt;string&gt;             | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。默认值为空。 |
 
+**返回值**：
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](#resultset) | 如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -4151,12 +4157,6 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 | 14800000     | Inner error.                                                 |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-
-**返回值**：
-
-| 类型                    | 说明                                |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | 如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -5370,7 +5370,7 @@ if (store != undefined) {
       console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
 ```
@@ -6390,7 +6390,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
-    console.info(`Progess: ${progressDetails}`);
+    console.info(`Progress: ${progressDetails}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -6482,7 +6482,7 @@ const tables = ["table1", "table2"];
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`Progess: ${progressDetail}`);
+    console.info(`Progress: ${progressDetail}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -7293,6 +7293,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 | cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
 
 **返回值：**
+
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。        |
@@ -7742,6 +7743,12 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
@@ -7767,12 +7774,6 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | 14800032  | SQLite: Abort due to constraint violation. |
 | 14800033  | SQLite: Data type mismatch. |
 | 14800034  | SQLite: Library used incorrectly. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -10113,6 +10114,12 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;Resu
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -10129,12 +10136,6 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;Resu
 | 14800026  | SQLite: The database is out of memory. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800047  | The WAL file size exceeds the default limit. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -10182,6 +10183,12 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;): ResultSet
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
 | columns    | Array&lt;string&gt;             | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。默认值为空。 |
 
+**返回值**：
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](#resultset) | 如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -10199,12 +10206,6 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;): ResultSet
 | 14800026  | SQLite: The database is out of memory. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800047  | The WAL file size exceeds the default limit. |
-
-**返回值**：
-
-| 类型                    | 说明                                |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | 如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 

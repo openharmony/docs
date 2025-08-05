@@ -6,7 +6,7 @@ JSVM-API provides APIs for directly managing JavaScript (JS) arrays.
 
 ## Basic Concepts
 
-JSVM-API can be used to create, access, modify, and traverse arrays. Before using JSVM-API to work with arrays, it's helpful if you understand the following concepts:
+JSVM-API can be used to create, access, modify, and traverse arrays. Before using JSVM-API to work with arrays, it is helpful if you understand the following concepts:
 
 - Array creation: You can use **OH_JSVM_CreateArray** to create an array and pass it to the JS layer.
 - Array-related operations: You can use the APIs provides by the JSVM module to obtain the length of a JS array, retrieve the element at the specified index, and set the element value at the specified index.

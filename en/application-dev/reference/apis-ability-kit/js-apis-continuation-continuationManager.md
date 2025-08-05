@@ -1,6 +1,6 @@
-# @ohos.continuation.continuationManager (continuationManager)
+# @ohos.continuation.continuationManager (Continuation/Collaboration Management)
 
-The **continuationManager** module provides the continuation management entry. You can use the APIs of this module to connect to and cancel the continuation management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
+The continuationManager module provides the continuation/collaboration management entry. You can use the APIs of this module to connect to and cancel the continuation/collaboration management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
 
 > **NOTE**
 > 
@@ -99,9 +99,9 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -242,9 +242,9 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -687,10 +687,10 @@ Starts the device selection module to show the list of available devices on the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| token | number | Yes| Token obtained after the registration of the continuation management service.|
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -834,10 +834,10 @@ Starts the device selection module to show the list of available devices on the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| token | number | Yes| Token obtained after the registration of the continuation management service.|
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 

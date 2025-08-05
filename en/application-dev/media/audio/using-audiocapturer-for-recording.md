@@ -4,9 +4,9 @@ The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It i
 
 ## Development Guidelines
 
-The full recording process involves creating an **AudioCapturer** instance, configuring audio recording parameters, starting and stopping recording, and releasing the instance. In this topic, you will learn how to use the AudioCapturer to record audio data. Before the development, you are advised to read [AudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8) for the API reference.
+The full recording process involves creating an AudioCapturer instance, configuring audio recording parameters, starting and stopping recording, and releasing the instance. In this topic, you will learn how to use the AudioCapturer to record audio data. Before the development, you are advised to read [AudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8) for the API reference.
 
-The figure below shows the state changes of the AudioCapturer. After an **AudioCapturer** instance is created, different APIs can be called to switch the AudioCapturer to different states and trigger the required behavior. If an API is called when the AudioCapturer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioCapturer state before triggering state transition.
+The figure below shows the state changes of the AudioCapturer. After an AudioCapturer instance is created, different APIs can be called to switch the AudioCapturer to different states and trigger the required behavior. If an API is called when the AudioCapturer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioCapturer state before triggering state transition.
 
 **Figure 1** AudioCapturer state transition
 
@@ -16,7 +16,7 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
 
 ### How to Develop
 
-1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8).
+1. Set audio recording parameters and create an AudioCapturer instance. For details about the parameters, see [AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8).
 
    > **NOTE**
    >

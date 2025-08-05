@@ -40,7 +40,7 @@ It is recommended that the application proactively [listen for audio focus event
 
    - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md), where you can call [setSilentModeAndMixWithOthers](../../reference/apis-audio-kit/js-apis-audio.md#setsilentmodeandmixwithothers12).
 
-   - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md), where you can call [OH_AudioRenderer_SetSilentModeAndMixWithOthers](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setsilentmodeandmixwithothers).
+   - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md), where you can call [OH_AudioRenderer_SetSilentModeAndMixWithOthers](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_setsilentmodeandmixwithothers).
 
 ### Releasing Audio Focus
 
@@ -90,7 +90,7 @@ You can set the audio focus mode in one of the following ways:
 
 - If you [use AudioRenderer for audio playback](using-audiorenderer-for-playback.md), call [setInterruptMode](../../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9) of AudioRenderer to set the audio focus mode.
 
-- If you [use OHAudio for audio playback (C/C++)](using-ohaudio-for-playback.md), call [OH_AudioStreamBuilder_SetRendererInterruptMode](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinterruptmode) to set the audio focus mode.
+- If you [use OHAudio for audio playback (C/C++)](using-ohaudio-for-playback.md), call [OH_AudioStreamBuilder_SetRendererInterruptMode](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrendererinterruptmode) to set the audio focus mode.
 
 ### Handling Audio Focus Changes
 
@@ -106,11 +106,11 @@ The manners for listening for audio focus events vary according to the developme
 
 - If you [use AudioRenderer for audio playback](using-audiorenderer-for-playback.md), call [on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9) to listen for audio focus events (specified by [InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)).
 
-- If you [use OHAudio for audio playback (C/C++)](using-ohaudio-for-playback.md), call [OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrenderercallback) to listen for audio focus events (specified by [OH_AudioRenderer_OnInterruptEvent](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_oninterruptevent)).
+- If you [use OHAudio for audio playback (C/C++)](using-ohaudio-for-playback.md), call [OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrenderercallback) to listen for audio focus events (specified by [OH_AudioRenderer_OnInterruptEvent](../../reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_oninterruptevent)).
 
 - If you [use AudioCapturer for audio recording](using-audiocapturer-for-recording.md), call [on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt10) to listen for audio focus events (specified by [InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)).
 
-- If you [use OHAudio for audio recording (C/C++)](using-ohaudio-for-recording.md), call [OH_AudioStreamBuilder_SetCapturerCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setcapturercallback) to listen for audio focus events (specified by [OH_AudioCapturer_OnInterruptEvent](../../reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md#oh_audiocapturer_oninterruptevent)).
+- If you [use OHAudio for audio recording (C/C++)](using-ohaudio-for-recording.md), call [OH_AudioStreamBuilder_SetCapturerCallback](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturercallback) to listen for audio focus events (specified by [OH_AudioCapturer_OnInterruptEvent](../../reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md#oh_audiocapturer_oninterruptevent)).
 
 When receiving an audio focus event (specified by [InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)), applications must perform corresponding processing based on the information in the event to maintain consistency with the system state and deliver a quality audio experience to users.
 
@@ -217,17 +217,17 @@ async function onAudioInterrupt(): Promise<void> {
 
 ## Managing Audio Focus with AudioSession
 
-Applications may use AudioSession APIs to customize a focus strategy for its audio streams. When the system performs focus management, all audio streams of the application preferentially comply with this strategy whenever possible.
+Applications may use AudioSession APIs to customize a focus strategy for its audio streams. During audio focus management carried out by the system, all audio streams of the application preferentially adhere to this strategy as long as conditions permit.
 
 The AudioSession APIs are used to implement the following functions:
 
 - Once an application activates an audio session and specifies an [audio session strategy](#audio-session-strategy), all audio streams of the application preferentially use this strategy during focus management.
 
-  Typical scenario: When an application plays a short video, the music playing in the background is interrupted. It is expected that the background music be automatically restored once the audio stream of the application stops.
+  Typical scenario: When an application plays a short video, the background music is interrupted. The application expects that the background music can automatically resume after the application's audio stream stops.
 
 - When an audio session is in the activated state and all audio streams of the application are stopped, audio focus is not released immediately. The system retains focus until the audio session is deactivated or a new audio stream of the application requests focus.
 
-  Typical scenario: When an application plays multiple audio clips sequentially, it desires to maintain audio focus continuity throughout the entire playback, without other affected audio in the background resuming automatically during the intervals between audio clips.
+  Typical scenario: When the application plays multiple audio tracks consecutively, it may not want other affected background audio tracks to automatically resume during the gaps between the audio tracks. Instead, it aims to maintain the continuity of audio focus throughout the entire playback process.
 
 ### Audio Session Usage Workflow
 
@@ -235,7 +235,7 @@ The following figure demonstrates the usage workflow of AudioSession.
 
 ![AudioSession status change](figures/audiosession-status-change.png)
 
-1. Before starting the audio service, obtain an **AudioSessionManager** instance.
+1. Before starting the audio service, obtain an AudioSessionManager instance.
 
    For details, see [Obtaining an Audio Session Manager (ArkTS)](audio-session-management.md#obtaining-an-audio-session-manager) or [Obtaining an Audio Session Manager (C/C++)](using-ohaudio-for-session.md#obtaining-an-audio-session-manager).
 
@@ -272,7 +272,7 @@ The system presets the following four audio concurrency modes:
 
 - **CONCURRENCY_DEFAULT**): default [audio focus strategy](#audio-focus-strategy) of the system.
 
-- **CONCURRENCY_MIX_WITH_OTHERS**: concurrency with other audio streams.
+- **CONCURRENCY_MIX_WITH_OTHERS**: concurrent playback with other audio streams.
 
 - **CONCURRENCY_DUCK_OTHERS**: concurrency with other audio streams and lowering their volume.
 

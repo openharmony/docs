@@ -1,7 +1,7 @@
 # NFC Tag Read/Write Development
 
 ## Introduction
-Near Field Communication (NFC) is a high-frequency radio technology that enables communication between devices over a distance less than 10 cm. NFC operates at 13.56 MHz. With NFC technologies, electronic devices can read and write NFC tags.
+Near Field Communication (NFC) is a high-frequency radio technology that enables communication between devices over a distance less than 10 cm. NFC operates at 13.56 MHz. With NFC technologies, electronic devices can read and write NFC tags.<br>
 NFC tags support one or more communications technologies listed as follows:
 - NFC-A (also known as ISO 14443-3A)
 - NFC-B (also known as ISO 14443-3B)
@@ -15,7 +15,7 @@ NFC tags support one or more communications technologies listed as follows:
 ## When to Use
 An electronic device touches an NFC tag via the NFC antenna to read and write the NFC tag data. NFC tags can be read and written by a started application (foreground mode) on a device or without starting an application (background mode).
 - Reading/Writing an NFC tag by a started application<br>
-An application started on a device reads or writes the NFC tag. That is, the user starts the application to read and write the NFC tag. The user starts the application, opens the application page, and taps the device on the NFC tag. In this case, the retrieved tag data can be distributed only to the foreground application.
+An application started on a device reads or writes the NFC tag. That is, the user starts the application to read and write the NFC tag. The user starts the application, opens the application page, and taps the device on the NFC tag. In this case, the tag data read can be distributed only to the foreground application.
 - Reading/Writing an NFC tag without starting an application<br>
 The user taps the device on an NFC tag without starting any application. Then, the device selects an application based on the type of the NFC tag technology. If multiple applications are matched, an application selector will be displayed, listing all the available applications for the user to choose. After the user selects an application, the NFC tag read/write page of the application is automatically displayed.
 - Constraints<br>
@@ -66,7 +66,7 @@ The following table describes the APIs for obtaining objects of the tags that us
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // Make sure that ohos.nfc.tag.action.TAG_FOUND is present in actions.
               "ohos.nfc.tag.action.TAG_FOUND"
@@ -229,7 +229,7 @@ export default class EntryAbility extends UIAbility {
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // Make sure that ohos.nfc.tag.action.TAG_FOUND is present in actions.
               "ohos.nfc.tag.action.TAG_FOUND"
@@ -241,7 +241,7 @@ export default class EntryAbility extends UIAbility {
               {
                   "type":"tag-tech/IsoDep"
               }
-              // Add other technologies if necessary.
+              //  Add other technology types if necessary.
               // Example: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
             ]
           }

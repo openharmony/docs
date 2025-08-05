@@ -1,6 +1,6 @@
 # @ohos.app.ability.wantAgent (WantAgent) (System API)
 
-The app.ability.WantAgent module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID, Want, and bundle name of a **WantAgent** object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
+The app.ability.WantAgent module provides APIs for creating and comparing WantAgent objects, and obtaining the user ID, Want, and bundle name of a WantAgent object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
 
 > **NOTE**
 > 
@@ -18,7 +18,7 @@ import { WantAgent } from '@kit.AbilityKit';
 
 getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
-Obtains the Want in a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the Want in a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,7 +28,7 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 
 | Name    | Type                 | Mandatory| Description                           |
 | -------- | --------------------- | ---- | ------------------------------- |
-| agent    | WantAgent             | Yes  | Target **WantAgent** object.                  |
+| agent    | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)             | Yes  | Target WantAgent object.                  |
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | Yes  | Callback used to return the Want.|
 
 **Error codes**
@@ -48,9 +48,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgent object
+// WantAgent object.
 let wantAgentData: _WantAgent;
-// WantAgentInfo object
+// WantAgentInfo object.
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -88,7 +88,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   // getWant callback
   let getWantCallback = (err: BusinessError, data: Want) => {
     if(err) {
-      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
+      console.error(`getWant failed, code: ${err.code}, message: ${err.message}.`);
     } else {
       console.info(`getWant success, data: ${JSON.stringify(data)}.`);
     }
@@ -117,7 +117,7 @@ try {
 
 getWant(agent: WantAgent): Promise\<Want\>
 
-Obtains the Want in a **WantAgent** object. This API uses a promise to return the result.
+Obtains the Want in a WantAgent object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -127,7 +127,7 @@ Obtains the Want in a **WantAgent** object. This API uses a promise to return th
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent) | Yes  | Target WantAgent object.|
 
 **Return value**
 
@@ -154,9 +154,9 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgent object
+// WantAgent object.
 let wantAgentData: _WantAgent;
-// WantAgentInfo object
+// WantAgentInfo object.
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -195,12 +195,12 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     wantAgent.getWant(wantAgentData).then((data)=>{
       console.info(`getWant success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError)=>{
-      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
+      console.error(`getWant failed, code: ${err.code}, message: ${err.message}.`);
     });
   } catch(err){
     let code = (err as BusinessError).code;
     let msg = (err as BusinessError).message;
-    console.error(`getWant failed, code: ${code}, messgae: ${msg}.`);
+    console.error(`getWant failed, code: ${code}, message: ${msg}.`);
   }
 }
 
@@ -209,7 +209,7 @@ try {
 } catch(err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`getWantAgent failed, code: ${code}, messgae: ${msg}.`);
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 
@@ -298,7 +298,7 @@ try {
 
 ## OperationType
 
-Enumerates the operation types of the **WantAgent** objects.
+Enumerates the operation types of the WantAgent objects.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

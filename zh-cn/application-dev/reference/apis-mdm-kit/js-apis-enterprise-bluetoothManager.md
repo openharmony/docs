@@ -28,6 +28,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -56,11 +57,13 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -75,12 +78,13 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-添加蓝牙设备可用白名单。如果调用[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙，就无法调用此接口，否则会冲突；如果调用此接口后再全局禁用，则可以禁用成功。
+添加蓝牙设备可用名单。如果调用[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙，就无法调用此接口，否则会冲突；如果调用此接口后再全局禁用，则可以禁用成功。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -88,7 +92,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                      |
-| deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。 |
+| deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。蓝牙设备允许名单数组长度上限为1000，若当前允许名单中已有300个蓝牙设备MAC地址，则只允许再添加700个。 |
 
 **错误码**：
 
@@ -105,12 +109,15 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.addAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -124,12 +131,13 @@ try {
 
 removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-移除蓝牙设备可用白名单。
+移除蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -153,12 +161,15 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.removeAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -172,12 +183,13 @@ try {
 
 getAllowedBluetoothDevices(admin: Want): Array\<string>
 
-获取蓝牙设备可用白名单。
+获取蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -190,7 +202,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Array\<string> | 可用白名单中蓝牙设备MAC地址的数组。 |
+| Array\<string> | 可用名单中蓝牙设备MAC地址的数组。 |
 
 **错误码**：
 
@@ -206,11 +218,13 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(wantTemp);

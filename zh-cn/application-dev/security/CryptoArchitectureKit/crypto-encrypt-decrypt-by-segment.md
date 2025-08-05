@@ -25,7 +25,6 @@
 严格意义上说，是数据的拆分加解密，此时单次传入的数据量长度与密钥规格的长度相关。
 
 - RSA：填充模式不同，输入的数据的规则不同。请根据[RSA算法规格](crypto-asym-encrypt-decrypt-spec.md#rsa)确认单次传入的数据量长度。
-- SM2：加密长度需要在固定长度进行。具体请查阅[SM2算法规格](crypto-asym-encrypt-decrypt-spec.md#sm2)。
 
 **开发者应当对每次doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。**
 

@@ -1,7 +1,7 @@
-# @ohos.app.appstartup.StartupConfigEntry
+# @ohos.app.appstartup.StartupConfigEntry (AppStartup Configuration)
 
 
-The StartupConfigEntry module provides the API for configuring AppStartup.
+The module provides APIs for configuring AppStartup.
 
 > **NOTE**
 >

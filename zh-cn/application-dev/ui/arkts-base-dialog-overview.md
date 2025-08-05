@@ -20,6 +20,7 @@
 | [弹出框层级管理](arkts-dialog-levelorder.md) | 从API version 18开始，可以通过设置[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框的显示顺序。 |
 | [弹出框控制器](arkts-dialog-controller.md) | 从API version 18开始，可以通过设置[controller](../reference/apis-arkui/js-apis-promptAction.md#dialogcontroller18)参数来绑定控制器，通过控制器可以对弹出框进行操作。 |
 | [弹出框焦点策略](arkts-dialog-focusable.md) | 从API version 19开始，可以通过设置[focusable](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框是否获取焦点。 |
+| [弹出框蒙层控制](arkts-dialog-mask.md) | 开发者可以通过设置maskColor、maskRect等参数来对弹出框蒙层进行定制。 |
 
 ## 规格约束
 

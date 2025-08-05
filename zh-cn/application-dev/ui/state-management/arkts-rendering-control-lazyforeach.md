@@ -6,7 +6,7 @@ LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应
 
 ## 使用限制
 
-- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
+- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
 - LazyForEach依赖生成的键值判断是否刷新子组件，键值不变则不触发刷新。
 - 容器组件内只能包含一个LazyForEach。以List为例，不推荐同时包含ListItem、ForEach、LazyForEach。也不推荐同时包含多个LazyForEach。
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
@@ -586,7 +586,7 @@ struct MyComponent {
 }
 ```
 
-onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后,第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
+onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后，第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
 
 **图9**  LazyForEach改变多个数据  
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  
@@ -681,13 +681,13 @@ struct MyComponent {
 "Hello 1","Hello 2" 在 "Hello h" 之后插入，而 "Hello h" 在修改前的原数组中的 index=7，因此第三个 operation 为 `{ type: DataOperationType.ADD, index: 8, count: 2 }`。
 "Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`。
 
-3. 调用一次`onDatasetChange`时，每个`index`对应的数据只能被操作一次。如果多次操作同一个`index`，`LazyForEach`仅生效第一次操作。
-4. 部分操作由开发者传入键值，LazyForEach不再重复调用keygenerator获取键值，开发者需保证传入键值的正确性。
+3. 在同一个`onDatasetChange`批量处理数据时，如果多个`DataOperation`操作同一个`index`，只有第一个`DataOperation`生效。
+4. 部分操作由开发者传入键值，LazyForEach不再重复调用`keygenerator`获取键值，开发者需保证传入键值的正确性。
 5. 若操作集合中包含RELOAD操作，则其他操作均不生效。
 
 ### 改变数据子属性
 
-若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
+若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了[\@Observed和\@ObjectLink](./arkts-observed-and-objectlink.md)机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -765,7 +765,7 @@ struct ChildComponent {
 
 ### 使用状态管理V2
 
-状态管理V2提供`@ObservedV2`和`@Trace`装饰器，用于实现属性的深度观测。使用`@Local`和`@Param`装饰器，可以管理子组件的刷新，仅刷新使用了对应属性的组件。
+状态管理V2提供[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)装饰器，用于实现属性的深度观测。使用[\@Local](./arkts-new-local.md)和[\@Param](./arkts-new-param.md)装饰器，可以管理子组件的刷新，仅刷新使用了对应属性的组件。
 
 #### 嵌套类属性变化观测
 
@@ -1064,7 +1064,7 @@ struct Parent {
 ```
 
 **图12**  LazyForEach拖拽排序效果图  
-![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
+![LazyForEach-Drag-Sort](./figures/LazyForEach-Drag-Sort.gif)
 
 ## 常见问题
 
@@ -1681,7 +1681,7 @@ struct MyComponent {
 
 ### 组件复用渲染异常
 
-`@Reusable`与`@ComponentV2`混用会导致组件渲染异常。
+`@Reusable`与[\@ComponentV2](./arkts-new-componentV2.md)混用会导致组件渲染异常。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -1766,7 +1766,7 @@ struct ChildComponent {
 
 反例中，在`@ComponentV2`装饰的组件`MyComponent`中，`LazyForEach`列表使用了`@Reusable`装饰的组件`ChildComponent`，导致组件渲染失败。从日志中可以看到，组件触发了`onAppear`，但没有触发`aboutToAppear`。
 
-将`@ComponentV2`修改为`@Component`可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`会被加入复用缓存，而非被销毁，并触发`aboutToRecycle`事件，打印日志信息。当列表滑动，出现新节点时，会将可复用的组件从复用缓存中重新加入到节点树，触发`aboutToReuse`刷新组件数据，并打印日志信息。
+将`@ComponentV2`修改为[\@Component](./arkts-create-custom-components.md#component)可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`会被加入复用缓存，而非被销毁，并触发`aboutToRecycle`事件，打印日志信息。当列表滑动，出现新节点时，会将可复用的组件从复用缓存中重新加入到节点树，触发`aboutToReuse`刷新组件数据，并打印日志信息。
 
 ### 组件不刷新
 

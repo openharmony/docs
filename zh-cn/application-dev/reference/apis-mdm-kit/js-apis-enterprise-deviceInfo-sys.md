@@ -28,6 +28,8 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -50,11 +52,13 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
@@ -75,6 +79,8 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -103,12 +109,14 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
@@ -127,6 +135,8 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -150,11 +160,13 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
@@ -175,6 +187,8 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -203,12 +217,14 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
@@ -227,6 +243,8 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -250,11 +268,13 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDeviceName(wantTemp, (err, result) => {
@@ -275,6 +295,8 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -303,12 +325,14 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { deviceInfo } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceInfo.getDeviceName(wantTemp).then((result) => {

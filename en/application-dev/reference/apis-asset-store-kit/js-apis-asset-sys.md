@@ -29,7 +29,7 @@ To set [IS_PERSISTENT](js-apis-asset.md#tag), the application must have the ohos
 
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| userId     | number                                | Yes  | User ID.                                                          |
+| userId     | number                                | Yes  | User ID. The value must be greater than or equal to 100.               |
 | attributes | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
 
 **Return value**
@@ -105,7 +105,7 @@ Removes one or more assets from the specified user space. This API uses a promis
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | Yes  | User ID.                                                 |
+| userId | number                                | Yes  | User ID. The value must be greater than or equal to 100.                          |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
 
 **Return value**
@@ -175,7 +175,7 @@ Updates an asset in the specified user space. This API uses a promise to return 
 
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| userId             | number                                | Yes  | User ID.                                                        |
+| userId             | number                                | Yes  | User ID. The value must be greater than or equal to 100.                                 |
 | query              | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
 | attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | Yes  | New attributes of the asset, such as the asset plaintext and custom data.             |
 
@@ -250,7 +250,7 @@ Performs preprocessing for the asset query in the specified user space. This API
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | Yes  | User ID.                                           |
+| userId | number                                | Yes  | User ID. The value must be greater than or equal to 100.                    |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Conditions for querying the asset, such as the asset aliases, access control attributes, and custom data.|
 
 **Return value**
@@ -323,7 +323,7 @@ Queries one or more assets in the specified user space. If user authentication i
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| userId   | number                                          | Yes  | User ID.                                                 |
+| userId   | number                                          | Yes  | User ID. The value must be greater than or equal to 100.                          |
 | query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Conditions for querying the asset, such as the asset aliases, access control attributes, and custom data.      |
 
 **Return value**
@@ -400,8 +400,8 @@ Performs postprocessing for the asset query in the specified user space. This AP
 
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| userId | number                                | Yes  | User ID.                                                                    |
-| handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser).|
+| userId | number                                | Yes  | User ID. The value must be greater than or equal to 100.                                             |
+| handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Operation handle to be processed, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser).|
 
 **Return value**
 

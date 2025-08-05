@@ -1,8 +1,6 @@
 # Key Agreement Using ECDH
 
-
 For details about the algorithm specifications, see [ECDH](crypto-key-agreement-overview.md#ecdh).
-
 
 ## How to Develop
 

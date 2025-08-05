@@ -1,6 +1,6 @@
 # @ohos.bundle.shortcutManager (shortcutManager) (System API)
 
-The shortcutManager module allows system applications to add, delete, and query shortcuts, including [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md).
+The module allows system applications to add, delete, and query shortcuts, including [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md).
 
 > **NOTE**
 >
@@ -84,7 +84,7 @@ struct ShortcutExample {
           try {
             shortcutManager.addDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("addDesktopShortcutInfo success");
+                console.info("addDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`addDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -165,7 +165,7 @@ struct ShortcutExample {
           try {
             shortcutManager.deleteDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("deleteDesktopShortcutInfo success");
+                console.info("deleteDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`deleteDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -232,7 +232,7 @@ struct ShortcutExample {
           try {
             shortcutManager.getAllDesktopShortcutInfo(100)
               .then((data: shortcutManager.ShortcutInfo[]) => {
-                console.log("Shortcut data is " + JSON.stringify(data));
+                console.info("Shortcut data is " + JSON.stringify(data));
               }).catch((err: BusinessError) => {
               console.error(`getAllDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -247,3 +247,46 @@ struct ShortcutExample {
   }
 }
 ```
+
+## ShortcutInfo
+
+type ShortcutInfo = _ShortcutInfo
+
+Defines the shortcut information defined in the [module.json5](../../quick-start/module-configuration-file.md#shortcuts) file of the application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                      | Description     |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo) | Shortcut information defined in the **module.json5** file. |
+
+## ShortcutWant
+
+type ShortcutWant = _ShortcutWant
+
+Defines a collection of target [Wants](../../quick-start/module-configuration-file.md#wants) information defined within a shortcut.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                      | Description     |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md#shortcutwant) | Target [wants](../../quick-start/module-configuration-file.md#wants) defined in the shortcut configuration. |
+
+## ParameterItem
+
+type ParameterItem = _ParameterItem
+
+Defines the custom data in the shortcut configuration.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                      | Description     |
+| ------------------------------------------------------------ | -------------- |
+| [_ParameterItem](js-apis-bundleManager-shortcutInfo-sys.md#parameteritem12) | Custom data in the shortcut configuration. |
+

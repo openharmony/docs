@@ -16,7 +16,7 @@ Click control attributes are used to set whether a component can respond to fing
 
 | Name     | Type| Description                   |
 | ----------- | -------- | ------------------------ |
-| touchable<sup>(deprecated)</sup>   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>**true** (default): The component can respond to finger interactions. **false**: The component cannot respond to finger interactions.|
+| touchable<sup>(deprecated)</sup>   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>**true** (default): The component can respond to finger interactions.<br>**false**: The component cannot respond to finger interactions.|
 
 ## Example
 

@@ -27,7 +27,7 @@ In this example, the party that provides the [AutoFillExtensionAbility](../refer
 
 #### Lifecycle
 
-The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground), [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy), [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest), and [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest). Override them as required.
+The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#oncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onbackground), [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#ondestroy), [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest), and [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest). Override them as required.
 
 - **onCreate**: called to initialize the service logic when an AutoFillExtensionAbility is created.
 - **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the AutoFillExtensionAbility.
@@ -123,7 +123,7 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
 
    2. Right-click the **autofillpages** directory, and choose **New > File** to create a file named **AutoFillPassWord.ets**.
 
-   3. When users touch the account or password text box on the page, the auto-fill framework sends an auto-fill request to the auto-fill service to trigger the [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest) lifecycle callback. In the **onFillRequest** lifecycle callback, display the page that shows the available accounts and passwords (implemented by **AutoFillPassWord.ets**).
+   3. When users touch the account or password text box on the page, the auto-fill framework sends an auto-fill request to the auto-fill service to trigger the [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest) lifecycle callback. In the **onFillRequest** lifecycle callback, display the page that shows the available accounts and passwords (implemented by **AutoFillPassWord.ets**).
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
@@ -241,7 +241,7 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
 
    1. Right-click the **autofillpages** directory, and choose **New > File** to create a file named **SavePage.ets**.
 
-   2. When information exists in the **TextInput** component, trigger the [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest) lifecycle callback during page redirection (a user touches the login button). In the **onSaveRequest** callback, display the information save processing page (implemented by **SavePage.ets**).
+   2. When information exists in the **TextInput** component, trigger the [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest) lifecycle callback during page redirection (a user touches the login button). In the **onSaveRequest** callback, display the information save processing page (implemented by **SavePage.ets**).
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';

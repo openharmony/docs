@@ -129,7 +129,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>请合理设置圆环粗细，当value大于圆环半径时，圆环粗细会自动设置为圆环半径的12%。当value过大时，圆环可能会消失。 |
+| value | [Length](ts-types.md#length) | 是 | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>设置字符串类型参数时，如果不指定单位，默认单位为px，例如'10'，等同于'10px'。<br/>**说明：**<br/>设置小于0的值时，按默认值显示。<br/>请合理设置圆环粗细，当value大于圆环半径时，圆环粗细会自动设置为圆环半径的12%。如果value过大，圆环可能会消失。 |
 
 ### trackShadow<sup>10+</sup>
 
@@ -404,7 +404,7 @@ function buildDataPanel(config: DataPanelConfiguration) {
     Column() {
       ForEach(config.values, (item: number, index: number) => {
         ChildItem({ item: item, index: index, max: config.maxValue })
-      }, (item: string) => item)
+      }, (item: number, index: number) => item.toString())
     }.padding(10)
 
     Column() {
@@ -464,7 +464,8 @@ struct ChildItem {
         Rect()
           .height(25)
           .width(this.item * 600 / this.max)
-          .foregroundColor(this.colorArray[this.index])
+          .foregroundColor((this.index < 0 || this.index >= this.colorArray.length) ? this.colorArray[0] :
+                            this.colorArray[this.index])
           .radius(5)
           .align(Alignment.Start)
         Text(" " + this.item)

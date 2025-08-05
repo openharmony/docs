@@ -1207,7 +1207,7 @@ struct GridExample {
   scroller: Scroller = new Scroller()
   @State text: string = 'drag'
 
-  @Builder pixelMapBuilder () { // Style for the drag event.
+  @Builder pixelMapBuilder() { // Style for the drag event.
     Column() {
       Text(this.text)
         .fontSize(16)

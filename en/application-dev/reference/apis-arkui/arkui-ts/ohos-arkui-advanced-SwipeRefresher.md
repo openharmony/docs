@@ -6,6 +6,8 @@ The swipe refresher is a component used to obtain and load content, typically wi
 > **NOTE**
 >
 > This component and its child components are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
@@ -37,7 +39,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 | Name| Type| Mandatory| Decorator| Description                                                                |
 | -------- | -------- | -------- | -------- |--------------------------------------------------------------------|
-| content | string | No| \@Prop | Text displayed when the content is loaded.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.                                        |
+| content | string | No| \@Prop | Text displayed when the content is loaded.<br>The default value is an empty string.<br>**NOTE**<br>If the text length exceeds the column width, it will be truncated.                                        |
 | isLoading | boolean | Yes | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded,<br> and **false** means the opposite.|
 
 ## Events

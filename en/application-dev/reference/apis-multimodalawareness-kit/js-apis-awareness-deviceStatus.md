@@ -1,6 +1,6 @@
 # @ohos.multimodalAwareness.deviceStatus (Device Status Awareness)
 
-The deviceStatus module provides the device status awareness functionality.
+The **deviceStatus** module provides the device status awareness functionality.
 
 > **NOTE**
 >
@@ -76,7 +76,7 @@ Unsubscribes from steady standing state events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **steadyStandingDetect**.|
-| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | No  | Callback used to return the steady standing state of the device.|
 
 **Error codes**
 

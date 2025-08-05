@@ -242,12 +242,12 @@ initialOffset(value: OffsetOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型    | 必填   | 说明       |
-| ---------- | --------------------|-------------------- | -------- |
-| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。 |
-| snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的分页点。<br/>**说明：** <br/>1.当属性为Dimension时，Dimension表示每页的大小，系统按照该大小进行分页。<br/>2.当属性为Array\<Dimension\>时，每个Dimension表示分页点，系统按照分页点进行分页。每个Dimension的范围为[0,可滑动距离]。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
-| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在开头和第一页间自由滑动，该属性设置为false后，允许Scroll在开头和第一页间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
-| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在最后一页和末尾间自由滑动，该属性设置为false后，允许Scroll在最后一页和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| 名称       | 类型    | 只读   | 可选 | 说明       |
+| ---------- | --------------------|-------------------- | -- | -------- |
+| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 否 | 否 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。 |
+| snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 是 | 设置Scroll组件限位滚动时的分页点。<br/>**说明：** <br/>1.当属性为Dimension时，Dimension表示每页的大小，系统按照该大小进行分页。<br/>2.当属性为Array\<Dimension\>时，每个Dimension表示分页点，系统按照分页点进行分页。每个Dimension的范围为[0,可滑动距离]。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
+| enableSnapToStart | boolean   | 否 | 是 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在开头和第一页间自由滑动，该属性设置为false后，允许Scroll在开头和第一页间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToEnd | boolean   | 否 | 是 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在最后一页和末尾间自由滑动，该属性设置为false后，允许Scroll在最后一页和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
 ## 事件
 
@@ -533,9 +533,9 @@ Scroll每帧滚动前触发的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型  | 必填 | 说明  |
-| ----- | ------ | ---- | ----- |
-| offsetRemain<sup>9+</sup>     | number | 是   | 实际滚动偏移量。<br/>单位vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称  | 类型  | 只读 | 可选 | 说明  |
+| ----- | ------ | ---- | -- | ----- |
+| offsetRemain<sup>9+</sup>     | number | 否   | 否 | 实际滚动偏移量。<br/>单位vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## Scroller
 
@@ -844,11 +844,11 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填   | 说明              |
-| ----- | ------ | ------ | ----------------- |
-| duration | number | 否 | 设置滚动时长。<br/>默认值：1000<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
-| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease |
-| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画，设置为false时不可越界。 |
+| 名称   | 类型   | 只读   | 可选 | 说明              |
+| ----- | ------ | ------ | -- | ----------------- |
+| duration | number | 否 | 是 | 设置滚动时长。<br/>默认值：1000<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | 否 | 是 | 设置滚动曲线。<br/>默认值：Curve.Ease |
+| canOverScroll | boolean | 否 | 是 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画，设置为false时不可越界。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
@@ -873,9 +873,9 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型  | 必填 | 说明              |
-| ----- | ------ | ------ | ----------------- |
-| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。 |
+| 名称   | 类型  | 只读 | 可选 | 说明              |
+| ----- | ------ | ------ | -- | ----------------- |
+| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | 滑动到指定Index的额外偏移量。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。 |
 
 ## ScrollPageOptions<sup>14+</sup>对象说明
 
@@ -885,10 +885,10 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型 | 必填 | 说明                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
+| 名称    | 类型 | 只读 | 可选 | 说明                                                     |
+| --------- | -------- | ---- | -- | ------------------------------------------------------------ |
+| next      | boolean  | 否   | 否 | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
+| animation | boolean  | 否   | 是 | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
 
@@ -898,10 +898,10 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型  | 必填 | 说明              |
-| ----- | ------| ------- | ----------------- |
-| xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滚动偏移。<br/>默认值：0 |
-| yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滚动偏移。<br/>默认值：0|
+| 名称   | 类型  | 只读 | 可选 | 说明              |
+| ----- | ------| ------- | -- | ----------------- |
+| xOffset | [Dimension](ts-types.md#dimension10) | 否 | 是 |水平滚动偏移。<br/>默认值：0 |
+| yOffset | [Dimension](ts-types.md#dimension10) | 否 | 是 |垂直滚动偏移。<br/>默认值：0|
 
 ## ScrollEdgeOptions<sup>12+</sup>对象说明
 
@@ -911,9 +911,9 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型 | 必填 | 说明                                                   |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
+| 名称    | 类型 | 只读 | 可选 | 说明                                                   |
+| --------- | -------- | ---- | -- | ------------------------------------------------------------ |
+| velocity      | number  | 否   | 是 | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
 
 ## ScrollOptions<sup>18+</sup>对象说明
 
@@ -927,11 +927,11 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                     | 必填 | 说明                                                     |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为x轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| yOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为y轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| animation<sup>10+</sup> | [ScrollAnimationOptions](#scrollanimationoptions12对象说明)&nbsp;\|&nbsp;boolean | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称    | 类型                                                     | 只读 | 可选 | 说明                                                     |
+| --------- | ------------------------------------------------------------ | ---- | -- | ------------------------------------------------------------ |
+| xOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 否   | 否 | 水平滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为x轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| yOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 否   | 否 | 垂直滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为y轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| animation<sup>10+</sup> | [ScrollAnimationOptions](#scrollanimationoptions12对象说明)&nbsp;\|&nbsp;boolean | 否   | 是 | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## UIScrollEvent<sup>19+</sup>
 frameNode中[getEvent('Scroll')](../js-apis-arkui-frameNode.md#geteventscroll19)方法的返回值，可用于给Scroll节点设置滚动事件。
@@ -1001,7 +1001,7 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }.width('100%')
       }
       .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
@@ -1036,7 +1036,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个弹簧曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } });
         })
@@ -1179,7 +1179,7 @@ struct StickyNestedScroll {
                   Text("item" + item)
                     .fontSize(16)
                 }.listCard()
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }.width("100%")
             .edgeEffect(EdgeEffect.Spring)
             .nestedScroll({
@@ -1254,7 +1254,7 @@ struct NestedScroll {
                 .textAlign(TextAlign.Center)
                 .backgroundColor(Color.White)
             }.width("100%").height(100)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .width("100%")
         .height("100%")
@@ -1308,7 +1308,7 @@ struct NestedScroll {
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller;
+  scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   build() {
     Scroll(this.scroller) {
@@ -1323,7 +1323,7 @@ struct Index {
             .borderRadius(15)
             .fontSize(16)
             .textAlign(TextAlign.Center)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%').backgroundColor(0xDCDCDC)
     }
     .backgroundColor(Color.Yellow)
@@ -1348,7 +1348,6 @@ struct ListExample {
   @State listSpace: number = 10;
   @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
   @State listIndex: number = -1;
-  @State mess:string = "null";
   @State itemBackgroundColorArr: boolean[] = [false];
   aboutToAppear(){
     // 初始化数据源。
@@ -1370,7 +1369,7 @@ struct ListExample {
               .borderRadius(10)
               .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .backgroundColor(Color.Gray)
       .layoutWeight(1)
@@ -1503,7 +1502,7 @@ struct EnablePagingExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
       }.width('90%').height('90%')
       .enablePaging(true)

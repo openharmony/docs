@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#napi_handle_scope)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
+napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#内存管理类型)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
 
 ### napi_env
 
@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 #### napi_handle_scope
 
-napi_handle_scope数据类型是用来管理ArkTS/JS对象的生命周期的。它允许ArkTS/JS对象在一定范围内保持活动状态，以便在ArkTS/JS代码中使用。在创建napi_handle_scope时，所有在该范围内创建的ArkTS/JS对象都会保持活动状态，直到scope被关闭。这样可以做到ArkTS/JS对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
+napi_handle_scope数据类型是用来管理ArkTS/JS对象的生命周期的。它允许ArkTS/JS对象在一定范围内保持活动状态，以便在ArkTS/JS代码中使用。在创建napi_handle_scope时，所有在该范围内创建的ArkTS/JS对象都会保持活动状态，直到scope被关闭。这样可以做到ArkTS/JS对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考<!--RP1-->生命周期类问题注意事项。<!--RP1End-->
 
 #### napi_escapable_handle_scope
 
@@ -283,11 +283,11 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_create_string_utf16 | 通过UTF16编码的C字符串数据创建ArkTS String。 |
-| napi_get_value_string_utf16 | 获取给定ArkTS vaule对应的UTF16编码的字符串。 |
+| napi_get_value_string_utf16 | 获取给定ArkTS value对应的UTF16编码的字符串。 |
 | napi_create_string_latin1 | 通过ISO-8859-1编码的C字符串数据创建ArkTS String。 |
 | napi_create_string_utf8 | 通过UTF8编码的C字符串数据创建ArkTS String。 |
-| napi_get_value_string_latin1 | 获取给定ArkTSvaule对应的ISO-8859-1编码的字符串。 |
-| napi_get_value_string_utf8 | 获取给定ArkTS vaule对应的UTF8编码的字符串。 |
+| napi_get_value_string_latin1 | 获取给定ArkTS value对应的ISO-8859-1编码的字符串。 |
+| napi_get_value_string_utf8 | 获取给定ArkTS value对应的UTF8编码的字符串。 |
 
 ### date相关
 
@@ -511,27 +511,27 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
-| napi_run_script_path | 运行指定abc文件。 |
+| napi_run_script_path | 运行指定的abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间，可在新创建的ArkTS基础运行时环境中使用。 |
-| napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
-| napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间，可在ArkTS基础运行时环境中使用。 |
+| napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为string，且不可转为number。 |
+| napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
 | napi_create_ark_runtime|创建基础运行时环境。|
 | napi_destroy_ark_runtime|销毁基础运行时环境。|
-| napi_run_event_loop | 触发底层的事件循环。|
+| napi_run_event_loop | 启动底层的事件循环。|
 | napi_stop_event_loop | 停止底层的事件循环。|
-| napi_serialize | 将ArkTS对象转换为native数据。|
-| napi_deserialize | 将native数据转为ArkTS对象。|
+| napi_serialize | 将ArkTS对象序列化为native数据。|
+| napi_deserialize | 将native数据反序列化为ArkTS对象。|
 | napi_delete_serialization_data | 删除序列化数据。|
-| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS主线程。|
-| napi_is_sendable|判断给定JS value是否是Sendable的。|
-| napi_define_sendable_class|创建一个sendable类。|
-| napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|
-| napi_create_sendable_array | 创建一个sendable数组。|
-| napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|
-| napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|
-| napi_create_sendable_typedarray | 创建一个sendable TypedArray。|
+| napi_call_threadsafe_function_with_priority| 按照指定的优先级和入队策略，将任务投递到ArkTS主线程中。|
+| napi_is_sendable| 判断给定的JS value是否是Sendable的。|
+| napi_define_sendable_class| 创建一个Sendable类。|
+| napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个Sendable对象。|
+| napi_create_sendable_array | 创建一个Sendable数组。|
+| napi_create_sendable_array_with_length | 创建一个指定长度的Sendable数组。|
+| napi_create_sendable_arraybuffer | 创建一个Sendable ArrayBuffer。|
+| napi_create_sendable_typedarray | 创建一个Sendable TypedArray。|
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|

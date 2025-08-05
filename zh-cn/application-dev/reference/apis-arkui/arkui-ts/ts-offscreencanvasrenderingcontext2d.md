@@ -899,7 +899,7 @@ justifyContent: FlexAlign.Center }) {
             offContext.filter = 'saturate(30%)';
             offContext.drawImage(img, 0, 100, 100, 100);
 
-            offContext.filter = 'hue-rotate(90degree)';
+            offContext.filter = 'hue-rotate(90deg)';
             offContext.drawImage(img, 100, 100, 100, 100);
 
             offContext.filter = 'invert(100%)';
@@ -1288,7 +1288,7 @@ measureText(text: string): TextMetrics
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'

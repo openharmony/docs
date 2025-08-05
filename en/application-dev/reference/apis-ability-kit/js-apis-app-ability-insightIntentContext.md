@@ -1,6 +1,6 @@
-# @ohos.app.ability.InsightIntentContext (InsightIntent Call Execution Context)
+# @ohos.app.ability.InsightIntentContext (Intent Call Execution Context)
 
-The **InsightIntentContext** module provides the InsightIntent call execution context, which is a property of the base class for InsightIntent call execution and provides basic capabilities for the base class.
+The module provides the intent call execution context, which is a property of the base class for intent call execution and provides basic capabilities for the base class.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import { InsightIntentContext } from '@kit.AbilityKit';
 
 startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
-Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses an asynchronous callback to return the result.
+Starts an ability. The ability can be started only when it has the same bundle name as the base class for intent call execution. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -99,7 +99,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbility(want: Want): Promise\<void\>
 
-Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses a promise to return the result.
+Starts an ability. The ability can be started only when it has the same bundle name as the base class for intent call execution. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 

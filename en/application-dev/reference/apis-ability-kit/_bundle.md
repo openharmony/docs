@@ -122,3 +122,4 @@ Obtains the compatible device type of the current application. It helps you opti
 **Returns**
 
 Returns a string indicating the compatible device type.
+

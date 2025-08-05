@@ -21,7 +21,7 @@ The following figure shows the relationship.
 
 ## Environment Setup
 
-Download and install [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
+Download and install [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
 
 ### (Optional) Running the hdc Program on the CLI
 
@@ -1572,7 +1572,7 @@ Ensure that the **_bundlename_**, **_localpath_** and **_remotepath_** parameter
 
 **Error Message**
 
-SDK/Device ROM doesn't support -b option. 
+SDK/Device ROM does not support -b option. 
 
 **Symptom**
 

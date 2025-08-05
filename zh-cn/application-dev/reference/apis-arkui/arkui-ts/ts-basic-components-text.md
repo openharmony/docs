@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  使用[子组件](#子组件)实现实现文字竖排、图文混排场景。
+>  使用[子组件](#子组件)实现图文混排场景。
 
 ## 接口
 
@@ -29,7 +29,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。当不包含子组件[Span](ts-basic-components-span.md)和未设置[属性字符串](ts-universal-styled-string.md)时该参数生效。<br/>默认值：' '<br/>**说明：** <br/>显示内容的优先级：属性字符串>Span>Text的文本内容。 |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -84,7 +84,7 @@ textOverflow(options: TextOverflowOptions)
 
 - 需配合[maxLines](#maxlines)使用，单独设置不生效。
 
-- 断行规则参考[wordBreak](#wordbreak11)。默认情况下参考WordBreak.BREAK_WORD的截断方式，文本截断按字进行。例如，英文以单词为最小单位进行截断。若需要以字母为单位进行截断，可在字母间添加零宽空格：`\u200B`，或者设置WordBreak.BREAK_ALL。
+- 断行规则参考[wordBreak](#wordbreak11)。默认情况下参考WordBreak.BREAK_WORD的截断方式，文本截断按字进行。例如，英文以单词为最小单位进行截断。若需要以字母为单位进行截断，可设置wordBreak属性为WordBreak.BREAK_ALL。
 
 - 折行规则参考[lineBreakStrategy](#linebreakstrategy12)。该属性在[wordBreak](#wordbreak11)不等于WordBreak.BREAK_ALL的时候生效，不支持连词符。
 
@@ -134,7 +134,7 @@ maxLines(value: number)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。 |
+| value  | number | 是   | 文本的最大行数。<br/>**说明：** <br/>取值范围：[0, INT32_MAX]<br/>设置为0时，不显示文本内容。 |
 
 ### lineHeight
 
@@ -390,7 +390,7 @@ fontFamily(value: string | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -403,6 +403,8 @@ copyOption(value: CopyOptions)
 - 长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
 
 - 默认情况下，长按选中文本可拖拽。若要取消此功能，可将 `draggable` 设置为 `false`。
+
+- 若需要支持Ctrl+C复制，需同时设置[textSelectable](#textselectable12)为TextSelectableMode.SELECTABLE_FOCUSABLE。
 
 此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
@@ -595,7 +597,7 @@ enableDataDetector(enable: boolean)
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
-当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
+当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig11)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 
 ```ts
 color: '#ff007dff'
@@ -629,12 +631,6 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 设置文本识别配置。
 
 需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
-
-当有两个实体A、B重叠时，按以下规则保留实体：
-
-1.&nbsp;若A&nbsp;⊂&nbsp;B，则保留B，反之则保留A。
-
-2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -757,7 +753,7 @@ privacySensitive(supported: boolean)
 
 lineBreakStrategy(strategy: LineBreakStrategy)
 
-设置折行规则。该属性在wordBreak不等于breakAll的时候生效，且不支持连词符。
+设置折行规则。该属性在[wordBreak](#wordbreak11)不等于WordBreak.BREAK_ALL的时候生效，且不支持连词符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -774,6 +770,8 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 textSelectable(mode: TextSelectableMode)
 
 设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
+
+需配合[copyOption](#copyoption9)使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -974,7 +972,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -1021,6 +1019,10 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 ## TextOverflowOptions<sup>18+</sup>对象说明
 
 文本超长显示方式对象。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -1232,32 +1234,26 @@ function style(TextAlign: TextAlign) {
 struct TextExample1 {
   @State changeTextAlignIndex: number = 0;
   @State changeDecorationIndex: number = 0;
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
-  @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State textAlignStr: string[] = ['Start', 'Center', 'End'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       // 设置文本水平方向对齐方式
       // 单行文本
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
-      Text(`TextAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`TextAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
 
       // 多行文本
-      Text(`This is the text content with textAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`This is the text content with textAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
         .margin(5)
 
       Row() {
-        Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+        Button('当前TextAlign类型：' + this.textAlignStr[this.changeTextAlignIndex]).onClick(() => {
           this.changeTextAlignIndex++;
-          if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
+          if (this.changeTextAlignIndex > (this.textAlignStr.length - 1)) {
             this.changeTextAlignIndex = 0;
           }
         })
@@ -1304,6 +1300,7 @@ struct TextExample1 {
 该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .font({ size: 12 })
@@ -1317,30 +1314,30 @@ function style() {
 @Component
 struct TextExample2 {
   @State changeDecorationIndex: number = 0;
-  @State TextDecorationType: TextDecorationType[] =
+  @State textDecorationType: TextDecorationType[] =
     [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
+  @State textDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
+  @State textDecorationStyle: TextDecorationStyle[] =
     [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Text('decoration').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with the decoration set to LineThrough and the color set to Red.')
         .decoration({
-          type: this.TextDecorationType[this.changeDecorationIndex],
+          type: this.textDecorationType[this.changeDecorationIndex],
           color: Color.Red,
-          style: this.TextDecorationStyle[this.changeDecorationIndex]
+          style: this.textDecorationStyle[this.changeDecorationIndex]
         })
         .style()
         .margin(5)
 
       Row() {
-        Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
-        this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
+        Button('decoration type：' + this.textDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        this.textDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
           this.changeDecorationIndex++;
-          if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
+          if (this.changeDecorationIndex > (this.textDecorationTypeStr.length - 1)) {
             this.changeDecorationIndex = 0;
           }
         })
@@ -1422,6 +1419,7 @@ struct TextExample2 {
 该示例通过maxLines、textOverflow、ellipsisMode属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .textAlign(TextAlign.Center)

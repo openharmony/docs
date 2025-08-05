@@ -75,8 +75,8 @@ struct WebComponent {
           if (event.type == KeyType.Down &&
               event.getModifierKeyState &&
               event.getModifierKeyState(['Ctrl']) &&
-              (event.keyCode == KeyCode.KEYCODE_MINUS || event.keyCode == KeyCode.KEYCODE_EQUALS) ||
-               event.keyCode == KeyCode.KEYCODE_NUMPAD_SUBTRACT || event.keyCode == KeyCode.KEYCODE_NUMPAD_ADD) {
+              (event.keyCode == KeyCode.KEYCODE_MINUS || event.keyCode == KeyCode.KEYCODE_EQUALS ||
+               event.keyCode == KeyCode.KEYCODE_NUMPAD_SUBTRACT || event.keyCode == KeyCode.KEYCODE_NUMPAD_ADD)) {
             return true;
           }
           return false;
@@ -117,7 +117,7 @@ struct WebComponent {
 
  > **说明：**
  >
- > 使用`zoom`类接口控制页面缩放时，必须设置属性`zoomAccess`为`true`。`zoomAccess`为`false`时，`zoom`类接口会抛出异常`17100004`。
+ > 使用以上接口控制页面缩放时，必须设置属性`zoomAccess`为`true`。`zoomAccess`为`false`时，`zoom`类接口会抛出异常`17100004`。
 
 ### 以固定比例缩放页面
 

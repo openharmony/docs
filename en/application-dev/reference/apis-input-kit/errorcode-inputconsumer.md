@@ -1,4 +1,4 @@
-# Global Shortcut Key Error Codes
+# Global Hotkey Error Codes
 
 > **NOTE**
 >

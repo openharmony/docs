@@ -49,7 +49,7 @@ Column({ space: this.space }) // 改变Column构造器中的space动画不生效
       this.space = 20; // 改变this.space动画不生效
     } else {
       this.widthSize = 250;
-      this.heightSize = 100;;
+      this.heightSize = 100;
       this.space = 10; // 改变this.space动画不生效
     }
     this.flag = !this.flag;

@@ -3,7 +3,7 @@
 ## When to Use
 
 This document describes how to use native RawFile APIs to manage raw file directories and files in OpenHarmony. You can use the APIs to perform operations such as traversing a file list and opening, searching for, reading, and closing raw files. 
-The APIs ended with **64** are new APIs. These APIs can be used to open raw files larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/rawfile.md). The development procedure is the same for the API ended with **64** and the one does not. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
+The APIs ended with **64** are new APIs. These APIs can be used to open raw files larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/capi-rawfile.md). The development procedure is the same for the API ended with **64** and the one does not. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
 
 ## Available APIs
 
@@ -15,18 +15,14 @@ The APIs ended with **64** are new APIs. These APIs can be used to open raw file
 | const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index) | Obtains the name of a raw file.                       |
 | RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName) | Opens a raw file.                   |
 | long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)     | Obtains the size of a raw file.                   |
-| int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | Seeks a read/write position in a raw file based on the specified offset.                   |
-| long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | Obtains the offset of a raw file.                     |
 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | Reads a raw file.                   |
-| int64_t OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile) | Obtains the remaining length of a raw file.                   |
 | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | Closes a raw file to release resources.               |
 | void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | Closes a raw file directory to release resources.               |
 | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | Obtains the file descriptor (FD) of a raw file.                       |
-| bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | Releases the FD of a raw file.                       |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | Releases the native resource manager.   |
 | bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | Checks whether a path is a subdirectory in the **rawfile** directory.   |
 
-For details about the APIs, see [Function Description](../reference/apis-localization-kit/rawfile.md#function-description).
+For details about the APIs, see [rawfile](../reference/apis-localization-kit/capi-rawfile.md).
 
 ## How to Develop
 

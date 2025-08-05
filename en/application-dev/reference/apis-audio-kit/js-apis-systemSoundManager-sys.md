@@ -71,7 +71,7 @@ Enumerates the tone customization types.
 
 ## ToneAttrs<sup>12+</sup>
 
-Manages tone attributes. Before calling any API in **ToneAttrs<sup>12+</sup>**, you must use [createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12), [getDefaultRingtoneAttrs](#getdefaultringtoneattrs12), or [getRingtoneAttrList](#getringtoneattrlist12) to obtain a tone instance.
+Manages tone attributes. Before calling any API in ToneAttrs<sup>12+</sup>, you must use [createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12), [getDefaultRingtoneAttrs](#getdefaultringtoneattrs12), or [getRingtoneAttrList](#getringtoneattrlist12) to obtain a tone instance.
 
 ### getTitle<sup>12+</sup>
 
@@ -232,7 +232,7 @@ toneAttrs.getUri();
 
 ### getCustomizedType<sup>12+</sup>
 
-getCustomizedType(): string
+getCustomizedType(): ToneCustomizedType
 
 Obtains the tone customization type.
 
@@ -295,7 +295,7 @@ toneAttrs.setCategory(categoryValue);
 
 ### getCategory<sup>12+</sup>
 
-getCategory(): string
+getCategory(): number
 
 Obtains the category of this tone.
 
@@ -422,7 +422,7 @@ Describes the haptics settings of a tone.
 
 ## ToneHapticsAttrs<sup>14+</sup>
 
-Manages haptics attributes of tones. Before calling any API in **ToneHapticsAttrs<sup>14+</sup>**, you must call [getToneHapticsList](#gettonehapticslist14) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone14) to obtain an instance.
+Manages haptics attributes of tones. Before calling any API in ToneHapticsAttrs<sup>14+</sup>, you must use [getToneHapticsList](#gettonehapticslist14) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone14) to obtain an instance.
 
 ### getUri<sup>14+</sup>
 
@@ -549,7 +549,7 @@ let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSo
 
 ## SystemSoundManager
 
-Provides APIs to manage system sounds. Before calling any API in **SystemSoundManager**, you must use [getSystemSoundManager](#systemsoundmanagergetsystemsoundmanager) to create a **SystemSoundManager** instance.
+Provides APIs to manage system sounds. Before calling any API in SystemSoundManager, you must use [getSystemSoundManager](#systemsoundmanagergetsystemsoundmanager) to obtain a SystemSoundManager instance.
 
 ### setSystemRingtoneUri<sup>(deprecated)</sup>
 
@@ -1539,7 +1539,7 @@ Enables an alarm tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -1630,7 +1630,7 @@ Adds a custom tone with a given URI to the tone library. This API uses a promise
 
 | Name| Type       | Mandatory| Description           |
 |-----|-----------| ---- |---------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.    |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.    |
 | toneAttr  | ToneAttrs | Yes  | Attributes of the tone.        |
 | externalUri  | string    | Yes  | URI of the tone in the external storage device.|
 
@@ -1693,7 +1693,7 @@ Adds a custom tone with a given FD to the tone library. This API uses a promise 
 
 | Name| Type       | Mandatory| Description                                                                    |
 |-----|-----------|----|------------------------------------------------------------------------|
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes | Application context.                                                             |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes | Application context.                                                             |
 | toneAttr | [ToneAttrs](#toneattrs12) | Yes | Attributes of the tone.                                                                 |
 | fd  | number    | Yes | File descriptor, which is obtained by calling [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).|
 | offset | number    | No | Offset from which the data is read, in bytes. The default value is **0**.                                             |
@@ -1760,7 +1760,7 @@ Removes a custom tone from the tone library. This API uses a promise to return t
 
 | Name| Type       | Mandatory| Description                                                                                                     |
 |-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                                              |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.                                                                                              |
 | uri  | string    | Yes  | Tone URI, which is obtained by using [addCustomizedTone](#addcustomizedtone12) or [getAlarmToneAttrList](#getalarmtoneattrlist12).|
 
 **Return value**
@@ -1813,7 +1813,7 @@ Obtains the haptics settings of the tone. This API uses a promise to return the 
 
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.  |
 | type  | [ToneHapticsType](#tonehapticstype14)    | Yes  | Haptics type of the tone.|
 
 **Return value**
@@ -1824,7 +1824,7 @@ Obtains the haptics settings of the tone. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -1865,7 +1865,7 @@ Sets the haptics settings for the tone. This API uses a promise to return the re
 
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.  |
 | type  | [ToneHapticsType](#tonehapticstype14)    | Yes  | Haptics type of the tone.|
 | settings  | [ToneHapticsSettings](#tonehapticssettings14)    | Yes  | Haptics settings of the tone.|
 
@@ -1877,7 +1877,7 @@ Sets the haptics settings for the tone. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -1923,7 +1923,7 @@ Obtains the haptics attributes of the tone in sync or non-sync mode. This API us
 
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.  |
 | isSynced  | boolean    | Yes  | Whether the haptics feedback is synchronized with the tone. The value **true** means that the haptics feedback is synchronized with the tone, and **false** means the opposite.|
 
 **Return value**
@@ -1934,7 +1934,7 @@ Obtains the haptics attributes of the tone in sync or non-sync mode. This API us
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -1974,7 +1974,7 @@ Obtains the attributes of the haptics feedback synchronized with the tone. This 
 
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.  |
 | toneUri  | string    | Yes  | URI of the tone. The URI can be obtained by calling [getRingtoneAttrList](#getringtoneattrlist12) or [getSystemToneAttrList](#getsystemtoneattrlist12).|
 
 **Return value**
@@ -1985,7 +1985,7 @@ Obtains the attributes of the haptics feedback synchronized with the tone. This 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2038,7 +2038,7 @@ Enables haptics for the tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |

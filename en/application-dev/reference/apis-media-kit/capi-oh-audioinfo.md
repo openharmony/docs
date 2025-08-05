@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AudioInfo struct describes the audio information.
+The struct describes the audio information.
 
 To perform both external capture (using microphones) and internal capture, **audioSampleRate** and **audioChannels** must be the same for both audio channels.
 

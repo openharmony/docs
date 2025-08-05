@@ -1,6 +1,6 @@
-# @ohos.app.ability.contextConstant (ContextConstant)
+# @ohos.app.ability.contextConstant (Context-related Constants)
 
-The **ContextConstant** module defines context-related enums. Currently, it defines only the enum of encryption levels.
+The ContextConstant module defines context-related enums. Currently, it defines only the enum of encryption levels.
 
 > **NOTE**
 > 
@@ -33,7 +33,7 @@ Enumerates the data encryption levels.
 
 Enumerates the process modes. It takes effect only on 2-in-1 devices and tablets.
 
-As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and is used to specify the process mode of the target ability.
+As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1) and is used to specify the process mode of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -85,7 +85,7 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 
 Enumerates the visibility statuses of an ability after it is started. It takes effect only on 2-in-1 devices and tablets.
 
-As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started.
+As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1) and specifies the visibility of the target ability after it is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

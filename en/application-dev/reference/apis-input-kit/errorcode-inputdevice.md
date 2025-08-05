@@ -20,7 +20,7 @@ This error code is reported if the specified device cannot be found in the multi
 1. The ID of the input device has changed.
 2. The physical connection of the input device is disconnected.
 
-**Procedure**
+**Solution**
 
 1. Use [inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9) to query the device ID, and then pass in the correct device ID.
 2. Check whether the keyboard cable is disconnected.<!--DelEnd-->
@@ -39,7 +39,7 @@ This error code is reported if no connected keyboard is detected.
 
 The physical connection of the input device is disconnected.
 
-**Procedure**
+**Solution**
 
 Check whether the keyboard cable is disconnected.
 
@@ -57,6 +57,6 @@ Non-input applications are not allowed to call this API.
 
 This API is not supported for a third-party application or a non-input system application.
 
-**Procedure**
+**Solution**
 
 Use an input application to call this API.

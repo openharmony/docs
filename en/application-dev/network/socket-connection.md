@@ -64,8 +64,8 @@ Socket connection functions are mainly implemented by the **socket** module. The
 | off(type:&nbsp;'close')            | Unsubscribes from **close** events of a socket connection.                                              |
 | on(type:&nbsp;'error')             | Subscribes to **error** events of a socket connection.                                               |
 | off(type:&nbsp;'error')            | Unsubscribes from **error** events of a socket connection.                                           |
-| on(type:&nbsp;'listening')         | Subscribes to **listening** events of a socket connection. This API is supported only for UDP socket connections.                          |
-| off(type:&nbsp;'listening')        | Unsubscribes from **listening** events of a socket connection. This API is supported only for UDP socket connections.                      |
+| on(type:&nbsp;'listening')         | Subscribes to **listening** events of a UDP socket connection. This API is supported only for UDP socket connections.                          |
+| off(type:&nbsp;'listening')        | Unsubscribes from **listening** events of a UDP socket connection. This API is supported only for UDP socket connections.                      |
 | on(type:&nbsp;'connect')           | Subscribes to **message** events of a socket connection. This API is supported only for TCP and local socket connections.                           |
 | off(type:&nbsp;'connect')          | Unsubscribes from **message** events of a socket connection. This API is supported only for TCP and local socket connections.                        |
 
@@ -99,9 +99,9 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 
 1. Import the required **socket** module.
 
-2. Create a TCP socket connection. A **TCPSocketConnction** object is returned.
+2. Create a TCP socket connection. A **TCPSocket** object is returned.
 
-3. (Optional) Subscribe to events of the **TCPSocketConnction** object.
+3. (Optional) Subscribe to events of the **TCPSocket** object.
 
 4. Bind the IP address and port number. The port number can be specified or randomly allocated by the system.
 
@@ -144,7 +144,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -165,10 +165,10 @@ tcp.bind(ipAddress, (err: BusinessError) => {
     tcp.send(tcpSendOptions).then(() => {
       console.log('send success');
     }).catch((err: BusinessError) => {
-      console.log('send fail');
+      console.error('send fail');
     });
   }).catch((err: BusinessError) => {
-    console.log('connect fail');
+    console.error('connect fail');
   });
 });
 
@@ -177,7 +177,7 @@ setTimeout(() => {
   tcp.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
   tcp.off('message');
   tcp.off('connect');
@@ -212,7 +212,7 @@ ipAddress.port = 4651;
 tcpServer.listen(ipAddress).then(() => {
   console.log('listen success');
 }).catch((err: BusinessError) => {
-  console.log('listen fail');
+  console.error('listen fail');
 });
 
 class SocketInfo {
@@ -252,7 +252,7 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 
   // Unsubscribe from events of the TCPSocketConnection object.
@@ -300,7 +300,7 @@ let addr : socket.NetAddress = {
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
-  console.log('addMembership fail');
+  console.error('addMembership fail');
 });
 
 // Subscribe to message events and convert the received data of the ArrayBuffer type to strings.
@@ -322,7 +322,7 @@ multicast.on('message', (data: SocketInfo) => {
 multicast.send({ data:'Hello12345', address: addr }).then(() => {
   console.log('send success');
 }).catch((err: Object) => {
-  console.log('send fail, ' + JSON.stringify(err));
+  console.error('send fail, ' + JSON.stringify(err));
 });
 
 // Unsubscribe from message events.
@@ -332,7 +332,7 @@ multicast.off('message')
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
-  console.log('drop membership fail');
+  console.error('drop membership fail');
 });
 ```
 
@@ -346,12 +346,18 @@ multicast.dropMembership(addr).then(() => {
 
 4. Connect to server based on the specified address of the local socket file.
 
-5. Send data over the connection. 
+5. Send data over the connection.
 
 6. If the socket connection is no longer needed, unsubscribe from message events and close the connection.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain UIAbilityContext, where **this** indicates a UIAbility instance inherited from UIAbility. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // Create a local socket connection. A LocalSocket object is returned.
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
@@ -372,7 +378,8 @@ client.on('close', () => {
 });
 
 // Specify the address of local socket file to connect to the server.
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -388,10 +395,10 @@ client.connect(connectOpt).then(() => {
   client.send(sendOpt).then(() => {
   console.log('send success')
   }).catch((err: Object) => {
-    console.log('send failed: ' + JSON.stringify(err))
+    console.error('send failed: ' + JSON.stringify(err))
   })
 }).catch((err: Object) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 
 // If the socket connection is no longer needed, unsubscribe from message events and close the connection.
@@ -401,7 +408,7 @@ client.off('close');
 client.close().then(() => {
   console.log('close client success')
 }).catch((err: Object) => {
-  console.log('close client err: ' + JSON.stringify(err))
+  console.error('close client err: ' + JSON.stringify(err))
 })
 ```
 
@@ -427,20 +434,27 @@ The local socket connection process on the server is described as follows:
 
 9. Unsubscribe from events of the **LocalSocketConnection** and **LocalSocketServer** objects.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain UIAbilityContext, where **this** indicates a UIAbility instance inherited from UIAbility. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // Create a local socket server connection. A LocalSocketServer object is returned.
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // Create and bind the local socket file testSocket for listening.
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err: Object) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 });
 
 // Subscribe to connect events of the LocalSocketServer object.
@@ -460,7 +474,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   });
 
   connection.on('error', (err: Object) => {
-    console.log("err:" + JSON.stringify(err));
+    console.error("err:" + JSON.stringify(err));
   })
 
   // Send data to the client.
@@ -470,14 +484,14 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.send(sendOpt).then(() => {
     console.log('send success');
   }).catch((err: Object) => {
-    console.log('send failed: ' + JSON.stringify(err));
+    console.error('send failed: ' + JSON.stringify(err));
   })
 
   // Close the connection between the client and the server.
   connection.close().then(() => {
     console.log('close success');
   }).catch((err: Object) => {
-    console.log('close failed: ' + JSON.stringify(err));
+    console.error('close failed: ' + JSON.stringify(err));
   });
 
   // Unsubscribe from events of the LocalSocketConnection object.
@@ -500,9 +514,9 @@ The TLS socket connection process on the client is described as follows:
 
 3. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
 
-4. Create a TLS socket connection. A **TLSSocketConnection** object is returned.
+4. Create a TLS socket connection. A **TLSSocket** object is returned.
 
-5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+5. (Optional) Subscribe to events of the **TLSSocket** object.
 
 6. Send data over the connection.
 
@@ -516,25 +530,8 @@ class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
-// Create a TLS socket connection (for two-way authentication). A TLSSocketConnection object is returned.
+// Create a TLS socket connection (for two-way authentication). A TLSSocket object is returned.
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
-// Subscribe to events of the TLSSocketConnection object.
-tlsTwoWay.on('message', (value: SocketInfo) => {
-  console.log("on message");
-  let buffer = value.message;
-  let dataView = new DataView(buffer);
-  let str = "";
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i));
-  }
-  console.log("on connect received:" + str);
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect");
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close");
-});
 
 // Bind the local IP address and port number.
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
@@ -542,10 +539,27 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 4512;
 tlsTwoWay.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
+  // Subscribe to events of the TLSSocket object after successful binding.
+  tlsTwoWay.on('message', (value: SocketInfo) => {
+    console.log("on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("on connect received:" + str);
+  });
+  tlsTwoWay.on('connect', () => {
+    console.log("on connect");
+  });
+  tlsTwoWay.on('close', () => {
+    console.log("on close");
+  });
 });
 
 ipAddress.address = "192.168.xxx.xxx";
@@ -562,7 +576,6 @@ tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
 tlsSecureOption.cipherSuite = "AES256-SHA256";
 
 let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
-tlsSecureOption.key = "xxxx";
 tlsTwoWayConnectOption.address = ipAddress;
 tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
 tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
@@ -571,13 +584,13 @@ tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -586,36 +599,35 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('close');
 });
 
-// Create a TLS socket connection (for one-way authentication). A TLSSocketConnection object is returned.
+// Create a TLS socket connection (for one-way authentication). A TLSSocket object is returned.
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-
-// Subscribe to events of the TLSSocketConnection object.
-tlsTwoWay.on('message', (value: SocketInfo) => {
-  console.log("on message");
-  let buffer = value.message;
-  let dataView = new DataView(buffer);
-  let str = "";
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i));
-  }
-  console.log("on connect received:" + str);
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect");
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close");
-});
 
 // Bind the local IP address and port number.
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 5445;
 tlsOneWay.bind(ipAddress, (err:BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
+  // Subscribe to events of the TLSSocket object.
+  tlsOneWay.on('message', (value: SocketInfo) => {
+    console.log("on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("on connect received:" + str);
+  });
+  tlsOneWay.on('connect', () => {
+    console.log("on connect");
+  });
+  tlsOneWay.on('close', () => {
+    console.log("on close");
+  });
 });
 
 ipAddress.address = "192.168.xxx.xxx";
@@ -632,13 +644,13 @@ tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -660,7 +672,7 @@ The process of upgrading a TCP socket connection to a TLS socket connection is a
 
 4. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
 
-5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+5. (Optional) Subscribe to events of the **TLSSocket** object.
 
 6. Send data over the connection.
 
@@ -697,7 +709,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -712,7 +724,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 
   tcp.connect(tcpConnect, (err: BusinessError) => {
     if (err) {
-      console.log('connect fail');
+      console.error('connect fail');
       return;
     }
     console.log('connect success');
@@ -764,7 +776,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
       // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
       tlsTwoWay.close((err: BusinessError) => {
         if (err) {
-          console.log("tls close callback error = " + err);
+          console.error("tls close callback error = " + err);
         } else {
           console.log("tls close success");
         }
@@ -828,7 +840,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 class SocketInfo {
@@ -853,14 +865,14 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 
   // Close the connection.
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 
   // You can pass the callback of the on function if you want to unsubscribe from a certain type of events. If you do not pass the callback, you will unsubscribe from all events.
@@ -868,7 +880,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.off('message');
 });
 
-// Unsubscribe from events of the TLSSocketServer object.
+// Unsubscribe from events of the TLSServer object.
 tlsServer.off('connect');
 ```
-

@@ -51,7 +51,7 @@ If you have other pre-trained models for image classification, convert the origi
 
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
-2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtaining the image buffer, and standardizing the image.
+2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtain the image buffer, and standardizing the image.
 
    ```ts
    // Index.ets
@@ -202,7 +202,7 @@ If you have other pre-trained models for image classification, convert the origi
    1. Create a context, and set parameters such as the number of runtime threads and device type. The sample model does not support NNRt inference.
    2. Load the model. In this example, the model is loaded from the memory.
    3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensors.
-   4. Perform model inference through the **predict** API.
+   4. Perform model inference through Call the **predict** API to perform model inference.
 
    ```ts
    // model.ets
@@ -359,5 +359,8 @@ struct Index {
 
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
-<img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
+![step1](figures/step1.png)         ![step2](figures/step2.png)  
 
+![step3](figures/step3.png)         ![step4](figures/step4.png) 
+
+<!--RP1--><!--RP1End-->

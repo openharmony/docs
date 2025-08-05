@@ -1,10 +1,12 @@
 # SegmentButton
 
-**SegmentButton** is a versatile component containing a group of related items, which can be tab-style, single-select, and multi-select buttons.
+**SegmentButton** is a versatile component that organizes related options into visually grouped buttons. It supports three variants: tab-style, capsule-style single-select, and capsule-style multi-select.
 
 >**NOTE**
 >
->This component and its child components are supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -27,7 +29,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | Name           | Type                                     | Mandatory| Decorator | Description                                                        |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | Yes  | @ObjectLink | Options of the **SegmentButton** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index starts from 0 and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../ui/state-management/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index is zero-based and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../ui/state-management/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in. <br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onItemClicked<sup>13+</sup> | Callback\<number\> | No| - | Callback invoked when an item in the **SegmentButton** is clicked. The index of the clicked item is passed in as the parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | maxFontScale<sup>14+</sup> | number \| [Resource](ts-types.md#resource) | Yes| @Prop | Maximum font scale for the text in the **SegmentButton**.<br>Default value: **1**<br>Value range: [1, 2]<br>**NOTE**<br>Values less than 1 are treated as 1, and values greater than 2 are treated as 2.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
@@ -36,6 +38,10 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 >The **SegmentButton** component does not support the universal attributes. The component takes up the maximum width allowed by the content area, and evenly allocates the width among its items. It adapts its height automatically to the content (text and image), the minimum height being 28 vp.
 
 ## SegmentButtonOptions
+
+>**NOTE**
+> 
+> The component does not support custom font type settings.
 
 Provides initial data and custom properties for the **SegmentButton** component.
 
@@ -72,7 +78,7 @@ Provides initial data and custom properties for the **SegmentButton** component.
 
 constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
-A constructor used to create a **SegmentButtonOptions** instance.
+A constructor used to create a **SegmentButton** instance with specified configuration options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -81,13 +87,13 @@ A constructor used to create a **SegmentButtonOptions** instance.
 
 | Name   | Type                                                    | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Options of the **SegmentButton** component.|
+| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Configuration options for tab-style or capsule-style segmented buttons.|
 
 ### tab
 
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of tab-style buttons.
+Creates a **SegmentButtonOptions** object specifically for tab-style segmented buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -96,7 +102,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 | Name   | Type                                                        | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Options of the tab-style buttons.|
+| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Configuration options for tab-style segmented buttons.|
 
 **Return value**
 
@@ -108,7 +114,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of single-select or multi-select buttons.
+Creates a **SegmentButtonOptions** object specifically for capsule-style segmented buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -117,7 +123,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 | Name   | Type                                                        | Mandatory| Description                       |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
-| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Options of the single-select or multi-select buttons.|
+| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Configuration options for capsule-style segmented buttons.|
 
 **Return value**
 
@@ -145,7 +151,7 @@ Represents the length union type that does not support values in percentage.
 
 ## CommonSegmentButtonOptions
 
-Defines the attributes that can be customized for the segment button.
+Defines the customizable properties for the **SegmentButton** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -173,9 +179,9 @@ Defines the attributes that can be customized for the segment button.
 
 ## TabSegmentButtonConstructionOptions
 
-Represents options for creating a **SegmentButton** component consisting of tab-style buttons.
+Represents configuration options for creating a **SegmentButton** component consisting of tab-style segmented buttons.
 
-It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
+Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -189,9 +195,9 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 ## CapsuleSegmentButtonConstructionOptions
 
-Represents options for creating a **SegmentButton** component consisting of single-select or multi-select buttons.
+Represents configuration options for creating a **SegmentButton** component consisting of capsule-style segmented buttons.
 
-It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
+Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -202,7 +208,7 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 | Name     | Type                                             | Mandatory| Description                       |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | Yes  | Button information.                   |
-| multiply | boolean                                           | No  | Whether multiple items can be selected.<br>Default value: **false**|
+| multiply | boolean                                           | No  | Whether multi-selection is allowed. <br>**true**: Multi-selection is allowed.<br>**false**: Multi-selection is not allowed. Default value: **false**.|
 
 ## ItemRestriction
 
@@ -429,7 +435,7 @@ Creates a **SegmentButtonItemOptionsArray** object.
 
 ## TabSegmentButtonOptions
 
-Provides the options of the **SegmentButton** component consisting of tab-style buttons. It inherits [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
+Provides configuration options for tab-style segmented buttons. Inherits from [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -437,11 +443,11 @@ Provides the options of the **SegmentButton** component consisting of tab-style 
 
 | Name| Type | Mandatory| Description                  |
 | ---- | ----- | ---- | ---------------------- |
-| type | 'tab' | Yes  | **SegmentButton** component consisting of tab-style buttons.|
+| type | 'tab' | Yes  | Type of the segmented buttons, which is **'tab'** in this case.|
 
 ## CapsuleSegmentButtonOptions
 
-Provides the options of the **SegmentButton** component consisting of single-select or multi-select buttons. It inherits [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
+Provides configuration options for capsule-style segmented buttons. Inherits from [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -449,7 +455,7 @@ Provides the options of the **SegmentButton** component consisting of single-sel
 
 | Name| Type     | Mandatory| Description                       |
 | ---- | --------- | ---- | ----------------------------- |
-| type | 'capsule' | Yes  | **SegmentButton** component consisting of single-select or multi-select buttons.|
+| type | 'capsule' | Yes  | Type of the segmented buttons, which is **'capsule'** in this case.|
 
 ## SegmentButtonTextItem
 
@@ -539,7 +545,7 @@ A constructor used to create a **SegmentButtonItemOptions** instance.
 
 | Name | Type                                                        | Mandatory| Description              |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Options of the items in the **SegmentButton** component.|
+| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Configuration options for a single segmented button, including the icon, text, and accessibility attributes.|
 
 ## SegmentButtonItemOptionsConstructorOptions
 
@@ -780,8 +786,10 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 10 }) {
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $capsuleSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $capsuleSelectedIndexes
+          })
           Button("Delete First Item")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.shift()
@@ -807,8 +815,8 @@ struct Index {
           Button("Change All Button Text")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons =
-              SegmentButtonItemOptionsArray.create([{ text: 'a' }, { text: 'b' },
-                { text: 'c' }, { text: 'd' }, { text: 'e' }])
+                SegmentButtonItemOptionsArray.create([{ text: 'a' }, { text: 'b' },
+                  { text: 'c' }, { text: 'd' }, { text: 'e' }])
             })
         }.width('90%')
       }.width('100%')
@@ -819,12 +827,12 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### Example 4: Implementing a Mirroring Effect
-This example shows how to implement a mirroring effect by configuring the **direction** property of the **SegmentButton** component.
+### Example 4: Implementing a Mirror Effect
+This example shows how to implement a mirror effect by configuring the **direction** property of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
-import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI';
 
 
 @Entry
@@ -944,42 +952,87 @@ struct Index {
   @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
     buttons: [{ text: 'Tab 1', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 1 usage hints' },
       { text: 'Tab 2', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 2 usage hints' },
-      { text: 'Tab 3', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 3 usage hints'
-    }] as ItemRestriction<SegmentButtonTextItem>,
+      {
+        text: 'Tab 3 ', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 3 usage hints'
+      }] as ItemRestriction<SegmentButtonTextItem>,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-      accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'}
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      }
     ] as SegmentButtonItemTuple,
     multiply: false,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'}
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      }
     ] as SegmentButtonItemTuple,
     multiply: true
   })
@@ -991,20 +1044,31 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 25 }) {
-          SegmentButton({ options: this.tabOptions,
-            selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
           Button("Replace Items 2 and 3 with splice1 and splice2")
             .onClick(() => {
               this.iconTextCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
                 text: 'splice1', accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonItemOptions usage hints'
-              }), new SegmentButtonItemOptions({ text: 'splice2', icon: $r('sys.media.ohos_ic_public_email'),
-                iconAccessibilityText: 'Accessibility text for the unselected icon', selectedIcon: $r('sys.media.ohos_ic_public_clock'),
-                selectedIconAccessibilityText: 'Accessibility text for the selected icon', accessibilityLevel: 'yes',
-                accessibilityDescription: 'SegmentButtonIconTextItem usage hints' }))
+              }), new SegmentButtonItemOptions({
+                text: 'splice2',
+                icon: $r('sys.media.ohos_ic_public_email'),
+                iconAccessibilityText: 'Unselected icon accessibility text',
+                selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+                selectedIconAccessibilityText: 'Selected icon accessibility text',
+                accessibilityLevel: 'yes',
+                accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+              }))
             })
         }.width('90%')
       }.width('100%')

@@ -23,7 +23,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## AtomicServiceWeb
 
@@ -35,6 +35,7 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
+  nestedScroll?: NestedScrollOptions | NestedScrollOptionsExt,
   onMessage?: Callback<OnMessageEvent>,
   onErrorReceive?: Callback<OnErrorReceiveEvent>,
   onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
@@ -62,6 +63,7 @@ AtomicServiceWeb({
 | mixedMode            | [MixedMode](../../apis-arkweb/ts-basic-components-web-e.md#mixedmode)                                          | No | @Prop       | Whether to enable loading of HTTP and HTTPS mixed content. By default, this feature is disabled.                                                   |
 | darkMode             | [WebDarkMode](../../apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)                                     | No | @Prop       | Web dark mode. By default, web dark mode is disabled.                                                                                                     |
 | forceDarkAccess      | boolean                                                                                                          | No | @Prop       | Whether to enable forcible dark mode for the web page. This feature is disabled by default. This API is effective only when web dark mode is enabled.                                                                         |
+| nestedScroll<sup>15+</sup>      | [NestedScrollOptions](../../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10) \| [NestedScrollOptionsExt](../../apis-arkweb/ts-basic-components-web-i.md#nestedscrolloptionsext14) | No | @Prop       | Nested scrolling options.<br>**Atomic service API**: This API can be used in atomic services since API version 15.                                                                             |
 | onMessage            | Callback\<[OnMessageEvent](#onmessageevent)\>                                                                    | No | -           | Callback invoked when the HTML5 page sends a message through the **postMessage()** API of the JS SDK, and the **AtomicServiceWeb** component's corresponding page is returned or destroyed.                                                             |
 | onErrorReceive       | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                                          | No | -           | Callback invoked when an error occurs during web page loading. For performance reasons, simplify the implementation logic in the callback. This callback is invoked when there is no network connection.                                                                |
 | onHttpErrorReceive   | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                                                  | No | -           | Callback invoked when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.                                                                                    |
@@ -95,7 +97,7 @@ Obtains the default user agent of this web page.
 
 | Type    | Description     |
 |--------|---------|
-| string | Default user agent.|
+| string | Default user agent. For details about the specifications and usage scenarios, see [Developing User-Agent](../../../web/web-default-userAgent.md).|
 
 **Error codes**
 
@@ -119,7 +121,7 @@ Obtains a custom user agent.
 
 | Type    | Description        |
 |--------|------------|
-| string | Information about the custom user agent.|
+| string | Information about the custom user agent. For details about the specifications and usage scenarios, see [Developing User-Agent](../../../web/web-default-userAgent.md).|
 
 **Error codes**
 
@@ -135,11 +137,11 @@ setCustomUserAgent(userAgent: string): void
 
 Sets a custom user agent, which will overwrite the default user agent.
 
-You are advised to set **UserAgent** in the **onControllerAttached** callback event. For details, see the example. Avoid setting **UserAgent** in the **onLoadIntercept** callback event, as there is a risk of failure in applying the setting.
+Set the user agent in the **onControllerAttached** callback to ensure that it takes effect. For details about the setting, see the example. Avoid setting the user agent in **onLoadIntercept**. Otherwise, the setting may fail occasionally.
 
 > **NOTE**
 >
->If a URL is set for **src** in the **AtomicServiceWeb** component, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
+>If a URL is set for the **Web** component **src** and **UserAgent** is not set in the **onControllerAttached** callback, calling **setCustomUserAgent** may cause mismatches between the loaded page and the intended user agent.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -252,7 +254,7 @@ Checks whether going to the previous page can be performed on this page.
 
 | Type     | Description                   |
 |---------|-----------------------|
-| boolean | Returns **true** if moving to the previous page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
@@ -266,7 +268,7 @@ For details about the error codes, see [Webview Error Codes](../../apis-arkweb/e
 
 accessStep(step: number): boolean
 
-Performs a specific number of steps forward or backward from this page.
+Checks whether this page can navigate forward or backward by the specified number of steps.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -282,7 +284,7 @@ Performs a specific number of steps forward or backward from this page.
 
 | Type     | Description       |
 |---------|-----------|
-| boolean | Whether moving forward or backward is performed on the current page.|
+| boolean | Whether the page can navigate forward or backward by the specified number of steps. Returns **true** if navigation can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
@@ -329,10 +331,10 @@ Describes the request/response header returned by the **AtomicServiceWeb** compo
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type    | Readable| Writable| Description           |
+| Name         | Type    | Read-Only| Optional| Description           |
 |-------------|--------|----|----|---------------|
-| headerKey   | string | Yes | Yes | Key of the request/response header.  |
-| headerValue | string | Yes | Yes | Value of the request/response header.|
+| headerKey   | string | No | No | Key of the request/response header.  |
+| headerValue | string | No | No | Value of the request/response header.|
 
 ## OnMessageEvent
 
@@ -444,7 +446,7 @@ Represents the callback invoked when resource loading is intercepted.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 
@@ -750,6 +752,64 @@ struct WebComponent {
           console.info("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
+    }
+  }
+}
+```
+
+### Example 7
+
+This example shows how to set nested scrolling.
+
+```ts
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AtomicServiceNestedScroll {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+  @State mode: string = 'PARALLEL mode (click to switch)';
+  @State nestedScroll: NestedScrollOptions | NestedScrollOptionsExt = {
+    scrollForward: NestedScrollMode.PARALLEL,
+    scrollBackward: NestedScrollMode.PARALLEL
+  };
+
+  build() {
+    Scroll() {
+      Column() {
+        Text("Nested Web - Header")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+        Button(this.mode)
+          .margin({ top: 10, bottom: 10 })
+          .onClick(() => {
+            if (!(this.nestedScroll as NestedScrollOptions).scrollForward) {
+              this.mode = 'SELF_FIRST mode (click to switch)';
+              this.nestedScroll = {
+                scrollForward: NestedScrollMode.SELF_FIRST,
+                scrollBackward: NestedScrollMode.SELF_FIRST
+              }
+            } else {
+              this.mode = 'PARENT_FIRST mode (click to switch)';
+              this.nestedScroll = {
+                scrollUp: NestedScrollMode.PARENT_FIRST,
+                scrollDown: NestedScrollMode.PARENT_FIRST
+              }
+            }
+          })
+        AtomicServiceWeb({
+          src: 'https://www.example.com',
+          controller: this.controller,
+          nestedScroll: this.nestedScroll
+        })
+        Text("Nested Web - Footer")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+      }
     }
   }
 }

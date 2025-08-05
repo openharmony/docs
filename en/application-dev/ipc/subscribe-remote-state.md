@@ -112,7 +112,7 @@ When the proxy detects the death of the remote stub object, proxy objects and cl
     let connectId = featureAbility.connectAbility(want, connect);
   ```
 
-  In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
+  In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
   In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
   <!--code_no_check-->

@@ -4,7 +4,8 @@
 
 > **说明：**
 >
-> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## onAlert
@@ -1704,7 +1705,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
@@ -1723,6 +1724,8 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(error) {
+        console.error("Error accessing media devices.", error);
       });
     }
   </script>
@@ -2716,7 +2719,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./ts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。 |
+| callback | Callback\<[OnLoadInterceptEvent](./ts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。<br>传入undefined或null为false |
 
 **示例：**
 
@@ -3202,7 +3205,7 @@ export default class EntryAbility extends UIAbility {
   加载的html文件
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3211,7 +3214,7 @@ export default class EntryAbility extends UIAbility {
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3362,7 +3365,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
 加载的html文件
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3371,7 +3374,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   <body>
   <div>
       <div id="bodyId">
-         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3521,7 +3524,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
             } else if (viewportFit === ViewportFit.CONTAINS) {
               // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
             } else {
-              // 默认值，可不作处理
+              // 默认值，可不作处理。
             }
           })
       }
@@ -3725,7 +3728,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。不支持由于CSS样式变化导致的同层标签可见状态变化上报，例如display、opacity和visibility等。
+网页中同层标签（如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。不支持由于CSS样式变化导致的同层标签可见状态变化上报，例如display、opacity和visibility等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3857,7 +3860,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>

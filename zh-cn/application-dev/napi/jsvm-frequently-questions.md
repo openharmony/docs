@@ -38,11 +38,11 @@
    #24 pc 0000000000c5c2ac /system/lib64/ndk/libjsvm.so(OH_JSVM_RunScript+272)
    ```
 
-   A：`SetReturnValue`用于设置js函数的返回值，在js完成注入的native函数调用后触发。需检查native函数的返回值是否正确，如返回值（类型`JSVM_Value`）是否未初始化就直接返回。
+   A：`SetReturnValue`用于设置js函数的返回值，在js完成注入的native函数调用后触发。需检查native函数的返回值是否正确，如返回值（`JSVM_Value`）是否未初始化就直接返回。
 
 2. Q：js执行虚拟机初始化注入的native函数时程序崩溃
 
-   A：检查`JSVM_CallbackStruct`是否为栈上变量，跨函数使用时需保证`JSVM_CallbackStruct`生命周期 >`JSVM_Env`的生命周期
+   A：检查`JSVM_CallbackStruct`是否为栈上变量。如果跨函数使用，需确保`JSVM_CallbackStruct`的生命周期长于`JSVM_Env`的生命周期。
 
    ```
    func {
@@ -64,7 +64,7 @@
    }
    ```
 
-   样例中的代码结构如上，JS引擎实例在函数结束前被关闭，所以可以直接使用栈上的`param`。
+   在上述示例代码中，JS引擎实例在函数结束前被关闭，因此可以直接使用栈上的`param`。
 
 3. Q：`OH_JSVM_ReferenceRef`、`OH_JSVM_ReferenceUnRef`、`OH_JSVM_CreateReference`、`OH_JSVM_DeleteReference`时程序崩溃
 
@@ -78,17 +78,17 @@
    #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::HandleScope::Extend(v8::internal::Isolate*+200)
    ```
 
-   A：检查HandleScope的使用是否正确，见[生命周期管理](jsvm-guidelines.md#生命周期管理)
+   A：检查HandleScope的使用是否正确，参考[生命周期管理](jsvm-guidelines.md#生命周期管理)
 
 ## JSVM-API执行失败类
 
-1. Q：`OH_JSVM_GetCbInfo`的无法获取JS函数参数
+1. Q：`OH_JSVM_GetCbInfo`无法获取JS函数参数
 
    A：检查函数传递的参数是否正确，见[获取JS传入参数及其数量](jsvm-guidelines.md#获取js传入参数及其数量)
 
 2. Q：`OH_JSVM_CreateFunction`等函数调用失败，返回值为`JSVM_PENDING_EXCEPTION`
 
-   A：`JSVM_PENDING_EXCEPTION`表明当前虚拟机环境中存在未处理的异常，可能是由于本次调用产生的`JS`异常，也可能是之前调用产生的未被清理的异常。可以通过在函数调用前插入`OH_JSVM_GetAndClearLastException`排查之前是否有未清除的异常。如果为之前的未清理异常，检查是否有JSVM接口调用未处理异常返回值；如果为本次产生的异常，需清理异常，避免影响后续的函数调用。获取并清理异常的函数为`OH_JSVM_GetAndClearLastException`
+   A：`JSVM_PENDING_EXCEPTION`表明当前虚拟机环境中存在未处理的异常，可能是由于本次调用产生的`JS`异常，也可能是之前调用产生的未被清理的异常。可以通过在函数调用前插入`OH_JSVM_GetAndClearLastException`排查之前是否有未清除的异常。如果为之前的未清理异常，检查是否有JSVM接口调用未处理异常返回值；如果是本次产生的异常，需清理异常，避免影响后续的函数调用。获取并清理异常的函数为`OH_JSVM_GetAndClearLastException`
 
 3. Q：JS执行时无法找到 `OH_JSVM_DefineClass` 定义的类
 

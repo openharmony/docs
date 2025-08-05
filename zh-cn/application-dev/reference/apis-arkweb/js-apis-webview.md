@@ -4,11 +4,42 @@
 
 > **说明：**
 >
-> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 >
 > - 静态方法必须在用户界面（UI）线程上使用。
+
+该模块提供以下Web控制相关的常用功能：
+
+- [AdsBlockManager](#adsblockmanager12)：广告过滤配置。
+- [BackForwardCacheOptions](#backforwardcacheoptions12)：前进后退缓存配置。
+- [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12)：前进后退缓存特性配置。
+- [GeolocationPermissions](./js-apis-webview-GeolocationPermissions.md)：地理位置权限配置。
+- [JsMessageExt](#jsmessageext10)：执行JavaScript脚本的结果。
+- [MediaSourceInfo](#mediasourceinfo12)：媒体源信息配置。
+- [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)：应用接管媒体播放时渲染信息。
+- [PdfData](#pdfdata14)：生成的PDF输出数据。
+- [ProxyConfig](#proxyconfig15)：网络代理配置。
+- [ProxyController](#proxycontroller15)：网络代理控制器。
+- [WebviewController](./js-apis-webview-WebviewController.md)：Web组件控制器。
+- [WebCookieManager](./js-apis-webview-WebCookieManager.md)：Cookie管理。
+- [WebDataBase](./js-apis-webview-WebDataBase.md)：数据库管理。
+- [WebDownloadDelegate](#webdownloaddelegate11)：下载任务状态事件。
+- [WebDownloadItem](#webdownloaditem11)：下载任务。
+- [WebDownloadManager](#webdownloadmanager11)：下载任务管理。
+- [WebHttpBodyStream](#webhttpbodystream12)：HTTP请求体。
+- [WebMessageExt](./js-apis-webview-WebMessageExt.md)：前端与应用通信数据对象。
+- [WebResourceHandler](#webresourcehandler12)：资源加载控制。
+- [WebSchemeHandler](#webschemehandler12)：指定Scheme的请求拦截器。
+- [WebSchemeHandlerRequest](#webschemehandlerrequest12)：通过拦截器拦截到的请求。
+- [WebSchemeHandlerResponse](#webschemehandlerresponse12)：为拦截到的请求创建自定义响应。
+- [WebStorage](./js-apis-webview-WebStorage.md)：Web组件存储操作接口。
+- [BackForwardList](./js-apis-webview-BackForwardList.md)：历史信息列表。
+- [NativeMediaPlayerBridge](#nativemediaplayerbridge12)：托管网页媒体播放器桥接接口。
+- [NativeMediaPlayerHandler](#nativemediaplayerhandler12)：托管网页媒体播放器的事件接口。
+- [WebMessagePort](./js-apis-webview-WebMessagePort.md)：网页前端与应用的消息端口。
 
 ## 需要权限
 
@@ -4172,7 +4203,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
-| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。<br>默认值：false。 |
 
 **错误码：**
 

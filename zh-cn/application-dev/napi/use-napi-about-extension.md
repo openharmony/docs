@@ -318,11 +318,9 @@ add(1, 2);
 cpp部分代码
 
 ```cpp
-#include <bits/alltypes.h>
 #include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
-#include <uv.h>
 #include "napi/native_api.h"
 
 class Object {
@@ -1256,7 +1254,7 @@ testNapi.removeWrapSendable();
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
 
 

@@ -1,25 +1,36 @@
-# Crypto Architecture Kit (Crypto Architecture Service)
+# Crypto Architecture Kit
 
-- ArkTS APIs<!--crypto-architecture-arkts-->
+- ArkTS API<!--crypto-architecture-arkts-->
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
   - APIs No Longer Maintained<!--crypto-architecture-arkts-dep-->
     - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
-- C APIs<!--crypto-architecture-c-->
+- C API<!--crypto-architecture-c-->
   - Modules<!--crypto-architecture-module-->
-    - [CryptoAsymKeyApi](_crypto_asym_key_api.md)
-    - [CryptoCommonApi](_crypto_common_api.md)
-    - [CryptoDigestApi](_crypto_digest_api.md)
-    - [CryptoSignatureApi](_crypto_signature_api.md)
-    - [CryptoSymCipherApi](_crypto_sym_cipher_api.md)
-    - [CryptoSymKeyApi](_crypto_sym_key_api.md)
+    - [CryptoArchitectureKit](capi-cryptoarchitecturekit.md)
+    - [CryptoAsymKeyApi](capi-cryptoasymkeyapi.md)
+    - [CryptoCommonApi](capi-cryptocommonapi.md)
+    - [CryptoDigestApi](capi-cryptodigestapi.md)
+    - [CryptoSignatureApi](capi-cryptosignatureapi.md)
+    - [CryptoSymCipherApi](capi-cryptosymcipherapi.md)
+    - [CryptoSymKeyApi](capi-cryptosymkeyapi.md)
   - Header Files<!--crypto-architecture-headerfile-->
-    - [crypto_asym_key.h](crypto__asym__key_8h.md)
-    - [crypto_common.h](crypto__common_8h.md)
-    - [crypto_digest.h](crypto__digest_8h.md)
-    - [crypto_signature.h](crypto__signature_8h.md)
-    - [crypto_sym_cipher.h](crypto__sym__cipher_8h.md)
-    - [crypto_sym_key.h](crypto__sym__key_8h.md)
+    - [crypto_architecture_kit.h](capi-crypto-architecture-kit-h.md)
+    - [crypto_asym_key.h](capi-crypto-asym-key-h.md)
+    - [crypto_common.h](capi-crypto-common-h.md)
+    - [crypto_digest.h](capi-crypto-digest-h.md)
+    - [crypto_signature.h](capi-crypto-signature-h.md)
+    - [crypto_sym_cipher.h](capi-crypto-sym-cipher-h.md)
+    - [crypto_sym_key.h](capi-crypto-sym-key-h.md)
   - Structs<!--crypto-architecture-struct-->
-    - [Crypto_DataBlob](_crypto___data_blob.md)
+    - [Crypto_DataBlob](capi-crypto-datablob.md)
+    - [OH_CryptoKeyPair](capi-oh-cryptokeypair.md)
+    - [OH_CryptoPubKey](capi-oh-cryptopubkey.md)
+    - [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md)
+    - [OH_CryptoDigest](capi-oh-cryptodigest.md)
+    - [OH_CryptoVerify](capi-oh-cryptoverify.md)
+    - [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md)
+    - [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md)
+    - [OH_CryptoSymKey](capi-oh-cryptosymkey.md)
+    - [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md)
 - Error Codes<!--crypto-architecture-arkts-errcode-->
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)

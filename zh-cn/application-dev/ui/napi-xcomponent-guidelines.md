@@ -55,6 +55,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 | OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node) | 将一个ArkUI组件节点添加到对应的NodeContent对象下。           |
 | OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback) | 注册NodeContent事件函数。                                    |
 | OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。 |
+| OH_NativeXComponent_GetHistoricalPoints(OH_NativeXComponent* component, const void* window, int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints ) | 获取当前XComponent触摸事件的历史点信息。由于部分输入设备上报触点的频率非常高（最高可达每1 ms上报一次），而对输入事件的响应通常是为了使UI界面发生变化以响应用户操作，如果将触摸事件按照上报触点的频率如此高频率上报给应用，大多会造成冗余，因此触摸事件在一帧内只会上报一次给应用。在当前帧内上报的触点均作为历史点保存，如果应用需要直接处理这些数据，可调用该接口获取历史点信息。历史接触点historicalPoints的具体规格可参考[重采样与历史点](arkts-common-events-touch-screen-event.md#重采样与历史点)。 |
 
 > **说明 :**
 >
@@ -245,30 +246,30 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
     void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
         // ...
         // 初始化环境与绘制背景
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceCreated(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceCreated(component, window);
     }
    
     // 定义一个函数OnSurfaceChangedCB()
     void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 封装OnSurfaceChanged方法
-        pluginManger->OnSurfaceChanged(component, window);
+        pluginManager->OnSurfaceChanged(component, window);
     }
    
     // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceDestroyed(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceDestroyed(component, window);
     }
    
     // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
     void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->DispatchTouchEvent(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->DispatchTouchEvent(component, window);
     }
     ```
 
@@ -285,6 +286,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
         napi_value args[2] = { nullptr, nullptr };
         if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+            return nullptr;
         }
         if (argCnt != ARG_CNT) {
             napi_throw_type_error(env, NULL, "Wrong number of arguments");
@@ -385,9 +387,9 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
             return nullptr;
         }
 
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 调用绘制方法
-        pluginManger->eglcore_->Draw(hasDraw_);
+        pluginManager->eglcore_->Draw(hasDraw_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginManager", "render->eglCore_->Draw() executed");
         
         return nullptr;
@@ -527,7 +529,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
     }
     
     GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc) {
-        if ((type <= 0) || (shaderSrc == nullptr)) {
+        if ((type == 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }

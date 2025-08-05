@@ -27,6 +27,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -54,11 +55,13 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -79,6 +82,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -107,14 +111,17 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: string = networkManager.getIpAddressSync(wantTemp, 'eth0');
   console.info(`Succeeded in getting ip address, result : ${result}`);
 } catch (err) {
@@ -132,6 +139,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -160,14 +168,17 @@ getMacSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: string = networkManager.getMacSync(wantTemp, 'eth0');
   console.info(`Succeeded in getting mac, result : ${result}`);
 } catch (err) {
@@ -185,6 +196,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -213,14 +225,17 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: boolean = networkManager.isNetworkInterfaceDisabledSync(wantTemp, 'eth0');
   console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
 } catch (err) {
@@ -238,6 +253,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -261,15 +277,18 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   networkManager.setNetworkInterfaceDisabledSync(wantTemp, 'eth0', true);
   console.info(`Succeeded in setting network interface disabled`);
 } catch (err) {
@@ -287,6 +306,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -309,14 +329,18 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-let exclusionStr: string = "192.168,baidu.com"
+
+// 需根据实际情况进行替换
+let exclusionStr: string = "192.168,baidu.com";
 let exclusionArray: Array<string> = exclusionStr.split(',');
 let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
@@ -336,20 +360,21 @@ try {
 
 setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId: number): void
 
-设置指定用户下的网络代理，当前仅支持2in1设备。
+设置指定用户下的网络代理，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名    | 类型                                                         | 必填 | 说明                       |
 | --------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
-| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 | httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络代理配置信息。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **错误码**：
 
@@ -365,20 +390,25 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+
 let httpProxy: connection.HttpProxy = {
+  // 需根据实际情况进行替换
   host: '192.168.xx.xxx',
   port: 8080,
   exclusionList: ['192.168', 'baidu.com']
 };
 
 try {
+  // 参数需根据实际情况进行替换
   networkManager.setGlobalProxyForAccount(wantTemp, httpProxy, 100);
   console.info(`Succeeded in setting network global proxy.`);
 } catch (err) {
@@ -396,6 +426,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -423,12 +454,14 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -443,12 +476,13 @@ try {
 
 getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 
-获取指定用户下的网络代理，当前仅支持2in1设备。
+获取指定用户下的网络代理，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -477,15 +511,18 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: connection.HttpProxy = networkManager.getGlobalProxyForAccount(wantTemp, 100);
   console.info(`Succeeded in getting network global proxy, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -504,6 +541,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -526,13 +564,16 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let firewallRule: networkManager.FirewallRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -540,8 +581,8 @@ let firewallRule: networkManager.FirewallRule = {
   "appUid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.addFirewallRule(wantTemp, firewallRule);
 ```
@@ -557,6 +598,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -579,14 +621,17 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-// 移除指定的规则
+
 let firewallRule: networkManager.FirewallRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -594,8 +639,9 @@ let firewallRule: networkManager.FirewallRule = {
   "appUid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
+// 移除指定的规则
 networkManager.removeFirewallRule(wantTemp, firewallRule);
 
 // 清空所有规则
@@ -612,6 +658,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -639,11 +686,13 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let firewallRule: Array<networkManager.FirewallRule>;
 firewallRule = networkManager.getFirewallRules(wantTemp);
@@ -653,13 +702,14 @@ firewallRule = networkManager.getFirewallRules(wantTemp);
 
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
-为设备添加域名过滤规则。<br/>
+为设备添加域名过滤规则，仅支持IPv4。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -682,17 +732,20 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let domainFilterRule: networkManager.DomainFilterRule = {
+  // 需根据实际情况进行替换
   "domainName": "www.example.com",
   "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
+  "action": networkManager.Action.DENY
+};
 
 networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 ```
@@ -701,13 +754,14 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
-移除设备域名过滤规则。<br/>
+移除设备域名过滤规则，仅支持IPv4。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -730,18 +784,23 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-// 移除指定的规则
+
 let domainFilterRule: networkManager.DomainFilterRule = {
+  // 需根据实际情况进行替换
   "domainName": "www.example.com",
   "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
+  "action": networkManager.Action.DENY
+};
+
+// 移除指定的规则
 networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
 
 // 清空所有规则
@@ -752,12 +811,13 @@ networkManager.removeDomainFilterRule(wantTemp);
 
 getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
-查询设备域名过滤规则。
+查询设备域名过滤规则，仅支持IPv4。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -785,11 +845,13 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let domainFilterRule: Array<networkManager.DomainFilterRule>;
 domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
@@ -809,8 +871,8 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | srcPort   | string                  | 否   | 是 |源端口。                                                     |
 | destPort  | string                  | 否   | 是 |目标端口。                                                   |
 | appUid    | string                  | 否   | 是 |应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
 
 ## DomainFilterRule
@@ -825,7 +887,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | domainName | string            | 否   | 是 |域名。添加域名过滤规则时必填。                               |
 | appUid     | string            | 否   | 是 |应用uid。                                                    |
 | action     | [Action](#action) | 否   | 是 |接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
-| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
+| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
 
 ## Direction
 

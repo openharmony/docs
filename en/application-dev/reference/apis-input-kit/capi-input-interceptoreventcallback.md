@@ -2,7 +2,7 @@
 
 ## Overview
 
-Defines the structure of the interceptor for callback events, including mouse events, touch events, and axis events.
+Defines the structure of interceptor callback events, including mouse events, touch events, and axis events.
 
 **Since**: 12
 
@@ -21,7 +21,7 @@ Defines the structure of the interceptor for callback events, including mouse ev
 | Input_AxisEventCallback axisCallback | Callback for axis events.<br>**Since**: 12|
 
 
-### Member Functions
+### Member functions
 
 | **Name**| typedef Keyword| Description|
 | -- | -- | -- |

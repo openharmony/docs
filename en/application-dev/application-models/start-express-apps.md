@@ -2,7 +2,7 @@
 
 This topic describes how to open the vertical domain panel of express delivery applications.
 
-For example, in a messaging application, when a user receives a delivery tracking number, the application can identify this number and provide a link for querying the package. After the user touches the link, the application calls [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11) or [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11) to open a panel. This panel displays all available applications on the device that support express delivery query, enabling the user to select and switch to the application that meets their needs.
+For example, in a messaging application, when a user receives a delivery tracking number, the application can identify this number and provide a link for querying the package. After the user touches the link, the application calls [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybytype11) or [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#startabilitybytype11) to open a panel. This panel displays all available applications on the device that support express delivery query, enabling the user to select and switch to the application that meets their needs.
 
 ## Parameters on the Express Delivery Application Panel
 
@@ -27,7 +27,7 @@ If the **type** field in **startAbilityByType** is set to **express**, the inten
     @Entry
     @Component
     struct Index {
-        @State hideAbility: string = 'hideAbility'
+        @State hideAbility: string = 'hideAbility';
 
         build() {
             Row() {
@@ -67,8 +67,7 @@ If the **type** field in **startAbilityByType** is set to **express**, the inten
     }
     ```
     
-    Effect
-    
+    Effect   
     ![Effect example](./figures/start-express-panel.png)
 
 ## Developing a Target Application
@@ -123,7 +122,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

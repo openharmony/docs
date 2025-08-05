@@ -1028,7 +1028,7 @@ In scenarios involving **LazyForEach**, where nodes may be destroyed and reconst
 
 | Type                                                          | Description                                                                                                            |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#common-event-callback)| **UICommonEvent** object, which is used to set basic events.|
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md)| **UICommonEvent** object, which is used to set basic events.|
 
 **Example**
 

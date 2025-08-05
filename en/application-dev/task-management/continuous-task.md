@@ -45,11 +45,11 @@ Description of **AUDIO_PLAYBACK**:
 
 - If an application requests a continuous task but does not carry out the relevant service, the system imposes restrictions on the application. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system cancels the continuous task.
 
-- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
+- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. The application will be suspended when it returns to the background. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
 
-- When an application's operations are completed after a continuous task request, the system imposes restrictions on the application.
+- When an application's operations are completed after a continuous task request, the system imposes restrictions on the application. The application will be suspended when it returns to the background.
 
-- If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control.
+- If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control. The application will be suspended or terminated when it is switched to the background.
 
 > **NOTE**
 >
@@ -128,8 +128,8 @@ The following walks you through how to request a continuous task for recording t
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
-     // Use getContext to obtain the context of the UIAbility for the page.
-      private context: Context = getContext(this);
+     // Obtain the UIAbility context of the page by calling getUIContext().getHostContext().
+      private context: Context | undefined = this.getUIContext().getHostContext();
 
       OnContinuousTaskCancel() {
         try {

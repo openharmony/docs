@@ -16,7 +16,7 @@ This error code is reported when an API of the package manager, such as **getInp
 
 **Possible Causes**
 
-The package manager is not working correctly.
+The package manager is not working correctly when APIs such as **getInputMethods** and **listCurrentInputMethodSubtype** are called to obtain the input method subtype.
 
 **Solution**
 
@@ -34,7 +34,7 @@ This error code is reported when an input method API fails to be called.
 
 **Possible Causes**
 
-The input method process is suspended.
+The input method process is suspended in operations such as displaying and hiding the keyboard.
 
 **Solution**
 
@@ -57,8 +57,8 @@ This error code is reported when the API for showing or hiding the keyboard fail
 
 **Solution**
 
-1. Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
-2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Enable the input method by touching a text input box.
+1. Bind the input method to the third-party application again: Close the background process of the application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Then touch the text input box to display the input method.
 
 ## 12800004 Not an Input Method
 
@@ -94,7 +94,7 @@ An exception occurs with the system parameter configuration module.
 
 **Solution**
 
-Run the **hdc shell param get persist.sys.default_ime** command to check the default input method parameters. If the parameters are displayed, the system parameter configuration module is working properly. In this case, restart the device and try again.
+Run `hdc shell param get persist.sys.default_ime` to view the default input method parameters. If the parameters are displayed, the system parameter configuration module is working properly. In this case, restart the device and try again.
 
 ## 12800006 Input Method Controller Error
 
@@ -148,7 +148,7 @@ The input method manager service fails to be found.
 
 **Solution**
 
-Run the **ps -A|grep inputmethod** command to check for the process ID of the input method service. If the process ID is found, the service is working properly.
+Run `ps -A | grep inputmethod` to check the process ID of the input method service. If the process ID is found, the service is working properly.
 
 ## 12800009 Input Method Client Detached
 
@@ -166,7 +166,7 @@ The current application calls **showTextInput** or **hideTextInput** when not at
 
 **Solution**
 
-Call the **attach** API and then try again.
+Call the `attach` API and then try again.
 
 ## 12800010 Not Preconfigured Default Input Method
 
@@ -244,7 +244,7 @@ Restart the device and try again.
 
 **Error Message**
 
-The intput method is basic mode.
+The input method is basic mode.
 
 **Description**
 
@@ -288,7 +288,7 @@ The input method client is not in edit mode.
 
 **Possible Causes**
 
-The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through **Attach**.
+The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through `Attach`.
 
 **Solution**
 

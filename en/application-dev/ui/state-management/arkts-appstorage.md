@@ -409,7 +409,7 @@ struct Gallery {
             // Selected: from black to red
             let eventData: emitter.EventData = {
               data: {
-                "colorTag": 1;
+                "colorTag": 1
               }
             }
             emitter.emit(innerEvent, eventData)
@@ -546,7 +546,7 @@ In the following example, the type of variable **A** is **number | null**, and t
 
 ```ts
 @Component
-struct StorLink {
+struct StorageLinkComponent {
   @StorageLink("LinkA") LinkA: number | null = null;
   @StorageLink("LinkB") LinkB: number | undefined = undefined;
 
@@ -566,7 +566,7 @@ struct StorLink {
 }
 
 @Component
-struct StorProp {
+struct StoragePropComponent {
   @StorageProp("PropA") PropA: number | null = null;
   @StorageProp("PropB") PropB: number | undefined = undefined;
 
@@ -590,8 +590,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        StorLink()
-        StorProp()
+        StorageLinkComponent()
+        StoragePropComponent()
       }
       .width('100%')
     }

@@ -11,7 +11,8 @@
 
 ## 子组件
 
-仅支持[GridItem](ts-container-griditem.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[GridItem](ts-container-griditem.md)子组件和自定义组件。自定义组件在Grid下使用时，建议使用GridItem作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
@@ -58,12 +59,12 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明                    |
-| ----- | ------- | ---- | --------------------- |
-| regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称    | 类型      | 只读   | 可选 | 说明                    |
+| ----- | ------- | ---- | --  | --------------------- |
+| regularSize  | [number, number]  | 否    | 否 | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| irregularIndexes | number[] | 否    | 是 | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 是 | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 是 | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -564,7 +565,7 @@ onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \
 
 由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽。如有长按和拖拽同时使用的需求可以使用通用拖拽事件。
 
-拖拽浮起的网格元素可在应用窗口内移动，若需限制移动范围，可通过自定义手势实现，具体参考[示例16（实现GridItem自定义拖拽）](#示例16实现griditem自定义拖拽)。
+拖拽浮起的网格元素可在应用窗口内移动，若需限制移动范围，可通过自定义手势实现，具体参考[示例14（实现GridItem自定义拖拽）](#示例14实现griditem自定义拖拽)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -870,8 +871,8 @@ Grid组件可见区域item变化事件的回调类型。
 @Entry
 @Component
 struct GridExample {
-  @State numbers1: String[] = ['0', '1', '2', '3', '4'];
-  @State numbers2: String[] = ['0', '1', '2', '3', '4', '5'];
+  @State numbers1: string[] = ['0', '1', '2', '3', '4'];
+  @State numbers2: string[] = ['0', '1', '2', '3', '4', '5'];
   layoutOptions3: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
@@ -924,10 +925,10 @@ struct GridExample {
               .fontSize(16)
               .backgroundColor(0xF9CF93)
               .width('100%')
-              .height("100%")
+              .height('100%')
               .textAlign(TextAlign.Center)
           }
-          .height("100%")
+          .height('100%')
           .width('100%')
         }, (day: string) => day)
       }
@@ -1191,7 +1192,7 @@ struct GridExample {
               Grid(this.gridScroller) {
                 ForEach(this.numbers, (item: number) => {
                   GridItem() {
-                    Text(item + '')
+                    Text(item)
                       .fontSize(16)
                       .backgroundColor(0xF9CF93)
                       .width('100%')
@@ -1359,7 +1360,7 @@ struct GridExample {
         if (!isSuccess || insertIndex >= this.numbers.length) {
           return;
         }
-        console.info('beixiang' + itemIndex + '', insertIndex + ''); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        console.info('itemIndex:' + itemIndex + ', insertIndex:' + insertIndex); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
         this.changeIndex(itemIndex, insertIndex);
       })
     }.width('100%').margin({ top: 5 })
@@ -1727,10 +1728,60 @@ struct GridExample {
 
 ![edgeEffect_grid](figures/edgeEffect_grid.gif)
 
-### 示例14（滚动到指定位置）
+### 示例12（滚动到指定位置）
 
 该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
 
+<!--code_no_check-->
+```ts
+// GridDataSource.ets
+export class GridDataSource implements IDataSource {
+  private list: string[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据位置变化
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+
+  // 交换元素位置
+  public swapItem(from: number, to: number): void {
+    let temp: string = this.list[from];
+    this.list[from] = this.list[to];
+    this.list[to] = temp;
+    this.notifyDataMove(from, to);
+  }
+}
+```
+
+<!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
 @Entry
@@ -1787,10 +1838,11 @@ struct GridScrollToIndexSample {
 ![grid_scrollToIndex](figures/gridScrollToIndex.gif)
 
 
-### 示例15（实现Grid滑动选择）
+### 示例13（实现Grid滑动选择）
 
 该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -1876,12 +1928,11 @@ struct GridExample {
       return;
     }
     console.debug('start index: ' + index.toString());
-    const targetIndex = index + 1
-    this.setChecked = !
-    this.selectedIndexes.includes(targetIndex.toString())
+    const targetIndex = index + 1;
+    this.setChecked = !this.selectedIndexes.includes(targetIndex.toString());
     this.startIndex = index;
-    this.selectedIndexes.push(targetIndex.toString())
-    this.updateIndex = index
+    this.selectedIndexes.push(targetIndex.toString());
+    this.updateIndex = index;
 
   }
   slideActionUpdate(index: number): void {
@@ -1964,7 +2015,7 @@ struct GridExample {
   }
 
   panGestureAction(type: SlideActionType, event: GestureEvent | undefined): void {
-    if (this.stopGesture) {
+    if (this.stopGesture || !event) {
       return;
     }
     const finger = event!.fingerList[0];
@@ -2078,7 +2129,7 @@ struct GridExample {
 
 ![gridScrollWithPanGesture](figures/gridScrollWithPanGesture.gif)
 
-### 示例16（实现GridItem自定义拖拽）
+### 示例14（实现GridItem自定义拖拽）
 
 该示例通过gesture接口，实现了GridItem组件自定义拖拽效果。
 
@@ -2255,12 +2306,12 @@ struct GridItemExample {
             GestureGroup(GestureMode.Sequence,
               LongPressGesture({ repeat: true })
                 .onAction((event?: GestureEvent) => {
-                  animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
                     this.scaleItem = item
                   })
                 })
                 .onActionEnd(() => {
-                  animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
                     this.scaleItem = -1
                   })
                 }),
@@ -2273,7 +2324,7 @@ struct GridItemExample {
                 .onActionUpdate((event: GestureEvent) => {
                   this.offsetY = event.offsetY - this.dragRefOffsety
                   this.offsetX = event.offsetX - this.dragRefOffsetx
-                  animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     let index = this.numbers.indexOf(this.dragItem)
                     if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
                       ![8, 9, 10].includes(index)) {
@@ -2315,10 +2366,10 @@ struct GridItemExample {
                   })
                 })
                 .onActionEnd(() => {
-                  animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     this.dragItem = -1
                   })
-                  animateTo({
+                  this.getUIContext()?.animateTo({
                     curve: curves.interpolatingSpring(14, 1, 170, 17), delay: 150
                   }, () => {
                     this.scaleItem = -1
@@ -2326,10 +2377,10 @@ struct GridItemExample {
                 })
             )
               .onCancel(() => {
-                animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                   this.dragItem = -1
                 })
-                animateTo({
+                this.getUIContext()?.animateTo({
                   curve: curves.interpolatingSpring(14, 1, 170, 17)
                 }, () => {
                   this.scaleItem = -1

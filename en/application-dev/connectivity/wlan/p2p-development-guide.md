@@ -1,7 +1,7 @@
-# P2P Mode Development Guide
+# P2P Connection Development
 
 ## Introduction
-The peer-to-peer (P2P) mode provides a point-to-point connection between devices in a WLAN. It allows a TCP/IP connection to be set up between two stations (STAs) without an access point (AP).
+The peer-to-peer (P2P) mode provides a point-to-point connection between devices in a WLAN. It enables the direct establishment of a TCP/IP connection between two stations (STAs) without the involvement of an access point (AP).
 
 ## When to Use
 You can use the APIs provided by the **wifiManager** module to:
@@ -33,7 +33,7 @@ The following table describes the APIs used in this topic.
 ## How to Develop
 
 ### Creating or Removing a P2P Group
-1. Import the **wifiManager** module.
+1. Import the Wi-Fi module.
 2. Enable Wi-Fi on the device.
 3. Check that the device has the SystemCapability.Communication.WiFi.P2P capability.
 4. Create or remove a P2P group.
@@ -77,8 +77,8 @@ try {
 
 6. For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
 
-### Creating a P2P Connection
-1. Import the **wifiManager** module.
+### Setting Up a P2P Connection
+1. Import the Wi-Fi module.
 2. Enable Wi-Fi on the device.
 3. Check that the device has the SystemCapability.Communication.WiFi.P2P capability.
 4. Register a callback for **p2pPeerDeviceChange** and set up a P2P connection in the callback implementation.

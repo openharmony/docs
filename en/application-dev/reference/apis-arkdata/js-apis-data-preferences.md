@@ -1249,7 +1249,7 @@ dataPreferences.get('startup', 'default', (err: BusinessError, val: preferences.
     console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Succeeded in getting value of 'startup'. val£º " + val);
+  console.info("Succeeded in getting value of 'startup'. val: " + val);
 })
 ```
 
@@ -1875,7 +1875,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
   >
   > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
   >
-  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types)¡£
+  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1921,7 +1921,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
   >
   > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
   >
-  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types)¡£
+  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

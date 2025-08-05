@@ -115,7 +115,7 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip之�
 
 | 名称       | 类型            | 必填 | 说明                                             |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>取值范围：<br/>number类型: ≥ 0 的数值（如：0、8、16、24.5）。<br/>string类型: 单位为fp\|vp\|px\|lpx且数值部份 ≥ 0 的字符串（如："8vp"、"16fp"、"12px"、"10lpx"）。<br/>不支持: 负数、百分比单位、无效字符串格式。 <br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
 | startSpace | [Length](ts-types.md#length)         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
 | endSpace   | [Length](ts-types.md#length)         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 

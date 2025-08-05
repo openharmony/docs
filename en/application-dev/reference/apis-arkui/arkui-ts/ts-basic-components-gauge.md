@@ -35,13 +35,13 @@ Creates a gauge.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options |  [GaugeOptions](#gaugeoptions14)| Yes| Settings of the gauge.|
+| options |  [GaugeOptions](#gaugeoptions18)| Yes| Settings of the gauge.|
 
-## GaugeOptions<sup>14+</sup>
+## GaugeOptions<sup>18+</sup>
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,7 +219,7 @@ Sets whether to enable privacy mode.
 
 | Name| Type                                                     | Mandatory| Description                                                 |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | Yes  | Whether to enable privacy mode. In privacy mode, the gauge indicator points to **0**, the maximum and minimum values are masked, and the scale range is displayed in gray or the background color.<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<br>[Enabling privacy mode requires widget framework support.](./ts-universal-attributes-obscured.md) |
+| isPrivacySensitiveMode  | Optional\<boolean\> | Yes  | Sets whether to enable privacy mode. Whether to enable privacy mode. In privacy mode, the gauge indicator points to **0**, the maximum and minimum values are masked, and the scale range is displayed in gray or the background color. The value **true** means to enable privacy mode, and **false** means the opposite.<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<!--Del--><br>For widgets, this property must be used with [FormComponent](./ts-basic-components-formcomponent-sys.md) and the [obscured](./ts-universal-attributes-obscured.md) attribute to display privacy masking effects.<!--DelEnd--> |
 
 ### contentModifier<sup>12+</sup>
 
@@ -272,7 +272,7 @@ You need a custom class to implement the **ContentModifier** API.
 ## Example
 ### Example 1: Implementing a Multi-color Gauge
 
-This example demonstrates how to implement a multi-color gauge using the **colors** attribute.
+This example demonstrates how to implement a multi-color gauge using the [colors](#colors) attribute.
 
 ```ts
 @Entry
@@ -341,7 +341,7 @@ struct Gauge1 {
 
 ### Example 2: Implementing a Single-Color Gauge
 
-This example demonstrates how to implement a single-color gauge using the **colors** attribute.
+This example demonstrates how to implement a single-color gauge using the [colors](#colors) attribute.
 
 ```ts
 @Entry
@@ -384,7 +384,7 @@ struct Gauge2 {
 
 ### Example 3: Configuring a Custom Description Area
 
-This example illustrates how to configure a custom description area using the **description** attribute.
+This example illustrates how to configure a custom description area using the [description](#description11) attribute.
 
 ```ts
 @Entry
@@ -540,7 +540,7 @@ struct Gauge5 {
 
 ### Example 6: Setting the Indicator
 
-This example illustrates how to set the indicator of the gauge using the **indicator** attribute.
+This example illustrates how to set the indicator of the gauge using the [indicator](#indicator11) attribute.
 
 ```ts
 @Entry
@@ -587,7 +587,7 @@ struct Gauge6 {
 
 ### Example 7: Setting the Start and End Angles
 
-This example demonstrates how to set the start and end angles of the gauge using the **startAngle** and **endAngle** attributes.
+This example demonstrates how to set the start and end angles of the gauge using the [startAngle](#startangle) and [endAngle](#endangle) attributes.
 
 ```ts
 @Entry
@@ -628,7 +628,7 @@ struct Gauge7 {
 
 ### Example 8: Setting the Custom Content Area
 
-This example shows how to customize the content area of the gauge using the **contentModifier** attribute.
+This example shows how to customize the content area of the gauge using the [contentModifier](#contentmodifier12) attribute.
 
 ```ts
 // xxx.ets
@@ -711,7 +711,7 @@ struct refreshExample {
 
 ### Example 9: Securing Sensitive Information
 
-This example illustrates how to secure sensitive information using the **privacySensitive** attribute. Note that the display requires widget framework support.
+This example illustrates how to secure sensitive information using the [privacySensitive](#privacysensitive12) attribute. Note that the display requires widget framework support.
 
 ```ts
 @Entry
@@ -755,7 +755,7 @@ struct GaugeExample {
 
 ### Example 10: Implementing a Custom Indicator
 
-This example demonstrates how to implement a custom indicator using **indicator**. You can import an SVG image to replace the default indicator.
+This example demonstrates how to implement a custom indicator using [indicator](#indicator11). You can import an SVG image to replace the default indicator.
 
 ```ts
 @Entry

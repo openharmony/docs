@@ -1,4 +1,4 @@
-# @ohos.app.ability.errorManager (ErrorManager)
+# @ohos.app.ability.errorManager (Error Observation Management)
 
 The ErrorManager module provides APIs for registering and unregistering error observers.
 
@@ -115,7 +115,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("result message :" + observer.message);
     console.info("result stack :" + observer.stack);
     console.info("result instanceName :" + observer.instanceName);
-    console.info("result instaceType :" + observer.instanceType);
+    console.info("result instanceType :" + observer.instanceType);
 }
 
 try {
@@ -167,7 +167,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("result message :" + observer.message);
     console.info("result stack :" + observer.stack);
     console.info("result instanceName :" + observer.instanceName);
-    console.info("result instaceType :" + observer.instanceType);
+    console.info("result instanceType :" + observer.instanceType);
 }
 
 try {
@@ -360,7 +360,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
   console.info("result message :" + observer.message);
   console.info("result stack :" + observer.stack);
   console.info("result instanceName :" + observer.instanceName);
-  console.info("result instaceType :" + observer.instanceType);
+  console.info("result instanceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -530,7 +530,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
   console.info("result message :" + observer.message);
   console.info("result stack :" + observer.stack);
   console.info("result instanceName :" + observer.instanceName);
-  console.info("result instaceType :" + observer.instanceType);
+  console.info("result instanceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -647,7 +647,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 16300004 | If the observer does not exist. |
+| 16300004 | The observer does not exist. |
 
 **Example**
     

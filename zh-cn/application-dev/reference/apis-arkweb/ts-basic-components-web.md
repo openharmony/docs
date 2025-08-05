@@ -4,7 +4,8 @@
 
 > **说明：**
 >
-> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
@@ -101,12 +102,13 @@ Web组件指定共享渲染进程。
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
+    controller1: webview.WebviewController = new webview.WebviewController();
+    controller2: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
-        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
       }
     }
   }
@@ -331,7 +333,7 @@ deleteForward(length: number): void
 | ------ | -------- | ---- | ------------------------ |
 | length | number   | 是   | 从后往前删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
-### deleteBackward12+</sup>
+### deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 

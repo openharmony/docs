@@ -18,9 +18,9 @@ Page redirection is an important part of the development process. When using an 
   **Figure 1** Page redirection 
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-The **Router** module provides two redirection modes: [router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9) and [router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
+The **Router** module provides two redirection modes: [pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl) and [replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl). Whether the target page will replace the current page depends on the mode used.
 
-- **router.pushUrl**: The target page is pushed into the page stack and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back](../reference/apis-arkui/js-apis-router.md#routerback) API.
+- **router.pushUrl**: The target page is pushed into the page stack and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back) API.
 
 - **router.replaceUrl**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
@@ -29,7 +29,7 @@ The **Router** module provides two redirection modes: [router.pushUrl](../refere
 >- When creating a page, configure the route to this page by following instructions in <!--RP1-->[Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page)<!--RP1End-->.
 >
 >
->- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear](../reference/apis-arkui/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
+>- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [clear](../reference/apis-arkui/js-apis-arkui-UIContext.md#clear) API can be called to clear the historical page stack and free the memory.
 
 The **Router** module also provides two instance modes: **Standard** and **Single**. Depending on the mode, the target URL is mapped to one or more instances.
 
@@ -168,7 +168,7 @@ function onJumpClick(): void {
 }
 ```
 
-On the target page, you can call the [getParams](../reference/apis-arkui/js-apis-router.md#routergetparams) API of the **Router** module to obtain the passed parameters. Example:
+On the target page, you can call the [getParams](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparams) API of the **Router** module to obtain the passed parameters. Example:
 
 
 ```ts
@@ -317,7 +317,7 @@ Such a dialog box can be in the [default style](#default-confirmation-dialog-box
 
 ### Default Confirmation Dialog Box
 
-To implement this function, you can use the [router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) and [router.back](../reference/apis-arkui/js-apis-router.md#routerback) APIs provided by the **Router** module.
+To implement this function, you can use the [showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage) and [back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back) APIs provided by the **Router** module.
 
 Before using the **Router** module, import it first.
 
@@ -326,7 +326,7 @@ Before using the **Router** module, import it first.
 import { router } from '@kit.ArkUI';
 ```
 
-To enable the confirmation dialog box for page return, call the [router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) API (for setting the information about the dialog box), then the [router.back](../reference/apis-arkui/js-apis-router.md#routerback) API. For example, define a click event processing function for the back button on the payment page:
+To enable the confirmation dialog box for page return, call the [showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage) API (for setting the information about the dialog box), then the [back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back) API. For example, define a click event processing function for the back button on the payment page:
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -340,13 +340,13 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
-  // Invoke the router.back() API to return to the previous page.
-  router.back();
+  // Invoke the this.getUIContext().getRouter().back() API to return to the previous page.
+  this.getUIContext().getRouter().back();
 }
 ```
 
@@ -359,7 +359,7 @@ When the user clicks the back button, a confirmation dialog box is displayed, pr
 
 ### Custom Confirmation Dialog Box
 
-To implement a custom confirmation dialog box, use APIs in the [promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) module or create a custom dialog box . This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
+To implement a custom confirmation dialog box, use the [showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1) API or create a custom dialog box. This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
 Before using the **Router** module, import it first.
 
@@ -368,16 +368,16 @@ Before using the **Router** module, import it first.
 import { router } from '@kit.ArkUI';
 ```
 
-In the event callback, call the [promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
+In the event callback, call the [showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1) API.
 
 ```ts
-import { promptAction, router } from '@kit.ArkUI';
+import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBackClick() {
   // Display a custom confirmation dialog box.
-  promptAction.showDialog({
-    message:'Payment not completed yet. Are you sure you want to return?',
+  this.getUIContext().getPromptAction().showDialog({
+    message: 'Payment not completed yet. Are you sure you want to return?',
     buttons: [
       {
         text: 'Cancel',
@@ -395,12 +395,12 @@ function onBackClick() {
     } else if (result.index === 1) {
       // The user selects OK.
       console.info('User confirmed the operation.');
-      // Invoke the router.back() API to return to the previous page.
-      router.back();
+      // Invoke the this.getUIContext().getRouter().back() API to return to the previous page.
+      this.getUIContext().getRouter().back();
     }
   }).catch((err: Error) => {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
@@ -410,7 +410,7 @@ When the user clicks the back button, the custom confirmation dialog box is disp
 
 ## Named Route
 
-To redirect to a page in a [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md), you can use [router.pushNamedRoute](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10).
+To redirect to a page in a [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md), you can use [pushNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushnamedroute).
 
   **Figure 4** Named route redirection 
 
@@ -473,8 +473,8 @@ struct Index {
               }
             })
           } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })

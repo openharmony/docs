@@ -78,7 +78,7 @@ task5(OUT A);
 
 ```c
 #include <stdio.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
     void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)

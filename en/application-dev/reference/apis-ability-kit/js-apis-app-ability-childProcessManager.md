@@ -1,10 +1,8 @@
-# @ohos.app.ability.childProcessManager (childProcessManager)
+# @ohos.app.ability.childProcessManager (Child Process Management)
 
 The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tablets.
 
-The created child process does not support the UI or the calling of context-related APIs.
-
-A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
+The created child process does not support the UI or the calling of context-related APIs. A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
 
 > **NOTE**
 >
