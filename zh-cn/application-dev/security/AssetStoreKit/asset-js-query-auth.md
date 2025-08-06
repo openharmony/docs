@@ -169,12 +169,12 @@ async function postQueryAsset(challenge: Uint8Array) {
 }
 
 async function queryAsset() {
-  // step1. 调用asset.preQuery获取挑战值
+  // step1. 调用asset.preQuery获取挑战值。
   preQueryAsset().then(async (challenge: Uint8Array) => {
     try {
-      // step2. 传入挑战值，拉起用户认证框
+      // step2. 传入挑战值，拉起用户认证框。
       let authToken: Uint8Array = await userAuthenticate(challenge);
-      // step3 用户认证通过后，传入挑战值和授权令牌，查询关键资产明文
+      // step3 用户认证通过后，传入挑战值和授权令牌，查询关键资产明文。
       let query: asset.AssetMap = new Map();
       query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
       query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);
@@ -182,9 +182,9 @@ async function queryAsset() {
       query.set(asset.Tag.AUTH_TOKEN, authToken);
       let res: Array<asset.AssetMap> = await asset.query(query);
       for (let i = 0; i < res.length; i++) {
-        // parse the secret.
+        // 解析secret。
         let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-        // parse uint8array to string
+        // 将Uint8Array转换为string类型。
         let secretStr: string = arrayToString(secret);
       }
       // step4. 关键资产明文查询成功后，需要调用asset.postQuery进行查询的后置处理。
@@ -193,7 +193,7 @@ async function queryAsset() {
       // step5. preQuery成功，后续操作失败，也需要调用asset.postQuery进行查询的后置处理。
       postQueryAsset(challenge);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
   })
 }

@@ -44,15 +44,15 @@
 
 ## 约束和限制
 
-* 基于别名的访问
+- 基于别名的访问
 
   关键资产以密文的形式存储在ASSET数据库中，以业务身份和别名作为索引。业务需保证每条关键资产的别名唯一。
 
-* 业务自定义数据存储
+- 业务自定义数据存储
 
-  ASSET为业务预留了12个关键资产自定义属性，名称以"ASSET_TAG_DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
+  - ASSET为业务预留了12个关键资产自定义属性，名称以"ASSET_TAG_DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
 
-  ASSET对部分属性会进行完整性保护，这部分属性名称以"ASSET_TAG_DATA_LABEL_CRITICAL"开头，且写入后不支持更新。
+  - ASSET对部分属性会进行完整性保护，这部分属性名称以"ASSET_TAG_DATA_LABEL_CRITICAL"开头，且写入后不支持更新。
 
 ## 代码示例
 
@@ -72,25 +72,25 @@
    #include "asset/asset_api.h"
 
    void AddAsset() {
-      static const char *SECRET = "demo_pwd";
-      static const char *ALIAS = "demo_alias";
-      static const char *LABEL = "demo_label";
+       static const char *SECRET = "demo_pwd";
+       static const char *ALIAS = "demo_alias";
+       static const char *LABEL = "demo_label";
 
-      Asset_Blob secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-      Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED },
-         { .tag = ASSET_TAG_SECRET, .value.blob = secret },
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },
-         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-      };
+       Asset_Blob secret = {(uint32_t)(strlen(SECRET)), (uint8_t *)SECRET};
+       Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
+       Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED},
+           {.tag = ASSET_TAG_SECRET, .value.blob = secret},
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias},
+           {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
+       };
 
-      int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
-      if (ret == ASSET_SUCCESS) {
-         // Asset added successfully.
-      } else {
-         // Failed to add Asset.
-      }
+       int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
+       if (ret == ASSET_SUCCESS) {
+           // 添加关键资产成功。
+       } else {
+           // 添加关键资产失败。
+       }
    }
    ```
