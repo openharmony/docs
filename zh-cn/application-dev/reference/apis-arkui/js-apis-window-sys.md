@@ -3229,7 +3229,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用窗口是否使用系统默认Density。Stage模型下，该接口需要在[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)调用生效后使用。
+设置窗口是否使用系统默认Density。Stage模型下，该接口需要在[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)调用生效后使用。
 
 不调用此接口进行设置，则表示不使用系统默认Density。
 
@@ -3243,7 +3243,7 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+| enabled | boolean | 是   | 是否设置窗口使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
 
 **错误码：**
 
@@ -3258,9 +3258,6 @@ setDefaultDensityEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
-
 try {
   windowClass.setDefaultDensityEnabled(true);
   console.info(`Succeeded in setting default density enabled`);
