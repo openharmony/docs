@@ -358,8 +358,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
                printf("Read sample failed for track %d\n", trackIndex);
                break;
          }
-         // 销毁缓冲区。
       }
+      // 销毁缓冲区。
       OH_AVBuffer_Destroy(buffer);
       buffer = nullptr;
       threadFinished.store(true);
