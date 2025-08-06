@@ -1,7 +1,7 @@
 # @ohos.screenshot (屏幕截图)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk-->
+<!--Owner: @oh_wangxk;@logn-->
 <!--SE: @hejunfei1991-->
 <!--TSE: @qinliwen0417-->
 

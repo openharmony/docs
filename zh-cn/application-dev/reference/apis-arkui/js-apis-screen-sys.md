@@ -1,7 +1,7 @@
 # @ohos.screen (屏幕)(系统接口)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk-->
+<!--Owner: @oh_wangxk;@logn-->
 <!--SE: @hejunfei1991-->
 <!--TSE: @qinliwen0417-->
 
