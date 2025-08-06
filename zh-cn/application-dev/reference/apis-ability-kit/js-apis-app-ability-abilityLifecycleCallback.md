@@ -5,15 +5,11 @@
 <!--SE: @ccllee1-->
 <!--TSE: @lixueqing513-->
 
-AbilityLifecycleCallback类提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用创建AbilityLifecycleCallback对象，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
+[UIAbility](js-apis-app-ability-uiAbility.md)从创建到销毁过程其生命周期是动态变化的。AbilityLifecycleCallback模块提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。主要用于如下场景：
 
-[UIAbility](js-apis-app-ability-uiAbility.md)的[生命周期](../../application-models/uiability-lifecycle.md)管理UIAbility从创建到销毁的全过程。UIAbility运行过程中状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。</br>
-这些场景适合使用生命周期监听：作为全局监听器，统计应用内每个UIAbility页面时长；做生命周期相关数据加载，但是和UIAbility业务逻辑解耦；应用使用生命周期监听机制对外提供SDK，通知其他模块应用状态变化。</br>
-具体使用流程如下：
-1. 应用创建AbilityLifecycleCallback对象，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
-2. 系统调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
-3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的AbilityLifecycleCallback监听回调函数。
-4. 不需要监听UIAbility生命周期变化时，应用通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
+- 应用使用生命周期监听机制作全局监听器，统计每个UIAbility页面的时长。
+- 应用在UIAbility的生命周期回调监听中加载数据，与UIAbility业务逻辑解耦。
+- 应用通过生命周期监听机制对外提供SDK，通知其他模块应用状态的变化。
 
 > **说明：**
 >
@@ -22,6 +18,12 @@ AbilityLifecycleCallback类提供监听[UIAbility](js-apis-app-ability-uiAbility
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口只能监听进程内UIAbility生命周期变化。
+
+## 使用说明
+
+1. 应用创建AbilityLifecycleCallback对象，并调用[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)接口注册UIAbility生命周期变化监听。
+2. 当UIAbility生命周期变化时，应用可以通过已注册的AbilityLifecycleCallback对象接收到UIAbility生命周期的变化通知。
+3. 当应用不需要监听UIAbility生命周期变化时，需要通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
 
 ## 导入模块
 
@@ -49,7 +51,7 @@ onAbilityCreate(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageCreate
 
@@ -70,7 +72,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageActive
 
@@ -91,7 +93,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageInactive
 
@@ -112,7 +114,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageDestroy
 
@@ -133,7 +135,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityDestroy
 
@@ -153,7 +155,7 @@ onAbilityDestroy(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityForeground
 
@@ -173,7 +175,7 @@ onAbilityForeground(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityBackground
 
@@ -193,7 +195,7 @@ onAbilityBackground(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityContinue
 
@@ -213,7 +215,7 @@ onAbilityContinue(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillCreate<sup>12+</sup>
 
@@ -233,7 +235,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageWillCreate<sup>12+</sup>
 
@@ -254,7 +256,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageWillDestroy<sup>12+</sup>
 
@@ -275,7 +277,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillForeground<sup>12+</sup>
 
@@ -295,7 +297,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillDestroy<sup>12+</sup>
 
@@ -315,7 +317,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillBackground<sup>12+</sup>
 
@@ -335,7 +337,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWillNewWant<sup>12+</sup>
 
@@ -355,7 +357,7 @@ onWillNewWant?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onNewWant<sup>12+</sup>
 
@@ -375,7 +377,7 @@ onNewWant?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillContinue<sup>12+</sup>
 
@@ -395,7 +397,7 @@ onAbilityWillContinue?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageWillRestore<sup>12+</sup>
 
@@ -416,7 +418,7 @@ onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): 
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onWindowStageRestore<sup>12+</sup>
 
@@ -437,7 +439,7 @@ onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilityWillSaveState<sup>12+</sup>
 
@@ -457,7 +459,7 @@ onAbilityWillSaveState?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
 ### onAbilitySaveState<sup>12+</sup>
 
@@ -477,16 +479,20 @@ onAbilitySaveState?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
 
-### AbilityLifecycleCallback使用
+### AbilityLifecycleCallback使用示例
 
 **示例：**
 
-AbilityLifecycleCallback提供在UIAbility外部监听UIAbility生命周期的能力，比如应用可以在[AbilityStage](../../application-models/abilitystage.md)加载的时候注册监听，这样能监听到应用内所有UIAbility的状态变化。示例代码展示在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听，在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听；监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源；此外UIAbility创建销毁、前后台状态切换时，做相关事件记录和对外发通知。</br>
-MyStage.ets
-AbilityStage文件
+本示例展示了生命周期监听机制的部分使用场景：
+1. 在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听。
+2. 在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听。
+3. 监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源。
+4. 在UIAbility创建、销毁及前后台状态切换时，记录事件并向外发送通知。
+
 ```ts
+// 以MyStage.ets文件为例，使用AbilityLifecycleCallback监听UIAbility生命周期
 import { AbilityLifecycleCallback, AbilityStage, application, UIAbility } from "@kit.AbilityKit";
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { JSON } from "@kit.ArkTS";
@@ -497,19 +503,19 @@ const DOMAIN = 0x0000;
 const TAG = 'testTag';
 
 function loadContent() {
-  // load something
+  // 加载数据
 }
 
 function releaseContent() {
-  // release something
+  // 释放数据
 }
 
 function recordAbilityEvent(abilityName: string) {
-  // record something
+  // 执行打点
 }
 
 function publishEvent() {
-  // publish event to notify
+  // 对外发布通知
 }
 
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
@@ -602,13 +608,13 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
   }
 };
 
-let lifecycleId = -1;
+let lifecycleId = -1; // 保存监听id
 
 export default class MyStage extends AbilityStage {
   onCreate(): void {
     hilog.info(DOMAIN, TAG, 'AbilityStage onCreate')
 
-    // AbilityStage创建时注册监听，并把监听id保存起来
+    // AbilityStage创建时注册UIAbility生命周期监听，并把监听id保存起来
     try {
       let applicationContext = application.getApplicationContext();
       lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
@@ -618,7 +624,7 @@ export default class MyStage extends AbilityStage {
   }
 
   onDestroy(): void {
-    // AbilityStage销毁时取消注册
+    // AbilityStage销毁时取消UIAbility生命周期监听注册
     let applicationContext = application.getApplicationContext();
     applicationContext.off('abilityLifecycle', lifecycleId).catch((e: BusinessError) => {
       hilog.error(DOMAIN, TAG, `unregister abilityLifecycle failed: ${JSON.stringify(e)}`);
@@ -627,9 +633,8 @@ export default class MyStage extends AbilityStage {
 }
 ```
 
-EntryAbility.ets
-应用入口UIAbility
 ```ts
+// 以EntryAbility.ets为例，展示应用入口UIAbility
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -648,7 +653,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
+    // 主窗创建
     hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -661,17 +666,17 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
+    // 主窗销毁
     hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
+    // UIAbility切换到前台
     hilog.info(DOMAIN, TAG, 'EntryAbility onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
+    // UIAbility切换到后台
     hilog.info(DOMAIN, TAG, 'EntryAbility  onBackground');
   }
 }
