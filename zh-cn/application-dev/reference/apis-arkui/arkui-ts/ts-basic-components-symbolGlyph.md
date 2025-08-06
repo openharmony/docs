@@ -513,7 +513,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ###  示例1（设置渲染和动效策略）
 
-该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+从API version 11开始，该示例通过[renderingStrategy](#renderingstrategy)、[effectStrategy](#effectstrategy)属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -601,7 +601,7 @@ struct Index {
 
 ###  示例2（设置动效）
 
-该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
+从API version 12开始，该示例通过[symbolEffect](#symboleffect12)属性展示了可变颜色动效和替换动效的效果。
 
 ```ts
 // xxx.ets
