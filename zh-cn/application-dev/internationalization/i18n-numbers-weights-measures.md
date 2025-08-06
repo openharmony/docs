@@ -1,3 +1,9 @@
+<!--Kit: Localization Kit -->
+<!--Subsystem: NumberFormat -->
+<!--Owner: @sunyaozu -->
+<!--SE: @sunyaozu -->
+<!--TSE: @lpw_work -->
+
 # 数字与度量衡国际化
 
 ## 使用场景
