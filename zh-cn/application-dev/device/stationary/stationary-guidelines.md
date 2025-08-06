@@ -1,4 +1,9 @@
 # Stationary开发指导
+<!--Kit: MultimodalAwarenessKit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 
 ## 场景介绍
