@@ -1,5 +1,11 @@
 # 受限开放权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## 申请方式
 
 <!--RP1-->
