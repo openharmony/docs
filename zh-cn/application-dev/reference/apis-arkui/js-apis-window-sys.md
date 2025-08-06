@@ -3362,9 +3362,9 @@ try {
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
-设置主窗口容器在焦点态和非焦点态时的背景色。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
+设置主窗口容器在焦点态和非焦点态时的背景色。在Stage模型下，该接口需在调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)后使用。
 
-窗口容器背景色覆盖整个窗口区域，包括标题栏和内容区域。当同时使用该接口和[setWindowBackgroundColor()](#setwindowbackgroundcolor9)设置背景色时，内容区域显示窗口背景色，标题栏显示窗口容器背景色。
+窗口容器背景色覆盖整个窗口区域，包括标题栏和内容区域。当同时使用该接口和[setWindowBackgroundColor()](arkts-apis-window-Window.md#setwindowbackgroundcolor9)设置背景色时，内容区域显示窗口背景色，标题栏显示窗口容器背景色。
 
 **系统接口：** 此接口为系统接口。
 
