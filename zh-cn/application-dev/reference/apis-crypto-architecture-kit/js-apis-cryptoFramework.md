@@ -199,10 +199,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)随机生成密钥对。 |
-| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey)生成指定的私钥。 |
-| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey)生成指定的公钥。 |
-| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)生成指定的密钥对。 |
+| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair10)随机生成密钥对。 |
+| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey10)生成指定的私钥。 |
+| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey10)生成指定的公钥。 |
+| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair10)生成指定的密钥对。 |
 
 ## CipherSpecItem<sup>10+</sup>
 
@@ -2444,7 +2444,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器的算法名。 |
 
-### generateKeyPair
+### generateKeyPair<sup>10+</sup>
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
@@ -2456,7 +2456,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2488,7 +2488,7 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
 })
 ```
 
-### generateKeyPair
+### generateKeyPair<sup>10+</sup>
 
 generateKeyPair(): Promise\<KeyPair>
 
@@ -2500,7 +2500,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2581,7 +2581,7 @@ try {
 }
 ```
 
-### generatePriKey
+### generatePriKey<sup>10+</sup>
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
 
@@ -2593,7 +2593,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2625,7 +2625,7 @@ asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
 })
 ```
 
-### generatePriKey
+### generatePriKey<sup>10+</sup>
 
 generatePriKey(): Promise\<PriKey>
 
@@ -2637,7 +2637,7 @@ generatePriKey(): Promise\<PriKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2715,7 +2715,7 @@ try {
 }
 ```
 
-### generatePubKey
+### generatePubKey<sup>10+</sup>
 
 generatePubKey(callback: AsyncCallback\<PubKey>): void
 
@@ -2727,7 +2727,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2759,7 +2759,7 @@ asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
 })
 ```
 
-### generatePubKey
+### generatePubKey<sup>10+</sup>
 
 generatePubKey(): Promise\<PubKey>
 
@@ -2771,7 +2771,7 @@ generatePubKey(): Promise\<PubKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -6458,7 +6458,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥派生函数的算法名称。 |
 
-### generateSecret
+### generateSecret<sup>11+</sup>
 
 generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
@@ -6468,7 +6468,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6530,7 +6530,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
   });
   ```
 
-### generateSecret
+### generateSecret<sup>11+</sup>
 
 generateSecret(params: KdfSpec): Promise\<DataBlob>
 
@@ -6540,7 +6540,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
