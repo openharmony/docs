@@ -1,4 +1,9 @@
 # @ohos.multimodalAwareness.metadataBinding (回旋镖)
+<!--Kit: MultimodalAwarenessKit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 本模块提供回旋镖能力调用，包括编码内容传递、订阅事件和取消订阅事件。
 
