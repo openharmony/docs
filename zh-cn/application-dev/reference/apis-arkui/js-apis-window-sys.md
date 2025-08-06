@@ -3243,7 +3243,7 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| enabled | boolean | 是   | 是否设置窗口使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+| enabled | boolean | 是   | 设置是否使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
 
 **错误码：**
 
