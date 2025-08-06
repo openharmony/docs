@@ -622,7 +622,6 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let res: Array<asset.AssetMap> = asset.querySync(query);
-let accessibility: number;
 for (let i = 0; i < res.length; i++) {
   // parse the attribute.
   let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
