@@ -42,7 +42,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -175,7 +175,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -225,7 +225,7 @@ asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
 
 preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
-在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQueryAsUser](#assetpostqueryasuser)。使用Promise异步回调。
+在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)和[asset.postQueryAsUser](#assetpostqueryasuser)接口。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -291,7 +291,7 @@ asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
 
 queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
-在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
+在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)接口，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)接口，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -350,7 +350,7 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
-    // parse the attribute.
+    // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
   console.info(`Succeeded in querying Asset from user space.`);
@@ -361,7 +361,7 @@ asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
 
 postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
-在指定用户空间中查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现。使用Promise异步回调。
+在指定用户空间中查询的后置处理，用于需要用户认证的关键资产（与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现）。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -378,7 +378,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 

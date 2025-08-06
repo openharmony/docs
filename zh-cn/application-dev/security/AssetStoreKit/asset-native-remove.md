@@ -61,14 +61,14 @@
        Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
 
        Asset_Attr attr[] = {
-           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产。
        };
 
        int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
        if (ret == ASSET_SUCCESS) {
-           // Succeeded in removing Asset.
+           // 删除关键资产成功。
        } else {
-           // Failed to remove Asset.
+           // 删除关键资产失败。
        }
    }
    ```

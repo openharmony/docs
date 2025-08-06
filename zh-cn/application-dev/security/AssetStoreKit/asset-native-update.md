@@ -89,9 +89,9 @@
        int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
                                      sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
        if (ret == ASSET_SUCCESS) {
-          // Succeeded in updating Asset.
+          // 更新关键资产成功。
        } else {
-          // Failed to update Asset.
+          // 更新关键资产失败。
        }
    }
    ```

@@ -169,12 +169,12 @@ async function postQueryAsset(challenge: Uint8Array) {
 }
 
 async function queryAsset() {
-  // step1. 调用asset.preQuery获取挑战值
+  // step1. 调用asset.preQuery获取挑战值。
   preQueryAsset().then(async (challenge: Uint8Array) => {
     try {
-      // step2. 传入挑战值，拉起用户认证框
+      // step2. 传入挑战值，拉起用户认证框。
       let authToken: Uint8Array = await userAuthenticate(challenge);
-      // step3 用户认证通过后，传入挑战值和授权令牌，查询关键资产明文
+      // step3 用户认证通过后，传入挑战值和授权令牌，查询关键资产明文。
       let query: asset.AssetMap = new Map();
       query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
       query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);

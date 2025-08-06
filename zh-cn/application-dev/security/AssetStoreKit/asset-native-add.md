@@ -50,9 +50,9 @@
 
 - 业务自定义数据存储
 
-  ASSET为业务预留了12个关键资产自定义属性，名称以"ASSET_TAG_DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
+  - ASSET为业务预留了12个关键资产自定义属性，名称以"ASSET_TAG_DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
 
-  ASSET对部分属性会进行完整性保护，这部分属性名称以"ASSET_TAG_DATA_LABEL_CRITICAL"开头，且写入后不支持更新。
+  - ASSET对部分属性会进行完整性保护，这部分属性名称以"ASSET_TAG_DATA_LABEL_CRITICAL"开头，且写入后不支持更新。
 
 ## 代码示例
 
@@ -88,9 +88,9 @@
 
        int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
        if (ret == ASSET_SUCCESS) {
-           // Succeeded in adding Asset.
+           // 添加关键资产成功。
        } else {
-           // Failed to add Asset.
+           // 添加关键资产失败
        }
    }
    ```

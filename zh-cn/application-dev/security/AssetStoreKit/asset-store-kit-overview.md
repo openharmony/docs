@@ -53,21 +53,21 @@ Asset Store Kit（关键资产存储服务，简称ASSET）包含了一系列开
 
 - 业务自定义数据存储
 
-  ASSET为业务预留了12个关键资产自定义属性，名称以"DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
+  - ASSET为业务预留了12个关键资产自定义属性，名称以"DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
 
-  ASSET对部分属性会进行完整性保护，这部分属性名称以"DATA_LABEL_CRITICAL"开头，写入后不支持更新。
+  - ASSET对部分属性会进行完整性保护，这部分属性名称以"DATA_LABEL_CRITICAL"开头，写入后不支持更新。
 
 - 基于群组的访问控制
 
-  ASSET不支持沙箱应用、应用分身存储或访问群组数据。
+  - ASSET不支持沙箱应用、应用分身存储或访问群组数据。
 
-  [IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为True的关键资产，不允许设置为群组共享。
+  - [IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为True的关键资产，不允许设置为群组共享。
 
 - 关键资产删除时机
-  1. 业务主动调用remove删除关键资产时，删除符合条件的数据。详见删除关键资产[ArkTS](asset-js-remove.md)、[C/C++](asset-native-remove.md)开发指导。
-  2. 应用卸载时，清除该应用存储在ASSET中的数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
-  3. 系统子用户删除时，清除该用户下ASSET中所有数据。
-  4. 设备恢复出厂设置时，清除ASSET中所有数据。
+  - 业务主动调用remove删除关键资产时，删除符合条件的数据。详见删除关键资产[ArkTS](asset-js-remove.md)、[C/C++](asset-native-remove.md)开发指导。
+  - 应用卸载时，清除该应用存储在ASSET中的数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
+  - 系统子用户删除时，清除该用户下ASSET中所有数据。
+  - 设备恢复出厂设置时，清除ASSET中所有数据。
 
 ## 与相关Kit的关系
 

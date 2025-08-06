@@ -40,7 +40,7 @@ add(attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -166,7 +166,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -277,7 +277,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 
@@ -380,7 +380,7 @@ asset.updateSync(query, attrsToUpdate);
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
-查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise异步回调。
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)和[asset.postQuery](#assetpostquery)接口。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -557,7 +557,7 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.query(query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
-    // parse the attribute.
+    // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
   }
   console.info(`Succeeded in querying Asset.`);
@@ -623,7 +623,7 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let res: Array<asset.AssetMap> = asset.querySync(query);
 for (let i = 0; i < res.length; i++) {
-  // parse the attribute.
+  // 解析属性。
   let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
 }
 console.info(`Succeeded in querying Asset.`);
@@ -633,7 +633,7 @@ console.info(`Succeeded in querying Asset.`);
 
 postQuery(handle: AssetMap): Promise\<void>
 
-查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise异步回调。
+查询的后置处理，用于需要用户认证的关键资产（与[asset.preQuery](#assetprequery)函数成对出现）。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -649,7 +649,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象,无返回结果。 |
 
 **错误码：**
 

@@ -1,5 +1,11 @@
 # Asset Store Kit（关键资产存储服务）
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 - [Asset Store Kit简介](asset-store-kit-overview.md)
 - 常见场景<!--asset-scenarios-->
   - [保护密码类数据](asset-scenario1.md)
