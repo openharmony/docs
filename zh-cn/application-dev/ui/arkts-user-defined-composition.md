@@ -1,4 +1,9 @@
 # 自定义组合
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ## 概述
 
@@ -16,7 +21,7 @@
 |    场景      | 说明     |
 |---------------|-----------------------------------------|
 | 使用@Component装饰器构建自定义组件   | 自定义封装的代表性方法是[@Component](../ui/state-management/arkts-create-custom-components.md#component)装饰器，可以通过将已有的自定义组件和基础组件进行组装，构成新的自定义组件。通常用于有内部成员方法、状态变量的部件，例如：视频列表里面的每一个视频卡片，卡片内部有自己的视频组件、文本组件、点击事件、跳转链接等等。 |
-| 使用@Builder装饰器构建可复用的UI结构   |   相比于[@Component](../ui/state-management/arkts-create-custom-components.md#component)装饰器，[@Builder](../ui/state-management/arkts-builder.md)装饰器更加轻量级，可以将纯粹的UI结构风封装成方法，在各个自定义组件的build方法中进行调用，达成UI结构复用的目的。相当于将[@Component](../ui/state-management/arkts-create-custom-components.md#component)里面的build部分单抽出来，本身不包含状态变量。  |
+| 使用@Builder装饰器构建可复用的UI结构   |   相比于[@Component](../ui/state-management/arkts-create-custom-components.md#component)装饰器，[@Builder](../ui/state-management/arkts-builder.md)装饰器更加轻量级，可以将纯粹的UI结构封装成方法，在各个自定义组件的build方法中进行调用，达成UI结构复用的目的。相当于将[@Component](../ui/state-management/arkts-create-custom-components.md#component)里面的build部分单抽出来，本身不包含状态变量。  |
 | 使用Stack容器对子组件进行自定义布局   | 对于子组件明确、结构相对简单的布局场景，可以使用层叠布局，通过[Stack](./arkts-layout-development-stack-layout.md)容器，结合[尺寸](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[位置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)的通用属性，来控制子组件的布局。[Stack](./arkts-layout-development-stack-layout.md)组件中的子元素依次入栈，通过顺序来控制遮盖效果，具有较强的页面层叠能力，常用于实现卡片层叠等效果。  |
 | 结合自定义组件的布局生命周期回调方法进行自定义布局     |  对于子组件组成是动态的场景，可结合布局生命周期回调方法实现[自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)，随子组件的动态变化，动态调整子组件的尺寸和位置，形成特定的布局算法。  |
 | 组合基础图形实现自定义绘制效果|如果高级组件的UI效果是较为规则化的，例如：矩形、圆形、多边形等基础的图形，以及基础图形组合成的自定义图形，可通过基础的[图形类组件](arkts-geometric-shape-drawing.md)（[Rect](../reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md)、[Path](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md)、[Circle](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md)、[Ellipse](../reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md)、[Polyline](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md)、[Polygon](../reference/apis-arkui/arkui-ts/ts-drawing-components-polygon.md)）组合完成。 |
