@@ -1270,7 +1270,7 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -4629,7 +4629,7 @@ on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&g
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -4688,7 +4688,7 @@ off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中不生效也不报错。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
 
 **参数：**
 
@@ -6399,7 +6399,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -6559,7 +6559,7 @@ recover(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -6617,7 +6617,7 @@ restore(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -6770,7 +6770,7 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 19开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 19开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -6978,7 +6978,7 @@ getWindowDecorVisible(): boolean
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -7018,7 +7018,7 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7069,7 +7069,7 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7317,7 +7317,7 @@ setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 18开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 18开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7377,7 +7377,7 @@ getDecorButtonStyle(): DecorButtonStyle
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 18开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 18开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -7745,7 +7745,7 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7813,7 +7813,7 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限：** ohos.permission.WINDOW_TOPMOST
 
@@ -8416,7 +8416,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8520,7 +8520,7 @@ stopMoving(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8810,7 +8810,7 @@ getWindowCornerRadius(): number
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
