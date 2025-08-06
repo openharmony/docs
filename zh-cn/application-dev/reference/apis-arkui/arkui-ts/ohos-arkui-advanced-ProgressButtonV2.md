@@ -1,4 +1,9 @@
 # ProgressButtonV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 
 文本下载按钮，可显示具体的下载进度。
@@ -82,7 +87,9 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                           | 必填 | 说明    |
+**参数：**
+
+| 参数名       | 类型                           | 必填 | 说明    |
 |---------|------------------------------|----|-------|
 | options | ProgressButtonV2ColorOptions | 是  | 色彩信息。 |
 
