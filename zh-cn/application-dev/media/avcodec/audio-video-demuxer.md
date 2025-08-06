@@ -217,7 +217,6 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    int32_t trackCount = 0;
    if (!OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount)) {
-      // 需释放前置流程资源，参考第10步
       printf("get track count from source format failed");
    }
    if (trackCount == 0) {
