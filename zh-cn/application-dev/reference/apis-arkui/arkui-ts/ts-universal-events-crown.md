@@ -1,4 +1,9 @@
 # 表冠事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
    指扭动表冠时触发的事件，事件的分发依赖于应用焦点，开发者可以通过[焦点事件](ts-universal-attributes-focus.md)自定义事件处理。
 
 >  **说明：**
@@ -25,7 +30,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 
 **参数：** 
-| 参数名      | 类型                             | 必填     | 描述                                      |
+| 参数名      | 类型                             | 必填     | 说明                                      |
 | ---------- | -------------------------------- | ------- | ----------------------------------------- |
 | handler      | Optional&lt;Callback&lt;[CrownEvent](#crownevent对象说明)&gt;&gt; | 是       | 获得[CrownEvent](#crownevent对象说明)对象。   |
 
@@ -43,13 +48,13 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 类型           | 描述                                    |
-| --------------------- | -------------- | -------------------------------------- |
-| timestamp	        | number	 | 时间戳。                                  |
-| angularVelocity	| number	 | 旋转角速度，每秒转的角度(°/s)。                   |
-| degree	        | number 	 | 相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |
-| action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | 表冠动作。  |
-| stopPropagation	| () => void     | 阻止事件冒泡。                         |
+| 名称                   | 类型       | 只读    |  可选   |  说明                                                       |
+| --------------------- | ------------- | ---------- |------------ |-------------------------------------- |
+| timestamp	        | number	 |  否     | 否    |时间戳。                                  |
+| angularVelocity	| number	 |  否     | 否    |旋转角速度，每秒转的角度(°/s)。                   |
+| degree	        | number 	 |  否     | 否    |相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |
+| action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   |  否     | 否    |表冠动作。  |
+| stopPropagation	| () => void    |  否      | 否    |阻止[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。                         |
 
 ## 示例
 该示例实现了组件注册表冠事件，接收表冠事件数据上报内容。

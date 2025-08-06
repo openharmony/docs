@@ -1,4 +1,9 @@
 # 状态管理概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 在前文的描述中，构建的页面主要为静态界面。如果要构建一个动态的、有交互的界面，就需要引入“状态”的概念。
 
@@ -129,7 +134,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 针对页面状态管理，有以下相关实例可供参考：
 
-- [状态管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
+- [状态管理（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
 
 - [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
 

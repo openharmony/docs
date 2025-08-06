@@ -1,4 +1,9 @@
 # 颜色渐变
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件的颜色渐变效果。
 
@@ -76,7 +81,7 @@ linearGradient(options: Optional\<LinearGradientOptions>): T
 | ------------------------------------------ | ------------------------------------------------------------ | ---- | ---- |------------------------------------------------------------ |
 | angle<sup>7+</sup>                                      | number&nbsp;\|&nbsp;string                                   | 否 | 是   | 线性渐变的起始角度。角度为0度时渐变方向为从下往上（即0点方向）。0点方向顺时针旋转为正向角度。<br/> 取值范围：(-∞,+∞)，设置的值大于0时，按顺时针方向，小于0时，按逆时针方向。 </br>默认值：180 </br>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位，例如："90"、 "90deg"、"1.57rad"。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | direction<sup>7+</sup>                                  | [GradientDirection](ts-appendix-enums.md#gradientdirection)  | 否 | 是   | 线性渐变的方向，设置angle为非undefined后不生效。设置为GradientDirection.None时，按默认方向渐变。默认值：GradientDirection.Bottom。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| [colors](#radialgradientoptions18对象说明)<sup>7+</sup> | Array[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 否 | 否   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。ResourceColor表示颜色，number表示该颜色所处的位置，取值范围为[0, 1.0]，设置的值小于0时，按0处理，设置的值大于1.0时，按1.0处理。0表示需要设置渐变色的开始处，1.0表示渐变色的结束处。为了实现多个颜色渐变效果，多个数组中的number类型参数应递增设置。如果后一个数组中的number类型参数小于前一个数组的number类型参数，将按照等于前一个数组number值处理。<br> 默认值：[]，无渐变效果。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| [colors](#radialgradientoptions18对象说明)<sup>7+</sup> | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 否 | 否   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。ResourceColor表示颜色，number表示该颜色所处的位置，取值范围为[0, 1.0]，设置的值小于0时，按0处理，设置的值大于1.0时，按1.0处理。0表示需要设置渐变色的开始处，1.0表示渐变色的结束处。为了实现多个颜色渐变效果，多个数组中的number类型参数应递增设置。如果后一个数组中的number类型参数小于前一个数组的number类型参数，将按照等于前一个数组number值处理。<br> 默认值：[]，无渐变效果。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | repeating<sup>7+</sup>                                  | boolean                                                      | 否 | 是  | 为渐变的颜色重复着色。<br>默认值：false。<br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## sweepGradient

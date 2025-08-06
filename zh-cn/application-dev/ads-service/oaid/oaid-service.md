@@ -1,5 +1,11 @@
 # 开放匿名设备标识服务
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 ## 获取OAID信息
 
 

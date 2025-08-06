@@ -1,5 +1,11 @@
 # HiDebug_MallocDispatch
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 应用程序进程可替换/恢复的HiDebug_MallocDispatch表结构类型定义。

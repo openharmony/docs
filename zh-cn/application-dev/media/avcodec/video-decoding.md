@@ -18,7 +18,7 @@
 
 ## 限制约束
 
-1. Buffer模式不支持HDRVivid解码。
+1. Buffer模式不支持HDR Vivid解码。
 2. Flush，Reset，Stop之后，重新Start时，需要重新传PPS/SPS。具体示例请参考[Surface模式](#surface模式)“步骤-13：调用OH_VideoDecoder_Flush()”。
 3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给开发者。
 4. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy接口来销毁实例并释放资源。
@@ -625,7 +625,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     > **注意：**
-    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    >
+    > 1. 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    > 2. 显示并释放解码帧时，推荐优先调用[OH_VideoDecoder_RenderOutputBufferAtTime](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_renderoutputbufferattime)接口。
     >
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。

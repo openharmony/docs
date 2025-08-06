@@ -1,5 +1,11 @@
 # 使用约束管控系统账号（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 账号管理模块提供了基于角色的访问控制机制，用户可以为系统账号设置约束，以限制目标账号的行为。
 
 ## 约束列表

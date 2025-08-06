@@ -1,4 +1,9 @@
 # 共享容器
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## ArkTS容器集
 
@@ -42,7 +47,8 @@ struct Index {
           let lock = new ArkTSUtils.locks.AsyncLock();
           let arr = collections.Array.create<number>(1, 0);
           let count = 1000;
-          while (count--) {
+          let num = count;
+          while (num--) {
             taskGroup.addTask(add, arr, lock);
           }
           taskpool.execute(taskGroup).then(() => {
@@ -57,7 +63,7 @@ struct Index {
   }
 }
 ```
-<!-- @[example_use](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
+<!-- @[example_use](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
 
 ## 共享容器与原生API方法的行为差异对比
 

@@ -1,4 +1,9 @@
 # XML转换
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 将XML文本转换为JavaScript对象，便于处理和操作数据，适用于JavaScript应用程序。

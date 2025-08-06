@@ -1,5 +1,11 @@
 # HiAppEvent_Watcher
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 用于接收app事件的监听器。

@@ -73,7 +73,7 @@ let serviceCenter: string = '+861xxxxxxxxxx';
 let destinationPort: number = 1000;
 let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
 sms.sendShortMessage(options, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    console.error(`callback: err->${JSON.stringify(err)}`);
 });
 
 ```
@@ -125,7 +125,7 @@ struct JumpMessage {
         this.context.startAbilityForResult(want).then((data) => {
             console.log("Success" + JSON.stringify(data));
         }).catch(() => {
-            console.log("error");
+            console.error("error");
         });
     }
 
@@ -201,7 +201,7 @@ struct Index {
           context.startAbility(want).then((data) => {
               console.log("Success" + JSON.stringify(data));
           }).catch(() => {
-              console.log("error");
+              console.error("error");
           });
 
         })

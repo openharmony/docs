@@ -1,4 +1,9 @@
 # ArcSlider
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 弧形滑动条组件，通常用于在圆形屏幕的穿戴设备中快速调节设置值，如音量调节、亮度调节等应用场景。
 
@@ -309,6 +314,8 @@ ArcSliderStyleOptions的构造信息。
 | trackBlur            | number | 否   | 设置描边背景模糊值，单位：vp。<br />默认值：20<br/>设置小于0的值时，按照默认值处理。 |
 
 ## 示例
+
+从API version 18开始，该示例展示了ArcSlider组件的基本用法。
 
 ```ts
 // xxx.ets

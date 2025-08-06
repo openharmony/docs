@@ -140,6 +140,6 @@ libvulkan.so
 
 针对Vulkan的使用，具体可见以下相关实例：
 
-- [XComponent组件对接Vulkan（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkVulkan)
+- [XComponent组件对接Vulkan（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkVulkan)
 
 后续更多vulkan的用法请参考[Vulkan官方网站](https://www.vulkan.org/)。

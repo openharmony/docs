@@ -114,8 +114,8 @@ export default class EntryAbility extends UIAbility {
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
 
 > **说明：**  
-> 由于以下几种情况，移动设备场景下不推荐使用子窗口，优先推荐使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
-> - 移动设备场景下子窗不能超出主窗口范围，与控件一致。  
+> 以下几种场景不建议使用子窗口，建议优先考虑使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
+> - 移动设备（手机、在非自由模式下的平板设备）场景下子窗不能超出处于悬浮窗、分屏状态的主窗口范围，与控件一致。  
 > - 分屏窗口与自由窗口模式下，主窗口位置大小发生改变时控件实时跟随变化能力优于子窗。  
 > - 部分设备平台下根据实际的系统配置限制，子窗只有系统默认的动效和圆角阴影，应用无法设置，自由度低。
 
@@ -161,6 +161,10 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -187,8 +191,12 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in loading the content.');
+          if (!sub_windowClass) {
+            console.error('sub_windowClass is null');
+            return;
+          }
           // 3.显示子窗口。
-          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+          sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
               console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -202,8 +210,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   destroySubWindow() {
+    if (!sub_windowClass) {
+      console.error('sub_windowClass is null');
+      return;
+    }
     // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
-    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+    sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
@@ -230,17 +242,21 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // EntryAbility.ets
-onWindowStageCreate(windowStage: window.WindowStage) {
-  windowStage.loadContent('pages/Index', (err) => {
-    if (err.code) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in loading the content.');
-  })
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    })
 
-  // 给Index页面传递windowStage
-  AppStorage.setOrCreate('windowStage', windowStage);
+    // 给Index页面传递windowStage
+    AppStorage.setOrCreate('windowStage', windowStage);
+  }
 }
 ```
 
@@ -255,7 +271,7 @@ let sub_windowClass: window.Window | undefined = undefined;
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private CreateSubWindow(){
+  private createSubWindow(){
     // 获取windowStage
     windowStage_ = AppStorage.get('windowStage');
     // 1.创建应用子窗口。
@@ -270,6 +286,10 @@ struct Index {
           return;
         }
         sub_windowClass = data;
+        if (!sub_windowClass) {
+          console.error('sub_windowClass is null');
+          return;
+        }
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -296,8 +316,12 @@ struct Index {
             return;
           }
           console.info('Succeeded in loading the content.');
+          if (!sub_windowClass) {
+            console.error('sub_windowClass is null');
+            return;
+          }
           // 3.显示子窗口。
-          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+          sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
               console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -310,8 +334,12 @@ struct Index {
     }
   }
   private destroySubWindow(){
+    if (!sub_windowClass) {
+      console.error('sub_windowClass is null');
+      return;
+    }
     // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
-    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+    sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
@@ -333,7 +361,7 @@ struct Index {
         }.width(220).height(68)
         .margin({left:10, top:60})
         .onClick(() => {
-          this.CreateSubWindow()
+          this.createSubWindow()
         })
         Button(){
           Text('destroySubWindow')
@@ -362,12 +390,13 @@ struct SubWindow {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(20)
           .fontWeight(FontWeight.Bold)
       }
       .width('100%')
     }
     .height('100%')
+    .backgroundColor('#0D9FFB')
   }
 }
 ```
@@ -577,19 +606,19 @@ export default class EntryAbility extends UIAbility {
           JSON.stringify(data));
 
         // 根据事件状态类型选择进行相应的处理
-        if (data == window.WindowStageEventType.SHOWN) {
+        if (data === window.WindowStageEventType.SHOWN) {
           console.info('current window stage event is SHOWN');
           // 应用进入前台，默认为可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.HIDDEN) {
+        } else if (data === window.WindowStageEventType.HIDDEN) {
           console.info('current window stage event is HIDDEN');
           // 应用进入后台，默认为不可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.PAUSED) {
+        } else if (data === window.WindowStageEventType.PAUSED) {
           console.info('current window stage event is PAUSED');
           // 前台应用进入多任务，转为不可交互状态
           // ...
-        } else if (data == window.WindowStageEventType.RESUMED) {
+        } else if (data === window.WindowStageEventType.RESUMED) {
           console.info('current window stage event is RESUMED');
           // 进入多任务后又继续返回前台时，恢复可交互状态
           // ...
@@ -609,8 +638,8 @@ export default class EntryAbility extends UIAbility {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+- [`Window`：一多设置典型页面（Settings）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
+- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
 
-- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)
+- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)

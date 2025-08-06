@@ -1,5 +1,11 @@
 # 查询支持的认证能力
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 不同的设备对于认证能力（人脸、指纹、口令）的支持性各有差异，开发者在发起认证前应当先查询当前设备支持的用户认证能力。
 
 ## 接口说明

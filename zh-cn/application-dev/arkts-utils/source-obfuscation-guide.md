@@ -1,4 +1,9 @@
 # ArkGuard混淆开启指南
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--SE: @xiao-peiyang; @dengxinyu-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 开启源码混淆
 
@@ -81,7 +86,7 @@
 
   > **说明**：
   >
-  > 如果在`consumer-rules.txt`文件中配置了[混淆选项](source-obfuscation.md#混淆选项)，可能会对主模块产生影响。因此，建议仅在该文件中配置[保留选项](source-obfuscation.md#保留选项)。
+  > 如果在`consumer-rules.txt`文件中配置了[混淆选项](source-obfuscation.md#混淆选项)，可能会对依赖了HAR或HSP的主模块产生影响。因此，建议仅在该文件中配置[保留选项](source-obfuscation.md#保留选项)。
 
 * `obfuscation.txt`  
     不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR或HSP时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR或HSP包中。在其他应用依赖该发布包时，会合并其中的混淆规则应用于当前编译流程。`obfuscation.txt`内容的生成及合并逻辑请参考[混淆规则合并策略](source-obfuscation.md#混淆规则合并策略)。

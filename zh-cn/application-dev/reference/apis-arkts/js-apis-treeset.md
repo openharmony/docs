@@ -1,4 +1,9 @@
 # @ohos.util.TreeSet (非线性容器TreeSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 TreeSet基于[TreeMap](js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
 
@@ -577,8 +582,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的value元素，默认值为首个键值对的值。 |
-| key | T | 否 | 当前遍历到的key元素，默认值为首个键值对的键。 |
+| value | T | 否 | 当前遍历到的value元素。 |
+| key | T | 否 | 当前遍历到的key元素。 |
 | set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**

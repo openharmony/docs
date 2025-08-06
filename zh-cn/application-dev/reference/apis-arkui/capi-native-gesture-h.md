@@ -1,4 +1,9 @@
 # native_gesture.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ## 概述
 
@@ -292,6 +297,14 @@ typedef void (*ArkUI_GestureRecognizerDisposeNotifyCallback)(ArkUI_GestureRecogn
 定义手势识别器析构通知事件的回调函数类型。
 
 **起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
+| void* userData | 用户自定义数据。 |
 
 ### OH_ArkUI_GestureInterruptInfo_GetSystemFlag()
 

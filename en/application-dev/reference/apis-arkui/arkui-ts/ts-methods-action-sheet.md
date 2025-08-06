@@ -37,9 +37,9 @@ Shows an action sheet in the given settings.
 | title      | string \| [Resource](ts-types.md#resource) | Yes    |  Title of the dialog box.<br>If the text is too long to display, it is truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.<br>If the text is too long to display, it is truncated with an ellipsis (...).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | message    | string \| [Resource](ts-types.md#resource) | Yes    | Content of the dialog box.<br>If the text is too long to display, a scrollbar is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**<br>The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| autoCancel | boolean                           | No    | Whether to close the dialog box when the mask is clicked.<br>Default value: **true**<br>The value **true** means to close the dialog box when the mask is clicked, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions18) | No | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cancel     | [VoidCallback](ts-types.md#voidcallback12) | No    | Callback invoked when the dialog box is closed after the overlay is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| cancel     | [VoidCallback](ts-types.md#voidcallback12) | No    | Callback invoked when the dialog box is closed after the mask is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.|
 | offset     | [ActionSheetOffset](#actionsheetoffset18) | No     | Offset of the dialog box relative to the alignment position.<br>Default value:<br>1. When alignment is set to **Top**, **TopStart**, or **TopEnd**: {dx: 0,dy: "40vp"}<br>2. When **alignment** is set to any other value: {dx: 0,dy: "-40vp"}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo)&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -67,7 +67,7 @@ Shows an action sheet in the given settings.
 | onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | levelMode<sup>15+</sup>       | [LevelMode](#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY.**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelUniqueId<sup>15+</sup>       | number | No  | [Unique ID](../js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-| immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15) | No  | Mask effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | No  | Display order of the dialog box.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**<br>- Dynamic updating is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## SheetInfo
@@ -100,7 +100,7 @@ Defines the display level for the dialog box.
 
 type ImmersiveMode = ImmersiveMode
 
-Defines the overlay effect for the dialog box.
+Defines the mask effect for the dialog box.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -108,7 +108,7 @@ Defines the overlay effect for the dialog box.
 
 | Type                                                        | Description                      |
 | ------------------------------------------------------------ | -------------------------- |
-| [ImmersiveMode](../js-apis-promptAction.md#immersivemode15) | Overlay effect for the page-level dialog box.|
+| [ImmersiveMode](../js-apis-promptAction.md#immersivemode15) | Mask effect for the page-level dialog box.|
 
 ## DismissDialogAction<sup>12+</sup>
 

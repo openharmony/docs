@@ -1,4 +1,9 @@
 # 组件内容模糊
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 为当前组件添加内容模糊效果。
 

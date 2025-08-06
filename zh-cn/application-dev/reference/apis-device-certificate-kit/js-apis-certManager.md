@@ -1,5 +1,11 @@
 # @ohos.security.certManager (证书管理模块)
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--SE: @chande-->
+<!--TSE: @zhangzhi1995-->
+
 证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用。
 
 > **说明：**

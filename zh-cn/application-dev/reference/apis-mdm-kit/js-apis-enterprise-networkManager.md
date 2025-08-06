@@ -1,4 +1,9 @@
 # @ohos.enterprise.networkManager（网络管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备网络管理能力，包括查询设备IP地址、MAC地址信息等。
 
@@ -27,6 +32,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -81,6 +87,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -137,6 +144,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -193,6 +201,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -249,6 +258,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -301,6 +311,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -354,20 +365,21 @@ try {
 
 setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId: number): void
 
-设置指定用户下的网络代理，当前仅支持2in1设备。
+设置指定用户下的网络代理，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名    | 类型                                                         | 必填 | 说明                       |
 | --------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
-| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 | httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络代理配置信息。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **错误码**：
 
@@ -419,6 +431,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -468,12 +481,13 @@ try {
 
 getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 
-获取指定用户下的网络代理，当前仅支持2in1设备。
+获取指定用户下的网络代理，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -532,6 +546,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -564,7 +579,7 @@ let wantTemp: Want = {
 };
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -588,6 +603,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -621,7 +637,7 @@ let wantTemp: Want = {
 
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -647,6 +663,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -697,6 +714,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -748,6 +766,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -803,6 +822,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -852,6 +872,7 @@ turnOnMobileData(admin: Want, isForce: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -900,6 +921,7 @@ turnOffMobileData(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -947,6 +969,7 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1001,6 +1024,7 @@ deleteApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1049,6 +1073,7 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1105,6 +1130,7 @@ setPreferredApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1153,6 +1179,7 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1213,6 +1240,7 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1271,8 +1299,8 @@ try {
 | srcPort   | string                  | 否   | 是 |源端口。                                                     |
 | destPort  | string                  | 否   | 是 |目标端口。                                                   |
 | appUid    | string                  | 否   | 是 |应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
 
 ## DomainFilterRule
@@ -1287,7 +1315,7 @@ try {
 | domainName | string            | 否   | 是 |域名。添加域名过滤规则时必填。                               |
 | appUid     | string            | 否   | 是 |应用uid。                                                    |
 | action     | [Action](#action) | 否   | 是 |接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
-| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
+| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
 
 ## Direction
 

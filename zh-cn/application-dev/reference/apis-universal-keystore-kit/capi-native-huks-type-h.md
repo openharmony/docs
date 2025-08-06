@@ -1,5 +1,11 @@
 # native_huks_type.h
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 ## 概述
 
 提供huks中的枚举变量、结构体定义与宏定义。
@@ -389,7 +395,8 @@ enum OH_Huks_ErrCode
 | OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 | 内存不足。 |
 | OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015 | 调用服务失败。 |
 | OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016 | 需要锁屏密码，但没有设置。<br>**起始版本：** 11 |
-| OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018 | 输入的参数无效。 <br>**起始版本：** 20 |
+| OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017 | 同名密钥已存在。<br>**起始版本：** 20 |
+| OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018 | 输入的参数无效。<br>**起始版本：** 20 |
 
 ### OH_Huks_TagType
 
@@ -561,22 +568,7 @@ enum OH_Huks_Tag
 
 **描述**
 
-参数集所用的TAG值枚举。
-
-1-200：密钥参数标签值。
-
-301-500：密钥使用访问控制和使用认证相关的标签值。
-
-501 - 600：密钥认证相关的标签值。
-
-601-1000：其他类型的标签值预留值。
-
-1001-9999：扩展标签值。
-
-11000-12000：预留值。
-
-20001-N：其他标签预留值。
-
+参数集所用的TAG值枚举。<br> 1-200：密钥参数标签值。<br> 301-500：密钥使用访问控制和使用认证相关的标签值。<br> 501-600：密钥认证相关的标签值。<br> 601-1000：其他类型的标签值预留值。<br> 1001-9999：扩展标签值。<br> 11000-12000：预留值。<br> 20001-N：其他标签预留值。
 
 **起始版本：** 9
 
@@ -624,6 +616,7 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_ATTESTATION_ID_ALIAS = OH_HUKS_TAG_TYPE_BYTES \| 511 | 密钥别名。 |
 | OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES \| 514 | 密钥认证时的安全凭据。 |
 | OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES \| 515 | 密钥认证时的版本号。 |
+| OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL \| 520 | 是否覆写同名密钥。<br>**起始版本：** 20 |
 | OH_HUKS_TAG_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL \| 1001 | 是否是密钥别名。 |
 | OH_HUKS_TAG_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT \| 1002 | 密钥存储方式的标签，类型可在枚举 [OH_Huks_KeyStorageType](#oh_huks_keystoragetype)选择。 |
 | OH_HUKS_TAG_IS_ALLOWED_WRAP = OH_HUKS_TAG_TYPE_BOOL \| 1003 | 是否允许密钥封装。 |
@@ -633,7 +626,7 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_KEY_FLAG = OH_HUKS_TAG_TYPE_UINT \| 1007 | 密钥标记，类型可在枚举[OH_Huks_KeyFlag](#oh_huks_keyflag)选择。 |
 | OH_HUKS_TAG_IS_ASYNCHRONIZED = OH_HUKS_TAG_TYPE_UINT \| 1008 | 是否异步。 |
 | OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT \| 1011 | 密钥域。 |
-| OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL \| 1012 | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br>True表示只有在密码设置时才能生成和使用密钥。<br>**起始版本：** 11|
+| OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL \| 1012 | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br> True表示只有在密码设置时才能生成和使用密钥。<br>**起始版本：** 11|
 | OH_HUKS_TAG_AE_TAG = OH_HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。 |
 | OH_HUKS_TAG_SYMMETRIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES \| 20001 | 对称密钥数据。 |
 | OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES \| 20002 | 非对称密钥公钥数据。 |

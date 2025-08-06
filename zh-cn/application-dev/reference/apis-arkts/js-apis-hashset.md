@@ -1,8 +1,13 @@
 # @ohos.util.HashSet (非线性容器HashSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: commonlibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，仅处理value对象。
 
-HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，HashSet允许插入null值，TreeSet不建议插入null值，可能会影响排序。
+HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据按Hash值排序，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，HashSet允许插入null值，TreeSet不建议插入null值，可能会影响排序。
 
 **推荐使用场景：** 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
@@ -314,8 +319,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
-| key | T | 否 | 当前遍历到的元素键值对的键（和value相同），默认值为首个键值对的键。 |
+| value | T | 否 | 当前遍历到的元素键值对的值。 |
+| key | T | 否 | 当前遍历到的元素键值对的键（和value相同）。 |
 | set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**

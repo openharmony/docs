@@ -1,10 +1,16 @@
 # HAR
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
+
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
 ## 使用场景
 - 支持应用内共享，也可以作为二方库（SDK）、三方库（SDK）发布后供其他应用使用。
 - 作为二方库（SDK），发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-ohpm-repo)，供公司内部其他应用使用。
-- 作为三方库（SDK），发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
+- 作为三方库（SDK），发布到[OHPM中心仓](https://ohpm.openharmony.cn/#/cn/home)，供其他应用使用。
 
 ## 约束限制
 
@@ -306,7 +312,7 @@ struct Index {
 ```
 ## 编译
 
-HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护，建议[开启混淆能力](../arkts-utils/source-obfuscation.md)。
+HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护，建议[开启混淆](../arkts-utils/source-obfuscation-guide.md#开启源码混淆)。
 
 [混淆能力](../arkts-utils/source-obfuscation.md)开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 
@@ -347,7 +353,7 @@ HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，�
 
 > **场景说明**
 >
->在HAR中使用[Sendable](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/sendable-object)时，开启该配置。
+>在HAR中使用[Sendable](../arkts-utils/arkts-sendable.md)时，开启该配置。
 
 > **使用限制**
 >
@@ -381,4 +387,4 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 相关实例
 
-- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)
+- [购物示例应用](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)

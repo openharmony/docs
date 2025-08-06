@@ -220,10 +220,14 @@ OH_Drawing_FontDestroy(font);
 
 ![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacterWithFeatures.png)
 
+> **说明**
+>
+> 如果 `OH_Drawing_CanvasDrawSingleCharacterWithFeatures` 与 `OH_Drawing_FontMeasureSingleCharacter` 混合使用，或者 `OH_Drawing_CanvasDrawSingleCharacter` 与 `OH_Drawing_FontMeasureSingleCharacterWithFeatures` 混合使用，字体绘制可能会重叠。
+
 <!--RP1-->
 ## 相关实例
 
 针对Drawing(C/C++)的开发，有以下相关实例可供参考：
 
-- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+- [NDKGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
 <!--RP1End-->

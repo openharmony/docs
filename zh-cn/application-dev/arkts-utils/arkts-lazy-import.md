@@ -1,14 +1,18 @@
 # 延迟加载（lazy import）
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @DaiHuina1997-->
+<!--SE: @yao_dashuai-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 随着应用程序功能的扩展，冷启动时间显著增加，主要是因为启动初期加载了大量未实际执行的模块。这不仅延长了应用的初始化时间，还浪费了资源。需要精简加载流程，剔除非必需的文件执行，优化冷启动性能，确保用户体验流畅。
 
 > **说明：**
-> 
+>
 > - 延迟加载特性在API 12版本开始支持。
 >
 > - 开发者如需在API 12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
 > - 针对API version大于12的工程，开发者可直接使用lazy import语法，无需再进行其他配置。
-
 
 ## 功能特性
 
@@ -16,17 +20,17 @@
 
 ## 使用方式
 
-开发者可以利用[可延迟加载文件检测](#可延迟加载文件检测)、<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[可延迟加载文件检测](#可延迟加载文件检测)、[延迟加载lazy-import使用指导](../performance/Lazy-Import-Instructions.md)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
+开发者可以利用[DevEco Profiler展示冷启动过程文件加载情况](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-launch)、[可延迟加载文件检测](#可延迟加载文件检测)、<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[可延迟加载文件检测](#可延迟加载文件检测)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
 > **说明：**
 >
 > 不建议盲目增加lazy，这会增加编译和运行时的识别开销。
-    
+
 ## 场景行为解析
 
 - 使用lazy-import延迟加载。
 
-```typescript    
+```typescript
 // main.ets   
 import lazy { a } from "./mod1";    // "mod1" 未执行
 import { c } from "./mod2";         // "mod2" 执行
@@ -47,17 +51,17 @@ export let c = "mod2 executed"
 console.info(c);
 
 ```
-    
+
 执行结果为：
-    
-```typescript    
+
+```typescript
 mod2 executed
 main executed
 ```
 
 - 同时对同一模块引用lazy-import与import。
 
-```typescript    
+```typescript
 // main.ets   
 import lazy { a } from "./mod1";    // "mod1" 未执行
 import { c } from "./mod2";         // "mod2" 执行
@@ -84,22 +88,40 @@ console.info(c);
 ```
 
 执行结果为：
-    
+
 ```typescript  
 mod2 c executed
 mod1 a executed
 mod1 b executed
 main executed
 ```
-    
+
 如果在main.ets内删除lazy关键字，执行顺序如下：
-    
+
 ```typescript  
 mod1 a executed
 mod1 b executed
 mod2 c executed
 main executed
 ```
+
+## lazy-import与动态加载的区别
+
+lazy-import与[动态加载](./arkts-dynamic-import.md)都可以延后特定文件的执行时间，帮助设备分摊性能消耗，缓解特定时段的性能压力。
+
+| 区别项       | 动态加载                                         | lazy-import                                                 |
+|-----------|----------------------------------------------|-------------------------------------------------------------|
+| 语法示例      | let A = await import("./A");                 | import lazy { A } from "./A";                               |
+| 性能开销      | 1.创建异步任务开销。</br>2.执行到动态加载时，触发依赖模块的模块解析+源码执行。 | 1.lazy-import的模块解析在冷启动依旧会触发遍历。</br>2.导入的变量A被使用到时，触发模块的源码执行。 |
+| 使用位置      | 代码块/运行逻辑中使用                                  | 需要写在源码开头                                                    |
+| 是否可以运行时拼接 | 是                                            | 否                                                           |
+| 加载时序      | 异步                                           | 同步                                                          |
+
+lazy-import 相较于动态加载的优势：
+
+1. 在使用动态加载时，开发者需要将静态加载的代码（即同步导入）改写为动态加载语法（即异步导入），这可能涉及较大的代码修改量。
+2. 如果希望在冷启动阶段通过动态加载实现优化，开发者需要明确感知到被动态加载的文件在冷启动时不会被执行，否则会增加冷启动开销（放入异步队列等）。
+3. 相较于动态加载，使用 lazy-import 延迟加载，开发者只需在 import 语句中添加 lazy 关键字即可实现延迟加载，使用更加便捷。
 
 ## 语法规格及起始支持版本
 
@@ -137,7 +159,7 @@ impott lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编�
 
 与type关键词同时使用会导致编译报错。
 
-```typescript    
+```typescript
 import lazy type { obj } from "./mod";    // 不支持，编译器、应用编译报错
 import type lazy { obj } from "./mod";    // 不支持，编译器、应用编译报错
 ```
@@ -145,8 +167,9 @@ import type lazy { obj } from "./mod";    // 不支持，编译器、应用编�
 ### 不推荐用法 
 
 - 在同一个ets文件中，期望延迟加载的依赖模块标记不完全。
-    
-    标记不完全将导致延迟加载失效，并且增加识别延迟加载的开销。
+
+标记不完全将导致延迟加载失效，并且增加识别延迟加载的开销。
+
 ```typescript
 // main.ets   
 import lazy { a } from "./mod1";    // 从"mod1"内获取a对象，标记为延迟加载
@@ -155,7 +178,9 @@ import { b } from "./mod1";         // 再次获取"mod1"内属性，未标记la
         
 // ...
 ```
-- 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出，可以通过打开工程级build-profile.json5文件中的reExportCheckMode开关进行扫描排查。
+
+- 在同一ets文件中，未使用延迟加载变量并再次导出，不支持延迟加载变量被re-export导出，可以通过打开工程级build-profile.json5文件中的reExportCheckMode开关进行扫描排查。
+
 ```typescript
 // build-profile.json5
 "arkOptions":{
@@ -172,6 +197,7 @@ import { b } from "./mod1";         // 再次获取"mod1"内属性，未标记la
 > - 该字段从DevEco Studio 5.0.13.200版本开始支持。
 
 这种方式导出的变量c未在B.ets中使用，因此B.ets不会触发执行。在A.ets中使用变量c时，由于该变量未被初始化，将会抛出JavaScript异常。
+
 ```typescript
 // A.ets
 import { c } from "./B";
@@ -185,7 +211,9 @@ export { c }
 let c = "c";
 export { c }
 ```
+
 执行结果：
+
 ```typescript
 ReferenceError: c is not initialized
     at func_main_0 (A.ets:2:13)
@@ -204,17 +232,20 @@ export { c }
 let c = "c";
 export { c }
 ```
+
 执行结果：
+
 ```typescript
 ReferenceError: module environment is undefined
     at func_main_0 (A_ns.js:2:13)
 ```
 
-### 开发者应评估使用延迟加载可能产生的影响
+### 注意事项
 
 - 不依赖该模块执行的副作用（如初始化全局变量，挂载globalThis等）。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
-- 使用导出对象时，触发延迟加载的耗时可能导致对应特性的功能劣化。
+- 使用导出对象时，触发延迟加载的耗时可能导致对应特性的功能劣化。由于lazy-import的后续加载是同步加载，可能在某些场景阻塞任务执行（比如在点击业务时触发了懒加载，那么运行时会执行冷启动为加载的文件，增加执行耗时，存在掉帧风险），是否使用延迟加载仍需要开发者自行评估。
 - 使用lazy特性可能导致模块未执行，从而引发bug。
+- 已经被动态加载的文件同时使用lazy-import时，这些文件会执行lazy标识，在动态加载的then逻辑中同步加载。
 
 ## 可延迟加载文件检测
 
@@ -421,3 +452,89 @@ export function func() {
      return a; // 此时触发under1文件的加载
     }
     ```
+
+### 使用示例
+
+**使用场景**
+
+下述例子中A文件被引用，在应用启动到点击按钮的这段时间里，A文件并没有被实际执行，在冷启动阶段加载A文件的行为属于冗余。
+
+```javascript
+// A为任意可以被引入的ets文件
+import { A } from "./A";
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Button('点击执行A文件')
+        .onClick(() => {
+          // 点击后触发A文件的执行
+          console.log("执行A文件", A);
+        })
+    }
+    // ...
+  }
+}
+```
+
+![img](./figures/Lazy-Import-Instructions-1.png)
+
+通过抓取Trace图查看调用栈，可以发现应用在冷启动时加载了A文件。
+
+**使用工具分析**
+
+1. 连接设备，在终端直接输入下方命令执行。
+
+    ```shell
+    hdc shell param set persist.ark.properties 0x200105c
+    ```
+
+2. 启动应用，启动结束后关闭应用。
+3. 下载文件到本地，其中`${bundleName}`为应用名。
+
+    ```shell
+    hdc file recv data/app/el2/100/base/${bundleName}/files/${bundleName}_redundant_file.txt D:\
+    ```
+
+4. 对上述示例代码获取到的文件进行分析。
+
+   ![img](./figures/Lazy-Import-Instructions-2.png)
+
+**修改方式**
+
+工具筛选出冗余文件后，开发者可在引入时添加`lazy`关键字，标记文件可延迟加载。
+
+```javascript
+// 此处添加lazy关键字，标记该文件可延迟加载
+import lazy { A } from "./A";
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Button('点击执行A文件')
+        .onClick(() => {
+          // 点击后触发A文件的执行
+          console.log("执行A文件", A);
+        })
+    }
+    // ...
+  }
+}
+```
+
+![img](./figures/Lazy-Import-Instructions-3.png)
+
+通过抓取Trace图查看调用栈可以发现，使用lazy-import标识后，应用在冷启动时不再加载A文件。
+
+**优化效果**
+
+|     | 加载文件耗时（微秒μs） |
+|-----|--------------|
+| 优化前 | 412us        |
+| 优化后 | 350us        |
+
+根据上述优化前后案例Trace图对比分析，使用延迟加载后应用冷启动时不再加载A文件，在资源加载阶段减少因加载冗余文件产生的耗时约15%，提高了应用冷启动性能。（由于案例仅演示场景，优化数据仅做参考，在实际业务中随着引用文件的复杂度提高，引用文件数量增多，优化效果也会随之提升。）

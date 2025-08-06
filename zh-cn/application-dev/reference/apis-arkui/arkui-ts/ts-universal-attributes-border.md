@@ -1,4 +1,9 @@
 # 边框设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 设置组件边框样式。
 

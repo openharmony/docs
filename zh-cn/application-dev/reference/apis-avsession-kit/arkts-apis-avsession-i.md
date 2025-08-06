@@ -1,4 +1,9 @@
 # Interfaces (其他)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **说明：**
 >
@@ -70,33 +75,32 @@
 
 播放列表媒体元数据的相关属性。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称         | 类型                    | 只读  | 可选  | 说明                     |
 | ------------ | ----------------------- | ---- | ---- | ----------------------- |
-| assetId      | string                  | 否   | 否   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| title        | string                  | 否   | 是   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| subtitle     | string                  | 否   | 是   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| description  | string                  | 否   | 是   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap \| string   | 否   | 是   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras       | {[key: string]: Object}    | 否   | 是   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 是   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaType     | string                  | 否   | 是   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaSize     | number                  | 否   | 是   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumTitle     | string                  | 否   | 是   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumCoverUri     | string                  | 否   | 是   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。         |
-| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>由于设备限制，暂时无法使用，将在后续版本提供支持。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。       |
-| duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-|displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](arkts-apis-avsession-e.md#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| assetId      | string                  | 否   | 否   | 播放列表媒体ID。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| title        | string                  | 否   | 是   | 播放列表媒体标题。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| subtitle     | string                  | 否   | 是   | 播放列表媒体子标题。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| description  | string                  | 否   | 是   | 播放列表媒体描述的文本。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mediaImage | image.PixelMap \| string   | 否   | 是   | 播放列表媒体图片像素数据。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 是   | 播放列表媒体额外字段。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| mediaUri     | string                  | 否   | 是   | 播放列表媒体URI。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mediaType     | string                  | 否   | 是   | 播放列表媒体类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mediaSize     | number                  | 否   | 是   | 播放列表媒体的大小。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| albumTitle     | string                  | 否   | 是   | 播放列表媒体专辑标题。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| albumCoverUri     | string                  | 否   | 是   | 播放列表媒体专辑标题URI。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>由于设备限制，暂时无法使用，将在后续版本提供支持。 |
+| drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+|displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](arkts-apis-avsession-e.md#displaytag11)。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+|launchClientData<sup>20+</sup> | string | 否 | 是 | 投播过程中应用程序向接收方发送的自定义数据。<br/>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -189,6 +193,7 @@
 | manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | audioCapabilities<sup>20+</sup> | [AudioCapabilities](#audiocapabilities20) | 否   | 播放设备支持的音频能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
+| supportedPullClients<sup>20+</sup> | Array\<number> | 否 | 支持拉端客户端的ID集合（只有支持4K投播的设备会返回此字段）。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## OutputDeviceInfo<sup>10+</sup>
 

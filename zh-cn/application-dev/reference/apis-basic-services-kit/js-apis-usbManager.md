@@ -12,15 +12,21 @@
 import { usbManager } from '@kit.BasicServicesKit';
 ```
 
->  ## 说明：
-> 
-> 凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
-> <br>**在使用接口前：**
-> <br>1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-> <br>2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取请求权限；
-> <br>3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到USBDevicePipe作为参数。
-> <br>**在使用接口后：**
-> <br>调用[usbManager.closePipe](#usbmanagerclosepipe)关闭设备消息控制通道。
+## 使用说明
+
+凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
+ 
+**在使用接口前：**
+
+1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表。
+
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取请求权限。
+
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到USBDevicePipe作为参数。
+
+**在使用接口后：**
+
+调用[usbManager.closePipe](#usbmanagerclosepipe)关闭设备消息控制通道。
 
 ## usbManager.getDevices
 
@@ -437,8 +443,9 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-
 **说明：**
+>
+> 一个USB接口可能存在多重选择模式，支持动态切换。使用的场景：数据传输时，通过该接口可重新设置端点，使端点与传输类型匹配。
 >
 > 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
@@ -1314,6 +1321,12 @@ try {
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
 
+**说明：**
+
+> 主机控制器按照Endpoint类型调度。
+>
+> 协议层打包时依赖type决定传输特性。
+
 **系统能力：** SystemCapability.USB.USBManager
 
 | 名称            | 类型                                        | 必填            |说明            |
@@ -1324,7 +1337,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。         |
+| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
@@ -1339,7 +1352,7 @@ try {
 | protocol         | number                                   | 是 |接口的协议。                |
 | clazz            | number                                   | 是 |设备类型。                 |
 | subClass         | number                                   | 是 |设备子类。                 |
-| alternateSetting | number                                   | 是 |在同一个接口中的多个描述符中进行切换设置。 |
+| alternateSetting | number                                   | 是 |在同一个接口中的多个描述符中进行切换设置。值的大小表示支持可选模式个数，其中0表示不支持可选模式。 |
 | name             | string                                   | 是 |接口名称。                 |
 | endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 是 |当前接口所包含的端点。           |
 

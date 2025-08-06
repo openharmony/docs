@@ -1,4 +1,9 @@
 # 使用Image_NativeModule完成多图对象解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 创建ImageSource，解码得到Picture，以及释放ImageSource实例。
 
@@ -6,7 +11,7 @@
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_source.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_source.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)

@@ -1,4 +1,10 @@
-# 证书集合及证书吊销列表集合对象的创建和获取 
+# 证书集合及证书吊销列表集合对象的创建和获取
+
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
 
 从输入的证书集合和证书吊销列表集合中选择满足条件的证书或者证书吊销列表。
 

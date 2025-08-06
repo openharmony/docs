@@ -1,5 +1,11 @@
 # Hitrace
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中（包括应用事件、系统事件、日志等）携带该跟踪标识。在调试、问题定位过程中，开发人员可以通过该唯一跟踪标识将本次业务流程端到端的各类信息快速关联起来。

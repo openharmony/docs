@@ -1,4 +1,9 @@
 # ImageAnimator
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
 
@@ -191,14 +196,14 @@ monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填 | 说明 |
-| -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
-| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
-| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
-| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
-| duration | number          | 否     | 每帧图片的播放时长，单位毫秒。<br/>默认值：0<br/>不支持负数。设置为负数将导致图片在当前帧长时间停留，影响正常播放。         |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| -------- | -------------- | -------- | -------- | -------- |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 否  | 否   | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| width    | number&nbsp;\|&nbsp;string | 否 | 是 | 图片宽度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
+| height   | number&nbsp;\|&nbsp;string | 否 | 是 | 图片高度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
+| top      | number&nbsp;\|&nbsp;string | 否 | 是 | 图片相对于组件左上角的纵向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
+| left     | number&nbsp;\|&nbsp;string | 否 | 是 | 图片相对于组件左上角的横向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
+| duration | number          | 否    | 是    | 每帧图片的播放时长，单位毫秒。<br/>默认值：0<br/>不支持负数。设置为负数将导致图片在当前帧长时间停留，影响正常播放。         |
 
 ## 事件
 
@@ -367,8 +372,14 @@ struct ImageAnimatorExample {
   @State images: Array<ImageFrameInfo> = [];
 
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.1')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.2')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.3')));
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.4')));
     this.images.push({ src: this.imagePixelMap[0] });
+    this.images.push({ src: this.imagePixelMap[1] });
+    this.images.push({ src: this.imagePixelMap[2] });
+    this.images.push({ src: this.imagePixelMap[3] });
   }
 
   build() {
@@ -426,11 +437,7 @@ struct ImageAnimatorExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888

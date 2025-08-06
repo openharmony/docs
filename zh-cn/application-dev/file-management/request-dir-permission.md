@@ -1,4 +1,9 @@
 # 获取并使用公共目录
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 ## 通过 ArkTS 接口获取并访问公共目录
 
@@ -179,7 +184,7 @@ void ScanUserDownloadDirPathExample()
         return;
     }
     // 查看文件夹下的文件
-    struct dirent **namelist = {nullptr};
+    struct dirent **namelist = nullptr;
     int num = scandir(downloadPath, &namelist, nullptr, nullptr);
     if (num < 0) {
         free(downloadPath);
@@ -190,6 +195,9 @@ void ScanUserDownloadDirPathExample()
         OH_LOG_INFO(LOG_APP, "%{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
+    for (int i = 0; i < num; i++) {
+        free(namelist[i]);
+    }
     free(namelist);
 }
 ```

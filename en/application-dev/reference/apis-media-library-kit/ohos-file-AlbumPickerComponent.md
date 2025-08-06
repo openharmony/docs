@@ -49,13 +49,13 @@ Represents the **AlbumPicker** configuration.
 | Name            | Type | Mandatory | Description                                                         |
 |----------------|-------|-----|-------------------------------------------------------------|
 | themeColorMode | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | No  | Theme color of the album page. The options are **AUTO**, **Light**, and **Dark**. The default value is **AUTO**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                        |
-| filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | No  | Type of the filter. You can use it to display images, videos, or both. If this parameter is not specified, images and videos are displayed in a specific album.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | No  | Type of the filter. You can use it to display images, videos, or both. If this parameter is not specified, images and videos are displayed in a specific album.<br> **Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## EmptyAreaClickCallback<sup>13+</sup>
 
 type EmptyAreaClickCallback = () => void
 
-Called when the blank area of the **AlbumPickerComponent** component is tapped.
+Called when the blank area of the **AlbumPickerComponent** is tapped.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 

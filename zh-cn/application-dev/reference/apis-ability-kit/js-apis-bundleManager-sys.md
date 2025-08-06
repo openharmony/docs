@@ -1,4 +1,9 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @zhoushihui4-->
+<!--SE: @hanfeng6; @lihaitao74-->
+<!--TSE: @kongjing2-->
 
 本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
@@ -1855,7 +1860,7 @@ getAllBundleCacheSize(): Promise\<number>
 
 获取全局缓存大小，使用Promise异步回调。
 
-有程序运行时的应用的缓存、或者在[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
+有程序运行时的应用的缓存、或者在[应用配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3844,7 +3849,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 

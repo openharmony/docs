@@ -1,4 +1,9 @@
 # 预览流二次处理(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 通过ImageReceiver创建预览输出，获取预览流实时数据，以供后续进行图像二次处理，比如应用可以对其添加滤镜算法等。
 

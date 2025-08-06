@@ -1,4 +1,9 @@
 # Toggle
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 组件提供勾选框样式、状态按钮样式和开关样式。
 
@@ -40,10 +45,10 @@ Toggle的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型                              | 必填 | 说明                                                         |
-| ----------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type<sup>8+</sup> | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isOn<sup>8+</sup> | boolean                           | 否   | 开关是否打开，值为true表示打开，值为false表示关闭。<br/>默认值：false<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称              | 类型                              | 只读 | 可选 | 说明                                                         |
+| ----------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type<sup>8+</sup> | [ToggleType](#toggletype枚举说明) | 否   | 否   | 开关的样式。<br/>默认值：ToggleType.Switch<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isOn<sup>8+</sup> | boolean                           | 否   | 是   | 开关是否打开，值为true表示打开，值为false表示关闭。<br/>默认值：false<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ToggleType枚举说明
 

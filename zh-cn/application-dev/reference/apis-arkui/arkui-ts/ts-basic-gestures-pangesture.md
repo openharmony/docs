@@ -1,4 +1,9 @@
 # PanGesture
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 

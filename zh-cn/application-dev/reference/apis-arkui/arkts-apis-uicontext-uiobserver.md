@@ -466,6 +466,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -494,6 +497,9 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 
 **示例：**
 
+完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -1837,93 +1843,163 @@ removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListene
 
 **示例：**
 
-该示例通过全局监听器实时追踪平移手势的触发阶段、触点ID和手指数量，并在可视化日志区显示手势开始/结束事件及详细触点信息。
+该示例使用全局手势监听器实时追踪Tap、Pan和LongPress三个独立区域的触发状态，记录各手势的触发次数和最后操作信息，并在组件生命周期内自动管理监听器的注册与注销。
 
 ```ts
 
 // xxx.ets
 
-import { GestureListenerType, GestureActionPhase, GestureTriggerInfo } from '@kit.ArkUI';
+import { GestureListenerType, GestureActionPhase, GestureTriggerInfo, GestureListenerCallback } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Gesture';
-  @State logs: string[] = [];
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
-  private panCallback = (info: GestureTriggerInfo) => {
-    let current = info.current;
-    this.addLog(`Phase: ${info.currentPhase}`);
-    this.addLog(`ID: ${info.event.target.id}`);
-    this.addLog(`FingerCount: ${current.getFingerCount()}`);
-    this.addLog('------------------------');
-  };
+  @State message: string = '全局手势监控';
+  @State tapCount: number = 0;
+  @State panCount: number = 0;
+  @State longPressCount: number = 0;
+  @State lastAction: string = '无';
+  @State lastArea: string = '无';
 
-  private addLog(log: string) {
-    this.logs.unshift(`[${new Date().toLocaleTimeString()}] ${log}`);
-    if (this.logs.length > 50) {
-      this.logs.pop();
+  // 存储监听器回调引用
+  private tapCallback?: GestureListenerCallback;
+  private panCallback?: GestureListenerCallback;
+  private longPressCallback?: GestureListenerCallback;
+
+  // 启用全局监听
+  aboutToAppear() {
+    this.addGlobalListeners();
+  }
+  // 终止全局监听
+  aboutToDisappear() {
+    this.removeGlobalListeners();
+  }
+
+  private addGlobalListeners() {
+    const observer = this.getUIContext().getUIObserver();
+
+    // Tap监听任务
+    this.tapCallback = (info: GestureTriggerInfo) => {
+      if (info.event?.target?.id === 'tap-area') {
+        this.tapCount++;
+        this.lastAction = '点击';
+        this.lastArea = 'Tap区域';
+      }
+    };
+    observer.addGlobalGestureListener(
+      GestureListenerType.TAP,
+      { actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END] },
+      this.tapCallback
+    );
+
+    // Pan监听任务
+    this.panCallback = (info: GestureTriggerInfo) => {
+      if (info.event?.target?.id === 'pan-area') {
+        this.panCount++;
+        this.lastAction = '平移';
+        this.lastArea = 'Pan区域';
+      }
+    };
+    observer.addGlobalGestureListener(
+      GestureListenerType.PAN,
+      {
+        actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END]
+      },
+      this.panCallback
+    );
+
+    // LongPress监听任务
+    this.longPressCallback = (info: GestureTriggerInfo) => {
+      if (info.event?.target?.id === 'longpress-area') {
+        this.longPressCount++;
+        this.lastAction = '长按';
+        this.lastArea = 'LongPress区域';
+      }
+    };
+    observer.addGlobalGestureListener(
+      GestureListenerType.LONG_PRESS,
+      {
+        actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END]
+      },
+      this.longPressCallback
+    );
+  }
+
+  private removeGlobalListeners() {
+    const observer = this.getUIContext().getUIObserver();
+    if (this.tapCallback) {
+      observer.removeGlobalGestureListener(0, this.tapCallback);
+    }
+    if (this.panCallback) {
+      observer.removeGlobalGestureListener(2, this.panCallback);
+    }
+    if (this.longPressCallback) {
+      observer.removeGlobalGestureListener(1, this.longPressCallback);
     }
   }
 
   build() {
     Column() {
-      Row({ space: 20 }) {
-        Text(this.message)
-          .width(400)
-          .height(80)
-          .fontSize(23)
+      // 手势数据统计面板
+      Row({ space: 30 }) {
+        Column() {
+          Text('点击次数:').fontSize(16)
+          Text(`${this.tapCount}`).fontSize(24).fontColor('#FF6B81')
+        }
+        Column() {
+          Text('平移次数:').fontSize(16)
+          Text(`${this.panCount}`).fontSize(24).fontColor('#7BED9F')
+        }
+        Column() {
+          Text('长按次数:').fontSize(16)
+          Text(`${this.longPressCount}`).fontSize(24).fontColor('#70A1FF')
+        }
       }
-      .id('test row')
-      .margin(15)
-      .width(400)
-      .height(150)
-      .borderWidth(2)
-      .gesture(PanGesture({ direction: PanDirection.Left | PanDirection.Right })
-        .onActionStart((event: GestureEvent) => {
-          this.addLog('Pan手势开始');
-        })
-        .onActionEnd((event: GestureEvent) => {
-          this.addLog('Pan手势结束');
-        }))
+      .margin(10)
+
+      Text(`最后动作: ${this.lastAction} (${this.lastArea})`)
+        .fontSize(18)
+        .margin(10)
+
+      // 手势区域
+      Row() {
+        Text('Tap区域').fontSize(18)
+      }
+      .id('tap-area')
+      .width('90%')
+      .height(120)
+      .margin(10)
+      .border({ width: 2, color: '#FF6B81' })
+      .justifyContent(FlexAlign.Center)
+      .gesture(TapGesture().onAction((event: GestureEvent)=>{
+        //具体实现内容
+      }))
 
       Row() {
-        Button('添加PAN监听')
-          .onClick(() => {
-            this.addLog('添加PAN全局监听');
-            let observer = this.getUIContext().getUIObserver();
-            observer.addGlobalGestureListener(
-              GestureListenerType.PAN,
-              { actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END] }, this.panCallback);
-          })
-
-        Button('取消PAN监听')
-          .onClick(() => {
-            this.addLog('取消PAN全局监听');
-            let observer = this.getUIContext().getUIObserver();
-            observer.removeGlobalGestureListener(2, this.panCallback);
-          })
+        Text('Pan区域').fontSize(18)
       }
+      .id('pan-area')
+      .width('90%')
+      .height(120)
       .margin(10)
-      .height(60)
+      .border({ width: 2, color: '#7BED9F' })
+      .justifyContent(FlexAlign.Center)
+      .gesture(PanGesture().onActionStart((event: GestureEvent) => {
+        //具体实现内容
+      }))
 
-      // 日志显示区域
-      Scroll() {
-        Column() {
-          ForEach(this.logs, (log: string) => {
-            Text(log)
-              .fontSize(20)
-              .textAlign(TextAlign.Start)
-              .width('100%')
-              .margin({ bottom: 8 })
-          }, (log: string) => log)
-        }
-        .width('100%')
-        .padding(15)
+      Row() {
+        Text('LongPress区域').fontSize(18)
       }
-      .height(200)
-      .border({ width: 1, color: '#CCCCCC' })
+      .id('longpress-area')
+      .width('90%')
+      .height(120)
       .margin(10)
+      .border({ width: 2, color: '#70A1FF' })
+      .justifyContent(FlexAlign.Center)
+      .gesture(LongPressGesture().onAction((event: GestureEvent)=>{
+        //具体实现内容
+      }))
     }
     .width('100%')
     .height('100%')

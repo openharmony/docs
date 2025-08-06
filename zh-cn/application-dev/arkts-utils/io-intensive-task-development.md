@@ -1,4 +1,9 @@
 # I/O密集型任务开发指导 (TaskPool)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 
 使用异步并发可以解决单次I/O任务阻塞的问题。对于I/O密集型任务，若线程中的其他任务仍可能被阻塞，建议采用多线程并发来处理。
@@ -20,7 +25,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
       fileIo.close(file);
     }
     ```
-    <!-- @[define_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/write.ets) -->
+    <!-- @[define_concurrent_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/write.ets) -->
 
 	```ts
     // Index.ets
@@ -30,7 +35,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
     import { common } from '@kit.AbilityKit';
 
     @Concurrent
-    async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
+    async function concurrentTest(context: common.UIAbilityContext): Promise<void> {
       // 应用文件路径
       let filePath1: string = context.filesDir + "/path1.txt";
       let filePath2: string = context.filesDir + "/path2.txt";
@@ -43,13 +48,12 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`);
-          return false;
         })
       }
-      return true;
+      return;
     }
 	```
-  <!-- @[define_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->
+  <!-- @[define_concurrent_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->
 
 2. 使用TaskPool执行包含密集I/O的并发函数，通过调用[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute)方法执行任务，并在回调中处理调度结果。示例中获取filePath1和filePath2的方式请参见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。在TaskPool中使用context时，需先在并发函数外部准备好，并通过参数传递给并发函数。
 
@@ -82,4 +86,4 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
       }
     }
     ```
-    <!-- @[taskpool_execute_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->
+    <!-- @[taskpool_execute_concurrent_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->

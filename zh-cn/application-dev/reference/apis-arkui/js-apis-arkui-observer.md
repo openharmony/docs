@@ -665,7 +665,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -899,7 +899,7 @@ struct Index {
         .onClick(() => {
           uiObserver.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
-      Button('解除布局完成s监听')
+      Button('解除布局完成监听')
         .onClick(() => {
           uiObserver.off('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

@@ -1,5 +1,11 @@
 # hiappevent_cfg.h
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 定义事件打点配置函数的所有配置项名称。如果开发者想要对应用事件打点功能进行配置，开发者可以直接使用配置项常量。

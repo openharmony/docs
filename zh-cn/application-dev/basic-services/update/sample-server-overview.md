@@ -1,4 +1,9 @@
 # 示例服务器开发概述
+<!--Kit: Basics Service Kit-->
+<!--Subsystem: Update-->
+<!--Owner: @RainyDay_005; @huangsiping3-->
+<!--SE: @zhangzhengxue;@jackd320-->
+<!--TSE: @mamba-ting-->
 
 示例服务器提供一个简易的升级包部署的服务器实例参考，用于搭建升级服务子系统的辅助验证环境。
 

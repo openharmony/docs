@@ -1,5 +1,11 @@
 # @ohos.abilityAccessCtrl (程序访问控制管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
 
 > **说明：**
@@ -42,7 +48,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 
 checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 
-校验应用是否授予权限。使用Promise异步回调。
+校验应用是否被授予权限。使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -133,9 +139,9 @@ console.log(`data->${JSON.stringify(data)}`);
 
 on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
 
-订阅自身的指定权限列表的权限状态变更事件。
+订阅自身指定权限列表的权限状态变更事件。
 
-允许指定权限列表订阅多个callback。
+允许为指定权限列表订阅多个callback。
 
 不允许存在交集权限列表订阅相同callback。
 
@@ -148,7 +154,7 @@ on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，自身权限状态变更事件。  |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，如果为空，则表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 是 | 订阅指定权限名状态变更事件的回调。|
 
 **错误码：**
@@ -407,7 +413,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 用于UIAbility/UIExtensionAbility拉起全局开关设置弹框。
 
-部分情况下，录音、拍照等功能禁用，应用可拉起此弹框请求用户同意开启对应功能。如果当前全局开关的状态为开启，则不拉起弹框。
+在某些情况下，如果录音、拍照等功能被禁用，应用可拉起此弹框请求用户同意开启对应功能。如果当前全局开关的状态为开启，则不拉起弹框。
 
 > **说明：**
 >
@@ -554,7 +560,7 @@ try {
 
 verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 
-校验应用是否授予权限。使用Promise异步回调。
+校验应用是否被授予权限。使用Promise异步回调。
 
 > **说明：**
 >
@@ -595,7 +601,7 @@ atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCt
 
 verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
-校验应用是否授予权限。使用Promise异步回调。
+校验应用是否被授予权限。使用Promise异步回调。
 
 > **说明：**
 >

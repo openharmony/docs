@@ -29,7 +29,7 @@ constructor(time: number) {
 }
 static readonly compared = ((first: A, second: A): number => {
     return second.time - first.time;
-  });
+  }) as Function as (first: A, second: A) => boolean;
 }
 const a1 = new A(1);
 const a2 = new A(2);
@@ -46,13 +46,13 @@ set.add(a5);
 set.add(a6);
 for (let i = 0; i < 5; ++i) {
   set.remove(a1); // 同一个红黑树前后用了两种比较规则，数据结构的性质被破坏
-  console.log(set.has(a1));
+  console.info(set.has(a1).toString());
   // 预期结果：false、false、false、false、false
   // 实际结果：false、false、true、true、true
   set.add(a1);
 }
 for (let item of set) {
-  console.log(item.time);
+  console.info(item.time.toString());
   // 预期结果：6、5、4、3、2、1
   // 实际结果：6、1、1
 }

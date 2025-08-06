@@ -1,4 +1,9 @@
 # Shape
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 绘制组件的父组件，父组件中会描述所有绘制组件均支持的通用属性。
 
@@ -99,7 +104,7 @@ fill(value: ResourceColor)
 
 fillOpacity(value: number | string | Resource)
 
-设置填充区域透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。
+设置填充区域透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -111,7 +116,7 @@ fillOpacity(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                           |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 填充区域透明度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 填充区域透明度。<br/>**说明：**<br/>number格式取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。<br/>string格式支持number格式取值的字符串形式，取值范围与number格式相同。<br/>Resource格式支持系统资源或者应用资源中的字符串，取值范围和number格式相同。<br/>默认值：1 |
 
 ### stroke
 
@@ -281,7 +286,7 @@ antiAlias(value: boolean)
 
 mesh(value: Array&lt;any&gt;, column: number, row: number)
 
-设置网格效果。将图像分割为（row + 1）* (column + 1)的网格，每个网格交点坐标存储在数组中（每两个元素表示一个交点的x、y坐标）。通过数组value中的坐标值，重新定位网格顶点位置，实现图像局部扭曲。
+设置网格效果。将图像分割为（row + 1）* (column + 1)的网格，每个网格交点坐标存储在数组中（每两个元素表示一个交点的x、y坐标）。通过数组value中的坐标值，重新定位网格顶点位置，实现图像局部扭曲。支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 > **说明：**
 >

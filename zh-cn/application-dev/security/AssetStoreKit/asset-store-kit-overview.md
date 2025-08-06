@@ -1,5 +1,11 @@
 # Asset Store Kit简介
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 Asset Store Kit（关键资产存储服务，简称ASSET）包含了一系列开放接口，用于提供用户短敏感数据的安全存储及管理功能。这类短敏感数据包括但不限于密码类（账号/密码）、Token类（应用凭据）以及其他关键明文（如银行卡号）等长度较短的敏感信息。
 
 ## 基本概念

@@ -1,4 +1,15 @@
 # 基础类型定义
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
+
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy;@yylong;@liyi0309-->
+<!--SE: @piggyguy;@yylong;@liyi0309-->
+<!--TSE: @fredyuan0912-->
 
 >**说明：**
 >
@@ -327,7 +338,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
-| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。 |
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。<br>默认值：FontStyle.Normal             |
 
 ## Area<sup>8+</sup>
@@ -342,8 +353,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
-| width          | [Length](#length)      | 目标元素的宽度，作为返回值时，类型为number，单位vp。 |
-| height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
+| width          | [Length](#length)      | 目标元素的宽度。<br/>单位：vp |
+| height         | [Length](#length)      | 目标元素的高度。<br/>单位：vp |
 | position       | [Position](#position) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position) | 目标元素左上角相对页面左上角的位置。             |
 
@@ -359,8 +370,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
-| x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
-| y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+| x    | [Length](#length) | 否    | x轴坐标。<br/>单位：vp |
+| y    | [Length](#length) | 否    | y轴坐标。<br/>单位：vp |
 
 ## LocalizedPosition<sup>12+</sup>
 
@@ -635,19 +646,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | BOTTOM | 下方区域。 |
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
-
-## KeyboardAvoidMode<sup>12+</sup>枚举说明
-
-弹窗避让键盘时，避让模式的枚举类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                                             |
-| ------- | ---- | ------------------------------------------------ |
-| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
-| NONE    | 1    | 不避让软键盘。                                   |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 

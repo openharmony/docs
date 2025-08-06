@@ -29,8 +29,6 @@ For details, see the following.
 Page 1
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @ObservedV2
 export class Book {
   @Trace name: string = "100";
@@ -52,16 +50,16 @@ export struct Page1 {
 
   build() {
     Column() {
-      Text(`Book name is ${this.bookTest.name}`).fontSize(25)
+      Text(`Book name is  ${this.bookTest.name}`).fontSize(25)
       Button('changeBookName').fontSize(25)
         .onClick(() => {
           this.bookTest.name = "The Old Man and the Sea";
         })
       Button('go to next page').fontSize(25)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
           setTimeout(() => {
-            this.bookTest = new Book("Jane Austen oPride and Prejudice");
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
           }, 1000)
         })
     }
@@ -72,8 +70,6 @@ export struct Page1 {
 Page 2
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @ComponentV2
 struct Page2 {
@@ -82,7 +78,7 @@ struct Page2 {
       Text(`This is the page2`).fontSize(25)
       Button('Back')
         .onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         })
     }
   }
@@ -348,13 +344,13 @@ In the preceding example:
 
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
-### Repeat virtualScroll
+### Repeat
 
 > **NOTE**
 >
 > Repeat virtualScroll supports custom component freezing since API version 18.
 
-Freeze the custom components in the Repeat virtualScroll cache pool to avoid unnecessary component re-renders. You are advised to read [Child Component Rendering Logic](./arkts-new-rendering-control-repeat.md#child-component-rendering-logic-1) of virtualScroll in advance.
+Freeze the custom components in the Repeat cache pool to avoid unnecessary component re-renders. You are advised to read [Node Update and Reuse Mechanism](./arkts-new-rendering-control-repeat.md#node-update-and-reuse-mechanism) in advance.
 
 ```ts
 @Entry

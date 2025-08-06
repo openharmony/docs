@@ -1,5 +1,10 @@
 # 使用HiTraceChain打点（ArkTS）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 ## 接口说明
 

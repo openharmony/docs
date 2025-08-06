@@ -1,4 +1,9 @@
 # 页面路由 (@ohos.router)(不推荐)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)这几个方面，介绍如何通过Router模块实现页面路由。
@@ -174,7 +179,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
 
 可以使用以下几种方式返回页面：
 
@@ -239,7 +244,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 > **说明：**
 > 
-> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
 
 ```ts
 @Entry
@@ -369,7 +374,7 @@ struct Page {
 
 为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/arkts-apis-uicontext-router.md#showalertbeforebackpage)和[back](../reference/apis-arkui/arkts-apis-uicontext-router.md#back)来实现这个功能。
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)实例，并使用[getRouter](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getrouter)获取绑定实例的router。
 
 如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/arkts-apis-uicontext-router.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/arkts-apis-uicontext-router.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
@@ -539,4 +544,4 @@ struct Index {
 
 针对页面路由开发，有以下相关实例可供参考：
 
-- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+- [页面布局和连接（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)

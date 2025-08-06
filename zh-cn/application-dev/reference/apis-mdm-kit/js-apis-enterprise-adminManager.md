@@ -1,4 +1,9 @@
 # @ohos.enterprise.adminManager (admin权限管理)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块为企业MDM应用提供admin权限管理能力，包括激活/解除激活admin权限、事件订阅、委托授权等。
 
@@ -26,9 +31,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -82,7 +85,7 @@ isByodAdmin(admin: Want): boolean
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -135,9 +138,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -188,9 +189,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -241,9 +240,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -298,9 +295,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -358,9 +353,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -418,9 +411,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -517,7 +508,7 @@ try {
 |disallow_add_local_account| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 不传accountId参数，禁止设备创建本地用户。<br>不传accountId参数，查询是否禁止设备创建本地用户。|
 |disallow_add_os_account_by_user| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 需传入accountId参数，禁止指定用户添加账号。<br>需传入accountId参数，查询是否禁止指定用户添加账号。|
 |disallow_running_bundles|[applicationManager.addDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)<br>[applicationManager.removeDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)<br>[applicationManager.getDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)|添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前/指定用户下运行。<br>从应用运行禁止名单中移除应用。<br>获取当前/指定用户下的应用运行禁止名单。 |
-|manage_auto_start_apps|[applicationManager.addAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanageraddautostartapps)<br>[applicationManager.removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagerremoveautostartapps)<br>[applicationManager.getAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagergetautostartapps)|添加开机自启动应用名单。该能力当前仅支持2in1设备。<br>从开机自启动应用名单中移除应用。该能力当前仅支持2in1设备。<br>查询开机自启动应用名单。该能力当前仅支持2in1设备。|
+|manage_auto_start_apps|[applicationManager.addAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanageraddautostartapps)<br>[applicationManager.removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagerremoveautostartapps)<br>[applicationManager.getAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagergetautostartapps)|添加开机自启动应用名单。该能力当前仅支持PC/2in1设备。<br>从开机自启动应用名单中移除应用。该能力当前仅支持PC/2in1设备。<br>查询开机自启动应用名单。该能力当前仅支持PC/2in1设备。|
 |allowed_bluetooth_devices|[bluetoothManager.addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)<br>[bluetoothManager.removeAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagerremoveallowedbluetoothdevices)<br>[bluetoothManager.getAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagergetallowedbluetoothdevices)|添加蓝牙设备可用名单。<br>从蓝牙设备可用名单中移除。<br>查询蓝牙设备可用名单。|
 |set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。|
 |allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|添加应用至应用程序包安装允许名单，添加至允许名单的应用允许在当前/指定用户下安装，否则不允许安装。<br>从应用程序包安装允许名单中移除应用。<br>获取当前/指定用户下的应用程序包安装允许名单。|
@@ -534,16 +525,22 @@ try {
 |disable_microphone|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入microphone，禁用/启用麦克风能力。<br>feature传入microphone，查询是否禁用麦克风能力。|
 |fingerprint_auth|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)<br>[restrictions.setDisallowedPolicyForAccount](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicyforaccount14)<br>[restrictions.getDisallowedPolicyForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicyforaccount14)|feature传入fingerprint，禁用/启用指纹认证能力。<br>feature传入fingerprint，查询是否禁用指纹认证能力。<br>feature传入fingerprint，禁用/启用指定用户的指纹认证能力。<br>feature传入fingerprint，查询是否禁用指定用户的指纹认证能力。|
 |disable_usb|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入usb，禁用/启用USB能力。<br>feature传入usb，查询是否禁用USB能力。|
-|disable_wifi|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入wifi，禁用/启用WIFI能力。<br>feature传入wifi，查询是否禁用WIFI能力。|
+|disable_wifi|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入wifi，禁用/启用Wi-Fi能力。<br>feature传入wifi，查询是否禁用Wi-Fi能力。|
 |disallowed_tethering|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入tethering，禁用/启用网络共享能力。<br>feature传入tethering，查询是否禁用网络共享能力。|
 |inactive_user_freeze|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入inactiveUserFreeze，禁用/启用非活跃用户运行能力。<br>feature传入inactiveUserFreeze，查询是否禁用非活跃用户运行能力。|
 |snapshot_skip|[restrictions.addDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsadddisallowedlistforaccount14)<br>[restrictions.removeDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsremovedisallowedlistforaccount14)<br>[restrictions.getDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedlistforaccount14)|feature传入snapshotSkip，禁用屏幕快照能力的应用名单。<br>feature传入snapshotSkip，从禁用屏幕快照能力的应用名单中移除。<br>feature传入snapshotSkip，查询禁用屏幕快照能力的应用名单。|
 |password_policy|[securityManager.setPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy)<br>[securityManager.getPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagergetpasswordpolicy)|设置设备口令策略。<br>获取设备口令策略。|
 |clipboard_policy|[securityManager.setAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagersetappclipboardpolicy)<br>[securityManager.getAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagergetappclipboardpolicy)|设置设备剪贴板策略。<br>获取设备剪贴板策略。|
-|watermark_image_policy|[securityManager.setWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagersetwatermarkimage14)<br>[securityManager.cancelWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagercancelwatermarkimage14)|设置水印策略，当前仅支持2in1使用。<br>取消水印策略，当前仅支持2in1使用。|
+|watermark_image_policy|[securityManager.setWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagersetwatermarkimage14)<br>[securityManager.cancelWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagercancelwatermarkimage14)|设置水印策略，当前仅支持PC/2in1使用。<br>取消水印策略，当前仅支持PC/2in1使用。|
 |ntp_server|[systemManager.setNTPServer](js-apis-enterprise-systemManager.md#systemmanagersetntpserver)<br>[systemManager.getNTPServer](js-apis-enterprise-systemManager.md#systemmanagergetntpserver)|设置NTP服务器的策略。<br>获取NTP服务器信息。|
 |set_update_policy|[systemManager.setOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagersetotaupdatepolicy)<br>[systemManager.getOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagergetotaupdatepolicy)|设置升级策略。<br>查询升级策略。|
 |notify_upgrade_packages|[systemManager.notifyUpdatePackages](js-apis-enterprise-systemManager.md#systemmanagernotifyupdatepackages)<br>[systemManager.getUpdateResult](js-apis-enterprise-systemManager.md#systemmanagergetupdateresult)|通知系统更新包信息。<br>获取系统更新结果。|
 |allowed_usb_devices|[usbManager.addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)<br>[usbManager.removeAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremoveallowedusbdevices)<br>[usbManager.getAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetallowedusbdevices)|添加USB设备可用名单。<br>移除USB设备可用名单。<br>获取USB设备可用名单。|
 |usb_read_only|[usbManager.setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)<br>[usbManager.getUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagergetusbstoragedeviceaccesspolicy)|设置USB存储设备访问策略。<br>获取USB存储设备访问策略。|
 |disallowed_usb_devices|[usbManager.addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)<br>[usbManager.removeDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremovedisallowedusbdevices14)<br>[usbManager.getDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetdisallowedusbdevices14)|添加禁止使用的USB设备类型。<br>移除禁止使用的USB设备类型。<br>获取禁止使用的USB设备类型。|
+|disallowed_sms|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入sms，禁用/启用设备接收、发送短信的能力，当前仅支持手机、平板设备使用。<br>feature传入sms，查询是否禁用设备接收、发送短信的能力，当前仅支持手机、平板设备使用。|
+|disallowed_mms|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入mms，禁用/启用设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。<br>feature传入mms，查询是否禁用设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。|
+|disable_backup_and_restore|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入backupAndRestore，禁用/启用备份和恢复能力，当前仅支持手机、平板使用。<br>feature传入backupAndRestore，查询是否禁用备份和恢复能力，当前仅支持手机、平板使用。|
+|installed_bundle_info_list|[bundleManager.getInstalledBundleList](js-apis-enterprise-bundleManager.md#bundlemanagergetinstalledbundlelist20)|获取设备指定用户下已安装应用列表。|
+|clear_up_application_data|[applicationManager.clearUpApplicationData](js-apis-enterprise-applicationManager.md#applicationmanagerclearupapplicationdata20)|清除应用产生的所有数据。|
+

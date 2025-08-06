@@ -1,4 +1,9 @@
 # 自定义组件的生命周期
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 自定义组件的生命周期回调函数用于通知用户该自定义组件的生命周期，这些回调函数是私有的，在运行时由开发框架在特定的时间进行调用，不能从应用程序中手动调用这些回调函数。不要在多个窗口复用同一个自定义组件节点，其生命周期可能会紊乱。
 
@@ -137,9 +142,9 @@ onNewParam?(param: ESObject): void
 
 **参数：**
 
-| 参数名 | 类型     |              说明         |
-|-------|----------|---------------------------|
-| param | ESObject | 路由跳转时传递到目标页面的数据。|
+| 参数名 | 类型     | 必填     |             说明         |
+|-------|----------|----------|---------------------------|
+| param | ESObject |是 | 路由跳转时传递到目标页面的数据。|
 
 ```ts
 // pages/Index.ets
@@ -238,7 +243,7 @@ aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 > **说明：**
 >
-> * 避免对@Link/@ObjectLink/@Prop等自动更新的状态变量，在aboutToReuse中重复更新。最佳实践请参考[组件复用最佳实践-优化状态管理，精准控制组件刷新范围使用](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse#section4470171391314)。
+> * [避免对@Link/@ObjectLink/@Prop等自动更新的状态变量，在aboutToReuse()中重复赋值](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse#section7441712174414)。
 > * 在滑动场景中，使用组件复用通常需要用该回调函数去更新组件的状态变量，因此在该回调函数中应避免耗时操作，否则会导致丢帧卡顿。最佳实践请参考[主线程耗时操作优化指导-组件复用回调](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section20815336174316)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -430,9 +435,9 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 **参数：**
 
-| 参数名    | 类型                                       | 说明         |
-|--------|------------------------------------------|------------|
-| theme | [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。|
+| 参数名    | 类型                                       | 必填    | 说明         |
+|--------|------------------------------------------|------------|-------------------------|
+| theme | [Theme](../js-apis-arkui-theme.md#theme) | 是     | 自定义组件当前生效的Theme对象。|
 
 V1：
 

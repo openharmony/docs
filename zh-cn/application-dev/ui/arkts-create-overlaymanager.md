@@ -1,4 +1,9 @@
 # 设置浮层（OverlayManager）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 浮层（OverlayManager）用于在页面（Page）之上展示自定义的UI内容，位于Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等组件之下，展示范围为当前窗口的安全区内，适用于常驻悬浮等场景。
 
@@ -12,7 +17,7 @@
 * OverlayManager添加的节点显示和消失时没有默认动画。
 * OverlayManager上节点安全区域内外的绘制方式与Page一致，键盘避让方式与Page一致。
 * 推荐使用AppStorage存储与OverlayManager相关的属性，以避免页面切换时属性值变化导致业务错误。
-* 当使用API version 19以下版本时，OverlayManager不支持侧滑（左滑/右滑）关闭，需在[onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)中添加OverlayManager关闭的逻辑。API 19及以上版本可参考[OverlayManagerOptions配置](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#setoverlaymanageroptions15)设置OverlayManager是否响应侧滑手势。
+* 当使用API version 19以下版本时，OverlayManager不支持侧滑（左滑/右滑）关闭，需在[onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)中添加OverlayManager关闭的逻辑。API 19及以上版本可通过配置[OverlayManagerOptions](../reference/apis-arkui/arkts-apis-uicontext-i.md#overlaymanageroptions15)中的enableBackPressedEvent属性设置OverlayManager是否响应侧滑手势。
 * OverlayManager中的事件机制优先被WrappedBuilder装饰的组件接收。若需实现浮层底部接收事件，可通过设置hitTestBehavior为HitTestMode.Transparent将事件传递至底层。
 
 ## 设置浮层

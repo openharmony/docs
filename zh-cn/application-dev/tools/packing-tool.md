@@ -27,8 +27,8 @@
 
 ## 约束与限制
 
-打包工具需要运行在Java8及其以上环境。
-
+- 打包工具需要运行在Java8及其以上环境。
+- 打包指令中参数和参数值需成对出现。例如，HAP打包指令中--resources-path \<path>，其中--resources-path为指令参数，path为参数值，两者需要同时出现。
 
 ## HAP打包指令
 
@@ -198,7 +198,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>]
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
 | --mode      | 是     | hqf         | 打包类型。                              |
-| --json-path | 是     | NA          | .json文件路径，文件名必须为patch.json。        |
+| --json-path | 是     | NA          | .json文件路径，文件名必须为[patch.json](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-incremental-debugging#section28031446182019)。        |
 | --lib-path  | 否     | NA          | lib库文件的路径。                         |
 | --ets-path  | 否     | NA          | 存放ets文件目录路径。                       |
 | --resources-path  | 否     | NA          | resources资源包路径。                       |
@@ -208,6 +208,12 @@ java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>]
 ## APPQF打包指令
 
 APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APPQF包中拆分出来，再被分发到具体的设备上。开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的APPQF包。
+
+**APPQF打包合法性校验**
+- 在打包生成APPQF包时，确保每个HQF的[patch.json文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-incremental-debugging#section28031446182019)中的versionName、versionCode、patchVersionName、patchVersionCode保持一致。
+- 所有HQF不得重复。HQF重复是指同时满足以下两个条件：
+	1. 两个HQF的patch.json文件中module下的name字段相同。
+	2. 两个HQF的patch.json文件中module下的deviceTypes属性相交（至少存在一个相同的设备类型）。
 
 示例:
 
@@ -257,7 +263,7 @@ java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --
 | 指令             | 是否必选项 | 选项            | 描述                                                  |
 |----------------|-------|---------------|-----------------------------------------------------|
 | --mode         | 是     | packageNormalize | 命令类型。                                               |
-| --hsp-list     | 是     | HSP的路径      | 1. HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。<br/>2. HSP包目录。 |
+| --hsp-list     | 是     | HSP的路径      | 1. HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。<br/>2. HSP包目录。仅处理目录内以.hsp为后缀的文件。|
 | --bundle-name  | 是     | 包名            | 指定的包名，HSP的包名会被修改为指定的包名。                             |
 | --version-code | 是     | 版本号           | 指定的版本号，HSP的版本号会被修改为该版本号。需要为整数，且大于0。                 |
 | --out-path     | 是     | NA            | 目标文件路径，需要为一个目录。                                     |
@@ -578,11 +584,11 @@ Check shared App mode invalid.
 
 **错误描述**
 
-构建[bundleType为shared的App包](../quick-start/app-configuration-file.md#配置文件标签)时，检查HSP包无效。
+构建[bundleType](../quick-start/app-configuration-file.md#配置文件标签)为shared的App包时，检查HSP包无效。
 
 **可能原因**
 
-1. 存在两个以上的[HSP包](../quick-start/module-configuration-file.md#配置文件标签)。例如下图使用DevEco Studio构建App时，工程中包含了两个HSP包library和library1，此时打包APP包失败。
+1. 存在两个以上的[HSP包](../quick-start/in-app-hsp.md)。例如下图使用DevEco Studio构建App时，工程中包含了两个HSP包library和library1，此时打包APP包失败。
 
 ![alt text](figures/zh_cn_packing_tool_image_10012017_01.png)
 

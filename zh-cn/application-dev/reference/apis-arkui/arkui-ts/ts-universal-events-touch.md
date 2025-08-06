@@ -1,4 +1,9 @@
 # 触摸事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 手指在组件上按下、滑动或抬起时触发。
 
@@ -14,7 +19,7 @@
 
 onTouch(event: (event: TouchEvent) => void): T
 
-手指触摸动作触发该回调。触摸事件默认冒泡，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
+手指触摸动作触发该回调。触摸事件默认[冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -43,7 +48,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| stopPropagation      | () => void | 阻塞[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**

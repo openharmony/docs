@@ -1,8 +1,16 @@
 # LazyForEach：数据懒加载
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @maorh-->
+<!--SE: @lixingchi1-->
+<!--TSE: @TerryTsao-->
 
 API参数说明见：[LazyForEach API参数说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)。
 
-LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会销毁并回收组件以降低内存占用。
+## 概述
+
+LazyForEach为开发者提供了基于数据源渲染出一系列子组件的能力。具体而言，LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会销毁并回收组件以降低内存占用。</br>
+本文档依次介绍了LazyForEach的[基本用法](#基本用法)、[高级用法](#高级用法)和[常见问题](#常见问题)，开发者可以按需阅读。在[首次渲染](#首次渲染)小节中，给出了简单的示例，可以帮助开发者快速上手LazyForEach的使用。
 
 > **说明：**
 >
@@ -10,7 +18,7 @@ LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应
 
 ## 使用限制
 
-- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
+- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
 - LazyForEach依赖生成的键值判断是否刷新子组件，键值不变则不触发刷新。
 - 容器组件内只能包含一个LazyForEach。以List为例，不推荐同时包含ListItem、ForEach、LazyForEach。也不推荐同时包含多个LazyForEach。
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
@@ -22,20 +30,21 @@ LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应
 - LazyForEach和[\@Reusable](./arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](./arkts-reusable.md#列表滚动配合lazyforeach使用)。
 - LazyForEach和[\@ReusableV2](./arkts-new-reusableV2.md)装饰器一起使用能触发节点复用。详见[在LazyForEach组件中使用\@ReusableV2](./arkts-new-reusableV2.md#在lazyforeach组件中使用)。
 
-## 键值生成规则
+## 基本用法
+
+### 键值生成规则
 
 在`LazyForEach`循环渲染过程中，系统为每个item生成一个唯一且持久的键值，用于标识对应的组件。键值变化时，ArkUI框架将视为该数组元素已被替换或修改，并基于新的键值创建新的组件。
 
 `LazyForEach`提供了参数`keyGenerator`，开发者可以使用该函数生成自定义键值。如果未定义`keyGenerator`函数，ArkUI框架将使用默认的键值生成函数：`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`。viewId在编译器转换过程中生成，同一个LazyForEach组件内的viewId一致。
 
-## 组件创建规则
+### 组件创建规则
 
-在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据组件创建规则为数据源的每个数组项创建组件。组件的创建包括两种情况：[LazyForEach首次渲染](#首次渲染)和[LazyForEach非首次渲染](#非首次渲染)。
+在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据组件创建规则为数据源的每个数组项创建组件。组件的创建包括两种情况：LazyForEach[首次渲染](#首次渲染)和LazyForEach数据更新后的[非首次渲染](#数据更新)。
 
 ### 首次渲染
 
-#### 生成不同键值
-
+使用LazyForEach时，开发者需要提供数据源、键值生成函数和组件创建函数。**开发者需保证键值生成函数为每项数据生成不同的键值。**</br>
 在LazyForEach首次渲染时，会根据上述键值生成规则为数据源的每个数组项生成唯一键值并创建相应的组件。
 
 ```ts
@@ -93,7 +102,7 @@ struct MyComponent {
 **图1**  LazyForEach正常首次渲染  
 ![LazyForEach-Render-DifferentKey](./figures/LazyForEach-Render-DifferentKey.gif)
 
-#### 键值相同时错误渲染
+**错误案例：键值相同导致渲染异常**
 
 当不同数据项生成的键值相同时，框架的行为是不可预测的。例如，在以下代码中，`LazyForEach`渲染的数据项键值均相同，在滑动过程中，`LazyForEach`会预加载划入划出当前页面的子组件，而新建的子组件和销毁的旧子组件具有相同的键值，框架可能取用错误的缓存，导致子组件渲染出现问题。
 ```ts
@@ -169,11 +178,11 @@ LazyForEach(this.data, (item: string) => {
 **图3**  LazyForEach生成唯一键值  
 ![LazyForEach-Render-UniqueKey](./figures/LazyForEach-Render-UniqueKey.gif)
 
-### 非首次渲染
+### 数据更新
 
 当`LazyForEach`数据源发生变化，需要再次渲染时，开发者应根据数据源的变化情况调用`listener`对应的接口，通知`LazyForEach`做相应的更新，各使用场景如下。
 
-#### 添加数据
+**添加数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -234,7 +243,7 @@ struct MyComponent {
 **图4**  LazyForEach添加数据  
 ![LazyForEach-Add-Data](./figures/LazyForEach-Add-Data.gif)
 
-#### 删除数据
+**删除数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -303,7 +312,7 @@ struct MyComponent {
 **图5**  LazyForEach删除数据  
 ![LazyForEach-Delete-Data](./figures/LazyForEach-Delete-Data.gif)
 
-#### 交换数据
+**交换数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -379,7 +388,7 @@ struct MyComponent {
 **图6**  LazyForEach交换数据  
 ![LazyForEach-Exchange-Data](./figures/LazyForEach-Exchange-Data.gif)
 
-#### 改变单个数据
+**改变单个数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -443,7 +452,7 @@ struct MyComponent {
 **图7**  LazyForEach改变单个数据  
 ![LazyForEach-Change-SingleData](./figures/LazyForEach-Change-SingleData.gif)
 
-#### 改变多个数据
+**改变多个数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -513,7 +522,7 @@ struct MyComponent {
 **图8**  LazyForEach改变多个数据  
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
 
-#### 精准批量修改数据
+**精准批量修改数据**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -689,9 +698,11 @@ struct MyComponent {
 4. 部分操作由开发者传入键值，LazyForEach不再重复调用`keygenerator`获取键值，开发者需保证传入键值的正确性。
 5. 若操作集合中包含RELOAD操作，则其他操作均不生效。
 
+## 高级用法
+
 ### 改变数据子属性
 
-若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
+若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了[\@Observed和\@ObjectLink](./arkts-observed-and-objectlink.md)机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -769,9 +780,9 @@ struct ChildComponent {
 
 ### 使用状态管理V2
 
-状态管理V2提供`@ObservedV2`和`@Trace`装饰器，用于实现属性的深度观测。使用`@Local`和`@Param`装饰器，可以管理子组件的刷新，仅刷新使用了对应属性的组件。
+状态管理V2提供[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)装饰器，用于实现属性的深度观测。使用[\@Local](./arkts-new-local.md)和[\@Param](./arkts-new-param.md)装饰器，可以管理子组件的刷新，仅刷新使用了对应属性的组件。
 
-#### 嵌套类属性变化观测
+**嵌套类属性变化观测**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -854,7 +865,7 @@ struct MyComponent {
 
 `@ObservedV2`与`@Trace`用于装饰类以及类中的属性，配合使用能深度观测被装饰的类和属性。示例中，展示了深度嵌套类结构下，通过`@ObservedV2`和`@Trace`实现对多层嵌套属性变化的观测和子组件刷新。当点击子组件`Text`修改被`@Trace`修饰的嵌套类最内层的类成员属性时，仅重新渲染依赖了该属性的组件。
 
-#### 组件内部状态
+**组件内部状态**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -933,7 +944,7 @@ struct ChildComponent {
 
 `@Local`使得自定义组件内被修饰的变量具有观测其变化的能力，该变量必须在组件内部进行初始化。示例中，点击`Text`组件修改`item.message`触发变量更新并刷新使用该变量的组件，`ChildComponent`中`@Local`装饰的变量`message`变化时也能刷新子组件。
 
-#### 组件外部输入
+**组件外部输入**
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -1003,7 +1014,7 @@ struct ChildComponent {
 
 使用`@Param`装饰器，子组件可以接受外部输入参数，实现父子组件间的数据同步。在`MyComponent`中创建子组件时，传递`item.message`，并用`@Param`修饰的变量`data`与其关联。点击`ListItem`中的组件修改`item.message`，数据变化会从父组件传递到子组件，触发子组件刷新。
 
-## 拖拽排序
+### 拖拽排序
 当LazyForEach在List组件下使用，并且设置了[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove)事件，可以使能拖拽排序。拖拽排序释放后，如果数据位置发生变化，将触发onMove事件，上报原始索引号和目标索引号。在onMove事件中，根据上报的索引号修改数据源。修改数据源时，无需调用DataChangeListener接口通知数据源变化。
 
 ```ts
@@ -1685,7 +1696,7 @@ struct MyComponent {
 
 ### 组件复用渲染异常
 
-`@Reusable`与`@ComponentV2`混用会导致组件渲染异常。
+`@Reusable`与[\@ComponentV2](./arkts-new-componentV2.md)混用会导致组件渲染异常。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
@@ -1770,7 +1781,7 @@ struct ChildComponent {
 
 反例中，在`@ComponentV2`装饰的组件`MyComponent`中，`LazyForEach`列表使用了`@Reusable`装饰的组件`ChildComponent`，导致组件渲染失败。从日志中可以看到，组件触发了`onAppear`，但没有触发`aboutToAppear`。
 
-将`@ComponentV2`修改为`@Component`可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`会被加入复用缓存，而非被销毁，并触发`aboutToRecycle`事件，打印日志信息。当列表滑动，出现新节点时，会将可复用的组件从复用缓存中重新加入到节点树，触发`aboutToReuse`刷新组件数据，并打印日志信息。
+将`@ComponentV2`修改为[\@Component](./arkts-create-custom-components.md#component)可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`会被加入复用缓存，而非被销毁，并触发`aboutToRecycle`事件，打印日志信息。当列表滑动，出现新节点时，会将可复用的组件从复用缓存中重新加入到节点树，触发`aboutToReuse`刷新组件数据，并打印日志信息。
 
 ### 组件不刷新
 

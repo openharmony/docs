@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现语音识别（C/C++）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
@@ -27,10 +33,7 @@
 
 本示例程序中使用的语音识别模型文件为tiny-encoder.ms、tiny-decoder-main.ms、tiny-decoder-loop.ms，放置在entry/src/main/resources/rawfile工程目录下。
 
-
-### 编写代码
-
-#### 播放音频
+### 编写播放音频代码
 
 1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md)，实现播放音频的功能。
 
@@ -78,7 +81,7 @@
              console.info('MS_LITE_LOG: AVPlayer state playing called.');
              if (this.isSeek) {
                console.info('MS_LITE_LOG: AVPlayer start to seek.');
-               avPlayer.seek(0); // seek到音频末尾。
+               avPlayer.seek(0); // 将播放位置移动到音频的开始。
              } else {
                // 当播放模式不支持seek操作时继续播放到结尾。
                console.info('MS_LITE_LOG: AVPlayer wait to play end.');
@@ -129,7 +132,7 @@
    ```
 
 
-#### 识别音频
+### 编写识别音频代码
 
 调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，依次对3个模型进行推理，推理代码流程如下。
 
@@ -186,7 +189,7 @@
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -212,7 +215,7 @@
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -371,7 +374,8 @@
        BinBuffer logits{nullptr, 51865 * sizeof(float)};
        logits.first = malloc(logits.second);
        if (!logits.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
        void *logits_init_src = static_cast<char *>(logits_init.first) + 51865 * 3 * sizeof(float);
        memcpy(logits.first, logits_init_src, logits.second);
@@ -393,7 +397,8 @@
        slice.second = WHISPER_N_TEXT_STATE * sizeof(float);
        slice.first = malloc(slice.second);
        if (!slice.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
    
        auto out_n_layer_self_k_cache_new = out_n_layer_self_k_cache;
@@ -467,13 +472,15 @@
        std::string filePath = "zh.wav";
        auto audioBin = ReadBinFile(resourcesManager, filePath);
        if (audioBin.first == nullptr) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        size_t dataSize = audioBin.second;
        uint8_t *dataBuffer = (uint8_t *)audioBin.first;
        bool ok = audioFile.loadFromMemory(std::vector<uint8_t>(dataBuffer, dataBuffer + dataSize));
        if (!ok) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        std::vector<float> data(audioFile.samples[0]);
        ResampleAudio(data, audioFile.getSampleRate(), WHISPER_SAMPLE_RATE, 1, SRC_SINC_BEST_QUALITY);
@@ -506,6 +513,8 @@
        // tiny-encoder.ms模型推理
        auto encoderBin = ReadBinFile(resourcesManager, "tiny-encoder.ms");
        if (encoderBin.first == nullptr) {
+           free(dataBuffer);
+           dataBuffer = nullptr;
            return error_ret;
        }
    
@@ -516,7 +525,7 @@
            OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
-       LOGI("run encoder ok!\n");
+       LOGI("MS_LITE_LOG: run encoder ok!\n");
    
        auto outputs = OH_AI_ModelGetOutputs(encoder);
        auto n_layer_cross_k = GetMSOutput(outputs.handle_list[0]);
@@ -531,6 +540,7 @@
        const std::string decoder_main_path = "tiny-decoder-main.ms";
        auto decoderMainBin = ReadBinFile(resourcesManager, decoder_main_path);
        if (decoderMainBin.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
        auto decoder_main = CreateMSLiteModel(decoderMainBin);
@@ -540,7 +550,7 @@
            OH_AI_ModelDestroy(&decoder_main);
            return error_ret;
        }
-       LOGI("run decoder_main ok!\n");
+       LOGI("MS_LITE_LOG: run decoder_main ok!\n");
    
        auto decoderMainOut = OH_AI_ModelGetOutputs(decoder_main);
        auto logitsBin = GetMSOutput(decoderMainOut.handle_list[0]);
@@ -555,6 +565,9 @@
        const std::string dataName_embedding = "tiny-positional_embedding.bin"; // 获取输入数据
        auto data_embedding = ReadBinFile(resourcesManager, dataName_embedding);
        if (data_embedding.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
+           OH_AI_ModelDestroy(&decoder_main);
+           OH_AI_ModelDestroy(&decoder_loop);
            return error_ret;
        }
    
@@ -589,7 +602,8 @@
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
    project(test)
-   set(CMAKE_CXX_STANDARD 17) # AudioFile.h
+   # AudioFile.h
+   set(CMAKE_CXX_STANDARD 17)
    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
@@ -622,7 +636,7 @@
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### 使用N-API将C++动态库封装成ArkTS模块
+### 使用N-API将C++动态库封装成ArkTS模块
 
 1. 在 entry/src/main/cpp/types/libentry/Index.d.ts，定义ArkTS接口`runDemo()` 。内容如下：
 
@@ -646,7 +660,7 @@
    }
    ```
 
-#### 调用封装的ArkTS模块进行推理并输出结果
+### 调用封装的ArkTS模块进行推理并输出结果
 
 在 entry/src/main/ets/pages/Index.ets 中，调用封装的ArkTS模块，最后对推理结果进行处理。
 
@@ -702,10 +716,17 @@ struct Index {
         .height('5%')
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-
+          if (resMgr === undefined || resMgr === null) {
+            console.error('MS_LITE_ERR: get resourceManager failed.');
+            return
+          }
           // 调用封装的runDemo函数
           console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
           let output = msliteNapi.runDemo(resMgr);
+          if (output === null || output.length === 0) {
+            console.error('MS_LITE_ERR: runDemo failed.')
+            return
+          }
           console.info('MS_LITE_LOG: output length = ', output.length, ';value = ', output.slice(0, 20));
           this.content = output;
           console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
@@ -790,5 +811,5 @@ struct Index {
 
 针对使用MindSpore Lite进行语音识别应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
+- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
 

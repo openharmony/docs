@@ -1,9 +1,9 @@
 # hidumper
 
-HiDumper是用于统一系统信息导出的命令行工具，支持分析CPU、内存、存储等系统资源使用情况，查询系统服务运行情况，定位资源使用异常、通信等等相关问题。
+HiDumper是用于统一系统信息导出的命令行工具，支持分析CPU、内存、存储等系统资源使用情况，查询系统服务运行情况，定位资源使用异常、通信等相关问题。
 
 
-针对HiDumper所支撑的使用场景，本章节讲介绍其查询内存信息、查询CPU使用情况、查询系统能力、查询进程信息、查询存储信息、查询系统信息等基础功能，以及系统故障日志获取，进程间通信记录导出，导出信息支持压缩转储等能力。
+针对HiDumper所支撑的使用场景，本章节将介绍其查询内存信息、查询CPU使用情况、查询系统能力、查询进程信息、查询存储信息、查询系统信息等基础功能，以及系统故障日志获取，进程间通信记录导出，导出信息支持压缩转储等能力。
 
 
 HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)章节。
@@ -13,7 +13,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 确保设备已正常连接，并执行hdc shell。
+- 请确保设备已正常连接，并执行hdc shell。
 
 
 ## 命令行说明
@@ -24,29 +24,29 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | -h | 帮助命令。 |
 | [-lc](#查询系统信息) | 列出系统信息簇。 |
 | [-ls](#查询系统服务列表) | 列出正在运行的系统能力。 |
-| [-c](#查询系统信息) | 获取系统全量信息簇详细信息，包含设备信息、内核信息、环境变量等。 |
+| [-c](#查询系统信息) | 获取系统全量信息簇详细信息，包含设备信息、内核信息和环境变量等。 |
 | [-c [base system]](#查询系统信息) | 获取指定信息簇详细信息，可选"base"或者"system"。 |
 | [-s](#获取系统服务详细信息) | 获取所有系统能力详细信息。 |
-| [-s [SA0 SA1]](#获取系统服务详细信息) | 获取一个或多个系统能力详细信息。多个系统能力名称间使用空格分隔。可通过 -ls 查询系统能力名称。 |
+| [-s [SA0 SA1]](#获取系统服务详细信息) | 获取一个或多个系统能力的详细信息。多个系统能力名称之间使用空格分隔。可通过 -ls 查询系统能力名称。 |
 | [-s [SA] -a ["option"]](#获取指定系统服务提供的能力) | 执行单个系统能力的特定选项。<br />SA：系统能力名称。<br />option：该系统能力支持的选项。可通过 -s [SA] -a ["-h"] 获取单个系统能力支持的所有选项。 |
 | [-e](#获取系统故障日志) | 获取记录的故障日志。 |
 | [--net [pid]](#查询网络信息) | 获取网络信息，包含网络流量、网络接口统计、IP信息等。如果指定了进程的pid，则只输出该进程的网络流量使用信息。 |
-| [--storage [pid]](#查询存储信息) | 获取存储信息，包含磁盘统计、磁盘使用量、文件句柄等信息。如果指定了进程的pid，则只输出该进程的io信息。 |
+| [--storage [pid]](#查询存储信息) | 获取存储信息，包含磁盘统计、磁盘使用量、文件句柄等信息。如果指定了进程的pid，则只显示该进程的io信息。 |
 | [-p [pid]](#查询进程信息) | 获取进程信息，包括进程和线程的列表和信息。 |
-| [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率等情况。 |
+| [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率。 |
 | [--cpufreq](#查询cpu频率) | 获取CPU每个核的真实频率，单位：kHz。 |
-| [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，则只导出精简的内存使用情况。 |
-| [--mem [pid]  [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况，如果指定 --show-ashmem，则补充打印ashmem使用详细信息。 |
-| [--zip](#导出信息压缩存储) | 保存命令输出到/data/log/hidumper下的压缩文件，压缩格式为ZIP。 |
-| [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。 |
+| [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。 |
+| [--mem [pid] [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。如果指定 --show-ashmem，则补充打印ashmem使用详细信息。 |
+| [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
+| [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
 | [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
-| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | pid为必选参数。命令触发ArkTS应用JS线程gc和堆内存快照导出。如果指定线程的tid，只触发该线程gc和堆内存快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则在应用开启泄露检测时可获取泄露对象的列表；如果指定--raw，堆快照按照rawheap格式导出。 |
-| [--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。命令触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
+| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | pid为必选参数。触发ArkTS应用JS线程gc和堆内存快照导出。如果指定线程的tid，只触发该线程gc和堆内存快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则在应用开启泄露检测时可获取泄露对象的列表；如果指定--raw，堆快照按照rawheap格式导出。 |
+| [--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
 <!--RP1End-->
 
 ## 查询内存信息
 
-HiDumper内存信息查询模块，主要用于查看系统整机内存使用情况和单个进程内存使用情况。
+HiDumper内存信息查询模块主要用于查看系统整机内存使用情况和单个进程内存使用情况。开发者需要了解相关的[内存基础知识](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-memory-basic-knowledge)。
 
 ### 查询整机内存
 
@@ -120,7 +120,7 @@ PurgSum（Purgeable Summary）表示当前进程可回收内存的总量。
 
 PurgPin（Purgeable Pinned）表示可回收但暂时无法立即回收的内存。
 
-GL（Graphics Library）代表图形内存，包含应用纹理内存和图形渲染内存。其中Graph和Dma的值相等。
+GL（Graphics Library）代表图形内存，包含应用纹理内存和图形渲染内存。Graph和Dma的值相等。
 
 可使用hidumper --mem --prune命令获取整机内存精简的使用情况。
 
@@ -141,7 +141,7 @@ AdjLabel代表该进程内存的回收优先级，取值范围为[-1000, 1000]�
 
 ### 查询进程内存
 
-使用hidumper --mem pid命令获取指定进程的内存使用情况，pid为指定的进程号。
+可使用hidumper --mem pid命令获取指定进程的内存使用情况，pid为指定的进程号。
 
 使用样例：
 
@@ -192,7 +192,7 @@ Total Ashmem:144 kB
 使用样例：
 
 ```shell
-$ hidumper --mem-smaps 27336
+$ hidumper --mem 27336 --show-ashmem
 -------------------------------[memory]-------------------------------
 
                           Pss         Shared         Shared        Private        Private           Swap        SwapPss           Heap           Heap           Heap
@@ -234,12 +234,12 @@ Process_name    Process_ID      Fd      Cnode_idx       Applicant_Pid   Ashmem_n
 wei.hmos.xxx  27336   72      328415  27336   dev/ashmem/Paf.Permission.appImg        147456  147456  14105
 ```
 
-可使用hidumper --mem-smaps pid命令获取指定进程的详细内存使用情况，该命令会将相同内存段对应的内存值累加起来。
+可使用hidumper --mem-smaps pid命令获取指定进程的详细内存使用情况，该命令会累加相同内存段的内存值。
 
 使用样例：
 
 ```txt
-$ hidumper --mem-smaps 1
+$ hidumper --mem-smaps 3456  # 3456 为目标可调试应用进程号
 
 -------------------------------[memory]-------------------------------
 
@@ -254,32 +254,13 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
 
 统计信息说明：
 
-| 字段 | 说明 | 
+| 字段 | 说明 |
 | -------- | -------- |
-| Counts | 相同内存段出现的次数。 | 
-| Category | 内存所属类别。 | 
+| Counts | 相同内存段出现的次数。 |
+| Category | 内存所属类别。 |
 
 可使用hidumper --mem-smaps pid -v命令获取指定进程的详细内存使用情况，该命令会直接打印进程的所有内存信息，不会对相同内存信息做二次处理。
 
-> **注意：**
->
-> hidumper --mem-smaps [pid] [-v]命令调试的进程应为“使用调试证书签名的应用”，同[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)。
-> 
-> 确认命令指定的应用是否为可调试应用，可执行hdc shell "bm dump -n [应用包名] | grep appProvisionType"查询，预期返回信息为"appProvisionType": "debug"。
-> 
-> 以包名com.example.myapplication为例，可执行如下命令查询：
-> 
-> ```shell
-> hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
-> ```
-> 
-> 如包名对应的应用是可调试应用，预期返回信息：
-> 
-> ```shell
-> "appProvisionType": "debug",
-> ```
-> 
-> 构建可调试应用需要使用调试证书进行签名，申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 使用样例：
 
@@ -287,12 +268,32 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
 $ hidumper --mem-smaps 3456 -v   # 3456 为目标可调试应用进程号
 
 -------------------------------[memory]-------------------------------
-                                    Shared      Shared      Private     Private                                                                             
+                                    Shared      Shared      Private     Private
 Size        Rss         Pss         Clean       Dirty       Clean       Dirty       Swap        SwapPss     Category                   Name
 4           4           2           0           4           0           0           0           0           FilePage other             [anon]
 4           4           2           0           4           0           0           0           0           FilePage other             /bin/init
 ...
 ```
+
+**注意事项**
+
+hidumper --mem-smaps [pid] [-v]命令调试的进程应为“使用调试证书签名的应用”，同[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)。
+
+要确认命令指定的应用是否为可调试应用，可以执行以下命令进行查询：hdc shell "bm dump -n [应用包名] | grep appProvisionType"查询，预期返回信息为"appProvisionType": "debug"。
+
+以包名com.example.myapplication为例，可执行如下命令查询：
+
+```shell
+hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
+```
+
+如包名对应的应用是可调试应用，预期返回信息：
+
+```shell
+"appProvisionType": "debug",
+```
+
+构建可调试应用需要使用调试证书进行签名，申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 
 ### 查询虚拟机堆内存
@@ -301,32 +302,36 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
 使用hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]命令可以查看ArkTS应用虚拟机堆内存，使用hidumper --mem-cjheap pid [--gc]命令可以查看仓颉应用虚拟机堆内存。生成的堆内存文件存放于/data/log/faultlog/temp目录。
 
 > **注意：**
-> 
+>
 > hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]命令调试的进程应为“使用调试证书签名的应用”，同[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)。
-> 
+>
 > 确认命令指定的应用是否为可调试应用：参考上述hidumper --mem-smaps [pid] [-v]命令中的注意事项。
 
 - 可使用hidumper --mem-jsheap pid命令获取指定进程所有JS线程的虚拟机堆内存，文件命名为：jsheap-进程号-JS线程号-时间戳，如果有多个JS线程会生成多个文件。
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-jsheap 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap   -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075546050
   jsheap-64949-64989-1751075546050
   ```
+
 - 可使用hidumper --mem-jsheap pid -T tid命令获取指定进程指定JS线程的虚拟机堆内存，文件命名为：jsheap-进程号-JS线程号-时间戳。
+
   使用样例：
-  
-  ```txt
+
+  ```shell
   $ hidumper --mem-jsheap 64949 -T 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075567710
   ```
+
 - 可使用hidumper --mem-jsheap pid [-T tid] --raw获取指定进程或指定JS线程的虚拟机堆内存，生成的堆内存文件为rawheap格式，文件命名为jsheap-进程号-JS线程号-时间戳.rawheap。rawheap的解析转换可参考使用：[rawheap-translator工具](../tools/rawheap-translator.md)。
-  
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-jsheap 64949 --raw  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
@@ -336,42 +341,48 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
+
 - 可使用hidumper --mem-jsheap pid --gc命令触发指定应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-jsheap 64949 --gc  -> 64949 为目标应用进程号
   ```
-- 可使用hidumper --mem-jsheap pid --leakobj获取指定进程的虚拟机堆内存和泄露对象信息，文件命名为：leaklist-进程号-时间戳。
-  
+
+- 可使用hidumper --mem-jsheap pid --leakobj获取指定进程的虚拟机堆内存和泄漏对象信息，文件命名为：leaklist-进程号-时间戳。
+
   > **注意：**
-  > 
-  > 获取指定进程的虚拟机堆内存和泄露对象信息的前置条件为应用通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启泄露检测功能。
-  > 
+  >
+  > 获取指定进程的虚拟机堆内存和泄露对象信息的前提是应用已通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启了泄漏检测功能。
+  >
   > 具体使用步骤为：
-  > 
+  >
   > 1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
   > 2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
-  > 3. 用户执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄露对象信息。
-  
+  > 3. 执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄漏对象信息。
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-jsheap 64949 --leakobj
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
 - 可使用hidumper --mem-cjheap pid命令获取指定仓颉进程的虚拟机堆内存，文件命名为：cjheap-进程号-时间戳。
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-cjheap 65012  -> 65012 为目标应用进程号
   $ ls | grep cjheap   -> 进入堆内存文件存放目录后执行
   cjheap-65012-1751075546050
   ```
+
 - 可使用hidumper --mem-cjheap pid --gc命令触发指定仓颉应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
+
   使用样例：
-  
+
   ```shell
   $ hidumper --mem-cjheap 65012 --gc  -> 65012 为目标应用进程号
   ```
@@ -387,7 +398,7 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
 
 ### 查询整机CPU使用率
 
-使用 hidumper --cpuusage获取整机CPU使用率。
+可使用hidumper --cpuusage获取整机CPU使用率。
 
 打印效果为：
 
@@ -409,7 +420,7 @@ Details of Processes:
 
 ### 查询进程CPU使用率
 
-使用hidumper --cpuusage pid获取指定进程的CPU使用率。
+可使用hidumper --cpuusage pid获取指定进程的CPU使用率。
 
 打印效果为：
 
@@ -429,7 +440,7 @@ Details of Processes:
 
 ### 查询CPU频率
 
-使用hidumper --cpufreq获取CPU频率信息。
+可使用hidumper --cpufreq获取CPU频率信息。
 
 打印效果为：
 
@@ -455,7 +466,7 @@ cmd is: cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq
 
 ### 查询系统服务列表
 
-- 使用hidumper -ls命令获取正在运行的系统服务列表。
+- 可使用hidumper -ls命令获取正在运行的系统服务列表。
 
 打印效果为：
 
@@ -477,7 +488,7 @@ NetPolicyManager                 NetStatsManager                  NetTetheringMa
 
 ### 获取系统服务详细信息
 
-- 使用hidumper -s可以获取所有系统服务的详细信息。
+- 可使用hidumper -s获取所有系统服务的详细信息。
 
 打印效果为：
 
@@ -501,7 +512,7 @@ h                             |help text for the tool
 ```
 
 
-- 使用hidumper -s [SA0] [SA1]可以获取指定的一个或多个系统服务的详细信息。其中系统能力名[SA0] [SA1]可通过上述hidumper -ls命令查询得到。
+- 可使用hidumper -s [SA0] [SA1]获取指定的一个或多个系统服务的详细信息。其中系统能力名[SA0] [SA1]可通过上述hidumper -ls命令查询得到。
 
 
 打印效果为：
@@ -550,10 +561,10 @@ composer fps                   |dump the fps info of composer
 ### 获取指定系统服务提供的能力
 
 
-使用hidumper -s [SA] -a ["option"]可以获取指定系统服务提供的能力。
+可使用hidumper -s [SA] -a ["option"]可以获取指定系统服务提供的能力。
 
 
-以RenderSerivce系统渲染服务为例，获取RenderService的使用帮助，打印效果如下：
+以RenderService系统渲染服务为例，获取其使用帮助，打印效果如下：
 
 
 ```shell
@@ -591,8 +602,7 @@ screen                        |dump all screen infomation in the system
 ```
 
 
-系统服务提供的具体功能，例如获取GPU相关信息，可以使用以下命令，打印结果如下：
-
+系统服务提供的具体功能，如获取GPU相关信息，可以使用以下命令，打印结果如下：
 
 ```shell
 $ hidumper -s RenderService -a "gles"
@@ -612,13 +622,13 @@ GL_SHADING_LANGUAGE_VERSION: OpenGL ES GLSL ES 3.20
 
 ## 查询进程信息
 
-使用hidumper -p [pid]命令可以获取指定进程的相关信息，包括进程的挂载信息，进程的线程信息，线程的运行时间，进程等待通道信息。
+可使用hidumper -p [pid]命令获取指定进程的相关信息，包括进程的挂载信息，进程的线程信息，线程的运行时间，进程等待通道信息。
 
 
 > **注意：**
 >
 > hidumper -p [pid]命令调试的进程应为“使用调试证书签名的应用”。
-> 
+>
 > 确认命令指定的应用是否为可调试应用：参考hidumper --mem-smaps [pid] [-v]命令中的介绍。
 
 
@@ -654,7 +664,7 @@ root             2     4     0  127 10:46:59 ?     00:00:00 [call_ebr]
 
 ## 查询网络信息
 
-使用hidumper --net命令可以获取网络流量信息，网络接口统计信息、网口统计信息、ip信息、iptable信息和binder信息。其功能是通过netstat、ifconfig、iptables等系统命令获取网络信息。
+可使用hidumper --net命令获取网络流量信息，网络接口统计信息、网口统计信息、IP信息、iptable信息和binder信息。该功能是通过netstat、ifconfig、iptables等系统命令获取网络信息。
 
 打印效果为：
 
@@ -673,7 +683,7 @@ cmd is: netstat -nW  -> 通过netstat -nW命令查询网络连接、路由表、
 ```
 
 
-使用hidumper --net [pid]命令可以获取指定进程的网络流量信息。
+可使用hidumper --net [pid]命令获取指定进程的网络流量信息。
 
 
 打印效果为：
@@ -691,7 +701,7 @@ Sent Bytes:51885
 
 ## 查询存储信息
 
-- 使用hidumper --storage命令可以获取磁盘统计信息、磁盘使用量信息、文件句柄信息、IO流量统计信息和挂载信息。
+- 可使用hidumper --storage命令获取磁盘统计信息、磁盘使用量信息、文件句柄信息、IO流量统计信息和挂载信息。
 
 打印效果为：
 
@@ -706,7 +716,7 @@ cmd is: storaged -u -p
 ```
 
 
-- 使用hidumper --storage [pid]命令可以获取指定进程的IO信息。
+- 可使用hidumper --storage [pid]命令获取指定进程的IO信息。
 
 
 打印效果为：
@@ -750,7 +760,7 @@ IO信息的相关字段解释如下：
 
 ## 查询系统信息
 
-- 使用hidumper -lc命令获取系统信息簇列表。
+- 可使用hidumper -lc命令获取系统信息簇列表。
 
 打印效果为：
 
@@ -760,7 +770,7 @@ System cluster list:
 base                             system
 ```
 
-- 使用 hidumper -c [系统通信息簇名称] 命令以获取指定信息簇信息。
+- 可使用hidumper -c [系统通信息簇名称]命令获取指定信息簇信息。
 
 例如可使用hidumper -c base命令获取设备信息、内核版本、启动参数和启动时间。打印效果为：
 
@@ -884,12 +894,12 @@ PID        Total Pss(xxx in SwapPss)    Total Vss    Total Rss    Total Uss     
 ...
 ```
 
-- 可使用hidumper -c命令可以获取全量信息簇信息。即包含上述base和system信息簇合集。
+- 可使用hidumper -c命令获取全量信息簇信息。这包含上述base和system信息簇合集。
 
 
 ## 获取系统故障日志
 
-使用hidumper -e命令获取系统故障日志。命令会打印对应故障日志的文件名及详细内容。
+可使用hidumper -e命令获取系统故障日志，打印对应故障日志的文件名及详细内容。
 
 ```shell
 $ hidumper -e
@@ -906,7 +916,7 @@ Generated by HiviewDFX@OpenHarmony  -> 故障日志详细内容
 
 ## 获取进程间通信信息
 
-使用hidumper --ipc -a --start-stat/stop-stat/stat命令获取整机采集时间区间内IPC信息。
+可使用hidumper --ipc -a --start-stat/stop-stat/stat命令获取整机采集时间区间内IPC信息。
 
 打印效果为：
 
@@ -932,7 +942,7 @@ StopIpcStatistics pid:1472 success
 ...
 ```
 
-使用hidumper --ipc [pid] --start-stat/stop-stat/stat命令获取指定进程采集时间区间内的IPC信息。
+可使用hidumper --ipc [pid] --start-stat/stop-stat/stat命令获取指定进程采集时间区间内的IPC信息。
 
 打印效果为：
 
@@ -963,16 +973,14 @@ StopIpcStatistics pid:1473 success
 
 ## 导出信息压缩存储
 
-hidumper提供有--zip命令支持将任意类型导出信息输出到 /data/log/hidumper 下的压缩文件，可以与其他命令组合使用，压缩格式为ZIP，文件命名为当前时间戳，如下打印效果作为参考。
-
-打印效果为：
+hidumper提供有--zip命令支持将任意类型导出信息输出到 /data/log/hidumper 下的压缩文件，可以与其他命令组合使用，压缩格式为ZIP，文件命名为当前时间戳，如下打印效果所示。
 
 ```shell
 $ hidumper --zip
 100%,[-],The result is:/data/log/hidumper/20250622-120444-166.zip
 ```
 
-例如，对于 hidumper -e 命令获取系统故障日志，其输出的文本内容较多，可以考虑使用压缩存储，执行效果如下：
+例如，对于 hidumper -e 命令获取系统故障日志，其输出的文本内容较多，可以考虑使用压缩存储，打印效果如下：
 
 ```shell
 $ hidumper -e
@@ -988,6 +996,257 @@ $ hidumper -e --zip
 100%,[-],The result is:/data/log/hidumper/20250623-092235-087.zip
 ```
 
+## 常用ArkUI基础信息显示能力
+ArkUI基于hidumper增强开发了获取组件树等信息的能力。
+### 获取应用窗口信息
+打印全量窗口信息，可以在全量信息中找出对应窗口的WinId，将该WinId作为参数传递给其他命令以获取相关信息。
+
+```shell
+hdc shell hidumper -s WindowManagerService -a '-a'
+```
+ **使用样例：**
+```text
+-------------------------------[ability]-------------------------------
+
+
+----------------------------------WindowManagerService---------------------------------
+-------------------------------------ScreenGroup 1-------------------------------------
+WindowName             DisplayId Pid     WinId Type Mode Flag ZOrd Orientation [ x    y    w    h    ]
+ScreenLockWindow       0         1274    2     2110 1    0    4    0           [ 0    0    720  1280 ]
+SystemUi_NavigationBar 0         1274    5     2112 102  1    3    0           [ 0    1208 720  72   ]
+SystemUi_StatusBar     0         1274    4     2108 102  1    2    0           [ 0    0    720  72   ]
+settings0              0         10733   11    1    1    1    1    0           [ 0    72   720  1136 ]
+EntryView              0         1546    8     2001 1    0    0    8           [ 0    0    720  1280 ]
+---------------------------------------------------------------------------------------
+SystemUi_VolumePanel   0         1274    3     2111 1    1    -1   0           [ 0    0    0    0    ]
+SystemUi_DropdownPan   0         1274    6     2109 1    1    -1   0           [ 0    0    0    0    ]
+SystemUi_BannerNotic   0         1274    7     2111 1    1    -1   0           [ 0    0    0    0    ]
+RecentView             0         1546    9     2115 1    1    -1   0           [ 0    0    0    0    ]
+imeWindow              0         1530    10    2105 1    1    -1   0           [ 0    0    0    0    ]
+Focus window: 2
+total window num: 10
+```
+
+常见windowName与内置应用窗口的对应关系：
+|windowName|内置应用窗口|
+|---|---|
+| EntryView|桌面|
+| RecentView|最近任务|
+| SystemUi_NavigationBar|三键导航|
+|  SystemUi_StatusBar|状态栏|
+| ScreenLockWindow|锁屏|
+
+### 获取期望应用组件树
+如果需要查看应用中所有组件的信息，可以通过下列命令实现。
+
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element'"
+```
+windowId是期望应用的窗口ID。
+
+**使用样例：**
+
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -element'"
+
+-------------------------------[ability]-------------------------------
+----------------------------------WindowManagerService---------------------------------
+WindowName: SystemUi_NavigationBar
+DisplayId: 0
+WinId: 5
+Pid: 1274
+Type: 2112
+Mode: 102
+Flag: 1
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 0
+IsVisible: false
+WindowRect: [ 0, 1208, 720, 72 ]
+TouchHotAreas: [ 0, 1208, 720, 72 ]
+  |-> RootElement childSize:1
+    | ID: 0
+    | elmtId: -1
+    | retakeID: 16
+    | Active: Y
+    |-> StackElement childSize:2
+      | ID: 1
+      | elmtId: -1
+      | retakeID: 14
+      | Active: Y
+      |-> StageElement childSize:1
+        | ID: 2
+        | elmtId: -1
+        | retakeID: 13
+        | Active: Y
+        |-> PageElement childSize:1
+          | ID: 3
+          | elmtId: -1
+          | retakeID: 569
+          | Active: Y
+......
+```
+
+### 获取应用中指定Node的组件信息
+如果只需要查看组件中某一节点的组件信息，可以通过下列命令实现。
+
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element -lastpage %nodeID%'"
+```
+windowId是应用的窗口ID，nodeID是指定Node的ID。可以通过获取期望应用组件树的操作获取nodeID。
+
+**使用样例：**
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -element -lastpage 3'"
+
+-------------------------------[ability]-------------------------------
+----------------------------------WindowManagerService---------------------------------
+WindowName: SystemUi_NavigationBar
+DisplayId: 0
+WinId: 5
+Pid: 1274
+Type: 2112
+Mode: 102
+Flag: 1
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 0
+IsVisible: false
+WindowRect: [ 0, 1208, 720, 72 ]
+TouchHotAreas: [ 0, 1208, 720, 72 ]
+    |-> PageElement childSize:1
+        | ID: 3
+        | elmtId: -1
+        | retakeID: 569
+        | Active: Y
+......
+```
+
+### 获取期望应用的Inspector树
+上述示例中的element/render树主要包含多项内部实现，与应用代码中的组件无法一一对应。可以通过打印Inspector树来获取与应用中组件对应的树结构及组件基本信息。Inspector树与DevEco Testing及DevEco中的ArkUI Inspector完全匹配。
+
+使用此功能需要先打开ArkUI debug调试开关。
+```shell
+hdc shell param set persist.ace.testmode.enabled 1
+```
+set: 设置命令；persist.ace.testmode.enabled：ArkUI debug调试开关名称；1：开关设置为true，打开调试功能。
+
+命令如下：
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -inspector'"
+```
+**使用样例：**
+
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -inspector'"
+
+|-> rootstacktag childSize:1
+| ID: 2100001
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 0.000000
+| height: 0.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> Column childSize:1
+| ID: 128
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 1136.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> GridContainer childSize:1
+| ID: 129
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 1136.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> Column childSize:2
+| ID: 130
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 180.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+
+......
+```
+
+### 获取期望应用路由栈信息
+
+该命令将输出应用页面路由栈的信息，依据栈的创建顺序及其父子关系排列。
+
+> **说明：**
+>
+> 仅支持通过[Navigation](../ui/arkts-navigation-navigation.md)组件实现页面路由的应用。
+
+命令：
+
+```shell
+hidumper -s WindowManagerService -a '-w %windowId% -navigation -c'
+```
+**使用样例：**
+```text
+hidumper -s WindowManagerService -a '-w 15 -navigation -c'
+
+-------------------------------[ability]-------------------------------
+
+
+----------------------------------WindowManagerService--------------------------------
+WindowName: myapplication0
+DisplayId: 0
+WinId: 12
+Pid: 5908
+Type: 1
+Mode: 1
+Flag: 0
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 1
+VisibilityState: 0
+Focusable: true
+DecoStatus: true
+IsPrivacyMode: false
+isSnapshotSkip: 0
+WindowRect: [ 0, 0, 720, 1280 ]
+TouchHotAreas: [ 0, 0, 720, 1280 ]
+bundleName:com.example.myapplication
+moduleName:entry
+ LastRequestVsyncTime: 2351504075334
+ transactionFlags: [ 5908, 0 ]
+ last vsyncId: 527
+Navigation number: 4
+|-> Navigation ID: 7, Depth: 7, Mode: "SPLIT", NavDestinations:
+  | [0]{ ID: 0, Name: "pageOne", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [1]{ ID: 1, Name: "pageTwo", Mode: "STANDARD", IsOnShow: "TRUE" }
+|-> Navigation ID: 19, Depth: 7, Mode: "AUTO (STACK)", NavDestinations:
+  |-> Navigation ID: 28, Depth: 11, Mode: "STACK", NavDestinations:
+  | [0]{ ID: 2, Name: "pageOne", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [1]{ ID: 3, Name: "pageTwo", Mode: "DIALOG", IsOnShow: "FALSE" }
+    |-> Navigation ID: 123, Depth: 11, Mode: "AUTO (SPLIT)", NavDestinations:
+      | [0]{ ID: 4, Name: "pageFive", Mode: "STANDARD", IsOnShow: "FALSE" }
+      | [1]{ ID: 5, Name: "pageSix", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [2]{ ID: 6, Name: "pageThree", Mode: "STANDARD", IsOnShow: "TRUE" }
+```
+> **说明：**
+>
+> 同一级别的节点，显示在最下方的节点为栈顶节点。
 
 ## 常见问题
 
@@ -1002,16 +1261,16 @@ hidumper --mem 系列命令与[HiDebug](../reference/apis-performance-analysis-k
 
 hidumper --mem命令与HiDebug接口内存获取功能详细对比参考下表。
 
-**表1** 
+**表1**
 
-| 命令或接口 | 使用场景 | 数据来源 | 是否导出图形内存 | 
+| 命令或接口 | 使用场景 | 数据来源 | 是否导出图形内存 |
 | -------- | -------- | -------- | -------- |
-| hidumper --mem | 命令行获取**所有进程**的内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 是 | 
-| hidumper --mem [pid] | 命令行获取**单个进程**的内存使用情况 | 系统节点：/proc/pid/smaps | 是 | 
-| hidumper --mem-smaps [pid] | 命令行获取**单个进程**的详细内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 否 | 
-| [hidebug.getAppNativeMemInfo](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebuggetappnativememinfo12) | 获取**应用自身**的内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 否 | 
+| hidumper --mem | 命令行获取**所有进程**的内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 是 |
+| hidumper --mem [pid] | 命令行获取**单个进程**的内存使用情况 | 系统节点：/proc/pid/smaps | 是 |
+| hidumper --mem-smaps [pid] | 命令行获取**单个进程**的详细内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 否 |
+| [hidebug.getAppNativeMemInfo](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebuggetappnativememinfo12) | 获取**应用自身**的内存使用情况 | 系统节点：/proc/pid/smaps_rollup | 否 |
 
-若想通过hidebug获取图形内存，参考：[HiDebug能力概述](hidebug-guidelines.md)。
+若想通过hidebug获取图形内存，请参考[HiDebug能力概述](hidebug-guidelines.md)中的相关说明。
 
 
 ### hidumper获取进程虚拟机内存和泄露对象信息为空
@@ -1022,4 +1281,4 @@ hidumper --mem命令与HiDebug接口内存获取功能详细对比参考下表�
 
 **可能原因&amp;解决方法**
 
-hidumper --mem-jsheap [pid] --leakobj 命令参数底层是依赖[JsLeakWatcher](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)提供的能力。获取指定进程的虚拟机堆内存和泄露对象信息的前置条件为应用通过JsLeakWatcher接口开启泄露检测功能。具体步骤参考：[查询虚拟机堆内存](#查询虚拟机堆内存)。
+hidumper --mem-jsheap [pid] --leakobj 命令依赖[JsLeakWatcher](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)。应用需通过JsLeakWatcher接口开启泄漏检测功能。具体步骤参考：[查询虚拟机堆内存](#查询虚拟机堆内存)。

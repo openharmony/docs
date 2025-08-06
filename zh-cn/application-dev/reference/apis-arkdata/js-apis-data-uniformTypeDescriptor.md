@@ -1,4 +1,9 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--SE: @junathuawei1; @zph000-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 本模块对标准化数据类型进行了抽象定义与描述。
 

@@ -1,4 +1,9 @@
 # @ohos.enterprise.dateTimeManager （系统时间管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供系统时间管理能力。
 
@@ -81,6 +86,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -138,6 +144,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -190,6 +197,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -246,6 +254,7 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -297,6 +306,7 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

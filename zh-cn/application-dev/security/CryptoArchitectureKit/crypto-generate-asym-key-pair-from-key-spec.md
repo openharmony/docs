@@ -1,5 +1,11 @@
 # 指定密钥参数生成非对称密钥对(ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 以RSA、ECC、SM2为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。
 
 该对象可用于后续的加解密等操作。获取的密钥参数属性可用于存储或运输。
@@ -20,7 +26,7 @@
 
 3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将RSAPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
+4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey10)，获得指定的公钥（PubKey）。
 
 5. 调用[PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10)，获取模数n和公钥pk（即公钥指数e）。
 

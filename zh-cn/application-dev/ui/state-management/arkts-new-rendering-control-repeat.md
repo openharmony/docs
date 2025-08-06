@@ -1,4 +1,9 @@
 # Repeat：可复用的循环渲染
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liubihao-->
+<!--SE: @lixingchi1-->
+<!--TSE: @TerryTsao-->
 
 > **说明：**
 > 
@@ -21,7 +26,7 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 
 ## 使用限制
 
-- Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。
+- Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。
 <br/>循环渲染只允许创建一个子组件，子组件应当是允许包含在容器组件中的子组件。例如：Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
 - Repeat不支持V1装饰器，混用V1装饰器会导致渲染异常。
 - Repeat当前不支持动画效果。
@@ -698,7 +703,7 @@ struct RepeatNest {
 
 本节展示Repeat与滚动容器组件的常见应用场景。
 
-#### 与List组合使用
+**与List组合使用**
 
 在List容器组件中使用Repeat，示例代码如下：
 
@@ -802,7 +807,7 @@ struct DemoList {
 
 ![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
 
-#### 与Grid组合使用
+**与Grid组合使用**
 
 在Grid容器组件中使用Repeat，示例如下：
 
@@ -931,7 +936,7 @@ struct DemoGrid {
 
 ![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
 
-#### 与Swiper组合使用
+**与Swiper组合使用**
 
 在Swiper容器组件中使用Repeat，示例如下：
 

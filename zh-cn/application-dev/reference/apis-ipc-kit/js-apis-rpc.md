@@ -1,4 +1,9 @@
 # @ohos.rpc (RPC通信)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
@@ -943,7 +948,7 @@ readLong(): number
 
 writeFloat(val: number): void
 
-将浮点值写入MessageSequence实例。
+将双精度浮点值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -951,7 +956,7 @@ writeFloat(val: number): void
 
   | 参数名 | 类型   | 必填 | 说明  |
   | ------ | ------ | ---- | ----- |
-  | val    | number | 是   | 要写入的浮点值。 |
+  | val    | number | 是   | 要写入的双精度浮点值。 |
 
 **错误码：**
 
@@ -982,7 +987,7 @@ writeFloat(val: number): void
 
 readFloat(): number
 
-从MessageSequence实例中读取浮点值。
+从MessageSequence实例中读取双精度浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -990,7 +995,7 @@ readFloat(): number
 
   | 类型   | 说明         |
   | ------ | ------------ |
-  | number | 返回浮点值。 |
+  | number | 返回双精度浮点值。 |
 
 **错误码：**
 
@@ -2018,7 +2023,7 @@ readLongArray(): number[]
 
 writeFloatArray(floatArray: number[]): void
 
-将浮点数组写入MessageSequence实例。
+将双精度浮点数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2026,7 +2031,7 @@ writeFloatArray(floatArray: number[]): void
 
   | 参数名     | 类型     | 必填 | 说明                                                                                                                    |
   | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | floatArray | number[] | 是   | 要写入的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **错误码：**
 
@@ -2057,7 +2062,7 @@ writeFloatArray(floatArray: number[]): void
 
 readFloatArray(dataIn: number[]): void
 
-从MessageSequence实例中读取浮点数组。
+从MessageSequence实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2065,7 +2070,7 @@ readFloatArray(dataIn: number[]): void
 
   | 参数名 | 类型     | 必填 | 说明                                                                                                                    |
   | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **错误码：**
 
@@ -2104,7 +2109,7 @@ readFloatArray(dataIn: number[]): void
 
 readFloatArray(): number[]
 
-从MessageSequence实例中读取浮点数组。
+从MessageSequence实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2112,7 +2117,7 @@ readFloatArray(): number[]
 
   | 类型     | 说明           |
   | -------- | -------------- |
-  | number[] | 返回浮点数组。 |
+  | number[] | 返回双精度浮点数组。 |
 
 **错误码：**
 
@@ -4472,7 +4477,7 @@ readLong(): number
 
 writeFloat(val: number): boolean
 
-将浮点值写入MessageParcel实例。
+将双精度浮点值写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -4480,7 +4485,7 @@ writeFloat(val: number): boolean
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的浮点值。 |
+  | val    | number | 是   | 要写入的双精度浮点值。 |
 
 **返回值：**
 
@@ -4502,7 +4507,7 @@ writeFloat(val: number): boolean
 
 readFloat(): number
 
-从MessageParcel实例中读取浮点值。
+从MessageParcel实例中读取双精度浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -4510,7 +4515,7 @@ readFloat(): number
 
   | 类型   | 说明         |
   | ------ | ------------ |
-  | number | 返回浮点值。 |
+  | number | 返回双精度浮点值。 |
 
 **示例：**
 
@@ -5184,7 +5189,7 @@ readLongArray(): number[]
 
 writeFloatArray(floatArray: number[]): boolean
 
-将浮点数组写入MessageParcel实例。
+将双精度浮点数组写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5192,7 +5197,7 @@ writeFloatArray(floatArray: number[]): boolean
 
   | 参数名 | 类型 | 必填 | 说明  |
   | ---------- | -------- | ---- | --- |
-  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | floatArray | number[] | 是   | 要写入的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
 
@@ -5214,7 +5219,7 @@ writeFloatArray(floatArray: number[]): boolean
 
 readFloatArray(dataIn: number[]): void
 
-从MessageParcel实例中读取浮点数组。
+从MessageParcel实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5222,7 +5227,7 @@ readFloatArray(dataIn: number[]): void
 
   | 参数名 | 类型     | 必填 | 说明   |
   | ------ | -------- | ---- | ------ |
-  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **示例：**
 
@@ -5240,7 +5245,7 @@ readFloatArray(dataIn: number[]): void
 
 readFloatArray(): number[]
 
-从MessageParcel实例中读取浮点数组。
+从MessageParcel实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5248,7 +5253,7 @@ readFloatArray(): number[]
 
   | 类型     | 说明           |
   | -------- | -------------- |
-  | number[] | 返回浮点数组。 |
+  | number[] | 返回双精度浮点数组。 |
 
 **示例：**
 

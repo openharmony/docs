@@ -1,4 +1,9 @@
 # \@Local装饰器：组件内部状态
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了实现对\@ComponentV2装饰的自定义组件中变量变化的观测，开发者可以使用\@Local装饰器装饰变量。
 
@@ -106,7 +111,7 @@ struct Index {
   }
   ```
 
-- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。注意，API version 19之前，\@Local无法和\@Observed装饰的类实例对象混用。API version 19及以后，支持部分状态管理V1V2混用能力，允许\@Local和\@Observed同时使用，详情见[状态管理V1V2混用文档](../state-management/arkts-v1-v2-mixusage.md)。
+- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。注意，API version 19之前，\@Local无法和[\@Observed](./arkts-observed-and-objectlink.md)装饰的类实例对象混用。API version 19及以后，支持部分状态管理V1V2混用能力，允许\@Local和\@Observed同时使用，详情见[状态管理V1V2混用文档](../state-management/arkts-v1-v2-mixusage.md)。
 
     ```ts
     class RawObject {
@@ -531,7 +536,7 @@ struct Index {
 
   @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log('dataObjFromList has changed');
+    console.info('dataObjFromList has changed');
   }
 
   build() {
@@ -562,7 +567,7 @@ struct Index {
 
   @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log('dataObjFromList has changed');
+    console.info('dataObjFromList has changed');
   }
 
   build() {

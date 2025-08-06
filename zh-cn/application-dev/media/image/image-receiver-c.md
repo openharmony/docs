@@ -1,4 +1,9 @@
 # 使用Image_NativeModule完成图片接收
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 图像接收类，用于获取组件surface id、接收最新的图片和读取下一张图片、释放ImageReceiver实例。结合camera API实现的相机预览示例代码可参考[C/C++预览流二次处理示例](../camera/native-camera-preview-imageReceiver.md)。
 

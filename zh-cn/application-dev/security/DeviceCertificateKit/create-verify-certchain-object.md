@@ -1,5 +1,11 @@
 # 证书链对象的创建和校验
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 以校验证书链为例，完成证书链对象的创建，获取证书链中的证书列表以及使用信任锚对证书链进行校验。
 
 ## 开发步骤

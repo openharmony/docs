@@ -1,5 +1,11 @@
 # @ohos.security.huks (通用密钥库系统)(系统接口)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 向应用提供密钥库能力，应用可调用接口，指定用户身份操作密钥。
 
 > **说明：**
@@ -56,6 +62,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -127,7 +134,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。            |
 
 **返回值：**
 
@@ -266,6 +273,7 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -677,6 +685,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
 | 12000015 | Failed to obtain the security information via UserIAM. |
+| 12000017 | The key with same alias is already exist. |
 
 **示例：**
 
@@ -1542,7 +1551,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 
 **返回值：**
 
