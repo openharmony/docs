@@ -323,3 +323,80 @@ struct CalendarPickerExample {
 ```
 
 ![CalendarPickerDialog](figures/calendar_picker_dialog_mark_disabled.gif)
+
+### 示例7（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#calendardialogoptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-08-05');
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("Show CalendarPicker Dialog")
+          .margin(20)
+          .onClick(() => {
+            CalendarPickerDialog.show({
+              selected: this.selectedDate,
+              hintRadius: 1,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![CalendarPickerDialog](figures/calendar_picker_dialog_backgroundBlurStyleOptions.png)
+
+### 示例8（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#calendardialogoptions对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-08-05');
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("Show CalendarPicker Dialog")
+          .margin(20)
+          .onClick(() => {
+            CalendarPickerDialog.show({
+              selected: this.selectedDate,
+              hintRadius: 1,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![CalendarPickerDialog](figures/calendar_picker_dialog_backgroundEffect.png)
