@@ -1,5 +1,11 @@
 # oh_input_manager.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 ## 概述
 
 提供事件注入和关键状态查询等功能。
@@ -762,6 +768,10 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
 **描述**
 
 注入按键事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3703,6 +3713,10 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。
 
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
+
 **起始版本：** 12
 
 
@@ -3727,6 +3741,10 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
 **描述**
 
 使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 

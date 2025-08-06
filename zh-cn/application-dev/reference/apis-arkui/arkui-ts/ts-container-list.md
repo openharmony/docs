@@ -198,6 +198,8 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 >
 > 当List组件的内容区小于一屏时，默认没有回弹效果。若要启用回弹效果，可以通过设置edgeEffect属性的options参数来实现。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -206,8 +208,8 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false }<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring|
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false }|
 
 ### chainAnimation
 
@@ -267,6 +269,8 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 - &nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。
 - lanes设置了{minLength，maxLength}时，计算ListItemGroup中的列数时会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -275,8 +279,8 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 
 | 参数名               | 类型                                                         | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
-| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 <br/>取值范围：[1, +∞)<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0 <br/>取值范围：[0, +∞)<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 <br/>取值范围：[1, +∞)|
+| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0 <br/>取值范围：[0, +∞)|
 
 ### alignListItem<sup>9+</sup>
 
@@ -646,6 +650,12 @@ List初始化时如果initialIndex为0会触发一次，List滚动到起始位�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表到达起始位置时触发的回调。 |
+
 ### onReachEnd
 
 onReachEnd(event: () => void)
@@ -659,6 +669,12 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表到达末尾位置时触发的回调。 |
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -711,6 +727,12 @@ onScrollStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表滑动开始时触发的回调。 |
+
 ### onScrollStop
 
 onScrollStop(event: () => void)
@@ -722,6 +744,12 @@ onScrollStop(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 列表滑动停止时触发的回调。 |
 
 ### onItemMove
 

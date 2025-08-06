@@ -194,6 +194,8 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型。 |
@@ -209,6 +211,8 @@ enableShortcutKey(enabled: boolean)
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                                   |
 | ------- | ------- | ---- | -------------------------------------- |
@@ -298,6 +302,12 @@ onStop(event: Callback&lt;void&gt;)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                       |
+| -------- | ------ | ---- | -------------------------- |
+| event | Callback\<void> | 是   | 视频播放停止时的回调函数。 |
 
 ### onPrepared
 
