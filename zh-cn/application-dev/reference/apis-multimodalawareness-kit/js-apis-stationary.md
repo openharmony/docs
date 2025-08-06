@@ -1,4 +1,9 @@
 # @ohos.stationary (设备状态感知框架)
+<!--Kit: MultimodalAwarenessKit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 设备状态感知框架提供设备状态感知能力，包括绝对静止和相对静止。
 
