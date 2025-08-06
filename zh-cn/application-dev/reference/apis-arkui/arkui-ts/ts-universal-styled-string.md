@@ -1175,7 +1175,7 @@ constructor(url: string)
 
 ### 示例1（属性字符串处理）
 
-该示例通过insertString、removeStyles、replaceStyle、getStyles接口实现属性字符串的插入、删除、替换、查看。
+从API version 12开始，该示例通过[insertString](#insertstring)、[removeStyles](#removestyles)、[replaceStyle](#replacestyle)、[getStyles](#getstyles)接口实现属性字符串的插入、删除、替换、查看。
 
 ```ts
 // xxx.ets
@@ -1351,7 +1351,7 @@ struct styled_string_process_demo {
 
 ### 示例2（设置事件）
 
-该示例通过styledKey、styledValue接口实现属性字符串绑定事件。
+从API version 12开始，该示例通过[StyleOptions](#styleoptions对象说明)中的styledKey、styledValue接口实现属性字符串绑定事件。
 
 ```ts
 // xxx.ets
@@ -1438,7 +1438,7 @@ struct styled_string_bind_events_demo {
 
 ### 示例3（设置文本样式）
 
-该示例通过getStyles、setStyle接口实现属性字符串查询和设置样式。
+从API version 12开始，该示例通过[getStyles](#getstyles)、[setStyle](#setstyle)接口实现属性字符串查询和设置样式。
 
 ```ts
 // xxx.ets
@@ -1624,7 +1624,7 @@ struct styled_string_set_text_style_demo {
 
 ### 示例4（设置图片）
 
-该示例通过ImageAttachment接口实现属性字符串设置图片。
+从API version 12开始，该示例通过[ImageAttachment](#imageattachmentinterface对象说明)接口实现属性字符串设置图片。
 
 ```ts
 // xxx.ets
@@ -1756,7 +1756,7 @@ struct styled_string_set_image_demo {
 
 ### 示例5（设置文本行高和段落样式）
 
-该示例通过LineHeightStyle、ParagraphStyle接口实现属性字符串设置文本行高和段落样式。
+从API version 12开始，该示例通过[LineHeightStyle](#lineheightstyle)、[ParagraphStyle](#paragraphstyle)接口实现属性字符串设置文本行高和段落样式。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
@@ -1904,7 +1904,7 @@ struct styled_string_set_lineheight_paragraphstyle_demo {
 
 ### 示例6（设置自定义绘制Span）
 
-该示例通过CustomSpan接口实现属性字符串设置自定义绘制Span。
+从API version 12开始，该示例通过[CustomSpan](#customspan)接口实现属性字符串设置自定义绘制Span。
 
 ```ts
 // xxx.ets
@@ -2036,7 +2036,7 @@ struct styled_string_set_customspan_demo {
 
 ### 示例7（支持存储自定义扩展信息）
 
-该示例通过UserDataSpan接口实现属性字符串支持存储自定义扩展信息的功能。
+从API version 12开始，该示例通过[UserDataSpan](#userdataspan)接口实现属性字符串支持存储自定义扩展信息的功能。
 
 ```ts
 // xxx.ets
@@ -2166,7 +2166,7 @@ struct styled_string_html_convert_demo {
 
 ### 示例9（设置超链接）
 
-该示例通过UrlStyle接口，实现了对属性字符串中超链接设置的支持。
+从API version 14开始，该示例通过[UrlStyle](#urlstyle14)接口，实现了对属性字符串中超链接设置的支持。
 
 ```ts
 // xxx.ets
@@ -2201,7 +2201,7 @@ struct styled_string_set_urlstyle_demo {
 
 ### 示例10 (给图片设置colorFilter)
 
-该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果。
+从API version 15开始，该示例通过给[ImageAttachment](#imageattachmentinterface对象说明)设置colorFilter实现了给图像设置颜色滤镜效果。
 
 ``` ts
 // xxx.ets
@@ -2270,7 +2270,7 @@ struct styled_string_set_image_colorfilter_demo {
 
 ### 示例11（属性字符串的插入、删除、替换）
 
-该示例通过getSubStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
+从API version 12开始，该示例通过[subStyledString](#substyledstring)、[removeString](#removestring)、[removeStyle](#removestyle)、[clearStyles](#clearstyles)、[replaceStyledString](#replacestyledstring)、[insertStyledString](#insertstyledstring)接口实现属性字符串的插入、删除、替换。
 
 ``` ts
 // xxx.ets

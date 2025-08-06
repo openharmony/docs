@@ -208,7 +208,7 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-该示例通过设置start、step、loop、fromStart、src、marqueeUpdateStrategy展示了跑马灯内容动态更新时运行的效果。  
+该示例通过设置start、step、loop、fromStart、src、[marqueeUpdateStrategy](#marqueeupdatestrategy12)（从API version 12开始）展示了跑马灯内容动态更新时运行的效果。  
 
 ```ts
 // xxx.ets

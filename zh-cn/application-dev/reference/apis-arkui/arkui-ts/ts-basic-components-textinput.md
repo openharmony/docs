@@ -1632,7 +1632,7 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 
 ### 示例1（设置与获取光标位置）
 
-该示例通过controller实现了光标位置的设置与获取的功能。
+从API version 8开始，该示例通过[controller](#textinputcontroller8)实现了光标位置的设置与获取的功能，同时，可以使用!!实现text参数的双向数据绑定（从API version 18开始）。
 
 ```ts
 // xxx.ets
@@ -1646,7 +1646,6 @@ struct TextInputExample {
 
   build() {
     Column() {
-      // 使用!!实现text参数的双向数据绑定
       TextInput({ text: this.text!!, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
@@ -1708,7 +1707,7 @@ struct TextInputExample {
 
 ### 示例2（设置下划线）
 
-该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
+从API version 10开始支持，该示例通过[showUnderline](#showunderline10)、[showError](#showerror10)、[showUnit](#showunit10)、[passwordIcon](#passwordicon10)属性展示了下划线在不同场景的效果，同时，可以通过[underlineColor](#underlinecolor12)（从API version 12开始）支持配置下划线颜色。
 
 ```ts
 // xxx.ets
@@ -1793,7 +1792,7 @@ struct TextInputExample {
           typing: Color.Green,
           error: Color.Red,
           disable: Color.Gray
-        });
+        })
       TextInput({ placeholder: '提示文本内容' })
         .width(350)
         .showUnderline(true)
@@ -1808,7 +1807,7 @@ struct TextInputExample {
 
 ### 示例3（设置自定义键盘）
 
-该示例通过customKeyboard属性实现了自定义键盘的功能。
+从API version 10开始，该示例通过[customKeyboard](#customkeyboard10)属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -1852,7 +1851,7 @@ struct TextInputExample {
 
 ### 示例4（设置右侧清除按钮样式）
 
-该示例通过cancelButton属性展示了自定义右侧清除按钮样式的效果。
+该示例通过[cancelButton](#cancelbutton11)属性展示了自定义右侧清除按钮样式的效果。
 
 ```ts
 // xxx.ets
@@ -1887,7 +1886,7 @@ struct TextInputExample {
 
 ### 示例5（设置计数器）
 
-该示例通过maxLength、showCounter、showUnderline属性实现了计数器的功能。
+该示例通过[maxLength](#maxlength)、[showCounter](#showcounter11)（从API version 11开始）、[showUnderline](#showunderline10)（从API version 10开始）属性实现了计数器的功能。
 
 ```ts
 // xxx.ets
@@ -1922,7 +1921,7 @@ struct TextInputExample {
 
 ### 示例6（电话号码格式化）
 
-该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
+该示例通过[onChange](#onchange)回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
 // xxx.ets
@@ -2058,7 +2057,7 @@ struct TextInputExample {
             console.log("selection change: ", selectionStart, selectionEnd);
             this.lastCaretPosition = selectionStart;
             this.lastCaretPositionEnd = selectionEnd;
-          })
+          })// 从API version 10开始支持
       }
     }
     .width('100%')
@@ -2070,7 +2069,7 @@ struct TextInputExample {
 
 ### 示例7（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextInput不同断行规则下的效果。
+从API version 12开始，该示例通过[wordBreak](#wordbreak12)属性实现了TextInput不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2129,7 +2128,7 @@ struct TextInputExample {
 
 ### 示例8（设置文本样式）
 
-该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
+从API version 12开始，该示例通过[lineHeight](#lineheight12)、[letterSpacing](#letterspacing12)、[decoration](#decoration12)属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -2177,7 +2176,7 @@ struct TextInputExample {
 
 ### 示例9（设置文字特性效果）
 
-该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
+从API version 12开始，该示例通过[fontFeature](#fontfeature12)属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 // xxx.ets
@@ -2208,7 +2207,7 @@ struct TextInputExample {
 
 ### 示例10（自定义键盘避让）
 
-该示例通过自定义键盘实现了键盘避让的效果。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性配置[KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)（从API version 12开始）接口实现了自定义键盘避让的效果。
 
 ```ts
 // xxx.ets
@@ -2279,7 +2278,7 @@ struct TextInputExample {
 
 ### 示例11（设置文本自适应）
 
-该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
+从API version 12开始，该示例通过[minFontSize](#minfontsize12)、[maxFontSize](#maxfontsize12)、[heightAdaptivePolicy](#heightadaptivepolicy12)属性实现了文本自适应字号的功能。
 
 ```ts
 // xxx.ets
@@ -2331,7 +2330,7 @@ struct TextInputExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextInput不同折行规则下的效果。
+从API version 12开始，该示例通过[lineBreakStrategy](#linebreakstrategy12)属性实现了TextInput不同折行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2374,7 +2373,7 @@ struct TextInputExample {
 ![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
 ### 示例13（支持插入和删除回调）
-该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的效果。
+从API version 12开始，该示例通过[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)接口实现了插入和删除的效果。
 ```ts
 // xxx.ets
 @Entry
@@ -2427,7 +2426,7 @@ struct TextInputExample {
 
 ### 示例14（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -2487,7 +2486,7 @@ struct TextInputExample {
 
 ### 示例15（设置symbol类型清除按钮）
 
-该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+从API version 18开始，该示例通过[cancelButton](#cancelbutton18)属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
 import { SymbolGlyphModifier } from '@kit.ArkUI';
@@ -2516,7 +2515,7 @@ struct TextInputExample {
 
 ### 示例16（文本设置省略模式）
 
-该示例通过textOverflow、ellipsisMode、style属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[style](#style9)（从API version 9开始）属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
 // xxx.ets
@@ -2575,7 +2574,7 @@ struct EllipsisModeExample {
 
 ### 示例17（输入框支持输入状态变化等回调）
 
-该示例通过onEditChange、onCopy、onCut、onPaste、onContentScroll接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果。
+从API version 8开始，该示例通过[onEditChange](#oneditchange8)、[onCopy](#oncopy8)、[onCut](#oncopy8)、[onPaste](#onpaste8)、[onContentScroll](#oncontentscroll10)（从API version 10开始）接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果，同时，可以通过设置[selectAll](#selectall11)（从API version 11开始）属性，输入框初始状态下是否全选文本。
 
 ```ts
 // xxx.ets
@@ -2601,13 +2600,13 @@ struct TextInputExample {
           .textAlign(TextAlign.Center)
           .selectedBackgroundColor(Color.Blue)
           .caretStyle({ width: '4vp' })
-          .caretPosition(10)// 设置TextInput光标位置
-          .selectionMenuHidden(true)// 设置TextInput不弹出系统文本选择菜单
+          .caretPosition(10)
+          .selectionMenuHidden(true)
           .onEditChange((status: boolean) => {
             this.editStatus = status;
           })
           .defaultFocus(true)// 设置TextInput默认获焦
-          .enableKeyboardOnFocus(false)// 设置TextInput通过点击以外的方式获焦时，不主动拉起软键盘
+          .enableKeyboardOnFocus(false)
           .selectAll(false)
 
         Text("editStatus:" + this.editStatus).height(30)
@@ -2684,7 +2683,7 @@ struct TextInputExample {
 
 ### 示例18（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
+从API version 18开始，该示例通过[minFontScale](#minfontscale18)、[maxFontScale](#maxfontscale18)设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
 <!--code_no_check-->
 ```json
 // 开启应用缩放跟随系统
@@ -2786,7 +2785,7 @@ struct TextInputExample {
 <!--RP3End-->
 ### 示例19（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+从API version 10开始，该示例通过[setTextSelection](#settextselection10)方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets

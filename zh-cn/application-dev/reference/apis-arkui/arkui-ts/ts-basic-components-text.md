@@ -1218,7 +1218,7 @@ Marquee状态回调的返回值。
 ## 示例
 
 ### 示例1（设置文本布局）
-该示例通过textAlign、lineHeight、baselineOffset、halfLeading属性展示了文本布局的效果。
+该示例通过[textAlign](#textalign)、[lineHeight](#lineheight)、[baselineOffset](#baselineoffset)、[halfLeading](#halfleading12)（从API version 12开始）属性展示了文本布局的效果。
 ```ts
 // xxx.ets
 @Extend(Text)
@@ -1299,7 +1299,7 @@ struct TextExample1 {
 
 ### 示例2（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
+该示例通过[decoration](#decoration)、[letterSpacing](#letterspacing)、[textCase](#textcase)、[fontFamily](#fontfamily)、[textShadow](#textshadow10)（从API version 10开始）、fontStyle、[textIndent](#textindent10)（从API version 10开始）、[fontWeight](#fontweight12)（从API version 12开始，支持设置字重无极调节配置项）属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1418,7 +1418,7 @@ struct TextExample2 {
 
 ### 示例3（设置文本超长省略）
 
-该示例通过maxLines、textOverflow、ellipsisMode属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[maxLines](#maxlines)、[textOverflow](#textoverflow)、[ellipsisMode](#ellipsismode11)（从API version 11开始）属性展示了文本超长省略以及调整省略位置的效果，同时，可以通过[marqueeOptions](#marqueeoptions18)（从API version 18开始）配置跑马灯模式下的配置项以及跑马灯动画进行到特定的阶段时，触发的回调[onMarqueeStateChange](#onmarqueestatechange18)（从API version 18开始）。
 
 ```ts
 // xxx.ets
@@ -1506,7 +1506,7 @@ struct TextExample3 {
 
 ### 示例4（设置文本断行及折行）
 
-该示例通过wordBreak、lineBreakStrategy、clip属性展示了文本在不同断行、折行规则下的效果以及文本超长时是否截断。
+该示例通过[wordBreak](#wordbreak11)（从API version 11开始）、[lineBreakStrategy](#linebreakstrategy12)（从API version 12开始）、[clip](ts-universal-attributes-sharp-clipping.md#clip12)属性展示了文本在不同断行、折行规则下的效果以及文本超长时是否截断。
 
 ```ts
 // xxx.ets
@@ -1591,7 +1591,7 @@ struct TextExample4 {
 
 ### 示例5（设置文本选中和复制）
 
-该示例通过selection、onCopy、draggable、caretColor、selectedBackgroundColor接口展示了文本选中、触发复制回调、设置文本选中可拖拽以及修改手柄和选中颜色的效果。
+该示例通过[selection](#selection11)（从API version 11开始）、[onCopy](#oncopy11)（从API version 11开始）、[draggable](#draggable9)（从API version 9开始）、[caretColor](#caretcolor14)（从API version 14开始）、[selectedBackgroundColor](#selectedbackgroundcolor14)（从API version 14开始）接口展示了文本选中、触发复制回调、设置文本选中可拖拽以及修改手柄和选中颜色的效果。
 
 ```ts
 // xxx.ets
@@ -1636,7 +1636,7 @@ struct TextExample5 {
 
 ### 示例6（设置文本自适应和缩放倍数限制范围）
 
-该示例通过heightAdaptivePolicy属性展示文本自适应效果以及通过minFontScale、maxFontScale展示设置字体缩放倍数限制范围。
+该示例通过[heightAdaptivePolicy](#heightadaptivepolicy10)（从API version 10开始）属性展示文本自适应效果以及通过[minFontScale](#minfontscale12)（从API version 12开始）、[maxFontScale](#maxfontscale12)（从API version 12开始）展示设置字体缩放倍数限制范围。
 
 ```ts
 // xxx.ets
@@ -1681,7 +1681,7 @@ struct TextExample6 {
 
 ### 示例7（设置文本识别）
 
-该示例通过enableDataDetector、dataDetectorConfig接口实现了文本识别的功能。
+从API version 11开始，该示例通过[enableDataDetector](#enabledatadetector11)、[dataDetectorConfig](#datadetectorconfig11)接口实现了文本识别的功能。
 
 ```ts
 // xxx.ets
@@ -1734,7 +1734,7 @@ struct TextExample7 {
 
 ### 示例8（文本绑定自定义菜单）
 
-该示例通过bindSelectionMenu、onTextSelectionChange、closeSelectionMenu接口实现了文本绑定自定义菜单的功能。
+从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu)接口实现了文本绑定自定义菜单的功能。
 
 ```ts
 // xxx.ets
@@ -1846,7 +1846,7 @@ function MenuStyles() {
 
 ### 示例9（设置文本特性与行间距）
 
-该示例通过fontFeature、lineSpacing接口展示了设置文本特性与行间距的效果。
+从API version 12开始，该示例通过[fontFeature](#fontfeature12)、[lineSpacing](#linespacing12)接口展示了设置文本特性与行间距的效果。
 
 ```ts
 // xxx.ets
@@ -1902,7 +1902,7 @@ struct TextExample9 {
 
 ### 示例10（获取文本信息）
 
-该示例通过getLayoutManager接口调用文本的布局管理对象获取文本信息。
+从API version 12开始，该示例通过[getLayoutManager](#getlayoutmanager12)接口调用文本的布局管理对象获取文本信息，同时，[LayoutManager](ts-text-common.md#layoutmanager12)中的[getRectsForRange](./ts-text-common.md#getrectsforrange14)（从API version 14开始）接口可以获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息。
 
 ```ts
 // xxx.ets
@@ -1989,7 +1989,7 @@ struct TextExample10 {
 
 ### 示例11（实现键盘框选文本）
 
-该示例通过textSelectable属性实现了设置TextSelectMode.SELECTABLE_FOCUSABLE属性时能够触发键盘框选文本功能。
+从API version 12开始，该示例通过[textSelectable](#textselectable12)属性实现了设置TextSelectMode.SELECTABLE_FOCUSABLE时能够触发键盘框选文本功能。
 
 ```ts
 // xxx.ets
@@ -2018,7 +2018,7 @@ struct TextExample11 {
 
 ### 示例12（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -2078,7 +2078,7 @@ struct TextExample12 {
 
 ### 示例13（配置隐私隐藏）
 
-该示例通过privacySensitive属性展示了文本如何配置隐私隐藏的效果，实际显示需要卡片框架支持。
+从API version 12开始，该示例通过[privacySensitive](#privacysensitive12)属性展示了文本如何配置隐私隐藏的效果，实际显示需要卡片框架支持。
 
 ```ts
 // xxx.ets
