@@ -29,6 +29,7 @@
 [ArkWeb][Web]<br>
 [Asset Store Kit][Security]<br>
 [Audio Kit][Multimedia]<br>
+[AVCodec Kit][Multimedia]<br>
 [AVSession Kit][Multimedia]<br>
 [Background Tasks Kit][Notification]<br>
 [Background Tasks Kit][ResourceSchedule]<br>
@@ -78,6 +79,7 @@
 [Mechanic Kit][Mechanic]<br>
 [Media Kit][Multimedia]<br>
 [Media Library Kit][ArkUI]<br>
+[Media Library Kit][Multimedia]<br>
 [Media Library Kit][FileManagement]<br>
 [MindSpore Lite Kit][AI]<br>
 [Multimodal Awareness Kit][Msdp]<br>
