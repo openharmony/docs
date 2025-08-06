@@ -1,5 +1,11 @@
 # Core File Kit（文件基础服务）<!--core-file-kit-->
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @wang_zhangjun-->
+<!--SE: @gsl_1234;@wang_zhangjun-->
+<!--TSE: @liuhonggang123-->
+
 - [Core File Kit简介](core-file-kit-intro.md)
 - 应用文件<!--app-file-->
   - [应用文件概述](app-file-overview.md)
