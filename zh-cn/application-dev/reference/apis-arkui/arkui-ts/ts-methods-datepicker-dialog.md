@@ -577,3 +577,82 @@ struct DatePickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/DatePickerDialogDemo9.gif)
+
+### 示例10（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#datepickerdialogoptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("DatePickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showDatePickerDialog({
+              start: new Date("2000-1-1"),
+              end: new Date("2100-12-31"),
+              selected: this.selectedDate,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialog_BackgroundBlurStyleOptions.png)
+
+### 示例11（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#datepickerdialogoptions对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("DatePickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showDatePickerDialog({
+              start: new Date("2000-1-1"),
+              end: new Date("2100-12-31"),
+              selected: this.selectedDate,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialog_BackgroundEffect.png)
