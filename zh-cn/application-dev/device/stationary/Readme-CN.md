@@ -1,5 +1,5 @@
 # Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
-<!--Kit: MultimodalAwarenessKit-->
+<!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
 <!--SE: @zou_ye-->
