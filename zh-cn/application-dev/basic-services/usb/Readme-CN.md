@@ -1,4 +1,4 @@
-# USB Kit简介
+# USB服务<!--usb-->
 
 <!--Kit: USB Kit-->
 <!--Subsystem: USB-->
@@ -7,7 +7,6 @@
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @w_Machine_cc-->
 
-# USB服务<!--usb-->
 - 开发USB服务<!--usb-dev-->
   - [USB服务开发概述](usbManager/usbHost-overview.md)
   - USB Host模式开发<!--usb-host-dev-->
