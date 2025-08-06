@@ -1,5 +1,11 @@
 # @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 autoStartupManager模块提供注册、注销监听应用开机自启动状态变化的回调函数的能力。
 
 > **说明：**
@@ -124,7 +130,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 > **说明：**
 >
-> 从API version 11开始，该接口在2in1设备上生效；从API version 18开始，该接口在wearable设备上生效。
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -182,7 +188,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 > **说明：**
 >
-> 从API version 11开始，该接口在2in1设备上生效；从API version 18开始，该接口在wearable设备上生效。
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -241,6 +247,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 取消应用组件开机自启动。使用callback异步回调。
 
+> **说明：**
+>
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
+
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -294,6 +304,10 @@ try {
 cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 取消应用组件开机自启动。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -352,6 +366,10 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 查询自启动应用组件信息。使用callback异步回调。
 
+> **说明：**
+>
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
+
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -399,6 +417,10 @@ try {
  queryAllAutoStartupApplications(): Promise\<Array\<AutoStartupInfo\>\>
 
 查询自启动应用组件信息。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
