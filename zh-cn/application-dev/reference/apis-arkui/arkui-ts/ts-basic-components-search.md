@@ -1143,7 +1143,7 @@ type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
 
 ### 示例1（设置与获取光标位置）
 
-该示例通过controller实现了光标位置的设置与获取的功能。
+从API version 8开始，该示例通过[controller](#searchcontroller)实现了光标位置的设置与获取的功能。
 
 ```ts
 // xxx.ets
@@ -1192,7 +1192,7 @@ struct SearchExample {
 
 ### 示例2（设置搜索和删除图标）
 
-该示例通过searchButton、searchIcon、cancelButton属性展示了设置搜索和删除图标的效果。
+该示例通过[searchButton](#searchbutton)（从API version 8开始）、[searchIcon](#searchicon10)（从API version 10开始）、[cancelButton](#cancelbutton10)（从API version 10开始）属性展示了设置搜索和删除图标的效果。
 
 ```ts
 // xxx.ets
@@ -1240,7 +1240,7 @@ struct SearchExample {
 
 ### 示例3（设置自定义键盘）
 
-该示例通过customKeyboard属性实现了自定义键盘的功能。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -1284,7 +1284,7 @@ struct SearchExample {
 
 ### 示例4（设置输入法回车键类型）
 
-该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+该示例通过[enterKeyType](#enterkeytype12)（从API version 12开始）属性实现了动态切换输入法回车键的效果。
 
 ```ts
 // xxx.ets
@@ -1318,7 +1318,7 @@ struct SearchExample {
 
 ### 示例5（设置文本样式）
 
-该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
+从API version 12开始，该示例通过[lineHeight](#lineheight12)、[letterSpacing](#letterspacing12)、[decoration](#decoration12)属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1367,7 +1367,7 @@ struct SearchExample {
 
 ### 示例6（设置文字特性效果）
 
-该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
+该示例通过[fontFeature](#fontfeature12)（从API version 12开始）属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 // xxx.ets
@@ -1395,7 +1395,7 @@ struct SearchExample {
 
 ### 示例7（自定义键盘避让）
 
-该示例通过自定义键盘实现了键盘避让的功能。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性配置[KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)（从API version 12开始）接口实现了自定义键盘避让的效果。
 
 ```ts
 // xxx.ets
@@ -1469,7 +1469,7 @@ struct SearchExample {
 
 ### 示例8（设置文本自适应）
 
-该示例通过minFontSize、maxFontSize属性展示了文本自适应字号的效果。
+从API version 12开始，该示例通过[minFontSize](#minfontsize12)、[maxFontSize](#maxfontsize12)属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1499,7 +1499,7 @@ struct SearchExample {
 
 ### 示例9（支持插入和删除回调）
 
-该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
+从API version 12开始，该示例通过[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)接口实现了插入和删除的效果。
 
 ```ts
 // xxx.ets
@@ -1553,7 +1553,7 @@ struct SearchExample {
 
 ### 示例10（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能，同时，可以在[onPrepareMenu](ts-text-common.md#onpreparemenu20)（从API version 20开始）回调中，进行菜单数据的设置。
 
 ```ts
 // xxx.ets
@@ -1631,7 +1631,7 @@ struct SearchExample {
 
 ### 示例11（设置symbol类型清除按钮）
 
-该示例通过searchIcon、cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+从API version 10开始，该示例通过[searchIcon](#searchicon10)、[cancelButton](#cancelbutton10)属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
 // xxx.ets
@@ -1671,7 +1671,7 @@ struct SearchExample {
 
 ### 示例12（设置文本是否可复制）
 
-该示例通过copyOption属性展示如何设置文本是否可复制。
+从API version 9开始，该示例通过[copyOption](#copyoption9)属性展示如何设置文本是否可复制。
 
 ```ts
 // xxx.ets
@@ -1728,7 +1728,7 @@ struct SearchExample {
 
 ### 示例13（设置文本水平对齐/光标样式/选中背景色）
 
-该示例通过textAlign、caretStyle、selectedBackgroundColor属性展示如何设置文本的水平对齐、光标样式和选中背景色。
+该示例通过[textAlign](#textalign9)（从API version 9开始）、[caretStyle](#caretstyle10)（从API version 10开始）、[selectedBackgroundColor](#selectedbackgroundcolor12)（从API version 12开始）属性展示如何设置文本的水平对齐、光标样式和选中背景色。
 
 ```ts
 // xxx.ets
@@ -1758,7 +1758,7 @@ struct SearchExample {
 
 ### 示例14（设置默认获焦并拉起软键盘）
 
-该示例通过defaultFocus、enableKeyboardOnFocus属性展示如何设置默认获焦并拉起软键盘。
+该示例通过[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)（从API version 9开始）、[enableKeyboardOnFocus](#enablekeyboardonfocus10)（从API version 10开始）属性展示如何设置默认获焦并拉起软键盘。
 
 ```ts
 // xxx.ets
@@ -1793,7 +1793,7 @@ struct SearchExample {
 
 ### 示例15（关闭系统文本选择菜单）
 
-该示例通过selectionMenuHidden属性展示如何关闭系统文本选择菜单。
+该示例通过[selectionMenuHidden](#selectionmenuhidden10)（从API version 10开始）属性展示如何关闭系统文本选择菜单。
 
 ```ts
 // xxx.ets
@@ -1821,7 +1821,7 @@ struct SearchExample {
 
 ### 示例16（对输入的文本进行过滤）
 
-该示例通过inputFilter属性展示如何对输入的文本进行内容的过滤，以限制输入内容。
+从API version 12开始，该示例通过[inputFilter](#inputfilter12)属性展示如何对输入的文本进行内容的过滤，以限制输入内容。
 
 ```ts
 // xxx.ets
@@ -1854,7 +1854,7 @@ struct SearchExample {
 
 ### 示例17（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+该示例通过[setTextSelection](#settextselection12)（从API version 12开始）方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets
@@ -1895,7 +1895,7 @@ struct SearchExample {
 
 ### 示例18（设置文本滚动事件）
 
-该示例通过onContentScroll事件展示如何设置文本滚动事件的回调。
+从API version 10开始，该示例通过[onContentScroll](#oncontentscroll10)事件展示如何设置文本滚动事件的回调。
 
 ```ts
 // xxx.ets
@@ -1928,7 +1928,7 @@ struct SearchExample {
 
 ### 示例19（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+从API version 18开始，该示例通过[minFontScale](#minfontscale18)、[maxFontScale](#maxfontscale18)设置字体显示最小与最大范围。
 
 ```json
 // 开启应用缩放跟随系统
@@ -1983,7 +1983,7 @@ struct SearchExample {
 
 ### 示例20（设置文本描边）
 
-该示例通过strokeWidth和strokeColor属性设置文本的描边宽度及颜色。
+从API version 20开始，该示例通过[strokeWidth](#strokewidth20)和[strokeColor](#strokecolor20)属性设置文本的描边宽度及颜色。
 
 ```ts
 // xxx.ets
@@ -2031,7 +2031,7 @@ struct SearchExample {
 
 ### 示例21（设置中西文自动间距）
 
-该示例通过enableAutoSpacing属性设置中西文自动间距。
+从API version 20开始，该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
 
 ```ts
 // xxx.ets
