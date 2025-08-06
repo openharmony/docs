@@ -1232,17 +1232,17 @@ export default class EntryAbility extends UIAbility {
 
 setWindowModal(isModal: boolean): Promise&lt;void&gt;
 
-设置主窗的模态属性是否启用，使用Promise异步回调。
+该接口仅在自由窗口模式下生效，用于设置主窗的模态属性是否启用，使用Promise异步回调。
 
 主窗口调用该接口时，设置主窗口模态属性是否启用。启用主窗口模态属性后，其相同应用进程下的其他主窗口以及其他主窗口的子窗口不能响应用户操作，直到该主窗口关闭或者主窗口的模态属性被禁用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -1353,7 +1353,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
-设置是否启用最后关闭的主窗尺寸的记忆功能，使用Promise异步回调，仅对2in1设备生效。
+设置是否启用最后关闭的主窗尺寸的记忆功能，使用Promise异步回调。
 
 启用记忆功能后，在同一个UIAbility下，记忆最后关闭的主窗口的尺寸；此主窗口再次启动时，以记忆的尺寸按照规则进行打开。
 
@@ -1373,6 +1373,8 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -1427,7 +1429,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
-设置是否启用主窗的尺寸记忆功能，使用Promise异步回调，仅对2in1设备生效。
+设置是否启用主窗的尺寸记忆功能，使用Promise异步回调。
 
 在同一个UIAbility下，可记忆最后关闭的主窗口尺寸，也可针对每个主窗口尺寸单独进行记忆。只有在UIAbility启动模式为specified，且isSaveBySpecifiedFlag设置为true时，才能针对每个主窗口尺寸进行单独记忆。
 
@@ -1447,6 +1449,8 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -1502,13 +1506,15 @@ export default class EntryAbility extends UIAbility {
 
 isWindowRectAutoSave(): Promise&lt;boolean&gt;
 
-判断当前主窗口是否已经启用尺寸记忆，使用Promise异步回调，仅对2in1设备生效。
+判断当前主窗口是否已经启用尺寸记忆，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -1555,15 +1561,15 @@ export default class EntryAbility extends UIAbility {
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>): Promise&lt;void&gt;
 
-设置主窗的窗口支持模式，使用Promise异步回调。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在自由窗口模式下生效，用于设置主窗的窗口支持模式，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -1621,13 +1627,13 @@ export default class EntryAbility extends UIAbility {
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>, grayOutMaximizeButton: boolean): Promise&lt;void&gt;
 
-设置主窗的窗口支持模式，并提供最大化按钮置灰功能，使用Promise异步回调。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在自由窗口模式下生效，用于设置主窗的窗口支持模式，并提供最大化按钮置灰功能，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
