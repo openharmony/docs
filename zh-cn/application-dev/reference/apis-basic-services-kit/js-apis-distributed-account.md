@@ -53,6 +53,8 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -95,6 +97,8 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式账号信息对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
@@ -202,6 +206,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -253,6 +259,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
