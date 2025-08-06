@@ -5,11 +5,10 @@
 <!--SE: @xueyulong-->
 <!--TSE: @chenmingze-->
 
-卡片相关的配置文件主要包含[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。
+卡片相关的配置文件包含[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。如果是独立卡片包还会包含[独立卡片包配置](./arkts-ui-widget-configuration.md#独立卡片包配置)。
 
 ## FormExtensionAbility配置
-
-卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中的extensionAbilities标签下，配置FormExtensionAbility相关信息。FormExtensionAbility需要填写metadata元信息标签，其中键名称为固定字符串“ohos.extension.form”，资源为[卡片具体配置信息的资源索引](#卡片配置)。
+卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)的`extensionAbilities`标签下，配置`FormExtensionAbility`相关信息。`FormExtensionAbility`需要填写`metadata`元信息标签，其中键名称为固定字符串 “ohos.extension.form”，资源为[卡片具体配置信息的资源索引](#卡片配置)。
 
    配置示例如下：
 
@@ -38,7 +37,7 @@
    }
    ```
 ## 独立卡片包配置
-卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中的module标签下，配置独立卡片包的相关信息。其中formExtensionModule字段用来管理应用包的moudle。<br>
+如果是独立卡片包，在[module.json5配置文件](../quick-start/module-configuration-file.md)的`module`标签下，配置独立卡片包的相关信息。其中`formExtensionModule`字段用来关联应用包的`module`。<br>
 配置示例如下：
 ```json
 {
