@@ -86,10 +86,12 @@
 
    ```ts
    playerHandle.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-     if (state == 'released') {
-       mediaKeySession.destroy();
-       mediaKeySystem.destroy();
-     }
-   }
-   await this.playerHandle.release()
+      if (state == 'released') {
+    mediaKeySession.destroy();
+    mediaKeySystem.destroy();
+  } else if (state == 'releasing') {  
+    await playerHandle.release();    
+  }
+   })
+  
    ```

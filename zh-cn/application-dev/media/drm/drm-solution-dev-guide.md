@@ -399,7 +399,7 @@ passwd文件为系统用户配置文件，存储了系统中所有用户的基�
 
 ```
 //base/startup/init/services/etc/passwd
-clearplay_host:x:1089:1089:::/bin/false
+clearplay_host:x:1089:1089::/bin/false
 ```
 
 `//base/startup/init/services/etc/passwd`中每行用户信息使用“:”作为分隔符，划分为7个字段，每个字段所表示的含义如下：
