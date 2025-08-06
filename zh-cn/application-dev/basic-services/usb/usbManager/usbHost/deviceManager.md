@@ -1,3 +1,12 @@
+# USB Kit简介
+
+<!--Kit: USB Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 # USB设备管理
 
 ## 场景介绍
