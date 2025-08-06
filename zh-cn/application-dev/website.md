@@ -2866,6 +2866,7 @@
           - [SegmentButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
           - [ArcButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)
           - [ArcSlider](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcSlider.md)
+          - [选择器（Picker）公共接口](reference/apis-arkui/arkui-ts/ts-picker-common.md)
         - 文本与输入<!--text-and-input-->
           - [Text](reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
           - [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)
