@@ -182,8 +182,8 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 | DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit。 |
 | DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk。 |
 | DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk。 |
-| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk。 |
-| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk。 |
+| ED25519_SK_BN<sup>11+</sup> | 501 | Ed25519算法中的私钥sk。 |
+| ED25519_PK_BN<sup>11+</sup> | 502 | Ed25519算法中的公钥pk。 |
 | X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk。 |
 | X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk。 |
 
@@ -482,7 +482,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中私钥包含的参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中私钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -494,11 +494,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定Ed25519算法的私钥sk。 |
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公钥包含的参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -510,11 +510,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定Ed25519算法的公钥pk。 |
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公私钥包含的全量参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -526,8 +526,8 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
-| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定Ed25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定Ed25519算法的公钥pk。 |
 
 ## X25519PriKeySpec<sup>11+</sup>
 
@@ -3859,7 +3859,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。签名时，通过设置OnlySign参数可传入数据摘要仅作签名。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或Ed25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。签名时，通过设置OnlySign参数可传入数据摘要仅作签名。 |
 
 **返回值**：
 
@@ -4429,7 +4429,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或Ed25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
 
 **返回值**：
 
