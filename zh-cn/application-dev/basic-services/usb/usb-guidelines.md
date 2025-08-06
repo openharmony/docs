@@ -1,4 +1,4 @@
-# USB Kit简介
+# USB服务开发指导
 
 <!--Kit: USB Kit-->
 <!--Subsystem: USB-->
@@ -6,9 +6,6 @@
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @w_Machine_cc-->
-
-# USB服务开发指导
-
 
 
 ## 场景介绍
