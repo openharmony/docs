@@ -1521,7 +1521,7 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
-**设备行为差异：** 该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
