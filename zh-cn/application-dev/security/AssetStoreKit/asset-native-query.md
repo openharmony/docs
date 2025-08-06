@@ -78,7 +78,7 @@
        Asset_ResultSet resultSet = {0};
        int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
        if (ret == ASSET_SUCCESS) {
-           // 解析resultSet.
+           // 解析resultSet。
            for (uint32_t i = 0; i < resultSet.count; i++) {
                 // 解析secret属性：其中data数据对应是secret->blob.data，长度对应是secret->blob.size。
                 Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);

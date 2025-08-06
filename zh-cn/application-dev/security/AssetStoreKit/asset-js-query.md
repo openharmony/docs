@@ -149,7 +149,7 @@ query.set(asset.Tag.RETURN_ORDERED_BY, asset.Tag.DATA_LABEL_NORMAL_1); // 此处
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
   }).catch((err: BusinessError) => {

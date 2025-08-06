@@ -20,7 +20,7 @@
 ```json
 {
   "app": {
-    //其他配置项此处省略
+    // 其他配置项此处省略。
     "assetAccessGroups": [
       "demo_group_id"
     ]
@@ -148,9 +148,9 @@ query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the secret.
+      // 解析secret。
       let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-      // parse uint8array to string
+      // 将Uint8Array转换为string类型。
       let secretStr: string = arrayToString(secret);
     }
   }).catch((err: BusinessError) => {
@@ -183,7 +183,7 @@ query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
   }).catch((err: BusinessError) => {

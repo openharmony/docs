@@ -182,9 +182,9 @@ async function queryAsset() {
       query.set(asset.Tag.AUTH_TOKEN, authToken);
       let res: Array<asset.AssetMap> = await asset.query(query);
       for (let i = 0; i < res.length; i++) {
-        // parse the secret.
+        // 解析secret。
         let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-        // parse uint8array to string
+        // 将Uint8Array转换为string类型。
         let secretStr: string = arrayToString(secret);
       }
       // step4. 关键资产明文查询成功后，需要调用asset.postQuery进行查询的后置处理。
