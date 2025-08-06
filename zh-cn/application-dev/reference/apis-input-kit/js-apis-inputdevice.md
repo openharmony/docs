@@ -1,5 +1,10 @@
 # @ohos.multimodalInput.inputDevice (输入设备)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
 
 本模块提供输入设备管理能力，包括监听输入设备的连接和断开状态，查询设备名称等输入设备信息。
 
@@ -945,6 +950,12 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 | functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
 | enabled  | boolean | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
 
+**返回值**：
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
@@ -995,7 +1006,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                                          | 说明                            |
+| 类型                                          | 说明                            |
 | --------------------------------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回距离上次系统输入事件的时间间隔，单位为微秒（μs）。|
 

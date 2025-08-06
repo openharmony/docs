@@ -1,5 +1,11 @@
 #  @ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后再截屏等。
 
 > **说明：**
@@ -86,7 +92,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数          | 说明          |
+| 类型          | 说明          |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
