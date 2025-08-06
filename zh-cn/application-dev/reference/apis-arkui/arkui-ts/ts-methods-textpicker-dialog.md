@@ -481,3 +481,78 @@ struct TextPickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/TextPickerDialogDemo7.gif)
+
+### 示例8（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#textpickerdialogoptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct TextPickerExample {
+  private showText1: string [] = ['Text1', 'Text1', 'Text1', 'Text1']
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("TextPickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTextPickerDialog({
+              range: this.showText1,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            })
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialog_BackgroundBlurStyleOptions.png)
+
+### 示例9（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#textpickerdialogoptions对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct TextPickerExample {
+  private showText1: string [] = ['Text1', 'Text1', 'Text1', 'Text1']
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("TextPickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTextPickerDialog({
+              range: this.showText1,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            })
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialog_BackgroundEffect.png)
