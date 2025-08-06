@@ -80,10 +80,10 @@ struct RepeatExample {
 
 Repeat提供渲染模板（template）能力，可以在同一个数据源中渲染多种子组件。每个数据项会根据`.templateId()`得到template type，从而渲染type对应的`.template()`中的子组件。
 
-- 如果`.templateId()`缺省，则type默认为空字符串。
-- 当多个template type相同时，Repeat会覆盖先定义的`.template()`函数，仅生效最后定义的`.template()`。
-- 如果找不到对应的template type，Repeat会优先渲染type为空的`.template()`中的子组件，如果没有，则渲染`.each()`中的子组件。
-- 只有相同template的节点可以互相复用。
+- `.each()`无需声明template type，默认为空字符串。
+- 如果`.templateId()`缺省或没有找到对应type的`.template()`，则默认渲染type为空字符串的子组件。
+- 当多个template type相同时，Repeat仅生效最新定义的`.each()`或`.template()`。
+- 只有相同template type的节点可以互相复用。
 
 下列示例代码中使用Repeat组件进行循环渲染，并使用了多个渲染模板。
 
