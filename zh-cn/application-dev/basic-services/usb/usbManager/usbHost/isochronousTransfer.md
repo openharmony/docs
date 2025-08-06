@@ -1,4 +1,4 @@
-# USB Kit简介
+# USB实时传输
 
 <!--Kit: USB Kit-->
 <!--Subsystem: USB-->
@@ -6,8 +6,6 @@
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @w_Machine_cc-->
-
-# USB实时传输
 
 ## 场景介绍
 
