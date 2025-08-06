@@ -501,6 +501,7 @@ async function ExampleFunction() {
     appId = data.signatureInfo.appId;
   } catch (err) {
     console.error('error', err.code, err.message);
+    return;
   }
 
   try {
@@ -593,7 +594,6 @@ async function ExampleFunction() {
       fileIo.closeSync(file);
     }
   }
-
 }
 ```
 
@@ -664,7 +664,6 @@ async function ExampleFunction() {
       fileIo.closeSync(file);
     }
   }
-
 }
 ```
 
@@ -814,7 +813,6 @@ async function ExampleFunction() {
       fileIo.closeSync(file);
     }
   }
-
 }
 ```
 
@@ -1704,7 +1702,6 @@ try {
   if (dlp) {
     fileIo.closeSync(dlp);
   }
-}
 }
 ```
 

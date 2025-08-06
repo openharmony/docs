@@ -102,7 +102,6 @@ import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-
 let file: number | undefined = undefined;
 try {
   file = fileIo.openSync(uri).fd;
@@ -163,7 +162,6 @@ async function ExampleFunction() {
   } catch (err) {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
   }
-
 }
 ```
 
@@ -583,7 +581,6 @@ async function ExampleFunction() {
   } catch (err) {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
   }
-
 }
 ```
 
@@ -767,7 +764,6 @@ async function ExampleFunction() {
   } catch (err) {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
   }
-
 }
 ```
 
@@ -897,7 +893,6 @@ async function ExampleFunction() {
   } catch (err) {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
   }
-
 }
 ```
 
