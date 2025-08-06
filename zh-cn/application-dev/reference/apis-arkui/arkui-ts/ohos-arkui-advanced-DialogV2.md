@@ -1,8 +1,8 @@
 # DialogV2
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @fengluochenai--> 
-<!--SE: @YanSanzo--> 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
 <!--TSE: @tinygreyy-->
 
 
