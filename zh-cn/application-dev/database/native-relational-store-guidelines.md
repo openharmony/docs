@@ -261,7 +261,11 @@ libnative_rdb_ndk.z.so
    // OH_Cursor是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始
    int64_t age;
    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
-       cursor->getInt64(cursor, 1, &age);
+       int32_t ageColumnIndex = -1;
+	   cursor->getColumnIndex(cursor, "AGE", &ageColumnIndex);
+       if (ageColumnIndex != -1) {
+           cursor->getInt64(cursor, ageColumnIndex, &age);
+       }
    }
    
    // 释放谓词实例
@@ -275,10 +279,10 @@ libnative_rdb_ndk.z.so
    ```c
    OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
-   OH_VObject *likePatten = OH_Rdb_CreateValueObject();
-   likePatten->putText(likePatten, "zh%");
+   OH_VObject *likePattern = OH_Rdb_CreateValueObject();
+   likePattern->putText(likePattern, "zh%");
    // 配置谓词以LIKE模式匹配
-   likePredicates->like(likePredicates, "NAME", likePatten);
+   likePredicates->like(likePredicates, "NAME", likePattern);
 
    char *colName[] = { "NAME", "AGE" };
    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2);
@@ -287,13 +291,14 @@ libnative_rdb_ndk.z.so
    int colIndex = -1;
    likeQueryCursor->getColumnIndex(likeQueryCursor, "NAME", &colIndex);
    likeQueryCursor->getSize(likeQueryCursor, colIndex, &dataLength);
-   char name[dataLength + 1];
+   char *name = (char*)malloc((dataLength + 1) * sizeof(char)); 
    likeQueryCursor->getText(likeQueryCursor, colIndex, name, dataLength + 1);
 
    likeQueryCursor->destroy(likeQueryCursor);
    likePredicates->destroy(likePredicates);
-   likePatten->destroy(likePatten);
-
+   likePattern->destroy(likePattern);
+   free(name);
+   
    OH_Predicates *notLikePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
    // 配置谓词以NOT LIKE模式匹配
@@ -304,15 +309,13 @@ libnative_rdb_ndk.z.so
    colIndex = -1;
    notLikeQueryCursor->getColumnIndex(notLikeQueryCursor, "NAME", &colIndex);
    notLikeQueryCursor->getSize(notLikeQueryCursor, colIndex, &dataLength);
-   char name2[dataLength + 1];
+   char *name2 = (char*)malloc((dataLength + 1) * sizeof(char)); 
    notLikeQueryCursor->getText(notLikeQueryCursor, colIndex, name2, dataLength + 1);
    
    notLikeQueryCursor->destroy(notLikeQueryCursor);
-   notLikeQueryCursor->destroy(notLikeQueryCursor);
+   free(name2);
    ```
-
    配置谓词以GLOB模式或NOTGLOB模式匹配进行数据查询。示例代码如下：
-
    ```c
    OH_Predicates *globPredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    // 配置谓词以GLOB模式匹配
@@ -325,11 +328,12 @@ libnative_rdb_ndk.z.so
    int colIndex = -1;
    globQueryCursor->getColumnIndex(globQueryCursor, "NAME", &colIndex);
    globQueryCursor->getSize(globQueryCursor, colIndex, &dataLength);
-   char name[dataLength + 1];
+   char* name = (char*)malloc((dataLength + 1) * sizeof(char)); 
    globQueryCursor->getText(globQueryCursor, colIndex, name, dataLength + 1);
    
    globQueryCursor->destroy(globQueryCursor);
    globPredicates->destroy(globPredicates);
+   free(name);
    
    OH_Predicates *notGlobPredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    // 配置谓词以NOT GLOB模式匹配
@@ -340,15 +344,14 @@ libnative_rdb_ndk.z.so
    colIndex = -1;
    notGlobQueryCursor->getColumnIndex(notGlobQueryCursor, "NAME", &colIndex);
    notGlobQueryCursor->getSize(notGlobQueryCursor, colIndex, &dataLength);
-   char name2[dataLength + 1];
+   char* name2 = (char*)malloc((dataLength + 1) * sizeof(char)); 
    notGlobQueryCursor->getText(notGlobQueryCursor, colIndex, name2, dataLength + 1);
    
    notGlobQueryCursor->destroy(notGlobQueryCursor);
    notGlobPredicates->destroy(notGlobPredicates);
+   free(name2);
    ```
-
    如需指定排序时使用的语言规则，例如zh_CN表示中文，tr_TR表示土耳其语等。可调用OH_Rdb_SetLocale配置相应规则。
-
     ```c
     OH_Rdb_SetLocale(store_, "zh_CN");
     ```
@@ -480,11 +483,11 @@ libnative_rdb_ndk.z.so
     OH_Predicates *predicates2 = OH_Rdb_CreatePredicates("transaction_table");
     OH_VObject *valueObject = OH_Rdb_CreateValueObject();
     valueObject->putText(valueObject, "1");
-    predicates->equalTo(predicates, "data4", valueObject);
+    predicates2->equalTo(predicates2, "data4", valueObject);
     int64_t changes = -1;
     // 通过事务对象执行数据删除
     int deleteRet = OH_RdbTrans_Delete(trans, predicates2, &changes);
-    predicates->destroy(predicates);
+    predicates2->destroy(predicates2);
     valueObject->destroy(valueObject);
 
     // 提交事务
@@ -496,7 +499,7 @@ libnative_rdb_ndk.z.so
     ```c
     OH_RDB_TransOptions *options2;
     options2 = OH_RdbTrans_CreateOptions();
-    OH_RdbTransOption_SetType(options, RDB_TRANS_DEFERRED);
+    OH_RdbTransOption_SetType(options2, RDB_TRANS_DEFERRED);
     OH_Rdb_Transaction *trans2 = nullptr;
     int transCreateRet = OH_Rdb_CreateTransaction(store_, options2, &trans2);
     OH_RdbTrans_DestroyOptions(options2);
@@ -563,7 +566,9 @@ libnative_rdb_ndk.z.so
    ```c
    // 列的属性为单个资产类型时，sql语句中应指定为asset，多个资产类型应指定为assets。
    char createAssetTableSql[] = "CREATE TABLE IF NOT EXISTS asset_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 asset, data2 assets );";
-   errCode = OH_Rdb_Execute(store_, createAssetTableSql);
+   const char *table = "asset_table";
+   int errCode = OH_Rdb_Execute(store_, createAssetTableSql);
+   OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    Data_Asset *asset = OH_Data_Asset_CreateOne();
    OH_Data_Asset_SetName(asset, "name0");
    OH_Data_Asset_SetUri(asset, "uri0");
@@ -592,11 +597,13 @@ libnative_rdb_ndk.z.so
    OH_Data_Asset_SetSize(assets[1], 1);
    OH_Data_Asset_SetStatus(assets[1], Data_AssetStatus::ASSET_NORMAL);
    
+   uint32_t assetsCount = 1;
    errCode = OH_VBucket_PutAssets(valueBucket, "data2", assets, assetsCount);
-   int rowID = OH_Rdb_Insert(cursorTestRdbStore_, table, valueBucket);
+   int rowID = OH_Rdb_Insert(store_, table, valueBucket);
    // 释放Data_Asset*和Data_Asset**
    OH_Data_Asset_DestroyMultiple(assets, 2);
    OH_Data_Asset_DestroyOne(asset);
+   valueBucket->destroy(valueBucket);
    ```
 
 8. 从结果集中读取资产类型数据。
@@ -604,16 +611,20 @@ libnative_rdb_ndk.z.so
    ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("asset_table");
    
-   OH_Cursor *cursor = OH_Rdb_Query(cursorTestRdbStore_, predicates, NULL, 0);
+   OH_Cursor *cursor = OH_Rdb_Query(store_, predicates, NULL, 0);
    cursor->goToNextRow(cursor);
    
    uint32_t assetCount = 0;
    // assetCount作为出参获取该列资产类型数据的数量
-   errCode = cursor->getAssets(cursor, 2, nullptr, &assetCount);
+   int errCode = cursor->getAssets(cursor, 2, nullptr, &assetCount);
    Data_Asset **assets = OH_Data_Asset_CreateMultiple(assetCount);
    errCode = cursor->getAssets(cursor, 2, assets, &assetCount);
+   if (assetCount < 2) {
+       predicates->destroy(predicates);
+       cursor->destroy(cursor);
+       return;
+   }
    Data_Asset *asset = assets[1];
-   
    char name[10] = "";
    size_t nameLength = 10;
    errCode = OH_Data_Asset_GetName(asset, name, &nameLength);
