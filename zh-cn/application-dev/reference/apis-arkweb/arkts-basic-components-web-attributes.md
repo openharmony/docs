@@ -3185,6 +3185,12 @@ password(password: boolean)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>默认值：false。 |
+
 ## textZoomAtio<sup>(deprecated)</sup>
 
 textZoomAtio(textZoomAtio: number)
@@ -3269,6 +3275,12 @@ tableData(tableData: boolean)
 > 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>默认值：false。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 
