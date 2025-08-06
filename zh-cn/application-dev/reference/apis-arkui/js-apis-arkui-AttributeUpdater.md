@@ -123,11 +123,11 @@ struct Index {
             this.modifier.attribute?.backgroundColor('#ff2787d9').labelStyle({ maxLines: 5 });
           })
           .margin('10%')
-        Button('Change The message to flush the Button')
+        Button('Trigger Button Update')
           .width('80%')
           .labelStyle({ maxLines: 2 })
           .onClick(() => {
-            this.flushTheButton = 'Updates' + this.flushTheButton;
+            this.flushTheButton = this.flushTheButton + ' Updated' ;
           })
       }
       .width('100%')
