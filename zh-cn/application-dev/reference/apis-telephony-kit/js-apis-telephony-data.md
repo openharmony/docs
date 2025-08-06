@@ -1,5 +1,11 @@
 # @ohos.telephony.data (蜂窝数据)
 
+<!--Kit: Telephony-->
+<!--Subsystem: Telephony-->
+<!--Owner: @liuleiminhw-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
+
 蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡、获取蜂窝数据业务的上下行数据流状态、蜂窝数据业务链路连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
 > **说明：**
