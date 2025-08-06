@@ -1,3 +1,12 @@
+# USB Kit简介
+
+<!--Kit: USB Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 # USB服务<!--usb-->
 - 开发USB服务<!--usb-dev-->
   - [USB服务开发概述](usbManager/usbHost-overview.md)
