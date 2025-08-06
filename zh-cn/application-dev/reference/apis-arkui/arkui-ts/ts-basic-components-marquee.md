@@ -187,6 +187,12 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 当滚动的文本内容变化或者开始滚动时的回调。 |
+
 ### onBounce
 
 onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -199,6 +205,12 @@ onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 完成一次滚动时触发的回调。 |
+
 ### onFinish
 
 onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -210,6 +222,12 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 滚动全部循环次数完成时的回调。 |
 
 ## 示例
 
