@@ -1,4 +1,9 @@
 # @ohos.inputMethodList (输入法切换列表控件)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 本模块主要面向系统应用和输入法应用，提供输入法切换列表控件，控件中显示默认输入法子类型和三方输入法应用列表，对于默认输入法应用，提供模式切换入口。
 
@@ -31,7 +36,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 输入法切换列表弹窗控制器。 |
 | patternOptions | [PatternOptions](#patternoptions) | 否 | - | 输入法模式选项（仅默认输入法支持）。 |
@@ -44,7 +49,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 | -------- | -------- | -------- | -------- | -------- |
 | defaultSelected | number | 否 | 是 | 非必填。默认选择的模式。 |
 | patterns   | Array<[Pattern](#pattern)> | 否 | 否 | 必填。模式选项的资源。 |
-| action | function | 否 | 否 | 必填。模式选项改变时的回调。 |
+| action | (index: number) => void | 否 | 否 | 必填。模式选项改变时的回调。 |
 
 ## Pattern
 
