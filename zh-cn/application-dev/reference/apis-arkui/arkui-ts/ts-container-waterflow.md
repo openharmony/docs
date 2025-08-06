@@ -465,6 +465,12 @@ onReachStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达起始位置时触发的回调。 |
+
 ### onReachEnd
 
 onReachEnd(event: () => void)
@@ -474,6 +480,12 @@ onReachEnd(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达末尾位置时触发的回调。 |
 
 ### onScrollFrameBegin<sup>10+</sup>
 
@@ -939,7 +951,7 @@ struct WaterFlowDemo {
 
 ### 示例3（使用分组）
 该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
-如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#waterflow)。
+如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#waterflow)。
 
 <!--code_no_check-->
 ```ts

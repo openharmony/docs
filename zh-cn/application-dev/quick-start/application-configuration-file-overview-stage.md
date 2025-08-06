@@ -20,6 +20,6 @@
 
 - Module的基本配置信息，包含Module名称、类型、描述、支持的设备类型等基本信息。
 
-- [应用组件](../application-models/stage-model-development-overview.md)信息，包含UIAbility组件和ExtensionAbility组件的描述信息。
+- 应用组件信息，包含UIAbility组件和ExtensionAbility组件的描述信息。
 
 - 应用运行过程中需要的权限信息。
