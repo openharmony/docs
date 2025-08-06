@@ -1,4 +1,9 @@
 # IPC and RPC Development (C/C++)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 
 ## When to Use
@@ -24,7 +29,7 @@ For details about how to establish IPC channels between processes, see [Native C
 |OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|Creates an **OHIPCRemoteStub** object, which triggers a notification when the **OHIPCDeathRecipient** object dies unexpectedly.|
 |int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|Subscribes to the death of an **OHIPCRemoteStub** object for an **OHIPCRemoteProxy** object.|
 
-For details about the APIs, see [IPC Kit](../reference/apis-ipc-kit/_i_p_c_kit.md).
+For details about the APIs, see [IPC Kit](../reference/apis-ipc-kit/capi-ipckit.md).
 
 
 ## How to Develop

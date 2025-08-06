@@ -1,5 +1,9 @@
 # ipc_kit.h
-
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 ## Overview
 
@@ -11,4 +15,4 @@ Provides an entry to the IPC header files for you to reference.
 
 **Since**: 12
 
-**Related module**: [IPCKit](_i_p_c_kit.md)
+**Related module**: [IPCKit](capi-ipckit.md)

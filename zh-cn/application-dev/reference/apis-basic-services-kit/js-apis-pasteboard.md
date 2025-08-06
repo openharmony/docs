@@ -1,4 +1,9 @@
 # @ohos.pasteboard (剪贴板)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
@@ -571,8 +576,8 @@ struct PasteboardTest {
     		    console.log('progressListener success, progress:' + progress.progress);
                 signal.cancel();
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
                 destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
@@ -3031,10 +3036,10 @@ struct PasteboardTest {
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
     		    console.log('progressListener success, progress:' + progress.progress);
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: dstUri,
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,

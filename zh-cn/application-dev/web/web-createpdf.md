@@ -1,6 +1,6 @@
 # 使用Web组件保存前端页面为PDF
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--SE: @handyohos-->
 <!--TSE: @ghiker-->

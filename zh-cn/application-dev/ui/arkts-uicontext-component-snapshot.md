@@ -275,11 +275,11 @@ export class GlobalStaticSnapshot {
 
 **完整示例：**
 
-完整示例请参考[长截图](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-long-snapshot-practice)。
+完整示例请参考[长截图](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-long-snapshot-practice#section1566681910427)。
 
 ## 组件截图最佳实践
 ### 合理控制截图时机
-在实现截图功能时，需注意组件的渲染过程非一次性完成。系统在构建与显示组件时，将经过测量、布局、提交指令等多个复杂步骤，最终在一次硬件刷新时呈现于屏幕上。因此，在特定情况下，若在组件刷新后立即调用截图，可能无法获取预期内容。
+在实现截图功能时，需注意组件的渲染过程非一次性完成。系统在构建与显示组件时，将经过测量、布局、提交指令等多个复杂步骤，最终在一次硬件刷新时呈现于屏幕上。因此，在特定情况下，若在组件刷新后立即调用截图，可能无法获取预期内容或出现截图失败报错。
 
 为了确保截图结果准确，建议在组件完全渲染后再执行截图操作。
 

@@ -1,4 +1,9 @@
 # 应用启动框架AppStartup
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 
 ## 概述

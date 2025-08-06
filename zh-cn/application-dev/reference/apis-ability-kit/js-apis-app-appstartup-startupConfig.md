@@ -1,4 +1,9 @@
 # @ohos.app.appstartup.StartupConfig (启动框架配置信息)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 本模块提供启动任务的配置接口。
 

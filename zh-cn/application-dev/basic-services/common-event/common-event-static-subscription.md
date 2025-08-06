@@ -1,4 +1,9 @@
 # 静态订阅公共事件（仅对系统应用开放）
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--SE: @dongqingran; @wulong158-->
+<!--TSE: @wanghong1997-->
 
 ## 场景介绍
 
@@ -169,5 +174,5 @@
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
-- [静态订阅（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+- [静态订阅（仅对系统应用开放）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
 
