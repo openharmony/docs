@@ -60,6 +60,8 @@ import { window } from '@kit.ArkUI';
 
 创建子窗口或系统窗口时的参数。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称 | 类型 | 必填 | 说明                       |
