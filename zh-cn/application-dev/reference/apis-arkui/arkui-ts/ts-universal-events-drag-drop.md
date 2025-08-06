@@ -221,7 +221,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
+| callback          | Callback\<[SpringLoadingContext](#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 **返回值：**
@@ -283,7 +283,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 ### setData<sup>10+</sup>
 
-setData(unifiedData: UnifiedData)
+setData(unifiedData: UnifiedData): void
 
 向DragEvent中设置拖拽相关数据。
 
@@ -293,7 +293,7 @@ setData(unifiedData: UnifiedData)
 
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
-| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+| unifiedData | [UnifiedData](#unifieddata10) | 是   | 拖拽相关的数据。 |
 
 ### getData<sup>10+</sup>
 
@@ -334,11 +334,11 @@ getSummary(): Summary
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+| [Summary](#summary10) | 从DragEvent中获取拖拽相关数据的简介。 |
 
 ### setResult<sup>10+</sup>
 
-setResult(dragResult: DragResult)
+setResult(dragResult: DragResult): void
 
 向DragEvent中设置拖拽结果。
 
@@ -612,7 +612,7 @@ setDataLoadParams(dataLoadParams: DataLoadParams): void
 
 | 参数名   | 类型   | 必填    | 说明                                                         |
 | -------| -------| ------- | ------------------------------------------------------------ |
-| dataLoadParams | [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
+| dataLoadParams | [DataLoadParams](#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
 
 ### getX<sup>(deprecated)</sup>
 
@@ -686,6 +686,48 @@ getY(): number
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 | PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
 
+## UnifiedData<sup>10+</sup>
+
+type UnifiedData = UnifiedData
+
+拖拽相关的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) |  拖拽相关的数据。|
+
+## Summary<sup>10+</sup>
+
+type Summary = Summary
+
+拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 拖拽相关数据的简介。|
+
+## DataLoadParams<sup>20+</sup>
+
+type DataLoadParams = DataLoadParams
+
+落入操作时使用的数据加载参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) | 落入操作时使用的数据加载参数。|
+
 ## executeDropAnimation<sup>18+</sup>
 
 executeDropAnimation(customDragAnimation: Callback\<void\>): void
@@ -740,6 +782,20 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+
+## SpringLoadingContext<sup>20+</sup>
+
+type SpringLoadingContext = SpringLoadingContext
+
+定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20) | 定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。|
 
 ## 示例
 
