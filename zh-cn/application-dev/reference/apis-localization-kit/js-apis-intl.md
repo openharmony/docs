@@ -1,5 +1,11 @@
 # @ohos.intl (国际化-Intl)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
+
 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
 [I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
@@ -47,7 +53,7 @@ import { intl } from '@kit.LocalizationKit';
 
 constructor()
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale)替代。
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[i18n.System.getSystemLocaleInstance](js-apis-i18n.md#getsystemlocaleinstance20)替代。
 
 创建区域对象。
 
@@ -217,7 +223,7 @@ minimize(): Locale
 >
 >  - calendar：不同取值的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
 
-## DateTimeFormat
+## DateTimeFormat<sup>(deprecated)</sup>
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -409,11 +415,9 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 
 ## NumberFormat
 
-### constructor<sup>(deprecated)</sup>
+### constructor<sup>8+</sup>
 
 constructor()
-
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
 
 创建数字格式化对象。
 
@@ -428,11 +432,9 @@ let formatter: intl.NumberFormat = new intl.NumberFormat();
 ```
 
 
-### constructor<sup>(deprecated)</sup>
+### constructor
 
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
-
-> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
 
 创建数字格式化对象。
 
@@ -445,7 +447,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [NumberOptions](#numberoptionsdeprecated) | 否    | 创建数字格式化对象时可设置的配置项。               |
+| options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：**
 ```ts
@@ -453,11 +455,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'decimal', notation: 'scientific' });
 ```
 
-### format<sup>(deprecated)</sup>
+### format
 
 format(number: number): string
-
-> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format)替代。
 
 对数字进行格式化。
 
@@ -492,11 +492,9 @@ formatter = new intl.NumberFormat('en', options);
 let result: string = formatter.format(1.23456); // result = 1.23
 ```
 
-### formatRange<sup>(deprecated)</sup>
+### formatRange<sup>18+</sup>
 
 formatRange(startRange: number, endRange: number): string
-
-> 从API version 18开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormat.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange)替代。
 
 对数字范围进行格式化。
 
@@ -539,7 +537,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptionsdeprecated) | 创建数字格式化对象时设置的配置项。 |
+| [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
 
 
 **示例：**
@@ -551,9 +549,7 @@ let style: string | undefined = options.style; // style = 'decimal'
 let notation: string | undefined = options.notation; // notation = 'scientific'
 ```
 
-## NumberOptions<sup>(deprecated)</sup>
-
-> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.NumberFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
+## NumberOptions
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
@@ -586,11 +582,9 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 
 ## Collator<sup>8+</sup>
 
-### constructor<sup>(deprecated)</sup>
+### constructor<sup>8+</sup>
 
 constructor()
-
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Collator() constructor](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator)替代。
 
 创建排序对象。
 
@@ -605,11 +599,9 @@ constructor()
   ```
 
 
-### constructor<sup>(deprecated)</sup>
+### constructor<sup>8+</sup>
 
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
-
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator)替代。
 
 创建排序对象。
 
@@ -631,11 +623,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
   ```
 
 
-### compare<sup>(deprecated)</sup>
+### compare<sup>8+</sup>
 
 compare(first: string, second: string): number
-
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/compare)替代。
 
 根据配置项的排序规则，比较两个字符串。
 
@@ -665,11 +655,9 @@ compare(first: string, second: string): number
   ```
 
 
-### resolvedOptions<sup>(deprecated)</sup>
+### resolvedOptions<sup>8+</sup>
 
 resolvedOptions(): CollatorOptions
-
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/resolvedOptions)替代。
 
 获取创建排序对象时设置的配置项。
 
@@ -705,16 +693,16 @@ resolvedOptions(): CollatorOptions
 
 | 名称                | 类型      | 只读   | 可选   | 说明                                       |
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
-| localeMatcher<sup>(deprecated)</sup>     | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.localeMatcher替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
-| usage<sup>(deprecated)</sup>             | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.usage替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
-| sensitivity<sup>(deprecated)</sup>       | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.sensitivity替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
-| ignorePunctuation<sup>(deprecated)</sup> | boolean | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.ignorePunctuation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>true表示忽略标点符号，false表示考虑标点符号。<br>默认值：false。        |
-| collation<sup>(deprecated)</sup>         | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.collation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
-| numeric<sup>(deprecated)</sup>           | boolean | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.numeric替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
-| caseFirst<sup>(deprecated)</sup>         | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.CollatorOptions.caseFirst替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
+| localeMatcher   | string  | 否    | 是    | 区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
+| usage             | string  | 否    | 是    | 比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
+| sensitivity       | string  | 否    | 是    | 表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
+| ignorePunctuation | boolean | 否    | 是    | true表示忽略标点符号，false表示考虑标点符号。<br>默认值：false。        |
+| collation         | string  | 否    | 是    | 区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
+| numeric           | boolean | 否    | 是    | 数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
+| caseFirst         | string  | 否    | 是    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
 
 
-## PluralRules<sup>8+</sup>
+## PluralRules<sup>(deprecated)</sup>
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -752,7 +740,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 创建单复数对象时设置的配置项。       |
+| options              | [PluralRulesOptions](#pluralrulesoptionsdeprecated) | 否    | 创建单复数对象时设置的配置项。       |
 
 **示例：**
 ```ts
@@ -798,7 +786,7 @@ select(n: number): string
   ```
 
 
-## PluralRulesOptions<sup>8+</sup>
+## PluralRulesOptions<sup>(deprecated)</sup>
 
 创建单复数对象时可设置的配置项。从API version 9开始，PluralRulesOptions的属性由必填改为可选。
 
@@ -1109,61 +1097,61 @@ let style: string = options.style; // style = 'short'
 
 **表11** 最小整数位数(minimumIntegerDigits)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 6 | 123,000.123 | 
-| 7 | 0,123,000.123 | 
+| 6 | 123,000.123 |
+| 7 | 0,123,000.123 |
 
 **表12** 最小小数位数(minimumFractionDigits)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 3 | 123,000.123 | 
-| 4 | 123,000.1230 | 
+| 3 | 123,000.123 |
+| 4 | 123,000.1230 |
 
 **表13** 最大小数位数(maximumFractionDigits)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 3 | 123,000.123 | 
-| 2 | 123,000.12 | 
+| 3 | 123,000.123 |
+| 2 | 123,000.12 |
 
 **表14** 最小有效位数(minimumSignificantDigits)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 9 | 123,000.123 | 
-| 10 | 123,000.1230 | 
+| 9 | 123,000.123 |
+| 10 | 123,000.1230 |
 
 **表15** 最大有效位数(maximumSignificantDigits)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 9 | 123,000.123 | 
-| 8 | 123,000.12 | 
+| 9 | 123,000.123 |
+| 8 | 123,000.12 |
 
 **表16** 是否分组显示(useGrouping)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| true | 123,000.123 | 
-| false | 123000.123 | 
+| true | 123,000.123 |
+| false | 123000.123 |
 
 **表17** 数字的表示方法(notation)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| standard | 123,000.123 | 
-| scientific | 1.230001E5 | 
-| engineering | 123.000123E3 | 
-| compact | 123K | 
+| standard | 123,000.123 |
+| scientific | 1.230001E5 |
+| engineering | 123.000123E3 |
+| compact | 123K |
 
 **表18** 紧凑显示格式(compactDisplay)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| short | 123K | 
-| long | 123 thousand | 
+| short | 123K |
+| long | 123 thousand |
 
 **货币格式化选项**
 
@@ -1171,19 +1159,19 @@ let style: string = options.style; // style = 'short'
 
 **表19** 货币单位的符号(currencySign)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| standard | -US$12,300.00 | 
-| accounting | (US$12,300.00) | 
+| standard | -US$12,300.00 |
+| accounting | (US$12,300.00) |
 
 **表20** 货币的显示方式(currencyDisplay)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| symbol | -US$12,300.00 | 
-| narrowSymbol | -$12,300.00 | 
-| code | -USD 12,300.00 | 
-| name | -12,300.00 US dollars | 
+| symbol | -US$12,300.00 |
+| narrowSymbol | -$12,300.00 |
+| code | -USD 12,300.00 |
+| name | -12,300.00 US dollars |
 
 **单位格式化选项**
 
@@ -1191,19 +1179,19 @@ let style: string = options.style; // style = 'short'
 
 **表21** 单位的显示格式(unitDisplay)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| long | -12,3000 hectares | 
-| short | -12,300 ha | 
-| narrow | -12,300ha | 
+| long | -12,3000 hectares |
+| short | -12,300 ha |
+| narrow | -12,300ha |
 
 **表22** 单位的使用场景(unitUsage)
 
-| 取值 | 显示效果 | 
+| 取值 | 显示效果 |
 | -------- | -------- |
-| 未设置 | -12,300 ha | 
-| default | -47.491 sq mi | 
-| area-land-agricult | -30,393.962 ac | 
+| 未设置 | -12,300 ha |
+| default | -47.491 sq mi |
+| area-land-agricult | -30,393.962 ac |
 
 **相对时间格式化选项**
 
