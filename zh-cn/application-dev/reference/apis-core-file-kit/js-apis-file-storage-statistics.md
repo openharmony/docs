@@ -1,4 +1,9 @@
 # @ohos.file.storageStatistics (应用空间统计)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
