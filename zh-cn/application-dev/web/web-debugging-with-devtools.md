@@ -39,7 +39,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
      }
    }
    ```
-2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```
    "requestPermissions":[
