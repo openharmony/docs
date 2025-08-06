@@ -8674,7 +8674,7 @@ setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: Tr
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -8758,7 +8758,7 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
