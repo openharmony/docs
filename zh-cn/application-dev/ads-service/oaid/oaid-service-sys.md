@@ -1,5 +1,11 @@
 # 重置OAID信息（仅对系统应用开放）
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 ## 场景介绍
 
 OAID会在以下场景中发生变化：

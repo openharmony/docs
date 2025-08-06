@@ -1,5 +1,11 @@
 # Ads Kit（广告服务）<!--ads-api-->
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 - ArkTS API<!--ads-arkts-->
   - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
   - [@ohos.identifier.oaid (开放匿名设备标识服务)](js-apis-oaid.md)
@@ -12,7 +18,7 @@
     - advertising<!--ads-advertising-->
       - [advertisement (广告内容)](js-apis-inner-advertising-advertisement.md)
 - ArkTS组件<!--ads-comp-->
-  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](js-apis-adcomponent.md)
+  - [@ohos.advertising.AdComponent (广告展示组件)](js-apis-adcomponent.md)
   - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)
 - 错误码<!--ads-arkts-errcode-->
   - [广告服务框架错误码](errorcode-ads.md)
