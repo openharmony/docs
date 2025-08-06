@@ -3321,7 +3321,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;Uint8Array \| string \| boolean \| number&gt; |Promise对象。返回获取查询的值。|
+|Promise&lt;boolean \| string \| number \| Uint8Array&gt; |Promise对象。返回获取查询的值。|
 
 **错误码：**
 
@@ -5541,7 +5541,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型                                                     | 说明                            |
 | -------------------------------------------------------- | ------------------------------- |
-| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise对象。返回获取查询的值。 |
+| Promise&lt;boolean \| string \| number \| Uint8Array&gt; | Promise对象。返回获取查询的值。 |
 
 **错误码：**
 
