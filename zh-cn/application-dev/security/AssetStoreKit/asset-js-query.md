@@ -80,9 +80,9 @@ query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the secret.
+      // 解析secret。
       let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-      // parse uint8array to string
+      // 将Uint8Array转为string类型。
       let secretStr: string = arrayToString(secret);
     }
   }).catch((err: BusinessError) => {
@@ -114,7 +114,7 @@ query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示�
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
   }).catch((err: BusinessError) => {

@@ -20,7 +20,7 @@
 ```json
 {
   "app": {
-    //其他配置项此处省略
+    // 其他配置项此处省略。
     "assetAccessGroups": [
       "demo_group_id"
     ]
