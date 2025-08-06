@@ -1,4 +1,4 @@
-# 通过关系型数据库实现数据持久化 (C/C++)
+``# 通过关系型数据库实现数据持久化 (C/C++)
 
 ## 场景介绍
 
@@ -274,10 +274,10 @@ libnative_rdb_ndk.z.so
    ```c
    OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
-   OH_VObject *likePatten = OH_Rdb_CreateValueObject();
-   likePatten->putText(likePatten, "zh%");
+   OH_VObject *likePattern = OH_Rdb_CreateValueObject();
+   likePattern->putText(likePattern, "zh%");
    // 配置谓词以LIKE模式匹配
-   likePredicates->like(likePredicates, "NAME", likePatten);
+   likePredicates->like(likePredicates, "NAME", likePattern);
 
    char *colName[] = { "NAME", "AGE" };
    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2);
@@ -291,7 +291,7 @@ libnative_rdb_ndk.z.so
 
    likeQueryCursor->destroy(likeQueryCursor);
    likePredicates->destroy(likePredicates);
-   likePatten->destroy(likePatten);
+   likePattern->destroy(likePattern);
    free(name);
    
    OH_Predicates *notLikePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
