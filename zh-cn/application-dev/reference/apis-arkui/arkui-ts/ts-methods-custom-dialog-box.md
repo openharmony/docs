@@ -1198,3 +1198,122 @@ struct CustomDialogUser {
 }
 ```
 ![zh-cn_image_custom](figures/customstyle_dialog_demo.gif)
+
+### 示例11（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#customdialogcontrolleroptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    backgroundColor: undefined,
+    backgroundBlurStyle: BlurStyle.Thin,
+    backgroundBlurStyleOptions: {
+      colorMode: ThemeColorMode.LIGHT,
+      adaptiveColor: AdaptiveColor.AVERAGE,
+      scale: 1,
+      blurOptions: { grayscale: [20, 20] },
+    },
+  })
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button('CustomDialog')
+          .margin(20)
+          .onClick(() => {
+            if (this.dialogController != null) {
+              this.dialogController.open();
+            }
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_custom-backgroundBlurStyleOptions](figures/zh-cn_image_custom-backgroundBlurStyleOptions.png)
+
+### 示例12（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#customdialogcontrolleroptions对象说明)，实现自定义背景效果。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    backgroundColor: undefined,
+    backgroundBlurStyle: BlurStyle.Thin,
+    backgroundEffect: {
+      radius: 60,
+      saturation: 0,
+      brightness: 1,
+      color: Color.White,
+      blurOptions: { grayscale: [20, 20] }
+    },
+  })
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button('CustomDialog')
+          .margin(20)
+          .onClick(() => {
+            if (this.dialogController != null) {
+              this.dialogController.open();
+            }
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_custom-backgroundEffect](figures/zh-cn_image_custom-backgroundEffect.png)
