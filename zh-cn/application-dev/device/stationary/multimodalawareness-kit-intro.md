@@ -1,5 +1,5 @@
 # Multimodal Awareness Kit简介
-<!--Kit: MultimodalAwarenessKit-->
+<!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
 <!--SE: @zou_ye-->
