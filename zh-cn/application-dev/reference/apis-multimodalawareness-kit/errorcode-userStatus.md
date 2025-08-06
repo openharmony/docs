@@ -1,4 +1,9 @@
 # 用户感知错误码
+<!--Kit: MultimodalAwarenessKit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 > **说明：**
 >
