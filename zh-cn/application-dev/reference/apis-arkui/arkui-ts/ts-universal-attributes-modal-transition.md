@@ -1,4 +1,9 @@
 # 全屏模态转场
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 通过bindContentCover属性为组件绑定全屏模态页面，在组件插入和移除时可通过设置转场参数ModalTransition显示过渡动效。
 
@@ -12,7 +17,7 @@
 
 ## bindContentCover
 
-bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCoverOptions)
+bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCoverOptions): T
 
 给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，显示方式可设置无动画过渡，上下切换过渡以及透明渐变过渡。
 
@@ -28,6 +33,12 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                                       |
 | options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## ContentCoverOptions
 继承自[BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions)。
 | 名称              | 类型                                       | 只读 |  可选   | 说明            |
@@ -40,10 +51,12 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称              | 类型                                       | 必填   | 描述            |
-| --------------- | ---------------------------------------- | ---- | ------------- |
-| dismiss | function | 是    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
-| reason | [DismissReason](ts-universal-attributes-popup.md#dismissreason12枚举说明) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 类型                                       | 只读 | 可选   | 说明            |
+| --------------- | -------------------- | -------------------- | ---- | ------------- |
+| dismiss | function | 否 | 否    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
+| reason | [DismissReason](ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否 | 否    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例
 
