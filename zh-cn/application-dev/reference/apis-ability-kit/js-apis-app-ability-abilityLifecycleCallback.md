@@ -7,8 +7,10 @@
 
 AbilityLifecycleCallback类提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。应用创建AbilityLifecycleCallback对象，调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 
-[UIAbility](js-apis-app-ability-uiAbility.md)的[生命周期](../../application-models/uiability-lifecycle.md)管理UIAbility从创建到销毁的全过程。UIAbility运行过程中状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。这些场景适合使用生命周期监听：作为全局监听器统计应用内每个UIAbility页面时长；做数据加载，但是和UIAbility业务逻辑解耦；应用使用生命周期监听机制对外提供sdk，通知其他模块应用状态变化。具体使用流程如下：
-1. 需要监听UIAbility生命周期变化的模块创建AbilityLifecycleCallback对象，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
+[UIAbility](js-apis-app-ability-uiAbility.md)的[生命周期](../../application-models/uiability-lifecycle.md)管理UIAbility从创建到销毁的全过程。UIAbility运行过程中状态发生变化时，UIAbility对应的生命周期函数被执行。AbilityLifecycleCallback则提供一种方式，让应用可以在UIAbility外部监听UIAbility的生命周期变化。</br>
+这些场景适合使用生命周期监听：作为全局监听器，统计应用内每个UIAbility页面时长；做生命周期相关数据加载，但是和UIAbility业务逻辑解耦；应用使用生命周期监听机制对外提供SDK，通知其他模块应用状态变化。</br>
+具体使用流程如下：
+1. 应用创建AbilityLifecycleCallback对象，然后调用接口[ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle)注册生命周期变化监听。
 2. 系统调度UIAbility生命周期，并通知[ApplicationContext](js-apis-inner-application-applicationContext.md)相关UIAbility的生命周期变化。
 3. ApplicationContext收到UIAbility生命周期的变化通知，调用应用注册进来的AbilityLifecycleCallback监听回调函数。
 4. 不需要监听UIAbility生命周期变化时，应用通过[ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle)接口取消监听。
@@ -481,8 +483,7 @@ onAbilitySaveState?(ability: UIAbility): void
 
 **示例：**
 
-AbilityLifecycleCallback提供在UIAbility外部监听UIAbility生命周期的能力，比如应用可以在[AbilityStage](../../application-models/abilitystage.md)加载的时候注册监听，这样能监听到应用内所有UIAbility的状态变化。</br>
-示例代码展示在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听，在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听；监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源；此外UIAbility创建销毁、前后台状态切换时，做相关事件记录和对外发通知。</br>
+AbilityLifecycleCallback提供在UIAbility外部监听UIAbility生命周期的能力，比如应用可以在[AbilityStage](../../application-models/abilitystage.md)加载的时候注册监听，这样能监听到应用内所有UIAbility的状态变化。示例代码展示在[AbilityStage](../../application-models/abilitystage.md)创建时注册监听，在[AbilityStage](../../application-models/abilitystage.md)销毁时注销监听；监听到对应UIAbility创建时加载资源，监听到对应UIAbility销毁时释放资源；此外UIAbility创建销毁、前后台状态切换时，做相关事件记录和对外发通知。</br>
 MyStage.ets
 AbilityStage文件
 ```ts
