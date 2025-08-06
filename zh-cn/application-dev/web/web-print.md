@@ -148,7 +148,6 @@ import { BusinessError, print } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct WebComponent {
-  @State
   controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
