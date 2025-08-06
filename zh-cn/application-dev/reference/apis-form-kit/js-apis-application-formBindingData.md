@@ -1,5 +1,10 @@
 # @ohos.application.formBindingData (卡片数据绑定类)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 卡片数据绑定模块提供卡片数据绑定的能力。包括FormBindingData对象的创建、相关信息的描述。
 
 > **说明：**
@@ -48,22 +53,36 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.application.formBindingData';
-import fs from '@ohos.file.fs';
-import Base from '@ohos.base';
-
-try {
-  let fd = fs.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, object> = {
-    'image': fd
-  };
-  let createFormBindingDataParam: Record<string, string | Object> = {
-    'name': '21°',
-    'formImages': formImagesParam
-  };
-
-  formBindingData.createFormBindingData(createFormBindingDataParam);
-} catch (error) {
-  console.error(`catch error, error: ${JSON.stringify(error as Base.BusinessError)}`);
+import { formBindingData } from '@kit.FormKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  content = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  pathDir: string = this.content.filesDir;
+  createFormBindingData() {
+    try {
+      let filePath = this.pathDir + "/form.png";
+      let file = fileIo.openSync(filePath);
+      let formImagesParam: Record<string, number> = {
+        'image': file.fd
+      };
+      let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
+        'name': '21°',
+        'imgSrc': 'image',
+        'formImages': formImagesParam
+      };
+      formBindingData.createFormBindingData(createFormBindingDataParam);
+    } catch (error) {
+      console.error(`catch error, error: ${JSON.stringify(error)}`);
+    }
+  }
+  build() {
+    Button('createFormBindingData')
+      .onClick((event: ClickEvent)=>{
+        this.createFormBindingData();
+      })
+  }
 }
 ```
