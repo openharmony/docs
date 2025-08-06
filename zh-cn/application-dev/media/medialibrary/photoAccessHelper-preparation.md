@@ -1,15 +1,20 @@
 # 开发准备
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
-应用需要先获取相册管理模块实例，才能访问和修改相册中的媒体数据信息。相册管理模块涉及用户个人数据信息，应用需向用户申请相册管理模块读写权限，才能保证功能的正常运行。在使用相册管理模块相关接口时，如无其他注明则默认在工程代码的pages/index.ets或者其他自创的ets文件中使用。
+应用需获取相册管理模块实例，才能访问和修改相册中的媒体数据。相册管理模块涉及用户个人数据信息，应用需向用户申请相册管理模块读写权限，以保证功能的正常运行。使用相册管理模块接口时，如无其他注明，默认在工程代码的pages/index.ets或其他自创的ets文件中使用。
 
 ## 获取相册管理模块实例
 
-应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中的媒体数据信息，如图片和视频。
+应用需要通过上下文Context和接口[getPhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中的媒体数据信息，如图片和视频。
 
 **开发步骤**
 
 1. 导入photoAccessHelper模块以使用相册管理模块相关接口。
-2. 通过getContext获取应用上下文。
+2. 通过getUIContext().getHostContext()获取应用上下文。
 3. 获取相册管理模块实例。
 
 ```ts
@@ -44,7 +49,7 @@ struct Index {
 | ohos.permission.READ_IMAGEVIDEO     | 允许应用读取媒体库的图片和视频媒体文件信息。 | user_grant |
 | ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写媒体库的图片和视频媒体文件信息。 | user_grant |
 
-以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果已授权，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
+以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果已授权，应用可以直接访问和修改目标对象；否则需要弹框向用户申请授权。
 
 **开发步骤**
 <!--RP1-->
