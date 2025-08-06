@@ -1,5 +1,11 @@
 # HiAppEvent
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 HiAppEvent模块提供应用事件打点功能。为应用程序提供事件打点功能，记录运行过程中上报的故障事件、统计事件、安全事件和用户行为事件。基于事件信息，您可以分析应用的运行状态。
