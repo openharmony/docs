@@ -1,7 +1,7 @@
 # @ohos.file.volumeManager (卷管理)(系统接口)
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @wang_zhangjun; @zhuangzhuang;-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
 <!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
 <!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
