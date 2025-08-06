@@ -333,11 +333,6 @@ getPromptAction(): PromptAction
 
 完整示例请参考[PromptAction](arkts-apis-uicontext-promptaction.md)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getPromptAction();
-```
-
 ## getOverlayManager<sup>12+</sup>
 
 getOverlayManager(): OverlayManager
