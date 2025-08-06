@@ -239,7 +239,7 @@ function vpnCreate(){
 
 ## VPN Demo示例
 
-OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
+OpenHarmony开源项目包含一个名为[VPN](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
 
 
 
