@@ -13,6 +13,7 @@
   ```ts
   import { audio } from '@kit.AudioKit';
 
+  let audioManager = audio.getAudioManager();
   let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
   ```
 
