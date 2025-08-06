@@ -252,7 +252,7 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 
 ### setData<sup>10+</sup>
 
-setData(unifiedData: UnifiedData)
+setData(unifiedData: UnifiedData): void
 
 向DragEvent中设置拖拽相关数据。
 
@@ -262,7 +262,7 @@ setData(unifiedData: UnifiedData)
 
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
-| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+| unifiedData | [UnifiedData](#unifieddata10) | 是   | 拖拽相关的数据。 |
 
 ### getData<sup>10+</sup>
 
@@ -303,11 +303,11 @@ getSummary(): Summary
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+| [Summary](#summary10) | 从DragEvent中获取拖拽相关数据的简介。 |
 
 ### setResult<sup>10+</sup>
 
-setResult(dragResult: DragResult)
+setResult(dragResult: DragResult): void
 
 向DragEvent中设置拖拽结果。
 
@@ -591,6 +591,34 @@ getY(): number
 | PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 | PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
+
+## UnifiedData<sup>10+</sup>
+
+type UnifiedData = UnifiedData
+
+拖拽相关的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) |  拖拽相关的数据。|
+
+## Summary<sup>10+</sup>
+
+type Summary = Summary
+
+拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 拖拽相关数据的简介。|
 
 ## executeDropAnimation<sup>18+</sup>
 
