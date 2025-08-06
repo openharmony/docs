@@ -438,7 +438,7 @@ struct Index {
 
 ### 示例2（设置Symbol类型图标）
 
-该示例通过设置EditorMenuOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 11开始，该示例通过设置[EditorMenuOptions](#editormenuoptions)的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import {

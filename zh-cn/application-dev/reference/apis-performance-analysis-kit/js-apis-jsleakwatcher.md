@@ -1,5 +1,11 @@
 # @ohos.hiviewdfx.jsLeakWatcher (js泄露检测)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lu-tao-->
+<!--SE: @martin-duan-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 本模块提供了监控js对象是否发生泄露的能力。
 
 > **说明：**
@@ -115,7 +121,7 @@ let files: Array<string> = jsLeakWatcher.dump(context?.filesDir);
 
 ## jsLeakWatcher.enableLeakWatcher<sup>20+</sup>
 
-enableLeakWatcher(isEnabled: boolean, config: Array&lt;string&gt;, callback: Callback&lt;Array&lt;string&gt;&gt;): void
+enableLeakWatcher(isEnabled: boolean, configs: Array&lt;string&gt;, callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 使能js对象泄露检测，默认关闭。
 
@@ -131,7 +137,7 @@ enableLeakWatcher(isEnabled: boolean, config: Array&lt;string&gt;, callback: Cal
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isEnabled | boolean | 是| 是否使能js对象内存泄漏检测功能。true：开启该功能；false：关闭该功能。|
-| config | array&lt;string&gt; | 是| 配置项，数组中每个元素为监测具体对象的类型。<br>可配置项包括：XComponent，NodeContainer，Window，Custom Component，和Ability。 |
+| configs | array&lt;string&gt; | 是| 配置项，数组中每个元素为监测具体对象的类型。<br>可配置项包括：XComponent，NodeContainer，Window，Custom Component，和Ability。 |
 | callback | Callback&lt;Array&lt;string&gt;&gt; | 是| 回调函数，用于接收jsLeakWatcher.enableLeakWatcher接口的返回的内存泄漏的对象。<br>回调函数中传入一个数组对象，索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshort。|
 
 
@@ -141,9 +147,9 @@ enableLeakWatcher(isEnabled: boolean, config: Array&lt;string&gt;, callback: Cal
 
 | 错误码ID| 错误信息|
 | ------- | ----------------------------------------------------------------- |
-| 10801001 | The parameter isEnabled invalid.                      |
-| 10801002 | The parameter config invalid.                        |
-| 10801003 | The parameter callback invalid.                       |
+| 10801001 | The parameter isEnabled is invalid.                              |
+| 10801002 | The parameter config is invalid.                                 |
+| 10801003 | The parameter callback is invalid. Input parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 

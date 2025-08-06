@@ -490,3 +490,72 @@ struct TimePickerDialogExample {
 ```
 
 ![TimePicker](figures/TimePickerDialogDemo9.gif)
+
+### 示例10（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#timepickerdialogoptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct TimePickerDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("TimePickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTimePickerDialog({
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![TimePickerDialog](figures/TimePickerDialog_BackgroundBlurStyleOptions.png)
+
+### 示例11（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#timepickerdialogoptions对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct TimePickerDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("TimePickerDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTimePickerDialog({
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![TimePickerDialog](figures/TimePickerDialog_BackgroundEffect.png)
