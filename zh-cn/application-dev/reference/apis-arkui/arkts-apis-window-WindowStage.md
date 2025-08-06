@@ -1122,7 +1122,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-开启点击主窗三键区的关闭按钮监听事件。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10)生命周期回调函数。
+该接口仅在自由窗口模式下生效，用于开启点击主窗三键区的关闭按钮监听事件。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10)生命周期回调函数。
 
 当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
 
@@ -1130,13 +1130,13 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 如果存在[on('windowWillClose')](arkts-apis-window-Window.md#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](arkts-apis-window-Window.md#onwindowwillclose15)接口。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -1183,15 +1183,15 @@ export default class EntryAbility extends UIAbility {
 
 off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
 
-关闭主窗口关闭事件的监听。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在自由窗口模式下生效，用于关闭主窗口关闭事件的监听。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
