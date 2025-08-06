@@ -1,7 +1,7 @@
 # 开发用户文件管理器（仅对系统应用开放）
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @wang_zhangjun; @zhuangzhuang;-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
 <!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
 <!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
