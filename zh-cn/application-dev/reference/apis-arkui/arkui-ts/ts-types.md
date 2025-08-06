@@ -638,19 +638,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
 
-## KeyboardAvoidMode<sup>12+</sup>枚举说明
-
-弹窗避让键盘时，避让模式的枚举类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                                             |
-| ------- | ---- | ------------------------------------------------ |
-| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
-| NONE    | 1    | 不避让软键盘。                                   |
-
 ## LayoutSafeAreaType<sup>12+</sup>
 
 扩展布局安全区域的枚举类型。
