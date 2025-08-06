@@ -29,6 +29,8 @@ transition(value: TransitionOptions | TransitionEffect): T
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- |  ---- | -------- |
 | value | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 是 | 设置组件插入显示和删除隐藏的过渡效果。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。|
@@ -50,6 +52,8 @@ transition(effect: TransitionEffect, onFinish: Optional&lt;TransitionFinishCallb
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- |  ---- | -------- |

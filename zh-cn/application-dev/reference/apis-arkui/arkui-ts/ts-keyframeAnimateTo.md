@@ -45,11 +45,11 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名       | 类型                              | 必填 | 说明                                       |
-| ---------- | ------------------------------------ | ------- | ---------------------------------------- |
-| duration   | number                               | 是      | 该段关键帧动画的持续时间，单位为毫秒。<br/>取值范围：[0, +∞)<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
-| curve      | [Curve](ts-appendix-enums.md#curve)\|&nbsp;string&nbsp;\|&nbsp;[ICurve](./ts-explicit-animation.md#icurve9) | 否  | 该关键帧使用的动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，取值参考[AnimateParam](./ts-explicit-animation.md#animateparam对象说明)的curve参数。<br/>默认值：Curve.EaseInOut<br/>**说明：**<br/>由于[springMotion](../js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9)、[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)曲线时长不生效，故不支持这三种曲线。 |
-| event      | () => void                           | 是      | 指定在该关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。 |
+| 名称       | 类型                              | 只读 | 可选 | 说明                                       |
+| ---------- | ------------------------------------ | --- | ---- | ---------------------------------------- |
+| duration   | number                               | 否 | 否      | 该段关键帧动画的持续时间，单位为毫秒。<br/>取值范围：[0, +∞)<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
+| curve      | [Curve](ts-appendix-enums.md#curve)\|&nbsp;string&nbsp;\|&nbsp;[ICurve](./ts-explicit-animation.md#icurve9) | 否 | 是  | 该关键帧使用的动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，取值参考[AnimateParam](./ts-explicit-animation.md#animateparam对象说明)的curve参数。<br/>默认值：Curve.EaseInOut<br/>**说明：**<br/>由于[springMotion](../js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9)、[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)曲线时长不生效，故不支持这三种曲线。 |
+| event      | () => void                           | 否 | 否 | 指定在该关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。 |
 
 ## 示例
 
