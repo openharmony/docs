@@ -1,4 +1,9 @@
 # 基础类型定义
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 >**说明：**
 >
@@ -344,8 +349,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
-| width          | [Length](#length)      | 目标元素的宽度，作为返回值时，类型为number，单位vp。 |
-| height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
+| width          | [Length](#length)      | 目标元素的宽度。<br/>单位：vp |
+| height         | [Length](#length)      | 目标元素的高度。<br/>单位：vp |
 | position       | [Position](#position) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position) | 目标元素左上角相对页面左上角的位置。             |
 
@@ -361,8 +366,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
-| x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
-| y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+| x    | [Length](#length) | 否    | x轴坐标。<br/>单位：vp |
+| y    | [Length](#length) | 否    | y轴坐标。<br/>单位：vp |
 
 ## LocalizedPosition<sup>12+</sup>
 
