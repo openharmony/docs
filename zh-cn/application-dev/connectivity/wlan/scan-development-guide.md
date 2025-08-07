@@ -74,6 +74,8 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
 
     // 取消注册，停止获取扫描状态。
     wifiManager.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
+  } catch (error) {
+    console.error(`WiFi scan fail. ${error.message}`);
   }
 ```
 

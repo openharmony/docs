@@ -71,6 +71,8 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     }
 
     wifiManager.off("wifiStateChange", recvPowerNotifyFunc);
+} catch (error) {
+  console.error(`WiFi state monitor failed. ${error.message}`);
 }
 ```
 
@@ -112,11 +114,15 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
       console.info("get Wi-Fi linked info: " + JSON.stringify(data));
     })
     // 查询信号强度
+    let rssi = -88;
+    let band = 1;
     let level = wifiManager.getSignalLevel(rssi,band);
     console.info("level:" + JSON.stringify(level));
 
     // 取消注册，停止更新当前Wi-Fi连接状态
     wifiManager.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
+  } catch (error) {
+    console.error(`WiFi Connection failed. ${error.message}`);
   }
 ```
 6. Wi-Fi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
