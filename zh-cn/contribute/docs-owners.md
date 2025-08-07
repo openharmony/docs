@@ -100,3 +100,4 @@
 [User Authentication Kit][UserIAM]<br>
 [NDK Development][arkcompiler]<br>
 [NDK][arkcompiler]<br>
+[Common Basic Capability][arkcompiler]<br>
