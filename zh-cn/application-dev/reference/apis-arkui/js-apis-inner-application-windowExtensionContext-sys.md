@@ -1,4 +1,4 @@
-# WindowExtensionContext (系统接口)
+# WindowExtensionContext (系统接口)<sup>(deprecated)</sup>
 
 WindowExtensionContext模块是WindowExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
@@ -11,6 +11,8 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 >  - 本模块接口为系统接口。
 >
 >  - 本模块接口仅可在Stage模型下使用。
+> 
+>  - 从API version 20开始废弃，推荐使用[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)。
 
 ## 使用说明
 
@@ -28,11 +30,15 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability，使用callback异步回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 20开始废弃，推荐使用[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-1)。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -93,11 +99,15 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 启动Ability，使用Promise异步回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 20开始废弃，推荐使用[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-2)。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
