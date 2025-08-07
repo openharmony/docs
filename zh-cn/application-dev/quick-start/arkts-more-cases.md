@@ -717,7 +717,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option = { id: '', type: 0 };
 test.foo('', option);
@@ -739,7 +739,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option: test.I = { id: '', type: 0 };
 test.foo('', option);
