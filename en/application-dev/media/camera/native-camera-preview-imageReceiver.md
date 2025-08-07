@@ -1,10 +1,15 @@
 # Secondary Processing of Preview Streams (C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
-You can use the APIs in the **ImageReceiver** class to create a **PreviewOutput** instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
+You can use the APIs in the **ImageReceiver** class to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
 1. Import the NDK, which provides camera-related attributes and methods.
 
@@ -38,7 +43,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 3. Initialize an [ImageReceiver](../image/image-receiver-c.md) instance and obtain a surface ID.
 
-   Call **OH_ImageReceiverNative_Create** of the image module to create an **OH_ImageReceiverNative** instance, and call **OH_ImageReceiverNative_GetReceivingSurfaceId** of the instance to obtain a surface ID.
+   Call **OH_ImageReceiverNative_Create** of the image module to create an OH_ImageReceiverNative instance, and call **OH_ImageReceiverNative_GetReceivingSurfaceId** of the instance to obtain a surface ID.
 
    ```c++
    void InitImageReceiver() {
