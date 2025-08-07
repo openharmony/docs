@@ -12,6 +12,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name | Type                                                    | Mandatory| Description                                                    |
@@ -23,6 +25,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
 | Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
@@ -31,6 +35,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 
 ## Events
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                                      | Description                                |
 | ---------------------------------------- | ------------------------------------ |
@@ -46,12 +52,12 @@ This example demonstrates the sequential recognition of combined gestures, speci
 @Entry
 @Component
 struct GestureGroupExample {
-  @State count: number = 0
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  @State borderStyles: BorderStyle = BorderStyle.Solid
+  @State count: number = 0;
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  @State borderStyles: BorderStyle = BorderStyle.Solid;
 
   build() {
     Column() {

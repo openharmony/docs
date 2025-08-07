@@ -1,6 +1,6 @@
 # Using OHAudio for Audio Recording (C/C++)
 
-**OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
+OHAudio is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
 OHAudio audio capturer state transition
 
@@ -8,7 +8,7 @@ OHAudio audio capturer state transition
 
 ## Prerequisites
 
-To use the recording capability of **OHAudio**, you must first import the corresponding header files.
+To use the recording capability of OHAudio, you must first import the corresponding header files.
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -16,7 +16,7 @@ To use the recording capability of **OHAudio**, you must first import the corres
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ### Adding Header Files
-To use APIs for audio recording, import <[native_audiostreambuilder.h](../../reference/apis-audio-kit/native__audiostreambuilder_8h.md)> and <[native_audiocapturer.h](../../reference/apis-audio-kit/native__audiocapturer_8h.md)>.
+Include the <[native_audiostreambuilder.h](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)> and <[native_audiocapturer.h](../../reference/apis-audio-kit/capi-native-audiocapturer-h.md)> header files so that the application can use the functions related to audio recording.
 
 ```cpp
 #include <ohaudio/native_audiocapturer.h>
@@ -24,21 +24,21 @@ To use APIs for audio recording, import <[native_audiostreambuilder.h](../../ref
 ```
 ## Audio Stream Builder
 
-**OHAudio** provides the **OH_AudioStreamBuilder** class, which complies with the builder design pattern and is used to build audio streams. You need to specify [OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) based on your service scenarios.
+OHAudio provides the **OH_AudioStreamBuilder** class, which complies with the builder design pattern and is used to build audio streams. You need to specify [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) based on your service scenarios.
 
 **OH_AudioStream_Type** can be set to either of the following:
 
 - AUDIOSTREAM_TYPE_RENDERER
 - AUDIOSTREAM_TYPE_CAPTURER
 
-The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create) to create a builder:
+The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_create) to create a builder:
 
 ```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
-After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy) to destroy the builder.
+After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_destroy) to destroy the builder.
 
 ```cpp
 OH_AudioStreamBuilder_Destroy(builder);
@@ -46,7 +46,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ## How to Develop
 
-Read [OHAudio](../../reference/apis-audio-kit/_o_h_audio.md) for the API reference.
+Read [OHAudio](../../reference/apis-audio-kit/capi-ohaudio.md) for the API reference.
 
 The following walks you through how to implement simple recording:
 
@@ -74,7 +74,7 @@ The following walks you through how to implement simple recording:
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
-    Note that the audio data captured is read through callbacks. You must call **OH_AudioStreamBuilder_SetCapturerCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks).
+    Note that the audio data captured is read through callbacks. You must call **OH_AudioStreamBuilder_SetCapturerCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md).
 
 3. Set the callback functions.
 
@@ -134,7 +134,7 @@ The following walks you through how to implement simple recording:
 
     To avoid unexpected behavior, you can set the audio callback functions in either of the following ways:
 
-    - Initialize each callback in [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) by a custom callback method or a null pointer.
+    - Initialize each callback in [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md) by a custom callback method or a null pointer.
 
       ```cpp
       // Customize a data reading function.
@@ -232,11 +232,11 @@ The following walks you through how to implement simple recording:
 
 If the device supports the low-latency channel, you can use the low-latency mode to create an audio capturer for a higher-quality audio experience.
 
-The development process is similar to that in the common recording scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
+The development process is similar to that in the common recording scenario. The only difference is that you need to set the low-latency mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
 
 > **NOTE**
 >
-> In audio recording scenarios, if [OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype) is set to **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
+> In audio recording scenarios, if [OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) is set to **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
 
 Code snippet:
 
@@ -244,5 +244,9 @@ Code snippet:
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
+
+## Setting the Mute Interruption Mode
+To ensure that the recording is not interrupted by the system's focus concurrency rules, a feature is introduced to change the interruption strategy from stopping the recording to simply muting it. You can control this behavior by calling [OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturerwillmutewheninterrupted) when creating an audio stream builder. By default, this mode is disabled, and the audio focus strategy manages the order of concurrent audio streams. When enabled, if the recording is interrupted by another application, it will go into a muted state instead of stopping or pausing. In this state, the audio captured is silent.
+
 <!--RP1-->
 <!--RP1End-->

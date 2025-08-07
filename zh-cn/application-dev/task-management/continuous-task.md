@@ -419,7 +419,7 @@
        "abilities": [
            {
                "backgroundModes": [
-               "audioRecording",
+               "audioRecording"
                ], // 后台模式类型
                "type": "service"  // ability类型为service
            }
@@ -554,4 +554,4 @@
 
 针对长时任务开发，有以下相关实例可供参考：
 
-- [长时任务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [长时任务（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)

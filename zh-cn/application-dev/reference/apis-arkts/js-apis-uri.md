@@ -1,4 +1,9 @@
 # @ohos.uri (URI字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供URI字符串解析功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
 
@@ -548,7 +553,7 @@ getQueryNames(): string[]
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
 const paramNames = uriInstance.getQueryNames();
-console.info(Array.from(paramNames).toString()); // param1,param2
+console.info(paramNames.toString()); // param1,param2
 ```
 
 ### getQueryValues<sup>12+</sup>

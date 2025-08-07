@@ -13,7 +13,7 @@
 
 与ArkTS端 [taskpool.Priority](../reference/apis-arkts/js-apis-taskpool.md) 的优先级类似，QoS提供的优先级等级也都会相对应的映射到内核的优先级上。不过QoS提供的等级更多，自适应调度策略更强，它们属于两套不同的逻辑。
 
-[FFRT（Function Flow运行时）](../reference/apis-ffrt-kit/_f_f_r_t.md)的QoS提供了ffrt_qos_inherit（-1）到ffrt_qos_user_initiated（3）5个优先等级，它与当前的QoS接口有着同一套底层逻辑。差别在于当前开发所用的QoS接口是直接开放给应用线程的，而FFRT的QoS则是面向任务的优先级配置。关于线程编程模型和任务编程模型的对比详见 [FFRT 开发指导](../ffrt/ffrt-development-guideline.md)。
+[FFRT（Function Flow运行时）](../reference/apis-ffrt-kit/capi-type-def-h.md)的QoS提供了ffrt_qos_inherit（-1）到ffrt_qos_user_initiated（3）5个优先等级，它与当前的QoS接口有着同一套底层逻辑。差别在于当前开发所用的QoS接口是直接开放给应用线程的，而FFRT的QoS则是面向任务的优先级配置。关于线程编程模型和任务编程模型的对比详见 [FFRT 开发指导](../ffrt/ffrt-development-guideline.md)。
 
 
 ## 场景示例

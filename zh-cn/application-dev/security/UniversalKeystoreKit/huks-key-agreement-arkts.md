@@ -1,5 +1,11 @@
 # 密钥协商(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 以协商密钥类型为X25519，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 开发步骤
@@ -48,6 +54,14 @@
   *以下以X25519密钥的Promise操作使用为例
   */
   import { huks } from '@kit.UniversalKeystoreKit';
+
+  function StringToUint8Array(str: string) {
+    let arr: number[] = new Array();
+    for (let i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+    }
+    return new Uint8Array(arr);
+  }
 
   /*
   * 确定密钥别名和封装密钥属性参数集
@@ -131,14 +145,6 @@
       value: StringToUint8Array(srcKeyAliasSecond + 'final'),
     }],
     inData: StringToUint8Array(agreeX25519InData)
-  }
-
-  function StringToUint8Array(str: string) {
-    let arr: number[] = new Array();
-    for (let i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
   }
 
   class throwObject {

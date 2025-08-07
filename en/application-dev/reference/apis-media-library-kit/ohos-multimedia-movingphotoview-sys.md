@@ -14,6 +14,7 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat14)    | No  | Decoding format of the cover image of the **MovingPhotoView** component.                 |
 | dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode14) | No  | Range mode of the cover image of the **MovingPhotoView** component.|
+| playWithMask<sup>19+</sup>  | boolean | No  | Whether the watermark is shown when a moving photo with a watermark is playing.<br>The default value is **false**.<br>**false**: The moving photo fills the component while keeping its aspect ratio; the watermark is hidden.<br>**true**: The watermark is shown.|
 
 ## PixelMapFormat<sup>14+</sup>
 
@@ -84,7 +85,8 @@ struct Index {
             movingPhoto: data,
             controller: this.controller,
             movingPhotoFormat: this.format,
-            dynamicRangeMode: this.mode
+            dynamicRangeMode: this.mode,
+            playWithMask: false
           })
         }
       }
@@ -92,3 +94,140 @@ struct Index {
   }
 }
 ```
+
+## MovingPhotoViewController<sup>12+</sup>
+
+A MovingPhotoViewController object can be used to control a **MovingPhotoView** component. For details, see [Media Module](../apis-media-kit/arkts-apis-media.md).
+
+### pausePlayback<sup>20+</sup>
+
+pausePlayback()
+
+Pauses playback and freezes on the current frame. Once resumed, playback continues right where it left off.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### reset<sup>20+</sup>
+
+reset()
+
+Returns to the cover frame and rewinds the video. The next play starts from the very beginning.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### restart<sup>20+</sup>
+
+restart()
+
+Restarts playback from the beginning while keeping the current playback range and mode.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### setPlaybackPeriod<sup>20+</sup>
+
+setPlaybackPeriod(startTime: double, endTime: double)
+
+Sets the playback range, which takes effect for the next playback.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| startTime| double| Yes  | Start of the range, in ms. The value must be greater than or equal to 0.|
+| endTime| double| Yes  | End of the range, in ms. The value must be greater than **startTime**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### enableTransition<sup>20+</sup>
+
+enableTransition(enabled: boolean)
+
+Enables or disables the zoom-in transition effect when the video starts to play. The setting takes effect for the next playback.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| enabled| boolean| Yes  | Whether to enable the zoom-in transition effect. The value **true** means to enable the zoom-in transition effect, and **false** means the opposite.<br></div>The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### enableAutoPlay<sup>20+</sup>
+
+enableAutoPlay(enabled: boolean)
+
+Enables or disables the embedded video in a moving photo to play automatically, once.
+
+**System API**: This is a system API.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| enabled| boolean| Yes  | Whether to enable autoplay. The value **true** means to enable the embedded video in a moving photo to play automatically, and **false** means the opposite.<br></div>The default value is **false**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |

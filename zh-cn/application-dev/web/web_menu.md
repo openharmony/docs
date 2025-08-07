@@ -1,4 +1,9 @@
 # 使用Web组件菜单处理网页内容
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 菜单作为用户交互的关键组件，其作用是构建清晰的导航体系，通过结构化布局展示功能入口，使用户能够迅速找到目标内容或执行操作。作为人机交互的重要枢纽，它显著提升了Web组件的可访问性和用户体验，是应用设计中必不可少的部分。Web组件菜单类型包括[文本选中菜单](./web_menu.md#文本选中菜单)、[上下文菜单](./web_menu.md#上下文菜单)和[自定义菜单](./web_menu.md#自定义菜单)，应用可根据具体需求灵活选择。
 |菜单类型|目标元素|响应类型|是否支持自定义|
 |----|----|----|----|
@@ -25,8 +30,8 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
         return (
           menuItem.id.equals(TextMenuItemId.CUT) ||
           menuItem.id.equals(TextMenuItemId.COPY) ||
-          menuItem.id.equals((TextMenuItemId.PASTE))
-        )
+          menuItem.id.equals(TextMenuItemId.PASTE)
+        );
       });
       let customItem1: TextMenuItem = {
         content: 'customItem1',
@@ -61,7 +66,7 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
         // 用户自定义行为
         console.log("拦截 id：customItem1")
         return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
-      } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.EntryAbility_label'))))){
+      } else if (menuItem.id.equals(TextMenuItemId.of($r('app.string.EntryAbility_label')))){
         // 用户自定义行为
         console.log("拦截 id：app.string.customItem2")
         return true;
@@ -95,9 +100,9 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
   ```
   ![editMenuOption](./figures/editMenuOption.gif)
 ## 上下文菜单
-上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。要应用需通过[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口并与Web绑定，通过菜单弹出时的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
+上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。要应用需通过[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件创建一个菜单子窗口并与Web绑定，通过菜单弹出时的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
 
-1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为弹出的菜单，包含所有菜单项行为与样式。
+1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件作为弹出的菜单，包含所有菜单项行为与样式。
 2. 使用bindPopup方法将Menu组件与Web组件绑定。当上下文菜单弹出时，将显示创建的Menu组件。
 3. 在onContextMenuShow回调中获取上下文菜单事件信息[onContextMenuShowEvent](../reference/apis-arkweb/arkts-basic-components-web-i.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuParam.md)类型，包含点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md)类型，提供常见的菜单能力。
 
@@ -239,7 +244,7 @@ struct WebComponent {
 ![onContextMenuShow](./figures/onContextMenuShow.gif)
 ## 自定义菜单
 自定义菜单赋予开发者调整菜单触发时机与视觉展现的能力，使应用能够依据用户操作场景动态匹配功能入口，简化开发流程中的界面适配工作，同时使应用交互更符合用户直觉。自定义菜单允许应用通过[bindSelectionMenu](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bindselectionmenu13)，根据事件类型与元素类型弹出自定义菜单，目前支持响应长按图片。
-1. 创建[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为菜单弹窗。
+1. 创建[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件作为菜单弹窗。
 2. 通过Web组件的[bindSelectionMenu](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bindselectionmenu13)方法绑定MenuBuilder菜单弹窗。将[WebElementType](../reference/apis-arkweb/arkts-basic-components-web-e.md#webelementtype13)设置为WebElementType.IMAGE，[responseType](../reference/apis-arkweb/arkts-basic-components-web-e.md#webresponsetype13)设置为WebResponseType.LONG_PRESS，表示长按图片时弹出菜单。在[options](../reference/apis-arkweb/arkts-basic-components-web-i.md#selectionmenuoptionsext13)中定义菜单显示回调onAppear、菜单消失回调onDisappear、预览窗口preview和菜单类型menuType。
 ```ts
 // xxx.ets
@@ -609,7 +614,7 @@ struct WebComponent {
                 await phAccessHelper.applyChanges(assetChangeRequest);
               }
               catch (err) {
-                console.error(`create asset failed with error: ${err.code}}, ${err.message}}`);
+                console.error(`create asset failed with error: ${err.code}, ${err.message}`);
               }
             } else {
               console.error(`SaveButtonOnClickResult create asset failed`);

@@ -1,4 +1,9 @@
 # 拖拽事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 拖拽事件是指在用户界面中，当用户拖动某个对象（如文件、控件或元素）时触发的一系列事件。这些事件允许开发者自定义拖拽行为，实现诸如拖放、调整位置等功能。
 
@@ -185,7 +190,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 ## onPreDrag<sup>12+</sup>
 
-onPreDrag(callback: Callback\<PreDragStatus>)
+onPreDrag(callback: Callback\<PreDragStatus>): T
 
 绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
@@ -199,9 +204,15 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragSpringLoading<sup>20+</sup>
 
-onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration)
+onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration): T
 
 绑定此事件的组件可作为具有悬停检测功能的拖拽目标。当拖拽对象对象悬停在目标上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的优先级。
 
@@ -217,6 +228,12 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
 | callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## DragItemInfo说明
 
@@ -264,10 +281,10 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型  | 描述             |
-| ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
+| 名称     | 类型  | 只读 | 可选 | 说明             |
+| ------ | ------ | ----- | ---- | ------- |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 否 | 否 |当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 否 | 否 |切换复制和剪贴模式的角标显示状态。 |
 
 ### setData<sup>10+</sup>
 
@@ -494,7 +511,7 @@ getModifierKeyState?(keys: Array<string\>): boolean
 
 | 参数名 | 类型                | 必填 | 说明                                                         |
 | ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| keys   | Array&lt;string&gt; | 是   | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\| 'Alt' \| 'Shift'。 |
+| keys   | Array&lt;string&gt; | 是   | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\| 'Alt' \| 'Shift'。<br/>**说明：**<br/>此接口不支持在手写笔场景下使用。 |
 
 **错误码：**
 
@@ -522,7 +539,7 @@ startDataLoading(options: DataSyncOptions): string
 
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。 |
+| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../arkts-apis-uicontext-dragcontroller.md#canceldataloading15)接口取消。 |
 
 **错误码：**
 
@@ -668,13 +685,13 @@ getGlobalDisplayY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| ----- | ----------------- |
-| DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用。 |
-| DRAG_FAILED | 拖拽失败，在onDrop中使用。 |
-| DRAG_CANCELED | 拖拽取消，在onDrop中使用。 |
-| DROP_ENABLED | 组件允许落入，在onDragMove中使用。 |
-| DROP_DISABLED | 组件不允许落入，在onDragMove中使用。 |
+| 名称   | 值 | 说明 |
+| ----- | -- | --------------- |
+| DRAG_SUCCESSFUL | 0 |拖拽成功，在onDrop中使用。 |
+| DRAG_FAILED | 1 |拖拽失败，在onDrop中使用。 |
+| DRAG_CANCELED | 2 |拖拽取消，在onDrop中使用。 |
+| DROP_ENABLED | 3 |组件允许落入，在onDragMove中使用。 |
+| DROP_DISABLED | 4 |组件不允许落入，在onDragMove中使用。 |
 
 ## DragBehavior<sup>10+</sup>
 
@@ -684,10 +701,10 @@ getGlobalDisplayY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| ----- | ----------------- |
-| COPY | 指定对数据的处理方式为复制。|
-| MOVE| 指定对数据的处理方式为剪切。|
+| 名称 | 值 | 说明 |
+| ----- | -- | ----------------- |
+| COPY | - |指定对数据的处理方式为复制。|
+| MOVE| - |指定对数据的处理方式为剪切。|
 
 ## PreDragStatus<sup>12+</sup>枚举说明
 
@@ -695,7 +712,7 @@ getGlobalDisplayY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | ---- | - | ----------------- |
 | ACTION_DETECTING_STATUS | 0 | 拖拽手势启动阶段。(按下50ms时触发) |
 | READY_TO_TRIGGER_DRAG_ACTION | 1 | 拖拽准备完成，可发起拖拽阶段。(按下500ms时触发) |
@@ -708,15 +725,17 @@ getGlobalDisplayY(): number
 
 ## executeDropAnimation<sup>18+</sup>
 
+executeDropAnimation(customDragAnimation: Callback\<void\>): void
+
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型  | 描述             |
-| ------ | ------ | ---------------- |
-| customDropAnimation | Callback\<void\>  |  在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+| 参数名    | 类型  | 必填 | 说明      |
+| ------ | ------ | --- | --------- |
+| customDropAnimation | Callback\<void\>  | 否 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## DataSyncOptions<sup>15+</sup>
 
@@ -755,7 +774,7 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型  | 只读 | 可选 | 描述             |
+| 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
@@ -806,7 +825,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -1111,7 +1130,7 @@ struct ImageExample {
           .height('90%')
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
-            console.log("enter onDrop")
+            console.info("enter onDrop")
             let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
@@ -1125,12 +1144,12 @@ struct ImageExample {
                     this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                   }
                 } else {
-                  console.log('dragData arr is null');
+                  console.info('dragData arr is null');
                 }
               } else {
-                console.log('dragData is undefined');
+                console.info('dragData is undefined');
               }
-              console.log(`percentage: ${progress.progress}`);
+              console.info(`percentage: ${progress.progress}`);
             };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1140,9 +1159,9 @@ struct ImageExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch(e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, {disableDataPrefetch: true})
         }
@@ -1155,7 +1174,7 @@ struct ImageExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({top: 10})
@@ -1183,7 +1202,7 @@ struct Index {
   @State startDisplayId: number = -1;
   @State enterDisplayId: number = -1;
   @State moveDisplayId: number = -1;
-  @State LeaveDisplayId: number = -1;
+  @State leaveDisplayId: number = -1;
   @State dropDisplayId: number = -1;
 
   @Builder
@@ -1209,7 +1228,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -1275,7 +1294,7 @@ struct Index {
           .height(50)
           .draggable(true)
           .margin({ left: 15 })
-        Text('displayID in onDragLeave: ' + this.LeaveDisplayId.toString())
+        Text('displayID in onDragLeave: ' + this.leaveDisplayId.toString())
           .width('100%')
           .height(50)
           .draggable(true)
@@ -1315,7 +1334,7 @@ struct Index {
           })
           .onDragLeave((event) => {
             let id = event.getDisplayId();
-            this.LeaveDisplayId = id;
+            this.leaveDisplayId = id;
           })
           .onDrop((dragEvent: DragEvent) => {
             let id = dragEvent.getDisplayId();
@@ -1534,15 +1553,27 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+              let loadHandler: unifiedDataChannel.DataLoadHandler = (acceptableInfo) => {
+                console.info('acceptableInfo recordCount', acceptableInfo?.recordCount);
+                if (acceptableInfo?.types) {
+                  console.info('acceptableInfo types', Array.from(acceptableInfo.types));
+                } else {
+                  console.error('acceptableInfo types is undefined');
+                }
                 let data = context.resourceManager.getRawFdSync('test1.mp4');
                 let filePath = context.filesDir + '/test1.mp4';
-                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-                let bufferSize = data.length as number;
-                let buf = new ArrayBuffer(bufferSize);
-                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-                fs.closeSync(file.fd);
+                let file: fs.File = null!;
+                try {
+                  file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                  let bufferSize = data.length as number;
+                  let buf = new ArrayBuffer(bufferSize);
+                  fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                  fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                } catch (error) {
+                  console.error(`openSync errorCode: ${error.code}, errorMessage: ${error.message}`);
+                } finally {
+                  fs.closeSync(file.fd);
+                }
                 context.resourceManager.closeRawFdSync('test1.mp4')
                 this.uri = fileUri.getUriFromPath(filePath);
                 let videoMp: uniformDataStruct.FileUri = {
@@ -1604,11 +1635,14 @@ struct VideoExample {
                 }
                 console.info(`percentage: ${progress.progress}`);
               };
+            let info: unifiedDataChannel.DataLoadInfo =
+              { types: new Set([uniformTypeDescriptor.UniformDataType.VIDEO]), recordCount: 100 }
             let options: DataSyncOptions = {
               destUri: destUri,
               fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
               progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
               dataProgressListener: progressListener,
+              acceptableInfo: info,
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
@@ -1622,6 +1656,7 @@ struct VideoExample {
         .width("90%")
         .border({ width: 1 })
       }
+
       Button('取消数据传输')
         .onClick(() => {
           try {

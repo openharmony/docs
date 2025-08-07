@@ -1,4 +1,9 @@
 # Class (RdbPredicates)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
@@ -32,7 +37,7 @@ constructor(name: string)
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -71,7 +76,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -147,7 +152,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -185,7 +190,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -323,7 +328,7 @@ contains(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -360,7 +365,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -397,7 +402,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -433,7 +438,7 @@ isNull(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -468,7 +473,7 @@ isNotNull(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -504,7 +509,7 @@ like(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -541,7 +546,7 @@ glob(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -579,7 +584,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -617,7 +622,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -654,7 +659,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -691,7 +696,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -728,7 +733,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -765,7 +770,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -801,7 +806,7 @@ orderByAsc(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -836,7 +841,7 @@ orderByDesc(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -892,7 +897,7 @@ limitAs(value: number): RdbPredicates
 
 | **错误码ID** | **错误信息**               |
 | --------- |--------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -927,7 +932,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -962,7 +967,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -997,7 +1002,7 @@ indexedBy(field: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1033,7 +1038,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1070,7 +1075,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1107,7 +1112,7 @@ notContains(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1144,7 +1149,7 @@ notLike(field: string, value: string): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1181,7 +1186,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause. |
 
 **示例1：**
 

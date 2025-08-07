@@ -1,4 +1,9 @@
 # 使用Web组件的拖拽功能与网页交互
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 ArkWeb的拖拽功能使应用能够在网页中实现元素的拖放，用户可以长按可拖拽的元素，将其拖至可放置的元素上，然后松手完成放置。ArkWeb在网页内容中的拖拽功能满足H5标准。
 
@@ -62,9 +67,12 @@ struct DragDrop {
         //完成通信端口注册后，向前端发送注册完成消息，完成双向的端口绑定
         this.controller.postMessage('__init_port__', [this.ports[0]], '*');
       })// onDrop 可做简单逻辑，例如暂存一些关键数据
-        .onDrop((event) => {
+        .onDrop((DragEvent: DragEvent) => {
           console.log("ETS onDrop!")
-          let data: UnifiedData = (event as DragEvent).getData() as UnifiedData;
+          let data: UnifiedData = DragEvent.getData();
+          if(!data) {
+            return false;
+          }
           let uriArr: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           if (!uriArr || uriArr.length <= 0) {
             return false;
@@ -93,8 +101,8 @@ html示例:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>H5 拖拽 Demo</title>
 </head>
-<title>H5 拖拽 Demo</title>
 <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,7 +135,6 @@ html示例:
       color: white;
     }
 </style>
-</head>
 <body>
 
 <h2>H5 拖拽 Demo</h2>

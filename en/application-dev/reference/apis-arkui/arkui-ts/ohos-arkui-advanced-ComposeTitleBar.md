@@ -7,12 +7,14 @@
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { ComposeTitleBar } from '@kit.ArkUI'
+import { ComposeTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -67,7 +69,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 ### Example 1: Implementing a Simple Title Bar
 This example showcases how to implement a simple title bar, a title bar with a back arrow, and a title bar with a list of menu items on the right side.
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -80,22 +82,22 @@ struct Index {
       // Enable the icon.
       isEnabled: true,
       // Action triggered when the menu item is clicked.
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'icon 1' }),
     },
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'icon 2' }),
     },
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'icon 3' }),
     },
     {
       value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'icon 4' }),
     },
   ]
 
@@ -105,30 +107,31 @@ struct Index {
         // Divider.
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 1),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 2),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
         // Define the title bar with a profile picture.
         ComposeTitleBar({
-          menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+          menuItems: [{
+            isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
+            action: () => Prompt.showToast({ message: 'icon' }),
           }],
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
         })
         Divider().height(2).color(0xCCCCCC)
@@ -141,9 +144,9 @@ struct Index {
 ![en-us_image_composetitlebar_example01](figures/en-us_image_composetitlebar_example01.png)
 
 ### Example 2: Implementing Screen Reader Announcement for the Custom Button on the Right Side
-This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the custom button on the right side of the title bar.
+This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the custom button on the right side of the title bar. This functionality is supported since API version 18.
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -156,38 +159,38 @@ struct Index {
       // Enable the icon.
       isEnabled: true,
       // Action triggered when the menu item is clicked.
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: 'icon 1' }),
       // The screen reader will prioritize this text over the label.
       accessibilityText: 'Save',
       // The screen reader can focus on this item.
       accessibilityLevel: 'yes',
       // The screen reader will ultimately announce this text.
-      accessibilityDescription: 'Tap to save the icon'
+      accessibilityDescription: 'Tap to save the current content',
     },
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: 'icon 2' }),
       accessibilityText: 'Copy',
       // The screen reader will not focus on this item.
       accessibilityLevel: 'no',
-      accessibilityDescription: 'Tap to copy the icon'
+      accessibilityDescription: 'Tap to copy the current content',
     },
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: 'icon 3' }),
       accessibilityText: 'Edit',
       accessibilityLevel: 'yes',
-      accessibilityDescription: 'Tap to edit the icon'
+      accessibilityDescription: 'Tap to edit the current content',
     },
     {
       value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: 'icon 4' }),
       accessibilityText: 'Remove',
       accessibilityLevel: 'yes',
-      accessibilityDescription: 'Tap to remove the icon'
+      accessibilityDescription: 'Tap to remove the selected item',
     },
   ]
 
@@ -197,31 +200,32 @@ struct Index {
         // Divider.
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 1),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 2),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
         // Define the title bar with a profile picture.
         ComposeTitleBar({
-          menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+          menuItems: [{
+            isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
+            action: () => Prompt.showToast({ message: 'icon' }),
           }],
-          title: "Title",
-          subtitle: "Subtitle",
-          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
+          title: 'Title',
+          subtitle: 'Subtitle',
+          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') },
         })
         Divider().height(2).color(0xCCCCCC)
       }
@@ -234,10 +238,10 @@ struct Index {
 
 ### Example 3: Setting the Symbol Icon
 
-This example demonstrates how to use **symbolStyle** in **ComposeTitleBarMenuItem** to set custom symbol icons.
+This example demonstrates how to use **symbolStyle** in **ComposeTitleBarMenuItem** to set custom symbol icons. This functionality is supported since API version 18.
 
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -252,23 +256,23 @@ struct Index {
       // Enable the icon.
       isEnabled: true,
       // Action triggered when the menu item is clicked.
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'symbol icon 1' }),
     },
     {
       value: $r('sys.symbol.house'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'symbol icon 2' }),
     },
     {
       value: $r('sys.symbol.car'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Pink]),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'symbol icon 3' }),
     },
     {
       value: $r('sys.symbol.car'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: 'symbol icon 4' }),
     },
   ]
 
@@ -278,31 +282,32 @@ struct Index {
         // Divider.
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 1),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems.slice(0, 2),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "Title",
-          subtitle: "Subtitle",
+          title: 'Title',
+          subtitle: 'Subtitle',
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
         // Define the title bar with a profile picture.
         ComposeTitleBar({
-          menuItems: [{ isEnabled: true, value: $r('sys.symbol.heart'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+          menuItems: [{
+            isEnabled: true, value: $r('sys.symbol.heart'),
+            action: () => Prompt.showToast({ message: 'symbol icon 1' }),
           }],
-          title: "Title",
-          subtitle: "Subtitle",
-          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
+          title: 'Title',
+          subtitle: 'Subtitle',
+          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') },
         })
         Divider().height(2).color(0xCCCCCC)
       }

@@ -1,4 +1,9 @@
 # ArkWeb进程
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
+<!--TSE: @ghiker-->
 
 ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程、Web孵化进程和Foundation进程。
 
@@ -177,12 +182,13 @@ ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程�
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController();
+     controller1: webview.WebviewController = new webview.WebviewController();
+     controller2: webview.WebviewController = new webview.WebviewController();
    
      build() {
        Column() {
-         Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
-         Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+         Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
+         Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
        }
      }
    }

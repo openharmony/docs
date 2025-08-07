@@ -4,7 +4,7 @@
 
 ### 功能介绍
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类通知，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
 - 倒计时类：基于倒计时的提醒功能。
 
@@ -28,6 +28,8 @@
 
 <!--RP3--><!--RP3End-->
 
+## 与相关Kit的关系
+- 代理提醒使用 Notification Kit 发布通知，通知样式请参考[Notification Kit通知样式](../notification/notification-overview.md#通知样式)中文本类型。
 
 ## 接口说明
 
@@ -186,6 +188,6 @@
 
 基于代理提醒，有以下相关实例可供参考：
 
-- [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
+- [后台代理提醒（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
-- [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
+- [翻页时钟（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)

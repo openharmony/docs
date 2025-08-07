@@ -1,4 +1,9 @@
 # 使用动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 
 ## 使用属性动画
@@ -9,15 +14,15 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 >
 > - 需要从ArkTS侧获取[this.getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，传入到Native侧。
 > 
-> - 在Native侧通过[OH_ArkUI_GetContextFromNapiValue](../reference/apis-arkui/native__node__napi_8h.md)方法获取context。
+> - 在Native侧通过[OH_ArkUI_GetContextFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md)方法获取context。
 > 
-> - 需要执行的动画属性变化必须写在[ArkUI_ContextCallback](../reference/apis-arkui/_ark_u_i___context_callback.md)中callback中。
+> - 需要执行的动画属性变化必须写在[ArkUI_ContextCallback](../reference/apis-arkui/capi-arkui-nativemodule-arkui-contextcallback.md)中callback中。
 > 
 > - 需要执行的动画属性，必须在执行动画之前设置过。
 
 提供全局animateTo显式动画接口，来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-1. 在.ets文件中获取[UIContext](../reference//apis-arkui/js-apis-arkui-UIContext.md#uicontext)，把this.getUIContext()当做参数输出到Native方法中。
+1. 在.ets文件中获取[UIContext](../reference//apis-arkui/arkts-apis-uicontext-uicontext.md#class-uicontext)，把this.getUIContext()当做参数输出到Native方法中。
    ```ts
    // createNativeNode是Native侧暴露的方法
    nativeNode.createNativeNode("xcomponentId", this.getUIContext());
@@ -227,9 +232,9 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 ## 使用关键帧动画
 
-[keyframeAnimateTo](../reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md#keyframeanimateto)接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
+[keyframeAnimateTo](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativeanimateapi-1.md#keyframeanimateto)接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-该示例主要演示如何通过[keyframeAnimateTo](../reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md#keyframeanimateto)来设置关键帧动画，NDK接口开发的UI界面挂载到ArkTS主页面的完整流程可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+该示例主要演示如何通过[keyframeAnimateTo](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativeanimateapi-1.md#keyframeanimateto)来设置关键帧动画，NDK接口开发的UI界面挂载到ArkTS主页面的完整流程可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
 
 ```
 auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);

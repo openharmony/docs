@@ -18,7 +18,7 @@ You design page layout by leveraging specific components or attributes to contro
 
 A layout is generally in a hierarchical structure. Below is a common page structure.
 
-  **Figure 1** Common page structure 
+  **Figure 1** Common page structure
 
 ![common-page-structure](figures/common-page-structure.png)
 
@@ -27,9 +27,9 @@ To achieve the preceding effect, you need to declare the corresponding elements 
 
 ## Layout Elements
 
-You can use layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
+You can use layout-related container components to create a specific layout.
 
-  **Figure 2** Layout elements 
+  **Figure 2** Layout elements
 
 ![layout-element-omposition](figures/layout-element-omposition.png)
 
@@ -37,7 +37,7 @@ You can use layout-related container components to create a specific layout. For
 
 - Component content area (yellow block): size of the component area minus the [border](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#border) of the component. It serves as the layout constraint for calculating the size of the component content (or child component).
 
-- Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed width and height values are set, the component content area is the size obtained with the width and height minus the paddings and border. The component content is the size calculated by the layout engine, which may be less than the component content area. When the component content and component content area do not match, the [align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align) attribute takes effect, defining the alignment mode of the component content in the component content area, for example, center aligned.
+- Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed **width** and **height** values are set, the actual size of the component content area is determined by subtracting **padding** and **border** values from the set size. However, the size of component content is calculated by the layout engine, which may be less than the component content area. In such cases, the component content may not fully occupy the space provided by the component content area. When the component content and component content area do not match, the [align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align) attribute takes effect, defining the alignment mode of the component content in the component content area, for example, center aligned.
 
 - Component layout bounds (dotted lines): component area plus the [margins](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin) (if supplied). 
 
@@ -54,11 +54,6 @@ The declarative UI provides the following common layouts. Choose a layout that b
 | [Relative layout](arkts-layout-development-relative-layout.md) (RelativeContainer)| The relative layout is a two-dimensional layout system. It does not need to comply with linear layout rules, and therefore exhibits more flexibility. By setting anchor rules (**AlignRules**) on a child component, you enable the component to position itself on the horizontal axis and vertical axis as relative to other child component in the container. Anchor rules support compression, stretching, stacking, and wrapping of child components. Use this layout when the distribution of elements is complex or when a linear layout may result in deeply nested components in the container.|
 | [Responsive grid layout](arkts-layout-development-grid-layout.md) (GridRow and GridCol)| The responsive grid is an auxiliary positioning tool for a multi-device application, with capability of dividing space into rows and columns. Unlike the regular grid, the responsive grid is not allocating fixed-size space. Instead, it allows a layout to dynamically change based on the screen size. In this way, the design and development costs for adapting to different screen sizes are significantly reduced, and the overall design and development process is more orderly and rhythmic. In addition, the responsive grid offers a consistent display experience across devices. Use this layout when you are presenting the same content on different screen sizes.|
 | [Media query](arkts-layout-development-media-query.md) (\@ohos.mediaquery)| You can use media queries to apply application styles based on the device type or device state. For example, you can apply specific layouts based on the attribute information of the target device and application, and update a page layout to reflect the dynamic screen changes.|
-| [List](arkts-layout-development-create-list.md)     | Lists can efficiently display information in a structured, scrollable format. They support vertical and horizontal layouts and can adaptively arrange elements along the cross axis, with support for scrolling when content exceeds the screen size. They are suitable for presenting similar data types or data type sets, such as images and text.|
-| [Arc list](arkts-layout-development-create-arclist.md) (ArcList)     | Arc lists can efficiently display information in a structured, scrollable format on circular screens. They only support vertical layout and can scroll when content exceeds the screen size. They are suitable for presenting similar data types or data type sets, such as images and text.|
-| [Grid](arkts-layout-development-create-grid.md)     | The grid excels at spacing elements evenly and defining the relationship between the elements. The grid layout controls the number of cells occupied by child components, number of rows or columns that child components span, and how the child components and spacing are adjusted proportionally when the grid container size changes. Use this layout in scenarios where space needs to be allocated evenly or based on a fixed proportion, such as calculators, albums, and calendars.|
-| [Carousel](arkts-layout-development-create-looping.md) (Swiper)| The **Swiper** component is typically used to implement carousel ads and image previews.      |
-| [Arc carousel](arkts-layout-development-arcswiper.md) (ArcSwiper)| The **ArcSwiper** component is typically used to implement carousel ads and image previews on devices with circular screens.      |
 | [Tabs](arkts-navigation-tabs.md)| The **Tabs** component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users receive at a time.      |
 
 

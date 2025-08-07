@@ -1,4 +1,9 @@
 # 应用触发数据备份/恢复（仅对系统应用开放）
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 备份恢复框架是为设备上的应用、服务提供自身数据备份和恢复的解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
 
@@ -19,7 +24,7 @@
 2. 导入依赖模块：`@ohos.file.backup`
 
    ```js
-   import backup from '@ohos.file.backup';
+   import { backup } from '@kit.CoreFileKit';
    ```
 
 ## 获取能力文件
@@ -31,10 +36,9 @@
 调用[backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities)获取能力文件。
 
 ```ts
-import backup from '@ohos.file.backup';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs, backup } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -94,14 +98,13 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
 **示例**
 
   ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  appfileDir: string = '';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let appFileDir: string = '';
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  this.appfileDir = context.filesDir;
+  appFileDir = context.filesDir;
   // 创建SessionBackup类的实例用于备份数据
   let g_session: backup.SessionBackup;
   function createSessionBackup(fileDir: string): backup.SessionBackup {
@@ -112,7 +115,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
           console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         try {
-          let bundlePath = filesDir + '/' + file.bundleName;
+          let bundlePath = appFileDir + '/' + file.bundleName;
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
@@ -184,8 +187,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
 **示例**
 
   ```ts
-  import backup from '@ohos.file.backup';
-  import fs from '@ohos.file.fs';
+  import { backup, fileIo as fs } from '@kit.CoreFileKit';
   import { BusinessError } from '@ohos.base';
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
@@ -216,8 +218,9 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // 恢复数据传输完成后，会通知服务端文件准备就绪
-        countMap[file.bundleName]++;
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1);
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // 每个包的所有文件收到后触发publishFile
           publishFile(file);
         }
         console.info('onFileReady success');
@@ -248,8 +251,8 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
         console.info('onResultReport  result: ' + result);
       },
       onProcess:(bundleName: string, process: string) => { 
-        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
-        console.info('onPross result: ' + JSON.stringify(process));
+        console.info('onProcess bundleName: ' + bundleName);
+        console.info('onProcess result: ' + process);
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

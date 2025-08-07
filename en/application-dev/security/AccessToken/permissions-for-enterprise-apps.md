@@ -437,9 +437,56 @@ With this permission, the application can specify whether a network is identifie
 
 **Valid since**：20
 
+## ohos.permission.MANAGE_ANTIVIRUS
+
+Allows an enterprise application to manage antivirus software.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.REGISTER_ANTIVIRUS
+
+Allows enterprise antivirus software to register with the system and update basic information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
 ## ohos.permission.CALL_TPM_CMD
 
 Allows an application to call Trusted Platform Module(TPM) commands.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.ENTERPRISE_WORKSPACES_EVENT_SUBSCRIBE
+
+Allows an enterprise application to subscribe to events related to the enterprise workspace.
+
+With this permission, the application can call spaceManager.subscribeEvent or spaceManager.unsubscribeEvent to subscribe to or unsubscribe from events related to the enterprise workspace.
 
 **Permission level**：system_basic
 

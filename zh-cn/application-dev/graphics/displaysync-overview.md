@@ -34,4 +34,4 @@ OpenHarmony支持可变帧率能力，开发者通过使用可变帧率接口，
 
 针对可变帧率的开发，有以下相关实例可供参考：
 
-- [DisplaySync分级管控（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)
+- [DisplaySync分级管控（ArkTS）（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)

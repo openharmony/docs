@@ -3,7 +3,7 @@
 
 ## Definition and Usage of Want
 
-[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) is an object that transfers information between application components. It is often used as a parameter of [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability). For example, when UIAbilityA needs to start UIAbilityB and transfer some data to UIAbilityB, it can use the **want** parameter in **startAbility()** to transfer the data.
+[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) is an object that transfers information between application components. It is often used as a parameter of [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability). For example, when UIAbilityA needs to start UIAbilityB and transfer some data to UIAbilityB, it can use the **want** parameter in **startAbility()** to transfer the data.
 
 **Figure 1** Want usage
 

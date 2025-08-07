@@ -1,4 +1,9 @@
 # 使用Web组件上传文件
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 Web组件支持前端页面选择文件上传功能，应用开发者可以使用[onShowFileSelector()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onshowfileselector9)接口来处理前端页面文件上传的请求，如果应用开发者不做任何处理，Web会提供默认行为来处理前端页面文件上传的请求。
 
@@ -52,13 +57,13 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   <html>
   <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width" />
       <title>Document</title>
   </head>
 
   <body>
   <!-- 点击上传文件按钮 -->
-  <input type="file" value="file"></br>
-  <meta name="viewport" content="width=device-width" />
+  <input type="file"><br>
   </body>
   </html>
   ```
@@ -80,12 +85,12 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     async selectFile(result: FileSelectorResult): Promise<void> {
       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
       let photoPicker = new photoAccessHelper.PhotoViewPicker();
-      // 过滤选择媒体文件类型为IMAGE
+      // 过滤选择媒体文件类型为IMAGE_VIDEO
       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       // 设置最大选择数量
       photoSelectOptions.maxSelectNumber = 5;
@@ -116,13 +121,13 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   <html>
   <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width" />
       <title>Document</title>
   </head>
 
   <body>
   <!-- 点击上传文件按钮 -->
-  <input type="file" value="file"></br>
-  <meta name="viewport" content="width=device-width" />
+  <input type="file"><br>
   </body>
   </html>
   ```
@@ -209,11 +214,11 @@ html页面代码
                 () => {
                     // 将图像文件转换为 Base64 字符串
                     img.src = fileReader.result;
+                    img.style.display = "block";
                 },
-                false,
+                false
             );
             fileReader.readAsDataURL(event.target.files[0]);
-            img.style.display = "block";
         }
     </script>
 </body>
@@ -285,11 +290,11 @@ html页面代码
                 () => {
                     // 将图像文件转换为 Base64 字符串
                     img.src = fileReader.result;
+                    img.style.display = "block";
                 },
-                false,
+                false
             );
             fileReader.readAsDataURL(event.target.files[0]);
-            img.style.display = "block";
         }
     </script>
 </body>
@@ -304,7 +309,7 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController()
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {

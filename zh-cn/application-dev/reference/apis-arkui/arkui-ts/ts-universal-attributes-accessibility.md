@@ -1,4 +1,9 @@
 # 无障碍属性
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 设置组件的无障碍属性和事件，以充分利用无障碍功能。
 
@@ -290,6 +295,8 @@ accessibilityRole(role: AccessibilityRoleType):T
 
 定义组件的屏幕朗读功能角色类型。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -497,6 +504,8 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode):T
 ## AccessibilitySamePageMode<sup>18+</sup>枚举说明
 
 当前跨进程嵌入式显示的组件和宿主应用的同page模式。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

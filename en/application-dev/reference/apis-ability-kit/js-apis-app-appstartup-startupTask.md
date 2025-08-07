@@ -1,6 +1,6 @@
-# @ohos.app.appstartup.StartupTask
+# @ohos.app.appstartup.StartupTask (Startup Task)
 
-The StartupTask module provides APIs related to startup tasks.
+The module provides APIs related to startup tasks.
 
 > **NOTE**
 >
@@ -14,9 +14,11 @@ The StartupTask module provides APIs related to startup tasks.
 import { StartupTask } from '@kit.AbilityKit';
 ```
 
-## StartupTask.onDependencyCompleted
+## StartupTask
 
-onDependencyCompleted?(dependency: string, result: ESObject): void
+### onDependencyCompleted
+
+onDependencyCompleted?(dependency: string, result: Object): void
 
 Called when the dependent startup task is complete.
 
@@ -32,15 +34,15 @@ Called when the dependent startup task is complete.
 **Example**
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
 export default class StartupTask_001 extends StartupTask {
   constructor() {
     super();
   }
+
   async init(context: common.AbilityStageContext) {
     // ...
   }
@@ -54,9 +56,9 @@ export default class StartupTask_001 extends StartupTask {
 ```
 
 
-## StartupTask.init
+### init
 
-init(context: AbilityStageContext): Promise\<ESObject\>
+init(context: AbilityStageContext): Promise\<Object \| void\>
 
 Initializes this startup task.
 

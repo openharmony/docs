@@ -1,22 +1,23 @@
 # Asset Store Kit (Asset Store Service)
 
-- ArkTS APIs<!--asset-store-arkts-->
+- ArkTS API<!--asset-store-arkts-->
   - [@ohos.security.asset (Asset Store Service)](js-apis-asset.md)
   <!--Del-->
   - [@ohos.security.asset (Asset Store Service) (System API)](js-apis-asset-sys.md)
   <!--DelEnd-->
-- C APIs<!--asset-store-c-->
+- C API<!--asset-store-c-->
   - Modules<!--asset-store-module-->
-    - [AssetApi](_asset_api.md)
-    - [AssetType](_asset_type.md)
+    - [AssetApi](capi-assetapi.md)
+    - [AssetType](capi-assettype.md)
   - Header Files<!--asset-store-headerfile-->
-    - [asset_api.h](asset__api_8h.md)
-    - [asset_type.h](asset__type_8h.md)
+    - [asset_api.h](capi-asset-api-h.md)
+    - [asset_type.h](capi-asset-type-h.md)
   - Structs<!--asset-store-struct-->
-    - [Asset_Attr](_asset___attr.md)
-    - [Asset_Blob](_asset___blob.md)
-    - [Asset_Result](_asset___result.md)
-    - [Asset_ResultSet](_asset___result_set.md)
-    - [Asset_Value](union_asset___value.md)
+    - [Asset_Blob](capi-assettype-asset-blob.md)
+    - [Asset_Value](capi-assettype-asset-value.md)
+    - [Asset_Attr](capi-assettype-asset-attr.md)
+    - [Asset_Result](capi-assettype-asset-result.md)
+    - [Asset_ResultSet](capi-assettype-asset-resultset.md)
+    - [Asset_SyncResult](capi-assettype-asset-syncresult.md)
 - Error Codes<!--asset-store-arkts-errcode-->
   - [Asset Store Service Error Codes](errorcode-asset.md)

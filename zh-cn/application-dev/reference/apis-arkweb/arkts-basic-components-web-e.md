@@ -1,4 +1,9 @@
 # Enums
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
+<!--TSE: @ghiker-->
 
 > **说明：**
 >
@@ -205,8 +210,6 @@ Web布局模式的配置。
 | ----- | -- | ------------- |
 | None  | 0 | 非特殊媒体或其他媒体类型。 |
 | Image | 1 | 图片。           |
-| Video<sup>20+</sup> | 2 | 视频。           |
-| Audio<sup>20+</sup> | 3 | 音频。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
@@ -360,3 +363,17 @@ Web布局模式的配置。
 | ----------- | -- | ------------------ |
 | NONE        | 0 | 默认值，按vsync调度流程绘制。         |
 | SCROLLBY_FROM_ZERO_OFFSET | 1 | 在使用scrollby（只支持带滚动偏移量）且Web页面滚动偏移量为0，渲染流程跳过vsync调度直接绘制。 |
+
+## PdfLoadResult<sup>20+</sup>
+
+定义PDF页面的加载结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 值    | 说明                                       |
+| -------------- | ---- | ---------------------------------------- |
+| LOAD_SUCCESS | 0 | PDF页面加载成功。    |
+| PARSE_ERROR_FILE | 1 | PDF文件加载失败的错误码。 |
+| PARSE_ERROR_FORMAT | 2 | PDF文件格式不支持的错误码。 |
+| PARSE_ERROR_PASSWORD | 3 | PDF文件密码不正确的错误码。 |
+| PARSE_ERROR_HANDLER | 4 | PDF文件处理失败的错误码。 |

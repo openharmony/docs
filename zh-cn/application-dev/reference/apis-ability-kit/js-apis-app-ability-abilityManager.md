@@ -89,8 +89,6 @@ restartSelfAtomicService(context: Context): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数**：
@@ -105,7 +103,7 @@ restartSelfAtomicService(context: Context): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000050 | Internal error. |
+| 16000050 | Internal error. Possible causes: 1. Connect to system service failed; 2.Send restart message to system service failed; 3.System service failed to communicate with dependency module.|
 | 16000053 | The ability is not on the top of the UI. |
 | 16000064 | Restart too frequently. Try again at least 3s later. |
 | 16000086 | The context is not UIAbilityContext. |

@@ -1,4 +1,9 @@
 # 托管网页中的媒体播放
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhangyao75477-->
+<!--SE: @qiu-gongkai-->
+<!--TSE: @ghiker-->
 
 Web组件提供了应用接管网页中媒体播放的能力，用来支持应用增强网页的媒体播放，如画质增强等。
 
@@ -151,11 +156,17 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage): void {
        windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
+         if (err && err.code) {
            return;
          }
-         // 保存UIContext， 在后续的同层渲染绘制中使用。
-         AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
+
+         let mainWindow = windowStage.getMainWindowSync();
+         if (mainWindow) {
+           // 保存UIContext， 在后续的同层渲染绘制中使用。
+           AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+         } else {
+           console.error("Failed to get the main window");
+         }
        });
      }
 
@@ -217,7 +228,6 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
              .onPageBegin((event) => {
                this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo:    webview.MediaInfo) => {
                  // 接管当前的媒体。
-
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
                  this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
@@ -226,7 +236,8 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
                  this.show_native_media_player = true;
 
                  // 返回一个本地播放器实例给 ArkWeb 内核。
-                 return null;
+                 let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+                 return nativePlayer;
                });
              })
          }
@@ -475,11 +486,17 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage): void {
       windowStage.loadContent('pages/Index', (err, data) => {
-        if (err.code) {
+        if (err && err.code) {
           return;
         }
-        // 保存 UIContext， 在后续的同层渲染绘制中会用到。
-        AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
+        
+        let mainWindow = windowStage.getMainWindowSync();
+        if (mainWindow) {
+          // 保存UIContext， 在后续的同层渲染绘制中使用。
+          AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+        } else {
+          console.error("Failed to get the main window");
+        }
       });
     }
 
@@ -487,7 +504,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 应用侧代码，视频托管使用示例。
+- 应用侧代码，视频托管使用示例。通过[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放。
 
   ```ts
   // Index.ets
@@ -512,7 +529,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       this.nativePlayerInfo = nativePlayerInfo;
       this.mediaHandler = handler;
       this.surfaceId = mediaInfo.surfaceInfo.id;
-      this.mediaSource = mediaInfo.mediaSrcList.find((item)=>{item.source.indexOf('.mp4') > 0})?.source
+      this.mediaSource = mediaInfo.mediaSrcList.find((item) => item.source.indexOf('.mp4') > 0)?.source
         || mediaInfo.mediaSrcList[0].source;
       this.httpHeaders = mediaInfo.headers;
       this.nativePlayer = new AVPlayerDemo();
@@ -795,7 +812,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     static toNodeRect(rectInPx: webview.RectEvent, uiContext: UIContext) : Rect {
       let rect = new Rect();
       rect.x = uiContext.px2vp(rectInPx.x);
-      rect.y = uiContext.px2vp(rectInPx.x);
+      rect.y = uiContext.px2vp(rectInPx.y);
       rect.width = uiContext.px2vp(rectInPx.width);
       rect.height = uiContext.px2vp(rectInPx.height);
       return rect;
@@ -1047,8 +1064,6 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       });
       avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
         console.info(`AVPlayer state bufferingUpdate success,and infoType value is:${infoType}, value is : ${value}`);
-        if (infoType == media.BufferingInfoType.BUFFERING_PERCENT) {
-        }
         listener?.onBufferedTimeChanged(value);
       })
       avPlayer.on('videoSizeChange', (width: number, height: number) => {
@@ -1202,7 +1217,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 前端页面示例。
+- 前端页面示例。通过[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放，支持的媒体资源可以参考AVPlayer[支持的格式与协议](../media/media/media-kit-intro.md#支持的格式与协议)。
 
   ```html
   <html>

@@ -1,4 +1,9 @@
 # Interface (WhiteBalanceQuery)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -54,7 +59,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isWhiteBalanceModeSupported(session: camera.PhotoSession | camera.VideoSession): boolean {
   let status: boolean = false;
   try {
-  let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
+  let mode: camera.WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
     status = session.isWhiteBalanceModeSupported(mode);
   } catch (error) {
     let err = error as BusinessError;

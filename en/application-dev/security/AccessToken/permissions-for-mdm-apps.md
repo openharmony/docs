@@ -583,6 +583,21 @@ Allows a device administrator application to set wallpapers.
 
 **Valid since**: 20
 
+## ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS
+
+Allows an MDM application to manage pre-installed antivirus software.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
 ## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
 Allows a mobile device management (MDM) application to configure user_grant permission policies.

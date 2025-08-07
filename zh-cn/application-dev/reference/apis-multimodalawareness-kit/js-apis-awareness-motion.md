@@ -1,4 +1,9 @@
 # @ohos.multimodalawareness.motion (动作感知)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 

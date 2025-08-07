@@ -1,6 +1,6 @@
 # @ohos.bundle.shortcutManager (shortcutManager) (System API)
 
-The shortcutManager module allows system applications to add, delete, and query shortcuts, including [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md).
+The module allows system applications to add, delete, and query shortcuts, including [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md).
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 ## shortcutManager.addDesktopShortcutInfo<sup>12+</sup>
 
-addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
+addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
 Adds a shortcut for the given user.
 
@@ -31,7 +31,7 @@ Adds a shortcut for the given user.
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
 
 **Return value**
@@ -84,7 +84,7 @@ struct ShortcutExample {
           try {
             shortcutManager.addDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("addDesktopShortcutInfo success");
+                console.info("addDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`addDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -102,7 +102,7 @@ struct ShortcutExample {
 
 ## shortcutManager.deleteDesktopShortcutInfo<sup>12+</sup>
 
-deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
+deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
 Deletes a shortcut for the given user.
 
@@ -116,7 +116,7 @@ Deletes a shortcut for the given user.
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
 
 **Return value**
@@ -165,7 +165,7 @@ struct ShortcutExample {
           try {
             shortcutManager.deleteDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("deleteDesktopShortcutInfo success");
+                console.info("deleteDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`deleteDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -183,7 +183,7 @@ struct ShortcutExample {
 
 ## shortcutManager.getAllDesktopShortcutInfo<sup>12+</sup>
 
-getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>
+getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>
 
 Obtains the information about all shortcuts of the given user.
 
@@ -203,7 +203,7 @@ Obtains the information about all shortcuts of the given user.
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>> | Promise that returns the shortcut information defined in the application configuration file.|
+| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Promise that returns the shortcut information defined in the application configuration file.|
 
 **Error codes**
 
@@ -232,7 +232,7 @@ struct ShortcutExample {
           try {
             shortcutManager.getAllDesktopShortcutInfo(100)
               .then((data: shortcutManager.ShortcutInfo[]) => {
-                console.log("Shortcut data is " + JSON.stringify(data));
+                console.info("Shortcut data is " + JSON.stringify(data));
               }).catch((err: BusinessError) => {
               console.error(`getAllDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });

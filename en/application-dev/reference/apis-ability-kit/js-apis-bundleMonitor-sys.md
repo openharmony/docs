@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleMonitor (bundleMonitor) (System API)
 
-The **Bundle.bundleMonitor** module provides APIs for listens for bundle installation, uninstall, and updates.
+The module provides APIs for listens for bundle installation, uninstall, and updates.
 
 > **NOTE**
 >
@@ -14,14 +14,6 @@ The **Bundle.bundleMonitor** module provides APIs for listens for bundle install
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 ```
 
-## Required Permissions
-
-| Permission                                | APL   | Description                          |
-| ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
-
-For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
-
 ## BundleChangedInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -32,6 +24,7 @@ For details about the APL, see [Basic Concepts in the Permission Mechanism](../.
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | Yes  | No  | Name of the bundle whose status changes.|
 | userId     | number | Yes  | No  | ID of the user for whom the bundle status changes. You can obtain the ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).  |
+| appIndex<sup>12+</sup>   | number | Yes  | No  |  Index of the application clone whose status changes. |
 
 ## BundleChangedEvent
 
@@ -67,7 +60,7 @@ Subscribes to bundle installation, uninstall, and update events.
 | Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| Yes  | Type of the event to subscribe to.|
-| callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
+| callback | callback\<BundleChangedInfo>| Yes  | [Callback function](../apis-basic-services-kit/js-apis-base.md#asynccallback) used for the subscription.|
 
 **Error codes**
 
@@ -92,7 +85,7 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```
 
@@ -113,7 +106,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| Yes  | Type of the event to unsubscribe from.                                        |
-| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from.|
+| callback | callback\<BundleChangedInfo>| No  | [Callback function](../apis-basic-services-kit/js-apis-base.md#asynccallback) used for the unsubscription. The default value is all callbacks of the current event.|
 
 **Error codes**
 
@@ -136,6 +129,6 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```

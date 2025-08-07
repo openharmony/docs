@@ -1,14 +1,19 @@
 # Data Protection Kit (Data Protection Service)
+<!--Kit: Data Protection Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @winnieHuYu-->
+<!--SE: @lucky-jinduo-->
+<!--TSE: @nacyli-->
 
-- ArkTS APIs<!--data-protection-arkts-->
+- ArkTS API<!--data-protection-arkts-->
   - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)
   <!--Del-->
   - [@ohos.dlpPermission (DLP) (System API)](js-apis-dlppermission-sys.md)
   <!--DelEnd-->
-- C APIs<!--data-protection-c-->
+- C API<!--data-protection-c-->
   - Modules<!--data-protection-module-->
-    - [DlpPermissionApi](_dlp_permission_api.md)
+    - [DlpPermissionApi](capi-dlppermissionapi.md)
   - Header Files<!--data-protection-headerfile-->
-    - [dlp_permission_api.h](dlp__permission__api_8h.md)
+    - [dlp_permission_api.h](capi-dlp-permission-api-h.md)
 - Error Codes<!--data-protection-arkts-errcode-->
   - [DLP Service Error Codes](errorcode-dlp.md)

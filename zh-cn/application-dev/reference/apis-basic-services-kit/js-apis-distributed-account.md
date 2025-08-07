@@ -1,5 +1,11 @@
 # @ohos.account.distributedAccount (分布式账号管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 本模块提供管理分布式账号的一些基础功能，主要包括查询和更新账号登录状态。
 
 > **说明：**
@@ -244,7 +250,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
 
 **返回值：**
 
@@ -310,9 +316,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
-      console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error(`updateOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('queryOsAccountDistributedInfo successfully');
+      console.info('updateOsAccountDistributedInfo successfully');
     }
   });
   ```
@@ -334,7 +340,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
 
 **返回值：**
 

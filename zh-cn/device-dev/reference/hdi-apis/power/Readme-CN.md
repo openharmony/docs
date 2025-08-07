@@ -1,9 +1,20 @@
 # Power HDI 参考
 
 - 模块
+    - [Power (V1_3)](power-v13.md)
+    - [Power (V1_2)](power-v12.md)
     - [Power (V1_1)](power_v11.md)
     - [Power (V1_0)](power_v10.md)
 - 头文件
+    - Power（V1_3）
+        - [IPowerHdiCallbackExt.idl](_i_power_hdi_callback_ext_8idl.md)
+        - [IPowerInterface.idl](_i_power_interface_8idl.md)
+    - Power (V1_2)
+        - [IPowerHdiCallback.idl](_i_power_hdi_callback_8idl.md)
+        - [IPowerInterface.idl](_i_power_interface_8idl_v12.md)
+        - [IPowerRunningLockCallback.idl](_i_power_running_lock_callback_8idl.md)
+        - [PowerTypes.idl](_power_types_8idl.md)
+        - [RunningLockTypes.idl](_running_lock_types_8idl.md)
     - Power (V1_1)
         - [IPowerHdiCallback.idl](_i_power_hdi_callback_8idl_v11.md)
         - [IPowerInterface.idl](_i_power_interface_8idl_v11.md)
@@ -14,6 +25,14 @@
         - [IPowerInterface.idl](_i_power_interface_8idl_v10.md)
         - [PowerTypes.idl](_power_types_8idl_v10.md)
 - 结构体
+    - Power（V1_3）
+        - [IPowerHdiCallbackExt](interface_i_power_hdi_callback_ext.md)
+        - [IPowerInterface](interface_i_power_interface.md)
+    - Power (V1_2)
+        - [IPowerHdiCallback](interface_i_power_hdi_callback.md)
+        - [IPowerInterface](interface_i_power_interface_v12.md)
+        - [IPowerRunningLockCallback](interface_i_power_running_lock_callback.md)
+        - [RunningLockInfo](_running_lock_info.md)
     - Power (V1_1)
         - [IPowerHdiCallback](interface_i_power_hdi_callback_v11.md)
         - [IPowerInterface](interface_i_power_interface_v11.md)

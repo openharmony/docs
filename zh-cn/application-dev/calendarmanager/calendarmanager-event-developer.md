@@ -10,15 +10,15 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
 
 以下是日程管理的相关接口，更多详细接口及使用请参考[@ohos.calendarManager](../reference/apis-calendar-kit/js-apis-calendarManager.md)。
 
-| 接口名称                                      | 描述                                                         |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| getCalendarManager(context: Context): CalendarManager | 根据上下文获取CalendarManager对象，用于管理日历。            |
-| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。 |
-| addEvent(event: Event): Promise\<number>  | 创建日程，入参Event不填日程id，使用Promise异步回调。         |
-| editEvent(event: Event): Promise\<number> | 创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。 |
-| deleteEvent(id: number): Promise\<void>   | 删除指定日程id的日程，使用Promise异步回调。                  |
-| updateEvent(event: Event): Promise\<void> | 更新日程，使用Promise异步回调。                              |
-| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | 获取Calendar下符合查询条件的Event，使用Promise异步回调。     |
+| 接口名称                                      | 描述                                             |
+| ----------------------------------------- |------------------------------------------------|
+| getCalendarManager(context: Context): CalendarManager | 根据上下文获取CalendarManager对象，用于管理日历。               |
+| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。         |
+| addEvent(event: Event): Promise\<number>  | 创建日程，入参Event不填日程id，使用Promise异步回调。              |
+| editEvent(event: Event): Promise\<number> | 通过跳转到日程创建界面创建单个日程，入参Event不填日程id，使用Promise异步回调。 |
+| deleteEvent(id: number): Promise\<void>   | 删除指定日程id的日程，使用Promise异步回调。                     |
+| updateEvent(event: Event): Promise\<void> | 更新日程，使用Promise异步回调。                            |
+| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | 获取Calendar下符合查询条件的Event，使用Promise异步回调。         |
 
 ## 开发步骤
 

@@ -1,5 +1,11 @@
 # @ohos.account.appAccount (应用账号管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 本模块提供应用账号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
 > **说明：**
@@ -679,7 +685,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-      appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
+      appAccountManager.setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
           console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
@@ -1184,7 +1190,7 @@ getCustomDataSync(name: string, key: string): string;
   ```ts
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
-      console.info('getCustomDataSync successfully, vaue: ' + value);
+      console.info('getCustomDataSync successfully, value: ' + value);
   } catch (err) {
     console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
   }
@@ -2970,7 +2976,8 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 根据账号名和额外信息添加应用账号。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
+>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -3035,7 +3042,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 根据指定的账号所有者隐式地添加应用账号。使用callback异步回调。
 
-> **说明：**  
+> **说明：**
 >
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[createAccountImplicitly](#createaccountimplicitly9)替代。
 
@@ -3579,7 +3586,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
       console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -5199,7 +5206,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthCallback): void
 
-根据指定的账号所有者隐式地创建应用账号，并使用callback异步回调返回结果。
+根据指定的账号所有者隐式地创建应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5214,7 +5221,7 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-根据指定的鉴权类型和可选项，隐式地添加应用账号，并使用callback异步回调返回结果。
+根据指定的鉴权类型和可选项，隐式地添加应用账号。使用callback异步回调。
 
 > **说明：** 
 >
@@ -5235,7 +5242,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 
 auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-对应用账号进行鉴权以获取授权令牌，并使用callback异步回调返回结果。
+对应用账号进行鉴权以获取授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5252,7 +5259,7 @@ auth(name: string, authType: string, options: Record<string, Object>, callback: 
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-对应用账号进行鉴权，获取OAuth令牌，并使用callback异步回调返回结果。
+对应用账号进行鉴权，获取OAuth令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -5274,7 +5281,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
-验证应用账号的凭据，并使用callback异步回调返回结果。
+验证应用账号的凭据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5290,7 +5297,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
-设置认证器属性，并使用callback异步回调返回结果。
+设置认证器属性。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5305,7 +5312,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void
 
-检查账号标签，并使用callback异步回调返回结果。
+检查账号标签。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5321,7 +5328,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 checkAccountRemovable(name: string, callback: AuthCallback): void
 
-判断账号是否可以删除，并使用callback异步回调返回结果。
+判断账号是否可以删除。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 

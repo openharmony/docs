@@ -1,5 +1,11 @@
 # 明文导入密钥(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 以明文导入ECC密钥为例。具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
@@ -63,9 +69,6 @@ static napi_value ImportKey(napi_env env, napi_callback_info info) {
     do {
         ohResult = InitParamSet(&testImportKeyParamSet, g_testImportKeyParam,
                                 sizeof(g_testImportKeyParam) / sizeof(OH_Huks_Param));
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

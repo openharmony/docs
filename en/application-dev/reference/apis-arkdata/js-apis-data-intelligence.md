@@ -1,10 +1,7 @@
 # @ohos.data.intelligence (ArkData Intelligence Platform)
 
-The ArkData Intelligence Platform (AIP) provides on-device data intelligence capabilities, enabling AI-powered data processing data on devices. To underpin AI-powered processing on devices, the AIP aims to build the following capabilities:
-- Multimodal embedding model: leverages embedding models to generate vector representations for multimodal data, mapping text, images, and other data into a unified vector space for semantic-based multimodal knowledge retrieval.
-- Multimodal data storage: supports on-device storage for vectors, inverted indexes, and other multimodal data, eliminating the need to send raw data to the server for processing. This reduces the risk of data leakage.
-- Knowledge retrieval: enables semantic retrieval of user knowledge based on capabilities such as semantic indexing, knowledge graphs, recall, and re-ranking.
-- Knowledge generation and collation: implements efficient data organization and knowledge generation based on user data such as user documents, messages, emails, photos, videos, calendar events, and screen context, enabling the transformation of data into knowledge.
+ArkData Intelligence Platform (AIP) provides application data vectorization, which leverages embedding models to convert multi-modal data such as unstructured text and images into semantic vectors.
+
 
 > **NOTE**
 >
@@ -316,7 +313,7 @@ Before calling this API, ensure that an embedding model is successfully loaded b
 
 | Name      | Type                                   | Mandatory| Description                              |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| text | string | Yes  | Text for the embedding model. It cannot exceed 512 characters.|
+| text | string | Yes  | Text for the embedding model, which cannot exceed 512 characters.|
 
 **Return value**
 

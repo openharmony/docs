@@ -4949,6 +4949,8 @@ Allows a system application to access /data/log/ directory.
 
 **Supported devices**：General
 
+**Valid since**：19
+
 ## ohos.permission.MANAGE_FILE_ENCRYPTION
 
 Allows a system application to modify the encryption status of system files.
@@ -5060,3 +5062,33 @@ Allows a system application to trigger local WantAgent instances.
 **Supported devices**：General
 
 **Valid since**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
+
+Allows an application to access the sandbox directories of other extended applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**：General
+
+**Valid since**: 19
+
+## ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY
+
+Allows an HAP to load independent binary .so files with different owner IDs.
+
+With this permission, the HAP can load independent binary .so files with a developer certificate or an ad-hoc signature.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20

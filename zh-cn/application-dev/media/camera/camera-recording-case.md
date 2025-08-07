@@ -1,4 +1,9 @@
 # 录像实践(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -258,6 +263,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   } catch (error) {
     let err = error as BusinessError;
     console.error(`videoSession commitConfig error: ${err}`);
+    return;
   }
 
   // 启动会话。

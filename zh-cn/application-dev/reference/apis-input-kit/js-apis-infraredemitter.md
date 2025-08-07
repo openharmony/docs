@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.infraredEmitter (红外管理)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 红外管理模块提供产生特定频率和大小的红外信号，以及查询设备支持的频率范围等功能。
 
 > **说明**：
@@ -28,7 +34,7 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | 是    | 红外频率，单位Hz。 |
-| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us，电平信号的数量取值范围[0,1024]，电平信号数量需为偶数。<br/>比如[100,200,300,400]该电平信号数组，其中表示100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
+| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us。电平信号的数量取值范围为[0,1024]。电平信号的取值需大于0。<br/>比如[100,200,300,400]该电平信号数组，其中100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
 
 **错误码：**
 
@@ -74,7 +80,7 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 **返回值**：
 
-| 参数                  | 说明                  |
+| 类型                  | 说明                  |
 | ------------------- | ------------------- |
 | Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | 频率范围，包含多组最大和最小频率。 |
 

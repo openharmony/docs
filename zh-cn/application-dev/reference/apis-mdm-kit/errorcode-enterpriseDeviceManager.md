@@ -1,4 +1,9 @@
 # 企业设备管理错误码
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 > **说明：**
 >
@@ -73,7 +78,7 @@ Failed to activate the administrator application of the device.
 
 **可能原因**
 
-该错误码表示激活设备管理器失败，可能原因如下。
+该错误码表示激活设备管理器失败，可能原因如下：
 1. 同时激活多个SDA设备管理器。
 2. 重复激活设备管理器，且管理器类型发生变化。
 3. 同一个应用多个设备管理器元能力组件激活。
@@ -224,6 +229,33 @@ Failed to replace the administrator application of the device.
 2. 采用[disableAdmin](js-apis-enterprise-adminManager.md#adminmanagerdisableadmin)接口取消指定应用的普通设备管理权限。
 <!--DelEnd-->
 
+## 9200012 参数校验失败
+
+**错误信息**
+
+Parameter verification failed.
+
+**错误描述**
+
+参数校验失败时，会产生此错误码。
+
+**可能原因**
+
+参数校验失败时，可能的原因如下。
+1. 传入的企业设备管理扩展组件不属于当前应用。
+2. 传入的参数长度超长。
+3. 传入的数组长度超出限制。
+4. 参数值不在取值范围内。
+5. 对尚未设置的禁用或允许名单进行了移除操作。
+
+**处理步骤**
+
+1. 检查传入的企业设备管理扩展组件是否属于当前应用。
+2. 检查传入的参数长度是否超过接口限制。
+3. 检测传入的数组长度是否超过接口限制。
+4. 检查传入参数值是否在接口支持取值范围内。
+5. 移除前先查询是否有设置相应的名单。
+
 ## 9201001 管理证书失败
 
 **错误信息**
@@ -242,7 +274,7 @@ Failed to manage the certificate.
 
 检查用户证书是否正确。
 
-## 9201002 应用安装失败
+## 9201002 企业应用安装失败
 
 **错误信息**
 
@@ -321,7 +353,7 @@ The update packages do not exist or analyzing failed.
 
 **错误信息**
 
-1. Add keep alive applications failed.
+Add keep alive applications failed.
 
 **错误描述**
 

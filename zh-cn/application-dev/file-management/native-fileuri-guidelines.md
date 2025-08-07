@@ -1,4 +1,9 @@
 # FileUri开发指导(C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 ## 场景介绍
 
@@ -16,7 +21,7 @@ FileUri提供了关于文件uri的基本操作，将uri转换成对应的沙箱�
 
 ## 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/fileuri.md)。
+接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/capi-oh-file-uri-h.md)。
 
 | 接口名称 | 描述 |
 | -------- |-------|
@@ -107,7 +112,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
     void OH_FileUri_IsValidUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
-        bool falgs = OH_FileUri_IsValidUri(uri, length);
+        bool flags = OH_FileUri_IsValidUri(uri, length);
         printf("The URI is valid? flags=%d", flags);
     }
    ```

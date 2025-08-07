@@ -1,4 +1,9 @@
 # 事件独占控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 设置组件是否独占事件，事件范围包括组件自带的事件和开发者自定义的点击、触摸、手势事件。<br />
 在一个窗口内，设置了独占控制的组件上的事件如果首先响应，则本次交互只允许此组件上设置的事件响应，窗口内其他组件上的事件不会响应。
@@ -85,7 +90,7 @@ struct Index {
         // 内层column绑定触摸事件
         .onTouch((event:TouchEvent)=>{
           if (event.type == TouchType.Down) {
-            console.log("inner column touch down")
+            console.info("inner column touch down")
             this.messageInner = "inner column touch down"
           }
         })
@@ -96,7 +101,7 @@ struct Index {
       // 外层column绑定触摸事件
       .onTouch((event)=>{
         if (event.type == TouchType.Down) {
-          console.log("outside column touch down")
+          console.info("outside column touch down")
           this.messageOut = "inner column touch down"
         }
       })

@@ -1,4 +1,9 @@
 # @ohos.multimedia.cameraPicker (相机选择器)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 本模块提供相机拍照与录制的能力。应用可选择媒体类型实现拍照和录制的功能。调用此类接口时，应用必须在界面UIAbility中调用，否则无法启动cameraPicker应用。
 
@@ -80,11 +85,11 @@ async function demo(context: Context) {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 必填   | 说明         |
-| -------------- | --------------------------------- | ----- | ------------ |
-| cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 否    | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。|
-| videoDuration  | number                            | 否    | 录制的最大时长（单位：秒）。|
+| 名称           | 类型                               | 只读 | 可选 | 说明         |
+| -------------- | --------------------------------- | ----- | ----- | ------------ |
+| cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | 否   | 否   | 相机的位置。   |
+| saveUri        | string                            | 否   | 是   | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。|
+| videoDuration  | number                            | 否   | 是   | 录制的最大时长（单位：秒）。|
 
 
 ## PickerResult
@@ -95,8 +100,8 @@ async function demo(context: Context) {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                                | 必填  | 说明                            |
-| -------------- | ---------------------------------- | ----- | -------------------------------- |
-| resultCode     | number                             | 是    | 处理的结果，成功返回0，失败返回-1。 |
-| resultUri      | string                             | 是    | 返回的uri地址。若saveUri为空，resultUri为公共媒体路径。若saveUri不为空且具备写权限，resultUri与saveUri相同。若saveUri不为空且不具备写权限，则无法获取到resultUri。|
-| mediaType      | [PickerMediaType](#pickermediatype)| 是    | 返回的媒体类型。                  |
+| 名称           | 类型                                | 只读 | 可选 | 说明                            |
+| -------------- | ---------------------------------- | ----- | ----- | -------------------------------- |
+| resultCode     | number                             | 否   | 否   | 处理的结果，成功返回0，失败返回-1。 |
+| resultUri      | string                             | 否   | 否   | 返回的uri地址。若saveUri为空，resultUri为公共媒体路径。若saveUri不为空且具备写权限，resultUri与saveUri相同。若saveUri不为空且不具备写权限，则无法获取到resultUri。|
+| mediaType      | [PickerMediaType](#pickermediatype)| 否   | 否   | 返回的媒体类型。                  |

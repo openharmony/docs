@@ -1,4 +1,4 @@
-# Context（Stage模型的上下文基类）
+# Context (Stage模型的上下文基类)
 
 Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了Ability或Application的上下文的基础能力，包括访问特定应用程序的资源等。
 
@@ -18,7 +18,7 @@ Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，
   
 > **说明**
 >
-> [UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
+> [UIContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
 
 ## 导入模块
 

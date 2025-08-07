@@ -1,4 +1,9 @@
 # 触摸热区设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 适用于支持通用点击事件、通用触摸事件和通用手势处理的组件。
 
@@ -37,12 +42,14 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 类型                       | 必填   | 描述                             |
-| ------ | ----------------------------- | -----| -------------------------------- |
-| x      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的x轴坐标。<br/>默认值：0vp |
-| y      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的y轴坐标。<br/>默认值：0vp |
-| width  | [Length](ts-types.md#length)  | 否   | 触摸热区的宽度。<br/>默认值：'100%' |
-| height | [Length](ts-types.md#length) | 否   | 触摸热区的高度。<br/>默认值：'100%' |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                        | 只读    |  可选   |  说明                             |
+| ------ | ----------------------------- | -----| -----|-------------------------------- |
+| x      | [Length](ts-types.md#length)  | 否   | 是   |触摸点相对于组件左上角的x轴坐标。<br/>默认值：0vp |
+| y      | [Length](ts-types.md#length)  | 否   | 是   |触摸点相对于组件左上角的y轴坐标。<br/>默认值：0vp |
+| width  | [Length](ts-types.md#length)  | 否   | 是   |触摸热区的宽度。<br/>默认值：'100%' |
+| height | [Length](ts-types.md#length) | 否   | 是   |触摸热区的高度。<br/>默认值：'100%' |
 
   >  **说明：**
   >

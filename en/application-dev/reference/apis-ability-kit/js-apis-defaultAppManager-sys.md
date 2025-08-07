@@ -1,6 +1,6 @@
 # @ohos.bundle.defaultAppManager (Default Application Management) (System API)
 
-The **DefaultAppManager** module provides APIs to query whether the current application is the default application of a specific type.
+The module provides APIs to query whether the current application is the default application of a specific type.
 
 > **NOTE**
 >
@@ -13,14 +13,6 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 ```ts
 import { defaultAppManager } from '@kit.AbilityKit';
 ```
-
-## Required Permissions
-
-| Permission                                   | APL   | Description            |
-| --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
-
-For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## defaultAppManager.getDefaultApplication
 
@@ -111,7 +103,7 @@ Obtains the default application of a user based on a system-defined application 
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | Yes   | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).                          |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the default application.                   |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 
@@ -177,7 +169,7 @@ Obtains the default application based on a system-defined application type, a fi
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the default application.                   |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 
@@ -399,7 +391,7 @@ Sets the default application for a user based on a system-defined application ty
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | Yes   | Information about the element to be set as the default application.                          |
 | userId  | number | Yes   | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).                          |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 
@@ -478,7 +470,7 @@ Sets the default application based on a system-defined application type, a file 
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | Yes   | Information about the element to be set as the default application.                          |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 
@@ -712,7 +704,7 @@ Resets the default application for a user based on a system-defined application 
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | Yes   | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).                         |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 
@@ -777,7 +769,7 @@ Resets the default application based on a system-defined application type, a fil
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result.                   |
 
 **Error codes**
 

@@ -1,4 +1,9 @@
 # 应用间配置共享 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 ## 场景介绍
 
@@ -56,7 +61,8 @@
 ```
 
 
-共享配置文件shared_config.json的文件名"shared_config"可自定义，根节点名称为crossAppSharedConfig，为对象数组，标识当前共享配置项的数量。（一个应用最多可以发布32个配置项，这个数量是静态配置与动态配置的总和，静态配置项数量超过上限时只解析前32个，其余的配置不生效）<br/>
+共享配置文件shared_config.json的文件名"shared_config"可自定义，根节点名称为crossAppSharedConfig，为对象数组，标识当前共享配置项的数量。（一个应用最多可以发布32个配置项，这个数量是静态配置项与动态配置项的总和。静态配置项数量超过32时，只解析前32个符合crossAppSharedConfig字段配置说明要求的配置项，其余配置项不生效。）
+
 crossAppSharedConfig字段配置说明：
 
 | 属性名称 | 含义 | 数据类型 | 必填 |

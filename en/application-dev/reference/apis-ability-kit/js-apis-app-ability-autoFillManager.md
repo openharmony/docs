@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoFillManager (autoFillManager)
+# @ohos.app.ability.autoFillManager (Auto-Fill Framework)
 
 The autoFillManager module provides APIs for saving accounts and passwords.
 
@@ -20,7 +20,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 Implements callbacks triggered when auto-save is complete.
 
-### AutoSaveCallback.onSuccess
+### onSuccess
 
 onSuccess(): void
 
@@ -32,9 +32,9 @@ Called when auto-save is successful.
 
 **Example**
 
-See [AutoSaveCallback.onFailure](#autosavecallbackonfailure).
+See [AutoSaveCallback.onFailure](#onfailure).
 
-### AutoSaveCallback.onFailure
+### onFailure
 
 onFailure(): void
 
@@ -55,10 +55,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uiContext = AppStorage.get<UIContext>("uiContext");
 let callback: autoFillManager.AutoSaveCallback = {
   onSuccess: () => {
-    console.log("save request on success");
+    console.info(`save request on success.`);
   },
   onFailure: () => {
-    console.log("save request on failure");
+    console.error(`save request on failure.`);
   }
 };
 
@@ -172,15 +172,15 @@ struct Index {
       Button('requestAutoSave')
         .onClick(() => {
           let uiContext = AppStorage.get<UIContext>("uiContext");
-          console.log("uiContext: ", JSON.stringify(uiContext));
+          console.info("uiContext: ", JSON.stringify(uiContext));
           try {
             // Initiate an auto-save request.
             autoFillManager.requestAutoSave(uiContext, {
               onSuccess: () => {
-                console.log("save request on success");
+                console.info(`save request on success.`);
               },
               onFailure: () => {
-                console.log("save request on failure");
+                console.error(`save request on failure.`);
               }
             });
           } catch (error) {

@@ -1,4 +1,9 @@
 # @ohos.enterprise.networkManager（网络管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备网络管理能力，包括查询设备IP地址、MAC地址信息等。
 
@@ -28,6 +33,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -51,11 +57,13 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.getAllNetworkInterfaces(wantTemp, (err, result) => {
@@ -77,6 +85,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -105,12 +114,14 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
@@ -130,6 +141,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -154,13 +166,16 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.getIpAddress(wantTemp, 'eth0', (err, result) => {
   if (err) {
     console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
@@ -180,6 +195,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -209,14 +225,17 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting ip address, result : ${result}`);
 }).catch((err: BusinessError) => {
@@ -234,6 +253,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -258,13 +278,16 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.getMac(wantTemp, 'eth0', (err, result) => {
   if (err) {
     console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
@@ -284,6 +307,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -313,14 +337,17 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.getMac(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting mac, result : ${result}`);
 }).catch((err: BusinessError) => {
@@ -338,6 +365,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -362,13 +390,16 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0', (err, result) => {
   if (err) {
     console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
@@ -388,6 +419,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -417,14 +449,17 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
 }).catch((err: BusinessError) => {
@@ -442,6 +477,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -467,13 +503,16 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true, (err) => {
   if (err) {
     console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
@@ -493,6 +532,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -523,14 +563,17 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
   console.info(`Succeeded in setting network interface disabled`);
 }).catch((err: BusinessError) => {
@@ -548,6 +591,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -572,13 +616,17 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+
+// 参数需根据实际情况进行替换
 let exclusionStr: string = "192.168,baidu.com"
 let exclusionArray: Array<string> = exclusionStr.split(',');
 let httpProxy: connection.HttpProxy = {
@@ -606,6 +654,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -635,14 +684,18 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+
+// 需根据实际情况进行替换
 let exclusionStr: string = "192.168,baidu.com"
 let exclusionArray: Array<string> = exclusionStr.split(',');
 let httpProxy: connection.HttpProxy = {
@@ -668,6 +721,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -691,11 +745,13 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.getGlobalProxy(wantTemp, (err, result) => {
@@ -717,6 +773,7 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -745,12 +802,14 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.getGlobalProxy(wantTemp).then(() => {
@@ -770,6 +829,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -794,13 +854,16 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let filterRule: networkManager.AddFilterRule = {
+  // 需根据实际情况进行替换
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
@@ -810,8 +873,8 @@ let filterRule: networkManager.AddFilterRule = {
   "method": networkManager.AddMethod.APPEND,
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
   if (err) {
@@ -832,6 +895,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -861,14 +925,17 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let filterRule: networkManager.AddFilterRule = {
+  // 需根据实际情况进行替换
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
@@ -878,8 +945,8 @@ let filterRule: networkManager.AddFilterRule = {
   "method": networkManager.AddMethod.APPEND,
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in setting iptables filter rule`);
@@ -898,6 +965,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -922,13 +990,16 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let filterRule: networkManager.RemoveFilterRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -936,8 +1007,8 @@ let filterRule: networkManager.RemoveFilterRule = {
   "uid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
   if (err) {
@@ -958,6 +1029,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -987,14 +1059,17 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let filterRule: networkManager.RemoveFilterRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -1002,8 +1077,8 @@ let filterRule: networkManager.RemoveFilterRule = {
   "uid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in removing iptables filter rule`);
@@ -1022,6 +1097,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1045,11 +1121,13 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
@@ -1071,6 +1149,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1099,12 +1178,14 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 networkManager.listIptablesFilterRules(wantTemp).then((result) => {

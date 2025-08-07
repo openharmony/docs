@@ -1,4 +1,9 @@
 # 废弃的Interface (AudioPlayer, deprecated)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >

@@ -1,4 +1,9 @@
 # 交互基础机制说明
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 对于指向性交互，交互框架基于坐标信息进行命中测试确定事件和手势的响应目标，即收集形成响应链，系统会根据触控事件的坐标、类型等信息，结合UI布局，将事件发送给对应UI组件。多个事件可以组合触发手势或其他功能，如长按、点击、拖拽。
 
@@ -43,7 +48,7 @@
 ArkUI事件响应链通过触摸测试进行收集，遵循右子树（按组件布局的先后层级）优先的后序遍历。伪代码实现为：
 
 ```
-foreach((item, node.rbegin(),node.rend())=> {
+forEach((item, node.rbegin(),node.rend())=> {
     item.TouchTest();
 })
 node.collectEvent()

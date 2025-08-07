@@ -1,6 +1,6 @@
 # ContinueDeviceInfo (System API)
 
-The ContinueDeviceInfo module defines the parameters required for initiating mission continuation. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission).
+The module defines the parameters required for initiating mission continuation. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission).
 
 > **NOTE**
 > 
@@ -13,9 +13,9 @@ The ContinueDeviceInfo module defines the parameters required for initiating mis
 
 **System API**: This is a system API.
 
-| Name      | Type  | Readable  | Writable  | Description     |
+| Name      | Type  | Read-Only  | Optional  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | Yes   | Yes   | ID of the source device.|
-| dstDeviceId | string | Yes   | Yes   | ID of the target device.|
-| missionId | number | Yes   | Yes   | Mission ID.|
-| wantParam | Record<string, Object> | Yes   | Yes   | Extended parameters.|
+| srcDeviceId | string | No   | No   | ID of the source device.|
+| dstDeviceId | string | No   | No   | ID of the target device.|
+| missionId | number | No   | No   | Mission ID.|
+| wantParam | Record<string, Object> | No   | No   | Extended parameters.|

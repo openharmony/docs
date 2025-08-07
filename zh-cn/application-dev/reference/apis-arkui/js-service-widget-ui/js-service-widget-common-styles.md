@@ -1,4 +1,9 @@
 # 通用样式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 组件普遍支持的可以在style或css中设置组件外观样式，均不是必填项。
 

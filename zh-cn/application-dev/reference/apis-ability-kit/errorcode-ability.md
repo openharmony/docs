@@ -332,17 +332,16 @@ Internal error.
 
 **错误描述**
 
-当内存申请、多线程处理异常等内部处理错误时，方法将返回该错误码。
+当出现了开发者无法解决的内部异常错误（如内存申请失败、多线程处理异常、跨进程通信失败等）时，方法将返回该错误码。
 
 **可能原因**
 
-内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时、包管理获取应用信息失败、系统服务获取失败、启动的ability实例已达到上限等等。
+该错误码是一个通用的系统异常错误码，不同的接口可能由不同的原因导致。主要包括：内部对象为空指针、处理超时、IPC跨进程通信失败、包管理获取应用信息失败、系统服务获取失败、启动的Ability实例已达到上限等。
 
 **处理步骤**
 
-1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
-2. 检查是否启动了过多的ability。
-3. 尝试重启设备。
+1. 内部错误属于系统异常导致开发者无法处理的错误。开发者可以尝试重试。
+2. 对于启动Ability失败时，可以检查传入的Want数据是否过大。
 
 ## 16000053 非顶层应用
 
@@ -1782,7 +1781,7 @@ The input bundleName is not a system HSP.
 
 **错误描述**
 
-通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
+通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#createsystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
 
 **可能原因**
 

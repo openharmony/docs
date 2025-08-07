@@ -1,8 +1,13 @@
 # 使用JSVM-API感知JSVM引擎生命周期管理
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
-JSVM-API提供了用于监测JavaScript虚拟机内存GC的回调函数注册能力。允许开发者在垃圾回收开始之前或者垃圾回收结束之后添加自定义逻辑，帮助开发者在垃圾回收时，执行一些优化、调试或者性能监控操作。
+JSVM-API提供了注册回调函数的能力，用于监测JavaScript虚拟机的内存GC。开发者可以在垃圾回收前后添加自定义逻辑，从而在垃圾回收时执行优化、调试或性能监控操作。
 
 ## 基本概念
 
@@ -23,10 +28,10 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_AddHandlerForGC & OH_JSVM_RemoveHandlerForGC
 
-可以多次调用OH_JSVM_AddHandlerForGC向VM中注册回调函数，并且所注册的回调函数都会生效。注册行为以回调函数指针和native-data作为key，如果多次注册行为存在相同的key，则会判定为无效注册，并返回JSVM_INVALID_ARG错误码。在相同触发条件下，回调函数的回调顺序与回调函数的注册顺序并不严格一致。
+可以多次调用OH_JSVM_AddHandlerForGC向VM注册回调函数，所有注册的回调函数都会生效。注册时，以回调函数指针和native-data作为键。如果多次注册存在相同的键，则视为无效注册，并返回JSVM_INVALID_ARG错误码。在相同触发条件下，回调函数的回调顺序与注册顺序不严格一致。
 通过OH_JSVM_RemoveHandlerForGC可以从VM中移除注册过的回调函数。重复移除具有相同key的回调函数，则会判定为无效移除，并返回JSVM_INVALID_ARG错误码。
 
-#### cpp部分代码
+**cpp部分代码**
 
 ```cpp
 // hello.cpp
@@ -96,7 +101,7 @@ static JSVM_Value TriggerGC(JSVM_Env env, JSVM_CallbackInfo info)
     // 移除OnAfter2回调函数
     JSVM_CALL(OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, NULL));
     // 重复移除OnAfter2属于无效用法
-    if (OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, new int(12)) == JSVM_INVALID_ARG) {
+    if (OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, NULL) == JSVM_INVALID_ARG) {
         remove_repeated = true;
     }
     // 移除从未设置过的函数属于无效用法
@@ -130,11 +135,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerGC", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-#### 样例测试JS
+**样例测试JS**
 ```cpp
 const char *srcCallNative = R"JS(triggerGC();)JS";
 ```
-#### 执行结果
+**执行结果**
+
 在LOG中输出下面结果：
 ```cpp
 == before GC ==

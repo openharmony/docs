@@ -1,4 +1,4 @@
-# Socket连接
+# 使用Socket访问网络
 
 ## 简介
 
@@ -907,4 +907,4 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 针对Socket连接开发，有以下相关实例可供参考：
 
-- [网络管理-Socket连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+- [网络管理-Socket连接（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)

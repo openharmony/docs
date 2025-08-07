@@ -1,4 +1,9 @@
 # 使用AVScreenCaptureRecorder录屏写文件(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
+<!--TSE: @xdlinc-->
 
 屏幕录制主要为主屏幕录屏功能。
 

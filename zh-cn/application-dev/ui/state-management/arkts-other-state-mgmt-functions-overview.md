@@ -1,4 +1,9 @@
 # 其他状态管理概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 除了前面章节提到的组件状态管理和应用状态管理，ArkTS还提供了\@Watch、$$运算符和\@Track来为开发者提供更多功能：
 

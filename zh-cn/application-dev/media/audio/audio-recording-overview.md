@@ -1,4 +1,9 @@
 # 音频录制开发概述
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 ## 如何选择音频录制开发方式
 

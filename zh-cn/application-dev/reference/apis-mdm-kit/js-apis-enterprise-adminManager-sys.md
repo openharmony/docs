@@ -1,4 +1,9 @@
 # @ohos.enterprise.adminManager（企业设备管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
 
@@ -20,15 +25,13 @@ import { adminManager } from '@kit.MDMKit';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-激活当前用户下指定的设备管理应用，其中超级设备管理应用仅能在管理员用户下被激活。使用callback异步回调。
+激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，应用不可卸载，其企业设备管理扩展能力将开机自启并在用户切换后自启。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -55,16 +58,19 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
   if (err) {
@@ -85,9 +91,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -115,16 +119,19 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
   if (err) {
@@ -145,9 +152,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -180,17 +185,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
   (err: BusinessError) => {
@@ -208,9 +216,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -233,11 +239,13 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.disableAdmin(wantTemp, (err) => {
@@ -259,9 +267,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -285,11 +291,13 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.disableAdmin(wantTemp, 100, (err) => {
@@ -311,9 +319,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -336,8 +342,10 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -359,9 +367,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -389,9 +395,11 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -407,9 +415,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -430,11 +436,13 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.isAdminEnabled(wantTemp, (err, result) => {
@@ -454,9 +462,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -478,13 +484,16 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
   if (err) {
     console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
@@ -502,9 +511,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -531,14 +538,17 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
   console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 }).catch((err: BusinessError) => {
@@ -554,9 +564,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -577,8 +585,10 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -598,9 +608,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -626,9 +634,11 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -646,9 +656,7 @@ getSuperAdmin(): Promise\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -667,6 +675,7 @@ getSuperAdmin(): Promise\<Want>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 adminManager.getSuperAdmin().then((result) => {
@@ -686,9 +695,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -712,16 +719,19 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
   if (err) {
@@ -742,9 +752,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -773,17 +781,20 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
   console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
@@ -798,9 +809,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -822,11 +831,13 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
@@ -846,9 +857,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -875,12 +884,14 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
@@ -900,9 +911,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -927,11 +936,13 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -954,9 +965,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -986,12 +995,14 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1011,9 +1022,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1038,11 +1047,13 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1065,9 +1076,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1097,12 +1106,14 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1122,9 +1133,7 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1150,12 +1159,15 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = "com.example.application";
 
 adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
@@ -1177,9 +1189,7 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1210,13 +1220,16 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = "com.example.application";
 
 adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
@@ -1233,9 +1246,7 @@ getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **返回值：**
@@ -1255,6 +1266,7 @@ getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1275,9 +1287,7 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -1302,16 +1312,19 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let oldAdmin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let newAdmin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication_new',
-  abilityName: 'NewEntryAbility',
+  abilityName: 'NewEntryAbility'
 };
 try {
   adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);
@@ -1333,9 +1346,7 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -1359,12 +1370,14 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let admin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);

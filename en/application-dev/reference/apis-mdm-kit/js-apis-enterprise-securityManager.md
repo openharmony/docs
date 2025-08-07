@@ -4,11 +4,11 @@ The **securityManager** module provides device security management capabilities,
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 
 ## Modules to Import
 
@@ -37,7 +37,7 @@ Uninstalls a user certificate. This API uses a promise to return the result.
 
 | Type               | Description                                                        |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown if the operation fails.|
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown when a user certificate fails to be uninstalled.|
 
 **Error codes**
 
@@ -56,11 +56,12 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -105,17 +106,21 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// Initialize the Context variable in the onCreate callback function of the MainAbility.
-// Place the test file test.cer in the rawfile directory.
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -124,8 +129,8 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  console.error(`Failed to get raw file content. message: ${err.message}`);
+  return;
 });
 ```
 
@@ -163,21 +168,24 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9201001  | Failed to manage the certificate.                            |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// Initialize the Context variable in the onCreate callback function of the MainAbility.
-// Place the test file test.cer in the rawfile directory.
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   try {
     let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
@@ -219,12 +227,12 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -242,7 +250,7 @@ try {
 
 getSecurityStatus(admin: Want, item: string): string
 
-Obtains security status.
+Obtains the security status of the current device.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -276,6 +284,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -310,7 +319,7 @@ Sets the device password policy.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -321,6 +330,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -365,7 +375,7 @@ Obtains the device password policy.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -376,6 +386,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -411,7 +422,7 @@ Sets the device clipboard policy.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -422,6 +433,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -462,7 +474,7 @@ Obtains the device clipboard policy.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -473,6 +485,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -514,7 +527,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -568,7 +580,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -593,7 +604,7 @@ try {
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-Sets the watermark policy. Currently, only 2-in-1 devices are supported.
+Sets the watermark policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -605,14 +616,14 @@ Sets the watermark policy. Currently, only 2-in-1 devices are supported.
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.     |
 | bundleName | string    | Yes  | Bundle name of the application for which the watermark is set.                                                      |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | Yes  | **string** indicates the image path that can be accessed by the application, such as the application sandbox path.<br>**image.PixelMap** indicates an image object. The size of an image pixel cannot exceed 500 KB.                                                      |
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | Yes  | **string** indicates the image path that can be accessed by the application, such as the application sandbox path.<br>**image.PixelMap** indicates an image object. The size of an image pixel cannot exceed 500 KB.                                                      |
 | accountId     | number     | Yes  | User ID. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -623,6 +634,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -642,7 +654,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-Cancels the watermark policy. Currently, only 2-in-1 devices are supported.
+Cancels the watermark policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -660,7 +672,7 @@ Cancels the watermark policy. Currently, only 2-in-1 devices are supported.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -671,6 +683,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -691,10 +704,10 @@ Represents the certificate information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name  | Type      | Mandatory| Description              |
-| ------ | ---------- | ---- | ------------------ |
-| inData | Uint8Array | Yes  | Binary content of the certificate.|
-| alias  | string     | Yes  | Certificate alias.        |
+| Name  | Type      | Read-Only| Optional| Description              |
+| ------ | ---------- | ---- | ---- | ------------------ |
+| inData | Uint8Array | No  | No|Binary content of the certificate.|
+| alias  | string     | No  | No|Certificate alias.        |
 
 ## PasswordPolicy
 
@@ -702,11 +715,11 @@ Represents a device password policy.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| complexityRegex | string | No| Regular expression for password complexity.|
-| validityPeriod | number | No| Password validity period, in ms.|
-| additionalDescription | string | No| Description of the device password.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ---- | ---- | --------------------------- |
+| complexityRegex | string | No| Yes| Regular expression for password complexity.|
+| validityPeriod | number | No| Yes| Password validity period, in ms.|
+| additionalDescription | string | No| Yes| Description of the device password.|
 
 ## ClipboardPolicy
 

@@ -1,5 +1,11 @@
 # FFRT
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 - [Introduction to Function Flow Runtime Kit](ffrt-overview.md)
 - [Function Flow Runtime Paradigms](ffrt-concurrency-paradigm.md)
 - Function Flow Runtime Development Samples (C)<!--ffrt-example-c-->

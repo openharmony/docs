@@ -1,4 +1,9 @@
 # @ohos.util (util工具函数)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)、对方法进行插桩和替换（[Aspect<sup>11+</sup>](#aspect11)）等功能。
 
@@ -2559,14 +2564,13 @@ entries(): IterableIterator&lt;[K, V]&gt;
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro.entries();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+let pair = pro.entries();
+for (let value of pair) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -2591,14 +2595,13 @@ for (let value of arrayValue) {
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro[Symbol.iterator]();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+
+for (let value of pro) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ## ScopeComparable<sup>8+</sup>

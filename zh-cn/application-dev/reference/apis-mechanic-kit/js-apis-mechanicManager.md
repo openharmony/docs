@@ -134,7 +134,7 @@ setCameraTrackingEnabled(isEnabled: boolean): void
 | -------- | ------- |
 | 33300001 | Service exception. |
 | 33300002 | Device not connected. |
-| 33300003 | Device not supported. |
+| 33300003 | Feature not supported. |
 
 **示例：**
 
@@ -156,7 +156,7 @@ getCameraTrackingEnabled(): boolean
 
 | 类型    | 说明       |
 | ------- | --------- |
-| boolean | 摄像头跟踪启用状态，摄像头跟踪启用状态，true表示摄像头跟踪已启用，false表示摄像头跟踪已禁用。|
+| boolean | 摄像头跟踪启用状态，true表示已启用，false表示已禁用。|
 
 **错误码：**
 
@@ -317,8 +317,8 @@ console.info(`'Query layout successful, current layout:' ${layout}`);
 
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
-| CAMERA_TRACKING_USER_DISABLED | 0 | 用户禁用了摄像头跟踪。 |
-| CAMERA_TRACKING_USER_ENABLED | 1 | 用户启用了摄像头跟踪。 |
+| CAMERA_TRACKING_USER_ENABLED | 0 | 用户启用了摄像头跟踪。 |
+| CAMERA_TRACKING_USER_DISABLED | 1 | 用户禁用了摄像头跟踪。 |
 | CAMERA_TRACKING_LAYOUT_CHANGED | 2 | 摄像头跟踪构图变更。 |
 
 ## MechDeviceType

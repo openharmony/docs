@@ -295,7 +295,7 @@ Since API version 17, child processes can obtain startup parameters.
 
 | Name                                                                                                                                                                                                                                                                                                                               | Description                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)() | Returns the startup parameters of the child process.|
+| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)() | Returns the startup parameters of the child process.|
 
 ### How to Develop
 
@@ -314,7 +314,7 @@ libchild_process.so
 
 **Obtaining Startup Parameters**
 
-After a child process is created through [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess), it can call [OH_Ability_GetCurrentChildProcessArgs()](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess) to obtain the startup parameters [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args) from any .so file or child thread, facilitating operations on related file descriptors.
+After a child process is created through [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess), it can call [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)() to obtain the startup parameters [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args) from any .so file or child thread, facilitating operations on related file descriptors.
 
 ```c++
 #include <AbilityKit/native_child_process.h>
@@ -326,7 +326,7 @@ void ThreadFunc()
 {
     // Obtain the startup parameters of the child process.
     NativeChildProcess_Args *args = OH_Ability_GetCurrentChildProcessArgs();
-    // If the startup parameters fail to be obtained, a null pointer is returned.
+    // If the startup parameters fail to be obtained, nullptr is returned.
     if (args == nullptr) {
         return;
     }

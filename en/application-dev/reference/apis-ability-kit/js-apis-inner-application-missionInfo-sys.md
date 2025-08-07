@@ -1,6 +1,6 @@
 # MissionInfo (System API)
 
-The **MissionInfo** module defines detailed information about a mission. The information can be obtained through [getMissionInfo](js-apis-app-ability-missionManager-sys.md#missionmanagergetmissioninfo).
+The module defines detailed information about a mission. The information can be obtained through [getMissionInfo](js-apis-app-ability-missionManager-sys.md#missionmanagergetmissioninfo).
 
 > **NOTE**
 > 
@@ -19,18 +19,18 @@ import { missionManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| missionId | number | Yes| Yes| Mission ID.|
-| runningState | number | Yes| Yes| Running state of the mission.|
-| lockedState | boolean | Yes| Yes| Locked state of the mission. The value **true** means that the mission is locked, and **false** means the opposite.|
-| timestamp | string | Yes| Yes| Latest time when the mission was created or updated.|
-| want | [Want](js-apis-app-ability-want.md) | Yes| Yes| Want information of the mission.|
-| label | string | Yes| Yes| Label of the mission.|
-| iconPath | string | Yes| Yes| Path of the mission icon.|
-| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device. The value **true** means that the mission can be continued on another device, and **false** means the opposite.|
-| abilityState<sup>10+</sup> | number | Yes| Yes| Capability status of the mission.|
-| unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted. The value **true** means that the mission can be manually deleted, and **false** means the opposite.|
+| missionId | number | No| No| Mission ID.|
+| runningState | number | No| No| Running state of the mission.|
+| lockedState | boolean | No| No| Locked state of the mission. The value **true** means that the mission is locked, and **false** means the opposite.|
+| timestamp | string | No| No| Latest time when the mission was created or updated.|
+| want | [Want](js-apis-app-ability-want.md) | No| No| Want information of the mission.|
+| label | string | No| No| Label of the mission.|
+| iconPath | string | No| No| Path of the mission icon.|
+| continuable | boolean | No| No| Whether the mission can be continued on another device. The value **true** means that the mission can be continued on another device, and **false** means the opposite.|
+| abilityState<sup>10+</sup> | number | No| No| Capability status of the mission.|
+| unclearable<sup>10+</sup> | boolean | No| No| Whether the mission can be manually deleted. The value **true** means that the mission can be manually deleted, and **false** means the opposite.|
 
 **Example**
 ```ts
@@ -45,15 +45,15 @@ try {
       return;
     }
 
-    console.log(`getMissionInfo missionId is: ${JSON.stringify(data.missionId)}`);
-    console.log(`getMissionInfo runningState is: ${JSON.stringify(data.runningState)}`);
-    console.log(`getMissionInfo lockedState is: ${JSON.stringify(data.lockedState)}`);
-    console.log(`getMissionInfo timestamp is: ${JSON.stringify(data.timestamp)}`);
-    console.log(`getMissionInfo want is: ${JSON.stringify(data.want)}`);
-    console.log(`getMissionInfo label is: ${JSON.stringify(data.label)}`);
-    console.log(`getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}`);
-    console.log(`getMissionInfo continuable is: ${JSON.stringify(data.continuable)}`);
-    console.log(`getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}`);
+    console.info(`getMissionInfo missionId is: ${JSON.stringify(data.missionId)}`);
+    console.info(`getMissionInfo runningState is: ${JSON.stringify(data.runningState)}`);
+    console.info(`getMissionInfo lockedState is: ${JSON.stringify(data.lockedState)}`);
+    console.info(`getMissionInfo timestamp is: ${JSON.stringify(data.timestamp)}`);
+    console.info(`getMissionInfo want is: ${JSON.stringify(data.want)}`);
+    console.info(`getMissionInfo label is: ${JSON.stringify(data.label)}`);
+    console.info(`getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}`);
+    console.info(`getMissionInfo continuable is: ${JSON.stringify(data.continuable)}`);
+    console.info(`getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}`);
   });
 } catch (paramError) {
   console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);

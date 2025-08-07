@@ -1,4 +1,9 @@
 # 相机管理(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发一个相机应用前，需要先通过调用相机接口来创建一个独立的相机设备。
 

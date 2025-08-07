@@ -1,6 +1,11 @@
 # \@ReusableV2装饰器：组件复用
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
-为了降低反复创建销毁自定义组件带来的性能开销，开发者可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件，达成组件复用的效果。
+为了降低反复创建销毁自定义组件带来的性能开销，开发者可以使用\@ReusableV2装饰[\@ComponentV2](./arkts-new-componentV2.md)装饰的自定义组件，达成组件复用的效果。
 
 在阅读本文前，建议提前阅读：[\@Reusable装饰器：组件复用](./arkts-reusable.md)。
 
@@ -17,7 +22,7 @@
 - \@ReusableV2同样提供了aboutToRecycle和aboutToReuse的生命周期，在组件被回收时调用aboutToRecycle，在组件被复用时调用aboutToReuse，但与\@Reusable不同的是，aboutToReuse没有入参。
 - 在回收阶段，会递归地调用所有子组件的aboutToRecycle回调（即使子组件未被标记可复用）；在复用阶段，会递归地调用所有子组件的aboutToReuse回调（即使子组件未被标记可复用）。
 - \@ReusableV2装饰的自定义组件会在被回收期间保持冻结状态，即无法触发UI刷新、无法触发\@Monitor回调，与freezeWhenInactive标记位不同的是，在解除冻结状态后，不会触发延后的刷新。
-- \@ReusableV2装饰的自定义组件会在复用时自动重置组件内状态变量的值、重新计算组件内\@Computed以及与之相关的\@Monitor。不建议开发者在aboutToRecycle中更改组件内状态变量，详见[复用前的组件内状态变量重置](#复用前的组件内状态变量重置)。
+- \@ReusableV2装饰的自定义组件会在复用时自动重置组件内状态变量的值、重新计算组件内[\@Computed](./arkts-new-Computed.md)以及与之相关的[\@Monitor](./arkts-new-monitor.md)。不建议开发者在aboutToRecycle中更改组件内状态变量，详见[复用前的组件内状态变量重置](#复用前的组件内状态变量重置)。
 - V1和V2的复用组件可在一定规则下混用，详见[使用限制](#使用限制)第二点。
 - 不建议开发者嵌套滥用\@ReusableV2装饰器，这可能会导致复用效率降低以及内存开销变大。
 
@@ -212,19 +217,19 @@ struct Index {
     Column() {
       Button('step1. appear')
         .onClick(() => {
-          this.condition1 = true;  
+          this.condition1 = true;
         })
       Button('step2. recycle')
         .onClick(() => {
-          this.condition2 = false;  
+          this.condition2 = false;
         })
       Button('step3. reuse')
         .onClick(() => {
-          this.condition2 = true;  
+          this.condition2 = true;
         })
       Button('step4. disappear')
         .onClick(() => {
-          this.condition1 = false;  
+          this.condition1 = false;
         })
       if (this.condition1) {
         NormalV2Component({ condition: this.condition2 })
@@ -245,16 +250,16 @@ struct NormalV2Component {
 @ComponentV2
 struct ReusableV2Component {
   aboutToAppear() {
-    console.log('ReusableV2Component aboutToAppear called'); // 组件创建时调用
+    console.info('ReusableV2Component aboutToAppear called'); // 组件创建时调用
   }
   aboutToDisappear() {
-    console.log('ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
+    console.info('ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
   }
   aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle called'); // 组件回收时调用
+    console.info('ReusableV2Component aboutToRecycle called'); // 组件回收时调用
   }
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse called'); // 组件复用时调用
+    console.info('ReusableV2Component aboutToReuse called'); // 组件复用时调用
   }
   build() {
     Column() {
@@ -305,18 +310,18 @@ struct ReusableV2Component {
   @Local info: Info = info; // 仅做演示使用，并不建议@Local赋值全局变量
   @Monitor('info.age')
   onValChange() {
-    console.log('info.age change');
+    console.info('info.age change');
   }
   aboutToRecycle() {
-    console.log('aboutToRecycle');
+    console.info('aboutToRecycle');
     this.info.age++;
   }
   aboutToReuse() {
-    console.log('aboutToReuse');
+    console.info('aboutToReuse');
     this.info.age++;
   }
   onRender(): string {
-    console.log('info.age onRender');
+    console.info('info.age onRender');
     return this.info.age.toString();
   }
   build() {
@@ -387,7 +392,7 @@ struct Index {
           paramOut: this.local,
           paramOnce: this.local,
           changeParam: () => {
-            this.local++;  
+            this.local++;
           }
         })
       }
@@ -415,15 +420,15 @@ struct ReusableV2Component {
   }
   @Monitor('val')
   onValChange(monitor: IMonitor) {
-    console.log(`val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);  
+    console.info(`val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor('plusParam')
   onPlusParamChange(monitor: IMonitor) {
-    console.log(`plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   build() {
     Column() {
-	  Column() {
+      Column() {
         Text('重置为本地初始值的变量')
         Text(`val: ${this.val}`).onClick(()=>{this.val++;})
         Text(`info.age: ${this.info.age}`).onClick(()=>{this.info.age++;})
@@ -485,7 +490,7 @@ struct ReusableV2Component {
   noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   @Monitor('noDecoInfo.age')
   onAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   aboutToRecycle() {
     this.noDecoInfo.age = 25;
@@ -495,7 +500,7 @@ struct ReusableV2Component {
   }
   build() {
     Column() {
-	  Column() {
+      Column() {
         Text(`noDecoInfo.age: ${this.noDecoInfo.age}`)
           .onClick(()=>{this.noDecoInfo.age++;}) // 能够触发刷新但是不会被重置
       }
@@ -539,10 +544,10 @@ struct Index {
 struct ReusableV2Component {
   @Local message: string = 'Hello World';
   aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle'); // 回收时被调用
+    console.info('ReusableV2Component aboutToRecycle'); // 回收时被调用
   }
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse'); // 复用时被调用
+    console.info('ReusableV2Component aboutToReuse'); // 复用时被调用
   }
   build() {
     Column() {
@@ -598,13 +603,13 @@ struct Index {
 struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
-    console.log('ReusableV2Component aboutToAppear');
+    console.info('ReusableV2Component aboutToAppear');
   }
   aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle');
+    console.info('ReusableV2Component aboutToRecycle');
   }
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse');
+    console.info('ReusableV2Component aboutToReuse');
   }
   build() {
     Column() {
@@ -650,13 +655,13 @@ struct Index {
 struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
-    console.log('ReusableV2Component aboutToAppear');
+    console.info('ReusableV2Component aboutToAppear');
   }
   aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle');
+    console.info('ReusableV2Component aboutToRecycle');
   }
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse');
+    console.info('ReusableV2Component aboutToReuse');
   }
   build() {
     Column() {
@@ -694,13 +699,13 @@ struct Index {
 struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
-    console.log('ReusableV2Component aboutToAppear', this.num); // 创建时触发
+    console.info('ReusableV2Component aboutToAppear', this.num); // 创建时触发
   }
   aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle', this.num); // 回收时触发
+    console.info('ReusableV2Component aboutToRecycle', this.num); // 回收时触发
   }
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse', this.num); // 复用时触发
+    console.info('ReusableV2Component aboutToReuse', this.num); // 复用时触发
   }
   build() {
     Column() {
@@ -845,16 +850,16 @@ struct Index {
 struct ChildComponent {
   @Param @Require data: string;
   aboutToAppear(): void {
-    console.log('ChildComponent aboutToAppear', this.data);
+    console.info('ChildComponent aboutToAppear', this.data);
   }
   aboutToDisappear(): void {
-    console.log('ChildComponent aboutToDisappear', this.data);
+    console.info('ChildComponent aboutToDisappear', this.data);
   }
   aboutToReuse(): void {
-    console.log('ChildComponent aboutToReuse', this.data); // 复用时触发
+    console.info('ChildComponent aboutToReuse', this.data); // 复用时触发
   }
   aboutToRecycle(): void {
-    console.log('ChildComponent aboutToRecycle', this.data); // 回收时触发
+    console.info('ChildComponent aboutToRecycle', this.data); // 回收时触发
   }
   build() {
     Row() {

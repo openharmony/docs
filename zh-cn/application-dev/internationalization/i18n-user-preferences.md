@@ -1,5 +1,11 @@
 # 设置用户偏好（仅对系统应用开放）
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
+
 ## 使用场景
 
 除区域设置和应用偏好语言设置外，系统还可以设置用户偏好，当前支持是否使用本地数字、是否使用12/24小时制两种偏好。用户偏好设置会保存到系统区域及应用偏好语言中，最终体现在用户界面的国际化特性上。
@@ -11,7 +17,7 @@
 
 1. 导入模块。
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
+   import { i18n } from '@kit.LocalizationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
@@ -31,7 +37,7 @@
    }
    let date: Date = new Date(2023, 9, 25); // 时间日期为2023.10.25
    let appPreferredLanguage: string = 'ar';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
+   let dateTimeFmt: Intl.DateTimeFormat = new Intl.DateTimeFormat(appPreferredLanguage);
    let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（使用阿拉伯语本地数字表示）
    ```
 
@@ -45,6 +51,6 @@
    }
    let date: Date = new Date(2023, 9, 25, 16, 48, 0); // 时间日期为2023.10.25 16:48:00
    let appPreferredLanguage: string = 'zh';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
+   let dateTimeFmt: Intl.DateTimeFormat = new Intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
    let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '16:48:00'
    ```

@@ -121,6 +121,5 @@ import { accessibility } from '@kit.AccessibilityKit';
 | RECENT_TASK                | 17   | 显示最近任务。                  |
 | NOTIFICATION_CENTER        | 18   | 显示通知中心。                  |
 | CONTROL_CENTER             | 19   | 显示控制中心。                  |
-| COMMON                     | 20   | 不指定操作，用于主动聚焦、主动播报场景。 |
-| SPAN_CLICK                 | 21   | 对局部文本进行点击操作。             |
+| SPAN_CLICK                 | 20   | 对局部文本进行点击操作。             |
 

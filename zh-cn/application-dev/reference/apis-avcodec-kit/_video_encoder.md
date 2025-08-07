@@ -860,7 +860,7 @@ OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  |
 | index | 输入buffer对应的索引值。| 
-| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。  | 
 
 **返回：**
 
@@ -933,7 +933,7 @@ OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  |
 | index | 输出buffer对应的索引值。| 
-| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。  | 
 
 **返回：**
 

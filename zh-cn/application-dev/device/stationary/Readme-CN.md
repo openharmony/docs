@@ -1,4 +1,9 @@
 # Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 - [Multimodal Awareness Kit简介](multimodalawareness-kit-intro.md)
 - [Stationary开发指导](stationary-guidelines.md)

@@ -1,4 +1,9 @@
 # 尺寸设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 设置组件的宽高、边距。
 
@@ -86,7 +91,7 @@ width(widthValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。|
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
 **返回值：**
 
@@ -110,7 +115,7 @@ height(heightValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。 <br/> [GridRow](./ts-container-gridrow.md)、[GridCol](./ts-container-gridcol.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的fixAtIdealSize参数。|
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
 
 **返回值：**
 
@@ -136,7 +141,7 @@ size(value: SizeOptions): T
 
 | 参数名   | 类型                              | 必填   | 说明                |
 | ----- | ------------------------------- | ---- | ----------------- |
-| value | [SizeOptions](#sizeoptions对象说明) | 是    | 设置高宽尺寸。<br/>单位：vp |
+| value | [SizeOptions](#sizeoptions对象说明) | 是    | 设置宽高尺寸。<br/>异常值：参数为undefined时，属性设置不生效；其它异常值时，size属性恢复到不配置时的默认行为。<br/>单位：vp |
 
 **返回值：**
 
@@ -174,7 +179,7 @@ padding(value: Padding | Length | LocalizedPadding): T
 
 margin(value: Margin | Length | LocalizedMargin): T
 
-设置组件的外边距属性。
+设置组件的外边距属性。在计算位置时外边距视为组件大小的一部分，从而影响组件位置。
 
 从API version 10开始，该接口支持calc计算特性。
 
@@ -268,7 +273,7 @@ constraintSize(value: ConstraintSizeOptions): T
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
+| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>异常值：数值开头的字符串仅解析出数字部分，非数值开头的字符串解析为0；其它异常值时，constraintSize属性恢复到不配置时的默认行为。<br/>单位：vp<br/> |
 
 **返回值：**
 
@@ -547,7 +552,7 @@ struct LayoutPolicyExample {
   build() {
     Column() {
       Column() {
-        // matchParent生效时，当前组件会与其父组件内容区大小（180vp * 180vp）相等且不受自身constraintSize（150vp * 150vp）约束，因此当前组件大小为180vp * 180vp
+        // matchParent生效时，当前组件会与其父组件内容区大小（180vp * 180vp）相等，同时依旧受自身constraintSize（150vp * 150vp）约束，因此当前组件大小为150vp * 150vp
         Text("matchParent")
         Flex()
           .backgroundColor('rgb(0, 74, 175)')
@@ -567,7 +572,7 @@ struct LayoutPolicyExample {
         .height(LayoutPolicy.wrapContent)
         .constraintSize({ maxWidth: 250, maxHeight: 250 })
 
-        // fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
+        // 从API version 20开始，layoutPolicy支持wrapContent和fixAtIdealSize。fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
         Text("fixAtIdealSize")
 
         Row() {

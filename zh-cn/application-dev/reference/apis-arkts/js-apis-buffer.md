@@ -1,4 +1,9 @@
 # @ohos.buffer (Buffer)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Buffer对象用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -1012,18 +1017,18 @@ keys(): IterableIterator&lt;number&gt;
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.keys());
-for (const key of numbers) {
+let keys = buf.keys();
+for (const key of keys) {
   console.info(key.toString());
-  /*
-  输出结果：0
-           1
-           2
-           3
-           4
-           5
-  */
 }
+/*
+输出结果：0
+        1
+        2
+        3
+        4
+        5
+*/
 ```
 
 ### lastIndexOf

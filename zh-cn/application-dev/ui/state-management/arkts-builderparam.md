@@ -1,4 +1,9 @@
 # \@BuilderParam装饰器：引用\@Builder函数
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--SE: @zhangboren-->
+<!--TSE: @TerryTsao-->
 
 当开发者创建自定义组件并需要为其添加特定功能（例如：点击跳转操作）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为了解决组件功能定制化的问题，ArkUI引入了@BuilderParam装饰器。@BuilderParam用于装饰指向@Builder方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（例如：参数修改、尾随闭包、借用箭头函数等）对@BuilderParam装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用@BuilderParam为组件增加特定功能。该装饰器用于声明任意UI描述的元素，类似于slot占位符。
 
@@ -777,7 +782,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       // 由于未对子组件ChildBuilder进行赋值，此处无论是编译还是编辑，均会报错。
@@ -810,7 +815,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       ChildPage({ ChildBuilder: globalBuilder })
@@ -844,7 +849,7 @@ function globalBuilder() {
 
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   @State message: string = "";
 
   build() {
@@ -877,7 +882,7 @@ struct ChildPage {
 }
 @Entry
 @Component
-struct customBuilderDemo {
+struct CustomBuilderDemo {
   build() {
     Column() {
       ChildPage({ChildBuilder: globalBuilder})

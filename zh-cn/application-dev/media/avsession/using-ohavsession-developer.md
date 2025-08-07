@@ -1,4 +1,9 @@
 # 媒体会话提供方(C/C++)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 OHAVSession系统提供的通过使用C API实现媒体会话提供方，从而在媒体会话控制方（例如播控中心）中展示媒体相关信息，及响应媒体会话控制方下发的播控命令。
 
@@ -126,8 +131,8 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    // CONTROL_CMD_PLAY = 0; 播放。
    // CONTROL_CMD_PAUSE = 1; 暂停。
    // CONTROL_CMD_STOP = 2;  停止。
-   // CONTROL_CMD_PLAY_NEXT = 3; 上一首。
-   // CONTROL_CMD_PLAY_PREVIOUS = 4; 下一首。
+   // CONTROL_CMD_PLAY_NEXT = 3; 下一首。
+   // CONTROL_CMD_PLAY_PREVIOUS = 4; 上一首。
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
        void* userData) -> AVSessionCallback_Result

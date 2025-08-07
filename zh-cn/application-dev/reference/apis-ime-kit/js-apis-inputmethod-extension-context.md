@@ -155,24 +155,24 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    let context = this.context;
-  }
-  onDestroy() {
-    let want: Want = {
+    const context = this.context;
+    const targetWant: Want = {
       bundleName: "com.example.aafwk.test",
       abilityName: "com.example.aafwk.test.TwoAbility"
     };
-    try {
-      this.context.startAbility(want).then(() => {
-        console.info(`startAbility success`);
-      }).catch((err: BusinessError) => {
-        let error = err as BusinessError;
-        console.error(`startAbility error: ${error.code} ${error.message}`);
-      })
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error(`startAbility error: ${error.code} ${error.message}`);
-    }
+
+    context.startAbility(targetWant)
+      .then(() => console.info('startAbility success'))
+      .catch((err: BusinessError) => {
+        console.error(`StartAbility failed. Code: ${err.code}, Message: ${err.message}`);
+      });
+  }
+  onDestroy() {
+    this.context.destroy().then(() => {
+      console.info('Succeed in destroying context.');
+    }).catch((err: BusinessError)=>{
+      console.error(`Failed to destroy context, err code = ${err.code}`);
+    });
   }
 }
 ```

@@ -1,4 +1,9 @@
 # @ohos.multimodalAwareness.metadataBinding (回旋镖)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 本模块提供回旋镖能力调用，用于在图片加入和解析相关信息，完成信息传递。
 
@@ -86,9 +91,9 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
-let captrueMetadata: string = "";
+let captureMetadata: string = "";
 metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
-	captrueMetadata = metadata;
+	captureMetadata = metadata;
 }).catch((error:BusinessError)=>{
 	console.error("decode image error" + error);
 }); 
