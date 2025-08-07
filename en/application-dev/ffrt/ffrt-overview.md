@@ -1,5 +1,11 @@
 # Introduction to Function Flow Runtime Kit
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## Introduction
 
 Function Flow Runtime (FFRT) is a concurrent programming framework designed to simplify concurrent programming and task scheduling. You only need to pay attention to tasks and their dependencies in task scheduling without processing underlying threads and computing resources. In addition, FFRT leverages coroutine-based task execution to enhance task parallelism, improve thread utilization, and fully utilizes the computing resources of the multi-core platform to ensure centralized management and optimized scheduling of all system resources.

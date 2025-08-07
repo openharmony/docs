@@ -1,5 +1,11 @@
 # @ohos.advertising (广告服务框架)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 本模块提供广告操作能力，包括请求广告、展示广告。
 
 > **说明：**<br/>

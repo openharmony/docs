@@ -1,6 +1,6 @@
 # 并发常见问题
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -11,7 +11,7 @@
 
 1. **taskpool.execute接口是否调用**。
 
-   taskpool.execute被调用时，Hilog会打印TaskPool维测日志（Task Allocation: taskId:）。
+   taskpool.execute被调用时，Hilog会打印TaskPool调用态日志（Task Allocation: taskId:）。
    如果发现没有该维测日志表明taskpool.execute实际未调用，应用需排查taskpool.execute之前的其他业务逻辑是否执行完成。
 
    ```ts
@@ -54,7 +54,7 @@
 
 2. **TaskPool任务是否被执行**。
 
-   调用taskpool.execute接口会打印TaskPool**调用态维测日志**Task Allocation: taskId:。 
+   调用taskpool.execute接口会打印TaskPool**调用态日志**（Task Allocation: taskId:）。 
    定位到目标任务对应的Task Allocation: taskId:日志后，在日志中搜索taskId后跟随的Id号，正常情况会打印**执行态日志**（Task Perform: name:）和**结束态日志**（Task PerformTask End: taskId:）。
 
    1.  如果只有调用态日志，没有执行态日志。可能是由于先执行的TaskPool任务阻塞了TaskPool工作线程，导致TaskPool工作线程不可用，后执行的TaskPool任务无法执行。应用可以排查自身业务逻辑，或者通过trace进一步定位。
@@ -68,7 +68,7 @@
       2. 查看前置执行的TaskPool任务是否本身耗时较长或者发生阻塞。如果前置任务本身耗时较长，应用可以通过合理设置优先级解决。如果前置任务发生了意料之外的阻塞（一段时间后阻塞解除），应用需要排查自身业务逻辑。
 
    ```ts
-   // hilog 日志片段（模拟）
+   // hilog 日志片段（模拟），格式如下，具体数值由应用运行时决定
    // log1： 大量任务提交
    taskpool:: Task Allocation: taskId: , priority: , executeState:
    taskpool:: Task Allocation: taskId: , priority: , executeState:
@@ -77,7 +77,7 @@
    taskpool:: Task Allocation: taskId: , priority: , executeState:
    ...
    // log2: 扩容日志
-   taskpool:: maxThreads: , create num: , total num:
+   taskpool:: maxThreads: , created num: , total num:
    // log3: 执行态日志
    taskpool:: Task Perform: name: , taskId: , priority:
    ```
@@ -184,7 +184,7 @@ TaskPool第一次执行任务慢，间隔几百毫秒，原因是子线程反序
 
 **解决方案**
 
-1.可拆分@Concurrent方法到单独的ets文件，减少模块初始化时间；2.使用延迟加载（lazy import）。
+1.可拆分@Concurrent方法到单独的ets文件，减少模块初始化时间；2.使用延迟加载（[lazy import](arkts-lazy-import.md)）。
 
 ## TaskPool序列化失败问题定位指导
 
@@ -238,7 +238,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
 2. 应用在启动TaskPool任务时，抛出入参序列化失败异常，同时Hilog打印错误日志Unsupport serialize object type: Proxy（API version 20及之后版本打印错误日志：Serialize error: Serialize don't support object type: Proxy）。基于错误日志可知应用在Concurrent函数中传入代理对象，排查代码发现入参使用了@State装饰器，导致原对象实际上变为Proxy代理对象，代理对象不属于线程间通信支持的对象类型。  
 **解决方案**：TaskPool不支持@State、@Prop等装饰器修饰的复杂类型，具体内容可见[TaskPool注意事项](taskpool-introduction.md#taskpool注意事项)。应用需要去掉@State装饰器。
 
-3. 应用执行TaskPool任务时，抛出返回结果序列化失败异常，排查代码发现Concurrent Function返回结果是不支持的序列化类型。
+3. 应用执行TaskPool任务时，抛出返回结果序列化失败异常，排查代码发现Concurrent函数返回结果是不支持的序列化类型。
    
    ```ts
    // utils.ets
@@ -255,12 +255,12 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
    function createTask(a: number, b:number) {
      let sum = a + b;
      // task1: 不支持的序列化类型
-     let task: taskpool.Task = new taskpool.Task(printArgs, sum);
-     return task;
+     let task1: taskpool.Task = new taskpool.Task(printArgs, sum);
+     return task1;
    }
 
    function executeTask() {
-     // task2
+     // task
      let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
      taskpool.execute(task).then((res) => {
      }).catch((e: BusinessError) => {
@@ -270,7 +270,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
    }
    ```
 
-   **解决方案**：task1在.then中创建执行，Concurrent Function的返回结果设置为可序列化的类型。
+   **解决方案**：task1在.then中创建执行，Concurrent函数的返回结果设置为可序列化的类型。
 
    ```ts
    // utils.ets
@@ -291,11 +291,11 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
    }
 
    function executeTask() {
-     // task2
+     // task
      let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
      taskpool.execute(task).then((res) => {
        // task1
-       let task: taskpool.Task = new taskpool.Task(printArgs, res);
+       let task1: taskpool.Task = new taskpool.Task(printArgs, res);
      }).catch((e: BusinessError) => {
        console.error("execute task failed " + e.message);
      })
@@ -371,7 +371,7 @@ JS异常：TypeError: Cannot set sendable property with mismatched type
 
 **问题原因与解决方案**
 
-由于ArkTS运行时在属性赋值时会严格进行类型一致性校验，如果定义的属性类型与传入的对象类型不一致，会抛出上述JS异常。应用需要基于JS异常栈定位到对应的ts文件代码行，排查相应的业务逻辑。
+由于ArkTS运行时在属性赋值时会严格进行类型一致性校验，如果定义的属性类型与传入的对象类型不一致，会抛出上述JS异常。应用需要基于JS异常栈信息，定位排查相应的业务逻辑。
 
 **场景示例**
 
@@ -433,7 +433,7 @@ TaskPool执行的任务函数必须使用@Concurrent装饰器修饰，由于Conc
 
 **问题描述**
 
-TaskPool的任务执行函数Concurrent Function只能使用局部变量和函数入参，TaskPool任务执行后的结果应该如何保存到自定义的数据结构。
+TaskPool的任务执行函数Concurrent函数只能使用局部变量和函数入参，TaskPool任务执行后的结果应该如何保存到自定义的数据结构。
 
 **解决方案**
 
@@ -442,21 +442,39 @@ TaskPool的任务执行函数Concurrent Function只能使用局部变量和函�
 2. TaskPool任务执行后的结果可以在.then中返回，需要保存的数据如果仅在当前线程使用，可以在.then中将执行结果保存到自定义的数据结构中。
 
    ```ts
+   // sendable.ets，与Index.ets在同级目录下
+   @Sendable
+   export class testClass {
+     name: string = "test";
+     setName(name: string) {
+       this.name = name;
+     }
+     getName(): string {
+       return this.name;
+     }
+   }   
+   ```   
+
+   ```ts
+   // Index.ets
    import { taskpool } from '@kit.ArkTS'
    import { BusinessError } from '@kit.BasicServicesKit'
+   import { testClass } from './sendable'
+   
    @Concurrent
-   function createTask(a: number) {
-     return a;
+   function createTask(a: number): string {
+     return `test${a}`;
    }
    function executeTask() {
+     let testObject: testClass = new testClass();
      let task: taskpool.Task = new taskpool.Task(createTask, 1)
      taskpool.execute(task).then((res) => {
-       console.info('execute task success');
-       // 保存到自定义的数据结构
+       testObject.setName(res as string);
+       console.info('execute task success, name is ' + testObject.getName());
      }).catch((e: BusinessError) => {
        console.error('execute task error: ' + e.message);
      })
-    }
+   }
    ```
 
 ## Sendable类在子线程无法加载

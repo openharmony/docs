@@ -351,7 +351,6 @@ export default class EntryAbility extends UIAbility {
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
     if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
       // 进行后续创建数据库等相关操作
       // ...
     }
@@ -442,15 +441,14 @@ try {
     }
     console.info("Succeeded in getting KVStore");
     kvStore = store;
+    if (kvStore !== null) {
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
-}
-if (kvStore !== null) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
-       // ...
 }
 ```
 
@@ -1475,10 +1473,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-  query.equalTo("key", "value");
-  console.info("query is " + query.getSqlLike());
-  query.reset();
-  console.info("query is " + query.getSqlLike());
+  if (query != null) {
+    query.equalTo("key", "value");
+    console.info("query is " + query.getSqlLike());
+    query.reset();
+    console.info("query is " + query.getSqlLike());
+  }
   query = null;
 } catch (e) {
   console.error("simply calls should be ok :" + e);
@@ -1521,8 +1521,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-  query.equalTo("field", "value");
-  console.info(`query is ${query.getSqlLike()}`);
+  if (query != null) {
+    query.equalTo("field", "value");
+    console.info(`query is ${query.getSqlLike()}`);
+  }
   query = null;
 } catch (e) {
   let error = e as BusinessError;
@@ -1566,8 +1568,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-  query.notEqualTo("field", "value");
-  console.info(`query is ${query.getSqlLike()}`);
+  if (query != null) {
+    query.notEqualTo("field", "value");
+    console.info(`query is ${query.getSqlLike()}`);
+  }
   query = null;
 } catch (e) {
   let error = e as BusinessError;
@@ -1610,8 +1614,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.greaterThan("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.greaterThan("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1656,8 +1662,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.lessThan("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.lessThan("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1702,8 +1710,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.greaterThanOrEqualTo("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.greaterThanOrEqualTo("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1748,8 +1758,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.lessThanOrEqualTo("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.lessThanOrEqualTo("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1792,8 +1804,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.isNull("field");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.isNull("field");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1837,8 +1851,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.inNumber("field", [0, 1]);
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.inNumber("field", [0, 1]);
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1882,8 +1898,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.inString("field", ['test1', 'test2']);
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.inString("field", ['test1', 'test2']);
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1927,8 +1945,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notInNumber("field", [0, 1]);
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.notInNumber("field", [0, 1]);
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -1972,8 +1992,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notInString("field", ['test1', 'test2']);
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.notInString("field", ['test1', 'test2']);
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2017,8 +2039,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.like("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.like("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2062,8 +2086,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.unlike("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.unlike("field", "value");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2092,10 +2118,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notEqualTo("field", "value1");
-    query.and();
-    query.notEqualTo("field", "value2");
-    console.info("query is " + query.getSqlLike());
+    if (query != null) {
+      query.notEqualTo("field", "value1");
+      query.and();
+      query.notEqualTo("field", "value2");
+      console.info("query is " + query.getSqlLike());
+    }
     query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
@@ -2123,10 +2151,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notEqualTo("field", "value1");
-    query.or();
-    query.notEqualTo("field", "value2");
-    console.info("query is " + query.getSqlLike());
+    if (query != null) {
+      query.notEqualTo("field", "value1");
+      query.or();
+      query.notEqualTo("field", "value2");
+      console.info("query is " + query.getSqlLike());
+    }
     query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
@@ -2168,9 +2198,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notEqualTo("field", "value");
-    query.orderByAsc("field");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.notEqualTo("field", "value");
+      query.orderByAsc("field");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2213,9 +2245,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.notEqualTo("field", "value");
-    query.orderByDesc("field");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.notEqualTo("field", "value");
+      query.orderByDesc("field");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2261,9 +2295,11 @@ let total = 10;
 let offset = 1;
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-  query.notEqualTo("field", "value");
-  query.limit(total, offset);
-  console.info(`query is ${query.getSqlLike()}`);
+  if (query != null) {
+    query.notEqualTo("field", "value");
+    query.limit(total, offset);
+    console.info(`query is ${query.getSqlLike()}`);
+  }
   query = null;
 } catch (e) {
   let error = e as BusinessError;
@@ -2306,8 +2342,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-  query.isNotNull("field");
-  console.info(`query is ${query.getSqlLike()}`);
+  if (query != null) {
+    query.isNotNull("field");
+    console.info(`query is ${query.getSqlLike()}`);
+  }
   query = null;
 } catch (e) {
   let error = e as BusinessError;
@@ -2336,10 +2374,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.beginGroup();
-    query.isNotNull("field");
-    query.endGroup();
-    console.info("query is " + query.getSqlLike());
+    if (query != null) {
+      query.beginGroup();
+      query.isNotNull("field");
+      query.endGroup();
+      console.info("query is " + query.getSqlLike());
+    }
     query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
@@ -2367,10 +2407,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.beginGroup();
-    query.isNotNull("field");
-    query.endGroup();
-    console.info("query is " + query.getSqlLike());
+    if (query != null) {
+      query.beginGroup();
+      query.isNotNull("field");
+      query.endGroup();
+      console.info("query is " + query.getSqlLike());
+    }
     query = null;
 } catch (e) {
     console.error("duplicated calls should be ok :" + e);
@@ -2412,9 +2454,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.prefixKey("$.name");
-    query.prefixKey("0");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.prefixKey("$.name");
+      query.prefixKey("0");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2457,9 +2501,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.setSuggestIndex("$.name");
-    query.setSuggestIndex("0");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.setSuggestIndex("$.name");
+      query.setSuggestIndex("0");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
     query = null;
 } catch (e) {
     let error = e as BusinessError;
@@ -2506,8 +2552,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    query.deviceId("deviceId");
-    console.info(`query is ${query.getSqlLike()}`);
+    if (query != null) {
+      query.deviceId("deviceId");
+      console.info(`query is ${query.getSqlLike()}`);
+    }
 } catch (e) {
     let error = e as BusinessError;
     console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
@@ -2535,8 +2583,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
-    let sql1 = query.getSqlLike();
-    console.info(`GetSqlLike sql= ${sql1}`);
+    if (query != null) {
+      let sql1 = query.getSqlLike();
+      console.info(`GetSqlLike sql= ${sql1}`);
+    }
 } catch (e) {
     console.error("duplicated calls should be ok : " + e);
 }
@@ -3276,7 +3326,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;Uint8Array \| string \| boolean \| number&gt; |Promise对象。返回获取查询的值。|
+|Promise&lt;boolean \| string \| number \| Uint8Array&gt; |Promise对象。返回获取查询的值。|
 
 **错误码：**
 
@@ -3739,7 +3789,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3877,7 +3927,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3930,7 +3980,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 
 ```
@@ -3986,7 +4036,7 @@ try {
 
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4033,12 +4083,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err: BusinessError) => {
+  kvStore.putBatch(entries, (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
+      kvStore.getResultSize(query, (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -4049,7 +4099,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4115,7 +4165,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5080,7 +5130,6 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -5497,7 +5546,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型                                                     | 说明                            |
 | -------------------------------------------------------- | ------------------------------- |
-| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise对象。返回获取查询的值。 |
+| Promise&lt;boolean \| string \| number \| Uint8Array&gt; | Promise对象。返回获取查询的值。 |
 
 **错误码：**
 
@@ -5990,7 +6039,7 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err: BusinessError) => {
+  kvStore.putBatch(entries, (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
@@ -6386,7 +6435,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6750,7 +6799,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6881,12 +6930,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err: BusinessError) => {
+  kvStore.putBatch(entries, (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
+      kvStore.getResultSize(query, (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -6897,7 +6946,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6963,7 +7012,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -7015,7 +7064,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err: BusinessError) => {
+  kvStore.putBatch(entries, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -7024,7 +7073,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: number) => {
+      kvStore.getResultSize('localDeviceId', query, (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
           return;

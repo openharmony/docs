@@ -1,4 +1,9 @@
 # Interface (AudioRoutingManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 > **说明：**
 >
@@ -620,15 +625,13 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // 音频渲染器标志。
 };
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info(`device descriptor: ${desc}`);
-    }
-  });
-}
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+  if (err) {
+    console.error(`Failed to getPreferOutputDeviceForRendererInfo. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`device descriptor: ${desc}`);
+  }
+});
 ```
 
 ## getPreferOutputDeviceForRendererInfo<sup>10+</sup>
@@ -671,13 +674,11 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // 音频渲染器标志。
 };
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
-    console.info(`device descriptor: ${desc}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Result ERROR: ${err}`);
-  })
-}
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getPreferOutputDeviceForRendererInfo. Code: ${err.code}, message: ${err.message}`);
+})
 ```
 
 ## getPreferredOutputDeviceForRendererInfoSync<sup>10+</sup>

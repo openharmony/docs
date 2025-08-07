@@ -1,4 +1,9 @@
 # 订阅地址越界事件（C/C++）
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mlkgeek-->
+<!--SE: @StevenLai1994-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 ## 接口说明
 
@@ -17,7 +22,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ### 步骤一：新建工程
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+1. 参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Using JsonCpp in your project**介绍的使用方法获取到jsoncpp.cpp、json.h和json-forwards.h三个文件。
+
+2. 新建Native C++工程，并将上述文件导入到新建工程内，目录结构如下：
 
    ```yml
    entry:
@@ -40,7 +47,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+3. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -49,7 +56,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+4. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
    #include "napi/native_api.h"
@@ -91,7 +98,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto pid = params["pid"].asInt();
                           auto uid = params["uid"].asInt();
                           auto type = params["type"].asString();
-                          auto boolFlag = params["log_over_limit"].asBool();
                           std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
                           auto externalLog = writer.write(params["external_log"]);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);

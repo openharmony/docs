@@ -28,7 +28,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| displayId    | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
+| displayId    | number                    | 是   | 屏幕id，该参数仅支持整数输入。该参数大于等于0。 |
 
 **返回值：**
 

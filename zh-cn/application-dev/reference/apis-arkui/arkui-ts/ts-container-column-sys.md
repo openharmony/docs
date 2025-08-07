@@ -1,4 +1,9 @@
 # Column (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 沿垂直方向布局的容器。
 

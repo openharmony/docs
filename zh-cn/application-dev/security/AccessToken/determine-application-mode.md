@@ -6,14 +6,14 @@
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->
 
-应用在访问数据或者执行操作时，需要评估该行为是否需要应用具备相关的权限。如果确认需要目标权限，则需要在应用安装包中申请目标权限。
+应用访问数据或执行操作时，需评估是否需要相关权限。如需权限，应在应用安装包中申请。
 
-每一个权限的权限等级、授权方式不同，申请权限的方式也不同，开发者在申请权限前，需要：
+每个权限的等级和授权方式不同，因此申请权限的方式也不同。申请权限前，开发者需要：
 
-1. 确认目标权限的**权限类型**。可通过在对应的权限列表页面中检索确认。
-2. 参考对应的操作路径，申请权限。
+1. 确认目标权限的**权限类型**，可通过权限列表页面检索确认。
+2. 参考操作路径，申请相应的权限。
 
-应用可根据目标权限的开放范围、授权方式，参考以下操作路径申请对应权限。
+根据目标权限的开放范围和授权方式，开发者可以参考以下操作路径申请权限。
 
 ## <!--Del-->normal等级<!--DelEnd-->应用申请权限的方式
 
@@ -39,11 +39,11 @@
 | system_core | system_grant | true | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; 访问接口 | 
 | system_core | user_grant | true | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
 
-如果应用需要将自身的APL等级声明为system_basic及以上，在开发应用安装包时，需要修改应用的HarmonyAppProvision配置文件即SDK目录下的“`Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json`”文件，并重新进行应用签名。
+如果应用需要将自身的APL等级声明为system_basic及以上，在开发应用安装包时，需要修改应用的HarmonyAppProvision配置文件，即SDK目录下的“`Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json`”文件，并重新进行应用签名。
 
-**修改方式：**
+**修改方式如下：**
 
-HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "apl" 字段。
+HarmonyAppProvision配置文件示例如下所示，修改"bundle-info"中的"apl" 字段。
 
 ```json
 "bundle-info" : {
@@ -54,6 +54,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 ```
 
 > **说明：**
-> 直接修改HarmonyAppProvision配置文件的方式，仅用于应用调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
+>
+> 直接修改HarmonyAppProvision配置文件仅限应用调试阶段，不可用于发布上架应用市场。商用版本应用需在对应应用市场申请发布证书和Profile文件。
 
 <!--DelEnd-->

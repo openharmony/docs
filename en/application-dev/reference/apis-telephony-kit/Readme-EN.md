@@ -20,13 +20,12 @@
     <!--DelEnd-->
 - C API<!--telephony-c-->
   - Modules<!--telephony-module-->
-    - [Telephony Data](ndk-apis-telephony-data.md)
-    - [Telephony Radio](ndk-apis-telephony-radio.md)
+    - [Telephony](capi-telephony.md)
   - Header Files<!--telephony-headerfile-->
-    - [telephony_data.h](telephony__data_8h.md)
-    - [telephony_radio.h](telephony__radio_8h.md)
-    - [telephony_radio_type.h](telephony__radio__type_8h.md)
+    - [telephony_data.h](capi-telephony-data-h.md)
+    - [telephony_radio.h](capi-telephony-radio-h.md)
+    - [telephony_radio_type.h](capi-telephony-radio-type-h.md)
   - Structs<!--telephony-struct-->
-    - [Telephony_NetworkState](_telephony__network_state.md)
+    - [Telephony_NetworkState](capi-telephony-telephony-networkstate.md)
 - Error Codes<!--telephony-arkts-errcode-->
   - [Telephony Error Codes](errorcode-telephony.md)

@@ -1,4 +1,9 @@
 # @ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对当前应用前后台变化监听回调的能力。
 

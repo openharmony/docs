@@ -1,7 +1,7 @@
 # 使用Node-API接口进行生命周期相关开发
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -261,7 +261,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     uint32_t result = 0;
     napi_value count = nullptr;
     napi_reference_unref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_ref, count = %{public}d.", result);
+    OH_LOG_INFO(LOG_APP, "napi_reference_unref, count = %{public}d.", result);
     if (result != 1) {
         // 若传入引用的引用计数未减少，则抛出错误
         napi_throw_error(env, nullptr, "napi_reference_unref fail");

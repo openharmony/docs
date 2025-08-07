@@ -1,4 +1,9 @@
 # UI调优
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--SE: @lushi871202-->
+<!--TSE: @sally__-->
 
 本章节主要介绍UI的dump和调优能力，用于提高开发效率和优化开发者体验。
 
@@ -236,7 +241,7 @@ DevEco Studio的ArkUI Inspector可以显示当前页面自定义组件内的状�
 
 ## Trace调试能力
 
-ArkUI内部针对关键的UI处理流程添加了trace信息，帮助开发者通过trace工具观测应用的UI耗时，辅助定位问题。详细Trace说明及案例参考：<!--RP1-->[常用Trace使用指导](../performance/common-trace-using-instructions.md)<!--RP1End-->。
+ArkUI内部针对关键的UI处理流程添加了Trace信息，帮助开发者通过Trace工具观测应用的UI耗时，辅助定位问题。详细Trace说明及案例参考：<!--RP1-->[常用Trace使用指导](../performance/common-trace-using-instructions.md)<!--RP1End-->。
 
 ## Inspector调试能力
 

@@ -8116,10 +8116,10 @@ getColumnIndex(columnName: string): number
 
 ```ts
 if (resultSet != undefined) {
-  const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
 }
 ```
 
@@ -8773,7 +8773,7 @@ getString(columnIndex: number): string
 
 ```ts
 if (resultSet != undefined) {
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 }
 ```
 
@@ -10228,7 +10228,7 @@ predicates.equalTo("NAME", "Lisa");
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.delete(predicates).then((rows: Number) => {
+    transaction.delete(predicates).then((rows: number) => {
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     }).catch((e: BusinessError) => {
@@ -10292,7 +10292,7 @@ predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
-      let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
+      let rows: number = (transaction as relationalStore.Transaction).deleteSync(predicates);
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     } catch (e) {

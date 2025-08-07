@@ -1,11 +1,11 @@
 # 全局配置项功能场景
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
-对于需要使用进程单例的场景，例如不同并发实例间需要数据保持一致的全局配置项功能，可以采用共享模块来实现。
+对于需要使用进程单例的场景，例如不同并发实例间需要数据保持一致的全局配置项功能，可以采用[共享模块](arkts-sendable-module.md)来实现。
 
 以下示例展示了只有在Wi-Fi打开且用户登录的情况下才能进行下载的功能，具体步骤如下。
 

@@ -481,3 +481,20 @@ Allows an application to call Trusted Platform Module(TPM) commands.
 **Supported devices**: PC/2in1
 
 **Valid since**：20
+
+## ohos.permission.ENTERPRISE_WORKSPACES_EVENT_SUBSCRIBE
+
+Allows an enterprise application to subscribe to events related to the enterprise workspace.
+
+With this permission, the application can call spaceManager.subscribeEvent or spaceManager.unsubscribeEvent to subscribe to or unsubscribe from events related to the enterprise workspace.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20

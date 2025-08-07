@@ -1,4 +1,9 @@
 # PinchGesture
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 用于触发捏合手势，触发捏合手势的最少手指为2指，最大为5指，最小识别距离为5vp。
 

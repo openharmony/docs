@@ -1,4 +1,9 @@
 # 线性布局 (Row/Column)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 
 ## 概述

@@ -1,4 +1,9 @@
 # @ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)<sup>(deprecated)</sup>
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--SE: @stupidb-->
+<!--TSE: @qinliwen0417-->
 
 WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示的内容可作为一个控件（AbilityComponent）内容展示在其他应用窗口中。
 
@@ -22,9 +27,9 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                      |
+| 名称      | 类型 | 只读 | 可选 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 是   | 否   | 上下文。<br>- **说明：** 从API version 20开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。<br/>      |
+| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。<br>- **说明：** 从API version 20开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。<br/>      |
 
 ## WindowExtensionAbility.onConnect<sup>(deprecated)</sup>
 

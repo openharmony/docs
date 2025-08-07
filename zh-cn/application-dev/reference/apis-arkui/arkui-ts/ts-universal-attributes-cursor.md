@@ -1,4 +1,9 @@
 # 鼠标光标控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 控制鼠标光标的显示样式。
 

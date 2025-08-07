@@ -1,4 +1,9 @@
 # ColumnSplit
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 将子组件纵向布局，并在每个子组件之间插入横向分割线。
 

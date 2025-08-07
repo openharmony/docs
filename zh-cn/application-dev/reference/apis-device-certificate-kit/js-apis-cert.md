@@ -23,24 +23,22 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
  表示执行结果的枚举。
 
- **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
  **系统能力：** SystemCapability.Security.Cert
 
 | 名称                                  | 值   | 说明                          |
 | --------------------------------------| -------- | -----------------------------|
-| INVALID_PARAMS                        | 401      | 非法入参。                    |
-| NOT_SUPPORT                           | 801      | 操作不支持。                  |
-| ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。                    |
-| ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。              |
+| INVALID_PARAMS                        | 401      | 非法入参。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| NOT_SUPPORT                           | 801      | 操作不支持。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。   <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>             | 19020003 | 参数检查失败。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。               |
-| ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。       |
-| ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。            |
-| ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。                |
-| ERR_CERT_HAS_EXPIRED                  | 19030004 | 证书过期。                   |
-| ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
-| ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
-| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
+| ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。  <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
+| ERR_CERT_HAS_EXPIRED                  | 19030004 | 证书过期。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## DataBlob
@@ -245,10 +243,10 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
-| name | Uint8Array    | 否  |  指定具体的证书主体DER格式内容。  |
+| 名称           | 类型                              | 只读 | 可选 |说明               |
+| -------------- | --------------------------------- | ---- |  ---- |------------------ |
+| type | [GeneralNameType](#generalname12)    | 否 | 否 | 指定具体的证书主体类型。  |
+| name | Uint8Array    | 否  |  是 |指定具体的证书主体DER格式内容。  |
 
 ## X509CertMatchParameters<sup>11+</sup>
 
@@ -258,25 +256,25 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
-| validDate | string    | 否  |  指定证书有效期。  |
-| issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。true为需要，false为不需要。 |
-| serialNumber | bigint    | 否  |  指定证书的序列号。  |
-| subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
-| publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
-| publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
-| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。true为需要，false为不需要。 |
-| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
-| minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
-| extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
-| nameConstraints<sup>12+</sup> | Uint8Array | 否  | 指定证书的使用者名称。 |
-| certPolicy<sup>12+</sup> | Array\<string> | 否  | 指定证书策略。 |
-| privateKeyValid<sup>12+</sup> | string | 否  | 指定证书私钥有效期。 |
-| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书公钥。 |
+| 名称           | 类型                              | 只读 | 可选 | 说明               |
+| -------------- | --------------------------------- | ---- | ---- |------------------ |
+| x509Cert | [X509Cert](#x509cert)    | 否 | 是 | 指定具体的证书对象。  |
+| validDate | string    | 否  |  是 |指定证书有效期。  |
+| issuer | Uint8Array | 否  | 是 |指定证书颁发者，为DER编码格式。 |
+| keyUsage | Array\<boolean> | 否  | 是 |指定是否需要匹配密钥用途。true为需要，false为不需要。 |
+| serialNumber | bigint    | 否  |  是 |指定证书的序列号。  |
+| subject | Uint8Array | 否  | 是 |指定证书主题，DER编码格式。 |
+| publicKey | [DataBlob](#datablob) | 否  | 是 |指定证书公钥，DER编码格式。 |
+| publicKeyAlgID | string | 否  | 是 |指定证书公钥的算法。 |
+| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 是 |指定证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 是 |指定是否需要匹配证书主体名称。true为需要，false为不需要。 |
+| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书颁发机构秘钥。 |
+| minPathLenConstraint<sup>12+</sup> | number | 否  | 是 |指定证书CA路径长度。 |
+| extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 是 |指定证书扩展用途。 |
+| nameConstraints<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书的使用者名称。 |
+| certPolicy<sup>12+</sup> | Array\<string> | 否  | 是 |指定证书策略。 |
+| privateKeyValid<sup>12+</sup> | string | 否  | 是 |指定证书私钥有效期。 |
+| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书公钥。 |
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
@@ -286,13 +284,13 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
-| x509Cert | [X509Cert](#x509cert) | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
-| updateDateTime<sup>12+</sup> | string | 否  | 指定证书更新时间。 |
-| maxCRL<sup>12+</sup> | bigint | 否  | 指定CRL个数最大值。 |
-| minCRL<sup>12+</sup> | bigint | 否  | 指定CRL个数最小值。 |
+| 名称           | 类型                              | 只读 | 可选 |说明               |
+| -------------- | --------------------------------- | ---- | ---- | ------------------ |
+| issuer | Array\<Uint8Array> | 否  | 是  |指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
+| x509Cert | [X509Cert](#x509cert) | 否  | 是  |指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
+| updateDateTime<sup>12+</sup> | string | 否  | 是  |指定证书更新时间。 |
+| maxCRL<sup>12+</sup> | bigint | 否  | 是  |指定CRL个数最大值。 |
+| minCRL<sup>12+</sup> | bigint | 否  | 是  |指定CRL个数最小值。 |
 
 ## CertChainBuildParameters<sup>12+</sup>
 
@@ -302,11 +300,11 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
-| maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
-| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
+| 名称           | 类型                              | 只读 | 可选 |说明               |
+| -------------- | --------------------------------- | ---- | ---- | ------------------ |
+| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 否  | 否  |指定过滤条件。 |
+| maxLength | number | 否  | 是  |指定最终证书链中CA证书的最大长度。 |
+| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | 否 | 否 |指定验证条件。 |
 
 ## CertChainBuildResult<sup>12+</sup>
 
@@ -316,10 +314,10 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
-| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  | 指定最终证书链的最大长度。 |
+| 名称           | 类型                              | 只读 | 可选 |说明               |
+| -------------- | --------------------------------- | ---- | ---- |------------------ |
+| certChain | [X509CertChain](#x509certchain11) | 是  | 否  |生成的证书链对象。 |
+| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  |  否  |指定最终证书链的最大长度。 |
 
 ## X509TrustAnchor<sup>11+</sup>
 
@@ -392,34 +390,32 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
-| ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
-| ocspResponderCert | [X509Cert](#x509cert)  | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
-| ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
-| crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
-| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | 否   | 表示证书吊销状态查询的策略组合。 |
-| ocspDigest | string | 否   | 表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
+| 名称         | 类型                                              | 只读 | 可选 |说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
+| ocspRequestExtension | Array\<Uint8Array> | 否   | 是   |表示发送OCSP请求的扩展字段。|
+| ocspResponderURI | string | 否   | 是   |表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
+| ocspResponderCert | [X509Cert](#x509cert)  | 否   | 是   |表示用于OCSP响应的签名校验的签名证书。 |
+| ocspResponses | Uint8Array | 否   | 是   |表示用于OCSP服务器响应的备选数据。 |
+| crlDownloadURI | string | 否   | 是   |表示用于CRL请求的备选下载地址。 |
+| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | 否   | 是   |表示证书吊销状态查询的策略组合。 |
+| ocspDigest | string | 否   | 是   |表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
 
 ## CertChainValidationParameters<sup>11+</sup>
 
 表示证书链校验的参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| date         | string                                            | 否   | 表示需要校验证书的有效期。             |
-| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
-| trustSystemCa<sup>20+</sup>| boolean | 否   | 表示需要使用系统预置CA证书校验证书链。 |
-| certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 表示需要校验证书是否在证书吊销列表中。 |
-| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
-| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |
-| sslHostname<sup>12+</sup> | string | 否   | 表示需要校验证书中主机名，与policy配合使用。 |
-| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 表示需要校验证书中的密钥用途。 |
+| 名称         | 类型                                              | 只读 | 可选 |说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
+| date         | string                                            | 否   | 是  |表示需要校验证书的有效期。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
+| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 否   | 否   |表示信任锚列表。  <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| trustSystemCa<sup>20+</sup>| boolean | 否   | 是  |表示需要使用系统预置CA证书校验证书链。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 是  |表示需要校验证书是否在证书吊销列表中。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 是  |表示需要在线校验证证书吊销状态的参数对象。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 是  |表示需要校验证书的策略类型。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| sslHostname<sup>12+</sup> | string | 否   | 是  |表示需要校验证书中主机名，与policy配合使用。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 是  |表示需要校验证书中的密钥用途。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## CertChainValidationResult<sup>11+</sup>
@@ -456,11 +452,11 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| privateKey   | string \| Uint8Array                              | 否   | 表示P12文件解析后的私钥。             |
-| cert         | [X509Cert](#x509cert)                             | 否   | 表示P12文件解析后的证书。                       |
-| otherCerts   | Array\<[X509Cert](#x509cert)>                     | 否   | 表示P12文件解析后的其他证书合集。 |
+| 名称         | 类型                                              | 只读 | 可选 |说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
+| privateKey   | string \| Uint8Array                              | 否   | 是   |表示P12文件解析后的私钥。             |
+| cert         | [X509Cert](#x509cert)                             | 否   | 是   |表示P12文件解析后的证书。                       |
+| otherCerts   | Array\<[X509Cert](#x509cert)>                     | 否   | 是   |表示P12文件解析后的其他证书合集。 |
 
 ## Pkcs12ParsingConfig<sup>18+</sup>
 
@@ -470,13 +466,13 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| password     | string                                            | 是   | 表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
-| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。true为获取，false为不获取。 |
-| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
+| 名称         | 类型                                              |    只读   | 可选 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
+| password     | string                                            | 否   | 否   |表示P12文件的密码。             |
+| needsPrivateKey  | boolean                                       | 否   | 是   |表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 是   |表示获取私钥的格式。默认为PEM。 |
+| needsCert    | boolean                                           | 否   | 是   |表示是否获取证书。默认为true。true为获取，false为不获取。 |
+| needsOtherCerts  | boolean                                       | 否   | 是   |表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
 
 ## CmsContentType<sup>18+</sup>
 
@@ -524,10 +520,10 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| key          | string \| Uint8Array                     | 是   | 未加密或加密的私钥，支持PEM或DER格式。 |
-| password     | string                                  | 否   | 私钥的密码，如果私钥是加密的。         |
+| 名称         | 类型                                              | 只读 | 可选 |说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- | -------------------------------------- |
+| key          | string \| Uint8Array                     | 否   | 否   |未加密或加密的私钥，支持PEM或DER格式。 |
+| password     | string                                  | 否   | 是  |私钥的密码，如果私钥是加密的。         |
 
 ## CmsSignerConfig<sup>18+</sup>
 
@@ -537,12 +533,12 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                                  | 必填 | 说明                                   |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| mdName                | string              | 是   | 消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
-| addCert               | boolean            | 否   | 是否添加证书。默认为true。true为需要，false为不需要。                             |
-| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。true为需要，false为不需要。           |
-| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。true为需要，false为不需要。            |
+| 名称         | 类型                                                  |  只读  |  可选  |说明                                   |
+| ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
+| mdName                | string             | 否  | 否  |消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
+| addCert               | boolean            | 否   | 是  |是否添加证书。默认为true。true为需要，false为不需要。                             |
+| addAttr               | boolean            | 否   | 是 |是否添加签名属性。默认为true。true为需要，false为不需要。           |
+| addSmimeCapAttr       | boolean            | 否   | 是  |是否将SMIME能力添加到Cms对象。默认为true。true为需要，false为不需要。            |
 
 ## CmsGeneratorOptions<sup>18+</sup>
 
@@ -552,11 +548,11 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称                  | 类型                          | 必填 | 说明                                                   |
-| --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
-| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
-| outFormat             | [CmsFormat](#cmsformat18)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
-| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。true为包含，false为不包含。         |
+| 名称                  | 类型                          | 只读 | 可选 |说明                                                   |
+| --------------------- | ----------------------------- | ---- | ---- |------------------------------------------------------ |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 是   |内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
+| outFormat             | [CmsFormat](#cmsformat18)                          | 否   |是   | Cms最终数据的输出格式。默认为DER。         |
+| isDetached     | boolean                            | 否   |是   | Cms最终数据是否不包含原始数据。默认为false。true为包含，false为不包含。         |
 
 ## cert.createX509Cert
 
@@ -10327,7 +10323,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| [CertChainBuildResult](#certchainbuildresult12) | 表示X509证书链对象。 |
+| Promise\<[CertChainBuildResult](#certchainbuildresult12)> | 表示X509证书链对象。 |
 
 **错误码：**
 
@@ -10680,7 +10676,7 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Array\<[X509TrustAnchor](#x509trustanchor11)> | 表示X509TrustAnchor对象数组。 |
+| Promise\<Array\<[X509TrustAnchor](#x509trustanchor11)>> | 表示X509TrustAnchor对象数组。 |
 
 **错误码：**
 

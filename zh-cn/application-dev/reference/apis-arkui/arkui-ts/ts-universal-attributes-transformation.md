@@ -1,4 +1,9 @@
 # 图形变换
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 用于对组件进行旋转、平移、缩放、矩阵变换等操作。
 

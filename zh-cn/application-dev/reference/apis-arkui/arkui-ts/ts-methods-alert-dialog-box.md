@@ -709,3 +709,100 @@ struct Example2 {
 ```
 
 ![zh-cn_image_alert_lifecycle](figures/zh-cn_image_alert_lifecycle.gif)
+
+### 示例7（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#alertdialogparam对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("AlertDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showAlertDialog({
+              title: 'AlertDialog Title',
+              message: 'AlertDialog Text',
+              primaryButton: {
+                value: '确定',
+                action: () => {
+                  console.info('primaryButton');
+                }
+              },
+              secondaryButton: {
+                value: '取消',
+                action: () => {
+                  console.info('secondaryButton');
+                }
+              },
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_alert_backgroundBlurStyleOptions](figures/zh-cn_image_alert_backgroundBlurStyleOptions.png)
+
+### 示例8（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#alertdialogparam对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("AlertDialog")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showAlertDialog({
+              title: 'AlertDialog Title',
+              message: 'AlertDialog Text',
+              primaryButton: {
+                value: '确定',
+                action: () => {
+                  console.info('primaryButton');
+                }
+              },
+              secondaryButton: {
+                value: '取消',
+                action: () => {
+                  console.info('secondaryButton');
+                }
+              },
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_alert_backgroundEffect](figures/zh-cn_image_alert_backgroundEffect.png)

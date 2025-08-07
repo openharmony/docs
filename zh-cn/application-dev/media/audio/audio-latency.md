@@ -1,4 +1,9 @@
 # 音频时延管理
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 音频时延指从用户触发点击到声音从设备播放所经过的时间。
 

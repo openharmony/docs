@@ -1,7 +1,7 @@
 # 使用Node-API接口创建基本数据类型
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -56,7 +56,7 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
     // 获取传入参数的值中的无符号32位整数
     napi_status status = napi_get_value_uint32(env, argv[0], &number);
     // 如果传递的参数不是数字,将会返回napi_number_expected，设置函数返回nullptr
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     napi_value result = nullptr;
@@ -71,7 +71,7 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueUint32: <T>(data: T) => number | void;
+export const getValueUint32: <T>(data: T) => number | undefined;
 ```
 <!-- @[napi_get_value_uint32_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -110,7 +110,7 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
     // 将前端传过来的参数转为Node-API模块的int32类型
     napi_status status = napi_get_value_int32(env, args[0], &result32);
     // 如果传递的参数不是数字napi_get_value_int32接口将会返回napi_number_expected，设置函数返回nullptr
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     // 调用napi_create_int32接口将int32类型的数据转为napi_value返回
@@ -125,7 +125,7 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueInt32: (value: number | string) => number | void;
+export const getValueInt32: (value: number | string) => number | undefined;
 ```
 <!-- @[napi_get_value_int32_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -169,7 +169,7 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
     // 将前端传过来的参数转为Node-API模块的int64类型
     napi_status status = napi_get_value_int64(env, args[0], &result64);
     // 如果传递的参数不是数字, 返回napi_number_expected.
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     // 调用napi_create_int64接口将int64类型的数据转为napi_value返回前端
@@ -184,7 +184,7 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueInt64: (value: number | string) => number | void;
+export const getValueInt64: (value: number | string) => number | undefined;
 ```
 <!-- @[napi_get_value_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -224,7 +224,7 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
     double value = 0;
     napi_status status = napi_get_value_double(env, args[0], &value);
     // 传入非数字接口返回napi_number_expected
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     napi_value result = nullptr;
@@ -238,7 +238,7 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getDouble: (value: number | string) => number | void;
+export const getDouble: (value: number | string) => number | undefined;
 ```
 <!-- @[napi_get_value_double_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
