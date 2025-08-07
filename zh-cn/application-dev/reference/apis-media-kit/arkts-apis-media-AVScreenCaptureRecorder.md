@@ -35,6 +35,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
@@ -45,7 +46,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 public getFileFd(): number {
     let filesDir = '/data/storage/el2/base/haps';
@@ -79,10 +80,11 @@ startRecording(): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | 异步开始录屏方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -116,6 +118,7 @@ stopRecording(): Promise\<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -152,10 +155,11 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | 豁免隐私窗口的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -196,6 +200,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -229,6 +234,7 @@ release(): Promise\<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -286,6 +292,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 201      | permission denied.     |

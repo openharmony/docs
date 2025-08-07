@@ -1,4 +1,9 @@
 # @ohos.multimedia.media (媒体服务)(系统接口)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
+<!--TSE: @xdlinc-->
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
@@ -150,8 +155,8 @@ try {
     choice: 'true',  // 替换成用户的选择内容。
     displayId: -1,   // 替换成用户选择的屏幕Id。
     missionId: -1,   // 替换成用户选择的窗口Id。
-    checkBoxSelected: 'true',   // 替换成用户是否开启屏幕保护
-    isInnerAudioBoxSelected: 'true',   // 替换成用户是否开启内部音频录制
+    checkBoxSelected: 'true',   // 替换成用户是否开启屏幕保护。
+    isInnerAudioBoxSelected: 'true',   // 替换成用户是否开启内部音频录制。
   }
   await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
