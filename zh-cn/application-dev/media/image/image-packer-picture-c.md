@@ -93,7 +93,7 @@ static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
     }
     uint32_t fd = 0;
     napi_get_value_uint32(env, args[0], &fd);
-    size_t outDataSize = 1024;
+    size_t outDataSize = 10000 * 10000;
     uint8_t *outData = new uint8_t[outDataSize];
 
     if (thisPicture->packerOptions == nullptr) {
