@@ -16,6 +16,7 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | 名称 | 描述 |
 | -- | -- |
 | [condition_variable.h](capi-condition-variable-h.md) | 声明条件变量的C接口。 |
+| [fiber.h](capi-fiber-h.md) | 纤程是一种轻量级的用户态线程，用于在用户空间内实现高效的任务调度和上下文切换，此为声明纤程的C接口。 |
 | [loop.h](capi-loop-h.md) | 声明循环的C接口。 |
 | [mutex.h](capi-mutex-h.md) | 声明mutex的C接口。 |
 | [queue.h](capi-queue-h.md) | 声明队列的C接口。 |
