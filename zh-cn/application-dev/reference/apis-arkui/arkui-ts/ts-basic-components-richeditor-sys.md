@@ -76,7 +76,7 @@ struct RichEditorExample {
 ```
 
 ### 示例2（设置自定义布局拖拽背板及拖拽投影配置）
-从API version 18开始，该示例通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
+从API version 18开始，该示例通过使用addBuilderSpan接口中的[dragBackgroundColor](#richeditorbuilderspanoptions11)和[isDragShadowNeeded](#richeditorbuilderspanoptions11)在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
 
 ```ts
 // xxx.ets
