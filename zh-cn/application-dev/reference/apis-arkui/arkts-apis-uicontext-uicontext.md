@@ -3416,3 +3416,58 @@ export default class EntryAbility extends UIAbility{
 }
 ```
 
+## setResourceManagerCacheMaxCountForHSP<sup>21+</sup>
+
+static setResourceManagerCacheMaxCountForHSP(count: number): void
+
+设置HSP资源管理对象缓存个数上限。
+
+>  **说明：**
+>
+> 如果缓存上限设置的太大，有内存开销过大的风险，建议合理配置。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| count | number | 是    | 设置的资源缓存数量，取值范围为非负整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[UI上下文](errorcode-uicontext.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100101 | The parameter value cannot be less than 0. |
+| 100102 | The parameter value cannot be a floating-point number. |
+| 100103 | The function cannot be called from a non-main thread. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      UIContext.setResourceManagerCacheMaxCountForHSP(5);
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+}
+```
+
