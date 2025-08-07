@@ -1,5 +1,9 @@
 # 分布式相机开发指南
-
+<!--Kit: DistributedService Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hobbycao-->
+<!--SE: @saga_2025-->
+<!--TSE: @wei-guoqing1-->
 
 ## 简介
 
