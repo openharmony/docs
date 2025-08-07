@@ -2,7 +2,7 @@
 
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
-<!--Owner: @liuleiminhw-->
+<!--Owner: @k_lee9575-->
 <!--SE: @guo-min_net-->
 <!--TSE: @tongxilin-->
 
