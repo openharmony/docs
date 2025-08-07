@@ -1,4 +1,9 @@
 # Camera Kit（相机服务）
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 - [Camera Kit简介](camera-overview.md)
 - [申请相机开发的权限](camera-preparation.md)
