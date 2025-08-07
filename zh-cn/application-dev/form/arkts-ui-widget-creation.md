@@ -67,7 +67,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 ![WidgetCreateProject](figures/创建应用工程.png)
 >**说明：** 
 >
-> 基于不同版本的DevEco Studio，请以实际界面为准。
+> 基于不同版本的DevEco Studio，请以实际界面为准。<br>
 **2. 新建卡片包**<br>
 - 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。<br>
 ![WidgetProjectCreate2](figures/独立包卡片创建_1.png)
