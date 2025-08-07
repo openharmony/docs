@@ -240,7 +240,7 @@
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (应用管理)](js-apis-system-package.md)
-    - ability<!--fa-model-ability-->
+    - ability<!--ability-deprecated-->
       - [want](js-apis-inner-ability-want.md)
     - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
