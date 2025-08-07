@@ -127,6 +127,20 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions): T
 | onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。<br />**说明：**<br />不允许在onWillDisappear函数中修改状态变量，可能会导致组件行为不稳定。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onDisappear     | () => void                                 | 否   | 半模态页面回退（动画结束后）回调函数。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
+## ModalTransition
+
+全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值 | 说明           |
+| ------- | ---- | -------- |
+| NONE    | - | 全屏模态无转场动画。   |
+| DEFAULT | - | 全屏模态上下切换动画。  |
+| ALPHA   | - | 全屏模态透明度渐变动画。 |
+
 ## SheetType<sup>11+</sup>枚举说明
 
 半模态弹窗的样式。
