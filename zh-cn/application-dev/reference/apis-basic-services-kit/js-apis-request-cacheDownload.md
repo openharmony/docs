@@ -1,4 +1,9 @@
 # @ohos.request.cacheDownload (缓存下载)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--SE: @hu-kai45-->
+<!--TSE: @murphy1984-->
 
 request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 
@@ -44,10 +49,9 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
-| 名称         | 类型       | 只读 | 可选 | 说明                                 |
-|------------|----------|----|----|------------------------------------|
-| ip         | string   | 是  | 否  | 下载资源时指定url的ip地址。当前暂不支持获取ip，值固定为空串。 |
-| dnsServers | string[] | 是  | 否  | 下载资源时使用的dns服务列表。                   |
+| 名称         | 类型       | 只读 | 可选 | 说明                |
+|------------|----------|----|----|-------------------|
+| dnsServers | string[] | 是  | 否  | 下载资源时使用的DNS服务器列表。 |
 
 ## PerformanceInfo<sup>20+</sup>
 
