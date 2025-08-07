@@ -1,4 +1,4 @@
-# @ohos.multimodalawareness.userStatus (用户感知)
+# @ohos.multimodalAwareness.userStatus (用户状态感知)
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
@@ -48,6 +48,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 订阅年龄群组检测功能。
 
 订阅成功后，可以获取用户年龄群组的分类结果，应用可根据此结果做相应的内容推荐。
+
+此功能如果设备不支持，将返回801错误码。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
