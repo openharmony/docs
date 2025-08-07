@@ -107,7 +107,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
     void OH_FileUri_IsValidUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
-        bool falgs = OH_FileUri_IsValidUri(uri, length);
+        bool flags = OH_FileUri_IsValidUri(uri, length);
         printf("The URI is valid? flags=%d", flags);
     }
    ```
