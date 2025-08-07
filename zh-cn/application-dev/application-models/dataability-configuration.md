@@ -1,4 +1,9 @@
 # DataAbility组件配置
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 
 ## URI介绍

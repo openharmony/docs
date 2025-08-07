@@ -1,4 +1,9 @@
 # 创建Native子进程（C/C++）
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 本模块提供了两种创建子进程的方式，开发者可根据需要进行选择。
 - [创建支持IPC回调的子进程](#创建支持ipc回调的子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。
@@ -15,7 +20,7 @@
 
 | 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| int [OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_createnativechildprocess) (const char *libName, [OH_Ability_OnNativeChildProcessStarted](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+| int [OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_createnativechildprocess) (const char *libName, [OH_Ability_OnNativeChildProcessStarted](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
 
 > **说明：**
 >
@@ -152,7 +157,7 @@ libchild_process.so
 
 | 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [Ability_NativeChildProcess_ErrCode](../reference/apis-ability-kit/c-apis-ability-childprocess.md#ability_nativechildprocess_errcode) [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess) (const char \*entry, [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args) args, [NativeChildProcess_Options](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_options) options, int32_t *pid) | 启动子进程并返回子进程pid。 |
+| [Ability_NativeChildProcess_ErrCode](../reference/apis-ability-kit/capi-native-child-process-h.md#ability_nativechildprocess_errcode) [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess) (const char \*entry, [NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md) args, [NativeChildProcess_Options](../reference/apis-ability-kit/capi-nativechildprocess-options.md) options, int32_t *pid) | 启动子进程并返回子进程pid。 |
 
 ### 开发步骤
 
@@ -171,7 +176,7 @@ libchild_process.so
 
 1. 子进程-实现必要的导出方法。
 
-    在子进程中，实现参数为[NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)入口函数并导出（假设代码所在的文件名为ChildProcessSample.cpp）。子进程启动后会调用该入口函数，该函数返回后子进程随即退出。
+    在子进程中，实现参数为[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)入口函数并导出（假设代码所在的文件名为ChildProcessSample.cpp）。子进程启动后会调用该入口函数，该函数返回后子进程随即退出。
 
     ```c++
     #include <AbilityKit/native_child_process.h>
@@ -294,7 +299,7 @@ libchild_process.so
 
 | 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)() | 返回子进程自身的启动参数。 |
+| [NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_getcurrentchildprocessargs)() | 返回子进程自身的启动参数。 |
 
 ### 开发步骤
 
@@ -313,7 +318,7 @@ libchild_process.so
 
 **获取启动参数**
 
-[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)，便于操作相关的文件描述符。
+[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_getcurrentchildprocessargs)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)，便于操作相关的文件描述符。
 
 ```c++
 #include <AbilityKit/native_child_process.h>

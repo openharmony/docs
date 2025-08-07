@@ -1,4 +1,9 @@
 # Interface (AbsAlbum)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -88,6 +93,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取相册中的文件。该方法使用Promise来返回。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 

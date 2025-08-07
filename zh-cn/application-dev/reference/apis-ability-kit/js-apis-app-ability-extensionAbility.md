@@ -1,6 +1,17 @@
 # @ohos.app.ability.ExtensionAbility (扩展能力基类)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
-ExtensionAbility是特定场景扩展能力的基类，继承自[Ability](js-apis-app-ability-ability.md)，未新增属性和方法。不支持开发者直接继承该基类。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jsjzju-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
+
+ExtensionAbility是特定场景扩展能力的基类，继承自[Ability](js-apis-app-ability-ability.md)，未新增属性和方法。不支持开发者直接继承ExtensionAbility。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 

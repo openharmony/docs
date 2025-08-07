@@ -1,5 +1,9 @@
 # DLP Service Error Codes
-
+<!--Kit: Data Protection Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @winnieHuYu-->
+<!--SE: @lucky-jinduo-->
+<!--TSE: @nacyli-->
 
 > **NOTE**
 > 
@@ -9,7 +13,7 @@
 
 **Error Message**
 
-Invalid parameter.
+Invalid parameter value.
 
 **Description**
 
@@ -31,7 +35,7 @@ Invalid parameters are specified.
 
 7. The bundle name is empty.
 
-8. The value of **appindex** is less than **0**.
+8. The value of **appIndex** is less than **0**.
 
 9. The value of **userId** is less than **0**.
 
@@ -39,12 +43,12 @@ Invalid parameters are specified.
 
 Set parameters correctly.
 
-
+<!--Del-->
 ## 19100002 Encryption and Decryption Error
 
 **Error Message**
 
-Begin encryption or decryption error.
+Credential service busy due to too many tasks or duplicate tasks.
 
 **Description**
 
@@ -59,13 +63,14 @@ An error occurs in encryption or decryption.
 **Solution**
 
 Try again later.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100003 Encryption/Decryption Timeout
 
 **Error Message**
 
-Encryption or decryption timeout.
+Credential task time out.
 
 **Description**
 
@@ -78,8 +83,9 @@ It takes more than 10 seconds to encrypt or decrypt a DLP file.
 **Solution**
 
 Try again later.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100004 Credential Service Error
 
 **Error Message**
@@ -99,8 +105,9 @@ An error occurs in the credential service.
 **Solution**
 
 Wait for a while and try again, or restart the device.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100005 Credential Authentication Server Error
 
 **Error Message**
@@ -120,7 +127,7 @@ The credential authentication server is abnormal.
 **Solution**
 
 Check the credential authentication server and try again.
-
+<!--DelEnd-->
 
 ## 19100006 Access Denied for a Non-DLP Sandbox Application
 
@@ -140,7 +147,6 @@ The caller is not a DLP sandbox application.
 
 The caller must be a DLP sandbox application.
 
-
 ## 19100007 Access Denied for a DLP Sandbox Application
 
 **Error Message**
@@ -153,13 +159,13 @@ The caller cannot be a DLP sandbox application.
 
 **Possible Causes**
 
-The API cannot be called by a DLP sandbox application.
+The caller cannot be a DLP sandbox application.
 
 **Solution**
 
-The caller cannot be a DLP sandbox application.
+The caller must be a DLP sandbox application.
 
-
+<!--Del-->
 ## 19100008 Non-DLP File
 
 **Error Message**
@@ -177,8 +183,9 @@ The file is not a DLP file.
 **Solution**
 
 Use a DLP file.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100009 Failed to Operate the DLP File
 
 **Error Message**
@@ -204,8 +211,9 @@ The operation on the DLP file fails.
 1. Check that you are authorized to access the DLP file.
 
 2. Wait for a while or restart the system and try again.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100010 Read-Only DLP File
 
 **Error Message**
@@ -224,8 +232,8 @@ The DLP file is read-only.
 
 **Solution**
 
-1. Check the permission on the file.
-
+Check the permission on the file.
+<!--DelEnd-->
 
 ## 19100011 System Service Abnormal
 
@@ -245,7 +253,7 @@ The system service is abnormal.
 
 3. The service, on which the DLP permission service depends, fails to start.
 
-4. The IPC data fails to be read or written.
+4. The read or write of IPC data fails.
 
 5. The service is not initialized.
 
@@ -253,12 +261,11 @@ The system service is abnormal.
 
 Try again later or restart the device.
 
-
 ## 19100012 Failed to Apply for Memory
 
 **Error Message**
 
-Out of memory.
+System memory is insufficient.
 
 **Description**
 
@@ -272,7 +279,7 @@ The system memory is insufficient.
 
 Try again later or restart the device.
 
-
+<!--Del-->
 ## 19100013 User Access Denied
 
 **Error Message**
@@ -286,8 +293,9 @@ The user has no permission.
 **Solution**
 
 Check the user permissions.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100014 Account Not Logged In
 
 **Error Message**
@@ -301,13 +309,14 @@ You have not logged in with an account.
 **Solution**
 
 Log in using your account.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100015 Upgrade Required
 
 **Error Message**
 
-Upgrade required.
+The system needs to be upgraded.
 
 **Description**
 
@@ -316,13 +325,13 @@ The system needs to be upgraded.
 **Solution**
 
 Upgrade the system.
-
+<!--DelEnd-->
 
 ## 19100016 URI Missing in Want
 
 **Error Message**
 
-uri missing in want.
+The uri field is missing in the want parameter.
 
 **Description**
 
@@ -332,12 +341,11 @@ The **want** parameter does not contain the URI.
 
 Set parameters correctly.
 
-
 ## 19100017 displayName Missing in Want
 
 **Error Message**
 
-displayName missing in want.
+The displayName field is missing in the want parameter.
 
 **Description**
 
@@ -347,12 +355,11 @@ The **want** parameter does not contain **displayName**.
 
 Set parameters correctly.
 
-
 ## 19100018 Application Unauthorized
 
 **Error Message**
 
-Application not authorized.
+The application is not authorized.
 
 **Description**
 
@@ -366,7 +373,7 @@ The application is not in the authorized application list.
 
 Set the authorized application list.
 
-
+<!--Del-->
 ## 19100019 DLP File Has Expired
 
 **Error Message**
@@ -380,8 +387,9 @@ The DLP file has expired.
 **Solution**
 
 Contact the file owner to authorize the file.
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 19100020 Network Disconnected
 
 **Error Message**
@@ -395,3 +403,4 @@ The device is not connected to Wi-Fi.
 **Solution**
 
 Connect the device to Wi-Fi.
+<!--DelEnd-->

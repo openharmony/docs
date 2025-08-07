@@ -1,4 +1,11 @@
 # Connectivity Kit术语
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## A
 ### A2DP
 Advanced Audio Distribution Profile，即高级音频分发协议。支持传输高品质音频。例如：使用蓝牙耳机听音乐。
@@ -35,6 +42,9 @@ HID over GATT Profile，基于低功耗蓝牙的GATT协议实现的HID规范，�
 Message Access Profile，即消息访问协议。可用于实现蓝牙设备间的消息同步，支持短信、邮件等数据传输。
 ### MTU
 Maximum Transmission Unit，即最大传输单元。表示网络中单次传输的最大数据包大小，单位是字节。
+## O
+### OPP
+Object Push Profile，即对象推送协议。基于通用对象交换协议（Generic Object Exchange Profile，GOEP）构建，可用于实现设备间数据（如图片、文档等）传输。
 ## P
 ### PAN
 Personal Area Network，即蓝牙个人局域网协议。支持设备间网络共享。

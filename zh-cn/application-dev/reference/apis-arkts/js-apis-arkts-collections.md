@@ -698,7 +698,6 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -4014,8 +4013,8 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 

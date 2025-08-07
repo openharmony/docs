@@ -1,4 +1,9 @@
 # @ohos.file.picker (选择器)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 > **说明：**
 >

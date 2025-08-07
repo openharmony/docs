@@ -1,4 +1,9 @@
 # UIExtensionComponent (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。展示的内容在另外一个进程中运行，本应用并不参与其中的布局和渲染。
 

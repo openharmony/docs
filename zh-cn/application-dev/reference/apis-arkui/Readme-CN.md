@@ -1,4 +1,9 @@
 # ArkUI（方舟UI框架）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--TSE: @fredyuan912-->
 
 - ArkTS API<!--arkui-arkts-->
   - UI界面<!--ui-->
@@ -286,6 +291,7 @@
     - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
     - [ArcSlider](arkui-ts/ohos-arkui-advanced-ArcSlider.md)
+    - [选择器（Picker）公共接口](arkui-ts/ts-picker-common.md)
   - 文本与输入<!--text-and-input-->
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)

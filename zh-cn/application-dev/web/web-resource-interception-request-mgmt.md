@@ -1,6 +1,6 @@
 # 自定义页面请求响应
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->

@@ -1,4 +1,9 @@
 # 双路预览(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -47,7 +52,7 @@
       // 创建ImageReceiver对象。
       let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-      // 获取取第一路流SurfaceId。
+      // 获取第一路流SurfaceId。
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
     }
@@ -75,7 +80,7 @@
 
     > **说明：**
     >
-    > - 在通过[CreatePixelMap](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口创建[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)实例时，设置的Size、srcPixelFormat等属性必须和相机预览输出流previewProfile中配置的Size、Format属性保持一致，ImageRecevier图片像素格式请参考[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)，相机预览输出流previewProfile输出格式请参考[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)。
+    > - 在通过[createPixelMap](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口创建[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)实例时，设置的Size、srcPixelFormat等属性必须和相机预览输出流previewProfile中配置的Size、Format属性保持一致，ImageReceiver图片像素格式请参考[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)，相机预览输出流previewProfile输出格式请参考[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)。
     > - 由于一多设备产品差异性，应用开发者在创建相机预览输出流前，必须先通过[getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法获取当前设备支持的预览输出流previewProfile，再根据实际业务需求选择[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)和[Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size)适合的预览输出流previewProfile。
     > - ImageReceiver接收预览流图像数据实际format格式由应用开发者在创建预览输出流相机预览输出流时，根据实际业务需求选择的previewProfile中format格式参数影响，详细步骤请参考[创建预览流获取数据](camera-dual-channel-preview.md#创建预览流获取数据)。
 
@@ -175,7 +180,7 @@
 
 ### 用于显示画面的第二路预览流
 
-获取第二路预览流SurfaceId：创建XComponent组件用于预览流显示，获取surfaceId请参考XComponent组件提供的[getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)方法，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+获取第二路预览流SurfaceId：创建XComponent组件用于预览流显示，获取surfaceId请参考XComponent组件提供的[getXComponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)方法，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 ```ts
 @Component
@@ -299,7 +304,7 @@ struct Index {
       // 创建ImageReceiver。
       let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
       this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-      // 获取取第一路流SurfaceId。
+      // 获取第一路流SurfaceId。
       this.imageReceiverSurfaceId = await this.imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${this.imageReceiverSurfaceId}`);
       // 注册监听处理预览流每帧图像数据。

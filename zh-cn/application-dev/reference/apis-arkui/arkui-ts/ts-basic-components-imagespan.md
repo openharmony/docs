@@ -176,7 +176,7 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 ### 示例1（设置对齐方式）
 
-该示例通过verticalAlign、objectFit属性展示了ImageSpan的对齐方式以及缩放效果。
+从API version 10开始，该示例通过[verticalAlign](#verticalalign)、[objectFit](#objectfit)属性展示了ImageSpan组件的对齐方式以及缩放效果。
 
 ```ts
 // xxx.ets
@@ -227,7 +227,7 @@ struct SpanExample {
 
 ### 示例2（设置背景样式）
 
-该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+从API version 11开始，该示例通过[textBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -254,7 +254,7 @@ struct Index {
 
 ### 示例3（为图片添加事件）
 
-该示例通过onComplete、onError为图片添加加载成功和加载异常的事件。
+从API version 12开始，该示例通过[onComplete](#oncomplete12)、[onError](#onerror12)为图片添加加载成功和加载异常的事件。
 
 ```ts
 // xxx.ets
@@ -281,7 +281,7 @@ struct Index {
 ```
 ### 示例4（设置颜色滤镜）
 
-该示例通过colorFilter属性展示了给ImageSpan图像设置颜色滤镜的效果。
+从API version 14开始，该示例通过[colorFilter](#colorfilter14)属性展示了给ImageSpan图像设置颜色滤镜的效果。
 
 ```ts
 // xxx.ets
@@ -325,7 +325,7 @@ struct SpanExample {
 
 ### 示例5（设置加载占位图）
 
-该示例alt属性展示了ImageSpan设置加载网络图片时占位图的效果。
+从API version 12开始，该示例[alt](#alt12)属性展示了ImageSpan设置加载网络图片时占位图的效果。
 
 ```ts
 // xxx.ets

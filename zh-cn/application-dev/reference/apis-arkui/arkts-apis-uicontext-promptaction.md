@@ -1,4 +1,9 @@
 # Class (PromptAction)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 创建并显示文本提示框、对话框、操作菜单以及自定义弹窗。
 
