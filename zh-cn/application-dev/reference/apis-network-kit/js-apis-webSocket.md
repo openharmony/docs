@@ -1388,9 +1388,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let localServer = webSocket.createWebSocketServer();
-localServer.on('error', (err: BusinessError) => {
-  console.error(`error. Code: ${error.code}, message: ${error.message}`);
+let wsServer: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+wsServer.on('error', (err: BusinessError) => {
+  console.error(`error. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
