@@ -1,11 +1,10 @@
 # USB服务开发术语
 
-<!--Kit: USB Kit-->
+<!--Kit: Basic Services Kit-->
 <!--Subsystem: USB-->
 <!--Owner: @hwymlgitcode-->
-<!--Designer: @w00373942-->
-<!--Tester: @dong-dongzhen-->
-<!--Adviser: @w_Machine_cc-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## B
 
