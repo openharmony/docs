@@ -4327,6 +4327,12 @@ onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => vo
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { handler: Function, error: object }) => void | 是 | 当网页检测到SSL错误时触发的回调。 |
+
 ## onFileSelectorShow<sup>(deprecated)</sup>
 
 onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)

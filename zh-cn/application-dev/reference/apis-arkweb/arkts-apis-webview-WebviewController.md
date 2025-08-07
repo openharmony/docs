@@ -3453,7 +3453,7 @@ getFavicon(): image.PixelMap
 
 | 类型                                   | 说明                            |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 
@@ -9462,14 +9462,6 @@ static enablePrivateNetworkAccess(enable: boolean): void
 | 参数名   | 类型    | 必填 | 说明                                                     |
 | -------- | ------- | ---- | -------------------------------------------------------- |
 | enable | boolean | 是   | 是否启用私有网络访问检查功能开关。true表示启用，false表示禁用。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
