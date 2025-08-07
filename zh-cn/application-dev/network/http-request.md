@@ -1,10 +1,10 @@
 # 使用HTTP访问网络
 
-< ! - -Kit: Network Kit - ->
-< ! - -Subsystem: Communnication - ->
-< ! - -Owner: @liuleiminhw - ->
-< ! - -SE: @guo-min_net - ->
-< ! - -TSE: @tongxilin - ->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communnication-->
+<!--Owner: @liuleiminhw-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 场景介绍
 
