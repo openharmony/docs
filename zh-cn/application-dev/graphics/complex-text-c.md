@@ -97,7 +97,7 @@ OH_Drawing_DestroyTypography(typography);
 
 ```c++
 // 设置排版宽度
-double layoutWidth = 640;
+double layoutWidth = 800;
 // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
 OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
 
@@ -106,6 +106,8 @@ OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
 OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
 OH_Drawing_SetTextStyleFontSize(txtStyle, 50);
 OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
+// 当断词策略为WORD_BREAK_TYPE_BREAK_HYPHEN时，需要为段落设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
+// OH_Drawing_SetTextStyleLocale(txtStyle, "en-gb");
 
 // 设置文本内容
 const char *text =
@@ -119,66 +121,71 @@ const char *text =
 
 
 // 创建一个断词策略为 BREAK_ALL 的 TypographyStyle
-OH_Drawing_TypographyStyle *typoStyleBreakAll = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // 设置文本对齐方式为居中
-OH_Drawing_SetTypographyTextAlign(typoStyleBreakAll, TEXT_ALIGN_CENTER);
+OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
 // 设置断词策略为 WORD_BREAK_TYPE_BREAK_ALL
-OH_Drawing_SetTypographyTextWordBreakType(typoStyleBreakAll, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_ALL);
+OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_ALL);
 // 设置最大行数为 10，行数大于 10 的部分不显示
-OH_Drawing_SetTypographyTextMaxLines(typoStyleBreakAll, 10);
+OH_Drawing_SetTypographyTextMaxLines(typoStyle, 10);
 
 // 使用之前创建的 FontCollection 和 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-OH_Drawing_TypographyCreate *handlerBreakAll = OH_Drawing_CreateTypographyHandler(typoStyleBreakAll, fc);
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
 // 将之前创建的 TextStyle 加入 handler
-OH_Drawing_TypographyHandlerPushTextStyle(handlerBreakAll, txtStyle);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
 // 将文本添加到 handler 中
-OH_Drawing_TypographyHandlerAddText(handlerBreakAll, text);
+OH_Drawing_TypographyHandlerAddText(handler, text);
 
-OH_Drawing_Typography *typographyBreakAll = OH_Drawing_CreateTypography(handlerBreakAll);
-OH_Drawing_TypographyLayout(typographyBreakAll, layoutWidth);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, layoutWidth);
 // 设置文本在画布上绘制的起始位置
 double positionBreakAll[2] = {0, 0};
 // 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyBreakAll, canvas, positionBreakAll[0], positionBreakAll[1]);
-
+OH_Drawing_TypographyPaint(typography, canvas, positionBreakAll[0], positionBreakAll[1]);
 
 // 创建一个断词策略为 BREAK_WORD 的 TypographyStyle
-OH_Drawing_TypographyStyle *typoStyleBreakWord = OH_Drawing_CreateTypographyStyle();
-// 设置文本对齐方式为居中
-OH_Drawing_SetTypographyTextAlign(typoStyleBreakWord, TEXT_ALIGN_CENTER);
-// 设置断词策略为 WORD_BREAK_TYPE_BREAK_WORD
-OH_Drawing_SetTypographyTextWordBreakType(typoStyleBreakWord, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_WORD);
+// OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_WORD);
+// OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+// OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// OH_Drawing_TypographyHandlerAddText(handler, text);
+// OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+// OH_Drawing_TypographyLayout(typography, layoutWidth);
+// double positionBreakWord[2] = {0, 100};
+// OH_Drawing_TypographyPaint(typography, canvas, positionBreakWord[0], positionBreakWord[1]);
 
-// 使用之前创建的 FontCollection 和 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-OH_Drawing_TypographyCreate *handlerBreakWord = OH_Drawing_CreateTypographyHandler(typoStyleBreakWord, fc);
-// 将之前创建的 TextStyle 加入 handler
-OH_Drawing_TypographyHandlerPushTextStyle(handlerBreakWord, txtStyle);
-// 将文本添加到 handler 中
-OH_Drawing_TypographyHandlerAddText(handlerBreakWord, text);
-
-OH_Drawing_Typography *typographyBreakWord = OH_Drawing_CreateTypography(handlerBreakWord);
-OH_Drawing_TypographyLayout(typographyBreakWord, layoutWidth);
-// 设置文本在画布上绘制的起始位置
-double positionBreakWord[2] = {0, 100};
-// 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyBreakWord, canvas, positionBreakWord[0], positionBreakWord[1]);
+// 创建一个断词策略为 BREAK_HYPHEN 的 TypographyStyle
+// OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// OH_Drawing_SetTypographyTextStyle(typoStyle, txtStyle);
+// OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_HYPHEN);
+// OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+// OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// OH_Drawing_TypographyHandlerAddText(handler, text);
+// OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+// OH_Drawing_TypographyLayout(typography, layoutWidth);
+// double positionBreakWord[2] = {0, 100};
+// OH_Drawing_TypographyPaint(typography, canvas, positionBreakWord[0], positionBreakWord[1]);
 
 // 释放内存
 OH_Drawing_DestroyFontCollection(fc);
 OH_Drawing_DestroyTextStyle(txtStyle);
-OH_Drawing_DestroyTypographyStyle(typoStyleBreakAll);
-OH_Drawing_DestroyTypographyStyle(typoStyleBreakWord);
-OH_Drawing_DestroyTypographyHandler(handlerBreakAll);
-OH_Drawing_DestroyTypographyHandler(handlerBreakWord);
-OH_Drawing_DestroyTypography(typographyBreakAll);
-OH_Drawing_DestroyTypography(typographyBreakWord);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
 ```
 
 
 ### 效果展示
 
-![zh-cn_image_0000002211603596](figures/MultilineText.PNG)
+| BREAK_ALL | BREAK_WORD | 
+| -------- | -------- |
+| ![ndk_word_break_all.jpg](figures/ndk_word_break_all.jpg) | ![ndk_word_break_word.jpg](figures/ndk_word_break_word.jpg) | 
 
+| BREAK_HYPHEN（locale：未设置） | BREAK_HYPHEN（locale：en-gb） | BREAK_HYPHEN（locale：en-us） | 
+| -------- | -------- |-------- |
+| ![ndk_word_break_hyphen_locale_undefined.jpg](figures/ndk_word_break_hyphen_locale_undefined.jpg) | ![ndk_word_break_hyphen_local_en-gb.jpg](figures/ndk_word_break_hyphen_local_en-gb.jpg) | ![ndk_word_break_hyphen_local_en-us.jpg](figures/ndk_word_break_hyphen_local_en-us.jpg) |
 
 ## 多样式文本绘制与显示
 
