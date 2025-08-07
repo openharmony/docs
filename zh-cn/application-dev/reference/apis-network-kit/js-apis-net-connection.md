@@ -1658,7 +1658,7 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1753,7 +1753,7 @@ removeCustomDnsRule(host: string): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **错误码：**
 
