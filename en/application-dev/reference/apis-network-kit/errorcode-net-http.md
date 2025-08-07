@@ -134,7 +134,7 @@ The access to the specified resource is denied by the server.
 
 Check whether access to the requested resource is allowed.
 
-## 2300016 HTTP2 Framing Layer Eerror
+## 2300016 HTTP2 Framing Layer Error
 
 **Error Message**
 
