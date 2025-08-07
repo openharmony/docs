@@ -18,9 +18,8 @@
 ```ts
 import {
   PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
-  MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
+  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, ItemType, ClickType,
+  MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
   ItemsDeletedCallback, ExceedMaxSelectedCallback, CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 ```
@@ -551,14 +550,8 @@ import {
   BaseItemInfo,
   ItemInfo,
   PhotoBrowserInfo,
-  AnimatorParams,
-  MaxSelected,
   ItemType,
   ClickType,
-  PickerOrientation,
-  SelectMode,
-  PickerColorMode,
-  ReminderMode,
   MaxCountType,
   PhotoBrowserRange,
   PhotoBrowserUIElement,

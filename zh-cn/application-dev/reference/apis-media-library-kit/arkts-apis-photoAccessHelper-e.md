@@ -1,5 +1,11 @@
 # Enums
 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda;@yixiaoff-->
+<!--SE: @guxinggang;@liweilu1-->
+<!--TSE: @wangbeibei;@xchaosioda-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -314,3 +320,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | NOTIFY_CHANGE_ADD         | 0    | 媒体资产（图片/视频）或相册已经创建。     |
 | NOTIFY_CHANGE_UPDATE      | 1    | 媒体资产（图片/视频）或相册已经修改。     |
 | NOTIFY_CHANGE_REMOVE      | 2    | 媒体资产（图片/视频）或相册已经删除。     |
+
+## PhotoSource<sup>20+</sup>
+
+枚举，图片或者视频数据的来源类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                | 值   | 说明                                                                                                                 |
+|-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
+| ALL | 0   | 所有来源的图片、视频。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| CAMERA | 1   | 仅相机拍摄的图片、视频。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| SCREENSHOT | 2   | 截屏图片或者录屏视频。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
