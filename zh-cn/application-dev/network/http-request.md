@@ -1,5 +1,11 @@
 # 使用HTTP访问网络
 
+< ! - -Kit: Network Kit - ->
+< ! - -Subsystem: Communnication - ->
+< ! - -Owner: @liuleiminhw - ->
+< ! - -SE: @guo-min_net - ->
+< ! - -TSE: @tongxilin - ->
+
 ## 场景介绍
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。当前提供了2种HTTP请求方式，若请求发送或接收的数据量较少，可使用[HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request)，若是大文件的上传或者下载，且关注数据发送和接收进度，可使用HTTP请求流式传输[HttpRequest.requestInstream](../reference/apis-network-kit/js-apis-http.md#requestinstream10)。
