@@ -116,6 +116,8 @@ import { window } from '@kit.ArkUI';
 
 窗口动画类型枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称    | 值   | 说明                       |
