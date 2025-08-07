@@ -1,11 +1,14 @@
 # 配置ArkTS卡片的配置文件
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 
-
-卡片相关的配置文件主要包含[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。
+卡片相关的配置文件包括[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。如果是[独立卡片包](./arkts-ui-widget-creation.md#创建arkts卡片)，还会包含[独立卡片包配置](./arkts-ui-widget-configuration.md#独立卡片包配置)。
 
 ## FormExtensionAbility配置
-
-卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中的extensionAbilities标签下，配置FormExtensionAbility相关信息。FormExtensionAbility需要填写metadata元信息标签，其中键名称为固定字符串“ohos.extension.form”，资源为[卡片具体配置信息的资源索引](#卡片配置)。
+卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)的`extensionAbilities`标签下，配置`FormExtensionAbility`相关信息。`FormExtensionAbility`需要填写`metadata`元信息标签，其中键名称为固定字符串 “ohos.extension.form”，资源为[卡片具体配置信息的资源索引](#卡片配置)。
 
    配置示例如下：
 
@@ -15,23 +18,42 @@
      "module": {
        // ...
        "extensionAbilities": [
-         {
-           "name": "EntryFormAbility",
-           "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
-           "label": "$string:EntryFormAbility_label",
-           "description": "$string:EntryFormAbility_desc",
-           "type": "form",
-           "metadata": [
-             {
-               "name": "ohos.extension.form",
-               "resource": "$profile:form_config"
-             }
-           ]
-         }
-       ]
+        {
+          "name": "EntryFormAbility",
+          "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
+          "label": "$string:EntryFormAbility_label",
+          "description": "$string:EntryFormAbility_desc",
+          "type": "form",
+          "metadata": [
+            {
+              "name": "ohos.extension.form",
+              "resource": "$profile:form_config"
+            }
+          ]
+        }
+      ],
+      "formWidgetModule": "library" // 只在独立卡片包形态中会使用，用来关联卡片包模块。
      }
    }
    ```
+## 独立卡片包配置
+相对应地，在卡片包的[module.json5配置文件](../quick-start/module-configuration-file.md)中，`formExtensionModule`字段用来关联应用包的`module`。<br>
+配置示例如下：
+```json
+{
+  "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "formExtensionModule": "entry" // 只在独立卡片包形态中会使用，用来关联应用包模块。
+  }
+}
+```
+
 ## 卡片配置
 
 在上述FormExtensionAbility的元信息metadata配置项中，可以指定卡片具体配置信息的资源索引。例如当resource指定为$profile:form_config时，会使用开发视图的resources/base/profile/目录下的form_config.json作为卡片profile配置文件。在[创建卡片](./arkts-ui-widget-creation.md)时会自动生成form_config.json配置文件。
