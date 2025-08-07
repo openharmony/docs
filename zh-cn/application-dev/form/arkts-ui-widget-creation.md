@@ -4,14 +4,14 @@
 <!--Owner: @cx983299475-->
 <!--SE: @xueyulong-->
 <!--TSE: @chenmingze-->
-ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选其一即可。。
+ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选其一即可。
 方式一：卡片和应用共包方式，创建步骤请参考[共包方式创建卡片](./arkts-ui-widget-creation.md#方式一共包方式创建卡片)，此时卡片UI和应用代码在一个module内，最终编译产物也在同一个HAP包内。
 方式二：独立卡片包方式，创建步骤请参考[独立包方式创建卡片](./arkts-ui-widget-creation.md#方式二独立包方式创建卡片)，此时卡片UI和应用代码在不同module内，最终编译产物分为卡片包和应用包。
 ## 方式一：共包方式创建卡片
 ### 创建步骤
 #### 1. 新建应用工程
 应用工程分为两种：Application（普通应用）和Atomic Servic（元服务）。这两种应用都支持创建卡片。
-- 创建工程时，选择Application，可以在创建工程后右键新建卡片包。
+- 创建工程时，选择Application，可以在创建工程后右键新建卡片。
 - 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片包。<br>
 
 ![WidgetCreateProject](figures/创建应用工程.png)
