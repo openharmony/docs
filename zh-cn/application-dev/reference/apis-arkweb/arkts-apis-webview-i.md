@@ -180,7 +180,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |

@@ -38,10 +38,10 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型             | 必填   | 说明                    |
-| ----------- | -------------- | ---- | --------------------- |
-| script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 是   | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
+| 名称         | 类型           | 只读 | 可选   | 说明           |
+| ----------- | -------------- | --- | ------|--------------- |
+| script      | string         | 否  |  否    | 需要注入、执行的JavaScript脚本。 |
+| scriptRules | Array\<string> | 否  |  否    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
@@ -85,10 +85,10 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型                                                                           | 必填   | 说明                    |
-| ------- | --------------------------------------------------------------------------------  | ---- | ------------------------- |
-| url | string  | 是    | 发生广告过滤的页面url。 |
-| adsBlocked | Array\<string\>  | 是    | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+| 名称        | 类型             | 只读 | 可选   | 说明                 |
+| ---------- | -----------------|---- | ----- | -------------------- |
+| url        | string           | 否  |  否    | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 否  |  否    | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
 
 ## SelectionMenuOptionsExt<sup>13+</sup>
 
@@ -143,12 +143,12 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
-| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
+| 名称                   | 类型     | 只读| 可选  | 说明                              |
+| --------------------- | -------- | -- | ----|--------------------------------- |
+| url                   | string   | 否 | 否  | 当前显示弹窗所在网页的URL。                 |
+| message               | string   | 否 | 否  | 弹窗中显示的信息。                              |
+| result                | [JsResult](./arkts-basic-components-web-JsResult.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
+| isReload<sup>20+</sup>| boolean | 否 | 否   | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -181,9 +181,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| message | [ConsoleMessage](./arkts-basic-components-web-ConsoleMessage.md) | 是 | 触发的控制台信息。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---------|------------------------------- |
+| message | [ConsoleMessage](./arkts-basic-components-web-ConsoleMessage.md) | 否 | 否 | 触发的控制台信息。                       |
 
 ## OnErrorReceiveEvent<sup>12+</sup>
 
@@ -191,10 +191,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。      |
-| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)    | 是 | 网页加载资源错误的封装信息 。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------|---------------------------------- |
+| request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 否 | 否 | 网页请求的封装信息。      |
+| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)     | 否 | 否 | 网页加载资源错误的封装信息 。 |
 
 ## OnHttpErrorReceiveEvent<sup>12+</sup>
 
@@ -202,10 +202,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。      |
-| response   | [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)    | 是 | 资源响应的封装信息。 |
+| 名称        | 类型                                                                        |只读 | 可选 | 说明               |
+| ---------- | --------------------------------------------------------------------------- | -- | ----|------------------- |
+| request    | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md)    | 否 | 否   | 网页请求的封装信息。  |
+| response   | [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)  | 否 | 否   | 资源响应的封装信息。  |
 
 ## OnDownloadStartEvent<sup>12+</sup>
 
@@ -213,13 +213,13 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url                | string | 是 | 文件下载的URL。                           |
-| userAgent          | string | 是 | 用于下载的用户代理。                          |
-| contentDisposition | string | 是 | 服务器返回的 Content-Disposition响应头，服务器可能返回空。 |
-| mimetype           | string | 是 | 服务器返回内容媒体类型（MIME）信息。                |
-| contentLength      | number | 是 | 服务器返回文件的长度。                         |
+| 名称              | 类型     | 只读 | 可选  | 说明                                |
+| ---------------- | -------- | --- | -----|----------------------------------- |
+| url                | string | 否 | 否 | 文件下载的URL。                           |
+| userAgent          | string | 否 | 否 | 用于下载的用户代理。                          |
+| contentDisposition | string | 否 | 否 | 服务器返回的 Content-Disposition响应头，服务器可能返回空。 |
+| mimetype           | string | 否 | 否 | 服务器返回内容媒体类型（MIME）信息。                |
+| contentLength      | number | 否 | 否 | 服务器返回文件的长度。                         |
 
 ## OnRefreshAccessedHistoryEvent<sup>12+</sup>
 
@@ -227,10 +227,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url         | string  | 是 | 访问的url。                                  |
-| isRefreshed | boolean | 是 | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#refresh)接口），false表示该页面是新加载的。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url         | string  | 否 | 否 | 访问的url。                                  |
+| isRefreshed | boolean | 否 | 否 | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#refresh)接口），false表示该页面是新加载的。 |
 
 ## OnRenderExitedEvent<sup>12+</sup>
 
@@ -259,9 +259,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url  | string | 是 | 所加载的资源文件url信息。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url  | string | 否 | 否 | 所加载的资源文件url信息。 |
 
 ## OnScaleChangeEvent<sup>12+</sup>
 
@@ -280,11 +280,11 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [HttpAuthHandler](./arkts-basic-components-web-HttpAuthHandler.md) | 是 | 通知Web组件用户操作行为。   |
-| host    | string                               | 是 | HTTP身份验证凭据应用的主机。 |
-| realm   | string                               | 是 | HTTP身份验证凭据应用的域。  |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | -----------|----------------------------- |
+| handler | [HttpAuthHandler](./arkts-basic-components-web-HttpAuthHandler.md) | 否 | 否 | 通知Web组件用户操作行为。   |
+| host    | string                               | 否 | 否 | HTTP身份验证凭据应用的主机。 |
+| realm   | string                               | 否 | 否 | HTTP身份验证凭据应用的域。  |
 
 ## OnInterceptRequestEvent<sup>12+</sup>
 
@@ -292,9 +292,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | url请求的相关信息。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 否 | 否 | url请求的相关信息。 |
 
 ## OnPermissionRequestEvent<sup>12+</sup>
 
@@ -333,11 +333,11 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| activeMatchOrdinal | number  | 是 | 当前匹配的查找项的序号（从0开始）。                       |
-| numberOfMatches    | number  | 是 | 所有匹配到的关键词的个数。                            |
-| isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。<br>true表示当次页内查找操作结束，false表示当次页内查找操作未结束。<br>该方法可能会回调多次，直到isDoneCounting为true为止。 |
+| 名称                | 类型    | 只读 | 可选 | 说明                                       |
+| ------------------ | ------- | --- | --- |----------------------------- |
+| activeMatchOrdinal | number  | 否  | 否  | 当前匹配的查找项的序号（从0开始）。                       |
+| numberOfMatches    | number  | 否  | 否  | 所有匹配到的关键词的个数。                            |
+| isDoneCounting     | boolean | 否  | 否  | 当次页内查找操作是否结束。<br>true表示当次页内查找操作结束，false表示当次页内查找操作未结束。<br>该方法可能会回调多次，直到isDoneCounting为true为止。 |
 
 ## OnScrollEvent<sup>12+</sup>
 
@@ -356,11 +356,11 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md) | 是 | 通知Web组件用户操作行为。 |
-| error   | [SslError](./arkts-basic-components-web-e.md#sslerror9)           | 是 | 错误码。           |
-| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| handler | [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md) | 否 | 否 | 通知Web组件用户操作行为。 |
+| error   | [SslError](./arkts-basic-components-web-e.md#sslerror9)           | 否 | 否 | 错误码。           |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 是 | 证书链数据。           |
 
 ## SslErrorEvent<sup>12+</sup>
 
@@ -368,16 +368,16 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称     | 类型                                 | 必填   | 说明           |
-| ------- | ------------------------------------ | ---- | -------------- |
-| handler | [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md) | 是    | 通知Web组件用户操作行为。 |
-| error   | [SslError](./arkts-basic-components-web-e.md#sslerror9)        | 是    | 错误码。           |
-| url   | string                                 | 是    | url地址。           |
-| originalUrl   | string                         | 是    | 请求的原始url地址。           |
-| referrer   | string                            | 是    | referrer url地址。           |
-| isFatalError   | boolean                       | 是    | 是否是致命错误。<br>true表示致命错误，false表示非致命错误。           |
-| isMainFrame   | boolean                        | 是    | 是否是主资源。<br>true表示主资源，false表示非主资源。           |
-| certChainData<sup>20+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
+| 名称     | 类型                                 | 只读 | 可选   | 说明           |
+| ------- | ------------------------------------ | ---- | ------|------------- |
+| handler | [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md) | 否 | 否    | 通知Web组件用户操作行为。 |
+| error   | [SslError](./arkts-basic-components-web-e.md#sslerror9)            | 否 | 否   | 错误码。           |
+| url   | string                                 | 否 | 否    | url地址。           |
+| originalUrl   | string                         | 否 | 否    | 请求的原始url地址。           |
+| referrer   | string                            | 否 | 否    | referrer url地址。           |
+| isFatalError   | boolean                       | 否 | 否    | 是否是致命错误。<br>true表示致命错误，false表示非致命错误。           |
+| isMainFrame   | boolean                        | 否 | 否    | 是否是主资源。<br>true表示主资源，false表示非主资源。           |
+| certChainData<sup>20+</sup>   | Array<Uint8Array\>         | 否 | 是 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -385,13 +385,13 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| handler  | [ClientAuthenticationHandler](./arkts-basic-components-web-ClientAuthenticationHandler.md) | 是 | 通知Web组件用户操作行为。  |
-| host     | string                                   | 是 | 请求证书服务器的主机名。    |
-| port     | number                                   | 是 | 请求证书服务器的端口号。    |
-| keyTypes | Array<string\>                           | 是 | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string\>                           | 是 | 与私钥匹配的证书可接受颁发者。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| handler  | [ClientAuthenticationHandler](./arkts-basic-components-web-ClientAuthenticationHandler.md) | 否 | 否 | 通知Web组件用户操作行为。  |
+| host     | string                                   | 否 | 否 | 请求证书服务器的主机名。    |
+| port     | number                                   | 否 | 否 | 请求证书服务器的端口号。    |
+| keyTypes | Array<string\>                           | 否 | 否 | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                           | 否 | 否 | 与私钥匹配的证书可接受颁发者。 |
 
 ## OnWindowNewEvent<sup>12+</sup>
 
@@ -412,10 +412,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url         | string  | 是 | 接收到的apple-touch-icon url地址。 |
-| precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。<br>true表示对应apple-touch-icon为预合成，false表示对应apple-touch-icon不是预合成。   |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url         | string  | 否 | 否 | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean | 否 | 否 | 对应apple-touch-icon是否为预合成。<br>true表示对应apple-touch-icon为预合成，false表示对应apple-touch-icon不是预合成。   |
 
 ## OnFaviconReceivedEvent<sup>12+</sup>
 
@@ -423,9 +423,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| favicon | [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 接收到的favicon图标的PixelMap对象。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| favicon | [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | 接收到的favicon图标的PixelMap对象。 |
 
 ## OnPageVisibleEvent<sup>12+</sup>
 
@@ -443,9 +443,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [DataResubmissionHandler](./arkts-basic-components-web-DataResubmissionHandler.md) | 是 | 表单数据重新提交句柄。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| handler | [DataResubmissionHandler](./arkts-basic-components-web-DataResubmissionHandler.md) | 否 | 否 | 表单数据重新提交句柄。 |
 
 ## OnAudioStateChangedEvent<sup>12+</sup>
 
@@ -474,9 +474,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| data | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | url请求的相关信息。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| data | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 否 | 否 | url请求的相关信息。 |
 
 ## OnOverScrollEvent<sup>12+</sup>
 
@@ -495,14 +495,14 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
-| name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md) | 是    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
-| permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| object     | object                                   | 否 | 否    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| name       | string                                   | 否 | 否    | 注册对象的名称，与window中调用的对象名一致。                |
+| methodList | Array\<string\>                          | 否 | 否    | 参与注册的应用侧JavaScript对象的同步方法。                 |
+| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md) | 否 | 否    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否 | 是    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+| permission<sup>12+</sup>  | string  | 否 | 是    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
 ## OnPageEndEvent<sup>12+</sup>
 
@@ -510,9 +510,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。                       |
 
 ## OnPageBeginEvent<sup>12+</sup>
 
@@ -520,9 +520,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。                       |
 
 ## OnProgressChangeEvent<sup>12+</sup>
 
@@ -530,9 +530,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| newProgress | number | 是 | 新的加载进度，取值范围为0到100的整数。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| newProgress | number | 否 | 否 | 新的加载进度，取值范围为0到100的整数。                       |
 
 ## OnTitleReceiveEvent<sup>12+</sup>
 
@@ -540,10 +540,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| title | string | 是 | document标题内容。                       |
-| isRealTitle<sup>20+</sup> | boolean | 否 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
+| 名称             | 类型      | 只读 | 可选    | 说明                                       |
+| -------------- | ---- | ---- | -------------|--------------------------- |
+| title | string | 否 | 否 | document标题内容。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -597,13 +597,13 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型                                  | 必填   | 说明                    |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| isMainFrame     | boolean                              | 是    | 是否是主文档。<br>true表示是主文档，false表示不是主文档。 |
-| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。<br>true表示在不更改文档的情况下进行的网页跳转，false表示在更改文档的情况下进行的网页跳转。<br>在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
-| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。<br>true表示提交的新节点替换了已有的节点，false表示提交的新节点未替换已有的节点。<br>另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
-| navigationType  | [WebNavigationType](./arkts-basic-components-web-e.md#webnavigationtype11)  | 是    | 网页跳转的类型。       |
-| url             | string                               | 是    | 当前跳转网页的URL。          |
+| 名称             | 类型                                  | 只读 | 可选   | 说明                    |
+| -----------     | ------------------------------------ | ---- | -------|-------------- |
+| isMainFrame     | boolean                              | 否 | 否   | 是否是主文档。<br>true表示是主文档，false表示不是主文档。 |
+| isSameDocument  | boolean                              | 否 | 否    | 是否在不更改文档的情况下进行的网页跳转。<br>true表示在不更改文档的情况下进行的网页跳转，false表示在更改文档的情况下进行的网页跳转。<br>在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
+| didReplaceEntry | boolean                              | 否 | 否    | 是否提交的新节点替换了已有的节点。<br>true表示提交的新节点替换了已有的节点，false表示提交的新节点未替换已有的节点。<br>另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
+| navigationType  | [WebNavigationType](./arkts-basic-components-web-e.md#webnavigationtype11)  | 否 | 否   | 网页跳转的类型。       |
+| url             | string                               | 否 | 否    | 当前跳转网页的URL。          |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
@@ -629,10 +629,10 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                | 必填   | 说明         |
-| ------------- | ------------------------------------| ----- | ------------ |
-| host          | string                              | 是     | 网站域名。    |
-| trackerHost   | string                              | 是     | 追踪者域名。  |
+| 名称           | 类型                                | 只读  | 可选  | 说明         |
+| ------------- | ------------------------------------| ---- | ---- |------- |
+| host          | string                              | 否    | 否   | 网站域名。    |
+| trackerHost   | string                              | 否    | 否   | 追踪者域名。  |
 
 ## WebKeyboardCallbackInfo<sup>12+</sup>
 
@@ -747,10 +747,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型     | 必填   | 说明            |
-| ----------- | ------ | ---- | ------------- |
-| headerKey   | string | 是    | 请求/响应头的key。   |
-| headerValue | string | 是    | 请求/响应头的value。 |
+| 名称          | 类型  | 只读 | 可选 | 说明            |
+| ----------- | ------ | --- | -----|---------------- |
+| headerKey   | string | 否  | 否    | 请求/响应头的key。   |
+| headerValue | string | 否  | 否    | 请求/响应头的value。 |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
