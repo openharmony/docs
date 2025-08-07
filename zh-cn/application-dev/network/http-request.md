@@ -1,7 +1,7 @@
 # 使用HTTP访问网络
 
 <!--Kit: Network Kit-->
-<!--Subsystem: Communnication-->
+<!--Subsystem: Communication-->
 <!--Owner: @liuleiminhw-->
 <!--SE: @guo-min_net-->
 <!--TSE: @tongxilin-->
