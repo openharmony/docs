@@ -278,12 +278,12 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| x     | number | 水平方向横坐标。|
-| y     | number | 竖直方向纵坐标。|
-| width | number | 内容宽度大小。|
-| height | number | 内容高度大小。|
+| 名称      | 类型   | 只读 | 可选  | 说明 |
+| ------- | ------ | ----- | -------- | ---------- |
+| x     | number | 否 | 否 | 水平方向横坐标。|
+| y     | number |  否 | 否 | 竖直方向纵坐标。|
+| width | number | 否 | 否 | 内容宽度大小。|
+| height | number | 否 | 否 | 内容高度大小。|
 
 ## ResourceColor
 
@@ -606,11 +606,11 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | -- | -- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 是 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | 是 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | 是 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
