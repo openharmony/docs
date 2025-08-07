@@ -200,6 +200,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 
     <!--code_no_check-->
     ```ts
+    // 每一个httpRequest对应一个HTTP请求任务，不可复用。
     let httpRequest = http.createHttp();
     ```
 
