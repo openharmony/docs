@@ -48,7 +48,7 @@
 
 > **说明**：
 > 
-> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。 
+> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。  
 > -enable-property-obfuscation  
 > -enable-string-property-obfuscation  
 > -enable-toplevel-obfuscation  
@@ -454,14 +454,20 @@ city1
 
 **问题现象**
 
-```
+```ts
 // 混淆前
-person["age"] = 22;
+const person = {
+  myAge: 18
+}
+person["myAge"] = 20;
 ```
 
-```
+```ts
 // 混淆后
-person["b"] = 22;
+const person = {
+  myAge: 18
+}
+person["m"] = 20;
 ```
 
 **问题原因**
