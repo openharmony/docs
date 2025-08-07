@@ -1,4 +1,9 @@
 # ApplicationContext (应用级别的上下文)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
 
 ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，为开发者提供应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口
 
@@ -382,7 +387,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台状态变化的监听。使用callback异步回调。仅支持主线程调用。
+注册对当前应用进程状态变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -392,8 +397,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | 'applicationStateChange'                                     | 是   | 此类型表示应用前后台状态变化。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 应用前后台切换时触发的回调方法。 |
+| type     | 'applicationStateChange'                                     | 是   | 此类型表示当前应用进程状态变化。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 当前应用进程状态切换时触发的回调方法。 |
 
 **错误码**：
 
@@ -424,7 +429,7 @@ export default class MyAbility extends UIAbility {
     // 1.获取applicationContext
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 2.通过applicationContext注册应用前后台状态监听
+      // 2.通过applicationContext注册当前应用进程状态监听
       applicationContext.on('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
@@ -438,7 +443,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消对应用前后台状态变化的监听。使用callback异步回调。仅支持主线程调用。
+取消对当前应用进程状态变化的监听。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -452,8 +457,8 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| type   | 'applicationStateChange' | 是   | 此类型表示应用前后台状态变化。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消当前应用对所有前后台切换事件的监听。  |
+| type   | 'applicationStateChange' | 是   | 此类型表示当前应用进程状态变化。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消所有已注册的该类型事件的监听。  |
 
 **错误码**：
 
@@ -485,7 +490,7 @@ export default class MyAbility extends UIAbility {
     let applicationContext = this.context.getApplicationContext();
     try {
       // 本例中的callback字段取值为ApplicationStateChangeCallback，需要替换为实际值。
-      // 如果callback字段不传入参数，则取消当前应用对所有前后台切换事件的监听。
+      // 如果callback字段不传入参数，则取消所有已注册的该类型事件的监听。
       applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
