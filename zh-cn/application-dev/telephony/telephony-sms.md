@@ -182,7 +182,7 @@ sms:106XXXXXXXXXX?body=发送短信内容
 
 ```ts
 // 示例代码
-import { common， Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
