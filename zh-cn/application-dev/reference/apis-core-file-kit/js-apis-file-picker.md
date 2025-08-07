@@ -418,7 +418,7 @@ getSelectedIndex(): number
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| number| 返回所选后缀类型在[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的下标(number)。 |
+| number| 返回所选后缀类型在[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的下标(number)。默认返回-1。 |
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
