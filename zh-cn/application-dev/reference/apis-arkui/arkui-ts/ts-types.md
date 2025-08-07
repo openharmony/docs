@@ -1003,6 +1003,16 @@ setTextSelection选中文字时的配置。
 | colorMode | string | 是   | 否   | 颜色模式。 |
 | fontScale | number | 是   | 否   | 字体缩放。 |
 
+## AccessibilityOptions<sup>14+</sup>对象说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 类型    | 只读 | 可选 | 说明                                                         |
+| ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| accessibilityPreferred | boolean | 否 | 是   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
+
 ## LayoutPolicy<sup>15+</sup>
 
 用于设置线性布局的布局策略。

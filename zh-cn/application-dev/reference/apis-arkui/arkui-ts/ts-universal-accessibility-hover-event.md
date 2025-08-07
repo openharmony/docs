@@ -56,28 +56,13 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 | 名称              | 类型       | 必填 | 说明      |
 | --------------- | ---------- | ------- | ------- |
-| type             | [AccessibilityHoverType](#accessibilityhovertype) | 是 | 无障碍悬浮动作。                |
+| type             | [AccessibilityHoverType](ts-appendix-enums.md#accessibilityhovertype12) | 是 | 无障碍悬浮动作。                |
 | x                      | number                         | 是 | 手指位置相对于当前组件左上角的x轴坐标。<br/>单位：vp<br/> |
 | y                      | number                         | 是 | 手指位置相对于当前组件左上角的y轴坐标。<br/>单位：vp<br/> |
 | windowX                | number                         | 是 | 手指位置相对于应用窗口左上角的x轴坐标。<br/>单位：vp<br/> |
 | windowY                | number                         | 是 | 手指位置相对于应用窗口左上角的y轴坐标。<br/>单位：vp<br/> |
 | displayX               | number                         | 是 | 手指位置相对于应用屏幕左上角的x轴坐标。<br/>单位：vp<br/> |
 | displayY               | number                         | 是 | 手指位置相对于应用屏幕左上角的y轴坐标。<br/>单位：vp<br/> |
-
-## AccessibilityHoverType
-
-定义无障碍悬浮类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                               |
-| ------- | ---- | ---------------------------------- |
-| HOVER_ENTER | 0    | 手指按下时触发。 |
-| HOVER_MOVE  | 1    | 触摸移动时触发。 |
-| HOVER_EXIT  | 2    | 抬手触发。 |
-| HOVER_CANCEL | 3    | 打断取消当前触发的事件。 |
 
 ## 示例
 
