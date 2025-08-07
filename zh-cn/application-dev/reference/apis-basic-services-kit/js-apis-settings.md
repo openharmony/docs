@@ -1,5 +1,11 @@
 # @ohos.settings (设置数据项名称)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--SE: @Kun_Wu-->
+<!--TSE: @dyx118186878-->
+
 本模块提供访问设置数据项的能力。
 
 > **说明：**
