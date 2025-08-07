@@ -1,4 +1,9 @@
 # 自定义组件内置方法
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 自定义组件内置方法是由ArkUI开发框架提供给应用开发者的，定义在自定义组件基类上的API。应用开发者可以在自定义组件的实例上调用对应的API以获取当前自定义组件实例相关的信息。例如，查询当前自定义组件上下文的UIContext信息。
 
@@ -18,6 +23,18 @@ getUIContext(): UIContext
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| [UIContext](#uicontext) | 返回UIContext实例对象。 |
+
+## UIContext
+
+type UIContext = UIContext
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                      | 说明                    |
 | --------------------------------------------------------- | ----------------------- |

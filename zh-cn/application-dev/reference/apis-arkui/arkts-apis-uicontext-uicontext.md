@@ -304,11 +304,6 @@ getRouter(): Router
 
 完整示例请参考[pushUrl](arkts-apis-uicontext-router.md#pushurl)。
 
-<!--code_no_check-->
-```ts
-uiContext.getRouter();
-```
-
 ## getPromptAction
 
 getPromptAction(): PromptAction
@@ -627,11 +622,6 @@ getFrameNodeById(id: string): FrameNode | null
 **示例：**
 
 完整示例请参考[获取根节点示例](js-apis-arkui-frameNode.md#获取根节点示例)。
-
-<!--code_no_check-->
-```ts
-uiContext.getFrameNodeById("TestNode");
-```
 
 ## getAttachedFrameNodeById<sup>12+</sup>
 
@@ -3220,8 +3210,10 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -3246,9 +3238,21 @@ static destroyUIContextWithoutWindow(): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-UIContext.destroyUIContextWithoutWindow();
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+    UIContext.destroyUIContextWithoutWindow();
+  }
+
+  // ......
+}
 ```
 
 ## dispatchKeyEvent<sup>15+</sup>
