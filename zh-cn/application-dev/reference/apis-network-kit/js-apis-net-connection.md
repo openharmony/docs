@@ -1,5 +1,11 @@
 # @ohos.net.connection (网络连接管理)
 
+<!--Kit:Network Kit-->
+<!--Subsystem:Communication-->
+<!--Owner:@wmyao_mm-->
+<!--SE:@guo-min_net-->
+<!--TSE:@tongxilin-->
+
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
@@ -1479,7 +1485,7 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1574,7 +1580,7 @@ removeCustomDnsRule(host: string): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
