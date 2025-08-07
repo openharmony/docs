@@ -1,10 +1,10 @@
 # @ohos.net.mdns (MDNS管理)
 
-< ! - -Kit: Network Kit - ->
-< ! - -Subsystem: Communnication - ->
-< ! - -Owner: @wmyao_mm - ->
-< ! - -SE: @guo-min_net - ->
-< ! - -TSE: @tongxilin - ->
+<!--Kit: Network Kit -->
+<!--Subsystem: Communnication -->
+<!--Owner: @wmyao_mm -->
+<!--SE: @guo-min_net -->
+<!--TSE: @tongxilin -->
 
 MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
 
