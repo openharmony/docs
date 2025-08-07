@@ -187,7 +187,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 | 类型              |       说明       |
 | ------- | --------------------------------- |
-| [StyledString](#styledstring) | 属性字符串。 |
+| Promise\<[StyledString](#styledstring)> | 属性字符串。 |
 
 **错误码**：
 
