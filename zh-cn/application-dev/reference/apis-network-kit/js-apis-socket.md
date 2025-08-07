@@ -230,15 +230,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -347,15 +348,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -1830,15 +1832,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
@@ -1928,15 +1931,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
@@ -6891,16 +6895,17 @@ let twoWaySecureOptions: socket.TLSSecureOptions = {
   signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: twoWayNetAddr,
   secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 
 tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
@@ -6923,15 +6928,16 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -7091,16 +7097,17 @@ let twoWaySecureOptions: socket.TLSSecureOptions = {
   signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: twoWayNetAddr,
   secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
@@ -7125,15 +7132,16 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
