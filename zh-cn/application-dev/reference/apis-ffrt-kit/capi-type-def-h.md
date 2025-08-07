@@ -62,6 +62,12 @@
 | [typedef void (\*ffrt_poller_cb)(void* data, uint32_t event)](#ffrt_poller_cb) | ffrt_poller_cb | poller回调函数定义。 |
 | [typedef void (\*ffrt_timer_cb)(void* data)](#ffrt_timer_cb) | ffrt_timer_cb | timer回调函数定义。 |
 
+### 变量
+
+| 名称 | 描述 |
+| -- | -- |
+| [ffrt_storage_size_t](capi-type-def-h.md#ffrt_storage_size_t)  | 多种类型数据结构分配大小定义。<br>**起始版本：** 20 |
+| using qos = int | QoS类型。<br>**起始版本：** 10 |
 
 ## 枚举类型说明
 

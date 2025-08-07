@@ -1,10 +1,10 @@
-# ffrt_deps_t
+# ffrt_fiber_t
 
 ## 概述
 
-依赖结构定义。
+纤程结构。
 
-**起始版本：** 10
+**起始版本：** 20
 
 **相关模块：** [FFRT](capi-ffrt.md)
 
@@ -16,7 +16,6 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t len | 依赖数量 |
-| const [ffrt_dependence_t*](capi-ffrt-ffrt-dependence-t.md) items | 依赖数据 |
+| uintptr_t storage[ffrt_fiber_storage_size] | 纤程上下文所占空间。 |
 
 

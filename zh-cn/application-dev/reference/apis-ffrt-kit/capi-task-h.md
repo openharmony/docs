@@ -44,6 +44,7 @@
 | [FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle)](#ffrt_task_handle_dec_ref) | 减少任务句柄的引用计数。 |
 | [FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle)](#ffrt_task_handle_destroy) | 销毁任务句柄。 |
 | [FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps)](#ffrt_wait_deps) | 等待依赖的任务完成，当前任务开始执行。 |
+| [FFRT_C_API void ffrt_wait(void)](#ffrt_wait) | 等待之前所有提交任务完成，当前任务开始执行。 |
 
 ## 函数说明
 
@@ -601,5 +602,17 @@ FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps)
 | 参数项 | 描述 |
 | -- | -- |
 | [const ffrt_deps_t](capi-ffrt-ffrt-deps-t.md)* deps | 依赖的指针。 |
+
+### ffrt_wait()
+
+```
+FFRT_C_API void ffrt_wait(void)
+```
+
+**描述**
+
+等待之前所有提交任务完成，当前任务开始执行。
+
+**起始版本：** 10
 
 
