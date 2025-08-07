@@ -506,7 +506,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 **返回值：**
 
-| 类型                             | 描述                |
+| 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](arkui-ts/ts-state-management.md#localstorage9)&nbsp;\|&nbsp;undefined | 返回LocalStorage实例。共享的LocalStorage实例不存在时返回undefined。 |
 

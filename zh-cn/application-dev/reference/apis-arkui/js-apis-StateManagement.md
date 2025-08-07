@@ -175,6 +175,8 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 名称   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
 | type    |[ConnectOptions\<T\>](#connectoptions18)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
