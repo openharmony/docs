@@ -373,7 +373,7 @@ abilities示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。<br>一个skill中不建议配置多个action，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| entities | 标识能够接收的[Entity值的集合](../application-models/actions-entities.md)。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| entities | 标识能够接收的Entity值的集合。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。数组允许的最大数量为512。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility或ExtensionAbility组件的权限信息。其他应用访问该组件时，需要申请相应的权限。<br/>一个数组元素为一个权限名称，不超过255字节，取值为[系统预定义的权限](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | domainVerify | 标识是否开启<!--RP7-->[域名校验](../application-models/app-linking-startup.md#实现原理)<!--RP7End-->。<br/>-&nbsp;true：表示开启域名校验。<br/>-&nbsp;false：表示不开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
