@@ -628,7 +628,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function loadPlugin(): Promise<boolean> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
   if (!renderContext) {
-    return Promise.reject(new Error("RenderContext is null"));
+    console.error("RenderContext is null");
+    return Promise.resolve(false);
   }
   return renderContext.loadPlugin("pluginName");
 }
