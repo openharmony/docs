@@ -1,6 +1,6 @@
 # uinput
 
-uinput 可模拟用户操作，例如鼠标、键盘、触控板等设备，适用于稳定性测试和压力测试。
+uinput 可模拟用户操作，例如鼠标、键盘、触控板等设备，适用于稳定性等压力测试。
 
 ## 环境要求
 
@@ -27,7 +27,7 @@ uinput <option> <command> <arg> ...
 
 > **说明：**
 >
-> 与坐标相关的参数，单位均为[px(屏幕物理像素单位)](../reference/apis-arkui/arkui-ts/ts-pixel-units.md)。
+> 命令中与坐标相关的参数，单位均为[px(屏幕物理像素单位)](../reference/apis-arkui/arkui-ts/ts-pixel-units.md)。
 
 ## 帮助命令
 
@@ -83,8 +83,8 @@ uinput -M -m 100 100
 uinput -M -m <dx1> <dy1> <dx2> <dy2> [smooth time] --trace
 uinput --mouse --move <dx1> <dy1> <dx2> <dy2> [smooth time] --trace
 
-补充选项 --trace 可以模拟鼠标移动的相对位置及过程。
-[smooth time]移动时间，默认值：1000ms，取值范围：1 ~ 15000ms。
+# 补充选项 --trace 可以模拟鼠标移动的相对位置及过程。
+# [smooth time]移动时间，默认值：1000ms，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -133,15 +133,15 @@ uinput -M -c 0
 ```
 
 ### 双击鼠标按键事件
-模拟双击鼠标按键。id：请参考[鼠标按键](#鼠标按键)。
+模拟双击鼠标按键。id：[鼠标按键](#鼠标按键)。
 
 **命令**
 ```bash
 uinput -M -b <dx> <dy> <id> [press time] [click interval time]
 uinput --mouse --double_click <dx> <dy> <id> [press time] [click interval time]
 
-[press time]按压时间，可选参数，默认时间为：50ms，取值范围：1 ~ 300ms。
-[click interval time]点击间隔时间，可选参数，默认时间为：300ms，取值范围：1 ~ 450ms。
+# [press time]按压时间，可选参数，默认时间为：50ms，取值范围：1 ~ 300ms。
+# [click interval time]点击间隔时间，可选参数，默认时间为：300ms，取值范围：1 ~ 450ms。
 设置间隔时间必须在取值范围内，否则操作结果可能产生错误或无效操作。
 ```
 
@@ -159,12 +159,12 @@ uinput -M -b 100 150 0 10 10
 uinput -M -s <number>
 uinput --mouse --scroll <number>
 
-number鼠标滚动刻度数，正数向后滚动，负数向前滚动，一个刻度是15。
+# number鼠标滚动刻度数，正数向后滚动，负数向前滚动，一个刻度是15。
 ```
 
 **使用示例**
 ```bash
-# 鼠标移动到相对位置(100, 200)，该位置属于可滚动区域，鼠标滚轴向后滚动三个刻度。
+# 鼠标移动到相对位置(100, 200)，若该位置属于可滚动区域，鼠标滚轴向后滚动三个刻度，否则无响应。
 uinput -M -m 100 200 -s 45
 ```
 
@@ -176,7 +176,7 @@ uinput -M -m 100 200 -s 45
 uinput -M -g <dx1> <dy1> <dx2> <dy2> [total time]
 uinput --mouse --drag <dx1> <dy1> <dx2> <dy2> [total time]
 
-[total time]拖拽总耗时，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
+# [total time]拖拽总耗时，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -193,7 +193,7 @@ uinput -M -g 100 150 500 300
 uinput -M -i <time>
 uinput --mouse --interval <time>
 
-time鼠标事件间隔时间，取值范围：1 ~ 15000ms。
+# time鼠标事件间隔时间，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -250,7 +250,7 @@ uinput -K -d 2017 -u 2017
 uinput -K -l <key> [long press time]
 uinput --keyboard --long_press <key> [long press time]
 
-[long press time]长按时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
+# [long press time]长按时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
 ```
 
 **使用示例**
@@ -267,7 +267,7 @@ uinput -K -l 2017 6000
 uinput -K -r <key> [repeat output time]
 uinput --keyboard --repeat <key> [repeat output time]
 
-[repeat output time]重复输出时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
+# [repeat output time]重复输出时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
 ```
 
 **使用示例**
@@ -284,7 +284,7 @@ uinput -K -r 2017 4000
 uinput -K -i <time>
 uinput --keyboard --interval <time>
 
-time键盘事件间隔时间，取值范围：1 ~ 15000ms。
+# time键盘事件间隔时间，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -344,8 +344,8 @@ uinput -S -d 100 100 -u 100 100
 uinput -S -m <dx1> <dy1> <dx2> <dy2> [smooth time] [-k keep time]
 uinput --stylus --move <dx1> <dy1> <dx2> <dy2> [smooth time] [-k keep time]
 
-[smooth time]移动时间，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
-[-k keep time]按下保持时间，可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
+# [smooth time]移动时间，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
+# [-k keep time]按下保持时间，可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
 ```
 
 **使用示例**
@@ -362,7 +362,7 @@ uinput -S -m 100 1000 100 2000 1000 -k 1000
 uinput -S -c <dx> <dy> [click interval]
 uinput --stylus --click <dx> <dy> [click interval]
 
-[click interval]点击间隔时间，可选参数，默认值为100ms，取值范围：1 ~ 450ms。
+# [click interval]点击间隔时间，可选参数，默认值为100ms，取值范围：1 ~ 450ms。
 ```
 
 **使用示例**
@@ -379,8 +379,8 @@ uinput -S -c 100 100
 uinput -S -g <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 uinput --stylus --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 
-[Press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
-[total time]拖动时间，可选参数，默认值为1000ms，取值范围：1000 ~ 15000ms。[total time] - [Press time]不能少于500ms，否则操作结果可能产生错误或无效操作。
+# [Press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
+# [total time]拖动时间，可选参数，默认值为1000ms，取值范围：1000 ~ 15000ms。[total time] - [Press time]不能少于500ms，否则操作结果可能产生错误或无效操作。
 ```
 
 **使用示例**
@@ -397,7 +397,7 @@ uinput -S -g 100 150 500 300 500 1100
 uinput -S -i <time>
 uinput --stylus --interval <time>
 
-time间隔时间，取值范围：1 ~ 15000ms。
+# time间隔时间，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -442,8 +442,8 @@ uinput -T -d 100 100 -u 100 100
 uinput -T -m <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 uinput --touch --move <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 
-[-k keep time]按下保持时间，可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
-[smooth time]移动时间，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
+# [-k keep time]按下保持时间，可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
+# [smooth time]移动时间，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -463,7 +463,7 @@ uinput -T -m 300 900 300 2000 600 900 600 2000 900 900 900 2000 200 -k 1000
 uinput -T -c <dx> <dy> [click interval]
 uinput --touch --click <dx> <dy> [click interval]
 
-[click interval]点击间隔时间，可选参数，默认值为100ms，取值范围：1 ~ 450ms。
+# [click interval]点击间隔时间，可选参数，默认值为100ms，取值范围：1 ~ 450ms。
 ```
 
 **使用示例**
@@ -480,8 +480,8 @@ uinput -T -c 100 100
 uinput -T -g <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 
-[press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
-[total time]拖动时间，可选参数，默认值为1000ms，取值范围：1000 ~ 15000ms。[total time] - [Press time]不能少于500ms，否则操作结果可能产生错误或无效操作。
+# [press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
+# [total time]拖动时间，可选参数，默认值为1000ms，取值范围：1000 ~ 15000ms。[total time] - [Press time]不能少于500ms，否则操作结果可能产生错误或无效操作。
 ```
 
 **使用示例**
@@ -498,7 +498,7 @@ uinput -T -g 100 150 500 300 500 1100
 uinput -T -i <time>
 uinput --touch --interval <time>
 
-time间隔时间，取值范围：1 ~ 15000ms。
+# time间隔时间，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -515,7 +515,7 @@ uinput -T -d 100 100  -i 500 -u 100 100
 uinput -T -k -s <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
 
-[interval time]间隙时间，可选参数，默认值200ms，取值范围：1 ~ 250ms。
+# [interval time]间隙时间，可选参数，默认值200ms，取值范围：1 ~ 250ms。
 ```
 
 **使用示例**
@@ -532,7 +532,7 @@ uinput -T -k -s 100 100 100 130
 uinput -T -k -d <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 
-[interval time]间隙时间，可选参数，默认值200ms，取值范围：1 ~ 250ms。
+# [interval time]间隙时间，可选参数，默认值200ms，取值范围：1 ~ 250ms。
 ```
 
 **使用示例**
@@ -551,7 +551,7 @@ uinput -T -k -d 100 100 100 130
 uinput -P -p <dx> <dy> scalePercent
 uinput --touchpad --pinch <dx> <dy> scalePercent
 
-scalePercent：收缩百分比，取值范围：大于0小于等于500。小于100是缩小，大于100是放大。设置时要求dx大于0，dy大于等于200。此场景只支持图片缩放，调用该命令时，确保桌面上有一张图片。
+# scalePercent：收缩百分比，取值范围：大于0小于等于500。小于100是缩小，大于100是放大。设置时要求dx大于0，dy大于等于200。此场景只支持图片缩放，调用该命令时，确保桌面上有一张图片。
 ```
 
 **使用示例**
@@ -583,7 +583,7 @@ uinput -P -s 100 1100 100 300
 uinput -P -r <rotateValue>
 uinput --touchpad --rotate <rotateValue>
 
-rotateValue旋转值，取值范围-360到360，单位度（°）。旋转角度为正值时，顺时针旋转，旋转角度为负值时，逆时针旋转。
+# rotateValue旋转值，取值范围-360到360，单位度（°）。旋转角度为正值时，顺时针旋转，旋转角度为负值时，逆时针旋转。
 ```
 
 **使用示例**
