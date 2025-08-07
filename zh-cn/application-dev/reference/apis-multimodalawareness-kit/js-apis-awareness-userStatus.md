@@ -1,4 +1,4 @@
-# @ohos.multimodalAwareness.userStatus (用户感知)
+# @ohos.multimodalAwareness.userStatus (用户状态感知)
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
