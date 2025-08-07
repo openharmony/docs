@@ -4681,7 +4681,6 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>, userI
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
