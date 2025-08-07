@@ -309,6 +309,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 获取串口配置
@@ -389,6 +390,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 设置串口配置
@@ -812,6 +814,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 关闭串口
