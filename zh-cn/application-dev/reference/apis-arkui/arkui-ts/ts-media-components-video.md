@@ -430,7 +430,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
-| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显，当开启首帧送显时，[VideoOptions对象](#videooptions对象说明)中的previewUri字段不生效。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
