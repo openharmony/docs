@@ -25,6 +25,8 @@ enableInternalDropAnimation(configuration: string): void
 
 使用系统的内置动效，且该动效只有系统应用可使用。仅支持在onDrop阶段使用。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -38,7 +40,6 @@ enableInternalDropAnimation(configuration: string): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 202       | Permission verification failed. A non-system application calls a system API. |
-| 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-| 801       | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 190003    | Operation not allowed for current pharse. |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 801       | Capability not supported.|
+| 190003    | Operation not allowed for current phase. |

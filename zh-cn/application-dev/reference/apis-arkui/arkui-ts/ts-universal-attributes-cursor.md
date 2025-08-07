@@ -28,7 +28,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是   | 设置的鼠标样式。 |
+| value | [PointerStyle](#pointerstyle12) | 是   | 设置的鼠标样式。 |
 
 
 ### restoreDefault
@@ -40,6 +40,20 @@ restoreDefault(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 方法语句中可使用的全局接口，调用此接口可将鼠标光标恢复成默认箭头样式。
+
+## PointerStyle<sup>12+</sup>
+
+type PointerStyle = pointer.PointerStyle
+
+光标样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
+
+|类型|说明|
+| -- | -- |
+|[pointer.PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
 
 ## 示例

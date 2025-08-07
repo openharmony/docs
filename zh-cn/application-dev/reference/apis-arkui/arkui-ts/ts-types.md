@@ -723,15 +723,16 @@ Callback<T,V = void> = (data: T) => V;
 
 hover事件的回调类型。
 
-type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
+type HoverCallback = (isHover: boolean, event: HoverEvent)=> void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                  | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
+| 参数名            | 类型            | 必填         | 说明                                       |
+| ------------- | ---------------------- | ---------------------| --------------------------------------- |
+| isHover | boolean |  是|是否处于hover状态，true表示处于hover状态，false表示不在hover状态。 |
+| event | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) |  是   |  获取鼠标或手写笔悬浮的位置坐标。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -756,9 +757,10 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| 参数名            | 类型               | 必填       | 说明                                       |
+| ------------- | ------------------   | -------------   | ---------------------- |
+| isExpanding | boolean | 是| 示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。 |
+| currentRatio | number | 是 | 触发回调时，组件可见面积与自身面积的比值。 |
 
 ## DividerStyleOptions<sup>12+</sup>
 
