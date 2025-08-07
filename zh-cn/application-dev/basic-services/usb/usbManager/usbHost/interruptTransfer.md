@@ -103,7 +103,7 @@
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
        if (usbEndpoint !== undefined) {
-         usbInterface = usbInterfaces[i];
+         usbInterface = usbInterfaces[j];
          break;
        }
      }
