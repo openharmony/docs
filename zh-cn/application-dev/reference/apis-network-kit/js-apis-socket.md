@@ -2139,6 +2139,7 @@ close(): Promise\<void\>
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
@@ -3367,6 +3368,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -3414,6 +3416,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -3785,6 +3788,7 @@ close(): Promise\<void\>
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -4724,6 +4728,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -5388,6 +5394,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -5754,6 +5762,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
