@@ -1,9 +1,4 @@
 # Interfaces (其他)
-<!--Kit: Media Kit-->
-<!--Subsystem: Multimedia-->
-<!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
