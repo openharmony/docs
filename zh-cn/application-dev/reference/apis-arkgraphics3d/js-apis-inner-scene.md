@@ -122,8 +122,8 @@ function createShaderResource(): Promise<Shader> {
   }
   const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
   let shaderParams: SceneResourceParameters = {
-	name: "custom_shader",
-	uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
+    name: "custom_shader",
+    uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
   };
   return renderResourceFactory.createShader(shaderParams);
 }
@@ -157,8 +157,8 @@ function createImageResource(): Promise<Image> {
   }
   const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
   let imageParams: SceneResourceParameters = {
-	name: "sampleImage",
-	uri: $rawfile("image/Cube_BaseColor.png")
+    name: "sampleImage",
+    uri: $rawfile("image/Cube_BaseColor.png")
   };
   return renderResourceFactory.createImage(imageParams);
 }
@@ -283,8 +283,8 @@ function createSamplerResource(): Promise<Sampler> {
   }
   const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
   let samplerParams: SceneResourceParameters = {
-	name: "sampler1",
-	uri: $rawfile("image/Cube_BaseColor.png")
+    name: "sampler1",
+    uri: $rawfile("image/Cube_BaseColor.png")
   };
   return renderResourceFactory.createSampler(samplerParams);
 }
@@ -595,7 +595,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function getRenderResourceFactory(): void {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
   if (!renderContext) {
-    return Promise.reject(new Error("RenderContext is null"));
+    console.error("RenderContext is null");
+    return;
   }
   const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
   console.info("TEST getRenderResourceFactory");
@@ -986,9 +987,9 @@ function getDefaultRenderContextTest() {
   console.info("TEST getDefaultRenderContextTest");
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
   if (renderContext) {
-	console.info("getDefaultRenderContext success");
+    console.info("getDefaultRenderContext success");
   } else {
-	console.warn("RenderContext is null");
+    console.error("RenderContext is null");
   }
 }
 ```
