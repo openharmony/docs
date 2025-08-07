@@ -220,7 +220,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get track count from source format failed");
    }
    if (trackCount == 0) {
-      // 文件中无轨道，需根据业务做其他处理
+      // 文件中无轨道，需根据业务做其他处理。
       printf("no track");
    }
    OH_AVFormat_Destroy(sourceFormat);
