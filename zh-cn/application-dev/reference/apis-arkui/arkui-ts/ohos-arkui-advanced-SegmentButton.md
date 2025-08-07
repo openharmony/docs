@@ -1,4 +1,8 @@
 # SegmentButton
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--SE: @youzhi92-->
 
 分段按钮组件，包含页签类分段按钮、胶囊类单选分段按钮、胶囊类多选分段按钮。
 
@@ -84,6 +88,7 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数**
 
 | 名称    | 类型                                                     | 必填 | 说明                 |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -99,6 +104,7 @@ static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数**
 
 | 名称    | 类型                                                         | 必填 | 说明                 |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -120,6 +126,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数**
 
 | 名称    | 类型                                                         | 必填 | 说明                        |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
