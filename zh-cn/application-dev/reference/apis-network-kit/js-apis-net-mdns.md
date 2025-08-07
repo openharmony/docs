@@ -1,7 +1,7 @@
 # @ohos.net.mdns (MDNS管理)
 
 <!--Kit:Network Kit-->
-<!--Subsystem:Communnication-->
+<!--Subsystem:Communication-->
 <!--Owner:@wmyao_mm-->
 <!--SE:@guo-min_net-->
 <!--TSE:@tongxilin-->
