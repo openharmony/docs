@@ -3514,7 +3514,7 @@ on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): v
 
 ```ts
 const callback = (eventType: window.ScreenshotEventType) => {
-  console.info(`screenshotAppEvent happened. Event: ${data}`);
+  console.info(`screenshotAppEvent happened. Event: ${eventType}`);
 }
 try {
   windowClass.on('screenshotAppEvent', callback);
