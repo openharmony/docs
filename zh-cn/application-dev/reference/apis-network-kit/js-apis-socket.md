@@ -1,10 +1,10 @@
 # @ohos.net.socket (Socket连接)
 
-<!--Kit: Network Kit -->
-<!--Subsystem: Communnication -->
-<!--Owner: @wmyao_mm -->
-<!--SE: @guo-min_net -->
-<!--TSE: @tongxilin -->
+<!--Kit:Network Kit-->
+<!--Subsystem:Communication-->
+<!--Owner:@wmyao_mm-->
+<!--SE:@guo-min_net-->
+<!--TSE:@tongxilin-->
 
 本模块提供利用Socket进行数据传输的能力，支持TCPSocket、UDPSocket、WebSocket和TLSSocket。
 
