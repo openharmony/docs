@@ -102,7 +102,6 @@ import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-
 let file: number | undefined = undefined;
 try {
   file = fileIo.openSync(uri).fd;
@@ -152,15 +151,17 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
-    if (inSandbox) {
-      let res: dlpPermission.DLPPermissionInfo = await dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息。
-      console.info('res', JSON.stringify(res));
-    }
-  });
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    dlpPermission.isInSandbox().then(async (inSandbox) => { // 是否在沙箱内。
+      if (inSandbox) {
+        let res: dlpPermission.DLPPermissionInfo = await dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息。
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -570,14 +571,16 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-try {
-  let inSandbox = await dlpPermission.isInSandbox(); // 是否在沙箱内。
-  if (inSandbox) {
-    dlpPermission.setRetentionState([uri]); // 设置沙箱保留。
+async function ExampleFunction() {
+  let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
+  try {
+    let inSandbox = await dlpPermission.isInSandbox(); // 是否在沙箱内。
+    if (inSandbox) {
+      dlpPermission.setRetentionState([uri]); // 设置沙箱保留。
+    }
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
   }
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -754,11 +757,13 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let res: Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表。
-  console.info('res', JSON.stringify(res))
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    let res: Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表。
+    console.info('res', JSON.stringify(res))
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -881,11 +886,13 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let res: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表。
-  console.info('res', JSON.stringify(res))
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    let res: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表。
+    console.info('res', JSON.stringify(res))
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -1101,11 +1108,13 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let res = await dlpPermission.getSandboxAppConfig() // 获取沙箱应用配置信息。
-  console.info('res', JSON.stringify(res));
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    let res = await dlpPermission.getSandboxAppConfig() // 获取沙箱应用配置信息。
+    console.info('res', JSON.stringify(res));
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
