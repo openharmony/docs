@@ -1,5 +1,11 @@
 # USB服务开发术语
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## B
 
 ### Baud Rate（波特率）
