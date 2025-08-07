@@ -22,7 +22,6 @@
     "description": "$string:description_application",
     "minAPIVersion": 9,
     "targetAPIVersion": 9,
-    "apiReleaseType": "Release",
     "debug": false,
     "car": {
       "minAPIVersion": 8
