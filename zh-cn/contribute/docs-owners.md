@@ -69,6 +69,7 @@
 [Drm Kit][Multimedia]<br>
 [Form Kit][Ability]<br>
 [Function Flow Runtime Kit][Resourceschedule]<br>
+[IDL][SystemManagementServices]<br>
 [Image Kit][Multimedia]<br>
 [IME Kit][MiscServices]<br>
 [Input Kit][MultimodalInput]<br>
