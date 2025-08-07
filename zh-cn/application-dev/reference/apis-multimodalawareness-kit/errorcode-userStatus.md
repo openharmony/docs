@@ -1,4 +1,4 @@
-# 用户感知错误码
+# 用户状态感知错误码
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
