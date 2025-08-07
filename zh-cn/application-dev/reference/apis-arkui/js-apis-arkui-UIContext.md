@@ -203,10 +203,6 @@ getUIInspector(): UIInspector
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getUIInspector();
-```
 完整示例请参考[UIInspector](#uiinspector)中的示例。
 
 ### getUIObserver<sup>11+</sup>

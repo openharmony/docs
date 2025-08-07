@@ -8,9 +8,8 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 >
 > - 若同一个组件设置了多个id或者key，最后设置的生效。
 
-## 属性
 
-### id
+## id
 
 id(value: string): T
 
@@ -34,7 +33,7 @@ id(value: string): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-### key<sup>12+</sup>
+## key<sup>12+</sup>
 
 key(value: string): T
 
@@ -58,7 +57,7 @@ key(value: string): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## 接口
+## 基于组件标识的拓展能力
 
 ### getInspectorByKey<sup>9+</sup>
 
