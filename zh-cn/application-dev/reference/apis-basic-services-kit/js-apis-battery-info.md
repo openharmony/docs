@@ -1,5 +1,11 @@
 # @ohos.batteryInfo (电量信息)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 该模块主要提供电池状态和充放电状态的查询接口。
 
 > **说明：**
