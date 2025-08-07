@@ -1,4 +1,9 @@
 # @ohos.app.ability.kioskManager (Kiosk模式管理)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
 
 KioskManager模块提供Kiosk模式管理能力，包括系统进入/退出Kiosk模式操作。
 
@@ -44,7 +49,7 @@ enterKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |---------|---------|
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000110 | Current application is not in kiosk app list, can not enter kiosk mode. |
 | 16000111 | System is already in kiosk mode, can not enter again. |
@@ -110,7 +115,7 @@ exitKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |---------|---------|
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000110 | Current application is not in kiosk app list, can not exit kiosk mode. |
 | 16000112 | Current application is not in kiosk mode, can not exit. |
