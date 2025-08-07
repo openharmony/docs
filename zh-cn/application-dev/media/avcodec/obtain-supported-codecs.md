@@ -16,7 +16,7 @@
    ```
    > **说明：**
    >
-   > 请根据实际工程目录自定义'sample'。
+   > 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
    >
 
 2. 添加头文件。
@@ -24,9 +24,9 @@
    ```c++
    #include <algorithm>
    #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
    #include <multimedia/player_framework/native_avcodec_videoencoder.h>
    #include <multimedia/player_framework/native_avcodec_videodecoder.h>
-   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
    ```
 
 3. 获得音视频编解码能力实例。
