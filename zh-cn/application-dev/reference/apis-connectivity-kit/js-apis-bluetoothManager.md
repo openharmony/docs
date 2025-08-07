@@ -1541,7 +1541,7 @@ getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGate
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated)或[HidHostProfile](#hidhostprofiledeprecated)或[PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile) \| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated) \| [HidHostProfile](#hidhostprofiledeprecated) \| [PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **错误码**：
 
@@ -2089,10 +2089,6 @@ on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#stat
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
-**返回值：**
-
-无
-
 **错误码**：
 
 以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
@@ -2137,10 +2133,6 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
-
-**返回值：**
-
-无
 
 **错误码**：
 
