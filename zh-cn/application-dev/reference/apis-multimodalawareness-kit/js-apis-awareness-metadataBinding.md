@@ -1,11 +1,11 @@
-# @ohos.multimodalAwareness.metadataBinding (回旋镖)
+# @ohos.multimodalAwareness.metadataBinding (记忆链接)
 <!--Kit: Multimodal Awareness Kit-->
-<!--Subsystem: MultimodalAwareness-->
-<!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Subsystem: Msdp-->
+<!--Owner: @codexu62-->
+<!--SE: @yuxiaoyang-->
+<!--TSE: @zhaodengqi-->
 
-本模块提供回旋镖能力调用，包括编码内容传递、订阅事件和取消订阅事件。
+本模块提供记忆链接能力调用，包括编码内容传递、订阅事件和取消订阅事件。
 
 > **说明：**
 >
@@ -32,7 +32,7 @@ submitMetadata(metadata: string): void;
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[回旋镖错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -68,7 +68,7 @@ on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<numb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[回旋镖错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -109,7 +109,7 @@ off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<nu
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[回旋镖错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
