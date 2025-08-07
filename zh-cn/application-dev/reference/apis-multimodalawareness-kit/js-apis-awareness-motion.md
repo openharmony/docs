@@ -65,7 +65,7 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -112,7 +112,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -154,7 +154,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -195,7 +195,7 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 **错误码**
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -241,7 +241,7 @@ off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): v
 
 **错误码**
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
