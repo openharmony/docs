@@ -1,4 +1,9 @@
 # @ohos.multimodalawareness.userStatus (用户感知)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 本模块，提供对用户状态感知能力，包括年龄群组检测等能力。
 
