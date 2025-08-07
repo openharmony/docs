@@ -259,10 +259,10 @@ ScaleSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -295,9 +295,9 @@ HierarchicalSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 是 | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ### constructor<sup>12+</sup>
 
@@ -329,9 +329,9 @@ AppearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -363,9 +363,9 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -397,10 +397,10 @@ BounceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -433,9 +433,9 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -532,9 +532,9 @@ DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ### constructor<sup>20+</sup>
 
@@ -566,9 +566,9 @@ QuickReplaceSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>20+</sup>
 
@@ -622,7 +622,7 @@ QuickReplaceSymbolEffect的构造函数，快速替换动效。
 
 ###  示例1（设置渲染和动效策略）
 
-该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+从API version 11开始，该示例通过[renderingStrategy](#renderingstrategy)、[effectStrategy](#effectstrategy)属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -710,7 +710,7 @@ struct Index {
 
 ###  示例2（设置动效和阴影）
 
-该示例通过symbolEffect属性展示了各种动效的效果以及结合symbolShadow的阴影效果。
+从API version 12开始，该示例通过[symbolEffect](#symboleffect12)属性展示了各种动效的效果以及结合[symbolShadow](#symbolshadow20)（从API version 20开始）的阴影效果。
 
 ```ts
 // xxx.ets
@@ -813,7 +813,7 @@ struct Index {
 
 ### 示例3（设置颜色渐变）
 
-该示例通过shaderStyle接口实现了symbolGlyph控件显示为渐变色的功能。
+从API version 20开始，该示例通过[shaderStyle](#shaderstyle20)接口实现了symbolGlyph组件显示为渐变色的功能。
 
 ```ts
 @Entry

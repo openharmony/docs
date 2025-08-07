@@ -1,6 +1,6 @@
 # Web组件在不同的窗口间迁移
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @weixin_41848015-->
 <!--SE: @libing23232323-->
 <!--TSE: @ghiker-->

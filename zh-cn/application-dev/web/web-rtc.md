@@ -1,6 +1,6 @@
 # 在Web中打开摄像头和麦克风
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @qq_42700029-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->

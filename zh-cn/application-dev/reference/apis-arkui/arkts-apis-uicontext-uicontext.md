@@ -1,4 +1,9 @@
 # Class (UIContext)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 UIContext实例对象。
 
@@ -54,7 +59,7 @@ export default class EntryAbility extends UIAbility {
 
 isAvailable(): boolean
 
-判断UIContext对象对应的UI实例是否有效。使用getUIContext方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次loadContent后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
+判断UIContext对象对应的UI实例是否有效。使用[getUIContext](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对象无对应的UI实例；多次[loadContent](arkts-apis-window-Window.md#loadcontent9)后，旧的UI实例会失效。多窗口应用场景，当窗口关闭后，该窗口的UI实例失效。总而言之，当UIContext对象没有对应的后端UI实例时，该对象是无效的。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -212,9 +217,50 @@ getUIObserver(): UIObserver
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.getUIObserver();
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## getMediaQuery
@@ -259,6 +305,8 @@ getRouter(): Router
 | [Router](arkts-apis-uicontext-router.md) | 返回Router实例对象。 |
 
 **示例：**
+
+完整示例请参考[pushUrl](arkts-apis-uicontext-router.md#pushurl)。
 
 <!--code_no_check-->
 ```ts
@@ -530,7 +578,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](arkts-apis-uicontext-t.md#context12)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
+| [Context](arkts-apis-uicontext-t.md#context12)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext-1)。在ExtensionAbility窗口中的页面调用该接口，返回类型为[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -543,8 +591,14 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'").fontSize(25)
-        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'").fontSize(25)
+        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'")
+          .fontSize(25)
+          .border({ color:Color.Red, width:2 })
+          .padding(50)
+        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'")
+          .fontSize(25)
+          .border({ color:Color.Red, width:2 })
+          .padding(50)
       }
       .width('100%')
     }
@@ -581,6 +635,8 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+完整示例请参考[获取根节点示例](js-apis-arkui-frameNode.md#获取根节点示例)。
+
 <!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode");
@@ -614,9 +670,31 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode");
+@Entry
+@Component
+struct MyComponent {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          let node = this.getUIContext().getAttachedFrameNodeById("HelloWorld");
+          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ## getFrameNodeByUniqueId<sup>12+</sup>
@@ -1244,13 +1322,26 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.runScopedTask(
-  () => {
-    console.info('Succeeded in runScopedTask');
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Button("run task").onClick(()=>{
+          this.uiContext.runScopedTask(()=>{
+            // do something
+          })
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
-);
+}
 ```
 
 ## setKeyboardAvoidMode<sup>11+</sup>
@@ -1286,20 +1377,22 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getKeyboardAvoidMode<sup>11+</sup>
@@ -1327,22 +1420,23 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
+        hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getAtomicServiceBar<sup>11+</sup>
@@ -1417,6 +1511,66 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
 | keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // 设置关键帧动画整体播放3次
+          this.uiContext.keyframeAnimateTo({
+              iterations: 3,
+              expectedFrameRateRange: {
+                min: 10,
+                max: 120,
+                expected: 60,
+              }
+            }, [
+            {
+              // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ## getFocusController<sup>12+</sup>
 
@@ -1740,9 +1894,28 @@ vp2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.vp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().vp2px(50),
+          centerY: this.getUIContext().vp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2vp<sup>12+</sup>
@@ -1777,9 +1950,28 @@ px2vp(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2vp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2vp(50),
+          centerY: this.getUIContext().px2vp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## fp2px<sup>12+</sup>
@@ -1816,9 +2008,28 @@ fp2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.fp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().fp2px(50),
+          centerY: this.getUIContext().fp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2fp<sup>12+</sup>
@@ -1855,9 +2066,28 @@ px2fp(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2fp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2fp(50),
+          centerY: this.getUIContext().px2fp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## lpx2px<sup>12+</sup>
@@ -1890,9 +2120,28 @@ lpx2px(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.lpx2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().lpx2px(50),
+          centerY: this.getUIContext().lpx2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## px2lpx<sup>12+</sup>
@@ -1925,9 +2174,28 @@ px2lpx(value : number) : number
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2lpx(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2lpx(50),
+          centerY: this.getUIContext().px2lpx(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## getWindowName<sup>12+</sup>
@@ -2198,9 +2466,52 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene");
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
+        })
+      }
+
+      Button("set frame")
+        .onClick(() => {
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION);
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE);
+            }
+          });
+        })
+    }
+  }
+}
 ```
 
 ## openBindSheet<sup>12+</sup>
@@ -2917,6 +3228,8 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 import { UIContext } from '@kit.ArkUI';
 
@@ -2941,6 +3254,8 @@ static destroyUIContextWithoutWindow(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 UIContext.destroyUIContextWithoutWindow();
 ```
@@ -3030,20 +3345,22 @@ setPixelRoundMode(mode: PixelRoundMode): void
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+        uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 
 ## getPixelRoundMode<sup>18+</sup>
@@ -3069,19 +3386,21 @@ getPixelRoundMode(): PixelRoundMode
 import { UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+export default class EntryAbility extends UIAbility{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+      windowStage.loadContent('pages/Index', (err, data) => {
+        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+        console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
+}
 ```
 

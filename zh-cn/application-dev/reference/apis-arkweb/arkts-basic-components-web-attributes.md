@@ -1,8 +1,8 @@
 # 属性
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
 <!--TSE: @ghiker-->
 
 通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#touchabledeprecated)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)、[position](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)。
@@ -2256,7 +2256,17 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-设置使能文本自动调整大小。
+设置Web组件是否开启文本字体大小自动调整。
+
+文本字体大小自动调整生效后，对于字号过小的文本将自动加大字号至16px~32px，避免屏幕较小（默认视口宽度 < 980px）的设备因为缺少移动端适配出现字体过小的可读性问题。
+
+> **说明：**
+>
+> - 文本字体大小自动调整生效需要满足的前置条件：
+> - 1. 设备形态为：Phone、Tablet、Wearable、TV。
+> - 2. Web组件视口宽度 < 980px。
+> - 3. 页面文本量大，页面文本的字号*字符数 ≥ 3920。
+> - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

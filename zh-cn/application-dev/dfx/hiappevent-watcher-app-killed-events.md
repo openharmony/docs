@@ -1,5 +1,11 @@
 # 应用查杀事件介绍
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @shead-master-->
+<!--SE: @peterhuangyu-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 从API version 20开始，HiAppEvent提供接口用于订阅应用查杀事件。
@@ -33,8 +39,8 @@ HiAppEvent提供接口用于订阅应用查杀事件。
 | LowMemoryKill | 整机低内存。 |
 | OomKiller | 整机内存耗尽，无法继续分配。 |
 | PowerSaveClean | 整机切换到省电模式或应急模式。 |
-| ResourceLeak(AshmemLeak) | 整机Ashmem内存占用超标。 |
-| ResourceLeak(GpuLeak) | 整机GPU内存占用超标。 |
+| ResourceLeak(AshmemLeak) | 应用Ashmem内存占用超标。 |
+| ResourceLeak(GpuLeak) | 应用GPU内存占用超标。 |
 | ResourceLeak(GpuRsLeak) | 应用在Render Service进程内的GPU内存占用超标。 |
 | ResourceLeak(IonLeak) | 应用的Ion内存占用超标。 |
 | RssThresholdKiller | 应用的RSS（Resident Size Set）占用超标。 |

@@ -140,7 +140,7 @@ transferToImageBitmap(): ImageBitmap
 
 **返回值：**
 
-| 类型                                               | 描述                    |
+| 类型                                               | 说明                    |
 | -------------------------------------------------- | ----------------------- |
 | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 创建的ImageBitmap对象。 |
 
@@ -201,7 +201,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 **返回值：**
 
-| 类型                                                         | 描述                              |
+| 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
 | [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。如果getContext方法的入参contextType为"2d"以外类型（包括null或者undefined），返回null。 |
 

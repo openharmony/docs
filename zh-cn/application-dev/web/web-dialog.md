@@ -1,6 +1,6 @@
 # 使用Web组件显示网页弹框
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--SE: @zhufenghao-->
 <!--TSE: @ghiker-->

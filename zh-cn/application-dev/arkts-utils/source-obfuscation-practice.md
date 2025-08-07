@@ -1,6 +1,6 @@
 # 不同包类型的源码混淆建议
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -66,6 +66,12 @@
 ### 本地源码HAR包
 
 作为一个未发布的静态包，本地源码HAR包不会独立进行编译混淆，而是会跟随依赖它的主模块（如HAP）一同进行编译混淆，开发者需参阅[HAP包混淆建议](#hap包混淆建议)了解相关行为。
+
+由于本地源码HAR包会随着主模块一同进行混淆，多个HAP或HSP依赖相同本地源码HAR时，本地源码HAR在不同模块中的混淆结果可能不同。当开启`useNormalizedOHMUrl`（即在工程级`build-profile.json5`文件中，将`strictMode`属性的`useNormalizedOHMUrl`字段设置为true）时，运行时只会加载一份HAR，导致HAP和HSP无法找到对应的HAR，从而在调用HAR的方法时出现找不到的问题。
+
+解决方案：
+1. 使用[混淆助手配置保留选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-build-obfuscation#section19439175917123)，选择HAR对外暴露的接口场景，并将生成的白名单添加到HAR的`consumer-rules.txt`文件中。
+2. 将本地源码`HAR`改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)，单独编译生成对应的`HAR`包，然后依赖此`HAR`包。
 
 ### 发布态源码HAR包
 

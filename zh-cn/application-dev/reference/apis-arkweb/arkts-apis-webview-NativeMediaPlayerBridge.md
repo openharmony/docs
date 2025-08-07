@@ -1,6 +1,6 @@
 # Interface (NativeMediaPlayerBridge)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->

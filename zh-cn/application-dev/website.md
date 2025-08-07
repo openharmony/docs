@@ -1,4 +1,10 @@
 # OpenHarmony应用开发文档
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @zhang_yixin13-->
+<!--SE: @lingminghw-->
+<!--TSE: @RayShih-->
+
 - 入门<!--application-getting-started-->
   <!--Del-->
   - 快速入门<!--quick-start-->
@@ -964,18 +970,18 @@
             - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
             - [声明权限](security/AccessToken/declare-permissions.md)
             - [向用户申请授权](security/AccessToken/request-user-authorization.md)
-            - [二次向用户申请授权](security/AccessToken/request-user-authorization-second.md)
+            - [再次向用户申请授权](security/AccessToken/request-user-authorization-second.md)
             - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
             <!--Del-->
-            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            - [申请受限权限](security/AccessToken/declare-permissions-in-acl.md)
             <!--DelEnd-->
           - [应用权限列表](security/AccessToken/app-permissions.md)
             - [开放权限（系统授权）](security/AccessToken/permissions-for-all.md)
             - [开放权限（用户授权）](security/AccessToken/permissions-for-all-user.md)
             - [受限开放权限](security/AccessToken/restricted-permissions.md)
             <!--Del-->
-            - [可ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps.md)
-            - [不可ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps-no-acl.md)
+            - [可使用ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps.md)
+            - [不可通过ACL申请的系统应用可用权限（系统授权）](security/AccessToken/permissions-for-system-apps-no-acl.md)
             - [系统应用可用权限（用户授权）](security/AccessToken/permissions-for-system-apps-user.md)
             <!--DelEnd-->
             - [企业类应用可用权限](security/AccessToken/permissions-for-enterprise-apps.md)
@@ -999,7 +1005,7 @@
           - [管理群组关键资产(ArkTS)](security/AssetStoreKit/asset-js-group-access-control.md)
           - [同步（备份恢复）关键资产](security/AssetStoreKit/asset-js-sync.md)
           <!--Del-->
-          - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
+          - [操作指定用户空间下的关键资产(仅对系统应用开放)(ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
           <!--DelEnd-->
         - Asset Store Kit开发指导(C/C++)<!--asset-native-->
           - [新增关键资产(C/C++)](security/AssetStoreKit/asset-native-add.md)
@@ -2161,7 +2167,7 @@
           - [@ohos.app.ability.childProcessManager (子进程管理)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
           - [@ohos.app.ability.ChildProcessArgs (子进程参数)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
           - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
-          - [@ohos.app.ability.common (应用上下文Context)](reference/apis-ability-kit/js-apis-app-ability-common.md)
+          - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
@@ -2192,7 +2198,7 @@
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
           - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
-          - [@ohos.app.ability.common (应用上下文Context)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
+          - [@ohos.app.ability.common (Ability公共模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
           - [@ohos.app.ability.insightIntent (insightIntent)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
           - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntentDriver-sys.md)
@@ -2205,6 +2211,14 @@
           - [@ohos.ability.ability (Ability模块)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
+          - ability<!--fa-model-ability-->
+            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
+            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
+            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
+          - app<!--app-->
+            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
+            - [Context (FA模型的上下文基类)](reference/apis-ability-kit/js-apis-inner-app-context.md)
+            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
         - 通用能力的接口(推荐)<!--both-models-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
@@ -2261,14 +2275,6 @@
             - [AbilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [ConnectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
             - [DataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
-            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
-            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
-            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
-            - [Want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
-          - app<!--app-->
-            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
-            - [Context (FA模型的上下文基类)](reference/apis-ability-kit/js-apis-inner-app-context.md)
-            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application<!--ability-arkts-application-->
             - [AbilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
@@ -2397,6 +2403,8 @@
           - [@ohos.distributedBundle (分布式包管理)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
           <!--DelEnd-->
           - [@system.package (应用管理)](reference/apis-ability-kit/js-apis-system-package.md)
+          - ability<!--ability-deprecated-->
+            - [Want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
           - bundle<!--bundle-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundle-AbilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundle-ApplicationInfo.md)
@@ -2419,7 +2427,7 @@
           - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
           - [AbilityBase](reference/apis-ability-kit/capi-abilitybase.md)
           - [AbilityRuntime](reference/apis-ability-kit/capi-abilityruntime.md)
-          - [Bundle](reference/apis-ability-kit/_bundle.md)
+          - [Native_Bundle](reference/apis-ability-kit/capi-native-bundle.md)
           - [ChildProcess](reference/apis-ability-kit/capi-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
@@ -2427,7 +2435,7 @@
           - [ability_runtime_common.h](reference/apis-ability-kit/capi-ability-runtime-common-h.md)
           - [application_context.h](reference/apis-ability-kit/capi-application-context-h.md)
           - [context_constant.h](reference/apis-ability-kit/capi-context-constant-h.md)
-          - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
+          - [native_interface_bundle.h](reference/apis-ability-kit/capi-native-interface-bundle-h.md)
           - [native_child_process.h](reference/apis-ability-kit/capi-native-child-process-h.md)
           - [start_options.h](reference/apis-ability-kit/capi-start-options-h.md)
           - [want.h](reference/apis-ability-kit/capi-want-h.md)
@@ -2440,10 +2448,10 @@
           - [NativeChildProcess_Options](reference/apis-ability-kit/capi-nativechildprocess-options.md)
           - [NativeChildProcess_Args](reference/apis-ability-kit/capi-nativechildprocess-args.md)
           - [Ability_ChildProcessConfigs](reference/apis-ability-kit/capi-ability-childprocessconfigs.md)
-          - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
-          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
-          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/native_interface_bundle_metadata.md)
-          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/native_interface_bundle_module_metadata.md)
+          - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-applicationinfo.md)
+          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-elementname.md)
+          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-metadata.md)
+          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-modulemetadata.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -2928,6 +2936,7 @@
           - [SegmentButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
           - [ArcButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)
           - [ArcSlider](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcSlider.md)
+          - [选择器（Picker）公共接口](reference/apis-arkui/arkui-ts/ts-picker-common.md)
         - 文本与输入<!--text-and-input-->
           - [Text](reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
           - [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)

@@ -1,7 +1,7 @@
 # 使用扩展的Node-API接口在异步线程中运行和停止事件循环
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 

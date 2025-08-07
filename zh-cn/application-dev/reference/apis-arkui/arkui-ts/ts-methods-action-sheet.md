@@ -611,3 +611,119 @@ struct Example1 {
 ```
 
 ![zh-cn_image_action_lifecycle](figures/zh-cn_image_action_lifecycle.gif)
+
+### 示例7（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#actionsheetoptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("ActionSheet")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showActionSheet({
+              title: 'ActionSheet Title',
+              subtitle: 'ActionSheet Subtitle',
+              message: 'ActionSheet Text',
+              sheets: [
+                {
+                  title: 'Apples',
+                  action: () => {
+                    console.info('apples');
+                  }
+                },
+                {
+                  title: 'Bananas',
+                  action: () => {
+                    console.info('bananas');
+                  }
+                },
+                {
+                  title: 'Pears',
+                  action: () => {
+                    console.info('pears');
+                  }
+                }
+              ],
+              alignment: DialogAlignment.Center,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundBlurStyleOptions: {
+                colorMode: ThemeColorMode.LIGHT,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1,
+                blurOptions: { grayscale: [20, 20] },
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_action_backgroundBlurStyleOptions](figures/zh-cn_image_action_backgroundBlurStyleOptions.png)
+
+### 示例8（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#actionsheetoptions对象说明)，实现自定义背景效果。
+
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button("ActionSheet")
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showActionSheet({
+              title: 'ActionSheet Title',
+              subtitle: 'ActionSheet Subtitle',
+              message: 'ActionSheet Text',
+              sheets: [
+                {
+                  title: 'Apples',
+                  action: () => {
+                    console.info('apples');
+                  }
+                },
+                {
+                  title: 'Bananas',
+                  action: () => {
+                    console.info('bananas');
+                  }
+                },
+                {
+                  title: 'Pears',
+                  action: () => {
+                    console.info('pears');
+                  }
+                }
+              ],
+              alignment: DialogAlignment.Center,
+              backgroundColor: undefined,
+              backgroundBlurStyle: BlurStyle.Thin,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 0,
+                brightness: 1,
+                color: Color.White,
+                blurOptions: { grayscale: [20, 20] }
+              },
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+![zh-cn_image_action_backgroundEffect](figures/zh-cn_image_action_backgroundEffect.png)

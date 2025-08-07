@@ -1,5 +1,11 @@
 # hiappevent.h
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。

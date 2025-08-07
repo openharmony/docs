@@ -1,5 +1,11 @@
 # @ohos.hiTraceChain (分布式跟踪)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 本模块提供了端侧业务流程调用链跟踪的打点能力，包括业务流程跟踪的启动、结束、信息埋点等能力。
 
 > **说明：**

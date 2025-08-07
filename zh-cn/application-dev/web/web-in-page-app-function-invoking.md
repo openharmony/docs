@@ -1,6 +1,6 @@
 # 前端页面调用应用侧函数
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->

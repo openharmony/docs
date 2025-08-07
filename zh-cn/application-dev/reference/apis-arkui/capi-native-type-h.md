@@ -930,8 +930,6 @@ enum ArkUI_EffectEdge
 | -- |-----------------------|
 | ARKUI_EFFECT_EDGE_START = 1 | 起始边生效。                |
 | ARKUI_EFFECT_EDGE_END = 2 | 末尾边生效。                |
-| ARKUI_EFFECT_EDGE_TOP = 4 | 顶部生效。<br>**起始版本：** 20 |
-| ARKUI_EFFECT_EDGE_BOTTOM = 8 | 底部生效。<br>**起始版本：** 20   |
 
 ### ArkUI_ScrollDirection
 

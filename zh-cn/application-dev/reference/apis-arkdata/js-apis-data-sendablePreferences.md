@@ -990,7 +990,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;, callback: Callback&lt;lang.ISe
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
 | keys     | Array&lt;string&gt;                                          | 是   | 需要订阅的key集合。                                          |
-| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
+| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
 
 **错误码：**
 

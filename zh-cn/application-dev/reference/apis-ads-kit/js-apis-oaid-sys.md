@@ -1,5 +1,11 @@
 # @ohos.identifier.oaid (开放匿名设备标识服务)(系统接口)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, 以下简称OAID）的重置能力。
 
 > **说明：**<br/>

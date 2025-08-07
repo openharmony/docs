@@ -1,4 +1,10 @@
-# @ohos.app.ability.common (应用上下文Context)(系统接口)
+# @ohos.app.ability.common (Ability公共模块)(系统接口)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
 
 开发者可以通过该模块引用Ability公共模块类。
 
@@ -8,7 +14,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)。
 
 ## 导入模块
 

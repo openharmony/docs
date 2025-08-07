@@ -158,6 +158,12 @@ onRefreshing(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| callback | () => void | 是 | 进入刷新状态时触发的回调。 |
+
 ### onOffsetChange<sup>12+</sup>
 
 onOffsetChange(callback: Callback\<number>)

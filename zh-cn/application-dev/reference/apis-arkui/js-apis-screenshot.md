@@ -1,4 +1,9 @@
 # @ohos.screenshot (屏幕截图)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 本模块提供屏幕截图的能力。
 

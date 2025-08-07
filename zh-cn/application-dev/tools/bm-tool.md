@@ -1,4 +1,9 @@
 # bm工具
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @lihaitao-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
@@ -2350,7 +2355,7 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 **处理步骤**
 
 1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
-2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md)，确保与预置应用的不一致。
+2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md#配置文件标签)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2586,7 +2591,7 @@ HAP包没有配置文件，导致安装失败。
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件缺失。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件缺失。
 
 **处理步骤**
 
@@ -2603,7 +2608,7 @@ error: Install parse bad profile.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件格式异常。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件格式异常。
 
 **处理步骤**
 使用DevEco Studio重新构建、打包、安装。
@@ -2621,7 +2626,7 @@ error: Install parse profile prop type error.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在数据类型错误的字段。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件存在数据类型错误的字段。
 
 **处理步骤**
 
@@ -2638,7 +2643,7 @@ error: too large size of string or array type element in the profile.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在字符串长度或者数组大小过大的字段。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件存在字符串长度或者数组大小过大的字段。
 
 **处理步骤**
 

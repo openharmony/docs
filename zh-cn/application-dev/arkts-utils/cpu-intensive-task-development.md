@@ -1,6 +1,6 @@
 # CPU密集型任务开发指导 (TaskPool和Worker)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -87,21 +87,14 @@ struct Index {
 
    ![newWorker](figures/newWorker.png)
 
-2. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象。
+2. 在宿主线程中首先调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象；然后通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#属性-1)回调接收Worker线程发送过来的消息；最后通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
+  例如，向Worker线程发送训练和预测的消息，并接收Worker线程发送回来的消息。
 
     ```ts
     // Index.ets
-    import { worker } from '@kit.ArkTS';
+    import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
-    ```
-
-3. 在宿主线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
-   例如，向Worker线程发送训练和预测的消息，并接收Worker线程发送回来的消息。
-
-    ```ts
-    // Index.ets
-    import { ErrorEvent, MessageEvents, taskpool, worker } from '@kit.ArkTS';
 
     let done = false;
 
@@ -123,20 +116,11 @@ struct Index {
     ```
     <!-- @[call_worker_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
-4. 在MyWorker.ets文件中绑定Worker对象，当前线程即为Worker线程。
-
-   ```ts
-   // MyWorker.ets
-   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
-
-   let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-   ```
-
-5. 在Worker线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
+3. 在MyWorker.ets文件中绑定Worker对象，当前线程即为Worker线程。在Worker线程中通过注册[onmessage()](../reference/apis-arkts/js-apis-worker.md#属性-2)回调接收宿主线程发送的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
     例如，在Worker线程中定义预测模型及其训练过程，并与宿主线程进行信息交互。
 
     ```ts
-    // MyWorker1.ts
+    // MyWorker.ets
     import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
     let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -175,9 +159,9 @@ struct Index {
     ```
     <!-- @[interact_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
 
-6. 在Worker线程中完成任务后，可以执行销毁操作。销毁方式有两种：一是在宿主线程中销毁Worker线程；二是在Worker线程中主动销毁。
+4. 在Worker线程中完成任务后，可以执行销毁操作。销毁方式有两种：一是在宿主线程中销毁Worker线程；二是在Worker线程中主动销毁。
 
-    在宿主线程中通过调用[onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
+    在宿主线程中通过调用[onexit()](../reference/apis-arkts/js-apis-worker.md#属性-1)回调定义Worker线程销毁后的处理逻辑。
 
     ```ts
     // Index.ets

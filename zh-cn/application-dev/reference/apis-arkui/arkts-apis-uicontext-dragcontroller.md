@@ -1,4 +1,9 @@
 # Class (DragController)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 提供发起主动拖拽的能力，当应用接收到触摸或长按等事件时可以主动发起拖拽的动作，并在其中携带拖拽信息。
 
@@ -40,7 +45,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -126,7 +131,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -300,7 +305,7 @@ export default class EntryAbility extends UIAbility {
 ```
 2.通过this.getUIContext().getSharedLocalStorage()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
-import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI";
+import { dragController, componentSnapshot, UIContext, DragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -487,7 +492,7 @@ notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): vo
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 
 // xxx.ets
 @Entry

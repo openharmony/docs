@@ -1,6 +1,6 @@
 # 拦截Web组件发起的网络请求
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->

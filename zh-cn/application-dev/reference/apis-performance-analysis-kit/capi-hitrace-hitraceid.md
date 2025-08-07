@@ -1,5 +1,11 @@
 # HiTraceId
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 HiTraceId定义。

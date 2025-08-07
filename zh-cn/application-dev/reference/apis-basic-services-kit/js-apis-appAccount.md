@@ -1,5 +1,11 @@
 # @ohos.account.appAccount (应用账号管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 本模块提供应用账号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
 > **说明：**
@@ -3580,7 +3586,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
       console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));

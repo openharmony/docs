@@ -1,6 +1,6 @@
 # Class (GeolocationPermissions)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--SE: @handyohos-->
 <!--TSE: @ghiker-->

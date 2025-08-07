@@ -1,12 +1,17 @@
 # 订阅崩溃事件（C/C++）
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @chenshi51-->
+<!--SE: @Maplestory-->
+<!--TSE: @yufeifei-->
 
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
+本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用崩溃事件。详细使用说明请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
 
 > **说明：**
 >
-> 使用C/C++接口可以订阅JsError和NativeCrash两种崩溃事件。
+> 使用C/C++接口订阅JsError和NativeCrash崩溃事件。
 
 ## 接口说明
 
@@ -19,14 +24,15 @@
 
 ### 添加事件观察者
 
-**建议在应用启动后开始执行业务逻辑之前添加事件观察者，否则可能在订阅到崩溃事件之前应用因崩溃等故障退出，导致无法订阅到崩溃事件。**
+**在应用启动后，在执行业务逻辑前添加事件观察者，以确保订阅到崩溃事件。否则，应用可能因崩溃而退出，无法订阅崩溃事件。**
 
-以订阅用户点击按钮触发崩溃生成的崩溃事件为例，说明开发步骤。
+以用户点击按钮触发崩溃事件为例，开发步骤如下：
 
-1. 获取本示例工程的依赖项jsoncpp
-   参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Using JsonCpp in your project**介绍的使用方法获取到jsoncpp.cpp、json.h和json-forwards.h三个文件。
+1. 获取示例工程的依赖项jsoncpp。
 
-2. 新建Native C++工程，并将上述文件导入到新建工程内，目录结构如下。
+   参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Amalgamated source**部分，获取jsoncpp.cpp、json.h和json-forwards.h三个文件。
+
+2. 新建Native C++工程，并将上述文件导入到新建工程，目录结构如下。
 
    ```yml
    entry:
@@ -49,7 +55,7 @@
                - Index.ets
    ```
 
-3. 编辑"CMakeLists.txt"文件，添加源文件及动态库。
+3. 在"CMakeLists.txt"文件中，添加源文件和动态库。
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -58,7 +64,7 @@
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-4. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG。
+4. 在"napi_init.cpp"文件中，导入依赖文件，并定义LOG_TAG。
 
    ```c++
    #include "napi/native_api.h"
@@ -70,14 +76,14 @@
    #define LOG_TAG "testTag"
    ```
 
-5. 完成系统事件的订阅。
+5. 订阅系统事件。
 
    - onReceive类型观察者
 
-      编辑"napi_init.cpp"文件，定义onReceive类型观察者相关方法：
+      在"napi_init.cpp"文件中，定义onReceive类型观察者的方法：
 
       ```c++
-      //定义一变量，用来缓存创建的观察者的指针。
+      //定义一个变量，缓存创建的观察者指针。
       static HiAppEvent_Watcher *systemEventWatcher; 
       
       static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen) {
@@ -123,15 +129,15 @@
       }
       
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
-          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+          // 开发者自定义观察者名称，系统根据名称识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // 设置订阅的事件为EVENT_APP_CRASH。
+          // 订阅的事件为EVENT_APP_CRASH。
           const char *names[] = {EVENT_APP_CRASH};
-          // 开发者订阅感兴趣的事件，此处订阅了系统事件。
+          // 此处开发者订阅了系统事件EVENT_APP_CRASH。
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
-          // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
+          // 开发者通过调用OH_HiAppEvent_SetWatcherOnReceive函数设置已实现的回调函数，观察者接收到事件后会触发OnReceive回调。
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
-          // 使观察者开始监听订阅的事件。
+          // 启动观察者以监听事件。
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
       }
@@ -139,13 +145,13 @@
 
    - onTrigger类型观察者
 
-      编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
+      在"napi_init.cpp"文件中，定义OnTrigger类型观察者：
 
       ```c++
-      //定义一变量，用来缓存创建的观察者的指针。
+      //定义一个变量，用来缓存创建的观察者指针。
       static HiAppEvent_Watcher *systemEventWatcher;
       
-      // 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
+      // 开发者需要实现一个回调函数`OnTake`来获取已监听事件，其中`events`指针仅在该函数内有效。
       static void OnTake(const char *const *events, uint32_t eventLen) {
           Json::Reader reader(Json::Features::strictMode());
           Json::FastWriter writer;
@@ -188,9 +194,9 @@
           }
       }
       
-      // 开发者可以自行实现订阅回调函数，以便对获取到的事件打点数据进行自定义处理。
+      // 开发者应实现订阅回调函数，用以对获取的事件打点数据进行自定义处理。
       static void OnTrigger(int row, int size) {
-          // 接收回调后，获取指定数量的已接收事件。
+          // 接收回调后，获取指定数量的事件。
           OH_HiAppEvent_TakeWatcherData(systemEventWatcher, row, OnTake);
       }
       
@@ -203,9 +209,9 @@
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
           OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
-          // 开发者可以设置订阅触发回调的条件，此处是设置新增事件打点数量为1个时，触发onTrigger回调。
+          // 设置订阅触发回调的条件：当设置新增事件打点数量为1时，触发onTrigger回调。
           OH_HiAppEvent_SetTriggerCondition(systemEventWatcher, 1, 0, 0);
-          // 使观察者开始监听订阅的事件。
+          // 启动观察者以监听订阅的事件。
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
       }
@@ -213,7 +219,7 @@
 
 6. 将RegisterWatcher注册为ArkTS接口。
 
-   编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
+   在"napi_init.cpp"文件中，将RegisterWatcher注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -226,13 +232,13 @@
    }
    ```
 
-   编辑"index.d.ts"文件，定义ArkTS接口：
+   在"index.d.ts"文件中，定义ArkTS接口：
 
    ```typescript
    export const registerWatcher: () => void;
    ```
 
-7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用。
+7. 在"EntryAbility.ets"文件的onCreate()函数中添加接口调用。
 
    ```typescript
    // 导入依赖模块
@@ -243,7 +249,7 @@
    testNapi.registerWatcher();
    ```
 
-8. 编辑"Index.ets"文件，新增按钮触发崩溃事件。
+8. 在"Index.ets"文件中，新增按钮触发崩溃事件。
 
    ```typescript
    Button("appCrash").onClick(() => {
@@ -251,31 +257,31 @@
    })
    ```
 
-9. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统根据崩溃类型（JsError或NativeCrash）生成相应的崩溃日志并进行回调。
+9. 点击运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统生成相应的崩溃日志并进行回调。
 
 > **说明：**
 >
-> JsError通过进程内采集故障信息的方式触发回调迅速，而NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体耗时受业务线程数量和进程间通信耗时影响。开发者可以订阅崩溃事件，故障信息采集完成后会异步上报，不会阻塞当前业务。
+> JsError通过进程内采集故障信息触发回调，速度快。NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体受业务线程数量和进程间通信影响。订阅崩溃事件后，故障信息采集完成会异步上报，不阻塞当前业务。
 
 ### 验证观察者是否订阅到崩溃事件
 
-在应用未主动捕获崩溃异常和主动捕获崩溃异常的场景中，崩溃事件会在不同时机得到回调，开发者需要在不同时机验证是否订阅到崩溃事件。
+在应用未主动捕获崩溃异常和主动捕获崩溃异常的两种场景中，崩溃事件的回调时机不同。开发者需要在每种情况下验证是否订阅到崩溃事件。
 
 **应用未主动捕获崩溃异常场景**
 
-若应用未主动捕获崩溃异常，则系统处理崩溃后应用退出。**应用下次启动时**，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
+若应用未主动捕获崩溃异常，则系统处理崩溃后应用将退出。**应用下次启动时**，HiAppEvent将崩溃事件上报给已注册的监听，完成回调。
 
 **应用主动捕获崩溃异常场景**
 
-若应用主动捕获崩溃异常，HiAppEvent事件将在**应用退出前**回调，例如以下两种情况：
+若应用主动捕获崩溃异常，HiAppEvent事件将在**应用退出前**触发回调，例如：
 
-1. 异常处理中未主动退出，应用发生崩溃后将不会退出。
+1. 异常处理中未主动退出的应用崩溃后不会退出。
 
-   采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃信号](cppcrash-guidelines.md#系统处理的崩溃信号)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
+   采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前触发回调。若应用注册[崩溃信号](cppcrash-guidelines.md#系统处理的崩溃信号)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前触发回调。
 
-2. 异常处理耗时过长，导致应用退出时间延迟。
+2. 异常处理耗时过长，会导致应用退出延迟。
 
-在开发调试阶段，HiAppEvent上报事件完成回调后，可以在DevEco Studio的HiLog窗口查看订阅到的崩溃事件内容：
+在开发调试阶段，HiAppEvent上报事件完成回调后，可在DevEco Studio的HiLog窗口查看订阅的崩溃事件内容。
 
 ```text
 HiAppEvent eventInfo.domain=OS

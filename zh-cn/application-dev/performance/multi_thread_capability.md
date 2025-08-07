@@ -1,4 +1,9 @@
 # 多线程能力场景化示例实践
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--SE: @jiangwensai-->
+<!--TSE: @Lyuxin-->
 
 ## 简介
 

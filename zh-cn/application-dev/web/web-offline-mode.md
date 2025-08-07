@@ -1,6 +1,6 @@
 # 使用离线Web组件
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @wang-yanhan-->
 <!--SE: @qianlf-->
 <!--TSE: @ghiker-->
