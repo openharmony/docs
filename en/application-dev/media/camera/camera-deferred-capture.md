@@ -1,6 +1,12 @@
 # Deferred Photo Delivery (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 As an important feature of the camera, deferred photo delivery enables the system, after receiving a photo capture task from an application, to report images of different quality levels in multiple phases.
+
 - In the first phase, the system promptly delivers an image that has undergone lightweight processing, offering a balance between reduced quality and swift image availability. The application receives a PhotoAsset object through the callback. Through this object, the application can call the media library APIs to read the image or flush the image to the disk.
 - In the second phase, the camera framework enhances the image to achieve full quality, either in response to the application's request for higher quality or when the system is not busy. The enhanced image is then sent back to the media library to replace the previously provided one.
 
@@ -8,7 +14,7 @@ Deferred photo delivery further reduces the response delay, delivering a better 
 
 To develop deferred photo delivery, perform the following steps:
 
-- Listen for the **photoAssetAvailable** event through **PhotoOutput** to obtain a PhotoAsset object of [photoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+- Listen for the **photoAssetAvailable** event through PhotoOutput to obtain a PhotoAsset object of [photoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md).
 - Call the media library APIs to read or flush images to the disk through the PhotoAsset object.
 
 > **NOTE**
@@ -18,7 +24,7 @@ To develop deferred photo delivery, perform the following steps:
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import dependencies. Specifically, import the camera, image, and media library modules.
 
@@ -30,7 +36,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 2. Determine the photo output stream.
 
-   You can use the **photoProfiles** attribute of the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11) to create a photo output stream.
+   You can use the **photoProfiles** property of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
@@ -114,9 +120,9 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-   For details about the API used to flush images, see [saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12).
+   For details about the API used to flush images, see [saveCameraPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#savecameraphoto12).
 
-   For details about the APIs used to request images, see [requestImageData](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) and [onDataPrepared](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11).
+   For details about the APIs used to request images, see [requestImageData](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestimagedata11) and [onDataPrepared](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetDataHandler.md#ondataprepared11).
 
 4. The session configuration and photo capture triggering mode are the same as those in the common photo capture mode. For details, see steps 4-5 in [Photo Capture (ArkTS)](camera-shooting.md).
 
@@ -137,7 +143,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the **'captureEnd'** event to listen for photo capture end events. This event can be registered when a PhotoOutput instance is created and is triggered when the photo capture is complete. [CaptureEndInfo](../../reference/apis-camera-kit/js-apis-camera.md#captureendinfo) is returned.
+- Register the **'captureEnd'** event to listen for photo capture end events. This event can be registered when a PhotoOutput instance is created and is triggered when the photo capture is complete. [CaptureEndInfo](../../reference/apis-camera-kit/arkts-apis-camera-i.md#captureendinfo) is returned.
 
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
@@ -164,7 +170,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the **'error'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode).
 
   ```ts
   function onPhotoOutputError(photoOutput: camera.PhotoOutput): void {
