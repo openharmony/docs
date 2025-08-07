@@ -7,9 +7,8 @@
 
 [UIAbility](js-apis-app-ability-uiAbility.md)从创建到销毁过程其生命周期是动态变化的。AbilityLifecycleCallback模块提供监听[UIAbility](js-apis-app-ability-uiAbility.md)生命周期变化的能力。主要用于如下场景：
 
-- 统计每个UIAbility页面的时长。
+- 统计每个UIAbility的运行时长。
 - 执行与UIAbility业务逻辑解耦的数据加载。
-- 对外提供SDK，通知其他模块应用状态的变化。
 
 > **说明：**
 >
