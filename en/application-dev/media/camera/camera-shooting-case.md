@@ -28,7 +28,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${errCode}`);
+    console.error(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;

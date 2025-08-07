@@ -14,7 +14,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    import { common } from '@kit.AbilityKit';
    ```
 
-2. Call [getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** object.
+2. Call [getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager) to obtain a CameraManager object.
 
    For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
