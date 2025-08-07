@@ -47,7 +47,7 @@ onAbilityCreate(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageCreate
 
@@ -68,7 +68,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageActive
 
@@ -89,7 +89,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageInactive
 
@@ -110,7 +110,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageDestroy
 
@@ -131,7 +131,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityDestroy
 
@@ -151,7 +151,7 @@ onAbilityDestroy(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityForeground
 
@@ -171,7 +171,7 @@ onAbilityForeground(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityBackground
 
@@ -191,7 +191,7 @@ onAbilityBackground(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityContinue
 
@@ -211,7 +211,7 @@ onAbilityContinue(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillCreate<sup>12+</sup>
 
@@ -231,7 +231,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageWillCreate<sup>12+</sup>
 
@@ -252,7 +252,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageWillDestroy<sup>12+</sup>
 
@@ -273,7 +273,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillForeground<sup>12+</sup>
 
@@ -293,7 +293,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillDestroy<sup>12+</sup>
 
@@ -313,7 +313,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillBackground<sup>12+</sup>
 
@@ -333,7 +333,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWillNewWant<sup>12+</sup>
 
@@ -353,7 +353,7 @@ onWillNewWant?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onNewWant<sup>12+</sup>
 
@@ -373,7 +373,7 @@ onNewWant?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillContinue<sup>12+</sup>
 
@@ -393,7 +393,7 @@ onAbilityWillContinue?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageWillRestore<sup>12+</sup>
 
@@ -414,7 +414,7 @@ onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): 
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onWindowStageRestore<sup>12+</sup>
 
@@ -435,7 +435,7 @@ onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilityWillSaveState<sup>12+</sup>
 
@@ -455,7 +455,7 @@ onAbilityWillSaveState?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### onAbilitySaveState<sup>12+</sup>
 
@@ -475,7 +475,7 @@ onAbilitySaveState?(ability: UIAbility): void
 
 **示例：**
 
-参见[AbilityLifecycleCallback使用示例](#AbilityLifecycleCallback使用示例)。
+参见[AbilityLifecycleCallback使用示例](#abilitylifecyclecallback使用示例)。
 
 ### AbilityLifecycleCallback使用示例
 
