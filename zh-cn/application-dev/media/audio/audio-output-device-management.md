@@ -5,7 +5,7 @@
 <!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
 <!--TSE: @Filger-->
 
-本模块提供音频输出设备管理能力，包括查询输出设备信息、监听设备连接状态变化等。具体API说明可参考文档[AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
+本模块提供音频输出设备管理能力，包括查询设备信息和监听连接状态变化。具体API说明请参考文档[AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
 
 ## 创建AudioRoutingManager实例
 
@@ -21,7 +21,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 
 ## 支持的音频输出设备类型
 
-目前支持的音频输出设备见下表：
+目前支持的输出设备见下表：
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -47,7 +47,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 
 ## 监听设备连接状态变化
 
-可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
+设置监听事件以监控设备连接状态的变化，设备连接或断开时触发回调。
 
 > **说明：**
 > 监听设备连接状态变化可以监听到全部的设备连接状态变化，不建议作为应用处理自动暂停的依据。应用如需处理自动暂停相关业务，可参考[音频流输出设备变更原因](audio-output-device-change.md)。
@@ -152,9 +152,7 @@ audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
 
 # 通过AudioSession管理全局音频输出设备
-一些应用使用播放器的sdk播放音频流，应用本身不持有AudioRenderer
-对象，无法灵活控制播放设备的选择和设备状态的监听。
-因此，从API20开始，AudioSession除了增加焦点管理能力外，也提供了音频输出设备管理能力，包括设置本机默认输出设备信息、监听输出设备变化等。具体API说明可参考文档[AudiSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)。
+应用使用播放器的SDK播放音频流，不持有AudioRenderer对象，无法灵活控制播放设备的选择和设备状态的监听。因此，从API20开始，AudioSession不仅增加了焦点管理能力，还提供了音频输出设备管理功能，包括设置默认输出设备和监听设备变化。具体API说明请参考文档[AudiSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)。
 
 ## 创建AudioSession实例
 在使用AudioSessionManager管理音频设备前，需要先导入模块并创建实例。
@@ -168,11 +166,11 @@ let audioSessionManager = audioManager.getSessionManager();  // 再调用AudioMa
 
 ## 设置本机默认音频输出设备
 
-应用可以通过[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setdefaultoutputdevice20)设置本机默认输出设备。
+[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setdefaultoutputdevice20)可以用于设置本机默认输出设备。
 > **说明：**
 >
-> - 由于AudioSession是应用级设置，如果调用了本接口设置默认输出设备，会覆盖通过AudioRenderer的setDefaultOutputDevice接口设置的设备信息。
-> - setDefaultOutputDevice设置输出设备后，如果要取消，可以将入参设置成audio.DeviceType.DEFAULT，将设备选择交还给系统默认设置。否则，每次调用activateAudioSession，就会生效应用选择的默认输出设备。
+> - 由于AudioSession是应用级设置，如果调用了本接口设置默认音频输出设备，会覆盖通过AudioRenderer的`setDefaultOutputDevice`接口设置的音频输出设备信息。
+> - `setDefaultOutputDevice`设置音频输出设备后，如果要取消，可以将入参设置成audio.DeviceType.DEFAULT，将音频设备选择交还给系统默认设置。否则，每次调用`activateAudioSession`，就会生效应用选择的默认输出设备。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -192,12 +190,12 @@ audioSessionManager.setDefaultOutputDevice(audio.DeviceType.DEFAULT).then(() => 
 });
 ```
 
-## 获取本机默认音频输出设备
+## 查询本机默认音频输出设备
 
-应用可以通过[getDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#getdefaultoutputdevice20)获取本机默认输出设备。
+应用可以通过[getDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#getdefaultoutputdevice20)查询本机默认输出设备。
 > **说明：**
 >
-> 本接口用于查询通过setDefaultOutputDevice接口设置的DeviceType。
+> 本接口用于查询通过`setDefaultOutputDevice`接口设置的设备类型。
 
 ```ts
 let deviceType = audioSessionManager.getDefaultOutputDevice();
@@ -206,11 +204,11 @@ console.info('getDefaultOutputDevice Success, deviceType: ${deviceType}');
 
 ## 监听输出设备变化
 
-应用可以通过注册[currentOutputDeviceChangedCallback](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#currentoutputdevicechangedcallback20)监听输出设备的变化。
+应用可以通过注册[currentOutputDeviceChangedCallback](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#currentoutputdevicechangedcallback20)监听输出设备的连接状态变化。
 
 > **说明：**
 >
-> currentOutputDeviceChangedCallback中携带了设备变更的原因以及推荐的后续操作，为了更好的体验，建议应用对各种不同的设备变更原因做相应的处理并且根据系统推荐操作继续/停止当前播放。
+> `currentOutputDeviceChangedCallback`中包含设备变更的原因及推荐的后续操作。建议应用针对不同的设备变更原因进行处理，并根据系统推荐的操作继续或停止当前播放。
 
 ```ts
 import { audio } from '@kit.AudioKit';

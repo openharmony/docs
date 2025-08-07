@@ -442,7 +442,7 @@
 | REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。 |
 | REASON_OVERRODE | 3 | 强选。 |
 | REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | 音频会话已激活。 |
-| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 更高优先级的音频流出现导致的系统设备切换。 |
+| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 当更高优先级的音频流出现时，系统设备会进行切换。 |
 
 ## OutputDeviceChangeRecommendedAction<sup>20+</sup>
 
@@ -532,7 +532,7 @@
 
 ## AudioSessionScene<sup>20+</sup>
 
-表示音频会话场景的枚举。
+枚举音频会话场景。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -544,9 +544,9 @@
 
 ## AudioSessionStateChangeHint<sup>20+</sup>
 
-表示音频会话状态变更提示的枚举。
+枚举用于音频会话状态变更提示。
 
-当用户监听到音频会话状态变化事件（即收到[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audioSessionStateChangedEvent20)事件）时，获取此信息。
+当用户监听到音频会话状态变化事件（即收到[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audioSessionStateChangedEvent20)事件）时，获取相关信息。
 
 此类型表示根据焦点策略，对音频会话执行的具体操作（如暂停、调整音量等）。
 
@@ -556,10 +556,10 @@
 
 | 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
-| AUDIO_SESSION_STATE_CHANGE_HINT_RESUME              | 0      | 提示音频会话恢复，应用可主动触发开始渲染等相关操作。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_RESUME              | 0      | 提示音频会话恢复，应用可主动触发开始渲染等操作。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE               | 1      | 提示音频会话暂停，暂时失去音频焦点。待焦点可用时，会收到AUDIO_SESSION_STATE_CHANGE_HINT_RESUME事件。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_STOP                | 2      | 提示由于焦点被抢占音频会话停止，彻底失去音频焦点。 |
-| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | 提示由于长时间没有音频业务，音频会话被系统停止，彻底失去音频焦点。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | 提示音频会话因长时间无业务而被系统停止，失去音频焦点。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_DUCK                | 4      | 提示音频会话躲避开始，降低音量播放。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK | 5      | 提示音频会话躲避结束，恢复音量播放。 |
 

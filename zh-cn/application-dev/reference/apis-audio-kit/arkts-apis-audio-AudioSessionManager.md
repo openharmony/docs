@@ -72,6 +72,8 @@ deactivateAudioSession(): Promise\<void>
 
 停用音频会话。使用Promise异步回调。
 
+
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **返回值：**
@@ -213,8 +215,8 @@ setAudioSessionScene(scene: AudioSessionScene): void
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permit at current state.|
-| 6800301 | System error. |
+| 6800103 | Operation not permitted at current state.|
+| 6800301 | System error occurred. |
 
 **示例：**
 
@@ -244,7 +246,7 @@ on(type: 'audioSessionStateChanged', callback: Callback<AudioSessionStateChanged
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800102 | Allocate memory failed. |
+| 6800102 | Memory allocation failed. |
 | 6800301 | System error. |
 
 **示例：**
@@ -296,15 +298,15 @@ audioSessionManager.off('audioSessionStateChanged', audioSessionStateChangedCall
 
 setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
-设置默认发声设备。使用Promise异步回调。
+设置默认发声设备。使用Promise方式进行异步回调。
 
 > **说明：**
 >
-> - 本接口适用范围：设置的[AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20)为VoIP场景时，激活AudioSession后立即生效；如果AudioSessionScene为非VoIP场景，激活AudioSession时并不会生效，启动播放的[StreamUsage](arkts-apis-audio-e.md#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话时才生效。支持听筒、扬声器和系统默认设备。
+> - 本接口适用于以下情况：当设置的[AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20)为VoIP场景时，激活AudioSession后立即生效。若[AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20)为非VoIP场景，激活AudioSession时不会生效，仅在启动播放的[StreamUsage](arkts-apis-audio-e.md#streamusage)为语音消息、VoIP语音通话或VoIP视频通话时才生效。支持听筒、扬声器和系统默认设备。
 >
-> - 本接口允许在AudioSessionManager创建后随时调用，系统记录应用设置的默认本机内置发声设备，但只有激活AudioSession后才能生效。应用启动播放时，若外接设备如蓝牙耳机或有线耳机已接入，系统优先从外接设备发声；否则，系统遵循应用设置的默认本机内置发声设备。
+> - 本接口允许在AudioSessionManager创建后随时调用，系统会记录应用设置的默认本机内置发声设备。但只有激活AudioSession后才能生效。应用启动播放时，若外接设备如蓝牙耳机或有线耳机已接入，系统优先从外接设备发声。否则，系统遵循应用设置的默认本机内置发声设备。
 >
-> - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再次调用本接口切换设备将不生效。
+> - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再次调用本接口将不生效。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -346,7 +348,7 @@ audioSessionManager.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => 
 
 getDefaultOutputDevice(): DeviceType
 
-获取通过[setDefaultOutputDevice](#setDefaultOutputDevice20)设置的默认发声设备。
+获取通过[setDefaultOutputDevice](#setDefaultOutputDevice20)指定的默认发声设备。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -374,7 +376,7 @@ on(type: 'currentOutputDeviceChanged', callback: Callback<CurrentOutputDeviceCha
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
-| type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备发生变化时，触发该事件。|
+| type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备变化时触发。|
 | callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，返回当前输出设备信息。 |
 
 **错误码：**
@@ -403,7 +405,7 @@ audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedC
 
 off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceChangedEvent>): void
 
-取消监听当前输出设备变化事件。使用callback异步回调。
+取消监听当前输出设备变化事件。使用callback进行异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -412,11 +414,11 @@ off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceC
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备发生变化时，触发该事件。|
-| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，返回当前输出设备信息。 |
+| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，用于返回当前输出设备的信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

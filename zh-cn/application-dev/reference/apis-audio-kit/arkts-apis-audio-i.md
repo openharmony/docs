@@ -288,7 +288,7 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 
 ## CurrentOutputDeviceChangedEvent<sup>20+</sup>
 
-输出设备变更时，应用接收到的事件。
+应用接收到输出设备变更事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
