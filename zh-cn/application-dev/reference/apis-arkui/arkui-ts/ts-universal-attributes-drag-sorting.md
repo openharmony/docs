@@ -72,12 +72,12 @@ type OnMoveHandler = (from: number, to: number) => void
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| onLongPress  |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否  | 长按时触发的回调。<br>- 参数index为长按时当前目标的索引号。 |
-| onDragStart  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 在页面跟手滑动开始时触发的回调。<br>- 参数index为拖拽开始时当前目标的索引号。 |
-| onMoveThrough  | [OnMoveHandler](#onmovehandler) | 否   | 在页面跟手滑动过程中经过其他组件时触发的回调。 |
-| onDrop  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 在页面跟手滑动结束时触发的回调。<br>- 参数index为拖拽结束时当前目标的索引号。 |
+| 名称 | 类型   | 只读 | 可选 | 说明                 |
+| ------ | ------ | ---- | ---- | -------------------- |
+| onLongPress  |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否  | 是 | 长按时触发的回调。<br>- 参数index为长按时当前目标的索引号。 |
+| onDragStart  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 是 | 在页面跟手滑动开始时触发的回调。<br>- 参数index为拖拽开始时当前目标的索引号。 |
+| onMoveThrough  | [OnMoveHandler](#onmovehandler) | 否   | 是 | 在页面跟手滑动过程中经过其他组件时触发的回调。 |
+| onDrop  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 是 | 在页面跟手滑动结束时触发的回调。<br>- 参数index为拖拽结束时当前目标的索引号。 |
 
 ## 示例
 
