@@ -1,4 +1,4 @@
-# @ohos.multimodalAwareness.motion (动作感知)
+# @ohos.multimodalAwareness.motion (动作感知能力)
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
