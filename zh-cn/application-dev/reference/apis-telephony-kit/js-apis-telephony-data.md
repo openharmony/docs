@@ -1,6 +1,6 @@
 # @ohos.telephony.data (蜂窝数据)
 
-<!--Kit: Telephony-->
+<!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @liuleiminhw-->
 <!--SE: @guo-min_net-->
