@@ -2,8 +2,8 @@
 
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @wangke25; @wang_zhangjun-->
-<!--SE: @gsl_1234;@wang_zhangjun-->
+<!--Owner: @wangke25-->
+<!--SE: @bubble_mao; @zhuangzhuang; @gsl_1234-->
 <!--TSE: @liuhonggang123-->
 
 - [Core File Kit简介](core-file-kit-intro.md)
