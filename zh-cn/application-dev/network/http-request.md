@@ -235,7 +235,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     });
     ```
 
-4. 发起HTTP流式请求，解析服务器响应事件
+4. 发起HTTP流式请求，获取服务端数据
 
     ```ts
     let streamInfo: http.HttpRequestOptions = {
