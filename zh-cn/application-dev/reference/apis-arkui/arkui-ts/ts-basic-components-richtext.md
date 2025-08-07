@@ -71,7 +71,6 @@ onComplete(callback: () => void)
 | ------- | -------- | ------------- | -------- |
 |  callback |callback: () => void | 是   | 网页加载结束时触发回调。 |
 
-
 ## 属性
 
 只支持[通用属性](ts-component-general-attributes.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
