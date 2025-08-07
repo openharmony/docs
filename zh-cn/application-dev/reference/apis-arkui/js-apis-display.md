@@ -613,7 +613,7 @@ getFoldDisplayMode(): FoldDisplayMode
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在其他设备中可正常调用，在2in1设备、非折叠设备中返回0。
+**设备行为差异：** 该接口在2in1设备、非折叠设备中返回0，在其他设备中可正常调用
 
 **返回值：**
 
@@ -957,7 +957,7 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在折叠设备中可正常调用，在2in1设备、非折叠设备中返回0。
+**设备行为差异：** 该接口在2in1设备、非折叠设备中返回0，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1000,7 +1000,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在折叠设备中可正常调用，在2in1设备、非折叠设备中不生效也不报错。
+**设备行为差异：** 该接口在在2in1设备、非折叠设备中不生效也不报错，在折叠设备中可正常调用。
 
 **参数：**
 
@@ -1590,7 +1590,7 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不可用，请通过Display的Width、height[属性](apis-arkui/js-apis-display.md#属性)获取当前设备屏幕的可用区域。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不可用，请通过[Display属性](#属性)中的width、height属性获取当前设备屏幕的可用区域。
 
 **返回值：**
 
