@@ -1,5 +1,11 @@
 # @system.brightness (屏幕亮度)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 该模块提供屏幕亮度和模式的查询、调节接口。
 
 > **说明：**
