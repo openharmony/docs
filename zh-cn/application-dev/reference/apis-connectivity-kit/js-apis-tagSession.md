@@ -1,5 +1,11 @@
 # tagSession (标准NFC-Tag TagSession)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--SE: @wenxiaolin-->
+<!--TSE: @zs_111-->
+
 本模块是对NFC TagSession的使用说明。
 
 > **说明：**
@@ -41,7 +47,7 @@ getTagInfo(): tag.TagInfo
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| TagInfo  | NFC服务所提供的Tag数据对象。 |
+| tag.TagInfo  | NFC服务所提供的Tag数据对象。 |
 
 **示例：**
 

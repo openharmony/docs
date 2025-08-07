@@ -1,5 +1,11 @@
 # nfctech (标准NFC-Tag Nfc 技术)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--SE: @wenxiaolin-->
+<!--TSE: @zs_111-->
+
 本模块主要用于采用不同Nfc技术的Tag的读写操作。
 
 > **说明：**
@@ -2606,12 +2612,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
-
-**返回值：**
-
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入标签成功时，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF消息写入标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2747,12 +2748,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。|
-
-**返回值：**
-
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入NDEF标签成功时，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF消息写入NDEF标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
