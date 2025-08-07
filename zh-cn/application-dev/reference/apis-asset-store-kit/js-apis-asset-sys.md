@@ -72,7 +72,6 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -138,7 +137,6 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -204,7 +202,6 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -272,7 +269,6 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -338,7 +334,6 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -400,7 +395,6 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let handle: asset.AssetMap = new Map();

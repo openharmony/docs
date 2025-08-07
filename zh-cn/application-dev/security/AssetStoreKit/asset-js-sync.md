@@ -28,7 +28,7 @@ attr.set(asset.Tag.SYNC_TYPE, asset.SyncType.TRUSTED_DEVICE); // 需指定在可
 
 try {
   asset.add(attr).then(() => {
-    console.info(`Succeeded in adding Asset.`);
+    console.info(`Succeeded in adding Asset with sync.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);
   })
