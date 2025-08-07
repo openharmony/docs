@@ -1,5 +1,9 @@
 # 传感器开发指导(ArkTS)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 ## 场景介绍
 

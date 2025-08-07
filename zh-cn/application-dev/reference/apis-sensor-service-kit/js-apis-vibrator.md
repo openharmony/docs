@@ -1,4 +1,9 @@
 # @ohos.vibrator (振动)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 vibrator模块提供控制设备马达振动的能力。包括启动指定时长、预置效果、自定义文件等模式的振动；停止指定时长、预置效果或所有模式的振动。
 
@@ -983,7 +988,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 | 类型                            | 说明                                                      |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | 马达设备的信息。 |
+| Array&lt;[VibratorInfo](#vibratorinfo19)&gt; | 马达设备的信息。 |
 
 
 **示例**：
@@ -1143,7 +1148,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称                  | 类型      | 只读 | 可选 | 说明        |
-|---------------------|---------|----|----|-----------| 
+|---------------------|---------|----|----|-----------|
 | deviceId            | number  | 是  | 否  | 设备ID。     |
 | vibratorId          | number  | 是  | 否  | 马达ID。     |
 | deviceName          | string  | 是  | 否  | 设备名称。     |
@@ -1561,7 +1566,7 @@ build(): VibratorPattern;
 | 名称                     | 类型             | 必填 | 说明                                                        |
 |------------------------| ---------------- | ---- |-----------------------------------------------------------|
 | id                     | number           | 否   | 马达ID， 默认值为0。                                              |
-| deviceId<sup>19+</sup> | number           | 否   | 设备ID。默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 | 
+| deviceId<sup>19+</sup> | number           | 否   | 设备ID。默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 | usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>
