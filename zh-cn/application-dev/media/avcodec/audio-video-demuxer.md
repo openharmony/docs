@@ -189,7 +189,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 从文件 source 获取用户自定义属性信息。
    OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
    if (customMetadataFormat == nullptr) {
-      // 需释放前置流程资源，参考第10步
+      // 需释放前置流程资源，参考第10步。
       printf("get custom metadata format failed");
       return;
    }
@@ -211,7 +211,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1。
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
-      // 需释放前置流程资源，参考第10步
+      // 需释放前置流程资源，参考第10步。
       printf("get source format failed");
       return;
    }
