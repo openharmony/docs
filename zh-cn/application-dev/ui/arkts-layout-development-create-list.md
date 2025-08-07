@@ -1213,7 +1213,7 @@ List() {
 
 ## 设置边缘滑动效果
 
-边缘滑动效果指的是当用户滑动滚动组件到边缘后，继续滑动时触发的交互效果。当前List支持通过[EdgeEffect属性](../reference/apis-arkui/arkui-ts/ts-container-list.md#edgeeffect)设置三种边缘滑动效果，分别为弹簧效果（也称回弹效果）、阴影效果、无效果等，效果详细说明见[EdgeEffect](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#edgeeffect)的枚举说明。
+边缘滑动效果指的是当用户滑动滚动组件到边缘后，继续滑动时触发的交互效果。当前List支持通过[edgeEffect](../reference/apis-arkui/arkui-ts/ts-container-list.md#edgeeffect)属性设置三种边缘滑动效果，分别为弹簧效果（也称回弹效果）、阴影效果、无效果等，效果详细说明见[EdgeEffect](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#edgeeffect)的枚举说明。
 
 当List组件的内容区大于等于一屏时，List的边缘滑动效果默认为回弹效果，如下图所示。
 
