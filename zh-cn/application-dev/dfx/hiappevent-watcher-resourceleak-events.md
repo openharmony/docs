@@ -2,11 +2,11 @@
 
 ## 简介
 
-资源泄漏是指句柄、线程或内存等资源，在应用运行过程中没有被正确释放，导致资源被长期占用且无法被其他应用使用，如果某一类资源耗尽，系统可能出现卡死或重启等异常情况。为了应对资源泄漏问题，系统会提供资源泄漏检测、判决、维测日志抓取、日志上报的能力，为开发者提供详细的维测日志以辅助故障定位。
+资源泄漏是指句柄、线程或内存等资源在应用运行过程中未被正确释放，导致资源长期占用且无法被其他应用使用。如果某一类资源耗尽，系统可能出现卡死或重启等异常情况。为应对资源泄漏，系统提供资源泄漏检测、判决、日志抓取及上报功能，帮助开发者获取详细日志以辅助故障定位。
 
 ## 事件检测原理
 
-详见[Resource Leak 检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
+详见[资源泄漏检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
 
 ## 接口说明
 
@@ -18,7 +18,7 @@
 
 ## params字段说明
 
-资源泄漏事件信息中params属性的详细描述如下：
+资源泄漏事件信息中params属性的详细说明如下：
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -31,8 +31,8 @@
 | memory | object | （resource_type为pss_memory或js_heap专有）内存信息，详见memory属性。 |
 | fd | object | （resource_type为fd专有）文件描述符信息，详见fd属性。 |
 | thread | object | （resource_type为thread专有）线程信息，详见thread属性。 |
-| external_log | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，日志文件处理完后请及时删除。** |
-| log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过2G上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
+| external_log | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，请在日志文件处理完后及时删除。** |
+| log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过2GB上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 ### **resource_type字段说明**
 
@@ -40,7 +40,7 @@
 | -------- | -------- |
 | pss_memory | pss内存泄漏。 |
 | js_heap | js内存泄漏。 |
-| fd | fd资源泄漏。 |
+| fd | 句柄泄漏。 |
 | thread | 线程泄漏。 |
 
 ### **memory字段说明**
@@ -61,8 +61,8 @@
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | num | number | fd总数量。 |
-| top_fd_type | string | 数量最多的fd类型。 |
-| top_fd_num | number | 使用最多的句柄类型的数量。 |
+| top_fd_type | string | 使用最多的fd类型。 |
+| top_fd_num | number | 使用最多的fd类型的数量。 |
 
 ### **thread字段说明**
 
