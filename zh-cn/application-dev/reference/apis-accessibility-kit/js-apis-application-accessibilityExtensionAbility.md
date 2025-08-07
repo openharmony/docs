@@ -1,5 +1,11 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
 
 > **说明：**
