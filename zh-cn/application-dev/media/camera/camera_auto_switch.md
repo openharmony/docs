@@ -2,8 +2,7 @@
 
 本文档仅针对折叠屏设备自动切换前置摄像头的场景。在不同折叠状态下，自动切换到当前状态支持的摄像头。
 
-例如：折叠设备A拥有三颗摄像头：后置摄像头B、前置摄像头C和前置摄像头D。在展开状态下，通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)接口可获取到后置摄像头B和前置摄像头C。在折叠状态下，可获取到后置摄像头B和前置摄像头D。
-在当前折叠状态下启用前置摄像头，并调用`enableAutoDeviceSwitch`开启自动切换镜头。这样，在下次折叠屏状态变化时，会自动切换到对应折叠状态下的前置摄像头。在当前折叠状态下启用前置摄像头，并调用[enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13)开启自动切换镜头。这样，在下次折叠屏状态变化时，会自动切换到对应折叠状态下的前置摄像头。
+例如：折叠设备A拥有三颗摄像头：后置摄像头B、前置摄像头C和前置摄像头D。在展开状态下，通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)接口可获取到后置摄像头B和前置摄像头C。在折叠状态下，可获取到后置摄像头B和前置摄像头D。在当前折叠状态下启用前置摄像头，并调用[enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13)开启自动切换镜头。这样，在下次折叠屏状态变化时，会自动切换到对应折叠状态下的前置摄像头。
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
@@ -60,8 +59,7 @@ struct Index {
 }
 ```
 ## 开启自动切换摄像头
-调用[enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13)接口前需要通过
-[isAutoDeviceSwitchSupported](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitchQuery.md#isautodeviceswitchsupported13)接口查询当前设备是否支持自动切换摄像头能力。
+调用[enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13)接口前需要通过[isAutoDeviceSwitchSupported](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitchQuery.md#isautodeviceswitchsupported13)接口查询当前设备是否支持自动切换摄像头能力。
 ```ts
 function enableAutoDeviceSwitch(session: camera.PhotoSession) {
   if (session.isAutoDeviceSwitchSupported()) {
