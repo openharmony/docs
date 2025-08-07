@@ -49,7 +49,7 @@ RichText(content:string &nbsp;|&nbsp; Resource)
 
 ### onStart
 
-onStart(callback: Callback\<void>)
+onStart(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -57,11 +57,11 @@ onStart(callback: Callback\<void>)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-|  callback | Callback\<void> | 是   | 加载网页时触发回调。 |
+|  callback | callback: () => void | 是   | 加载网页时触发回调。 |
 
 ### onComplete
 
-onComplete(callback: Callback\<void>)
+onComplete(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +69,7 @@ onComplete(callback: Callback\<void>)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-|  callback | Callback\<void> | 是   | 网页加载结束时触发回调。 |
+|  callback |callback: () => void | 是   | 网页加载结束时触发回调。 |
 
 
 ## 属性
