@@ -2555,12 +2555,12 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2619,11 +2619,11 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo).then(() => {
     console.log(`addIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
     console.error(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
@@ -2678,13 +2678,13 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2743,11 +2743,11 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo).then(() => {
     console.log(`delIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
     console.error(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
@@ -2802,13 +2802,13 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2867,12 +2867,12 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 import { BusinessError } from '@kit.BasicServicesKit';
 import { sim } from '@kit.TelephonyKit';
 
-let diallingNumbersInof: sim.DiallingNumbersInfo = {
+let diallingNumbersInfo: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInfo).then(() => {
     console.log(`updateIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
     console.error(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
