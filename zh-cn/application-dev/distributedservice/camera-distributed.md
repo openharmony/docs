@@ -1,5 +1,5 @@
 # 分布式相机开发指南
-<!--Kit: DistributedService Kit-->
+<!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedHardware-->
 <!--Owner: @hobbycao-->
 <!--SE: @saga_2025-->
