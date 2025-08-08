@@ -1,6 +1,6 @@
 # @ohos.net.eap (扩展认证)
 
-<!--Kit: network Kit-->
+<!--Kit: Network Kit-->
 <!--Subsystem: communication-->
 <!--Owner: @foredward-->
 <!--SE: @h00918518-->
