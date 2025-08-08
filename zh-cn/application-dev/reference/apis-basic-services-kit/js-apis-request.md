@@ -711,7 +711,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   uploadTask.remove().then((result) => {
     console.info('Succeeded in removing the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -755,8 +755,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
     }
     if (result) {
       console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
     }
   });
   ```
@@ -809,7 +807,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## File
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -822,7 +820,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## RequestData
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2007,7 +2005,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   downloadTask.remove().then((result) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch ((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2087,7 +2085,7 @@ query(): Promise&lt;DownloadInfo&gt;
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err) => {
+  }) .catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2167,7 +2165,7 @@ queryMimeType(): Promise&lt;string&gt;
   ```js
   downloadTask.queryMimeType().then((data) => {    
     console.info('Succeeded in querying the download MimeType.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2247,7 +2245,7 @@ pause(): Promise&lt;void&gt;
   ```js
   downloadTask.pause().then((result) => {    
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2327,7 +2325,7 @@ resume(): Promise&lt;void&gt;
   ```js
   downloadTask.resume().then((result) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
