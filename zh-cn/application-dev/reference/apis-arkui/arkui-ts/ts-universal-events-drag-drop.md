@@ -42,7 +42,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
 
 **返回值：**
 
@@ -199,17 +199,17 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
-## DragItemInfo说明
+## DragItemInfo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填   | 描述                                |
-| --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
-| extraInfo | string                                   | 否    | 拖拽项的描述。                           |
+| 名称      | 类型                  | 只读| 可选   | 说明                               |
+| --------- | ---------------------------------------- | ---- | ---- | --------------------------------- |
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    |   是   |设置拖拽过程中显示的图片。 |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    |   是   |拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
+| extraInfo | string                                   | 否    |   是   |拖拽项的描述。                           |
 
 ## PreviewConfiguration<sup>15+</sup>
 
@@ -259,6 +259,8 @@ setData(unifiedData: UnifiedData): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
@@ -314,6 +316,8 @@ setResult(dragResult: DragResult): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名     | 类型                                | 必填 | 说明       |
 | ---------- | ----------------------------------- | ---- | ---------- |
@@ -500,6 +504,8 @@ startDataLoading(options: DataSyncOptions): string
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
