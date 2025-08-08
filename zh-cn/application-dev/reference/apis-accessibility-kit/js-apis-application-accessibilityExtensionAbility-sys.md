@@ -1,5 +1,11 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)(系统接口)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力，能力包括成功连接无障碍服务、断开无障碍服务、处理无障碍服务事件和无障碍按键事件等。
 
 > **说明：**
