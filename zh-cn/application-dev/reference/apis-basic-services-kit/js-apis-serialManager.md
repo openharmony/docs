@@ -159,7 +159,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation permission');
@@ -219,7 +219,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -292,7 +292,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -309,6 +309,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 获取串口配置
@@ -372,7 +373,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -389,6 +390,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 设置串口配置
@@ -463,7 +465,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -548,7 +550,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -634,7 +636,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -719,7 +721,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -795,7 +797,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');
@@ -812,6 +814,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // 关闭串口
@@ -871,7 +874,7 @@ let portId: number = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // 没有访问设备的权限且用户不授权则退出
       console.info('user is not granted the operation  permission');

@@ -97,13 +97,13 @@
    let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
-     for (let i = 0; i < usbInterfaces.length; i++) {
-       usbEndpoints = usbInterfaces[i].endpoints;
+     for (let j = 0; j < usbInterfaces.length; j++) {
+       usbEndpoints = usbInterfaces[j].endpoints;
        usbEndpoint = usbEndpoints.find((value) => {
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
        if (usbEndpoint !== undefined) {
-         usbInterface = usbInterfaces[i];
+         usbInterface = usbInterfaces[j];
          break;
        }
      }
