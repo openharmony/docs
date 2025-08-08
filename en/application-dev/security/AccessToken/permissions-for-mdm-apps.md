@@ -594,7 +594,7 @@ Allows an MDM application to manage pre-installed antivirus software.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: PC/2in1
 
 **Valid since**: 20
 
