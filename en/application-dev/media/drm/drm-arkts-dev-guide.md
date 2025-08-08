@@ -6,7 +6,7 @@ DRM Kit provides MediaKeySystem to manage DRM certificates, DRM licenses, and Me
 
 ## How to Develop
 
-Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
+Read [DRM](../../reference/apis-drm-kit/arkts-apis-drm.md) for the API reference.
 
 1. Import the DRM Kit module.
 
@@ -50,7 +50,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
    ```ts
    mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
-     console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+     console.info('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
        // Request and process the DRM certificate.
    });
    ```
@@ -70,7 +70,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
        mediaKeySystem.generateKeySystemRequest().then(async (drmRequest: drm.ProvisionRequest) => {
            console.info("generateKeySystemRequest success", drmRequest.data, drmRequest.defaultURL);
        }).catch((err:BusinessError) =>{
-           console.info("generateKeySystemRequest err end", err.code);
+           console.error("generateKeySystemRequest err end", err.code);
        });
    } else {
        console.info("The certificate already exists.");
@@ -80,7 +80,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
    mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
        console.info("processKeySystemResponse success");
    }).catch((err:BusinessError) =>{
-       console.info("processKeySystemResponse err end", err.code);
+       console.error("processKeySystemResponse err end", err.code);
    });
    ```
 
@@ -100,7 +100,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
       ```ts
       mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
-        console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+        console.info('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
           // Request and process the media key.
       });
       ```
@@ -109,7 +109,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
       ```ts
       mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
-        console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+        console.info('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
       });
       ```
 
@@ -117,7 +117,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
       ```ts
       mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
-        console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+        console.info('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
       });
       ```
 
@@ -126,7 +126,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
       ```ts
       mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
           for(let i = 0; i < keyInfo.length; i++){
-              console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
+              console.info('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
           }
       });
       ```
@@ -162,10 +162,10 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
        mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
          console.info("processMediaKeyResponse success");
        }).catch((err:BusinessError) =>{
-         console.info("processMediaKeyResponse err end", err.code);
+         console.error("processMediaKeyResponse err end", err.code);
       });
     }).catch((err:BusinessError) =>{
-      console.info("generateMediaKeyRequest err end", err.code);
+      console.error("generateMediaKeyRequest err end", err.code);
     });
     // Request and response for an offline media key.
     let offlineMediaKeyId: Uint8Array;
@@ -177,10 +177,10 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
          offlineMediaKeyId = new Uint8Array(mediaKeyId);
          console.info("processMediaKeyResponse success");
        }).catch((err:BusinessError) =>{
-         console.info("processMediaKeyResponse err end", err.code);
+         console.error("processMediaKeyResponse err end", err.code);
       });
     }).catch((err:BusinessError) =>{
-      console.info("generateMediaKeyRequest err end", err.code);
+      console.error("generateMediaKeyRequest err end", err.code);
     });
       ```
 
@@ -188,7 +188,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
     ```ts
     mediaKeySession.restoreOfflineMediaKeys(offlineMediaKeyId).then(() => {
-      console.log("restoreOfflineMediaKeys success.");
+      console.info("restoreOfflineMediaKeys success.");
     }).catch((err: BusinessError) => {
       console.error(`restoreOfflineMediaKeys: ERROR: ${err}`);
     });
