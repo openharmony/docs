@@ -1,4 +1,9 @@
 # 转码常见问题
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 ## 应用发送视频进行转码，音频编码格式为什么变化
 
