@@ -20,18 +20,16 @@ An **AbilityDelegatorArgs** object is obtained by calling [getArguments](js-apis
 
 ## AbilityDelegatorArgs
 
-Describes the ability delegator arguments.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name               | Type                  | Readable| Writable| Description                                                        |
+| Name               | Type                  | Read-Only| Optional| Description                                                        |
 | ------------------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string                 | Yes  | Yes  | Bundle name of the application to test.|
-| parameters          | Record\<string, string> | Yes  | Yes  | Parameters of the unit test that is started currently.|
-| testCaseNames       | string                 | Yes  | Yes  | Test case names.|
-| testRunnerClassName | string                 | Yes  | Yes  | Names of the test case executors.|
+| bundleName          | string                 | No  | No  | Bundle name of the application to test.|
+| parameters          | Record\<string, string> | No  | No  | Parameters of the unit test that is started currently.|
+| testCaseNames       | string                 | No  | No  | Test case name.|
+| testRunnerClassName | string                 | No  | No  | Names of the test case executors.|
 
 **Example**
 
