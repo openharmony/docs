@@ -238,7 +238,7 @@ import { formInfo } from '@kit.FormKit';
 | FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
 | FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
 
-## RunningFormInfo<sup>20</sup>
+## RunningFormInfo<sup>20+</sup>
 
 已添加的卡片信息，包括使用中的以及未使用的卡片。
 
@@ -247,10 +247,10 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formId  | string               | 是    | 否     | 卡片标识。                   |
-| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
-| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
+| formLocation | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
 <!--RP1--><!--RP1End-->

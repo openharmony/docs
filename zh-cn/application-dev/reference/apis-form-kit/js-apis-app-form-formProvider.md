@@ -509,7 +509,11 @@ getPublishedFormInfoById(formId: string): Promise&lt;formInfo.FormInfo&gt;
 
 获取设备上当前应用程序已经加桌的指定卡片信息，使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**说明：** 该字段从API version 18开始支持，从API 20开始废弃。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+> **说明：**
+>
+> 该字段从API 18开始支持，从API 20开始废弃，建议使用getPublishedRunningFormInfoById代替
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -559,7 +563,11 @@ getPublishedFormInfos(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 获取设备上当前应用程序所有已经加桌的卡片信息，使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**说明：** 该字段从API version 18开始支持，从API 20开始废弃。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+> **说明：**
+>
+> 该字段从API version 18开始支持，从API 20开始废弃，建议使用getPublishedRunningFormInfos。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -772,7 +780,7 @@ try {
 }
 ```
 
-## formProvider.getPublishedRunningFormInfoById<sup>20</sup>
+## formProvider.getPublishedRunningFormInfoById<sup>20+</sup>
 
 getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
@@ -792,11 +800,11 @@ getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningForm
 
 | 类型                                                                | 说明                                |
 |-------------------------------------------------------------------| ---------------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#forminfo)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -811,6 +819,7 @@ import { formInfo, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const formId: string = '388344236';
+
 try {
   formProvider.getPublishedRunningFormInfoById(formId).then((data: formInfo.FormInfo) => {
     console.log(`formProvider getPublishedRunningFormInfoById, data: ${JSON.stringify(data)}`);
@@ -822,7 +831,7 @@ try {
 }
 ```
 
-## formProvider.getPublishedRunningFormInfos<sup>20</sup>
+## formProvider.getPublishedRunningFormInfos<sup>20+</sup>
 
 getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
@@ -847,6 +856,8 @@ getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | An internal functional error occurred. |
 
 **示例：**
 

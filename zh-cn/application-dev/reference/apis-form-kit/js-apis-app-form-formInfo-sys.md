@@ -49,6 +49,28 @@ import { formInfo } from '@kit.FormKit';
 | USED<sup>11+</sup> | 0   | 表示卡片在使用中。 |
 | UNUSED<sup>11+</sup> | 1   | 表示卡片未被使用。 |
 
+## RunningFormInfo<sup>10+</sup>
+
+已添加的卡片信息，包括使用中的以及未使用的卡片。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | 是    | 否     | 卡片标识。                   |
+| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
+| visibilityType  | [VisibilityType](js-apis-app-form-formInfo.md#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
+| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
+| dimension | number               | 是    | 否     | 卡片规格。   |
+| formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
+| formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
+
 ## formProviderFilter<sup>10+</sup>
 
 卡片提供方信息。
