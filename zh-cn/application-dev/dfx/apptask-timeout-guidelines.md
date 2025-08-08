@@ -1,11 +1,5 @@
 # 任务超时检测
 
-<!--Kit: Performance Analysis Kit-->
-<!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
-<!--TSE: @gcw_KuLfPSbe-->
-
 ## 简介
 
 开发者在开发应用时，某一段业务逻辑期望执行一定时间，如果该业务逻辑执行时长超过预期时间，即为任务超时。
