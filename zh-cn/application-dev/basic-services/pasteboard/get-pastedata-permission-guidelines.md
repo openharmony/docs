@@ -44,83 +44,10 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
 
 应用申请剪贴板权限需要提前判断剪贴板内容是否包含所需数据，避免频繁弹窗
 
-- 使用hasData判断是否有数据，无数据则不访问剪贴板
+- 使用[hasData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md/#hasdata9)判断是否有数据，无数据则不访问剪贴板
 
-    示例
+- 使用[hasDataType](../../reference/apis-basic-services-kit/js-apis-pasteboard.md/#hasdatatype11)/[getMimeTypes](../../reference/apis-basic-services-kit/js-apis-pasteboard.md/#getmimetypes14)判断是否包含应用自身支持的数据类型，如果没有则不访问剪贴板
 
-    ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
+- 使用[getChangeCount](../../reference/apis-basic-services-kit/js-apis-pasteboard.md/#getchangecount18)记录每次访问剪贴板，下次访问前比较上次记录和本次查询的记录是否一致，一致则不访问剪贴板
 
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-    systemPasteboard.hasData().then((data: boolean) => {
-        console.info(`Succeeded in checking the PasteData. Data: ${data}`);
-    }).catch((err: BusinessError) => {
-        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
-    });
-    ```
-
-- 使用hasDataType/getMimeTypes判断是否包含应用自身支持的数据类型，如果没有则不访问剪贴板
-
-    示例
-
-    ```ts
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-    try {
-        let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
-        console.info(`Succeeded in checking the DataType. Result: ${result}`);
-    } catch (err) {
-        console.error('Failed to check the DataType. Cause:' + err.message);
-    };
-    ```
-
-    ```ts
-    import { pasteboard, BusinessError } from '@kit.BasicServicesKit'
-
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-    systemPasteboard.getMimeTypes().then((data: Array<String>) => {
-        console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
-    }).catch((err: BusinessError) => {
-        console.error('Failed to get mimeTypes. Cause:' + err.message);
-    });
-    ```
-
-- 使用getChangeCount记录每次访问剪贴板，下次访问前比较上次记录和本次查询的记录是否一致，一致则不访问剪贴板
-
-    示例
-
-    ```ts
-    import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
-
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-    try {
-        let result : number = systemPasteboard.getChangeCount();
-        console.info(`Succeeded in getting the ChangeCount. Result: ${result}`);
-    } catch (err) {
-        console.error(`Failed to get the ChangeCount. Cause: ${err.message}`);
-    };
-    ```
-
-- 使用detectPatterns判断是否为口令场景，如果不是则不访问剪贴板
-
-    示例
-
-    ```ts
-    import { pasteboard } from '@kit.BasicServicesKit'
-
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-    let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
-
-    systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
-        if (patterns.sort().join('')==data.sort().join('')) {
-        console.info('All needed patterns detected, next get data');
-        try {
-            let result: pasteboard.PasteData = systemPasteboard.getDataSync();
-            console.info('Succeeded in getting PasteData.');
-        } catch (err) {
-            console.error('Failed to get PasteData. Cause:' + err.message);
-        };
-        } else {
-        console.info("Not all needed patterns detected, no need to get data.");
-        }
-    });
-    ```
+- 使用[detectPatterns](../../reference/apis-basic-services-kit/js-apis-pasteboard.md/#detectpatterns13)判断是否为口令场景，如果不是则不访问剪贴板
