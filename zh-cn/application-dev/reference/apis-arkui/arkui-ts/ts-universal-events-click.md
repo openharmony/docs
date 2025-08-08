@@ -95,22 +95,20 @@ onClick(event: (event: ClickEvent) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                 | 描述                                                     |
-| ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | 点击位置相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| y                   | number                               | 点击位置相对于被点击元素原始区域左上角的Y坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
-| target<sup>8+</sup> | [EventTarget](#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| windowX<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowY<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayX<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayY<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowX代替。 |
-| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowY代替。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| targetDisplayId<sup>15+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| globalDisplayX<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| globalDisplayY<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称            | 类型                         | 只读 | 可选        | 说明                                                     |
+| ------------------- | ------------------------- | ------ | -------- | -------------------------------------------------------- |
+| x                   | number                               | 否 | 否 | 点击位置相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| y                   | number                               | 否 | 否 | 点击位置相对于被点击元素原始区域左上角的Y坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+| windowX<sup>10+</sup> | number                             | 否 | 否 | 点击位置相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| windowY<sup>10+</sup> | number                             | 否 | 否 | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayX<sup>10+</sup> | number                            | 否 | 否 | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayY<sup>10+</sup> | number                            | 否 | 否 | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| screenX<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的X坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowX代替。 |
+| screenY<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的Y坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowY代替。 |
+| preventDefault<sup>12+</sup>      | () => void | 否 | 否 | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -124,16 +122,12 @@ onClick(event: (event: ClickEvent) => void): T
 
 触发事件的元素对象显示区域。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 参数类型                      | 描述         |
-| ---- | ------------------------- | ---------- |
-| area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
-| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。默认值：undefined |
+| 名称   | 类型                    | 只读 | 可选 | 说明         |
+| ---- | ------------------------- |-----|------| ---------- |
+| area | [Area](ts-types.md#area8) | 否 | 否 | 目标元素的区域信息。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 否 | 是 | 开发者设置的节点id。默认值：undefined <br/>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## 示例
 
