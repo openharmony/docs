@@ -1,4 +1,4 @@
-# Using AVPlayer to Play DRM Content (C/C++)
+# Using AVCodec to Play DRM Content (C/C++)
 
 ## When to Use
 
@@ -18,7 +18,7 @@ Currently, the following decryption capabilities are supported:
 
 **Usage Scenario**
 
-Before creating DRM, obtain the DRM information. For details, see step 4 in [Media Data Demuxing](../avcodec/audio-video-demuxer.md#how-to-develop).
+Before creating DRM, obtain the DRM information. For details, see step 4 in [Media Data Demultiplexing](../avcodec/audio-video-demuxer.md#how-to-develop).
 
 ## How to Develop
 
@@ -62,7 +62,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
     }
     ```
 
-    After obtaining the name and ID list of DRM solutions supported by the device, match against the DRM information and create the corresponding DRM solution. You can obtain the DRM information by referring to step 4 in the [Media Data Demuxing](../avcodec/audio-video-demuxer.md#how-to-develop).
+    After obtaining the name and ID list of DRM solutions supported by the device, match against the DRM information and create the corresponding DRM solution. You can obtain the DRM information by referring to step 4 in the [Media Data Demultiplexing](../avcodec/audio-video-demuxer.md#how-to-develop).
 
     Alternatively, directly parse the media protocol or media data to obtain the unique identifier of the DRM solution and the PSSH data, so as to generate the DRM information.
 
