@@ -827,6 +827,12 @@ onFinish(event: () =&gt; void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 当加载的源文件为带动效的SVG格式图片时，SVG动效播放完成时会触发这个回调。如果动效为无限循环动效，则不会触发这个回调。 |
+
 ## ImageErrorCallback<sup>9+</sup>
 
 type ImageErrorCallback = (error: ImageError) => void
