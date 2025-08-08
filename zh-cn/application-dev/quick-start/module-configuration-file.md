@@ -84,8 +84,6 @@
         }
       }
     ],
-    "targetModuleName": "feature",
-    "targetPriority": 50,
     "querySchemes": [
       "app1Scheme",
       "app2Scheme"
