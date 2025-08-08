@@ -1,6 +1,11 @@
 # picker开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @luoying_ace_admin-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
-picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[picker API](../reference/apis-arkui/arkui-js/js-components-basic-picker.md)。
+picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[picker](../reference/apis-arkui/arkui-js/js-components-basic-picker.md)。
 
 
 ## 创建picker组件
@@ -167,7 +172,7 @@ export default {
 ## 场景示例
 
 
-在本场景中，开发者可以自定义填写当前的健康情况来进行打卡。
+在本场景中，开发者可以自定义填写健康情况以完成打卡。
 
 
 ```html
