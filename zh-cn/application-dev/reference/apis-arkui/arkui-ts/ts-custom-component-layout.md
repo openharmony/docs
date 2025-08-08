@@ -13,7 +13,7 @@
 >
 > 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
 >
-> 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
+> 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
 > 
 > 自定义布局内不支持使用懒加载(包含[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md))。
 
@@ -120,7 +120,7 @@ getMargin() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的margin信息。   |
 
  ### getPadding<sup>12+</sup>
 
@@ -136,7 +136,7 @@ getPadding() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的padding信息。  |
 
 ### getBorderWidth<sup>12+</sup>
 
@@ -152,7 +152,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的borderWidth信息。  |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的borderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
@@ -209,7 +209,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的margin信息。   |
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的margin信息。   |
 
 ### getPadding<sup>12+</sup>
 
@@ -225,7 +225,7 @@ getPadding() : DirectionalEdgesT\<number\>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的padding信息。   |
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的padding信息。   |
 
  ### getBorderWidth<sup>12+</sup>
 
@@ -241,7 +241,7 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的borderWidth信息。|
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的borderWidth信息。|
 
 
 ## MeasureResult<sup>10+</sup>
@@ -264,23 +264,6 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 |--------|--------|------|------|-------|
 | width  | number | 否|否|测量后的宽。<br>单位：vp |
 | height | number | 否|否|测量后的高。<br>单位：vp |
-
-## DirectionalEdgesT\<T><sup>12+</sup>
-
-全球化的边缘属性。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 类型 |只读|可选| 说明             |
-| ------ | ---- |------|------| ---------------- |
-| start   | T    |否|否| 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
-| end    | T    | 否|否|终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
-| top  | T    | 否|否|顶部边缘的属性。 |
-| bottom | T    | 否|否|底部边缘的属性。 |
 
 > **说明：**
 >
@@ -346,7 +329,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 | borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)              | 否|否|子组件border信息。                     |
 | position   | [Position](ts-types.md#position)                             | 否|否|子组件位置坐标。                       |
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)) |否|否| 调用此方法对子组件的尺寸范围进行限制。 |
-| layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated)) | 否|否|调用此方法对子组件的位置信息进行限制。 |
+| layout     | (childLayoutInfo: [LayoutInfo](#layoutinfodeprecated)) | 否|否|调用此方法对子组件的位置信息进行限制。 |
 
 ## LayoutBorderInfo<sup>(deprecated)</sup>
 
@@ -624,7 +607,7 @@ struct CustomLayout {
 ![custom_layout_demo3.jpg](figures/custom_layout_demo3.jpg)
 
 ### 示例4（子组件超过父组件大小约束）
-在自定义布局的自定义组件中，为子组件设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性。
+在自定义布局的自定义组件中，为子组件设置了[LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15)对象的fixAtIdealSize属性。
 ```ts
 @Entry
 @Component

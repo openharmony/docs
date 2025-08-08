@@ -28,7 +28,7 @@ border(value: BorderOptions): T
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API version 9开始，父节点的border显示在子节点内容之上。 |
+| value  | [BorderOptions](./ts-types.md#borderoptions) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API version 9开始，父节点的border显示在子节点内容之上。 |
 
 **返回值：**
 
@@ -52,7 +52,7 @@ borderStyle(value: BorderStyle | EdgeStyles): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                               |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 是   | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid |
+| value  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](./ts-types.md#edgestyles9)<sup>9+</sup> | 是   | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid |
 
 **返回值：**
 
@@ -76,7 +76,7 @@ borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                               |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明)<sup>12+</sup> | 是   | 设置元素的边框宽度，不支持百分比。 |
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](./ts-types.md#edgewidths9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](./ts-types.md#localizededgewidths12)<sup>12+</sup> | 是   | 设置元素的边框宽度，不支持百分比。 |
 
 **返回值：**
 
@@ -100,7 +100,7 @@ borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                         |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](./ts-types.md#edgecolors9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](./ts-types.md#localizededgecolors12)<sup>12+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
 
 **返回值：**
 
@@ -124,7 +124,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，支持百分比，百分比依据组件宽度。设置圆角后，可搭配[.clip属性](./ts-universal-attributes-sharp-clipping.md#clip12)进行裁剪，避免子组件超出组件自身。|
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](./ts-types.md#borderradiuses9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](./ts-types.md#localizedborderradiuses12)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，支持百分比，百分比依据组件宽度。设置圆角后，可搭配[.clip属性](./ts-universal-attributes-sharp-clipping.md#clip12)进行裁剪，避免子组件超出组件自身。|
 
 **返回值：**
 
@@ -132,124 +132,6 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses): T
 | --- | --- |
 |  T | 返回当前组件。 |
 
-## BorderOptions对象说明
-
-| 名称   | 参数类型                                                     | 必填 | 描述               |
-| ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。    |
-| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。|
-| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。     |
-
-## EdgeWidths<sup>9+</sup>对象说明
-
-引入该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 参数类型                         | 必填   | 描述      |
-| ------ | ---------------------------- | ---- | ------- |
-| left   | [Length](ts-types.md#length) | 否    | 左侧边框宽度。 |
-| right  | [Length](ts-types.md#length) | 否    | 右侧边框宽度。 |
-| top    | [Length](ts-types.md#length) | 否    | 上侧边框宽度。 |
-| bottom | [Length](ts-types.md#length) | 否    | 下侧边框宽度。 |
-
-## LocalizedEdgeWidths<sup>12+</sup>对象说明
-
-边框宽度类型，用于描述组件边框不同方向的宽度。
-引入该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-| 名称     | 参数类型                         | 必填   | 描述      |
-| ------ | ---------------------------- | ---- | ------- |
-| start   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左侧边框宽度。<br />从右至左显示语言模式下为右侧边框宽度。 |
-| end     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右侧边框宽度。<br />从右至左显示语言模式下为左侧边框宽度。 |
-| top     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 上侧边框宽度。 |
-| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 下侧边框宽度。 |
-
-## EdgeColors<sup>9+</sup>对象说明
-
-引入该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 参数类型                                     | 必填   | 描述      |
-| ------ | ---------------------------------------- | ---- | ------- |
-| left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧边框颜色。 |
-| right  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 右侧边框颜色。 |
-| top    | [ResourceColor](ts-types.md#resourcecolor) | 否    | 上侧边框颜色。 |
-| bottom | [ResourceColor](ts-types.md#resourcecolor) | 否    | 下侧边框颜色。 |
-
-## LocalizedEdgeColors<sup>12+</sup>对象说明
-
-边框颜色，描述组件边框四条边的颜色。
-
-引入该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 参数类型                                     | 必填   | 描述      |
-| ------ | ---------------------------------------- | ---- | ------- |
-| start   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧边框颜色。<br />从右至左显示语言模式下为右侧边框颜色。 |
-| end     | [ResourceColor](ts-types.md#resourcecolor) | 否    | 右侧边框颜色。<br />从右至左显示语言模式下为左侧边框颜色。 |
-| top     | [ResourceColor](ts-types.md#resourcecolor) | 否    | 上侧边框颜色。 |
-| bottom  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 下侧边框颜色。 |
-
-## BorderRadiuses<sup>9+</sup>对象说明
-
-引用该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称          | 参数类型                         | 必填   | 描述       |
-| ----------- | ---------------------------- | ---- | -------- |
-| topLeft     | [Length](ts-types.md#length) | 否    | 左上角圆角半径。 |
-| topRight    | [Length](ts-types.md#length) | 否    | 右上角圆角半径。 |
-| bottomLeft  | [Length](ts-types.md#length) | 否    | 左下角圆角半径。 |
-| bottomRight | [Length](ts-types.md#length) | 否    | 右下角圆角半径。 |
-
-## LocalizedBorderRadiuses<sup>12+</sup>对象说明
-
-圆角类型，用于描述组件边框圆角半径。
-
-引用该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称          | 参数类型                         | 必填   | 描述       |
-| ----------- | ---------------------------- | ---- | -------- |
-| topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左上角圆角半径。<br />从右至左显示语言模式下为右上角圆角半径。 |
-| topEnd       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右上角圆角半径。<br />从右至左显示语言模式下为左上角圆角半径。 |
-| bottomStart  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左下角圆角半径。<br />从右至左显示语言模式下为右下角圆角半径。 |
-| bottomEnd    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右下角圆角半径。<br />从右至左显示语言模式下为左下角圆角半径。 |
-
-## EdgeStyles<sup>9+</sup>对象说明
-
-引入该对象时，至少传入一个参数。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 参数类型                                     | 必填   | 描述      |
-| ------ | ---------------------------------------- | ---- | ------- |
-| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 左侧边框样式。 |
-| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 右侧边框样式。 |
-| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 上侧边框样式。 |
-| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 下侧边框样式。 |
 
 ## 示例
 
