@@ -1499,7 +1499,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ## getRecentPhotoInfo<sup>20+</sup>
 
-getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise\<RecentPhotoInfo>;
+getRecentPhotoInfo(options?: RecentPhotoOptions): Promise\<RecentPhotoInfo>
 
 应用使用RecentPhotoComponent组件查看最近图片时，支持调用API获取最近图片信息。使用Promise异步回调。
 
