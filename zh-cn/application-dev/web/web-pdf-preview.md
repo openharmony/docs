@@ -2,7 +2,7 @@
 
 Web组件提供了在网页中预览PDF的能力。应用通过Web组件的[src](../reference/apis-arkweb/ts-basic-components-web.md#web)参数和[loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl)接口加载PDF文档。根据PDF文档来源分为四种场景：网络PDF文档、应用沙箱内PDF文档、应用内resource资源PDF文档和本地PDF文档。
 
-若涉及网络文档获取，需在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+若涉及网络文档获取，需在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
   ```
   "requestPermissions":[
