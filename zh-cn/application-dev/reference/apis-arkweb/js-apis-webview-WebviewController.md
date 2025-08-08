@@ -5856,7 +5856,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| print.PrintDocumentAdapter | 返回打印文档的适配器。 |
+| print.[PrintDocumentAdapter](../apis-basic-services-kit/js-apis-print.md#printdocumentadapter11) | 返回打印文档的适配器。 |
 
 **错误码：**
 
