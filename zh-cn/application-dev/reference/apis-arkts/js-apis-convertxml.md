@@ -1,4 +1,9 @@
 # @ohos.convertxml (xml转换JavaScript)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供转换xml文本为JavaScript对象的功能。
 

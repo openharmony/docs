@@ -1,4 +1,9 @@
 # @ohos.multimedia.audio (音频管理)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 音频管理提供基础的音频控制能力，包括音量调节、设备管理、数据采集及渲染。
 

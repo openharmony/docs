@@ -1,5 +1,11 @@
 # 从TypeScript到ArkTS的适配规则
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @husenlin-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ArkTS规范约束了TypeScript（简称TS）中影响开发正确性或增加运行时开销的特性。本文罗列了ArkTS中限制的TS特性，并提供重构代码的建议。ArkTS保留了TS大部分语法特性，未在本文中约束的TS特性，ArkTS完全支持。例如，ArkTS支持自定义装饰器，语法与TS一致。按本文约束进行代码重构后，代码仍为合法有效的TS代码。
 
 **示例**
@@ -128,7 +134,7 @@ console.info('Distance between p5 and p6: ' + distance(p5, p6));
 
 修改对象布局会影响代码可读性和运行时性能。定义类后，在其他地方修改对象布局，容易引起困惑乃至引入错误。此外，还需要额外的运行时支持，增加执行开销。这与静态类型约束冲突：使用显式类型时，不应添加或删除属性。
 
-当前，只有少数项目允许在运行时变更对象布局，一些常用的代码检查工具也增加了相应的限制规则。这个约束只会导致少量代码重构，但会提升性能。
+当前，只有少数项目允许在运行时变更对象布局，一些常用的代码检查工具也增加了相应的限制规则。虽然需要少量代码重构，但由此带来的性能提升收益十分可观。
 
 ### 限制运算符的语义
 
@@ -523,7 +529,7 @@ class C {
 
 **说明**
 
-当前不支持静态块的语法。支持该语法后，在.ets文件中使用静态块需遵循此约束。
+当前尚不支持静态块的语法。支持该语法后，在.ets文件中使用静态块需遵循此约束。
 
 ### 不支持index signature
 
@@ -685,7 +691,7 @@ type YI<Item, T extends Array<Item>> = Item
 
 **错误码：10605025**
 
-ArkTS不支持在`constructor`中声明类字段。在`class`中声明这些字段。
+ArkTS禁止在构造函数中声明类字段，所有字段都必须在`class`作用域内显示声明。
 
 **TypeScript**
 
@@ -735,7 +741,7 @@ class Person {
 
 **错误码：10605027**
 
-ArkTS不支持在接口中使用构造签名。建议使用函数或方法。
+ArkTS语法禁止在接口（interface）中定义构造签名。作为替代方案，建议使用普通函数或方法来实现相同功能。
 
 **TypeScript**
 
@@ -780,7 +786,7 @@ ArkTS不支持索引访问类型。
 **错误码：10605029**
 
 ArkTS不支持动态声明字段，不支持动态访问字段。只能访问已在类中声明或者继承可见的字段，访问其他字段将会造成编译时错误。
-使用点操作符访问字段，例如（`obj.field`），不支持索引访问（`obj[field]`）。
+使用点操作符访问字段，例如（`obj.field`），不支持索引访问（`obj['field']`）。
 ArkTS支持通过索引访问`TypedArray`（例如`Int32Array`）中的元素。
 
 **TypeScript**
@@ -1223,7 +1229,7 @@ type S = Set<O>
 
 **错误码：10605043**
 
-ArkTS将数组字面量的类型推断为所有元素的联合类型。如果其中任何一个元素的类型无法推导，则编译时会发生错误。
+ArkTS将数组字面量的类型推断为所有元素的联合类型。如果其中任何一个元素的类型无法推导，则在编译时会发生错误。
 
 **TypeScript**
 
@@ -1251,7 +1257,7 @@ let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];    // a2的类型为“C[]”
 
 **错误码：10605046**
 
-ArkTS不支持函数表达式，使用箭头函数。
+ArkTS不支持函数表达式，使用箭头函数（=>）。
 
 **TypeScript**
 
@@ -1482,7 +1488,7 @@ let e2 = (new Number(5.0)) instanceof Number; // true
 
 **错误码：10605055**
 
-ArkTS仅允许一元运算符用于数值类型，否则会导致编译时错误。与TypeScript不同，ArkTS不支持隐式字符串到数值的转换，必须进行显式转换。
+ArkTS对一元运算符实施严格的类型检查，仅允许操作数值类型。与TypeScript不同，ArkTS禁止隐式的字符串转换到数值，开发者必须使用显示类型的转换方法。
 
 **TypeScript**
 
@@ -1606,6 +1612,21 @@ let s2: string
 **错误码：10605065**
 
 TypeScript中，`instanceof`运算符的左操作数类型必须为`any`类型、对象类型或类型参数，否则结果为`false`。ArkTS中，`instanceof`运算符的左操作数类型必须为引用类型（如对象、数组或函数），否则会发生编译时错误。此外，左操作数必须是对象实例。
+
+**TypeScript**
+
+```typescript
+let num: number = 42;
+let result = num instanceof Number;
+console.info('result = ', result); // result = false
+```
+
+**ArkTS**
+
+```typescript
+let num: number = 42;
+let result = num instanceof Number; // 编译报错
+```
 
 ### 不支持`in`运算符
 

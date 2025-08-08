@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行生命周期相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -55,9 +60,9 @@ cpp部分代码：
 static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。
     // 下面例子中，每次循环结束局部变量res的生命周期已结束，因此加scope及时释放其持有的js对象，防止内存泄漏
-    constexpr uint32_t DIFF_VALUE_HUNDRED_THOUSAND = 10000;
+    constexpr uint32_t DIFF_VALUE_TEN_THOUSAND = 10000;
     JSVM_Value checked = nullptr;
-    for (int i = 0; i < DIFF_VALUE_HUNDRED_THOUSAND; i++) {
+    for (int i = 0; i < DIFF_VALUE_TEN_THOUSAND; i++) {
         JSVM_HandleScope scope = nullptr;
         JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
         if (status != JSVM_OK || scope == nullptr) {
@@ -90,7 +95,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "HandleScopeFor()";
 ```
-<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 ```
@@ -116,7 +121,7 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
         return nullptr;
     }
     // 在可逃逸的句柄作用域内创建一个obj
-    JSVM_Value obj;
+    JSVM_Value obj = nullptr;
     OH_JSVM_CreateObject(env, &obj);
     // 在对象中添加属性
     JSVM_Value value = nullptr;
@@ -153,7 +158,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "escapableHandleScopeTest()";
 ```
-<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 
@@ -241,7 +246,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "useReference()";
 ```
-<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
 
 预期结果：
 
@@ -263,7 +268,7 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
     JSVM_HandleScope handleScope;
     CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
     // 创建 object 并设置回调
-    JSVM_Value obj;
+    JSVM_Value obj = nullptr;
     CHECK_RET(OH_JSVM_CreateObject(env, &obj));
     CHECK_RET(OH_JSVM_AddFinalizer(
         env, obj, nullptr,
@@ -305,7 +310,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
-<!-- @[oh_jsvm_add_finalizer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_add_finalizer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```ts

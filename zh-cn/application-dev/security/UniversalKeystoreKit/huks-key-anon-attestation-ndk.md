@@ -1,5 +1,11 @@
 # 匿名密钥证明(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 在使用本功能时，需确保网络通畅。
 
 ## 在CMake脚本中链接相关动态库

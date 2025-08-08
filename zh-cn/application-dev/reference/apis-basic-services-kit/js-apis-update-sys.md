@@ -1,4 +1,9 @@
 # @ohos.update (升级)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Update-->
+<!--Owner: @RainyDay_005; @huangsiping3-->
+<!--SE: @zhangzhengxue;@jackd320-->
+<!--TSE: @mamba-ting-->
 
 升级范围：升级整个系统，包括内置资源和预置应用，不包括三方应用。
 

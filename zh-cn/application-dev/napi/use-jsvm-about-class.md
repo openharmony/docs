@@ -1,4 +1,9 @@
 # 使用JSVM进行class相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -39,7 +44,7 @@ cpp部分代码
 #include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -79,9 +84,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"newInstance", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-<!-- @[oh_jsvm_newinstance](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_newinstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
@@ -90,7 +95,7 @@ const char *srcCallNative = R"JS(
    newInstance(Fruit, "apple");
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -127,7 +132,7 @@ JSVM_Value CreateInstance(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -155,12 +160,12 @@ JSVM_Value DefineClass(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", str.c_str());
     
     // 作为普通的函数调用
-    JSVM_Value global;
+    JSVM_Value global = nullptr;
     JSVM_CALL(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value key;
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, "Constructor", JSVM_AUTO_LENGTH, &key));
     JSVM_CALL(OH_JSVM_SetProperty(env, global, key, cons));
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     JSVM_CALL(OH_JSVM_CallFunction(env, global, cons, 0, nullptr, &result));
     std::string buf = ToString(env, result);
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", buf.c_str());
@@ -180,15 +185,15 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-<!-- @[oh_jsvm_defineclass](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_defineclass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -293,9 +298,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-<!-- @[oh_jsvm_removewrap](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_removewrap](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
@@ -303,7 +308,7 @@ const char *srcCallNative = R"JS(
     removeWrap(new Obj());
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -325,9 +330,10 @@ JSVM deref_item
 - JSVM_DEFINE_CLASS_NORMAL: 按正常模式创建Class。默认缺省状态为JSVM_DEFINE_CLASS_NORMAL状态。
 - JSVM_DEFINE_CLASS_WITH_COUNT: 为所创建的Class预留interfield槽位。
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
-#### cpp代码
+**cpp代码**
 ```c++
 #include <string>
+#include <memory>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -365,11 +371,10 @@ std::string ToString(JSVM_Env jsvm_env, JSVM_Value val)
     size_t length = 0;
     OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, NULL, 0, &length);
     size_t capacity = length + 1;
-    char *buffer = new char[capacity];
+    auto buffer = std::make_unique<char[]>(capacity);
     size_t copy_length = 0;
-    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer, capacity, &copy_length);
-    std::string str(buffer);
-    delete[] buffer;
+    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer.get(), capacity, &copy_length);
+    std::string str(buffer.get());
     return str;
 }
 
@@ -382,7 +387,7 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_Script script;
     OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. 执行JS_Script。
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     OH_JSVM_RunScript(env, script, &result);
     return result;
 }
@@ -494,11 +499,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp

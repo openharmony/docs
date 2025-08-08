@@ -1,4 +1,9 @@
 # @ohos.enterprise.telephonyManager（通话管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供通话管理能力。
 
@@ -28,7 +33,6 @@ setSimDisabled(admin: Want, slotId: number): void
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
-
 
 **参数：**
 
@@ -127,7 +131,6 @@ isSimDisabled(admin: Want, slotId: number): boolean
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
-
 
 **参数：**
 

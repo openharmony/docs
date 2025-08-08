@@ -1,4 +1,9 @@
 # LocalStorage：页面级UI状态存储
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 
 LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage支持UIAbility实例内多个页面间状态共享。
@@ -762,11 +767,11 @@ struct MyNavigationTestStack {
   PageMap(name: string) {
     if (name === 'pageOne') {
       // 传递不同的LocalStorage实例
-      pageOneStack({}, localStorageA)
+      PageOneStack({}, localStorageA)
     } else if (name === 'pageTwo') {
-      pageTwoStack({}, localStorageB)
+      PageTwoStack({}, localStorageB)
     } else if (name === 'pageThree') {
-      pageThreeStack({}, localStorageC)
+      PageThreeStack({}, localStorageC)
     }
   }
 
@@ -791,7 +796,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropA') PropA: string = 'Hello World';
 
@@ -818,7 +823,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
@@ -846,7 +851,7 @@ struct pageTwoStack {
 }
 
 @Component
-struct pageThreeStack {
+struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
 

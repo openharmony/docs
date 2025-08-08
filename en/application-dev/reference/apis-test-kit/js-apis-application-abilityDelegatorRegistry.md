@@ -1,4 +1,5 @@
 # @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
+<!--deprecated_code_no_check-->
 
 The **AbilityDelegatorRegistry** module provides APIs for storing global registers of the registered [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects, including obtaining the **AbilityDelegator** and **AbilityDelegatorArgs** objects. The APIs can be used only in the test framework.
 
@@ -26,7 +27,7 @@ Enumerates the ability lifecycle states.
 | BACKGROUND    | 3    | The ability is running in the background.  |
 | DESTROY       | 4    | The ability is destroyed.|
 
-## AbilityDelegatorRegistry.getAbilityDelegator
+## abilityDelegatorRegistry.getAbilityDelegator
 
 getAbilityDelegator(): AbilityDelegator
 
@@ -48,7 +49,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
-## AbilityDelegatorRegistry.getArguments
+## abilityDelegatorRegistry.getArguments
 
 getArguments(): AbilityDelegatorArgs
 

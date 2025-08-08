@@ -1,4 +1,9 @@
 # @ohos.util.LightWeightSet (非线性容器LightWeightSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
 

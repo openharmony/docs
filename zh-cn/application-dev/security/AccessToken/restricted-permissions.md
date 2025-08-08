@@ -1,5 +1,11 @@
 # 受限开放权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## 申请方式
 
 <!--RP1-->
@@ -548,8 +554,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
-
 **携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
 
 **起始版本**：18
@@ -600,7 +604,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：General
 
 **起始版本**：20
 
@@ -699,6 +703,36 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用申请特殊类型长时任务，如在手机上申请计算任务类型的长时任务。
 
 <!--RP48--><!--RP48End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.LINKTURBO
+
+允许应用使用多网并发等网络加速能力。
+
+获取该权限后，应用可发起多网激活、监听、释放等相关操作，以实现多路径的传输。
+
+<!--RP49--><!--RP49End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_NET_TRACE_INFO
+
+允许应用使用网络探测和获取TraceRoute信息的维测能力，用于检测网络时延较大的可能故障原因。
+
+<!--RP50--><!--RP50End-->
 
 **权限级别**：system_basic
 

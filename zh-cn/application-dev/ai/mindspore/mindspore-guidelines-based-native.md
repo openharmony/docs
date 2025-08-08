@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现图像分类（C/C++）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中直接集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现图像分类的应用。
@@ -29,9 +35,7 @@
 
 如果开发者有其他图像分类的预训练模型，请参考[MindSpore Lite 模型转换](mindspore-lite-converter-guidelines.md)介绍，将原始模型转换成.ms格式。
 
-### 编写代码
-
-#### 图像输入和预处理
+### 编写图像输入和预处理代码
 
 1. 此处以获取相册图片为例，调用[@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) 实现相册图片文件的选择。
 
@@ -68,8 +72,6 @@
            .width('40%')
            .height('5%')
            .onClick(() => {
-             let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-   
              // 获取相册图片
              // 1.创建图片文件选择实例
              let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -103,6 +105,10 @@
    
                    // 3.通过PixelMap预处理
                    let imageSource = image.createImageSource(file.fd);
+                   if (imageSource == undefined) {
+                     console.error('MS_LITE_ERR: createImageSource failed.')
+                     return
+                   }
                    imageSource.createPixelMap().then((pixelMap) => {
                      pixelMap.getImageInfo().then((info) => {
                        console.info('MS_LITE_LOG: info.width = ' + info.size.width);
@@ -161,7 +167,7 @@
    }
    ```
 
-#### 编写推理代码
+### 编写推理代码
 
 调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)实现端侧推理，推理代码流程如下。
 
@@ -193,16 +199,20 @@
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
+       if (fileSize <= 0) {
+           LOGE("MS_LITE_ERR: FileSize not correct");
+       }
        void *modelBuffer = malloc(fileSize);
        if (modelBuffer == nullptr) {
-           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: malloc failed");
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, modelBuffer, fileSize);
        if (ret == 0) {
-           LOGI("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
@@ -420,7 +430,7 @@
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### 使用N-API将C++动态库封装成ArkTS模块
+### 使用N-API将C++动态库封装成ArkTS模块
 
 1. 在 entry/src/main/cpp/types/libentry/Index.d.ts，定义ArkTS接口`runDemo()` 。内容如下：
 
@@ -439,7 +449,7 @@
    }
    ```
 
-#### 调用封装的ArkTS模块进行推理并输出结果
+### 调用封装的ArkTS模块进行推理并输出结果
 
 在 entry/src/main/ets/pages/Index.ets 中，调用封装的ArkTS模块，最后对推理结果进行处理。
 
@@ -473,7 +483,7 @@ struct Index {
         .width('40%')
         .height('5%')
         .onClick(() => {
-          let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+
           let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
           // 图像输入和预处理。
           // 调用c++的runDemo方法，完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
@@ -560,5 +570,5 @@ struct Index {
 
 针对使用MindSpore Lite进行图像分类应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
+- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
 

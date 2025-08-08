@@ -1,4 +1,9 @@
 # SelectTitleBar
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 
 下拉菜单标题栏包含一个下拉菜单，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。
@@ -27,7 +32,7 @@ import { SelectTitleBar } from '@kit.ArkUI';
 
 ## SelectTitleBar
 
-SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?: Array&lt;SelectTitleBarMenuItem&gt;, subtitle?: ResourceStr, badgeValue?: number, hidesBackButton?: boolean, onSelected?: (index: number) =&gt; void})
+SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?: Array&lt;SelectTitleBarMenuItem&gt;, subtitle?: ResourceStr, badgeValue?: number, hidesBackButton?: boolean, onSelected?: ((index: number) =&gt; void)})
 
 **装饰器类型：**\@Component
 
@@ -43,7 +48,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | subtitle | [ResourceStr](ts-types.md#resourcestr)                                      | 否 | - | 子标题。 |
 | badgeValue | number                                                                      | 否 | - | 新事件标记。<br>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。<br>**说明：** 小于等于0时不显示信息标记。<br>最大消息数99，超过最大消息时仅显示99+。超大数值属于异常值，不显示信息标记。 |
 | hidesBackButton | boolean                                                                     | 否 | - | 是否隐藏左侧的返回箭头。<br>默认值：false。true：隐藏，false：显示。|
-| onSelected | (index:&nbsp;number)&nbsp;=&gt;&nbsp;void                                   | 否 | - | 下拉菜单项目选中触发的回调函数，传入选中项的索引。 |
+| onSelected | ((index:&nbsp;number)&nbsp;=&gt;&nbsp;void)                                   | 否 | - | 下拉菜单项目选中触发的回调函数，传入选中项的索引。 |
 
 > **说明：**
 > 

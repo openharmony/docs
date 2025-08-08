@@ -1,5 +1,11 @@
 # 错误管理开发指导
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--SE: @peterhuangyu-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 场景介绍
 
 当应用的代码存在规范问题或错误时，会在运行中产生异常和错误，如应用未捕获异常等。在错误产生后，应用会异常退出。错误日志通常会保存在用户本地存储设备中，不方便开发者定位问题。所以，应用开发者可以使用错误管理的接口，在应用退出前，及时将相关错误及日志上报到开发者的服务平台来定位问题。
@@ -26,7 +32,8 @@
 | on(type: 'freeze', observer: FreezeObserver): void | 注册应用主线程freeze监听。只能在主线程调用，重复注册后，后一次的注册会覆盖前一次的。 |
 | off(type: 'freeze', observer?: FreezeObserver): void | 以FreezeObserver的形式解除应用主线程消息处理耗时监听。<br/>说明：从API version 18开始，支持该接口。 |
 
-当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
+当采用callback作为异步回调时，可以在callback中进行下一步处理。
+当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值，具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
 **错误监听(ErrorObserver)接口功能介绍**：
 
@@ -45,9 +52,9 @@
 
 | 结果码 | 原因 |
 | -------- | -------- |
-| 0 | 正常返回。 |
-| -1 | 传入的number不存在。 |
-| -2 | 参数错误。 |
+| 0 | 正常返回 |
+| -1 | 传入的number参数不存在 |
+| -2 | 参数错误 |
 
 ## 开发示例
 
@@ -136,7 +143,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -197,7 +204,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);

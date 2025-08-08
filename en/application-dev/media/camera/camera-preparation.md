@@ -1,4 +1,9 @@
 # Requesting Camera Development Permissions
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 The main process of camera application development includes development preparations, device input management, session management, preview, photo capture, and video recording.
 
@@ -8,7 +13,7 @@ Before developing a camera application, you must request camera-related permissi
 - To use the microphone to record audio, request the ohos.permission.MICROPHONE permission.
 - To display location information in photos or videos captured, request the ohos.permission.MEDIA_LOCATION permission.
 
-All these permissions must be authorized by users through a dialog box. For details about how to request and verify the permissions, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+All these permissions must be authorized by users through a dialog box. For details about how to request and verify the permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 - To read images or videos, you are advised to use the media library [Picker to access them](../medialibrary/photoAccessHelper-photoviewpicker.md).
 - To save images or videos, use the [security components to save them](../medialibrary/photoAccessHelper-savebutton.md).

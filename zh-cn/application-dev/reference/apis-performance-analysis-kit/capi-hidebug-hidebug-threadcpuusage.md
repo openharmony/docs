@@ -1,5 +1,11 @@
 # HiDebug_ThreadCpuUsage
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 应用程序所有线程的CPU使用率结构体定义。

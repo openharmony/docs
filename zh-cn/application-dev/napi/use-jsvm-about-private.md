@@ -1,12 +1,17 @@
 # 使用JSVM-API接口进行private相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
-JSVM-API中提供操作private属性能力的接口。
+JSVM-API 提供操作私有属性的接口。
 
 ## 基本概念
 
-在JSVM-API中，提供用户创建private key的能力，并且能够在object上使用这个key创建、删除对应的属性，同时持久化保存private key symbol。
+JSVM-API提供创建private key的能力，并支持在对象上使用该key进行属性的创建与删除，同时持久化保存private key symbol。
 
 ## 接口说明
 
@@ -16,8 +21,8 @@ JSVM-API中提供操作private属性能力的接口。
 | OH_JSVM_GetReferenceData               | 检查指定的引用是否有效, 返回该引用关联的JavaScript数据, 无效result设置为NULL。|
 | OH_JSVM_CreatePrivate                  | 创建一个js private key对象。   |
 | OH_JSVM_SetPrivate                     | 为传入的object设置一个private属性。   |
-| OH_JSVM_GetPrivate                     | 为传入的object获取private key对应的private属性。   |
-| OH_JSVM_DeletePrivate                  | 为传入的object删除private key对应的private属性。   |
+| OH_JSVM_GetPrivate                     | 获取传入的object中private key对应的private属性。   |
+| OH_JSVM_DeletePrivate                  | 删除传入的object中private key对应的private属性。   |
 
 ## 使用示例
 

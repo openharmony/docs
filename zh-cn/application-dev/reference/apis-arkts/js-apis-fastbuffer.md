@@ -1,4 +1,9 @@
 # @ohos.fastbuffer (FastBuffer)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -605,7 +610,7 @@ compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: numbe
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
+| -1 \| 0 \| 1 | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
 
 **错误码：**
 

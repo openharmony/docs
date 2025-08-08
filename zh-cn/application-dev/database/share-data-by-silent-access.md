@@ -1,4 +1,9 @@
 # 通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 
 ## 场景介绍

@@ -1,4 +1,9 @@
 # native_dialog.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 ## 概述
 
@@ -389,6 +394,10 @@ int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, A
 
 设置弹窗的显示层级。
 
+> **说明：** 
+>
+> 本方法需要在调用[OH_ArkUI_CustomDialog_OpenDialog](#oh_arkui_customdialog_opendialog)方法之前调用。
+
 **起始版本：** 19
 
 
@@ -415,6 +424,10 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
 
 
 设置弹窗显示层级页面下的节点id。
+
+> **说明：** 
+>
+> 本方法需要在调用[OH_ArkUI_CustomDialog_OpenDialog](#oh_arkui_customdialog_opendialog)方法之前调用。
 
 **起始版本：** 19
 

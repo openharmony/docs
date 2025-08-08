@@ -1,4 +1,9 @@
 # Dual-Channel Preview (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -8,11 +13,11 @@ The camera application controls the camera device to implement basic operations 
 
 To implement dual-channel preview (there are two preview streams instead of one preview stream plus one photo stream), you must create a previewOutput object through the surface of an ImageReceiver object. Other processes are the same as those of the photo stream and preview stream.
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 ## Constraints
 
-- Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) to add streams without calling [session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) first.
+- Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11) to add streams without calling [session.stop](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#stop11) first.
 - After an ImageReceiver object processes image data obtained, it must release the image buffer so that the buffer queue of the surface properly rotates.
 
 ## API Calling Process
@@ -28,7 +33,9 @@ The figure below shows the recommended API calling process of the dual-channel p
 - To enable both preview streams to obtain data, configure a camera session for both preview streams, and start the session.
 
 ### First Preview Stream Used for Image Processing
+
 1. Import dependencies, including dependencies related to image and camera framework.
+
     ```ts
     import { image } from '@kit.ImageKit';
     import { camera } from '@kit.CameraKit';
@@ -50,8 +57,33 @@ The figure below shows the recommended API calling process of the dual-channel p
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
     }
     ```
+3. Obtain the image or PixelMap formats of the preview stream received by ImageReceiver. For details about the image format, see the **format** parameter in [Image](../../reference/apis-image-kit/arkts-apis-image-Image.md). For details about the [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) format, see [PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7).
+    
+    ```ts
+    // Mappings between image formats and PixelMap formats.
+    let formatToPixelMapFormatMap = new Map<number, image.PixelMapFormat>([
+      [12, image.PixelMapFormat.RGBA_8888],
+      [25, image.PixelMapFormat.NV21],
+      [35, image.PixelMapFormat.YCBCR_P010],
+      [36, image.PixelMapFormat.YCRCB_P010]
+    ]);
+    // Mapping of the size of a single pixel for each PixelMapFormat.
+    let pixelMapFormatToSizeMap = new Map<image.PixelMapFormat, number>([
+      [image.PixelMapFormat.RGBA_8888, 4],
+      [image.PixelMapFormat.NV21, 1.5],
+      [image.PixelMapFormat.YCBCR_P010, 3],
+      [image.PixelMapFormat.YCRCB_P010, 3]
+    ]);
+    ```
 
-3. Register a listener to process each frame of image data in the preview stream. Specifically, use the **imageArrival** event in the ImageReceiver object to obtain the image data returned by the bottom layer. For details, see [Image API Reference](../../reference/apis-image-kit/js-apis-image.md).
+4. Register a listener to process each frame of image data in the preview stream. Specifically, use the **imageArrival** event in the ImageReceiver object to obtain the image data returned by the bottom layer. For details, see [Image API Reference](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md).
+
+    > **NOTE**
+    >
+    > - When you create a [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) instance using the [createPixelMap](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8) API, the properties such as **Size** and **srcPixelFormat** must match **Size** and **Format** configured in preview output stream's preview profile. For details about the image pixel format of ImageReceiver, see [PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7). For details about the output format the preview profile, see [CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat).
+    > - Due to the variability across different devices, you must obtain the preview profiles supported by the current device by calling [getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11) before creating a preview output stream. Then based on actual service requirements, select a suitable preview profile that meets the required [CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat) and [Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size).
+    > - The actual format of the preview stream image data received by ImageReceiver is determined by the **format** parameter in the preview profile that you select based on service requirements when creating the preview output stream. For details, see [Enabling a Preview Stream to Obtain Data](camera-dual-channel-preview.md#enabling-a-preview-stream-to-obtain-data).
+
 
     ```ts
     function onImageArrival(receiver: image.ImageReceiver): void {
@@ -73,24 +105,28 @@ The figure below shows the recommended API calling process of the dual-channel p
               let width = nextImage.size.width; // Obtain the image width.
               let height = nextImage.size.height; // Obtain the image height.
               let stride = imgComponent.rowStride; // Obtain the image stride.
+              let imageFormat = nextImage.format; // Obtain the image format.
+              let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
+              let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
               console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+              // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
               // The value of stride is the same as that of width.
               if (stride == width) {
                 let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                   size: { height: height, width: width },
-                  srcPixelFormat: 8,
+                  srcPixelFormat: pixelMapFormat,
                 })
               } else {
                 // The value of stride is different from that of width.
-                const dstBufferSize = width * height * 1.5
+                const dstBufferSize = width * height * mSize
                 const dstArr = new Uint8Array(dstBufferSize)
-                for (let j = 0; j < height * 1.5; j++) {
+                for (let j = 0; j < height * mSize; j++) {
                   const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                   dstArr.set(srcBuf, j * width)
                 }
                 let pixelMap = await image.createPixelMap(dstArr.buffer, {
                   size: { height: height, width: width },
-                  srcPixelFormat: 8,
+                  srcPixelFormat: pixelMapFormat,
                 })
               }
             } else {
@@ -105,7 +141,7 @@ The figure below shows the recommended API calling process of the dual-channel p
     }
     ```
 
-    The following methods are available for parsing the image buffer data by using [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9).
+    The following methods are available for parsing the image buffer data by using [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9).
 
     > **NOTE**
     > Check whether the width of the image is the same as **rowStride**. If they are different, perform the following operations:
@@ -113,17 +149,18 @@ The figure below shows the recommended API calling process of the dual-channel p
     Method 1: Remove the stride data from **imgComponent.byteBuffer**, obtain a new buffer by means of copy, and process the buffer by calling the API that does not support stride.
 
     ```ts
-    // For example, for NV21 (images in YUV_420_SP format), the formula for calculating the YUV_420_SP memory is as follows: YUV_420_SP memory = Width * Height + (Width * Height)/2.
-    const dstBufferSize = width * height * 1.5;
+    // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
+    const dstBufferSize = width * height * mSize;
     const dstArr = new Uint8Array(dstBufferSize);
     // Read the buffer data line by line.
-    for (let j = 0; j < height * 1.5; j++) {
+    for (let j = 0; j < height * mSize; j++) {
       // Copy the first width bytes of each line of data in imgComponent.byteBuffer to dstArr.
       const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
       dstArr.set(srcBuf, j * width);
     }
     let pixelMap = await image.createPixelMap(dstArr.buffer, {
-      size: { height: height, width: width }, srcPixelFormat: 8
+      size: { height: height, width: width }, srcPixelFormat: pixelMapFormat
+
     });
     ```
 
@@ -132,7 +169,7 @@ The figure below shows the recommended API calling process of the dual-channel p
     ```ts
     // Create a PixelMap, with width set to the value of stride.
     let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
-      size:{height: height, width: stride}, srcPixelFormat: 8});
+      size:{height: height, width: stride}, srcPixelFormat: pixelMapFormat});
     // Crop extra pixels.
     pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
     ```
@@ -143,7 +180,7 @@ The figure below shows the recommended API calling process of the dual-channel p
 
 ### Second Preview Stream Used for Image Display
 
-To obtain the surface ID of the second preview stream, you must first create an **XComponent** for displaying the preview stream. For details about how to obtain the surface ID, see [getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9). The **XComponent** capability is provided by the UI. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+To obtain the surface ID of the second preview stream, you must first create an **XComponent** for displaying the preview stream. For details about how to obtain the surface ID, see [getXComponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9). The **XComponent** capability is provided by the UI. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 ```ts
 @Component
@@ -275,6 +312,21 @@ struct Index {
     }
   }
 
+  // Mappings between image formats and PixelMap formats.
+  private formatToPixelMapFormatMap = new Map<number, image.PixelMapFormat>([
+    [12, image.PixelMapFormat.RGBA_8888],
+    [25, image.PixelMapFormat.NV21],
+    [35, image.PixelMapFormat.YCBCR_P010],
+    [36, image.PixelMapFormat.YCRCB_P010]
+  ]);
+  // Mapping of the size of a single pixel for each PixelMapFormat.
+  private pixelMapFormatToSizeMap = new Map<image.PixelMapFormat, number>([
+    [image.PixelMapFormat.RGBA_8888, 4],
+    [image.PixelMapFormat.NV21, 1.5],
+    [image.PixelMapFormat.YCBCR_P010, 3],
+    [image.PixelMapFormat.YCRCB_P010, 3]
+  ]);
+
   /**
    * Register a listener for the ImageReceiver object.
    * @param receiver
@@ -299,24 +351,28 @@ struct Index {
             let width = nextImage.size.width; // Obtain the image width.
             let height = nextImage.size.height; // Obtain the image height.
             let stride = imgComponent.rowStride; // Obtain the image stride.
+            let imageFormat = nextImage.format; // Obtain the image format.
+            let pixelMapFormat = this.formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
+            let mSize =  this.pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
             console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+            // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.The NV21 format is used as an example.
             // The value of stride is the same as that of width.
             if (stride == width) {
               let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                 size: { height: height, width: width },
-                srcPixelFormat: 8,
+                srcPixelFormat: pixelMapFormat,
               })
             } else {
               // The value of stride is different from that of width.
-              const dstBufferSize = width * height * 1.5 // For example, for NV21 (images in YUV_420_SP format), the formula for calculating the YUV_420_SP memory is as follows: YUV_420_SP memory = Width * Height + (Width * Height)/2
+              const dstBufferSize = width * height * mSize // For example, for NV21 (images in YUV_420_SP format), the formula for calculating the YUV_420_SP memory is as follows: YUV_420_SP memory = Width * Height + (Width * Height)/2
               const dstArr = new Uint8Array(dstBufferSize)
-              for (let j = 0; j < height * 1.5; j++) {
+              for (let j = 0; j < height * mSize; j++) {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                 dstArr.set(srcBuf, j * width)
               }
               let pixelMap = await image.createPixelMap(dstArr.buffer, {
                 size: { height: height, width: width },
-                srcPixelFormat: 8,
+                srcPixelFormat: pixelMapFormat,
               })
             }
           } else {
@@ -383,8 +439,21 @@ struct Index {
       if (!capability) {
         console.error('initCamera getSupportedOutputCapability');
       }
-      // Select a supported preview stream profile based on service requirements.
+      let minRatioDiff : number = 0.1;
+      let surfaceRatio : number = this.imageWidth / this.imageHeight; // The closest aspect ratio to 16:9.
       let previewProfile: camera.Profile = capability.previewProfiles[0];
+      // Select a supported preview stream profile based on service requirements.
+      // The following uses the preview stream profile with the CAMERA_FORMAT_YUV_420_SP (NV21) format that meets the resolution constraints as an example.
+      for (let index = 0; index < capability.previewProfiles.length; index++) {
+        const tempProfile = capability.previewProfiles[index];
+        let tempRatio = tempProfile.size.width >= tempProfile.size.height ?
+          tempProfile.size.width / tempProfile.size.height : tempProfile.size.height / tempProfile.size.width;
+        let currentRatio = Math.abs(tempRatio - surfaceRatio);
+        if (currentRatio <= minRatioDiff && tempProfile.format == camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
+          previewProfile = tempProfile;
+          break;
+        }
+      }
       this.imageWidth = previewProfile.size.width; // Update the width of the XComponent.
       this.imageHeight = previewProfile.size.height; // Update the height of the XComponent.
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);

@@ -1,4 +1,9 @@
 # Video Recording Practices (C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -186,7 +191,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         photoProfile = cameraOutputCapability->photoProfiles[0];
 
         if (cameraOutputCapability->videoProfiles == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "videorofiles == null");
+            OH_LOG_ERROR(LOG_APP, "videoProfiles == null");
             return;
         }
         // Ensure that the aspect ratio of the preview stream is the same as that of the video stream. To record HDR videos, choose Camera_VideoProfile that supports HDR.
@@ -202,10 +207,13 @@ After obtaining the output stream capabilities supported by the camera, create a
                 break;
             }
         }
-
+        if (videoProfile == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "Get videoProfile failed.");
+            return;
+        }
         // Create a VideoOutput instance.
         ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
-        if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
+        if (videoOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
             return;
         }

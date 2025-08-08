@@ -1,4 +1,9 @@
 # 使用AVRecorder录制视频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xdlinc-->
 
 当前仅支持[AVRecorder](media-kit-intro.md#avrecorder)开发视频录制，集成了音频捕获，音频编码，视频编码，音视频封装功能，适用于实现简单视频录制并直接得到视频本地文件的场景。
 
@@ -244,7 +249,8 @@ export class VideoRecorderDemo extends CustomComponent {
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
     }
-    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略。
+    // 2.获取录制文件fd，将获取到的值传递给avConfig中的url属性。
+    await this.createAndSetFd();
     // 3.配置录制参数完成准备工作。
     await this.avRecorder.prepare(this.avConfig);
     this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
@@ -252,7 +258,7 @@ export class VideoRecorderDemo extends CustomComponent {
     await this.prepareCamera();
     // 5.启动相机出流。
     await this.startCameraOutput();
-    // 6. 启动录制。
+    // 6.启动录制。
     await this.avRecorder.start();
 
   }
@@ -275,7 +281,7 @@ export class VideoRecorderDemo extends CustomComponent {
 
   async stopRecordingProcess() {
     if (this.avRecorder != undefined) {
-      // 1. 停止录制。
+      // 1.停止录制。
       if (this.avRecorder.state === 'started'
         || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换。
         await this.avRecorder.stop();
@@ -285,7 +291,7 @@ export class VideoRecorderDemo extends CustomComponent {
       await this.avRecorder.reset();
       // 3.释放录制实例。
       await this.avRecorder.release();
-      // 4.文件录制完成后，关闭fd,实现略。
+      // 4.文件录制完成后，关闭fd。
       await fs.close(this.fileFd);
       // 5.释放相机相关实例。
       await this.releaseCamera();

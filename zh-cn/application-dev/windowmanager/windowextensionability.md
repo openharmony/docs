@@ -44,7 +44,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
         onWindowReady(window: window.Window) {
             window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
               let pro = window.getWindowProperties();
-              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              console.info(`WindowExtension pro: ${JSON.stringify(pro)}`);
               window.showWindow();
             });
         }
@@ -118,4 +118,4 @@ struct Index {
 
 针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
-- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)

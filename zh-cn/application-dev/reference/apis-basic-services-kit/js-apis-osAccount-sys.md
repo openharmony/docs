@@ -1,5 +1,11 @@
 # @ohos.account.osAccount (系统账号管理)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 本模块提供管理系统账号的基础能力，包括系统账号的添加、删除、查询、设置、订阅、启动等功能。
 
 > **说明：**
@@ -984,7 +990,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统账号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。<br/>从API version 12开始支持该可选参数。|
+| options      | [CreateOsAccountOptions](#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。<br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 

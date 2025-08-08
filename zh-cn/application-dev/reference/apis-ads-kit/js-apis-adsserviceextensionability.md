@@ -1,5 +1,11 @@
 # @ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现请求广告的回调。
 
 > **说明：**<br/>

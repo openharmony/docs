@@ -50,9 +50,9 @@ Calendar Kit为用户提供了一系列接口来获取日历账户，并使用�
 
 - 使用Calendar Kit的相关能力，需要获取读取或写入日历、日程的权限。具体指导可见[声明权限](../security/AccessToken/declare-permissions.md)。
 
-  - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR权限。
+  - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR权限。
 
-  - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR权限。
+  - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR权限。
 
   申请对应权限之后，支持的相关操作可见下表。
 
@@ -60,3 +60,5 @@ Calendar Kit为用户提供了一系列接口来获取日历账户，并使用�
   | ------------------------------ | -------------------------------------------- | ------------------------------------------------------------ |
   | ohos.permission.READ_CALENDAR  | - 读取系统默认日历账户<br>- 读取当前应用创建的日历账户 | - 读取系统默认日历账户下当前应用创建的日程<br/>- 读取当前应用创建的日历账户下当前应用创建的日程 |
   | ohos.permission.WRITE_CALENDAR | - 添加、删除或修改当前应用创建的日历账户               | - 添加、删除或修改系统默认日历账户下当前应用创建的日程<br>- 添加、删除或修改当前应用创建的日历账户下当前应用创建的日程 |
+  | ohos.permission.READ_WHOLE_CALENDAR | - 读取所有日历账户                      | - 读取所有应用创建的日程              |
+  | ohos.permission.WRITE_WHOLE_CALENDAR | - 添加、删除或修改所有日历账户                | - 添加、删除或修改所有应用创建的日程          |

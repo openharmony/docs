@@ -1,4 +1,9 @@
 # \@Builder装饰器：自定义构建函数
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--SE: @zhangboren-->
+<!--TSE: @TerryTsao-->
 
 ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递。开发者可将重复使用的UI元素抽象成函数，在build函数中调用。
 
@@ -163,7 +168,7 @@ struct Parent {
 
 ## 限制条件
 
-1. \@Builder装饰的函数内部不允许修改参数值，否则框架会抛出运行时错误。但开发者可以在使用@Builder的自定义组件中改变其参数。请参考[在@Builder装饰的函数内部修改入参内容](#在builder装饰的函数内部修改入参内容)。
+1. \@Builder装饰的函数内部在没有使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)时不允许修改参数值，修改不会触发UI刷新。若[按引用传递参数](#按引用传递参数)且仅传入一个参数时，修改参数内部的属性会抛出运行时错误。使用MutableBinding可以帮助开发者在\@Builder装饰的函数内部修改参数值，请参考[在@Builder装饰的函数内部修改入参内容](#在builder装饰的函数内部修改入参内容)。
 
 2. \@Builder按引用传递且仅传入一个参数时，才会触发动态渲染UI。请参考[按引用传递参数](#按引用传递参数)。
 
@@ -1245,76 +1250,6 @@ struct PageBuilder {
 }
 ```
 
-### 在\@Builder装饰的函数内部修改入参内容
-
-【反例】
-
-```ts
-interface Temp {
-  paramA: string;
-}
-
-@Builder function overBuilder(param: Temp) {
-  Row() {
-    Column() {
-      Button(`overBuilder === ${param.paramA}`)
-        .onClick(() => {
-          // 错误写法，不允许在@Builder装饰的函数内部修改参数值
-          param.paramA = 'Yes';
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-
-  build() {
-    Column() {
-      overBuilder({paramA: this.label})
-      Button('click me')
-        .onClick(() => {
-          this.label = 'ArkUI';
-        })
-    }
-  }
-}
-```
-
-【正例】
-
-```ts
-interface Temp {
-  paramA: string;
-}
-
-@Builder function overBuilder(param: Temp) {
-  Row() {
-    Column() {
-      Button(`overBuilder === ${param.paramA}`)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-
-  build() {
-    Column() {
-      overBuilder({paramA: this.label})
-      Button('click me')
-        .onClick(() => {
-          this.label = 'ArkUI';
-        })
-    }
-  }
-}
-```
-
 ### 在\@Builder内创建自定义组件传递参数不刷新问题
 
 在parentBuilder函数中创建自定义组件HelloComponent，传递参数为class对象并修改对象内的值时，UI不会触发刷新功能。
@@ -1632,6 +1567,224 @@ struct MakeBindingTest {
         this.globalTmp.str_value = 'Hello World 2025';
         this.num = 1;
       })
+    }
+  }
+}
+```
+
+### 在\@Builder装饰的函数内部修改入参内容
+
+不使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)的情况下，在\@Builder装饰的函数内部修改参数值，修改不会生效且可能造成运行时错误。
+
+【反例】
+```ts
+@Builder
+function MyGlobalBuilder(value: string) {
+  Column() {
+    Text(`MyGlobalBuilder: ${value} `)
+      .fontSize(16)
+      .onClick(() => {
+        // 简单类型按值传递的@Builder函数中修改参数，不闪退但UI不刷新
+        value = 'value change';
+      })
+  }.borderWidth(1)
+}
+
+interface Temp {
+  paramA: string;
+}
+
+@Builder
+function overBuilder(param: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${param.paramA}`)
+        .onClick(() => {
+          // 错误写法，不允许在@Builder装饰的函数内部修改对象类型参数的属性，闪退且UI不刷新
+          param.paramA = 'Yes';
+        })
+      Button('change')
+        .onClick(() => {
+          // 错误写法，不允许在@Builder装饰的函数内部修改对象类型参数的引用，不闪退但UI不刷新
+          param = { paramA: 'change trial' };
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  @State message1: string = 'Value Passing';
+
+  @Builder
+  extendBlank() {
+    Row() {
+      Blank()
+    }
+    .height(20)
+  }
+
+  build() {
+    Column() {
+      // 按引用传递能实现参数变化时的UI刷新，但不能在@Builder函数内部修改参数
+      overBuilder({ paramA: this.label });
+      this.extendBlank();
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
+      this.extendBlank();
+      MyGlobalBuilder(this.message1);
+    }
+  }
+}
+```
+正确使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)可以帮助开发者在\@Builder装饰的函数内部修改参数值。
+
+【正例】
+```ts
+import { UIUtils, MutableBinding } from '@kit.ArkUI';
+
+// 使用MutableBinding在@Builder装饰的函数中修改参数值
+@Builder
+function MyGlobalBuilderMod(str: MutableBinding<string>) {
+  Column() {
+    Text(`Mod--MyGlobalBuilder: ${str.value}`)
+      .fontSize(16)
+      .onClick(() => {
+        str.value = 'value change mod';
+      })
+  }
+}
+
+interface Temp {
+  paramA: string;
+}
+
+// 使用MutableBinding在@Builder装饰的函数内部修改参数值
+@Builder
+function overBuilderMod(param: MutableBinding<Temp>) {
+  Column() {
+    Button(`Mod--overBuilder === ${param.value.paramA}`)
+      .onClick(() => {
+        param.value.paramA = 'Yes';
+      })
+    Button(`change`)
+      .onClick(() => {
+        param.value = { paramA: 'trialOne' };
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  @State message1: string = 'Value Passing';
+  @State objectOne: Temp = {
+    paramA: this.label
+  };
+
+  @Builder
+  extendBlank() {
+    Row() {
+      Blank()
+    }
+    .height(20)
+  }
+
+  build() {
+    Column() {
+      // 使用MutableBinding时无法传对象字面量，需要先将字面量对象抽出为状态变量
+      overBuilderMod(
+        UIUtils.makeBinding<Temp>(
+          () => this.objectOne,
+          value => {
+            this.objectOne = value; // 必须要传SetterCallback，否则触发时会造成运行时错误
+          }
+        )
+      )
+      this.extendBlank();
+      Button('click me')
+        .onClick(() => {
+          this.objectOne.paramA = 'ArkUI';
+        })
+      this.extendBlank();
+      MyGlobalBuilderMod(
+        UIUtils.makeBinding<string>(
+          () => this.message1,
+          value => {
+            this.message1 = value; // 必须要传SetterCallback，否则触发时会造成运行时错误
+          }
+        )
+      );
+    }
+  }
+}
+```
+
+### 在\@Watch函数中执行\@Builder函数
+
+在\@Watch函数中执行\@Builder函数，可能导致UI刷新异常。
+
+【反例】
+```ts
+@Entry
+@Component
+struct Child {
+  @Provide @Watch('provideWatch') content: string = 'Index: hello world';
+
+  @Builder
+  watchBuilder(content: string) {
+    Row() {
+      Text(`${content}`)
+    }
+  }
+
+  provideWatch() {
+    this.watchBuilder(this.content); // 错误写法，在@Watch函数中使用@Builder函数
+  }
+
+  build() {
+    Column() {
+      Button(`content value: ${this.content}`)
+        .onClick(() => {
+          this.content += '_world';
+        })
+      this.watchBuilder(this.content);
+    }
+  }
+}
+```
+Button按钮会出现UI异常的情况，开发者需要避免在\@Watch函数中使用\@Builder函数。
+
+【正例】
+```ts
+@Entry
+@Component
+struct Child {
+  @Provide @Watch('provideWatch') content: string = 'Index: hello world';
+
+  @Builder
+  watchBuilder(content: string) {
+    Row() {
+      Text(`${content}`)
+    }
+  }
+
+  provideWatch() {
+    console.info(`content value has changed.`);
+  }
+
+  build() {
+    Column() {
+      Button(`content value: ${this.content}`)
+        .onClick(() => {
+          this.content += '_world';
+        })
+      this.watchBuilder(this.content);
     }
   }
 }

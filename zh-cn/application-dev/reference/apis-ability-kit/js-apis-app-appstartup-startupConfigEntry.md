@@ -1,4 +1,9 @@
 # @ohos.app.appstartup.StartupConfigEntry (启动框架配置)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 
 本模块提供应用启动框架配置的能力。
@@ -63,7 +68,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 onRequestCustomMatchRule(want: Want): string
 
-应用启动时，启动框架会调用此接口获取自定义匹配规则。可以根据传入Want中的不同参数来返回不同的自定义规则值，并与启动任务配置的matchRules中customization字段进行匹配。若匹配成功，任务将在自动模式执行。当uri、action和意图名称匹配规则都无法满足时，可以使用此接口。详细说明请参考[添加任务匹配规则](../../application-models/app-startup.md#可选添加任务匹配规则)章节。
+应用启动时，启动框架会调用此接口获取自定义匹配规则。可以根据传入Want中的不同参数来返回不同的自定义规则值，并与启动任务配置的matchRules中customization字段进行匹配。若匹配成功，任务将在自动模式执行。当一个启动场景无法通过uri、action或意图名称规则来匹配启动任务时，可以使用本接口对匹配规则进一步细化。详细说明请参考[添加任务匹配规则](../../application-models/app-startup.md#可选添加任务匹配规则)章节。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -94,7 +99,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     if (want?.parameters?.customParam == 'param1') {
       return 'customRule1';
     }
-    return "";
+    return '';
   }
 }
 ```

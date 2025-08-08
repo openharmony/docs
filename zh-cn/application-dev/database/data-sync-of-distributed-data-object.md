@@ -1,4 +1,9 @@
 # 分布式数据对象跨设备数据同步 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--SE: @hollokin; @yuchaozhng-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 
 ## 场景介绍
@@ -523,6 +528,6 @@ function getRemoteDeviceId() {
 
 针对分布式数据对象开发，有以下相关实例可供参考：
 
-- [设备管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
+- [设备管理（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
 
-- [分布式备忘录（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)
+- [分布式备忘录（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)

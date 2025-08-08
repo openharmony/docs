@@ -1,4 +1,9 @@
 # 用户状态感知开发指导
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 UserStatus（用户状态感知）模块提供用户感知能力，可以感知到操作者特定状态，例如：检测用户年龄组。
 
@@ -17,7 +22,7 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 
 ### 约束与限制
 
- - 设备需支持触控屏并兼容特定芯片。
+ - 此功能如果设备不支持，将返回801错误码。
 
 ### 开发步骤
 

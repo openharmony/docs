@@ -1,4 +1,9 @@
 # @ohos.screenshot (屏幕截图)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 本模块提供屏幕截图的能力，截取屏幕时支持设置截取的区域、大小等图像信息。
 

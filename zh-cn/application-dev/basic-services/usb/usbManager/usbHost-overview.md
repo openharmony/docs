@@ -1,5 +1,11 @@
 # USB服务开发概述
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 基本概念
 
 USB服务是应用访问底层的一种设备抽象概念，分为主机（Host）、设备（Device）。

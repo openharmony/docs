@@ -1,5 +1,11 @@
 # @ohos.batteryStatistics (耗电统计)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 该模块提供软硬件耗电统计信息的查询接口。
 
 > **说明：**

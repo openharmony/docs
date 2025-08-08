@@ -1,5 +1,11 @@
 # ArkTS语法适配背景
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @Fouckttt1-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ArkTS在保留TypeScript（简称TS）基本语法风格的基础上，进一步通过规范强化了静态检查和分析，使得在程序开发阶段能够检测出更多错误，提升程序的稳定性和运行性能。本文将详细解释为什么建议将TS代码适配为ArkTS代码。
 
 ## 程序稳定性
@@ -85,7 +91,7 @@ buddy.getName()?.length; // 编译成功，没有运行时错误
 
 ## 程序性能
 
-为了确保程序的正确性，动态类型语言需要在运行时检查对象的类型。例如JavaScript不允许访问`undefined`的属性。检查一个值是否为`undefined`的唯一方法是在运行时进行类型检查。所有JavaScript引擎都会执行以下操作：如果一个值不是`undefined`，则可以访问其属性；否则，抛出异常。虽然现代JavaScript引擎可以优化这类操作，但仍然存在一些无法消除的运行时检查，这会导致程序变慢。由于TypeScript代码总是先被编译成JavaScript代码，因此在TypeScript中也会遇到相同的问题。ArkTS解决了这个问题。通过启用静态类型检查，ArkTS代码将被编译成方舟字节码文件，而不是JavaScript代码。因此，ArkTS运行速度更快，更容易被进一步优化。
+为了确保程序的正确性，动态类型语言需要在运行时检查对象的类型。例如JavaScript不允许访问`undefined`的属性。检查一个值是否为`undefined`的唯一方法是在运行时进行类型检查。所有JavaScript引擎都会执行以下操作：如果一个值不是`undefined`，则可以访问其属性；如果尝试访问的值是`undefined`，则会抛出异常。虽然现代JavaScript引擎可以优化这类操作，但仍然存在一些无法消除的运行时检查，这会导致程序变慢。由于TypeScript代码总是先被编译成JavaScript代码，因此在TypeScript中也会遇到相同的问题。ArkTS解决了这个问题。通过启用静态类型检查，ArkTS代码将被编译成方舟字节码文件，而不是JavaScript代码。因此，ArkTS运行速度更快，更容易被进一步优化。
 
 
 **Null Safety**
@@ -99,7 +105,7 @@ notify('Jack', 'You look great today');
 ```
 
 在大多数情况下，函数`notify`会接受两个`string`类型的变量作为输入，产生一个新的字符串。但是，如果将一些特殊值作为输入，例如`notify(null, undefined)`，情况会怎么样呢？
-程序仍会正常运行，输出预期值：`Dear null, a message for you: undefined`。一切看起来正常，但是请注意，为了保证该场景下程序的正确性，引擎总是在运行时进行类型检查，执行类似以下的伪代码。
+程序仍会正常运行，输出预期值：`Dear null, a message for you: undefined`。虽然系统表现一切正常，但值得注意的是，为了保障该场景下程序的正确性，引擎在运行时会持续进行类型检查，其实现机制类似于以下伪代码所示：
 
 ```typescript
 function __internal_tostring(s: any): string {
@@ -113,9 +119,9 @@ function __internal_tostring(s: any): string {
 }
 ```
 
-现在想象一下，如果函数`notify`是某些复杂的负载场景中的一部分，而不仅仅是打印日志，那么在运行时执行像`__internal_tostring`的类型检查将会是一个性能问题。
+试想一下，如果`notify`函数并非只是简单的日志打印，而是某些高负载场景下关键逻辑的一部分，那么在运行时频繁执行类似`__internal_tostring`的类型检查操作，势必会带来显著的性能开销。
 
-如果可以保证在运行时，只有`string`类型的值（不会是其他值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。对于这个场景，这样的机制叫做“null-safety”，也就是说，保证`null`或`undefined`不是一个合法的`string`类型变量的值。如果ArkTS有了这个特性，类型不符合的代码将无法编译。
+如果可以保证在运行时，只有`string`类型的值（不会是其他类型的值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。在该场景下，这种机制被称为“null-safety”（空安全），其核心目的是确保`null`不能作为合法的字符串类型值。如果ArkTS支持这一特性，那么任何类型不匹配的代码都将在编译阶段被拦截，无法编译通过。
 
 ```typescript
 function notify(who: string, what: string) {
@@ -126,21 +132,21 @@ notify('Jack', 'You look great today');
 notify(null, undefined); // 编译时错误
 ```
 
-TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译成JS，但因为JS没有这个特性，所以严格`null`检查仅在编译时起效。从程序稳定性和性能的角度考虑，ArkTS将“null-safety”视为一个重要的特性。因此，ArkTS强制进行严格`null`检查，在ArkTS中上述代码将始终编译失败。作为交换，此类代码为ArkTS引擎提供了更多信息和关于值的类型保证，有助于优化性能。
+TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译成JS，但因为JS没有这个特性，所以严格`null`检查仅在编译时起效。从程序稳定性和性能的角度考虑，ArkTS将“null-safety”视为一个重要的特性。因此，ArkTS强制进行严格`null`检查，在ArkTS中上述代码将会编译失败。作为交换，此类代码为ArkTS引擎提供了更多信息和关于值的类型保证，有助于优化性能。
 
 
 ## .ets代码兼容性
 
-在API version 10之前，ArkTS（.ets文件）完全采用了标准TS的语法。从API version 10 Release起，明确定义ArkTS的语法规则，同时，SDK增加了在编译流程中对.ets文件的ArkTS语法检查，通过编译告警或编译失败提示开发者适配新的ArkTS语法。
+在API version 10之前的版本中，ArkTS（以.ets为扩展名的文件）在语法层面完全遵循标准的TypeScript规范。从API version 10 Release起，明确定义ArkTS的语法规则，同时，SDK增加了在编译流程中对.ets文件的ArkTS语法检查，通过编译告警或编译失败提示开发者适配新的ArkTS语法。
 
 根据工程的compatibleSdkVersion，具体策略如下：
 
-  - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
-  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件中的违反ArkTS语法规则的代码将以warning形式提示。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
+  - compatibleSdkVersion >= 10 为标准模式。在该模式下，所有.ets文件必须严格遵循ArkTS语法规则，任何语法违规工程都将编译失败，开发者需要修正所有语法问题后才能编译成功。
+  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
 
 ## 支持与TS/JS的交互
 
-ArkTS支持与TS/JS的高效互操作。在当前版本中，ArkTS运行时兼容动态类型对象语义。在与TS/JS交互时，将TS/JS的数据和对象作为ArkTS的数据和对象使用，可能会绕过ArkTS的静态编译检查，导致非预期的行为或增加额外的开销。
+ArkTS支持与TS/JS的高效互操作。在当前版本中，ArkTS运行时兼容动态类型对象语义。在ArkTS与TypeScript/JavaScript交互操作场景中，直接复用TS/JS的数据和对象作为ArkTS的实体使用时，可能规避ArkTS的静态类型检查机制，进而引发运行时异常或引入额外的性能损耗。
 
 ```typescript
 // lib.ts

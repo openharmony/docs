@@ -1,4 +1,9 @@
 # ArkUI（方舟UI框架）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--TSE: @fredyuan912-->
 
 - ArkTS API<!--arkui-arkts-->
   - UI界面<!--ui-->
@@ -286,6 +291,7 @@
     - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
     - [ArcSlider](arkui-ts/ohos-arkui-advanced-ArcSlider.md)
+    - [选择器（Picker）公共接口](arkui-ts/ts-picker-common.md)
   - 文本与输入<!--text-and-input-->
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
@@ -421,6 +427,8 @@
     - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
     - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
     - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 组件扩展装饰器
+      - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)

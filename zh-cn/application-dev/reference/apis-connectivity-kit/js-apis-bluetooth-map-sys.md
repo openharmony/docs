@@ -1,5 +1,11 @@
 # @ohos.bluetooth.map (蓝牙map模块)(系统接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 map模块提供了访问信息相关功能的方法。
 
 > **说明：**

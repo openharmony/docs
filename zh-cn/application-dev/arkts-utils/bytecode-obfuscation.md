@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆原理及功能
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @oatuwwutao; @u012789010-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 术语清单
 
@@ -185,11 +190,11 @@ TestA.i;
   -enable-string-property-obfuscation
   ```
 
-根据上述配置，下面例子中的"fritstName"和"personAge"混淆效果如下：
+根据上述配置，下面例子中的"firstName"和"personAge"混淆效果如下：
 
   ```ts
   // 混淆前：
-  let person = {"fritstName": "abc"};
+  let person = {"firstName": "abc"};
   person["personAge"] = 22;
   ```
 
@@ -480,7 +485,7 @@ console.info(obj['t' + '1']);        // t1应该被保留
 obj.t = 0;
 console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
 
-obj.['v'] = 0;
+obj['v'] = 0;
 console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
 ```
 

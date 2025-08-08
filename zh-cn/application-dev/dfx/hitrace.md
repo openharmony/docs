@@ -1,5 +1,10 @@
 # hitrace
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 hitrace命令行工具提供trace信息（包含系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter-intro.md)在应用中设置的打点）采集能力，支持多种方式采集文本格式或二进制格式trace信息，帮助开发者观测程序运行情况及定位故障问题。
 

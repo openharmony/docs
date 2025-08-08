@@ -1,4 +1,9 @@
 # button
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -138,10 +143,10 @@ export default {
     downloadText: "Download"
   },
   progress(e) {
-    this.count+= 10;
-    this.downloadText = this.count+ "%";
+    this.count += 10;
+    this.downloadText = this.count + "%";
     this.$element('download-btn').setProgress({ progress: this.count});
-    if (this.count>= 100) {
+    if (this.count >= 100) {
       this.downloadText = "Done";
     }
   }

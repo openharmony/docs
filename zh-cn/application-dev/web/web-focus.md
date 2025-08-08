@@ -1,4 +1,9 @@
 # Web组件焦点管理
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 开发者可利用Web组件的焦点管理功能，有效管理Web组件的聚焦与失焦，同时利用H5侧的W3C标准接口，管理网页界面上唯一可交互的元素聚焦与失焦。
 
@@ -81,8 +86,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
   controller2: webview.WebviewController = new webview.WebviewController();
-  @State webborderColor: Color = Color.Red;
-  @State webborderColor2: Color = Color.Red;
+  @State webBorderColor: Color = Color.Red;
+  @State webBorderColor2: Color = Color.Red;
 
   build() {
     Column() {
@@ -106,26 +111,26 @@ struct WebComponent {
       }
       Web({ src: 'www.example.com', controller: this.controller })
         .onFocus(() => {
-          this.webborderColor = Color.Green;
+          this.webBorderColor = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor = Color.Red;
+          this.webBorderColor = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor)
+        .borderColor(this.webBorderColor)
         .height("45%")
 
       Web({ src: 'www.example.com', controller: this.controller2 })
         .onFocus(() => {
-          this.webborderColor2 = Color.Green;
+          this.webBorderColor2 = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor2 = Color.Red;
+          this.webBorderColor2 = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor2)
+        .borderColor(this.webBorderColor2)
         .height("45%")
     }
   }

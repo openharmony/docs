@@ -1,4 +1,9 @@
 # 应用数据向量化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @my-2024-->
+<!--SE: @cuile44; @fysun17; @AnruiWang; @xd_94; @pancodax-->
+<!--TSE: @yippo; @logic42-->
 
 ## 场景介绍
 

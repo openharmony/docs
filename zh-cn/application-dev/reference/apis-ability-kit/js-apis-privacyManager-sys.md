@@ -1,5 +1,11 @@
 # @ohos.privacyManager (隐私管理)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 本模块主要提供权限使用记录等隐私管理接口。
 
 > **说明：**

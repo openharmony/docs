@@ -1,4 +1,9 @@
 # RichEditor (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @carnivore233-->
+<!--SE: @pssea-->
+<!--TSE: @mateng_Holtens-->
 
 支持图文混排和文本交互式编辑的组件。
 

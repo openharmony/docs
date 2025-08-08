@@ -1,4 +1,9 @@
 # 轴事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 轴事件指组件被鼠标滚轮滚动或触控板双指沿特定方向（轴）滑动进行交互时触发的事件。此处“轴”指的是二维坐标系中的方向，分为水平方向（X轴）和垂直方向（Y轴）。
 
@@ -8,7 +13,7 @@
 
 ## onAxisEvent
 
-onAxisEvent(event: (event: AxisEvent) => void): T
+onAxisEvent(event: Callback\<AxisEvent>): T
 
 鼠标滚轮滚动或触控板双指移动触发该回调。
 
@@ -22,7 +27,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [AxisEvent](#axisevent) | 是   | 获得[AxisEvent](#axisevent)对象。 |
+| event  | Callback\<[AxisEvent](#axisevent)> | 是   | 获得[AxisEvent](#axisevent)对象。 |
 
 **返回值：**
 
@@ -50,7 +55,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | displayX            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
 | displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
 | scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
-| propagation         | Callback\<void>        | 是   | 否   | 激活事件冒泡。   |
+| propagation         | Callback\<void>        | 是   | 否   | 激活[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。   |
 | globalDisplayX<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | globalDisplayY<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 

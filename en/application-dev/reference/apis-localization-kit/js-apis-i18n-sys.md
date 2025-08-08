@@ -423,6 +423,543 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
+### getSystemCollations<sup>20+</sup>
+
+static getSystemCollations(): Map&lt;string, string&gt;
+
+Obtains the collation modes supported by the system and their names. If the system language is English, the system supports the collation mode where uppercase letters come before lowercase letters or vice versa.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | Collation modes supported by the system and their names. The **Map** object employs the key-value format, where the key is a string that indicates the collation mode, and the value is a string that indicates its name. The range of supported collation modes is subject to the system language.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemCollations: Map<string, string> = i18n.System.getSystemCollations();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemCollations failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingCollation<sup>20+</sup>
+
+static getUsingCollation(): string
+
+Obtains the current collation mode of the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | Current collation mode of the system.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingCollation: string = i18n.System.getUsingCollation();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingCollation failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemCollation<sup>20+</sup>
+
+static setSystemCollation(identifier: string): void
+
+Sets the collation mode used by the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | Yes| Collation mode used by the system. You can obtain the range supported collation modes by calling [getSystemCollations](#getsystemcollations20).|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemCollation("zhuyin"); // If the specified collation mode is not supported, an error is reported.
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemCollation failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumberingSystems<sup>20+</sup>
+
+static getSystemNumberingSystems(): Map&lt;string, string&gt;
+
+Obtains the numbering systems supported by the system and examples. The examples illustrate the display of digits 0 to 9 in the corresponding numbering system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | Numbering systems supported by the system and examples. The **Map** object employs the key-value format, where the key is a string that indicates the numbering system, and the value indicates an example. The range of supported numbering systems is subject to the system language.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemNumberingSystems: Map<string, string> = i18n.System.getSystemNumberingSystems();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumberingSystems failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumberingSystem<sup>20+</sup>
+
+static setSystemNumberingSystem(identifier: string):void
+
+Sets the numbering system used by the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | Yes| Numbering system used by the system. You can obtain the range of supported numbering systems by calling [getSystemNumberingSystems](#getsystemnumberingsystems20).|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumberingSystem("arab"); // If the specified numbering system is not supported, an error is reported.
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumberingSystem failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumberPatterns<sup>20+</sup>
+
+static getSystemNumberPatterns(): Map&lt;string, string&gt;
+
+Obtains the number patterns supported by the system and examples. A number pattern determines the format of the thousands separator and decimal separator in numbers.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | Number patterns supported by the system and examples. The **Map** object employs the key-value format, where the key is the number pattern (represented by Unicode code of the thousand separator and decimal separator), and the value indicates an example. The range of supported number patterns is subject to the system language.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemNumberPatterns: Map<string, string> = i18n.System.getSystemNumberPatterns();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumberPatterns failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingNumberPattern<sup>20+</sup>
+
+static getUsingNumberPattern(): string
+
+Obtains the current number pattern of the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | Current number pattern of the system.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingNumberPattern: string = i18n.System.getUsingNumberPattern();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumberPattern<sup>20+</sup>
+
+static setSystemNumberPattern(pattern: string): void
+
+Sets the number pattern used by the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| pattern | string | Yes| Number pattern used by the system. You can obtain the range of supported number patterns by calling [getSystemNumberPatterns](#getsystemnumberpatterns20).|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumberPattern("002e002c"); // If the specified number pattern is not supported, an error is reported.
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemMeasurements<sup>20+</sup>
+
+static getSystemMeasurements(): Map&lt;string, string&gt;
+
+Obtains the measurement systems supported by the system and their names.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | Measurement systems supported by the system and their names. The **Map** object employs the key-value format, where the key indicates the ID of the measurement system, and the value indicates its name. The supported measurement systems are as follows:<br>- **metric**: metric system<br>- **uksystem**: imperial system<br>- **ussystem**: US system|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemMeasurements: Map<string, string> = i18n.System.getSystemMeasurements();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemMeasurements failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingMeasurement<sup>20+</sup>
+
+static getUsingMeasurement(): string
+
+Obtains the current measurement system of the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | Current measurement system of the system. The supported measurement systems are as follows:<br>- **metric**: metric system<br>- **uksystem**: imperial system<br>- **ussystem**: US system|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingMeasurement: string = i18n.System.getUsingMeasurement();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemMeasurement<sup>20+</sup>
+
+static setSystemMeasurement(identifier: string): void
+
+Sets the measurement system used by the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | Yes| Measurement system used by the system. You can obtain the range of supported measurement systems by calling [getSystemMeasurements](#getsystemmeasurements20).|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemMeasurement("uksystem"); // If the specified measurement system is not supported, error code 8900001 is reported.
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumericalDatePatterns<sup>20+</sup>
+
+static getSystemNumericalDatePatterns(): Map&lt;string, string&gt;
+
+Obtains the numerical date patterns supported by the system and examples.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | Numerical date patterns supported by the system and examples. The **Map** object employs the key-value format, where the key indicates the numerical date pattern, for example, `dd/MM/y`, and the value indicates an example, for example, `18/07/2025`.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePatterns: Map<string, string> = i18n.System.getSystemNumericalDatePatterns();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumericalDatePatterns failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingNumericalDatePattern<sup>20+</sup>
+
+static getUsingNumericalDatePattern(): string
+
+Obtains the current numerical date pattern of the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | Current numerical date pattern of the system.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePattern: string = i18n.System.getUsingNumericalDatePattern();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumericalDatePattern<sup>20+</sup>
+
+static setSystemNumericalDatePattern(identifier: string): void
+
+Sets the numerical date pattern used by the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | Yes| Numerical date pattern used by the system. You can obtain the range of supported numerical date patterns by calling [getSystemNumericalDatePatterns](#getsystemnumericaldatepatterns20).|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumericalDatePattern("dd/MM/y"); // If the specified numerical date pattern is not supported, error code 8900001 is reported.
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## SystemLocaleManager<sup>10+</sup>
 
@@ -591,12 +1128,12 @@ Represents the locale information, which consists of the language, script, and c
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type           |  Mandatory  |  Description                                  |
-| --------------- | --------------- | ------ | --------------------------------------- |
-| id              | string          |   Yes  | Language code or country/region code, for example, **zh** or **CN**.   |
-| suggestionType  | [SuggestionType](#suggestiontype10)  |   Yes | Language or country/region suggestion type.                 |
-| displayName     | string          |  Yes  | Representation of ID in the specified locale in **SystemLocaleManager**.|
-| localName       | string          |  No  | Local name of the ID.                          |
+| Name           | Type           | Read-Only| Optional  |  Description                                  |
+| --------------- | --------------- | ------ | ------ | --------------------------------------- |
+| id              | string          |   No  |   No  | Language code or country/region code, for example, **zh** or **CN**.   |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   No  |   No | Language or country/region suggestion type.                 |
+| displayName     | string          |   No  |  No  | Representation of ID in the specified locale in **SystemLocaleManager**.|
+| localName       | string          |   No  |  Yes  | Local name of the ID. This option is available only when the language information is presented.     |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
@@ -606,14 +1143,14 @@ Represents a time zone and city combination item.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type            |  Mandatory  |  Description                                  |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| zoneId          | string          |   Yes   | Time zone ID, for example, **Asia/Shanghai**.             |
-| cityId          | string          |   Yes   | City ID, for example, Shanghai.                  |
-| cityDisplayName | string          |   Yes   | City display name in the system locale.         |
-| offset          | int             |   Yes   | Offset of the time zone ID.                        |
-| zoneDisplayName | string          |   Yes   | Time zone display name in the system locale.         |
-| rawOffset       | int             |   No   | Fixed offset of the time zone ID.                      |
+| Name           | Type            |  Read-Only  |  Optional  |  Description                                  |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| zoneId          | string          |   No   |   No   | Time zone ID, for example, **Asia/Shanghai**.             |
+| cityId          | string          |   No   |   No   | City ID, for example, Shanghai.                  |
+| cityDisplayName | string          |   No   |   No   | City display name in the system locale.         |
+| offset          | number             |   No   |   No   | Offset of the time zone ID.                        |
+| zoneDisplayName | string          |   No   |   No   | Time zone display name in the system locale.         |
+| rawOffset       | number             |   No   |   Yes   | Fixed offset of the time zone ID.                      |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -639,8 +1176,8 @@ Represents the language or country/region sorting option.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type           |  Mandatory|   Description                                |
-| --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.   |
-| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. The value **true** means to use the local name for sorting, and the value **false** means the opposite.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value is **true**. |
+| Name           | Type           |  Read-Only|  Optional|   Description                                |
+| --------------- | --------------- | ---- | ---- | --------------------------------------- |
+| locale          | string          |  No |  Yes | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.   |
+| isUseLocalName  | boolean         |  No |  Yes | Whether to use the local name for sorting. The value **true** means to use the local name for sorting, and the value **false** means the opposite.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
+| isSuggestedFirst | boolean        |  No |  Yes | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value is **true**. |
