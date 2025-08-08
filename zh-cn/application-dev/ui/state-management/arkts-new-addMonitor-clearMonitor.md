@@ -1,4 +1,9 @@
 # addMonitor/clearMonitor接口：动态添加/取消监听
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了动态添加或删除状态管理V2的状态变量的监听函数，开发者可以使用[addMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#addmonitor20)或[clearMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#clearmonitor20)。
 
@@ -242,7 +247,7 @@ struct Page {
 ```
 
 ## 限制条件
-- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace、\@Monitor或[\@Computed](./arkts-new-Computed.md)装饰的属性）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
+- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace装饰的变量）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
 下面为addMonitor的例子，clearMonitor同理。
   ```ts
   import { UIUtils } from '@kit.ArkUI';

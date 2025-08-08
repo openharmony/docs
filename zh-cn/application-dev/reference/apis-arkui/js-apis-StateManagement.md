@@ -726,7 +726,7 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 
@@ -798,7 +798,7 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 

@@ -1,4 +1,9 @@
 # 状态管理错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 > **说明：**
 >
@@ -8,7 +13,7 @@
 
 **错误信息**
 
-The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.
+The target is not a custom component instance or V2 class instance.
 
 **错误描述**
 
@@ -17,7 +22,7 @@ The target is not an instance of @ObservedV2 (with at least one @Trace, @Compute
 **可能原因**
 
 目标对象不满足以下情况：
-- [\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的class(至少有一个[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)、[\@Monitor](../../ui/state-management/arkts-new-monitor.md)或[\@Computed](../../ui/state-management/arkts-new-Computed.md)装饰的属性)。
+- [\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的class(至少有一个[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的变量)。
 - [\@ComponentV2](../../ui/state-management/arkts-new-componentV2.md)装饰的自定义组件的实例。
 
 **处理步骤**
