@@ -268,7 +268,7 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.error("处理异常情况");
+      console.error(`处理异常情况, code is ${err.code}, message is ${err.message}.`);
     })
   }
 
