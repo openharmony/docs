@@ -653,6 +653,7 @@ let decodingOptions: image.DecodingOptions = {
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
@@ -706,6 +707,7 @@ let decodingOptions: image.DecodingOptions = {
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
@@ -945,6 +947,7 @@ let decodingOptions: image.DecodingOptions = {
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
@@ -1010,6 +1013,7 @@ let decodingOptions: image.DecodingOptions = {
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };

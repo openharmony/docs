@@ -175,6 +175,8 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 订阅握持手状态变化感知事件。
 
+此功能需要开启设备的“握姿跟随”开关（可以在“设置-系统”中查看并开启）。如果设备不支持或未开启此开关，将返回801错误码。
+
 **需要权限**：ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion

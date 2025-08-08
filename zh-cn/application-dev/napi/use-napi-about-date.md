@@ -103,7 +103,7 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getDateValue: (date: Date) => number | void;
+export const getDateValue: (date: Date) => number | undefined;
 ```
 <!-- @[napi_get_date_value_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIDate/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -158,7 +158,7 @@ static napi_value IsDate(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isDate: <T>(date: T) => boolean | void;
+export const isDate: <T>(date: T) => boolean | undefined;
 ```
 <!-- @[napi_is_date_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIDate/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -184,5 +184,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

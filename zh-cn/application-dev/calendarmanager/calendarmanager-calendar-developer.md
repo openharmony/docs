@@ -126,18 +126,30 @@
 
    ```ts
    // Index.ets
-   // 日历配置信息
-   const config: calendarManager.CalendarConfig = {
-     // 打开日程提醒
-     enableReminder: true,
-     // 设置日历账户颜色
-     color: '#aabbcc'
+   const calendarAccounts: calendarManager.CalendarAccount = {
+     name: 'MyCalendar',
+     type: calendarManager.CalendarType.LOCAL,
+     displayName: 'MyCalendar'
    };
-   // 设置日历配置信息
-   calendar.setConfig(config).then(() => {
-     console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
-   }).catch((err: BusinessError) => {
-     console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
+   // 日历配置信息
+   calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
+     //获取日历账户
+     if (err) {
+       console.error(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
+     } else {
+       const config: calendarManager.CalendarConfig = {
+         // 打开日程提醒
+         enableReminder: true,
+         // 设置日历账户颜色
+         color: '#aabbcc'
+       };
+       // 设置日历配置信息
+       data.setConfig(config).then(() => {
+         console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
+       })
+     }
    });
    ```
 

@@ -20,6 +20,8 @@ import { performanceMonitor } from '@kit.ArkUI';
 
 用户场景（通常为具有动效的场景）触发模式枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 说明 |
@@ -32,6 +34,8 @@ import { performanceMonitor } from '@kit.ArkUI';
 ## SourceType<sup>12+</sup>
 
 用户场景触发源类型枚举。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +54,7 @@ begin(scene: string, startInputType: ActionType, note?: string): void
 
 用于标记用户场景开始，用户场景开始时调用此接口。
 
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

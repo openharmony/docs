@@ -51,10 +51,13 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
+  if (err) {
+    console.error(`Failed to getRendererInfo. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info('Succeeded in doing getRendererInfo.');
+    console.info(`Renderer usage: ${rendererInfo.usage}`);
+    console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
+  }
 });
 ```
 
@@ -78,12 +81,11 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
+  console.info('Succeeded in doing getRendererInfo.');
   console.info(`Renderer usage: ${rendererInfo.usage}`);
   console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
+  console.error(`Failed to getRendererInfo. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -108,12 +110,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
-  console.info(`Renderer content: ${rendererInfo.content}`);
+  console.info('Succeeded in doing getRendererInfoSync.');
   console.info(`Renderer usage: ${rendererInfo.usage}`);
   console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${error}`);
+  console.error(`Failed to getRendererInfoSync. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 

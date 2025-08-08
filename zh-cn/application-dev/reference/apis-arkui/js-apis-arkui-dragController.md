@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 ```
 
 ## dragController.executeDrag<sup>(deprecated)</sup>
@@ -54,7 +54,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -169,7 +169,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -329,7 +329,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -457,7 +457,7 @@ startDrag(): Promise&lt;void&gt;
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -709,7 +709,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -791,7 +791,7 @@ struct DragControllerPage {
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -1028,7 +1028,7 @@ export default class EntryAbility extends UIAbility {
 
 import { unifiedDataChannel } from '@kit.ArkData';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { dragController, curves, promptAction, UIContext } from "@kit.ArkUI";
+import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1152,7 +1152,7 @@ struct DragControllerPage {
 
 ## DragSpringLoadingConfiguration<sup>20+</sup>
 
-定义拖拽悬停检测的配置参数的接口。
+定义拖拽的悬停检测配置参数的接口。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1160,10 +1160,10 @@ struct DragControllerPage {
 
 | 名称                 | 类型   | 必填 | 说明                                   |
 | :--------------------- | ------ | ---- | ---------------------------------------------------- |
-| stillTimeLimit         | number | 否   | 进入悬停检测BEGIN状态前保持静止的时间，取值范围为自然数，默认值500ms，输入负整数取默认值。 |
-| updateInterval         | number | 否   | 进入悬停检测状态后，更新通知的间隔，取值范围为自然数，默认值100ms，输入负整数取默认值。    |
-| updateNotifyCount      | number | 否   | 处于悬停检测状态，最大更新通知次数，取值范围为自然数，默认值3次，输入负整数取默认值。      |
-| updateToFinishInterval | number | 否   | 从UPDATE状态到END状态最大等待时间，取值范围为自然数，默认值100ms，输入负整数取默认值。     |
+| stillTimeLimit         | number | 否   | 进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
+| updateInterval         | number | 否   | 进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
+| updateNotifyCount      | number | 否   | 进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
+| updateToFinishInterval | number | 否   | 从UPDATE状态到END状态的最长等待时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
 
 ## SpringLoadingDragInfos<sup>20+</sup>
 

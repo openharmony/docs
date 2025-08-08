@@ -127,7 +127,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -406,9 +406,11 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+async function Demo(pixelMap: sendableImage.PixelMap) {
+    const bufferSize = pixelMap.getPixelBytesNumber();
+    const readBuffer: ArrayBuffer = new ArrayBuffer(bufferSize);
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBufferSync(readBuffer);
     }
@@ -674,8 +676,9 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
+async function Demo(pixelMap: sendableImage.PixelMap) {
+    const bufferSize = pixelMap.getPixelBytesNumber();
+    const color : ArrayBuffer = new ArrayBuffer(bufferSize);
     let bufferArr : Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -1555,7 +1558,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1644,7 +1647,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
+   await sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1680,10 +1683,11 @@ release():Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap: sendableImage.PixelMap) {
     if (pixelMap != undefined) {
-        pixelMap.release().then(() => {
+        await pixelMap.release().then(() => {
             console.info('Succeeded in releasing pixelmap object.');
         }).catch((error: BusinessError) => {
             console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);

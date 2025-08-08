@@ -104,7 +104,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
       rightVolume: 0.5, // 取值范围0.0-1.0。
       priority: 0, // 最低优先级。
     };
-    // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
+    // 开始播放，调用play可携带播放参数PlayParameters。请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
     this.soundPool!.play(this.soundId, playParameters, (error, streamID: number) => {
       if (error) {
         console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -162,7 +162,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
     soundPool.off('playFinished');
     ```
 
-14. 调用off('error')方法注销错误错误类型监听。
+14. 调用off('error')方法注销错误类型监听。
 
     ```ts
     soundPool.off('error');

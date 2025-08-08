@@ -42,8 +42,8 @@ exception属性的详细描述如下：
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| name | string | 异常类型。 |
-| message | string | 异常原因。 |
+| name | string | 异常类型 |
+| message | string | 异常原因 |
 
 ### memory字段说明
 

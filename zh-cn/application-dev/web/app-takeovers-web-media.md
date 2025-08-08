@@ -221,7 +221,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
            Web({ src: 'www.example.com', controller: this.controller })
              .enableNativeMediaPlayer({ enable: true, shouldOverlay: false })
              .onPageBegin((event) => {
-               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo:    webview.MediaInfo) => {
+               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
                  // 接管当前的媒体。
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
                  this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
@@ -499,7 +499,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 应用侧代码，视频托管使用示例。
+- 应用侧代码，视频托管使用示例。通过[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放。
 
   ```ts
   // Index.ets
@@ -1212,7 +1212,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   }
   ```
 
-- 前端页面示例。
+- 前端页面示例。通过[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放，支持的媒体资源可以参考AVPlayer[支持的格式与协议](../media/media/media-kit-intro.md#支持的格式与协议)。
 
   ```html
   <html>

@@ -660,6 +660,29 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
 | uint8_t* buffer | 接收数据的buffer。 |
 | int bufLen | 要读取的字节的大小。 |
 
+### OH_ArkWebHttpBodyStream_AsyncRead()
+
+```
+void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen)
+```
+
+**描述：**
+
+将请求的上传数据读取至buffer，buffer的大小必须超过bufLen。数据将由工作线程读取至buffer，因此在回调函数返回前，不应在其他线程中使用缓冲区，以避免并发问题。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [ArkWeb_HttpBodyStream](capi-web-arkweb-httpbodystream.md)* httpBodyStream | ArkWeb_HttpBodyStream。 |
+| uint8_t* buffer | 接收数据的缓存区。 |
+| int bufLen | 要读取的字节的大小。 |
+
 ### OH_ArkWebHttpBodyStream_GetSize()
 
 ```

@@ -1,4 +1,9 @@
 # @ohos.file.PhotoPickerComponent (PhotoPicker组件)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda-->
+<!--SE: @guxinggang-->
+<!--TSE: @wangbeibei-->
 
 应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可实现媒体文件选择功能。在用户选择媒体文件后，应用即可访问用户选中的图片或视频文件。仅包含读权限。
 需要注意的是PhotoPickerComponent不能嵌套使用，且不建议在PhotoPickerComponent上覆盖设置了overlay属性的组件，将导致PhotoPickerComponent无法接受手势事件。
@@ -398,7 +403,9 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向。（该能力暂不支持）
+Picker宫格页面滑动预览的方向。
+
+从API20开始，该能力支持配置；在API12-19，该能力设置不生效，默认为竖直方向。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -561,14 +568,15 @@ import {
   videoPlayStateChangedCallback,
   VideoPlayerState
 } from '@ohos.file.PhotoPickerComponent';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
 struct PickerDemo {
   pickerOptions: PickerOptions = new PickerOptions();
   @State pickerController: PickerController = new PickerController();
-  @State selectUris: Array<string> = new Array<string>();
+  @State selectUris: string[] = [];
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
   private selectedItemsDeletedCallback: ItemsDeletedCallback =
@@ -578,6 +586,8 @@ struct PickerDemo {
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
   private videoPlayStateChangedCallback: videoPlayStateChangedCallback =
     (state: VideoPlayerState) => this.videoPlayStateChanged(state);
+  private thumbnail: PixelMap[] = [];
+  private assets: photoAccessHelper.PhotoAsset[] = [];
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -708,9 +718,9 @@ struct PickerDemo {
         // 这里模拟应用侧底部的选择栏。
         if (this.isBrowserShow) {
           Row() {
-            ForEach(this.selectUris, (uri: string) => {
-              if (uri === this.currentUri) {
-                Image(uri)
+            ForEach(this.assets, async (asset: photoAccessHelper.PhotoAsset, index) => {
+              if (asset.uri === this.currentUri) {
+                Image(this.thumbnail[index])
                   .height('10%')
                   .width('10%')
                   .onClick(() => {
@@ -718,16 +728,32 @@ struct PickerDemo {
                   .borderWidth(1)
                   .borderColor('red')
               } else {
-                Image(uri).height('10%').width('10%').onClick(() => {
+                Image(this.thumbnail[index]).height('10%').width('10%').onClick(() => {
                   this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
-                  this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
+                  this.pickerController.setPhotoBrowserItem(asset.uri, PhotoBrowserRange.ALL);
                 })
               }
             }, (uri: string) => JSON.stringify(uri))
           }
         } else {
-          Button('预览').width('33%').height('5%').onClick(() => {
+          Button('预览').width('33%').height('5%').onClick(async () => {
             if (this.selectUris.length > 0) {
+              this.thumbnail = [];
+              this.assets = [];
+              for (let selectUri of this.selectUris) {
+                let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo(photoAccessHelper.PhotoKeys.URI, selectUri);
+                let fetchOptions: photoAccessHelper.FetchOptions = {
+                  fetchColumns: [],
+                  predicates: predicates
+                };
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+                  await photoHelper.getAssets(fetchOptions);
+                let asset = await fetchResult.getFirstObject()
+                this.assets.push(asset);
+                this.thumbnail.push(await asset.getThumbnail())
+              }
               this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
             }
           })

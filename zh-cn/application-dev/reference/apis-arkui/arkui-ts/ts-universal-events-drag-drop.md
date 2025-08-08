@@ -185,7 +185,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 ## onPreDrag<sup>12+</sup>
 
-onPreDrag(callback: Callback\<PreDragStatus>)
+onPreDrag(callback: Callback\<PreDragStatus>): T
 
 绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
@@ -199,9 +199,15 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragSpringLoading<sup>20+</sup>
 
-onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration)
+onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration): T
 
 绑定此事件的组件可作为具有悬停检测功能的拖拽目标。当拖拽对象对象悬停在目标上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的优先级。
 
@@ -215,8 +221,14 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
+| callback          | Callback\<[SpringLoadingContext](#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## DragItemInfo说明
 
@@ -264,14 +276,14 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型  | 描述             |
-| ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
+| 名称     | 类型  | 只读 | 可选 | 说明             |
+| ------ | ------ | ----- | ---- | ------- |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 否 | 否 |当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 否 | 否 |切换复制和剪贴模式的角标显示状态。 |
 
 ### setData<sup>10+</sup>
 
-setData(unifiedData: UnifiedData)
+setData(unifiedData: UnifiedData): void
 
 向DragEvent中设置拖拽相关数据。
 
@@ -281,7 +293,7 @@ setData(unifiedData: UnifiedData)
 
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
-| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+| unifiedData | [UnifiedData](#unifieddata10) | 是   | 拖拽相关的数据。 |
 
 ### getData<sup>10+</sup>
 
@@ -322,11 +334,11 @@ getSummary(): Summary
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+| [Summary](#summary10) | 从DragEvent中获取拖拽相关数据的简介。 |
 
 ### setResult<sup>10+</sup>
 
-setResult(dragResult: DragResult)
+setResult(dragResult: DragResult): void
 
 向DragEvent中设置拖拽结果。
 
@@ -600,7 +612,7 @@ setDataLoadParams(dataLoadParams: DataLoadParams): void
 
 | 参数名   | 类型   | 必填    | 说明                                                         |
 | -------| -------| ------- | ------------------------------------------------------------ |
-| dataLoadParams | [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
+| dataLoadParams | [DataLoadParams](#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
 
 ### getX<sup>(deprecated)</sup>
 
@@ -636,13 +648,13 @@ getY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| ----- | ----------------- |
-| DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用。 |
-| DRAG_FAILED | 拖拽失败，在onDrop中使用。 |
-| DRAG_CANCELED | 拖拽取消，在onDrop中使用。 |
-| DROP_ENABLED | 组件允许落入，在onDragMove中使用。 |
-| DROP_DISABLED | 组件不允许落入，在onDragMove中使用。 |
+| 名称   | 值 | 说明 |
+| ----- | -- | --------------- |
+| DRAG_SUCCESSFUL | 0 |拖拽成功，在onDrop中使用。 |
+| DRAG_FAILED | 1 |拖拽失败，在onDrop中使用。 |
+| DRAG_CANCELED | 2 |拖拽取消，在onDrop中使用。 |
+| DROP_ENABLED | 3 |组件允许落入，在onDragMove中使用。 |
+| DROP_DISABLED | 4 |组件不允许落入，在onDragMove中使用。 |
 
 ## DragBehavior<sup>10+</sup>
 
@@ -652,10 +664,10 @@ getY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| ----- | ----------------- |
-| COPY | 指定对数据的处理方式为复制。|
-| MOVE| 指定对数据的处理方式为剪切。|
+| 名称 | 值 | 说明 |
+| ----- | -- | ----------------- |
+| COPY | - |指定对数据的处理方式为复制。|
+| MOVE| - |指定对数据的处理方式为剪切。|
 
 ## PreDragStatus<sup>12+</sup>枚举说明
 
@@ -663,7 +675,7 @@ getY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | ---- | - | ----------------- |
 | ACTION_DETECTING_STATUS | 0 | 拖拽手势启动阶段。(按下50ms时触发) |
 | READY_TO_TRIGGER_DRAG_ACTION | 1 | 拖拽准备完成，可发起拖拽阶段。(按下500ms时触发) |
@@ -674,7 +686,51 @@ getY(): number
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 | PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
 
+## UnifiedData<sup>10+</sup>
+
+type UnifiedData = UnifiedData
+
+拖拽相关的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) |  拖拽相关的数据。|
+
+## Summary<sup>10+</sup>
+
+type Summary = Summary
+
+拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 拖拽相关数据的简介。|
+
+## DataLoadParams<sup>20+</sup>
+
+type DataLoadParams = DataLoadParams
+
+落入操作时使用的数据加载参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) | 落入操作时使用的数据加载参数。|
+
 ## executeDropAnimation<sup>18+</sup>
+
+executeDropAnimation(customDragAnimation: Callback\<void\>): void
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
 
@@ -682,9 +738,9 @@ getY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型  | 描述             |
-| ------ | ------ | ---------------- |
-| customDropAnimation | Callback\<void\>  |  在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+| 参数名    | 类型  | 必填 | 说明      |
+| ------ | ------ | --- | --------- |
+| customDropAnimation | Callback\<void\>  | 否 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## DataSyncOptions<sup>15+</sup>
 
@@ -723,9 +779,23 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型  | 只读 | 可选 | 描述             |
+| 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+
+## SpringLoadingContext<sup>20+</sup>
+
+type SpringLoadingContext = SpringLoadingContext
+
+定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20) | 定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。|
 
 ## 示例
 

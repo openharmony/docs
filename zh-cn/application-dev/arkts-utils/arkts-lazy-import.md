@@ -174,7 +174,7 @@ import { b } from "./mod1";         // 再次获取"mod1"内属性，未标记la
 // ...
 ```
 
-- 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出，可以通过打开工程级build-profile.json5文件中的reExportCheckMode开关进行扫描排查。
+- 在同一ets文件中，未使用延迟加载变量并再次导出，不支持延迟加载变量被re-export导出，可以通过打开工程级build-profile.json5文件中的reExportCheckMode开关进行扫描排查。
 
 ```typescript
 // build-profile.json5

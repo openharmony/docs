@@ -183,6 +183,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 从文件 source 获取用户自定义属性信息。
    OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
    if (customMetadataFormat == nullptr) {
+      // 需释放前置流程资源，参考第10步。
       printf("get custom metadata format failed");
       return;
    }
@@ -196,23 +197,28 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    const char *customValue;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
       printf("get custom metadata from custom metadata format failed");
-      return;
    }
    OH_AVFormat_Destroy(customMetadataFormat);
+   customMetadataFormat = nullptr;
 
    // 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
    // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1。
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
+      // 需释放前置流程资源，参考第10步。
       printf("get source format failed");
       return;
    }
    int32_t trackCount = 0;
    if (!OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount)) {
       printf("get track count from source format failed");
-      return;
+   }
+   if (trackCount == 0) {
+      // 文件中无轨道，需根据业务做其他处理。
+      printf("no track");
    }
    OH_AVFormat_Destroy(sourceFormat);
+   sourceFormat = nullptr;
    ```
 
 6. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
@@ -250,25 +256,26 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
             printf("get track height from track format failed");
             return;
          }
-         if (!OH_AVFormat_GetLongValue(format, OH_MD_KEY_BITRATE, &bitRate)) {
+         if (!OH_AVFormat_GetLongValue(trackFormat, OH_MD_KEY_BITRATE, &bitRate)) {
             printf("get track bitRate from track format failed");
             return;
          }
-         if (!OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_FRAME_RATE, &frameRate)) {
+         if (!OH_AVFormat_GetDoubleValue(trackFormat, OH_MD_KEY_FRAME_RATE, &frameRate)) {
             printf("get track frameRate from track format failed");
             return;
          }
-         if (!OH_AVFormat_GetStringValue(format, OH_MD_KEY_CODEC_MIME, &mimetype)) {
+         if (!OH_AVFormat_GetStringValue(trackFormat, OH_MD_KEY_CODEC_MIME, &mimetype)) {
             printf("get track mimetype from track format failed");
             return;
          }
-         if (!OH_AVFormat_GetBuffer(format, OH_MD_KEY_CODEC_CONFIG, &codecConfig, &bufferSize)) {
+         if (!OH_AVFormat_GetBuffer(trackFormat, OH_MD_KEY_CODEC_CONFIG, &codecConfig, &bufferSize)) {
             printf("get track codecConfig from track format failed");
             return;
          }
          printf(" track width%d, track height：%d, track bitRate：%ld, track frameRate：%f, track mimetype：%s\n", w, h, bitRate, frameRate, mimetype);
       }
       OH_AVFormat_Destroy(trackFormat);
+      trackFormat = nullptr;
    }
    ```
 
@@ -343,11 +350,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
                // 处理缓冲区数据（这里可以根据需要实现解码逻辑）。
          } else {
                printf("Read sample failed for track %d\n", trackIndex);
+               break;
          }
-         // 销毁缓冲区。
-         OH_AVBuffer_Destroy(buffer);
-         buffer = nullptr;
       }
+      // 销毁缓冲区。
+      OH_AVBuffer_Destroy(buffer);
+      buffer = nullptr;
       threadFinished.store(true);
    }
 

@@ -77,7 +77,9 @@ struct Extension {
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
   onPageShow() {
-    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    if (!this.session || !this.extensionEvent) {
+      console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    }
   }
   build() {
     Row() {

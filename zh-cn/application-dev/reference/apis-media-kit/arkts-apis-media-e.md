@@ -73,7 +73,6 @@ Codec MIME类型枚举。
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 | AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
 | AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
-| AUDIO_G711A<sup>20+</sup>    | 'audio/g711a'      | 表示音频/G711-alaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -361,11 +360,11 @@ Codec MIME类型枚举。
 
 | 名称    | 值   | 说明                                                         |
 | ------- | ---- | ------------------------------------------------------------ |
-| DEFAULT | 0    | 默认编码格式。<br/>仅做接口定义，暂不支持使用。              |
-| AMR_NB  | 1    | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AMR_WB  | 2    | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
-| HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| DEFAULT | 0    | 默认编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
+| AMR_NB  | 1    | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_NB替代。 |
+| AMR_WB  | 2    | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_WB替代。 |
+| AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
+| HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
@@ -378,11 +377,11 @@ Codec MIME类型枚举。
 
 | 名称     | 值   | 说明                                                         |
 | -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0    | 默认封装格式。<br/>仅做接口定义，暂不支持使用。              |
-| MPEG_4   | 2    | 封装为MPEG-4格式。                                           |
-| AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
-| AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
-| AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+| DEFAULT  | 0    | 默认封装格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议根据具体情况选择[ContainerFormatType](#containerformattype8)中的一项替代。 |
+| MPEG_4   | 2    | 封装为MPEG-4格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_MPEG_4替代。 |
+| AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AMR，编码格式使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_NB替代。 |
+| AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AMR，编码格式使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_WB替代。 |
+| AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AAC替代。 |
 
 ## MediaErrorCode<sup>(deprecated)</sup>
 

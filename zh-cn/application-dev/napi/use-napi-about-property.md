@@ -65,7 +65,7 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getPropertyNames: (obj: Object) => Array<string> | void;
+export const getPropertyNames: (obj: Object) => Array<string> | undefined;
 ```
 <!-- @[napi_get_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -110,6 +110,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
     napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
+        return nullptr;
     }
     // 通过调用napi_set_property接口将属性与值设置入object，如果失败，直接抛出错误
     status = napi_set_property(env, args[0], args[1], args[INT_ARG_2]);
@@ -127,7 +128,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const setProperty: (obj: Object, key: String, value: string) => Object | void;
+export const setProperty: (obj: Object, key: String, value: string) => Object | undefined;
 ```
 <!-- @[napi_set_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -181,7 +182,7 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getProperty: (obj: Object, key: string) => string | void;
+export const getProperty: (obj: Object, key: string) => string | undefined;
 ```
 <!-- @[napi_get_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -239,7 +240,7 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const hasProperty: (obj: Object, key: number | string) => boolean | void;
+export const hasProperty: (obj: Object, key: number | string) => boolean | undefined;
 ```
 <!-- @[napi_has_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -379,7 +380,7 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiHasOwnProperty: (obj: Object, key:string) => boolean | void;
+export const napiHasOwnProperty: (obj: Object, key:string) => boolean | undefined;
 ```
 <!-- @[napi_has_own_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -406,6 +407,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 {
@@ -417,7 +419,11 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, &str, nullptr, nullptr);
     // 获取传入参数字符串并存储在strKey中
     size_t keyLength;
-    napi_get_value_string_utf8(env, str, strKey, strLength, &keyLength);
+    napi_status status = napi_get_value_string_utf8(env, str, strKey, strLength, &keyLength);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_value_string_utf8 failed");
+        return nullptr;
+    }
     // 创建一个新对象
     napi_value newObj;
     napi_create_object(env, &newObj);
@@ -426,9 +432,9 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     napi_value numValue;
     napi_create_int32(env, value, &numValue);
     // 将整数值与指定属性名关联
-    napi_status status = napi_set_named_property(env, newObj, strKey, numValue);
+    status = napi_set_named_property(env, newObj, strKey, numValue);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_set_named_property failed");
+        OH_LOG_ERROR(LOG_APP, "napi_set_named_property failed");
         return nullptr;
     }
     // 返回设置了命名属性的对象newObj
@@ -441,7 +447,7 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiSetNamedProperty: (key: string) => Object | void;
+export const napiSetNamedProperty: (key: string) => Object | undefined;
 ```
 <!-- @[napi_set_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -494,7 +500,7 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiGetNamedProperty: (obj: Object, key:string) => boolean | number | string | Object | void;
+export const napiGetNamedProperty: (obj: Object, key: string) => boolean | number | string | Object | undefined;
 ```
 <!-- @[napi_get_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -565,7 +571,7 @@ static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiHasNamedProperty: (obj: Object, key:string) => boolean | void;
+export const napiHasNamedProperty: (obj: Object, key:string) => boolean | undefined;
 ```
 <!-- @[napi_has_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -674,7 +680,7 @@ static napi_value CreateStringWithGetterSetter(napi_env env, napi_callback_info 
     napi_create_function(env, nullptr, 0, SetterCallback, nullptr, &setterFn);
     napi_set_named_property(env, obj, "setterCallback", setterFn);
     // 定义带有getter和setter的属性
-    napi_property_descriptor desc = {"defineGetterSetter", nullptr, GetterCallback, SetterCallback, nullptr, obj, napi_enumerable, nullptr};
+    napi_property_descriptor desc = {"defineGetterSetter", nullptr, nullptr, GetterCallback, SetterCallback, nullptr, napi_enumerable, nullptr};
     napi_define_properties(env, obj, 1, &desc);
     return obj;
 }
@@ -755,7 +761,7 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getAllPropertyNames : (obj: Object) => Array<string> | void;
+export const getAllPropertyNames : (obj: Object) => Array<string> | undefined;
 ```
 <!-- @[napi_get_all_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -784,5 +790,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
