@@ -24,6 +24,8 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
 
 - 需要配置ohos.permission.DISTRIBUTED_DATASYNC权限。
 
+- 本接口提供裸通道能力，安全由调用者保证。
+
 ## 环境准备
 
 ### 环境要求
