@@ -58,7 +58,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
     cameraManager = camera.getCameraManager(context);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`The getCameraManager call failed. error code: ${err.code}`);
+    console.error(`The getCameraManager call failed. error code: ${err.code}, message: ${err.message}`);
   }
   return cameraManager;
 }

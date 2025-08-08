@@ -21,7 +21,7 @@ import { cameraPicker as picker } from '@kit.CameraKit';
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
-拉起相机选择器，根据媒体类型进入相应的模式。Promise形式回调函数。
+拉起相机选择器，根据媒体类型进入相应的模式。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -39,7 +39,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise方式获取相机选择器的处理结果。返回值为[PickerResult](#pickerresult)。        |
+| Promise\<PickerResult\>                         | Promise对象，返回[PickerResult](#pickerresult)对象。        |
 
 **示例：**
 
