@@ -5416,7 +5416,7 @@ struct RichEditorExample {
 ![StyledString](figures/maxLengthmaxLines.gif)
 
 ### 示例27（文本设置Url样式）
-从API version 19开始，该示例可以通过在addTextSpan和UpdateSpanStyle接口中加入[UrlStyle](#richeditorurlstyle19)，来实现文本点击时跳转到指定链接的功能。
+从API version 19开始，该示例通过在addTextSpan和UpdateSpanStyle接口中加入[UrlStyle](#richeditorurlstyle19)，来实现文本点击时跳转到指定链接的功能。
 
 ```ts
 // xxx.ets
@@ -5599,7 +5599,7 @@ struct StyledUndo {
 ![UndoStyle](figures/richEditorStyledUndo.gif)
 
 ### 示例29（文本设置预设段落样式）
-从API version 20开始，该示例可以通过[setTypingParagraphStyle](#settypingparagraphstyle20)接口设置预设段落样式。
+从API version 20开始，该示例通过[setTypingParagraphStyle](#settypingparagraphstyle20)接口设置预设段落样式。
 
 ```ts
 @Entry
@@ -5692,7 +5692,7 @@ struct RichEditorExample {
 ```
 
 ### 示例30（设置装饰线粗细和多装饰线）
-从API version 20开始，该示例支持通过[thicknessScale](ts-universal-styled-string.md#decorationstyle)设置装饰线粗细，通过[enableMultiType](ts-universal-styled-string.md#decorationoptions20)设置多装饰线。
+从API version 20开始，该示例通过[thicknessScale](ts-universal-styled-string.md#decorationstyle)设置装饰线粗细，通过[enableMultiType](ts-universal-styled-string.md#decorationoptions20)设置多装饰线。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
