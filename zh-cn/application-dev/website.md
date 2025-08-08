@@ -728,6 +728,7 @@
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
         - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
         - [窗口元数据配置](windowmanager/window-config-m.md)
+        - [窗口开发术语](windowmanager/window-terminology.md)
         <!--Del-->
         - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
