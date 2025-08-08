@@ -1,8 +1,8 @@
 # 动态加载
 
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
-<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
 <!--SE: @ctw-ian-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 

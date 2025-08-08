@@ -1,6 +1,6 @@
 # Disassembler反汇编工具
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao; @luobohua-->
 <!--SE: @hufeng20-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

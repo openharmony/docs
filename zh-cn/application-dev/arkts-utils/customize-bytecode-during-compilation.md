@@ -1,6 +1,6 @@
 # 编译期自定义修改方舟字节码
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao-->
 <!--SE: @hufeng20-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

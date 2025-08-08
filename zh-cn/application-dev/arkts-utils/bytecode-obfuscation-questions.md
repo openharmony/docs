@@ -1,6 +1,6 @@
 # ArkGuard字节码混淆常见问题
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao-->
 <!--SE: @hufeng20-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
