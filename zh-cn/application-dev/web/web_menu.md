@@ -769,7 +769,7 @@ struct WebComponent {
   ```ts
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { systemDateTime } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 import { scanCore, scanBarcode, detectBarcode } from '@kit.ScanKit';
