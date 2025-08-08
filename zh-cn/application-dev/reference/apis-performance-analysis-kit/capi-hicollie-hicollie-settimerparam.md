@@ -1,5 +1,11 @@
 # HiCollie_SetTimerParam
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--SE: @peterhuangyu-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 定义OH_HiCollie_SetTimer函数的输入参数。
