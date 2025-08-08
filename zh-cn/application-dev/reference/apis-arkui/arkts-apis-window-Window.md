@@ -241,11 +241,17 @@ promise.then(() => {
 
 moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
-移动窗口位置，使用callback异步回调。
+移动窗口位置，使用callback异步回调。调用成功即返回，但返回后无法立即获取最终生效结果。如需立即获取，请使用[moveWindowToAsync()](#movewindowtoasync12)。
 
-<!--RP4-->
-全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
+>
+> - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
+>
+> - 若需在非自由窗口模式下实现相对于屏幕的移动，请使用[moveWindowToGlobal()](#movewindowtoglobal15)。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -292,11 +298,17 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[moveWindowToAsync()](#movewindowtoasync12)。
+移动窗口位置，使用Promise异步回调。调用成功即返回，但返回后无法立即获取最终生效结果。如需立即获取，请使用[moveWindowToAsync()](#movewindowtoasync12)。
 
-<!--RP4-->
-全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-使用此接口，在2in1设备上窗口相对于屏幕移动，在其他设备上窗口相对于父窗口移动。若需要在非2in1设备上相对于屏幕进行移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
+> **说明：**
+>
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
+>
+> - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
+>
+> - 若需在非自由窗口模式下实现相对于屏幕的移动，请使用[moveWindowToGlobal()](#movewindowtoglobal15)。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -348,8 +360,13 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -405,8 +422,13 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -467,9 +489,12 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
-在非2in1设备下，子窗会跟随主窗移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -525,9 +550,11 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-全屏模式窗口不支持该操作。
-
-在非2in1设备下，子窗会跟随主窗移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -588,16 +615,17 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -646,16 +674,17 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -707,16 +736,17 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
