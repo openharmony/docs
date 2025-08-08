@@ -5235,7 +5235,7 @@ struct Index {
 ![StyledString](figures/example24.gif)
 
 ### 示例26（设置最大行数和最大字符数）
-从API version 18开始，该示例通过maxLength设置可输入的最大字符数，通过maxLines设置可输入的最大行数。
+从API version 18开始，该示例通过[maxLength](#maxlength18)设置可输入的最大字符数，通过[maxLines](#maxlines18)设置可输入的最大行数。
 
 ```ts
 @Entry
