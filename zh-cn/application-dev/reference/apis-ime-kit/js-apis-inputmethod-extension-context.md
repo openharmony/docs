@@ -1,4 +1,9 @@
 # @ohos.InputMethodExtensionContext (InputMethodExtensionContext)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环境，继承于ExtensionContext，提供InputMethodExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
 
@@ -20,7 +25,7 @@ import { InputMethodExtensionContext } from '@kit.IMEKit';
 ```ts
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -48,7 +53,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -85,7 +90,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -153,7 +158,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     const context = this.context;
     const targetWant: Want = {

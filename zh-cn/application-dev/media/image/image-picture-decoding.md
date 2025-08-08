@@ -33,10 +33,13 @@
       import { fileIo as fs } from '@kit.CoreFileKit';
 
       function getFileFd(context: Context): number | undefined {
-        const filePath: string = context.cacheDir + '/test.jpg';
+        const filePath: string = context.filesDir + '/test.jpg';
         const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-        const fd: number = file?.fd;
-        return fd;
+        if (file != undefined) {
+          const fd: number = file.fd;
+          return fd;
+        }
+        return undefined;
       }
       ```
 

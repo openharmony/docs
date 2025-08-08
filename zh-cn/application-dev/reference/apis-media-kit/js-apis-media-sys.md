@@ -1,4 +1,9 @@
 # @ohos.multimedia.media (媒体服务)(系统接口)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
+<!--TSE: @xdlinc-->
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
@@ -102,7 +107,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 
 reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
 
-上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“取消”则不进行录屏，如果用户选择“确定”则开始录屏。
+上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“不允许”则不进行录屏，如果用户选择“允许”则开始录屏。
 
 此接口提供给创建弹窗的系统应用调用。
 
@@ -115,7 +120,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id等。可见示例中JsonData样例。|
 
 **返回值：**
 
@@ -140,6 +145,8 @@ class JsonData {
   public choice: string = 'true';
   public displayId: number | null = -1;
   public missionId: number | null = -1;
+  public checkBoxSelected: string = 'true';
+  public isInnerAudioBoxSelected: string = 'true';
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -148,6 +155,8 @@ try {
     choice: 'true',  // 替换成用户的选择内容。
     displayId: -1,   // 替换成用户选择的屏幕Id。
     missionId: -1,   // 替换成用户选择的窗口Id。
+    checkBoxSelected: 'true',   // 替换成用户是否开启屏幕保护。
+    isInnerAudioBoxSelected: 'true',   // 替换成用户是否开启内部音频录制。
   }
   await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
@@ -179,7 +188,7 @@ getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | 异步返回函数执行结果。 |
+| Promise\<string> | Promise对象。可用于查询系统隐私保护和应用隐私保护状态。异步返回String对象，失败时返回空字符串。 |
 
 **错误码：**
 

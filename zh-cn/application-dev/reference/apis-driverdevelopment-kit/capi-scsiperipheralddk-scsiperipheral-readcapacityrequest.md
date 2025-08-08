@@ -1,4 +1,9 @@
 # ScsiPeripheral_ReadCapacityRequest
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 概述
 

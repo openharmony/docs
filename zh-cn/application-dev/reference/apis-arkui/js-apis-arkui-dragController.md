@@ -1166,10 +1166,10 @@ struct DragControllerPage {
 
 | 名称                 | 类型   |只读| 可选 | 说明                                   |	
 | :--------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
-| stillTimeLimit         | number | 否   |   是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为1到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。负数、0、null、undefined、NaN均为非法值。输入非法值时取默认值500。 |	
-| updateInterval         | number | 否   |   是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为1到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。负数、0、null、undefined、NaN均为非法值。输入非法值时取默认值100。|	
-| updateNotifyCount      | number | 否   |   是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为1到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。负数、0、null、undefined、NaN均为非法值。输入非法值时取默认值3。|	
-| updateToFinishInterval | number | 否   |   是   |从UPDATE状态到END状态的最长等待时间（ms）。取值范围为1到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。负数、0、null、undefined、NaN均为非法值。输入非法值时取默认值100。 |	
+| stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
+| updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
+| updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
+| updateToFinishInterval | number | 否   |    是   |从UPDATE状态到END状态的最长等待时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
 
 ## SpringLoadingDragInfos<sup>20+</sup>
 

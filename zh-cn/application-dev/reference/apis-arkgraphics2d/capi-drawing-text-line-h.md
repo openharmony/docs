@@ -1,5 +1,9 @@
 # drawing_text_line.h
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 提供获取文本行内的字符位置、获取渲染单元信息和按行截断等功能。

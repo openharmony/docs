@@ -1,4 +1,9 @@
 # High-Performance Photo Capture (for System Applications Only) (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
@@ -17,7 +22,7 @@ To develop high-performance photo capture, perform the following steps:
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
@@ -30,7 +35,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 2. Determine the photo output stream.
 
-   You can use the **photoProfiles** attribute of the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11) to create a photo output stream.
+   You can use the **photoProfiles** property of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
@@ -44,7 +49,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -96,7 +101,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
@@ -129,7 +134,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to saveDeferredPhoto. error: ${err}`);
      }
    }
    ```

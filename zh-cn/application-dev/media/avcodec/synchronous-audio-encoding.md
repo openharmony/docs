@@ -1,5 +1,11 @@
 # 音频编码同步模式
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @baotianhao-->
+
 开发者可以调用本模块的Native API接口，完成音频编码，即将音频PCM编码压缩成不同的格式。
 
 接口不限制PCM数据的来源。开发者可以调用麦克风录制获取，也可以导入编辑后的PCM数据。通过音频编码，输出对应格式的码流，最后封装为目标格式文件。
@@ -80,10 +86,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 3. 调用OH_AudioCodec_Configure配置编码器。
 
-   设置必选项：采样率、位深、声道数、码率、声道布局和同步模式配置。
+   配置选项key值说明：
 
-   flac编码：需要标识兼容性级别（Compliance Level）。
-   
+   <!--RP1-->
+   |             key               |       描述       |  AAC  |  Flac | MPEG(MP3) | G711mu |
+   | ----------------------------- | :--------------: | :---: | :---: | :------: | :---: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE     |      采样率      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT   |      声道数      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT |  输出音频流格式   |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |
+   | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |
+   | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |
+   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -   |    -    |   -    |
+   | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |
+   <!--RP1End-->
+
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
    | ----------- | ------------------------------------------------------------------------------- | :----------------: |
@@ -91,10 +108,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | Flac        | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000 |        1~8         |
    | MP3         | 8000、11025、12000、16000、22050、24000、32000、44100、48000                     |        1~2         |
    | G711mu      | 8000                                                                            |         1          |
-   <!--RP1--><!--RP1End-->
+   <!--RP2--><!--RP2End-->
 
    例如，对44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
-    <!--RP2-->
+    <!--RP3-->
     ```cpp
     OH_AVErrCode ret;
     // 配置音频采样率（必须）。
@@ -122,7 +139,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理。
     }
     ```
-    <!--RP2End-->
+    <!--RP3End-->
     FLAC编码调用示例：
 
     ```cpp
@@ -156,8 +173,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理。
     }
     ```
-
-    <!--RP2--><!--RP2End-->
 
 4. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
@@ -200,7 +215,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    AAC LC编码每帧包含1024个PCM样点，建议单次输入1024个样点的数据量。
 
-   <!--RP3--><!--RP3End-->
+   <!--RP4--><!--RP4End-->
 
    FLAC需要根据如下表格进行设置。
 

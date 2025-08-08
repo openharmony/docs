@@ -1,4 +1,9 @@
 # Using the System Camera to Take Photos and Record Videos (CameraPicker)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Applications can invoke the camera picker to take photos or record videos without applying for the camera permission.
 The camera interaction UI of the camera picker is provided by the system. After a user touches the **PHOTO** and **OK** buttons, the application that invokes the camera picker obtains a photo or video.
@@ -64,8 +69,8 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      @State videoSrc: string = '';
      createPickerProfile(context: Context): picker.PickerProfile {
        let pathDir = context.filesDir;
-       let fileName = `${new Date().getTime()}`
-       let filePath = pathDir + `/${fileName}.tmp`
+       let fileName = `${new Date().getTime()}`;
+       let filePath = pathDir + `/${fileName}.tmp`;
        fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
        
        let uri = fileUri.getUriFromPath(filePath);

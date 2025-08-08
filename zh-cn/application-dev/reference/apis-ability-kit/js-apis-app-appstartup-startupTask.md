@@ -5,7 +5,7 @@
 <!--SE: @yzkp-->
 <!--TSE: @lixueqing513-->
 
-本模块提供启动任务的相关能力。
+本模块提供启动任务的相关能力。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器)装饰。
 
 > **说明：**
 >

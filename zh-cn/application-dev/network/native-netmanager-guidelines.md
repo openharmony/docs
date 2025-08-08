@@ -1,4 +1,9 @@
 # 管理网络连接(C/C++)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 场景介绍
 
@@ -223,3 +228,9 @@ struct Index {
 4、点击 `codeNumber` 按钮，控制台会打印相应的响应状态码：
 
 ![netmanager-3.png](./figures/netmanager-3.png)
+
+## 相关实例
+
+针对网络连接的开发，有以下相关实例可供参考：
+
+- [NetConnection开发指导](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)

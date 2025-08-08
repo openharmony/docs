@@ -1,5 +1,9 @@
 # 分布式相机开发指南
-
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hobbycao-->
+<!--SE: @saga_2025-->
+<!--TSE: @wei-guoqing1-->
 
 ## 简介
 
@@ -25,7 +29,7 @@
 
 ### 环境要求
 
-  设备A和设备B之间需要组网成功。
+  设备A和设备B之间需要组网成功，并通过分布式硬件管理框架上线设备。
 
 
 ### 搭建环境
@@ -56,8 +60,8 @@
 
   分布式相机流程图建议如下：
 
-  ![Camera Distrubuted processing](figures/camera-distributed-process.png)
-
+  ![Camera Distributed processing](figures/camera-distributed-process.png)
+ 
 
 ### 开发步骤
 
@@ -159,7 +163,7 @@
         await this.cameraInput.open().then(() => {
           console.log('[camera] case cameraInput.open() success');
         }).catch((err: Error) => {
-          console.error('[camera] cameraInput.open then.error:', json.stringify(err));
+          console.error('[camera] cameraInput.open then.error:', JSON.stringify(err));
         });
       } else {
         console.error('[camera] case createCameraInput failed');
@@ -186,7 +190,7 @@
     console.log('createPreviewOutput called');
     if (this.cameraOutputCapability && this.cameraManager) {
       this.previewProfiles = this.cameraOutputCapability.previewProfiles;
-      console.log('[camera] this.previewProfiles json ', json.stringify(this.previewProfiles));
+      console.log('[camera] this.previewProfiles json ', JSON.stringify(this.previewProfiles));
       if (this.previewProfiles[0].format === camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
         console.log('[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
         this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
@@ -216,7 +220,7 @@
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset('Sample_VideoRecorder');
 
   async getImageFileFd(): Promise<void> {
-    console.info'getImageFileFd called');
+    console.info('getImageFileFd called');
     this.mFileAssetId = await this.mSaveCameraAsset.createImageFd();
     this.fdPath = 'fd://' + this.mFileAssetId.toString();
     this.avConfig.url = this.fdPath;
@@ -252,12 +256,12 @@
         this.photoReceiver?.readNextImage((err,image)=>{
           if (err || image === undefined) {
             console.error('photoReceiver imageArrival on error')
-            return
+            return;
           }
           image.getComponent(4, async (err, img) => {
             if (err || img === undefined) {
               console.error('image getComponent on error')
-              return
+              return;
             }
             await this.getImageFileFd()
             fileio.write(this.mFileAssetId, img.byteBuffer)
@@ -291,11 +295,11 @@
   private captureSession?: camera.CaptureSession;
 
   function failureCallback(error: BusinessError): Promise<void> {
-    console.error('case failureCallback called,errMessage is ', json.stringify(error));
+    console.error('case failureCallback called,errMessage is ', JSON.stringify(error));
   }
 
   function catchCallback(error: BusinessError): Promise<void> {
-    console.error('case catchCallback called,errMessage is ', json.stringify(error));
+    console.error('case catchCallback called,errMessage is ', JSON.stringify(error));
   }
 
   // create camera capture session
@@ -305,18 +309,18 @@
       this.captureSession = this.cameraManager.createCaptureSession();
       if (!this.captureSession) {
         console.error('createCaptureSession failed!');
-        return
+        return;
       }
       try {
         this.captureSession.beginConfig();
         this.captureSession.addInput(this.cameraInput);
       } catch (e) {
-        console.error('case addInput error:' + json.stringify(e));
+        console.error('case addInput error:' + JSON.stringify(e));
       }
       try {
         this.captureSession.addOutput(this.previewOutput);
       } catch (e) {
-        console.error('case addOutput error:' + json.stringify(e));
+        console.error('case addOutput error:' + JSON.stringify(e));
       }
       await this.captureSession.commitConfig().then(() => {
         console.log('captureSession commitConfig success');
@@ -334,12 +338,19 @@
   async startCaptureSession(): Promise<void> {
     console.log('startCaptureSession called');
     if (!this.captureSession) {
-      console.error('CaptureSession does not exists!');
-      return
+      console.error('CaptureSession does not exist!');
+      return;
     }
-    await this.captureSession.start().then(() => {
-      console.log('case start captureSession success');
-    }, this.failureCallback).catch(this.catchCallback);
+
+    try {
+      await this.captureSession.start();
+      console.info('CaptureSession started successfully.');
+    } catch (error) {
+      console.error('Failed to start CaptureSession:', error);
+      if (this.failureCallback) {
+        this.failureCallback(error);
+      }
+    }
   }
   ```
 

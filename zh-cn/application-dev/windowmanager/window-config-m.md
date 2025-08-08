@@ -1,4 +1,9 @@
 # 窗口元数据配置
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 ## metadata标签
 
@@ -33,7 +38,7 @@
         2. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性，且只配置FULL_SCREEN选项。
         3. 使用[module.json5](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode属性，且只配置fullscreen选项。
 
-4. 使用metadata配置[自由多窗](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-window#section118295375110)下的可支持窗口模式。配置项为：name为ohos.ability.window.SupportWindowModeInFreeWindow，value取值为：fullscreen（表示全屏模式）、split（表示分屏模式）、floating（表示悬浮窗模式）。value取值为字符串，可以取多种模式，每个之间用逗号分隔开，不区分顺序，不添加空格，例如：fullscreen,split。仅在平板、PC/2in1设备上生效。
+4. 使用metadata配置[自由多窗](https://developer.huawei.com/consumer/cn/doc/design-guides/pad-0000001823654157#section1768267204717)下的可支持窗口模式。配置项为：name为ohos.ability.window.SupportWindowModeInFreeWindow，value取值为：fullscreen（表示全屏模式）、split（表示分屏模式）、floating（表示悬浮窗模式）。value取值为字符串，可以取多种模式，每个之间用逗号分隔开，不区分顺序，不添加空格，例如：fullscreen,split。仅在平板、PC/2in1设备上生效。
 
    自由多窗下的可支持窗口模式可以采用多种方法进行配置，配置优先级为：通过[SetSupportedWindowModes](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes15)接口配置 > 通过StartAbility配置[StartOption](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)中的SupportWindowMode > 使用metadata配置 > 配置module.json5中[abilities](../quick-start/module-configuration-file.md#abilities标签)标签下的SupportWindowMode属性。
 

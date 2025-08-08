@@ -36,7 +36,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 
 **返回值：**
-| 类型      | 描述           |
+| 类型      | 说明           |
 | --------- | ---------------|
 | T         | 返回当前组件。   |
 
@@ -54,7 +54,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 | angularVelocity	| number	 |  否     | 否    |旋转角速度，每秒转的角度(°/s)。                   |
 | degree	        | number 	 |  否     | 否    |相对旋转角度。<br>单位：度。<br>取值范围:[-360, 360]。     |
 | action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   |  否     | 否    |表冠动作。  |
-| stopPropagation	| () => void    |  否      | 否    |阻止[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。                         |
+| stopPropagation	| Callback\<void>    |  否      | 否    |阻止[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。                         |
 
 ## 示例
 该示例实现了组件注册表冠事件，接收表冠事件数据上报内容。
