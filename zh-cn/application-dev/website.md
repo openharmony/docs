@@ -1385,9 +1385,9 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
+          - [uinput](dfx/uinput.md)
           <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
-          - [uinput](dfx/uinput.md)
           <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
         - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
