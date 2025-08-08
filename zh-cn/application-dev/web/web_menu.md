@@ -670,7 +670,7 @@ struct WebComponent {
 ![emptyEditMenuOption](./figures/web-menu-savePic.gif)
 
 ## Web菜单获取选中文本
-1. 创建TestClass类通过[javaScriptProxy](../reference\apis-arkweb\arkts-basic-components-web-attributes.md#javascriptproxy)将TestClass注册到Web组件中。
+1. 创建TestClass类通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)将TestClass注册到Web组件中。
 2. 在Html侧注册选区变更监听器，在选区变更时通过TestClass对象将选区设置到ArkTS侧。
   ```ts
 import { webview } from '@kit.ArkWeb';
