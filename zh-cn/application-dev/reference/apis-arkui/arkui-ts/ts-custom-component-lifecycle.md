@@ -437,9 +437,9 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 | 参数名    | 类型                                       | 必填    | 说明         |
 |--------|------------------------------------------|------------|-------------------------|
-| theme | [Theme](#theme) | 是     | 自定义组件当前生效的Theme对象。|
+| theme | [Theme](#theme12) | 是     | 自定义组件当前生效的Theme对象。|
 
-## Theme
+## Theme<sup>12+</sup>
 
 type Theme = Theme
 
