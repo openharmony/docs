@@ -2024,7 +2024,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, c
 | -- | -- |
 | [Udmf_Intention](#udmf_intention) intention | 表示数据通路类型[Udmf_Intention](capi-udmf-h.md#udmf_intention)。 |
 | [OH_UdmfData](capi-udmf-oh-udmfdata.md)* unifiedData | 表示统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
-| key | 表示成功将数据设置到数据库后对应数据的唯一标识符。 |
+| char* key | 表示成功将数据设置到数据库后对应数据的唯一标识符。 |
 | unsigned int keyLen | 表示唯一标识符参数的空间大小，内存大小不小于512字节。 |
 
 **返回：**
