@@ -39,11 +39,11 @@
 
   支持多线程调用的全量NDK接口请参考[多线程NDK接口集合规格](#多线程ndk接口集合规格)。
 
-- 对于可以在非UI线程执行的任务（如组件创建、属性设置等），可以使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postasyncuitask)接口，将组件创建和属性设置等任务调度到系统线程池中执行，之后将组件挂载到主树的任务提交到UI线程执行。
+- 对于可以在非UI线程执行的任务（如组件创建、属性设置等），可以使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postasyncuitask)接口，将组件创建和属性设置等任务调度到系统线程池中执行，之后将组件挂载到主树的任务提交到UI线程执行。
 
-- 当开发者需要在自己创建的非UI线程中创建UI组件时，使用[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postuitask)接口将组件挂载到主树的任务提交到UI线程执行。
+- 当开发者需要在自己创建的非UI线程中创建UI组件时，使用[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)接口将组件挂载到主树的任务提交到UI线程执行。
   
-- 当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postuitaskandwait)接口回到UI线程调用函数，调用完成后继续回到非UI线程创建组件。当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
+- 当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)接口回到UI线程调用函数，调用完成后继续回到非UI线程创建组件。当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
 
 ## 多线程NDK接口调用规范与线程安全
 
@@ -162,7 +162,7 @@ CheckIsThreadSafeNodeTree failed. thread safe node tree contains unsafe node: ${
 
 ## 场景示例
 
-如下示例展示了如何获取和使用多线程NDK接口，并使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postasyncuitask)、[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postuitask)和[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_postuitaskandwait)等接口将组件创建和属性设置等任务分发到多线程并行执行。
+如下示例展示了如何获取和使用多线程NDK接口，并使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postasyncuitask)、[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)和[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)等接口将组件创建和属性设置等任务分发到多线程并行执行。
 
 为简化编程和工程管理，在开始编写并行化组件创建代码前，请先参考[接入ArkTS页面](ndk-access-the-arkts-page.md)指导文档，在native侧使用面向对象的方式对将ArkUI_NodeHandle封装为ArkUINode对象。
 
