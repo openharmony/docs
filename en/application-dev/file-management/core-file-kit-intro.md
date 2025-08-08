@@ -1,8 +1,13 @@
 # Introduction to Core File Kit
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 Core File Kit provides capabilities for accessing and managing application files and user files. You can use the APIs provided by Core File Kit to manage, search for, and back up different types of files efficiently.
 
-## Core File Kit Overview
+## Overview
 
 In Core File Kit, the files are classified into the following types based on the file owner:
 
@@ -40,7 +45,7 @@ You can use Core File Kit in any of the following scenarios:
 - Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.<!--Del-->
 - Triggering data backup and restore (available only for system applications).
 <!--DelEnd-->
-- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> , and develop the user file manager (only for system applications)<!--DelEnd-->.
+- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> and developing a user file manager (available only for system applications)<!--DelEnd-->.
 - Accessing and copying files across devices.
 
 ## Features

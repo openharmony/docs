@@ -1,5 +1,11 @@
 # Core File Kit<!--core-file-kit-->
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25-->
+<!--SE: @bubble_mao; @zhuangzhuang; @gsl_1234-->
+<!--TSE: @liuhonggang123-->
+
 - [Introduction to Core File Kit](core-file-kit-intro.md)
 - Application Files<!--app-file-->
   - [Application File Overview](app-file-overview.md)

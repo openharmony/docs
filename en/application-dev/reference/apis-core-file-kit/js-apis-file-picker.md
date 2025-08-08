@@ -1,11 +1,16 @@
 # @ohos.file.picker (Picker)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The **Picker** module encapsulates APIs such as **DocumentViewPicker**, **AudioViewPicker**, and **PhotoViewPicker** to provide capabilities of selecting and saving files of different types. An application can select the API as required. The APIs of this module must be called in UIAbility. Otherwise, the **FilePicker**, **AudioPicker**, or **PhotoPicker** cannot be started.
-Chinese characters and non-digit characters in the path are compiled into the corresponding ASCII code and concatenated to the URI returned by calling these APIs.
+Chinese characters and non-digit characters in the URI are compiled into the corresponding ASCII code and concatenated to the URI returned by calling these APIs.
 
 ## Modules to Import
 
@@ -23,7 +28,7 @@ Provides APIs for selecting and saving documents in different formats. Before us
 
 constructor(context: Context)
 
-A constructor used to create a **DocumentViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+A constructor used to create a **DocumentViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -85,18 +90,18 @@ constructor(context: Context, window: window.Window)
 
 A constructor used to create a **DocumentViewPicker** object in a window created by an application. In other scenarios, you are advised to use **constructor(context: Context)** to create a **DocumentViewPicker** object.
 
+> **NOTE**
+>
+> This method is supported on 2-in-1 devices and tablets since API version 19.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
 **Parameters**
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| Yes  | Application context (only **UIAbilityContext** is supported). For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md#window)  | Yes  | Window instance created by the application.|
-
-> **NOTE**
->
-> Currently, only mobile phones are supported.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
+| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md)  | Yes  | Window instance created by the application.|
 
 **Example**
 
@@ -450,7 +455,7 @@ Provides APIs for selecting and saving audio clips. Before using the APIs of **A
 
 constructor(context: Context)
 
-A constructor used to create an **AudioViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+A constructor used to create an **AudioViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -786,15 +791,15 @@ Defines the options for selecting documents.
 
 | Name                   | Type                                         | Read-Only| Optional| Description                                      |
 | :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Yes| Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices with the required system capability can select directories, and only one directory can be selected at a time. <br>Default value: **1**.<br>**System capability**: SystemCapability.FileManagement.UserFileService |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | No  |  Yes| Path of the document or directory to select. It is empty by default (the recently opened page is displayed).          |
+| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Yes| Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices with the required system capability can select directories, and only one directory can be selected at a time. The default value is **500**.<br>**System capability**: SystemCapability.FileManagement.UserFileService |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | No  |  Yes| URI of the file or directory that can be selected. It is empty by default (the recently opened page is displayed).          |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  |  Yes| Suffix of the document to select. <br>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the document suffix. If there is no "\|", the option does not have the description. Each filter suffix can contain multiple suffixes, separated by a comma (,). The length of the input array cannot exceed 100 characters, for example, ['Images (.png, .jpg)\|.png,.jpg', 'Documents\|.txt', 'Videos\|.mp4', '.pdf'].<br>By default, no filtering is performed, that is, all documents are selected. The wildcard ['All files (\*.\*)\|.*'] can be used on 2-in-1 devices to display all files. (Mobile phones can support this configuration since API version 17.)<br>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService  |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  |  Yes| Only 2-in-1 devices are supported. The default value is **FILE**.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 | authMode<sup>12+</sup>    | boolean                              | No  |  Yes| Whether to start Picker.<br>Default value: **false**. If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. Only 2-in-1 devices are supported.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 |multiAuthMode<sup>15+</sup>  | boolean                             |No   |  Yes| Whether to enable the batch authorization mode.<br>The value **false** (default) means to disable the batch authorization mode; the value **true** means to enable the batch authorization mode. The **multiUriArray** parameter only takes effect when **multAuthMode** is set to **true**. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 |multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |No   |  Yes| Whether to pass the URIs for batch authorization (only files are supported). <br>This parameter is used with **multAuthMode**, and does not take effect when **multAuthMode** is set to **false**. By default, this parameter is left empty. (The files displayed on the batch authorization page are empty.) Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 |mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |No   |  Yes| Whether to enable the aggregation view mode for a file management application. The default value is **DEFAULT**, indicating that this parameter does not take effect and the aggregation view is disabled. If this parameter is set to a value other than **DEFAULT**, other parameters do not take effect. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-|isEncryptionSupported<sup>19+</sup>    | boolean |No   |  Yes| Whether to support encryption (only files are supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the Picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 19.<br>**System capability**: SystemCapability.FileManagement.UserFileService|
+|isEncryptionSupported<sup>19+</sup>    | boolean |No   |  Yes| Whether to support encryption (only files are supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the Picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 19.<br> **System capability**: SystemCapability.FileManagement.UserFileService|
 
 ## DocumentPickerMode<sup>12+</sup>
 
@@ -836,7 +841,7 @@ Defines the options for saving documents.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | No  | Name of the document to save. If this parameter is not specified, the user needs to enter the document name. |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to save. |
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | URI of the file or directory to save. |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | Document suffix of the document to save.<br>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the document suffix. If there is no "\|", the option does not have the description. By default, all documents are saved.|
 | pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | No  | Mode for starting Picker.<br>Default value: **DEFAULT**. If **pickerMode** is **DOWNLOAD**, the settings of **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices** do not take effect.|
 
@@ -880,7 +885,7 @@ constructor(context: Context)
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-A constructor used to create a **PhotoViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+A constructor used to create a **PhotoViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 
 > **NOTE**
 >
@@ -1088,7 +1093,7 @@ Starts a **photoPicker** page for the user to save one or more images or videos.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
+> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md) instead.
 
 **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
@@ -1137,7 +1142,7 @@ Starts a **photoPicker** page for the user to save one or more images or videos.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
+> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md) instead.
 
 **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
@@ -1183,7 +1188,7 @@ Starts a **photoPicker** page for the user to save one or more images or videos.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
+> This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md) instead.
 
 **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
@@ -1283,5 +1288,3 @@ Defines the options for saving images or videos.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames              | Array&lt;string&gt;    | No | File name of the image or video to save. If this parameter is not specified, the user needs to enter the file name.|
-
-<!--no_check-->

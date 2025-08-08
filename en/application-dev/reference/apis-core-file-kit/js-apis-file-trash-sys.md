@@ -1,4 +1,9 @@
 # @ohos.file.trash (Trash) (System API)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **file.trash** module provides APIs for querying, recovering, or permanently deleting the files or directories in **Recently deleted** (trash). Currently, only local files and directories are supported.
 

@@ -1,4 +1,9 @@
 # Obtaining and Accessing a User Directory
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 ## Obtaining and Accessing a User Directory (ArkTS)
 
@@ -109,7 +114,7 @@ function writeUserDownloadDirExample() {
 
 ## Obtaining and Accessing a User Directory (C/C++)
 
-In addition to ArkTS APIs, you can use C/C++ APIs to allow a third-party application to obtain and access a user directory. For details about the APIs, see [Environment](../reference/apis-core-file-kit/_environment.md).
+In addition to ArkTS APIs, you can use C/C++ APIs to allow a third-party application to obtain and access a user directory. For details about the APIs, see [Environment](../reference/apis-core-file-kit/capi-oh-environment-h.md).
 
  **Constraints**
  - The device must have SystemCapability.FileManagement.File.Environment.FolderObtain.
@@ -117,7 +122,7 @@ In addition to ArkTS APIs, you can use C/C++ APIs to allow a third-party applica
 
 ### Available APIs
 
-For details about the APIs, see [Environment](../reference/apis-core-file-kit/_environment.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/capi-oh-environment-h.md).
 
 | API                                                                | Description                          |
 | ------------------------------------------------------------------------ | ------------------------------ |
@@ -179,7 +184,7 @@ void ScanUserDownloadDirPathExample()
         return;
     }
     // View the files in the Download directory.
-    struct dirent **namelist = {nullptr};
+    struct dirent **namelist = nullptr;
     int num = scandir(downloadPath, &namelist, nullptr, nullptr);
     if (num < 0) {
         free(downloadPath);
@@ -190,6 +195,9 @@ void ScanUserDownloadDirPathExample()
         OH_LOG_INFO(LOG_APP, "%{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
+    for (int i = 0; i < num; i++) {
+        free(namelist[i]);
+    }
     free(namelist);
 }
 ```

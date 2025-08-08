@@ -1,4 +1,9 @@
 # @ohos.file.fs (File Management)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **fs** module provides APIs for file operations, including accessing and managing files and directories, obtaining file information statistics, and reading and writing data using a stream.
 
@@ -521,17 +526,17 @@ let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
 };
-let copyoption: fs.CopyOptions = {
+let copyOption: fs.CopyOptions = {
   "progressListener" : progressListener
 }
 try {
-  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption).then(()=>{
-    console.info("Succeeded in copying. ");
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyOption).then(()=>{
+    console.info("Succeeded in copying.");
   }).catch((err: BusinessError)=>{
-    console.error(`Failed to copy: ${JSON.stringify(err)}`);
+    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy.Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -573,13 +578,13 @@ let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 try {
   fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info("Succeeded in copying. ");
+    console.info("Succeeded in copying.");
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -624,18 +629,18 @@ try {
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   };
-  let copyoption: fs.CopyOptions = {
+  let copyOption: fs.CopyOptions = {
     "progressListener" : progressListener
   }
-  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption, (err: BusinessError) => {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyOption, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info("Succeeded in copying. ");
+    console.info("Succeeded in copying.");
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -1238,7 +1243,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     console.info("Get extended attribute succeed, the value is: " + attrValue);
   } catch (err) {
     console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
-    }
+  }
 
   ```
 
@@ -1460,7 +1465,7 @@ Opens a file or directory. This API uses a promise to return the result. This AP
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file or directory.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file or directory. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can add the following function options in bitwise OR mode. By default, no additional option is added.  <br>- **OpenMode.CREATE(0o100)**: Create a file if the file does not exist.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file or directory. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can add the following function options in bitwise OR mode. By default, no additional option is added.<br>- **OpenMode.CREATE(0o100)**: Create a file if the file does not exist.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -1942,7 +1947,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
-Writes data to a file. This API uses a promise to return the result.
+Writes data into a file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2411,13 +2416,12 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
+  let stat = fs.statSync(filePath);
   let readTextOption: ReadTextOptions = {
       offset: 1,
-      length: 0,
+      length: stat.size,
       encoding: 'utf-8'
   };
-  let stat = fs.statSync(filePath);
-  readTextOption.length = stat.size;
   fs.readText(filePath, readTextOption, (err: BusinessError, str: string) => {
     if (err) {
       console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
@@ -2534,7 +2538,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     if (err) {
       console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("lstat succeed, the size of file is" + stat.size);
+      console.info("lstat succeed, the size of file is " + stat.size);
     }
   });
   ```
@@ -2568,7 +2572,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   ```ts
   let filePath = pathDir + "/linkToFile";
   let fileStat = fs.lstatSync(filePath);
-  console.info("lstat succeed, the size of file is" + fileStat.size);
+  console.info("lstat succeed, the size of file is " + fileStat.size);
   ```
 
 ## fs.rename
@@ -2855,7 +2859,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync (file.fd, (err: BusinessError) => {
+  fs.fdatasync(file.fd, (err: BusinessError) => {
     if (err) {
       console.error("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3340,8 +3344,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
 let srcPath = pathDir + "/srcDir";
 let destPath = pathDir + "/destDir";
@@ -3358,7 +3362,7 @@ try {
     console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
 }
-  ```
+```
 
 ## fs.moveFile
 
@@ -3933,9 +3937,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     if (err) {
       console.error("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
+      stream.closeSync();
       console.info("Stream created");
     }
-    stream.closeSync();
   })
   ```
 
@@ -4054,11 +4058,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
-      stream.closeSync();
-    } else {
-      console.info("fdopen stream succeed");
       // If the file stream fails to be opened, the FD must be manually closed.
       fs.closeSync(file);
+    } else {
+      console.info("fdopen stream succeed");
+      stream.closeSync();
     }
   });
   ```
@@ -4135,7 +4139,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
- // Create a readable stream.
+  // Create a readable stream.
   const rs = fs.createReadStream(`${pathDir}/read.txt`);
   // Create a writeable stream.
   const ws = fs.createWriteStream(`${pathDir}/write.txt`);
@@ -4177,7 +4181,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
- // Create a readable stream.
+  // Create a readable stream.
   const rs = fs.createReadStream(`${pathDir}/read.txt`);
   // Create a writeable stream.
   const ws = fs.createWriteStream(`${pathDir}/write.txt`);
@@ -4232,13 +4236,12 @@ The FD needs to be closed by calling **close()**.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4248,14 +4251,14 @@ let pathDir = context.filesDir;
 
 try {
   let atomicFile = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = atomicFile.startWrite();
-  writeSream.write("xxxxx","utf-8",()=> {
+  let writeStream = atomicFile.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     atomicFile.finishWrite();
     let File = atomicFile.getBaseFile();
-    hilog.info(0x0000, 'AtomicFile', 'getBaseFile File.fd is:%{public}d, path:%{public}s, name:%{public}s', File.fd, File.path, File.path);
+    console.info('AtomicFile getBaseFile File.fd is: ' + File.fd + ' path: ' + File.path + ' name: ' + File.name);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+  console.error(`Failed to get baseFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4275,16 +4278,14 @@ Creates a **ReadStream** instance.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4292,23 +4293,23 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("xxxxxx","utf-8",()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let readStream = file.openRead();
       readStream.on('readable', () => {
         const data = readStream.read();
         if (!data) {
-          hilog.error(0x0000, 'AtomicFile', 'Read data is null');
+          console.error('AtomicFile read data is null.');
           return;
         }
-        hilog.info(0x0000, 'AtomicFile', 'Read data is:%{public}s!', data);
+        console.info('AtomicFile read data is: ' + data);
       });
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4328,17 +4329,15 @@ Reads all content of a file.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 import { util, buffer } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4346,18 +4345,18 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
       let decoder = util.TextDecoder.create('utf-8');
       let str = decoder.decodeToString(new Uint8Array(data));
-      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+      console.info('AtomicFile readFully str is: ' + str);
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4381,13 +4380,12 @@ Call **finishWrite()** if the write operation is successful; call **failWrite()*
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4397,13 +4395,12 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = file.startWrite();
-  hilog.info(0x0000, 'AtomicFile', 'startWrite end');
-  writeSream.write("xxxxxxxx","utf-8",()=> {
-    hilog.info(0x0000, 'AtomicFile', 'write end');
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
+    console.info('AtomicFile write finished!');
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4417,13 +4414,12 @@ Finishes writing file data when the write operation is complete.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4433,12 +4429,12 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4452,17 +4448,14 @@ Rolls back the file after the file fails to be written.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { util, buffer } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4471,12 +4464,12 @@ let pathDir = context.filesDir;
 let file = new fs.AtomicFile(`${pathDir}/write.txt`);
 try {
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
-    hilog.info(0x0000, 'AtomicFile', 'write succeed!');
+  writeSream.write("hello, world", "utf-8", ()=> {
+    console.info('AtomicFile write succeed!');
   })
 } catch (err) {
   file.failWrite();
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4490,7 +4483,7 @@ Deletes the **AtomicFile** class, including the original files and temporary fil
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
@@ -4498,7 +4491,6 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { util } from '@kit.ArkTS';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -4507,19 +4499,19 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
       let decoder = util.TextDecoder.create('utf-8');
       let str = decoder.decodeToString(new Uint8Array(data));
-      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+      console.info('AtomicFile readFully str is: ' + str);
       file.delete();
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4699,9 +4691,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
-copySignal.onCancel().then(() => {
-    console.info("copyFileWithCancel success.");
-});
+copySignal.onCancel();
 ```
 
 ## CopyOptions<sup>11+</sup>
@@ -4754,10 +4744,10 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
 | size   | number | Yes   | No   | File size, in bytes. This parameter is valid only for regular files.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| atime  | number | Yes   | No   | Time when the file was last accessed. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>**NOTE**<br>Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
+| atime  | number | Yes   | No   | Time when the file was last accessed. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>**Note**: Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | mtime  | number | Yes   | No   | Time when the file content was last modified. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | ctime  | number | Yes   | No   | Time when the file metadata was last modified. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.     |
-| atimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last access to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.<br>**NOTE**<br>Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.     |
+| atimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last access to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.<br>**Note**: Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.     |
 | mtimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last modification to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | ctimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last status change of the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| Yes|No| File location, which indicates whether the file is stored in a local device or in the cloud.
@@ -4941,7 +4931,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  let filePath = pathDir + "/test";
+  let filePath = pathDir + "/test.txt";
   let isSymbolicLink = fs.statSync(filePath).isSymbolicLink();
   ```
 
@@ -5219,9 +5209,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
-        stream.close();
       }
     }
+    stream.close();
   });
   ```
 
@@ -5310,7 +5300,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   stream.read(arrayBuffer, readOption).then((readLen: number) => {
     console.info("Read data successfully");
     let buf = buffer.from(arrayBuffer, 0, readLen);
-    console.log(`The content of file: ${buf.toString()}`);
+    console.info(`The content of file: ${buf.toString()}`);
     stream.close();
   }).catch((err: BusinessError) => {
     console.error("read data failed with error message: " + err.message + ", error code: " + err.code);
@@ -5358,7 +5348,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     } else {
       console.info("Read data successfully");
       let buf = buffer.from(arrayBuffer, 0, readLen);
-      console.log(`The content of file: ${buf.toString()}`);
+      console.info(`The content of file: ${buf.toString()}`);
       stream.close();
     }
   });
@@ -5479,7 +5469,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
-    console.log("lock file succeed");
+    console.info("lock file succeed");
   }).catch((err: BusinessError) => {
     console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -5516,7 +5506,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     if (err) {
       console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.log("lock file succeed");
+      console.info("lock file succeed");
     }
     fs.closeSync(file);
   });
@@ -5546,7 +5536,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
-  console.log("lock file succeed");
+  console.info("lock file succeed");
   fs.closeSync(file);
   ```
 
@@ -5569,7 +5559,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
-  console.log("unlock file succeed");
+  console.info("unlock file succeed");
   fs.closeSync(file);
   ```
 

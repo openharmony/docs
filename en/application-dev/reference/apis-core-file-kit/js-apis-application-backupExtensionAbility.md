@@ -1,4 +1,9 @@
 # @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 The **BackupExtensionAbility** module provides extended backup and restore capabilities for applications.
 
@@ -297,22 +302,36 @@ Called to return the progress information. This callback is executed synchronous
 **Example**
 
   ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+  import { BackupExtensionAbility } from '@kit.CoreFileKit';
   import { taskpool } from '@kit.ArkTS';
 
-  interface ProgressInfo {
-    name: string, // appName
-    processed: number, // Processed data records.
-    total: number, // Total count.
-    isPercentage: boolean // (Optional) The value true means to display the progress in percentage; the value false or not implemented means to display the progress by the number of items.
+  @Sendable
+  class MigrateProgressInfo {
+    private migrateProgress: string = '';
+    private name: string = "test"; // appName
+    private processed: number = 0; // Processed data
+    private total: number = 100; // Total number
+    private isPercentage: boolean = true // (Optional) The value true means to display the progress in percentage; the value false or an unimplemented field means to display the progress by the number of items.
+
+    getMigrateProgress(): string {
+      this.migrateProgress = `{"progressInfo": [{"name": "${this.name}", "processed": "${this.processed}", "total": "${
+        this.total}", "isPercentage": "${this.isPercentage}"}]}`;
+      return this.migrateProgress;
+    }
+
+    updateProcessed(processed: number) {
+      this.processed = processed;
+    }
   }
 
   class BackupExt extends BackupExtensionAbility {
+    private progressInfo: MigrateProgressInfo = new MigrateProgressInfo();
+
     // In the following code, the appJob method is the simulated service code, and args specifies the parameters of appJob(). This method is used to start a worker thread in the task pool.
     async onBackup() {
       console.log(`onBackup begin`);
       let args = 100; // args is a parameter of appJob().
-      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, this.progressInfo, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
@@ -325,7 +344,7 @@ Called to return the progress information. This callback is executed synchronous
     async onRestore() {
       console.log(`onRestore begin`);
       let args = 100; // args is a parameter of appJob().
-      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, this.progressInfo, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
@@ -338,25 +357,20 @@ Called to return the progress information. This callback is executed synchronous
 
     onProcess(): string {
       console.log(`onProcess begin`);
-      let process: string = `{
-       "progressInfo":[
-         {
-          "name": "callact", // appName
-          "processed": 100, // Processed data records.
-          "total": 1000, // Total count.
-          "isPercentage", true // (Optional) The value true means to display the progress in percentage; the value false or not implemented means to display the progress by the number of items.
-         }
-       ]
-      }`;
-      console.log(`onProcess end`);
-      return JSON.stringify(process);
+      return this.progressInfo.getMigrateProgress();
     }
   }
 
   @Concurrent
-  function appJob(args: number) : string {
-    // Service logic.
+  function appJob(progressInfo: MigrateProgressInfo, args: number) : string {
     console.log(`appJob begin, args is: ` + args);
+    // Update the processing progress during service execution.
+    let currentProcessed: number = 0;
+    // Simulate the actual service logic.
+    for (let i = 0; i < args; i++) {
+      currentProcessed = i;
+      progressInfo.updateProcessed(currentProcessed);
+    }
     return "ok";
   }
   ```

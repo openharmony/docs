@@ -1,8 +1,13 @@
 # Obtaining the User Directory Environment (C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 ## When to Use
 
-You can use [Environment](../reference/apis-core-file-kit/_environment.md) to allow a third-party application to access files in a user directory.
+You can use [Environment](../reference/apis-core-file-kit/capi-oh-environment-h.md) to allow a third-party application to access files in a user directory.
 
 ## Constraints
 
@@ -11,7 +16,7 @@ You can use [Environment](../reference/apis-core-file-kit/_environment.md) to al
 
 ## Available APIs
 
-For details about the APIs, see [Environment](../reference/apis-core-file-kit/_environment.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/capi-oh-environment-h.md).
 
 | API| Description|
 | -------- | -------- |

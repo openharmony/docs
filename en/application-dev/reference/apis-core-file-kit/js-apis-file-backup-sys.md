@@ -1,4 +1,9 @@
 # @ohos.file.backup (Backup and Restore) (System API)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 The **file.backup** module provides APIs for backing up and restoring data for applications.
 
@@ -10,7 +15,7 @@ The **file.backup** module provides APIs for backing up and restoring data for a
 ## Modules to Import
 
 ```ts
-import backup from '@ohos.file.backup';
+import { backup } from '@kit.CoreFileKit';
 ```
 
 ## FileMeta
@@ -163,15 +168,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
-      console.error('onFileReady failed with err: ' + JSON.stringify(err));
+      console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info('onFileReady success with file: ' + file.bundleName + ' ' + file.uri);
+    console.info(`onFileReady success with file: ${file.bundleName}, ${file.uri}`);
     fs.closeSync(file.fd);
   }
   ```
@@ -209,23 +214,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code));
-      return;
-    }
-    console.info('onBundleBegin success');
-  }
-  ```
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
-    if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+      console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onBundleBegin success');
@@ -266,23 +259,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
-      console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('onBundleEnd success with bundleName: ' + bundleName);
-  }
-  ```
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
-    if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+      console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onBundleEnd success');
@@ -313,11 +294,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onAllBundlesEnd: (err: BusinessError) => {
     if (err) {
-      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+      console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onAllBundlesEnd success');
@@ -358,7 +339,7 @@ Called when the backup or restore is complete. If the callback is invoked succes
 **Example**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
   onResultReport: (bundleName: string, result: string) => {
     console.info('onResultReport bundleName : ' + bundleName);
@@ -384,7 +365,7 @@ Called to report the backup or restore progress information. If the callback is 
 **Example**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
   onProcess: (bundleName: string, process: string) => {
     console.info('onProcess bundleName : ' + bundleName);
@@ -406,7 +387,7 @@ Obtains the backup or restore version information.
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| string | Returns the backup or restore version information.<br>The version number is in the API version format. For example, the version number is 16.0 if the internal version is API16.|
+| string | Returns the backup or restore version information.<br>The version number is in the API version format. For example, the value **API16** means that the version number is 16.0.|
 
 **Error codes**
 
@@ -420,8 +401,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function getBackupVersion() {
     try {
@@ -429,7 +410,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('getBackupVersion success, result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getBackupVersion failed with err: ' + JSON.stringify(err));
+      console.error(`getBackupVersion failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -471,13 +452,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   try {
     backup.getLocalCapabilities((err: BusinessError, fileData: backup.FileData) => {
       if (err) {
-        console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+        console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('getLocalCapabilities success');
@@ -486,7 +467,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -540,8 +521,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   async function getLocalCapabilities() {
     try {
@@ -551,7 +532,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -616,8 +597,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   async function getLocalCapabilities() {
     try {
@@ -631,7 +612,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -671,9 +652,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   function getBackupInfo() {
     try {
@@ -682,7 +662,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('getBackupInfo success, result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getBackupInfo failed with err: ' + JSON.stringify(err));
+      console.error(`getBackupInfo failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -721,8 +701,8 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function updateTimer() {
     try {
@@ -736,7 +716,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('updateTimer failed with err: ' + JSON.stringify(err));
+      console.error(`updateTimer failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -775,8 +755,8 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function updateSendRate() {
     try {
@@ -790,7 +770,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('updateSendRate failed with err: ' + JSON.stringify(err));
+      console.error(`updateSendRate failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -810,9 +790,9 @@ Reports the size of the application data to be backed up.
 **Example**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
-  onBackupSizeReport: (OnBackupSizeReport) => {
+  onBackupSizeReport: (OnBackupSizeReport: backup.OnBackupSizeReport) => {
     console.info('dataSizeCallback success');
     console.info('dataSizeCallback report : ' + OnBackupSizeReport);
   }
@@ -841,13 +821,13 @@ A constructor used to create a **SessionBackup** instance.
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -855,21 +835,21 @@ A constructor used to create a **SessionBackup** instance.
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.data}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -878,10 +858,10 @@ A constructor used to create a **SessionBackup** instance.
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -921,8 +901,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface test { // Parse the capability file.
     bundleInfos: [];
@@ -948,7 +928,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -956,21 +936,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -979,48 +959,50 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
-  let basePath = '/data/storage/el2/base/backup'; 
-  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
-  try {
-    let fileData = await sessionBackup.getLocalCapabilities(); // Obtain the local capability file.
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+    let basePath = '/data/storage/el2/base/backup'; 
+    let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+    try {
+      let fileData = await sessionBackup.getLocalCapabilities(); // Obtain the local capability file.
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed. message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -1085,8 +1067,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface scanedInfos { // Parse the scanning result.
     scaned: [];
@@ -1102,7 +1084,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1110,21 +1092,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1133,10 +1115,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
     onBackupSizeReport: (OnBackupSizeReport) => { // The callback function is used together with getBackupDataSize to return the obtained application data size and the bundle name of the application that is obtaining the data size.
       console.info('dataSizeCallback success');
@@ -1163,7 +1145,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     sessionBackup.getBackupDataSize(false, backupApps); // Obtain the data to be backed up of a specified application in backupApps. The value false indicates that inaccurate scanning is used.
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+    console.error(`getBackupDataSize failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -1171,7 +1153,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```json
 {
- "scaned" :[ // Scanned application. The result will not be returned in the next callback.
+ "scaned": [ // Scanned application. The result will not be returned in the next callback.
      {
          "name": "com.example.hiworld", // Application name.
          "dataSize": 1006060, // Data size.
@@ -1183,7 +1165,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
          "incDataSize": -1
      }
  ],
- "scanning" :"com.example.smartAPP" // Application that is being scanned. This field is empty when the last result is returned.
+ "scanning": "com.example.smartAPP" // Application that is being scanned. This field is empty when the last result is returned.
 }
 ```
 
@@ -1221,13 +1203,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1235,21 +1217,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1258,10 +1240,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -1271,14 +1253,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     ];
     sessionBackup.appendBundles(backupApps, (err: BusinessError) => {
       if (err) {
-        console.error('appendBundles failed with err: ' + JSON.stringify(err));
+        console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('appendBundles success');
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -1324,13 +1306,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1338,21 +1320,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1361,10 +1343,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -1421,7 +1403,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('appendBundles success');
     } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -1459,13 +1441,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1473,21 +1455,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1496,10 +1478,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -1542,9 +1524,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1552,7 +1533,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         // If the FD fails to be passed, call the cancel API to cancel the backup task of the application.
         let result = sessionBackup.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1560,21 +1541,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1583,10 +1564,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -1693,6 +1674,105 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   ```
 
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+Obtains the application's custom capabilities during backup. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application to be queried.|
+| extInfo | string | Yes  | Extra information passed to the application. The implementation is determined by the application.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise that returns the application's custom capabilities.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getBackupCompatibilityInfo() {
+    let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // An empty string means no extra information needs to be passed to the application.
+    try {
+      let retInfo = await sessionBackup.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+  ```
+
 ## SessionRestore
 
 Provides an object to support the application restore process. Before using the APIs of this class, you need to create a **SessionRestore** instance.
@@ -1716,13 +1796,13 @@ A constructor used to create a **SessionRestore** instance.
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1730,21 +1810,21 @@ A constructor used to create a **SessionRestore** instance.
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1753,10 +1833,10 @@ A constructor used to create a **SessionRestore** instance.
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1796,8 +1876,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface test { // Parse the capability file.
     bundleInfos: [];
@@ -1823,7 +1903,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1831,21 +1911,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1854,48 +1934,50 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
-  let basePath = '/data/storage/el2/base/backup';
-  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
-  try {
-    let fileData = await sessionRestore.getLocalCapabilities(); // Obtain the local capability file.
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+    let basePath = '/data/storage/el2/base/backup';
+    let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+    try {
+      let fileData = await sessionRestore.getLocalCapabilities(); // Obtain the local capability file.
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed with code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed with code: ${error.code}, message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -1958,13 +2040,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1972,21 +2054,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1995,10 +2077,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2014,14 +2096,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       ];
       sessionRestore.appendBundles(fileData.fd, restoreApps, (err: BusinessError) => {
         if (err) {
-          console.error('appendBundles failed with err: ' + JSON.stringify(err));
+          console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('appendBundles success');
       });
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     } finally {
       fs.closeSync(fileData.fd);
     }
@@ -2076,13 +2158,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2090,21 +2172,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2113,10 +2195,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2159,7 +2241,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('appendBundles success');
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     } finally {
       fs.closeSync(fileData.fd);
     }
@@ -2205,13 +2287,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2219,21 +2301,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2242,10 +2324,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2255,7 +2337,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   sessionRestore.getFileHandle(fileMeta, (err: BusinessError) => {
     if (err) {
-      console.error('getFileHandle failed with err: ' + JSON.stringify(err));
+      console.error(`getFileHandle failed. Code: ${err.code}, message: ${err.message}`);
     }
     console.info('getFileHandle success');
   });
@@ -2305,13 +2387,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2319,21 +2401,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2342,10 +2424,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2359,7 +2441,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('getFileHandle success');
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getFileHandle failed with err: ' + JSON.stringify(err));
+      console.error(`getFileHandle failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -2401,8 +2483,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2415,21 +2497,22 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // Update the number of files written.
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // Update the number of written files.
         // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // Trigger publishFile after all files are received.
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
             uri: ''
           }
           g_session.publishFile(fileMeta, (err: BusinessError) => {
             if (err) {
-              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              console.error(`publishFile failed. Code: ${err.code}, message: ${err.message}`);
               return;
             }
             console.info('publishFile success');
@@ -2438,21 +2521,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2461,10 +2544,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2515,8 +2598,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2536,35 +2619,36 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // Update the number of files written.
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // Update the number of written files.
         // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // Trigger publishFile after all files are received.
           publishFile(file);
         }
         console.info('publishFile success');
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2573,10 +2657,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+        console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2618,8 +2702,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2632,21 +2716,22 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // Update the number of files written.
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // Update the number of written files.
         // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // Trigger publishFile after all files are received.
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
             uri: ''
           }
           g_session.publishFile(fileMeta, (err: BusinessError) => {
             if (err) {
-              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              console.error(`publishFile failed. Code: ${err.code}, message: ${err.message}`);
               return;
             }
             console.info('publishFile success');
@@ -2655,21 +2740,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2678,10 +2763,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+        console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -2727,9 +2812,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -2737,7 +2821,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         // If the FD fails to be passed, call the cancel API to cancel the restoration task of the application.
         let result = sessionRestore.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2745,21 +2829,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2768,19 +2852,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
-  let fileData: backup.FileData = {
-    fd: -1
+  async function cancelTest() {
+    let fileData: backup.FileData = {
+      fd: -1
+    }
+    fileData = await backup.getLocalCapabilities(); // Call getLocalCapabilities provided by the backup and restore framework to obtain the capability set file.
+    let backupBundles: Array<string> = ["com.example.helloWorld"];
+    sessionRestore.appendBundles(fileData.fd, backupBundles);
   }
-  fileData = await backup.getLocalCapabilities(); // Call getLocalCapabilities provided by the backup and restore framework to obtain the capability set file.
-  let backupBundles: Array<string> = ["com.example.helloWorld"];
-  sessionRestore.appendBundles(fileData.fd, backupBundles);
   ```
 
 ### cleanBundleTempDir<sup>20+</sup>
@@ -2882,6 +2968,105 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   ```
 
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+Obtains the application's custom capabilities during restore. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application to be queried.|
+| extInfo | string | Yes  | Extra information passed to the application. The implementation is determined by the application.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise that returns the application's custom capabilities.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getRestoreCompatibilityInfo() {
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // An empty string means no extra information needs to be passed to the application.
+    try {
+      let retInfo = await sessionRestore.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+  ```
+
 ## IncrementalBackupSession<sup>12+</sup>
 
 An object used to implement the incremental backup of applications. Before using the APIs of this class, you need to create an **IncrementalBackupSession** instance.
@@ -2915,13 +3100,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2929,21 +3114,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2952,10 +3137,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -2995,8 +3180,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface test { // Parse the capability file.
     bundleInfos: [];
@@ -3022,7 +3207,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3030,21 +3215,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3053,48 +3238,50 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
-  let basePath = '/data/storage/el2/base/backup';
-  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
-  try {
-    let fileData = await incrementalBackupSession.getLocalCapabilities(); // Obtain the local capability file.
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+    let basePath = '/data/storage/el2/base/backup';
+    let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+    try {
+      let fileData = await incrementalBackupSession.getLocalCapabilities(); // Obtain the local capability file.
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed. Code: ${error.code}, message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -3103,7 +3290,7 @@ The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat
  ```json
  {
   "backupVersion" : "16.0",
-  "bundleInfos" :[{
+  "bundleInfos" : [{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
     "name" : "com.example.hiworld",
@@ -3159,8 +3346,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface scanedInfos { // Parse the scanning result.
     scaned: [];
@@ -3176,7 +3363,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => { // Define the universal callbacks to be used in the backup or restore process.
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3184,21 +3371,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3207,10 +3394,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
     onBackupSizeReport: (OnBackupSizeReport) => { // The callback function is used together with getBackupDataSize to return the obtained application data size and the bundle name of the application that is obtaining the data size.
       console.info('dataSizeCallback success');
@@ -3228,7 +3415,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     }
   };
 
-  let incrementalBackupSession = new backup.incrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
 
   let backupApps: backup.IncrementalBackupTime[] = [{
     bundleName: "com.example.hiworld",
@@ -3238,7 +3425,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     incrementalBackupSession.getBackupDataSize(true, backupApps); // Obtain the amount of specified application data to be backed up in backupApps. The value true indicates that accurate scanning is used.
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+    console.error(`getBackupDataSize failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -3246,7 +3433,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```json
 {
- "scaned" :[ // Scanned application. The result will not be returned in the next callback.
+ "scaned": [ // Scanned application. The result will not be returned in the next callback.
      {
          "name": "com.example.hiworld", // Application name.
          "dataSize": 1006060, // Data size.
@@ -3304,13 +3491,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3318,21 +3505,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3341,10 +3528,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -3357,7 +3544,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   incrementalBackupSession.appendBundles(incrementalBackupDataArray).then(() => {
     console.info('appendBundles success');
   }).catch((err: BusinessError) => {
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }); // Appends the applications that require incremental backup.
   ```
 
@@ -3404,13 +3591,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3418,21 +3605,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3441,10 +3628,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -3498,7 +3685,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
     console.info('appendBundles success');
   }).catch((err: BusinessError) => {
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }); 
   ```
 
@@ -3536,13 +3723,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3550,21 +3737,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3573,10 +3760,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -3619,9 +3806,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -3629,7 +3815,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         // If the FD fails to be passed, call the cancel API to cancel the incremental backup task of the application.
         let result = incrementalBackupSession.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3637,21 +3823,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3660,10 +3846,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -3671,7 +3857,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let bundleData: backup.IncrementalBackupData = {
     bundleName: "com.example.helloWorld",
     lastIncrementalTime: 1700107870, // Timestamp of the last backup.
-    manifestFd: 1 // FD of the manifest file of the last backup.
+    manifestFd: 1 // FD of the manifest file of the last backed.
   }
   backupBundles.push(bundleData);
   incrementalBackupSession.appendBundles(backupBundles);
@@ -3775,4 +3961,103 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  ```
+
+### getCompatibilityInfo<sup>20+</sup>
+
+getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
+
+Obtains the application's custom capabilities during incremental backup. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application to be queried.|
+| extInfo | string | Yes  | Extra information passed to the application. The implementation is determined by the application.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;string&gt; | Promise that returns the application's custom capabilities.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleEnd succeeded.`);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+
+  async function getIncBackupCompatibilityInfo() {
+    let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+    let bundleName = "com.example.helloWorld";
+    let extInfo = ""; // An empty string means no extra information needs to be passed to the application.
+    try {
+      let retInfo = await incrementalBackupSession.getCompatibilityInfo(bundleName, extInfo);
+      if (retInfo) {
+        console.info(`getCompatibilityInfo success ` + retInfo);
+      } else {
+        console.info(`bundle ` + bundleName + ' may not support getCompatibilityInfo');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getCompatibilityInfo failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```

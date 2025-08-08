@@ -1,4 +1,9 @@
 # Obtaining Application and File System Space Statistics
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 This topic describes how to obtain statistics on the space occupied by your application and the free space and total space of a file system.
 
@@ -30,10 +35,10 @@ For details about APIs, see [ohos.file.statvfs](../reference/apis-core-file-kit/
 | BundleStats Attribute| Description| Directory for Statistics|
 | -------- | -------- | -------- |
 | appSize | Size of the application installation files, in bytes.| Application installation file directory:<br>**/data/storage/el1/bundle**|
-| cacheSize | Size of the application cache files, in bytes.| Application cache file directories:<br>**/data/storage/el1/base/cache**<br>**/data/storage/el1/base/haps/entry/cache**<br>**/data/storage/el2/base/cache**<br>**/data/storage/el2/base/haps/entry/cache**|
-| dataSize | Size of other files of the application, in bytes.| The files include local files, distributed files, and database files of the application.<br>- Local file directories (parent directories of the **cache** directories):<br>**/data/storage/el1/base**<br>**/data/storage/el2/base**<br>- Distributed application directory:<br>/data/storage/el2/distributedfiles<br>- Database directories:<br>**/data/storage/el1/database**<br>**/data/storage/el2/database**|
+| cacheSize | Size of the application cache files, in bytes.| Application cache file directories:<br>/data/storage/\${el1-el5}/base/cache<br>/data/storage/\${el1-el5}/base/haps/\${moduleName}/cache<br>/data/storage/el2/sharefiles/cache<br>/data/storage/el2/sharefiles/haps/${moduleName}/cache<br> **NOTE**<br>**\${el1-el5}** denotes the directories [el1, el2, el3, el4, el5](./app-sandbox-directory.md#application-file-directory-and-application-file-path). **\${moduleName}** indicates the module name.|
+| dataSize | Size of application files (excluding application installation files), in bytes.| The files include local files, distributed files, and database files of the application.<br>- Local file directories (parent directories of the **cache** directories):<br>/data/storage/\${el1-el5}/base<br>- Distributed application directory:<br>/data/storage/el2/distributedfiles<br>- Database directories:<br>/data/storage/\${el1-el5}/database<br> **NOTE**<br>**\${el1-el5}** denotes the directories [el1, el2, el3, el4, el5](./app-sandbox-directory.md#application-file-directory-and-application-file-path).|
 
-## Development Example
+## How to Develop
 
 - Obtain the free space of **/data** of the file system.
   

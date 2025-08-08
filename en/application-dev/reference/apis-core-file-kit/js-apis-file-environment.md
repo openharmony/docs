@@ -1,4 +1,9 @@
 # @ohos.file.environment (Directory Environment Capability)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **Environment** module provides APIs for obtaining the root directories of the storage and user files.
 
@@ -28,7 +33,7 @@ Obtains the sandbox path of the pre-authorized **Download** directory. Currently
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message      |
 |----------| --------- |
@@ -42,9 +47,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDownloadDirExample() {
   try {
     let path = Environment.getUserDownloadDir();
-    console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDownloadDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDownloadDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -65,7 +70,7 @@ Obtains the sandbox path of the pre-authorized **Desktop** directory. Currently,
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message      |
 |----------| --------- |
@@ -79,9 +84,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDesktopDirExample() {
   try {
     let path = Environment.getUserDesktopDir();
-    console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDesktopDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDesktopDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -102,7 +107,7 @@ Obtains the sandbox path of the pre-authorized **Document** directory. Currently
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message      |
 |----------| --------- |
@@ -116,9 +121,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDocumentDirExample() {
   try {
     let path = Environment.getUserDocumentDir();
-    console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDocumentDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDocumentDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

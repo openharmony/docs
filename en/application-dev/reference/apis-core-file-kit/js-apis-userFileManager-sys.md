@@ -133,7 +133,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise used to return the image and video assets obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise that returns the image and video assets obtained.|
 
 **Error codes**
 
@@ -291,7 +291,7 @@ Creates an image or video asset with the specified file name and URI. This API u
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise that returns the created image or video asset.|
 
 **Error codes**
 
@@ -389,7 +389,7 @@ Creates an image or video asset with the specified file name and options. This A
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise that returns the created image or video asset.|
 
 **Error codes**
 
@@ -485,7 +485,7 @@ Creates an audio asset. This API uses a promise to return the result.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created audio asset.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise that returns the created audio asset.|
 
 **Error codes**
 
@@ -580,7 +580,7 @@ The album name must meet the following requirements:
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[Album](#album)&gt; | Promise used to return the created album instance.|
+| Promise&lt;[Album](#album)&gt; | Promise that returns the created album instance.|
 
 **Example**
 
@@ -843,7 +843,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise that returns the albums.|
 
 **Error codes**
 
@@ -968,7 +968,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise that returns the albums obtained.|
 
 **Error codes**
 
@@ -1069,7 +1069,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Promise used to return the system album obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Promise that returns the albums obtained.|
 
 **Error codes**
 
@@ -1110,7 +1110,7 @@ Obtains audio assets. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the albums.             |
+| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching audio assets.             |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Yes  | Callback used to return the audio assets obtained.|
 
 **Error codes**
@@ -1171,7 +1171,7 @@ Obtains audio assets. This API uses a promise to return the result.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise used to return the audio assets obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise that returns the audio assets obtained.|
 
 **Error codes**
 
@@ -1376,7 +1376,7 @@ Obtains information about online peer devices. This API uses a promise to return
 
 | Type                       | Description                         |
 | --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return a list of online peer devices.|
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise that returns a list of online peer devices.|
 
 **Example**
 
@@ -1447,7 +1447,7 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 | Type                       | Description                         |
 | --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise that returns the information obtained.|
 
 **Example**
 
@@ -1500,7 +1500,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -1567,7 +1567,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt;| Promise used to return the index obtained.|
+| Promise&lt;number&gt;| Promise that returns the index obtained.|
 
 **Error codes**
 
@@ -1575,7 +1575,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -1693,7 +1693,7 @@ Registers a listener for the specified URI. This API uses an asynchronous callba
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br> If **uri** is the URI of the album, the value **true** means to listen for the file change in the album; the value **false** means to listen for the album change only.<br> If **uri** is the URI of the file asset, there is no difference whether **forSubUri** is **true** or **false**.<br> If **uri** is **DefaultChangeUri**, the value must be **true**, otherwise, the URI cannot be found and no message can be received.|
+| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening. <br>If **uri** is the URI of the album, the value **true** means to listen for the file change in the album; the value **false** means to listen for the album change only. If **uri** is the URI of the file asset, there is no difference whether **forSubUri** is **true** or **false**. If **uri** is **DefaultChangeUri**, the value must be **true**, otherwise, the URI cannot be found and no message can be received.|
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback used to return [ChangeData](#changedata10). <br>Note that different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
 
 **Error codes**
@@ -1918,11 +1918,11 @@ Provides APIs for encapsulating file asset attributes.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name                     | Type                    | Read-Only| Writable| Description                                                  |
+| Name                     | Type                    | Read-Only| Optional| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
-| displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
+| displayName               | string                   | No  | No  | File name, including the file name extension, to display.                                |
 
 ### get
 
@@ -2168,7 +2168,7 @@ Opens a file. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise that returns the file descriptor of the file opened.|
 
 **Example**
 
@@ -2396,7 +2396,7 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the PixelMap of the thumbnail.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise that returns the PixelMap of the thumbnail.|
 
 **Example**
 
@@ -2649,7 +2649,7 @@ Obtains a JSON string consisting of the EXIF tags of the JPG image. This API use
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise used to return the EXIF data, in JSON strings.|
+| Promise&lt;string&gt; | Promise that returns the EXIF data, in JSON strings.|
 
 **Supported EXIF tags**
 
@@ -2741,7 +2741,7 @@ Obtains a JSON string consisting of the EXIF tags of the JPG image. This API use
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the EXIF data, in JSON strings.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback that returns the EXIF data, in JSON strings.|
 
 **Supported EXIF tags**
 
@@ -2853,7 +2853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -2908,7 +2908,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -3101,7 +3101,7 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;T&gt; | Promise used to return the first object in the result set.|
+| Promise&lt;T&gt; | Promise that returns the first object in the result set.|
 
 **Example**
 
@@ -3179,7 +3179,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise used to return the next object in the result set.|
+| Promise&lt;T&gt; | Promise that returns the next object in the result set.|
 
 **Example**
 
@@ -3255,7 +3255,7 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise used to return the last object in the result set.|
+| Promise&lt;T&gt; | Promise that returns the last object in the result set.|
 
 **Example**
 
@@ -3343,7 +3343,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise used to return the file asset obtained.|
+| Promise&lt;T&gt; | Promise that returns the file asset obtained.|
 
 **Error codes**
 
@@ -3424,7 +3424,7 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return an array of all file assets in the result set.|
+| Promise&lt;Array&lt;T&gt;&gt; | Promise that returns an array of all file assets in the result set.|
 
 **Example**
 
@@ -3454,14 +3454,15 @@ Provides APIs to manage albums.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name          | Type   | Read-Only  | Writable | Description  |
+| Name          | Type   | Read-Only  | Optional | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | Yes   | No   | Type of the album to obtain.   |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | Yes   | No  | Subtype of the album.   |
-| albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
+| albumName | string | No   | No  | Name of the album.<br>**NOTE**<br>It is writable for user albums but not for system albums.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
+| dateModified  | number | Yes   | No   |  Time when the album was modified.|
 | count | number | Yes   | No   |  Number of files in the album.|
-| coverUri | string | Yes   | Yes for a user album; no for a system album.    | URI of the cover file of the album.|
+| coverUri | string | No   | No    | URI of the cover file of the album.<br>**NOTE**<br>It is writable for user albums but not for system albums.|
 
 ### getPhotoAssets
 
@@ -3477,7 +3478,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching image and video assets.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
@@ -3532,13 +3533,13 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the image and video assets.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching image and video assets.|
 
 **Return value**
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise used to return the image and video assets obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise that returns the image and video assets obtained.|
 
 **Error codes**
 
@@ -4150,13 +4151,13 @@ This API will be deprecated. Use [Album](#album) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name          | Type   | Read-Only  | Writable  | Description     |
+| Name          | Type   | Read-Only  | Optional  | Description     |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumName | string | Yes   | Yes   | Name of the album.   |
+| albumName | string | No   | No   | Name of the album.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
 | dateModified | number | Yes   | No   | Date when the album was last modified.   |
 | count | number | Yes   | No   | Number of files in the album.|
-| coverUri | string | Yes   | No   | URI of the cover file of the album.|
+| coverUri | string | No   | No   | URI of the cover file of the album.|
 
 ### getPhotoAssets
 
@@ -4174,7 +4175,7 @@ This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-2) inste
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the image and video assets.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching image and video assets.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
@@ -4235,7 +4236,7 @@ This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-3) inste
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise:[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;| Promise used to return the image and video assets obtained.|
+| Promise:[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;| Promise that returns the image and video assets obtained.|
 
 **Error codes**
 
@@ -4473,7 +4474,7 @@ Enumerates the member types.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name |  Type|  Read-Only |  Writable |  Description |
+| Name |  Type|  Read-Only |  Optional |  Description |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | Yes| Yes| The member is a number.|
 | string |  string | Yes| Yes| The member is a string.|
@@ -4485,14 +4486,14 @@ Enumerates the type of changes to observe.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name |  Type|  Read-Only |  Writable |  Description|
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| deviceChange |  string | Yes| Yes|  Device change.|
-| albumChange |  string | Yes| Yes|  Album change.|
-| imageChange |  string | Yes| Yes|  Image change.|
-| audioChange |  string | Yes| Yes|  Audio change.|
-| videoChange |  string | Yes| Yes|  Video change.|
-| remoteFileChange |  string | Yes| Yes|  Remote file change.|
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------- | ---- | ----- |
+| deviceChange | string | Yes   | Device change.|
+| albumChange | string | Yes   | Album change.|
+| imageChange | string | Yes   | Image change.|
+| audioChange | string | Yes   | Audio change.|
+| videoChange | string | Yes   | Video change.|
+| remoteFileChange | string | Yes   | Remote file change.|
 
 ## PeerInfo
 
@@ -4500,7 +4501,7 @@ Defines information about a registered device.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
 
-| Name      | Type                      | Read-Only| Writable| Description            |
+| Name      | Type                      | Read-Only| Optional| Description            |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
 | deviceName | string                     | Yes  | No  | Name of the registered device.  |
 | networkId  | string                     | Yes  | No  | Network ID of the registered device.|
@@ -4658,10 +4659,10 @@ Defines the options for fetching file attributes.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name                  | Type               | Read-Only| Writable| Description                                             |
+| Name                  | Type               | Read-Only| Optional| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. Example:<br>fetchColumns: ['uri', 'title']|
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+| fetchColumns           | Array&lt;string&gt; | No  | No  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. Example:<br>fetchColumns: ['uri', 'title']|
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | No  | No  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions
 
@@ -4669,9 +4670,9 @@ Defines the options for fetching an album.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name                  | Type               | Read-Only| Writable| Description                                             |
+| Name                  | Type               | Read-Only| Optional| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | No  | No  | Predicates that specify the fetch criteria.|
 
 ## ChangeData<sup>10+</sup>
 
@@ -4679,11 +4680,11 @@ Defines the return value of the listener callback.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name   | Type                       | Read-Only| Writable| Description                                                        |
+| Name   | Type                       | Read-Only| Optional| Description                                                        |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](#notifytype10) | Yes  | No  | Notification type.                                      |
-| uris    | Array&lt;string&gt;         | Yes  | No  | Array of all file asset or album URIs with the same [NotifyType](#notifytype10).|
-| subUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.|
+| type    | [NotifyType](#notifytype10) | No  | No  | Notification type.                                      |
+| uris    | Array&lt;string&gt;         | No  | No  | Array of all file asset or album URIs with the same [NotifyType](#notifytype10).|
+| subUris | Array&lt;string&gt;         | No  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.|
 
 ## NotifyType<sup>10+</sup>
 
@@ -4710,5 +4711,3 @@ Enumerates the **DefaultChangeUri** subtypes.
 | DEFAULT_PHOTO_URI | file://media/Photo      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
 | DEFAULT_ALBUM_URI | file://media/PhotoAlbum | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
 | DEFAULT_AUDIO_URI | file://media/Audio      | Default **AudioAsset** URI. The **AudioAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
-
-<!--no_check-->

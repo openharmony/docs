@@ -1,4 +1,9 @@
 # Persisting Temporary Permissions (C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 ## When to Use
 
@@ -6,7 +11,7 @@ If an application accesses a file by using Picker, the permission for accessing 
 
 ## Available APIs
 
-For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file_share.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/capi-oh-file-share-h.md).
 
 | API| Description|
 | -------- | -------- |
