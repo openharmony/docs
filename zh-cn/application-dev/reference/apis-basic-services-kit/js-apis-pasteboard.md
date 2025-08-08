@@ -483,7 +483,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 | tag<sup>7+</sup> | string | 否 | 是 | 用户自定义标签，默认为空。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
 | localOnly<sup>7+</sup> | boolean | 否 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围，默认值为2。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围，默认值为CROSSDEVICE。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
