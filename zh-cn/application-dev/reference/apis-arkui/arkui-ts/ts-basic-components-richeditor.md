@@ -5263,7 +5263,7 @@ struct RichEditor_example {
 ![StyledString](figures/example23.gif)
 
 ### 示例25（获取光标相对组件位置的矩形）
-通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。
+从API version 18开始，该示例通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。
 
 ```ts
 // xxx.ets

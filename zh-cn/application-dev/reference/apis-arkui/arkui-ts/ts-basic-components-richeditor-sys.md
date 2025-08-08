@@ -51,7 +51,7 @@
 ## 示例
 
 ### 示例1（获取组件内容变化原因）
-从API version 20开始，该示例可以通过onWillChange接口返回的changeReason获取组件内容变化的原因。
+从API version 20开始，该示例通过onWillChange接口返回的changeReason获取组件内容变化的原因。
 
 ```ts
 @Entry
