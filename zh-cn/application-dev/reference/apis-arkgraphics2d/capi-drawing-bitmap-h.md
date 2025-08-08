@@ -1,5 +1,11 @@
 # drawing_bitmap.h
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
+
 ## 概述
 
 文件中定义了与位图相关的功能函数。

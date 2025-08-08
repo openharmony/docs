@@ -1,5 +1,11 @@
 # drawing_error_code.h
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
+
 ## 概述
 
 声明与绘图模块中的错误码相关的函数。
