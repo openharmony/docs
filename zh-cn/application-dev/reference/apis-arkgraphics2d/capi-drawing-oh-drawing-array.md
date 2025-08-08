@@ -1,5 +1,11 @@
 # OH_Drawing_Array
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
+
 ## 概述
 
 定义数组对象, 用于存储多个同类型对象。

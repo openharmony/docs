@@ -1,5 +1,11 @@
 # drawing_gpu_context.h
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
+
 ## 概述
 
 声明与绘图模块中的图形处理器上下文对象相关的函数。
