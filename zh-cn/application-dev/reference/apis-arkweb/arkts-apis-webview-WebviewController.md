@@ -3448,7 +3448,7 @@ getFavicon(): image.PixelMap
 
 | 类型                                   | 说明                            |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 
