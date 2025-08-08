@@ -1,4 +1,9 @@
 # @ohos.application.DistributedExtensionAbility (协同Extension)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao-->
+<!--SE: @gsxiaowen-->
+<!--TSE: @hanjiawei-->
 
 DistributedExtensionAbility模块提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。
 

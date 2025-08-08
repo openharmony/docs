@@ -1,4 +1,9 @@
 # Distributed Service Kit（分布式管理服务）
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao-->
+<!--SE: @gsxiaowen-->
+<!--TSE: @hanjiawei-->
 
 - [Distributed Service Kit简介](distributedservice-kit-intro.md)
 - [分布式设备管理](devicemanager-guidelines.md)
