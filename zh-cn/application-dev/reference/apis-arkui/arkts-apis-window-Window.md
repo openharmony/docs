@@ -250,7 +250,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> - 不建议在除自由悬浮窗口模式（window.WindowStatusType.FLOATING）外的其他窗口模式下使用。
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
 >
 > - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
 >
@@ -307,7 +307,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 不建议在除自由悬浮窗口模式（window.WindowStatusType.FLOATING）外的其他窗口模式下使用。
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
 >
 > - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
 >
@@ -367,7 +367,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 仅在自由悬浮窗口模式（window.WindowStatusType.FLOATING）下支持该操作。
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
 >
 > - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
 >
@@ -429,7 +429,7 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 
 > **说明：**
 >
-> - 仅在自由悬浮窗口模式（window.WindowStatusType.FLOATING）下支持该操作。
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
 >
 > - 在自由窗口模式下，窗口相对于屏幕移动；在非自由窗口模式下，窗口相对于父窗口移动。
 >
@@ -496,7 +496,7 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 仅在自由悬浮窗口模式（window.WindowStatusType.FLOATING）下支持该操作。
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
 >
 > - 该方法对非自由窗口模式下的主窗口无效。
 
@@ -557,7 +557,7 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 
 > **说明：**
 >
-> - 仅在自由悬浮窗口模式（window.WindowStatusType.FLOATING）下支持该操作。
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
 >
 > - 该方法对非自由窗口模式下的主窗口无效。
 
@@ -622,7 +622,7 @@ moveWindowToGlobalDisplay(x: number, y: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 仅在自由悬浮窗口模式（window.WindowStatusType.FLOATING）下支持该操作。
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
 >
 > - 该方法对非自由窗口模式下的主窗口无效。
 
@@ -772,7 +772,11 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-> **说明：** 非自由窗口模式下，仅自由悬浮窗口模式（window.WindowStatusType.FLOATING）支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -827,7 +831,11 @@ resize(width: number, height: number): Promise&lt;void&gt;
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-> **说明：** 非自由窗口模式下，仅自由悬浮窗口模式（window.WindowStatusType.FLOATING）支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -885,7 +893,11 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-> **说明：** 非自由窗口模式下，仅自由悬浮窗口模式（window.WindowStatusType.FLOATING）支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非自由窗口模式下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
