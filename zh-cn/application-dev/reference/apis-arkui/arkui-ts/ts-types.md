@@ -1,4 +1,9 @@
 # 基础类型定义
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 >**说明：**
 >
@@ -273,12 +278,12 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| x     | number | 水平方向横坐标。|
-| y     | number | 竖直方向纵坐标。|
-| width | number | 内容宽度大小。|
-| height | number | 内容高度大小。|
+| 名称      | 类型   | 只读 | 可选  | 说明 |
+| ------- | ------ | ----- | -------- | ---------- |
+| x     | number | 否 | 否 | 水平方向横坐标。|
+| y     | number |  否 | 否 | 竖直方向纵坐标。|
+| width | number | 否 | 否 | 内容宽度大小。|
+| height | number | 否 | 否 | 内容高度大小。|
 
 ## ResourceColor
 
@@ -327,7 +332,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
-| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。 |
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。<br>默认值：FontStyle.Normal             |
 
 ## Area<sup>8+</sup>
@@ -342,8 +347,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
-| width          | [Length](#length)      | 目标元素的宽度，作为返回值时，类型为number，单位vp。 |
-| height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
+| width          | [Length](#length)      | 目标元素的宽度。<br/>单位：vp |
+| height         | [Length](#length)      | 目标元素的高度。<br/>单位：vp |
 | position       | [Position](#position) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position) | 目标元素左上角相对页面左上角的位置。             |
 
@@ -359,8 +364,8 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
-| x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
-| y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+| x    | [Length](#length) | 否    | x轴坐标。<br/>单位：vp |
+| y    | [Length](#length) | 否    | y轴坐标。<br/>单位：vp |
 
 ## LocalizedPosition<sup>12+</sup>
 
@@ -601,11 +606,11 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | -- | -- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 是 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | 是 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | 是 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -635,19 +640,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | BOTTOM | 下方区域。 |
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
-
-## KeyboardAvoidMode<sup>12+</sup>枚举说明
-
-弹窗避让键盘时，避让模式的枚举类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                                             |
-| ------- | ---- | ------------------------------------------------ |
-| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
-| NONE    | 1    | 不避让软键盘。                                   |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -725,15 +717,16 @@ Callback<T,V = void> = (data: T) => V;
 
 hover事件的回调类型。
 
-type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
+type HoverCallback = (isHover: boolean, event: HoverEvent)=> void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                  | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
+| 参数名            | 类型            | 必填         | 说明                                       |
+| ------------- | ---------------------- | ---------------------| --------------------------------------- |
+| isHover | boolean |  是|是否处于hover状态，true表示处于hover状态，false表示不在hover状态。 |
+| event | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) |  是   |  获取鼠标或手写笔悬浮的位置坐标。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -758,9 +751,10 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| 参数名            | 类型               | 必填       | 说明                                       |
+| ------------- | ------------------   | -------------   | ---------------------- |
+| isExpanding | boolean | 是| 示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。 |
+| currentRatio | number | 是 | 触发回调时，组件可见面积与自身面积的比值。 |
 
 ## DividerStyleOptions<sup>12+</sup>
 
@@ -925,11 +919,11 @@ clearPreviewText(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称   | 类型    |     只读    |     可选    |     说明    |
+| -------- | ------- | ----------- | ----------- | ----------- |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 否   | 否 | 设置文本装饰线类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 是 | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 是 | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## SelectionOptions<sup>12+</sup>对象说明
 
@@ -975,10 +969,10 @@ setTextSelection选中文字时的配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名              | 类型    | 描述                                                         |
-| ------------------- | ------- | ------------------------------------------------------------ |
-| thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
-| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+| 名称   | 类型    |     只读    |     可选    |     说明    |
+| -------- | ------- | ----------- | ----------- | ----------- |
+| thresholdPercentage | number  | 否 | 是 | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
+| highlightBorder     | boolean | 否  | 是 | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
 ## ChainWeightOptions<sup>14+</sup>对象说明
 
@@ -1007,6 +1001,16 @@ setTextSelection选中文字时的配置。
 | --------- | ------ | ---- | ---- | ---------- |
 | colorMode | string | 是   | 否   | 颜色模式。 |
 | fontScale | number | 是   | 否   | 字体缩放。 |
+
+## AccessibilityOptions<sup>14+</sup>对象说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 类型    | 只读 | 可选 | 说明                                                         |
+| ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| accessibilityPreferred | boolean | 否 | 是   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
 
 ## LayoutPolicy<sup>15+</sup>
 

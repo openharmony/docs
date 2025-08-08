@@ -79,7 +79,7 @@ appendChild(node: RenderNode): void
 
 | 参数名 | 类型                      | 必填 | 说明                   |
 | ------ | ------------------------- | ---- | ---------------------- |
-| node   | [RenderNode](#rendernode) | 是   | 需要添加的RenderNode。 |
+| node   | [RenderNode](#rendernode-1) | 是   | 需要添加的RenderNode。 |
 
 **示例：**
 
@@ -136,8 +136,8 @@ insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 
 | 参数名  | 类型                                        | 必填 | 说明                                                                         |
 | ------- | ------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [RenderNode](#rendernode)                   | 是   | 需要添加的子节点。                                                           |
-| sibling | [RenderNode](#rendernode)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
+| child   | [RenderNode](#rendernode-1)                   | 是   | 需要添加的子节点。                                                           |
+| sibling | [RenderNode](#rendernode-1)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **示例：**
 
@@ -202,7 +202,7 @@ removeChild(node: RenderNode): void
 
 | 参数名 | 类型                      | 必填 | 说明               |
 | ------ | ------------------------- | ---- | ------------------ |
-| node   | [RenderNode](#rendernode) | 是   | 需要删除的子节点。 |
+| node   | [RenderNode](#rendernode-1) | 是   | 需要删除的子节点。 |
 
 **示例：**
 ```ts
@@ -328,7 +328,7 @@ getChild(index: number): RenderNode | null
 
 | 类型                              | 说明                                                       |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 子节点。若该RenderNode不包含所查询的子节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 子节点。若该RenderNode不包含所查询的子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -402,7 +402,7 @@ getFirstChild(): RenderNode | null
 
 | 类型                              | 说明                                                       |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 首个子节点。若该RenderNode不包含子节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 首个子节点。若该RenderNode不包含子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -472,7 +472,7 @@ getNextSibling(): RenderNode | null
 
 | 类型                              | 说明                                                                                   |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 当前RenderNode的下一个同级节点。若该RenderNode不包含下一个同级节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 当前RenderNode的下一个同级节点。若该RenderNode不包含下一个同级节点，则返回空对象null。 |
 
 **示例：**
 ```ts
@@ -517,7 +517,7 @@ struct Index {
         .onClick(() => {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
-          if (child === null || nextSibling === null) {
+          if (nextSibling === null || child === null) {
             console.log('the child or nextChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
@@ -543,7 +543,7 @@ getPreviousSibling(): RenderNode | null
 
 | 类型                              | 说明                                                                                   |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 当前RenderNode的上一个同级节点。若该RenderNode不包含上一个同级节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 当前RenderNode的上一个同级节点。若该RenderNode不包含上一个同级节点，则返回空对象null。 |
 
 **示例：**
 ```ts

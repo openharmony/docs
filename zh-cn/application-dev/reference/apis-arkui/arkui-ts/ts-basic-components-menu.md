@@ -67,7 +67,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。<br/>默认值：'#E5000000' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。 |
 
 ### radius<sup>10+</sup>
 
@@ -370,7 +370,6 @@ struct Index {
         content: "排序方式",
         builder: (): void => this.SubMenu(),
       })
-        .borderRadius('300.00vp')
       MenuItem({
         symbolStartIcon: this.startIconModifier,
         content: "查看方式",

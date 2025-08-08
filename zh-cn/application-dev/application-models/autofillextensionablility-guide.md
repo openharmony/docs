@@ -341,7 +341,7 @@
 @Entry
 @Component
 struct Index {
-  loginBtnColor: String = '#bfdbf9';
+  loginBtnColor: string = '#bfdbf9';
 
   build() {
     Column() {

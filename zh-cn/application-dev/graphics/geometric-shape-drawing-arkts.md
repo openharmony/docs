@@ -1,4 +1,9 @@
 # 几何形状绘制（ArkTS）
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 
 ## 场景介绍
@@ -83,7 +88,7 @@ pen.setStrokeWidth(20);
 canvas.attachPen(pen);
 // 创建矩形对象
 const rect: common2D.Rect = {left:100, top:200, right:1000, bottom:600};
-// 绘制矩形
+// 绘制圆弧
 canvas.drawArc(rect, 0, 180);
 // 去除描边效果
 canvas.detachPen();

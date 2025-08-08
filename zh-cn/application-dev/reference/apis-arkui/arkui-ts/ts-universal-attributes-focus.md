@@ -40,6 +40,10 @@ tabIndex(index: number): T
 
 自定义组件tab键走焦能力。当组件未设置tabIndex时，默认按照预设的焦点移动规则进行焦点移动。
 
+>  **说明：**
+>
+>  - tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextfocus](#nextfocus18)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -170,7 +174,7 @@ requestFocus(value: string): boolean
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
 | value | string | 是   | 目标组件使用接口key(value: string)或id(value: string)绑定的字符串。 |
 

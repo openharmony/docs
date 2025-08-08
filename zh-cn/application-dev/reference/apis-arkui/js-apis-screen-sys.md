@@ -1177,11 +1177,11 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称     | 类型 | 可读 | 可写 | 说明                |
+| 名称     | 类型 | 只读 | 可选 | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | 是   | 是   | 屏幕的id，该参数应为整数。          |
-| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标，该参数应为整数。 |
-| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标，该参数应为整数。 |
+| screenId | number   | 否   | 否   | 屏幕的id，该参数应为整数。          |
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标，该参数应为整数。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标，该参数应为整数。 |
 
 ## MultiScreenMode<sup>13+</sup>
 
@@ -1200,11 +1200,11 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名    | 类型     | 可读 | 可写  | 说明                |
+| 参数名    | 类型     | 只读 | 可选  | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
-| id       | number   | 是   | 是   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
-| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
-| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
+| id       | number   | 否   | 否   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
 
 ## VirtualScreenOption
 
@@ -1212,13 +1212,13 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                       |
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
 | --------- | -------- | ---- | ---- |--------------------------|
-| name      | string   | 是   | 是   | 指定虚拟屏幕的名称。               |
-| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为px，该参数应为整数。 |
-| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为px，该参数应为整数。 |
-| density   | number   | 是   | 是   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
-| surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
+| name      | string   | 否   | 否   | 指定虚拟屏幕的名称。               |
+| width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为整数。 |
+| height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为整数。 |
+| density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
+| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId。        |
 
 ## screen.makeMirrorWithRegion<sup>19+</sup>
 
@@ -1695,12 +1695,12 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称        | 类型 | 可读 | 可写 | 说明                                               |
+| 名称        | 类型 | 只读 | 可选 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数为整数。 | 
-| width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数为整数。                                |
-| height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数为整数。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数为整数。                                     |
+| id          | number   | 否   | 否   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数为整数。 | 
+| width       | number   | 否   | 否   | 屏幕的宽度，单位为px，该参数为整数。                                |
+| height      | number   | 否   | 否   | 屏幕的高度，单位为px，该参数为整数。                                |
+| refreshRate | number   | 否   | 否   | 屏幕的刷新率，单位为hz，该参数为整数。                                     |
 
 ## Rect<sup>19+</sup>
 
@@ -1708,9 +1708,9 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称        | 类型 | 可读 | 可写 | 说明                                               |
+| 名称        | 类型 | 只读 | 可选 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| left    | number   | 是   | 是   | 矩形左上角顶点的X轴坐标，单位为px，该参数应为整数。 |
-| top     | number   | 是   | 是   | 矩形左上角顶点的Y轴坐标，单位为px，该参数应为整数。 |
-| width   | number   | 是   | 是   | 矩形的宽度，单位为px，该参数应为整数。             |
-| height  | number   | 是   | 是   | 矩形的高度，单位为px，该参数应为整数。             |
+| left    | number   | 否   | 否   | 矩形左上角顶点的X轴坐标，单位为px，该参数应为整数。 |
+| top     | number   | 否   | 否   | 矩形左上角顶点的Y轴坐标，单位为px，该参数应为整数。 |
+| width   | number   | 否   | 否   | 矩形的宽度，单位为px，该参数应为整数。             |
+| height  | number   | 否   | 否   | 矩形的高度，单位为px，该参数应为整数。             |

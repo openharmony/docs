@@ -12,7 +12,7 @@
     - advertising<!--ads-advertising-->
       - [advertisement (广告内容)](js-apis-inner-advertising-advertisement.md)
 - ArkTS组件<!--ads-comp-->
-  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](js-apis-adcomponent.md)
+  - [@ohos.advertising.AdComponent (广告展示组件)](js-apis-adcomponent.md)
   - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)
 - 错误码<!--ads-arkts-errcode-->
   - [广告服务框架错误码](errorcode-ads.md)

@@ -43,7 +43,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
     #include <native_buffer/native_buffer.h>
     #include <fcntl.h>
-    #include "string"
+    #include <string>
     #include "unistd.h"
     ```
 
@@ -60,8 +60,6 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数，音频信息和视频信息的具体参数配置可参考[详细说明](#详细说明)。
 
     ```c++
-    OH_AVScreenCaptureConfig config;
-
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
         .innerCapInfo = innerCapInfo,
@@ -195,7 +193,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口。
+    vector<int32_t> missionIds = {60, 61}; // 表示期望同时录制60、61号窗口。
     config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
     config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
     ```
@@ -447,7 +445,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 #include <multimedia/player_framework/native_avbuffer.h>
 #include <native_buffer/native_buffer.h>
 #include <fcntl.h>
-#include "string"
+#include <string>
 #include "unistd.h"
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
@@ -600,8 +598,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 获取数组长度。
     uint32_t array_length;
     napi_get_array_length(env, args[0], &array_length);
-    // 读初窗口id。
-    for (int32_t i = 0; i < array_length; i++) {
+    // 读出窗口id。
+    for (uint32_t i = 0; i < array_length; i++) {
         napi_value temp;
         napi_get_element(env, args[0], i, &temp);
         uint32_t tempValue;

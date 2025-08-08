@@ -1138,9 +1138,11 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 类型                    | 说明                                                      |
-| ----------------------- | --------------------------------------------------------- |
-| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 非Sendable类型Album。 |
+**返回值：**
+
+| 类型                         | 说明                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 返回非Sendable类型的Album。 |
 
 **错误码：**
 

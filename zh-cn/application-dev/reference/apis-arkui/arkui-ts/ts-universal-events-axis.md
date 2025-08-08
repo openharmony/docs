@@ -8,7 +8,7 @@
 
 ## onAxisEvent
 
-onAxisEvent(event: (event: AxisEvent) => void): T
+onAxisEvent(event: Callback\<AxisEvent>): T
 
 鼠标滚轮滚动或触控板双指移动触发该回调。
 
@@ -22,7 +22,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [AxisEvent](#axisevent) | 是   | 获得[AxisEvent](#axisevent)对象。 |
+| event  | Callback\<[AxisEvent](#axisevent)> | 是   | 获得[AxisEvent](#axisevent)对象。 |
 
 **返回值：**
 
@@ -50,7 +50,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | displayX            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
 | displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
 | scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
-| propagation         | Callback\<void>        | 是   | 否   | 激活事件冒泡。   |
+| propagation         | Callback\<void>        | 是   | 否   | 激活[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。   |
 
 ### getHorizontalAxisValue
 

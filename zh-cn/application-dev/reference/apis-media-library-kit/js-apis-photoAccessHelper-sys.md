@@ -8339,10 +8339,9 @@ static getCustomRecordManagerInstance(context: Context): PhotoAssetCustomRecordM
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example(context: Context) {
+async function example(context: Context) {
   console.info('getCustomRecordManagerInstance');
   try {
-    let context = getContext(this);
     let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   } catch(err) {
     console.error(`getCustomRecordManagerInstance failed with error: ${err.code}, ${err.message}`);
@@ -8387,9 +8386,8 @@ createCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('createCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let crArray:Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:1,lcdJumpCount:1}
@@ -8440,9 +8438,8 @@ getCustomRecords(optionCheck: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsse
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('getCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -8496,9 +8493,8 @@ setCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('setCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let UpdateArray: Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:2,lcdJumpCount:3},
@@ -8550,9 +8546,8 @@ removeCustomRecords(optionCheck: FetchOptions): Promise&lt;void&gt;
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('removeCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -8603,9 +8598,8 @@ addShareCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addShareCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addShareCount(ids).then((failIds) => {
@@ -8651,9 +8645,8 @@ addLcdJumpCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addLcdJumpCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addLcdJumpCount(ids).then((failIds) => {

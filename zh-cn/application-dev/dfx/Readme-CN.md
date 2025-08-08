@@ -10,12 +10,13 @@
   - [AddrSanitizer（地址越界）检测](address-sanitizer-guidelines.md)
   - [AppFreeze（应用冻屏）检测](appfreeze-guidelines.md)
   - [任务超时检测](apptask-timeout-guidelines.md)
+  - [应用查杀检测](appkilled-guidelines.md)
 - 日志打印<!--hilog-dev-->
   - [使用HiLog打印日志（ArkTS）](hilog-guidelines-arkts.md)
   - [使用HiLog打印日志（C/C++）](hilog-guidelines-ndk.md)
 - 事件订阅<!--hiappevent-->
   - [HiAppEvent介绍](hiappevent-intro.md)
-  - 使用Hiappevent订阅事件<!--event-subscription-->
+  - 使用HiAppEvent订阅事件<!--event-subscription-->
     - [事件订阅简介](event-subscription-overview.md)
     - [事件订阅（ArkTS）](hiappevent-watcher-app-events-arkts.md)
     - [事件订阅（C/C++）](hiappevent-watcher-app-events-ndk.md)

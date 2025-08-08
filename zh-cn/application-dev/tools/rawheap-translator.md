@@ -1,244 +1,185 @@
 # rawheap-translator工具
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @wanghuan2025-->
+<!--SE: @wanghuan2025-->
+<!--TSE: @kir175;@zsw_zhushiwei-->
 
 ## 使用场景
 
-为方便开发者定位问题，当前应用在ArkTS内存OOM（Out of Memory）时会自动进行Heapdump（由于内存限制，并非总是能够成功完成Heapdump），虚拟机会扫描并保存当前堆上的所有对象信息，生成rawheap文件。该文件以二进制形式保存，开发者可从SDK中toolchains路径下获取rawheap_translator工具进行解析，转换成heapsnapshot文件，可通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器打开查看。
+为方便开发者定位问题，应用在ArkTS内存OOM（Out of Memory）时会自动进行HeapDump。此操作会将虚拟机当前堆上的所有对象信息保存在后缀为.rawheap的二进制文件中。开发者可使用rawheap_translator工具解析.rawheap文件，生成.heapsnapshot文件。该文件可通过DevEco Studio的[Heap Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器的开发者工具中的内存工具导入并查看。
 
 ## 使用指导
 
 ### 工具获取
 
-当前工具适配了OHOS、Windows、Linux、MacOS平台，获取方法如下：
+此工具支持OHOS、Windows、Linux和MacOS平台，获取方法如下：
 
-- 设备内获取：/bin/rawheap_translator，可在oh设备使用；
-- SDK中获取：不同平台工具在SDK路径下sdk/default/openharmony/toolchains目录下获取rawheap_translator.exe，可在对应平台下使用。
+- 设备内获取：/bin/rawheap_translator，仅适用于OHOS设备。
+- SDK中获取：sdk/default/openharmony/toolchains/rawheap_translator，适用于各平台。
 
 ### 环境配置
 
-- Windows环境变量设置方法
+对于OHOS平台，由于其已在系统路径下内置了rawheap_translator工具，因此可以在终端中直接使用此工具。
 
-  在此电脑 > 属性 > 高级系统设置 > 高级 > 环境变量 > Path > 编辑 中，将rawheap_translator.exe所在路径添加到 Path，环境变量配置完成后，请重启电脑，即可在cmd窗口执行rawheap_translator命令。
+对于非OHOS平台，建议将从SDK中获取的rawheap_translator工具放置在稳定的路径下，并将该路径配置为系统环境变量。这样可以在终端中直接使用工具，无需每次指定路径。
 
-- MacOS环境变量设置方法
+在不同系统中，环境变量的配置方法存在差异。以下提供一些配置示例，供开发者参考。
 
-  1）打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
+- Windows环境变量设置方法（以Windows 10某版本为例）。
 
-  echo $SHELL
+  1. 右键点击“此电脑”选择“属性”选项。
+  2. 在弹出的窗口中，找到并点击“高级系统设置”标签。
+  3. 在弹出的窗口中，找到并点击“高级”页签下的“环境变量”按钮。
+  4. 在弹出的窗口中，找到并双击“系统变量”框中的“Path”变量。
+  5. 在弹出的窗口中，找到并点击“新建”按钮。
+  6. 将本地存放rawheap_translator工具的文件路径填至新建的文本框中。
+  7. 点击“确定”按钮关闭所有弹出的窗口。
+  8. 重启终端。
 
-  a. 如果输出结果为/bin/bash，则执行以下命令，打开.bash_profile文件。
+- MacOS环境变量设置方法（以MacOS 15某版本为例）。
 
-  vi ~/.bash_profile
+  1. 打开终端工具，执行以下命令。
 
-  b. 如果输出结果为/bin/zsh，则执行以下命令，打开.zshrc文件。
+      ```bash
+      echo $SHELL
+      ```
 
-  vi ~/.zshrc
+  2. 根据步骤1的返回结果做如下对应处理。
 
-  2）单击字母“i”，进入Insert模式。
+      a. 如果返回结果为`/bin/bash`，则执行以下命令：
 
-  3）输入以下内容，添加PATH信息。
+      ```bash
+      echo 'export PATH=$PATH:/path/to/your/rawheap_translator' >> ~/.bash_profile
+      source ~/.bash_profile
+      ```
 
-  export PATH=$PATH:/path/to/your/rawheap_translator
+      b. 如果返回结果为`/bin/zsh`，则执行以下命令：
 
-  4）编辑完成后，单击Esc键，退出编辑模式，然后输入“:wq”，单击Enter键保存。
-
-  5）执行以下命令，使配置的环境变量生效。
-
-  a. 如果步骤a时打开的是.bash_profile文件，请执行如下命令：
-
-  source ~/.bash_profile
-
-  b. 如果步骤a时打开的是.zshrc文件，请执行如下命令：
-
-  source ~/.zshrc
-
-  6）环境变量配置完成后，重启电脑。
-
+      ```bash
+      echo 'export PATH=$PATH:/path/to/your/rawheap_translator' >> ~/.zshrc
+      source ~/.zshrc
+      ```
 
 ## 使用方法
 
 ### 解析命令
 ```bash
-rawheap_translator <rawheap_file> [heapsnapshot_file]
+rawheap_translator [rawheap_file] [heapsnapshot_file]
 ```
 ### 参数列表
 
-| 选项 | 描述 | 举例 |
-| -------- | ----------------- | ---------------------------------- |
-| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录（如：D:\temp\rawheap）下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
-| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径（如：D:\temp）下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
-> **注意：**
->
-> [heapsnapshot_file] 需要指向具有读写权限的路径，如果未指定参数，需要保证当前执行cmd命令时所在目录具有读写权限。<br>
-> 以windows为例:
-> D:\> ...\rawheap_translator.exe ...\example.rawheap 命令中，需要保证“D:\”路径具有读写权限。
+| 选项 | 必选 | 描述 |
+| -------- | --- | ----------------- |
+| [rawheap_file] | 是 | 需要解析的应用OOM时生成的.rawheap文件路径。 |
+| [heapsnapshot_file] | 否 | 解析生成的heapsnapshot文件路径，路径必须具有读写权限。<br>参数缺省时，默认为当前执行命令的路径。<br>参数给定时，文件的后缀名必须是heapsnapshot。
 
 ## 解析命令示例
 
-### OHOS设备中解析示例
+### 解析示例
 
-通过hdc shell命令拉起解析工具，设备内工具路径：/bin/rawheap_translator，推荐指定生成heapsnapshot文件路径在/data/local/tmp下，其他路径可能面临没有写权限问题。
+
+OHOS设备中解析示例
+OHOS设备内工具路径：/bin/rawheap_translator，推荐指定生成heapsnapshot文件路径为/data/local/tmp，其他路径可能面临没有写权限问题。
 ```bash
-> hdc shell /bin/rawheap_translator /data/log/reliability/resource_leak/memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap /data/local/tmp/myapplication-7979-7979.heapsnapshot
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[INFO] Meta::SetObjTypeBitFieldOffset: offset=72
-[INFO] Meta::SetNativatePointerBindingSizeOffset: offset=32
-[INFO] RawHeapTranslate::ReadSectionInfo: sectionSize=6
-[INFO] Rawheap version is 
-[INFO] RawHeapTranslate::Translate: start to read objects
-[INFO] RawHeapTranslate::ReadObjTable: read object, cnt=96432
-[INFO] RawHeapTranslate::Translate: read objects finish!
-[INFO] RawHeapTranslate::ReadStringTable: read string table, cnt=11208
-[INFO] RawHeapTranslate::ReadRootTable: find root obj 6244
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: start to build edges!
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: build edges finish!
-[INFO] Main: start to serialize!
-[INFO] HeapSnapshotJSONSerializer::Serialize begin
-[INFO] HeapSnapshotJSONSerializer::Serialize exit
-[INFO] Main: translate success! file save to /data/local/tmp/myapplication-7979-7979.heapsnapshot
+> /bin/rawheap_translator /data/log/reliability/resource_leak/memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap /data/local/tmp/myapplication-7979-7979.heapsnapshot
 ```
-
-### Windows系统中解析示例
+Windows系统中解析示例
 打开cmd并进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
 ```bash
 > rawheap_translator.exe memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[INFO] Meta::SetObjTypeBitFieldOffset: offset=72
-[INFO] Meta::SetNativatePointerBindingSizeOffset: offset=32
-[INFO] RawHeapTranslate::ReadSectionInfo: sectionSize=6
-[INFO] Rawheap version is 
-[INFO] RawHeapTranslate::Translate: start to read objects
-[INFO] RawHeapTranslate::ReadObjTable: read object, cnt=96432
-[INFO] RawHeapTranslate::Translate: read objects finish!
-[INFO] RawHeapTranslate::ReadStringTable: read string table, cnt=11208
-[INFO] RawHeapTranslate::ReadRootTable: find root obj 6244
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: start to build edges!
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: build edges finish!
-[INFO] Main: start to serialize!
-[INFO] HeapSnapshotJSONSerializer::Serialize begin
-[INFO] HeapSnapshotJSONSerializer::Serialize exit
-[INFO] Main: translate success! file save to myapplication-7979-7979.heapsnapshot
 ```
-
-### Linux系统中解析示例
+Linux系统中解析示例
 进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
 ```bash
 > ./rawheap_translator memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[INFO] Meta::SetObjTypeBitFieldOffset: offset=72
-[INFO] Meta::SetNativatePointerBindingSizeOffset: offset=32
-[INFO] RawHeapTranslate::ReadSectionInfo: sectionSize=6
-[INFO] Rawheap version is 
-[INFO] RawHeapTranslate::Translate: start to read objects
-[INFO] RawHeapTranslate::ReadObjTable: read object, cnt=96432
-[INFO] RawHeapTranslate::Translate: read objects finish!
-[INFO] RawHeapTranslate::ReadStringTable: read string table, cnt=11208
-[INFO] RawHeapTranslate::ReadRootTable: find root obj 6244
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: start to build edges!
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: build edges finish!
-[INFO] Main: start to serialize!
-[INFO] HeapSnapshotJSONSerializer::Serialize begin
-[INFO] HeapSnapshotJSONSerializer::Serialize exit
-[INFO] Main: translate success! file save to myapplication-7979-7979.heapsnapshot
 ```
-
-### MacOS系统中解析示例
+MacOS系统中解析示例
 打开终端并进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
 ```bash
 > rawheap_translator memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[INFO] Meta::SetObjTypeBitFieldOffset: offset=72
-[INFO] Meta::SetNativatePointerBindingSizeOffset: offset=32
-[INFO] RawHeapTranslate::ReadSectionInfo: sectionSize=6
-[INFO] Rawheap version is 
-[INFO] RawHeapTranslate::Translate: start to read objects
-[INFO] RawHeapTranslate::ReadObjTable: read object, cnt=96432
-[INFO] RawHeapTranslate::Translate: read objects finish!
-[INFO] RawHeapTranslate::ReadStringTable: read string table, cnt=11208
-[INFO] RawHeapTranslate::ReadRootTable: find root obj 6244
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: start to build edges!
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: build edges finish!
-[INFO] Main: start to serialize!
-[INFO] HeapSnapshotJSONSerializer::Serialize begin
-[INFO] HeapSnapshotJSONSerializer::Serialize exit
-[INFO] Main: translate success! file save to myapplication-7979-7979.heapsnapshot
+```
+参考输出
+```bash
+[INFO ] ParseVersion            current metadata version is 1.0.0
+[INFO ] ParseTypeEnums          total JSType count 214
+[INFO ] ParseTypeList           total metadata count 220
+[INFO ] SetBitField             set BitField offset 8
+[INFO ] SetBitField             set BindingSize offset 32
+[INFO ] SetBitField             set Length offset 8
+[INFO ] SetBitField             set Data offset 16
+[INFO ] ReadVersion             current rawheap version is 1.0.0
+[INFO ] RawHeap                 start to translate rawheap
+[INFO ] ReadRootTable           root node count 6244
+[INFO ] ReadStringTable         string table count 11208
+[INFO ] ReadObjTable            section objects count 96432
+[INFO ] Translate               success
+[INFO ] Serialize               start to serialize
+[INFO ] Translate               file save to /data/local/tmp/myapplication-7979-7979.heapsnapshot
 ```
 
 ## 文件参考规格
 
-rawheap文件大小、生成耗时，与当前ArkTS堆内存大小、存活对象数量强正相关（如下表所示），因此OOM场景下当ArkTS堆内存占用较大、存活对象数量较多时，生成的rawheap文件耗时会较长，文件也会较大。开发者可订阅[资源泄漏事件](../dfx/hiappevent-watcher-resourceleak-events.md)，自定义事件处理逻辑。
+rawheap文件的大小和生成耗时与当前ArkTS堆内存大小及存活对象数量呈强正相关。当ArkTS堆内存占用较大、存活对象数量较多时，生成的rawheap文件会更大，耗时也会更长。开发者可以订阅[资源泄漏事件](../dfx/hiappevent-watcher-resourceleak-events.md)，自定义事件处理逻辑。
 
-为了方便开发者判断上报rawheap文件到服务器所带来的性能和流量开销，下表还给出了当前rawheap文件被压缩后的文件大小，一般压缩比是10:1，不同压缩工具略有差异，仅供开发者参考。
+从API version 20开始，虚拟机支持两种规格的HeapDump。
+| 规格 | 特点 |
+| :--- | :--- |
+| TRIM_LEVEL_1 | dump速度快，生成的rawheap文件大。<br>API version 20之前版本，虚拟机默认为TRIM_LEVEL_1规格。 |
+| TRIM_LEVEL_2 | dump速度稍慢，生成的rawheap文件大小相比TRIM_LEVEL_1缩小40%左右。 |
 
-| ArkTS堆内存（MB） | 存活对象数量（个） | 生成耗时（s） | rawheap文件（MB） | 压缩后文件（MB） |
-| :---------: | :--------------: | :-----------: | :----------: | :----------: |
-| 11.00 | 99812 |  0.08 | 7.00 | 0.77 |
-| 25.30 | 250059 |  0.17 | 19.00 | 1.90 |
-| 50.40 | 496134 |  0.29 | 38.00 | 3.55 |
-| 72.00 | 759037 |  0.49 | 54.00 | 4.77 |
-| 104.00 | 47232 |  0.14 | 102.00 | 8.25 |
-| 130.00 | 1308804 |  0.92 | 100.00 | 10.40 |
-| 152.00 | 1493272 |  1.12 | 117.00 | 11.50 |
-| 187.00 | 1838800 |  1.50 | 144.00 | 13.00 |
-| 354.00 | 50704 |  0.31 | 352.00 | 27.25 |
-| 643.00 | 7772538 |  2.63 | 444.00 | 51.00 |
-| 750.00 | 6163456 |  3.64 | 605.00 | 59.55 |
+为了方便开发者了解上报rawheap文件到服务器所带来的性能和流量开销，下表给出了在不同的堆大小下，不同规格的HeapDump生成的rawheap文件大小、生成耗时、解析耗时的示例，仅供开发者参考。
+
+|规格|堆大小（MB）|rawheap文件（MB）|生成耗时（s）|解析耗时（s）|
+|:---|:---|:---|:---|:---|
+| TRIM_LEVEL_1 | 690 | 629 | 2.64 | 14 |
+| TRIM_LEVEL_2 | 690 | 376 | 3.47 | 14 |
+| TRIM_LEVEL_1 | 653 | 618 | 2.63 | 13 |
+| TRIM_LEVEL_2 | 653 | 347 | 3.36 | 13 |
+| TRIM_LEVEL_1 | 576 | 563 | 3.63 | 15 |
+| TRIM_LEVEL_2 | 576 | 294 | 4.53 | 15 |
 
 
 ## 常见问题
-### 工具版本过低
-工具解析时，提示：The rawheap file's version 1.1.0 is not matched the current rawheap translator, please use the newest version of the translator!
+### 工具版本不匹配
+**问题现象**<br>
+工具解析时会提示：原始堆文件的版本 2.0.0 与当前的原始堆文件翻译器不匹配，请使用最新版本的翻译器。
 ```bash
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[ERRO] The rawheap file's version 1.1.0 is not matched the current rawheap translator, please use the newest version of the translator!
+[INFO ] ParseVersion            current metadata version is 1.0.0
+[INFO ] ParseTypeEnums          total JSType count 214
+[INFO ] ParseTypeList           total metadata count 220
+[INFO ] SetBitField             set BitField offset 8
+[INFO ] SetBitField             set BindingSize offset 32
+[INFO ] SetBitField             set Length offset 8
+[INFO ] SetBitField             set Data offset 16
+[INFO ] ReadVersion             current rawheap version is 2.0.0
+[ERROR] ParseRawheap            The rawheap file's version 2.0.0 is not matched the current rawheap translator, please use the newest version of the translator!
 ```
-原因：当前工具版本低于rawheap文件版本，升级工具可解决。
+**原因**<br>
+当前工具版本低于rawheap文件版本。<br>
+**解决措施**<br>
+升级工具版本至2.0.0可解决此问题。
 
-### 文件没有权限
-工具解析时，提示：FileStream: open file failed!
+### 文件无法打开
+**问题现象**<br>
+工具解析时，提示：open file failed
 ```bash
-[INFO] Main: start to translate rawheap!
-[INFO] Meta::ParseVersion: current metadata version is 1.0.0
-[INFO] Meta::ParseTypeEnums: parse type enums, size=213
-[INFO] Meta::ParseTypeList: parse type list, obj size = 214
-[INFO] Meta::ParseTypeLayout: parse type layout, size=1
-[INFO] Meta::ParseTypeLayout: parse type desc, size=4
-[INFO] Meta::SetObjTypeBitFieldOffset: offset=72
-[INFO] Meta::SetNativatePointerBindingSizeOffset: offset=32
-[INFO] RawHeapTranslate::ReadSectionInfo: sectionSize=6
-[INFO] Rawheap version is 
-[INFO] RawHeapTranslate::Translate: start to read objects
-[INFO] RawHeapTranslate::ReadObjTable: read object, cnt=96432
-[INFO] RawHeapTranslate::Translate: read objects finish!
-[INFO] RawHeapTranslate::ReadStringTable: read string table, cnt=11208
-[INFO] RawHeapTranslate::ReadRootTable: find root obj 6244
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: start to build edges!
-[INFO] RawHeapTranslate::FillNodesAndBuildEdges: build edges finish!
-[INFO] Main: start to serialize!
-[ERRO] FielStream: open file failed
+[INFO ] ParseVersion            current metadata version is 1.0.0
+[INFO ] ParseTypeEnums          total JSType count 214
+[INFO ] ParseTypeList           total metadata count 220
+[INFO ] SetBitField             set BitField offset 8
+[INFO ] SetBitField             set BindingSize offset 32
+[INFO ] SetBitField             set Length offset 8
+[INFO ] SetBitField             set Data offset 16
+[INFO ] ReadVersion             current rawheap version is 1.0.0
+[INFO ] RawHeap                 start to translate rawheap
+[INFO ] ReadRootTable           root node count 6244
+[INFO ] ReadStringTable         string table count 11208
+[INFO ] ReadObjTable            section objects count 96432
+[INFO ] Translate               success
+[ERROR] Initialize              open file failed
 ```
-原因：生成文件路径下没有写文件权限，指定到有写权限路径下可解决。参考路径：/data/local/tmp。
+**原因**<br>
+定的生成文件路径没有写入权限。<br>
+**解决措施**<br>
+更改到有写权限的路径可以解决。

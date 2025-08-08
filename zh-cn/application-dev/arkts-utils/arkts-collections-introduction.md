@@ -42,7 +42,8 @@ struct Index {
           let lock = new ArkTSUtils.locks.AsyncLock();
           let arr = collections.Array.create<number>(1, 0);
           let count = 1000;
-          while (count--) {
+          let num = count;
+          while (num--) {
             taskGroup.addTask(add, arr, lock);
           }
           taskpool.execute(taskGroup).then(() => {
@@ -77,7 +78,7 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | -------- | -------- | -------- | -------- |
 | length: number | readonly length: number | 是 | 为了防止undefined扩散，不允许设置length。 |
 | new(arrayLength ?: number): any[] | static create(arrayLength: number, initialValue: T): Array | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值。 |
-| new &lt;T&gt;(arrayLength: number): T[] | constructor() | 否 | / |
+| new &lt;T&gt;(arrayLength: number): T[] | constructor() | 否 | 构造时传入的数据必须为Sendable类型，否则将导致编译错误。 |
 | new &lt;T&gt;(...items: T[]): T[] | constructor(first: T, ...left: T[]) | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值，继承场景下，无法调用该函数进行对象构造。 |
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): T[] | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): Array&lt;T&gt; | 否 | / |
 | from&lt;T, U&gt;(iterable: Iterable&lt;T&gt; \| ArrayLike&lt;T&gt;, mapfn: (v: T, k: number) => U, thisArg?: any): U[] | static from&lt;U, T&gt;(arrayLike: ArrayLike&lt;U&gt; \| Iterable&lt;U&gt;, mapFn: ArrayFromMapFn&lt;U, T&gt;): Array&lt;T&gt; | 否 | / |

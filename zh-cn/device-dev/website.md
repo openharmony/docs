@@ -1362,9 +1362,20 @@
           - [TemplateInfo](reference/hdi-apis/pinauth/_template_info_pinauth_v10.md)
     - Power HDI 参考
       - 模块
+        - [Power (V1_3)](reference/hdi-apis/power/power-v13.md)
+        - [Power (V1_2)](reference/hdi-apis/power/power-v12.md)
         - [Power (V1_1)](reference/hdi-apis/power/power_v11.md)
         - [Power (V1_0)](reference/hdi-apis/power/power_v10.md)
       - 头文件
+        - Power（V1_3）
+          - [IPowerHdiCallbackExt.idl](reference/hdi-apis/power/_i_power_hdi_callback_ext_8idl.md)
+          - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl.md)
+        - Power (V1_2)
+          - [IPowerHdiCallback.idl](reference/hdi-apis/power/_i_power_hdi_callback_8idl.md)
+          - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl_v12.md)
+          - [IPowerRunningLockCallback.idl](reference/hdi-apis/power/_i_power_running_lock_callback_8idl.md)
+          - [PowerTypes.idl](reference/hdi-apis/power/_power_types_8idl.md)
+          - [RunningLockTypes.idl](reference/hdi-apis/power/_running_lock_types_8idl.md)
         - Power (V1_1)
           - [IPowerHdiCallback.idl](reference/hdi-apis/power/_i_power_hdi_callback_8idl_v11.md)
           - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl_v11.md)
@@ -1375,6 +1386,14 @@
           - [IPowerInterface.idl](reference/hdi-apis/power/_i_power_interface_8idl_v10.md)
           - [PowerTypes.idl](reference/hdi-apis/power/_power_types_8idl_v10.md)
       - 结构体
+        - Power（V1_3）
+          - [IPowerHdiCallbackExt](reference/hdi-apis/power/interface_i_power_hdi_callback_ext.md)
+          - [IPowerInterface](reference/hdi-apis/power/interface_i_power_interface.md)
+        - Power (V1_2)
+          - [IPowerHdiCallback](reference/hdi-apis/power/interface_i_power_hdi_callback.md)
+          - [IPowerInterface](reference/hdi-apis/power/interface_i_power_interface_v12.md)
+          - [IPowerRunningLockCallback](reference/hdi-apis/power/interface_i_power_running_lock_callback.md)
+          - [RunningLockInfo](reference/hdi-apis/power/_running_lock_info.md)
         - Power (V1_1)
           - [IPowerHdiCallback](reference/hdi-apis/power/interface_i_power_hdi_callback_v11.md)
           - [IPowerInterface](reference/hdi-apis/power/interface_i_power_interface_v11.md)

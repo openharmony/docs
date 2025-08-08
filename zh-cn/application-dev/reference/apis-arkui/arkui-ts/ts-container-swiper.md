@@ -1220,6 +1220,8 @@ DotIndicator的构造函数。
 >**说明：** 
 >
 >按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
+>
+>若页面数量较多、圆点导航点超出页面时，建议使用maxDisplayCount设置导航点显示个数。
 
 ## DigitIndicator<sup>10+</sup>
 
@@ -1233,8 +1235,11 @@ DotIndicator的构造函数。
 
 >**说明：**
 >
->按组翻页时，数字导航点显示的子节点数量，不包括占位节点。<br/>
+>按组翻页时，数字导航点显示的子节点数量不包括占位节点。
+>
 >数字导航点文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。
+>
+>页码的镜像显示依据为系统的RTL状态。
 
 ### fontColor
 
@@ -1328,7 +1333,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 >**说明：**
 >
-> 按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+> 按组翻页时，数字导航点显示的子节点数量不包括占位节点。
 
 **返回值：** 
 

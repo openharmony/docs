@@ -2350,7 +2350,7 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 **处理步骤**
 
 1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
-2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md)，确保与预置应用的不一致。
+2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md#配置文件标签)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2586,7 +2586,7 @@ HAP包没有配置文件，导致安装失败。
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件缺失。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件缺失。
 
 **处理步骤**
 
@@ -2603,7 +2603,7 @@ error: Install parse bad profile.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件格式异常。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件格式异常。
 
 **处理步骤**
 使用DevEco Studio重新构建、打包、安装。
@@ -2621,7 +2621,7 @@ error: Install parse profile prop type error.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在数据类型错误的字段。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件存在数据类型错误的字段。
 
 **处理步骤**
 
@@ -2638,7 +2638,7 @@ error: too large size of string or array type element in the profile.
 
 **可能原因**
 
-[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在字符串长度或者数组大小过大的字段。
+[module.json](../quick-start/module-configuration-file.md)、[pack.info](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build#section43931054115513)等配置文件存在字符串长度或者数组大小过大的字段。
 
 **处理步骤**
 
@@ -2674,16 +2674,14 @@ error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](../napi/ohos-abi.md#在编译架构中指定abi)中的配置，规则如下：
 
     <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
-    <!--RP4-->
       ```
       cd /system/
       ls
       ```
-    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
