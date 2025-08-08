@@ -671,7 +671,7 @@ struct WebComponent {
 
 ## Web菜单获取选中文本
 1. 创建TestClass类通过[javaScriptProxy](../reference\apis-arkweb\arkts-basic-components-web-attributes.md#javascriptproxy)将TestClass注册到Web组件中。
-2. 在Html侧注册选区变更监听器，在选区变更时通过TestClass对象将选区设置到ARKTS侧。
+2. 在Html侧注册选区变更监听器，在选区变更时通过TestClass对象将选区设置到ArkTS侧。
   ```ts
 import { webview } from '@kit.ArkWeb';
 let selectText = '';
@@ -758,6 +758,7 @@ struct WebComponent {
 </body>
 </html>
   ```
+![web-menu-get-select](./figures/web-menu-get-select.gif)
 
 ## Web菜单识别图片二维码
 1. 创建MenuBuilder组件作为菜单弹窗，通过bindContextMenu将MenuBuilder与Web绑定。
@@ -893,6 +894,7 @@ struct WebComponent {
 </body>
 </html>
   ```
+![web-menu-scan-qr-code](./figures/web-menu-scan-qrcode.gif)
 
 ## 常见问题
 ### 如何禁用长按选择时弹出菜单
