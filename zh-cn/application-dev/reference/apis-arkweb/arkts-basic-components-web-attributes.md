@@ -3271,7 +3271,7 @@ tableData(tableData: boolean)
 
 wideViewModeAccess(wideViewModeAccess: boolean)
 
-设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+设置Web是否支持html中meta标签的viewport属性。该接口为空接口。
 
 > **说明：**
 >
