@@ -41,6 +41,17 @@ Promise对象创建后，可以使用then方法和catch方法指定fulfilled状�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+  setTimeout(() => {
+    const randomNumber: number = Math.random();
+    if (randomNumber > 0.5) {
+      resolve(randomNumber);
+    } else {
+      reject(new Error('Random number is too small'));
+    }
+  }, 1000);
+})
+
 // 使用 then 方法定义成功和失败的回调
 promise.then((result: number) => {
   console.info(`The number for success is ${result}`); // 成功时执行
@@ -62,7 +73,7 @@ promise.then((result: number) => {
 
 > **说明：**
 >
-> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageroffunhandledrejection12)接口监听该事件，以全局捕获未处理的Promise reject。
+> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronunhandledrejection12)接口监听该事件，以全局捕获未处理的Promise reject。
 
 ## async/await
 
@@ -116,6 +127,7 @@ async function myAsyncFunction(): Promise<void> {
     const result: string = await new Promise((resolve: Function) => {
       resolve('Hello, world!');
     });
+    console.info(result); // 输出： Hello, world!
   } catch (e) {
     console.error(`Get exception: ${e}`);
   }

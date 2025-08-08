@@ -1,20 +1,22 @@
 # 应用文件上传下载
 
-应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
+应用可将文件上传至网络服务器，也可从网络服务器下载资源文件到本地目录。
 
 ## 上传应用文件
 
-开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
+开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程通过系统服务代理完成。在api12中，`request.agent.create`接口增加了设置代理地址的参数，支持设置自定义代理地址。
 
 > **说明：**
 >
-> 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
+> · 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
 >
-> 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
+> · 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 >
-> 上传下载模块不支持Charles、Fiddler等代理抓包工具。
+> · 上传下载模块不支持Charles、Fiddler等代理抓包工具。
+>
+> · 上传下载模块接口目前暂不支持子线程调用场景，如[TaskPool](../../arkts-utils/taskpool-introduction.md)等。
 
-以下示例代码演示两种将缓存文件上传至服务器的方法：
+以下示例代码展示了两种将缓存文件上传至服务器的方法：
 
 ```ts
 // 方式一:request.uploadFile
@@ -154,7 +156,7 @@ struct Index {
 
 ## 下载网络资源文件至应用文件目录
 
-开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](../../file-management/app-file-access.md)一致。文件下载过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
+开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源应用文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](../../file-management/app-file-access.md)一致。文件下载过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
 
 > **说明：**
 >
@@ -162,7 +164,7 @@ struct Index {
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码展示了两种将网络资源文件下载到应用文件目录的方法：
+以下示例代码展示了将网络资源文件下载到应用文件目录的两种方法：
 
 ```ts
 // 方式一:request.downloadFile

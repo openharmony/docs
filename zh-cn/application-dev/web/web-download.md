@@ -34,7 +34,7 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
@@ -172,7 +172,7 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })

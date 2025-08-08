@@ -1,5 +1,11 @@
 # 配对连接设备
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## 简介
 本指南主要提供了主动配对设备和连接设备可用profile能力的开发指导。
 

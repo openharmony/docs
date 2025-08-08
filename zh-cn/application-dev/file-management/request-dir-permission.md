@@ -179,7 +179,7 @@ void ScanUserDownloadDirPathExample()
         return;
     }
     // 查看文件夹下的文件
-    struct dirent **namelist = {nullptr};
+    struct dirent **namelist = nullptr;
     int num = scandir(downloadPath, &namelist, nullptr, nullptr);
     if (num < 0) {
         free(downloadPath);
@@ -190,6 +190,9 @@ void ScanUserDownloadDirPathExample()
         OH_LOG_INFO(LOG_APP, "%{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
+    for (int i = 0; i < num; i++) {
+        free(namelist[i]);
+    }
     free(namelist);
 }
 ```

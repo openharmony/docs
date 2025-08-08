@@ -317,6 +317,8 @@ hasType(type: string): boolean
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
+**参数：**
+
 | 参数名 | 类型                            | 必填 | 说明                                          |
 | ------ | ------------------------------- | ---- |---------------------------------------------|
 | type | string | 是   | 要查询的数据类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。|
@@ -1252,8 +1254,6 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 表示数据的可见性等级枚举。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称          | 值   | 说明                          |
@@ -1265,15 +1265,13 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 UDMF提供的数据操作接口包含三个可选参数：intention、key和visibility。如果接口不需要这些参数，可以不填，具体要求请参阅该接口的参数说明。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称      | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| intention | [Intention](#intention) | 否   | 表示数据操作相关的数据通路类型。                             |
-| key       | string                  | 否   | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
-| visibility<sup>20+</sup> | [Visibility](#visibility20) | 否   | 表示数据的可见性等级。只在写入数据的时候填写才生效，若不填写默认是Visibility.ALL。  |
+| intention | [Intention](#intention) | 否   | 表示数据操作相关的数据通路类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
+| key       | string                  | 否   | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| visibility<sup>20+</sup> | [Visibility](#visibility20) | 否   | 表示数据的可见性等级。只在写入数据的时候填写才生效，若不填写默认是Visibility.ALL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## FileConflictOptions<sup>15+</sup>
 

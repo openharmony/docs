@@ -1402,19 +1402,19 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
+  streamUsage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  contentType: audio.ContentType.CONTENT_TYPE_UNKNOWN,
+  pauseWhenDucked: true
 };
 
 audioManager.on('interrupt', interAudioInterrupt, (interruptAction: audio.InterruptAction) => {
   if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${interruptAction} `);
+    console.info(`Focus hint: ${interruptAction.hint} `);
   }
   if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${interruptAction} `);
+    console.info(`Audio interruption hint: ${interruptAction.hint} `);
   }
 });
 ```
@@ -1444,9 +1444,9 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
+  streamUsage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  contentType: audio.ContentType.CONTENT_TYPE_UNKNOWN,
+  pauseWhenDucked: true
 };
 
 // 取消该事件的所有监听。
@@ -1456,11 +1456,11 @@ audioManager.off('interrupt', interAudioInterrupt);
 let interruptCallback = (interruptAction: audio.InterruptAction) => {
   if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${interruptAction} `);
+    console.info(`Focus hint: ${interruptAction.hint} `);
   }
   if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${interruptAction} `);
+    console.info(`Audio interruption hint: ${interruptAction.hint} `);
   }
 };
 

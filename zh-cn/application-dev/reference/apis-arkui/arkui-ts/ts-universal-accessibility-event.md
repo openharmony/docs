@@ -138,9 +138,6 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 @Component
 struct SwitchBootcamp {
   @State private isOn: boolean = false;
-  isPolygon(event: TouchEvent) {
-    return true;
-  }
 
   build() {
     NavDestination() {
