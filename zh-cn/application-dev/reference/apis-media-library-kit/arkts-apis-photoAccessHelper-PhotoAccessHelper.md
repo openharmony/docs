@@ -1499,7 +1499,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ## getRecentPhotoInfo<sup>20+</sup>
 
-getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise&lt;RecentPhotoOptions&gt;
+getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise\<RecentPhotoInfo>;
 
 应用使用RecentPhotoComponent组件查看最近图片时，支持调用API获取最近图片信息。使用Promise异步回调。
 
@@ -1511,21 +1511,13 @@ getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise&lt;RecentPhotoOptions
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions) | 否   | 最近图片配置选项参数。若无此参数，则按照所有范围内找到的最近图片。该参数需与RecentPhotoComponent组件一样的options才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片。 |
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照所有范围内找到的最近图片。<br>该参数需与RecentPhotoComponent组件一样的options才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;RecentPhotoOptions&gt;| Promise对象，返回最近图片信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 | Input parameter invalid. |
+| Promise\<RecentPhotoInfo>| Promise对象，返回最近图片信息。 |
 
 **示例：**
 
