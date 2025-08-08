@@ -1,5 +1,11 @@
 # 使用HiCollie监控函数执行时间超长问题（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--SE: @peterhuangyu-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 简介
 
 任务执行超时指要监控的业务代码逻辑执行时长超过业务逻辑预期时间。本文面向开发者介绍HiCollie模块对外提供函数执行时间超长的检测能力。
