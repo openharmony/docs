@@ -1011,7 +1011,7 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 >
 > 2.当前接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)；
 >
-> 3.其他系统机制及其生命周期状态切换的详细说明，请参考 [stage模型下主窗口的生命周期](../../windowmanager/window-overview.md#stage模型下主窗口的生命周期)。
+> 3.其他系统机制及其生命周期状态切换的详细说明，请参考 [主窗口的生命周期](../../windowmanager/window-overview.md#主窗口的生命周期)。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1045,8 +1045,23 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     const callback = (data: window.WindowStageLifecycleEventType) => {
-        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+      console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
         JSON.stringify(data));
+      // 根据事件状态类型选择进行具体的处理
+      if (data === window.WindowStageLifecycleEventType.SHOWN) {
+        console.info('current window stage event is SHOWN');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.RESUMED) {
+        console.info('current window stage event is RESUMED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.PAUSED) {
+        console.info('current window stage event is PAUSED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.HIDDEN) {
+        console.info('current window stage event is HIDDEN');
+        // ...
+      }
+      // ...
     }
     try {
       windowStage.on('windowStageLifecycleEvent', callback);

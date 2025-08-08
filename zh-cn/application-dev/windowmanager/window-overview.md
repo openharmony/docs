@@ -62,13 +62,58 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 针对窗口开发，推荐使用Stage模型进行相关开发。
 
-### Stage模型下主窗口的生命周期
+## 主窗口的生命周期
 
-在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md)。UIAbility的生命周期与[WindowStage](application-window-stage.md)的生命周期存在关联关系，两者生命周期关系示意图如下图所示。
+### 生命周期概述
 
-![tabStop](figures/uiability-lifecycle-windowstage.png)
+在Stage模型下，UIAbility、WindowStage和应用主窗三者之间的关系如下图所示。
 
-此外，WindowStage也提供了[on('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstagelifecycleevent20)接口用于监听其生命周期变化。
+![tabStop](figures/uiability-windowstage-mainwindow.png)
+
+每个UIAbility实例都会与一个WindowStage类实例绑定，该类起到了应用进程内窗口管理器的作用。它包含一个主窗口，也就是说UIAbility实例通过WindowStage持有了一个主窗口，该主窗口为ArkUI提供了绘制区域，可以加载不同的ArkUI页面。
+
+在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md)。
+
+### 生命周期状态
+
+窗口在进入前台、前后台切换及退后台时，会触发窗口相应的生命周期状态变化。
+
+Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可交互状态（RESUMED）、不可交互状态（PAUSED）和切到后台（HIDDEN）。
+- **SHOWN**：窗口进入到前台。窗口触发SHOWN生命周期事件后，将会进入到可交互状态。特殊场景下，会进入不可交互状态。
+
+- **RESUMED**：窗口进入可交互状态。窗口到前台后会进入该状态，另外，窗口恢复，也会触发RESUMED生命周期事件。
+
+- **PAUSED**：窗口进入不可交互状态。窗口触发PAUSED生命周期事件，说明窗口不再位于前台，窗口会保持这种状态，直到恢复或退后台。如果窗口恢复，则会触发RESUMED生命周期事件，进入可交互状态。
+
+- **HIDDEN**：窗口进入到后台。当窗口不在对用户可见时，触发HIDDEN生命周期事件，它会进入到后台。
+
+> **说明**
+>
+> RESUMED和PAUSED状态分别在窗口切换至前台和切换至后台时触发。但是在一些场景下，RESUMED和PAUSED状态触发会有差异。
+> - 如果前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。
+> - 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用锁场景，应用窗口在切换至前台进入到认证界面时，触发PAUSED事件。
+
+|**生命周期状态**|**触发场景举例**|
+|---------------|---------------|
+|SHOWN          |例如：应用全屏启动、悬浮窗被拉起等。|
+|RESUMED        |例如：应用全屏启动、悬浮窗被拉起、应用上滑悬停后回到应用等。|
+|PAUSED         |例如：应用退后台回到桌面、上滑进入多任务、进入应用锁认证界面，应用上滑悬停、应用退后台、应用销毁等。|
+|HIDDEN         |例如：应用上滑回到桌面、应用退后台、应用销毁等。|
+
+特殊场景：例如应用锁场景，应用在进入到应用锁解锁认证界面时，触发PAUSED生命周期状态。
+
+应用主窗口生命周期事件流转关系如下图：
+
+![tabStop](figures/window-lifecycle-event.png)
+
+### 监听生命周期状态变化
+
+如果需要感知应用主窗口生命周期变化，开发者可以使用下述注册监听接口来监听应用主窗口的生命周期变化。
+
+> - API version 20之前，通过[on('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9)开启WindowStage生命周期变化的监听，通过[off('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#offwindowstageevent9)关闭WindowStage生命周期变化的监听。本接口无法保证生命周期状态切换间的顺序，对于状态间的顺序有要求的情况下不推荐使用。
+> - API version 20开始，通过[on('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstagelifecycleevent20)开启WindowStage生命周期变化的监听，通过接口[off('windowStageLifecycleEvent')](arkts-apis-window-WindowStage.md#off('windowstagelifecycleevent')20)关闭WindowStage新生命周期变化的监听。本接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowevent10)， 对生命周期状态间的顺序有要求的情况下推荐使用本接口。
+
+### 不同设备生命周期的差异化行为
 
 在Stage模型下，应用主窗口从前台进入后台状态也会驱动UIAbility的生命周期。在该模型下，需要额外关注这个机制在不同类型产品的差异化行为。
 
@@ -85,122 +130,6 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
   - 针对支持在phone设备运行的应用，窗口从前台进入后台状态，会驱动UIAbility为后台状态。
 
   - 针对不支持在phone设备运行的应用，窗口从前台进入后台状态，不会驱动UIAbility为后台状态。
-
-#### 应用主窗口生命周期说明
-
-窗口在进入前台、前后台切换及退后台时，会触发窗口相应的生命周期状态变化。Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可交互状态（RESUMED）、不可交互状态（PAUSED）和切到后台（HIDDEN）。
-
-**SHOWN**
-
-窗口进入到前台。窗口触发SHOWN生命周期事件后，将会进入到可交互状态。特殊场景下，会进入不可交互状态，例如应用锁加锁场景。
-
-**RESUMED**
-
-窗口进入可交互状态。窗口到前台后会进入该状态，另外，窗口恢复，也会触发RESUMED生命周期事件。例如从多任务列表进入应用。
-
-**PAUSED**
-
-窗口进入不可交互状态。窗口触发PAUSED生命周期事件，说明窗口不再位于前台，窗口会保持这种状态，直到恢复或退后台。如果窗口恢复，则会触发RESUMED生命周期事件，进入可交互状态。
-
-**HIDDEN**
-
-窗口进入到后台。当窗口不在对用户可见时，触发HIDDEN生命周期事件，它会进入到后台。例如应用内上滑返回桌面，应用会进入该状态。
-
-|事件名称|说明|触发场景举例|
-|-------|----------|----------|
-|SHOWN  |切到前台        |例如：应用全屏启动、悬浮窗被拉起等。|
-|RESUMED|前台可交互状态  |例如：应用全屏启动、悬浮窗被拉起、应用上滑悬停后回到应用等。|
-|PAUSED |前台不可交互状态|例如：应用退后台回到桌面、上滑进入多任务、进入应用锁认证界面，应用上滑悬停、应用退后台、应用销毁等。|
-|HIDDEN |切到后台       |例如：应用上滑回到桌面、应用退后台、应用销毁等。|
-
-应用主窗口生命周期事件流转关系如下图：
-
-![tabStop](figures/window-lifecycle-event.png)
-
-**应用主窗口生命周期RESUMED和PAUSED状态详细说明**
-
-RESUMED和PAUSED状态分别在窗口切换至前台和切换至后台时触发。但是在一些场景下，RESUMED和PAUSED状态触发会有差异。
-- 如果前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。
-- 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用锁场景，应用窗口在切换至前台进入到认证界面时，触发PAUSED事件。
-
-#### 生命周期变化监听接口适配指导
-
-**开启监听**
-
-通过接口[on('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstagelifecycleevent20)开启WindowStage新生命周期变化的监听可参考下列代码进行适配。
-
-示例：
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    const callback = (data: window.WindowStageLifecycleEventType) => {
-      console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
-        JSON.stringify(data));
-      // 根据事件状态类型选择进行具体的处理
-      if (data === window.WindowStageLifecycleEventType.SHOWN) {
-        console.info('current window stage event is SHOWN');
-        // ...
-      } else if (data === window.WindowStageLifecycleEventType.RESUMED) {
-        console.info('current window stage event is RESUMED');
-        // ...
-      } else if (data === window.WindowStageLifecycleEventType.PAUSED) {
-        console.info('current window stage event is PAUSED');
-        // ...
-      } else if (data === window.WindowStageLifecycleEventType.HIDDEN) {
-        console.info('current window stage event is HIDDEN');
-        // ...
-      }
-      // ...
-    }
-    try {
-      windowStage.on('windowStageLifecycleEvent', callback);
-    } catch (exception) {
-      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-};
-```
-
-**关闭监听**
-
-通过新接口[off('windowStageLifecycleEvent')](arkts-apis-window-WindowStage.md#off('windowstagelifecycleevent')20)关闭WindowStage新生命周期变化的监听可参考如下代码进行适配。
-
-示例：
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    const callback = (windowStageLifecycleEvent: window.WindowStageLifecycleEventType) => {
-      // ...
-    }
-    try {
-      windowStage.on('windowStageLifecycleEvent', callback);
-    } catch (exception) {
-      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-    try {
-      windowStage.off('windowStageLifecycleEvent', callback);
-      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-      windowStage.off('windowStageLifecycleEvent');
-    } catch (exception) {
-      console.error(`Failed to disable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-};
-```
 
 ## 约束与限制
 
