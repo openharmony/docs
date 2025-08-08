@@ -129,6 +129,7 @@ enum ffrt_storage_size_t
 | ffrt_cond_storage_size = 64 | 条件变量                |
 | ffrt_queue_attr_storage_size = 128 | 队列属性                |
 | ffrt_rwlock_storage_size = 64 | 读写锁<br>**起始版本：** 18 |
+| ffrt_fiber_storage_size| 纤程在不同平台所占大小，单位：Byte。（平台相关）aarch64架构：22字节；arm架构：64字节；x86_64架构：8字节；其他平台：不支持。<br>**起始版本：** 20  |
 
 ### ffrt_function_kind_t
 
