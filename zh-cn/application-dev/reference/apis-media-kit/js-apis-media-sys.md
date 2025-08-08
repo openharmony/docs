@@ -1,8 +1,8 @@
 # @ohos.multimedia.media (媒体服务)(系统接口)
-<!--Kit: Media Kit-->	
-<!--Subsystem: Multimedia-->	
-<!--Owner: @zzs_911-->	
-<!--SE: @stupig001-->	
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
 <!--TSE: @xdlinc-->
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
