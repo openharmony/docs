@@ -72,8 +72,6 @@ deactivateAudioSession(): Promise\<void>
 
 停用音频会话。使用Promise异步回调。
 
-
-
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **返回值：**
@@ -348,7 +346,7 @@ audioSessionManager.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => 
 
 getDefaultOutputDevice(): DeviceType
 
-获取通过[setDefaultOutputDevice](#setDefaultOutputDevice20)指定的默认发声设备。
+获取通过[setDefaultOutputDevice](#setDefaultOutputDevice20)设置的默认发声设备。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -376,7 +374,7 @@ on(type: 'currentOutputDeviceChanged', callback: Callback<CurrentOutputDeviceCha
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
-| type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备变化时触发。|
+| type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备变更时触发。|
 | callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，返回当前输出设备信息。 |
 
 **错误码：**
@@ -405,7 +403,7 @@ audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedC
 
 off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceChangedEvent>): void
 
-取消监听当前输出设备变化事件。使用callback进行异步回调。
+取消监听当前输出设备的变化事件，并使用callback进行异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -414,7 +412,7 @@ off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceC
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备发生变化时，触发该事件。|
-| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，用于返回当前输出设备的信息。 |
+| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，用于返回当前输出设备变化的信息。 |
 
 **错误码：**
 

@@ -165,19 +165,19 @@ let audioSessionStateChangedCallback = (audioSessionStateChangedEvent: audio.Aud
 
   switch (audioSessionStateChangedEvent.stateChangeHint) {
   case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE:
-    // 此分支表示系统已将音频流暂停（临时失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 临时失去焦点：待其他音频流释放音频焦点后，本音频流会收到resume对应的音频焦点事件，到时可自行继续播放。
+    // 此分支表示系统已将音频流暂停，应用需切换至音频暂停状态。
+    // 临时失去焦点：其他音频流释放音频焦点后，本音频流会收到resume事件，可继续播放。
     break;
   case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_RESUME:
-    // 此分支表示系统解除对AudioSession焦点的pause操作。
+    // 此分支表示系统解除AudioSession焦点的暂停操作。
     break;
   case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_STOP:
     // 此分支表示系统已将音频流停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 永久失去焦点：后续不会再收到任何音频焦点事件，若想恢复播放，需要用户主动触发。
+    // 永久失去焦点：后续不会再收到音频焦点事件，恢复播放需用户主动触发。
     break;
   case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP:
-    // 此分支表示由于长时间没有音频流播放，为防止系统资源被长时间无效占用，系统已将AudioSession停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 永久失去焦点：后续不会再收到任何音频焦点事件，若想恢复播放，需要用户主动触发。
+    // 此分支表示由于长时间无音频流播放，系统已将AudioSession停止（永久失去焦点），应用需切换至音频暂停状态。
+    // 永久失去焦点：后续不会再收到音频焦点事件，恢复播放需用户主动触发。
     break;
   case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_DUCK:
     // 此分支表示系统已将音频音量降低（默认降到正常音量的20%）。
@@ -198,12 +198,12 @@ audioSessionManager.on('audioSessionStateChanged', audioSessionStateChangedCallb
 // 示例中选择了AUDIO_SESSION_SCENE_MEDIA会话场景，实际情况请根据具体场景修改该参数。
 audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
 
-// 示例中选择了CONCURRENCY_MIX_WITH_OTHERS策略，实际情况请根据具体场景修改该参数。
+// 示例中选择了CONCURRENCY_MIX_WITH_OTHERS策略，请根据具体场景修改该参数。
 let strategy: audio.AudioSessionStrategy = {
   concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
 };
 
-// 激活AudioSssion，即抢占焦点
+// 激活AudioSession，即抢占焦点
 audioSessionManager.activateAudioSession(strategy).then(() => {
   console.info('activateAudioSession SUCCESS');
 }).catch((err: BusinessError) => {
@@ -212,7 +212,7 @@ audioSessionManager.activateAudioSession(strategy).then(() => {
 
 // 根据实际业务，可以启动多个AudioRenderer等音频播放业务。
 
-// 去激活AudioSssion，即释放焦点
+// 结束AudioSession，即释放焦点
 audioSessionManager.deactivateAudioSession().then(() => {
   console.info('deactivateAudioSession SUCCESS');
 }).catch((err: BusinessError) => {

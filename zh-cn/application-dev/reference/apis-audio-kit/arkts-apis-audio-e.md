@@ -546,9 +546,9 @@
 
 枚举用于音频会话状态变更提示。
 
-当用户监听到音频会话状态变化事件（即收到[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audioSessionStateChangedEvent20)事件）时，获取相关信息。
+当用户监听到音频会话状态变化事件（即收到[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)事件）时，获取相关信息。
 
-此类型表示根据焦点策略，对音频会话执行的具体操作（如暂停、调整音量等）。
+此类型表示根据焦点策略对音频会话执行的操作，包括暂停、调整音量等。
 
 详情请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
 
@@ -557,9 +557,9 @@
 | 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_SESSION_STATE_CHANGE_HINT_RESUME              | 0      | 提示音频会话恢复，应用可主动触发开始渲染等操作。 |
-| AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE               | 1      | 提示音频会话暂停，暂时失去音频焦点。待焦点可用时，会收到AUDIO_SESSION_STATE_CHANGE_HINT_RESUME事件。 |
-| AUDIO_SESSION_STATE_CHANGE_HINT_STOP                | 2      | 提示由于焦点被抢占音频会话停止，彻底失去音频焦点。 |
-| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | 提示音频会话因长时间无业务而被系统停止，失去音频焦点。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE               | 1      | 提示音频会话暂停，暂时失去音频焦点。当焦点再次可用时，会收到 AUDIO_SESSION_STATE_CHANGE_HINT_RESUME 事件。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_STOP                | 2      | 提示音频会话因焦点被抢占而停止，彻底失去音频焦点。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | 提示音频会话因长时间无业务而被系统停止，导致失去音频焦点。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_DUCK                | 4      | 提示音频会话躲避开始，降低音量播放。 |
 | AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK | 5      | 提示音频会话躲避结束，恢复音量播放。 |
 

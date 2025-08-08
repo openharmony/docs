@@ -155,7 +155,7 @@ OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager,
 
   ```cpp
 
-  OH_AudioSessionManager_SetScene(AUDIO_SESSION_SCENE_MEDIA);
+  OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
 
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
 
@@ -179,10 +179,10 @@ void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
     switch(event.stateChangeHint) {
       case AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE:
         // 此分支表示系统已将音频流暂停（临时失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-        // 临时失去焦点：待其他音频流释放音频焦点后，本音频流会收到resume对应的音频焦点事件，到时可自行继续播放。
+        // 临时失去焦点：其他音频流释放音频焦点后，本音频流会收到resume事件，可继续播放。
         break;
       case AUDIO_SESSION_STATE_CHANGE_HINT_RESUME:
-        // 此分支表示系统解除对AudioSession焦点的pause操作。
+        // 此分支表示系统解除对AudioSession焦点的暂停操作。
         break;
       case AUDIO_SESSION_STATE_CHANGE_HINT_STOP:
         // 此分支表示系统已将音频流停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
@@ -205,15 +205,15 @@ void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
 
   OH_AudioCommon_Result result = OH_AudioSessionManager_RegisterStateChangeCallback(audioSessionManager, AudioSessionStateChangedCallback);
 
-  // AUDIO_SESSION_SCENE_MEDIA仅仅是示例，实际使用时根据情况修改
-  OH_AudioSessionManager_SetScene(AUDIO_SESSION_SCENE_MEDIA);
+  // AUDIO_SESSION_SCENE_MEDIA 仅为示例，实际使用时请根据具体情况进行修改。
+  OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
 
-  // CONCURRENCY_MIX_WITH_OTHERS仅仅是示例，实际使用时根据情况修改
+  // CONCURRENCY_MIX_WITH_OTHERS 是示例，实际使用时请根据情况修改
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
 
   result = OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
 
-  // 根据实际业务，可以启动多个AudioRenderer等音频播放业务。
+  // 根据实际业务，可以启动多个AudioRenderer等音频播放
 
   result = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
 
