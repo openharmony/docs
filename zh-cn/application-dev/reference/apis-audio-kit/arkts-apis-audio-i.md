@@ -97,7 +97,7 @@
 
 | 名称          | 类型                                              | 只读 | 可选 | 说明             |
 | :------------ |:------------------------------------------------| :--- |---| :--------------- |
-| stateChangeHint        | [AudioSessionStateChangeHint](arkts-apis-audio-e.md#audioSessionStateChangeHint20) | 否 | 否 | 音频会话状态变更提示。 |
+| stateChangeHint        | [AudioSessionStateChangeHint](arkts-apis-audio-e.md#audiosessionstatechangehint20) | 否 | 否 | 音频会话状态变更提示。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 

@@ -133,7 +133,7 @@
   ```
 
 ## 通过设置AudioSession场景参数申请焦点
-应用通过AudioSession申请焦点。首先要调用接口[setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md/#setaudiosessionscene20)设置场景参数，然后调用[activateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md/#activateaudiosession12)接口激活AudioSession。
+应用通过AudioSession申请焦点。首先要调用接口[setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setaudiosessionscene20)设置场景参数，然后调用[activateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12)接口激活AudioSession。
   ```ts
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -210,7 +210,7 @@ audioSessionManager.activateAudioSession(strategy).then(() => {
   console.error(`ERROR: ${err}`);
 });
 
-// 根据实际业务，可以启动多个AudioRenderer等音频播放业务。
+// 根据实际业务，可以启动多个AudioRenderer等音频播放。
 
 // 结束AudioSession，即释放焦点
 audioSessionManager.deactivateAudioSession().then(() => {

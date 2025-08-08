@@ -55,7 +55,7 @@
 | [OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)](#oh_audiosessionmanager_unregistersessiondeactivatedcallback) | - | 取消注册音频会话停用事件回调。 |
 | [OH_AudioCommon_Result OH_AudioSessionManager_SetScene(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_Scene scene)](#oh_audiosessionmanager_setscene) | - | 设置音频会话场景参数。 |
 | [typedef void (*OH_AudioSession_StateChangedCallback) (OH_AudioSession_StateChangedEvent event)](#oh_audiosession_statechangedcallback) | - | 这个函数指针将指向用于监听音频会话状态变更事件的回调函数。 |
-| [typedef void (*OH_AudioSession_CurrentOutputDeviceChangedCallback) (OH_AudioDeviceDescriptorArray *devices, OH_AudioStream_DeviceChangeReason changeReason, OH_AudioSession_OutputDeviceChangeRecommendedAction recommendedAction)](#oh_audiosession_currentoutputdevicechangedcallback) | - | 这个函数指针将指向用于监听监听当前输出设备变化事件的回调函数。 |
+| [typedef void (*OH_AudioSession_CurrentOutputDeviceChangedCallback) (OH_AudioDeviceDescriptorArray *devices, OH_AudioStream_DeviceChangeReason changeReason, OH_AudioSession_OutputDeviceChangeRecommendedAction recommendedAction)](#oh_audiosession_currentoutputdevicechangedcallback) | - | 这个函数指针将指向用于监听当前输出设备变化事件的回调函数。 |
 | [OH_AudioCommon_Result OH_AudioSessionManager_RegisterStateChangeCallback(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback)](#oh_audiosessionmanager_registerstatechangecallback) | - | 注册音频会话状态变更事件回调。 |
 | [OH_AudioCommon_Result OH_AudioSessionManager_UnregisterStateChangeCallback(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback)](#oh_audiosessionmanager_unregisterstatechangecallback) | - | 取消音频会话状态变更事件回调。 |
 | [OH_AudioCommon_Result OH_AudioSessionManager_SetDefaultOutputDevice(OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type deviceType)](#oh_audiosessionmanager_setdefaultoutputdevice) | - | 设置默认本机内置发声设备。 |
@@ -387,7 +387,7 @@ typedef void (*OH_AudioSession_CurrentOutputDeviceChangedCallback) (
 
 **描述**
 
-这个函数指针将指向用于监听监听当前输出设备变化事件的回调函数。
+这个函数指针将指向用于监听当前输出设备变化事件的回调函数。
 
 **起始版本：** 20
 
@@ -417,7 +417,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterStateChangeCallback(
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
-| [OH_AudioSession_StateChangedCallback](#oh_audiosession_statechangedcallback) callback | 指向OH_AudioSession_StateChangedCallback，用于接收当前输出设备变化事件。 |
+| [OH_AudioSession_StateChangedCallback](#oh_audiosession_statechangedcallback) callback | 指向OH_AudioSession_StateChangedCallback，用于接收音频会话状态变更事件。 |
 
 **返回：**
 
@@ -444,7 +444,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterStateChangeCallback(
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
-| [OH_AudioSession_StateChangedCallback](#oh_audiosession_statechangedcallback) callback | 指向OH_AudioSession_StateChangedCallback，用于接收当前输出设备变化事件。 |
+| [OH_AudioSession_StateChangedCallback](#oh_audiosession_statechangedcallback) callback | 指向OH_AudioSession_StateChangedCallback，用于接收音频会话状态变更事件。 |
 
 **返回：**
 
@@ -461,7 +461,12 @@ OH_AudioCommon_Result OH_AudioSessionManager_SetDefaultOutputDevice(
 
 **描述**
 
-设置默认本机内置发声设备。本接口适用范围如下： 1. 当设置的[OH_AudioSession_Scene](#oh_audiosession_scene)为VoIP场景时，激活AudioSession后立即生效；如果OH_AudioSession_Scene为非VoIP场景，激活AudioSession时不会生效，直到启动播放的[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)为语音消息、VoIP语音通话或VoIP视频通话时才生效。支持听筒、扬声器和系统默认设备。 2. 本接口允许在[OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) 创建后随时调用。系统记录应用设置的默认本机内置发声设备，但只有激活AudioSession后才能生效。应用启动播放时，若外接设备如蓝牙耳机或有线耳机已接入，系统优先从外接设备发声；否则，系统遵循应用设置的默认本机内置发声设备。 3. 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再次调用本接口切换设备将不生效。
+设置默认本机内置发声设备。
+> 本接口适用范围如下：
+>
+> - 当设置的[OH_AudioSession_Scene](#oh_audiosession_scene)为VoIP场景时，激活AudioSession后立即生效；如果OH_AudioSession_Scene为非VoIP场景，激活AudioSession时不会生效，直到启动播放的[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)为语音消息、VoIP语音通话或VoIP视频通话时才生效。支持听筒、扬声器和系统默认设备。
+> - 本接口允许在[OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) 创建后随时调用。系统记录应用设置的默认本机内置发声设备，但只有激活AudioSession后才能生效。应用启动播放时，若外接设备如蓝牙耳机或有线耳机已接入，系统优先从外接设备发声；否则，系统遵循应用设置的默认本机内置发声设备。
+> - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再次调用本接口切换设备将不生效。
 
 **起始版本：** 20
 

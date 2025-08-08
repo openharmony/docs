@@ -224,7 +224,7 @@ audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_S
 
 ## on('audioSessionStateChanged')<sup>20+</sup>
 
-on(type: 'audioSessionStateChanged', callback: Callback<AudioSessionStateChangedEvent>): void
+on(type: 'audioSessionStateChanged', callback: Callback\<AudioSessionStateChangedEvent>): void
 
 监听音频会话状态变更事件（当音频会话焦点变更时触发）。使用callback异步回调。
 
@@ -235,7 +235,7 @@ on(type: 'audioSessionStateChanged', callback: Callback<AudioSessionStateChanged
 | 参数名   | 类型                                                                        | 必填 | 说明                                                         |
 | -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioSessionStateChanged'，当音频会话状态变更时，触发该事件。 |
-| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audioSessionStateChangedEvent20)> | 是   | 回调函数，返回音频会话变更提示信息。 |
+| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)> | 是   | 回调函数，返回音频会话变更提示信息。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ audioSessionManager.on('audioSessionStateChanged', (audioSessionStateChangedEven
 
 ## off('audioSessionStateChanged')<sup>20+</sup>
 
-off(type: 'audioSessionStateChanged', callback?: Callback<AudioSessionStateChangedEvent>): void
+off(type: 'audioSessionStateChanged', callback?: Callback\<AudioSessionStateChangedEvent>): void
 
 取消监听音频会话状态变更事件。使用callback异步回调。
 
@@ -266,7 +266,7 @@ off(type: 'audioSessionStateChanged', callback?: Callback<AudioSessionStateChang
 | 参数名   | 类型                                                                        | 必填 | 说明                                                         |
 | -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioSessionStateChanged'，当音频会话状态变更时，触发该事件。 |
-| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audioSessionStateChangedEvent20)> | 是   | 回调函数，返回音频会话变更提示信息。 |
+| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)> | 是   | 回调函数，返回音频会话变更提示信息。 |
 
 **错误码：**
 
@@ -346,7 +346,7 @@ audioSessionManager.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => 
 
 getDefaultOutputDevice(): DeviceType
 
-获取通过[setDefaultOutputDevice](#setDefaultOutputDevice20)设置的默认发声设备。
+获取通过[setDefaultOutputDevice](#setdefaultoutputdevice20)设置的默认发声设备。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -364,7 +364,7 @@ let deviceType = audioSessionManager.getDefaultOutputDevice();
 
 ## on('currentOutputDeviceChanged')<sup>20+</sup>
 
-on(type: 'currentOutputDeviceChanged', callback: Callback<CurrentOutputDeviceChangedEvent>): void
+on(type: 'currentOutputDeviceChanged', callback: Callback\<CurrentOutputDeviceChangedEvent>): void
 
 监听当前输出设备变化事件（当前输出设备发生变化时触发）。使用callback异步回调。
 
@@ -375,7 +375,7 @@ on(type: 'currentOutputDeviceChanged', callback: Callback<CurrentOutputDeviceCha
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备变更时触发。|
-| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，返回当前输出设备信息。 |
+| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentoutputdevicechangedevent20)> | 是   | 回调函数，返回当前输出设备信息。 |
 
 **错误码：**
 
@@ -401,7 +401,7 @@ audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedC
 
 ## off('currentOutputDeviceChanged')<sup>20+</sup>
 
-off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceChangedEvent>): void
+off(type: 'currentOutputDeviceChanged', callback?: Callback\<CurrentOutputDeviceChangedEvent>): void
 
 取消监听当前输出设备的变化事件，并使用callback进行异步回调。
 
@@ -412,7 +412,7 @@ off(type: 'currentOutputDeviceChanged', callback?: Callback<CurrentOutputDeviceC
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备发生变化时，触发该事件。|
-| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentOutputDeviceChangedEvent20)\> | 是   | 回调函数，用于返回当前输出设备变化的信息。 |
+| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentoutputdevicechangedevent20)> | 是   | 回调函数，用于返回当前输出设备变化的信息。 |
 
 **错误码：**
 

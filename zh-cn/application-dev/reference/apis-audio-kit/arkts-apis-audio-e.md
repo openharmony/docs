@@ -442,7 +442,7 @@
 | REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。 |
 | REASON_OVERRODE | 3 | 强选。 |
 | REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | 音频会话已激活。 |
-| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 当更高优先级的音频流出现时，系统设备会进行切换。 |
+| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 更高优先级的音频流出现导致的系统设备切换。 |
 
 ## OutputDeviceChangeRecommendedAction<sup>20+</sup>
 

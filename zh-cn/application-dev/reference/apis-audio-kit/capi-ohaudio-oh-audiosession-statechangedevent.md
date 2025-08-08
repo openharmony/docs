@@ -1,5 +1,9 @@
 # OH_AudioSession_StateChangedEvent
-
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @hao-liangfei-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 ## 概述
 
 音频会话状态变更事件。
