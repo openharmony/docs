@@ -30,7 +30,7 @@ Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合S
 
 ### ISendable
 
-在ArkTS语言基础库[@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md)中引入了interface ISendable，没有任何必须的方法或属性。ISendable是所有Sendable类型（除了null和undefined）的父类型。ISendable主要用在开发者自定义Sendable数据结构的场景中。类装饰器[@Sendable装饰器](#sendable装饰器)是implement ISendable的语法糖。
+在ArkTS语言基础库[@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md)中引入了interface ISendable，没有任何方法或属性。ISendable是所有Sendable类型（除了null和undefined）的父类型。ISendable主要用于开发者自定义Sendable数据结构的场景中。类装饰器[@Sendable装饰器](#sendable装饰器)是implement ISendable的语法糖。
 
 ### Sendable class
 
@@ -113,7 +113,7 @@ Sendable interface需同时满足以下两个规则：
 
 ![zh-cn_image_0000002001521153](figures/zh-cn_image_0000002001521153.png)
 
-各个并发实例的LocalHeap是隔离的。SharedHeap是进程级别的堆，可以被所有并发实例引用，但SharedHeap不能引用LocalHeap中的对象。
+各个并发实例的LocalHeap是隔离的。SharedHeap是进程级别的堆，可以被所有并发实例共享，但SharedHeap不能引用LocalHeap中的对象。
 
 
 ## \@Sendable装饰器
@@ -129,7 +129,7 @@ Sendable interface需同时满足以下两个规则：
 | 装饰的对象内的属性类型限制 | 1. 支持string、number、boolean、bigint、null、undefined、Sendable class、collections容器集、ArkTSUtils.locks.AsyncLock、ArkTSUtils.SendableLruCache、ArkTSUtils.locks.ConditionVariable以及自定义的Sendable函数类型。<br/>2. 禁止使用闭包变量，定义在顶层的Sendable class和Sendable function除外。<br/>3. 不支持通过\#定义私有属性，需用private。<br/>4. 不支持计算属性。 |
 | 装饰的对象内的属性的其他限制 | 1. 成员属性必须显式初始化，不能使用感叹号。<br/>2. 不支持增加或删除属性，允许修改属性，修改前后属性的类型必须一致，不支持修改方法。|
 | 装饰的函数或类对象内的方法参数限制 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量，但定义在顶层的Sendable class和Sendable function除外。从API version 18开始，支持访问本文件导出的变量。 |
-| 适用场景 | 1. 在TaskPool或Worker中使用类方法或Sendable函数。<br/>2. 传输对象数据量较大的使用场景。序列化耗时会随着数据量增大而增大，使用Sendable对数据进行改造后，传输100KB数据时效率提升约20倍，传输1M数据时效率提升约100倍。 |
+| 适用场景 | 1. 在TaskPool或Worker中使用类方法或Sendable函数。<br/>2. 传输对象数据量较大的场景。序列化耗时会随着数据量增大而增大，使用Sendable对数据进行改造后，传输100KB数据效率提升约20倍，传输1M数据效率提升约100倍。 |
 
 **装饰器修饰Class使用示例：**
 
