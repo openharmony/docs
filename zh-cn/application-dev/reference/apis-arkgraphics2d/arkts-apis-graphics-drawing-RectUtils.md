@@ -1,6 +1,7 @@
 # Class (RectUtils)
+
 <!--Kit: ArkGraphics 2D-->
-<!--Subsystem: Graphic-->
+<!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
 <!--SE: @wangyanglan-->
 <!--TSE: @nobuggers-->
