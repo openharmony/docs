@@ -325,7 +325,7 @@ async function onAudioInterrupt(): Promise<void> {
    > 当AudioSession因超时而停用时，被其压低音量（Duck）的音频会触发恢复音量（Unduck）操作，被其暂停（Pause）的音频流会触发停止（Stop）操作。
 
 
-### 通过AudioSession场景参数申请焦点
+### 通过设置AudioSession场景参数申请焦点
 在保持现有特性的基础上，从API20开始，应用可通过AudioSession申请焦点，提升多音频流播放的连续性。
 典型使用场景如下：
 - 多个小视频滑动播放的过程中，由于多个音频流不断申请和释放焦点，在两个音频流焦点的空档期可能导致其它被pause的音频流漏音。这种场景可以使用AudioSession申请一次焦点，中间多个音频流播放不会再频繁申请释放焦点，从而避免多个音频流之间漏音的情况。
@@ -356,73 +356,6 @@ AudioSession申请的焦点，跟通过AudioRenderer申请的焦点是同等地�
 > 1. 应用会收到AudioSession焦点状态变化和AudioRenderer焦点变化的回调（[InterruptEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)），按需处理即可。
 > 2. 如果AudioSession的焦点被暂停，解除暂停状态时，只会给AudioSession发送焦点恢复事件，不会再给AudioRenderer发送焦点恢复事件。
 
-**AudioSession焦点示例:**
-
-这里提供一个示例，用于展示如何通过AudioSession申请焦点，以及监听焦点变化事件。
-
-```ts
-import { audio } from '@kit.AudioKit';  // 导入audio模块。
-import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError。
-
-let audioSessionStateChangedCallback = (audioSessionStateChangedEvent: audio.AudioSessionStateChangedEvent) => {
-  console.info(`hint of audioSessionStateChanged: ${audioSessionStateChangedEvent.stateChangeHint} `);
-
-  switch (audioSessionStateChangedEvent.stateChangeHint) {
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE:
-    // 此分支表示系统已将音频流暂停（临时失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 临时失去焦点：待其他音频流释放音频焦点后，本音频流会收到resume对应的音频焦点事件，到时可自行继续播放。
-    break;
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_RESUME:
-    // 此分支表示系统解除对AudioSession焦点的pause操作。
-    break;
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_STOP:
-    // 此分支表示系统已将音频流停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 永久失去焦点：后续不会再收到任何音频焦点事件，若想恢复播放，需要用户主动触发。
-    break;
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP:
-    // 此分支表示由于长时间没有音频流播放，为防止系统资源被长时间无效占用，系统已将AudioSession停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
-    // 永久失去焦点：后续不会再收到任何音频焦点事件，若想恢复播放，需要用户主动触发。
-    break;
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_DUCK:
-    // 此分支表示系统已将音频音量降低（默认降到正常音量的20%）。
-    break;
-  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK:
-    // 此分支表示系统已将音频音量恢复正常。
-    break;
-  default:
-    break;
-  }
-};
-
-let audioManager = audio.getAudioManager();
-let audioSessionManager = audioManager.getSessionManager();
-
-audioSessionManager.on('audioSessionStateChanged', audioSessionStateChangedCallback);
-
-// 示例中选择了AUDIO_SESSION_SCENE_MEDIA会话场景，实际情况请根据具体场景修改该参数。
-audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
-
-// 示例中选择了CONCURRENCY_MIX_WITH_OTHERS策略，实际情况请根据具体场景修改该参数。
-let strategy: audio.AudioSessionStrategy = {
-  concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
-};
-
-// 激活AudioSssion，即抢占焦点
-audioSessionManager.activateAudioSession(strategy).then(() => {
-  console.info('activateAudioSession SUCCESS');
-}).catch((err: BusinessError) => {
-  console.error(`ERROR: ${err}`);
-});
-
-// 根据实际业务，可以启动多个AudioRenderer等音频播放业务。
-
-// 去激活AudioSssion，即释放焦点
-audioSessionManager.deactivateAudioSession().then(() => {
-  console.info('deactivateAudioSession SUCCESS');
-}).catch((err: BusinessError) => {
-  console.error(`ERROR: ${err}`);
-});
-
-audioSessionManager.off('audioSessionStateChanged', audioSessionStateChangedCallback);
-
-```
+### 通过AudioSession管理全局音频输出设备
+应用使用播放器的SDK播放音频流，不持有AudioRenderer对象，无法灵活控制播放设备的选择和设备状态的监听。因此，从API20开始，AudioSession不仅增加了焦点管理能力，还提供了音频输出设备管理功能，包括设置默认输出设备和监听设备变化。具体API说明请参考文档[AudiSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)。
+接口使用指导请参考[通过AudioSession管理全局音频输出设备](./audio-output-device-management.md)。
