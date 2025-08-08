@@ -1,4 +1,9 @@
 # Enums
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
@@ -183,15 +188,13 @@ PhotoSubtype是不同[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)类
 
 枚举，可选择的媒体文件类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                                    |  值 | 说明       |
 |---------------------------------------|  ---- |----------|
-| IMAGE_TYPE                            |  'image/*' | 图片类型。    |
-| VIDEO_TYPE                            |  'video/*' | 视频类型。    |
-| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。 |
+| IMAGE_TYPE                            |  'image/*' | 图片类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| VIDEO_TYPE                            |  'video/*' | 视频类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | 动态照片类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## RecommendationType<sup>11+</sup>
