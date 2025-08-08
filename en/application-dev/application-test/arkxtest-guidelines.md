@@ -31,7 +31,7 @@ arkXtest is divided into three parts: unit test framework, UI test framework, an
 
   <img src="figures/perftest.PNG" alt="perftest" width="760">
 
-## Compile and Execute Tests Based on ArkTS
+## Compiling and Executing Tests Based on ArkTS
 
 ### Setting Up the Environment
 
@@ -883,7 +883,7 @@ After the test case execution is complete, the console displays the error messag
 3. Check the code logic and assertion result of the test case and make sure that the assertion is passed.
 ### FAQs About UI Test Cases
 
-**What should I do if the failure log contains "Get windows failed/GetRootByWindow failed"?**
+**1. What should I do if the failure log contains "Get windows failed/GetRootByWindow failed"?**
 
 **Problem**
 
