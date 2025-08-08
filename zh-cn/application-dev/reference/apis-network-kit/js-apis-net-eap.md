@@ -1,7 +1,7 @@
 # @ohos.net.eap (扩展认证)
 
 <!--Kit: Network Kit-->
-<!--Subsystem: communication-->
+<!--Subsystem: Communication-->
 <!--Owner: @foredward-->
 <!--SE: @h00918518-->
 <!--TSE: @WIFIroam-test-->
