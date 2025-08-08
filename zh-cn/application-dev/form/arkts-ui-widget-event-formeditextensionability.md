@@ -34,7 +34,6 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     storage.setOrCreate('extensionEvent', extensionEvent);
     try {
       session.loadContent('pages/Extension', storage);
-      session.setWindowBackgroundColor('#00000000');
     } catch (e) {
       console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
