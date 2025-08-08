@@ -1,11 +1,17 @@
 # Application Permission Groups
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## Usage Guidelines
 
 - It will be helpful if you understand [permission groups and permissions](app-permission-mgmt-overview.md#permission-groups-and-permissions) before requesting permission groups for your application.
 
 - A permission group is a logical grouping of related permissions. When a permission is requested, the members of the group are presented together in the user interface, making it easier for the user to manage permissions. If the user grants the permission, all the permissions in the permission group will be granted in a unified manner. For security purposes, the Location, Contacts, Call Logs, Phone, Messaging, and Calendar permission groups do not support unified authorization.
-  
+
   The following uses the Location and Camera permission groups as an example.
 
   - When an application requests only the ohos.permission.APPROXIMATELY_LOCATION permission (belong to the Location permission group), a dialog box containing only the requested permission will be displayed to request user authorization.
@@ -74,9 +80,11 @@
 
 - [ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)
 
-## <!--RP2-->Ad Tracking<!--RP2End-->
+<!--RP2-->
+## Ad Tracking
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
+<!--RP2End-->
 
 <!--Del-->
 ## Installed Bundle List
@@ -130,6 +138,10 @@
 
 - [ohos.permission.READ_PASTEBOARD](restricted-permissions.md#ohospermissionread_pasteboard)
 
+## Screenshots
+
+- [ohos.permission.CUSTOM_SCREEN_CAPTURE](permissions-for-all-user.md#ohospermissioncustom_screen_capture)
+
 ## Directory
 
 > **NOTE**
@@ -158,7 +170,7 @@
 
 - To read or write images or videos in the media library:
 
-  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use the [SaveButton/authorization pop-up window](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
   - Request the restricted permission [ohos.permission.READ_IMAGEVIDEO](restricted-permissions.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](restricted-permissions.md#ohospermissionwrite_imagevideo).
 
 - To read audio clips in the media library:

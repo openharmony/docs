@@ -1,5 +1,11 @@
 # Application Permission Management Overview
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## Introduction
 
 Application permissions are used to control the access to system resources (such as the Contacts) and system capabilities (such as the camera and microphone) to protect system data (including personal data) and functions.
@@ -40,21 +46,19 @@ A user_grant permission must be authorized by the user. An application with this
 
 This type of permissions must be declared in the application installation package and authorized by the user in a dialog box during the running of the application. The application has the permission only after user authorization.
 
-For example, the permissions related to the microphone and camera in the [Open user_grant Permissions](permissions-for-all-user.md) are user_grant permissions. The list of user_grant permissions must be presented on the application details page in the application market.
-
 ## Permission Groups and Permissions
 
 A permission group consists of user_grant permissions that are logically related.
 
- It helps minimize the number of dialogs that are presented to the user when an application requests closely related permissions. A permission in a permission group is called a sub-permission of the group.
+It helps minimize the number of dialogs that are presented to the user when an application requests closely related permissions. A permission in a permission group is called a sub-permission of the group.
 
 The relationship between a permission group and its permissions is not fixed. For details about the permission groups supported by the system, see [Application Permission Groups](app-permission-group-list.md).
 
 ## Basic Concepts in the Permission Mechanism
 
-- TokenID
+- **TokenID**
 
-  Token identity (token ID or **TokenID**) uniquely identifies an application in the system. The AccessTokenManager (ATM) service manages the application Access Token (AT) information based on the token ID. The AT information includes the application ID, sub-user ID, application twin index, application Ability Privilege Level (APL), and permission grant status. When resources are required, the system uses the token ID as the unique identifier to obtain the application's permission grant status and performs authentication based on the information to control the resource access behavior of the application.
+  Token identity (token ID or **TokenID**) uniquely identifies an application in the system. The permission management service uses the token ID of an application to manage its access token (AT) information, including the application ID, sub-user ID, application twin index, ability privilege level (APL), and permission grant status. When resources are required, the system uses the token ID as the unique identifier to obtain the application's permission grant status and performs authentication based on the information to control the resource access behavior of the application.
 
   In addition, the system supports the multi-user feature and the App Twin feature. Different users and the twin applications of the same application have their own AT information with different token IDs.
 
@@ -94,8 +98,10 @@ The relationship between a permission group and its permissions is not fixed. Fo
 
 - Permission type with data
 
-  In the traditional permission model, permissions are either allowed or denied — with limited information. Examples include the permissions configured in the **allowed-acls** field in the profile. This model cannot meet the increasing requirements for refined permission control.
+  In the traditional permission model, permissions are either allowed or denied — with limited information. This model cannot meet the increasing requirements for refined permission control.
 
-  To address this challenge, the system introduces the permission key-value (KV) pairs that carry additional information. Examples include the permission types configured in the **app-services-capabilities** field in the profile. This permission type offers greater flexibility and adaptability to complex permission control models.
+  To address this challenge, the system introduces the permission key-value (KV) pairs that carry additional information. This permission type offers greater flexibility and adaptability to complex permission control models.
 
-  In scenarios involving extended peripherals, the application needs to manage diverse driver servers that can be connected to. This requires that the permissions carry specific server data. The data defined in **app-services-capabilities** can specify the server information.
+  The following uses [ohos.permission.ACCESS_DDK_DRIVERS](restricted-permissions.md#ohospermissionaccess_ddk_drivers) as an example.
+
+  In scenarios involving extended peripherals, the system needs to manage diverse driver servers that can be connected to. This requires that the permissions carry specific server data. <!--Del-->In this case, you can use the data defined in [app-services-capabilities](declare-permissions-in-acl.md) to specify server information.<!--DelEnd-->

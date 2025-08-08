@@ -1,5 +1,11 @@
 # Application Permissions
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 The way to request permissions varies, depending on its applicable scope and authorization mode. Determine the appropriate way to request permissions based on actual situation.
 
 The system provides the following permissions: 
@@ -31,13 +37,13 @@ The system provides the following permissions:
 
    1. [system_grant permissions available to system applications via ACL](permissions-for-system-apps.md):
 
-       The permissions are authorized by the system and can be requested via [ACL](declare-permissions-in-acl.md). The ACL allows a system application or system service to have permissions beyond its Ability Privilege Level (APL). The requested permissions will be automatically granted when the application is installed.
+       The permissions can be requested via [ACL](declare-permissions-in-acl.md). The ACL allows a system application or system service to have permissions beyond its Ability Privilege Level (APL). The requested permissions will be automatically granted when the application is installed.
    2. [system_grant non-ACL permissions for system applications](permissions-for-system-apps-no-acl.md):
 
-       The permissions cannot be requsted via ACL. You need to quey the application's APL and determine whether the application can request the permissions. The requested permissions will be automatically granted when the application is installed.
+       The permissions cannot be requested via ACL. You need to quey the application's APL and determine whether the application can request the permissions. The requested permissions will be automatically granted when the application is installed.
 
    3. [user_grant permissions available to system applications via ACL](permissions-for-system-apps-user.md):
 
-       The permissions can be requested via [ACL](declare-permissions-in-acl.md) and must be authorized by the user. After an application requests this type of permissions via ACL, the permissions must be authorized by the user in a dialog box during the running of the application.
+       The permissions can be requested via [ACL](declare-permissions-in-acl.md). The ACL allows a system application or system service to have permissions beyond its APL. The permissions requested by an application must be authorized by the user in a dialog box during the running of the application.
 
 <!--DelEnd-->

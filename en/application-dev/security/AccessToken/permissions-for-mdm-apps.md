@@ -1,5 +1,11 @@
 # Permissions for MDM Applications
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 The following permissions are available only to Mobile Device Management (MDM) applications. For details about MDM applications, see [Introduction to MDM Kit](../../mdm/mdm-kit-intro.md).
 
 > **NOTE**
@@ -424,7 +430,7 @@ Allows a device administrator application to operate devices.
 
 ## ohos.permission.ENTERPRISE_ADMIN_MANAGE
 
-Allows a device administrator application to manage the device administrator.
+Allows an application to manage a device administrator application.
 
 **Permission level**: system_basic
 
@@ -472,7 +478,7 @@ Allows a device administrator application to obtain information about all applic
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -487,7 +493,7 @@ Allows a device administrator application to restrict users from modifying syste
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -502,7 +508,7 @@ Allows a device administrator application to manage device APN policies.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -517,7 +523,7 @@ Allows a device administrator application to manage device telephony policies.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -532,13 +538,13 @@ Allows a device administrator application to set the Kiosk mode.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
 ## ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES
 
-Allows an enterprise application to enable, create, delete, and configure workspaces.
+Allows an enterprise application to enable, create, and delete workspaces.
 
 With this permission, the application can set the password-free login duration for workspace switching, user photos, and the list of non-deletable workspaces.
 
@@ -549,7 +555,7 @@ With this permission, the application can set the password-free login duration f
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**:PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
 **Valid since**: 20
 
@@ -564,7 +570,7 @@ Allows an MDM application to manage file transfer policies and audit information
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**:PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
 **Valid since**: 20
 
@@ -579,7 +585,7 @@ Allows a device administrator application to set wallpapers.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -594,7 +600,7 @@ Allows an MDM application to manage pre-installed antivirus software.
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
 
@@ -611,6 +617,6 @@ With this permission, the MDM application can configure user_grant permission po
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
