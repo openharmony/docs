@@ -135,8 +135,7 @@ struct Index {
               'key1':'value1',
               'key2':'value2'
             },
-            data: attachments,
-            saveas: "./"
+            data: attachments
           };
           request.agent.create(context, config).then((task: request.agent.Task) => {
             task.start((err: BusinessError) => {
@@ -308,64 +307,63 @@ struct Index {
     Row() {
       Column() {
         Button("下载文档").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
+
           // 创建文件管理器选项实例。
           try {
             const documentSaveOptions = new picker.DocumentSaveOptions();
+            // 保存文件名（可选）。 默认为空。
+            documentSaveOptions.newFileNames = ["xxxx.txt"];
+            // 保存文件类型['后缀类型描述|后缀类型']，选择所有文件：'所有文件(*.*)|.*'（可选），如果选择项存在多个后缀（最大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
+            documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
+            let uri: string = '';
+            // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            const documentViewPicker = new picker.DocumentViewPicker(context);
+            await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+              uri = documentSaveResult[0];
+              console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+            })
+            if (uri != '') {
+              let config: request.agent.Config = {
+                action: request.agent.Action.DOWNLOAD,
+                url: 'https://xxxx/xxxx.txt',
+                // saveas字段是DocumentViewPicker保存的文件的uri
+                saveas: uri,
+                gauge: true,
+                // overwrite字段必须为true
+                overwrite: true,
+                network: request.agent.Network.WIFI,
+                // mode字段必须为request.agent.Mode.FOREGROUND
+                mode: request.agent.Mode.FOREGROUND,
+              };
+              try {
+                request.agent.create(context, config).then((task: request.agent.Task) => {
+                  task.start((err: BusinessError) => {
+                    if (err) {
+                      console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                      return;
+                    }
+                  });
+                  task.on('progress', async (progress) => {
+                    console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+                  })
+                  task.on('completed', async (progress) => {
+                    console.warn('Request download completed, ' + JSON.stringify(progress));
+                    // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+                    request.agent.remove(task.tid);
+                  })
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (err) {
+                console.error(`Failed to create a download task, err: ${err}`);
+              }
+            }
           } catch (err) {
             console.error(`Failed to create a documentSaveOptions, err: ${err}`);
             return;
-          }
-
-          // 保存文件名（可选）。 默认为空。
-          documentSaveOptions.newFileNames = ["xxxx.txt"];
-          // 保存文件类型['后缀类型描述|后缀类型']，选择所有文件：'所有文件(*.*)|.*'（可选），如果选择项存在多个后缀（最大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
-          documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
-
-          let uri: string = '';
-          // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-          const documentViewPicker = new picker.DocumentViewPicker(context);
-          await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
-            uri = documentSaveResult[0];
-            console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
-          }).catch((err: BusinessError) => {
-            console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-          })
-          if (uri != '') {
-            let config: request.agent.Config = {
-              action: request.agent.Action.DOWNLOAD,
-              url: 'https://xxxx/xxxx.txt',
-              // saveas字段是DocumentViewPicker保存的文件的uri
-              saveas: uri,
-              gauge: true,
-              // overwrite字段必须为true
-              overwrite: true,
-              network: request.agent.Network.WIFI,
-              // mode字段必须为request.agent.Mode.FOREGROUND
-              mode: request.agent.Mode.FOREGROUND,
-            };
-            try {
-              request.agent.create(context, config).then((task: request.agent.Task) => {
-                task.start((err: BusinessError) => {
-                  if (err) {
-                    console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
-                    return;
-                  }
-                });
-                task.on('progress', async (progress) => {
-                  console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
-                })
-                task.on('completed', async (progress) => {
-                  console.warn('Request download completed, ' + JSON.stringify(progress));
-                  // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
-                  request.agent.remove(task.tid);
-                })
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (err) {
-              console.error(`Failed to create a download task, err: ${err}`);
-            }
           }
         })
       }
