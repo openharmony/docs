@@ -728,7 +728,6 @@
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
         - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
         - [窗口元数据配置](windowmanager/window-config-m.md)
-        - [窗口开发术语](windowmanager/window-terminology.md)
         <!--Del-->
         - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
@@ -738,6 +737,7 @@
           - [应用启动页简介](windowmanager/launch-page-overview.md)
           - [配置应用启动页](windowmanager/launch-page-config.md)
           - [启动页资源分类配置](windowmanager/launch-page-resource-config.md)
+        - [窗口开发术语](windowmanager/window-terminology.md)
       - 屏幕管理<!--display-manager-->
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
