@@ -149,7 +149,7 @@ onClick(event: PasteButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [PasteButtonCallback](#pastebuttoncallback18) |是 |见PasteButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtononClickResult](#pastebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为PasteButtonCallback。|
+| event | [PasteButtonCallback](#pastebuttoncallback18) |是 |见PasteButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为PasteButtonCallback。|
 
 ## 示例
 
