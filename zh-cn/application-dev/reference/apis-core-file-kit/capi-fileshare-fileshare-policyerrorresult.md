@@ -16,8 +16,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* uri | 授予或使能策略失败的URI。 |
-| FileShare_PolicyErrorCode code | 授予或使能策略失败的URI对应的错误码。 |
-| char* message | 授予或使能策略失败的URI对应的原因。 |
+| char *uri | 授予或使能策略失败的URI。 |
+| [FileShare_PolicyErrorCode](capi-oh-file-share-h.md#fileshare_policyerrorcode) code | 授予或使能策略失败的URI对应的错误码。 |
+| char *message | 授予或使能策略失败的URI对应的原因。 |
 
 
