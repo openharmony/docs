@@ -4849,7 +4849,7 @@ Allows an application to start virus scanning tasks.
 
 **Enable via ACL**：true
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: PC/2in1
 
 **Valid since**：20
 
@@ -4891,7 +4891,7 @@ Allows an application to send notification to the virus protection page.
 
 **Enable via ACL**：true
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: PC/2in1
 
 **Valid since**：20
 
@@ -4905,7 +4905,7 @@ Allows an application to access the virus protection page.
 
 **Enable via ACL**：true
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: PC/2in1
 
 **Valid since**：20
 
