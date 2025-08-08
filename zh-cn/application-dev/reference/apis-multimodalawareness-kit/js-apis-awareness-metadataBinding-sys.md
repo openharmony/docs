@@ -20,7 +20,7 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.encodeImage
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;  
 在图片中加入信息  
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
@@ -37,7 +37,7 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise<image.PixelMap> | Promise对象。返回嵌入信息的图片。 |
+  | Promise&lt;image.PixelMap&gt; | Promise对象。返回嵌入信息的图片。 |
 
 **错误码**:  
 
@@ -67,7 +67,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 解析图片中携带的信息。
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
@@ -84,7 +84,7 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise\<string\> | Promise对象。返回从图片解析出的信息。 |
+  | Promise&lt;string&gt; | Promise对象。返回从图片解析出的信息。 |
 
 **错误码**：  
 
