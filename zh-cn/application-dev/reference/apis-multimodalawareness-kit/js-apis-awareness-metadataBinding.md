@@ -48,7 +48,7 @@ try {
 ```
 
 ## metadataBinding.on('operationSubmitMetadata')
-on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
+on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;number&gt;): void;  
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -59,7 +59,7 @@ on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<numb
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type| string|是|事件类型，type为‘operationSubmitMetadata’，表示系统应用获取编码内容。|
 |bundleName|string|是|应用包名，标识注册应用的包名。|
-|callback|Callback\<number\>|是|回调函数，用于返回编码内容。| 
+|callback|Callback&lt;number&gt;|是|回调函数，用于返回编码内容。| 
 
 **错误码**：
 
@@ -89,7 +89,7 @@ try {
 
 
 ## metadataBinding.off('operationSubmitMetadata')
-off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number\>): void;
+off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;number&gt;): void;
 
 取消订阅系统获取编码内容的事件。取消注册回调接口。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -100,7 +100,7 @@ off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<nu
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type|string|是|事件类型，type为“operationSubmitMetadata”，表示系统应用获取编码内容。|
 |bundleName|string|是|应用包名，标识注册应用的包名。|
-|callback|Callback\<number\>|否|回调函数，返回编码内容。|
+|callback|Callback&lt;number&gt;|否|回调函数，返回编码内容。|
 
 **错误码**：  
 
