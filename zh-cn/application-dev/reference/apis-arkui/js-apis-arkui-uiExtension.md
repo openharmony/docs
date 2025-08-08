@@ -1,10 +1,15 @@
 # @ohos.arkui.uiExtension (uiExtension)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--SE: @stupidb-->
+<!--TSE: @qinliwen0417-->
 
 用于EmbeddedUIExtensionAbility（或UIExtensionAbility）中获取宿主应用的窗口信息或对应的EmbeddedComponent<!--Del-->（或UIExtensionComponent）<!--DelEnd-->组件的信息。
 
 > **说明**
 >
-> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
 ## 导入模块
