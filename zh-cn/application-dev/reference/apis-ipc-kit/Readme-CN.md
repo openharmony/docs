@@ -4,18 +4,21 @@
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
 - C API<!--ipc-c-->
   - 模块<!--ipc-moudle-->
-    - [OHIPCParcel](_o_h_i_p_c_parcel.md)
-    - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
-    - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
-    - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
-    - [IPCKit](_i_p_c_kit.md)
+    - [OHIPCParcel](capi-ohipcparcel.md)
+    - [OHIPCRemoteObject](capi-ohipcremoteobject.md)
+    - [OHIPCSkeleton](capi-ohipcskeleton.md)
+    - [OHIPCErrorCode](capi-ohipcerrorcode.md)
+    - [IPCKit](capi-ipckit.md)
   - 头文件<!--ipc-headerfile-->
-    - [ipc_cparcel.h](ipc__cparcel_8h.md)
-    - [ipc_cremote_object.h](ipc__cremote__object_8h.md)
-    - [ipc_cskeleton.h](ipc__cskeleton_8h.md)
-    - [ipc_error_code.h](ipc__error__code_8h.md)
-    - [ipc_kit.h](ipc__kit_8h.md)
+    - [ipc_cparcel.h](capi-ipc-cparcel-h.md)
+    - [ipc_cremote_object.h](capi-ipc-cremote-object-h.md)
+    - [ipc_cskeleton.h](capi-ipc-cskeleton-h.md)
+    - [ipc_error_code.h](capi-ipc-error-code-h.md)
+    - [ipc_kit.h](capi-ipc-kit-h.md)
   - 结构体<!--ipc-struct-->
-    - [OH_IPC_MessageOption](_o_h___i_p_c___message_option.md)
+    - [OH_IPC_MessageOption](capi-ohipcremoteobject-oh-ipc-messageoption.md)
+    - [OHIPCRemoteProxy](capi-ohipcparcel-ohipcremoteproxy.md)
+    - [OHIPCRemoteStub](capi-ohipcparcel-ohipcremotestub.md)
+    - [OHIPCDeathRecipient](capi-ohipcremoteobject-ohipcdeathrecipient.md)
 - 错误码<!--ipc-arkts-errcode-->
   - [RPC错误码](errorcode-rpc.md)
