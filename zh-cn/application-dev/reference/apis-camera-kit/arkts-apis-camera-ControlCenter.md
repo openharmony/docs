@@ -10,7 +10,7 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 20开始支持。
 
-ControlCenter extends [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md)
+ControlCenter 继承自 [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md)。
 
 控制中心类，用于使能相机控制器。
 
