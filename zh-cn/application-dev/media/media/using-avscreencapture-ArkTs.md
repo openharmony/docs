@@ -144,7 +144,7 @@
 
     ```javascript
     let windowIDs = [57, 86];
-    await screenCapture.skipPrivacyMode(windowIDs);
+    await this.screenCapture.skipPrivacyMode(windowIDs);
     ```
 
 7. 调用startRecording()方法开始进行屏幕录制，并通过监听函数监听状态。
