@@ -1,4 +1,9 @@
 # SoundPool (音频池)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 音频池提供了短音频的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
 
