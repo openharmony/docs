@@ -828,3 +828,5 @@ OH_Drawing_DestroyTypographyStyle(typoStyle);
 OH_Drawing_DestroyTypographyHandler(handler);
 OH_Drawing_DestroyTypography(typography);
 ```
+
+![zh-cn_image_gradient_c](figures/zh-cn_image_gradient_c.png)
