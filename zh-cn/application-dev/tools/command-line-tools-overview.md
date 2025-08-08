@@ -15,7 +15,7 @@
 
 - 通过[Command Line Tools](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-commandline-get)工具中的sdk文件夹获取相关工具。
 
-如需获取最新版本工具，请更新DevEco Studio或Command Line Tools至最新版本。
+如需获取最新版本工具，请更新DevEco Studio或Command Line Tools。
 
 > *说明：*
 >
