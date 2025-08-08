@@ -1511,7 +1511,7 @@ getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise\<RecentPhotoInfo>;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照所有范围内找到的最近图片。<br>该参数需与RecentPhotoComponent组件一样的options才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照最近时间找到的最近图片。<br>该参数需与RecentPhotoComponent组件中的options一样的配置才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
 
 **返回值：**
 
@@ -1524,7 +1524,6 @@ getRecentPhotoInfo(options?: RecentPhotoOptions) : Promise\<RecentPhotoInfo>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper, PhotoSource, RecentPhotoOptions} from '@kit.MediaLibraryKit';
-import { RecentPhotoInfo } from '@ohos.file.RecentPhotoComponent';
 
 async function example(context: Context) {
   console.info('getRecentPhotoInfoDemo');
@@ -1535,7 +1534,7 @@ async function example(context: Context) {
     photoSource: PhotoSource.ALL
   }
 
-  phAccessHelper.getRecentPhotoInfo(recentPhotoOptions).then((recentPhotoInfo: RecentPhotoInfo) => {
+  phAccessHelper.getRecentPhotoInfo(recentPhotoOptions).then((recentPhotoInfo) => {
     console.info('getRecentPhotoInfo success, recentPhotoInfo is ' + JSON.stringify(recentPhotoInfo));
   }).catch((err: BusinessError) => {
     console.error(`getRecentPhotoInfo failed with error: ${err.code}, ${err.message}`);
