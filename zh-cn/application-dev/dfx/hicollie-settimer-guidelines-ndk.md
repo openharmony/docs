@@ -134,7 +134,7 @@
    }
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
 
 7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”。
 
