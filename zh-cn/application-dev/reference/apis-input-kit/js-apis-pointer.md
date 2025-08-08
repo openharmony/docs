@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.pointer (鼠标指针)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
 
 > **说明**：
