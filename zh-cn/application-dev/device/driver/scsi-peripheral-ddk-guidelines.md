@@ -1,4 +1,9 @@
 # 开发使用SCSI协议的设备驱动
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 简介
 
