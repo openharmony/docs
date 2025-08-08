@@ -4815,7 +4815,7 @@ struct LineBreakStrategyExample {
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
 ### 示例21（属性字符串基本功能）
-从API version 20开始，该示例通过[属性字符串](./ts-universal-styled-string.md)通过[RichEditorStyledStringController](#richeditorstyledstringcontroller12)中的[setStyledString](#setstyledstring12)方法与RichEditor组件绑定。通过[getStyledString](#getstyledstring12)接口获取富文本组件显示的属性字符串。
+从API version 20开始，该示例中[属性字符串](./ts-universal-styled-string.md)通过[RichEditorStyledStringController](#richeditorstyledstringcontroller12)中的[setStyledString](#setstyledstring12)方法与RichEditor组件绑定。通过[getStyledString](#getstyledstring12)接口获取富文本组件显示的属性字符串。
 
 ```ts
 // xxx.ets
