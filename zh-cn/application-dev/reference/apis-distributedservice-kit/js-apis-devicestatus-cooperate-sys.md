@@ -724,7 +724,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | -------- | ----------------- |
 | 201 | Permission denied. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+| 20900001 | Operation failed. |
 
 **示例**：
 
