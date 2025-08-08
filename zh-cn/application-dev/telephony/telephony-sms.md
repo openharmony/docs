@@ -1,4 +1,9 @@
 # 短信服务
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @shao-yikai-->
+<!--SE: @wnazgul-->
+<!--TSE: @jiang_99-->
 
 ## 场景介绍
 
@@ -181,6 +186,9 @@ sms:106XXXXXXXXXX?body=发送短信内容
 保证sms字符串传入uri参数即可，在应用中page页面可通过 this.getUIContext().getHostContext() 获取context，在ability中可通过this.context获取context。
 
 ```ts
+// 示例代码
+import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
