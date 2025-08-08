@@ -87,7 +87,7 @@
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
   - [hiprofiler](hiprofiler.md)
+  - [uinput](uinput.md)
   <!--Del-->
   - [hisysevent](hisysevent.md)
-  - [uinput](uinput.md)
   <!--DelEnd-->
