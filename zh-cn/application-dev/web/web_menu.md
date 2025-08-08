@@ -670,13 +670,14 @@ struct WebComponent {
 ![emptyEditMenuOption](./figures/web-menu-savePic.gif)
 
 ## Web菜单获取选中文本
-1. 创建TestClass类通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)将TestClass注册到Web组件中。
-2. 在Html侧注册选区变更监听器，在选区变更时通过TestClass对象将选区设置到ArkTS侧。
+Web组件的[editMenuOptions](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#editmenuoptions12)接口中没有提供获取选中文本的方式。开发者可通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)获取到JavaScript的选中文本，实现自定义菜单的逻辑。
+1. 创建SelectClass类，通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)将SelectClass对象注册到Web组件中。
+2. 在Html侧注册选区变更监听器，在选区变更时通过SelectClass对象将选区设置到ArkTS侧。
   ```ts
 import { webview } from '@kit.ArkWeb';
 let selectText = '';
 
-class TestClass {
+class SelectClass {
   constructor() {
   }
 
@@ -689,15 +690,15 @@ class TestClass {
 @Component
 struct WebComponent {
   webController: webview.WebviewController = new webview.WebviewController();
-  @State testObj: TestClass = new TestClass();
+  @State selectObj: SelectClass = new SelectClass();
   @State textStr: string = '';
 
   build() {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.webController})
         .javaScriptProxy({
-          object: this.testObj,
-          name: 'testObjName',
+          object: this.selectObj,
+          name: 'selectObjName',
           methodList: ['setSelectText'],
           controller: this.webController
         })
@@ -751,7 +752,7 @@ struct WebComponent {
       var selection = window.getSelection();
       if(selection.rangeCount > 0) {
         var selectedText = selection.toString();
-        testObjName.setSelectText(selectedText);
+        selectObjName.setSelectText(selectedText);
       }
     })
 </script>
@@ -761,9 +762,10 @@ struct WebComponent {
 ![web-menu-get-select](./figures/web-menu-get-select.gif)
 
 ## Web菜单识别图片二维码
+在二维码跳转页面或者付款场景中，开发者可通过实现上下文菜单，提供给用户扫描二维码入口，获取到[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口中的二维码信息进行处理。
 1. 创建MenuBuilder组件作为菜单弹窗，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
-3. 通过[detectBarcode.decode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/scan-imagedecode#section9221156204617)扫描保存在沙箱中的图片，获取扫描到扫描结果。
+3. 通过detectBarcode.decode描保存在沙箱中的图片，获取扫描到扫描结果。
   ```ts
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
@@ -883,6 +885,7 @@ struct WebComponent {
 }
   ```
   ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -890,7 +893,8 @@ struct WebComponent {
 </head>
 <body>
 <h1>Long press and click to scan the QR code</h1>
-<img src="./img.png" >
+<!--img.png为二维码图片-->
+<img src="img.png" >
 </body>
 </html>
   ```
