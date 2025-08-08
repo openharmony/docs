@@ -3268,6 +3268,8 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
 | node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
