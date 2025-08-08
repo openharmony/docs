@@ -217,7 +217,8 @@ try {
 }
 ```
 
-### 监听活跃流变化
+<!--Del-->
+### 监听活跃流变化（仅对系统应用开放）
 
 通过设置监听事件，可以监听活跃流的变化。
 
@@ -234,3 +235,4 @@ audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback)
 // 取消该事件的所有监听。
 audioVolumeManager.off('activeVolumeTypeChange');
 ```
+<!--DelEnd-->
