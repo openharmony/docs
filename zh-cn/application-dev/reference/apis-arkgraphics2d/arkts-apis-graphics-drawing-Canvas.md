@@ -521,13 +521,31 @@ import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
 
-  async draw(context : DrawContext) {
+    const colorData = new Uint8Array(color);
+    for (let i = 0; i < colorData.length; i += 4) {
+      colorData[i] = 255;
+      colorData[i+1] = 156;
+      colorData[i+2] = 0;
+      colorData[i+3] = 255;
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     const canvas = context.canvas;
     let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
-    if (this.pixelMap != null) {
-      canvas.drawImage(this.pixelMap, 0, 0, options);
+    if (pixelMap != null) {
+      canvas.drawImage(pixelMap, 0, 0, options);
     }
   }
 }
@@ -565,13 +583,32 @@ import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+    const colorData = new Uint8Array(color);
+    for (let i = 0; i < colorData.length; i += 4) {
+      colorData[i] = 255;
+      colorData[i+1] = 156;
+      colorData[i+2] = 0;
+      colorData[i+3] = 255;
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     const canvas = context.canvas;
     let pen = new drawing.Pen();
     canvas.attachPen(pen);
     let rect: common2D.Rect = { left: 0, top: 0, right: 200, bottom: 200 };
-    canvas.drawImageRect(this.pixelMap, rect);
+    canvas.drawImageRect(pixelMap, rect);
     canvas.detachPen();
   }
 }
@@ -611,14 +648,33 @@ import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+    const colorData = new Uint8Array(color);
+    for (let i = 0; i < colorData.length; i += 4) {
+      colorData[i] = 255;
+      colorData[i+1] = 156;
+      colorData[i+2] = 0;
+      colorData[i+3] = 255;
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     const canvas = context.canvas;
     let pen = new drawing.Pen();
     canvas.attachPen(pen);
     let srcRect: common2D.Rect = { left: 0, top: 0, right: 100, bottom: 100 };
     let dstRect: common2D.Rect = { left: 100, top: 100, right: 200, bottom: 200 };
-    canvas.drawImageRectWithSrc(this.pixelMap, srcRect, dstRect);
+    canvas.drawImageRectWithSrc(pixelMap, srcRect, dstRect);
     canvas.detachPen();
   }
 }
@@ -780,15 +836,33 @@ import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
 
-  async draw(context : DrawContext) {
+    const colorData = new Uint8Array(color);
+    for (let i = 0; i < colorData.length; i += 4) {
+      colorData[i] = 255;
+      colorData[i+1] = 156;
+      colorData[i+2] = 0;
+      colorData[i+3] = 255;
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     const canvas = context.canvas;
-    if (this.pixelMap != null) {
+    if (pixelMap != null) {
       const brush = new drawing.Brush(); // 只支持brush，使用pen没有绘制效果。
       canvas.attachBrush(brush);
       let verts : Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]; // 18
-      canvas.drawPixelMapMesh(this.pixelMap, 2, 2, verts, 0, null, 0);
+      canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
       canvas.detachBrush();
     }
   }
@@ -1271,6 +1345,55 @@ class DrawingRenderNode extends RenderNode {
     canvas.attachBrush(brush);
     canvas.drawSingleCharacter("你", font, 100, 100);
     canvas.drawSingleCharacter("好", font, 120, 100);
+    canvas.detachBrush();
+  }
+}
+```
+
+## drawSingleCharacterWithFeatures<sup>20+</sup>
+
+drawSingleCharacterWithFeatures(text: string, font: Font, x: number, y: number, features: Array\<FontFeature\>): void
+
+绘制单个字符，字符带有字体特征。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text | string | 是 | 待绘制的单个字符，字符串长度必须为1。 |
+| font   | [Font](arkts-apis-graphics-drawing-Font.md) | 是   | 字型对象。  |
+| x | number | 是 | 所绘制字符基线左端点的横坐标，该参数为浮点数。 |
+| y | number | 是 | 所绘制字符基线左端点的纵坐标，该参数为浮点数。 |
+| features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error. Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    const font = new drawing.Font();
+    font.setSize(20);
+    let fontFeatures : Array<drawing.FontFeature> = [];
+    fontFeatures.push({name: 'calt', value: 0});
+    canvas.attachBrush(brush);
+    canvas.drawSingleCharacterWithFeatures("你", font, 100, 100, fontFeatures);
+    canvas.drawSingleCharacterWithFeatures("好", font, 180, 100, fontFeatures);
     canvas.detachBrush();
   }
 }
