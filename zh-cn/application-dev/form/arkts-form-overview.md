@@ -18,7 +18,7 @@
 
     - 新增了动效的能力：ArkTS卡片开放了[属性动画](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)和[显式动画](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)的能力，使卡片的交互更加友好。
     - 新增了自定义绘制的能力：ArkTS卡片开放了[Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)画布组件的能力，卡片可以使用自定义绘制的能力构建更多样的显示和交互效果。
-    - 允许卡片中运行逻辑代码：开放逻辑代码运行后部分卡片ui相关的业务逻辑可以在内部实现，拓宽了卡片的业务适用场景。
+    - 允许卡片中运行逻辑代码：开放逻辑代码运行后部分卡片UI相关的业务逻辑可以在内部实现，拓宽了卡片的业务适用场景。
 
 ## 实现原理
 
@@ -41,7 +41,7 @@
 ## ArkTS卡片类型
 ArkTS卡片分为动态卡片、静态卡片和互动卡片三种类型。
 
-静态卡片整体的运行框架和渲染流程和动态卡片是一致的。主要区别在于，卡片渲染服务将卡片内容渲染完毕后，卡片使用方会使用最后一帧渲染的数据作为静态图片显示，其次卡片渲染服务中的卡片实例会释放该卡片的所有运行资源以节省内存。<br/>
+静态卡片整体的运行框架和渲染流程和动态卡片是一致的。主要区别在于，卡片渲染服务将卡片内容渲染完毕后，卡片使用方会使用最后一帧渲染的数据作为静态图片显示，其次卡片渲染服务中的卡片实例会释放该卡片的所有运行资源以节省内存。因此频繁的刷新会导致静态卡片运行时资源不断的创建和销毁，增加卡片功耗。<br/>
 
 | 卡片类型 | 支持的能力 | 适用场景 | 优缺点 |
 | ------- | ------ | ------- | ------- | 
@@ -52,7 +52,7 @@ ArkTS卡片分为动态卡片、静态卡片和互动卡片三种类型。
 ### 动态卡片
 ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)接口用于卡片Card.ets和FormExtensionAbility之间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
 
-**图4** ArkTS事件交互实现原理
+**图4** ArkTS事件交互实现原理 
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 动态卡片事件的主要使用场景如下：
