@@ -237,6 +237,8 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
@@ -260,6 +262,8 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
@@ -303,7 +307,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 | 参数名 | 类型                                          | 必填 | 说明             |
 | ------ | --------------------------------------------- | ---- | ---------------- |
-| value  | [DatePickerResult](#datepickerresult对象说明) | 是   | 返回选中的时间。 |
+| callback | (value: [DatePickerResult](#datepickerresult对象说明)) => void | 是   | 返回选中的时间。 |
 
 ### onDateChange<sup>10+</sup>
 

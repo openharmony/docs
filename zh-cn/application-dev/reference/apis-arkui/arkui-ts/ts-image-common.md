@@ -78,7 +78,7 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 
 **返回值:**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | [ImageAnalyzerType[]](#imageanalyzertype) | 对应组件支持的分析类型。 |
 
