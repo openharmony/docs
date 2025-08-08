@@ -1,5 +1,9 @@
 # drawing_text_lineTypography.h
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 提供排版行相关的接口，比如获取指定位置处开始可以排版的字符个数等函数。

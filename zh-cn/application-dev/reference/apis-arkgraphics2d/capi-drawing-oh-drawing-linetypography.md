@@ -1,5 +1,9 @@
 # OH_Drawing_LineTypography
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 用于从一段文字中提取单行数据进行排版。
