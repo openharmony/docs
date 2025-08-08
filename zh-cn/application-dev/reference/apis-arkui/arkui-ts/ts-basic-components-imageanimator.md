@@ -221,6 +221,12 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画开始播放时触发。 |
+
 ### onPause
 
 onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -233,6 +239,12 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画暂停播放时触发。 |
+
 ### onRepeat
 
 onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -242,6 +254,12 @@ onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画重复播放时触发。 |
 
 ### onCancel
 
@@ -255,6 +273,13 @@ onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画返回最初状态时触发。 |
+
 ### onFinish
 
 onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -267,6 +292,11 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画播放完成时或者停止播放时触发。 |
 
 ## 示例
 
