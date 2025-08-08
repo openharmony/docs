@@ -50,20 +50,20 @@ Operation failed. The system is shutting down.
 
 在系统正常运行的状态下进行操作。
 
-## 4900201 调用间隔过短导致调用失败
+## 4900201 接口调用间隔过短
 
 **错误信息**
 
-Failed to refresh the screen timeout time because the interval between two function calls is too short.
+The device activity is being refreshed too frequently; the minimum timeinterval is 100 ms.
 
 **错误描述**
 
-刷新屏幕超时息屏时间失败，原因是两次调用间隔过短。
+频繁刷新设备活跃状态导致刷新失败，刷新设备活跃状态最小时间间隔为100ms。
 
 **可能原因**
 
-两次刷新屏幕超时息屏时间的调用间隔过短。
+频繁刷新设备活跃状态。
 
 **处理步骤**
 
-此失败说明100ms内已经进行过刷新屏幕超时息屏时间，无需再次刷新屏幕超时息屏时间。
+此错误说明100ms内已经刷新设备活跃状态，无需再次刷新设备活跃状态。如需再次刷新，请在100ms后进行重试。
