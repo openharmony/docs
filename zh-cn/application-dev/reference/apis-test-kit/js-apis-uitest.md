@@ -1,5 +1,12 @@
 # @ohos.UiTest
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--SE: @inter515-->
+<!--TSE: @laonie666-->
+
+
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
 该模块提供以下功能：
@@ -189,7 +196,7 @@ UI事件的相关信息。
 
 ## On<sup>9+</sup>
 
-UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
+UiTest框架从API version 9开始，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
 On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore9)和[ON.isAfter](#isafter9)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```ts
@@ -4521,7 +4528,7 @@ async function demo() {
 
 UI事件监听器。
 
-### once('toastShow')
+### once('toastShow')<sup>10+</sup>
 
 once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
@@ -4563,7 +4570,7 @@ async function demo() {
 }
 ```
 
-### once('dialogShow')
+### once('dialogShow')<sup>10+</sup>
 
 once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
