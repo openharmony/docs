@@ -771,7 +771,7 @@ try {
 
 ## CooperateState<sup>11+</sup>
 
-键鼠穿越的状态的枚举。
+键鼠穿越状态的枚举。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1154,7 +1154,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
