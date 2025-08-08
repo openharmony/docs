@@ -488,7 +488,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let challenge: Uint8Array = asset.preQuerySync(query);
-console.info("Succeeded in pre-querying with sync, the challenge is: ", challenge);
+console.info(`Succeeded in pre-querying with sync, the challenge is: `, challenge);
 ```
 
 ## asset.query
@@ -551,6 +551,7 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
     // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
   }
   console.info(`Succeeded in querying Asset.`);
 });
@@ -616,6 +617,7 @@ let res: Array<asset.AssetMap> = asset.querySync(query);
 for (let i = 0; i < res.length; i++) {
   // 解析属性。
   let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
 }
 console.info(`Succeeded in querying Asset.`);
 ```

@@ -347,6 +347,7 @@ asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
     // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
   }
   console.info(`Succeeded in querying Asset from user space.`);
 });
