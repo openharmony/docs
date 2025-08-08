@@ -412,6 +412,12 @@ getSelectedIndex(): number
 
 **系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
 
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| number| 返回所选后缀类型在[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的下标(number)。默认返回-1。 |
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -882,6 +888,12 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 constructor(context: Context)
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
