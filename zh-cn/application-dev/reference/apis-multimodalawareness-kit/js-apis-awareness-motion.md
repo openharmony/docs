@@ -1,4 +1,4 @@
-# @ohos.multimodalawareness.motion (动作感知)
+# @ohos.multimodalAwareness.motion (动作感知)
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 
@@ -44,6 +44,8 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;): void;
 
 订阅触控操作手感知事件。
+
+此功能如果设备不支持，将返回801错误码。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
