@@ -85,8 +85,6 @@
         }
       }
     ],
-    "targetModuleName": "feature",
-    "targetPriority": 50,
     "querySchemes": [
       "app1Scheme",
       "app2Scheme"
@@ -312,7 +310,7 @@ abilities示例：
     "launchType":"singleton",
     "description": "$string:description_main_ability",
     "icon": "$media:layered_image",
-    "label": "Login",
+    "label": "$string:EntryAbility_label",
     "permissions": [],
     "metadata": [],
     "exported": true,
