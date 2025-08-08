@@ -10,8 +10,8 @@
 | --------------------- | ---------------- |
 | AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、H.263、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-通过MimeType创建解码器时，系统优先创建硬件解码器实例，如果系统平台不支持或者硬件解码器资源不足时，会创建软件解码器实例。
-当前系统支持的软件解码器格式有：
+通过MimeType创建解码器时，系统会优先创建硬件解码器实例。如果系统平台不支持或者硬件解码器资源不足时，系统会创建软件解码器实例。
+当前系统支持的软件解码器格式包括：
 - MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)
 - MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)
 - H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)
