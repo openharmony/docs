@@ -202,7 +202,7 @@ enum ArkUI_NodeType
 | ARKUI_NODE_GRID | 网格容器。                                |
 | ARKUI_NODE_GRID_ITEM | 网格子组件。                               |
 | ARKUI_NODE_CUSTOM_SPAN | 自定义文本段落。                             |
-| ARKUI_NODE_EMBEDDED_COMPONENT |                                      |
+| ARKUI_NODE_EMBEDDED_COMPONENT | 同应用进程嵌入式组件。 <br>**起始版本：** 20  |
 
 ### ArkUI_NodeAttributeType
 
