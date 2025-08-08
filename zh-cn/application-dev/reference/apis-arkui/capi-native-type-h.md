@@ -2510,6 +2510,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201 | 查询路由导航信息失败。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。 |
 | ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202 | 传入的buffer size异常。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。 |
 | ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203 |  传入的节点未挂载到组件树上。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。<br>**起始版本：** 16 |
+| ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204 |  不支持在非UI线程操作传入的节点。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md#106204-不支持在非ui线程操作传入的节点)。<br>**起始版本：** 20 |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001 |  当前节点无法获得焦点。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150001-节点无法获得焦点)。<br>**起始版本：** 15 |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002 |  当前节点对应的祖先节点中存在无法获焦节点。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150002-祖先节点无法获得焦点)。<br>**起始版本：** 15 |
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003 |  当前节点不存在。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150003-节点不存在)。<br>**起始版本：** 15 |
@@ -8937,5 +8938,86 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
 | callback | 回调函数   |
 
+### OH_ArkUI_PostAsyncUITask()
+
+```
+int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
+    void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData))
+```
+**描述：**
+
+将asyncUITask函数提交至ArkUI框架提供的非UI线程中执行，asyncUITask函数执行完毕后，在UI线程调用onFinish函数。
+
+适用于多线程创建UI组件的场景，开发者可使用此接口在非UI线程创建UI组件，随后在UI线程将创建完成的组件挂载至主树上。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。 |
+| asyncUITaskData | 开发者自定义数据指针，作为asyncUITask和onFinish的入参。可以传入空指针。 |
+| asyncUITask| 在非UI线程执行的函数。|
+| onFinish | asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) context对象无效或asyncUITask为空指针。
+
+### OH_ArkUI_PostUITask()
+
+```
+int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+```
+**描述：**
+
+将task函数提交至UI线程中执行。
+
+适用于多线程创建UI组件的场景，当开发者在自建的线程中创建UI组件时，可以使用此接口将创建完成的组件挂载到UI线程的主树上。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。  |
+| taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
+| task | 在UI线程执行的函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) context对象无效或task为空指针。
+
+### OH_ArkUI_PostUITaskAndWait()
+
+```
+int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+```
+**描述：**
+
+将task函数提交至UI线程中执行，调用此接口的线程将阻塞，直至task函数执行完成。在UI线程调用此接口等同于同步调用task函数。
+
+适用于多线程创建UI组件的场景，当开发者在多线程创建组件过程中需要调用仅支持UI线程的函数时，使用此接口返回UI线程调用函数，调用完成后继续多线程创建组件。
+
+当UI线程负载较高时，调用此接口的非UI线程可能长时间阻塞，影响多线程创建UI组件的性能，不建议频繁使用。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。  |
+| taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
+| task | 在UI线程执行的函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) context对象无效或task为空指针。
 
 
