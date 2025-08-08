@@ -151,10 +151,6 @@ getFont(): Font
 
 完整示例请参考[Font](arkts-apis-uicontext-font.md)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getFont();
-```
 ## getComponentUtils
 
 getComponentUtils(): ComponentUtils
@@ -303,11 +299,6 @@ getRouter(): Router
 **示例：**
 
 完整示例请参考[pushUrl](arkts-apis-uicontext-router.md#pushurl)。
-
-<!--code_no_check-->
-```ts
-uiContext.getRouter();
-```
 
 ## getPromptAction
 
