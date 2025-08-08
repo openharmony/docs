@@ -1,4 +1,9 @@
 # 窗口元数据配置
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 ## metadata标签
 
