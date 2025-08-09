@@ -43,14 +43,13 @@
    >
 
    ```ts
-   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
    import { common } from '@kit.AbilityKit';
    import { media } from '@kit.MediaKit';
    const TAG = 'MetadataDemo';
 
    // 创建AVMetadataExtractor对象。
    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-   
    let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
    let rootPath: string = context.filesDir; // 应用文件目录。
    let testFilename: string = '/test.mp3'; // test.mp3为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。

@@ -42,9 +42,9 @@
    private currentProgress: number = 0;
    private avTranscoder: media.AVTranscoder | undefined = undefined;
 
+   // 创建转码实例。
+   this.avTranscoder = await media.createAVTranscoder();
    if (this.avTranscoder != undefined) {
-     // 创建转码实例。
-     this.avTranscoder = await media.createAVTranscoder();
      // 转码完成回调函数。
      this.avTranscoder.on('complete', async () => {
        console.log(`AVTranscoder is completed`);
