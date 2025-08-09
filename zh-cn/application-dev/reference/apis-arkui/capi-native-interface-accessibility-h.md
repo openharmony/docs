@@ -1,4 +1,9 @@
 # native_interface_accessibility.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 ## 概述
 
@@ -591,7 +596,9 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetOperationActions(ArkUI_Accessibility
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_AccessibilityElementInfo](capi-arkui-accessibility-arkui-accessibilityelementinfo.md)* elementInfo | 表示指向ArkUI_AccessibilityElementInfo的指针。 |
-| [ArkUI_AccessibleAction](capi-arkui-accessibility-arkui-accessibleaction.md)* operationActions | 表示operationActions。 |
+| int32_t* operationCount | 组件支持的action数量。 |
+| [ArkUI_AccessibleAction](capi-arkui-accessibility-arkui-accessibleaction.md)* operationActions | 组件支持的action。 |
+
 
 **返回：**
 
