@@ -360,3 +360,15 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
     - 请确保Chrome调试工具界面的 "Configure" 中配置的端口号，与端口转发指定的TCP端口号一致。
     - 在本文档中，默认使用的TCP端口号为9222。   
       如果开发者使用了其他的TCP端口号(比如9223)，请同时修改[端口转发](#端口转发)中的TCP端口号和[Chrome调试工具界面"Configure"配置](#在chrome浏览器上打开调试工具页面)中的端口号。
+
+### Web组件无法使用DevTools工具进行调试
+**问题现象**
+
+  电脑端Chrome浏览器无法发现被调试网页。
+
+**问题原因**
+
+* 当同时使用HDC和ADB时，ADB会干扰DevTools与设备之间的WebSocket连接
+
+**解决方法**
+* 如果同时使用HDC和ADB，先关闭ADB进程，确保DevTools与设备建立WebSocket连接
