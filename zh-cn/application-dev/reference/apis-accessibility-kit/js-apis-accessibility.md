@@ -167,10 +167,10 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
 | fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 否    | 否    | 描述字幕字体。     |
 | fontScale       | number                                   | 否    | 否    | 描述字幕字体缩放系数，单位%，参数范围1~200。 |
-| fontColor       | number \| string                         | 否    | 否    | 描述字幕字体颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'  |
+| fontColor       | number \| string                         | 否    | 否    | 描述字幕字体颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'。  |
 | fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 否    | 否    | 描述字幕字体边缘。   |
-| backgroundColor | number \| string                         | 否    | 否    | 描述字幕背景颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'   |
-| windowColor     | number \| string                         | 否    | 否    | 描述字幕窗口颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00'   |
+| backgroundColor | number \| string                         | 否    | 否    | 描述字幕背景颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'。   |
+| windowColor     | number \| string                         | 否    | 否    | 描述字幕窗口颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00'。   |
 
 ## CaptionsManager<sup>8+</sup>
 
