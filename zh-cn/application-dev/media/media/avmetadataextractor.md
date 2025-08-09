@@ -50,7 +50,7 @@
 
    // 创建AVMetadataExtractor对象。
    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-   // 使用fs文件系统打开沙箱地址获取媒体文件地址，设置fdSrc属性。
+   
    let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
    let rootPath: string = context.filesDir; // 应用文件目录。
    let testFilename: string = '/test.mp3'; // test.mp3为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
