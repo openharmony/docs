@@ -1201,6 +1201,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 > - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1295,6 +1296,7 @@ runJavaScript(script: string): Promise\<string>
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 > - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1381,6 +1383,10 @@ struct WebComponent {
 runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessageExt>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
+
+> **说明：**
+>
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1592,6 +1598,10 @@ function test() {
 runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
+
+> **说明：**
+>
+> - 前端页面传到Native的string数据类型会被视为json格式的数据，需要调用JSON.parse反序列化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
