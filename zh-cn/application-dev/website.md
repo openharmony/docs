@@ -4733,6 +4733,7 @@
           - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-ohaudio-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioSession_StateChangedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-statechangedevent.md)
           - [OH_AudioSessionManager](reference/apis-audio-kit/capi-ohaudio-oh-audiosessionmanager.md)
           - [OH_AudioStreamManager](reference/apis-audio-kit/capi-ohaudio-oh-audiostreammanager.md)
           - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-ohaudio-oh-audiovolumemanager.md)
