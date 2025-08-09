@@ -58,11 +58,11 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | (selectedText: {plainText: string}) => void                    | 是     | 选中的文本信息。|
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否    | 否     | 显示内容。     |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否    | 是     | 显示图标。     |
+| action    | (selectedText: {plainText: string}) => void                    | 否    | 否     | 选中的文本信息。|
 
 ## AdsBlockedDetails<sup>12+</sup>
 
@@ -81,12 +81,12 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
-| onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
-| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
-| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| onAppear   | Callback\<void\>   | 否     | 是     | 自定义选择菜单弹出时回调。     |
+| onDisappear | Callback\<void\>  | 否     | 是     | 自定义选择菜单关闭时回调。     |
+| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 是     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
+| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 是     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
 
 ## EmbedOptions<sup>16+</sup>
 
@@ -294,10 +294,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| param  | [WebContextMenuParam](./ts-basic-components-web.md#webcontextmenuparam9) | 是 | 菜单相关参数。     |
-| result | [WebContextMenuResult](./ts-basic-components-web.md#webcontextmenuresult9) | 是 | 菜单相应事件传入内核。 |
+| 名称             | 类型      | 只读   | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| param  | [WebContextMenuParam](./ts-basic-components-web.md#webcontextmenuparam9) | 否 | 否 | 菜单相关参数。     |
+| result | [WebContextMenuResult](./ts-basic-components-web.md#webcontextmenuresult9) | 否 | 否 | 菜单相应事件传入内核。 |
 
 ## OnSearchResultReceiveEvent<sup>12+</sup>
 
