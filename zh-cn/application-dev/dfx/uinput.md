@@ -530,7 +530,7 @@ uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput -T -k -s 100 100 100 130
 ```
 
-### 触摸屏双指双关节双击事件
+### 触摸屏双指关节双击事件
 模拟触摸屏双指关节双击。
 
 **命令**
