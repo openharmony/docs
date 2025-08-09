@@ -1157,6 +1157,19 @@ confirm(authUri : string): void
 | ------- | ------ | ---- | ------- |
 | authUri | string | 是    | 凭据的关键值。 |
 
+支持的证书签名算法以及秘钥长度详见下表。
+| 签名算法     | 秘钥长度   | 
+| ------- | ------ |
+| SSL_SIGN_RSA_PKCS1_SHA256 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PKCS1_SHA384 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PKCS1_SHA512 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA256 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA384 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA512 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_ECDSA_SECP256R1_SHA256 | 256 | 
+| SSL_SIGN_ECDSA_SECP384R1_SHA384 | 384 | 
+| SSL_SIGN_ECDSA_SECP521R1_SHA512 | 521 | 
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
