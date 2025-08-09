@@ -811,6 +811,9 @@ getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningForm
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501001  | The ID of the form to be operated does not exist. |
+| 16501003  | The form cannot be operated by the current application. |
+
 
 **示例：**
 
@@ -821,7 +824,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const formId: string = '388344236';
 
 try {
-  formProvider.getPublishedRunningFormInfoById(formId).then((data: formInfo.FormInfo) => {
+  formProvider.getPublishedRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
     console.log(`formProvider getPublishedRunningFormInfoById, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
@@ -856,8 +859,6 @@ getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | An internal functional error occurred. |
 
 **示例：**
 
@@ -866,7 +867,7 @@ import { formInfo, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formProvider.getPublishedRunningFormInfos().then((data: formInfo.FormInfo[]) => {
+  formProvider.getPublishedRunningFormInfos().then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formProvider getPublishedRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
