@@ -98,7 +98,7 @@ function commitConfig(session: camera.Session): void {
 
 commitConfig(): Promise\<void\>
 
-提交配置信息，通过Promise获取结果。
+提交配置信息。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +108,7 @@ commitConfig(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -414,7 +414,7 @@ function startCaptureSession(session: camera.Session): void {
 
 start(): Promise\<void\>
 
-开始会话工作，通过Promise获取结果。
+开始会话工作。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -424,7 +424,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -494,7 +494,7 @@ function stopCaptureSession(session: camera.Session): void {
 
 stop(): Promise\<void\>
 
-停止会话工作，通过Promise获取结果。
+停止会话工作。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -504,7 +504,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | 无返回结果的Promise对象。  |
+| Promise\<void\> | Promise对象，无返回结果。  |
 
 **错误码：**
 
@@ -572,7 +572,7 @@ function releaseCaptureSession(session: camera.Session): void {
 
 release(): Promise\<void\>
 
-释放会话资源，通过Promise获取结果。
+释放会话资源。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -582,7 +582,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
