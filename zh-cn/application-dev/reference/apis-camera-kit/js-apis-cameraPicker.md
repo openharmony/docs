@@ -16,7 +16,7 @@ import { cameraPicker as picker } from '@kit.CameraKit';
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
-拉起相机选择器，根据媒体类型进入相应的模式。操作结束通过Promise形式获取结果。
+拉起相机选择器，根据媒体类型进入相应的模式。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -34,7 +34,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise方式获取相机选择器的处理结果。返回值为[PickerResult](#pickerresult)。        |
+| Promise\<PickerResult\>                         | Promise对象，返回[PickerResult](#pickerresult)对象。        |
 
 **示例：**
 
@@ -50,7 +50,7 @@ async function demo(context: Context) {
     };
     let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
-    console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
+    console.info("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
     let err = error as BusinessError;
     console.error(`the pick call failed. error code: ${err.code}`);
@@ -68,8 +68,8 @@ async function demo(context: Context) {
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| PHOTO           | photo | 拍照模式。  |
-| VIDEO           | video | 录制模式。 |
+| PHOTO           | 'photo' | 拍照模式。  |
+| VIDEO           | 'video' | 录制模式。 |
 
 
 ## PickerProfile
@@ -84,7 +84,7 @@ async function demo(context: Context) {
 | -------------- | --------------------------------- | ----- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | 否   | 否   | 相机的位置。   |
 | saveUri        | string                            | 否   | 是   | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。|
-| videoDuration  | number                            | 否   | 是   | 录制的最大时长（单位：秒）。|
+| videoDuration  | number                            | 否   | 是   | 录制的最大时长（单位：秒）。默认为0，不设置最大录制时长。|
 
 
 ## PickerResult
