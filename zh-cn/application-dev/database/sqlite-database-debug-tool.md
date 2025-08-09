@@ -91,7 +91,7 @@ sqlite> .q
 | `.databases`       | 列出当前连接的所有数据库。              |
 | `.tables`          | 列出当前数据库中的所有表。              |
 | ` .show`           | 查看SQLite命令提示符的默认设置。        |
-| `.schema`          | 获取表的完整信息                        |
+| `.schema`          | 获取表的完整信息。                     |
 | `.quit` 或 `.exit` | 退出SQLite命令行界面。                  |
 | `.schema [TABLE]`  | 显示表的创建SQL语句（或所有表的结构）。 |
 
