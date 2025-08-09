@@ -1,4 +1,4 @@
-# Accessibility Kit（无障碍开发服务）
+# Accessibility Kit（无障碍服务）
 
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
