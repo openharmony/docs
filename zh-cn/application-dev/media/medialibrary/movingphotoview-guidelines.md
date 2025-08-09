@@ -14,7 +14,7 @@
 ## 开发步骤
 
 1. 导入动态照片模块。
- 
+
    ```ts
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
@@ -41,7 +41,7 @@
 
    ```ts
     import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
-
+   
     @Entry
     @Component
     struct Index {
@@ -86,12 +86,6 @@
             Button('stop')
               .onClick(() => {
                 this.controller.stopPlayback()
-              })
-              .margin(5)
-            // 按钮：是否静音播放。
-            Button('mute')
-              .onClick(() => {
-                this.isMuted = !this.isMuted
               })
               .margin(5)
           }
