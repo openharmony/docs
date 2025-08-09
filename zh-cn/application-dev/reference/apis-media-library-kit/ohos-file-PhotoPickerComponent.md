@@ -42,6 +42,7 @@ PhotoPickerComponent({
   onSelectedItemsDeleted?: ItemsDeletedCallback,
   onExceedMaxSelected?: ExceedMaxSelectedCallback,
   onCurrentAlbumDeleted?: CurrentAlbumDeletedCallback,
+  onVideoPlayStateChanged?: videoPlayStateChangedCallback,
   pickerController: PickerController
 })
 
