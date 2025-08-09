@@ -210,9 +210,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| renderExitReason | [RenderExitReason](./ts-basic-components-web-e.md#renderexitreason9) | 是 | 渲染进程异常退出的具体原因。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| renderExitReason | [RenderExitReason](./ts-basic-components-web-e.md#renderexitreason9) | 否 | 是 | 渲染进程异常退出的具体原因。 |
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
@@ -521,10 +521,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | [JsGeolocation](./ts-basic-components-web.md#jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
+| 名称             | 类型      | 只读 | 可选    | 说明                                       |
+| -------------- | ---- | ---- | -------------|--------------------------- |
+| origin | string | 否 | 是 | 指定源的字符串索引。                       |
+| geolocation | [JsGeolocation](./ts-basic-components-web.md#jsgeolocation) | 否 | 是 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
