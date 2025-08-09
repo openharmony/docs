@@ -362,7 +362,7 @@ refreshActivity(reason: string): void
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| reason | string | 是    | 刷新设备活动状态的原因。该参数必须为字符串类型 |
+| reason | string | 是    | 刷新设备活动状态的原因。该参数必须为字符串类型。 |
 
 **错误码：**
 
@@ -374,7 +374,6 @@ refreshActivity(reason: string): void
 | 4900201 |The device activity is being refreshed too frequently; the minimum time interval is 100 ms. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
-| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
