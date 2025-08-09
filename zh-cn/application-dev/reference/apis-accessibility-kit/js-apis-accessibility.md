@@ -161,10 +161,10 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
 | fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 否    | 否    | 描述字幕字体。     |
 | fontScale       | number                                   | 否    | 否    | 描述字幕字体缩放系数，单位%，参数范围1~200。 |
-| fontColor       | number \| string                         | 否    | 否    | 描述字幕字体颜色，例如red对应#FF0000。   |
+| fontColor       | number \| string                         | 否    | 否    | 描述字幕字体颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff 0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'  |
 | fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 否    | 否    | 描述字幕字体边缘。   |
-| backgroundColor | number \| string                         | 否    | 否    | 描述字幕背景颜色，例如red对应#FF0000。   |
-| windowColor     | number \| string                         | 否    | 否    | 描述字幕窗口颜色，例如red对应#FF0000。   |
+| backgroundColor | number \| string                         | 否    | 否    | 描述字幕背景颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00f'   |
+| windowColor     | number \| string                         | 否    | 否    | 描述字幕窗口颜色。<br>number：HEX格式颜色，支持rgb或者argb。<br>string：支持以下格式'#rrggbb', '#rrggbbaa', '#rgb', '#rgba'。<br>例：不透明红色对应number：0xffff0000，对应string：'#ff0000', '#ff0000ff', '#f00', '#f00'   |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -347,19 +347,19 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | type             | [EventType](#eventtype)               | 是   | 否   | 无障碍事件类型，不可缺省。         |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 是   | 窗口变化类型。               |
 | bundleName       | string                                | 是   | 否   | 目标应用名；不可缺省。           |
-| componentType    | string                                | 否   | 是   | 事件源组件类型，如按钮、图表。       |
+| componentType    | string                                | 否   | 是   | 应与事件源组件类型所对应，如：按钮Button类型->'Button'、图片Image类型->'Image'。       |
 | pageId           | number                                | 否   | 是   | 事件源的页面ID。默认值为0。            |
-| description      | string                                | 否   | 是   | 事件描述。        |
+| description      | string                                | 否   | 是   | 事件描述，根据实际场景设定，无特殊限制。        |
 | triggerAction    | [Action](#action)                     | 是   | 否   | 触发事件的Action，不可缺省。    |
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 是   | 文本移动粒度。      |
-| contents         | Array&lt;string&gt;                   | 否   | 是   | 内容列表。                 |
-| lastContent      | string                                | 否   | 是   | 最新内容。                 |
+| contents         | Array&lt;string&gt;                   | 否   | 是   | 内容列表，根据实际场景设定，无特殊限制。                 |
+| lastContent      | string                                | 否   | 是   | 最新内容，根据实际场景设定，无特殊限制。                 |
 | beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号。默认值为0。 |
 | currentIndex     | number                                | 否   | 是   | 当前条目序号。默认值为0。      |
 | endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号。默认值为0。 |
 | itemCount        | number                                | 否   | 是   | 条目总数。默认值为0。        |
 | elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId。默认值为0。        |
-| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。        |
+| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容，当应用需要主动播报时根据实际场景设定播报内容，无特殊限制。        |
 | textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 是   | 主动聚焦的组件ID。        |
 
@@ -375,7 +375,7 @@ constructor(jsonObject)
 
 | 参数名        | 类型     | 必填   | 说明                   |
 | ---------- | ------ | ---- | -------------------- |
-| jsonObject | string | 是    | 创建对象所需要的 JSON 格式字符串。 |
+| jsonObject | Object | 是    | 包含type、bundleName、triggerAction三个字段的 JSON 格式 Object，详见示例。 |
 
 **示例：**
 
