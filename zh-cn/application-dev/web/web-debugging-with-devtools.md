@@ -441,3 +441,15 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
 * 请确保使用的端口可以被应用使用。
 * 请确保调试工具和被调试设备在同一个局域网内，且它们之间网络通畅。
+
+### Web组件无法使用DevTools工具进行调试
+**问题现象**
+
+  电脑端Chrome浏览器无法发现被调试网页。
+
+**问题原因**
+
+* 当同时使用HDC和ADB时，ADB会干扰DevTools与设备之间的WebSocket连接
+
+**解决方法**
+* 如果同时使用HDC和ADB，先关闭ADB进程，确保DevTools与设备建立WebSocket连接
