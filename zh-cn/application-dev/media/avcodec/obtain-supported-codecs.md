@@ -1,6 +1,6 @@
 # 获取支持的编解码能力
 
-因来源、编解码协议及设备能力的不同，不同设备上可用的编解码器及其能力存在差异。
+因来源、编解码协议及设备能力的不同，导致不同设备上可用的编解码器及其能力存在差异。
 
 为确保编解码行为符合预期，请通过音视频编解码能力接口查询系统支持的编解码器及其能力，选择符合开发需求的编解码器，并正确配置参数。
 
@@ -12,7 +12,7 @@
    target_link_libraries(sample PUBLIC libnative_media_core.so)
    target_link_libraries(sample PUBLIC libnative_media_venc.so)
    target_link_libraries(sample PUBLIC libnative_media_vdec.so)
-   target_link_libraries(sample PUBLIC libnative_media_aenc.so)
+   target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    ```
    > **说明：**
    >
@@ -24,7 +24,7 @@
    ```c++
    #include <algorithm>
    #include <multimedia/player_framework/native_avcapability.h>
-   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+   #include <multimedia/player_framework/native_avcodec_audiocodec.h>
    #include <multimedia/player_framework/native_avcodec_videoencoder.h>
    #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
@@ -39,7 +39,7 @@
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
    ```
    
-   方式二：通过 `OH_AVCodec_GetCapabilityByCategory` 获取指定软硬件的编解码能力实例。
+   方式二：通过`OH_AVCodec_GetCapabilityByCategory`获取指定软硬件的编解码能力实例。
    ```c++
    // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
@@ -159,7 +159,10 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### 控制编码质量
 
-提供四种码控模式供开发者选择：恒定码率（CBR）、动态码率（VBR）、恒定质量（CQ）及质量稳定（SQR）。CBR和VBR码控模式下，编码质量取决于码率参数。CQ码控模式下，编码质量取决于质量参数。SQR码控模式下，编码质量由质量稳定码率因子和最大码率决定，且仅支持H.265（HEVC）编码。
+提供四种码控模式供开发者选择：恒定码率（CBR）、动态码率（VBR）、恒定质量（CQ）及质量稳定（SQR）。
+- CBR和VBR码控模式下，编码质量取决于码率参数。
+- CQ码控模式下，编码质量取决于质量参数。
+- SQR码控模式下，编码质量由质量稳定码率因子和最大码率决定，且仅支持H.265（HEVC）编码。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -326,9 +329,9 @@ if (ret != AV_ERR_OK) {
 OH_AVFormat_Destroy(dynamicFormat);
 ```
 
-### 查询编解码器支持复杂度范围
+### 查询编码器支持复杂度范围
 
-复杂度等级决定了编解码器使用的工具数量，但并非所有编解码器都支持这一功能。
+复杂度等级决定了编码器使用的工具数量，但并非所有编码器都支持这一功能。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -400,7 +403,7 @@ if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
    // 7.（可选）调整待配置码率值。
 }
 // 8. 配置编码参数。
-OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
+OH_AVCodec *audioEnc = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (audioEnc == nullptr) {
    // 异常处理。
 }
@@ -413,25 +416,25 @@ if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate) ||
    !OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate))) {
    // 异常处理。
 }
-if (OH_AudioEncoder_Configure(audioEnc, format) != AV_ERR_OK) {
+if (OH_AudioCodec_Configure(audioEnc, format) != AV_ERR_OK) {
    // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
 
-### 查询编解码档次和等级支持情况
+### 查询编解码档次和级别支持情况
 
 编解码标准包含多种编码工具，适用于不同的编码场景。对于特定应用场景，编解码标准按档次确定所需编码工具的开启与关闭情况。例如，H.264有基本档次、主档次和高档次，详情参见 [OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1)。
 
-等级划分了编解码器所需的处理能力和存储空间。H.264有1到6.2的20个等级，参考[OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1)。
+级别划分了编解码器所需的处理能力和存储空间。H.264有1到6.2的20个级别，参考[OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetSupportedProfiles                    | 获取当前编解码器支持的档次。 |
-| OH_AVCapability_GetSupportedLevelsForProfile            | 获取当前编解码器在给定档次的情况下支持的等级信息。 |
-| OH_AVCapability_AreProfileAndLevelSupported             | 确认当前编解码器是否支持特定的档次和等级组合。 |
+| OH_AVCapability_GetSupportedLevelsForProfile            | 获取当前编解码器在给定档次的情况下支持的级别信息。 |
+| OH_AVCapability_AreProfileAndLevelSupported             | 确认当前编解码器是否支持特定的档次和级别组合。 |
 
-确认待配置的档次是否支持，并查询该档次下支持的等级，示例如下。
+确认待配置的档次是否支持，并查询该档次下支持的级别，示例如下。
 
 ```c++
 OH_AVCProfile profile = AVC_PROFILE_MAIN;
@@ -453,7 +456,7 @@ for (int i = 0; i < profileNum; i++) {
       break;
    }
 }
-// 2. 查询待配置档次能支持的等级范围。
+// 2. 查询待配置档次能支持的级别范围。
 const int32_t *levels = nullptr;
 uint32_t levelNum = 0;
 ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
@@ -467,13 +470,13 @@ for (int32_t i = 1; i < levelNum; i++) {
       maxLevel = tmp;
    }
 }
-// 3.（可选）基于支持的最大等级做业务逻辑区分。
+// 3.（可选）基于支持的最大级别做业务逻辑区分。
 if (maxLevel >= AVC_LEVEL_51) {
-   // level 5.1以上，宽、高可配置3840x2160。
+   // level5.1以上，宽、高可配置3840x2160。
 } else if (maxLevel >= AVC_LEVEL_4) {
-   // level 4.0以上，宽、高可配1920x1080。
+   // level4.0以上，宽、高可配1920x1080。
 } else if (maxLevel >= AVC_LEVEL_31) {
-   // level 3.1以上，宽、高可配1280x720。
+   // level3.1以上，宽、高可配1280x720。
 } else {
    // 报错，不做编码。
 }
@@ -495,7 +498,7 @@ if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 ```
 
-已知需要的编码档次和等级组合，直接查询支持情况示例如下。
+已知需要的编码档次和级别组合，直接查询支持情况示例如下。
 
 ```c++
 // 1. 获取H.264编码器能力实例。
@@ -503,21 +506,21 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 if (capability == nullptr) {
    // 异常处理。
 }
-// 2. 查询编码档次和等级是否支持。
+// 2. 查询编码档次和级别是否支持。
 bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_MAIN, AVC_LEVEL_51);
 ```
 
 ### 设置正确的视频宽高
 
-视频编解码器对宽度和高度存在对齐约束，如主流编解码器默认编解码像素格式为YUV420系列中的，会对UV分量下采样，在此情况下视频编解码的宽度和高度至少要按2对齐。此外还有其他因素可能导致更加严格的对齐约束。
+视频编解码器对宽度和高度有对齐约束。例如，主流编解码器默认编解码像素格式为YUV420系列，UV分量在宽度和高度两个方向都会下采样为原始尺寸的一半，因此视频编解码的宽度和高度至少要按2对齐。其他因素也可能导致更严格的对齐约束。
 
-视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中等级对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
+视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864个。
 
 根据视频高度计算最大视频宽度的公式如下。
 
 ![](figures/formula-maxmbsperframe.png)
 
-*MaxMBsPerFrameLevelLimits* 表示协议限定的编解码器最大每帧宏块数，*MaxMBsPerFrameSubmit* 表示编解码器上报的最大每帧宏块数，实际能力取这两者的最小值。
+*MaxMBsPerFrameLevelLimits*表示协议限定的编解码器最大每帧宏块数，*MaxMBsPerFrameSubmit*表示编解码器上报的最大每帧宏块数，实际能力取这两者的最小值。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -619,13 +622,13 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 ### 设置正确的视频帧率
 
-视频编解码的帧率受编解码器的每秒编解码能力和协议等级的每秒处理能力限制。例如，H.264的AVC_LEVEL_51限定最大每秒宏块数目为983040。
+视频编解码的帧率受编解码器的每秒编解码能力和协议级别的每秒处理能力限制。例如，H.264的AVC_LEVEL_51限定最大每秒宏块数目为983040个。
 
 根据视频的宽度和高度，计算最大帧率的公式如下。
 
 ![](figures/formula-maxmbspersecond.png)
 
-*MaxMBsPerSecondLevelLimits* 表示协议限定的编解码器最大每秒宏块数，*MaxMBsPerSecondSubmit* 表示编解码器上报的最大每秒宏块数，实际能力取这两者的最小值。
+*MaxMBsPerSecondLevelLimits*表示协议限定的编解码器最大每秒宏块数，*MaxMBsPerSecondSubmit*表示编解码器上报的最大每秒宏块数，实际能力取这两者的最小值。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
