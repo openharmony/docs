@@ -68,7 +68,7 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 在Stage模型下，UIAbility、WindowStage和应用主窗三者之间的关系如下图所示。
 
-![tabStop](figures/uiability-windowstage-mainwindow.png)
+![windowRelation](figures/uiability-windowstage-mainwindow.png)
 
 每个UIAbility实例都会与一个WindowStage类实例绑定，该类起到了应用进程内窗口管理器的作用。它包含一个主窗口，也就是说UIAbility实例通过WindowStage持有了一个主窗口，该主窗口为ArkUI提供了绘制区域，可以加载不同的ArkUI页面。
 
@@ -83,7 +83,7 @@ Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可�
 
 - **RESUMED**：窗口进入可交互状态。窗口到前台后会进入该状态，另外，窗口恢复，也会触发RESUMED生命周期事件。
 
-- **PAUSED**：窗口进入不可交互状态。窗口触发PAUSED生命周期事件，说明窗口不再位于前台，窗口会保持这种状态，直到恢复或退后台。如果窗口恢复，则会触发RESUMED生命周期事件，进入可交互状态。
+- **PAUSED**：窗口进入不可交互状态。窗口在前台可见但是不可交互时，触发PAUSED生命周期事件。窗口会保持这种状态，直到重新恢复或退后台。如果窗口恢复，则会触发RESUMED生命周期事件，进入可交互状态。
 
 - **HIDDEN**：窗口进入到后台。当窗口不在对用户可见时，触发HIDDEN生命周期事件，它会进入到后台。
 
@@ -91,20 +91,20 @@ Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可�
 >
 > RESUMED和PAUSED状态分别在窗口切换至前台和切换至后台时触发。但是在一些场景下，RESUMED和PAUSED状态触发会有差异。
 > - 如果前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。
-> - 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用锁场景，应用窗口在切换至前台进入到认证界面时，触发PAUSED事件。
+> - 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用管控场景，应用窗口在切换至前台进入到认证界面时，触发PAUSED事件。
 
 |**生命周期状态**|**触发场景举例**|
 |---------------|---------------|
 |SHOWN          |例如：应用全屏启动、悬浮窗被拉起等。|
 |RESUMED        |例如：应用全屏启动、悬浮窗被拉起或应用上滑悬停后回到应用等。|
-|PAUSED         |例如：应用退后台回到桌面、上滑进入多任务、进入应用锁认证界面，应用上滑悬停、应用退后台或应用销毁等。|
-|HIDDEN         |例如：应用上滑回到桌面、应用退后台或应用销毁等。|
-
-特殊场景：例如应用锁场景，应用在进入到应用锁解锁认证界面时，触发PAUSED生命周期状态。
+|PAUSED         |例如：应用退后台回到桌面、应用全屏状态上滑跟手进入多任务或全屏状态下被系统管控等。|
+|HIDDEN         |例如：应用全屏状态上滑退后台回到桌面以及其他退后台或销毁等。|
 
 应用主窗口生命周期事件流转关系如下图：
 
-![tabStop](figures/window-lifecycle-event.png)
+![lifecycleEvent](figures/window-lifecycle-event.png)
+
+**特殊场景**：存在应用被系统管控的场景，会导致应用在启动过程中或RESUMED状态下，进入PAUSED状态，并触发回调通知。
 
 ### 监听生命周期状态变化
 
