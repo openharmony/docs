@@ -472,8 +472,8 @@ struct WebComponent {
 ![emptyEditMenuOption](./figures/web-menu-savePic.gif)
 
 ## Web菜单获取选中文本
-Web组件的[editMenuOptions](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#editmenuoptions12)接口中没有提供获取选中文本的方式。开发者可通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)获取到JavaScript的选中文本，实现自定义菜单的逻辑。
-1. 创建SelectClass类，通过[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)将SelectClass对象注册到Web组件中。
+Web组件的[editMenuOptions](../reference/apis-arkweb/ts-basic-components-web-attributes.md#editmenuoptions12)接口中没有提供获取选中文本的方式。开发者可通过[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)获取到JavaScript的选中文本，实现自定义菜单的逻辑。
+1. 创建SelectClass类，通过[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)将SelectClass对象注册到Web组件中。
 2. 在Html侧注册选区变更监听器，在选区变更时通过SelectClass对象将选区设置到ArkTS侧。
   ```ts
 import { webview } from '@kit.ArkWeb';
@@ -564,7 +564,7 @@ struct WebComponent {
 ![web-menu-get-select](./figures/web-menu-get-select.gif)
 
 ## Web菜单识别图片二维码
-在二维码跳转页面或者付款场景中，开发者可通过实现上下文菜单，提供给用户扫描二维码入口，获取到[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口中的二维码信息进行处理。
+在二维码跳转页面或者付款场景中，开发者可通过实现上下文菜单，提供给用户扫描二维码入口，获取到[onContextMenuShow](../reference/apis-arkweb/ts-basic-components-web-events.md#oncontextmenushow9)接口中的二维码信息进行处理。
 1. 创建MenuBuilder组件作为菜单弹窗，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
 3. 通过detectBarcode.decode描保存在沙箱中的图片，获取扫描到扫描结果。
