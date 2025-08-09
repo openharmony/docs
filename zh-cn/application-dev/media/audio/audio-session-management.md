@@ -37,9 +37,9 @@
   };
   
   audioSessionManager.activateAudioSession(strategy).then(() => {
-    console.info('activateAudioSession SUCCESS');
+    console.info('Succeeded in doing activateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -59,9 +59,9 @@
   import { BusinessError } from '@kit.BasicServicesKit';
   
   audioSessionManager.deactivateAudioSession().then(() => {
-    console.info('deactivateAudioSession SUCCESS');
+    console.info('Succeeded in doing deactivateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -106,9 +106,9 @@
 
   // 激活音频会话。
   audioSessionManager.activateAudioSession(strategy).then(() => {
-    console.info('activateAudioSession SUCCESS');
+    console.info('Succeeded in doing activateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
 
   // 查询音频会话是否已激活。
@@ -123,9 +123,9 @@
 
   // 停用音频会话。
   audioSessionManager.deactivateAudioSession().then(() => {
-    console.info('deactivateAudioSession SUCCESS');
+    console.info('Succeeded in doing deactivateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
 
   // 取消监听音频会话停用事件。
