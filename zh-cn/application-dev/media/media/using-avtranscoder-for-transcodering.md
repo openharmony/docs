@@ -103,7 +103,7 @@
      build() {
        RelativeContainer() {
          Column() {
-           Button($r('app.string.StartTranscoder')) //来自于resource/base/element/string.json文件中的name:StartTranscoder的值
+           Button($r('app.string.StartTranscoder')) //来自于resources/base/element/string.json文件中的name:StartTranscoder的值
              .onClick(async () => {
                console.info(`Button put`);
                await this.avTranscoder.avTranscoderDemo();
