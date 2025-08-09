@@ -41,9 +41,9 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | 202 | Not System App. |
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -97,9 +97,9 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 | 202 | Not System App. |
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -145,9 +145,9 @@ requestExemptionResource(request: ResourceRequest): void
 | 202 | Not System App. |
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -190,9 +190,9 @@ releaseExemptionResource(request: ResourceRequest): void
 | 202 | Not System App. |
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
