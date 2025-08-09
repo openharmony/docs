@@ -44,16 +44,16 @@
    // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   若获取能力实例成功，继续执行。实例无显性释放接口，使用完毕后系统会自动回收。
+   若获取能力实例成功，继续向下执行。实例无显性释放接口，使用完毕后系统会自动回收。
    
 4. 按需调用相应的查询接口。详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 
 ## 场景化开发
-基于你可能遇到的具体场景，我们举例说明能力查询接口的使用方法。
+基于开发过程中可能遇到的具体场景，此处将举例说明能力查询接口的使用方法。
 
 ### 创建指定名称的编解码器
 
-如果系统存在多个相同MIME类型的编解码器，使用`OH_XXX_CreateByMime`系列接口创建系统推荐的编解码器。如需创建其他编解码器，先获取名称，再通过`OH_XXX_CreateByName`系列接口创建。
+如果系统存在多个相同MIME类型的编解码器，使用`OH_XXX_CreateByMime`系列接口创建系统推荐的编解码器。如需创建其他编解码器，先获取名称，再通过`OH_XXX_CreateByName`系列接口创建指定名称的编解码器。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
@@ -80,7 +80,7 @@ if (capability != nullptr) {
 
 * **硬件编解码器：** 指在专有硬件上工作的编解码器，具有低功耗、高性能和减少CPU负载等特点。
 
-在硬件编解码器满足要求时，优先使用硬件编解码器；否则使用软件编解码器。开发者可根据编解码器类别配置不同的编解码参数。
+在硬件编解码器充足且满足能力要求时，优先使用硬件编解码器；否则使用软件编解码器。开发者可根据编解码器类别配置不同的编解码参数。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
@@ -424,7 +424,7 @@ OH_AVFormat_Destroy(format);
 
 ### 查询编解码档次和级别支持情况
 
-编解码标准包含多种编码工具，适用于不同的编码场景。对于特定应用场景，编解码标准按档次确定所需编码工具的开启与关闭情况。例如，H.264有基本档次、主档次和高档次，详情参见 [OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1)。
+编解码标准包含多种编码工具，适用于不同的编码场景。对于特定应用场景，编解码标准按档次确定所需编码工具的开启与关闭情况（例如，H.264有基本档次、主档次和高档次）。详情参见 [OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1)。
 
 级别划分了编解码器所需的处理能力和存储空间。H.264有1到6.2的20个级别，参考[OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1)。
 
@@ -548,7 +548,7 @@ if (!isSupported) {
 }
 ```
 
-若视频高和视频宽校验不支持或配置失败，尝试以下方法确定正确的视频宽高范围。
+如果视频高度和视频宽度校验不支持或配置失败，可尝试以下方法确定正确的视频宽高范围。
 
 已知视频宽度，可以按照以下示例找到正确的尺寸配置。
 
@@ -730,13 +730,13 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
+编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性。 |
 | OH_AVCapability_GetFeatureProperties            | 获取当前编解码器支持的指定特性的属性。|
 
-下面是一个查询H.264编码器是否支持长期参考帧特性的示例。
+查询H.264编码器是否支持长期参考帧特性，示例如下。
 
 ```c++
 constexpr int32_t NEEDED_LTR_NUM = 2;
