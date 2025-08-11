@@ -48,5 +48,5 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| notBefore                 | number | 是   | 否   | 表示文件有效期的开始时间。 |
-| notAfter                  | number | 是   | 否   | 表示文件有效期的结束时间。 |
+| notBefore                 | number | 是   | 否   | 表示配置文件有效期的开始时间。 |
+| notAfter                  | number | 是   | 否   | 表示配置文件有效期的结束时间。 |
