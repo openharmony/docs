@@ -439,6 +439,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
+    if (data == nullptr) {
+        // 异常处理
+    }
     // 获取buffer attributes。
     OH_AVCodecBufferAttr attr = {0};
     int32_t ret = OH_AVBuffer_GetBufferAttr(data, &attr);

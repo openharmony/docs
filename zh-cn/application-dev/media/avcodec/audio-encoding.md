@@ -158,6 +158,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
         signal->outBufferQueue_.push(data);
+        signal->outCond_.notify_all();
     }
     ```
     配置回调：
@@ -371,6 +372,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *avBuffer = signal_->outBufferQueue_.front();
+    if (avBuffer == nullptr) {
+        // 异常处理
+    }
     // 获取buffer attributes。
     OH_AVCodecBufferAttr attr = {0};
     int32_t ret = OH_AVBuffer_GetBufferAttr(avBuffer, &attr);
