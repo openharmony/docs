@@ -1,6 +1,6 @@
 # 增强连接开发指导
 <!--Kit: Distributed Service Kit-->
-<!--Subsystem: linkEnhance-->
+<!--Subsystem: DistributedSched-->
 <!--Owner: @wangJE-->
 <!--SE: @lee_jet520-->
 <!--TSE: @Ytt-test-->
