@@ -242,6 +242,8 @@ import { formInfo } from '@kit.FormKit';
 
 已添加的卡片信息，包括使用中的以及未使用的卡片。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
@@ -252,5 +254,5 @@ import { formInfo } from '@kit.FormKit';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
-| formLocation | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
+| formLocation | [FormLocation](#formlocation20)| 是    | 否     | 卡片位置信息。   |
 <!--RP1--><!--RP1End-->
