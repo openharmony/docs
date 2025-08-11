@@ -1,5 +1,5 @@
 # Interface (MediaKeySession)
-<!--Kit:DrmKit-->
+<!--Kit:DRM Kit-->
 <!--Subsystem:Multimedia-->
 <!--Owner:@qin_wei_jie-->
 <!--SE:@chris2981-->

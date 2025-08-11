@@ -1,5 +1,5 @@
 # 基于AVPlayer播放DRM节目(ArkTS)
-<!--Kit:DrmKit-->
+<!--Kit:DRM Kit-->
 <!--Subsystem:Multimedia-->
 <!--Owner:@qin_wei_jie-->
 <!--SE:@chris2981-->

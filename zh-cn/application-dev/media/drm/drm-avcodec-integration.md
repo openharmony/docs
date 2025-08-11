@@ -1,5 +1,5 @@
 # 基于AVCodec播放DRM节目(C/C++)
-<!--Kit:DrmKit-->
+<!--Kit:DRM Kit-->
 <!--Subsystem:Multimedia-->
 <!--Owner:@qin_wei_jie-->
 <!--SE:@chris2981-->

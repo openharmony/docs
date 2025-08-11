@@ -1,5 +1,5 @@
 # DRM解决方案开发指导
-<!--Kit:DrmKit-->
+<!--Kit:DRM Kit-->
 <!--Subsystem:Multimedia-->
 <!--Owner:@qin_wei_jie-->
 <!--SE:@chris2981-->
