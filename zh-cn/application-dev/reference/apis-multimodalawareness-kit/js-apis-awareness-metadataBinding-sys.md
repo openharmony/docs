@@ -20,8 +20,10 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.encodeImage
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;  
-在图片中加入信息  
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;
+
+在图片中加入信息。
+
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
 **系统API**：此接口为系统接口
@@ -67,7 +69,8 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
+
 解析图片中携带的信息。
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
@@ -113,7 +116,9 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 
 ## metadataBinding.notifyMetadataBindingEvent
 notifyMetadataBindingEvent(metadata: string): void;
+
 推送待嵌入的信息给调用编码接口的应用或服务。
+
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
 **系统API**：此接口为系统接口
