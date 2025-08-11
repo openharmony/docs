@@ -1435,48 +1435,80 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
   **示例：**
 
-  未对接证书管理的双向认证。
+  应用安装私有凭据实现双向认证
 
   ```ts
   // xxx.ets API9
-  import { webview } from '@kit.ArkWeb';
+ import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+@Entry
+@Component
+struct Index {
+  controller: WebviewController = new webview.WebviewController();
+  context = getContext(this) as common.UIAbilityContext
+  uri: string = ''
 
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onClientAuthenticationRequest((event) => {
-            this.uiContext.showAlertDialog({
-              title: 'onClientAuthenticationRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'confirm',
-                action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
-                }
-              },
-              secondaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel();
-                }
-              },
-              cancel: () => {
-                event.handler.ignore();
-              }
+  aboutToAppear(): void {
+    webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+  }
+
+  build() {
+    Column() {
+      Button("installPrivateCertificate").onClick(() => {
+        let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
+        certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
+          async (err: BusinessError, data: certificateManager.CMResult) => {
+            console.log(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
+            if (!err && data.uri) {
+              this.uri = data.uri;
+            }
+          });
+      })
+      Button('加载需要客户端ssl证书的网站')
+        .onClick(() => {
+          this.controller.loadUrl("https://client.badssl.com")
+        })
+      Web({
+        src: "https://www.bing.com/",
+        controller: this.controller,
+      }).domStorageAccess(true)
+        .fileAccess(true)
+        .onPageBegin(event => {
+          console.log("extensions onpagebegin url " + event.url);
+        })
+        .onClientAuthenticationRequest((event) => {
+          console.log("onClientAuthenticationRequest ");
+          event.handler.confirm(this.uri);
+          return true;
+        })
+        .onSslErrorEventReceive(e => {
+          console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+        })
+        .onErrorReceive((event) => {
+          if (event) {
+            promptAction.showToast({
+              message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+              alignment: Alignment.Center
             })
-          })
-      }
+            console.log('getErrorInfo:' + event.error.getErrorInfo());
+            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.log('url:' + event.request.getRequestUrl());
+          }
+        })
+        .onTitleReceive(event  => {
+          console.log("title receivedd " + event.title);
+        })
+
     }
   }
+}
   ```
 
-  对接证书管理的双向认证。
+  对接证书管理实现双向认证。
 
   1. 构造单例对象GlobalContext。
 
@@ -1505,120 +1537,122 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
      ```
 
 
-  2. 实现双向认证。
+  2. 构造对象CertManagerService对接证书管理。
 
      ```ts
-     // xxx.ets API10
+     // CertManagerService.ets
+     import { bundleManager, common, Want } from "@kit.AbilityKit";
+      import { BusinessError } from "@kit.BasicServicesKit";
+      import { GlobalContext } from './GlobalContext';
+
+      export default class CertManagerService {
+        private static sInstance: CertManagerService;
+        private authUri = "";
+        private appUid = "";
+
+        public static getInstance(): CertManagerService {
+          if (CertManagerService.sInstance == null) {
+            CertManagerService.sInstance = new CertManagerService();
+          }
+          return CertManagerService.sInstance;
+        }
+
+        async grantAppPm(): Promise<string> {
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+          // 注：com.example.myapplication需要写实际应用名称
+          try {
+            const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
+              .catch((err: BusinessError) => {
+                console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+                return null;
+              });
+            this.appUid = data?.appInfo?.uid?.toString() ?? '';
+            console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('getBundleInfoForSelf failed: %{public}s', message);
+          }
+
+          // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
+          await abilityContext.startAbilityForResult(
+            {
+              bundleName: "com.ohos.certmanager",
+              abilityName: "MainAbility",
+              uri: "requestAuthorize",
+              parameters: {
+                appUid: this.appUid, // 传入申请应用的appUid
+              }
+            } as Want)
+            .then((data: common.AbilityResult) => {
+              if (!data.resultCode && data.want) {
+                if (data.want.parameters) {
+                  this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
+                }
+              }
+            })
+          return this.authUri;
+        }
+      }
+     ```
+  3. 实现双向认证。
+     ```ts
      import { webview } from '@kit.ArkWeb';
-     import { common, Want, bundleManager } from '@kit.AbilityKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-     import { GlobalContext } from '../GlobalContext';
-
-     let uri = "";
-
-     export default class CertManagerService {
-       private static sInstance: CertManagerService;
-       private authUri = "";
-       private appUid = "";
-
-       public static getInstance(): CertManagerService {
-         if (CertManagerService.sInstance == null) {
-           CertManagerService.sInstance = new CertManagerService();
-         }
-         return CertManagerService.sInstance;
-       }
-
-       async grantAppPm(callback: (message: string) => void) {
-         let message = '';
-         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         // 注：com.example.myapplication需要写实际应用名称
-         try {
-           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-            this.appUid = data.appInfo.uid.toString();
-           }).catch((err: BusinessError) => {
-             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-           });
-         } catch (err) {
-           let message = (err as BusinessError).message;
-           console.error('getBundleInfoForSelf failed: %{public}s', message);
-         }
-
-         // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-         await abilityContext.startAbilityForResult(
-           {
-             bundleName: "com.ohos.certmanager",
-             abilityName: "MainAbility",
-             uri: "requestAuthorize",
-             parameters: {
-               appUid: this.appUid, // 传入申请应用的appUid
-             }
-           } as Want)
-           .then((data: common.AbilityResult) => {
-             if (!data.resultCode && data.want) {
-               if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
-               }
-             }
-           })
-         message += "after grantAppPm authUri: " + this.authUri;
-         uri = this.authUri;
-         callback(message)
-       }
-     }
+     import CertManagerService from './CertMgrService';
+     import { promptAction } from '@kit.ArkUI';
 
      @Entry
      @Component
-     struct WebComponent {
-       controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' // message主要是调试观察使用
+     struct Index {
+       controller: WebviewController = new webview.WebviewController();
        certManager = CertManagerService.getInstance();
-       uiContext: UIContext = this.getUIContext();
+
+       aboutToAppear(): void {
+         webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+       }
 
        build() {
-         Row() {
-           Column() {
-             Row() {
-               // 第一步：需要先进行授权，获取到uri
-               Button('GrantApp')
-                 .onClick(() => {
-                   this.certManager.grantAppPm((data) => {
-                     this.message = data;
-                   });
-                 })
-               // 第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-               Button("ClientCertAuth")
-                 .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); // 支持双向认证的服务器网站
-                 })
-             }
+         Column() {
+           Button('加载需要客户端ssl证书的网站')
+             .onClick(() => {
+               this.controller.loadUrl("https://client.badssl.com")
+             })
+           Web({
+             src: "https://www.bing.com/",
+             controller: this.controller,
+           }).domStorageAccess(true)
+             .fileAccess(true)
+             .onPageBegin(event => {
+               console.log("extensions onpagebegin url " + event.url);
+             })
+             .onClientAuthenticationRequest((event) => {
+               console.log("onClientAuthenticationRequest ");
 
-             Web({ src: 'https://www.example1.com', controller: this.controller })
-               .fileAccess(true)
-               .javaScriptAccess(true)
-               .domStorageAccess(true)
-               .onlineImageAccess(true)
-
-               .onClientAuthenticationRequest((event) => {
-                 this.uiContext.showAlertDialog({
-                   title: 'ClientAuth',
-                   message: 'Text',
-                   confirm: {
-                     value: 'Confirm',
-                     action: () => {
-                       event.handler.confirm(uri);
-                     }
-                   },
-                   cancel: () => {
-                     event.handler.cancel();
-                   }
-                 })
+               this.certManager.grantAppPm().then(uri => {
+                 console.log(`grantAppPm, uri==========${uri}`);
+                 # event.handler.confirm(uri);
                })
-           }
+               return true;
+             })
+             .onSslErrorEventReceive(e => {
+               console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+             })
+             .onErrorReceive((event) => {
+               if (event) {
+                 promptAction.showToast({
+                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+                   alignment: Alignment.Center
+                 })
+                 console.log('getErrorInfo:' + event.error.getErrorInfo());
+                 console.log('getErrorCode:' + event.error.getErrorCode());
+                 console.log('url:' + event.request.getRequestUrl());
+               }
+             })
+             .onTitleReceive(event  => {
+               console.log("title receivedd " + event.title);
+             })
+
          }
-         .width('100%')
-         .height('100%')
        }
      }
      ```
