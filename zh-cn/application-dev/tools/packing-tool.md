@@ -255,7 +255,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out\
+java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out
 ```
 
 **表10** versionNormalize指令参数说明
@@ -274,7 +274,7 @@ java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out\
+java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out
 ```
 
 **表11**  参数含义及规范
@@ -299,7 +299,7 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out\
+java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out
 ```
 
 **表12**  参数含义及规范
