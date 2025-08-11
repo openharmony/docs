@@ -89,7 +89,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 4. 需要申请权限ohos.permission.GET_WIFI_INFO，ohos.permission.SET_WIFI_INFO。
 5. 示例代码：
 
-```ts
+   ```ts
    import { wifiManager } from '@kit.ConnectivityKit';
 
    try {
@@ -130,6 +130,6 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
    } catch (error) {
      console.error(`WiFi Connection failed. ${error.message}`);
    }
-```
+   ```
 6. Wi-Fi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
 7. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
