@@ -5,7 +5,7 @@
 <!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
 <!--TSE: @Filger-->
 
-OHAudio是系统在API version 10中引入的一套C API，此API在设计上采用统一设计，同时支持普通音频通路和低时延通路。仅支持PCM格式，适用于依赖Native层实现音频输出功能的场景。
+OHAudio是系统在API version 10中引入的一套C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。仅支持PCM格式，适用于依赖Native层实现音频输出功能的场景。
 
 OHAudio音频播放状态变化示意图：
 ![OHAudioRenderer status change](figures/ohaudiorenderer-status-change.png)
@@ -94,9 +94,9 @@ OH_AudioStreamBuilder_Destroy(builder);
 
       > **注意：**
       > 
-      > - 当填充数据满足回调所需长度数据的情况下，返回AUDIO_DATA_CALLBACK_RESULT_VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回AUDIO_DATA_CALLBACK_RESULT_VALID，否则会导致杂音、卡顿等现象。
+      > - 能填满回调所需长度数据的情况下，返回AUDIO_DATA_CALLBACK_RESULT_VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回AUDIO_DATA_CALLBACK_RESULT_VALID，否则会导致杂音、卡顿等现象。
       > 
-      > - 在当数据不足以填充回调所需长度数据的情况下，建议开发者返回AUDIO_DATA_CALLBACK_RESULT_INVALID，系统不会处理该段音频数据，然后会再次向应用请求数据，确认数据填满后返回AUDIO_DATA_CALLBACK_RESULT_VALID。
+      > - 在无法填满回调所需长度数据的情况下，建议开发者返回AUDIO_DATA_CALLBACK_RESULT_INVALID，系统不会处理该段音频数据，然后会再次向应用请求数据，确认数据填满后返回AUDIO_DATA_CALLBACK_RESULT_VALID。
       > 
       > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
 
@@ -165,7 +165,7 @@ OH_AudioStreamBuilder_Destroy(builder);
       > 
       > - 该函数不支持返回回调结果，系统默认回调中的数据均为有效数据。请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
       > 
-      > - 在当数据不足以填充回调所需长度数据的情况下，建议开发者选择暂时停止写入数据（不暂停音频流），阻塞回调函数，等待数据充足时，再继续写入数据，确保数据填满。在阻塞回调函数后，如需调用AudioRenderer相关接口，需先解阻塞。
+      > - 在无法填满回调所需长度数据的情况下，建议开发者选择暂时停止写入数据（不暂停音频流），阻塞回调函数，等待数据充足时，再继续写入数据，确保数据填满。在阻塞回调函数后，如需调用AudioRenderer相关接口，需先解阻塞。
       > 
       > - 开发者如果不希望播放本次回调中的音频数据，可以主动将回调中的数据块置空（置空后，也会被系统统计到已写入的数据，播放静音帧）。
       > 
@@ -356,11 +356,11 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 
 开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetChannelLayout()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setchannellayout)设置声道布局信息。
 
-当声道布局与声道数不匹配时，创建音频流会失败。建议在设置声道布局时，确保配置的声道布局信息是正确的。
+当声道布局与声道数不匹配时，创建音频流会失败。建议在设置声道布局时，确认下发的声道布局信息是正确的。
 
 如果不知道准确的声道布局信息，或者开发者需要使用默认声道布局，可以不调用设置声道布局接口，或者下发CH_LAYOUT_UNKNOWN，以使用基于声道数的默认声道布局。
 
-对于HOA格式的音频，为确保获得正确的渲染和播放效果，必须指定声道布局信息。
+对于HOA格式的音频，想要获得正确的渲染和播放效果，必须指定声道布局信息。
 
 开发示例
 
