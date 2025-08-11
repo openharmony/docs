@@ -119,7 +119,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 ```c++
 #include "multimodalinput/oh_input_manager.h"
 #include "window_manager/oh_window.h"
-#include "napi/native_api_h"
+#include "napi/native_api.h"
 ```
 
 ### 接口使用说明
@@ -162,7 +162,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 ```c++
 #include "window_manager/oh_window.h"
 #include "multimodalinput/oh_input_manager.h"
-#include "napi/native_api_h"
+#include "napi/native_api.h"
 
 static napi_value injectEvent(napi_env env, napi_callback_info info) {
   size_t argc = 1;
