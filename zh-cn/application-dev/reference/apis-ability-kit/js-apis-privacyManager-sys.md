@@ -804,9 +804,9 @@ try {
 }
 ```
 
-## privacyManager.getPermissionUsedTypeInfos<sup>20+</sup>
+## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
 
-getPermissionUsedTypeInfos(tokenId?: int;null, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+getPermissionUsedTypeInfos(tokenId?: number | null, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
 
 查询设备上指定应用访问敏感权限时的信息（包括敏感权限名称、敏感权限访问方式）。
 
@@ -818,7 +818,7 @@ getPermissionUsedTypeInfos(tokenId?: int;null, permissionName?: Permissions): Pr
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenId            | int;null                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。   |
+| tokenId            | number \| null                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。从API20，新增支持null类型。   |
 | permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
 
 **返回值：**
