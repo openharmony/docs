@@ -1815,11 +1815,6 @@ getMeasureUtils(): MeasureUtils
 
 完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
-
 ## getComponentSnapshot<sup>12+</sup>
 
 getComponentSnapshot(): ComponentSnapshot
