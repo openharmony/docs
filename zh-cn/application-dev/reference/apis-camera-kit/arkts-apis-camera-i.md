@@ -180,10 +180,10 @@
 
 | 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。true表示使能，false反之。 |
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量（默认低）。                                                           |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度（默认0度，顺时针旋转）。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息（默认以设备硬件信息为准）。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。true表示使能，false表示不使能镜像。 |
 
 ## FrameShutterInfo
 
@@ -196,7 +196,7 @@
 | 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 否   | 拍照的ID。|
-| timestamp | number | 否   | 否   | 快门时间戳（单位：毫秒）。|
+| timestamp | number | 否   | 否   | 快门时间戳，单位毫秒。|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -275,7 +275,7 @@
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
 | type        | [MetadataObjectType](arkts-apis-camera-e.md#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  否  | 当前时间戳（单位：毫秒）。|
+| timestamp   | number                                      |  是  |  否  | 当前时间戳，单位毫秒。|
 | boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## SmoothZoomInfo<sup>11+</sup>
