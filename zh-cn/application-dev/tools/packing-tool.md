@@ -119,8 +119,8 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
 | bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
 | versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
-| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
-| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
 | minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 | versionName                | 从API version 12开始，不再对versionName校验。      |
@@ -166,8 +166,8 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
 | bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
 | versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
-| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
-| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
 | minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 | versionName                | 从API version 12开始，不再对versionName校验。      |
@@ -313,8 +313,8 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 | bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
 | bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
 | versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
-| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
-| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| debug                            | 要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
 | minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 
