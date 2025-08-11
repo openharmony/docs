@@ -19,7 +19,7 @@ import { camera } from '@kit.CameraKit';
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称   | 类型                           |   只读    |   必选   | 说明       |
+| 名称   | 类型                           |   只读    |   可选   | 说明       |
 | ------ | ----------------------------- | --------  |  ------ | ---------- |
 | main<sup>11+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md) |    否   |    否    | 全质量图Image。 |
 
