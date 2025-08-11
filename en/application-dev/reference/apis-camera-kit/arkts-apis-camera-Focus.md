@@ -10,7 +10,7 @@
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 11.
 
-Focus extends [FocusQuery](arkts-apis-camera-FocusQuery.md).
+Focus inherits from [FocusQuery](arkts-apis-camera-FocusQuery.md).
 
 It provides APIs related to focus operations.
 
