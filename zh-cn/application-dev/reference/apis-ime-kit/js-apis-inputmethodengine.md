@@ -3044,7 +3044,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -3093,7 +3093,7 @@ getForward(length:number): Promise&lt;string&gt;
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -3140,7 +3140,7 @@ getForwardSync(length:number): string
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -3177,7 +3177,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -3226,7 +3226,7 @@ getBackward(length:number): Promise&lt;string&gt;
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -3273,7 +3273,7 @@ getBackwardSync(length:number): string
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -4181,7 +4181,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -4218,7 +4218,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -4253,7 +4253,7 @@ getTextIndexAtCursorSync(): number
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -4293,7 +4293,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -4345,7 +4345,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
