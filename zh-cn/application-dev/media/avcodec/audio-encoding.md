@@ -120,7 +120,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
    > **注意：**
-   > 回调中不建议进行耗时操作。
+   > 回调函数中应避免执行耗时操作。
 
     ```cpp
     // OH_AVCodecOnError回调函数的实现。
@@ -308,7 +308,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    <!--RP5--><!--RP5End-->
 
-   flac比较特殊，需要根据如下表格进行设置。
+   FLAC编码比较特殊，需要根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |
@@ -331,7 +331,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    ```c++
     // 声道数。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 采样点数，这里以AAC-LC为例，采样点数为1024。
+    // 采样点数，本示例以AAC-LC编码为例，采样点数为1024。
     constexpr int32_t SAMPLES_PER_FRAME = 1024;
     // 单次编码输入的数据量（单位：字节）为：采样点数 * 声道数 * 单个采样点的占用字节（以采样格式SAMPLE_S16LE为例）。
     // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理。
@@ -445,7 +445,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 12. 调用OH_AudioCodec_Destroy()销毁编码器实例，释放资源。
 
     > **说明：**
-    > 资源不能重复销毁
+    > 禁止重复释放资源。
 
     ```c++
     // 调用OH_AudioCodec_Destroy, 注销编码器。
