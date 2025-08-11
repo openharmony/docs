@@ -2605,7 +2605,23 @@
         - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
-        - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
+        - @arkts.collections (ArkTS容器集)<!--js-apis-arkts-collections-->
+          - [模块描述](reference/apis-arkts/arkts-apis-arkts-collections.md)
+          - [Class (Array)](reference/apis-arkts/arkts-apis-arkts-collections-Array.md)
+          - [Class (Map)](reference/apis-arkts/arkts-apis-arkts-collections-Map.md)
+          - [Class (Set)](reference/apis-arkts/arkts-apis-arkts-collections-Set.md)
+          - [Class (ArrayBuffer)](reference/apis-arkts/arkts-apis-arkts-collections-ArrayBuffer.md)
+          - [Class (Int8Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int8Array.md)
+          - [Class (Uint8Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint8Array.md)
+          - [Class (Int16Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int16Array.md)
+          - [Class (Uint16Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint16Array.md)
+          - [Class (Int32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int32Array.md)
+          - [Class (Uint32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint32Array.md)
+          - [Class (Uint8ClampedArray)](reference/apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md)
+          - [Class (Float32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Float32Array.md)
+          - [Class (BitVector)](reference/apis-arkts/arkts-apis-arkts-collections-BitVector.md)
+          - [Interface (ConcatArray)](reference/apis-arkts/arkts-apis-arkts-collections-ConcatArray.md)
+          - [Types](reference/apis-arkts/arkts-apis-arkts-collections-Types.md)
         - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
         - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
         - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
