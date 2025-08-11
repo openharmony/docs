@@ -531,12 +531,12 @@ while (flag) {
   try {
     socket.sppReadAsync(clientNumber).then((outBuffer: ArrayBuffer) => {
       buffer = outBuffer;
+      if (buffer != null) {
+        console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      } else {
+        console.error('sppRead error, data is null');
+      }
     });
-    if (buffer != null) {
-      console.info('sppRead success, data = ' + JSON.stringify(buffer));
-    } else {
-      console.error('sppRead error, data is null');
-    }
   } catch (err) {
     flag = 0;
     console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
