@@ -67,7 +67,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 示例
 
-音量面板功能的示例说明参考如下。
+音量面板功能的示例说明参考如下。需要实际修改volume值或者按压音量按键体验调节音量效果。
 
 ```ts
 import { AVVolumePanel } from '@kit.AudioKit';
