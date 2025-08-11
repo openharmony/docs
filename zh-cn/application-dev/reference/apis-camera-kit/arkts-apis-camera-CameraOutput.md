@@ -66,7 +66,7 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
 
 release(): Promise\<void\>
 
-释放输出资源，通过Promise获取结果。
+释放输出资源。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -76,7 +76,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 

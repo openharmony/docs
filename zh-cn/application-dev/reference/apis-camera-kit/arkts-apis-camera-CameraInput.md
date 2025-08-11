@@ -60,7 +60,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(): Promise\<void\>
 
-打开相机，通过Promise获取相机的状态。
+打开相机，使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -70,7 +70,7 @@ open(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。  |
 
 **错误码：**
 
@@ -101,7 +101,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(isSecureEnabled: boolean): Promise\<bigint\>
 
-打开相机，获取安全相机的句柄。
+打开相机。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -117,7 +117,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<bigint\> | 使用Promise的方式获取打开相机句柄。 |
+| Promise\<bigint\> |  Promise对象，返回安全相机的句柄。 |
 
 **错误码：**
 
@@ -147,7 +147,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(type: CameraConcurrentType): Promise\<void\>
 
-以指定的并发类型打开相机。
+以指定的并发类型打开相机。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -163,7 +163,7 @@ open(type: CameraConcurrentType): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 

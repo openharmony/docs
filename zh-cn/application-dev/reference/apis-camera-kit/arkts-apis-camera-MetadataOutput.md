@@ -57,7 +57,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
 
 start(): Promise\<void\>
 
-开始输出metadata，通过Promise获取结果。
+开始输出metadata。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -67,7 +67,7 @@ start(): Promise\<void\>
 
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
-| Promise\<void\>          | 无返回结果的Promise对象。 |
+| Promise\<void\>          | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -138,7 +138,7 @@ stop(): Promise\<void\>
 
 | 类型                    | 说明                        |
 | ----------------------  | --------------------------- |
-| Promise\<void\>         |  Promise对象，无返回结果。 |
+| Promise\<void\>         | Promise对象，无返回结果。 |
 
 **示例：**
 
