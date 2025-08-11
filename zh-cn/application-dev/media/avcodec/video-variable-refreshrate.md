@@ -1,5 +1,11 @@
 # 视频可变帧率
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @tianjian97861-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
+
 本模块提供视频可变帧率功能的CAPI接口，通过调用本接口，可以在视频播放过程中根据视频内容动态调整屏幕刷新率，在保障视频播放流畅度的基础上节省屏幕显示功耗。
 
 ## 适用场景
@@ -50,7 +56,7 @@
     ```cpp
     OH_AVFormat *format = OH_AVFormat_Create();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR, 0);
-    OH_VideoDecoder_SetParameter(videoDec，format);
+    OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
 
@@ -60,6 +66,6 @@
     OH_AVFormat *format = OH_AVFormat_Create();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, fps);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR, 1);
-    OH_VideoDecoder_SetParameter(videoDec，format);
+    OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```

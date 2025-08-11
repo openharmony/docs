@@ -649,11 +649,20 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
+      if (err !== undefined) {
+        console.error(`getHiddenAlbumsViewCallback failed with error: ${err.code}, ${err.message}`);
+        return;
+      }
       if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
       let album = await fetchResult.getFirstObject();
+      if (album === undefined) {
+        console.error('getHiddenAlbumsViewCallback album is undefined');
+        fetchResult.close();
+        return;
+      }
       console.info('getHiddenAlbumsViewCallback successfully, album name: ' + album.albumName);
       fetchResult.close();
   });
@@ -706,6 +715,11 @@ async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHe
       return;
     }
     let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (hiddenAlbum === undefined) {
+      console.error('getSysHiddenAlbumCallback hiddenAlbum is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getSysHiddenAlbumCallback successfully, albumUri: ' + hiddenAlbum.albumUri);
     fetchResult.close();
   });
@@ -720,6 +734,11 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
       return;
     }
     let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    if (albums === undefined) {
+      console.error('getHiddenAlbumsViewCallback albums is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getHiddenAlbumsViewCallback successfully, albums size: ' + albums.length);
 
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -730,6 +749,10 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
     for (let i = 0; i < albums.length; i++) {
       // 获取相册中的隐藏文件。
       albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
+        if (assetFetchResult === undefined) {
+          console.error('getHiddenAlbumsViewCallback assetFetchResult is undefined');
+          return;
+        }
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       });
     }
@@ -3533,7 +3556,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourceCallbackDemo')
+    console.info('requestSourceCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -3549,7 +3572,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       }
     });
   } catch (err) {
-    console.error(`requsetSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3592,7 +3615,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourcePromiseDemo')
+    console.info('requestSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -3603,7 +3626,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let fd = await photoAsset.requestSource();
     console.info('Source fd is ' + fd);
   } catch (err) {
-    console.error(`requsetSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5895,7 +5918,7 @@ async function example(context: Context, albumUri: string) {
     await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
     console.info('deleteAlbums successfully');
   } catch (err) {
-    console.error('deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}');
+    console.error(`deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```

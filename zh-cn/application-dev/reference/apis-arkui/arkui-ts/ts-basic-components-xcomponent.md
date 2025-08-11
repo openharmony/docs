@@ -834,7 +834,7 @@ struct Index {
 
 ### 示例3（使用画布对象在XComponent上绘制内容）
 
-应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
+从API version 20开始，该示例通过调用[lockCanvas](#lockcanvas20)返回画布对象，通过画布对象调用对应的绘制接口，再调用[unlockCanvasAndPost](#unlockcanvasandpost20)在XComponent上绘制内容。
 
 ```ts
 // xxx.ets

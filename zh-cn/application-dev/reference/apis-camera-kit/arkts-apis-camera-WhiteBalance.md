@@ -9,8 +9,6 @@ WhiteBalance 继承自 [WhiteBalanceQuery](arkts-apis-camera-WhiteBalanceQuery.m
 
 提供了处理设备白平衡的相关功能，包括获取和设置白平衡模式以及白平衡值。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
 ## 导入模块
 
 ```ts
@@ -103,6 +101,7 @@ function getWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession)
 setWhiteBalance(whiteBalance: number): void
 
 设置手动白平衡值。
+设置之前需要先检查设备支持的白平衡值范围，具体方法请参考[getWhiteBalanceRange](arkts-apis-camera-WhiteBalanceQuery.md#getwhitebalancerange20)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
