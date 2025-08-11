@@ -12,22 +12,9 @@ FFRT读写锁结构。
 
 ## 汇总
 
-### 成员函数
+### 成员变量	
 
-| 名称 | 描述 |
-| -- | -- |
-| [uint32_t storage[(ffrt_rwlock_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]](#sizeof) | FFRT读写锁所占空间 |
-
-## 成员函数说明
-
-### sizeof()
-
-```
-uint32_t storage[(ffrt_rwlock_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]
-```
-
-**描述**
-
-FFRT读写锁所占空间
-
+| 名称 | 描述 |	
+| -- | -- |	
+| uint32_t storage[(ffrt_rwlock_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)] | FFRT读写锁所占空间 |
 

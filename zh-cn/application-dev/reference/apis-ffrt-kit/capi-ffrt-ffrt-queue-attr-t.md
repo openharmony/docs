@@ -12,22 +12,9 @@
 
 ## 汇总
 
-### 成员函数
+### 成员变量	
 
-| 名称 | 描述 |
-| -- | -- |
-| [uint32_t storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]](#sizeof) | 串行队列属性所占空间 |
-
-## 成员函数说明
-
-### sizeof()
-
-```
-uint32_t storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]
-```
-
-**描述**
-
-串行队列属性所占空间
-
+| 名称 | 描述 |	
+| -- | -- |	
+| uint32_t storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)] | 串行队列属性所占空间 |
 

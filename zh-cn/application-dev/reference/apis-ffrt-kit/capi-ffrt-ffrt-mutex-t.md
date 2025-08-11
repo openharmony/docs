@@ -12,22 +12,9 @@ FFRT互斥锁结构。
 
 ## 汇总
 
-### 成员函数
+### 成员变量	
 
-| 名称 | 描述 |
-| -- | -- |
-| [uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]](#sizeof) | FFRT互斥锁所占空间 |
-
-## 成员函数说明
-
-### sizeof()
-
-```
-uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)]
-```
-
-**描述**
-
-FFRT互斥锁所占空间
-
+| 名称 | 描述 |	
+| -- | -- |	
+| uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)] | FFRT互斥锁所占空间 |
 
