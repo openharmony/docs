@@ -107,7 +107,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
-| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame)    | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame)    | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES](#oh_md_key_video_encoder_max_b_frames)    | 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。该键是可选的。 |
@@ -322,7 +322,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
 | const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode) | 使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame) | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame) | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES](#oh_md_key_video_encoder_max_b_frames) | 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
