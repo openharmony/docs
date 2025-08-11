@@ -40,11 +40,6 @@ HiLog模块日志接口定义，通过这些接口实现日志打印相关功能
 | [int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen,const char *message, size_t messageLen)](#oh_log_printmsgbylen) | - | 写日志接口。输出指定domain、tag和日志级别的常量日志字符串，需要指定tag及字符串长度，和OH_LOG_PrintMsg区别是可以接受不带结束符的字符串。 |
 | [int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap)](#oh_log_vprint) | - | 写日志接口。指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。 |
 | [bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level)](#oh_log_isloggable) | - | 检查指定业务领域、TAG、级别的日志是否可以打印。 |
-| [OH_LOG_DEBUG(type, ...)((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))](#oh_log_debug) | - | DEBUG级别写日志，宏封装接口。使用时需要先定义日志业务领域、日志TAG，一般在源文件起始处统一定义一次。<br> |
-| [OH_LOG_INFO(type, ...)((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))](#oh_log_info) | - | INFO级别写日志，宏封装接口。使用时需要先定义日志业务领域、日志TAG，一般在源文件起始处统一定义一次。<br> |
-| [OH_LOG_WARN(type, ...)((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))](#oh_log_warn) | - | WARN级别写日志，宏封装接口。使用时需要先定义日志业务领域、日志TAG，一般在源文件起始处统一定义一次。 |
-| [OH_LOG_ERROR(type, ...)((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))](#oh_log_error) | - | ERROR级别写日志，宏封装接口。使用时需要先定义日志业务领域、日志TAG，一般在源文件起始处统一定义一次。 |
-| [OH_LOG_FATAL(type, ...)((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))](#oh_log_fatal) | - | FATAL级别写日志，宏封装接口。使用时需要先定义日志业务领域、日志TAG，一般在源文件起始处统一定义一次。<br> |
 | [typedef void (\*LogCallback)(const LogType type, const LogLevel level, const unsigned int domain, const char *tag,const char *msg)](#logcallback) | LogCallback | 函数指针，开发者自定义回调函数内容，在回调函数中，可自行对hilog日志进行处理。 |
 | [void OH_LOG_SetCallback(LogCallback callback)](#oh_log_setcallback) | - | 注册函数。调用此函数后，用户实现的回调函数可以接收当前进程的所有hilog日志。<br> 请注意，无论是否调用该接口，它都不会更改当前进程的hilog日志的默认行为。 |
 | [void OH_LOG_SetMinLogLevel(LogLevel level)](#oh_log_setminloglevel) | - | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。需要注意：如果设置的日志级别低于[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)，设置不生效。 |
@@ -112,7 +107,7 @@ int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *
 | unsigned int domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。 |
 | const char *tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | const char *fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中'%'符号后类型前增加{public}、{private}标识。 |
-| [](capi-log-h.md#).[](capi-log-h.md#).[](capi-log-h.md#).[](capi-log-h.md#) | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **返回：**
 
