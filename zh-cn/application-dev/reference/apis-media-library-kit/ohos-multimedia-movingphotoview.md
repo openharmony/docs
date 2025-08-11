@@ -102,7 +102,9 @@ autoPlayPeriod(startTime: number, endTime: number)
 
 autoPlay(isAutoPlay: boolean)
 
-设置自动播放，自动播放一遍视频，完成播放后显示静态图，动态照片加载完成后，准备完成时播放。
+设置自动播放，自动播放一遍视频。
+
+动态照片加载完成后，准备播放时可以调用，播放完成后显示静态图。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
