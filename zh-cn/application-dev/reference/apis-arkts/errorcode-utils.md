@@ -161,7 +161,7 @@ Buffer长度要求为size的整数倍。其中size为16-bits、32-bits或者64-b
 
 **错误信息**
 
-The container is empty.
+Container is empty.
 
 **错误描述**
 
