@@ -42,7 +42,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率。 |
 | [--cpufreq](#查询cpu频率) | 获取CPU每个核的真实频率，单位：kHz。 |
 | [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。 |
-| [--mem [pid] [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。如果指定 --show-ashmem，则补充打印ashmem使用详细信息。 |
+| [--mem pid [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。如果指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
 | [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
@@ -126,7 +126,9 @@ PurgSum（Purgeable Summary）表示当前进程可回收内存的总量。
 
 PurgPin（Purgeable Pinned）表示可回收但暂时无法立即回收的内存。
 
-GL（Graphics Library）代表图形内存，包含应用纹理内存和图形渲染内存。Graph和Dma的值相等。
+GL（Graphics Library）代表图形内存，包含应用纹理内存和图形渲染内存。
+
+Graph表示按去重规则统计的dma内存占用，包括通过直接接口申请的DMA buffer和通过allocator_host申请的DMA buffer。Graph和Dma的值相等。
 
 可使用hidumper --mem --prune命令获取整机内存精简的使用情况。
 
