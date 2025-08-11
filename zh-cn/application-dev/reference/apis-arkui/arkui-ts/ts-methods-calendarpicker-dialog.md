@@ -19,7 +19,7 @@
 
 ### show
 
-static show(options?: CalendarDialogOptions)
+static show(options?: CalendarDialogOptions): void
 
 定义日历选择器弹窗并弹出。
 
