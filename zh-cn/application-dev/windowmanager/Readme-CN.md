@@ -12,3 +12,4 @@
   - [应用启动页简介](launch-page-overview.md)
   - [配置应用启动页](launch-page-config.md)
   - [启动页资源分类配置](launch-page-resource-config.md)
+- [窗口开发术语](window-terminology.md)

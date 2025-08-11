@@ -89,8 +89,8 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage()
 
 **返回：**
 
-| 类型 | 说明                                                                                           |
-| -- |----------------------------------------------------------------------------------------------|
+| 类型 | 说明 |
+| -- | -- |
 | [HiDebug_ThreadCpuUsagePtr](capi-hidebug-hidebug-threadcpuusage.md) | 返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](capi-hidebug-hidebug-threadcpuusage.md)。<br>         若返回结果为null，可能因未获取到线程相关数据所致。 |
 
 ### OH_HiDebug_FreeThreadCpuUsage()
