@@ -1,6 +1,6 @@
 # Class (BackForwardCacheSupportedFeatures)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
@@ -19,10 +19,10 @@
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| nativeEmbed<sup>12+</sup> | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用同层渲染的页面进入前进后退缓存，false：不允许使用同层渲染的页面进入前进后退缓存。<br>默认值：false。 |
-| mediaTakeOver<sup>12+</sup> | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用视频托管的页面进入前进后退缓存，false：不允许使用视频托管的页面进入前进后退缓存。<br>默认值：false。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| nativeEmbed<sup>12+</sup> | boolean | 否 | 否 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用同层渲染的页面进入前进后退缓存，false：不允许使用同层渲染的页面进入前进后退缓存。<br>默认值：false。 |
+| mediaTakeOver<sup>12+</sup> | boolean | 否 | 否 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用视频托管的页面进入前进后退缓存，false：不允许使用视频托管的页面进入前进后退缓存。<br>默认值：false。|
 
 ## constructor<sup>12+</sup>
 

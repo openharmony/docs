@@ -84,28 +84,11 @@ struct Index {
 | \@Monitor属性装饰器 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数          | 字符串类型的对象属性名。可同时监听多个对象属性，每个属性以逗号隔开，例如@Monitor("prop1", "prop2")。可监听深层的属性变化，如多维数组中的某一个元素，嵌套对象或对象数组中的某一个属性。详见[监听变化](#监听变化)。 |
-| 装饰对象            | \@Monitor装饰成员方法。当监听的属性发生变化时，会触发该回调方法。该回调方法以[IMonitor类型](#imonitor类型)的变量作为参数，开发者可以从该参数中获取变化前后的相关信息。 |
+| 装饰对象            | \@Monitor装饰成员方法。当监听的属性发生变化时，会触发该回调方法。该回调方法以[IMonitor类型](../../reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md#imonitor12)的变量作为参数，开发者可以从该参数中获取变化前后的相关信息。 |
 
 ## 接口说明
 
-### IMonitor类型
-
-IMonitor类型的变量用作\@Monitor装饰方法的参数。
-
-| 属性       | 类型            | 参数          | 返回值             | 说明                                                         |
-| ---------- | --------------- | ------------- | ------------------ | ------------------------------------------------------------ |
-| dirty      | Array\<string\> | 无            | 无                 | 保存发生变化的属性名。                                       |
-| value\<T\> | function        | path?: string | IMonitorValue\<T\> | 获得指定属性（path）的变化信息。当不填path时返回@Monitor监听顺序中第一个改变的属性的变化信息。 |
-
-### IMonitorValue\<T\>类型
-
-IMonitorValue\<T\>类型保存了属性变化的信息，包括属性名、变化前值、当前值。
-
-| 属性   | 类型   | 说明                       |
-| ------ | ------ | -------------------------- |
-| before | T      | 监听属性变化之前的值。     |
-| now    | T      | 监听属性变化之后的当前值。 |
-| path   | string | 监听的属性名。             |
+IMonitor类型和IMonitorValue\<T\>类型的接口说明参考API文档：[状态变量变化监听](../../reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)。
 
 ## 监听变化
 
@@ -258,7 +241,7 @@ struct Index {
   outer: Outer = new Outer();
   build() {
     Column() {
-      Button("change name")
+      Button("change num")
         .onClick(() => {
           this.outer.inner.num = 100; // 能够触发onChange方法
         })

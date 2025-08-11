@@ -1,5 +1,11 @@
 # 事件订阅（ArkTS）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 HiAppEvent提供了事件订阅接口，用于获取应用的事件。
 
 ## 接口说明

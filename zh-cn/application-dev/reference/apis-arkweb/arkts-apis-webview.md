@@ -1,6 +1,6 @@
 # 模块描述
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yp99ustc-->
 <!--SE: @ctqctq99-->
 <!--TSE: @ghiker-->

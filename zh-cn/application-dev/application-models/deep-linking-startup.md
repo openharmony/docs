@@ -1,5 +1,11 @@
 # 使用Deep Linking实现应用间跳转
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，在本地已安装的应用中寻找到符合条件的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
 
 ## 实现原理
@@ -17,7 +23,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 > 
 > skills标签下默认包含一个skill对象，用于标识应用入口。应用跳转链接不能在该skill对象中配置，需要创建独立的skill对象。如果存在多个跳转场景，需要在skills标签下创建不同的skill对象，否则会导致配置无法生效。
 > 
-> Deep Linking中的scheme取值支持自定义，可以为任意不包含特殊字符、非ohos开头的字符串。通常不为https、http、file，否则会拉起默认的系统浏览器。
+> Deep Linking中的scheme取值不以"ohos"开头。通常不为"https"、"http"、"file"等已被系统应用使用的值，否则会匹配到对应的系统应用。
 
 
 配置示例如下：
@@ -61,7 +67,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ### 获取并解析拉起方传入的应用链接
 
-在目标应用的UIAbility的onCreate()或者onNewWant()生命周期回调中，获取、解析拉起方传入的应用链接。
+在目标应用的UIAbility的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)或者[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant)生命周期回调中，获取、解析拉起方传入的应用链接。
 
 ```ts
 // 以EntryAbility.ets为例
@@ -92,7 +98,7 @@ export default class EntryAbility extends UIAbility {
 
 ### 使用openLink实现应用跳转
 
-在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
+在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的[appLinkingOnly](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md#openlinkoptions)配置为`false`。
 
 
 示例代码如下：
@@ -123,9 +129,9 @@ struct Index {
         try {
           context.openLink(link, openLinkOptions)
             .then(() => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'open link success.');
+              hilog.info(DOMAIN_NUMBER, TAG, 'openLink success.');
             }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG, `open link failed. Code is ${err.code}, message is ${err.message}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `openLink failed. Code is ${err.code}, message is ${err.message}`);
             });
         } catch (paramError) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to start link. Code is ${paramError.code}, message is ${paramError.message}`);
@@ -137,7 +143,7 @@ struct Index {
 
 ### 使用startAbility实现应用跳转
 
-[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口启动时，还需要调用方传入待匹配的action和entity。
+[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。
 
 
 示例代码如下：
@@ -166,9 +172,9 @@ struct Index {
 
         try {
           context.startAbility(want).then(() => {
-            hilog.info(DOMAIN_NUMBER, TAG, 'start ability success.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
           }).catch((err: BusinessError) => {
-            hilog.error(DOMAIN_NUMBER, TAG, `start ability failed. Code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `startAbility failed. Code is ${err.code}, message is ${err.message}`);
           });
         } catch (paramError) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${paramError.code}, message is ${paramError.message}`);
@@ -180,7 +186,7 @@ struct Index {
 
 ### 使用Web组件实现应用跳转
 
-Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
+Web组件可以在[onLoadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onloadintercept10)的回调函数中实现应用跳转。
 
 示例代码如下：
 

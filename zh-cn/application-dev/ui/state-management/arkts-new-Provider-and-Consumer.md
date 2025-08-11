@@ -18,7 +18,10 @@
 ## 概述
 
 \@Provider，即数据提供方，其所有的子组件都可以通过\@Consumer绑定相同的key来获取\@Provider提供的数据。
-\@Consumer，即数据消费方，可以通过绑定同样的key获取其最近父节点的\@Provider的数据，当查找不到\@Provider的数据时，使用本地默认值。
+\@Consumer，即数据消费方，可以通过绑定同样的key获取其最近父节点的\@Provider的数据，当查找不到\@Provider的数据时，使用本地默认值。图示如下。
+
+![ProviderConsumer_1](./figures/Provider_Consumer_1.png)
+
 \@Provider和\@Consumer装饰的数据类型需要一致。
 
 开发者在使用\@Provider和\@Consumer时要注意：
@@ -132,7 +135,9 @@ struct Child {
 ## 使用场景
 
 ### \@Provider和\@Consumer双向同步
-#### 建立双向绑定
+
+**建立双向绑定**
+
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
@@ -172,7 +177,8 @@ struct Child {
   }
 }
 ```
-#### 未建立双向绑定
+
+**未建立双向绑定**
 
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化：
@@ -613,8 +619,8 @@ struct Child {
 
 ### \@Provider和\@Consumer初始化\@Param
 
-- 点击Text(\`Parent @Consumer val: ${this.val}\`)，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件`Text(Parent @Param val2: ${this.val2})`的刷新。
-- `Parent @Consumer() val`的变化同步给Child，从而触发`Text(Child @Param val ${this.val})`的刷新。
+- 点击```Text(`Parent @Consumer val: ${this.val}`)```，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件```Text(`Parent @Param val2: ${this.val2}`)```的刷新。
+- `Parent @Consumer() val`的变化同步给Child，从而触发```Text(`Child @Param val ${this.val}`)```的刷新。
 
 ```ts
 @Entry
@@ -632,7 +638,7 @@ struct Index {
 @ComponentV2
 struct Parent {
   @Consumer() val: number = 0;
-  @Param val2: number = 0;
+  @Require @Param val2: number;
 
   build() {
     Column() {
@@ -647,7 +653,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Param val: number = 0;
+  @Require @Param val: number;
 
   build() {
     Column() {

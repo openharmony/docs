@@ -1,4 +1,9 @@
 # 传感器开发概述
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 ## 传感器类型
 

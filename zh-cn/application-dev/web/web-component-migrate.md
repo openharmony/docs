@@ -1,6 +1,6 @@
 # Web组件在不同的窗口间迁移
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @weixin_41848015-->
 <!--SE: @libing23232323-->
 <!--TSE: @ghiker-->
@@ -28,7 +28,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
-      if (err & err.code) {
+      if (err && err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }

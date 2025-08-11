@@ -593,7 +593,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用名单。通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。<br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单。<!--RP7--><!--RP7End-->通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -649,7 +649,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -928,7 +928,7 @@ try {
 
 ## applicationManager.setAllowedKioskApps<sup>20+</sup>
 
-setAllowedKioskApps(admin: Want, bundleNames: Array&lt;string&gt;): void
+setAllowedKioskApps(admin: Want, appIdentifiers: Array&lt;string&gt;): void
 
 设置允许在Kiosk模式下运行的应用。
 
@@ -945,7 +945,7 @@ Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| bundleNames | Array&lt;string&gt;                                   | 是   | 应用包名数组，设置允许在Kiosk模式下运行的应用。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
+| appIdentifiers | Array&lt;string&gt;                                   | 是   | 应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)的数组，可以通过接口[bundleManager.getBundleInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfo14-2)获取bundleInfo.signatureInfo.appIdentifier。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
 
 **错误码**：
 
@@ -971,8 +971,8 @@ let wantTemp: Want = {
 
 try {
   // 需根据实际情况进行替换
-  let bundleNames: Array<string> = ['com.example.test'];
-  applicationManager.setAllowedKioskApps(wantTemp, bundleNames);
+  let appIdentifiers: Array<string> = ['6917****3569'];
+  applicationManager.setAllowedKioskApps(wantTemp, appIdentifiers);
   console.info('Succeeded in setting allowed kiosk apps.');
 } catch (err) {
   console.error(`Failed to set allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
@@ -991,7 +991,6 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -1002,7 +1001,7 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用包名清单。 |
+| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)清单。 |
 
 **错误码**：
 
@@ -1027,8 +1026,8 @@ let wantTemp: Want = {
 };
 
 try {
-  let bundleNames: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
-  console.info(`Succeeded in getting allowed kiosk apps, bundleNames: ${JSON.stringify(bundleNames)}`);
+  let appIdentifiers: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
+  console.info(`Succeeded in getting allowed kiosk apps, appIdentifiers: ${JSON.stringify(appIdentifiers)}`);
 } catch (err) {
   console.error(`Failed to get allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
 }
@@ -1036,7 +1035,7 @@ try {
 
 ## applicationManager.isAppKioskAllowed<sup>20+</sup>
 
-isAppKioskAllowed(bundleName: string): boolean
+isAppKioskAllowed(appIdentifier: string): boolean
 
 查询某应用是否允许在Kiosk模式下运行。
 
@@ -1044,12 +1043,11 @@ isAppKioskAllowed(bundleName: string): boolean
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                                                 | 是   | 应用包名。                                       |
+| appIdentifier | string                                                 | 是   | 应用[唯一标识符](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)，可以通过接口[bundleManager.getBundleInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfo14-2)获取bundleInfo.signatureInfo.appIdentifier。                                       |
 
 **返回值：**
 
@@ -1064,7 +1062,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 try {
   // 需根据实际情况进行替换
-  let isAllowed: boolean = applicationManager.isAppKioskAllowed('com.example.test');
+  let isAllowed: boolean = applicationManager.isAppKioskAllowed('6917****3569');
   console.info(`Succeeded in querying if the app is allowed kiosk, isAllowed: ${isAllowed}`);
 } catch (err) {
   console.error(`Failed to query if the app is allowed kiosk. Code is ${err.code}, message is ${err.message}`);

@@ -1,4 +1,9 @@
-# @ohos.inputMethod (输入法框架) 
+# @ohos.inputMethod (输入法框架)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 本模块主要面向普通前台应用（备忘录、信息、设置等系统应用与三方应用），提供对输入法（输入法应用）的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等等。
 
@@ -2180,12 +2185,6 @@ recvMessage(msgHandler?: MessageHandler): void
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象通过[onMessage](#onmessage15)接收来自输入法应用所发送的自定义通信数据，并通过[onTerminated](#onterminated15)接收终止此对象订阅的消息。<br>若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，同时触发其[onTerminated](#onterminated15)回调函数。 |
 
-**返回值：**
-
-| 类型 | 说明         |
-| ---- | ------------ |
-| void | 无返回结果。 |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
@@ -3634,7 +3633,7 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 ```ts
 try {
-  let imeProp = inputMethodSetting.getInputMethodsSync(true);
+  let imeProperty = inputMethodSetting.getInputMethodsSync(true);
 } catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
@@ -3743,7 +3742,7 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 
 ```ts
 try {
-  let imeProp = inputMethodSetting.getAllInputMethodsSync();
+  let imeProperty = inputMethodSetting.getAllInputMethodsSync();
 } catch(err) {
   console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }

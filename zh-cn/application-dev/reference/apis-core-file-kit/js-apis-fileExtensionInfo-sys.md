@@ -1,4 +1,9 @@
 # @ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 该模块提供公共文件访问和管理模块中RootInfo与FileInfo中部分属性值的定义。
 

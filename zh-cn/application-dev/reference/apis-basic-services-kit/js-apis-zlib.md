@@ -1,4 +1,9 @@
 # @ohos.zlib (Zip模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jinsenjun-->
+<!--SE: @jinsenjun-->
+<!--TSE: @lixueqing-->
 
 本模块提供压缩解压缩文件的能力。
 
@@ -3744,12 +3749,12 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称     | 类型             | 可读 | 可写 | 说明                                                       |
+| 名称     | 类型             | 只读 | 可选 | 说明                                                       |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| level    | [CompressLevel](#compresslevel)     | 否   | 是  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| memLevel | [MemLevel](#memlevel)         | 否   | 是  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| strategy | [CompressStrategy](#compressstrategy) | 否   | 是  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 否   | 是  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## CompressLevel
 
@@ -3860,16 +3865,16 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称         | 类型        | 可读 | 可写 | 说明                                                         |
+| 名称         | 类型        | 只读 | 可选 | 说明                                                         |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节。                                           |
-| availableIn  | number      | 是   | 否   | nextIn可用的字节数。                                           |
-| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数。                                 |
-| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节。                                             |
-| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数。                                      |
-| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数。                                       |
-| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
-| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值。                               |
+| nextIn       | ArrayBuffer | 否   | 是   | 需要压缩的输入字节。                                           |
+| availableIn  | number      | 否   | 是   | nextIn可用的字节数。                                           |
+| totalIn      | number      | 否   | 是   | 到目前为止读取的输入字节总数。                                 |
+| nextOut      | ArrayBuffer | 否   | 是   | 压缩后的输出字节。                                             |
+| availableOut | number      | 否   | 是   | nextOut的剩余可用字节数。                                      |
+| totalOut     | number      | 否   | 是   | 到目前为止输出字节总数。                                       |
+| dataType     | number      | 否   | 是   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
+| adler        | number      | 否   | 是   | 未压缩数据的Adler-32或CRC-32值。                               |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -3877,10 +3882,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| 名称    | 类型         | 只读 | 可选 | 说明                                          |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                          |
+| status  | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLen | number       | 否   | 否   | 目标缓冲区的总长度。                          |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3888,10 +3893,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                          |
+| 名称             | 类型         | 只读 | 可选 | 说明                                          |
 | ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                  |
+| status           | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| dictionaryLength | number       | 否   | 否   | 字典的长度。                                  |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3899,11 +3904,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称         | 类型         | 可读 | 可写 | 说明                                          |
+| 名称         | 类型         | 只读 | 可选 | 说明                                          |
 | ------------ | ------------ | ---- | ---- | --------------------------------------------- |
-| status       | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| destLength   | number       | 是   | 否   | 目标缓冲区的长度。                            |
-| sourceLength | number       | 是   | 否   | 源缓冲区的长度。                              |
+| status       | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLength   | number       | 否   | 否   | 目标缓冲区的长度。                            |
+| sourceLength | number       | 否   | 否   | 源缓冲区的长度。                              |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3911,11 +3916,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| 名称    | 类型         | 只读 | 可选 | 说明                                          |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| pending | number       | 是   | 否   | 已生成的输出字节数。                          |
-| bits    | number       | 是   | 否   | 已生成的输出位数。                            |
+| status  | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| pending | number       | 否   | 否   | 已生成的输出字节数。                          |
+| bits    | number       | 否   | 否   | 已生成的输出位数。                            |
 
 ## GzHeader<sup>12+</sup>
 
@@ -3923,18 +3928,18 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称     | 类型        | 可读 | 可写 | 说明                                 |
+| 名称     | 类型        | 只读 | 可选 | 说明                                 |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| isText   | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
-| os       | number      | 是   | 否   | 操作系统。                           |
-| time     | number      | 是   | 否   | 修改时间。                           |
-| xflags   | number      | 是   | 否   | 额外标志。                           |
-| extra    | ArrayBuffer | 是   | 否   | 额外字段。                           |
-| extraLen | number      | 是   | 否   | 额外字段的长度。                     |
-| name     | ArrayBuffer | 是   | 否   | 文件名。                             |
-| comment  | ArrayBuffer | 是   | 否   | 注释。                               |
-| hcrc     | boolean     | 是   | 否   | 如果存在crc标头，则为True。          |
-| done     | boolean     | 是   | 否   | 读取gzip标头后为True。               |
+| isText   | boolean     | 否   | 是   | 如果压缩数据被认为是文本，则为True。 |
+| os       | number      | 否   | 是   | 操作系统。                           |
+| time     | number      | 否   | 是   | 修改时间。                           |
+| xflags   | number      | 否   | 是   | 额外标志。                           |
+| extra    | ArrayBuffer | 否   | 是   | 额外字段。                           |
+| extraLen | number      | 否   | 是   | 额外字段的长度。                     |
+| name     | ArrayBuffer | 否   | 是   | 文件名。                             |
+| comment  | ArrayBuffer | 否   | 是   | 注释。                               |
+| hcrc     | boolean     | 否   | 是   | 如果存在crc标头，则为True。          |
+| done     | boolean     | 否   | 是   | 读取gzip标头后为True。               |
 
 ## zlib.createGZip<sup>12+</sup>
 
@@ -5799,10 +5804,10 @@ struct Index {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称      | 类型         | 可读 | 可写 | 说明                                         |
+| 名称      | 类型         | 只读 | 可选 | 说明                                         |
 | --------- | ------------ | ---- | ---- | -------------------------------------------- |
-| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
-| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
+| status    | ReturnStatus | 否   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
+| statusMsg | string       | 否   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
 
 ## OffsetReferencePoint<sup>12+</sup>
 

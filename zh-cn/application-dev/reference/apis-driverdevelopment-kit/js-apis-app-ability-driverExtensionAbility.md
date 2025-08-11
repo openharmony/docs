@@ -1,4 +1,9 @@
 # @ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 DriverExtensionAbility模块提供驱动相关扩展能力，提供驱动创建、销毁、连接、断开等生命周期回调。
 

@@ -1,5 +1,9 @@
 # drawing_text_typography.h
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 定义绘制模块中排版相关的函数。

@@ -1,8 +1,8 @@
 # ArkWeb进程
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
 <!--TSE: @ghiker-->
 
 ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程、Web孵化进程和Foundation进程。
@@ -19,7 +19,7 @@ ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程�
 
   - 应用进程为主进程。包含网络线程、Video线程、Audio线程和IO线程等。
 
-  - 负责Web组件的北向接口与回调处理，网络请求、媒体服务等需要与其他系统服务交互的功能。
+  - 负责Web组件的对外接口与回调处理，网络请求、媒体服务等需要与其他系统服务交互的功能。
 
 - Foundation进程（系统唯一）
 

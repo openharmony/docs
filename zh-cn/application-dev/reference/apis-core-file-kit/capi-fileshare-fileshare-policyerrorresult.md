@@ -1,4 +1,9 @@
 # FileShare_PolicyErrorResult
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 ## 概述
 
@@ -16,8 +21,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* uri | 授予或使能策略失败的URI。 |
-| FileShare_PolicyErrorCode code | 授予或使能策略失败的URI对应的错误码。 |
-| char* message | 授予或使能策略失败的URI对应的原因。 |
+| char *uri | 授予或使能策略失败的URI。 |
+| [FileShare_PolicyErrorCode](capi-oh-file-share-h.md#fileshare_policyerrorcode) code | 授予或使能策略失败的URI对应的错误码。 |
+| char *message | 授予或使能策略失败的URI对应的原因。 |
 
 

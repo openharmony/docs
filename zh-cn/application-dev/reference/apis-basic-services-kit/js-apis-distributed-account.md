@@ -1,5 +1,11 @@
 # @ohos.account.distributedAccount (分布式账号管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 本模块提供管理分布式账号的一些基础功能，主要包括查询和更新账号登录状态。
 
 > **说明：**

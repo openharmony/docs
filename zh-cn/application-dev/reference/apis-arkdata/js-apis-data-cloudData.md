@@ -49,6 +49,8 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
  
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
+**参数：**
+
 | 参数名     | 类型                                                                          | 必填 | 说明                             |
 | ---------- |-----------------------------------------------------------------------------| ---- | -------------------------------- |
 | strategy  | [StrategyType](#strategytype)                                               | 是   | 配置的策略类型。             |

@@ -14,16 +14,79 @@
 
 ## 绑定手势识别
 
-通过如下属性给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
+通过如下方法给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
 可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。 |
-| priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型。 <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
-| parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
+### gesture
+
+gesture(gesture: GestureType, mask?: GestureMask): T
+
+绑定手势。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势类型。 |
+| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| T | 返回当前组件。 |
+
+### priorityGesture
+
+priorityGesture(gesture: GestureType, mask?: GestureMask): T
+
+绑定优先识别手势。默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势类型。 |
+| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| T | 返回当前组件。 |
+
+### parallelGesture
+
+parallelGesture(gesture: GestureType, mask?: GestureMask): T
+
+绑定可与子组件手势同时触发的手势。手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势类型。 |
+| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| T | 返回当前组件。 |
 
 >  **说明：**
 >
@@ -31,11 +94,15 @@
 
 ## GestureType
 
+declare type GestureType = TapGesture | LongPressGesture | PanGesture | PinchGesture | SwipeGesture | RotationGesture | GestureGroup;
+
+定义手势类型。取值类型为下表类型中的并集。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 类型 | 说明 |
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
 | [LongPressGesture](ts-basic-gestures-longpressgesture.md) | 长按手势。 |
@@ -44,6 +111,58 @@
 | [RotationGesture](ts-basic-gestures-rotationgesture.md) | 旋转手势。 |
 | [SwipeGesture](ts-basic-gestures-swipegesture.md) | 滑动手势，滑动最小速度为100vp/s时识别成功。 |
 | [GestureGroup](ts-combined-gestures.md) | 手势识别组，多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。 |
+
+## GestureInterface\<T><sup>11+</sup>
+
+定义Gesture接口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### tag<sup>11+</sup>
+
+tag(tag: string): T
+
+设置手势标签。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| tag  |  string | 是   | 手势事件的标签。 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| T | 返回当前组件。 |
+
+### allowedTypes<sup>14+</sup>
+
+allowedTypes(types: Array\<SourceTool>): T
+
+设置手势响应的输入类型。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| types  |  Array\<SourceTool> | 是   | 手势响应的输入类型。 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| T | 返回当前组件。 |
 
 
 ## GestureMask枚举说明
@@ -95,11 +214,11 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| Unknown | 未知设备。 |
-| Mouse | 鼠标。 |
-| TouchScreen | 触摸屏。 |
+| 名称 | 值 | 说明 |
+| ---- | --- | -------- |
+| Unknown | - | 未知设备。 |
+| Mouse | - | 鼠标。 |
+| TouchScreen | - | 触摸屏。 |
 
 ## FingerInfo对象说明<sup>8+</sup>
 
@@ -122,14 +241,14 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| Unknown | 未知输入源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Finger | 手指输入。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Pen | 手写笔输入。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| MOUSE<sup>12+</sup> | 鼠标输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| TOUCHPAD<sup>12+</sup> | 触控板输入。触控板单指输入被视为鼠标输入操作。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| JOYSTICK<sup>12+</sup> | 手柄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称 | 值 | 说明 |
+| -------- | - | --------- |
+| Unknown | - | 未知输入源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Finger | - | 手指输入。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Pen | - | 手写笔输入。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| MOUSE<sup>12+</sup> | - | 鼠标输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TOUCHPAD<sup>12+</sup> | - | 触控板输入。触控板单指输入被视为鼠标输入操作。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| JOYSTICK<sup>12+</sup> | - | 手柄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## InteractionHand枚举说明<sup>15+</sup>
 

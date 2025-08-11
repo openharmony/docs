@@ -1,6 +1,6 @@
 # Web深色模式适配
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @KeeGitee-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->

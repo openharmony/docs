@@ -1,8 +1,8 @@
 # Class (WebStorage)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yuzhouhang1-->
-<!--SE: @ctqctq99-->
+<!--SE: @handyohos-->
 <!--TSE: @ghiker-->
 
 通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
@@ -71,7 +71,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -87,31 +86,77 @@ struct WebComponent {
     <title>test</title>
     <script type="text/javascript">
 
-      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
-      var msg;
+        // 打开或创建数据库
+        var request = indexedDB.open('myDatabase', 1);
 
-      db.transaction(function(tx){
-        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
-        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
-        msg = '<p>数据表已创建，且插入了两条数据。</p>';
+        // 如果数据库版本变化或首次创建时触发
+        request.onupgradeneeded = function(event) {
+            var db = event.target.result;
 
-        document.querySelector('#status').innerHTML = msg;
-      });
+            // 创建对象存储（表），设置主键为‘id’
+            var objectStore = db.createObjectStore('customers', { keyPath: 'id' });
 
-      db.transaction(function(tx){
-        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-          var len = results.rows.length,i;
-          msg = "<p>查询记录条数：" + len + "</p>";
+            // 为‘name’创建索引
+            objectStore.createIndex('name', 'name', { unique: false });
+        };
 
-          document.querySelector('#status').innerHTML += msg;
+        // 打开数据库成功时的回调
+        request.onsuccess = function(event) {
+            var db = event.target.result;
 
-              for(i = 0; i < len; i++){
-                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+            const customerData = [
+                {id: 1, name: 'John Doe', email: 'john@example.com'},
+                {id: 2, name: 'John Doe', email: 'john@example.com'},
+            ]
 
-          document.querySelector('#status').innerHTML += msg;
-          }
-        },null);
-      });
+            // 插入数据
+            var transaction = db.transaction('customers', 'readwrite');
+            var objectStore = transaction.objectStore('customers');
+
+            customerData.forEach((customer) => {
+                objectStore.add(customer);
+            });
+
+            transaction.oncomplete = function () {
+                console.log('Transaction completed: data added');
+            }
+            
+            transaction.onerror = function (event) {
+                console.error("Transaction failed", event);
+            }
+            
+            // 查询数据
+            var queryTransaction = db.transaction(['customers']);
+            var queryObjectStore = queryTransaction.objectStore('customers');
+            var query = queryObjectStore.get(2);
+            
+            query.onsuccess = function (event) {
+                console.log('query succ');
+                console.log('Customer:', event.target.result);
+                console.log('Customer id:', event.target.result.id);
+                console.log('Customer name:', event.target.result.name);
+                console.log('Customer email:', event.target.result.email);
+            };
+            
+            queryObjectStore.openCursor().onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    var msg = "<p>查询记录：" + cursor.key + "</p>";
+                    document.querySelector("#status").innerHTML += msg;
+                    var msg = "<p><b>" + cursor.value.name + "</b></p>";
+                    document.querySelector("#status").innerHTML += msg;
+                    console.log(`SSN ${cursor.key} 对应的名字是 ${cursor.value.name}`);
+                    cursor.continue();
+                } else {
+                    console.log("没有更多记录了")
+                }
+            }
+        };
+
+        // 错误处理
+        request.onerror = function(event) {
+            console.error('Database error:', event.target.error);
+        };
 
       </script>
   </head>
@@ -178,7 +223,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -243,7 +287,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -306,7 +349,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -374,7 +416,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -437,7 +478,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -503,7 +543,6 @@ struct WebComponent {
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -523,7 +562,7 @@ static deleteAllData(incognito?: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示删除所有隐私模式下内存中的web数据，false表示删除正常非隐私模式下Web的SQL数据库当前使用的所有存储。 |
+| incognito<sup>11+</sup>    | boolean | 否   | true表示删除所有隐私模式下内存中的web数据，false表示删除正常非隐私模式下Web的SQL数据库当前使用的所有存储。<br>默认值：false。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -548,7 +587,6 @@ struct WebComponent {
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }

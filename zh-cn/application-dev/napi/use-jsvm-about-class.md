@@ -1,7 +1,7 @@
 # 使用JSVM进行class相关开发
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 
@@ -86,7 +86,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 <!-- @[oh_jsvm_newinstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
@@ -95,7 +95,7 @@ const char *srcCallNative = R"JS(
    newInstance(Fruit, "apple");
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -187,13 +187,13 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 <!-- @[oh_jsvm_defineclass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -300,7 +300,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 <!-- @[oh_jsvm_removewrap](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
@@ -308,7 +308,7 @@ const char *srcCallNative = R"JS(
     removeWrap(new Obj());
 )JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp
@@ -330,7 +330,7 @@ JSVM deref_item
 - JSVM_DEFINE_CLASS_NORMAL: 按正常模式创建Class。默认缺省状态为JSVM_DEFINE_CLASS_NORMAL状态。
 - JSVM_DEFINE_CLASS_WITH_COUNT: 为所创建的Class预留interfield槽位。
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
-#### cpp代码
+**cpp代码**
 ```c++
 #include <string>
 #include <memory>
@@ -499,11 +499,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-#### 样例JS
+**样例JS**
 ```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
 ```
-#### 执行结果
+**执行结果**
 
 在LOG中输出下面的结果：
 ```cpp

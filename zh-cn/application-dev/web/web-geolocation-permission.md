@@ -1,30 +1,33 @@
 # 管理位置权限
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--SE: @handyohos-->
 <!--TSE: @ghiker-->
 
+从API version 9开始，支持Web组件的[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md)类和[onGeolocationShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#ongeolocationshow)方法对网页进行位置权限管理。更多信息请参见<!--RP1-->[隐私保护说明](../../device-dev/security/security-privacy-protection.md)<!--RP1End-->。
 
-Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../device-dev/security/security-privacy-protection.md)<!--RP1End-->）。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/arkts-basic-components-web-events.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。
+Web组件根据[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md)类和[onGeolocationShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#ongeolocationshow)方法的响应结果，决定是否赋予前端页面权限。用户可以获取位置信息，以便使用出行导航、天气预报等服务。
 
-- 使用获取设备位置功能前请在module.json5中添加位置相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+## 需要权限
+使用获取位置功能，需在module.json5中配置位置权限。具体添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```
    "requestPermissions":[
       {
-        "name" : "ohos.permission.LOCATION"
+        "name" : "ohos.permission.LOCATION" // 精准定位
       },
       {
-        "name" : "ohos.permission.APPROXIMATELY_LOCATION"
+        "name" : "ohos.permission.APPROXIMATELY_LOCATION" // 模糊定位
       },
       {
-        "name" : "ohos.permission.LOCATION_IN_BACKGROUND"
+        "name" : "ohos.permission.LOCATION_IN_BACKGROUND" // 后台定位
       }
     ]
    ```
 
-在下面的示例中，用户点击前端页面"获取位置"按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息。
+## 申请位置权限
+在下面的示例中，用户点击前端页面"获取位置"按钮，Web组件通过弹窗通知应用侧位置权限请求消息。
 
 
 - 前端页面代码。
@@ -45,7 +48,7 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
           var locationInfo=document.getElementById("locationInfo");
           function getLocation(){
               if (navigator.geolocation) {
-                  // 前端页面访问设备地理位置
+                  // 访问设备地理位置
                   navigator.geolocation.getCurrentPosition(showPosition);
               }
           }
@@ -61,7 +64,6 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
 - 应用代码。
 
   ```ts
-  // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { abilityAccessCtrl, common } from '@kit.AbilityKit';
@@ -74,13 +76,14 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
     controller: webview.WebviewController = new webview.WebviewController();
     uiContext: UIContext = this.getUIContext();
 
+    // 组件的声明周期函数，创建组件实例后触发
     aboutToAppear(): void {
       let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
       if (!context) {
         console.error("context is undefined");
         return;
       }
-      // 向用户请求位置权限设置。
+      // 向用户请求位置权限，对整个应用生效
       atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
@@ -92,17 +95,21 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
 
     build() {
       Column() {
+        // Web组件的geolocationAccess属性默认为true，可以显式配置为false以禁止Web组件获取地理位置信息
         Web({ src: $rawfile('getLocation.html'), controller: this.controller })
           .geolocationAccess(true)
-          .onGeolocationShow((event) => { // 地理位置权限申请通知
-             this.uiContext.showAlertDialog({
+          .onGeolocationShow((event) => {
+            // 位置权限申请通知仅对当前Web组件生效，应用内的其他Web组件不受影响
+            this.uiContext.showAlertDialog({
               title: '位置权限请求',
               message: '是否允许获取位置信息',
               primaryButton: {
                 value: 'cancel',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
+                    // 不允许此站点位置权限请求
+                    // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                    event.geolocation.invoke(event.origin, false, false);
                   }
                 }
               },
@@ -110,13 +117,17 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
                 value: 'ok',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, true, false); // 允许此站点地理位置权限请求
+                    // 允许此站点位置权限请求
+                    // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                    event.geolocation.invoke(event.origin, true, false);
                   }
                 }
               },
               cancel: () => {
                 if (event) {
-                  event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
+                  // 不允许此站点位置权限请求
+                  // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                  event.geolocation.invoke(event.origin, false, false);
                 }
               }
             })
@@ -125,3 +136,61 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
     }
   }
   ```
+
+## 管理位置权限
+通过Web组件的[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md)类管理网页的位置权限，提供了新增（[allowgeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#allowgeolocation)）、查看（[getaccessiblegeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#getaccessiblegeolocation)）和删除（[deleteallgeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#deleteallgeolocation)）网页位置权限的方法。例如查看网页是否已申请位置权限、将网页已申请的位置权限删除。
+
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  origin: string = "www.example.com";
+
+  build() {
+    Column() {
+      // 新增指定源的位置权限，再次获取位置信息时则不再触发onGeolocationShow的回调
+      Button('allowGeolocation')
+        .onClick(() => {
+          try {
+            webview.GeolocationPermissions.allowGeolocation(this.origin);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+      // 删除指定源的位置权限，再次获取位置信息时则触发onGeolocationShow的回调
+      Button('deleteGeolocation')
+        .onClick(() => {
+          try {
+            webview.GeolocationPermissions.deleteGeolocation(this.origin);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+      // 查询指定源的位置权限
+      Button('getAccessibleGeolocation')
+        .onClick(() => {
+          try {
+            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
+              .then(result => {
+                console.log('getAccessibleGeolocationPromise result: ' + result);
+              }).catch((error: BusinessError) => {
+              console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+      // 注意添加网络权限ohos.permission.INTERNET
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

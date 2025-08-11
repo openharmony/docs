@@ -1,5 +1,11 @@
 # @ohos.app.ability.InsightIntentDecorator (意图装饰器定义)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
+
 InsightIntentDecorator模块提供了几类意图装饰器。通过装饰类或方法可以将应用的功能定义为意图，并集成到智能问答、智能搜索、智能推荐等AI入口。
 
 - [@InsightIntentLink](#insightintentlink)装饰器：使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
@@ -289,7 +295,7 @@ PageIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
-## InsightIntentFunctionMethod
+## @InsightIntentFunctionMethod
 
 该装饰器与[@InsightIntentFunction](#insightintentfunction)装饰器必须组合使用。
 

@@ -1,4 +1,9 @@
 # 使用MDNS访问局域网服务
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 简介
 
@@ -180,3 +185,9 @@ MDNS管理的典型场景有：
       console.log(JSON.stringify(data));
     });
     ```
+
+## 相关实例
+
+针对MDNS管理，有以下相关实例可供参考：
+
+* [MDNS管理](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case)

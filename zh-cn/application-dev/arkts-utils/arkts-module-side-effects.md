@@ -1,6 +1,6 @@
 # 模块加载副作用及优化
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @wangchen965-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->
@@ -23,8 +23,8 @@ console.info("Module loaded!"); // 这段代码在导入时会立即执行，可
 export const data = 1;
 
 // main.ets
-import { data } from  './module' // 导入时，module.ets中的console.info会执行，产生输出。
-console.info(data);
+import { data } from './module' // 导入时，module.ets中的console.info会执行，产生输出。
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -47,8 +47,8 @@ Module loaded!
 export const data = 1;
 
 // main.ets
-import { data } from  './module'
-console.info(data);
+import { data } from './module'
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -67,8 +67,8 @@ export function initialize() {
 export const data = 1;
 
 // main.ets
-import { data } from  './module'
-console.info(data);
+import { data } from './module'
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -95,8 +95,8 @@ globalThis.someGlobalVar = 200; // 也变了全局状态
 // moduleUseGlobalVar.ets
 import { data1 } from './module' // 此时可能预期全局变量someGlobalVar的值为100
 export function useGlobalVar() {
-    console.info(data1);
-    console.info(globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
+    console.info("data1 is ", data1);
+    console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
 }
 
 // main.ets（执行入口）
@@ -106,8 +106,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.info(data1);
-    console.info(data2);
+    console.info("data1 is ", data1);
+    console.info("data2 is ", data2);
 }
 ```
 
@@ -142,9 +142,9 @@ export function changeGlobalVar() {
 // moduleUseGlobalVar.ets
 import { data1, changeGlobalVar } from './module'
 export function useGlobalVar() {
-    console.info(data1);
+    console.info("data1 is ", data1);
     changeGlobalVar(); // 在需要的时候执行代码，而不是模块加载时执行。
-    console.info(globalThis.someGlobalVar);
+    console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar);
 }
 
 // main.ets（执行入口）
@@ -154,8 +154,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.info(data1);
-    console.info(data2);
+    console.info("data1 is ", data1);
+    console.info("data2 is ", data2);
 }
 ```
 
@@ -197,7 +197,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
@@ -243,7 +243,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
@@ -271,7 +271,7 @@ import { data } from "./modifyPrototype" // 此时修改了Array的原型链
 let arr = [1, 2, 3, 4];
 console.info("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
@@ -330,8 +330,8 @@ globalThis.someGlobalVar = 100;
 
 // moduleUseGlobalVar.ets
 import lazy { data } from "./module"
-console.info(globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
-console.info(data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
+console.info("globalThis.someGlobalVar", globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
+console.info("data is ", data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
 ```
 
 输出内容：
@@ -359,8 +359,8 @@ export function initialize() {
 // moduleUseGlobalVar.ets
 import lazy { data, initialize } from "./module"
 initialize(); // 执行初始化函数，初始化someGlobalVar
-console.info(globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
-console.info(data);
+console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -381,7 +381,7 @@ data from module
 ```typescript
 // main.ets
 import * as har from "har"
-console.info(har.One); // 这里的One变量是har/src/main/ets/NumberString.ets导出的
+console.info("har.One is ", har.One); // 这里的One变量是har/src/main/ets/NumberString.ets导出的
 
 // har/Index.ets
 export * from "./src/main/ets/OtherModule1"
@@ -410,7 +410,7 @@ console.info("har NumberString.ets execute.");
 ```typescript
 // main.ets
 import { One } from "har/src/main/ets/NumberString"
-console.info(One);
+console.info("One is ", One);
 
 // har/src/main/ets/NumberString.ets
 export const One: string = "1";

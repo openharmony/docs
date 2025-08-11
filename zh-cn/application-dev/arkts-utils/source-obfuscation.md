@@ -1,6 +1,6 @@
 # ArkGuard混淆原理及功能
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -222,19 +222,24 @@ test(a2);
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z、A-Z、0-9、_`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#-keep-property-name)来指定保留这些名字。
+1. 如果代码里面有字符串属性名包含特殊字符（除了`a-z、A-Z、0-9、_`之外的字符），例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[-keep-property-name](#-keep-property-name)来保留这些名称。
 
-**2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中：
-```
-// SDK API文件@ohos.app.ability.wantConstant片段：
-export enum Params {
-  ACTION_HOME = 'ohos.want.action.home'
-}
-// 开发者源码示例：
-let params = obj['ohos.want.action.home'];
-```
+2. SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中。
 
-因此，在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，则需要使用[-keep-property-name](#-keep-property-name)选项进行保留。
+    ```ts
+    // SDK API文件@ohos.app.ability.wantConstant片段：
+    export enum Params {
+      ACTION_HOME = 'ohos.want.action.home'
+    }
+
+    // 开发者源码示例：
+    const obj: Record<string, string> = {
+      'ohos.want.action.home': 'value'
+    }
+    let params = obj['ohos.want.action.home'];
+    ```
+
+    因此，在开启`-enable-string-property-obfuscation`选项后，如果希望保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，可以使用[-keep-property-name](#-keep-property-name)选项进行保留。
 
 ### -enable-toplevel-obfuscation
 
@@ -441,6 +446,8 @@ let params = obj['ohos.want.action.home'];
 
 该选项支持输出未混淆名单和全量白名单，并支持配置*filepath*。*filepath*为可选参数，仅支持相对路径。相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
 
+从API version 18开始，支持输出未混淆名单和全量白名单。
+
 当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
 
 若开发者配置了*filepath*参数，未混淆名单将输出到*filepath*参数指定的路径。
@@ -467,32 +474,36 @@ let params = obj['ohos.want.action.home'];
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 在编译HAR模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
-例如：
-```
-enum Test {
-  member1,
-  member2
-}
-```
-enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
+1. 在编译HAR模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
 
-**2.** 在编译HAP/HSP/字节码HAR模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单会收集初始化表达式中包含的变量名称。  
-例如：
-```
-let outdoor = 1;
-enum Test {
-  member1,
-  member2 = outdoor + member1 + 2
-}
-```
-其中，编译HAP/HSP模块时，enum白名单内容为['outdoor', 'member1']；编译字节码HAR模块时，enum白名单内容为['outdoor', 'member1', 'member2']。
+    例如：
+    ```ts
+    enum Test {
+      member1,
+      member2
+    }
+    ```
+    enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
+
+2. 在编译HAP/HSP/字节码HAR模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单会收集初始化表达式中包含的变量名称。
+
+    例如：
+    ```ts
+    let outdoor = 1;
+    enum Test {
+      member1,
+      member2 = outdoor + member1 + 2
+    }
+    ```
+    其中，编译HAP/HSP模块时，enum白名单内容为['outdoor', 'member1']；编译字节码HAR模块时，enum白名单内容为['outdoor', 'member1', 'member2']。
 
 ### -extra-options strip-language-default
 
 混淆的预置语言白名单中**默认包含了typescript的系统接口中关于dom、webworker、scriphost等API的名称以及Web API的名称**。如果开发者源码中的属性与这部分名称重名，混淆工具会对这些属性进行保留。
 
 如果开发者需要混淆这部分代码，需要配置`-extra-options strip-language-default`选项。
+
+从API version 18开始，支持此选项。
 
 开发者可通过以下方式确定混淆工具默认保留的API的具体减少范围：
 
@@ -503,6 +514,8 @@ enum Test {
 当前混淆的系统API白名单中**默认包含了系统API中的局部变量名称**，且系统API白名单默认对开发者源码中的局部变量生效。如果开发者源码中的属性与系统API中的局部变量重名或源码中的局部变量与系统API白名单重名，混淆工具会对这部分属性和局部变量名称进行保留。
 
 需要混淆这部分代码时，配置`-extra-options strip-system-api-args`选项。
+
+从API version 18开始，支持此选项。
 
 系统API白名单文件（systemApiCache.json）的ReservedLocalNames、ReservedPropertyNames和ReservedGlobalNames字段可以查看系统API白名单的具体内容。系统API白名单文件位于模块目录下build/default/cache/{...}/release/obfuscation路径中，记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
 
@@ -535,18 +548,20 @@ strip-language-default
 ```
 
 ### -keep-parameter-names
-保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
+从API version 18开始，支持保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
 - 对于函数与类中成员方法，如果函数或方法名称没有被混淆，则保留其参数名称。
 - 对于类的构造器，如果类名没有被混淆，则保留构造器中的参数名称。
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 对于非上述场景（如匿名函数）中的参数名称，无法通过此选项保留。
+1. 对于非上述场景（如匿名函数）中的参数名称，无法通过此选项保留。
 
-**2.** 源码文件中的参数名称仍然会被混淆，无法通过此选项保留。
+2. 源码文件中的参数名称仍然会被混淆，无法通过此选项保留。
 
 ### -enable-lib-obfuscation-options  
 配置此开关后，依赖模块的混淆选项将被合并到当前编译模块的混淆配置中。
+
+从API version 18开始，支持此选项。
 
 混淆配置分为[混淆选项](#混淆选项)和[保留选项](#保留选项)：
 - **默认情况下**，生效的混淆配置为当前编译模块的混淆配置与依赖模块的保留选项的合并结果。  
@@ -785,27 +800,26 @@ enum MyEnum {
 
 ### -keep-property-name
 
-指定想保留的属性名，支持使用[名称类通配符](#保留选项支持的通配符)。按如下方式进行配置，表示保留名称为`age`、`firstName`和`lastName`的属性：
+指定想保留的属性名，支持使用[名称类通配符](#保留选项支持的通配符)。按如下方式进行配置，表示保留名称为`firstName`和`lastName`的属性：
 
-```
+```txt
 -keep-property-name
-age
 firstName
 lastName
 ```
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 该选项在开启`-enable-property-obfuscation`时生效。
+1. 该选项在开启`-enable-property-obfuscation`时生效。
 
-**2.** 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
+2. 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
-**哪些属性名应该被保留？**
+**需要手动配置白名单的属性名**
 
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法定义对象属性，则这些属性名应被保留。例如：
 
-```
-var obj = {x0: 0, x1: 0, x2: 0};
+```js
+var obj = {x0: '0', x1: '1', x2: '2'};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]);  // x0, x1, x2应该被保留
 }
@@ -814,33 +828,43 @@ Object.defineProperty(obj, 'y', {});  // y应该被保留
 Object.getOwnPropertyDescriptor(obj, 'y');  // y应该被保留
 console.info(obj.y);
 
-obj.s = 0;
-let key = 's';
-console.info(obj[key]);        // key对应的变量值s应该被保留
+obj.s1 = 'a';
+let key = 's1';
+console.info(obj[key]);        // key对应的变量值s1应该被保留
 
-obj.t1 = 0;
+obj.t1 = 'b';
 console.info(obj['t' + '1']);        // t1应该被保留
 ```
 
 对于如下的字符串常量形式的属性调用，可以选择性保留：
 
-```
+```js
 // 混淆配置：
 // -enable-property-obfuscation
 // -enable-string-property-obfuscation
 
-obj.t = 0;
+var obj = {t:'1', m:'2'};
+obj.t = 'a';
 console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
 
-obj.['v'] = 0;
-console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
+obj['m'] = 'b';
+console.info(obj['m']); // 此时，'m'会被正确混淆，m可以选择性保留
 ```
 
-2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆属性名，需要使用[保留选项](#保留选项)来保留这些属性名。对于直接导出的类或对象的属性名，例如下面例子中的`name`和`age`，如果不想混淆它们，也需要使用[保留选项](#保留选项)来保留这些属性名。
+2.对于间接或直接导出的类或对象的属性名的场景，如果混淆后出现问题，可以使用[-keep-property-name](#-keep-property-name)来保留这些属性名。
 
-```
-export class MyClass {
-    person = {name: "123", age: 100};
+```ts
+// 间接导出MyClass
+class MyClass {
+  greet() {}
+}
+let alias = new MyClass();
+export { alias };
+
+// 直接导出MyClass1
+export class MyClass1 {
+  exampleName: 'jack' 
+  exampleAge: 100
 }
 ```
 
@@ -890,23 +914,26 @@ const valueBucket: ValuesBucket = {
 
 示例：
 
-```
+```ts
+function CustomDecorator(target: Object, propertyKey: string) {}
+function MethodDecorator(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {}
+function ParamDecorator(target: Object, propertyKey: string, parameterIndex: number) {}
+
 class A {
   // 1.成员变量装饰器
   @CustomDecoarter
-  propertyName: string = ""   // propertyName 需要被保留
+  propertyName1: string = ""   // propertyName1 需要被保留
   // 2.成员方法装饰器
   @MethodDecoarter
-  methodName1(){} // methodName1 需要被保留
+  methodName1() {} // methodName1 需要被保留
   // 3.方法参数装饰器
-  methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
-  }
+  methodName2(@ParamDecorator param: string): void {} // methodName2 需要被保留
 }
 ```
 
 ### -keep-global-name
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用[名称类通配符](#保留选项支持的通配符)。配置方式如下：
+指定要保留的顶层作用域及导入和导出元素的名称，支持使用[名称类通配符](#保留选项支持的通配符)。配置方式如下：
 
 ```
 -keep-global-name
@@ -916,43 +943,24 @@ printPersonName
 
 `namespace`中导出的名称也可以通过`-keep-global-name`选项保留，示例如下：
 
-```
+```ts
 export namespace Ns {
-  export const age = 18; // -keep-global-name age 保留变量age
-  export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
+  export const myAge = 18 // -keep-global-name myAge 保留变量myAge
+  export function myFunc() {} // -keep-global-name myFunc 保留函数myFunc
 }
 ```
 
-> **注意**
->
-> `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
+**使用该选项时，需要注意以下事项：**
 
-**哪些顶层作用域的名称应该被保留?**
+1. 该选项在开启`-enable-toplevel-obfuscation`或`-enable-export-obfuscation`时生效。
 
-1.在JavaScript中，全局变量是`globalThis`的属性。使用`globalThis`访问全局变量时，应保留该变量名。
+2. `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
 
-示例：
+**需要手动配置白名单的顶层作用域名称**
 
-```
-var a = 0;
-console.info(globalThis.a);  // a 应该被保留
+当以命名导入的方式导入so库的API时，如果同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留API的名称。
 
-function foo(){}
-globalThis.foo();           // foo 应该被保留
-
-var c = 0;
-console.info(c);             // c 可以被正确地混淆
-
-function bar(){}
-bar();                      // bar 可以被正确地混淆
-
-class MyClass {}
-let d = new MyClass();      // MyClass 可以被正确地混淆
-```
-
-2.当以命名导入的方式导入 so 库的 API 时，如果同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
-
-```
+```ts
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
 ```
 
@@ -968,7 +976,13 @@ utils
 file
 ```
 
-**哪些文件名应该被保留?**
+**使用该选项时，需要注意以下事项：**
+
+1. 该选项在开启`-enable-filename-obfuscation`时生效。
+
+2. `-keep-file-name`指定的白名单作用于全局。即不同层级的文件或文件夹名称，只要与`-keep-file-name`配置的白名单名称相同，均不会被混淆。
+
+**需要手动配置白名单的文件名**
 
 1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
 
@@ -1050,16 +1064,16 @@ Human
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 该选项在开启`-remove-comments`时生效。
+1. 该选项在开启`-remove-comments`时生效。
 
-**2.** 当编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如，当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留。
+2. 当编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如，当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留。
 
-```
-/*
- * @class exportClass
- */
-export class exportClass {}
-```
+    ```ts
+    /*
+    * @class exportClass
+    */
+    export class exportClass {}
+    ```
 
 ### -keep-dts
 
@@ -1106,9 +1120,9 @@ export class exportClass {}
 
 **使用该选项时，需要注意以下事项：**
 
-**1.** 使用`-keep filepath`保留的文件，其依赖链路上的文件中导出的名称及其属性也会被保留。
+1. 使用`-keep filepath`保留的文件，其依赖链路上的文件中导出的名称及其属性也会被保留。
 
-**2.** 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
+2. 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
 
 ### 保留选项支持的通配符
 
@@ -1202,21 +1216,21 @@ a*
 
 **使用通配符时，需要注意以下事项：**
 
-**1.** 以上选项不支持将通配符`*`、`?`、`!`用作其他含义。
-例如：
+1. 以上选项不支持将通配符`*`、`?`、`!`用作其他含义。
+    例如：
 
-```
-class A {
-  '*'= 1
-}
+    ```
+    class A {
+      '*'= 1
+    }
 
--keep-property-name
-*
-```
+    -keep-property-name
+    *
+    ```
 
-此时`*`表示匹配任意数量的任意字符，配置效果为所有属性名称都不会被混淆，而不是只有`*`属性不被混淆。
+    此时`*`表示匹配任意数量的任意字符，配置效果为所有属性名称都不会被混淆，而不是只有`*`属性不被混淆。
 
-**2.** -keep选项中只允许使用`/`路径格式，不支持`\`或`\\`。
+2. -keep选项中只允许使用`/`路径格式，不支持`\`或`\\`。
 
 ## 混淆规则合并策略
 
@@ -1258,7 +1272,8 @@ class A {
 
 - **如果当前编译模块混淆配置包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块的所有混淆规则。
 
-当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到远程HAR和远程HSP的`obfuscation.txt`文件中，而其他混淆规则不会。
+对于API version 18之前版本，如果`consumerFiles`指定的混淆配置文件中包含以下混淆选项和保留选项，这些规则将被合并到远程HAR和HSP的`obfuscation.txt`文件中，其他混淆规则不会被合并。
+
 ```
 // 混淆选项
 -enable-property-obfuscation
@@ -1271,6 +1286,8 @@ class A {
 -keep-property-name
 -keep-global-name
 ```
+
+对于API version 18及之后版本，默认仅合并上述保留选项。这种设计避免了其他模块依赖远程HAR或HSP时受其混淆配置的影响。同时，远程HAR或HSP在打包时使用自身的`obfuscation-rules.txt`文件中的混淆规则，并不会影响其实际混淆效果。如果需要恢复到API version 18之前的混淆规则合并逻辑，可以通过配置`-enable-lib-obfuscation-options`选项实现。
 
 **HSP和HAR中混淆注意事项**
 

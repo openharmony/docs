@@ -1,5 +1,11 @@
 # @ohos.usbManager.serial (串口管理)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 本模块主要提供串口管理功能，包括打开和关闭设备的串口、写入和读取数据、设置和获取串口的配置参数、权限管理等。
 
 > **说明：**
@@ -67,7 +73,7 @@ let portId: number = portList[0].portId;
 // 串口增加权限
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
-  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSONstringify(bundleInfo));
+  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));
   let tokenId = bundleInfo.appInfo.accessTokenId;
   try {
     serialManager.addSerialRight(tokenId, portId);

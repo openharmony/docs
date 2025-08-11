@@ -1,4 +1,9 @@
 # 创建DataAbility
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 <!--deprecated_code_no_check-->
 
 实现DataAbility中Insert、Query、Update、Delete接口的业务内容。保证能够满足数据库存储业务的基本需求。BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑，依赖Insert、Query、Update、Delete接口逻辑，来实现数据的批量处理。

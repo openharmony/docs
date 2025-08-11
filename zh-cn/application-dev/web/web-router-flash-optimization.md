@@ -1,6 +1,6 @@
 # 优化跳转至新Web组件过程中的页面闪烁现象
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @wangxinbao01-->
 <!--SE: @defeng20201-->
 <!--TSE: @ghiker-->

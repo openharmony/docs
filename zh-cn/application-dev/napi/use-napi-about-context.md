@@ -1,7 +1,7 @@
 # 使用扩展的Node-API接口在当前线程中创建、切换和销毁上下文环境
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 在应用被拉起时，应用的主线程即为一个ArkTS线程，该线程中存在一个由系统管理的上下文环境，当ArkTS需要和C/C++交互时，在C/C++侧，napi_env即代表该上下文环境，每个上下文环境中存在着独立的globalThis对象。开发者可以通过使用Node-API中的扩展接口napi_create_ark_context和napi_destroy_ark_context在当前线程中创建和销毁新的上下文环境，这些新创建的上下文环境和线程中原始的上下文环境共用一个运行时虚拟机。需要注意的是napi_create_ark_context接口仅仅是创建新的上下文环境，而不是创建一个新的运行时，同时通过该接口创建上下文环境，需要通过napi_destroy_ark_context接口销毁，否则会造成内存泄漏。当然ArkTS线程的原始上下文环境不能通过napi_destroy_ark_context接口销毁。当需要切换到指定的上下文环境时，可以调用Node-API中的扩展接口napi_switch_ark_context来切换到指定的上下文环境。开发者可以在一个新的上下文环境中访问globalThis上的某些属性方法，也可以在访问完之后，切回到原先的上下文环境保证上下文环境的隔离。

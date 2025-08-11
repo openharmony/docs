@@ -1,5 +1,11 @@
 # @ohos.app.ability.dialogSession (dialogSession)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 dialogSession模块用于支持系统应用弹框功能。
 
 > **说明：**
@@ -41,11 +47,11 @@ import { dialogSession } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 是 | 是 | 表示请求方组件信息。 |
-| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 是 | 是 | 表示目标应用列表信息。 |
-| parameters | Record<string, Object> | 是 | 否 | 表示其他参数。 |
+| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 是 | 否 | 表示请求方组件信息。 |
+| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 是 | 否 | 表示目标应用列表信息。 |
+| parameters | Record<string, Object> | 是 | 是 | 表示其他参数。 |
 
 ## getDialogSessionInfo
 

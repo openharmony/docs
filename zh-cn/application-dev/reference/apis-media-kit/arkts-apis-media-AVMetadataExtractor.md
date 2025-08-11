@@ -1,4 +1,9 @@
 # Interface (AVMetadataExtractor)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -24,13 +29,11 @@ import { media } from '@kit.MediaKit';
 | fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVMetadataExtractor 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。 |
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](arkts-apis-media-i.md#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
-### setUrlSource<sup>20+</sup>
+## setUrlSource<sup>20+</sup>
 
-setUrlSource(url: string, headers?: Record\<string, string>): Promise\<void>
+setUrlSource(url: string, headers?: Record\<string, string>): void
 
-网络点播资源地址描述，通过该接口设置数据源。使用Promise异步回调。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）、[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
-
-**需要权限：** ohos.permission.INTERNET
+网络点播资源地址描述，通过该接口设置数据源。只支持获取网络[fetchMetadata](#fetchmetadata11)（元数据）和[fetchFrameByTime](#fetchframebytime20)（缩略图），在获取之前，必须设置媒体资源URL。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -38,24 +41,8 @@ setUrlSource(url: string, headers?: Record\<string, string>): Promise\<void>
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| url | string       | 是   | 媒体资源URL。<br/>1. 支持的视频格式包括：mp4、mpeg-ts、mkv。<br/>2. 支持的音频格式包括：m4a、aac、mp3、ogg、wav、flac、amr。<br/>**支持路径示例**：<br/>1. http网络播放：http\://xx。<br/>2. https网络播放：https\://xx。<br/>**说明：**<br>- 不支持设置hls/dash、直播资源。<br/>- 设置网络资源路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。|
+| url | string       | 是   | 媒体资源URL。<br/>1. 支持的视频格式包括：mp4、mpeg-ts、mkv。<br/>2. 支持的音频格式包括：m4a、aac、mp3、ogg、wav、flac、amr。<br/>**支持路径示例**：<br/>1. http网络播放：`http\://xx`。<br/>2. https网络播放：`https\://xx`。<br/>**说明：** 不支持设置hls/dash、直播资源。|
 | headers | Record\<string, string> | 否   | 支持访问网络资源HttpHeader自定义。默认为空。|
-
-**返回值：**
-
-| 类型           | 说明                                     |
-| -------------- | ---------------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 201      | Permission denied, requires internet access permission. Returned by promise.  |
-| 5400102  | Operation not allowed, the URL source has already been set and cannot be modified. Returned by promise. |
-| 5400108  | Parameter check failed. Returned by promise. |
 
 **示例：**
 
@@ -73,17 +60,14 @@ media.createAVMetadataExtractor(async (error: BusinessError, extractor: media.AV
     let headers: Record<string, string> = {
       "User-Agent" : "User-Agent-Value"
     };
-    await avMetadataExtractor.setUrlSource(url, headers).then(() => {
-    }).catch((error: BusinessError) => {
-      console.error(`Failed to setUrlSource, code: ${error.code} message: ${error.message}`);
-    });
+    avMetadataExtractor.setUrlSource(url, headers);
   } else {
     console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
 });
 ```
 
-### fetchFrameByTime<sup>20+</sup>
+## fetchFrameByTime<sup>20+</sup>
 
 fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise\<image.PixelMap>
 

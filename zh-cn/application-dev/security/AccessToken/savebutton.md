@@ -6,9 +6,9 @@
 <!--SE: @linshuqing; @hehehe-li-->
 <!--TSE: @leiyuqian-->
 
-保存控件是一种特殊的安全控件，它允许用户通过点击按钮临时获取存储权限，而无需通过权限弹框进行授权确认。
+保存控件允许用户通过点击按钮临时获取存储权限，无需权限弹框确认。
 
-集成保存控件后，当用户点击该控件时，应用会获得10秒内访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
+集成保存控件后，当用户点击该控件时，应用会获得一分钟内访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
 
 与需要触发系统应用并由用户选择具体保存路径的Picker不同，保存控件可以直接保存到指定的媒体库路径，使得操作更为便捷。
 
@@ -20,7 +20,7 @@
 
 - 当用户首次点击应用中的保存控件，系统将弹窗请求用户授权。如果用户点击“取消”，弹窗消失，应用无授权，用户再次点击保存控件时，将会重新弹窗；如果用户点击“允许”，弹窗消失，应用将被授予临时保存权限，此后点击该应用的保存控件将不会弹窗。
 
-- 应用在onClick()触发回调到调用媒体库特权接口的时间间隔不能大于10秒。
+- 应用在点击控件触发onClick()回调到调用媒体库特权接口的时间间隔不能大于一分钟。
 
 - 用户点击一次控件，仅获取一次授权调用。
 
@@ -33,7 +33,7 @@
 
 ## 开发步骤
 
-以保存对话中图片为例，应用仅需要在前台期间，短暂使用保存图片的特性，不需要长时间使用。此时，可以直接使用安全控件中的保存控件，免去权限申请和权限请求等环节，获得临时授权，保存对应图片。
+以保存对话中图片为例，应用仅需在前台期间短暂使用保存图片的特性，而不需要长时间使用。此时，可以直接使用安全控件中的保存控件，免去权限申请和请求等环节，获得临时授权，保存对应图片。
 
 1. 导入文件和媒体库依赖。
    
@@ -42,13 +42,13 @@
    import { fileIo } from '@kit.CoreFileKit';
    ```
 
-2. 设置图片资源，并添加保存控件。
+2. 设置图片资源并添加保存控件。
    
    保存控件是由图标、文本和背景组成的类似按钮的安全控件。其中，背景是必选的，图标和文本至少选择一个。图标和文本可以从已有的选项中选择，也可以通过[setIcon](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#seticon20)和[setText](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#settext20)自定义。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮；传参则根据参数创建，不包含未配置的元素。
 
-   当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
+   当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承了[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
-   图片保存到媒体库的详细介绍可参考[保存媒体库资源](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+   有关将图片保存到媒体库的详细信息，请参考[保存媒体库资源](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -60,7 +60,7 @@
    async function savePhotoToGallery(context: common.UIAbilityContext) {
      let helper = photoAccessHelper.getPhotoAccessHelper(context);
      try {
-       // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
+       // onClick触发后一分钟内通过createAsset接口创建图片文件，一分钟后createAsset权限收回。
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制。
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);

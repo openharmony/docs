@@ -45,7 +45,7 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| value | number | 否 | 是 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
+| value | number | 否 | 是 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。<br/>$$运算符为系统组件提供TS变量的引用，使得TS变量和slider组件的value值保持同步。详细使用示例请参考[示例7设置滑动条的双向绑定](#示例7设置滑动条的双向绑定)。 |
 | min | number | 否 | 是 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 是 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 是 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值，则按默认值显示。 |
@@ -490,6 +490,8 @@ enableHapticFeedback(enabled: boolean)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
@@ -1495,3 +1497,37 @@ struct SliderExample {
 
 ```
 ![slider_step_options](figures/slider_step_options.png)
+
+### 示例7（设置滑动条的双向绑定）
+
+从API version 11开始，通过将[SliderOptions](#slideroptions对象说明)的value属性设置为[$$](../../../ui/state-management/arkts-two-way-sync.md)绑定的变量，实现数据同步。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State valueWith$: number = 40
+  @State valueWithout$: number = 40
+  build() {
+    Column({ space: 20 }) {
+      Text("使用$$双向绑定: " + this.valueWith$)
+      Slider({
+        value: $$this.valueWith$,
+        min: 0,
+        max: 100,
+      })
+
+      Text("不使用$$双向绑定: " + this.valueWithout$)
+      Slider({
+        value: this.valueWithout$,
+        min: 0,
+        max: 100,
+      })
+    }
+  }
+}
+
+```
+
+![slider07](figures/slider07.gif)

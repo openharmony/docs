@@ -1,6 +1,6 @@
 # GC垃圾回收
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @dwhuawei-->
 <!--SE: @yingguofeng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

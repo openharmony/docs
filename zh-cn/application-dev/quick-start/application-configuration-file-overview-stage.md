@@ -1,5 +1,9 @@
 # 应用配置文件概述（Stage模型）
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @xuyicong-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 每个应用项目的代码目录下必须包含应用配置文件，这些配置文件会向编译工具、操作系统和应用市场提供应用的基本信息。
 
@@ -20,6 +24,6 @@
 
 - Module的基本配置信息，包含Module名称、类型、描述、支持的设备类型等基本信息。
 
-- [应用组件](../application-models/stage-model-development-overview.md)信息，包含UIAbility组件和ExtensionAbility组件的描述信息。
+- 应用组件信息，包含UIAbility组件和ExtensionAbility组件的描述信息。
 
 - 应用运行过程中需要的权限信息。

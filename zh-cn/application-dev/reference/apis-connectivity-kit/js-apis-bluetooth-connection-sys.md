@@ -38,7 +38,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+| transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | 是    | 表示在配对远端设备时使用的传输方式。<br>-若明确使用传统蓝牙（BR/EDR）或者低功耗蓝牙（BLE）方式，则传入TRANSPORT_BR_EDR或TRANSPORT_LE。<br>-若不确定使用哪种传输方式，则传入TRANSPORT_DUAL<sup>20+</sup>或TRANSPORT_UNKNOWN<sup>20+</sup>，蓝牙子系统会决策传输方式。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当发起配对成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -91,7 +91,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+| transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | 是    | 表示在配对远端设备时使用的传输方式。<br>-若明确使用传统蓝牙（BR/EDR）或者低功耗蓝牙（BLE）方式，则传入TRANSPORT_BR_EDR或TRANSPORT_LE。<br>-若不确定使用哪种传输方式，则传入TRANSPORT_DUAL<sup>20+</sup>或TRANSPORT_UNKNOWN<sup>20+</sup>，蓝牙子系统会决策传输方式。 |
 
 **返回值：**
 

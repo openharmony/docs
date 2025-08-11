@@ -1,6 +1,6 @@
 # 同步任务开发指导 (TaskPool和Worker)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -132,7 +132,7 @@ struct Index {
 2. 在Worker线程中绑定Worker对象，同时处理同步任务逻辑。
 
     ```ts
-    // handle.ts代码
+    // handle.ts代码，与Worker.ets在同级目录下
     export default class Handle {
       id: number = 0;
     

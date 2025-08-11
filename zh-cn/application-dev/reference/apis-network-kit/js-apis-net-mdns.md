@@ -1,5 +1,11 @@
 # @ohos.net.mdns (MDNS管理)
 
+<!--Kit:Network Kit-->
+<!--Subsystem:Communication-->
+<!--Owner:@wmyao_mm-->
+<!--SE:@guo-min_net-->
+<!--TSE:@tongxilin-->
+
 MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
 
 > **说明：**
@@ -295,7 +301,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 **返回值：**
 
-| Type                         | Description                     |
+| 类型                         | 说明                     |
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定服务类型（serviceType）和Context的发现服务对象。 |
 
@@ -658,7 +664,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('discoveryStop')
 
-off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
+off(type: 'discoveryStop', callback?: Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>): void
 
 取消订阅停止监听MDNS服务的通知。
 

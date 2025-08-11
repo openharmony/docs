@@ -1,4 +1,9 @@
 # inputmethod_cursor_info_capi.h
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 ## 概述
 

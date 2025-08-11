@@ -1,5 +1,11 @@
 # @ohos.i18n (国际化-I18n)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
+
 本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
 
 >  **说明：**
@@ -280,9 +286,11 @@ static getSystemRegion(): string
   let systemRegion: string = i18n.System.getSystemRegion(); // 如果系统地区为中国，systemRegion = 'CN'
   ```
 
-### getSystemLocale<sup>9+</sup>
+### getSystemLocale<sup>(deprecated)</sup>
 
 static getSystemLocale(): string
+
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统当前设置的区域。
 
@@ -299,6 +307,28 @@ static getSystemLocale(): string
 **示例：**
   ```ts
   let systemLocale: string = i18n.System.getSystemLocale(); // 如果系统语言为简体中文、地区为中国，systemLocale = 'zh-Hans-CN'
+  ```
+
+### getSystemLocaleInstance<sup>20+</sup>
+
+static getSystemLocaleInstance(): Intl.Locale
+
+获取系统当前设置的区域对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+| 类型     | 说明      |
+| ------ | ------- |
+| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 系统区域对象。 |
+
+**示例：**
+  ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
+  let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -2386,7 +2416,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>9+</sup>
 
-static isRTL(char: string): boolean
+static isRTL(ch: string): boolean
 
 判断输入的字符是否是从右到左语言的字符。
 
@@ -2398,7 +2428,7 @@ static isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2860,7 +2890,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -3227,7 +3257,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleD
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3318,7 +3348,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): Simpl
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3457,7 +3487,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleN
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3796,7 +3826,7 @@ getSystemRegion(): string
 
 getSystemLocale(): string
 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLocale](#getsystemlocale9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统区域ID。
 
@@ -4081,7 +4111,7 @@ isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-isRTL(char: string): boolean
+isRTL(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isRTL](#isrtl9)替代。
 
@@ -4093,7 +4123,7 @@ isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 

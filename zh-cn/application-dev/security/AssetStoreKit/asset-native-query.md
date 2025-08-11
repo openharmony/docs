@@ -68,23 +68,23 @@
    #include "asset/asset_api.h"
 
    void QueryAsset() {
-      static const char *ALIAS = "demo_alias";
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回关键资产的所有信息，即属性+明文
-      };
+       static const char *ALIAS = "demo_alias";
+       Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 指定了关键资产别名，最多查询到一条满足条件的关键资产。
+           {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL}, // 此处表示需要返回关键资产的所有信息，即属性+明文。
+       };
 
-      Asset_ResultSet resultSet = {0};
-      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-      if (ret == ASSET_SUCCESS) {
-         // Parse the resultSet.
-         for (uint32_t i = 0; i < resultSet.count; i++) {
-               // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
-               Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
-         }
-      }
-      OH_Asset_FreeResultSet(&resultSet);
+       Asset_ResultSet resultSet = {0};
+       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (ret == ASSET_SUCCESS) {
+           // 解析resultSet。
+           for (uint32_t i = 0; i < resultSet.count; i++) {
+                // 解析secret属性：其中data数据对应是secret->blob.data，长度对应是secret->blob.size。
+                Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
+           }
+       }
+       OH_Asset_FreeResultSet(&resultSet);
    }
    ```
 
@@ -106,23 +106,23 @@
    #include "asset/asset_api.h"
 
    void QueryAttributes() {
-      static const char *ALIAS = "demo_alias";
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES }, // 此处表示仅返回关键资产属性，不包含关键资产明文
-      };
+       static const char *ALIAS = "demo_alias";
+       Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 指定了关键资产别名，最多查询到一条满足条件的关键资产。
+           {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES}, // 此处表示仅返回关键资产属性，不包含关键资产明文。
+       };
 
-      Asset_ResultSet resultSet = {0};
-      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-      if (ret == ASSET_SUCCESS) {
-         // Parse the result.
-         for (uint32_t i = 0; i < resultSet.count; i++) {
-         // Parse the data label: the data is label->blob.data, the size is label->blob.size.
+       Asset_ResultSet resultSet = {0};
+       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (ret == ASSET_SUCCESS) {
+           // 解析结果。
+           for (uint32_t i = 0; i < resultSet.count; i++) {
+               // 解析数据标签：其中数据是label->blob.data，长度对应是label->blob.size。
                Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
-         }
-      }
-      OH_Asset_FreeResultSet(&resultSet);
+           }
+       }
+       OH_Asset_FreeResultSet(&resultSet);
    }
    ```
 
@@ -142,26 +142,26 @@
    #include "asset/asset_api.h"
 
    void BatchQuery() {
-      static const char *LABEL = "demo_label";
-      Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+       static const char *LABEL = "demo_label";
+       Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
 
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
-         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-         { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
-         { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
-         { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
-      };
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES},
+           {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
+           {.tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5},
+           {.tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10},
+           {.tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1},
+       };
 
-      Asset_ResultSet resultSet = { 0 };
-      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-      if (ret == ASSET_SUCCESS) {
-         // Parse the result.
-         for (uint32_t i = 0; i < resultSet.count; i++) {
-               // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
+       Asset_ResultSet resultSet = { 0 };
+       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (ret == ASSET_SUCCESS) {
+           // 解析结果。
+           for (uint32_t i = 0; i < resultSet.count; i++) {
+               // 解析数据别名：其中别名是label->blob.data，长度对应是label->blob.size。
                Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
-         }
-      }
-      OH_Asset_FreeResultSet(&resultSet);
+           }
+       }
+       OH_Asset_FreeResultSet(&resultSet);
    }
    ```

@@ -71,7 +71,7 @@ stars(starCount: Optional\<number>)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                       |
 | --------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| starCount | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置评分总数。<br/>当starCount的值为undefined时，默认值：5 |
+| starCount | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 设置评分总数。<br/>当starCount的值为undefined时，默认值：5 |
 
 ### stepSize
 
@@ -107,7 +107,7 @@ stepSize(size: Optional\<number>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 操作评级的步长。<br/>当size的值为undefined时，默认值：0.5<br/>取值范围：[0.1, stars] |
+| size   | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 操作评级的步长。<br/>当size的值为undefined时，默认值：0.5<br/>取值范围：[0.1, stars] |
 
 ### starStyle
 
@@ -153,7 +153,7 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 >  **说明：**
 >
@@ -191,7 +191,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明)> | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明)> | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -229,7 +229,7 @@ onChange(callback:Optional\<OnRatingChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRatingChangeCallback<sup>18+</sup>
 

@@ -1,5 +1,11 @@
 # @ohos.hiTraceMeter (性能打点)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。本模块打点的数据供hiTraceMeter工具分析使用。
 详细开发流程请参考：[性能打点跟踪开发指导](../../dfx/hitracemeter-guidelines-arkts.md)。
 

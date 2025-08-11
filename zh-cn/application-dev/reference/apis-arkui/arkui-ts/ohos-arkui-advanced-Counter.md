@@ -1,8 +1,8 @@
 # advanced.Counter
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @xieziang--> 
-<!--SE: @youzhi92--> 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--SE: @youzhi92-->
 <!--TSE: @TerryTsao-->
 
 Counter是用于精确调节数值的组件。
@@ -172,6 +172,8 @@ DateData的构造函数。
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**
 
 | 参数名 | 类型 | 说明 |
 | ---------- | ------ | ---------------------------- |

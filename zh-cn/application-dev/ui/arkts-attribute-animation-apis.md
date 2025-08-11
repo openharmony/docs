@@ -1,4 +1,9 @@
 # 实现属性动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 
 通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供三种动画接口[animateTo](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)、[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)和[keyframeAnimateTo](../reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。

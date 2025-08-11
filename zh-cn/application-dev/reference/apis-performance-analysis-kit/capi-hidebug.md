@@ -1,5 +1,11 @@
 # HiDebug
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 提供调试功能。本模块函数可用于获取cpu usage、memory、heap、capture trace等。

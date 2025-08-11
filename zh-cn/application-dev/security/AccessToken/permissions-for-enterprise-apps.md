@@ -1,5 +1,11 @@
 # 企业类应用可用权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
 企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
@@ -466,7 +472,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：PC/2in1
 
 **起始版本**：20
 
@@ -481,13 +487,30 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：PC/2in1
 
 **起始版本**：20
 
 ## ohos.permission.CALL_TPM_CMD
 
 允许应用调用TPM（Trusted Platform Module）命令。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_WORKSPACES_EVENT_SUBSCRIBE
+
+允许企业应用订阅企业数字空间相关事件。
+
+获取此权限后，可以通过spaceManager.subscribeEvent和spaceManager.unsubscribeEvent，订阅和取消订阅企业数字空间相关事件。
 
 **权限级别**：system_basic
 

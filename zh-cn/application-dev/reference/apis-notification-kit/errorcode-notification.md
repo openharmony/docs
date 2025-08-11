@@ -1,4 +1,9 @@
 # 通知错误码
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--SE: @dongqingran; @wulong158-->
+<!--TSE: @wanghong1997-->
 
 > **说明：**
 >
@@ -384,40 +389,3 @@ Distributed operation timed out.
 **处理步骤**
 
 检查设备间连接是否正常（例如手机与手表是否配对成功）。
-
-## 2300007 网络无法访问
-
-**错误信息**
-
-Network unreachable.
-
-**错误描述**
-
-当网络无法访问时，系统会报此错误码。
-
-**可能原因**
-
-网络无法访问。
-
-**处理步骤**
-
-检查网络情况。
-
-## 17700001 包名不存在
-
-**错误信息**
-
-The specified bundle name was not found.
-
-**错误描述**
-
-当应用未安装或包名不正确时，系统会报此错误码。
-
-**可能原因**
-
-1. 包名不正确。
-2. 应用未安装。
-
-**处理步骤**
-
-检查应用是否存在。

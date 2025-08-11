@@ -1,4 +1,9 @@
 # transform样式动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置transform属性对组件进行旋转、缩放、移动和倾斜。
 

@@ -1,4 +1,9 @@
 # Camera Metadata (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
 
@@ -8,7 +13,7 @@ Metadata uses a tag (key) to find the corresponding data during parameter transf
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import the modules.
    ```ts
@@ -16,8 +21,8 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
-     
+2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class, and then use [createMetadataOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createmetadataoutput) to create a metadata output stream.
+
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
      let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
@@ -32,9 +37,10 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-3. Call [Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11) to start outputting metadata, and obtain the data through subscription to the **'metadataObjectsAvailable'** event. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+3. Call [Session.start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11) to start outputting metadata, and obtain the data through subscription to the **'metadataObjectsAvailable'** event. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode).
 
    For details about how to obtain preview output, see [Camera Preview (ArkTS)](camera-preview.md).
+
    ```ts
    async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
      let cameraArray: Array<camera.CameraDevice> = [];
@@ -68,7 +74,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-4. Call [Session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) to stop outputting metadata. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+4. Call [Session.stop](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#stop11) to stop outputting metadata. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode).
      
    ```ts
    function stopMetadataOutput(session: camera.Session): void {
@@ -84,7 +90,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 During camera application development, you can listen for the status of metadata objects and output stream.
 
-- Register the **'metadataObjectsAvailable'** event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a **MetadataOutput** object is created.
+- Register the **'metadataObjectsAvailable'** event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a MetadataOutput object is created.
     
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
@@ -101,7 +107,7 @@ During camera application development, you can listen for the status of metadata
   >
   > Currently, only **FACE_DETECTION** is available for the metadata type. The metadata object is the rectangle of the recognized face, including the x-axis coordinate and y-axis coordinate of the upper left corner of the rectangle as well as the width and height of the rectangle.
 
-- Register the **'error'** event to listen for metadata stream errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for metadata stream errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode).
     
   ```ts
   function onMetadataError(metadataOutput: camera.MetadataOutput): void {

@@ -1,7 +1,7 @@
 # 使用JSVM-API接口进行debug操作
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 
@@ -87,7 +87,7 @@ static int32_t TestJSVM()
     return 0;
 }
 ```
-#### 执行结果
+**执行结果**
 
 hilog中有以下结果输出：
 
@@ -156,7 +156,7 @@ static int32_t TestJSVM()
     return 0;
 }
 ```
-#### 执行结果
+**执行结果**
 
 程序崩溃，有cppcrash日志生成，在hilog中可以检索到类似以下的信息：
 ```

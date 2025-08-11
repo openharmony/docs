@@ -34,7 +34,7 @@ FoldSplitContainer({
   expandedLayoutOptions: ExpandedRegionLayoutOptions,
   hoverModeLayoutOptions: HoverModeRegionLayoutOptions,
   foldedLayoutOptions: FoldedRegionLayoutOptions,
-  animationOptions?: AnimateParam,
+  animationOptions?: AnimateParam | null,
   onHoverStatusChange?: OnHoverStatusChangeHandler
 })
 

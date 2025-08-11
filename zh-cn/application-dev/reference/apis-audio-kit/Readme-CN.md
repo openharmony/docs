@@ -1,4 +1,9 @@
 # Audio Kit（音频服务）
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 - ArkTS API<!--audio-arkts-->
   - @ohos.multimedia.audio (音频管理)<!--js-apis-audio-->
@@ -50,6 +55,7 @@
     - [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md)
     - [OH_AudioSession_Strategy](capi-ohaudio-oh-audiosession-strategy.md)
     - [OH_AudioSession_DeactivatedEvent](capi-ohaudio-oh-audiosession-deactivatedevent.md)
+    - [OH_AudioSession_StateChangedEvent](capi-ohaudio-oh-audiosession-statechangedevent.md)
     - [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md)
     - [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md)
     - [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md)

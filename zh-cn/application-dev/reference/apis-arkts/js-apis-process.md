@@ -1,7 +1,7 @@
 # @ohos.process (获取进程相关的信息)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 

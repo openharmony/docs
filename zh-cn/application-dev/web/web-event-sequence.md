@@ -1,6 +1,6 @@
 # Web组件的生命周期
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @weixin_41848015-->
 <!--SE: @libing23232323-->
 <!--TSE: @ghiker-->
@@ -15,7 +15,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)。
 
-自定义组件析构销毁时执行[aboutToDisAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)函数，Web组件会被销毁，Web组件与WebviewController解绑，js运行环境也会一并销毁。
+自定义组件析构销毁时执行[aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)函数，Web组件会被销毁，Web组件与WebviewController解绑，js运行环境也会一并销毁。
 
 **图1**  Web组件网页正常加载过程中的回调事件
 

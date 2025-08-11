@@ -1,6 +1,6 @@
 # 使用DevTools工具调试前端页面
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
@@ -8,8 +8,76 @@
 
 Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
 
+## 无线调试
+从API version 20开始，可使用无线调试接口[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)，来简化调试流程。
 
-## 调试步骤
+### 应用代码开启Web调试开关
+
+调试网页前，需要应用侧代码调用setWebDebuggingAccess()接口开启Web调试开关。
+如果没有开启Web调试开关，则DevTools无法发现被调试的网页。
+
+   1. 在应用代码中开启Web调试开关，应用需要调用[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口，设置TCP Socket端口号并启用Web调试功能。
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController();
+
+     aboutToAppear(): void {
+       try {
+         // 配置Web开启无线调试模式，指定TCP Socket的端口。
+         webview.WebviewController.setWebDebuggingAccess(true, 8888);
+       } catch (error) {
+         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+       }
+     }
+
+     build() {
+       Column() {
+         Web({ src: 'www.example.com', controller: this.controller })
+       }
+     }
+   }
+   ```
+   > **说明：**
+   >
+   >  代码中使用的8888端口仅作为示例展示，开发者使用过程中，应保证端口号可以被应用使用。如果因为端口被占用或者应用无权限使用等因素导致端口无法被应用使用，会导致接口抛出异常或者ArkWeb无法开启调试模式。
+   2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
+
+### 在Chrome浏览器上打开调试工具页面
+
+   1. 在电脑端Chrome浏览器地址栏中输入调试工具地址 chrome://inspect/\#devices 并打开该页面。  
+   2. 修改Chrome调试工具的配置。  
+     确保已勾选 "Discover network targets"，以便从指定的IP地址和端口号发现被调试网页。  
+     (1) 点击 "Configure" 按钮。  
+     (2) 在 "Target discovery settings" 中添加被调试设备的IP地址和[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口中指定的port端口，比如：192.168.0.3:8888。
+
+   > **说明：**
+   >
+   >  调试工具和被调试设备要在同一局域网下，并且能够相互访问。如果被调试设备有多个IP地址，要使用与调试工具同一个网段的IP地址。
+
+### 等待发现被调试页面
+
+  如果前面的步骤执行成功，Chrome的调试页面将显示待调试的网页。  
+  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
+
+### 开始网页调试
+
+  ![debug-effect](figures/debug-effect.png)
+
+## USB连接调试
 
 ### 应用代码开启Web调试开关
 
@@ -39,7 +107,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
      }
    }
    ```
-2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```
    "requestPermissions":[
@@ -116,30 +184,8 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    * 如果返回 `[Empty]`， 则说明端口转发失败。  
    ![hdc_fport_ls_empty](figures/devtools_resources_hdc_fport_ls_empty.jpg)
 
-### 在Chrome浏览器上打开调试工具页面
-  1. 在电脑端Chrome浏览器地址栏中输入调试工具地址 chrome://inspect/\#devices 并打开该页面。  
-  2. 修改Chrome调试工具的配置。  
-     需要从本地的TCP 9222端口发现被调试网页，所以请确保已勾选 "Discover network targets"。然后再进行网络配置。  
-     (1) 点击 "Configure" 按钮。  
-     (2) 在 "Target discovery settings" 中添加要监听的本地端口localhost:9222。
-
-     ![chrome_configure](figures/devtools_resources_chrome_configure.jpg)
-
-  3. 为了同时调试多个应用，请在Chrome浏览器的调试工具网页内，于“Devices”选项中的“configure”部分添加多个端口号。
-
-     ![debug-effect](figures/debug-domains.png)
-
-### 等待发现被调试页面
-
-  如果前面的步骤执行成功，Chrome的调试页面将显示待调试的网页。  
-  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
-
-### 开始网页调试
-
-  ![debug-effect](figures/debug-effect.png)
-
-## 便捷脚本
-### Windows平台
+### 便捷脚本
+#### Windows平台
 请复制以下信息建立bat文件，开启调试应用后执行。
    ```
    @echo off
@@ -214,7 +260,7 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
    endlocal
    ```
-### Linux或Mac平台
+#### Linux或Mac平台
 请复制以下信息建立sh文件，注意chmod以及格式转换，开启调试应用后执行。
 本脚本会先删除所有的端口转发，如果有其他的工具(如：DevEco Studio)也在使用端口转发功能，会受到影响。
    ```
@@ -278,66 +324,27 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    hdc fport ls
    ```
 
-## 无线调试
-上述的[调试步骤](#调试步骤)中，由于[端口转发](#端口转发)这一步骤需频繁查询Domain Socket并转发端口，给页面调试造成不便。因此，从API version 20开始，可使用无线调试接口[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)，来简化调试流程。
+### 在Chrome浏览器上打开调试工具页面
+  1. 在电脑端Chrome浏览器地址栏中输入调试工具地址 chrome://inspect/\#devices 并打开该页面。  
+  2. 修改Chrome调试工具的配置。  
+     需要从本地的TCP 9222端口发现被调试网页，所以请确保已勾选 "Discover network targets"。然后再进行网络配置。  
+     (1) 点击 "Configure" 按钮。  
+     (2) 在 "Target discovery settings" 中添加要监听的本地端口localhost:9222。
 
-1. 应用代码开启Web调试开关。
+     ![chrome_configure](figures/devtools_resources_chrome_configure.jpg)
 
-   这此步骤中，应用需要调用[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口，设置TCP Socket端口号并启用Web调试功能。
-   ```ts
-   // xxx.ets
-   import { webview } from '@kit.ArkWeb';
-   import { BusinessError } from '@kit.BasicServicesKit';
+  3. 为了同时调试多个应用，请在Chrome浏览器的调试工具网页内，于“Devices”选项中的“configure”部分添加多个端口号。
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController();
+     ![debug-effect](figures/debug-domains.png)
 
-     aboutToAppear(): void {
-       try {
-         // 配置Web开启无线调试模式，指定TCP Socket的端口。
-         webview.WebviewController.setWebDebuggingAccess(true, 8888);
-       } catch (error) {
-         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-       }
-     }
+### 等待发现被调试页面
 
-     build() {
-       Column() {
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
-   > **说明：**
-   >
-   >  代码中使用的8888端口仅作为示例展示，开发者使用过程中，应保证端口号可以被应用使用。如果因为端口被占用或者应用无权限使用等因素导致端口无法被应用使用，会导致接口抛出异常或者ArkWeb无法开启调试模式。
+  如果前面的步骤执行成功，Chrome的调试页面将显示待调试的网页。  
+  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
 
-2. 将设备连接至电脑。
+### 开始网页调试
 
-   如果ArkWeb成功开启了无线调试模式，此步骤可省略。
-
-3. 端口转发。
-
-   如果ArkWeb成功开启了无线调试模式，此步骤可省略。
-
-4. 在Chrome浏览器上打开调试工具页面。
-
-   将[在Chrome浏览器上打开调试工具页面](#在chrome浏览器上打开调试工具页面)的第2步"修改Chrome调试工具的配置"的第(2)条，改为:  
-   在 "Target discovery settings" 中添加被调试设备的IP地址和[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口中指定的port端口，比如：192.168.0.3:8888。
-
-   > **说明：**
-   >
-   >  调试工具和被调试设备要在同一局域网下，并且能够相互访问。如果被调试设备有多个IP地址，要使用与调试工具同一个网段的IP地址。
-
-5. 等待发现被调试页面。
-
-   无变化。
-
-6. 开始网页调试。
-
-   无变化。
+  ![debug-effect](figures/debug-effect.png)
 
 ## 常见问题与解决方法
 
@@ -441,3 +448,15 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
 * 请确保使用的端口可以被应用使用。
 * 请确保调试工具和被调试设备在同一个局域网内，且它们之间网络通畅。
+
+### Web组件无法使用DevTools工具进行调试
+**问题现象**
+
+  电脑端Chrome浏览器无法发现被调试网页。
+
+**问题原因**
+
+* 当同时使用HDC和ADB时，ADB会干扰DevTools与设备之间的WebSocket连接
+
+**解决方法**
+* 如果同时使用HDC和ADB，先关闭ADB进程，确保DevTools与设备建立WebSocket连接

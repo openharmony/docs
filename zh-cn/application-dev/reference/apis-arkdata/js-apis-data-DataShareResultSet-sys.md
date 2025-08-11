@@ -44,20 +44,19 @@ export default class EntryAbility extends UIAbility {
         console.info("createDataShareHelper end, data : " + data);
         dataShareHelper = data;
       }
+      let columns = ["*"];
+      let da = new dataSharePredicates.DataSharePredicates();
+      let resultSet: DataShareResultSet | undefined = undefined;
+      da.equalTo("name0", "ZhangSan");
+      if (dataShareHelper != undefined) {
+        (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+          console.info("query end, data : " + data);
+          resultSet = data;
+        }).catch((err: BusinessError) => {
+          console.error("query fail, error message : " + err);
+        });
+      }
     });
-
-    let columns = ["*"];
-    let da = new dataSharePredicates.DataSharePredicates();
-    let resultSet: DataShareResultSet | undefined = undefined;
-    da.equalTo("name", "ZhangSan");
-    if (dataShareHelper != undefined) {
-      (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
-        console.info("query end, data : " + data);
-        resultSet = data;
-      }).catch((err: BusinessError) => {
-        console.error("query fail, error message : " + err);
-      });
-    }
   };
 };
 ```
@@ -259,8 +258,12 @@ getBlob(columnIndex: number): Uint8Array
 let columnIndex = 1;
 if (resultSet != undefined) {
   let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
-  let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
-  console.info('resultSet.getBlob: ' + getBlob);
+  if (!goToFirstRow) {
+    console.error("failed to go to first row");
+  } else {
+    let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
+    console.info('resultSet.getBlob: ' + getBlob);
+  }
 }
 ```
 

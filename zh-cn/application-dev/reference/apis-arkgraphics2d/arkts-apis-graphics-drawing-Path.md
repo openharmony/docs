@@ -1,4 +1,9 @@
 # Class (Path)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 > **说明：**
 >
@@ -780,6 +785,7 @@ path.reset();
 isEmpty = path.isEmpty();
 console.info('isEmpty:', isEmpty);
 path.setLastPoint(50, 50);
+isEmpty = path.isEmpty();
 console.info('isEmpty:', isEmpty);
 ```
 

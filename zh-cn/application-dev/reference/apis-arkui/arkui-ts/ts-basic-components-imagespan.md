@@ -158,17 +158,17 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| width                        | number | 是   | 图片的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
-| height                       | number | 是   | 图片的高。<br/>单位：[px](ts-pixel-units.md)                                    |
-| componentWidth               | number | 是   | 组件的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
-| componentHeight              | number | 是   | 组件的高。<br/>单位：[px](ts-pixel-units.md)                                    |
-| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| 名称                       | 类型   | 只读 | 可选 | 说明                                                         |
+| ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| width                        | number | 否   | 否 | 图片的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| height                       | number | 否   | 否   | 图片的高。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentWidth               | number | 否   | 否   | 组件的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentHeight              | number | 否   | 否   | 组件的高。<br/>单位：[px](ts-pixel-units.md)                                    |
+| loadingStatus                | number | 否   | 否   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth   | number | 否   | 否   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight  | number | 否   | 否   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX | number | 否   | 否   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY | number | 否   | 否   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
 
@@ -176,7 +176,7 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 ### 示例1（设置对齐方式）
 
-该示例通过verticalAlign、objectFit属性展示了ImageSpan的对齐方式以及缩放效果。
+从API version 10开始，该示例通过[verticalAlign](#verticalalign)、[objectFit](#objectfit)属性展示了ImageSpan组件的对齐方式以及缩放效果。
 
 ```ts
 // xxx.ets
@@ -227,7 +227,7 @@ struct SpanExample {
 
 ### 示例2（设置背景样式）
 
-该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+从API version 11开始，该示例通过[textBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -254,7 +254,7 @@ struct Index {
 
 ### 示例3（为图片添加事件）
 
-该示例通过onComplete、onError为图片添加加载成功和加载异常的事件。
+从API version 12开始，该示例通过[onComplete](#oncomplete12)、[onError](#onerror12)为图片添加加载成功和加载异常的事件。
 
 ```ts
 // xxx.ets
@@ -281,7 +281,7 @@ struct Index {
 ```
 ### 示例4（设置颜色滤镜）
 
-该示例通过colorFilter属性展示了给ImageSpan图像设置颜色滤镜的效果。
+从API version 14开始，该示例通过[colorFilter](#colorfilter14)属性展示了给ImageSpan图像设置颜色滤镜的效果。
 
 ```ts
 // xxx.ets
@@ -325,7 +325,7 @@ struct SpanExample {
 
 ### 示例5（设置加载占位图）
 
-该示例alt属性展示了ImageSpan设置加载网络图片时占位图的效果。
+从API version 12开始，该示例[alt](#alt12)属性展示了ImageSpan设置加载网络图片时占位图的效果。
 
 ```ts
 // xxx.ets

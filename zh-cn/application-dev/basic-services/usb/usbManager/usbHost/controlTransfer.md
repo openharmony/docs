@@ -1,5 +1,11 @@
 # USB控制传输
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 场景介绍
 
 控制传输主要用于主机（Host）和设备（Device）进行设备状态的获取和设置，进行设备属性状态的的控制。根据设备支持的端点类型支持控制传输读和写。

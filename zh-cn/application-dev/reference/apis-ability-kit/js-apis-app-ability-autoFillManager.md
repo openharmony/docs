@@ -1,6 +1,12 @@
 # @ohos.app.ability.autoFillManager (自动填充框架)
 
-autoFillManager模块提供账号密码保存等功能。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
+autoFillManager模块为应用提供账号、密码、地址、电话号码等用户信息的自动填充能力。
 
 不同于页面切换时触发的系统自动保存功能，该功能需要由用户手动触发。例如用户在网站上输入了账号密码，并点击“保存”按钮，才能触发相应的自动保存操作。
 
@@ -99,16 +105,15 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [UIContext](../apis-arkui/arkts-apis-uicontext-uicontext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
-| callback | [AutoSaveCallback](#autosavecallback)  | 否 | 保存请求的回调函数。 |
+| callback | [AutoSaveCallback](#autosavecallback)  | 否 | 当保存请求完成时所触发的回调接口。|
 
 **错误码：**
 
+以下错误码的详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | The parameter check failed. Possible causes: 1. Get instance id failed; 2. Parse instance id failed; 3. The second parameter is not of type callback. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -129,13 +134,13 @@ export default class EntryAbility extends UIAbility {
     };
     let storage = new LocalStorage(localStorageData);
     windowStage.loadContent('pages/Index', storage, (err, data) => {
-      if (err.code) {
+      if (err && err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
       // Obtain the main window.
       windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
-        let errCode: number = err.code;
+        let errCode: number = err?.code;
         if (errCode) {
           console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           return;

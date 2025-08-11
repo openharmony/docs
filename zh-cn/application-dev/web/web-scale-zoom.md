@@ -1,6 +1,6 @@
 # 使用Web组件管理网页缩放
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--SE: @zhufenghao-->
 <!--TSE: @ghiker-->

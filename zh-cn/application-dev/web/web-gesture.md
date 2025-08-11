@@ -1,6 +1,6 @@
 # 使用Web组件的手势与应用交互
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--SE: @zhufenghao-->
 <!--TSE: @ghiker-->
@@ -78,7 +78,7 @@ struct Index {
 ## Web组件的手势拦截
 - ArkUI手势
 
-  ArkWeb会消费部分ArkUI手势，例如[PanGesture](../ui/arkts-gesture-events-single-gesture.md#捏合手势pinchgesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
+  ArkWeb会消费部分ArkUI手势，例如[拖动手势](../ui/arkts-gesture-events-single-gesture.md#拖动手势pangesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
 
 - ArkWeb手势
 

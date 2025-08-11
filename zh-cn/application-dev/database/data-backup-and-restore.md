@@ -66,6 +66,10 @@
              }
              console.info('Succeeded in getting KVStore.');
              kvStore = store;
+             if (kvStore !== undefined) {
+               // 进行后续操作
+               // ...
+             }
            });
          } catch (e) {
            let error = e as BusinessError;
@@ -74,12 +78,6 @@
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-       }
-
-       if (kvStore !== undefined) {
-         kvStore = kvStore as distributedKVStore.SingleKVStore;
-         //进行后续操作
-         //...
        }
      }
    }

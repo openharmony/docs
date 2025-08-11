@@ -1,6 +1,6 @@
 # Web组件渲染模式
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zhou-ke13-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->
@@ -24,7 +24,6 @@ Web组件提供了两种可配置的渲染模式，能够根据不同的容器�
 
 同步渲染模式下（ renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件作为图形canvas节点, Web渲染跟随系统组件一起送显，可以渲染更长Web组件内容，但会增加性能消耗。
 
-- Web组件的宽高不能超过500,000px（物理像素），超过会导致白屏。
 - 不支持DSS合成。
 - 不支持动态切换模式。
 

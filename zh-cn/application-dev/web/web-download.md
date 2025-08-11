@@ -1,6 +1,6 @@
 # 使用Web组件的下载能力
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
@@ -177,7 +177,7 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })

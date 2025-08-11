@@ -1,13 +1,18 @@
 # Interface (VideoSession)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-VideoSession extends [Session](arkts-apis-camera-Session.md)、[Flash](arkts-apis-camera-Flash.md)、[AutoExposure](arkts-apis-camera-AutoExposure.md)、[Focus](arkts-apis-camera-Focus.md)、[Zoom](arkts-apis-camera-Zoom.md)、[Stabilization](arkts-apis-camera-Stabilization.md)、[ColorManagement](arkts-apis-camera-ColorManagement.md)、[AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md)、[Macro](arkts-apis-camera-Macro.md)、[ControlCenter](arkts-apis-camera-ControlCenter.md)
+VideoSession 继承自 [Session](arkts-apis-camera-Session.md)、[Flash](arkts-apis-camera-Flash.md)、[AutoExposure](arkts-apis-camera-AutoExposure.md)、 [WhiteBalance](arkts-apis-camera-WhiteBalance.md)、[Focus](arkts-apis-camera-Focus.md)、[Zoom](arkts-apis-camera-Zoom.md)、[Stabilization](arkts-apis-camera-Stabilization.md)、[ColorManagement](arkts-apis-camera-ColorManagement.md)、[AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md)、[Macro](arkts-apis-camera-Macro.md)、[ControlCenter](arkts-apis-camera-ControlCenter.md)。
 
-普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间及微距的操作。
+普通录像模式会话类，提供了对闪光灯、曝光、白平衡、对焦、变焦、视频防抖、色彩空间、微距及控制器的操作。
 
 > **说明：**
 >
@@ -518,7 +523,7 @@ off(type: 'controlCenterEffectStatusChange', callback?: AsyncCallback\<ControlCe
 | 参数名    | 类型 | 必填 | 说明 |
 |----------|-------|----|------------------------------------------------------------------------|
 | type     | string | 是 | 注销监听事件，固定为'controlCenterEffectStatusChange'，session创建成功可触发此事件。 |
-| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 是 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。|
+| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。|
 
 **示例：**
 

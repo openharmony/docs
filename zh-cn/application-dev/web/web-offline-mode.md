@@ -1,6 +1,6 @@
 # 使用离线Web组件
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @wang-yanhan-->
 <!--SE: @qianlf-->
 <!--TSE: @ghiker-->
@@ -482,7 +482,7 @@ struct Index {
 
 1.排查应用上网权限配置。
 
-检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+检查是否已在module.json5中添加网络权限，添加方法请参考在[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 ```ts
 "requestPermissions":[

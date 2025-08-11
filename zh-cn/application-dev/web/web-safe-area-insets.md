@@ -1,6 +1,6 @@
 # 网页中安全区域计算和避让适配
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @KeeGitee-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->

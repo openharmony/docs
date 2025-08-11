@@ -1,6 +1,6 @@
 # ArkGuard混淆常见问题
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -44,11 +44,11 @@
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
-从`API19`开始，主模块默认不合并三方库的`obfuscation.txt`文件中的混淆选项，保留选项仍然有效。
+从API version 18开始，主模块默认不合并三方库的`obfuscation.txt`文件中的混淆选项，保留选项仍然有效。
 
 > **说明**：
 > 
-> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。 
+> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。  
 > -enable-property-obfuscation  
 > -enable-string-property-obfuscation  
 > -enable-toplevel-obfuscation  
@@ -454,14 +454,20 @@ city1
 
 **问题现象**
 
-```
+```ts
 // 混淆前
-person["age"] = 22;
+const person = {
+  myAge: 18
+}
+person["myAge"] = 20;
 ```
 
-```
+```ts
 // 混淆后
-person["b"] = 22;
+const person = {
+  myAge: 18
+}
+person["m"] = 20;
 ```
 
 **问题原因**
@@ -470,10 +476,10 @@ person["b"] = 22;
 
 **解决方案**
 
-从`API19`开始，主模块默认不会被三方库的混淆规则所影响，因此不会有这种情况。但如果API版本低于19，可参考以下两种解决方案。
+从API version 18开始，主模块默认不会被三方库的混淆规则所影响，因此不会有这种情况。但如果API version低于18，可参考以下两种解决方案。
 
-方案一：确认依赖模块是否开启了字符串属性名混淆。若开启，会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。
-方案二：若工程复杂无法找到开启了该混淆配置选项的模块，可以将属性名直接配置到白名单中。
+方案一：确认依赖的远程HAR包的`obfuscation.txt`文件中是否配置了`-enable-string-property-obfuscation`选项。若配置了则会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。
+方案二：若工程复杂无法找到配置了该混淆选项的远程HAR包，可以将属性名直接配置到白名单中。
 
 ### 数据库相关的字段被混淆后导致功能异常
 

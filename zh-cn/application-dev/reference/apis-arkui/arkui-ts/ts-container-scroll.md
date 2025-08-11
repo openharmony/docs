@@ -758,14 +758,16 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
-| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。|
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
 
 ### fling<sup>12+</sup>
 
@@ -834,7 +836,9 @@ currentOffset(): OffsetResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型  | 描述 |
+**返回值：**
+
+| 类型  | 说明 |
 | -------- | -------- |
 |  [OffsetResult<sup>11+</sup>](#offsetresult11对象说明) | 返回当前的滚动偏移量。<br/>**说明：**<br/>当scroller控制器未绑定容器组件或者容器组件被异常释放时，currentOffset的返回值为空。|
 
@@ -903,9 +907,9 @@ isAtEnd(): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值**
+**返回值：**
 
-| 类型         | 描述          |
+| 类型         | 说明          |
 | ------- | -------- |
 | boolean | true表示组件已经滚动到底部，false表示组件还没滚动到底部。 |
 

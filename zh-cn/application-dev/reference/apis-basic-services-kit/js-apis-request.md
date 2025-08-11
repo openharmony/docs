@@ -1,4 +1,9 @@
 # @ohos.request (上传下载)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--SE: @hu-kai45-->
+<!--TSE: @murphy1984-->
 
 request模块给应用提供上传下载文件、后台代理传输的基础功能。
 
@@ -706,7 +711,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   uploadTask.remove().then((result) => {
     console.info('Succeeded in removing the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -750,8 +755,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
     }
     if (result) {
       console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
     }
   });
   ```
@@ -804,7 +807,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## File
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -817,7 +820,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## RequestData
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -932,7 +935,6 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
@@ -1456,8 +1458,7 @@ delete(): Promise&lt;boolean&gt;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-      let downloadTask: request.DownloadTask = data;
-      downloadTask.delete().then((result: boolean) => {
+      data.delete().then((result: boolean) => {
         console.info('Succeeded in removing the download task.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -2004,7 +2005,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   downloadTask.remove().then((result) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch ((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2084,7 +2085,7 @@ query(): Promise&lt;DownloadInfo&gt;
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err) => {
+  }) .catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2164,7 +2165,7 @@ queryMimeType(): Promise&lt;string&gt;
   ```js
   downloadTask.queryMimeType().then((data) => {    
     console.info('Succeeded in querying the download MimeType.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2244,7 +2245,7 @@ pause(): Promise&lt;void&gt;
   ```js
   downloadTask.pause().then((result) => {    
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2324,7 +2325,7 @@ resume(): Promise&lt;void&gt;
   ```js
   downloadTask.resume().then((result) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2474,7 +2475,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件，仅支持上传任务。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimetype，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API Version 18 开始废弃，建议使用contentType替代。 |
+| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimeType，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API version 18 开始废弃，建议使用contentType替代。 |
 | contentType<sup>18+</sup> | string | 否 | 文件内容类型，默认值为文件名后缀。该选项会被填写到HTTP表单指定的Content-Type字段中。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -3042,11 +3043,14 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3126,13 +3130,19 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3212,11 +3222,14 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4470,9 +4483,12 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4539,9 +4555,12 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -4609,11 +4628,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4683,11 +4708,17 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -4754,9 +4785,12 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4826,9 +4860,12 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {

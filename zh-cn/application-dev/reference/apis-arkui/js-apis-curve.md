@@ -1,4 +1,9 @@
 # @ohos.curves (插值计算)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、三阶贝塞尔曲线对象和弹簧曲线对象。
 
@@ -348,6 +353,12 @@ init(curve?: Curve): string
 | ------ | --------------- | ---- | ----------------------------------- |
 | curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回插值曲线对象。 |
+
 
 ## curves.steps<sup>(deprecated)</sup>
 
@@ -364,6 +375,12 @@ steps(count: number, end: boolean): string
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
 | end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回阶梯曲线对象。 |
 
 
 ## curves.cubicBezier<sup>(deprecated)</sup>
@@ -383,6 +400,12 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): string
 | x2   | number | 是    | 确定贝塞尔曲线第二点横坐标。 |
 | y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回三阶贝塞尔曲线对象。 |
+
 
 ## curves.spring<sup>(deprecated)</sup>
 
@@ -401,6 +424,12 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 | mass      | number | 是    | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。 |
 | stiffness | number | 是    | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。 |
 | damping   | number | 是    | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回弹簧曲线对象。 |
 
 ## 整体示例
 

@@ -1,4 +1,9 @@
 # 检查页面布局
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @pengzhiwen3-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 inspector用于检查页面布局，通过inspector双向定位功能帮助开发者在DevEco Studio中快速定位组件、修改属性和调试组件，以提高开发效率。
 

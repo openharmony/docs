@@ -1,6 +1,6 @@
 # 建立应用侧与前端页面数据通道(C/C++)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
@@ -212,8 +212,8 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       testNapi.nativeWebInit(this.webTag);
     }
 
-    aboutToDisAppear() {
-      console.error("aboutToDisAppear")
+    aboutToDisappear() {
+      console.error("aboutToDisappear");
     }
 
     build() {

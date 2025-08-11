@@ -1,6 +1,6 @@
 # @arkts.collections (ArkTS容器集)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -155,7 +155,7 @@ slice(start?: number, end?: number): ConcatArray\<T>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 |  Parameter error. Invalid `start` or `end` parameters. |
+| 401 |  Parameter error. Invalid \`start\` or \`end\` parameters. |
 
 **示例：**
 
@@ -244,9 +244,11 @@ ArkTS Array归约函数类型，被Array类的'reduceRight'接口使用。
 
 - T：Type，支持[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**装饰器类型：**\@Sendable
 
 ### 属性
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -515,7 +517,7 @@ console.info(newArray.toString()); // 预期输出： 1, 3, 5
 
 static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapFn\<U, T>): Array\<T>
 
-从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以数组元素的类型不一样。
+从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以和数组元素的类型不一样。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -657,7 +659,7 @@ copyWithin(target: number, start: number, end?: number): Array\<T>
 | -------- | ------------------------------------------------ |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The copyWithin method cannot be bound.           |
-| 10200201 | Concurrent modification exception.               |
+| 10200201 | Concurrent modification error.               |
 
 **示例：**
 
@@ -696,9 +698,8 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
-| 10200201 | Concurrent modification exception.      |
+| 10200201 | Concurrent modification error.      |
 
 **示例：**
 
@@ -738,7 +739,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
 | 10200011 | The some method cannot be bound.   |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -791,7 +792,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 
 reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialValue: U): U
 
-与 reduceRight方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
+与 [reduceRight](#reduceright18)方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -865,7 +866,7 @@ let lastElement = array.pop(); // 返回3，Array变为[1, 2]
 
 push(...items: T[]): number
 
-在ArkTS Array的末尾添加一个或多个元素，并返回新的Array长度。
+在ArkTS Array的末尾添加元素，并返回新的Array长度。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -875,7 +876,7 @@ push(...items: T[]): number
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | T[]  | 是   | 要添加到Array末尾的一个或多个元素。 |
+| items  | T[]  | 否   | 要添加到Array末尾的元素。 |
 
 **返回值：**
 
@@ -994,7 +995,7 @@ reverse(): Array\<T>
 | 错误码ID    | 错误信息                                |
 | -------- | ----------------------------------- |
 | 10200011 | The reverse method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -1008,7 +1009,7 @@ console.info(array.toString()); // 预期输出： 5, 4, 3, 2, 1
 
 unshift(...items: T[]): number
 
-在ArkTS Array的首端插入一个或多个元素，并返回新的Array长度。
+在ArkTS Array的首端插入元素，并返回新的Array长度。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -1018,7 +1019,7 @@ unshift(...items: T[]): number
 
 | 参数名 | 类型 | 必填 | 说明                     |
 | ------ | ---- | ---- | ------------------------ |
-| items  | T[]  | 是   | 要插入到Array首端的元素。 |
+| items  | T[]  | 否   | 要插入到Array首端的元素。 |
 
 **返回值：**
 
@@ -1270,7 +1271,7 @@ let array = new collections.Array<string>('a', 'b', 'c');
 let mappedArray = array.map((value, index, array) => {
   return value.toUpperCase(); // 将每个字符串元素转换为大写
 });
-console.info("" + mappedArray); // 输出: ['A', 'B', 'C']
+console.info("" + mappedArray); // 输出: A, B, C
 ```
 
 ### filter
@@ -1469,7 +1470,7 @@ console.info(iterator.next().value); // 输出：[0, 1]，第一个元素的键�
 
 keys(): IterableIterator\<number>
 
-返回一个新的可迭代对象，该对象包含Array中每个元素的键。
+返回一个新的可迭代对象，该对象包含Array中每个元素的索引。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -1479,7 +1480,7 @@ keys(): IterableIterator\<number>
 
 | 类型                      | 说明                                   |
 | ------------------------- | -------------------------------------- |
-| IterableIterator\<number> | 包含Array中每个元素的键的可迭代迭代器。 |
+| IterableIterator\<number> | 包含Array中每个元素的索引的可迭代迭代器。 |
 
 **错误码：**
 
@@ -1781,7 +1782,7 @@ concat(...items: ConcatArray\<T>[]): Array\<T>
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | ConcatArray\<T>[]  | 是   | 拼接两个或多个数组。 |
+| items  | ConcatArray\<T>[]  | 否   | 拼接两个或多个数组。 |
 
 **返回值：**
 
@@ -1876,7 +1877,7 @@ every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The every method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2052,6 +2053,8 @@ console.info("Element at index 1: ", array[1]);
 
 K和V类型都需为[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
+**装饰器类型：**\@Sendable
+
 ### 属性
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
@@ -2152,9 +2155,9 @@ const myMap = new collections.Map<number, string>([
 ]);
 
 const iterator = myMap.entries();
-// Expected output: [0, "foo"]
+// Expected output: 0, foo
 console.info(iterator.next().value);
-// Expected output: [1, "bar"]
+// Expected output: 1, bar
 console.info(iterator.next().value);
 ```
 
@@ -2270,7 +2273,7 @@ clear(): void
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
 | 10200011 | The clear method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                  |
+| 10200201 | Concurrent modification error.                  |
 
 **示例：**
 
@@ -2315,7 +2318,7 @@ delete(key: K): boolean
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.                                     |
 | 10200011 | The delete method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                   |
+| 10200201 | Concurrent modification error.                   |
 
 
 **示例：**
@@ -2362,7 +2365,7 @@ callbackFn的参数说明：
 | -------- | ----------------------------------------------------- |
 | 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                    |
+| 10200201 | Concurrent modification error.                    |
 
 **示例：**
 
@@ -2385,7 +2388,7 @@ new collections.Map<string, number>([
   ['bar', 1],
   ['baz', 2],
 ]).forEach((value, key, map) => {
-  // Throw exception `Concurrent modification exception.`
+  // Throw exception `Concurrent modification error.`
   map.delete(key);
 });
 ```
@@ -2419,7 +2422,7 @@ get(key: K): V | undefined
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                                  |
 | 10200011 | The get method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -2462,7 +2465,7 @@ has(key: K): boolean
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -2506,7 +2509,7 @@ set(key: K, value: V): Map<K, V>
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                                  |
 | 10200011 | The set method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -2576,6 +2579,8 @@ for (let key of keys) {
 文档中存在泛型的使用，涉及以下泛型标记符：
 
 - T：Type，支持[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
+
+**装饰器类型：**\@Sendable
 
 ### 属性
 
@@ -2780,7 +2785,7 @@ clear(): void
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
 | 10200011 | The clear method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                  |
+| 10200201 | Concurrent modification error.                  |
 
 **示例：**
 
@@ -2821,7 +2826,7 @@ delete(value: T): boolean
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 10200011 | The delete method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                   |
+| 10200201 | Concurrent modification error.                   |
 
 
 **示例：**
@@ -2866,7 +2871,7 @@ callbackFn的参数说明：
 | -------- | ----------------------------------------------------- |
 | 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                    |
+| 10200201 | Concurrent modification error.                    |
 
 **示例：**
 
@@ -2881,7 +2886,7 @@ new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set)
 ```ts
 // 反例：
 new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set) => {
-  // Throw exception `Concurrent modification exception.`
+  // Throw exception `Concurrent modification error.`
   set.delete(value1);
 });
 ```
@@ -2915,7 +2920,7 @@ has(value: T): boolean
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -2955,7 +2960,7 @@ add(value: T): Set\<T>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The add method cannot be bound with non-sendable. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -3014,7 +3019,9 @@ for (let item of val) {
 ```
 
 ## collections.ArrayBuffer
-ArkTS TypedArray的底层数据结构。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
+ArkTS TypedArray的底层数据结构。
+
+**装饰器类型：**\@Sendable
 
 ### 属性
 
@@ -3234,6 +3241,8 @@ ArkTS TypedArray排序函数类型。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
 - TypedArray: 指上述8种具体的ArkTS TypedArray。
+
+**装饰器类型：**\@Sendable
 
 ### 属性
 
@@ -3630,7 +3639,7 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | target | number | 是 | 目标起始位置的下标。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + typedarray.length`位置开始。 |
-| end | number | 否 | 源终止位置下标，如果`end < 0`，则会从`end + typedarray.length`位置终止。默认为ArkTS TypedArray的长度。|
+| end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + typedarray.length`位置终止。默认为ArkTS TypedArray的长度。|
 
 **返回值：**
 
@@ -3646,7 +3655,7 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 | -------- | ------------------------------------------------ |
 | 401      | Parameter error.                                 |
 | 10200011 | The copyWithin method cannot be bound.           |
-| 10200201 | Concurrent modification exception.               |
+| 10200201 | Concurrent modification error.               |
 
 **示例：**
 
@@ -3685,7 +3694,7 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 | -------- | ---------------------------------- |
 | 401      | Parameter error.                   |
 | 10200011 | The some method cannot be bound.   |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3727,7 +3736,7 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                  |
 | 10200011 | The every method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3771,7 +3780,7 @@ fill(value: number, start?: number, end?: number): TypedArray
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                 |
 | 10200011 | The fill method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3811,7 +3820,7 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                   |
 | 10200011 | The filter method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3850,7 +3859,7 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                 |
 | 10200011 | The find method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3889,7 +3898,7 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                      |
 | 10200011 | The findIndex method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -3922,7 +3931,7 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                    |
 | 10200011 | The forEach method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3963,7 +3972,7 @@ indexOf(searchElement: number, fromIndex?: number): number
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                    |
 | 10200011 | The indexOf method cannot be bound. |
-| 10200201 | Concurrent modification exception.                |
+| 10200201 | Concurrent modification error.                |
 
 **示例：**
 
@@ -4004,8 +4013,8 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4046,7 +4055,7 @@ join(separator?: string): string
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                 |
 | 10200011 | The join method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -4084,7 +4093,7 @@ map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                |
 | 10200011 | The map method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4121,7 +4130,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 | -------- | ------------------------------------------------ |
 | 401      | Parameter error.                                 |
 | 10200011 | The reduce method cannot be bound.               |
-| 10200201 | Concurrent modification exception.               |
+| 10200201 | Concurrent modification error.               |
 
 **示例：**
 
@@ -4160,7 +4169,7 @@ reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): 
 | -------- | --------------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200011 | The reduceRight method cannot be bound. |
-| 10200201 | Concurrent modification exception.      |
+| 10200201 | Concurrent modification error.      |
 
 **示例：**
 
@@ -4200,7 +4209,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initia
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4240,7 +4249,7 @@ reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, TypedA
 | -------- | --------------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200011 | The reduceRight method cannot be bound. |
-| 10200201 | Concurrent modification exception.      |
+| 10200201 | Concurrent modification error.      |
 
 **示例：**
 
@@ -4280,7 +4289,7 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initial
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -4312,7 +4321,7 @@ reverse(): TypedArray
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The reverse method cannot be bound. |
-| 10200201 | Concurrent modification exception.   |
+| 10200201 | Concurrent modification error.   |
 
 **示例：**
 
@@ -4344,7 +4353,7 @@ set(array: ArrayLike\<number>, offset?: number): void
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                |
 | 10200011 | The set method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -4384,7 +4393,7 @@ slice(start?: number, end?: number): TypedArray
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                  |
 | 10200011 | The slice method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4424,7 +4433,7 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 | -------- | ------------------------------------------ |
 | 401      | Parameter error.                 |
 | 10200011 | The sort method cannot be bound. |
-| 10200201 | Concurrent modification exception.         |
+| 10200201 | Concurrent modification error.         |
 
 **示例：**
 
@@ -4438,7 +4447,7 @@ array.sort((a: number, b: number) => b - a); // Uint32Array [5, 4, 3, 2, 1]
 ### subarray
 subarray(begin?: number, end?: number): TypedArray
 
-返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS TypedArray对象。
+从指定的位置截取数组，返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS TypedArray对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4465,7 +4474,7 @@ subarray(begin?: number, end?: number): TypedArray
 | -------- | -------------------------------------------------|
 | 401      | Parameter error.                                 |
 | 10200011 | The subarray method cannot be bound.             |
-| 10200201 | Concurrent modification exception.               |
+| 10200201 | Concurrent modification error.               |
 
 **示例：**
 
@@ -4503,7 +4512,7 @@ at(index: number): number | undefined
 | -------- | ------------------------------------------------ |
 | 401      | Parameter error.                                 |
 | 10200011 | The at method cannot be bound.                   |
-| 10200201 | Concurrent modification exception.               |
+| 10200201 | Concurrent modification error.               |
 
 **示例：**
 
@@ -4544,7 +4553,7 @@ includes(searchElement: number, fromIndex?: number): boolean
 | -------- | ------------------------------------------------- |
 | 401      | Parameter error.                     |
 | 10200011 | The includes method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4577,7 +4586,7 @@ entries(): IterableIterator\<[number, number]>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The entries method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4611,7 +4620,7 @@ keys(): IterableIterator\<number>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The keys method cannot be bound. |
-| 10200201 | Concurrent modification exception. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -4645,7 +4654,7 @@ values(): IterableIterator\<number>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 10200011 | The values method cannot be bound. |
-| 10200201 | Concurrent modification exception.  |
+| 10200201 | Concurrent modification error.  |
 
 **示例：**
 
@@ -4739,6 +4748,8 @@ console.info("Element at index 1: ", uint8Clamped[1]);
 ## collections.BitVector
 
 BitVector是一种线性数据结构，底层基于数组实现。BitVector中存储元素为bit值，能存储和处理bit级别的操作。
+
+**装饰器类型：**\@Sendable
 
 ### 属性
 

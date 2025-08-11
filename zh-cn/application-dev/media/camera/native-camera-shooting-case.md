@@ -1,4 +1,9 @@
 # 拍照实践(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -205,8 +210,13 @@
 
         // 获取相机列表。
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size <= 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+            return;
+        }
+
+        if (size < cameraDeviceIndex + 1) {
+            OH_LOG_ERROR(LOG_APP, "cameraDeviceIndex is invalid.");
             return;
         }
 

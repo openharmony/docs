@@ -1,8 +1,8 @@
 # Class (WebDataBase)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yuzhouhang1-->
-<!--SE: @ctqctq99-->
+<!--SE: @handyohos-->
 <!--TSE: @ghiker-->
 
 Web组件数据库管理对象。

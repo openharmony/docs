@@ -45,7 +45,7 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 
   前提条件：当前用户至少录入了一个生物特征（如指纹）。
 
-  使用场景：免密登录，免密支付等。
+  使用场景：免密登录、免密支付等。
 
 - **用户密钥总是有效。**
   使用此模式生成的密钥将永久有效，除非用户主动删除。
@@ -88,9 +88,9 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 
 为方便查阅，在表格中将使用对应的简写指代具体的用户认证类型，其对应关系如下：
 
-- HUKS_USER_AUTH_TYPE_PIN，即锁屏密码。简写为PIN。
-- HUKS_USER_AUTH_TYPE_FACE，即生物特征（人脸）。简写为FACE。
-- HUKS_USER_AUTH_TYPE_FINGERPRINT，即生物特征（指纹）。简写为FINGERPRINT。
+- HUKS_USER_AUTH_TYPE_PIN，即锁屏密码，简写为PIN。
+- HUKS_USER_AUTH_TYPE_FACE，即生物特征（人脸），简写为FACE。
+- HUKS_USER_AUTH_TYPE_FINGERPRINT，即生物特征（指纹），简写为FINGERPRINT。
 <!--RP1--><!--RP1End-->
 
 安全访问控制类型简写为：

@@ -1,4 +1,9 @@
 # 状态变量组件定位工具实践
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--SE: @jiangwensai-->
+<!--TSE: @Lyuxin-->
 
 ## 概述
 

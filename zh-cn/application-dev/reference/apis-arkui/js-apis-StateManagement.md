@@ -175,6 +175,8 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 名称   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
 | type    |[ConnectOptions\<T\>](#connectoptions18)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
@@ -585,7 +587,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>): Binding\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [Binding\<T\>](#binding20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
+| [Binding\<T\>](#bindingt20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
 
 **示例：**
 
@@ -651,7 +653,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>, setter: SetterCallback\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [MutableBinding\<T\>](#mutablebinding20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
+| [MutableBinding\<T\>](#mutablebindingt20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
 
 **示例：**
 
@@ -724,7 +726,7 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 
@@ -732,6 +734,7 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 下面的示例：
 1. 在`ObservedClass`的构造方法里，添加对`name`属性的同步监听回调`onChange`。
 2. 点击Text组件，将`name`改为`Jack`和`Jane`，触发两次`onChange`回调，打印日志如下。
+<!--code_no_check-->
 ```
 ObservedClass property name change from Tom to Jack
 ObservedClass property name change from Jack to Jane
@@ -795,7 +798,7 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 
@@ -803,6 +806,7 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 在下面的示例中：
 1. 在`ObservedClass`的构造方法中，添加对`age`属性的同步监听回调`onChange`。
 2. 点击Text组件，触发`age`自增，`onChange`的监听回调函数被触发。打印日志如下。
+<!--code_no_check-->
 ```
 ObservedClass property age change from 10 to 11
 ```
@@ -1270,7 +1274,7 @@ struct CompV2 {
 }
 ```
 
-## Binding<sup>20+</sup>
+## Binding\<T\><sup>20+</sup>
 
 只读数据绑定的泛型类，可以绑定任意类型的数据。
 
@@ -1287,7 +1291,7 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 
@@ -1328,7 +1332,7 @@ struct CompV2 {
 }
 ```
 
-## MutableBinding<sup>20+</sup>
+## MutableBinding\<T\><sup>20+</sup>
 
 可变数据绑定的泛型类，允许对绑定值进行读写操作，提供完整的get和set访问器。
 
@@ -1360,7 +1364,7 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 

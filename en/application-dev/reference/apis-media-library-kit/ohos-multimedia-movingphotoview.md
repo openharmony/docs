@@ -313,7 +313,7 @@ Forcibly refreshes the video and image resources loaded by the **MovingPhotoView
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-## Example 1: Play a moving photo in multiple modes.
+## Example 1: Playing Moving Photos in Multiple Modes
 
 ```ts
 // xxx.ets
@@ -459,7 +459,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 ![autoplay](figures/AutoPlay.gif)
-## Example 2: Enable the AI analyzer.
+## Example 2: Enabling the AI Analyzer
 
 ```ts
 // xxx.ets
@@ -613,7 +613,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 ![AiAnalysis](figures/AiAnalysis.gif)
-## Example 3: Use moving photos in an atomic service.
+## Example 3: Using Moving Photos in Atomic Services
 
 ```ts
 // xxx.ets
@@ -705,5 +705,3 @@ struct Index {
 }
 ```
 ![AutomicEnergy](figures/AutomicEnergy.gif)
-
-<!--no_check-->

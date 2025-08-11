@@ -1,6 +1,6 @@
 # Class (WebResourceHandler)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--SE: @yaomingliu-->
 <!--TSE: @ghiker-->
@@ -14,6 +14,12 @@
 > - 本Class首批接口从API version 12开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## didReceiveResponse<sup>12+</sup>
 

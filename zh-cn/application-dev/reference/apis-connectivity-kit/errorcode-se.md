@@ -1,5 +1,11 @@
 # SE(secureElement)错误码
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--SE: @wenxiaolin-->
+<!--TSE: @zs_111-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -35,13 +41,14 @@ NoSuchElementError, the AID on the SE is not available or cannot be selected.
 
 **可能原因**
 
-1. 和SE服务建立通信异常。
-2. SE芯片通信异常。
+1. 参数的aid值不正确。
+2. SE通道被占用。
 
 **处理步骤**
 
-1. 关闭SE服务后重新建立连接。
-2. 重启设备尝试。
+1. 传入正确的aid值后尝试。
+2. 关闭SE通道后重新建立连接。
+3. 重启设备后尝试。
 
 ## 3300103 无法获取访问控制规则异常
 

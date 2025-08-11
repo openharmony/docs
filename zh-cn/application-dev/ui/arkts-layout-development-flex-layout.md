@@ -51,7 +51,7 @@
 
   ![zh-cn_image_0000001562820817](figures/zh-cn_image_0000001562820817.png)
 
-- FlexDirection.RowReverse：主轴为水平方向，子元素从终点端沿着FlexDirection. Row相反的方向开始排布。
+- FlexDirection.RowReverse：主轴为水平方向，子元素从终点端沿着FlexDirection.Row相反的方向开始排布。
 
 
   ```ts
@@ -85,7 +85,7 @@
 
   ![zh-cn_image_0000001511580884](figures/zh-cn_image_0000001511580884.png)
 
-- FlexDirection.ColumnReverse：主轴为垂直方向，子元素从终点端沿着FlexDirection. Column相反的方向开始排布。
+- FlexDirection.ColumnReverse：主轴为垂直方向，子元素从终点端沿着FlexDirection.Column相反的方向开始排布。
 
 
   ```ts
@@ -107,7 +107,7 @@
 
 弹性布局分为单行布局和多行布局。默认情况下，Flex容器中的子元素都排在一条线（又称“轴线”）上。wrap属性控制当子元素主轴尺寸之和大于容器主轴尺寸时，Flex是单行布局还是多行布局。在多行布局时，通过交叉轴方向，确认新行排列方向。
 
-- FlexWrap. NoWrap（默认值）：不换行。如果子元素的宽度总和大于父元素的宽度，则子元素会被压缩宽度。
+- FlexWrap.NoWrap（默认值）：不换行。如果子元素的宽度总和大于父元素的宽度，则子元素会被压缩宽度。
 
 
   ```ts
@@ -350,7 +350,7 @@
 
   ![zh-cn_image_0000001511421252](figures/zh-cn_image_0000001511421252.png)
 
-- ItemAlign. Baseline：交叉轴方向文本基线对齐。
+- ItemAlign.Baseline：交叉轴方向文本基线对齐。
 
 
   ```ts

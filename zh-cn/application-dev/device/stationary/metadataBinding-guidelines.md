@@ -1,4 +1,9 @@
 # 记忆链接开发指导
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 ## 概述
 

@@ -38,6 +38,7 @@
 1. 添加头文件。
 
     ```javascript
+    import { common } from '@kit.AbilityKit';
     import media from '@ohos.multimedia.media';
     import fs from '@ohos.file.fs';
     ```
@@ -99,7 +100,7 @@
         }
     })
     this.screenCapture.on('error', (err) => {
-        console.error("处理异常情况");
+        console.error(`处理异常情况, code is ${err.code}, message is ${err.message}.`);
     })
     ```
 
@@ -114,10 +115,12 @@
     2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
 
     ```javascript
-    public getFileFd(): number {
-      let filesDir = '/data/storage/el2/base/haps';
-      let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      return file.fd;
+    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let filePath: string = context.filesDir + '/screenCapture.mp4';
+    let captureFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    if (!captureFile) {
+      console.error("处理异常情况");
+      return;
     }
 
     captureConfig: media.AVScreenCaptureRecordConfig = {
@@ -125,7 +128,7 @@
         frameWidth: 768,
         frameHeight: 1280,
         // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-        fd: this.getFileFd(),
+        fd: captureFile.fd,
         // 可选参数及其默认值。
         videoBitrate: 10000000,
         audioSampleRate: 48000,
@@ -146,7 +149,7 @@
 
     ```javascript
     let windowIDs = [57, 86];
-    await screenCapture.skipPrivacyMode(windowIDs);
+    await this.screenCapture.skipPrivacyMode(windowIDs);
     ```
 
 7. 调用startRecording()方法开始进行屏幕录制，并通过监听函数监听状态。
@@ -176,41 +179,50 @@
 下面展示了使用AVScreenCaptureRecorder屏幕录屏存文件的完整示例代码。
 
 ```javascript
+import { common } from '@kit.AbilityKit';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
-  captureConfig: media.AVScreenCaptureRecordConfig = {
-    // 开发者可以根据自身的需要设置宽高。
-    frameWidth: 768,
-    frameHeight: 1280,
-    // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-    fd: this.getFileFd(),
-    // 可选参数及其默认值。
-    videoBitrate: 10000000,
-    audioSampleRate: 48000,
-    audioChannelCount: 2,
-    audioBitrate: 96000,
-    displayId: 0,
-    preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
-  };
+  private captureFile: fs.File | undefined = undefined;
+  private captureConfig: media.AVScreenCaptureRecordConfig | undefined = undefined;
 
-  public getFileFd(): number {
-    let filesDir = '/data/storage/el2/base/haps';
-    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    return file.fd;
+  private openFile(): void {
+    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const path: string = context.filesDir + '/screenCapture.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
+    this.captureFile = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   }
 
-  // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
-  public async startRecording() {
-    this.screenCapture = await media.createAVScreenCaptureRecorder();
-    if (this.screenCapture != undefined) {
-      // success.
-    } else {
-      // failed.
-        return;
+  private closeFile(): void {
+    if (!this.captureFile) {
+      return;
     }
+    fs.closeSync(this.captureFile);
+  }
+
+  private setConfig(): void {
+    if (!this.captureFile) {
+      return;
+    }
+    this.captureConfig = {
+        // 开发者可以根据自身的需要设置宽高。
+        frameWidth: 768,
+        frameHeight: 1280,
+        // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
+        fd: this.captureFile.fd,
+        // 可选参数及其默认值。
+        videoBitrate: 10000000,
+        audioSampleRate: 48000,
+        audioChannelCount: 2,
+        audioBitrate: 96000,
+        displayId: 0,
+        preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
+      };
+  }
+
+  // 注册screenCapture回调函数。
+  private registerScreenCaptureCallback(): void {
     this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
       switch (infoType) {
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STARTED:
@@ -256,10 +268,32 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.error("处理异常情况");
+      console.error(`处理异常情况, code is ${err.code}, message is ${err.message}.`);
     })
+  }
+
+  // 取消注册screenCapture回调函数。
+  private unRegisterScreenCaptureCallback(): void {
+    this.screenCapture?.off('stateChange');
+    this.screenCapture?.off('error');
+  }
+
+  // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
+  async startRecording(): Promise<void> {
+    this.screenCapture = await media.createAVScreenCaptureRecorder();
+    if (!this.screenCapture) {
+      // failed.
+      return;
+    }
+    this.openFile();
+    if (!this.captureFile) {
+      console.error("处理异常情况");
+      return;
+    }
+    this.setConfig();
     await this.screenCapture?.init(this.captureConfig);
 
+    this.registerScreenCaptureCallback();
     // 豁免隐私窗口。
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
@@ -268,17 +302,20 @@ export class AVScreenCaptureDemo {
   }
 
   // 可以主动调用stopRecording方法来停止录屏。
-  public async stopRecording() {
-    if (this.screenCapture == undefined) {
+  async stopRecording(): Promise<void> {
+    if (!this.screenCapture) {
       // Error.
+      this.closeFile();
       return;
     }
-    await this.screenCapture?.stopRecording();
 
+    await this.screenCapture?.stopRecording();
+    this.unRegisterScreenCaptureCallback();
     // 调用release()方法销毁实例，释放资源。
     await this.screenCapture?.release();
 
-    // 最后需要关闭创建的录屏文件fd, fs.close(fd);
+    // 最后需要关闭创建的录屏文件;
+    this.closeFile();
   }
 }
 ```

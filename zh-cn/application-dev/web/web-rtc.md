@@ -1,6 +1,6 @@
 # 在Web中打开摄像头和麦克风
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @qq_42700029-->
 <!--SE: @qiu-gongkai-->
 <!--TSE: @ghiker-->
@@ -9,7 +9,7 @@ WebRTC（Web Real-Time Communications）是一项实时通讯技术，它允许�
 
 Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[onPermissionRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpermissionrequest9)接口接收权限请求通知，需在配置文件中声明相应的音频权限。
 
-- 使用摄像头和麦克风功能前请在module.json5中添加音频相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+- 使用摄像头和麦克风功能前请在module.json5中添加音频相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```json
     // src/main/resources/base/element/string.json

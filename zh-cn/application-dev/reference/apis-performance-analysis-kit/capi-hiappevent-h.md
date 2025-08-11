@@ -1,5 +1,11 @@
 # hiappevent.h
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。
@@ -716,10 +722,10 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value)
 
 **参数：**
 
-| 参数项 | 描述                                                                                                             |
-| -- |----------------------------------------------------------------------------------------------------------------|
-| const char* name | 配置项名称。名称可填[DISABLE](capi-hiappevent-cfg-h.md#disable)和[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)。     |
-| const char* value | 配置项值。如果配置项名称是[DISABLE](capi-hiappevent-cfg-h.md#disable)，值可以填“true”或者“false”；<br> 如果配置项名称是[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b |k|kb|m|mb|g|gb|t|tb]，不区分大小写）构成。<br> 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
+| 参数项 | 描述 |
+| -- | -- |
+| const char* name | 配置项名称。名称可填[DISABLE](capi-hiappevent-cfg-h.md#disable)和[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)。 |
+| const char* value | 配置项值。如果配置项名称是[DISABLE](capi-hiappevent-cfg-h.md#disable)，值可以填“true”或者“false”；<br> 如果配置项名称是[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br> 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
 
 **返回：**
 

@@ -1,5 +1,11 @@
 # 时区
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
+
 ## 使用场景
 
 全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如，英国采用0时区，中国采用东8时区，中国时间要比英国快8小时，中国北京中午12:00，对应英国伦敦是凌晨4:00。时区模块可用于获取时区列表，应用可基于该列表实现业务逻辑，如双时钟应用。<br/>从API version 20开始，时区模块还可用于获取时区跳变时间点和偏移量等，时区的跳变逻辑参考[夏令时跳变](./i18n-dst-transition.md)。
@@ -128,10 +134,10 @@
 
 3. 遍历应用偏好时区列表，获取各时区的时间。
    ```ts
-   let locale: string = i18n.System.getSystemLocale();
+   let locale: Intl.Locale = i18n.System.getSystemLocaleInstance();
    for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
      let timezone: string = appPreferredTimeZoneList[i].getID();
-     let calendar: i18n.Calendar = i18n.getCalendar(locale);
+     let calendar: i18n.Calendar = i18n.getCalendar(locale.toString());
      calendar.setTimeZone(timezone); // 设置日历对象的时区
      // 获取年月日时分秒
      let year: number = calendar.get('year');

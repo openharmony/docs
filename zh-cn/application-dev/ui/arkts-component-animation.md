@@ -1,4 +1,9 @@
 # 组件动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 
 ArkUI为组件提供了通用的属性动画和转场动画能力的同时，还为一些组件提供了默认的动画效果。例如，[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)的滑动动效、[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)的点击动效，是组件自带的默认动画效果。在组件默认动画效果的基础上，开发者还可以通过属性动画和转场动画对容器组件内的子组件动效进行定制。
@@ -202,7 +207,7 @@ export const taskDataArr: Array<TaskData> =
   [
     new TaskData('#317AF7', 0, 'music'),
     new TaskData('#D94838', 1, 'mall'),
-    new TaskData('#DB6B42 ', 2, 'photos'),
+    new TaskData('#DB6B42', 2, 'photos'),
     new TaskData('#5BA854', 3, 'setting'),
     new TaskData('#317AF7', 4, 'call'),
     new TaskData('#D94838', 5, 'music'),

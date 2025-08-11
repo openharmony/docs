@@ -1,4 +1,9 @@
 # DataPanel
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 数据面板组件，用于将多个数据占比情况使用占比图进行展示。
 
@@ -38,11 +43,11 @@ DataPanel(options: DataPanelOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型   | 必填  | 说明 |
-| ----------------- | -------- | ----- | -------- |
-| values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
-| max               | number     | 否    |   -&nbsp;max大于0时，表示数据的最大值。<br/>-&nbsp;max小于等于0时，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
-| type<sup>8+</sup> | [DataPanelType](#datapaneltype8枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
+| 名称            | 类型   | 只读 | 可选 | 说明 |
+| ----------------- | -------- | ----- | -------- | -------- |
+| values            | number[]   | 否   | 否  | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
+| max               | number     | 否   | 是   |   -&nbsp;max大于0时，表示数据的最大值。<br/>-&nbsp;max小于等于0时，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
+| type<sup>8+</sup> | [DataPanelType](#datapaneltype8枚举说明) | 否 | 是 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
 
 
 ## DataPanelType<sup>8+</sup>枚举说明
@@ -57,8 +62,8 @@ DataPanel(options: DataPanelOptions)
 
 | 名称 | 值 | 说明 |
 | -------| - | ------------ |
-| Line   | 0 | 线型数据面板。 |
-| Circle | 1 | 环形数据面板。 |
+| Line   | - | 线型数据面板。 |
+| Circle | - | 环形数据面板。 |
 
 
 ## 属性
@@ -172,9 +177,9 @@ DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptio
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型 | 必填 | 说明 |
-| ------------- | ------- | ---- | -------- |
-| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | ---- | -------- | -------- |
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 是 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
 
 ## LinearGradient<sup>10+</sup>
 
@@ -203,10 +208,10 @@ constructor(colorStops: ColorStop[])
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型 | 必填 | 说明 |
-| ------------- | ------- | ---- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
-| offset | [Length](ts-types.md#length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | ---- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 否 | 颜色值。|
+| offset | [Length](ts-types.md#length) | 否 | 否 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
 
 ## DataPanelConfiguration<sup>12+</sup>对象说明
 
@@ -216,10 +221,10 @@ constructor(colorStops: ColorStop[])
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型    |    必填      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| values | number[] | 是 | 当前DataPanel的数据值。<br>取值范围：[0, 9]，若数据值小于0，则置为0。 |
-| maxValue | number | 是 | DataPanel显示的最大值。<br/>默认值：100。<br>**说明：** <br/>如果小于或等于0，maxValue将被设为values数组中所有项的总和，并按比例显示。 |
+| 名称  | 类型    |    只读    |    可选   |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| values | number[] | 否 | 否 | 当前DataPanel的数据值。<br>取值范围：[0, 9]，若数据值小于0，则置为0。 |
+| maxValue | number | 否 | 否 | DataPanel显示的最大值。<br/>默认值：100。<br>**说明：** <br/>如果小于或等于0，maxValue将被设为values数组中所有项的总和，并按比例显示。 |
 
 ## 示例
 

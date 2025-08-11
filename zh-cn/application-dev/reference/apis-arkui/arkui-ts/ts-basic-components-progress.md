@@ -1,4 +1,9 @@
 # Progress
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 进度条组件，用于显示内容加载或操作处理等进度。
 
@@ -37,12 +42,12 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                        | 类型                                | 必填   | 说明                                     |
-| -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
-| value                      | number                              | 是    | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。<br/>默认值：0<br/>取值范围：[0, total]<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| total                      | number                              | 否    | 指定进度总长。设置小于等于0的数值时置为100。<br/>默认值：100<br/>取值范围：[0, 2147483647]<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| type<sup>8+</sup>          | [ProgressType](#progresstype8枚举说明)   | 否    | 指定进度条类型。<br/>默认值：ProgressType.Linear<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle枚举说明) | 否    | 指定进度条样式。<br/>该参数从API version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
+| 名称                        | 类型                                | 只读 | 可选 | 说明                                     |
+| -------------------------- | ----------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
+| value                      | number                              | 否   | 否   | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。<br/>默认值：0<br/>取值范围：[0, total]<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| total                      | number                              | 否   | 是   | 指定进度总长。设置小于等于0的数值时置为100。<br/>默认值：100<br/>取值范围：[0, 2147483647]<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| type<sup>8+</sup>          | [ProgressType](#progresstype8枚举说明)   | 否   | 是   | 指定进度条类型。<br/>默认值：ProgressType.Linear<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle枚举说明) | 否   | 是   | 指定进度条样式。<br/>该参数从API version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType<sup>8+</sup>枚举说明
 
@@ -74,11 +79,11 @@ Progress(options: ProgressOptions)
 
 | 名称        | 值 | 说明                                     |
 | --------- | - | ---------------------------------------- |
-| Linear    | 0 | 线性样式。                                    |
-| Ring<sup>8+</sup>      | 1 | 环形圆环逐渐显示直至完全填充。                 |
-| Eclipse   | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing<sup>8+</sup> | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
-| Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
+| Linear    | - | 线性样式。                                    |
+| Ring<sup>8+</sup>      | - | 环形圆环逐渐显示直至完全填充。                 |
+| Eclipse   | - | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
+| ScaleRing<sup>8+</sup> | - | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
+| Capsule<sup>8+</sup>   | - | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyleMap对象说明 
 
@@ -196,10 +201,10 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填 |说明         |
-| ------ | ------ | ------- |------------|
-| value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
-| total  | number | 是 | 进度总长。<br/>取值范围：[0, 2147483647]   |
+| 名称 | 类型  | 只读 | 可选 |说明         |
+| ------ | ------ | ------- |------------|------------|
+| value  | number | 否 | 否 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
+| total  | number | 否 | 否 | 进度总长。<br/>取值范围：[0, 2147483647]   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
@@ -209,9 +214,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                      | 必填 | 说明                                                                                        |
-| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，页面会有进度变化的动效；否则进度从当前值突变至设定值，页面无动效。<br/>默认值：true，true表示开启进度平滑动效，false表示关闭进度平滑动效。 |
+| 名称          | 类型                      | 只读 | 可选 | 说明                                                                                        |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| enableSmoothEffect | boolean | 否 | 是 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，页面会有进度变化的动效；否则进度从当前值突变至设定值，页面无动效。<br/>默认值：true，true表示开启进度平滑动效，false表示关闭进度平滑动效。 |
 
 ## ScanEffectOptions<sup>10+</sup>
 
@@ -221,9 +226,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型 | 必填 | 说明 |
-| ------------- | ------- | ---- | -------- |
-| enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false，false表示关闭扫光效果，true表示开启扫光效果。仅支持Linear、Ring、Capsule类型的进度条。 |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | ---- | -------- | -------- |
+| enableScanEffect | boolean | 否 | 是 | 扫光效果的开关。<br/>默认值：false，false表示关闭扫光效果，true表示开启扫光效果。仅支持Linear、Ring、Capsule类型的进度条。 |
 
 ## ProgressStyleOptions<sup>8+</sup>
 
@@ -237,11 +242,11 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                      | 必填 | 说明                                                                                        |
-| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
-| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，超出取值范围时，样式显示为环形无刻度进度条。默认情况下宽高最小为77vp。                     |
-| scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
+| 名称          | 类型                      | 只读 | 可选 | 说明                                                                                        |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| strokeWidth  | [Length](ts-types.md#length) | 否  | 是  | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
+| scaleCount   | number                       | 否  | 是  | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，超出取值范围时，样式显示为环形无刻度进度条。默认情况下宽高最小为77vp。                     |
+| scaleWidth   | [Length](ts-types.md#length) | 否  | 是  | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## CapsuleStyleOptions<sup>10+</sup>
 
@@ -253,15 +258,15 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型 | 必填 | 说明 |
-| ------------- | ------- | ---- | -------- |
-| borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
-| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度（不支持百分比设置）。<br/>默认值：1vp |
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 文本内容，应用可自定义。<br>从API version 20开始，支持Resource类型。 |
-| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12fp <br/>其他文本参数跟随text组件的主题值。|
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
-| showDefaultPercentage | boolean | 否 | 显示百分比文本的开关。开启后，进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false，false表示不显示百分比文本，true表示显示百分比文本。 |
-| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | Capsule进度条圆角半径（不支持百分比设置）。<br/>取值范围：[0, height/2]。默认值：height / 2。<br/>设置非法数值时，按照默认值处理。 |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | ---- | -------- | -------- |
+| borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
+| borderWidth | [Length](ts-types.md#length) | 否 | 是 | 内描边宽度（不支持百分比设置）。<br/>默认值：1vp |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 文本内容，应用可自定义。<br>从API version 20开始，支持Resource类型。 |
+| font | [Font](ts-types.md#font) | 否 | 是 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12fp <br/>其他文本参数跟随text组件的主题值。|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 文本颜色。<br/>默认值：'\#ff182431' |
+| showDefaultPercentage | boolean | 否 | 是 | 显示百分比文本的开关。开启后，进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false，false表示不显示百分比文本，true表示显示百分比文本。 |
+| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Capsule进度条圆角半径（不支持百分比设置）。<br/>取值范围：[0, height/2]。默认值：height / 2。<br/>设置非法数值时，按照默认值处理。 |
 
 ## RingStyleOptions<sup>10+</sup>
 
@@ -273,11 +278,11 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                      | 必填 | 说明                                                                                        |
-| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。当宽度大于等于半径时，宽度默认修改为半径值的二分之一。<br/>默认值：4.0vp |
-| shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false，false表示关闭进度条阴影，true表示打开进度条阴影。                                                             |
-| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 设置进度条状态。当设置为ProgressStatus.LOADING时会开启检查更新动效，此时设置进度值不生效。当从ProgressStatus.LOADING设置为ProgressStatus.PROGRESSING时，检查更新动效会执行到终点再停止。<br/>默认值：ProgressStatus.PROGRESSING |
+| 名称           | 类型                      | 只读 | 可选 | 说明                                                                                        |
+| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| strokeWidth   | [Length](ts-types.md#length) | 否  | 是  | 设置进度条宽度（不支持百分比设置）。当宽度大于等于半径时，宽度默认修改为半径值的二分之一。<br/>默认值：4.0vp |
+| shadow        | boolean                      | 否  | 是  | 进度条阴影开关。<br/>默认值：false，false表示关闭进度条阴影，true表示打开进度条阴影。                                                             |
+| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 是 | 设置进度条状态。当设置为ProgressStatus.LOADING时会开启检查更新动效，此时设置进度值不生效。当从ProgressStatus.LOADING设置为ProgressStatus.PROGRESSING时，检查更新动效会执行到终点再停止。<br/>默认值：ProgressStatus.PROGRESSING |
 
 ## LinearStyleOptions<sup>10+</sup>
 
@@ -289,10 +294,10 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                      | 必填 | 说明                                                                                        |
-| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
-| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条的圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
+| 名称           | 类型                      | 只读 | 可选 | 说明                                                                                        |
+| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| strokeWidth   | [Length](ts-types.md#length) | 否  | 是  | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
+| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否  | 是  | 设置线性进度条的圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
 
@@ -304,11 +309,11 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                      | 必填 | 说明                                                                                        |
-| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
-| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，超出取值范围时，样式显示为环形无刻度进度条。默认情况下宽高最小为77vp。                     |
-| scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
+| 名称          | 类型                      | 只读 | 可选 | 说明                                                                                        |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| strokeWidth  | [Length](ts-types.md#length) | 否  | 是  | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
+| scaleCount   | number                       | 否  | 是  | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，超出取值范围时，样式显示为环形无刻度进度条。默认情况下宽高最小为77vp。                     |
+| scaleWidth   | [Length](ts-types.md#length) | 否  | 是  | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## EclipseStyleOptions<sup>10+</sup>
 
@@ -328,10 +333,10 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 说明      |
-| ----------------------- | ---------------- |
-| LOADING  | 加载中。 |
-| PROGRESSING | 进度更新中。 |
+| 名称                    | 值     | 说明      |
+| ----------------------- | ---------------- | ---------------- |
+| LOADING  | - | 加载中。 |
+| PROGRESSING | - | 进度更新中。 |
 
 ## 事件
 

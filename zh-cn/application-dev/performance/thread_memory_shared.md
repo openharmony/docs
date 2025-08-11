@@ -1,4 +1,10 @@
 # 合理使用多线程共享内存
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--SE: @jiangwensai-->
+<!--TSE: @Lyuxin-->
+
 ## 概述
 在应用开发中，为了避免主线程阻塞，提高应用性能，需要将一些耗时操作放在子线程中执行。此时，子线程就需要访问主线程中的数据。ArkTS采用了基于消息通信的Actor并发模型，具有内存隔离的特性，所以跨线程传输数据时需要将数据序列化，但是AkrTS支持通过可共享对象SharedArrayBuffer实现直接的共享内存。
 

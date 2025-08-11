@@ -4,7 +4,7 @@
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
 <!--SE: @lanming-->
-<!--TSE: @PAFT--> 
+<!--TSE: @PAFT-->
 
 ## 概述
 
@@ -122,8 +122,8 @@ enum CryptoAsymKey_ParamType
 | CRYPTO_DH_L_INT = 403 | DH算法中私钥长度，单位为bit。 |
 | CRYPTO_DH_SK_DATABLOB = 404 | DH算法中的私钥sk。 |
 | CRYPTO_DH_PK_DATABLOB = 405 | DH算法中的公钥pk。 |
-| CRYPTO_ED25519_SK_DATABLOB = 501 | ED25519算法中的私钥sk。 |
-| CRYPTO_ED25519_PK_DATABLOB = 502 | ED25519算法中的公钥pk。 |
+| CRYPTO_ED25519_SK_DATABLOB = 501 | Ed25519算法中的私钥sk。 |
+| CRYPTO_ED25519_PK_DATABLOB = 502 | Ed25519算法中的公钥pk。 |
 | CRYPTO_X25519_SK_DATABLOB = 601 | X25519算法中的私钥sk。 |
 | CRYPTO_X25519_PK_DATABLOB = 602 | X25519算法中的公钥pk。 |
 

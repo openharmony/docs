@@ -1,6 +1,6 @@
 # 使用crashpad收集Web组件崩溃信息
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @qq_44167590-->
 <!--SE: @hjoksky-->
 <!--TSE: @ghiker-->

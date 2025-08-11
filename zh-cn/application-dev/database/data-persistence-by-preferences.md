@@ -187,7 +187,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
      console.info("The key 'startup' does not contain.");
      // 此处以此键值对不存在时写入数据为例
      dataPreferences.putSync('startup', 'auto');
-     // 当字符串有特殊字符时，需要将字符串转为Uint8Array类型再存储，长度均不超过16 * 1024 * 1024个字节。
+     // 在XML模式下，当字符串包含非UTF-8格式的字符时，需要将字符串转为Uint8Array类型再存储，长度均不超过16 * 1024 * 1024个字节。
      let uInt8Array1 = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
      dataPreferences.putSync('uInt8', uInt8Array1);
    }
@@ -202,8 +202,8 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
    ```ts
    let val = dataPreferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
-   // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
    let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
+   // 将获取到的Uint8Array转换为字符串
    let textDecoder = util.TextDecoder.create('utf-8');
    val = textDecoder.decodeToString(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);

@@ -87,7 +87,7 @@ direction(value: Direction): T
 
 position(value: Position | Edges | LocalizedEdges): T
 
-绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。
+绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。position对位置的影响作用在组件的尺寸测量完成之后。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -241,7 +241,7 @@ layoutGravity(alignment: LocalizedAlignment): T
 | top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置顶部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置纵向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
-| bias<sup>11+</sup>   | [Bias](#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bias<sup>11+</sup>   | [Bias](./ts-types.md#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LocalizedAlignRuleOptions<sup>12+</sup>对象说明
 
@@ -257,7 +257,7 @@ layoutGravity(alignment: LocalizedAlignment): T
 | top    | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向顶部对齐的参数。 |
 | bottom | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向底部对齐的参数。 |
 | center | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向居中对齐方式的参数。      |
-| bias   | [Bias](#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
+| bias   | [Bias](./ts-types.md#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
 
 ## LocalizedHorizontalAlignParam<sup>12+</sup>对象说明
 
@@ -281,30 +281,14 @@ layoutGravity(alignment: LocalizedAlignment): T
 | anchor  | string |否|否| 设置作为锚点的组件的id值。 |
 | align   | [VerticalAlign](ts-appendix-enums.md#verticalalign)  |否|否| 设置相对于锚点组件的纵向对齐方式。 |
 
-## Bias对象说明
-
-设置组件在锚点约束下的偏移参数。
-<br/>以水平方向Bias为例，其值为组件到左锚点的距离 D<sub>start</sub>与组件到水平方向锚点间总距离 D<sub>start</sub> +  D<sub>end</sub>的比值。镜像语言下，D<sub>start</sub>为组件到右锚点的距离。下图中D<sub>width</sub>表示组件宽度。
-<br/>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
-<br/>竖直方向同理，其值为组件到上锚点的距离D<sub>top</sub>与组件到竖直方向锚点间总距离D<sub>top</sub> + D<sub>bottom</sub>的比值。下图中D<sub>height</sub>表示组件高度。
-<br/>![bias_vertical_example.png](figures/bias_vertical_example.png)
-
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| horizontal  | number | &nbsp;否 |是 | 水平方向上的bias值。<br/>当子组件的width属性有正确值并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
-| vertical  | number | &nbsp;否 |是 | 垂直方向上的bias值。<br/>当子组件的height属性有正确值并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
-
 ## chainMode<sup>12+</sup>
 
 chainMode(direction: Axis, style: ChainStyle): T
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
 详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -334,6 +318,10 @@ chainMode(direction: Axis, style: ChainStyle): T
 | SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 | PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+
+>  **说明：**
+>
+>  使用链时，RelativeContainer会为链中的相互依赖的组件定义一个大小计算顺序，大小计算完成后再确定使用ChainStyle的位置。因此使用SPREAD或PACKED风格时，只以链头组件为锚点进行布局的非链组件A和链中其他节点有相同布局优先级，组件A的id的字典排序靠前时会出现组件A的alignRules先于链的ChainStyle生效。
 
 ## chainWeight<sup>14+</sup>
 

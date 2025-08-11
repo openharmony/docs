@@ -1,7 +1,7 @@
 # @ohos.url (URL字符串解析)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -265,8 +265,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **错误码：**
 
@@ -546,8 +545,8 @@ console.info("username " + that.username); // username username
 console.info("params: foo " + that.params.get("foo")); // params: foo 1
 
 let urlObj = url.URL.parseURL('http://testhost:80/directory/file?foo=1');
-console.info("port " + that.port); // port 
-console.info("toString " + that.port); // toString http://testhost/directory/file?foo=1
+console.info("port " + urlObj.port); // port 
+console.info("toString " + urlObj.port); // toString http://testhost/directory/file?foo=1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -903,8 +902,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **示例：**
 

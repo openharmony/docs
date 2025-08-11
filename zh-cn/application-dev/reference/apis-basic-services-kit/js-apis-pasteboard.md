@@ -1,4 +1,9 @@
 # @ohos.pasteboard (剪贴板)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
@@ -473,12 +478,12 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 否 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
+| additions<sup>7+</sup> | {[key:string]:object} | 否 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty， 默认为空。|
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-| tag<sup>7+</sup> | string | 否 | 是 | 用户自定义标签。 |
+| tag<sup>7+</sup> | string | 否 | 是 | 用户自定义标签，默认为空。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
 | localOnly<sup>7+</sup> | boolean | 否 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围，默认值为CROSSDEVICE。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -568,11 +573,11 @@ struct PasteboardTest {
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+    		    console.info('progressListener success, progress:' + progress.progress);
                 signal.cancel();
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
                 destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
@@ -602,11 +607,11 @@ struct PasteboardTest {
 
 | 名称                | 类型                                          | 必填 | 说明                                                         |
 | ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
+| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理，默认为空。 |
 | fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
 | progressIndicator   | [ProgressIndicator](#progressindicator15)     | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
-| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
+| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度，默认为空。 |
+| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义，默认为空。 |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -1414,7 +1419,7 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -1439,7 +1444,7 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -3029,12 +3034,12 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+    		    console.info('progressListener success, progress:' + progress.progress);
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: dstUri,
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,

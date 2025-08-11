@@ -1,6 +1,6 @@
 # 定位与解决Web白屏问题
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yp99ustc-->
 <!--SE: @LongLie-->
 <!--TSE: @ghiker-->
