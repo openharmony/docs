@@ -1321,7 +1321,7 @@ struct CompV2 {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### value<sup>20+</sup>
-set value(newValue: T): void
+set value(newValue: T)
 
 提供set访问器，用于设置当前绑定值的值。构造MutableBinding类实例时必须提供set访问器，否则触发set访问器会造成运行时错误。
 
