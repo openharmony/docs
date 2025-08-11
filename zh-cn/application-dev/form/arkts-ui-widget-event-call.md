@@ -147,7 +147,7 @@
     call事件存在约束限制，卡片提供方应用需要在module.json5下添加后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
     ```ts
     //src/main/module.json5
-    "requestPermissions": [
+    "requestPermissions"：[
        {
          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
        }
