@@ -249,7 +249,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
+java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out
 ```
 
 **表10** versionNormalize指令参数说明
@@ -268,7 +268,7 @@ java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hsp,path\2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path path\out\
+java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out
 ```
 
 **表11**  参数含义及规范
