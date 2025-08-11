@@ -1,5 +1,10 @@
 # ringtonePlayer (铃声播放器)(系统接口)
-<!--Subsystem:元能力-->
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @ccllee-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 铃声播放器提供了系统铃声的播放、配置、获取信息等功能。
 
