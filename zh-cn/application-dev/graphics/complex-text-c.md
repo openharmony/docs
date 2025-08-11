@@ -783,7 +783,7 @@ OH_Drawing_DestroyTypography(typographyCopy);
 
 ### 渐变色
 
-**渐变色**是一种在在文字设计中广泛应用的视觉效果，通过在文字的不同部分应用不同的颜色，从而创造出从一种颜色平滑过渡到另一种颜色的效果。可以通过着色器实现文字渐变的效果，着色器的更多介绍请参考[着色器效果](complex-drawing-effect-c.md#着色器效果)。
+**渐变色**是一种在文字设计中广泛应用的视觉效果，通过在文字的不同部分应用不同的颜色，从而创造出从一种颜色平滑过渡到另一种颜色的效果。可以通过着色器实现文字渐变的效果，着色器的更多介绍请参考[着色器效果](complex-drawing-effect-c.md#着色器效果)。
   
 
 | 接口定义 | 描述 | 
@@ -797,7 +797,7 @@ OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
 // 设置文字大小
 OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
-// 创建着色器对象，并设置颜色、变化起始点与结束点；
+// 创建着色器对象，并设置颜色、变化起始点与结束点
 OH_Drawing_Point *startPt = OH_Drawing_PointCreate(0, 0);
 OH_Drawing_Point *endPt = OH_Drawing_PointCreate(900, 900);
 uint32_t colors[] = {0xFFFFFF00, 0xFFFF0000, 0xFF0000FF};
