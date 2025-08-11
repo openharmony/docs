@@ -1537,8 +1537,8 @@ struct Index {
 
 2. 构造 `CertManagerService` 对象以对接证书管理。
     ```ts
-    / CertManagerService.ets
-    mport { bundleManager, common, Want } from "@kit.AbilityKit";
+    // CertManagerService.ets
+    import { bundleManager, common, Want } from "@kit.AbilityKit";
     import { BusinessError } from "@kit.BasicServicesKit";
     import { GlobalContext } from './GlobalContext';
 
