@@ -1,5 +1,11 @@
 # fiber.h
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## 概述
 
 纤程是一种轻量级的用户态线程，用于在用户空间内实现高效的任务调度和上下文切换，此为声明纤程的C接口。
