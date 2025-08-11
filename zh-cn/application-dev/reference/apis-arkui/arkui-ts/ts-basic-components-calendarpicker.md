@@ -155,7 +155,6 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 日历选择器组件的参数说明。
 
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型       | 只读 | 可选        | 说明                            |
