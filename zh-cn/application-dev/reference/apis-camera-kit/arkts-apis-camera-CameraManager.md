@@ -872,7 +872,7 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。目前只支持手电筒打开，手电筒关闭，手电筒不可用，手电筒恢复可用会触发该事件并返回对应信息。 |
-| callback | AsyncCallback\<[TorchStatusInfo](js-apis-camera.md#torchstatusinfo11) | 是   | 回调函数，用于获取手电筒状态变化信息。               |
+| callback | AsyncCallback\<[TorchStatusInfo](js-apis-camera.md#torchstatusinfo11)> | 是   | 回调函数，用于获取手电筒状态变化信息。               |
 
 **示例：**
 
@@ -907,7 +907,7 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<[TorchStatusInfo](js-apis-camera.md#torchstatusinfo11) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[TorchStatusInfo](js-apis-camera.md#torchstatusinfo11)> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
