@@ -562,8 +562,8 @@ beacon设备制造商数据。当前仅支持ibeacon数据类型
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | manufactureId | number | 否 | 否 | 制造商标识。例如：0X004C |
-| manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。例如：[0x1F,0x2F,0x3F] |
-| manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据。例如：[0xFF,0xFF,0xFF] |
+| manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。格式：类型标识 + uuid。例如：[0x02,0x15,0x00...0xFF] |
+| manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据。例如：[0xFF,0xFF,0xFF...0xFF] |
 
 
 ## BeaconFence<sup>20+</sup>
@@ -577,7 +577,7 @@ beacon围栏的参数配置。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | identifier | string | 否 | 否 | beacon围栏标识。 |
-| type | [BeaconFenceInfoType](#beaconfenceinfotype20) | 否 | 否 | beacon围栏信息类型。 |
+| beaconFenceInfoType | [BeaconFenceInfoType](#beaconfenceinfotype20) | 否 | 否 | beacon围栏信息类型。 |
 | manufactureData | [BeaconManufactureData](#beaconmanufacturedata20) | 否 | 是 | beacon设备制造商数据。 |
 
 ## BeaconFenceRequest<sup>20+</sup>
@@ -2780,10 +2780,10 @@ APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函�
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   try {
-    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X4C, 0X00, 0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
-      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB, 0X00, 0X01, 0X00, 0X08, 0Xd0]);
-    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0X00, 0X00, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
-      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0X00, 0X00, 0X00, 0X00, 0X00]);
+    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
+      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB]);
+    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
+      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF]);
 
     let manufactureData:geoLocationManager.BeaconManufactureData = {
       manufactureId: 0X004C,
@@ -2793,7 +2793,7 @@ APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函�
 
     let beacon:geoLocationManager.BeaconFence = {
       identifier: "11",
-      type: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
+      beaconFenceInfoType: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
       manufactureData:manufactureData
     };
 
@@ -2872,7 +2872,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
 
     let beacon:geoLocationManager.BeaconFence = {
       identifier: "11",
-      type: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
+      beaconFenceInfoType: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
       manufactureData:manufactureData
     };
     geoLocationManager.removeBeaconFence(beacon);
