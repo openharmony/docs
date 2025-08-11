@@ -122,7 +122,7 @@
 
 ## Size
 
-输出能力查询。
+尺寸参数。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -201,7 +201,7 @@
 | 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 否   | 拍照的ID。|
-| timestamp | number | 否   | 否   | 快门时间戳。|
+| timestamp | number | 否   | 否   | 快门时间戳(毫秒)。|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
