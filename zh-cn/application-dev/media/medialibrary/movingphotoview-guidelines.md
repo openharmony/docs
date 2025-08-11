@@ -19,7 +19,7 @@
 ## 开发步骤
 
 1. 导入动态照片模块。
-
+ 
    ```ts
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
@@ -46,7 +46,7 @@
 
    ```ts
     import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
-   
+
     @Entry
     @Component
     struct Index {
