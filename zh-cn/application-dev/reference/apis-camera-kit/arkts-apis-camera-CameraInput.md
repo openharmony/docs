@@ -239,7 +239,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 
 close(): Promise\<void\>
 
-关闭相机，通过Promise获取状态。
+关闭相机，使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -249,7 +249,7 @@ close(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
