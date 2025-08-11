@@ -1,4 +1,9 @@
 # @ohos.multimedia.movingphotoview (动态照片)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 用于播放动态照片文件并控制其播放状态的组件。
 
