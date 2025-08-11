@@ -582,7 +582,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键（从API version 15开始，支持通过[enableShortcutKey](#enableshortcutkey15)设置组件开启快捷键响应）、控制器（开始播放、暂停播放、停止播放、重置AVPlayer、跳转等）、首帧送显（从API version 18开始，支持通过[posterOptions](#posteroptions18对象说明)设置视频播放的首帧送显选项）以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -602,10 +602,10 @@ struct VideoCreateComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
+        previewUri: this.previewUri, // 设置预览图
+        currentProgressRate: this.curRate, // 设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame }
+        posterOptions: { showFirstFrame: this.showFirstFrame } // 关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -713,7 +713,7 @@ interface FullscreenObject {
 
 ### 示例2（图像分析功能）
 
-使用enableAnalyzer属性开启图像AI分析。
+通过enableAnalyzer属性开启图像AI分析。
 
 ```ts
 // xxx.ets
@@ -738,7 +738,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options
+        imageAIOptions: this.options // 设置图像AI分析选项
       })
         .width('100%')
         .height(600)
