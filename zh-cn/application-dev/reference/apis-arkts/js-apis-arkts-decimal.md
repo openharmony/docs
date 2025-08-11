@@ -288,7 +288,7 @@ clamp(min: Value, max: Value): Decimal
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of `min` is out of range.                          |
+| 10200001 | The value of \`min\` is out of range.                          |
 
 **示例：**
 
@@ -1519,7 +1519,7 @@ toBinary(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of `significantDigits` is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **示例：**
 
@@ -1558,7 +1558,7 @@ toBinary(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of `significantDigits \| rounding` is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **示例：**
 
@@ -1624,7 +1624,7 @@ toOctal(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of `significantDigits` is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **示例：**
 
@@ -1663,7 +1663,7 @@ toOctal(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of `significantDigits \| rounding` is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **示例：**
 
@@ -1729,7 +1729,7 @@ toHexadecimal(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of `significantDigits` is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **示例：**
 
@@ -1768,7 +1768,7 @@ toHexadecimal(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of `significantDigits \| rounding` is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **示例：**
 
@@ -1832,7 +1832,7 @@ toDecimalPlaces(decimalPlaces: number): Decimal
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of `decimalPlaces` is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **示例：**
 
@@ -1871,7 +1871,7 @@ toDecimalPlaces(decimalPlaces: number, rounding: Rounding): Decimal
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **示例：**
 
@@ -1936,7 +1936,7 @@ toExponential(decimalPlaces: number): string
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of `decimalPlaces` is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **示例：**
 
@@ -1977,7 +1977,7 @@ toExponential(decimalPlaces: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **示例：**
 
@@ -2041,7 +2041,7 @@ toFixed(decimalPlaces: number): string
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of `decimalPlaces` is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **示例：**
 
@@ -2082,7 +2082,7 @@ toFixed(decimalPlaces: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **示例：**
 
@@ -2226,7 +2226,7 @@ toNearest(n: Value, rounding: Rounding): Decimal
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of `rounding` is out of range. |
+| 10200001 | The value of \`rounding\` is out of range. |
 
 **示例：**
 
@@ -2292,7 +2292,7 @@ toPrecision(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of `significantDigits` is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **示例：**
 
@@ -2332,7 +2332,7 @@ toPrecision(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of `significantDigits \|  rounding` is out of range. |
+| 10200001 | The value of \`significantDigits \|  rounding\` is out of range. |
 
 **示例：**
 
@@ -2398,7 +2398,7 @@ toSignificantDigits(significantDigits: number): Decimal
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of `significantDigits` is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **示例：**
 
@@ -2437,7 +2437,7 @@ toSignificantDigits(significantDigits: number, rounding: Rounding): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of `significantDigits \|  rounding` is out of range. |
+| 10200001 | The value of \`significantDigits \|  rounding\` is out of range. |
 
 **示例：**
 
@@ -2604,7 +2604,7 @@ precision(includeZeros: boolean | number): number
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 10200001 | The value of `includeZeros` is out of range. |
+| 10200001 | The value of \`includeZeros\` is out of range. |
 
 **示例：**
 
@@ -2794,7 +2794,7 @@ static clamp(n: Value, min: Value, max: Value): Decimal
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of `min` is out of range.                          |
+| 10200001 | The value of \`min\` is out of range.                          |
 
 **示例：**
 
@@ -4154,7 +4154,7 @@ static set(config: DecimalConfig):void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of `DecimalConfig.properties` is out of range.     |
+| 10200001 | The value of \`DecimalConfig.properties\` is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
 **示例1：**
