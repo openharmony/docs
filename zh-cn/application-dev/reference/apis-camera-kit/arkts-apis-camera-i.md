@@ -185,10 +185,10 @@
 
 | 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。ture表示使能，false表示不使能。 |
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量（默认低）。                                                           |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度（默认0度，顺时针旋转）。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息（默认以设备硬件信息为准）。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。ture表示使能，false表示不使能。 |
 
 ## FrameShutterInfo
 
