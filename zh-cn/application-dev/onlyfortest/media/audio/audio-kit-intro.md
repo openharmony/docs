@@ -1,4 +1,5 @@
 # Audio Kit简介（删除标签）
+<!--subsystem:ArkUI-->
 
 api-info==10
 
