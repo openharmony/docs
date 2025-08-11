@@ -1,13 +1,12 @@
 # B帧视频编码
 
-## 基础概念
-
 **双向预测帧**，又叫B帧（B frame），是视频编码标准中定义的主要帧类型之一。B帧与P帧的主要差别在于P帧仅支持前向预测，而B帧支持双向预测。
 
 B帧编码预测过程同时利用前后帧的信息，可以显著降低信号的时域冗余，具有更高的压缩效率。
+
 使能B帧的影响：
-使能B帧，会导致P帧编码时域参考帧的距离增加，可能影响P帧的压缩率和画质；一般在时域较复杂的场景要联合考虑P帧和B帧的综合影响；
-使能B帧，也会增加编码和解码的端到端时延。
+- 使能B帧，会导致P帧编码时域参考帧的距离增加，可能影响P帧的压缩率和画质；一般在时域较复杂的场景要联合考虑P帧和B帧的综合影响；
+- 使能B帧，也会增加编码和解码的端到端时延。
 
 ## 适用场景
 
@@ -19,7 +18,7 @@ B帧编码预测过程同时利用前后帧的信息，可以显著降低信号�
 ## 约束和限制
 
 - **支持的平台**：该能力与平台能力有关，可以通过[OH_AVCapability_IsFeatureSupported](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapability_isfeaturesupported)接口查询系统支持情况。
-- **支持的系统**：API20及以后。
+- **支持的API版本**：API20及以后。
 - **支持的编码器**：该能力与编码器能力有关，可以通过[OH_AVCodec_GetCapabilityByCategory](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcodec_getcapabilitybycategory)接口查询支持情况。
 - **支持的码控模式**：VBR、CBR、SQR、CQ。
 - 不支持与时域可分层视频编码共同使能。
@@ -33,8 +32,8 @@ B帧编码预测过程同时利用前后帧的信息，可以显著降低信号�
 
 |配置参数 |语义 |格式 |
 |------- |------- |------- |
-|OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME |视频编码使能B帧参数。<br>在配置阶段配置，仅特性支持才会真正使能成功。 |Int |
-|OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES |视频编码支持最大B帧数量。<br>该接口仅供查询。 |Int |
+|OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME |视频编码使能B帧参数。<br>在配置阶段配置，仅特性支持才会真正使能成功。 |int |
+|OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES |视频编码支持最大B帧数量。<br>该接口仅供查询。 |int |
 
 ## 开发指导
 
