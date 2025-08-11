@@ -2859,10 +2859,10 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   try {
-    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X4C, 0X00, 0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
-      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB, 0X00, 0X01, 0X00, 0X08, 0Xd0]);
-    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0X00, 0X00, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
-      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0X00, 0X00, 0X00, 0X00, 0X00]);
+    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
+      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB]);
+    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
+      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF]);
 
     let manufactureData:geoLocationManager.BeaconManufactureData = {
       manufactureId: 0X004C,
