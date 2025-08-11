@@ -1544,7 +1544,7 @@ open(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当打开相机成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -1720,7 +1720,7 @@ close(callback: AsyncCallback\<void\>\): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当关闭相机成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -1864,7 +1864,7 @@ release(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当释放输出资源成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -1965,7 +1965,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当开始输出预览流成功，err为undefined，否则为错误对象。，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -2045,7 +2045,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当停止输出预览流成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2617,7 +2617,7 @@ capture(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当以默认设置触发拍照成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -3840,7 +3840,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当启动录制成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -3920,7 +3920,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当结束录制成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -4455,7 +4455,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\>       | 是   | 回调函数。当开始输出metadata成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -4535,7 +4535,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                         | 必填 | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\>       | 是   | 回调函数。当停止输出metadata成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\>       | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -4875,7 +4875,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当提交配置信息成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)，比如预览流与录像输出流的分辨率的宽高比不一致，会返回7400201。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)，比如预览流与录像输出流的分辨率的宽高比不一致，会返回7400201。 |
 
 **错误码：**
 
@@ -5190,7 +5190,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当开始会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5272,7 +5272,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当停止会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5350,7 +5350,7 @@ release(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当释放会话资源成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6688,7 +6688,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当提交配置信息成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -6939,7 +6939,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当开始会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7021,7 +7021,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当停止会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7101,7 +7101,7 @@ release(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当释放会话资源成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
