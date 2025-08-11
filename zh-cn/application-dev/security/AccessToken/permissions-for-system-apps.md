@@ -5071,3 +5071,31 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
+
+允许系统应用查询独立二进制程序的证书信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+
+允许系统应用设置独立二进制程序的证书状态
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
