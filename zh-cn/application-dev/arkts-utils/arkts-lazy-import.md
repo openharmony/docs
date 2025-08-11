@@ -152,7 +152,7 @@ export lazy * from "mod";             // 编译器提示报错：应用编译报
 
 import lazy * as ns from "mod";            // 编译器提示报错：应用编译报错
 import lazy KitClass from "@kit.SomeKit"   // 编译器提示报错：应用编译报错
-impott lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编译报错
+import lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编译报错
 ```
 
 与type关键词同时使用会导致编译报错。
