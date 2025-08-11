@@ -747,7 +747,7 @@ async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
 
 start(): Promise\<void\>
 
-启动深度信息输出流。使用Promise异步回调。
+启动深度信息输出流，通过Promise获取结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -757,7 +757,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -786,7 +786,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 
 stop(): Promise\<void\>
 
-结束深度信息输出。使用Promise异步回调。
+结束深度信息输出，通过Promise获取结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -796,7 +796,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1514,7 +1514,7 @@ function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void {
 
 release(): Promise\<void\>
 
-释放输出资源。使用Promise异步回调。
+释放输出资源，通过Promise获取结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1524,7 +1524,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明               |
 | -------------- |------------------|
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1550,7 +1550,7 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
-开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture11)取消连续拍照。使用Promise异步回调。
+开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture11)取消连续拍照。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1566,7 +1566,7 @@ burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 类型            | 说明                      |
 | -------------- | ------------------------   |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 

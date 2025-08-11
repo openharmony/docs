@@ -1576,7 +1576,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(): Promise\<void\>
 
-打开相机。使用Promise异步回调。
+打开相机，通过Promise获取相机的状态。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1586,7 +1586,7 @@ open(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1617,7 +1617,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(isSecureEnabled: boolean): Promise\<bigint\>
 
-打开相机。使用Promise异步回调.
+打开相机，获取安全相机的句柄。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1633,7 +1633,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<bigint\> | Promise对象，返回安全相机的句柄。 |
+| Promise\<bigint\> | 使用Promise的方式获取打开相机句柄。 |
 
 **错误码：**
 
@@ -1663,7 +1663,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(type: CameraConcurrentType): Promise\<void\>
 
-以指定的并发类型打开相机。使用Promise异步回调。
+以指定的并发类型打开相机。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1679,7 +1679,7 @@ open(type: CameraConcurrentType): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1750,7 +1750,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 
 close(): Promise\<void\>
 
-关闭相机。使用Promise异步回调。
+关闭相机，通过Promise获取状态。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1760,7 +1760,7 @@ close(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1904,7 +1904,7 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
 
 release(): Promise\<void\>
 
-释放输出资源。使用Promise异步回调。
+释放输出资源，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1914,7 +1914,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1995,7 +1995,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 start(): Promise\<void\>
 
-开始输出预览流。使用Promise异步回调。
+开始输出预览流，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start11-1)替代。
@@ -2006,7 +2006,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | Promise对象，无返回结果。  |
+| Promise\<void\> | 无返回结果的Promise对象。  |
 
 **错误码：**
 
@@ -2067,7 +2067,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 stop(): Promise\<void\>
 
-停止输出预览流。使用Promise异步回调。
+停止输出预览流，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop11-1)替代。
@@ -2078,7 +2078,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -2579,7 +2579,7 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 
 release(): Promise\<void\>
 
-释放输出资源。使用Promise异步回调。
+释放输出资源，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -2589,7 +2589,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -2648,7 +2648,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(): Promise\<void\>
 
-以默认设置触发一次拍照。使用Promise异步回调。
+以默认设置触发一次拍照，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -2658,7 +2658,7 @@ capture(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2741,7 +2741,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(setting: PhotoCaptureSetting): Promise\<void\>
 
-以指定参数触发一次拍照。使用Promise异步回调。
+以指定参数触发一次拍照，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -2757,7 +2757,7 @@ capture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3871,7 +3871,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
 
 start(): Promise\<void\>
 
-启动录制。使用Promise异步回调。
+启动录制，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -3881,7 +3881,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3942,7 +3942,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
 
 stop(): Promise\<void\>
 
-结束录制。使用Promise异步回调。
+结束录制，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -3952,7 +3952,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4486,7 +4486,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
 
 start(): Promise\<void\>
 
-开始输出metadata。使用Promise异步回调。
+开始输出metadata，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -4496,7 +4496,7 @@ start(): Promise\<void\>
 
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
-| Promise\<void\>          | Promise对象，无返回结果。 |
+| Promise\<void\>          | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4557,7 +4557,7 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
 
 stop(): Promise\<void\>
 
-停止输出metadata。使用Promise异步回调。
+停止输出metadata，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -4567,7 +4567,7 @@ stop(): Promise\<void\>
 
 | 类型                    | 说明                        |
 | ----------------------  | --------------------------- |
-| Promise\<void\>         | Promise对象，无返回结果。 |
+| Promise\<void\>         | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4906,7 +4906,7 @@ function commitConfig(session: camera.Session): void {
 
 commitConfig(): Promise\<void\>
 
-提交配置信息。使用Promise异步回调。
+提交配置信息，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -4916,7 +4916,7 @@ commitConfig(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5222,7 +5222,7 @@ function startCaptureSession(session: camera.Session): void {
 
 start(): Promise\<void\>
 
-开始会话工作。使用Promise异步回调。
+开始会话工作，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -5232,7 +5232,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5302,7 +5302,7 @@ function stopCaptureSession(session: camera.Session): void {
 
 stop(): Promise\<void\>
 
-停止会话工作。使用Promise异步回调。
+停止会话工作，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -5312,7 +5312,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | Promise对象，无返回结果。  |
+| Promise\<void\> | 无返回结果的Promise对象。  |
 
 **错误码：**
 
@@ -5380,7 +5380,7 @@ function releaseCaptureSession(session: camera.Session): void {
 
 release(): Promise\<void\>
 
-释放会话资源。使用Promise异步回调。
+释放会话资源，通过Promise获取结果。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -5390,7 +5390,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -6719,7 +6719,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
 
 commitConfig(): Promise\<void\>
 
-提交配置信息。使用Promise异步回调。
+提交配置信息，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.commitConfig](#commitconfig11-1)替代。
@@ -6730,7 +6730,7 @@ commitConfig(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -6970,7 +6970,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
 
 start(): Promise\<void\>
 
-开始会话工作。使用Promise异步回调。
+开始会话工作，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start11-1)替代。
@@ -6981,7 +6981,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -7051,7 +7051,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
 
 stop(): Promise\<void\>
 
-停止会话工作。使用Promise异步回调。
+停止会话工作，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop11-1)替代。
@@ -7062,7 +7062,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -7131,7 +7131,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
 
 release(): Promise\<void\>
 
-释放会话资源。使用Promise异步回调。
+释放会话资源，通过Promise获取结果。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-2)替代。
@@ -7142,7 +7142,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | Promise对象，无返回结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
