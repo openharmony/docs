@@ -1,4 +1,9 @@
-# ArkUI_NodeBorderCArkUI_NodeBorderRadiusOptionlorOption
+# ArkUI_NodeBorderRadiusOption
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ## 概述
 

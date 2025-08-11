@@ -1,4 +1,9 @@
 # ArkUI_RenderNodeClipOption
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ## 概述
 

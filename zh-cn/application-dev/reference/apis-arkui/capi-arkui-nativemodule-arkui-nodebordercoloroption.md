@@ -1,4 +1,9 @@
 # ArkUI_NodeBorderColorOption
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ## 概述
 
