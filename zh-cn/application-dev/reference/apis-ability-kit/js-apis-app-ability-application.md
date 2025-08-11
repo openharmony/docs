@@ -1,6 +1,12 @@
-#  @ohos.app.ability.application (应用基础能力)
+#  @ohos.app.ability.application (应用工具类)
 
-开发者可以通过该模块创建[Context](../../application-models/application-context-stage.md)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
+
+开发者可以通过该模块管理和获取应用的上下文[Context](../../application-models/application-context-stage.md)，以及控制应用进程的状态。
 
 > **说明：**
 >
@@ -17,7 +23,7 @@ import { application } from '@kit.AbilityKit';
 
 createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
-根据入参Context创建相应模块的Context。
+创建指定模块的上下文。创建出的模块上下文中[resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration)资源继承自入参上下文，便于开发者获取[跨HAP/HSP包应用资源](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
 
 **原子化服务API**：从API version 12开始，该接口支持在元服务中使用。
 
@@ -38,7 +44,7 @@ createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息        |
 | -------- | --------------- |
@@ -75,10 +81,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-获取应用程序上下文。
-> **说明：**
->
->通过该接口取得的ApplicationContext，只支持获取对应的[应用信息](js-apis-bundleManager-applicationInfo.md)和全部的[沙箱路径](js-apis-inner-application-context.md#属性)。
+获取应用上下文。开发者使用该接口时，无需依赖Context基类。
 
 **原子化服务API**：从API version 14开始，该接口支持在元服务中使用。
 
@@ -88,7 +91,7 @@ getApplicationContext(): ApplicationContext
 
 | 类型                                                         | 说明                |
 | ------------------------------------------------------------ | ------------------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文。 |
 
 **错误码：**
 
@@ -172,15 +175,21 @@ export default class EntryAbility extends UIAbility {
 
 promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 
-开发者可以调用该接口将当前进程放入备选主控进程链表。使用Promise异步回调。
+开发者可以调用该接口将当前进程放入[备选主控进程](../../application-models/ability-terminology.md#candidatemasterprocess备选主控进程)链表。使用Promise异步回调。
 
-当主控进程销毁后，系统会将位于链表首节点的备选主控进程设置为主控进程，并触发[onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11)回调。如果未设置备选主控进程，对于UIAbility组件，系统将创建新的空进程作为主控进程；对于UIExtensionAbility组件，系统会优先复用已有的UIExtensionAbility进程作为新的主控进程，无可用进程时则创建新的空进程作为主控进程。
+当[主控进程](../../application-models/ability-terminology.md#masterprocess主控进程)销毁后，再次启动配置了isolationProcess为true的UIAbility/UIExtensionAbility组件时，系统会根据是否存在备选主控进程执行相应操作。
+
+- 如果存在备选主控进程，系统会将备选主控进程链表首节点的进程设置为主控进程，触发[onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11)回调。
+- 如果不存在备选主控进程，系统会根据组件类型执行相应的操作。
+	- 对于UIAbility组件，系统将创建新的空进程作为主控进程。
+	- 对于UIExtensionAbility组件，系统会优先复用已有的UIExtensionAbility进程作为新的主控进程，无可用进程时则创建新的空进程作为主控进程。
 
 > **说明：**
->
 > - 当前仅支持2in1、tablet设备。
+<!--Del-->
 >
-> - 仅当UIAbility/UIExtensionAbility组件支持运行在独立进程中，即[module.json5配置文件](../../quick-start/module-configuration-file.md)中UIAbility/UIExtensionAbility组件的isolationProcess字段取值true时，该接口才生效。
+> - 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
+<!--DelEnd-->
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
