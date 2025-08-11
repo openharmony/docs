@@ -543,7 +543,7 @@ uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 
 **使用示例**
 ```bash
-# 双指关节在(100, 100)、(100, 130)位置间隔200ms敲击。
+# 双指关节分别在(100, 100)、(100, 130)位置间隔200ms敲击2次。
 uinput -T -k -d 100 100 100 130
 ```
 
