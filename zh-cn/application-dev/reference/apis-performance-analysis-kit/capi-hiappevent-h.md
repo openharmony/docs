@@ -725,7 +725,7 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value)
 | 参数项 | 描述 |
 | -- | -- |
 | const char* name | 配置项名称。名称可填[DISABLE](capi-hiappevent-cfg-h.md#disable)和[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)。 |
-| const char* value | 配置项值。如果配置项名称是[DISABLE](capi-hiappevent-cfg-h.md#disable)，值可以填“true”或者“false”；<br> 如果配置项名称是[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b |k|kb|m|mb|g|gb|t|tb]，不区分大小写）构成。<br> 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
+| const char* value | 配置项值。如果配置项名称是[DISABLE](capi-hiappevent-cfg-h.md#disable)，值可以填“true”或者“false”；<br> 如果配置项名称是[MAX_STORAGE](capi-hiappevent-cfg-h.md#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br> 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
 
 **返回：**
 
