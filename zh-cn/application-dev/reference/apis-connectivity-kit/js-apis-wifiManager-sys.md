@@ -11,42 +11,6 @@
 import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
-## wifiManager.disableWifi<sup>9+</sup>
-
-disableWifi(): void
-
-去使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否关闭成功。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501004  | Operation failed because the service is being opened. |
-
-**示例：**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		wifiManager.disableWifi();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
 ## wifiManager.enableSemiWifi<sup>12+</sup>
 
 enableSemiWifi(): void

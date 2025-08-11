@@ -83,6 +83,39 @@ enableWifi(): void
   }
 ```
 
+## wifiManager.disableWifi<sup>20+</sup>
+
+disableWifi(): void
+
+关闭WLAN。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO和ohos.permission.MANAGE_WIFI_CONNECTION（仅系统应用可用）/ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION（仅企业应用可用）
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disableWifi();
+	}catch(error){
+		console.error(`disableWifi failed. ${error.message}`);
+	}
+```
+
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
