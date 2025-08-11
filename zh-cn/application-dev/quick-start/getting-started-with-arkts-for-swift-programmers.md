@@ -150,20 +150,6 @@ namespace Models {
 
 相比Swift的模块+内部类组合，ArkTS的命名空间能更直观地实现代码分层。
 
-**类成员初始化**
-
-ArkTS支持在类体内直接初始化属性。
-
-**ArkTS示例：**
-
-```typescript
-class User {
-    private name: string = 'Default'
-}
-```
-
-Swift通常在构造函数中初始化属性。
-
 ### 异步编程模型
 
 **单线程vs多线程**
