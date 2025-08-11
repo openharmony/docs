@@ -1,6 +1,6 @@
 # ArkTS编译工具链概述
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @chenmudan; @hufeng20; @ctw-ian-->
 <!--SE: @hufeng20;@ctw-ian-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
