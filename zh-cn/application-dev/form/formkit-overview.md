@@ -59,5 +59,9 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 | 自定义绘制   | 不支持    | 支持       |
 | 逻辑代码执行 | 不支持    | 支持       |
 
+## 与相关Kit的关系
+
+- Ability Kit: Form Kit内部实现依赖Ability Kit提供的Extension基础能力，与Ability Kit存在生命周期调度交互。
+- ArkUI: Form Kit卡片提供方在卡片页面中可以使用ArkUI提供的部分组件、事件、动效、状态管理等能力。
 
 <!--RP1--><!--RP1End-->
