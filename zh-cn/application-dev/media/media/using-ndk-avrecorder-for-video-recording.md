@@ -221,8 +221,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
         SetConfig(*config);
     
         // 1.设置URL（fileGenerationMode选择APP_CREATE时设置）。
-        const std::string AVRECORDER_ROOT = "/data/storage/el2/base/files/";
-        int32_t outputFd = open((AVRECORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
+        const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
+        int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
         std::string fileUrl = "fd://" + std::to_string(outputFd);
         config->url = const_cast<char *>(fileUrl.c_str());
         OH_LOG_INFO(LOG_APP, "config.url is: %s", const_cast<char *>(fileUrl.c_str()));
@@ -441,8 +441,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       SetConfig(*config);
 
       // 1.1设置URL（fileGenerationMode选择APP_CREATE时设置）。
-      const std::string AVRECORDER_ROOT = "/data/storage/el2/base/files/";
-      g_outputFd = open((AVRECORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
+      const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
+      g_outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
       std::string fileUrl = "fd://" + std::to_string(g_outputFd);
       config->url = const_cast<char *>(fileUrl.c_str());
 

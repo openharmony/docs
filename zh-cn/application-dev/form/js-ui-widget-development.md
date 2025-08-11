@@ -506,7 +506,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   .detail_text {
-      font-family: HarmonyHeiTi;
+      ffont-family: HarmonyHeiTi;
       font-size: 12px;
       color: rgba(255, 255, 255, 0.60);
       letter-spacing: 0.51px;

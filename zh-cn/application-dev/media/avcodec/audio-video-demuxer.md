@@ -137,7 +137,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
       infile.seekg(pos, std::ios::beg);
       if (length <= 0) {
-         printf("AVSourceReadAt : read length less than zero!\n");
+         printf("AVSourceReadAt : raed length less than zero!\n");
          return MediaDataSourceError::SOURCE_ERROR_IO;
       }
       char* buffer = new char[length];
