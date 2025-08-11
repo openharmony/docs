@@ -1,9 +1,4 @@
 # 使用MovingPhotoView播放动态照片
-<!--Kit: Media Library Kit-->
-<!--Subsystem: FileManagement-->
-<!--Owner: @tangye123456-->
-<!--SE: @YanSanzo-->
-<!--TSE: @tinygreyy-->
 
 系统提供了MovingPhotoView组件，在一些社交类、图库类应用中，可用于播放动态照片文件。
 
