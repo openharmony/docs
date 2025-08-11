@@ -1,4 +1,9 @@
 # JS卡片开发指导（FA模型）
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 FA模型从API version 7开始支持，已经不再主推。该应用模型通过导出匿名对象、固定入口文件的方式指定应用组件，开发者无法进行派生，不利于扩展能力。建议使用新的Stage模型进行开发。
 
 ## 接口说明
