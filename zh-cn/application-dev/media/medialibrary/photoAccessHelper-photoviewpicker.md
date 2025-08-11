@@ -51,19 +51,27 @@
 1. 待界面从图库返回后，再通过一个类似按钮的组件去调用其他函数，使用[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)打开这个文件得到fd。这里需要注意接口权限参数是fileIo.OpenMode.READ_ONLY。
 
    ```ts
-   let uri: string = '';
-   let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
-   console.info('file fd: ' + file.fd);
+   try {
+     let uri: string = '';
+     let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
+     console.info('file fd: ' + file.fd);
+   } catch (error) {
+     console.error('openSync failed with err: ' + error);
+   }
    ```
 
 2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
-   // buffer为缓冲区长度，由开发者自定义。
-   let buffer = new ArrayBuffer(4096);
-   let readLen = fileIo.readSync(file.fd, buffer);
-   console.info('readSync data to file succeed and buffer size is:' + readLen);
-   fileIo.closeSync(file);
+   try {
+     // buffer为缓冲区长度，由开发者自定义。
+     let buffer = new ArrayBuffer(4096);
+     let readLen = fileIo.readSync(file.fd, buffer);
+     console.info('readSync data to file succeed and buffer size is:' + readLen);
+     fileIo.closeSync(file);
+   } catch (error) {
+     console.error('readSync or closeSync failed with err: ' + error);
+   }
    ```
 
 ## 指定URI获取图片或视频资源
@@ -75,7 +83,6 @@
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { dataSharePredicates } from '@kit.ArkData';
-   import { common } from '@kit.AbilityKit';
    
    class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
      onDataPrepared(data: ArrayBuffer) {

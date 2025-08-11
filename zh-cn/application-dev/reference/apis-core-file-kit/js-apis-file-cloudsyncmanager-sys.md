@@ -818,7 +818,7 @@ stopDownload(): Promise&lt;void&gt;
 | failedCount     | number                                      | 否   | 否   | 下载失败的文件个数，取值范围[0, INT32_MAX]，单位：个。进度异常时返回-1。      |
 | totalCount      | number                                      | 否   | 否   | 待下载文件总个数，取值范围[0, INT32_MAX]，单位：个。进度异常时返回-1。        |
 | downloadedSize  | number                                      | 否   | 否   | 已下载数据大小，取值范围[0, INT64_MAX)，单位：Byte。进度异常时返回INT64_MAX。 |
-| totalSize       | number                                      | 否   | 否   | 已下载数据大小，取值范围[0, INT64_MAX)，单位：Byte。进度异常时返回INT64_MAX。 |
+| totalSize       | number                                      | 否   | 否   | 需要下载文件的总大小，取值范围[0, INT64_MAX)，单位：Byte。进度异常时返回INT64_MAX。 |
 | stopReason      | [DownloadStopReason](#downloadstopreason20) | 否   | 否   | 下载停止的原因。                                                              |
 
 ## CloudFileInfo<sup>20+</sup>

@@ -73,8 +73,8 @@
             - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
-            <!--DelEnd-->
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
+            <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
             - [使用AppServiceExtensionAbility实现后台服务](application-models/app-service-extension-ability.md)
           - [AbilityStage组件容器](application-models/abilitystage.md)
@@ -718,6 +718,7 @@
           - [应用启动页简介](windowmanager/launch-page-overview.md)
           - [配置应用启动页](windowmanager/launch-page-config.md)
           - [启动页资源分类配置](windowmanager/launch-page-resource-config.md)
+        - [窗口开发术语](windowmanager/window-terminology.md)
       - 屏幕管理<!--display-manager-->
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
@@ -2783,6 +2784,7 @@
             - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
+            - [动态SymbolGlyphModifier属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-symbolglyphmodifier.md)
           - 其他<!--other-property-->
             - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
             - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
@@ -4469,7 +4471,7 @@
           - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
           - [@js-apis-awareness-metadataBinding (回旋镖)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
           - [@ohos.multimodalAwareness.deviceStatus (设备状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md)
-          - [@ohos.multimodalAwareness.userStatus (用户状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md) 
+          - [@ohos.multimodalAwareness.userStatus (用户状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md)
           <!--Del-->
           - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
           <!--DelEnd-->

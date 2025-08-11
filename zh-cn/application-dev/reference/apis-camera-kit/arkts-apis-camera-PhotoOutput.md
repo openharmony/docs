@@ -628,7 +628,7 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 ```ts
 function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
-   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
+  photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
 }
 ```
 
@@ -1070,7 +1070,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度 |
+| deviceDegree | number | 是   | 设备旋转角度，单位度，取值范围：0-360。 |
 
 **返回值：**
 

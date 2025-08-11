@@ -698,10 +698,11 @@ async function example(mgr: userFileManager.UserFileManager) {
   let album: userFileManager.Album = await fetchResult.getFirstObject();
   mgr.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
+      fetchResult.close();
     }).catch((err: BusinessError) => {
       console.error('deletePhotoAlbumsPromise failed with err: ' + err);
+      fetchResult.close();
   });
-  fetchResult.close();
 }
 ```
 
@@ -1799,12 +1800,14 @@ async function example(mgr: userFileManager.UserFileManager) {
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
     console.info('onCallback2 on');
   }
-  // 注册onCallback1监听
-  mgr.on(fileAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
-  mgr.on(fileAsset.uri, false, onCallback2);
-  // 关闭onCallback1监听，onCallback2 继续监听
-  mgr.off(fileAsset.uri, onCallback1);
+  if (fileAsset.uri !== undefined) {
+    // 注册onCallback1监听
+    mgr.on(fileAsset.uri, false, onCallback1);
+    // 注册onCallback2监听
+    mgr.on(fileAsset.uri, false, onCallback2);
+    // 关闭onCallback1监听，onCallback2 继续监听
+    mgr.off(fileAsset.uri, onCallback1);  
+  }
   fileAsset.favorite(true, (err) => {
     if (err == undefined) {
       console.info('favorite successfully');
@@ -3373,8 +3376,12 @@ async function example(mgr: userFileManager.UserFileManager) {
     predicates: predicates
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
-  console.info('fileAsset displayName: ', fileAsset.displayName);
+  if (fetchResult.getCount() > 0) {
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
+    console.info('fileAsset displayName: ', fileAsset.displayName);
+  } else {
+    console.info('No file assets found');
+  } 
 }
 ```
 

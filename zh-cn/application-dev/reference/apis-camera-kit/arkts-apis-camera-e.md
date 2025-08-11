@@ -29,7 +29,7 @@
 
 | 名称                     | 值   | 说明            |
 | ----------------------- | ---- | -------------- |
-| CAMERA_TYPE_DEFAULT     | 0    | 相机类型未指定。  |
+| CAMERA_TYPE_DEFAULT     | 0    | 默认相机类型。  |
 | CAMERA_TYPE_WIDE_ANGLE  | 1    | 广角相机。       |
 | CAMERA_TYPE_ULTRA_WIDE  | 2    | 超广角相机。     |
 | CAMERA_TYPE_TELEPHOTO   | 3    | 长焦相机。       |
