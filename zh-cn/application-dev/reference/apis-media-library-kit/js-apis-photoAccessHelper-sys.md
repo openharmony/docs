@@ -6007,7 +6007,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。 |
+| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。<br>**注意：** 不支持传入WatermarkType.DEFAULT。 |
 
 **错误码：**
 
