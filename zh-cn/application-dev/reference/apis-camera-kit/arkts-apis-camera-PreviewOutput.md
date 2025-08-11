@@ -480,7 +480,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 start(): Promise\<void\>
 
-开始输出预览流，通过Promise获取结果。
+开始输出预览流。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](arkts-apis-camera-Session.md#start11-1)替代。
@@ -491,7 +491,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | 无返回结果的Promise对象。  |
+| Promise\<void\> | Promise对象，无返回结果。  |
 
 **错误码：**
 
@@ -552,7 +552,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 stop(): Promise\<void\>
 
-停止输出预览流，通过Promise获取结果。
+停止输出预览流。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](arkts-apis-camera-Session.md#stop11-1)替代。
@@ -563,7 +563,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **示例：**
 

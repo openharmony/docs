@@ -39,7 +39,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | Promise对象，返回[PickerResult](#pickerresult)对象。        |
+| Promise\<PickerResult\>                         | Promise对象，返回相机选择器的处理结果[PickerResult](#pickerresult)。        |
 
 **示例：**
 
