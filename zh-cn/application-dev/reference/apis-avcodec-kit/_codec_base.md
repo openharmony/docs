@@ -3276,7 +3276,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
 const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME
 ```
 **描述**
-使能B帧编码的键，值类型为int32_t，1表示使能，0表示其它情况。
+使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。
 
 该键值是可选的且只用于视频编码，默认值为0。
 
