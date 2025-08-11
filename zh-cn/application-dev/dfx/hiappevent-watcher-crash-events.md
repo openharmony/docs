@@ -165,8 +165,8 @@ Timestamp:2025-05-17 19:17:07.000
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| line | number | 异常所在代码行号。 |
-| column | number | 异常所在代码列号。 |
+| line | number | 代码行号。 |
+| column | number | 代码列号。 |
 
 ## 崩溃事件自定义参数设置
 
