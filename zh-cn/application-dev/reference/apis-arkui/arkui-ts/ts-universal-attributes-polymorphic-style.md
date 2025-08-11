@@ -43,20 +43,18 @@ stateStyles(value: StateStyles): T
 
 ## StateStyles
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| normal | any | 否 | 是 | 组件无状态时的样式。只支持传入@style修饰的样式代码块。 |
-| pressed | any | 否 | 是 | 组件按下状态的样式。只支持传入@style修饰的样式代码块。 |
-| disabled | any | 否 | 是 | 组件禁用状态的样式。只支持传入@style修饰的样式代码块。 |
-| focused | any | 否 | 是 | 组件获焦状态的样式。只支持传入@style修饰的样式代码块。 |
-| clicked | any | 否 | 是 | 组件点击状态的样式。只支持传入@style修饰的样式代码块。 |
-| selected<sup>10+</sup> | object | 否 | 是 | 组件选中状态的样式。只支持传入@style修饰的样式代码块。<br/> |
+| normal | any | 否 | 是 | 组件无状态时的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| pressed | any | 否 | 是 | 组件按下状态的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| disabled | any | 否 | 是 | 组件禁用状态的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| focused | any | 否 | 是 | 组件获焦状态的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| clicked | any | 否 | 是 | 组件点击状态的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selected<sup>10+</sup> | object | 否 | 是 | 组件选中状态的样式。只支持传入@style修饰的样式代码块。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 **selected选中状态说明**
 

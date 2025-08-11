@@ -1,17 +1,22 @@
 # Saving User Files
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 When a user needs to download a file from the Internet or save a file to another directory, use **FilePicker** to save the file. Pay attention to the following key points:
 
 **Permission Description**
 
 - The read and write permissions on the file URI granted by Picker is temporary by default, and will be automatically invalidated once the application exits.
-- You can persist the permissions on the URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker). (This operation is available only for 2-in-1 devices.)
+- You can persist the permissions on the URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
 - No permission is required if your application uses Picker to save audio clips, images, videos, and document files.
 
 **System Isolation Description**
 
 - The files saved by the Picker are stored in the specified directory. They are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
-- To save images and videos to **Gallery**, [use a security component](../media/medialibrary/photoAccessHelper-savebutton.md).
+- To save images and videos to Gallery, [use the SaveButton](../media/medialibrary/photoAccessHelper-savebutton.md#creating-a-media-asset-using-savebutton).
 
 ## Saving Images or Videos
 
@@ -37,6 +42,8 @@ If the security component cannot be called to save images and videos in your dev
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // (Optional) Name of the file to save. The default value is empty.
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
+   // Optional. Specify the path of the file or directory to save.
+   documentSaveOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // (Optional) Type of the document to save. The value is in ['Description|File name extensions'] format. To save all files, use 'All files (*.*)|.*'. If there are multiple file name extensions (a maximum of 100 extensions can be filtered), the first one is used by default. If this parameter is not specified, no extension is filtered by default.
    documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
    ```
@@ -59,11 +66,11 @@ If the security component cannot be called to save images and videos in your dev
    > **NOTE**
    >
    > 1. URI storage:
-   > - You should avoid directly using a URI in the Picker callback.
-   > - You are advised to define a global variable to save the URI for future use.
+   >	 - You should avoid directly using a URI in the Picker callback.
+   >	 - You are advised to define a global variable to save the URI for future use.
    >
    > 2. Quick saving:
-   > - You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
+   > 	- You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
 4. After the application UI is returned from FilePicker, you can call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The FD is returned after the document is opened.
 
@@ -119,11 +126,11 @@ If the security component cannot be called to save images and videos in your dev
    > **NOTE**
    >
    > 1. URI storage:
-   > - You should avoid directly using a URI in the Picker callback.
-   > - You are advised to define a global variable to save the URI for future use.
+   > 	- You should avoid directly using a URI in the Picker callback.
+   > 	- You are advised to define a global variable to save the URI for future use.
    >
    > 2. Quick saving:
-   > - You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
+   > 	- You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
 4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
@@ -187,5 +194,3 @@ If the security component cannot be called to save images and videos in your dev
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-
- <!--no_check--> 

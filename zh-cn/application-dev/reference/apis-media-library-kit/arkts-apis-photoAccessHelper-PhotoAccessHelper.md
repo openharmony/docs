@@ -1496,3 +1496,48 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
+## getRecentPhotoInfo<sup>20+</sup>
+
+getRecentPhotoInfo(options?: RecentPhotoOptions): Promise\<RecentPhotoInfo>
+
+应用使用RecentPhotoComponent组件查看最近图片时，支持调用API获取最近图片信息。使用Promise异步回调。
+
+**原子化服务API**： 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照时间找到最近图片。<br>该参数在配置的情况下，需与RecentPhotoComponent组件中的options配置相同才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#RecentPhotoInfo20)>| Promise对象，返回最近图片信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper, PhotoSource, RecentPhotoOptions} from '@kit.MediaLibraryKit';
+
+async function example(context: Context) {
+  console.info('getRecentPhotoInfoDemo');
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let recentPhotoOptions: RecentPhotoOptions = {
+    period: 60 * 60,
+    MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE,
+    photoSource: PhotoSource.ALL
+  }
+
+  phAccessHelper.getRecentPhotoInfo(recentPhotoOptions).then((recentPhotoInfo) => {
+    console.info('getRecentPhotoInfo success, recentPhotoInfo is ' + JSON.stringify(recentPhotoInfo));
+  }).catch((err: BusinessError) => {
+    console.error(`getRecentPhotoInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```

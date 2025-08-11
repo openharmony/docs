@@ -1,11 +1,16 @@
 # Developing a File Manager Application (for System Applications Only)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own file manager application as required.
 
 ## How to Develop
 For details about the APIs for developing the user file manager, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
-1. Apply for permissions required.
+1. Request permissions required.
    Request the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Requesting Permissions for System_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
    > **NOTE**
@@ -23,7 +28,7 @@ For details about the APIs for developing the user file manager, see [User File 
 
    The **fileAccess** module provides APIs for basic file operations, and the **fileExtensionInfo** module provides key structs for application development.
 
-3. Query device information.<br>
+3. Query device information.
    You can obtain attributes of the devices managed by one or all file management servers in the system. You can also filter devices as required.
 
    In the user file access framework, **RootInfo** indicates the attribute information of a device. For example, obtain **RootInfo** of all devices.
@@ -141,7 +146,7 @@ For details about the APIs for developing the user file manager, see [User File 
    // Create a file.
    // sourceUri is the URI in fileinfo of the Download directory.
    // You need to use the obtained URI for development.
-   async function creatFile(): Promise<void> {
+   async function createFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
      let fileUri: string = '';
@@ -230,9 +235,9 @@ You can use **notify()** to observe not only the changes of directories, but als
      }
    }
    // Pass in DEVICES_URI to registerObserver() to listen for the device online/offline status.
-   async function UnregisterObserver03() {
+   async function RegisterObserver03() {
      try {
-       // Listen for the device online/offline status.
+       // Subscribe to the device online/offline status.
        fileAccessHelperAllServer.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
      } catch (err) {
        let error: BusinessError = err as BusinessError;

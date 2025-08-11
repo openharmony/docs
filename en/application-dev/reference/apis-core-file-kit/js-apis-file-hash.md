@@ -1,4 +1,9 @@
 # @ohos.file.hash (File Hash Processing)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **FileHash** module implements hash processing on files.
 
@@ -116,7 +121,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   ```
 ## hash.createHash<sup>12+</sup>
 
-createHash(algorithm: string): HashStream;
+createHash(algorithm: string): HashStream
 
 Creates a **HashStream** instance, which can be used to generate a message digest (a hash value) using the given algorithm.
 
@@ -136,7 +141,7 @@ Creates a **HashStream** instance, which can be used to generate a message diges
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -181,9 +186,15 @@ Updates the data for generating a message digest. This API can be called multipl
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ---- | ----------- | -- | ----------------- |
+| data | ArrayBuffer | Yes| Data to be calculated.|
+
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -210,9 +221,15 @@ Generates a message digest.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
+**Return value**
+
+| Type| Description|
+| ------ | --------------------------------------------------------- |
+| string | Hash value, which is a hexadecimal string consisting of digits and uppercase letters.|
+
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |

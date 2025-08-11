@@ -2083,3 +2083,27 @@ let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnable
 | fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
+
+### ColorMode
+
+系统当前深浅色模式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值    | 说明      |
+| ----- | -----| ----------|
+| LIGHT | 0    | 浅色模式。 |
+| DARK  | 1    | 深色模式。 |
+
+
+### LayoutDirection
+
+系统的布局方向类型
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值    | 说明      |
+| ----- | -----| ----------|
+| LTR   | 0    | 从左向右布局。 |
+| RTL   | 1    | 从右向左布局。 |
+| AUTO  | 2    | 自动布局，跟随系统。 |

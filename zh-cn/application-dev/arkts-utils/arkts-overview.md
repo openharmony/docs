@@ -1,7 +1,7 @@
 # ArkTS简介
 
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @fanglou-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

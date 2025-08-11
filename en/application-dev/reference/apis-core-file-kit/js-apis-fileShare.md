@@ -1,4 +1,9 @@
 # @ohos.fileshare (File Sharing)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 The **FileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can call [@ohos.file.fs](js-apis-file-fs.md) APIs to access the file.
 
@@ -108,7 +113,7 @@ Checks persistent permissions. This API uses a promise to return the result. Thi
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md). 
 If the permission persistence of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -178,7 +183,7 @@ Revokes permissions from multiple files or directories. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md). 
 If the permission revocation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID| Error Message|
@@ -248,7 +253,7 @@ Activates the permissions that have been persisted on multiple files or director
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md). 
 If the permission activation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -319,7 +324,7 @@ Deactivates the permissions on multiple files or directories. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md). 
 If the permission deactivation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -385,7 +390,7 @@ Checks persistent permissions. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message      |
 |----------| --------- |

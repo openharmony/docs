@@ -1,5 +1,11 @@
 # 音频编码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @baotianhao-->
+
 开发者可以调用本模块的Native API接口，完成音频编码，即将音频PCM编码压缩成不同的格式。
 
 接口不限制PCM数据的来源，开发者可以调用麦克风录制获取、也可以导入编辑后的PCM数据，通过音频编码，输出对应格式的码流，最后封装为目标格式文件。
@@ -167,12 +173,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. 调用OH_AudioCodec_Configure设置编码器。
 
-   设置必选项：采样率，码率，以及声道数，声道布局、位深。
+   配置选项key值说明：
 
-   可选项：最大输入长度。
+   <!--RP2-->
+   |             key               |       描述       |  AAC  |  Flac | MPEG(MP3) | G711mu |
+   | ----------------------------- | :--------------: | :---: | :---: | :------: | :---: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE     |      采样率      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT   |      声道数      |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT |  输出音频流格式   |  必须  |  必须 |   必须   |  必须  |
+   | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |
+   | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |
+   | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |
+   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -   |    -    |   -    |
+   | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |
+   <!--RP2End-->
 
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
-   
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
    | ----------- | ------------------------------------------------------------------------------- | :----------------: |
@@ -248,7 +263,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-    <!--RP2--><!--RP2End-->
+    <!--RP1--><!--RP1End-->
 
 5. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
@@ -314,7 +329,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    > flac编码的样点数建议参考表格根据采样率对应的样点数进行设置，否则可能出现编码文件损坏问题。
 
    ```c++
-    // 声道数，对于amr编码声道数只支持单声道的音频输入。
+    // 声道数。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
     // 采样点数，这里以AAC-LC为例，采样点数为1024。
     constexpr int32_t SAMPLES_PER_FRAME = 1024;

@@ -73,7 +73,7 @@ let portId: number = portList[0].portId;
 // 串口增加权限
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
-  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSONstringify(bundleInfo));
+  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));
   let tokenId = bundleInfo.appInfo.accessTokenId;
   try {
     serialManager.addSerialRight(tokenId, portId);

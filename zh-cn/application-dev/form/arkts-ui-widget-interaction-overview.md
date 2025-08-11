@@ -1,10 +1,15 @@
 # ArkTS卡片页面刷新概述
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 
-卡片使用方（例如：桌面）和卡片提供方均可以主动触发卡片页面刷新；另外卡片框架还会通过开发者声明的定时信息按需通知卡片提供方进行卡片刷新。因此卡片刷新包括卡片提供方主动触发刷新、卡片使用方主动触发刷新、卡片定时定点刷新，这些刷新方式均需要由卡片提供方推送需要刷新的卡片数据。
+卡片使用方（例如：桌面）和卡片提供方均可主动触发卡片页面刷新。此外，卡片管理服务会根据开发者声明的定时信息，按需通知卡片提供方进行卡片刷新。因此，卡片刷新方式包括：卡片提供方主动触发刷新、卡片使用方主动触发刷新以及卡片定时定点刷新。这些刷新方式均需由卡片提供方推送需要刷新的卡片数据。
 
 ## 卡片数据交互
 
-ArkTS卡片框架提供卡片提供方（例如：应用）和卡片的数据交互能力。其中卡片通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)传递数据给卡片提供方，卡片提供方可以通过[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口传递数据给卡片。卡片提供方将数据提供给卡片后，可以用于卡片页面刷新等。
+ArkTS卡片管理服务支持卡片提供方（例如：应用）和卡片之间的数据交互。卡片通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)传递数据给卡片提供方，卡片提供方则通过[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口传递数据给卡片。卡片提供方将数据提供给卡片后，可以用于卡片页面刷新等。
 
 由于卡片提供方和卡片为相互独立的进程，两者间的数据共享只能通过[LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop)传递，不能使用getContext方法。因此卡片提供方推送数据后，卡片UI需要通过LocalStorageProp接收数据，且接收数据时，卡片数据会被转换成string类型。
 
@@ -40,7 +45,7 @@ ArkTS卡片框架提供卡片提供方（例如：应用）和卡片的数据交
 卡片条件刷新：触发某种条件时的刷新，当前支持从无网络到有网络的条件时触发条件刷新。
 <!--DelEnd-->
 
-**图3 卡片框架通知卡片提供方定时定点刷新卡片流程图**
+**图3 卡片管理服务通知卡片提供方定时定点刷新卡片流程图**
 
 ![timer_updateForm](figures/timer_updateForm.PNG)
 

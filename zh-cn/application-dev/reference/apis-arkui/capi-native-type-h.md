@@ -2510,6 +2510,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201 | 查询路由导航信息失败。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。 |
 | ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202 | 传入的buffer size异常。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。 |
 | ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203 |  传入的节点未挂载到组件树上。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。<br>**起始版本：** 16 |
+| ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204 |  不支持在非UI线程操作传入的节点。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md#106204-不支持在非ui线程操作传入的节点)。<br>**起始版本：** 20 |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001 |  当前节点无法获得焦点。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150001-节点无法获得焦点)。<br>**起始版本：** 15 |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002 |  当前节点对应的祖先节点中存在无法获焦节点。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150002-祖先节点无法获得焦点)。<br>**起始版本：** 15 |
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003 |  当前节点不存在。错误码的详细介绍请参见[焦点错误码](../apis-arkui/errorcode-focus.md#150003-节点不存在)。<br>**起始版本：** 15 |
@@ -3526,7 +3527,7 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkU
 
 | 参数项                                            | 描述 |
 |------------------------------------------------| -- |
-| [ArkUI_WaterFlowSectionOption](capi-arkui-nativemodule-arkui-waterflowsectionoption.md)* optionoption | FlowItem分组配置信息。 |
+| [ArkUI_WaterFlowSectionOption](capi-arkui-nativemodule-arkui-waterflowsectionoption.md)* option | FlowItem分组配置信息。 |
 | int32_t index                                  | 分组配置信息数组索引值。 |
 | callback                                       | 根据index获取指定Item的主轴大小。itemIndex：FlowItem索引值。 |
 
@@ -8936,6 +8937,5 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 | -- |------------------------------|
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
 | callback | 回调函数   |
-
 
 

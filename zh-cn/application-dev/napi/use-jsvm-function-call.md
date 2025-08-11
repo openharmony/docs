@@ -1,7 +1,7 @@
 # 使用JSVM-API接口进行函数创建和调用
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 

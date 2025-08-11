@@ -1,5 +1,11 @@
 # 证书PKCS7签名
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 PKCS#7是用于存储签名或加密数据的标准语法。CMS作为PKCS#7的扩展，支持的数据类型包括数据、签名数据、信封数据、签名和信封数据、摘要数据以及加密数据。该标准常用于保护数据的完整性和机密性。目前仅支持PKCS7签名数据。
 
 ## 开发步骤

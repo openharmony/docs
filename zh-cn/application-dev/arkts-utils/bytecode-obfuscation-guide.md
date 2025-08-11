@@ -1,6 +1,6 @@
 # ArkGuard字节码混淆开启指南
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao-->
 <!--SE: @hufeng20-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -160,15 +160,15 @@
 * 混淆名称映射表及系统API白名单目录：`build/default/[...]/release/obfuscation`。
 * 名称映射表文件：`nameCache.json`，该文件记录了字节码名称混淆的映射关系。
 * 系统API白名单文件：`systemApiCache.json`，该文件记录了SDK中的接口与属性名称，工程源码中与其重名的元素不会被混淆。
-* obf目录：混淆后的modules.abc文件和modules.pa文件（开启`-enable-bytecode-obfuscation-debugging`后生成pa文件）
-* origin目录：混淆前的modules.abc文件
-* 配置信息文件：`config.json`，该文件记录了混淆的配置项和白名单列表
+* obf目录：混淆后的modules.abc文件和modules.pa文件（开启`-enable-bytecode-obfuscation-debugging`后生成pa文件）。
+* origin目录：混淆前的modules.abc文件。
+* 配置信息文件：`config.json`，该文件记录了混淆的配置项和白名单列表。
 
 ![bytecode-build-product](figures/bytecode-build-product.png)
 
 ## 报错栈还原
 
 经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的[hstack插件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)来还原源码堆栈，进而分析问题。
-反混淆工具需要使用应用编译过程中生成的sourceMaps.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们；为了更方便定位分析，有条件的可以直接备份release目录
+反混淆工具需要使用应用编译过程中生成的sourceMaps.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们；为了更方便定位分析，有条件的可以直接备份release目录。
 
 ![bytecode-obfuscation-product](figures/bytecode-obfuscation-product.png)

@@ -751,7 +751,7 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
 
@@ -775,14 +775,7 @@ onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemai
 
 | 参数名 | 类型                                                    | 必填 | 说明                       |
 | ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
-
-**返回值：** 
-
-| 类型                     | 说明                 |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | 实际滑动量，单位vp。 |
+| event | [OnScrollFrameBeginCallback](ts-container-scroll.md#onscrollframebegincallback18)   | 是   | 每帧滚动开始回调函数。 |
 
 ### onScrollStart<sup>10+</sup>
 

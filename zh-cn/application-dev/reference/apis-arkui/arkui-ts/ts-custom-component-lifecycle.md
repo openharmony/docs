@@ -12,6 +12,17 @@
 >- 本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >- 允许在生命周期函数中使用Promise和异步回调函数，比如网络资源获取，定时器设置等。
 
+## build
+
+build(): void
+
+build()函数用于定义自定义组件的声明式UI描述，自定义组件必须定义build()函数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## aboutToAppear
 
@@ -254,7 +265,7 @@ aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 | 参数名  | 类型                                      | 必填 | 说明                |
 |--------|-------------------------------------------|-----|---------------------|
-| params | Record\<string, Object \| undefined \| null> |   否   | 自定义组件的构造参数。|
+| params | Record\<string, Object \| undefined \| null> |   是   | 自定义组件的构造参数。|
 
 ```ts
 // xxx.ets
@@ -437,7 +448,19 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 | 参数名    | 类型                                       | 必填    | 说明         |
 |--------|------------------------------------------|------------|-------------------------|
-| theme | [Theme](../js-apis-arkui-theme.md#theme) | 是     | 自定义组件当前生效的Theme对象。|
+| theme | [Theme](#theme12) | 是     | 自定义组件当前生效的Theme对象。|
+
+## Theme<sup>12+</sup>
+
+type Theme = Theme
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。 |
 
 V1：
 

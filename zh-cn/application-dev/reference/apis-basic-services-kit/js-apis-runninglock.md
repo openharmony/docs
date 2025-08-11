@@ -1,4 +1,4 @@
-# @ohos.runningLock (Runninglock锁)
+# @ohos.runningLock (RunningLock锁)
 
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: PowerManager-->

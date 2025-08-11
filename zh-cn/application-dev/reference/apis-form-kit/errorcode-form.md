@@ -1,4 +1,9 @@
 # 卡片错误码
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 
 > **说明：**
 >
@@ -296,7 +301,7 @@ Invalid params received on operating form.
 3. 参数数量错误。
 4. 空参数错误，比如传入空字符串（''）。
 5. 参数格式错误。
-6. 参数值错误。输入参数与[app.json5](../../quick-start/app-configuration-file.md)、[配置卡片的配置文件](../../form/arkts-ui-widget-configuration.md)的对应配置需要保持一致。
+6. 参数值错误。输入参数需要与[app.json5](../../quick-start/app-configuration-file.md)和[配置ArkTS卡片的配置文件](../../form/arkts-ui-widget-configuration.md)中对应的配置保持一致。
 
 **处理步骤**
 
