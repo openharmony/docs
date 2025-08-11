@@ -401,7 +401,7 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | previewRotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation)  | 是   | 预览旋转角度 |
-| isDisplayLocked | boolean  | 否   | 是否旋转锁定（默认不锁定），true表示旋转锁定，false反之。 |
+| isDisplayLocked | boolean  | 否   | 是否旋转锁定（默认不锁定），true表示旋转锁定，false表示不锁定旋转。 |
 
 **错误码：**
 
