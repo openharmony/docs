@@ -56,8 +56,8 @@ ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCard
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 动态卡片事件的主要使用场景如下：
-- router事件：可以使用router事件跳转到自己应用的UIAbility，以完成点击卡片跳转应用内页面的交互功能。仅支持跳转到自己应用内的UIAbility。
-- call事件：可以使用call事件拉起指定UIAbility到后台，再通过UIAbility申请对应后台[长时任务](../arkts-utils/long-time-task-overview.md)完成音乐播放等功能。仅支持拉起自己应用内的UIAbility。
+- router事件：可以使用router事件跳转到自己应用的UIAbility，以完成点击卡片跳转应用内页面的交互功能。仅支持跳转到应用自身的UIAbility。
+- call事件：可以使用call事件拉起指定UIAbility到后台，再通过UIAbility申请对应后台[长时任务](../arkts-utils/long-time-task-overview.md)完成音乐播放等功能。仅支持拉起应用自身的UIAbility。
 - message事件：可以使用message拉起FormExtensionAbility，通过onFormEvent接口回调通知，以完成卡片内控件点击消息传递，从而更新卡片内容。
 
 ### 静态卡片
@@ -80,15 +80,17 @@ ArkTS卡片支持在UI内运行逻辑代码，相较于JS卡片具备了更加�
 
 - 针对卡片UI页面开发，ArkTS卡片仅支持[声明式范式](../ui/arkts-ui-development-overview.md)的部分组件、事件、动效、数据管理、状态管理和API能力。对于支持在ArkTS卡片UI页面中使用的接口，会添加“卡片能力”的标记：从API version x开始，该接口支持在ArkTS卡片中使用。
 
-- 卡片组件内容的事件处理和卡片使用方的事件处理是独立的，未防止手势冲突，卡片内不支持左右滑动的控件。
+- 卡片组件内容的事件处理和卡片使用方的事件处理是独立的，为防止手势冲突，卡片内不支持左右滑动的控件。
 
-- 不支持极速预览。
+- 除此之外，当前ArkTS卡片还存在如下约束：
 
-- 不支持断点调试能力。
+    - 不支持极速预览。
 
-- 不支持Hot Reload热重载。
+    - 不支持断点调试能力。
 
-- 不支持setTimeOut。
+    - 不支持Hot Reload热重载。
+
+    - 不支持setTimeOut。
 
 ## 相关实例
 
