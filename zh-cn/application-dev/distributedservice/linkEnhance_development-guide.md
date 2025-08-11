@@ -28,7 +28,7 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
 
 - 需要配置ohos.permission.DISTRIBUTED_DATASYNC权限。
 
-- 该接口提供连接能力，链路安全略与蓝牙配对策略保持一致，例如Numeric Comparion、Passkey Entry、Just Works、Out of Band四种安全配对方式。
+- 该接口提供连接能力，链路安全策略与蓝牙配对策略保持一致，例如Numeric Comparion、Passkey Entry、Just Works、Out of Band四种安全配对方式。
 
 ## 环境准备
 
