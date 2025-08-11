@@ -4,4 +4,3 @@
 - [Stationary开发指导](stationary-guidelines.md)
 - [获取用户动作开发指导](motion-guidelines.md)
 - [设备状态感知开发指导](deviceStatus-guidelines.md)
-- [记忆链接开发指导](metadataBinding-guidelines.md)
