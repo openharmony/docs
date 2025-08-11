@@ -1,10 +1,9 @@
 # 配置ArkTS卡片的配置文件
-<!--Kit: Form Kit-->	
-<!--Subsystem: Ability-->	
-<!--Owner: @cx983299475-->	
-<!--SE: @xueyulong-->	
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
 <!--TSE: @chenmingze-->
-
 卡片相关的配置文件主要包含[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。
 
 ## FormExtensionAbility配置
