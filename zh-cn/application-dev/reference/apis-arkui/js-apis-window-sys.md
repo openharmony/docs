@@ -3647,9 +3647,9 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                  | 类型          | 可读 | 可写 | 说明             |
+| 名称                  | 类型          | 只读 | 可选 | 说明             |
 | --------------------- | ----------------- | ---- | ---- | ---------------- |
-| toWindow<sup>9+</sup> | [Window](arkts-apis-window-Window.md) | 是   | 是   | 动画的目标窗口。 |
+| toWindow<sup>9+</sup> | [Window](arkts-apis-window-Window.md) | 否   | 否   | 动画的目标窗口。 |
 
 ### completeTransition<sup>9+</sup>
 
