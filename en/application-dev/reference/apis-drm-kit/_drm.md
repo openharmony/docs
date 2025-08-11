@@ -1502,7 +1502,7 @@ Creates a **MediaKeySystem** instance.
 | Name| Description| 
 | -------- | -------- |
 | name | Pointer to the DRM solution name.| 
-| mediaKeySystem | Double pointer to the **MediaKeySystem** instance.| 
+| mediaKeySystem | Double pointer to the **MediaKeySystem** instance created.| 
 
 **Returns**
 
@@ -1561,7 +1561,7 @@ Destroys a **MediaKeySystem** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| mediaKeySystem | Double pointer to the **MediaKeySystem** instance created.| 
+| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
 
 **Returns**
 

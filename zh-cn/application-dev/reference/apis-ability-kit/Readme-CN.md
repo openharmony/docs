@@ -8,7 +8,7 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage组件容器)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.application (应用基础能力)](js-apis-app-ability-application.md)
-    - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.ApplicationStateChangeCallback (应用进程状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (自动填充框架)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess (子进程基类)](js-apis-app-ability-childProcess.md)

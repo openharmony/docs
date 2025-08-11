@@ -409,20 +409,6 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | orientation  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[Orientation](#orientation19)&gt; | 是   | NavDestination页面对应的Orientation。 |
 
-## Orientation<sup>19+</sup>
-
-type Orientation = Orientation
-
-Orientation实例对象。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-| 类型     | 说明       |
-| ------ | ---------- |
-| [Orientation](../js-apis-window.md#orientation9) | 返回Orientation实例对象。 |
-
 ### enableStatusBar<sup>19+</sup>
 
 enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
@@ -530,6 +516,12 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 当该NavDestination页面显示时触发此回调。|
+
 ### onHidden<sup>10+</sup>
 
 onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -539,6 +531,12 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 当该NavDestination页面隐藏时触发此回调。|
 
 ### onWillAppear<sup>12+</sup>
 
@@ -550,6 +548,12 @@ onWillAppear(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  Callback\<void>   | 是   | 当该Destination挂载之前触发此回调。在该回调中允许修改路由栈，当前帧生效。|
+
 ### onWillShow<sup>12+</sup>
 
 onWillShow(callback: Callback\<void>)
@@ -559,6 +563,12 @@ onWillShow(callback: Callback\<void>)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  Callback\<void>   | 是   | 当该Destination显示之前触发此回调。|
 
 ### onWillHide<sup>12+</sup>
 
@@ -570,6 +580,12 @@ onWillHide(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  Callback\<void>   | 是   | 当该Destination隐藏之前触发此回调。|
+
 ### onWillDisappear<sup>12+</sup>
 
 onWillDisappear(callback: Callback\<void>)
@@ -579,6 +595,12 @@ onWillDisappear(callback: Callback\<void>)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  Callback\<void>   | 是   | 当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。|
 
 ### onBackPressed<sup>10+</sup>
 
@@ -592,6 +614,12 @@ onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;boolean   | 是   | 当与Navigation绑定的导航控制器中存在内容时，此回调生效。当点击返回键时，触发该回调。|
+
 ### onReady<sup>11+</sup>
 
 onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>)
@@ -601,6 +629,12 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>   | 是   | 当NavDestination即将构建子组件之前会触发此回调。|
 
 ### onResult<sup>15+</sup>
 
@@ -718,7 +752,7 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 | 类型 | 说明 |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12) | 当前页面路由配置信息。 |
+| [RouteMapConfig](#routemapconfig12) \|undefined | 当前页面路由配置信息。 |
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
 ## RouteMapConfig<sup>12+</sup>
@@ -803,6 +837,20 @@ NavDestination自定义转场动画的代理函数。
 | 类型      | 说明        |
 |---------|-----------|
 | Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | NavDestination页面的自定义动画集合。如果返回undefined则做系统默认动画。 |
+
+## Orientation<sup>19+</sup>
+
+type Orientation = Orientation
+
+Orientation实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [Orientation](../js-apis-window.md#orientation9) | 返回Orientation实例对象。 |
 
 ## 示例
 
