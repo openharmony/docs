@@ -1,4 +1,9 @@
 # Implementing an Input Method Application
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required. InputMethodExtensionAbility lifecycle:
 
@@ -17,6 +22,7 @@
 
 ## How to Develop
 
+<!--RP1-->
 To implement an input method application, manually create an InputMethodExtensionAbility component in DevEco Studio. The procedure is as follows:
 
 1. In the **ets** directory of the target module, right-click and choose **New** > **Directory** to create a directory named **InputMethodExtensionAbility**.
@@ -33,6 +39,7 @@ To implement an input method application, manually create an InputMethodExtensio
 │         └── KeyboardKeyData.ts			    # Defines keyboard attributes.
 ├── resources/base/profile/main_pages.json  
 ```
+<!--RP1End-->
 
 ## Related Files
 
@@ -58,6 +65,7 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
+<!--RP2-->
 2. **KeyboardController.ts** file:
 
    ```ts
@@ -158,7 +166,7 @@ To implement an input method application, manually create an InputMethodExtensio
    
    export default keyboardController;
    ```
-
+<!--RP2End-->
 3. **KeyboardKeyData.ts** file:
 
    In this file you can define the content displayed on the soft keyboard.
@@ -314,6 +322,7 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
+<!--Del-->
 5. **module.json5** file:<br>Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the **InputMethodExtensionAbility** component.
 
    ```json
@@ -327,15 +336,18 @@ To implement an input method application, manually create an InputMethodExtensio
            "icon": "$media:app_icon",
            "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
-           "exported": true,
+           "exported": true
          }
        ]
      }
    }
    ```
+<!--DelEnd-->
 
-<!--RP1-->
-<!--RP1End-->
+
+<!--RP3-->
+
+<!--RP3End-->
 
 ## Constraints
 
