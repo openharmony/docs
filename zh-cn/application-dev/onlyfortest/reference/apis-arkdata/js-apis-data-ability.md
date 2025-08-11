@@ -1,4 +1,5 @@
 # @ohos.data.dataAbility (DataAbility谓词)
+<!--subsystem:ArkUI-->
 
 ## 概述
 

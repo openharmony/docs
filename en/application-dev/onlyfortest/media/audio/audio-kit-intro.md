@@ -1,4 +1,5 @@
 # OHAudio
+<!--Subsystem:ArkUI-->
 
 api-info==10
 

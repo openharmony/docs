@@ -1,4 +1,5 @@
 # @ohos.data.dataAbility (DataAbility)
+<!--subsystem:ArkUI-->
 
 api-info == null
 ## Overview
