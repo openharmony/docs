@@ -41,10 +41,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     #include <multimedia/player_framework/native_avscreen_capture.h>
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <multimedia/player_framework/native_avbuffer.h>
     #include <native_buffer/native_buffer.h>
-    #include <fcntl.h>
-    #include <string>
-    #include "unistd.h"
+    #include <vector>
     ```
 
 2. 判断当前是否存在未结束的录屏服务实例，若存在，则先停止并释放资源。
@@ -444,9 +443,8 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
 #include <native_buffer/native_buffer.h>
-#include <fcntl.h>
-#include <string>
-#include "unistd.h"
+#include <vector>
+
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
@@ -582,8 +580,8 @@ void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectio
     int* selectType = new int;
     uint64_t* displayId = new uint64_t;
     // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
-    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
-    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+    OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
 }
 
 struct OH_AVScreenCapture *capture;
