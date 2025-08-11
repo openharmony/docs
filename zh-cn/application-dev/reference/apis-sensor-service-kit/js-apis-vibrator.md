@@ -983,7 +983,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 | 类型                            | 说明                                                      |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | 马达设备的信息。 |
+| Array&lt;[VibratorInfo](#vibratorinfo19)&gt; | 马达设备的信息。 |
 
 
 **示例**：

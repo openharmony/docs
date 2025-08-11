@@ -13,7 +13,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Use **depthProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the depth data capabilities, in the format of an **depthProfilesArray** array, supported by the current device. Call [createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput) to create a depth data stream.
+2. Use **depthProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the depth data capabilities, in the format of an **depthProfilesArray** array, supported by the current device. Call [createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13) to create a depth data stream.
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {

@@ -292,6 +292,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_DeleteColorSpaces](#oh_capturesession_deletecolorspaces) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace \*colorSpace) | Deletes color spaces.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetActiveColorSpace](#oh_capturesession_getactivecolorspace) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace \*colorSpace) | Obtains the active color space.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetActiveColorSpace](#oh_capturesession_setactivecolorspace) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace colorSpace) | Sets the active color space.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsMacroSupported](#oh_capturesession_ismacrosupported) ([Camera_CaptureSession](#camera_capturesession) \*session, bool \*isSupported) | Checks whether macro photography is supported. |
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_EnableMacro](#oh_capturesession_enablemacro) ([Camera_CaptureSession](#camera_capturesession) \*session, bool enabled) | Enables or disables macro photography for the camera device. |
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_RegisterCallback](#oh_metadataoutput_registercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | Registers a callback to listen for metadata output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_UnregisterCallback](#oh_metadataoutput_unregistercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | Unregisters the callback used to listen for metadata output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_Start](#oh_metadataoutput_start) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | Starts metadata output.| 
@@ -2850,11 +2852,11 @@ Obtains the concurrency information of the specified cameras. If the return valu
 
 | Name| Description| 
 | -------- | -------- |
-| cameraManager | Pointer to a [Camera_Manager](#camera_manager) instance.| 
-| camera | Pointer to an array of [Camera_Device](_camera___device.md) instances.| 
+| camera | Pointer to the list of cameras, which are defined in the Camera_Device struct. You are advised to include both front and rear cameras obtained by calling [OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice).| 
+| deviceSize | Length of the camera device list. The value must be set to 2 (indicating that both the front and rear cameras are used for concurrency information query). | 
 | deviceSize | Length of the array of [Camera_Device](_camera___device.md) instances.| 
-| cameraConcurrentInfo | Double pointer to an array of the concurrency information obtained, which is specified by [Camera_ConcurrentInfo](_camera___concurrent_info.md).| 
-| infoSize | Pointer to the length of the array of the concurrency information obtained.| 
+| cameraConcurrentInfo | Double pointer to an array of Camera_ConcurrentInfo objects representing the concurrency information of the cameras. This parameter must be set to NULL by default when being passed in. If the camera supports concurrency, it is assigned the Camera_ConcurrentInfo array obtained. If the camera does not support concurrency, the passed-in value is retained and the error code [Camera_ErrorCode](#camera_errorcode-1).CAMERA_SERVICE_FATAL_ERROR is returned.| 
+| infoSize | Pointer to the length of the array. This parameter must be set to NULL by default when being passed in. If the camera supports concurrency, it is assigned the length of the Camera_ConcurrentInfo array obtained. If the camera does not support concurrency, the passed-in value is retained and the error code [Camera_ErrorCode](#camera_errorcode-1).CAMERA_SERVICE_FATAL_ERROR is returned.| 
 
 **Returns**
 
@@ -2864,7 +2866,7 @@ Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 
-- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service, or the camera does not support concurrency.
 
 
 ### OH_CameraManager_GetCameraDevice()
@@ -4271,6 +4273,70 @@ Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 
 - **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+
+
+### OH_CaptureSession_IsMacroSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)
+```
+
+**Description**
+
+Checks whether macro photography is supported.
+
+**Since**: 19
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance. |
+| isSupported | Pointer to the check result for the support of macro photography. |
+
+**Returns**
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+
+
+### OH_CaptureSession_EnableMacro()
+
+```
+Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)
+```
+
+**Description**
+
+Enables or disables macro photography for the camera device.
+
+**Since**: 19
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance. |
+| enabled | Whether to enable or disable macro capability. |
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+
+- **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
 
 
 ### OH_CaptureSession_Preconfig()

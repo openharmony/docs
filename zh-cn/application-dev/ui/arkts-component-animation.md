@@ -202,7 +202,7 @@ export const taskDataArr: Array<TaskData> =
   [
     new TaskData('#317AF7', 0, 'music'),
     new TaskData('#D94838', 1, 'mall'),
-    new TaskData('#DB6B42 ', 2, 'photos'),
+    new TaskData('#DB6B42', 2, 'photos'),
     new TaskData('#5BA854', 3, 'setting'),
     new TaskData('#317AF7', 4, 'call'),
     new TaskData('#D94838', 5, 'music'),

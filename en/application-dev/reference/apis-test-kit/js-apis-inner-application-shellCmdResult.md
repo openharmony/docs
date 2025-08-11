@@ -14,16 +14,16 @@ The **ShellCmdResult** module provides the shell command execution result.
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
-## Attributes
+## ShellCmdResult
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name     | Type  | Readable| Writable| Description                                                        |
+| Name     | Type  | Read-Only| Optional| Description                                                        |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| stdResult | string | Yes  | Yes  | Standard output content.|
-| exitCode  | number | Yes  | Yes  | Result code.|
+| stdResult | string | No  | No  | Standard output of the shell command.|
+| exitCode  | number | No  | No  | Result code of the shell command.|
 
 ## Usage
 

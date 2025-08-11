@@ -794,6 +794,6 @@ The following example registers the **test()** function with the frontend page. 
 
 2. Use an example to check whether the channel is successfully established.
 
-   The following example passes arrays between the application side and the frontend page described in [Usage of Complex Types](#usage-of-complex-types). The debugging result is shown in the following figure.
+   The following example passes arrays between the application side and the frontend page described in [Usage of Complex Types](#usage-of-complex-types).
 
-   ![Example of successful verification using DevTools](figures/webtoolstest.png)
+   

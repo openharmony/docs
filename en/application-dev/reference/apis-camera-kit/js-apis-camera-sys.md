@@ -142,10 +142,11 @@ Creates a **DepthDataOutput** instance. This API returns the result synchronousl
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -183,6 +184,14 @@ Checks whether the camera device can be muted.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | boolean    | Check result. The value **true** means that the camera device can be muted, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             |  Permission verification failed. A non-system application calls a system API.   |
 
 **Example**
 
@@ -238,6 +247,16 @@ Disables the camera in a persistent manner.
 | -------- |-----------------------------| ---- |--------------------------------------------|
 | mute     | boolean                     |  Yes | Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite.                  |
 | type     | [PolicyType](#policytype12) |  Yes | Policy type. For details about the available options, see [PolicyType](#policytype12).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 201               |  Permission denied.                        |
+| 202               |  Not System Application.                  |
+| 7400101           |  Parameter missing or parameter type incorrect.  |
 
 **Example**
 
@@ -427,6 +446,14 @@ Prelaunches the camera device. This API is called when a user clicks the system 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202 | Not System Application. |
 
 **Example**
 
@@ -708,7 +735,7 @@ Releases depth data output resources.
 **Example**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
@@ -1155,10 +1182,11 @@ Adds a surface for delayed preview. This API can run after [Session.commitConfig
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    |  Permission verification failed. A non-system application calls a system API.    |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **Example**
@@ -1209,6 +1237,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -2532,86 +2562,6 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 }
 ```
 
-## MacroQuery<sup>12+</sup>
-
-Provides the API to check the support for macro photography.
-
-### isMacroSupported<sup>11+</sup>
-
-isMacroSupported(): boolean
-
-Checks whether macro photography is supported in the current state. This API must be called after [commitConfig](js-apis-camera.md#commitconfig11-1).
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-|   boolean  | Check result. The value **true** means that macro photography is supported, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID  | Error Message                    |
-|---------|--------------------------|
-| 202     | Not System Application.  |
-
-**Example**
-
-```ts
-function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  return isSupported;
-}
-```
-
-## Macro<sup>11+</sup>
-
-Macro extends [MacroQuery](#macroquery12)
-
-Provides the API to enable macro photography.
-
-### enableMacro<sup>11+</sup>
-
-enableMacro(enabled: boolean): void
-
-Enables or disables macro photography. This API can be called only when macro photography is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                 |
-| -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | Yes  | Whether to enable macro photography. The value **true** means to enable macro photography, and **false** means to disable it.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID   | Error Message                    |
-|----------|--------------------------|
-| 202      | Not System Application.  |
-| 7400102  | Operation not allowed.   |
-| 7400103  | Session not config.      |
-
-**Example**
-
-```ts
-function enableMacro(photoSession: camera.PhotoSessionForSys): void {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  if (isSupported) {
-    photoSession.enableMacro(true);
-  }
-}
-```
-
 ## TripodStatus<sup>13+</sup>
 
 Enumerates the tripod statuses.
@@ -2807,17 +2757,20 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+function getZoomPointInfos(session: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = session.getZoomPointInfos();
+    return zoomPointInfos;
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -3665,7 +3618,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, SceneDetection
 
 Implements a photo session for system applications, which sets the parameters of the normal photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
@@ -3947,7 +3900,7 @@ Enumerates the camera light statuses, which are obtained by calling VideoSession
 
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Aperture, ColorReservation
 
 Implements a video session for system applications, which sets the parameters of the normal video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
@@ -4216,22 +4169,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOn(): void {
-        Logger.info(TAG, 'handleLightStatusOn');
-        try {
-          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOn err:${e}`);
-        }
-    }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4262,22 +4218,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOff(): void {
-        Logger.info(TAG, 'handleLightStatusOff');
-        try {
-          this.mSession?.off('lightStatusChange');
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOff err:${e}`);
-        }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
   }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
+}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
@@ -5298,7 +5257,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | ID  | Error Message       |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **Example**
 
@@ -5346,8 +5304,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | ID  | Error Message       |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **Example**
 
@@ -6719,7 +6675,7 @@ function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
 
 ProfessionalPhotoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-Implements a professional photo session, which sets the parameters of the professional photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a professional photo session, which sets the parameters of the professional photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
 ### on('error')<sup>12+</sup>
 
@@ -7237,7 +7193,7 @@ function unregisterLuminationInfoEvent(professionalPhotoSession: camera.Professi
 
 ProfessionalVideoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-Implements a professional video session, which sets the parameters of the professional video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a professional video session, which sets the parameters of the professional video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
 ### on('error')<sup>12+</sup>
 
@@ -8272,10 +8228,11 @@ Before the setting, call [isLcdFlashSupported](#islcdflashsupported12) to check 
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    | Not System Application. |
 | 7400103                |  Session not config.                                   |
 
 **Example**
@@ -8339,7 +8296,7 @@ Describes the Try AE parameters. Try AE indicates that the hardware reports the 
 
 TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
 
-Implements a time-lapse photo session, which sets the parameters of the time-lapse photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a time-lapse photo session, which sets the parameters of the time-lapse photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
 ### on('error')<sup>12+</sup>
 

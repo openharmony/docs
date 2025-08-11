@@ -138,7 +138,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -200,7 +200,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);

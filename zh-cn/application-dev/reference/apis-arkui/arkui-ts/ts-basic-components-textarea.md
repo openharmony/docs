@@ -36,11 +36,11 @@ TextArea初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
-| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 是 | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 是 | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 是 | 设置TextArea控制器。 |
 
 
 ## 属性
@@ -1248,7 +1248,7 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 
 ### 示例1（设置与获取光标位置）
 
-该示例通过controller实现了光标位置的设置与获取。
+从API version 8开始，该示例通过[controller](#textareacontroller8)实现了光标位置的设置与获取。
 
 ```ts
 // xxx.ets
@@ -1299,7 +1299,7 @@ struct TextAreaExample {
 
 ### 示例2（设置计数器）
 
-该示例通过maxLength、showCounter属性实现了计数器的功能。
+从API version 10开始，该示例通过[maxLength](#maxlength10)、[showCounter](#showcounter10)属性实现了计数器的功能。
 
 ```ts
 // xxx.ets
@@ -1341,7 +1341,7 @@ struct TextAreaExample {
 
 ### 示例3（设置自定义键盘）
 
-该示例通过customKeyboard属性实现了自定义键盘的功能。
+从API version 10开始，该示例通过[customKeyboard](#customkeyboard10)属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -1374,8 +1374,7 @@ struct TextAreaExample {
   build() {
     Column() {
       TextArea({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })// 绑定自定义键盘
         .height(200)
     }
   }
@@ -1386,7 +1385,7 @@ struct TextAreaExample {
 
 ### 示例4（设置输入法回车键类型）
 
-该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+从API version 11开始，该示例通过[enterKeyType](#enterkeytype11)属性实现了动态切换输入法回车键的效果。
 
 ```ts
 // xxx.ets
@@ -1424,7 +1423,7 @@ struct TextAreaExample {
 
 ### 示例5（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
+从API version 12开始，该示例通过[wordBreak](#wordbreak12)属性实现了TextArea不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1470,7 +1469,7 @@ struct TextAreaExample {
 
 ### 示例6（设置文本样式）
 
-该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
+从API version 12开始，该示例通过[lineHeight](#lineheight12)、[letterSpacing](#letterspacing12)、[decoration](#decoration12)属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1518,7 +1517,7 @@ struct TextAreaExample {
 
 ### 示例7（设置文字特性效果）
 
-该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
+从API version 12开始，该示例通过[fontFeature](#fontfeature12)属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 // xxx.ets
@@ -1548,7 +1547,7 @@ struct TextAreaExample {
 
 ### 示例8（自定义键盘避让）
 
-该示例通过自定义键盘实现了键盘避让的功能。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性配置[KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)（从API version 12开始）接口实现了自定义键盘避让的效果。
 
 ```ts
 // xxx.ets
@@ -1606,9 +1605,9 @@ struct TextAreaExample {
       .width("100%")
       .padding({ bottom: 50 })
 
-      TextArea({ controller: this.controller, text: this.inputValue })
+      TextArea({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
         .height(100)
-        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
         .margin(10)
         .border({ width: 1 })
     }
@@ -1619,7 +1618,7 @@ struct TextAreaExample {
 
 ### 示例9（设置文本自适应）
 
-该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性展示了文本自适应字号的效果。
+从API version 12开始，该示例通过[minFontSize](#minfontsize12)、[maxFontSize](#maxfontsize12)、[heightAdaptivePolicy](#heightadaptivepolicy12)属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1660,7 +1659,7 @@ struct TextAreaExample {
 
 ### 示例10（设置文本行间距）
 
-该示例通过lineSpacing属性展示了文本在不同行间距下的展示效果。
+从API version 12开始，该示例通过[lineSpacing](#linespacing12)属性展示了文本在不同行间距下的展示效果。
 
 ```ts
 // xxx.ets
@@ -1698,7 +1697,7 @@ struct TextAreaExample {
 
 ### 示例11（设置自动填充）
 
-该示例通过contentType、enableAutoFill属性实现了文本自动填充的功能。
+从API version 12开始，该示例通过[contentType](#contenttype12)、[enableAutoFill](#enableautofill12)属性实现了文本自动填充的功能。
 
 ```ts
 // xxx.ets
@@ -1734,7 +1733,7 @@ struct TextAreaExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
+从API version 12开始，该示例通过[lineBreakStrategy](#linebreakstrategy12)属性实现了TextArea不同折行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1776,7 +1775,7 @@ struct TextAreaExample {
 
 ### 示例13（支持插入和删除回调）
 
-该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
+从API version 12开始，该示例通过[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)接口实现了插入和删除的功能。
 
 ```ts
 // xxx.ets
@@ -1832,7 +1831,7 @@ struct TextAreaExample {
 
 ### 示例14（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -1892,7 +1891,7 @@ struct TextAreaExample {
 
 ### 示例15（文本设置省略模式）
 
-该示例通过textOverflow、ellipsisMode、maxlines属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[maxlines](#maxlines10)（从API version 10开始）属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
 // xxx.ets
@@ -1961,7 +1960,7 @@ struct EllipsisModeExample {
 
 ### 示例16（自定义复制、剪切、粘贴）
 
-该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，以及如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
+该示例通过[onCopy](#oncopy8)、[onCut](#oncut8)、[onPaste](#onpaste)展示如何监听文本选择菜单的复制、剪切、粘贴按钮，以及如何屏蔽系统粘贴功能并实现自定义的粘贴能力，同时，可以通过[maxFontScale](#maxfontscale18)、[minFontScale](#minfontscale18)属性设置文本最大和最小的字体缩放倍数。
 
 ```ts
 // xxx.ets
@@ -2000,7 +1999,7 @@ struct TextAreaExample {
         .maxFontScale(2)
         .enablePreviewText(true)
         .enableHapticFeedback(true)
-        .stopBackPress(false)//返回键交给其他组件处理
+        .stopBackPress(false)// 返回键交给其他组件处理
         .width(336)
         .height(56)
         .margin(20)
@@ -2036,7 +2035,7 @@ struct TextAreaExample {
 
 ### 示例17（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
+从API version 18开始，该示例通过[minFontScale](#minfontscale18)、[maxFontScale](#maxfontscale18)设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
 <!--code_no_check-->
 ```json
 // 开启应用缩放跟随系统
@@ -2138,7 +2137,7 @@ struct TextAreaExample {
 <!--RP1End-->
 ### 示例18（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+从API version 10开始，该示例通过[setTextSelection](#settextselection10)方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets

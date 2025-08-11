@@ -2,7 +2,7 @@
 
 Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。
 
-使用打印功能前，请在module.json5中配置相关权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用打印功能前，请在module.json5中配置相关权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
   ```
   "requestPermissions":[
@@ -132,7 +132,7 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   }
   ```
 
-## 通过调用应用侧接口拉起打印。
+## 通过调用应用侧接口拉起打印
 应用侧通过调用[createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview-WebviewController.md#createwebprintdocumentadapter11)创建打印适配器，通过将适配器传入打印的print接口调起打印。
 
 ```ts
@@ -151,7 +151,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, this.getUIContext().getHostContext());
+            print.print('example_job_id', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

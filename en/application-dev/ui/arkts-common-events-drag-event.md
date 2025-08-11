@@ -139,7 +139,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
         this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
-              console.log("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap;
@@ -202,7 +202,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None；
+        this.imgState = Visibility.None;
         // Explicitly set the result to successful, and then pass this value to onDragEnd of the drag source.
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -224,7 +224,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
          callback(event);
          return true;
        } catch (e) {
-         console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+         console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
          return false;
        }
     }
@@ -294,7 +294,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+      console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
       return false;
     }
   }
@@ -312,7 +312,7 @@ struct Index {
     this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
-          console.log("error: " + JSON.stringify(error))
+          console.error("error: " + JSON.stringify(error))
           return;
         }
         this.pixmap = pixmap;

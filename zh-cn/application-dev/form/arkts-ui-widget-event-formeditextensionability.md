@@ -1,4 +1,9 @@
 # 卡片编辑开发指导
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 
 桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
 
@@ -77,7 +82,9 @@ struct Extension {
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
   onPageShow() {
-    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    if (!this.session || !this.extensionEvent) {
+      console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    }
   }
   build() {
     Row() {
@@ -138,7 +145,7 @@ export class ExtensionEvent {
 ]
 ```
 
-5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md)配置文件中添加formConfigAbility配置项信息。
+5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中添加formConfigAbility配置项信息。
 
 ```json
 {

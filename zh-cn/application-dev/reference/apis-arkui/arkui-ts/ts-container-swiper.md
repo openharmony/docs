@@ -154,6 +154,10 @@ indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicato
 
 设置外部绑定的导航点组件控制器。
 
+>  **说明：** 
+>
+> 设置外部绑定的导航点组件控制器后，可以和外部导航点结合使用。外部导航点支持自定义设置显示位置和大小。详细介绍可参看[Indicator](ts-swiper-components-indicator.md)。
+
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -1200,8 +1204,11 @@ DotIndicator的构造函数。
 
 >**说明：**
 >
->按组翻页时，数字导航点显示的子节点数量，不包括占位节点。<br/>
+>按组翻页时，数字导航点显示的子节点数量不包括占位节点。
+>
 >数字导航点文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。
+>
+>页码的镜像显示依据为系统的RTL状态。
 
 ### fontColor
 
@@ -1295,7 +1302,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 >**说明：**
 >
-> 按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+> 按组翻页时，数字导航点显示的子节点数量不包括占位节点。
 
 **返回值：** 
 

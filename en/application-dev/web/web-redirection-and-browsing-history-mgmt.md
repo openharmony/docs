@@ -171,4 +171,4 @@ In the following example, when a user clicks the link on the frontend page **cal
   </body>
   </html>
   ```
-![web-redirection-and-browsing-history-mgmt](figures/web-call-telephone.gif)
+

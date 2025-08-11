@@ -359,7 +359,7 @@
           - Component Extension<!--arkts-extend-components-->
             - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)
             - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
-            - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
+            - [\@LocalBuilder Decorator: Maintaining Component Relationships](ui/state-management/arkts-localBuilder.md)
             - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
             - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
@@ -379,14 +379,14 @@
               - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](ui/state-management/arkts-observed-and-objectlink.md)
             - Application State Management<!--arkts-application-state-management-->
               - [Application State Management Overview](ui/state-management/arkts-application-state-management-overview.md)
-              - [LocalStorage: UI State Storage](ui/state-management/arkts-localstorage.md)
-              - [AppStorage: Application-wide UI State Storage](ui/state-management/arkts-appstorage.md)
+              - [LocalStorage: Storing Page-Level UI State](ui/state-management/arkts-localstorage.md)
+              - [AppStorage: Storing Application-wide UI State](ui/state-management/arkts-appstorage.md)
               - [PersistentStorage: Persisting Application State](ui/state-management/arkts-persiststorage.md)
               - [Environment: Device Environment Query](ui/state-management/arkts-environment.md)
             - Other State Management Features<!--arkts-other-state-mgmt-functions-->
               - [Overview of Other State Management Features](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
               - [\@Watch Decorator: Getting Notified of State Variable Changes](ui/state-management/arkts-watch.md)
-              - [$$ Syntax: Two-Way Synchronization of Built-in Components](ui/state-management/arkts-two-way-sync.md)
+              - [$$ Syntax: Implementing Two-Way Synchronization for Built-in Components](ui/state-management/arkts-two-way-sync.md)
               - [\@Track Decorator: Class Object Property-level Update](ui/state-management/arkts-track.md)
               - [Freezing a Custom Component](ui/state-management/arkts-custom-components-freeze.md)
             - [MVVM](ui/state-management/arkts-mvvm.md)
@@ -412,7 +412,7 @@
               - [PersistenceV2: Persisting Application State](ui/state-management/arkts-new-persistencev2.md)
               - [!! Syntax: Two-Way Binding](ui/state-management/arkts-new-binding.md)
               - [Freezing a Custom Component](ui/state-management/arkts-custom-components-freezeV2.md)
-              - [Repeat: Reusing Child Components](ui/state-management/arkts-new-rendering-control-repeat.md)
+              - [Repeat: Reusing Components for Repeated Content Rendering](ui/state-management/arkts-new-rendering-control-repeat.md)
               - [getTarget API: Obtaining Original Objects](ui/state-management/arkts-new-getTarget.md)
               - [makeObserved API: Changing Unobservable Data to Observable Data](ui/state-management/arkts-new-makeObserved.md)
             - [MVVM (V2)](ui/state-management/arkts-mvvm-V2.md)
@@ -1675,7 +1675,6 @@
       - [Event Management](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit<!--contacts-kit-->
       - [Contacts Kit Development](contacts/contacts-intro.md)
-    <!--Del-->
     - Location Kit<!--location-kit-->
       - [Introduction to Location Kit](device/location/location-kit-intro.md)
       - [Applying for Location Permissions (ArkTS)](device/location/location-permission-guidelines.md)
@@ -1685,7 +1684,6 @@
       - [Geofencing (ArkTS)](device/location/geofence-guidelines.md)
       - [FenceExtensionAbility](device/location/fenceExtensionAbility.md)
       - [Samples](device/location/app-samples.md)
-    <!--DelEnd-->
     - Notification Kit<!--notification-kit-->
       - [Introduction to Notification Kit](notification/notification-overview.md)
       - [Requesting Notification Authorization](notification/notification-enable.md)

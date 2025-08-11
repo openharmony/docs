@@ -16,7 +16,7 @@ This error code is reported if an internal system error occurs.
 
 **Possible Cause**
 
-Th internal system processing is abnormal.
+The internal system processing is abnormal.
 
 **Solution**
 
@@ -72,7 +72,7 @@ User cancel.
 
 **Symptom**
 
-This error code is reported if an operation is canceled by the user
+This error code is reported if an operation is canceled by the user.
 
 **Possible Cause**
 

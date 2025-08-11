@@ -792,4 +792,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 针对多线程并发，有以下相关实例可供参考：  
 
-* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+* [聊天实例应用（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)

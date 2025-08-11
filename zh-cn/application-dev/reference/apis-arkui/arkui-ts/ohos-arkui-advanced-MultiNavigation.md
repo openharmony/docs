@@ -483,8 +483,7 @@ getParamByIndex(index: number): Object | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| Object   | 返回对应NavDestination页面的参数信息。 |
-| undefined   | 传入index无效是返回undefined。|
+| Object&nbsp;\|&nbsp;undefined | Object：返回对应NavDestination页面的参数信息。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName
 

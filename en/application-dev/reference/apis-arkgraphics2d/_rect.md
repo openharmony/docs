@@ -49,7 +49,7 @@ Start Y coordinate of the rectangle.
 ## w
 
 ```
-uint32_t Rext::w
+uint32_t Rect::w
 ```
 
 **Description**
@@ -60,7 +60,7 @@ Width of the rectangle.
 ## h
 
 ```
-uint32_t Rext::h
+uint32_t Rect::h
 ```
 
 **Description**

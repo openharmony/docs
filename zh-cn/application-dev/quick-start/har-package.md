@@ -28,7 +28,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 
 ## 创建
-开发者可以通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
+开发者可以通过DevEco Studio创建一个用于调用C++代码的HAR模块，创建过程中需要在Configure New Module界面中开启Enable native。详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
 
 
 ## 开发
@@ -307,7 +307,7 @@ struct Index {
 ```
 ## 编译
 
-HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护，建议[开启混淆能力](../arkts-utils/source-obfuscation.md)。
+HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护，建议[开启混淆](../arkts-utils/source-obfuscation-guide.md#开启源码混淆)。
 
 [混淆能力](../arkts-utils/source-obfuscation.md)开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 
@@ -348,7 +348,7 @@ HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，�
 
 > **场景说明**
 >
->在HAR中使用[Sendable](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/sendable-object)时，开启该配置。
+>在HAR中使用[Sendable](../arkts-utils/arkts-sendable.md)时，开启该配置。
 
 > **使用限制**
 >
