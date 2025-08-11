@@ -2,7 +2,7 @@
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @zhangyafei-echo-->
+<!--Owner: @zhangyafei-echo; @xuzhihao666-->
 <!--SE: @zhangyafei-echo-->
 <!--TSE: @lixueqing513-->
 
@@ -39,6 +39,8 @@ onCreate(launchParam: AbilityConstant.LaunchParam): void
 UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -177,7 +179,7 @@ UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理�
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。                            |
+| void \| Promise\<void> | 无返回结果或无返回结果的Promise对象。                     |
 
 **示例：**
 

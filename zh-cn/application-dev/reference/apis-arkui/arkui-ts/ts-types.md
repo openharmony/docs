@@ -141,6 +141,7 @@
 ## EdgeWidths<sup>9+</sup>
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
+引入该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -148,16 +149,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明       |
-| ------ | ----------------- | ---- | -------- |
-| top    | [Length](#length) | 否    | 组件上边框宽度。 |
-| right  | [Length](#length) | 否    | 组件右边框宽度。 |
-| bottom | [Length](#length) | 否    | 组件下边框宽度。 |
-| left   | [Length](#length) | 否    | 组件左边框宽度。 |
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| top    | [Length](#length) | 否|是    | 组件上边框宽度。 |
+| right  | [Length](#length) | 否|是    | 组件右边框宽度。 |
+| bottom | [Length](#length) | 否|是    | 组件下边框宽度。 |
+| left   | [Length](#length) | 否|是    | 组件左边框宽度。 |
 
 ## LocalizedEdgeWidths<sup>12+</sup>
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
+引入该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -165,16 +167,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明       |
-| ------ | ----------------- | ---- | -------- |
-| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
-| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
-| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件下边框宽度。 |
-| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否 |是   | 组件上边框宽度。 |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否 |是   | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否 |是   | 组件下边框宽度。 |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否 |是   | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
 
 ## BorderRadiuses<sup>9+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
+引用该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -182,16 +185,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                | 必填   | 说明         |
-| ----------- | ----------------- | ---- | ---------- |
-| topLeft     | [Length](#length) | 否    | 组件左上角圆角半径。 |
-| topRight    | [Length](#length) | 否    | 组件右上角圆角半径。 |
-| bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
-| bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| topLeft     | [Length](#length) | 否|是    | 组件左上角圆角半径。 |
+| topRight    | [Length](#length) | 否|是    | 组件右上角圆角半径。 |
+| bottomLeft  | [Length](#length) | 否|是    | 组件左下角圆角半径。 |
+| bottomRight | [Length](#length) | 否|是    | 组件右下角圆角半径。 |
 
 ## LocalizedBorderRadiuses<sup>12+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
+引用该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -199,16 +203,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                | 必填   | 说明         |
-| ----------- | ----------------- | ---- | ---------- |
-| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
-| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
-| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
-| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否|是    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否|是    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否|是    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否|是    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
 
 ## EdgeColors<sup>9+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
+引入该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -216,16 +221,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                              | 必填   | 说明       |
-| ------ | ------------------------------- | ---- | -------- |
-| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
-| right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
-| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
-| left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| top    | [ResourceColor](#resourcecolor) | 否|是    | 组件上边框颜色。 |
+| right  | [ResourceColor](#resourcecolor) | 否|是    | 组件右边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否|是    | 组件下边框颜色。 |
+| left   | [ResourceColor](#resourcecolor) | 否|是    | 组件左边框颜色。 |
 
 ## LocalizedEdgeColors<sup>12+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
+引入该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -233,16 +239,17 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                              | 必填   | 说明       |
-| ------ | ------------------------------- | ---- | -------- |
-| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
-| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从右至左显示语言模式下为组件左边框颜色。 |
-| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
-| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从右至左显示语言模式下为组件右边框颜色。 |
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| top    | [ResourceColor](#resourcecolor) | 否|是    | 组件上边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否|是    | 组件右边框颜色。<br />从右至左显示语言模式下为组件左边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否|是    | 组件下边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否|是    | 组件左边框颜色。<br />从右至左显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
 边框样式，用于描述组件边框四条边的样式。
+引入该对象时，至少传入一个参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -250,12 +257,12 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                       | 必填   | 说明       |
-| ------ | ---------------------------------------- | ---- | -------- |
-| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件上边框样式。 |
-| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件右边框样式。 |
-| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
-| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否|是    | 组件上边框样式。 |
+| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否|是    | 组件右边框样式。 |
+| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否|是    | 组件下边框样式。 |
+| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否|是    | 组件左边框样式。 |
 
 ## Offset
 
@@ -414,7 +421,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 ## ConstraintSizeOptions
 
-设置约束尺寸，组件布局时，进行尺寸范围限制。
+约束尺寸类型，用于描述组件布局时对尺寸大小的范围限制。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -422,16 +429,20 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                | 必填   | 说明      |
-| --------- | ----------------- | ---- | ------- |
-| minWidth  | [Length](#length) | 否    | 元素最小宽度。 |
-| maxWidth  | [Length](#length) | 否    | 元素最大宽度。 |
-| minHeight | [Length](#length) | 否    | 元素最小高度。 |
-| maxHeight | [Length](#length) | 否    | 元素最大高度。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| minWidth  | [Length](#length) | 否|是    | 元素最小宽度。 |
+| maxWidth  | [Length](#length) | 否|是    | 元素最大宽度。 |
+| minHeight | [Length](#length) | 否|是    | 元素最小高度。 |
+| maxHeight | [Length](#length) | 否|是    | 元素最大高度。 |
+
+>  **说明：**
+>
+>  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
 
 ## SizeOptions
 
-设置宽高尺寸。
+宽高尺寸类型，用于描述组件布局时的宽高尺寸大小。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -439,10 +450,10 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明    |
-| ------ | ----------------- | ---- | ----- |
-| width  | [Length](#length) | 否    | 元素宽度。 |
-| height | [Length](#length) | 否    | 元素高度。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| width  | [Length](#length) | 否 |是   | 元素宽度。 |
+| height | [Length](#length) | 否 |是   | 元素高度。 |
 
 
 ## BorderOptions
@@ -451,14 +462,14 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 参数类型                                                     | 必填 | 说明               |
-| ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-border.md#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-universal-attributes-border.md#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-universal-attributes-border.md#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-universal-attributes-border.md#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。|
-| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。     |
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](./ts-types.md#edgewidths9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](./ts-types.md#localizededgewidths12)<sup>12+</sup> | 否|是   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](./ts-types.md#edgecolors9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](./ts-types.md#localizededgecolors12)<sup>12+</sup> | 否|是   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12)<sup>12+</sup> | 否|是   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9)<sup>9+</sup> | 否   | 设置边框样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。    |
+| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12) | 否|是  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。|
+| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12) | 否|是   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。     |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -612,59 +623,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | offsetX | number \| [Resource](#resource) | 否 | 是 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
 | offsetY | number \| [Resource](#resource) | 否 | 是 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
-## SafeAreaType<sup>10+</sup>
-
-扩展安全区域的枚举类型。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述                                       |
-| -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
-| CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
-| KEYBOARD | 软键盘区域。                               |
-
-## SafeAreaEdge<sup>10+</sup>
-
-扩展安全区域的方向。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TOP    | 上方区域。 |
-| BOTTOM | 下方区域。 |
-| START  | 前部区域。 |
-| END    | 尾部区域。 |
-
-## LayoutSafeAreaType<sup>12+</sup>
-
-扩展布局安全区域的枚举类型。
-
-| 名称     | 值   | 说明                                             |
-| -------- | --- |------------------------------------------ |
-| SYSTEM   |  0 |设置后，组件的布局范围可扩展至[组件级安全区（safeAreaPadding）](./ts-universal-attributes-size.md#safeareapadding14)和页面级安全区（状态栏、导航栏、挖孔区）。   |
-
-## LayoutSafeAreaEdge<sup>12+</sup>
-
-扩展安全区域的方向。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 值 | 描述       |
-| ------ | --- | ---------- |
-| TOP    | 0 | 上方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BOTTOM | 1 | 下方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| START<sup>20+</sup>      | 2 | 前部区域。LTR模式时表示左侧区域，RTL模式表示右侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| END<sup>20+</sup>        | 3 |尾部区域。LTR模式时表示右侧区域，RTL模式表示左侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| VERTICAL<sup>20+</sup>   | 4 |垂直区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| HORIZONTAL<sup>20+</sup> | 5 |水平区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| ALL<sup>20+</sup>        | 6 |全部区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-
 ## TouchPoint<sup>11+</sup>
 
 配置跟手点坐标，不配置时，默认居中。
@@ -677,23 +635,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
 | Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
-
-## PixelRoundPolicy<sup>11+</sup>
-
-指定组件级像素取整的方向。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 类型                | 必填   | 说明                   |
-| ------ | ----------------- | ---- | -------------------- |
-| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐方式。 |
-| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐方式。 |
-| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐方式。 |
-| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐方式。 |
 
 ## VoidCallback<sup>12+</sup>
 
@@ -1012,29 +953,6 @@ setTextSelection选中文字时的配置。
 | ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | accessibilityPreferred | boolean | 否 | 是   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
 
-## LayoutPolicy<sup>15+</sup>
-
-用于组件宽度和高度的布局策略。
-
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称      | 类型   | 只读 | 可选 | 说明 |
-| --------- | ------ | ---- | ---- |---------- |
-| matchParent | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应父组件布局时，其大小与父组件内容区相等，不包括padding，border和safeAreaPadding。<br>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应子组件（内容）时，其大小与子组件（内容）相等，并且其大小受父组件内容区大小约束。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件自适应子组件（内容）时，其大小与子组件（内容）相等，并且其大小不受父组件内容区大小约束。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-
->  **说明：**
->
-> - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
->
-> - wrapContent和fixAtIdealSize场景，组件无法通过内容确定大小时，如果组件大小有默认值，则按照默认值进行测算；如果没有默认值，则按照宽高(0,0)进行测算。
-> 
-> - 容器设置wrapContent，并且有子组件设置matchParent时，容器先由确定大小的子组件撑大，设置matchParent的孩子再匹配父组件大小；如果没有确定大小的孩子，容器和孩子大小均为0。
->
-> - LayoutPolicy优先级低于constraintSize。
-
 ## TextContentControllerOptions<sup>15+</sup>
 
 用于设置输入框插入字符时的配置选项。
@@ -1059,3 +977,54 @@ setTextSelection选中文字时的配置。
 | ----- | ------------------------------------------------------------ | ---- | -- | -------------------------------------- |
 | start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条起始边距。<br/>默认值：0，单位：vp |
 | end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条末尾边距。<br/>默认值：0，单位：vp |
+
+## DirectionalEdgesT\<T><sup>12+</sup>
+
+边缘宽度类型，用于描述组件边缘不同方向的宽度。支持全球化。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| start   | T    |否|否| 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
+| end    | T    | 否|否|终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
+| top  | T    | 否|否|顶部边缘的属性。 |
+| bottom | T    | 否|否|底部边缘的属性。 |
+
+## Bias对象说明
+
+设置组件在锚点约束下的偏移参数。
+<br/>以水平方向Bias为例，其值为组件到左锚点的距离 D<sub>start</sub>与组件到水平方向锚点间总距离 D<sub>start</sub> +  D<sub>end</sub>的比值。镜像语言下，D<sub>start</sub>为组件到右锚点的距离。下图中D<sub>width</sub>表示组件宽度。
+<br/>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
+<br/>竖直方向同理，其值为组件到上锚点的距离D<sub>top</sub>与组件到竖直方向锚点间总距离D<sub>top</sub> + D<sub>bottom</sub>的比值。下图中D<sub>height</sub>表示组件高度。
+<br/>![bias_vertical_example.png](figures/bias_vertical_example.png)
+
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| horizontal  | number | &nbsp;否 |是 | 水平方向上的bias值。<br/>当子组件的width属性有正确值并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| vertical  | number | &nbsp;否 |是 | 垂直方向上的bias值。<br/>当子组件的height属性有正确值并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+
+## SymbolGlyphModifier<sup>12+</sup>
+
+type SymbolGlyphModifier = SymbolGlyphModifier
+
+SymbolGlyphModifier类型，用于设置自定义图标小符号。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 返回当前的SymbolGlyphModifier。 |

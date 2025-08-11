@@ -97,14 +97,14 @@
    let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
-     for (let i = 0; i < usbInterfaces.length; i++) {
-       usbEndpoints = usbInterfaces[i].endpoints;
+     for (let j = 0; j < usbInterfaces.length; l++) {
+       usbEndpoints = usbInterfaces[j].endpoints;
        usbEndpoint = usbEndpoints.find((value) => {
          // direction为请求方向，0表示写入数据，128表示读取数据
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
        })
        if (usbEndpoint !== undefined) {
-         usbInterface = usbInterfaces[i];
+         usbInterface = usbInterfaces[j];
          break;
        }
      }

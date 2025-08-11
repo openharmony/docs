@@ -1,5 +1,11 @@
 # @ohos.net.eap (扩展认证)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @foredward-->
+<!--SE: @h00918518-->
+<!--TSE: @WIFIroam-test-->
+
 该模块提供了第三方客户端介入802.1X认证（一种基于端口的网络接入控制协议）流程的机制，支撑客户端的定制认证等功能。
 
 > **说明：** 
@@ -193,9 +199,9 @@ startEthEap(netId: number, profile: EthEapProfile): void
 |201 | Permission denied.          |
 |33200001 | Invalid netId.          |
 |33200003 | Invalid profile.          |
-|33200009 | Netmanager stop.          |
-|33200010 | Invalid eth state.          |
-|33200099 | Internal error.          |
+|33200009 | netmanager stop.          |
+|33200010 | invalid eth state.          |
+|33200099 | internal error.          |
 
 **示例：**
 
@@ -243,7 +249,6 @@ logOffEthEap(netId: number): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId | number|是|以太网卡Id。|
-| profile | [EthEapProfile](#etheapprofile)|是|EAP配置。|
 
 **错误码**：
 

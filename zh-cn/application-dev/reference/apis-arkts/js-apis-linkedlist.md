@@ -230,7 +230,7 @@ has(element: T): boolean
 let linkedList = new LinkedList<string>();
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
-console.info("result:", result);  // result: 0
+console.info("result:", result);  // result: true
 ```
 
 ### get

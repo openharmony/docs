@@ -176,10 +176,10 @@ OH_PixelmapNative* TestStrideWithAllocatorType() {
     void *pixels = nullptr;
     OH_PixelmapNative_AccessPixels(pixelmap, &pixels);
     OH_PixelmapNative *newPixelmap = nullptr;
+    OH_ImageSourceNative_CreatePixelmap(imageSource, options, &newPixelmap);
     uint32_t dstRowStride = srcInfo.width * GetPixelFormatBytes(srcInfo.pixelFormat);
     void *newPixels = nullptr;
     OH_PixelmapNative_AccessPixels(newPixelmap, &newPixels);
-    OH_PixelmapNative_UnaccessPixels(newPixelmap);
     uint8_t *src = reinterpret_cast<uint8_t *>(pixels);
     uint8_t *dst = reinterpret_cast<uint8_t *>(newPixels);
     uint32_t dstSize = srcInfo.byteCount;
@@ -195,7 +195,10 @@ OH_PixelmapNative* TestStrideWithAllocatorType() {
         dst += dstRowStride;
         dstSize -= dstRowStride;
     }
+    OH_PixelmapNative_UnaccessPixels(newPixelmap);
     OH_PixelmapNative_UnaccessPixels(pixelmap);
+    OH_DecodingOptions_Release(options);
+    OH_ImageSourceNative_Release(imageSource);
     return newPixelmap;
 }
 ```

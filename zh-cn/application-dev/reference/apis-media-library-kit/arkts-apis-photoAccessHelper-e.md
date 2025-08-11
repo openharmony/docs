@@ -1,4 +1,9 @@
 # Enums
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -177,32 +182,28 @@ PhotoSubtype是不同[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)类
 
 枚举，可选择的媒体文件类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                                    |  值 | 说明       |
 |---------------------------------------|  ---- |----------|
-| IMAGE_TYPE                            |  'image/*' | 图片类型。    |
-| VIDEO_TYPE                            |  'video/*' | 视频类型。    |
-| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。 |
+| IMAGE_TYPE                            |  'image/*' | 图片类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| VIDEO_TYPE                            |  'video/*' | 视频类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | 动态照片类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## RecommendationType<sup>11+</sup>
 
 枚举，推荐的图片类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| QR_OR_BAR_CODE  |  1 | 二维码或条码。 |
-| QR_CODE |  2 | 二维码。 |
-| BAR_CODE |  3 | 条码。 |
-| ID_CARD |  4 | 身份证。 |
-| PROFILE_PICTURE |  5 | 头像。 |
+| QR_OR_BAR_CODE  |  1 | 二维码或条码。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| QR_CODE |  2 | 二维码。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| BAR_CODE |  3 | 条码。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ID_CARD |  4 | 身份证。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PROFILE_PICTURE |  5 | 头像。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PASSPORT<sup>12+</sup> |  6 | 护照。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BANK_CARD<sup>12+</sup> |  7 | 银行卡。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

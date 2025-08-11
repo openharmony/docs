@@ -22,6 +22,15 @@ ConsoleMessage的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                               |
+| --------- | ----------------------------------------- | ---- | ---------------------------------- |
+| message | string | 是   | ConsoleMessage的日志输出信息。 |
+| sourceId | string | 是   | 网页源文件的路径和文件名。 |
+| lineNumber | number | 是   | ConsoleMessage的行号。 |
+| messageLevel | [MessageLevel](./arkts-basic-components-web-e.md#messagelevel) | 是   | ConsoleMessage的日志级别。 |
+
 ## constructor<sup>9+</sup>
 
 constructor()

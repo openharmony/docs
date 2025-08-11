@@ -247,9 +247,9 @@ aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 **参数：**
 
-| 参数名  | 类型                                     | 必填 | 说明                |
-|--------|-------------------------------------------|------|---------------------|
-| params | Record\<string, Object \| undefined \| null> | 否 | 自定义组件的构造参数。|
+| 参数名  | 类型                                      | 必填 | 说明                |
+|--------|-------------------------------------------|-----|---------------------|
+| params | Record\<string, Object \| undefined \| null> |   是   | 自定义组件的构造参数。|
 
 ```ts
 // xxx.ets
@@ -432,7 +432,19 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 | 参数名    | 类型                                       | 必填    | 说明         |
 |--------|------------------------------------------|------------|-------------------------|
-| theme | [Theme](../js-apis-arkui-theme.md#theme) | 是     | 自定义组件当前生效的Theme对象。|
+| theme | [Theme](#theme12) | 是     | 自定义组件当前生效的Theme对象。|
+
+## Theme<sup>12+</sup>
+
+type Theme = Theme
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。 |
 
 V1：
 

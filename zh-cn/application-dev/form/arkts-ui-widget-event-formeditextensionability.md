@@ -143,7 +143,7 @@ export class ExtensionEvent {
 ]
 ```
 
-5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md)配置文件中添加formConfigAbility配置项信息。
+5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中添加formConfigAbility配置项信息。
 
 ```json
 {

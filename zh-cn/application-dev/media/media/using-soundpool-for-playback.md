@@ -153,19 +153,19 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 12. 调用off('loadComplete')方法注销加载完成监听。
 
     ```ts
-    soundPool.off('loadComplete');
+    await this.soundPool!.off('loadComplete');
     ```
 
 13. 调用off('playFinished')方法注销播放完成监听。
 
     ```ts
-    soundPool.off('playFinished');
+    await this.soundPool!.off('playFinished');
     ```
 
 14. 调用off('error')方法注销错误类型监听。
 
     ```ts
-    soundPool.off('error');
+    await this.soundPool!.off('error');
     ```
 
 15. 调用release方法释放SoundPool实例。
