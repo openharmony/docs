@@ -1,5 +1,11 @@
 # @ohos.power (系统电源管理)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 该模块主要提供重启、关机、查询屏幕状态等接口。
 
 > **说明：**
