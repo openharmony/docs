@@ -88,12 +88,6 @@
                 this.controller.stopPlayback()
               })
               .margin(5)
-            // 按钮：是否静音播放。
-            Button('mute')
-              .onClick(() => {
-                this.isMuted = !this.isMuted
-              })
-              .margin(5)
           }
           .alignItems(VerticalAlign.Center)
           .justifyContent(FlexAlign.Center)
