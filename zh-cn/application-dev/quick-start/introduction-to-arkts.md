@@ -2075,7 +2075,7 @@ class C1 {
   // ...
 }
 ```
-如果注解中定义了数组类型的字段，则使用数字字面量来设置该字段的值。
+如果注解中定义了数组类型的字段，则使用数组字面量来设置该字段的值。
 ```typescript
 @interface ClassPreamble {
   authorName: string;
