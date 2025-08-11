@@ -244,7 +244,7 @@ uinput --keyboard --up <key>
 
 **使用示例**
 ```bash
-# 按下"A"键并抬起。
+# 按下"a"键并抬起。
 uinput -K -d 2017 -u 2017
 ```
 
@@ -295,7 +295,7 @@ uinput --keyboard --interval <time>
 
 **使用示例**
 ```bash
-# 按下键盘‘a’键间隔500ms后释放。
+# 按下键盘"a"键间隔500ms后释放。
 uinput -K -d 2017 -i 500 -u 2017
 ```
 
