@@ -1497,6 +1497,7 @@
         - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
         - [wukong稳定性工具使用指导](application-test/wukong-guidelines.md)
       - 调试命令<!--debugging-commands-->
+        - [SDK命令行工具简介](tools/command-line-tools-overview.md)
         - [aa工具](tools/aa-tool.md)
         - [bm工具](tools/bm-tool.md)
         - 打包拆包工具<!--packing-unpacking-->
