@@ -259,6 +259,7 @@
   - [构建弹窗](ndk-build-pop-up-window.md)
   - [构建自定义组件](ndk-build-custom-components.md)
   - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+  - [构建渲染节点](ndk-embed-render-components.md)
   - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
   - [自定义绘制](arkts-user-defined-draw.md)
   - [查询和操作自定义节点](ndk-node-query-operate.md)
