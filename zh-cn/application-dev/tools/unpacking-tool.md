@@ -92,7 +92,7 @@ java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> 
 | --out-path | 是         | NA            | 拆包目标文件路径。                                           |
 | --force    | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
 | --libs     | 否         | true或者false | 是否按照包中libs目录内若干架构指数拆分。如果为true，表示按照架构进行拆分。 |
-| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为fasle时该参数不生效。 |
+| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为false时该参数不生效。 |
 
 ### HSP包模式拆包指令
 
@@ -132,7 +132,7 @@ java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> 
 | --out-path | 是         | NA            | 拆包目标文件路径。                                           |
 | --force    | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
 | --libs     | 否         | true或者false | 是否按照包中libs目录内若干架构指数拆分。如果为true，表示按照架构进行拆分。 |
-| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为fasle时该参数不生效。 |
+| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为false时该参数不生效。 |
 
 ### APPQF模式拆包指令
 

@@ -52,7 +52,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
-      console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
+      console.info('onCallback successfully, changeData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback);
     await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
@@ -100,7 +100,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('getAlbums successfully, albumUri: ' + album.albumUri);
 
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
-      console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
+      console.info('onCallback successfully, changeData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(album.albumUri, false, onCallback);
     album.albumName = 'newAlbumName' + Date.now();
@@ -141,7 +141,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let onCallback = (changeData: photoAccessHelper.ChangeData) => {
-    console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback successfully, changeData: ' + JSON.stringify(changeData));
   }
   phAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -194,10 +194,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
     let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
-      console.info('onCallback1, changData: ' + JSON.stringify(changeData));
+      console.info('onCallback1, changeData: ' + JSON.stringify(changeData));
     }
     let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
-      console.info('onCallback2, changData: ' + JSON.stringify(changeData));
+      console.info('onCallback2, changeData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
