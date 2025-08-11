@@ -69,7 +69,6 @@ add(attributes: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -131,7 +130,6 @@ addSync(attributes: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -191,7 +189,6 @@ remove(query: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -244,7 +241,6 @@ removeSync(query: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -304,7 +300,6 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -362,7 +357,6 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -424,7 +418,6 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -486,7 +479,6 @@ preQuerySync(query: AssetMap): Uint8Array
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -496,6 +488,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let challenge: Uint8Array = asset.preQuerySync(query);
+console.info(`Succeeded in pre-querying with sync, the challenge is: `, challenge);
 ```
 
 ## asset.query
@@ -546,7 +539,6 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -559,6 +551,7 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
     // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
   }
   console.info(`Succeeded in querying Asset.`);
 });
@@ -612,7 +605,6 @@ querySync(query: AssetMap): Array\<AssetMap>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -625,6 +617,7 @@ let res: Array<asset.AssetMap> = asset.querySync(query);
 for (let i = 0; i < res.length; i++) {
   // 解析属性。
   let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
 }
 console.info(`Succeeded in querying Asset.`);
 ```
@@ -669,7 +662,6 @@ postQuery(handle: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
@@ -713,7 +705,6 @@ postQuerySync(handle: AssetMap): void
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
@@ -760,7 +751,6 @@ querySyncResult(query: AssetMap): Promise\<SyncResult>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
