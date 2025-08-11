@@ -1,5 +1,10 @@
 # 窗口开发概述
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @Pakoo007-->
+<!--SE: @ki_ja-->
+<!--TSE: @qinliwen0417-->
 
 ## 窗口模块的定义
 
