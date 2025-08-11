@@ -817,7 +817,6 @@ on(type: 'authTip', callback: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
@@ -892,7 +891,6 @@ off(type: 'authTip', callback?: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
