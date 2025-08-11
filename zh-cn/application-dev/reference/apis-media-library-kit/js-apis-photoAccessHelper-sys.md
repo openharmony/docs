@@ -1,4 +1,9 @@
 # @ohos.file.photoAccessHelper (相册管理模块)(系统接口)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -9572,7 +9577,7 @@ async function example(context: Context) {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId             |string               |是 | 卡片的ID，由图库创建卡片时提供。 |
-|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。创建和更新卡片时assetUris不可为空，移除卡片时assetUris可以不传。  |
+|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。<br>创建和更新卡片时，assetUris不可为空。<br>单次创建或更新卡片时，assetUris中的uri个数如果超出500个，则只创建或更新500个uri的监听，超出500个后的uri不会被注册。<br>移除卡片时，assetUris可省略。  |
 
 ## ResourceType<sup>11+</sup>
 

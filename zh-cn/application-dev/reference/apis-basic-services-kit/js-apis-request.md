@@ -2475,7 +2475,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件，仅支持上传任务。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimetype，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API Version 18 开始废弃，建议使用contentType替代。 |
+| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimeType，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API version 18 开始废弃，建议使用contentType替代。 |
 | contentType<sup>18+</sup> | string | 否 | 文件内容类型，默认值为文件名后缀。该选项会被填写到HTTP表单指定的Content-Type字段中。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

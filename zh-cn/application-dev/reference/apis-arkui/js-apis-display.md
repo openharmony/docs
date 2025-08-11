@@ -167,7 +167,7 @@ import { display } from '@kit.ArkUI';
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
 ## DisplayPhysicalResolution<sup>12+</sup>
-折叠设备的显示模式以及对应的物理屏幕分辨率信息。
+设备的显示模式以及对应的物理屏幕分辨率信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -175,9 +175,9 @@ import { display } from '@kit.ArkUI';
 
 | 名称                        | 类型      | 只读 | 可选 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
-| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数为大于0的整数。|
-| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数为大于0的整数。|
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 设备的显示模式，非折叠设备时值为0。 |
+| physicalWidth   | number | 是 | 否 | 设备的宽度，单位为px，该参数为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 设备的高度，单位为px，该参数为大于0的整数。|
 
 ## ScreenShape<sup>18+</sup>
 
@@ -277,7 +277,7 @@ try {
 
 getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
 
-获取当前折叠设备的显示模式以及对应的物理屏幕分辨率信息对象。使用Promise异步回调。
+获取当前设备支持的所有显示模式及其对应的物理屏幕分辨率信息对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

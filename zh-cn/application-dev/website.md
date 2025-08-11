@@ -1521,9 +1521,9 @@
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
           - [hiprofiler](dfx/hiprofiler.md)
+          - [uinput](dfx/uinput.md)
         <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
-          - [uinput](dfx/uinput.md)
         <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
         - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
@@ -2858,6 +2858,7 @@
             - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
+            - [动态SymbolGlyphModifier属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-symbolglyphmodifier.md)
           - 其他<!--other-property-->
             - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
             - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
@@ -4732,6 +4733,7 @@
           - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-ohaudio-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioSession_StateChangedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-statechangedevent.md)
           - [OH_AudioSessionManager](reference/apis-audio-kit/capi-ohaudio-oh-audiosessionmanager.md)
           - [OH_AudioStreamManager](reference/apis-audio-kit/capi-ohaudio-oh-audiostreammanager.md)
           - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-ohaudio-oh-audiovolumemanager.md)

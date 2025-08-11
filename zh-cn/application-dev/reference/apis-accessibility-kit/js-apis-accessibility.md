@@ -1,5 +1,11 @@
 # @ohos.accessibility (辅助应用)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 本模块提供辅助应用查询能力，包括获取辅助应用列表、获取辅助应用启用状态、获取无障碍字幕配置等。
 
 > **说明：**

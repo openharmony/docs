@@ -39,7 +39,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片。builder的根组件宽高为0时，无法生成拖拽显示的图片导致拖拽失败。builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片。builder的根组件宽高为0时，无法生成拖拽显示的图片导致拖拽失败。builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                                                   |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DragEventParam](#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调。                                     |
 
@@ -151,7 +151,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：** 
@@ -311,7 +311,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
-| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：** 
@@ -1149,12 +1149,12 @@ struct DragControllerPage {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-| 名称 | 说明                                                          |
-| ------ | ------------------------------------------------------------ |
-| BEGIN  | 拖拽进入组件范围静止一段时间，被识别被悬停状态。                  |
-| UPDATE | 拖拽已处于悬停状态，如果继续静止会定期触发UPDATE通知，以检查悬停状态。 |
-| END    | 如果最后一次UPDATE通知后拖拽继续静止会进入END，整个悬停检测结束。进入END后拖拽需要移出组件范围后再次进入组件或移入组件内子组件才会重新开始悬停检测。 |
-| CANCEL | 拖拽进入BEGIN后，在手指/鼠标抬起、切换窗口、息屏、移出组件范围、移入组件内子组件或组件内移动超过检测阈值等场景会触发CANCEL通知，悬停检测中断。 |
+| 名称 | 值|说明                                                          |
+| ------ | --------------------- |--------------------------------------- |
+| BEGIN  | - |拖拽进入组件范围静止一段时间，被识别被悬停状态。                  |
+| UPDATE | - |拖拽已处于悬停状态，如果继续静止会定期触发UPDATE通知，以检查悬停状态。 |
+| END    | - |如果最后一次UPDATE通知后拖拽继续静止会进入END，整个悬停检测结束。进入END后拖拽需要移出组件范围后再次进入组件或移入组件内子组件才会重新开始悬停检测。 |
+| CANCEL | - |拖拽进入BEGIN后，在手指/鼠标抬起、切换窗口、息屏、移出组件范围、移入组件内子组件或组件内移动超过检测阈值等场景会触发CANCEL通知，悬停检测中断。 |
 
 ## DragSpringLoadingConfiguration<sup>20+</sup>
 
@@ -1164,12 +1164,12 @@ struct DragControllerPage {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型   | 必填 | 说明                                   |
-| :--------------------- | ------ | ---- | ---------------------------------------------------- |
-| stillTimeLimit         | number | 否   | 进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
-| updateInterval         | number | 否   | 进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
-| updateNotifyCount      | number | 否   | 进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
-| updateToFinishInterval | number | 否   | 从UPDATE状态到END状态的最长等待时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
+| 名称                 | 类型   |只读| 可选 | 说明                                   |	
+| :--------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
+| stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
+| updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
+| updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
+| updateToFinishInterval | number | 否   |    是   |从UPDATE状态到END状态的最长等待时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
 
 ## SpringLoadingDragInfos<sup>20+</sup>
 
