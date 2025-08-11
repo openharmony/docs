@@ -1627,7 +1627,7 @@ struct Index {
 
               this.certManager.grantAppPm().then(result => {
                 console.log(`grantAppPm, URI==========${result}`);
-                # event.handler.confirm(result);
+                event.handler.confirm(result);
               })
               return true;
             })
