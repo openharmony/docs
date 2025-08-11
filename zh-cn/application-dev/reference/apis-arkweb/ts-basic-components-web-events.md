@@ -1435,11 +1435,11 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
   **示例：**
 
-  应用安装私有凭据实现双向认证
+安装私有凭证以实现双向认证。
 
-  ```ts
-  // xxx.ets API9
- import { webview } from '@kit.ArkWeb';
+```ts
+// xxx.ets API9
+import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { promptAction } from '@kit.ArkUI';
@@ -1468,7 +1468,7 @@ struct Index {
             }
           });
       })
-      Button('加载需要客户端ssl证书的网站')
+      Button('加载需要客户端SSL证书的网站')
         .onClick(() => {
           this.controller.loadUrl("https://client.badssl.com")
         })
@@ -1500,162 +1500,159 @@ struct Index {
           }
         })
         .onTitleReceive(event  => {
-          console.log("title receivedd " + event.title);
+          console.log("title received " + event.title);
         })
 
     }
   }
 }
-  ```
+```
 
-  对接证书管理实现双向认证。
+对接证书管理，实现双向认证功能。
+  
+1. 构造 `GlobalContext` 单例对象。
+    ```ts
+    // GlobalContext.ets
+    export class GlobalContext {
+      private constructor() {}
+      private static instance: GlobalContext;
+      private _objects = new Map<string, Object>();
 
-  1. 构造单例对象GlobalContext。
+      public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+          GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
+      }
 
-     ```ts
-     // GlobalContext.ets
-     export class GlobalContext {
-       private constructor() {}
-       private static instance: GlobalContext;
-       private _objects = new Map<string, Object>();
+      getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+      }
 
-       public static getContext(): GlobalContext {
-         if (!GlobalContext.instance) {
-           GlobalContext.instance = new GlobalContext();
-         }
-         return GlobalContext.instance;
-       }
+      setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+      }
+    }
+    ```
 
-       getObject(value: string): Object | undefined {
-         return this._objects.get(value);
-       }
+2. 构造 `CertManagerService` 对象以对接证书管理。
+    ```ts
+    / CertManagerService.ets
+    mport { bundleManager, common, Want } from "@kit.AbilityKit";
+    import { BusinessError } from "@kit.BasicServicesKit";
+    import { GlobalContext } from './GlobalContext';
 
-       setObject(key: string, objectClass: Object): void {
-         this._objects.set(key, objectClass);
-       }
-     }
-     ```
+    export default class CertManagerService {
+      private static sInstance: CertManagerService;
+      private authUri = "";
+      private appUid = "";
 
+      public static getInstance(): CertManagerService {
+        if (CertManagerService.sInstance == null) {
+          CertManagerService.sInstance = new CertManagerService();
+        }
+        return CertManagerService.sInstance;
+      }
 
-  2. 构造对象CertManagerService对接证书管理。
-
-     ```ts
-     // CertManagerService.ets
-     import { bundleManager, common, Want } from "@kit.AbilityKit";
-      import { BusinessError } from "@kit.BasicServicesKit";
-      import { GlobalContext } from './GlobalContext';
-
-      export default class CertManagerService {
-        private static sInstance: CertManagerService;
-        private authUri = "";
-        private appUid = "";
-
-        public static getInstance(): CertManagerService {
-          if (CertManagerService.sInstance == null) {
-            CertManagerService.sInstance = new CertManagerService();
-          }
-          return CertManagerService.sInstance;
+      async grantAppPm(): Promise<string> {
+        let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+        // 注：com.example.myapplication需要写实际应用名称
+        try {
+          const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
+            .catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+              return null;
+            });
+          this.appUid = data?.appInfo?.uid?.toString() ?? '';
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+        } catch (err) {
+          let message = (err as BusinessError).message;
+          console.error('getBundleInfoForSelf failed: %{public}s', message);
         }
 
-        async grantAppPm(): Promise<string> {
-          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-          // 注：com.example.myapplication需要写实际应用名称
-          try {
-            const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
-              .catch((err: BusinessError) => {
-                console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-                return null;
-              });
-            this.appUid = data?.appInfo?.uid?.toString() ?? '';
-            console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-          } catch (err) {
-            let message = (err as BusinessError).message;
-            console.error('getBundleInfoForSelf failed: %{public}s', message);
-          }
-
-          // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
-          await abilityContext.startAbilityForResult(
-            {
-              bundleName: "com.ohos.certmanager",
-              abilityName: "MainAbility",
-              uri: "requestAuthorize",
-              parameters: {
-                appUid: this.appUid, // 传入申请应用的appUid
+        // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+        let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
+        await abilityContext.startAbilityForResult(
+          {
+            bundleName: "com.ohos.certmanager",
+            abilityName: "MainAbility",
+            uri: "requestAuthorize",
+            parameters: {
+              appUid: this.appUid, // 传入申请应用的appUid
+            }
+          } as Want)
+          .then((data: common.AbilityResult) => {
+            if (!data.resultCode && data.want) {
+              if (data.want.parameters) {
+                this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
               }
-            } as Want)
-            .then((data: common.AbilityResult) => {
-              if (!data.resultCode && data.want) {
-                if (data.want.parameters) {
-                  this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
-                }
+            }
+          })
+        return this.authUri;
+      }
+    }
+    ```
+3. 实现双向认证功能。
+    ```ts
+    import { webview } from '@kit.ArkWeb';
+    import CertManagerService from './CertMgrService';
+    import { promptAction } from '@kit.ArkUI';
+
+    @Entry
+    @Component
+    struct Index {
+      controller: WebviewController = new webview.WebviewController();
+      certManager = CertManagerService.getInstance();
+
+      aboutToAppear(): void {
+        webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+      }
+
+      build() {
+        Column() {
+          Button('加载需要客户端SSL证书的网站')
+            .onClick(() => {
+              this.controller.loadUrl("https://client.badssl.com")
+            })
+          Web({
+            src: "https://www.bing.com/",
+            controller: this.controller,
+          }).domStorageAccess(true)
+            .fileAccess(true)
+            .onPageBegin(event => {
+              console.log("extensions onpagebegin url " + event.url);
+            })
+            .onClientAuthenticationRequest((event) => {
+              console.log("onClientAuthenticationRequest ");
+
+              this.certManager.grantAppPm().then(result => {
+                console.log(`grantAppPm, URI==========${result}`);
+                # event.handler.confirm(result);
+              })
+              return true;
+            })
+            .onSslErrorEventReceive(e => {
+              console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+            })
+            .onErrorReceive((event) => {
+              if (event) {
+                promptAction.showToast({
+                  message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+                  alignment: Alignment.Center
+                })
+                console.log('getErrorInfo:' + event.error.getErrorInfo());
+                console.log('getErrorCode:' + event.error.getErrorCode());
+                console.log('url:' + event.request.getRequestUrl());
               }
             })
-          return this.authUri;
+            .onTitleReceive(event  => {
+              console.log("title received " + event.title);
+            })
+
         }
       }
-     ```
-  3. 实现双向认证。
-     ```ts
-     import { webview } from '@kit.ArkWeb';
-     import CertManagerService from './CertMgrService';
-     import { promptAction } from '@kit.ArkUI';
-
-     @Entry
-     @Component
-     struct Index {
-       controller: WebviewController = new webview.WebviewController();
-       certManager = CertManagerService.getInstance();
-
-       aboutToAppear(): void {
-         webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
-       }
-
-       build() {
-         Column() {
-           Button('加载需要客户端ssl证书的网站')
-             .onClick(() => {
-               this.controller.loadUrl("https://client.badssl.com")
-             })
-           Web({
-             src: "https://www.bing.com/",
-             controller: this.controller,
-           }).domStorageAccess(true)
-             .fileAccess(true)
-             .onPageBegin(event => {
-               console.log("extensions onpagebegin url " + event.url);
-             })
-             .onClientAuthenticationRequest((event) => {
-               console.log("onClientAuthenticationRequest ");
-
-               this.certManager.grantAppPm().then(uri => {
-                 console.log(`grantAppPm, uri==========${uri}`);
-                 # event.handler.confirm(uri);
-               })
-               return true;
-             })
-             .onSslErrorEventReceive(e => {
-               console.log(`onSslErrorEventReceive->${e.error.toString()}`);
-             })
-             .onErrorReceive((event) => {
-               if (event) {
-                 promptAction.showToast({
-                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
-                   alignment: Alignment.Center
-                 })
-                 console.log('getErrorInfo:' + event.error.getErrorInfo());
-                 console.log('getErrorCode:' + event.error.getErrorCode());
-                 console.log('url:' + event.request.getRequestUrl());
-               }
-             })
-             .onTitleReceive(event  => {
-               console.log("title receivedd " + event.title);
-             })
-
-         }
-       }
-     }
-     ```
+    }
+    ```
 
 ## onPermissionRequest<sup>9+</sup>
 
