@@ -791,7 +791,7 @@ OH_Drawing_DestroyTypography(typographyCopy);
 | void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle\* style, OH_Drawing_Brush* foregroundBrush) | 添加前景画刷，渐变着色器属性依附于前景画刷中。 | 
 
 
-示例及示意效果如下所示：
+示例及效果如下所示：
 ```c++
 OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
