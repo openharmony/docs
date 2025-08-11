@@ -1465,7 +1465,7 @@ int32_t OH_ArkUI_RenderNodeUtils_SetMask(ArkUI_RenderNodeHandle node, ArkUI_Rend
 
 **描述：**
 使用遮罩配置为渲染节点应用遮罩。<br>         遮罩创建方式如下：<br>         1.给遮罩图层增加亮度和线性颜色滤镜。<br>         2.在该滤镜下绘制遮罩图形。<br>         3.
-将原节点图像作为源颜色，遮罩图形为目标颜色，通过[BlendMode.SRC_IN](../apis-arkgraphics2d/js-apis-graphics-drawing.md#BlendMode)方式混合成Mask图像。
+将原节点图像作为源颜色，遮罩图形为目标颜色，通过[BlendMode.SRC_IN](../apis-arkgraphics2d/js-apis-graphics-drawing.md#blendmode)方式混合成Mask图像。
 
 **起始版本：** 20
 
