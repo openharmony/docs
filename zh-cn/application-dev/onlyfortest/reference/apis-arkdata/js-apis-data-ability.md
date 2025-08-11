@@ -1,5 +1,10 @@
 # @ohos.data.dataAbility (DataAbility谓词)
-<!--subsystem:ArkUI-->
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @ccllee-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
