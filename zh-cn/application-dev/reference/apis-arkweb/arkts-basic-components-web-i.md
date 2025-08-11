@@ -127,8 +127,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ------- | ---- |  ---- |---------------------------------------- |
-| supportDefaultIntrinsicSize | boolean | 否    | 否 | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
-| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 否 | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
+| supportDefaultIntrinsicSize | boolean | 否    | 是 | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
+| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 是 | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
 
 ## OnAlertEvent<sup>12+</sup>
 
@@ -245,7 +245,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ------------|---------------------------- |
-| renderExitReason | [RenderExitReason](./arkts-basic-components-web-e.md#renderexitreason9) | 否 | 是 | 渲染进程异常退出的具体原因。 |
+| renderExitReason | [RenderExitReason](./arkts-basic-components-web-e.md#renderexitreason9) | 否 | 否 | 渲染进程异常退出的具体原因。 |
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
@@ -470,8 +470,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| navigationStartTick    | number | 否 | 是 | 启动页面加载开始的时间，单位以微秒表示。          |
-| firstContentfulPaintMs | number | 否 | 是 | 从启动页面加载开始到第一次绘制内容的时间，单位是以毫秒表示。 |
+| navigationStartTick    | number | 否 | 否 | 启动页面加载开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 否 | 否 | 从启动页面加载开始到第一次绘制内容的时间，单位是以毫秒表示。 |
 
 ## OnLoadInterceptEvent<sup>12+</sup>
 
@@ -558,8 +558,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| origin | string | 否 | 是 | 指定源的字符串索引。                       |
-| geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 是 | 通知Web组件用户操作行为。                       |
+| origin | string | 否 | 否 | 指定源的字符串索引。                       |
+| geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
@@ -569,8 +569,8 @@ Web同层渲染的配置。
 
 | 名称           | 类型                                | 只读 | 可选 | 说明              |
 | -------------  | ------------------------------------| ----- | ----- | ------------------ |
-| visibility     | boolean                             | 否     | 是 | 可见性。<br>true表示可见，false表示不可见。         |
-| embedId        | string                              | 否     | 是 | 同层渲染标签的唯一id。  |
+| visibility     | boolean                             | 否     | 否 | 可见性。<br>true表示可见，false表示不可见。         |
+| embedId        | string                              | 否     | 否 | 同层渲染标签的唯一id。  |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
@@ -618,15 +618,15 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                | 类型                                  | 只读 | 可选 | 说明                        |
 |-------------------| ------------------------------------ | ---- | ---- |---------------------------|
-| id                | string             | 否    | 否 | 同层标签的id信息。             |
-| type              | string                              | 否    | 否 | 同层标签的type信息，统一为小写字符。   |
-| src               | string                              | 否    | 否 | 同层标签的src信息。            |
-| width             | number  | 否    | 否 | 同层标签的宽，单位为px。          |
-| height            | number                              | 否    | 否 | 同层标签的高，单位为px。          |
-| url               | string                              | 否    | 否 | 同层标签的url信息。            |
-| tag<sup>12+</sup> | string              | 否    | 否 | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | 否 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
-| position<sup>12+</sup>          | Position            | 否    | 否 | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
+| id                | string             | 否    | 是 | 同层标签的id信息。             |
+| type              | string                              | 否    | 是 | 同层标签的type信息，统一为小写字符。   |
+| src               | string                              | 否    | 是 | 同层标签的src信息。            |
+| width             | number  | 否    | 是 | 同层标签的宽，单位为px。          |
+| height            | number                              | 否    | 是 | 同层标签的高，单位为px。          |
+| url               | string                              | 否    | 是 | 同层标签的url信息。            |
+| tag<sup>12+</sup> | string              | 否    | 是 | 标签名，统一为大写字符。              |
+| params<sup>12+</sup>            | Map<string, string> | 否    | 是 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
+| position<sup>12+</sup>          | Position            | 否    | 是 | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
 
@@ -671,8 +671,8 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                     | 类型   | 只读 | 可选 | 说明                                   |
 | ------------------------ | ------ | ---- | ---- | -------------------------------------- |
-| navigationStartTime      | number | 否 | 否  | 导航条加载时间，单位以微秒表示。       |
-| firstMeaningfulPaintTime | number | 否 | 否   | 绘制页面主要内容时间，单位以毫秒表示。 |
+| navigationStartTime      | number | 否 | 是  | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 否 | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
 
 ## LargestContentfulPaint<sup>12+</sup>
 
@@ -682,12 +682,12 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                                     |
 | ------------------------- | ------ | ---- | ---- | ---------------------------------------- |
-| navigationStartTime       | number | 否 | 否   | 导航条加载时间，单位以微秒表示。         |
-| largestImagePaintTime     | number | 否 | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
-| largestTextPaintTime      | number | 否 | 否   | 最大文本加载时间，单位是以毫秒表示。     |
-| largestImageLoadStartTime | number | 否 | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
-| largestImageLoadEndTime   | number | 否 | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
-| imageBPP                  | number | 否 | 否   | 最大图片像素位数。                           |
+| navigationStartTime       | number | 否 | 是   | 导航条加载时间，单位以微秒表示。         |
+| largestImagePaintTime     | number | 否 | 是   | 最大图片加载的时间，单位是以毫秒表示。   |
+| largestTextPaintTime      | number | 否 | 是   | 最大文本加载时间，单位是以毫秒表示。     |
+| largestImageLoadStartTime | number | 否 | 是   | 最大图片开始加载时间，单位是以毫秒表示。 |
+| largestImageLoadEndTime   | number | 否 | 是   | 最大图片结束记载时间，单位是以毫秒表示。 |
+| imageBPP                  | number | 否 | 是   | 最大图片像素位数。                           |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -697,10 +697,10 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------ | ---- | ---- | --------------------- |
-| status     | [NativeEmbedStatus](./arkts-basic-components-web-e.md#nativeembedstatus11)             | 否    | 否    | 同层标签生命周期状态。 |
-| surfaceId  | string                              | 否 | 否    | NativeImage的psurfaceid。  |
-| embedId | string                              | 否 | 否    | 同层标签的唯一id。  |
-| info  | [NativeEmbedInfo](./arkts-basic-components-web-i.md#nativeembedinfo11)  | 否 | 否    | 同层标签的详细信息。       |
+| status     | [NativeEmbedStatus](./arkts-basic-components-web-e.md#nativeembedstatus11)             | 否    | 是    | 同层标签生命周期状态。 |
+| surfaceId  | string                              | 否 | 是    | NativeImage的psurfaceid。  |
+| embedId | string                              | 否 | 是    | 同层标签的唯一id。  |
+| info  | [NativeEmbedInfo](./arkts-basic-components-web-i.md#nativeembedinfo11)  | 否 | 是    | 同层标签的详细信息。       |
 
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
@@ -710,9 +710,9 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------  | ---- | ---- | --------------------- |
-| embedId     | string   | 否    | 否 | 同层标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否 | 否    | 手指触摸动作信息。 |
-| result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否 | 否    | 通知Web组件手势事件的消费结果。 |
+| embedId     | string   | 否    | 是 | 同层标签的唯一id。 |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否 | 是    | 手指触摸动作信息。 |
+| result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否 | 是    | 通知Web组件手势事件的消费结果。 |
 
 ## NativeEmbedMouseInfo<sup>20+</sup>
 
@@ -722,9 +722,9 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------  | ---- | ---- | --------------------- |
-| embedId     | string   | 否    | 否    | 同层标签的唯一id。 |
-| mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 否    | 鼠标/触摸板点击/长按信息。 |
-| result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 否    | 通知Web组件鼠标事件的消费结果。 |
+| embedId     | string   | 否    | 是    | 同层标签的唯一id。 |
+| mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 是    | 鼠标/触摸板点击/长按信息。 |
+| result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 是   | 通知Web组件鼠标事件的消费结果。 |
 
 ## OnLoadStartedEvent<sup>20+</sup>
 
