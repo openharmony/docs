@@ -1,5 +1,11 @@
 # 开放权限（系统授权）
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 此列表内所有权限均为系统授权（system_grant）的开放权限，面向所有应用开放。
 
 应用申请了system_grant权限后，系统将在用户安装应用时，自动把相应权限授予给应用。

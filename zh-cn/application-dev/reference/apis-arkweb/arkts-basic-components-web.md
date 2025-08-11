@@ -1,4 +1,9 @@
 # 组件描述
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
+<!--TSE: @ghiker-->
 
 提供具有网页显示能力的Web组件，[@ohos.web.webview](arkts-apis-webview.md)提供Web控制能力。
 

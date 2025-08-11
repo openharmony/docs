@@ -4,25 +4,25 @@ The photoAccessHelper module provides APIs to listen for changes of specified me
 
 > **NOTE**
 >
-> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> Before you get started, obtain a PhotoAccessHelper instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 >
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Unless otherwise specified, the PhotoAccessHelper instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call photoAccessHelper APIs. If the code for obtaining the PhotoAccessHelper instance is missing, an error will be reported to indicate that photoAccessHelper is not defined.
 
-The APIs related to media asset change notifications can be called asynchronously only in callback mode. This topic covers only some of these APIs. For details about all available APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+The APIs related to media asset change notifications can be called asynchronously only in callback mode. This topic covers only some of these APIs. For details about all available APIs, see [Module Description](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md).
 
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 ## Listening for a URI
 
-Use [registerChange](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#registerchange) to listen for a URI. When the observed object changes, the registered callback will be invoked to return the value.
+Use [registerChange](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#registerchange) to listen for a URI. When the observed object changes, the registered callback will be invoked to return the value.
 
 ### Listening for a Media Asset
 
-Register a listener for a **PhotoAsset** instance. When the observed **PhotoAsset** changes, the registered callback will be invoked to return the change.
+Register a listener for a PhotoAsset instance. When the observed PhotoAsset changes, the registered callback will be invoked to return the change.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to register a listener for an image and then delete the image. A callback will be invoked when the image is deleted.
@@ -38,11 +38,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -71,7 +67,7 @@ Register a listener for an album. When the observed album changes, the registere
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to register a listener for a user album and then rename the album. A callback will be invoked when the album is renamed.
@@ -88,11 +84,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');
@@ -129,11 +121,11 @@ You can set **forChildUris** to **true** to enable fuzzy listening.
 
 ### Listening for All PhotoAssets
 
-Register a listener for all **PhotoAsset** objects. When a **PhotoAsset** object changes, the registered callback will be invoked.
+Register a listener for all PhotoAsset instance. When a PhotoAsset instance changes, the registered callback will be invoked.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to register a listener for all media assets and then delete a media asset. A callback will be invoked when the media asset is deleted.
@@ -149,11 +141,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let onCallback = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
@@ -177,11 +165,11 @@ async function example() {
 
 ## Unregistering Listening for a URI
 
-Use [unRegisterChange](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#unregisterchange) to unregister the listening for the specified URI. Multiple listeners can be registered for a URI. If multiple listener callbacks exist, you can specify a callback to unregister a specific listener. If no callback is specified, all listeners of the URI will be unregistered.
+Use [unRegisterChange](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#unregisterchange) to unregister the listening for the specified URI. Multiple listeners can be registered for a URI. If multiple listener callbacks exist, you can specify a callback to unregister a specific listener. If no callback is specified, all listeners of the URI will be unregistered.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to unregister the listening for an image and then delete the image. The unregistered listener callback will not be invoked when the image is deleted.
@@ -197,11 +185,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
   let fetchOptions: photoAccessHelper.FetchOptions = {

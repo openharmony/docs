@@ -16,7 +16,7 @@ This error code is reported if an invalid parameter value is passed to the API.
 
 **Possible Causes**
 
-Parameter verification ha failed. The probable cause is that the value of an input parameter is invalid.
+Parameter verification has failed. The probable cause is that the value of an input parameter is invalid.
  
 **Solution**
 
@@ -35,7 +35,7 @@ This error code is reported if an invalid parameter value is passed to the API.
 
 **Possible Causes**
 
-Parameter verification ha failed. The probable cause is that the value of an input parameter is invalid.
+Parameter verification has failed. The probable cause is that the value of an input parameter is invalid.
  
 **Solution**
 

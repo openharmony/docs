@@ -1,4 +1,10 @@
 # SceneType
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
 本模块提供3D图形中常用的数据类型。
 
 > **说明：** 

@@ -104,7 +104,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组修改成功返回true；修改失败（要加入的分组中有任意分组的itemsCount不是正整数）返回false。 |
+| boolean | 分组修改成功返回true；修改失败（要加入的分组中有任意分组的itemsCount不是非负数）返回false。 |
 
 
 ### push<sup>12+</sup>
@@ -127,7 +127,7 @@ push(section: SectionOptions): boolean
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组添加成功返回true，添加失败（新分组的itemsCount不是正整数）返回false。 |
+| boolean | 分组添加成功返回true，添加失败（新分组的itemsCount不是非负数）返回false。 |
 
 ### update<sup>12+</sup>
 
@@ -150,7 +150,7 @@ update(sectionIndex: number, section: SectionOptions): boolean
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否更新成功，新分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组是否更新成功，新分组的itemsCount不是非负数时返回false。 |
 
 ### values<sup>12+</sup>
 
@@ -194,7 +194,7 @@ FlowItem分组配置信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|-----|-----|----|-----|
-| itemsCount | number | 否 | 否 | 分组中FlowItem数量，必须是正整数。若splice、push、update方法收到的分组中有分组的itemsCount小于0，则不会执行该方法。 |
+| itemsCount | number | 否 | 否 | 分组中FlowItem数量，必须是非负数。若splice、push、update方法收到的分组中有分组的itemsCount小于0，则不会执行该方法。 避免使用itemsCount为0的分组，这可能导致布局计算异常。|
 | crossCount | number | 否 | 是 | 纵向布局时为列数，横向布局时为行数，默认值：1。小于1的按默认值处理。 |
 | columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 是 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
 | rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 是 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
@@ -486,6 +486,12 @@ onReachStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达起始位置时触发的回调。 |
+
 ### onReachEnd
 
 onReachEnd(event: () => void)
@@ -496,9 +502,15 @@ onReachEnd(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 瀑布流内容到达末尾位置时触发的回调。 |
+
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
@@ -522,14 +534,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 | 参数名 | 类型                                                    | 必填 | 说明                       |
 | ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
-
-**返回值：** 
-
-| 类型                     | 说明                 |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | 实际滑动量，单位vp。 |
+| event | [OnScrollFrameBeginCallback](ts-container-scroll.md#onscrollframebegincallback18)   | 是   | 每帧滚动开始回调函数。 |
 
 ### onScrollIndex<sup>11+</sup>
 

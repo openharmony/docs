@@ -1,5 +1,11 @@
 # USB设备管理
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 场景介绍
 
 当有USB设备插入时，可以通过`usbManager`获取一些USB设备的基本信息，如设备类型、支持的功能等。 Host侧主要通过封装的pipe来完成和USB设备的通信。在OpenHarmony系统中，USB管理服务是核心组件，负责管理与USB设备的连接和通信。通过USB管理服务，应用程序可以检测USB设备的连接与断开，管理USB设备的权限请求和设备配置，以及进行数据传输和设备控制。

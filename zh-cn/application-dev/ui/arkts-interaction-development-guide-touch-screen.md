@@ -1,4 +1,9 @@
 # 支持触屏输入事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ![touch devices](figures/touch-devices.png)
 

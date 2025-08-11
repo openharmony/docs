@@ -1,5 +1,9 @@
 # 在自绘编辑框中使用输入法开发指导 (C/C++)
-
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 ## 场景介绍
 

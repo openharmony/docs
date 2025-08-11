@@ -1,5 +1,11 @@
 # 事件上报
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 HiAppEvent提供接口用于处理上报事件。
 
 ## 接口说明
@@ -139,7 +145,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      })
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中依次点击按钮“addProcessorTest”、“userIdTest”、“userPropertyTest”、“writeTest”、“removeProcessorTest”，则成功通过数据处理者进行一次事件上报。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中依次点击按钮“addProcessorTest”、“userIdTest”、“userPropertyTest”、“writeTest”、“removeProcessorTest”，则成功通过数据处理者进行一次事件上报。
 
    最终，事件处理者成功接收到事件数据，并在Log窗口看到按钮点击事件打点成功的日志：
 

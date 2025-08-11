@@ -1,4 +1,9 @@
 # @ohos.arkui.theme(主题换肤)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--SE: @lushi871202-->
+<!--TSE: @sally__-->
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 
@@ -142,6 +147,8 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名       | 类型                           | 必填 | 说明             |
 |--------------|------------------------------|------|----------------|

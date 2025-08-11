@@ -1,4 +1,9 @@
 # 几何形状绘制（C/C++）
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 
 ## 场景介绍
@@ -181,12 +186,12 @@ OH_Drawing_PenSetWidth(pen, 10);
 // 设置 画笔转角样式
 OH_Drawing_PenSetJoin(pen, LINE_ROUND_JOIN);
 // 设置画布中的画笔
-OH_Drawing_CanvasAttachPen(canvas, pen); 
+OH_Drawing_CanvasAttachPen(canvas, pen);
 // 创建画刷，此例对闭合路径进行了颜色填充，所以需要使用画刷
 OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
 OH_Drawing_BrushSetColor(brush , OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
 // 设置画布中的画刷
-OH_Drawing_CanvasAttachBrush(canvas, brush ); 
+OH_Drawing_CanvasAttachBrush(canvas, brush);
 int len = 551;
 float aX = 630;
 float aY = 551;

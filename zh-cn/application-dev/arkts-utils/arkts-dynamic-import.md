@@ -1,8 +1,8 @@
 # 动态加载
 
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
-<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
 <!--SE: @ctw-ian-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -94,8 +94,8 @@ import('harlibrary').then((ns:ESObject) => {
 
 >**说明：**
 > 
-> 1.当前所有import中使用的模块名都是依赖方oh-package.json5文件中dependencies项的别名。
-> 2.本地模块在依赖方的dependencies中配置的别名建议与moduleName以及packageName三者一致。moduleName指的是被依赖的HSP/HAR的module.json5中配置的名字，packageName指的是被依赖的HSP/HAR的oh-package.json5中配置的名字。
+> 1.当前所有import中使用的模块名都是依赖方oh-package.json5文件中dependencies项的别名。</br>
+> 2.本地模块在依赖方的dependencies中配置的别名建议与moduleName以及packageName三者一致。moduleName指的是被依赖的HSP/HAR的module.json5中配置的名字，packageName指的是被依赖的HSP/HAR的oh-package.json5中配置的名字。</br>
 > 3.import一个模块名，实际的行为是import该模块的入口文件，一般为Index.ets/ts。
 
 ## 动态import实现中的关键点
@@ -120,13 +120,13 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myhar').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
 
   // 可使用 await 处理动态import (必须在 async 函数内使用)
   async function asyncDynamicImport() {
     let ns:ESObject = await import('myhar');
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   }
   ```
 
@@ -151,7 +151,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myhar/Index').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -176,7 +176,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHsp').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -201,7 +201,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHsp/Index').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -258,7 +258,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('../Calc').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -349,7 +349,7 @@ import(filePath).then((obj: ESObject) => {
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myhar';
   import(packageName).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5
@@ -385,7 +385,7 @@ import(filePath).then((obj: ESObject) => {
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myHsp';
   import(packageName).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5
@@ -477,7 +477,7 @@ import(filePath).then((obj: ESObject) => {
   // HAP's src/main/ets/pages/Index.ets
   let filePath = '../Calc';
   import(filePath).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5

@@ -1,5 +1,10 @@
 # 查看HiTraceMeter日志
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 ## 通过DevEco Studio可视化界面查看
 

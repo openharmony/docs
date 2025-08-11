@@ -1,4 +1,9 @@
 # @ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理功能，包括创建相册和访问、修改相册中的媒体数据。
 
@@ -1138,9 +1143,11 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 类型                    | 说明                                                      |
-| ----------------------- | --------------------------------------------------------- |
-| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 非Sendable类型Album。 |
+**返回值：**
+
+| 类型                         | 说明                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 返回非Sendable类型的Album。 |
 
 **错误码：**
 

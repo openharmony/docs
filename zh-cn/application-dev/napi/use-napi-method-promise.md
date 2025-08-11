@@ -1,7 +1,7 @@
 # 使用Node-API调用返回值为promise的ArkTS方法
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -20,8 +20,6 @@
     ```c++
     #include "hilog/log.h"
     #include "napi/native_api.h"
-    #include <napi/common.h>
-    #include <pthread.h>
     
     //解析Promise结果的回调
     static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
@@ -73,8 +71,8 @@
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
         // 创建参数数组
-        napi_value argv[2] = {onResolve, onReject};
-        napi_call_function(env, promise, thenFunc, 2, argv, nullptr);
+        napi_value argv1[2] = {onResolve, onReject};
+        napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
     
         return nullptr;
     }
@@ -115,39 +113,30 @@
     export const callArkTSAsync: (func: Function) => object;
     ```
 
-- 编译配置
-1. CMakeLists.txt文件需要按照以下配置：
+- CMakeLists.txt文件需要按照以下配置：
+
     ```
     // CMakeLists.txt
     # the minimum version of CMake.
     cmake_minimum_required(VERSION 3.4.1)
     project(myapplication)
-    
+
     set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-    
+
     if(DEFINED PACKAGE_FIND_FILE)
         include(${PACKAGE_FIND_FILE})
     endif()
-    
+
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+
+    add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+    add_definitions( "-DLOG_TAG=\"testTag\"" )
+
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
     ```
-2. 需要在工程的build-profile.json5文件中进行以下配置：
-    ```json
-    {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/pages/ObjectUtils.ets"
-                    ]
-                }
-            }
-        }
-    }
-    ```
+
 - ArkTS代码示例
     ```ts
     // index.ets

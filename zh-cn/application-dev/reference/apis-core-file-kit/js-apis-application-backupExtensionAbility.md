@@ -1,4 +1,9 @@
 # @ohos.application.BackupExtensionAbility (备份恢复扩展能力)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应用提供扩展的备份恢复能力。
 
@@ -297,22 +302,36 @@ onProcess(): string
 **示例：**
 
   ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+  import { BackupExtensionAbility } from '@kit.CoreFileKit';
   import { taskpool } from '@kit.ArkTS';
 
-  interface ProgressInfo {
-    name: string, // appName
-    processed: number, // 已处理的数据 
-    total: number, // 总数
-    isPercentage: boolean // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
+  @Sendable
+  class MigrateProgressInfo {
+    private migrateProgress: string = '';
+    private name: string = "test"; // appName
+    private processed: number = 0; // 已处理的数据
+    private total: number = 100; // 总数
+    private isPercentage: boolean = true // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
+
+    getMigrateProgress(): string {
+      this.migrateProgress = `{"progressInfo": [{"name": "${this.name}", "processed": "${this.processed}", "total": "${
+        this.total}", "isPercentage": "${this.isPercentage}"}]}`;
+      return this.migrateProgress;
+    }
+
+    updateProcessed(processed: number) {
+      this.processed = processed;
+    }
   }
 
   class BackupExt extends BackupExtensionAbility {
+    private progressInfo: MigrateProgressInfo = new MigrateProgressInfo();
+
     // 如下代码中，appJob方法为模拟的实际业务代码，args为appJob方法的参数，用于提交到taskpool中，开启子线程进行工作
     async onBackup() {
       console.log(`onBackup begin`);
       let args = 100; // args为appJob方法的参数
-      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, this.progressInfo, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
@@ -325,7 +344,7 @@ onProcess(): string
     async onRestore() {
       console.log(`onRestore begin`);
       let args = 100; // args为appJob方法的参数
-      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, this.progressInfo, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
@@ -338,25 +357,20 @@ onProcess(): string
 
     onProcess(): string {
       console.log(`onProcess begin`);
-      let process: string = `{
-       "progressInfo":[
-         {
-          "name": "callact", // appName
-          "processed": 100, // 已处理的数据 
-          "total": 1000, //总数
-          "isPercentage", true // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
-         }
-       ]
-      }`;
-      console.log(`onProcess end`);
-      return JSON.stringify(process);
+      return this.progressInfo.getMigrateProgress();
     }
   }
 
   @Concurrent
-  function appJob(args: number) : string {
-    // 业务实际逻辑
+  function appJob(progressInfo: MigrateProgressInfo, args: number) : string {
     console.log(`appJob begin, args is: ` + args);
+    // 在业务执行时刷新已处理进度
+    let currentProcessed: number = 0;
+    // 模拟业务实际逻辑
+    for (let i = 0; i < args; i++) {
+      currentProcessed = i;
+      progressInfo.updateProcessed(currentProcessed);
+    }
     return "ok";
   }
   ```

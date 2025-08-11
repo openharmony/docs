@@ -1,6 +1,6 @@
 # ArkGuard源码混淆工具概述
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
 <!--SE: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

@@ -1,5 +1,11 @@
 # HiAppEvent_Config
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 用于设置系统事件触发条件的配置对象。

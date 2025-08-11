@@ -28,15 +28,15 @@ MenuItem(value?: MenuItemOptions | CustomBuilder)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                        | 必填 | 说明                             |
-| --------- | ------------------------------------------- | ---- | -------------------------------------- |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在左侧的图标信息路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| content   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item的内容信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| endIcon   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在右侧的图标信息路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| labelInfo | [ResourceStr](ts-types.md#resourcestr)      | 否   | 定义结束标签信息，如快捷方式Ctrl+C等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否   | 用于构建二级菜单。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在左侧的HMSymbol图标信息路径。配置该项时，原先startIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在右侧的HMSymbol图标信息路径。配置该项时，原先endIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称      | 类型                                        | 只读 | 可选 | 说明                             |
+| --------- | ------------------------------------------- | ---- | -------------------------------------- | -------------------------------------- |
+| startIcon | [ResourceStr](ts-types.md#resourcestr)      | 否   | 是  | item中显示在左侧的图标信息路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| content   | [ResourceStr](ts-types.md#resourcestr)      | 否   | 是  | item的内容信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| endIcon   | [ResourceStr](ts-types.md#resourcestr)      | 否   | 是  | item中显示在右侧的图标信息路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| labelInfo | [ResourceStr](ts-types.md#resourcestr)      | 否   | 是  | 定义结束标签信息，如快捷方式Ctrl+C等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否   | 是  | 用于构建二级菜单。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
+| symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 是  | item中显示在左侧的HMSymbol图标信息路径。配置该项时，原先startIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 是  | item中显示在右侧的HMSymbol图标信息路径。配置该项时，原先endIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## 属性

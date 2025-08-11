@@ -1,4 +1,9 @@
 # 获取并使用公共目录
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 ## 通过 ArkTS 接口获取并访问公共目录
 

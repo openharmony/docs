@@ -1,4 +1,9 @@
 # 应用侧调用前端页面函数
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 应用侧可以通过[runJavaScript()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascriptext10)方法调用前端页面的JavaScript相关函数。
 
@@ -12,6 +17,9 @@
   <!-- index.html -->
   <!DOCTYPE html>
   <html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
   <body>
   <button type="button" onclick="callArkTS()">Click Me!</button>
   <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为黄色、调用runJavaScriptParam方法后字体为绿色、调用runJavaScriptCodePassed方法后字体为红色</h1>

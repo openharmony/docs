@@ -807,7 +807,7 @@ export default {
   },
   onShow(){
     this.ctx = this.$refs.canvas.getContext("2d");
-    this.ctx.fillStyle = "red"
+    this.ctx.fillStyle = "red";
     this.ctx.fillRect(200, 150, 200, 200);
   },
   save(){
@@ -817,7 +817,7 @@ export default {
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);
-    // 该变画笔颜色
+    // 改变画笔颜色
     this.ctx.fillStyle = "#2133d2";
   },
   restore(){

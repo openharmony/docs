@@ -1,5 +1,11 @@
 # 仅MDM应用可用权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
 > **注意：**
@@ -594,7 +600,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：PC/2in1
 
 **起始版本**：20
 

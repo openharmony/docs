@@ -86,10 +86,10 @@ getColumnIndex(columnName: string): number
 
 ```ts
 if (resultSet != undefined) {
-  const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
 }
 ```
 
@@ -743,7 +743,7 @@ getString(columnIndex: number): string
 
 ```ts
 if (resultSet != undefined) {
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 }
 ```
 
@@ -777,7 +777,7 @@ getLong(columnIndex: number): number
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800012  | ResultSet is empty or pointer index is out of bounds. |
-| 14800013  | ResultSet is empty or column index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |

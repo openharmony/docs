@@ -1,6 +1,11 @@
 # Media Library Kit 简介
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
-Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文件的能力，包括照片和视频，帮助应用快速构建图片和视频的展示与播放功能。
+Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文件的能力，包括图片和视频，帮助应用快速构建图片和视频的展示与播放功能。
 
 ## 能力范围
 

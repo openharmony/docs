@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char host[NETCONN_MAX_STR_LEN] | 主机名。 |
-| char exclusionList[NETCONN_MAX_EXCLUSION_SIZE][NETCONN_MAX_STR_LEN] | 代理服务器的排除列表。 |
+| char host[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#宏定义) | 主机名。 |
+| char exclusionList[[NETCONN_MAX_EXCLUSION_SIZE]](capi-net-connection-type-h.md#宏定义)[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#宏定义) | 代理服务器的排除列表。 |
 | int32_t exclusionListSize | 排除列表的实际大小。 |
 | uint16_t port | 端口号。 |

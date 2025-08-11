@@ -1,8 +1,16 @@
 # oh_key_code.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 ## 概述
 
 按键设备的键码值。
+
+**引用文件：** <multimodalinput/oh_key_code.h>
 
 **库：** libohinput.so
 

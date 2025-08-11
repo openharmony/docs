@@ -183,6 +183,10 @@ for (let s of text) {
 
 ![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacterWithFeatures.png)
 
+> **说明**
+>
+> 如果 `drawSingleCharacterWithFeatures` 与 `measureSingleCharacter` 混合使用，或者 `drawSingleCharacter` 与 `measureSingleCharacterWithFeatures` 混合使用，字体绘制可能会重叠。
+
 <!--RP1-->
 ## 相关实例
 

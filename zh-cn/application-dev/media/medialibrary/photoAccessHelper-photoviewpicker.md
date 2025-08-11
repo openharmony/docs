@@ -1,6 +1,14 @@
 # 使用Picker选择媒体库资源
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 用户有时需要分享图片、视频等用户文件，开发者可以通过特定接口拉起系统图库，用户自行选择待分享的资源，然后最终完成分享。此接口本身无需申请权限，目前适用于界面UIAbility，使用窗口组件触发。具体使用方式如下：
+
+> **注意：**
+> Media Library Kit提供图片和视频的管理能力，当需要读取和保存音频文件时，请使用[AudioViewPicker（音频选择器对象）](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)。
 
 1. 导入选择器模块和文件管理模块。
 
@@ -67,46 +75,52 @@
 
 媒体库支持Picker选择[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
-```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
+1. 定义媒体资源处理器[MediaAssetDataHandler](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)，系统在资源准备就绪时向应用回调onDataPrepared。
 
-class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer) {
-    if (data === undefined) {
-      console.error('Error occurred when preparing data');
-      return;
-    }
-    console.info('on image data prepared');
-    // 应用自定义对资源数据的处理逻辑。
-  }
-}
+   ```ts
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { dataSharePredicates } from '@kit.ArkData';
+   import { common } from '@kit.AbilityKit';
+   
+   class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+     onDataPrepared(data: ArrayBuffer) {
+       if (data === undefined) {
+         console.error('Error occurred when preparing data');
+         return;
+       }
+       console.info('on image data prepared');
+       // 应用自定义对资源数据的处理逻辑。
+     }
+   }
+   ```
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
-  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [photoAccessHelper.PhotoKeys.TITLE],
-    predicates: predicates
-  };
+2. 使用[getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1)接口获取要访问的资产，并通过[requestImageData](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestimagedata11)获取对应资源。
 
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    // 获取属性值，以标题为例；对于非默认查询的属性，get前需要在fetchColumns中添加对应列名。
-    console.info('title : ' + photoAsset.get(photoAccessHelper.PhotoKeys.TITLE));
-    // 请求图片资源数据。
-    let requestOptions: photoAccessHelper.RequestOptions = {
-      deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
-    }
-    await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, new MediaDataHandler());
-    console.info('requestImageData successfully');
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
+   ```ts
+   async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+     let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
+     predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
+     let fetchOptions: photoAccessHelper.FetchOptions = {
+       fetchColumns: [photoAccessHelper.PhotoKeys.TITLE],
+       predicates: predicates
+     };
+   
+     try {
+       let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+       console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
+       // 获取属性值，以标题为例；对于非默认查询的属性，get前需要在fetchColumns中添加对应列名。
+       console.info('title : ' + photoAsset.get(photoAccessHelper.PhotoKeys.TITLE));
+       // 请求图片资源数据。
+       let requestOptions: photoAccessHelper.RequestOptions = {
+         deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+       }
+       await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, new MediaDataHandler());
+       console.info('requestImageData successfully');
+       fetchResult.close();
+     } catch (err) {
+       console.error('getAssets failed with err: ' + err);
+     }
+   }
+   ```

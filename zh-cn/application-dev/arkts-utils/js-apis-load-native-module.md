@@ -1,11 +1,11 @@
-# 同步方式动态加载native模块
+# 同步方式动态加载Native模块
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @shilei123-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->
 
-[loadNativeModule接口](../reference/common/js-apis-common-load-native-module.md)用于同步动态加载native模块，目的是按需加载所需要的模块。使用该接口会增加加载so文件的时间，开发者需评估其对功能的影响。
+[loadNativeModule接口](../reference/common/js-apis-common-load-native-module.md)用于同步动态加载Native模块，目的是按需加载所需要的模块。使用该接口会增加加载so文件的时间，开发者需评估其对功能的影响。
 
 ## 函数说明
 
@@ -29,7 +29,7 @@ loadNativeModule(moduleName: string): Object;
 | 场景            | 示例           | 
 | :------------- | :----------------------------- | 
 | 系统库模块        | 加载@ohos.或@system.        | 
-| 应用内native模块	| 加载libNativeLibrary.so |
+| 应用内Native模块	| 加载libNativeLibrary.so |
 
 ## 使用示例
 

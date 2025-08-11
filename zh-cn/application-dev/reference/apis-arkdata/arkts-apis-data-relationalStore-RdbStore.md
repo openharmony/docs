@@ -72,18 +72,18 @@ class EntryAbility extends UIAbility {
       store = rdbStore;
       await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
       console.info('Get RdbStore successfully.');
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    });
 
-    // 设置数据库版本
-    if (store != undefined) {
-      (store as relationalStore.RdbStore).version = 3;
-      // 获取数据库版本
-      console.info(`RdbStore version is ${store.version}`);
-      // 获取数据库是否重建
-      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
-    }
+      // 设置数据库版本
+      if (store != undefined) {
+        (store as relationalStore.RdbStore).version = 3;
+        // 获取数据库版本
+        console.info(`RdbStore version is ${store.version}`);
+        // 获取数据库是否重建
+        console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 }
 ```
@@ -1337,7 +1337,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -1427,7 +1427,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -1518,7 +1518,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   try {
-    let rows: Number = (store as relationalStore.RdbStore).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    let rows: number = (store as relationalStore.RdbStore).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Updated row count: ${rows}`);
   } catch (error) {
     console.error(`Updated failed, code is ${error.code},message is ${error.message}`);
@@ -1639,7 +1639,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).delete(predicates).then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete(predicates).then((rows: number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -1703,7 +1703,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   try {
-    let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates);
+    let rows: number = (store as relationalStore.RdbStore).deleteSync(predicates);
     console.info(`Delete rows: ${rows}`);
   } catch (err) {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -1750,15 +1750,20 @@ if (store != undefined) {
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   });
 }
 ```
@@ -1803,15 +1808,20 @@ if (store != undefined) {
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   });
 }
 ```
@@ -1859,15 +1869,20 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
   });
@@ -1914,8 +1929,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
+  let resultSet: relationalStore.ResultSet | undefined;
   try {
-    let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+    resultSet = store.querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -1925,10 +1941,13 @@ if (store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   } catch (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    console.error(`Query failed, code is ${err.code}, message is ${err.message}`);
+  } finally {
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+    if (resultSet) {
+      resultSet.close();
+    }
   }
 }
 ```
@@ -1993,15 +2012,20 @@ if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
   });
@@ -2073,15 +2097,20 @@ if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
   });
@@ -2131,15 +2160,20 @@ if (store != undefined) {
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   });
 }
 ```
@@ -2202,15 +2236,20 @@ if (store != undefined) {
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   });
 }
 ```
@@ -2262,15 +2301,20 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
   });
@@ -2324,8 +2368,9 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
+  let resultSet: relationalStore.ResultSet | undefined;
   try {
-    let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
+    resultSet = store.querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -2335,10 +2380,13 @@ if (store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  } finally {
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+    if (resultSet) {
+      resultSet.close();
+    }
   }
 }
 ```
@@ -2708,13 +2756,18 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
   let txId: number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
+  (store as relationalStore.RdbStore).beginTrans().then((temTxId: number) => {
+    txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3048,13 +3101,18 @@ beginTrans(): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
   let txId: number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
+  (store as relationalStore.RdbStore).beginTrans().then((temTxId: number) => {
+    txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3233,13 +3291,18 @@ commit(txId : number):Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
   let txId: number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
+  (store as relationalStore.RdbStore).beginTrans().then((temTxId: number) => {
+    txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -3365,13 +3428,18 @@ rollback(txId : number):Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
   let txId: number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
+  (store as relationalStore.RdbStore).beginTrans().then((temTxId: number) => {
+    txId = temTxId;
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
-        (store as relationalStore.RdbStore).commit(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).commit(txId);
+        }
       })
       .catch((err: BusinessError) => {
-        (store as relationalStore.RdbStore).rollback(txId);
+        if (txId !== undefined) {
+          (store as relationalStore.RdbStore).rollback(txId);
+        }
         console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
       });
   });
@@ -4332,7 +4400,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
-  if (devices != undefined) {
+  if (devices !== undefined) {
     for (let i = 0; i < devices.length; i++) {
       console.info(`device= ${devices[i]} data changed`);
     }
@@ -4384,7 +4452,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
-  if (devices != undefined) {
+  if (devices !== undefined) {
     for (let i = 0; i < devices.length; i++) {
       console.info(`device= ${devices[i]} data changed`);
     }
@@ -4515,7 +4583,7 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 
 | **错误码ID** | **错误信息**    |
 |-----------|--------|
-| 401       | Parameter error. Possible causes: 1. Need 2 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.  |
 | 14800014  | The RdbStore or ResultSet is already closed.     |
 
@@ -4639,7 +4707,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   if (store != undefined) {
-    let exceptionMessage: relationalStore.ExceptionMessage;
     store.on('sqliteErrorOccurred', exceptionMessage => {
       let sqliteCode = exceptionMessage.code;
       let sqliteMessage = exceptionMessage.message;
@@ -4771,7 +4838,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
-  if (devices != undefined) {
+  if (devices !== undefined) {
     for (let i = 0; i < devices.length; i++) {
       console.info(`device= ${devices[i]} data changed`);
     }
@@ -4834,7 +4901,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
-  if (devices != undefined) {
+  if (devices !== undefined) {
     for (let i = 0; i < devices.length; i++) {
       console.info(`device= ${devices[i]} data changed`);
     }
@@ -5260,7 +5327,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
 **返回值：**
 
-| 参数名    | 说明                                               |
+| 类型     | 说明                                              |
 | -------- | ------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。        |
 
@@ -5452,17 +5519,16 @@ const STORE_CONFIG1: relationalStore.StoreConfig = {
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
   attachStore = rdbStore;
   console.info('Get RdbStore successfully.');
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+      console.info(`attach succeeded, number is ${number}`);
+    }).catch((err: BusinessError) => {
+      console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    });
+  }
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 });
-
-if (store != undefined) {
-  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
-    console.info(`attach succeeded, number is ${number}`);
-  }).catch((err: BusinessError) => {
-    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-  });
-}
 ```
 
 **示例2：非加密数据库附加加密数据库**
@@ -5481,17 +5547,16 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
   attachStore = rdbStore;
   console.info('Get RdbStore successfully.');
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+      console.info(`attach succeeded, number is ${number}`);
+    }).catch((err: BusinessError) => {
+      console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    });
+  }
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 });
-
-if (store != undefined) {
-  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
-    console.info(`attach succeeded, number is ${number}`);
-  }).catch((err: BusinessError) => {
-    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-  });
-}
 ```
 
 ## detach<sup>12+</sup>
@@ -5752,15 +5817,20 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    try {
+      while (resultSet.goToNextRow()) {
+        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+      }
+    } catch (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    } finally {
+      // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
+      resultSet.close();
     }
-    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
-    resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
   });

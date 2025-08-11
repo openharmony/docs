@@ -1,5 +1,11 @@
 # 调试工具
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @foryourself-->
+<!--SE: @lingminghw-->
+<!--TSE: @RayShih-->
 
+- [SDK命令行工具简介](command-line-tools-overview.md)
 - [aa工具](aa-tool.md)
 - [bm工具](bm-tool.md)
 - 打包拆包工具<!--packing-unpacking-->

@@ -55,13 +55,13 @@ Marquee初始化参数。
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| start<sup>8+</sup> | boolean | 是 | 控制跑马灯是否进入播放状态。<br/>true表示播放，false表示不播放。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| step<sup>8+</sup> | number | 否 | 滚动动画文本滚动步长。当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6 <br/>单位：[vp](ts-pixel-units.md) <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| loop<sup>8+</sup> | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| fromStart<sup>8+</sup> | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| src<sup>8+</sup> | string | 是 | 需要滚动的文本。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| start<sup>8+</sup> | boolean | 否 | 否 | 控制跑马灯是否进入播放状态。<br/>true表示播放，false表示不播放。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| step<sup>8+</sup> | number | 否 | 是 | 滚动动画文本滚动步长。当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6 <br/>单位：[vp](ts-pixel-units.md) <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| loop<sup>8+</sup> | number | 否 | 是 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| fromStart<sup>8+</sup> | boolean | 否 | 是 | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| src<sup>8+</sup> | string | 否 | 否 | 需要滚动的文本。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -187,6 +187,12 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 当滚动的文本内容变化或者开始滚动时的回调。 |
+
 ### onBounce
 
 onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -198,6 +204,12 @@ onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 完成一次滚动时触发的回调。 |
 
 ### onFinish
 
@@ -211,9 +223,15 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | &nbsp;()&nbsp;=&gt;&nbsp;void | 是   | 滚动全部循环次数完成时的回调。 |
+
 ## 示例
 
-该示例通过设置start、step、loop、fromStart、src、marqueeUpdateStrategy展示了跑马灯内容动态更新时运行的效果。  
+该示例通过设置start、step、loop、fromStart、src、[marqueeUpdateStrategy](#marqueeupdatestrategy12)（从API version 12开始）展示了跑马灯内容动态更新时运行的效果。  
 
 ```ts
 // xxx.ets

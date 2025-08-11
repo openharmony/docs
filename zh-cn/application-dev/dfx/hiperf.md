@@ -1,5 +1,10 @@
 # hiperf
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @leiguangyu-->
+<!--SE: @Maplestroy-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 hiperf是一款集成多种性能分析功能的命令行工具，支持Windows和Linux系统，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
 

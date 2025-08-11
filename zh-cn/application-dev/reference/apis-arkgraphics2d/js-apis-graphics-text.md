@@ -1,5 +1,9 @@
 # @ohos.graphics.text (文本模块)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 本模块提供一系列用于文本布局和字体管理的编程接口。文本布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口提供字体注册、字体描述符、字体集管理等功能。
 
 该模块提供以下创建复杂样式的文本段落的常用类：

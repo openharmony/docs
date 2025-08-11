@@ -1,11 +1,16 @@
 # Interface (AutoDeviceSwitch)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 13开始支持。
 
-AutoDeviceSwitch extends [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md)
+AutoDeviceSwitch 继承自 [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md)。
 
 自动切换镜头类，继承自[AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md)，用于使能或去使能自动切换镜头。
 

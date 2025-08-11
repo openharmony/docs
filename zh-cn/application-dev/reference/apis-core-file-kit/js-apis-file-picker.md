@@ -1,4 +1,9 @@
 # @ohos.file.picker (选择器)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 > **说明：**
 >
@@ -408,6 +413,12 @@ getSelectedIndex(): number
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| number| 返回所选后缀类型在[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的下标(number)。默认返回-1。 |
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -879,6 +890,12 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 constructor(context: Context)
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 

@@ -1,4 +1,9 @@
 # 使用AVMetadataExtractor提取音视频元数据信息(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 使用[AVMetadataExtractor](media-kit-intro.md#avmetadataextractor)可以实现从原始媒体资源中获取元数据。本指南将以获取一个媒体资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。
 
@@ -76,10 +81,7 @@
    let headers: Record<string, string> = {
      "User-Agent" : "User-Agent-Value"
    };
-   await avMetadataExtractor.setUrlSource(url, headers).then(() => {
-   }).catch((error: BusinessError) => {
-     console.error(`Failed to setUrlSource, code: ${error.code} message: ${error.message}`);
-   });
+   avMetadataExtractor.setUrlSource(url, headers);
    ```
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个[AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i.md#avmetadata11)对象，通过访问该对象的各个属性，可以获取到元数据。

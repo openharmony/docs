@@ -1,4 +1,9 @@
 # oh_file_share.h
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 ## 概述
 
@@ -16,10 +21,10 @@
 
 ### 结构体
 
-| 名称                                                                           | typedef关键字 | 描述 |
-|------------------------------------------------------------------------------| -- | -- |
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) | FileShare_PolicyErrorResult | 授予或使能权限失败的URI策略结果。 |
-| [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md)               | FileShare_PolicyInfo | 需要授予或使能权限URI的策略信息。 |
+| [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) | FileShare_PolicyInfo | 需要授予或使能权限URI的策略信息。 |
 
 ### 枚举
 
@@ -97,12 +102,12 @@ FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo
 
 **参数：**
 
-| 参数项                                                                                   | 描述 |
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | 一个指向FileShare_PolicyInfo实例的指针。 |
-| unsigned int policyNum                                                                | FileShare_PolicyInfo实例数组的大小。 |
+| 参数项 | 描述 |
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | 一个指向FileShare_PolicyInfo实例的指针。 |
+| unsigned int policyNum | FileShare_PolicyInfo实例数组的大小。 |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 |
-| unsigned int *resultNum                                                               | FileShare_PolicyErrorResult数组大小。 |
+| unsigned int *resultNum | FileShare_PolicyErrorResult数组大小。 |
 
 **返回：**
 
@@ -127,12 +132,12 @@ FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo 
 
 **参数：**
 
-| 参数项                                                                                   | 描述 |
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | 一个指向FileShare_PolicyInfo实例的指针。 |
-| unsigned int policyNum                                                                | FileShare_PolicyInfo实例数组的大小。 |
+| 参数项 | 描述 |
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | 一个指向FileShare_PolicyInfo实例的指针。 |
+| unsigned int policyNum | FileShare_PolicyInfo实例数组的大小。 |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 |
-| unsigned int *resultNum                                                               | FileShare_PolicyErrorResult数组大小。 |
+| unsigned int *resultNum | FileShare_PolicyErrorResult数组大小。 |
 
 **返回：**
 
@@ -157,12 +162,12 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInf
 
 **参数：**
 
-| 参数项                                                                                   | 描述 |
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | 一个指向FileShare_PolicyInfo实例的指针。 |
-| unsigned int policyNum                                                                | FileShare_PolicyInfo实例数组的大小。 |
+| 参数项 | 描述 |
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | 一个指向FileShare_PolicyInfo实例的指针。 |
+| unsigned int policyNum | FileShare_PolicyInfo实例数组的大小。 |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 |
-| unsigned int *resultNum                                                               | FileShare_PolicyErrorResult数组大小。 |
+| unsigned int *resultNum | FileShare_PolicyErrorResult数组大小。 |
 
 **返回：**
 
@@ -187,18 +192,18 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyI
 
 **参数：**
 
-| 参数项                                                                                   | 描述 |
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | 一个指向FileShare_PolicyInfo实例的指针。 |
-| unsigned int policyNum                                                                | FileShare_PolicyInfo实例数组的大小。 |
+| 参数项 | 描述 |
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | 一个指向FileShare_PolicyInfo实例的指针。 |
+| unsigned int policyNum | FileShare_PolicyInfo实例数组的大小。 |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 |
-| unsigned int *resultNum                                                               | FileShare_PolicyErrorResult数组大小。 |
+| unsigned int *resultNum | FileShare_PolicyErrorResult数组大小。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT} 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>          E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>          E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR - 接口调用成功。 |
 
 ### OH_FileShare_CheckPersistentPermission()
 
@@ -217,12 +222,12 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission(const FileShare_Po
 
 **参数：**
 
-| 参数项                                                                            | 描述 |
-|--------------------------------------------------------------------------------| -- |
+| 参数项 | 描述 |
+| -- | -- |
 | [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | 一个指向FileShare_PolicyInfo实例的指针。 |
-| unsigned int policyNum                                                         | FileShare_PolicyInfo实例数组的大小。 |
-| bool **result                                                                  | 授权校验结果指针。请引用头文件malloc.h并使用free()进行资源释放。 |
-| unsigned int *resultNum                                                        | 校验结果数组的大小。 |
+| unsigned int policyNum | FileShare_PolicyInfo实例数组的大小。 |
+| bool **result | 授权校验结果指针。请引用头文件malloc.h并使用free()进行资源释放。 |
+| unsigned int *resultNum | 校验结果数组的大小。 |
 
 **返回：**
 
@@ -245,9 +250,9 @@ void OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorRes
 
 **参数：**
 
-| 参数项                                                                                       | 描述 |
-|-------------------------------------------------------------------------------------------| -- |
+| 参数项 | 描述 |
+| -- | -- |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) *errorResult | 一个指向FileShare_PolicyErrorResult实例的指针。 |
-| unsigned int resultNum                                                                    | FileShare_PolicyErrorResult实例数组的大小。 |
+| unsigned int resultNum | FileShare_PolicyErrorResult实例数组的大小。 |
 
 

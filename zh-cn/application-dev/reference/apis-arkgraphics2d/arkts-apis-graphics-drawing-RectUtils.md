@@ -1,4 +1,9 @@
 # Class (RectUtils)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 > **说明：**
 >
@@ -471,7 +476,7 @@ let rect = drawing.RectUtils.makeEmpty();
 let isEmpty = drawing.RectUtils.isEmpty(rect);
 console.info('isEmpty :', isEmpty);
 let rect2 = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
-isEmpty = drawing.RectUtils.isEmpty(rect);
+isEmpty = drawing.RectUtils.isEmpty(rect2);
 console.info('isEmpty :', isEmpty);
 ```
 
@@ -523,7 +528,7 @@ static offsetTo(rect: common2D.Rect, newLeft: number, newTop: number): void
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
-let rect = drawing.RectUtils.makeLtrb(40, 40, 20, 20);
+let rect = drawing.RectUtils.makeLtrb(20, 20, 40, 40);
 drawing.RectUtils.offsetTo(rect, 10, 20);
 console.info('rect.left:', rect.left);
 console.info('rect.top: ', rect.top);

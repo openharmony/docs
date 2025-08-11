@@ -327,7 +327,7 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w003739
 
 
 [开发-Form Kit]
-zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln
+zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln @tang_xian9109  @yangyuecheng
 
 
 [开发-DFX]
@@ -523,12 +523,12 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliant
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-bundle.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-zlib.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
-zh-cn/application-dev/reference/apis-ability-kit/_bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native__interface__bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_application_info.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_element_name.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_module_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-interface-bundle-h.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-applicationinfo.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-elementname.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-modulemetadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
 [API参考-Ability Kit-分布式]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManager.md @chenmingJay @nan-xiansen @iceice1001
@@ -740,9 +740,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln  @tang_xian9109  @yangyuecheng
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln @tang_xian9109  @yangyuecheng
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln  @tang_xian9109  @yangyuecheng
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
@@ -1077,7 +1077,7 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w003
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui  
+zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui  @tang_xian9109  @yangyuecheng
 
 
 

@@ -45,21 +45,21 @@ typedef struct {
 ```c
 // 创建数据依赖
 int x = 0;
-ffrt_dependence_t dependence[1];
-dependence[0].type = ffrt_dependence_data;
-dependence[0].ptr = &x;
-ffrt_deps_t deps;
-deps.len = 1;
-deps.items = dependence;
+ffrt_dependence_t data_dependence[1];
+data_dependence[0].type = ffrt_dependence_data;
+data_dependence[0].ptr = &x;
+ffrt_deps_t data_deps;
+data_deps.len = 1;
+data_deps.items = data_dependence;
 
 // 创建任务依赖
 ffrt_task_handle_t task = ffrt_submit_h_base(user_function_header, NULL, NULL, &attr);
-ffrt_dependence_t dependence[1];
-dependence[0].type = ffrt_dependence_task;
-dependence[0].ptr = task;
-ffrt_deps_t deps;
-deps.len = 1;
-deps.items = dependence;
+ffrt_dependence_t task_dependence[1];
+task_dependence[0].type = ffrt_dependence_task;
+task_dependence[0].ptr = task;
+ffrt_deps_t task_deps;
+task_deps.len = 1;
+task_deps.items = task_dependence;
 ```
 
 ### ffrt_task_attr_t
@@ -1059,6 +1059,47 @@ int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 
 - 获取当前属性中设置的最大并发数（仅支持并发队列）。
 
+##### ffrt_queue_attr_set_thread_mode
+
+```c
+void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr, bool mode);
+```
+
+参数
+
+- `attr`：队列属性指针。
+- `mode`：设置队列任务运行方式。`true`表示以线程模式运行，`false`表示以协程模式运行。
+
+描述
+
+- 设置队列中的任务是以协程模式还是以线程模式运行。默认以协程模式运行。
+
+> **说明：**
+
+> 从API version 20开始，支持该接口。
+
+##### ffrt_queue_attr_get_thread_mode
+
+```c
+bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
+```
+
+参数
+
+- `attr`：队列属性指针。
+
+返回值
+
+- `true`表示以线程模式运行，`false`表示以协程模式运行。
+
+描述
+
+- 获取队列中的任务是以协程模式还是以线程模式运行。
+
+> **说明：**
+
+> 从API version 20开始，支持该接口。
+
 #### 样例
 
 ```cpp
@@ -1635,11 +1676,11 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
 参数
 
 - `rwlock`：指向所操作的读写锁指针。
-- `attr`：指向所操作的读写锁属性指针。
+- `attr`：指向所操作的读写锁属性指针，仅支持默认模式，即`attr`设定为空指针。
 
 返回值
 
-- `rwlock`和`attr`都不为空返回`ffrt_success`，否则返回`ffrt_error_inval`或者阻塞当前任务。
+- `rwlock`不为空，且`attr`为空则返回`ffrt_success`，否则返回`ffrt_error_inval`。
 
 描述
 
@@ -2145,6 +2186,7 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 描述
 
 - 取消一个定时器，和`ffrt_timer_start`配对使用。
+- 为阻塞接口，请避免在回调函数callback内使用，防止死锁或同步问题，当传入的handle对应的callback正在执行时，该函数会等待callback完成后再继续执行。
 
 #### 样例
 
@@ -2398,7 +2440,14 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
         // 启动独立线程来执行loop
         pthread_t thread;
-        pthread_create(&thread, 0, ThreadFunc, loop);
+        int ret = pthread_create(&thread, 0, ThreadFunc, loop);
+        if (ret != 0) {
+            printf("pthread_create failed!");
+            ffrt_loop_destroy(loop);
+            ffrt_queue_attr_destroy(&queue_attr);
+            ffrt_queue_destroy(queue_handle);
+            return 0;
+        }
 
         // 终止并销毁loop
         ffrt_loop_stop(loop);
@@ -2460,7 +2509,14 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
         // 启动独立线程来执行loop
         pthread_t thread;
-        pthread_create(&thread, 0, ThreadFunc, loop);
+        int ret = pthread_create(&thread, 0, ThreadFunc, loop);
+        if (ret != 0) {
+            printf("pthread_create failed!");
+            ffrt_loop_destroy(loop);
+            ffrt_queue_attr_destroy(&queue_attr);
+            ffrt_queue_destroy(queue_handle);
+            return 0;
+        }
 
         static int x = 0;
         int* xf = &x;

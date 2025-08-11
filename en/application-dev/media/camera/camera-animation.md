@@ -1,4 +1,9 @@
 # Basic Camera Animation (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 When using the camera, transitions such as changing camera modes or switching between front and rear cameras will always involve replacing the preview stream. To enhance user experience, smooth animations can be effectively incorporated. This topic describes how to use preview stream snapshots and ArkUI's [explicit animations](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md) to implement three key scene transitions:
 
@@ -109,7 +114,7 @@ The sample code in the following steps (except step 2) is the internal method or
 
 2. Obtain a preview stream snapshot.
 
-   Preview stream snapshots are obtained by calling [image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11) provided by the image module. In this API, **surfaceId** is the surface ID of the current preview stream, and **size** is the width and height of the current preview stream profile. Create a snapshot utility class (TS file), import the dependency, and export the snapshot retrieval API for the page to use. The code snippet below shows the implementation of the snapshot utility class:
+   Preview stream snapshots are obtained by calling [image.createPixelMapFromSurface](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11) provided by the image module. In this API, **surfaceId** is the surface ID of the current preview stream, and **size** is the width and height of the current preview stream profile. Create a snapshot utility class (TS file), import the dependency, and export the snapshot retrieval API for the page to use. The code snippet below shows the implementation of the snapshot utility class:
 
    ```ts
    export class BlurAnimateUtil {
@@ -243,7 +248,7 @@ The sample code in the following steps (except step 2) is the internal method or
 
 5. Implement the fade-out blur animation.
 
-   The fade-out blur animation is triggered by the event [on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart) of the new preview stream. During this effect, the snapshot component gradually becomes clear, revealing the new preview stream.
+   The fade-out blur animation is triggered by the event [on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart) of the new preview stream. During this effect, the snapshot component gradually becomes clear, revealing the new preview stream.
 
    ```ts
    hideBlurAnim(): void {
@@ -428,7 +433,7 @@ The sample code in the following steps (except step 2) is the internal method or
    }
    ```
 
-   For the fade-out blur animation, you must listen for the event [on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart) of the preview stream. Once the value of **frameStart** bound to the StorageLink is updated, and the **onFrameStart** callback is triggered, the animation starts.
+   For the fade-out blur animation, you must listen for the event [on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart) of the preview stream. Once the value of **frameStart** bound to the StorageLink is updated, and the **onFrameStart** callback is triggered, the animation starts.
 
    ```ts
    onFrameStart(): void {

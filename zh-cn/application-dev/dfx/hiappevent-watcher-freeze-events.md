@@ -47,8 +47,8 @@
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| name | string | 异常类型。 |
-| message | string | 异常原因。 |
+| name | string | 异常类型 |
+| message | string | 异常原因 |
 
 ### thread字段说明
 
@@ -74,11 +74,11 @@ Js帧frame字段说明
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| file | string | 文件名。 |
-| packageName | string | 模块的包名。 |
-| symbol | string | 函数名称。 |
-| line | number | 异常所在代码行号。 |
-| column | number | 异常所在代码列号。 |
+| file | string | 文件名 |
+| packageName | string | 模块的包名 |
+| symbol | string | 函数名称 |
+| line | number | 异常所在代码行号 |
+| column | number | 异常所在代码列号 |
 
 ### memory字段说明
 
@@ -97,7 +97,7 @@ Js帧frame字段说明
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setEventParam(params: Record&lt;string, ParamType>, domain: string, name?: string): Promise&lt;void> | 应用冻屏事件自定义参数设置方法**。** |
+| setEventParam(params: Record&lt;string, ParamType>, domain: string, name?: string): Promise&lt;void> | **应用冻屏事件自定义参数设置方法。**|
 
 ### 参数设置说明
 

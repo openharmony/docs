@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.pointer (鼠标指针)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
 
 > **说明**：
@@ -738,6 +744,7 @@ struct Index {
 | LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | 向东西滚动 |![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| SCREENRECORDER_CURSOR<sup>20+</sup>         | 48   | 录屏光标  |![ScreenRecorder_Cursor.png](./figures/ScreenRecorder_Cursor.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 

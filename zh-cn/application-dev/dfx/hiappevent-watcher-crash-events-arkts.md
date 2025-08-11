@@ -1,8 +1,13 @@
 # 订阅崩溃事件（ArkTS）
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @chenshi51-->
+<!--SE: @Maplestory-->
+<!--TSE: @yufeifei-->
 
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的ArkTs接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+本文介绍如何使用HiAppEvent提供的ArkTS接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 > **说明：**
 >
@@ -19,11 +24,11 @@
 
 ### 添加事件观察者
 
-**建议在应用启动后开始执行业务逻辑之前添加事件观察者，否则可能在订阅到崩溃事件之前应用因崩溃等故障退出，导致无法订阅到崩溃事件。**
+**建议在应用启动后、执行业务逻辑前添加事件观察者，以确保能够订阅到崩溃事件。**
 
 以订阅用户点击按钮触发崩溃生成的崩溃事件为例，说明开发步骤。
 
-1. DevEco Studio新建Native C++模版工程，编辑“entry > src > main > ets > entryability > EntryAbility.ets”文件，导入依赖模块，示例代码如下：
+1. DevEco Studio新建Native C++模板工程，编辑“entry > src > main > ets > entryability > EntryAbility.ets”文件，导入依赖模块。示例代码如下：
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -60,7 +65,7 @@
     });
    ```
 
-3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
+3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中添加系统事件的订阅。示例代码如下：
 
    ```ts
     let watcher: hiAppEvent.Watcher = {
@@ -128,7 +133,7 @@
        编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
 
       ```ts
-      Button("appCrash").onClick(()=>{
+      Button("NativeCrash").onClick(()=>{
         // 在按钮点击函数中调用napi_init.cpp中Add方法触发NativeCrash类型崩溃事件
         testNapi.add(2, 3);
       })
@@ -139,25 +144,25 @@
       编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
 
       ```ts
-      Button("appCrash").onClick(()=>{
+      Button("JsError").onClick(()=>{
         // 在按钮点击函数中构造一个JsError类型崩溃，触发应用崩溃事件
         let result: object = JSON.parse("");
       })
       ```
 
-5. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统根据崩溃类型（JsError或NativeCrash）生成相应的崩溃日志并进行回调。
+5. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“NativeCrash”或“JsError”按钮，触发崩溃事件。系统根据崩溃类型生成相应的日志并进行回调。
 
 > **说明：**
 >
-> JsError通过进程内采集故障信息的方式触发回调迅速，而NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体耗时受业务线程数量和进程间通信耗时影响。开发者可以订阅崩溃事件，故障信息采集完成后会异步上报，不会阻塞当前业务。
+> JsError通过进程内采集故障信息触发回调，速度快，而NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体受业务线程数量和进程间通信影响。开发者可订阅崩溃事件，故障信息采集完成后异步上报，不阻塞当前业务。
 
 ### 验证观察者是否订阅到崩溃事件
 
-在应用未主动捕获崩溃异常和主动捕获崩溃异常的场景中，崩溃事件会在不同时机得到回调，开发者需要在不同时机验证是否订阅到崩溃事件。
+在应用主动捕获崩溃异常和未主动捕获崩溃异常的场景下，崩溃事件的回调时机不同，需在不同时间验证是否订阅到崩溃事件。
 
 **应用未主动捕获崩溃异常场景**
 
-若应用未主动捕获崩溃异常，系统处理崩溃后应用将退出。**应用下次启动时**，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
+若应用未主动捕获崩溃异常，系统处理崩溃后应用将退出。**应用下次启动时**，HiAppEvent将崩溃事件上报给已注册的监听，完成回调。
 
 **应用主动捕获崩溃异常场景**
 
@@ -167,9 +172,9 @@
 
    采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃信号](cppcrash-guidelines.md#系统处理的崩溃信号)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
 
-2. 异常处理耗时过长，导致应用退出时间延迟。
+2. 异常处理耗时过长，导致应用退出延迟。
 
-在开发调试阶段，HiAppEvent上报事件完成回调后，可以在DevEco Studio的HiLog窗口查看订阅到的JsError类型崩溃事件内容，NativeCrash类型崩溃事件内容略有不同，不再举例说明，详见[崩溃事件字段说明](hiappevent-watcher-crash-events.md#事件字段说明)。JsError类型崩溃事件内容样例如下：
+在开发调试阶段，HiAppEvent上报事件完成回调后，可以在DevEco Studio的HiLog窗口查看JsError类型崩溃事件内容。NativeCrash类型崩溃事件内容略有不同，具体参见[崩溃事件字段说明](hiappevent-watcher-crash-events.md#事件字段说明)。JsError类型崩溃事件内容样例如下：
 
 ```text
 HiAppEvent onReceive: domain=OS

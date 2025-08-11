@@ -1,4 +1,9 @@
 # Functions
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 > **说明：**
 >
@@ -412,15 +417,15 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowPointerEvent<sup>15+</sup>
 shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-在同应用内窗口分合场景下，需要将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
+该接口仅在自由窗口模式下生效，用于在同应用内窗口分合场景下，将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
 
 源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -944,7 +949,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-window.create('test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
+window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
@@ -989,7 +994,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-let promise = window.create('test', window.WindowType.TYPE_SYSTEM_ALERT);
+let promise = window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
   console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));

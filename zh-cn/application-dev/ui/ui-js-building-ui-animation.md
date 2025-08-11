@@ -1,4 +1,9 @@
 # 动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 动画分为[静态动画](#静态动画)和[连续动画](#连续动画)。
 

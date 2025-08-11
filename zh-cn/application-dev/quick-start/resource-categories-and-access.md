@@ -1,5 +1,11 @@
 # 资源分类与访问
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--SE: @buda_wy-->
+<!--TSE: @lpw_work-->
+
 应用开发过程中，需要使用字符串、颜色、字体、间距和图标等资源。不同设备或配置下，这些资源的值会有所不同。本文档对资源类型进行介绍，并提供资源开发指导。
 根据来源差异，可以将资源分为：
 
@@ -498,23 +504,32 @@ struct Index {
   @State germanString: string = "";
 
   getString(): string {
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    let resMgr = context.resourceManager;
-    let resId = $r('app.string.greetings').id;
+    let resMgr = this.getUIContext().getHostContext()?.resourceManager;
+    if (!resMgr) {
+      return "";
+    }
+    let currentLanguageString: string = "";
+    try {
+      let resId = $r('app.string.greetings').id;
 
-    //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
-    let currentLanguageString = resMgr.getStringSync(resId);
+      //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
+      currentLanguageString = resMgr.getStringSync(resId);
 
-    //获取符合当前系统颜色模式、分辨率等配置的英文资源
-    let overrideConfig = resMgr.getOverrideConfiguration();
-    overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
-    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
-    this.englishString = overrideResMgr.getStringSync(resId);
+      //获取符合当前系统颜色模式、分辨率等配置的英文资源
+      let overrideConfig = resMgr.getOverrideConfiguration();
+      overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
+      let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
+      this.englishString = overrideResMgr.getStringSync(resId);
 
-    //获取符合当前系统颜色模式、分辨率等配置的德文资源
-    overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
-    overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
-    this.germanString = overrideResMgr.getStringSync(resId);
+      //获取符合当前系统颜色模式、分辨率等配置的德文资源
+      overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
+      overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
+      this.germanString = overrideResMgr.getStringSync(resId);
+    } catch (err) {
+      const code = (err as BusinessError).code;
+      const message = (err as BusinessError).message;
+      console.error(`get override resource failed, error code: ${code}, error msg: ${message}`);
+    }
     return currentLanguageString;
   }
 
@@ -551,7 +566,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ### 静态overlay配置方式
 
 包内overlay资源包中的配置文件app.json5中支持的字段：
-```
+```json
 {
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -559,12 +574,12 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
-    "label": "$string:app_name",
+    "label": "$string:app_name"
   }
 }
 ```
 包内overlay资源包中的配置文件module.json5中支持的字段：
-```
+```json
 {
   "module":{
     "name": "entry_overlay_module_name",
@@ -572,17 +587,17 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "description": "$string:entry_overlay_desc",
     "deviceTypes": [
       "default",
-      "tablet",
+      "tablet"
     ],
     "deliverywithInstall": true,
     "targetModuleName": "entry_module_name",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```
 <!--Del-->
 包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
-```
+```json
 {
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -592,12 +607,12 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```
 包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
-```
+```json
 {
   "module":{
     "name": "entry_overlay_module_name",
@@ -605,11 +620,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "description": "$string:entry_overlay_desc",
     "deviceTypes": [
       "default",
-      "tablet",
+      "tablet"
     ],
     "deliverywithInstall": true,
     "targetModuleName": "entry_module_name",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```

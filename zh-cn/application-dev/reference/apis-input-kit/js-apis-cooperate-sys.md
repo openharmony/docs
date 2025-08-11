@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--SE: @hanruofei-->
+<!--TSE: @Lyuxin-->
+
 键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
 > **说明**
@@ -86,9 +92,9 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                 | 说明                     |
+| 类型                 | 说明                     |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
+| Promise&lt;void&gt;      | 无返回结果的Promise对象。        |
 
 **错误码**：
 
@@ -203,7 +209,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **返回值**：
 
-| 参数名                  | 说明                             |
+| 类型                  | 说明                             |
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise对象，异步返回键鼠穿越启动、关闭结果。       |
 
@@ -309,7 +315,7 @@ stop(): Promise\<void>
 
 **返回值**：
 
-| 参数名                | 说明                            |
+| 类型                | 说明                            |
 | --------             | ----------------------------   |
 | Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      |
 
@@ -412,7 +418,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 **返回值**：
 
-| 参数                        | 说明                     |
+| 类型                        | 说明                     |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。ture 表示键鼠穿越开关打开，false表示键鼠穿越开关关闭。       |
 

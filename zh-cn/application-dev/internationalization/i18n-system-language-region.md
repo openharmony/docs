@@ -1,5 +1,10 @@
 # 设置系统语言与区域
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
 
 ## 实现原理
 
@@ -22,15 +27,15 @@
    ```ts
    // 获取系统语言
    let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
- 
+
    // 获取系统地区
    let systemRegion: string = i18n.System.getSystemRegion();  // systemRegion为当前系统地区
-   
+
    // 获取系统区域
-   let systemLocale: string = i18n.System.getSystemLocale();  // systemLocale为当前系统区域
+   let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();  // systemLocale为当前系统区域
    ```
 <!--Del-->
-3. 设置系统语言、系统地区、系统区域。
+3. 设置系统语言、系统地区。
    ```ts
    // 设置系统当前语言为'zh-Hans'
    try {
@@ -46,14 +51,6 @@
    } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
-   }
-
-   // 设置系统当前区域为'zh-Hans-CN'
-   try {
-     i18n.System.setSystemLocale('zh-Hans-CN');
-   } catch (error) {
-     let err: BusinessError = error as BusinessError;
-     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
    }
    ```
 <!--DelEnd-->

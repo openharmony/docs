@@ -1,4 +1,9 @@
 # 通过XComponent接入无障碍
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 通过XComponent接入的三方平台，NDK提供了对接无障碍的接口函数，实现三方平台的组件在ArkUI中的无障碍能力。
 

@@ -1,7 +1,7 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 

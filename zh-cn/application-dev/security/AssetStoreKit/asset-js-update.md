@@ -82,7 +82,7 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
 try {
   asset.update(query, attrsToUpdate).then(() => {
-    console.info(`Asset updated successfully.`);
+    console.info(`Succeeded in updating Asset.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });

@@ -73,25 +73,25 @@
    #include "asset/asset_api.h"
 
    void UpdateAsset() {
-      static const char *ALIAS = "demo_alias";
-      static const char *SECRET = "demo_pwd_new";
-      static const char *LABEL = "demo_label_new";
+       static const char *ALIAS = "demo_alias";
+       static const char *SECRET = "demo_pwd_new";
+       static const char *LABEL = "demo_label_new";
 
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-      Asset_Blob new_secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
-      Asset_Blob new_label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
-      Asset_Attr query[] = { { .tag = ASSET_TAG_ALIAS, .value.blob = alias } };
-      Asset_Attr attributesToUpdate[] = {
-         { .tag = ASSET_TAG_SECRET, .value.blob = new_secret },
-         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label },
-      };
+       Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
+       Asset_Blob new_secret = {(uint32_t)(strlen(SECRET)), (uint8_t *)SECRET};
+       Asset_Blob new_label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
+       Asset_Attr query[] = {{.tag = ASSET_TAG_ALIAS, .value.blob = alias }};
+       Asset_Attr attributesToUpdate[] = {
+           {.tag = ASSET_TAG_SECRET, .value.blob = new_secret},
+           {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label},
+       };
 
-      int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
-                                    sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
-      if (ret == ASSET_SUCCESS) {
-         // Asset updated successfully.
-      } else {
-         // Failed to update Asset.
-      }
+       int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
+                                     sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
+       if (ret == ASSET_SUCCESS) {
+          // 更新关键资产成功。
+       } else {
+          // 更新关键资产失败。
+       }
    }
    ```

@@ -65,7 +65,7 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -123,7 +123,7 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -188,7 +188,7 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -198,7 +198,7 @@ import { image } from '@kit.ImageKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
     let imageSource = await image.createImageSource(value.buffer);
     let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
     let calldata: avSession.CallMetadata = {
@@ -235,7 +235,7 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -246,7 +246,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setCallMetadata() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let calldata: avSession.CallMetadata = {
@@ -291,7 +291,7 @@ setAVCallState(state: AVCallState): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -332,7 +332,7 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -382,7 +382,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -427,7 +427,7 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -481,7 +481,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -549,7 +549,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -630,7 +630,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -701,7 +701,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -774,7 +774,7 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -785,7 +785,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
@@ -843,7 +843,7 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -854,7 +854,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
@@ -921,7 +921,7 @@ setAVQueueTitle(title: string): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -959,7 +959,7 @@ setAVQueueTitle(title: string, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1010,7 +1010,7 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1079,7 +1079,7 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1150,7 +1150,7 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**
@@ -1215,7 +1215,7 @@ getController(): Promise\<AVSessionController>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1269,7 +1269,7 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1406,7 +1406,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1441,7 +1441,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1480,7 +1480,7 @@ activate(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1515,7 +1515,7 @@ activate(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1554,7 +1554,7 @@ deactivate(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1591,7 +1591,7 @@ deactivate(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1630,7 +1630,7 @@ destroy(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1665,7 +1665,7 @@ destroy(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1708,7 +1708,7 @@ on(type: 'play', callback: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1745,7 +1745,7 @@ on(type: 'pause', callback: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1782,7 +1782,7 @@ on(type:'stop', callback: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1819,7 +1819,7 @@ on(type:'playNext', callback: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1856,7 +1856,7 @@ on(type:'playPrevious', callback: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1893,7 +1893,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1930,7 +1930,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1966,7 +1966,7 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2001,7 +2001,7 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2036,7 +2036,7 @@ on(type: 'seek', callback: (time: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2073,7 +2073,7 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2110,7 +2110,7 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2146,7 +2146,7 @@ on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2183,7 +2183,7 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2220,7 +2220,7 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2257,7 +2257,7 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 | 错误码ID | 错误信息 |
 | -------- | --------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2297,7 +2297,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2334,7 +2334,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2399,7 +2399,7 @@ off(type: 'play', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2432,7 +2432,7 @@ off(type: 'pause', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2465,7 +2465,7 @@ off(type: 'stop', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2498,7 +2498,7 @@ off(type: 'playNext', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2531,7 +2531,7 @@ off(type: 'playPrevious', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2564,7 +2564,7 @@ off(type: 'fastForward', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2597,7 +2597,7 @@ off(type: 'rewind', callback?: () => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2630,7 +2630,7 @@ off(type: 'seek', callback?: (time: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2663,7 +2663,7 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2696,7 +2696,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2728,7 +2728,7 @@ off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2761,7 +2761,7 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2794,7 +2794,7 @@ off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | --------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2827,7 +2827,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2860,7 +2860,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2893,7 +2893,7 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key: string]: Ob
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2928,7 +2928,7 @@ on(type: 'answer', callback: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2963,7 +2963,7 @@ off(type: 'answer', callback?: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -2998,7 +2998,7 @@ on(type: 'hangUp', callback: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3033,7 +3033,7 @@ off(type: 'hangUp', callback?: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3068,7 +3068,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3103,7 +3103,7 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3138,7 +3138,7 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3179,7 +3179,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3282,7 +3282,7 @@ getOutputDeviceSync(): OutputDeviceInfo
 
 | 错误码ID   | 错误信息 |
 |---------| --------------------------------------- |
-| 6600101 | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101 | Session service exception. |
 | 6600102 | The session does not exist. |
 
 **示例：**
@@ -3320,7 +3320,7 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 | 错误码ID   | 错误信息 |
 |---------| --------------------------------------- |
-| 6600101 | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101 | Session service exception. |
 | 6600102 | The session does not exist. |
 
 **示例：**
@@ -3365,7 +3365,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3403,7 +3403,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------|
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3435,7 +3435,7 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**
@@ -3469,7 +3469,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**

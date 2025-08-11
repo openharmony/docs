@@ -1,5 +1,11 @@
 # AutoFillExtensionAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 ## 概述
 
 [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)是AUTO_FILL_PASSWORD/AUTO_FILL_SMART类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供自动填充能力。
@@ -341,7 +347,7 @@
 @Entry
 @Component
 struct Index {
-  loginBtnColor: String = '#bfdbf9';
+  loginBtnColor: string = '#bfdbf9';
 
   build() {
     Column() {

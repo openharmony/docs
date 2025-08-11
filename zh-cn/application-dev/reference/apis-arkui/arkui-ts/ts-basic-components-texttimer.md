@@ -1,4 +1,9 @@
 # TextTimer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 通过文本显示计时信息并控制其计时器状态的组件。
 
@@ -38,11 +43,11 @@ TextTimer(options?: TextTimerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型     | 必填  | 说明                   |
-| ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | 否   | 倒计时开关。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
-| count       | number   | 否   | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
-| controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
+| 名称   | 类型     | 只读 | 可选 | 说明                   |
+| ----------- | -------- | -------- | -------- | -------- |
+| isCountDown | boolean  | 否  | 是  | 倒计时开关。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
+| count       | number   | 否  | 是  | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
+| controller  | [TextTimerController](#texttimercontroller) | 否 | 是 | TextTimer控制器。 |
 
 ## 属性
 

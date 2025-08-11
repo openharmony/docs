@@ -27,14 +27,14 @@ void AddAsset() {
     static const char *ALIAS = "demo_alias";
     static const char *LABEL = "demo_label";
 
-    Asset_Blob secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+    Asset_Blob secret = {(uint32_t)(strlen(SECRET)), (uint8_t *)SECRET};
+    Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
+    Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
     Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_SECRET, .value.blob = secret },
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-        { .tag = ASSET_TAG_SYNC_TYPE, .value.u32 = ASSET_SYNC_TYPE_TRUSTED_DEVICE }, // 需指定在可信设备间同步（如新旧设备间克隆）。
+        {.tag = ASSET_TAG_SECRET, .value.blob = secret},
+        {.tag = ASSET_TAG_ALIAS, .value.blob = alias},
+        {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
+        {.tag = ASSET_TAG_SYNC_TYPE, .value.u32 = ASSET_SYNC_TYPE_TRUSTED_DEVICE}, // 需指定在可信设备间同步（如新旧设备间克隆）。
     };
 
     int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
@@ -86,8 +86,8 @@ void QuerySyncResults() {
 
 在可信设备间同步过程中，新旧设备的关键资产均需处于可访问的状态，否则可能出现关键资产无法同步的情况。
 
-* 仅设置密码时可访问的关键资产，如果新旧设备中任意一台设备未设置锁屏密码，则无法同步成功。
+- 仅设置密码时可访问的关键资产，如果新旧设备中任意一台设备未设置锁屏密码，则无法同步成功。
   
-* 仅屏幕处于解锁状态时可访问的关键资产，如果新旧设备中任意一台设备的屏幕未处于解锁状态，则无法同步成功。
+- 仅屏幕处于解锁状态时可访问的关键资产，如果新旧设备中任意一台设备的屏幕未处于解锁状态，则无法同步成功。
 
-* 仅用户认证通过后可访问的关键资产，如果旧设备未设置锁屏密码，则无法同步成功。
+- 仅用户认证通过后可访问的关键资产，如果旧设备未设置锁屏密码，则无法同步成功。

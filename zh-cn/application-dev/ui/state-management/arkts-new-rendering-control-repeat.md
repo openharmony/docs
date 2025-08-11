@@ -703,7 +703,7 @@ struct RepeatNest {
 
 本节展示Repeat与滚动容器组件的常见应用场景。
 
-#### 与List组合使用
+**与List组合使用**
 
 在List容器组件中使用Repeat，示例代码如下：
 
@@ -807,7 +807,7 @@ struct DemoList {
 
 ![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
 
-#### 与Grid组合使用
+**与Grid组合使用**
 
 在Grid容器组件中使用Repeat，示例如下：
 
@@ -936,7 +936,7 @@ struct DemoGrid {
 
 ![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
 
-#### 与Swiper组合使用
+**与Swiper组合使用**
 
 在Swiper容器组件中使用Repeat，示例如下：
 

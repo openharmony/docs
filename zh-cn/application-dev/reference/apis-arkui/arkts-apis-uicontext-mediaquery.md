@@ -1,4 +1,9 @@
 # Class (MediaQuery)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 提供根据不同媒体类型定义不同的样式。
 
@@ -35,11 +40,3 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
-
-<!--code_no_check-->
-```ts
-import { MediaQuery } from '@kit.ArkUI';
-
-let mediaquery: MediaQuery = uiContext.getMediaQuery();
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-```

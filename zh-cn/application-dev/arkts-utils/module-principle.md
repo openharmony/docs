@@ -1,6 +1,6 @@
 # 模块化运行简介
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @yao_dashuai-->
 <!--SE: @yao_dashuai-->
 <!--TSE: @kirl75;@zsw_zhushiwei-->
@@ -94,24 +94,3 @@ export const add: (a: number, b: number) => number;
 import { add } from 'libentry.so'
 add(2, 3)
 ```
-
-**ArkTS当前限制**：不支持native模块的导出和导入同时使用命名空间。
-
-反例：
-
-```
-// test1.ets
-export * from 'libentry.so'  // 使用命名空间导出
-```
-
-```
-// test2.ets
-import('./test1').then((ns:ESObject) => {
-  // 动态加载无法获取ns对象
-  // 如希望使用该方式加载Native模块，需将test1.ets中的导出变更为具名导出或默认导出
-})
-```
-
-> **说明：**
->
-> 不建议通过import \* as xxx from 'xxx'的方式进行导入。这种方式导入会产生运行时异常，建议使用默认导入。

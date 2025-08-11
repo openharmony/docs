@@ -1,4 +1,9 @@
 # 使用SoundPool播放短音频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 使用[SoundPool](media-kit-intro.md#soundpool)（音频池）提供的接口，可以实现低时延短音播放。
 

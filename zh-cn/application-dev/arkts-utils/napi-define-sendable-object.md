@@ -1,6 +1,6 @@
 # 自定义Native Sendable对象的多线程操作场景
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -269,3 +269,12 @@ ArkTS支持开发者自定义Native Sendable对象，Sendable对象提供了并�
      }
    }
    ```
+5. 修改与Index.d.ets同目录下的配置文件oh-package.json5，配置如下：
+    ```ts
+    {
+        "name": "libentry.so",
+        "types": "./Index.d.ets",
+        "version": "1.0.0",
+        "description": "Please describe the basic information."
+    }
+    ```

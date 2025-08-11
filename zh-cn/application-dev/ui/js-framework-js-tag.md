@@ -78,7 +78,7 @@ window用于定义与显示窗口相关的配置。屏幕适配问题可通过�
         "name": "1.0"
     },
     "vendor": "example"
-  }
+  },
   "module": {
       // ...
       "js": [

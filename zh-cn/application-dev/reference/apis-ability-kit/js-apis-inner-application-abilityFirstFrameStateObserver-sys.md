@@ -13,12 +13,41 @@
 import { appManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AbilityFirstFrameStateObserver
+
+### onAbilityFirstFrameDrawn
+
+onAbilityFirstFrameDrawn(data: AbilityFirstFrameStateData): void
+
+Ability首帧绘制完成后触发的回调函数。
 
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                     | 类型                 | 只读 | 必填 | 说明                                                         |
-| ------------------------ | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| onAbilityFirstFrameDrawn | AsyncCallback\<void> | 是   | 否   | Ability首帧绘制完成时执行的回调函数。传入参数类型是[AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md)。 |
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | 是 | 表示首帧绘制完成后返回的数据。 |
+
+**示例**：
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let observer: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(data: appManager.AbilityFirstFrameStateData) {
+    console.info(`onAbilityFirstFrameDrawn success, abilityFirstFrameStateData: ${data}.`);
+  }
+};
+
+try {
+  appManager.on('abilityFirstFrameState', observer);
+} catch (e) {
+  let code = (e as BusinessError).code;
+  let msg = (e as BusinessError).message;
+  console.error(`appmanager.on failed, err code: ${code}, err msg: ${msg}.`);
+}
+```

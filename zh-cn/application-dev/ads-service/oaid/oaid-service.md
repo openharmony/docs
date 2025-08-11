@@ -1,5 +1,11 @@
 # 开放匿名设备标识服务
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--SE: @zhansf1988-->
+<!--TSE: @hongmei_may-->
+
 ## 获取OAID信息
 
 
@@ -55,7 +61,7 @@ OAID会在下述场景中发生变化：
     }
     ```
 
-2. 应用在需要获取OAID信息时，应通过调用requestPermissionFromUser接口获取对应权限。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
+2. 应用在需要获取OAID信息时，应通过调用requestPermissionFromUser接口获取对应权限。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。示例代码如下所示：
     ```ts
     import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
     import { identifier } from '@kit.AdsKit';

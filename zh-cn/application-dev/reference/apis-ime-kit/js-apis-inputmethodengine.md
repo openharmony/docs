@@ -1,4 +1,9 @@
 # @ohos.inputMethodEngine (输入法服务)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
 
@@ -4699,12 +4704,6 @@ recvMessage(msgHandler?: MessageHandler): void;
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#onmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，并通过[onTerminated](#onterminated15)接收终止此对象订阅的消息。<br>若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，同时触发其[onTerminated](#onterminated15)回调函数。 |
 
-**返回值：**
-
-| 类型 | 说明         |
-| ---- | ------------ |
-| void | 无返回结果。 |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
@@ -5136,7 +5135,7 @@ textInputClient.getBackward(length, (err: BusinessError, text: string) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in getting borward, text: ' + text);
+  console.info('Succeeded in getting backward, text: ' + text);
 });
 ```
 
@@ -5518,7 +5517,7 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
   console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```

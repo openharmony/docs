@@ -1,13 +1,18 @@
 # Ability Kit（程序框架服务）<!--ability-api-->
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wanghang-->
+<!--SE: @hanfeng6; @lihaitao-->
+<!--TSE: @kongjing2-->
 
 - ArkTS API<!--ability-arkts-->
   - Stage模型能力的接口<!--stage-model-->
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](js-apis-app-ability-abilityLifecycleCallback.md)
-    - [@ohos.app.ability.AbilityStage (AbilityStage组件容器)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.AbilityStage 组件管理器](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
-    - [@ohos.app.ability.application (应用基础能力)](js-apis-app-ability-application.md)
+    - [@ohos.app.ability.application (应用工具类)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](js-apis-app-ability-appServiceExtensionAbility.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
@@ -16,7 +21,7 @@
     - [@ohos.app.ability.childProcessManager (子进程管理)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.ChildProcessArgs (子进程参数)](js-apis-app-ability-childProcessArgs.md)
     - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](js-apis-app-ability-childProcessOptions.md)
-    - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
+    - [@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.contextConstant (Context相关常量)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
@@ -47,7 +52,7 @@
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](js-apis-app-ability-autoFillManager-sys.md)
     - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](js-apis-app-ability-autoStartupManager-sys.md)
-    - [@ohos.app.ability.common (应用上下文Context)(系统接口)](js-apis-app-ability-common-sys.md)
+    - [@ohos.app.ability.common (Ability公共模块)(系统接口)](js-apis-app-ability-common-sys.md)
     - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](js-apis-app-ability-dialogSession-sys.md)
     - [@ohos.app.ability.insightIntent (insightIntent)(系统接口)](js-apis-app-ability-insightIntent-sys.md)
     - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](js-apis-app-ability-insightIntentDriver-sys.md)
@@ -60,6 +65,14 @@
     - [@ohos.ability.ability (Ability模块)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
+    - ability<!--fa-model-ability-->
+      - [dataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
+      - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
+      - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
+    - app<!--app-->
+      - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
+      - [context](js-apis-inner-app-context.md)
+      - [processInfo](js-apis-inner-app-processInfo.md)
   - 通用能力的接口(推荐)<!--both-models-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
     - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
@@ -116,14 +129,6 @@
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
       - [connectOptions](js-apis-inner-ability-connectOptions.md)
       - [dataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)
-      - [dataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
-      - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
-      - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
-      - [want](js-apis-inner-ability-want.md)
-    - app<!--app-->
-      - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
-      - [context](js-apis-inner-app-context.md)
-      - [processInfo](js-apis-inner-app-processInfo.md)
     - application<!--ability-arkts-application-->
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
@@ -252,6 +257,8 @@
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (应用管理)](js-apis-system-package.md)
+    - ability<!--ability-deprecated-->
+      - [want](js-apis-inner-ability-want.md)
     - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
       - [applicationInfo](js-apis-bundle-ApplicationInfo.md)
@@ -272,26 +279,33 @@
 - C API<!--ability-c-->
   - 模块<!--ability-module-->
     - [AbilityAccessControl](capi-abilityaccesscontrol.md)
-    - [AbilityBase](_ability_base.md)
-    - [AbilityRuntime](_ability_runtime.md)
-    - [Bundle](_bundle.md)
-    - [ChildProcess](c-apis-ability-childprocess.md)
+    - [AbilityBase](capi-abilitybase.md)
+    - [AbilityRuntime](capi-abilityruntime.md)
+    - [Native_Bundle](capi-native-bundle.md)
+    - [ChildProcess](capi-childprocess.md)
   - 头文件<!--ability-headerfile-->
     - [ability_access_control.h](capi-ability-access-control-h.md)
-    - [ability_base_common.h](ability__base__common_8h.md)
-    - [ability_runtime_common.h](ability__runtime__common_8h.md)
-    - [application_context.h](application__context_8h.md)
-    - [context_constant.h](context__constant_8h.md)
-    - [native_interface_bundle.h](native__interface__bundle.md)
-    - [native_child_process.h](native__child__process_8h.md)
-    - [start_options.h](start__options_8h.md)
-    - [want.h](want__8h.md)
+    - [ability_base_common.h](capi-ability-base-common-h.md)
+    - [ability_runtime_common.h](capi-ability-runtime-common-h.md)
+    - [application_context.h](capi-application-context-h.md)
+    - [context_constant.h](capi-context-constant-h.md)
+    - [native_child_process.h](capi-native-child-process-h.md)
+    - [native_interface_bundle.h](capi-native-interface-bundle-h.md)
+    - [start_options.h](capi-start-options-h.md)
+    - [want.h](capi-want-h.md)
   - 结构体<!--ability-struct-->
-    - [AbilityBase_Element](_ability_base_element.md)
-    - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
-    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
-    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
+    - [AbilityBase_Element](capi-abilitybase-element.md)
+    - [AbilityBase_Want](capi-abilitybase-want.md)
+    - [AbilityRuntime_Startoptions](capi-abilityruntime-startoptions.md)
+    - [NativeChildProcess_Fd](capi-nativechildprocess-fd.md)
+    - [NativeChildProcess_FdList](capi-nativechildprocess-fdlist.md)
+    - [NativeChildProcess_Options](capi-nativechildprocess-options.md)
+    - [NativeChildProcess_Args](capi-nativechildprocess-args.md)
+    - [Ability_ChildProcessConfigs](capi-ability-childprocessconfigs.md)
+    - [OH_NativeBundle_ApplicationInfo](capi-native-bundle-oh-nativebundle-applicationinfo.md)
+    - [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md)
+    - [OH_NativeBundle_Metadata](capi-native-bundle-oh-nativebundle-metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](capi-native-bundle-oh-nativebundle-modulemetadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

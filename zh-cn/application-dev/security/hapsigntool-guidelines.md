@@ -195,7 +195,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
      ```
      verify-profile : profile文件验签
          ├── -inFile       # 已签名的profile文件，p7b格式，必填项
-         ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
+         ├── -outFile      # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
      ```
 
 11. 应用包和调试工具签名。

@@ -1,11 +1,16 @@
 # Interface (Flash)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-Flash extends [FlashQuery](arkts-apis-camera-FlashQuery.md)
+Flash 继承自 [FlashQuery](arkts-apis-camera-FlashQuery.md)。
 
 闪光灯类，对设备闪光灯操作。
 

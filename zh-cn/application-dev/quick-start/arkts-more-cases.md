@@ -1,7 +1,7 @@
 # 适配指导案例
 
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @anxuesm-->
 <!--SE: @qyhuo32-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
@@ -723,7 +723,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option = { id: '', type: 0 };
 test.foo('', option);
@@ -745,7 +745,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option: test.I = { id: '', type: 0 };
 test.foo('', option);

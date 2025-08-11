@@ -1,6 +1,11 @@
 # @ohos.app.ability.StartOptions (StartOptions)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @dsz2025; @yangxuguang-huawei; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
 
-StartOptions可以作为[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)的入参，用于指定目标Ability的窗口模式。
+StartOptions可以作为启动UIAbility接口（例如[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
 
 > **说明：**
 >

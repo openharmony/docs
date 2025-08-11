@@ -23,40 +23,34 @@ import { huks } from '@kit.UniversalKeystoreKit';
 
 调用接口使用的options中的properties数组中的param。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| tag    | [HuksTag](#hukstag)                 | 是   | 标签。       |
-| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。 |
+| tag    | [HuksTag](#hukstag)                 | 是   | 标签。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksOptions
 
 调用接口使用的options。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称     | 类型              | 必填 | 说明                     |
 | ---------- | ----------------- | ---- | ------------------------ |
-| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。 |
-| inData     | Uint8Array        | 否   | 输入数据。               |
+| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| inData     | Uint8Array        | 否   | 输入数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 
 ## HuksSessionHandle<sup>9+</sup>
 
 huks Handle结构体。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
-| handle    | number     | 是   | 表示uint64类型的handle值。                                       |
-| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。 |
+| handle    | number     | 是   | 表示无符号整数类型的handle值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
+| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksReturnResult<sup>9+</sup>
 
@@ -74,16 +68,13 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Security.Huks.Extension
 
 
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
-| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。 |
-
+| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## huks.generateKeyItem<sup>9+</sup>
 
@@ -105,7 +96,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -187,7 +178,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -255,12 +246,12 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认CE。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -305,7 +296,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认CE。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。            |
 
 **返回值：**
 
@@ -315,7 +306,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -364,7 +355,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -457,7 +448,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -542,7 +533,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -675,7 +666,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -804,7 +795,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -940,7 +931,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1063,7 +1054,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1272,7 +1263,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1322,12 +1313,12 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
-| options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
+| options  | [HuksOptions](#huksoptions)                          | 是   | 用于导出密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需导出密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1385,7 +1376,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1441,7 +1432,7 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1482,7 +1473,7 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1518,7 +1509,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1576,7 +1567,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1619,12 +1610,12 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认CE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则err中会存储对应的错误码信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1673,7 +1664,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认CE。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。 |
 
 **返回值：**
 
@@ -1683,7 +1674,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1727,12 +1718,12 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认CE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，data为false。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1782,7 +1773,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认CE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 
 **返回值：**
 
@@ -1792,7 +1783,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1844,7 +1835,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1886,7 +1877,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1923,7 +1914,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1958,12 +1949,12 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                              | 是   | updateSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession操作的参数集合。                       |
-| token    | Uint8Array                                           | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
+| token    | Uint8Array                                           | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md#二次认证密钥访问控制)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1998,7 +1989,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ---------------------------------------------- | ---- | -------------------------------------------- |
 | handle  | number                                         | 是   | updateSession操作的uint64类型的handle值。                         |
 | options | [HuksOptions](#huksoptions)                    | 是   | updateSession操作的参数集合。                       |
-| token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。                          |
+| token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md#二次认证密钥访问控制)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。                          |
 
 **返回值**：
 
@@ -2008,7 +1999,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2047,7 +2038,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2083,12 +2074,12 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                                | 是   | finishSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                           | 是   | finishSession的参数集合。                           |
-| token    | Uint8Array                                            | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
+| token    | Uint8Array                                            | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md#二次认证密钥访问控制)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2124,7 +2115,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | handle  | number                                          | 是   | finishSession操作的uint64类型的handle值。                |
 | options | [HuksOptions](#huksoptions)                     | 是   | finishSession操作的参数集合。              |
-| token   | Uint8Array                                      | 否   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。     |
+| token   | Uint8Array                                      | 否   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md#二次认证密钥访问控制)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。     |
 
 **返回值**：
 
@@ -2134,7 +2125,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2174,7 +2165,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2281,7 +2272,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2421,7 +2412,7 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -3908,7 +3899,7 @@ huks Handle结构体。
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | 是   | 表示错误码。 |
-| handle    | number       | 是 | 表示uint64类型的handle值。 |
+| handle    | number       | 是 | 表示无符号整数类型的handle值。 |
 | token | Uint8Array | 否 | 表示[init](#huksinitdeprecated)操作之后获取到的challenge信息。 |
 
 ## HuksResult<sup>(deprecated)</sup>

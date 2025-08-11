@@ -386,80 +386,55 @@
 
    ```ts
    if (store !== undefined) {
-     const valueBucket3: relationalStore.ValuesBucket = {
-       NAME: "Lisa",
-       AGE: 18,
-       SALARY: 100.5,
-       CODES: new Uint8Array([1, 2, 3, 4, 5])
-     };
      // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象插入数据
-       transaction.insert("EMPLOYEE", valueBucket3, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then((rowId: number) => {
-           // 插入成功提交事务
-           transaction.commit();
-           console.info(`Insert is successful, rowId = ${rowId}`);
-         })
-         .catch((e: BusinessError) => {
-           // 插入失败回滚事务
-           transaction.rollback();
-           console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+     try {
+       const transaction = await store.createTransaction();
+       try {
+         // 使用事务对象插入数据
+         const rowId = await transaction.insert(
+           'EMPLOYEE',
+           {
+             NAME: 'Lisa',
+             AGE: 18,
+             SALARY: 100.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Insert is successful, rowId = ${rowId}`);
 
-   ```ts
-   if (store !== undefined) {
-     const valueBucket4: relationalStore.ValuesBucket = {
-       NAME: "Rose",
-       AGE: 22,
-       SALARY: 200.5,
-       CODES: new Uint8Array([1, 2, 3, 4, 5]),
-     };
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     predicates.equalTo("NAME", "Lisa");
-     // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象更新数据
-       transaction.update(valueBucket4, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then(async (rows: Number) => {
-           // 更新成功提交事务
-           transaction.commit();
-           console.info(`Updated row count: ${rows}`);
-         }).catch((e: BusinessError) => {
-           // 更新失败回滚事务
-           transaction.rollback();
-           console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+         const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+         predicates.equalTo('NAME', 'Lisa');
+         // 使用事务对象更新数据
+         const rows = await transaction.update(
+           {
+             NAME: 'Rose',
+             AGE: 22,
+             SALARY: 200.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           predicates,
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Updated row count: ${rows}`);
 
-   ```ts
-   if (store !== undefined) {
-     // 创建事务
-     (store as relationalStore.RdbStore).createTransaction()
-       .then((transaction: relationalStore.Transaction) => {
          // 使用事务对象删除数据
-         transaction.execute("DELETE FROM EMPLOYEE WHERE age = ? OR age = ?", [21, 20]).then(() => {
-           // 删除成功提交事务
-           transaction.commit();
-           console.log(`execute delete success`);
-         }).catch((e: BusinessError) => {
-           // 删除失败回滚事务
-           transaction.rollback();
-           console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
-         });
-       })
-       .catch((err: BusinessError) => {
-         console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
-       });
+         await transaction.execute('DELETE FROM EMPLOYEE WHERE age = ? OR age = ?', [21, 20]);
+         console.log(`execute delete success`);
+
+         // 提交事务
+         await transaction.commit();
+         console.info('Transaction commit success.');
+       } catch (error) {
+         const err = error as BusinessError;
+         // 执行失败回滚事务
+         await transaction.rollback();
+         console.error(`Transaction execute failed, code is ${err.code}, message is ${err.message}`);
+       }
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`createTransaction failed, code is ${err.code}, message is ${err.message}`);
+     }
    }
    ```
 

@@ -1,4 +1,9 @@
 # 隐私遮罩
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 用于对组件内容进行隐私遮罩处理。
 

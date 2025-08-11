@@ -1,4 +1,9 @@
 # @ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后台服务的创建、销毁、连接、断开等生命周期回调。
 

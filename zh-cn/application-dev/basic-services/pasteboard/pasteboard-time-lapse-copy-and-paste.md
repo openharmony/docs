@@ -1,4 +1,9 @@
 # 使用剪贴板进行延迟复制粘贴
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 ## 场景介绍
 
@@ -223,10 +228,10 @@
        let records = outputData.getRecords();
        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
          let record = records[0] as unifiedDataChannel.PlainText;
-         console.log('GetPlainText success, type:' + records[0].getType() + ', details:' +
+         console.info('GetPlainText success, type:' + records[0].getType() + ', details:' +
          JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
        } else {
-         console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+         console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
      }).catch((error: BusinessError) => {
        //处理异常场景

@@ -150,8 +150,6 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 表示拉起证书管理安装证书向导，显示相应的页面，使用Promise方式异步返回结果。
 
-仅2in1设备支持。
-
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
@@ -221,8 +219,6 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 
 表示拉起证书管理删除证书向导，显示相应的页面，使用Promise方式异步返回结果。
 
-仅2in1设备支持。
-
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
@@ -286,8 +282,6 @@ try {
 openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property: CertificateDialogProperty): Promise\<void>
 
 表示拉起证书管理对话框显示证书的详情，使用Promise方式异步返回结果。
-
-仅2in1设备支持。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 

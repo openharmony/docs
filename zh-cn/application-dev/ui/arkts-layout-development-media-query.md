@@ -1,4 +1,9 @@
 # 媒体查询 (@ohos.mediaquery)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 
 ## 概述

@@ -1,5 +1,9 @@
 # 振动开发指导(C/C++)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 ## 场景介绍
 

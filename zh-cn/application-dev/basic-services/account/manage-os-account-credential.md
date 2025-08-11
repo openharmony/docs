@@ -1,5 +1,11 @@
 # 管理系统账号凭据（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
 ## 凭据类型

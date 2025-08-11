@@ -103,7 +103,18 @@ try {
   const rand = cryptoFramework.createRandom();
   const allowableDuration: number = 5000;
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -122,15 +133,21 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // 发起 AuthToken 验证请求。
-        userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
-            .then((retAuthToken: userAccessCtrl.AuthToken) => {
-                Object.keys(retAuthToken).forEach((key) => {
-                    console.info(`retAuthToken key:${key}, value:${retAuthToken[key]}`);
-                })
-            }).catch ((error: BusinessError) => {
-                console.error(`verify authToken error. Code is ${error?.code}, message is ${error?.message}`);
-            })
+        try {
+          // 发起AuthToken验证请求。
+          userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
+              .then((retAuthToken: userAccessCtrl.AuthToken) => {
+                  Object.keys(retAuthToken).forEach((key) => {
+                      // 处理业务逻辑。
+                      console.info(`retAuthToken key:${key}`);
+                  })
+              }).catch ((error: BusinessError) => {
+                  console.error(`verify authToken error. Code is ${error?.code}, message is ${error?.message}`);
+              })
+        } catch (error) {
+          const err: BusinessError = error as BusinessError;
+          console.error(`verify authToken error. Code is ${err?.code}, message is ${err?.message}`);
+        }
     }
   });
   console.info('auth on success');

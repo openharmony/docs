@@ -5,9 +5,7 @@
 <!--SE: @zhaopeng_gitee-->
 <!--TSE: @maxiaorong2-->
 
-
 ## 场景介绍
-
 
 IPC让运行在不同进程间的Proxy和Stub实现互相通信。IPC CAPI是IPC Kit提供的C语言接口。
 IPC CAPI接口不直接提供获取通信代理对象的能力，该功能由[Ability Kit](../application-models/abilitykit-overview.md)提供。
@@ -30,7 +28,6 @@ IPC CAPI接口不直接提供获取通信代理对象的能力，该功能由[Ab
 |int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|向OHIPCRemoteProxy对象注册死亡监听，用于接收远端OHIPCRemoteStub对象死亡时的回调通知。|
 
 详细的接口说明请参考[IPCKit](../reference/apis-ipc-kit/capi-ipckit.md)。
-
 
 ## 开发步骤
 
@@ -57,7 +54,8 @@ libchild_process.so
 ```
 
 ### 异步调用场景
-#### 公共数据及函数定义
+
+**公共数据及函数定义**
 
 ```c++
 #include <string>
@@ -96,7 +94,8 @@ static void* LocalMemoryAllocator(int32_t len) {
     return buffer;
 }
 ```
-#### 服务端对象: IpcCApiStubTest
+
+**服务端对象: IpcCApiStubTest**
 
 ```c++
 class IpcCApiStubTest {
@@ -230,7 +229,7 @@ int IpcCApiStubTest::RequestExitChildProcess() {
 }
 ```
 
-#### 客户端代理对象: IpcCApiProxyTest
+**客户端代理对象: IpcCApiProxyTest**
 
 ```cpp
 // 用戶自定义错误码
@@ -402,7 +401,8 @@ void IpcCApiProxyTest::OnDeathRecipientCB(void *userData) {
     OH_LOG_INFO(LOG_APP, "the stub is dead!");
 }
 ```
-#### 服务端调用入口，服务端文件"libipcCapiDemo.so"
+
+**服务端调用入口，服务端文件"libipcCapiDemo.so"**
 
 ```C++
 IpcCApiStubTest g_ipcStubObj;
@@ -426,7 +426,7 @@ void NativeChildProcess_MainProc() {
 #endif
 ```
 
-#### 客户端调用入口
+**客户端调用入口**
 
 ```c++
 IpcCApiProxyTest *g_ipcProxy = nullptr;

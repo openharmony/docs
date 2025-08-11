@@ -1,4 +1,9 @@
 # Tabs
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
 
@@ -18,6 +23,8 @@
 >  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
 >  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[示例13](#示例13页面懒加载和释放)。
+>
+>  Tabs设置[height](ts-universal-attributes-size.md#height)为auto时，可根据子组件高度自适应高度大小。设置[width](ts-universal-attributes-size.md#width)为auto时，可根据子组件宽度自适应宽度大小。
 
 
 ## 接口
@@ -612,7 +619,7 @@ Tab页签点击后触发的事件。
 
 onAnimationStart(handler: OnTabsAnimationStartCallback)
 
-切换动画开始时触发该回调。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
+切换动画开始时触发该回调。当[animationDuration](#animationduration)为0时动画关闭且[scrollable](#scrollable)为false时，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

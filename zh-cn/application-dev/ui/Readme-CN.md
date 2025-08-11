@@ -1,4 +1,9 @@
 # ArkUI（方舟UI框架）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy;@jiyujia926;@yangfan229-->
+<!--SE: @piggyguy;@s10021109;@yangfan229-->
+<!--TSE: @fredyuan912-->
 - [ArkUI简介](arkui-overview.md)
 - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
   - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
@@ -226,6 +231,7 @@
   - UI系统场景化能力<!--arkts-ui-system-scenarization-capability-->
     - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
     - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
+    - [感知组件可见性](arkts-manage-components-visibility.md)
     - [检查页面布局](arkts-inspector-overview.md)
     - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
     - 嵌入式组件<!--arkts-ui-cross-process-->
@@ -258,6 +264,7 @@
   - [查询和操作自定义节点](ndk-node-query-operate.md)
   - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
   - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+  - [NDK支持多线程创建组件](ndk-build-on-multi-thread.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

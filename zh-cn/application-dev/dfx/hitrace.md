@@ -1,5 +1,10 @@
 # hitrace
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 hitrace命令行工具提供trace信息（包含系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter-intro.md)在应用中设置的打点）采集能力，支持多种方式采集文本格式或二进制格式trace信息，帮助开发者观测程序运行情况及定位故障问题。
 
@@ -313,7 +318,6 @@ $ hitrace --trace_dump
  state_change_ha-1139    (    952) [001] .... 610866.506782: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.506824: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.557458: tracing_mark_write: B|952|H:ProcessEvent, eventId: 0|I62
- state_change_ha-1139    (    952) [001] .... 610866.557624: tracing_mark_write: B|952|H:HandleStateTransition, 20020016_com.huawei.hmos.aidataservice_[6111]|I62
  state_change_ha-1139    (    952) [001] .... 610866.558060: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.558101: tracing_mark_write: E|952|I62
 ```

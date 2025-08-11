@@ -46,11 +46,14 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
       }
       // 业务自行复写onRemoteMessageRequest方法，用来处理客户端的请求
       onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-        // 根据code处理客户端的请求,
+        // 根据code处理客户端的请求
         switch (code) {
           case 1:
             {
               // 按照客户端写入顺序读取对应数据，具体看业务逻辑
+              // 此处是根据后面客户端发送信息给服务端做的示例
+              data.readString();
+              reply.writeString('huichuanxinxi');
             }
         }
         return true;
@@ -64,7 +67,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
       }
 
       onRequest(want: Want, startId: number): void {
-        hilog.info(0x0000, 'testTag', 'onCreate');
+        hilog.info(0x0000, 'testTag', 'onRequest');
       }
 
       onConnect(want: Want): rpc.RemoteObject {
@@ -74,7 +77,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
       }
 
       onDisconnect(want: Want): void {
-        hilog.info(0x0000, 'testTag', 'onConnect');
+        hilog.info(0x0000, 'testTag', 'onDisconnect');
       }
 
       onDestroy(): void {
@@ -128,6 +131,10 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
     let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
+    let deviceList: Array<distributedDeviceManager.DeviceBasicInfo> | undefined;
+    let networkId: string | undefined;
+    let want: Want | undefined;
+    let connect: common.ConnectOptions | undefined;
 
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
@@ -138,26 +145,32 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
     // 使用distributedDeviceManager获取目标设备NetworkId
     if (dmInstance != undefined) {
-      let deviceList = dmInstance.getAvailableDeviceListSync();
-      let networkId = deviceList[0].networkId;
-      let want: Want = {
-        bundleName: "ohos.rpc.test.server",
-        abilityName: "ohos.rpc.test.service.ServiceAbility",
-        deviceId: networkId,
-      };
-
-      let connect: common.ConnectOptions = {
-        onConnect: (elementName, remoteProxy) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-          proxy = remoteProxy;
-        },
-        onDisconnect: (elementName) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-        },
-        onFailed: () => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      try {
+        deviceList = dmInstance.getAvailableDeviceListSync();
+        if (deviceList.length !== 0) {
+          networkId = deviceList[0].networkId;
+          want = {
+            bundleName: "ohos.rpc.test.server",
+            abilityName: "ohos.rpc.test.service.ServiceAbility",
+            deviceId: networkId,
+          };
+          connect = {
+            onConnect: (elementName, remoteProxy) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+              proxy = remoteProxy;
+            },
+            onDisconnect: (elementName) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+            },
+            onFailed: () => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+            }
+          };
         }
-      };
+      }catch(error) {
+        let err: BusinessError = error as BusinessError;
+        hilog.error(0x0000, 'testTag', 'createDeviceManager err:' + err);
+      }
     }
   ```
 
@@ -174,7 +187,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
   ```
 
   Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)接口连接Ability。
-  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+  在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
@@ -210,6 +223,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
             return;
           }
           // 从result.reply里读取结果
+          // 此处是根据前面创建ServiceExtensionAbility，实现服务端做的示例
           result.reply.readString();
         })
         .catch((e: Error) => {
@@ -267,7 +281,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
    ```
 
    Stage模型使用common.UIAbilityContext提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1)接口断开连接，此处的connectId是在连接服务时保存的。
-   在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+   在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts

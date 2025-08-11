@@ -14,7 +14,7 @@
 
 **错误信息**
 
-Internal error.
+Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.
 
 **可能原因**
 
@@ -46,7 +46,7 @@ The user install certificate failed in the certificate manager dialog, such as t
 
 **可能原因**
 
-调用API时发生证书安装失败。
+调用API安装证书时失败，可能是由于证书格式错误。
 
 **处理步骤**
 
@@ -66,7 +66,7 @@ The API is not supported on this device.
 
 更换PC设备调用此API。
 
-## 29700005 操作不符合设备安全政策
+## 29700005 操作不符合设备安全策略
 
 **错误信息**
 

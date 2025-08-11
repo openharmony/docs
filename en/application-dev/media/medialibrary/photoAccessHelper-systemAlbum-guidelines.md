@@ -1,14 +1,14 @@
 # Managing System Albums
 
-The **photoAccessHelper** module provides APIs for managing system albums, including **Favorites**, **Videos**, and **Screenshots**.
+The photoAccessHelper module provides APIs for managing system albums, including **Favorites**, **Videos**, and **Screenshots**.
 
 > **NOTE**
 >
-> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> Before you get started, obtain a PhotoAccessHelper instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 >
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Unless otherwise specified, the PhotoAccessHelper instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call photoAccessHelper APIs. If the code for obtaining the PhotoAccessHelper instance is missing, an error will be reported to indicate that photoAccessHelper is not defined.
 
-To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Module Description](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md).
 
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
@@ -18,27 +18,23 @@ Unless otherwise specified, all the media assets to be obtained in this document
 
 ### Obtaining a Favorites Object
 
-Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2) to obtain a **Favorites** object.
+Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2) to obtain a Favorites object.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.FAVORITE**.
-2. Call **PhotoAccessHelper.getAlbums** to obtain a **Favorites** object.
+2. Call **PhotoAccessHelper.getAlbums** to obtain a Favorites object.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
@@ -53,11 +49,11 @@ async function example() {
 <!--Del-->
 ### Favoriting an Image or Video (for System Applications Only)
 
-Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to add an image or video to **Favorites**.
+Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to add an image or video to **Favorites**.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Favorite an image.
@@ -73,11 +69,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -101,32 +93,29 @@ async function example() {
 
 ### Obtaining Images and Videos in Favorites
 
-[Obtain a **Favorites** object](#obtaining-a-favorites-object), and call [Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3) to obtain the assets in **Favorites**.
+[Obtain a Favorites object](#obtaining-a-favorites-object), and call [Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1) to obtain the assets in **Favorites**.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain an image from **Favorites**.
 
 **How to Develop**
 
-1. [Obtain a **Favorites** object](#obtaining-a-favorites-object).
+1. [Obtain a Favorites object](#obtaining-a-favorites-object).
 2. Set **fetchOptions** for obtaining the image.
 3. Call **Album.getAssets** to obtain the image assets.
-4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image from the result set.
+4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first image from the result set.
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -152,11 +141,11 @@ async function example() {
 <!--Del-->
 ### Unfavoriting an Image or Video (for System Applications Only)
 
-Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to remove an image or video from **Favorites**.
+Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to remove an image or video from **Favorites**.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Unfavorite an image.
@@ -173,11 +162,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -212,27 +197,23 @@ async function example() {
 
 ### Obtaining a Videos Object
 
-Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2) to obtain a **Videos** object.
+Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2) to obtain a Videos object.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.VIDEO**.
-2. Use **PhotoAccessHelper.getAlbums** to obtain a **Videos** object.
+2. Use **PhotoAccessHelper.getAlbums** to obtain a Videos object.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
@@ -246,32 +227,28 @@ async function example() {
 
 ### Obtaining a Video from Videos
 
-[Obtain a **Videos** object](#obtaining-a-videos-object), and call [Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3) to obtain the video assets in the **Videos** album.
+[Obtain a Videos object](#obtaining-a-videos-object), and call [Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1) to obtain the video assets in the **Videos** album.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a video in **Videos**.
 
 **How to Develop**
 
-1. [Obtain a **Videos** object](#obtaining-a-videos-object).
+1. [Obtain a Videos object](#obtaining-a-videos-object).
 2. Set **fetchOptions** for obtaining the video.
 3. Call **Album.getAssets** to obtain video assets.
-4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first video asset.
+4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first video asset.
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -301,27 +278,23 @@ async function example() {
 
 ### Obtaining a Screenshots Object
 
-Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2) to obtain a **Screenshots** object.
+Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2) to obtain a Screenshots object.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.SCREENSHOT**.
-2. Use **PhotoAccessHelper.getAlbums** to obtain a **Screenshots** object.
+2. Use **PhotoAccessHelper.getAlbums** to obtain a Screenshots object.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
@@ -335,32 +308,28 @@ async function example() {
 
 ### Obtaining Media Assets in Screenshots
 
-[Obtain a **Screenshots** object](#obtaining-a-screenshots-object), and call [Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3) to obtain the media assets in **Screenshots**.
+[Obtain a Screenshots object](#obtaining-a-screenshots-object), and call [Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1) to obtain the media assets in **Screenshots**.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a media asset from **Screenshots**.
 
 **How to Develop**
 
-1. [Obtain a **Screenshots** object](#obtaining-a-screenshots-object).
+1. [Obtain a Screenshots object](#obtaining-a-screenshots-object).
 2. Set **fetchOptions** for obtaining the media asset.
 3. Call **Album.getAssets** to obtain media assets.
-4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first media asset.
+4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first media asset.
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],

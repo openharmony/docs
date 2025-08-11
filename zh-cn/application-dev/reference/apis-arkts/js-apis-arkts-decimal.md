@@ -1,7 +1,7 @@
 # @arkts.math.Decimal (高精度数学库Decimal)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -88,17 +88,17 @@ type Modulo = Rounding | 9
 
 **系统能力**：SystemCapability.Utils.Lang
 
-| 名称      | 类型                   | 只读 | 必填 | 说明                                                         |
+| 名称      | 类型                   | 只读 | 可选 | 说明                                                         |
 | --------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| precision | number                 | 否   | 否   | 运算结果的最大有效位数，取值范围为[1, 1e9]，默认值为20。     |
-| rounding  | [Rounding](#rounding) | 否   | 否   | 舍入模式，取值范围为0到8的整数，默认值为4。                  |
-| toExpNeg  | number                 | 否   | 否   | 指数表示法的负指数值的极限值，若Decimal的负指数小于等于该值时，使用科学计数法表示，[toString](#tostring)方法中使用，取值范围为[-9e15, 0]，默认值为-7。 |
-| toExpPos  | number                 | 否   | 否   | 指数表示法的正指数值的极限值，若Decimal的正指数大于等于该值时，使用科学计数法表示，[toString](#tostring)方法中使用，取值范围为[0, 9e15]，默认值为21。 |
-| minE      | number                 | 否   | 否   | 负指数极限，若Decimal的指数值小于该值，会下溢到零，取值范围为[-9e15, 0]，默认值为-9e15。 |
-| maxE      | number                 | 否   | 否   | 正指数极限，若Decimal的指数值大于该值，会溢出至无穷大，取值范围为[0, 9e15]，默认值为9e15。 |
-| crypto    | boolean                | 否   | 否   | 确定是否使用加密安全伪随机数生成的值，true表示使用加密安全伪随机数，false表示不使用，默认值为false。该能力不支持使用，报错的错误码为：10200061。  |
-| modulo    | [Modulo](#modulo)      | 否   | 否   | 模计算时使用的舍入模式，取值范围为0到9的整数，默认值为1。    |
-| defaults  | boolean                | 否   | 否   | 表示未指定的属性是否被设置为默认值，true表示使用默认值，false表示不使用默认值，默认值为true。 |
+| precision | number                 | 否   | 是   | 运算结果的最大有效位数，取值范围为[1, 1e9]，默认值为20。     |
+| rounding  | [Rounding](#rounding) | 否   | 是   | 舍入模式，取值范围为0到8的整数，默认值为4。                  |
+| toExpNeg  | number                 | 否   | 是   | 指数表示法的负指数值的极限值，若Decimal的负指数小于等于该值时，使用科学计数法表示，[toString](#tostring)方法中使用，取值范围为[-9e15, 0]，默认值为-7。 |
+| toExpPos  | number                 | 否   | 是   | 指数表示法的正指数值的极限值，若Decimal的正指数大于等于该值时，使用科学计数法表示，[toString](#tostring)方法中使用，取值范围为[0, 9e15]，默认值为21。 |
+| minE      | number                 | 否   | 是   | 负指数极限，若Decimal的指数值小于该值，会下溢到零，取值范围为[-9e15, 0]，默认值为-9e15。 |
+| maxE      | number                 | 否   | 是   | 正指数极限，若Decimal的指数值大于该值，会溢出至无穷大，取值范围为[0, 9e15]，默认值为9e15。 |
+| crypto    | boolean                | 否   | 是   | 确定是否使用加密安全伪随机数生成的值，true表示使用加密安全伪随机数，false表示不使用，默认值为false。该能力不支持使用，报错的错误码为：10200061。  |
+| modulo    | [Modulo](#modulo)      | 否   | 是   | 模计算时使用的舍入模式，取值范围为0到9的整数，默认值为1。    |
+| defaults  | boolean                | 否   | 是   | 表示未指定的属性是否被设置为默认值，true表示使用默认值，false表示不使用默认值，默认值为true。 |
 
 ## Decimal
 
@@ -110,11 +110,11 @@ type Modulo = Rounding | 9
 
 **系统能力**：SystemCapability.Utils.Lang
 
-| 名称 | 类型     | 只读 | 必填 | 说明                                      |
+| 名称 | 类型     | 只读 | 可选 | 说明                                      |
 | ---- | -------- | ---- | ---- | ----------------------------------------- |
-| d    | number[] | 是   | 是   | digits：表示Decimal数整数部分和小数部分。 |
-| e    | number   | 是   | 是   | exponent：表示Decimal数的十进制指数。 |
-| s    | number   | 是   | 是   | sign：表示Decimal数的符号位。             |
+| d    | number[] | 是   | 否   | digits：表示Decimal数整数部分和小数部分的数组。 |
+| e    | number   | 是   | 否   | exponent：表示Decimal数的十进制指数。 |
+| s    | number   | 是   | 否   | sign：表示Decimal数的符号位，0表示正数，1表示负数。 |
 
 ### 常量
 
@@ -288,7 +288,7 @@ clamp(min: Value, max: Value): Decimal
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'min' is out of range.                          |
+| 10200001 | The value of `min` is out of range.                          |
 
 **示例：**
 
@@ -598,7 +598,7 @@ exp(): Decimal
 
 **返回值：**
 
-| 类型                | 返回值                                |
+| 类型                | 说明                                |
 | ------------------- | ------------------------------------- |
 | [Decimal](#decimal) | 返回自然指数运算后的Decimal对象实例。 |
 
@@ -1519,7 +1519,7 @@ toBinary(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of `significantDigits` is out of range. |
 
 **示例：**
 
@@ -1558,7 +1558,7 @@ toBinary(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of `significantDigits \| rounding` is out of range. |
 
 **示例：**
 
@@ -1624,7 +1624,7 @@ toOctal(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of `significantDigits` is out of range. |
 
 **示例：**
 
@@ -1663,7 +1663,7 @@ toOctal(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of `significantDigits \| rounding` is out of range. |
 
 **示例：**
 
@@ -1729,7 +1729,7 @@ toHexadecimal(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of `significantDigits` is out of range. |
 
 **示例：**
 
@@ -1768,7 +1768,7 @@ toHexadecimal(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of `significantDigits \| rounding` is out of range. |
 
 **示例：**
 
@@ -1832,7 +1832,7 @@ toDecimalPlaces(decimalPlaces: number): Decimal
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of `decimalPlaces` is out of range. |
 
 **示例：**
 
@@ -1871,7 +1871,7 @@ toDecimalPlaces(decimalPlaces: number, rounding: Rounding): Decimal
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
 
 **示例：**
 
@@ -1936,7 +1936,7 @@ toExponential(decimalPlaces: number): string
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of `decimalPlaces` is out of range. |
 
 **示例：**
 
@@ -1977,7 +1977,7 @@ toExponential(decimalPlaces: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
 
 **示例：**
 
@@ -2041,7 +2041,7 @@ toFixed(decimalPlaces: number): string
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of `decimalPlaces` is out of range. |
 
 **示例：**
 
@@ -2082,7 +2082,7 @@ toFixed(decimalPlaces: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                  |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of `decimalPlaces \| rounding` is out of range. |
 
 **示例：**
 
@@ -2118,9 +2118,9 @@ console.info("test Decimal toFraction:" + data1.toString()); // 'test Decimal to
 
 ### toFraction
 
-toFraction(max_denominator: Value): Decimal[]
+toFraction(maxDenominator: Value): Decimal[]
 
-将数值转换为分数表示的数，可以通过max_denominator设置最大分母值。
+将数值转换为分数表示的数，可以通过maxDenominator设置最大分母值。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -2130,7 +2130,7 @@ toFraction(max_denominator: Value): Decimal[]
 
 | 参数名          | 类型            | 必填 | 说明                     |
 | --------------- | --------------- | ---- | ------------------------ |
-| max_denominator | [Value](#value) | 是   | 分母的最大值。包含该值。 |
+| maxDenominator | [Value](#value) | 是   | 分母的最大值。包含该值。 |
 
 **返回值：**
 
@@ -2226,7 +2226,7 @@ toNearest(n: Value, rounding: Rounding): Decimal
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'rounding' is out of range. |
+| 10200001 | The value of `rounding` is out of range. |
 
 **示例：**
 
@@ -2292,7 +2292,7 @@ toPrecision(significantDigits: number): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of `significantDigits` is out of range. |
 
 **示例：**
 
@@ -2332,7 +2332,7 @@ toPrecision(significantDigits: number, rounding: Rounding): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \|  rounding' is out of range. |
+| 10200001 | The value of `significantDigits \|  rounding` is out of range. |
 
 **示例：**
 
@@ -2398,7 +2398,7 @@ toSignificantDigits(significantDigits: number): Decimal
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of `significantDigits` is out of range. |
 
 **示例：**
 
@@ -2437,7 +2437,7 @@ toSignificantDigits(significantDigits: number, rounding: Rounding): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \|  rounding' is out of range. |
+| 10200001 | The value of `significantDigits \|  rounding` is out of range. |
 
 **示例：**
 
@@ -2604,7 +2604,7 @@ precision(includeZeros: boolean | number): number
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 10200001 | The value of includeZeros is out of range. |
+| 10200001 | The value of `includeZeros` is out of range. |
 
 **示例：**
 
@@ -2794,7 +2794,7 @@ static clamp(n: Value, min: Value, max: Value): Decimal
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'min' is out of range.                          |
+| 10200001 | The value of `min` is out of range.                          |
 
 **示例：**
 
@@ -2847,7 +2847,7 @@ console.info("test Decimal add:" + data.toString()); // 'test Decimal add:1'
 
 static sum(...n: Value[]): Decimal
 
-返回一个值为数组的和的Decimal对象。
+返回一个值为数组元素和的Decimal对象。该接口用于对参数求和，当无入参时会抛出运行时异常。
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
@@ -2859,7 +2859,7 @@ static sum(...n: Value[]): Decimal
 
 | 参数名 | 类型              | 必填 | 说明         |
 | ------ | ----------------- | ---- | ------------ |
-| n      | [Value](#value)[] | 是   | 加数的序列。 |
+| n      | [Value](#value)[] | 否   | 加数的序列。 |
 
 **返回值：**
 
@@ -3880,7 +3880,7 @@ console.info("test Decimal atan2:" + data.toString()); // 'test Decimal atan2:0.
 
 static hypot(...n: Value[]): Decimal
 
-返回一个新的Decimal对象，其值是参数平方和的平方根。
+返回一个新的Decimal对象，其值是参数平方和的平方根。无入参时默认返回0。
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
@@ -3892,7 +3892,7 @@ static hypot(...n: Value[]): Decimal
 
 | 参数名 | 类型              | 必填 | 说明                 |
 | ------ | ----------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | 是   | 需要求平方和的序列。 |
+| n      | [Value](#value)[] | 否   | 需要求平方和的序列。 |
 
 **返回值：**
 
@@ -3919,7 +3919,7 @@ console.info("test Decimal hypot:" + data.toString()); // 'test Decimal hypot:5.
 
 static max(...n: Value[]): Decimal
 
-返回一个值为所有参数中最大值的Decimal对象。
+返回一个值为所有参数中最大值的Decimal对象。该接口用于求参数中的最大值，当无入参时会发生运行时异常。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -3929,7 +3929,7 @@ static max(...n: Value[]): Decimal
 
 | 参数名 | 类型              | 必填 | 说明                 |
 | ------ | ----------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | 是   | 需要求最大值的序列。 |
+| n      | [Value](#value)[] | 否   | 需要求最大值的序列。 |
 
 **返回值：**
 
@@ -3956,7 +3956,7 @@ console.info("test Decimal max:" + data.toString()); // 'test Decimal max:4'
 
 static min(...n: Value[]): Decimal
 
-返回一个值为所有参数中最小值的Decimal对象。
+返回一个值为所有参数中最小值的Decimal对象。该接口用于求参数中的最小值，当无入参时会发生运行时异常。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -3966,7 +3966,7 @@ static min(...n: Value[]): Decimal
 
 | 参数名 | 类型            | 必填 | 说明                 |
 | ------ | --------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | 是   | 需要求最小值的序列。 |
+| n      | [Value](#value)[] | 否   | 需要求最小值的序列。 |
 
 **返回值：**
 
@@ -4133,7 +4133,7 @@ console.info("test Decimal round:" + data.toString()); // 'test Decimal round:3'
 
 ### set
 
-static set(object: DecimalConfig):void
+static set(config: DecimalConfig):void
 
 用于设置Decimal的配置属性，通过set设置的属性是全局生效的。
 
@@ -4145,7 +4145,7 @@ static set(object: DecimalConfig):void
 
 | 参数名 | 类型                            | 必填 | 说明                 |
 | ------ | ------------------------------- | ---- | -------------------- |
-| object | [DecimalConfig](#decimalconfig) | 是   | 需要配置的属性集合。 |
+| config | [DecimalConfig](#decimalconfig) | 是   | 需要配置的属性集合。 |
 
 **错误码：**
 
@@ -4154,7 +4154,7 @@ static set(object: DecimalConfig):void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
+| 10200001 | The value of `DecimalConfig.properties` is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
 **示例1：**

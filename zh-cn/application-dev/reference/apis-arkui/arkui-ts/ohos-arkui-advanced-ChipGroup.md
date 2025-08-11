@@ -1,4 +1,9 @@
 # ChipGroup
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @xieziang--> 
+<!--SE: @youzhi92--> 
+<!--TSE: @TerryTsao-->
 
 ChipGroup高级组件，提供操作块群组，用于对文件或者资源内容进行分类等场景。
 

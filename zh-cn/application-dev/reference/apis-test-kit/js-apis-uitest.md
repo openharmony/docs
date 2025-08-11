@@ -1,5 +1,12 @@
 # @ohos.UiTest
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--SE: @inter515-->
+<!--TSE: @laonie666-->
+
+
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
 该模块提供以下功能：
@@ -1714,7 +1721,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -6050,6 +6057,12 @@ click(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6071,6 +6084,12 @@ doubleClick(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6091,6 +6110,12 @@ longClick(): Promise\<void>
 从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6384,6 +6409,12 @@ inputText(text: string): Promise\<void>
 | ------ | ------ | ---- | ---------------- |
 | text   | string | 是   | 输入的文本信息。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6476,6 +6507,12 @@ UiDriver对象在给定的时间内延时。
 | -------- | ------ | ---- | ------------ |
 | duration | number | 是   | 给定的时间。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6566,6 +6603,12 @@ assertComponentExist(by: By): Promise\<void>
 | ------ | ------------------- | ---- | -------------------- |
 | by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -6596,6 +6639,12 @@ UiDriver对象进行点击BACK键的操作。
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6621,6 +6670,12 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
 | keyCode | number | 是   | 指定的key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6650,6 +6705,12 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6677,6 +6738,12 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 | ------ | ------ | ---- | -------------------------------------- |
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6706,6 +6773,12 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6734,6 +6807,12 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。 |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。 |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

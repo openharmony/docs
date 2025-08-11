@@ -6,7 +6,7 @@
 
 Public API
 
-**Reason for Change**
+**Reason for the Change**
 
 The display names for Burmese, Malay, and Thai languages are incorrect.
 

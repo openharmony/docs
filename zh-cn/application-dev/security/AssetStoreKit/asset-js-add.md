@@ -44,11 +44,11 @@
 
 ## 约束和限制
 
-* 基于别名的访问
+- 基于别名的访问
 
   关键资产以密文的形式存储在ASSET数据库中，以业务身份 + 别名作为唯一索引。故业务需要保证每条关键资产的别名唯一。
 
-* 业务自定义数据存储
+- 业务自定义数据存储
 
   ASSET为业务预留了12个关键资产自定义属性，名称以"DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
 
@@ -82,7 +82,7 @@ attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.add(attr).then(() => {
-    console.info(`Asset added successfully.`);
+    console.info(`Succeeded in adding Asset.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })

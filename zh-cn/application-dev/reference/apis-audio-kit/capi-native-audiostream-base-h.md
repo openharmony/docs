@@ -1,4 +1,9 @@
 # native_audiostream_base.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 ## 概述
 
@@ -390,6 +395,8 @@ enum OH_AudioStream_DeviceChangeReason
 | REASON_NEW_DEVICE_AVAILABLE = 1 | 新设备可用。 |
 | REASON_OLD_DEVICE_UNAVAILABLE = 2 | 旧设备不可用。当报告此原因时，应用程序应考虑暂停音频播放。 |
 | REASON_OVERRODE = 3 | 用户或系统强制选择切换。 |
+| REASON_SESSION_ACTIVATED = 4 | 音频会话激活触发的设备切换。 |
+| REASON_STREAM_PRIORITY_CHANGED = 5 | 更高优先级的音频流出现导致的系统设备切换。 |
 
 ### OH_AudioStream_PrivacyType
 

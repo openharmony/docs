@@ -1,4 +1,9 @@
 # @ohos.file.photoAccessHelper (相册管理模块)(系统接口)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -9032,10 +9037,9 @@ static getCustomRecordManagerInstance(context: Context): PhotoAssetCustomRecordM
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example(context: Context) {
+async function example(context: Context) {
   console.info('getCustomRecordManagerInstance');
   try {
-    let context = getContext(this);
     let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   } catch(err) {
     console.error(`getCustomRecordManagerInstance failed with error: ${err.code}, ${err.message}`);
@@ -9080,9 +9084,8 @@ createCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('createCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let crArray:Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:1,lcdJumpCount:1}
@@ -9133,9 +9136,8 @@ getCustomRecords(optionCheck: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsse
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('getCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -9189,9 +9191,8 @@ setCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('setCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let UpdateArray: Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:2,lcdJumpCount:3},
@@ -9243,9 +9244,8 @@ removeCustomRecords(optionCheck: FetchOptions): Promise&lt;void&gt;
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('removeCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -9296,9 +9296,8 @@ addShareCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addShareCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addShareCount(ids).then((failIds) => {
@@ -9344,9 +9343,8 @@ addLcdJumpCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addLcdJumpCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addLcdJumpCount(ids).then((failIds) => {
@@ -9579,7 +9577,7 @@ async example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId             |string               |是 | 卡片的ID，由图库创建卡片时提供。 |
-|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。创建和更新卡片时assetUris不可为空，移除卡片时assetUris可以不传。  |
+|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。<br>创建和更新卡片时，assetUris不可为空。<br>单次创建或更新卡片时，assetUris中的uri个数如果超出500个，则只创建或更新500个uri的监听，超出500个后的uri不会被注册。<br>移除卡片时，assetUris可省略。  |
 
 ## ResourceType<sup>11+</sup>
 

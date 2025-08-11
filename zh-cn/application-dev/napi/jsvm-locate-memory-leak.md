@@ -1,7 +1,7 @@
 # JSVM-API 内存泄漏问题定位指导
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 

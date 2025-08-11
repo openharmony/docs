@@ -1,4 +1,9 @@
 # 动态手势设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 动态设置组件绑定的手势，支持开发者在属性设置时使用if/else语法进行动态设置。
 

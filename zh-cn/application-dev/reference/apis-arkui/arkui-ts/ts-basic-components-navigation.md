@@ -1,4 +1,9 @@
 # Navigation
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
@@ -466,7 +471,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[SystemBarStyle](#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[SystemBarStyle](#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
 
 >  **使用说明：**
 >
@@ -492,7 +497,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值：false。<br/>true：路由栈可恢复。<br/>false：路由栈不可恢复。|
+| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值：false。<br/>true：路由栈可恢复。<br/>false：路由栈不可恢复。|
 
 >  **使用说明：**
 >
@@ -514,7 +519,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值：false。<br/>true：有拖拽条样式。<br/>false：无拖拽条样式。|
+| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值：false。<br/>true：有拖拽条样式。<br/>false：无拖拽条样式。|
 
 ### enableModeChangeAnimation<sup>15+</sup>
 
@@ -530,7 +535,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值：true。<br/>true：开启单双栏切换动效。<br/>false：关闭单双栏切换动效。|
+| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值：true。<br/>true：开启单双栏切换动效。<br/>false：关闭单双栏切换动效。|
 
 ### enableToolBarAdaptation<sup>19+</sup>
 
@@ -1103,8 +1108,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
-| undefined   | 当路由栈为空时返回undefined。      |
+| [NavPathInfo](#navpathinfo10)&nbsp;\|&nbsp;undefined | NavPathInfo：返回栈顶NavDestination页面的信息。<br/>undefined: 当路由栈为空时返回undefined。 |
 
 ### pop<sup>11+</sup>
 
@@ -1127,8 +1131,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
-| undefined   | 当路由栈为空时返回undefined。      |
+| [NavPathInfo](#navpathinfo10)&nbsp;\|&nbsp;undefined | NavPathInfo：返回栈顶NavDestination页面的信息。<br/>undefined: 当路由栈为空时返回undefined。  |
 
 ### popToName<sup>10+</sup>
 
@@ -1304,8 +1307,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| unknown   | 返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。 |
-| undefined | 传入index无效时返回undefined。     |
+| unknown&nbsp;\|&nbsp;undefined | unknown：返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName<sup>10+</sup>
 
@@ -1467,6 +1469,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
@@ -4531,7 +4535,7 @@ struct NavigationExample {
     },
   ]
 
-  @State toolItems:Array<ToolbarItem>= [
+  @State toolItems:Array<ToolbarItem> = [
     {
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),

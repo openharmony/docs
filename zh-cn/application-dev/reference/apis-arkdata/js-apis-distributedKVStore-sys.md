@@ -353,7 +353,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred. Code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -419,7 +419,7 @@ try {
 
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -493,7 +493,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -558,7 +558,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -627,7 +627,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -697,6 +697,6 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```

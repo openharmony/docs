@@ -1,4 +1,9 @@
 # 背景设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件的背景样式。
 
@@ -32,8 +37,8 @@ background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions):
 >  **说明：**
 >
 > - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
-> - 同时设置了background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
->   - 若background为ResourceColor类型，或设置了ignoresLayoutSafeAreaEdges属性，则background位于最底层。
+> - 同时设置background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
+>   - 若background为ResourceColor类型，或设置ignoresLayoutSafeAreaEdges属性，则background位于最底层。
 >   - 其他情况下，background位于最上层。
 
 ## BackgroundOptions<sup>20+</sup>对象说明
@@ -45,11 +50,11 @@ background配置选项。
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
 | align<sup>10+</sup>          | [Alignment](ts-appendix-enums.md#alignment) | 否   | 自定义背景与组件的对齐方式。该属性仅对CustomBuilder类型的背景生效。如果设置了ignoresLayoutSafeAreaEdges，则背景的布局区域为包含了扩展安全区的范围。<br/>默认值：Alignment.Center<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。<br/> 默认值：<br/>- CustomBuilder背景：[]，不扩展。<br/>- ResourceColor背景：[LayoutSafeAreaEdge.ALL]，扩展至所有方向。<br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区，包括：状态栏，导航栏和[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。<br/> 默认值：<br/>- CustomBuilder背景：[]，不扩展。<br/>- ResourceColor背景：[LayoutSafeAreaEdge.ALL]，扩展至所有方向。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
-> 背景设置ignoreLayoutSafeArea之后生效的条件为父组件设置了对应方向的[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。
+> Shape, RowSplit, ColumnSplit, SideBarContainer, Stepper, List, Grid, WaterFlow, Scroll, Refresh, Swiper, Tabs组件的clip属性默认值为true，子组件的背景扩展会被裁剪。
 
 ## backgroundColor
 
@@ -451,7 +456,7 @@ backgroundEffect(options: BackgroundEffectOptions): T
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
-## backgroundEffect<sup>18+</sup> 
+## backgroundEffect<sup>18+</sup>
 
 backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 
@@ -477,7 +482,7 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 
 backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions): T
 
-设置组件背景属性，包括背景模糊半径、亮度、饱和度和颜色等参数。与[backgroundEffect<sup>18+</sup>](#backgroundeffect18 )相比，新增了sysOptions参数，即支持系统自适应调节参数。
+设置组件背景属性，包括背景模糊半径、亮度、饱和度和颜色等参数。与[backgroundEffect<sup>18+</sup>](#backgroundeffect18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
 
 > **说明：**
 >
@@ -515,7 +520,7 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: Syste
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10枚举说明) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。 <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。 <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | policy<sup>14+</sup>    | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE <br/> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 模糊不生效时使用的背景色。该参数需配合policy参数使用。当policy使模糊失效时，控件模糊效果会被移除，如果设置了inactiveColor会使用inactiveColor作为控件背景色。<br/> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## backgroundImageResizable<sup>12+</sup>
 
@@ -554,7 +559,7 @@ backgroundImageResizable(value: ResizableOptions): T
 | 名称 | 类型                                                         | 只读 | 可选 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---- |---------------------------------------------------- |
 | policy<sup>14+</sup>  | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | 否 | 是   | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是    | 模糊不生效时使用的背景色。该参数需配合policy参数使用。当policy使模糊失效时，控件模糊效果会被移除，如果设置了inactiveColor会使用inactiveColor作为控件背景色。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## BlurStyleActivePolicy<sup>14+</sup>
 

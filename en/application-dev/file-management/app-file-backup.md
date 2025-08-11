@@ -1,4 +1,9 @@
 # Backup and Restore Triggered by System Applications
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 The backup and restore framework provides a solution for backing up and restoring data of applications and services on a device. You can follow the procedure below to enable an application to trigger data backup or restoration:
 
@@ -19,7 +24,7 @@ Before using the APIs, you need to:
 2. Import **@ohos.file.backup**.
 
    ```js
-   import backup from '@ohos.file.backup';
+   import { backup } from '@kit.CoreFileKit';
    ```
 
 ## Obtaining Capability Files
@@ -31,10 +36,9 @@ The capability file of an application contains the device type, device version, 
 Call [backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities) to obtain the capability file.
 
 ```ts
-import backup from '@ohos.file.backup';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs, backup } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -94,14 +98,13 @@ You can save the file to a local directory as required.
 **Example**
 
   ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  appfileDir: string = '';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let appFileDir: string = '';
   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  this.appfileDir = context.filesDir;
+  appFileDir = context.filesDir;
   // Create a SessionBackup instance for data backup.
   let g_session: backup.SessionBackup;
   function createSessionBackup(fileDir: string): backup.SessionBackup {
@@ -112,7 +115,7 @@ You can save the file to a local directory as required.
           console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         try {
-          let bundlePath = filesDir + '/' + file.bundleName;
+          let bundlePath = appFileDir + '/' + file.bundleName;
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
@@ -184,8 +187,7 @@ When all the data of the application is ready, the service starts to restore the
 **Example**
 
   ```ts
-  import backup from '@ohos.file.backup';
-  import fs from '@ohos.file.fs';
+  import { backup, fileIo as fs } from '@kit.CoreFileKit';
   import { BusinessError } from '@ohos.base';
   // Create a SessionRestore instance for data restoration.
   let g_session: backup.SessionRestore;
@@ -216,8 +218,9 @@ When all the data of the application is ready, the service starts to restore the
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // After the data is transferred, notify the server that the files are ready.
-        countMap[file.bundleName]++;
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each bundle are received.
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1);
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // Trigger publishFile after all files are received.
           publishFile(file);
         }
         console.info('onFileReady success');
@@ -248,8 +251,8 @@ When all the data of the application is ready, the service starts to restore the
         console.info('onResultReport  result: ' + result);
       },
       onProcess:(bundleName: string, process: string) => { 
-        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
-        console.info('onPross result: ' + JSON.stringify(process));
+        console.info('onProcess bundleName: ' + bundleName);
+        console.info('onProcess result: ' + process);
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

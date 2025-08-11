@@ -1,4 +1,9 @@
 # 无障碍属性
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 设置组件的无障碍属性和事件，以充分利用无障碍功能。
 
@@ -53,21 +58,13 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 | 参数名               | 类型                                                    | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | isGroup              | boolean                                                 | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读；设置为false时，应用进行屏幕朗读时不会优先使用无障碍文本。<br/>默认值：false            |
+| accessibilityOptions | [AccessibilityOptions](ts-types.md#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读；设置为false时，应用进行屏幕朗读时不会优先使用无障碍文本。<br/>默认值：false            |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前对象。 |
-
-## AccessibilityOptions<sup>14+</sup>对象说明
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称                   | 类型    | 只读 | 可选 | 说明                                                         |
-| ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | 否 | 是   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
 
 ## accessibilityText
 

@@ -67,7 +67,7 @@ try {
     if (err != null) {
       console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult == undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
+      if (cmResult === undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
         console.info('the count of the app private certificates is 0');
       } else if (cmResult.credentialList == undefined) {
         console.info('The result of getting all app private certificates is undefined.');
@@ -117,7 +117,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the app private certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all app private certificates is undefined.');
@@ -168,7 +168,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllSystemAppCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 系统凭据个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 系统凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the system certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all system app certificates is undefined.');

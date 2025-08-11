@@ -24,7 +24,7 @@ ArkUI provides [gesture binding](../ui/arkts-gesture-events-binding.md) while Ar
 
 The following uses zoom as an example to describe the differences between the two gestures:
 - When two fingers are pinched on the web page, the content in the **Web** component is zoomed in or out. This is because ArkWeb identifies the pinch event and applies it to the web page.
-- If a user pinches three fingers together, the **Web** component itself scales. This is because ArkWeb receives the [Pinch Gesture](see.../ui/arkts-gesture-events-single-gesture.md#pinch-gesture) identified by ArkUI and executes the bound callback function. In addition, ArkWeb supports the **scale** method, which can be used to adjust the zoom ratio of the **Web** component.
+- If a user pinches three fingers together, the **Web** component itself scales. This is because ArkWeb receives the [Pinch Gesture](../ui/arkts-gesture-events-single-gesture.md#pinch-gesture) identified by ArkUI and executes the bound callback function. In addition, ArkWeb supports the **scale** method, which can be used to adjust the zoom ratio of the **Web** component.
 
 > **NOTE**
 >

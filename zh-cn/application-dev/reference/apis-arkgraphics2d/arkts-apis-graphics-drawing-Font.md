@@ -512,7 +512,15 @@ measureSingleCharacterWithFeatures(text: string, features: Array\<FontFeature\>)
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 字符的宽度，浮点数。 |
+| number | 字符的宽度，浮点数，单位为px。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error. Possible causes: Incorrect parameter range. |
 
 **示例：**
 

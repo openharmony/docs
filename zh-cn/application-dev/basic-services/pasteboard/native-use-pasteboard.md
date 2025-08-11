@@ -1,4 +1,9 @@
 # 使用剪贴板进行复制粘贴 (C/C++)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 ## 场景介绍
 

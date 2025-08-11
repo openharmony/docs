@@ -80,6 +80,7 @@ setSurfaceId(surfaceId: string): void;
 
 ```ts
 import { faceAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 该surfaceId应该从XComponent控件获取，此处仅用作示例。
 let surfaceId = '123456';
@@ -88,6 +89,7 @@ try {
   manager.setSurfaceId(surfaceId);
   console.info('set surface id success');
 } catch (error) {
-  console.error('set surface id failed, error = ' + error);
+  const err: BusinessError = error as BusinessError;
+  console.error(`set surface id failed, Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

@@ -1,7 +1,7 @@
 # Node-API支持的数据类型和接口
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @shilei123-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -768,7 +768,7 @@ napi_status napi_wrap_enhance(napi_env env,
 **napi_create_ark_context**
 ```c
 napi_status napi_create_ark_context(napi_env env,
-                                                napi_env* newEnv);
+                                    napi_env* newEnv);
 ```
 
 **napi_switch_ark_context**
@@ -787,4 +787,4 @@ napi_status napi_destroy_ark_context(napi_env env);
 | -------- | -------- |
 | napi_get_version | 获取Node运行时支持的最高 NAPI 版本。 |
 | node_api_get_module_file_name | 用于获取加载项加载位置的绝对路径。|
-| napi_strict_equals | 当需要确保两个值不仅值相等且类型也相同时（例如处理特定类型的数据结构或算法时），可以使用napi_strict_equals来保证数据一致性 |
+| napi_strict_equals | 当需要确保两个值不仅值相等且类型也相同时（例如处理特定类型的数据结构或算法时），可以使用napi_strict_equals来保证数据一致性。 |

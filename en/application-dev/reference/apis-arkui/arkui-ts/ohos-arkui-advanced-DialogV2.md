@@ -293,7 +293,7 @@ struct Index {
       imageRes: $r('sys.media.ohos_ic_public_voice'),
       content: 'Delete this app?',
       title: 'TipsDialogV2',
-      checkTips: 'Don't show again',
+      checkTips: 'Do not show again',
       checked: this.checked,
       primaryButton: new AdvancedDialogV2Button({
         content: 'Cancel',
@@ -429,7 +429,7 @@ struct Index {
       title:'Title',
       content: 'This is where content is displayed. This is where content is displayed.',
       checked: this.checked,
-      checkTips: 'Don't ask again after denying',
+      checkTips: 'Do not ask me again',
       primaryButton: new AdvancedDialogV2Button({
         content: 'Deny',
         action: () => {

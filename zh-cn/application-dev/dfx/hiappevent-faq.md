@@ -1,5 +1,10 @@
 # HiAppEvent常见问题
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
 
 ## 查不到已通过HiAppEvent订阅的事件内容
 

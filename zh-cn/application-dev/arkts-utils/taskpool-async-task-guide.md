@@ -1,9 +1,11 @@
 # TaskPool指定任务并发度场景
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
 <!--SE: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
+
+TaskPool支持使用异步队列来控制任务的并发度，能有效的避免资源过载，减少任务阻塞，可以应用在网络请求、视频流处理、数据库操作等场景。
 
 此处提供使用TaskPool创建[异步队列](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner18)的开发指导，以相机预览流采集数据处理的功能为例。
 由于处理过程是个频繁耗时任务，如果相机采集过快，就丢弃之前的采集数据，保留最新的一帧数据处理。
@@ -39,30 +41,32 @@
    @Entry
    @Component
    struct Index {
+     @State message: string = 'Hello World';
    
      build() {
-       Column() {
-         Text("HELLO WORLD")
-           .id('HelloWorld')
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold)
-           .onClick(async () => {
-             // 创建并发度为5的异步队列，等待队列个数为5
-             let asyncRunner:taskpool.AsyncRunner = new taskpool.AsyncRunner("async", 5, 5);
-             // 触发采集任务
-             for (let i = 0; i < 20; i++) {
-               let task:taskpool.Task = new taskpool.Task(`async${i}`,collectFrame);
-               asyncRunner.execute(task).then(() => {
-                 console.info("the current task name is " + task.name);
-               }).catch((e:BusinessError) => {
-                 console.error("async: error is " + e);
-               });
-             }
-             console.info("asyncRunner task finished");
-           })
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(async () => {
+               // 创建并发度为5的异步队列，等待队列个数为5，当加入的任务数量超过5时，等待列表中处于队头的任务会被丢弃。
+               let asyncRunner:taskpool.AsyncRunner = new taskpool.AsyncRunner("async", 5, 5);
+               // 触发采集任务
+               for (let i = 0; i < 20; i++) {
+                 let task:taskpool.Task = new taskpool.Task(`async${i}`,collectFrame);
+                 asyncRunner.execute(task).then(() => {
+                   console.info("the current task name is " + task.name);
+                 }).catch((e:BusinessError) => {
+                   console.error("async: error is " + e);
+                 });
+               }
+               console.info("asyncRunner task finished");
+             })
+         }
+         .width('100%')
        }
        .height('100%')
-       .width('100%')
      }
    }
    ```

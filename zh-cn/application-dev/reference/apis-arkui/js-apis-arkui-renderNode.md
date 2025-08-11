@@ -517,7 +517,7 @@ struct Index {
         .onClick(() => {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
-          if (child === null || nextSibling === null) {
+          if (nextSibling === null || child === null) {
             console.log('the child or nextChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
@@ -833,7 +833,7 @@ get size(): Size
 
 **返回值：**
 
-| 名称                                     | 说明                                            |
+| 类型                                     | 说明                                            |
 | ---------------------------------------- | ----------------------------------------------- |
 | [Size](./js-apis-arkui-graphics.md#size) | 获取当前RenderNode的大小，默认值宽度和高度为0。 |
 

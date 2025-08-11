@@ -1,4 +1,9 @@
 # UIAbility与UIAbility连接开发指南
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao-->
+<!--SE: @gsxiaowen-->
+<!--TSE: @hanjiawei-->
 
 
 ## 简介

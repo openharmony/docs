@@ -1,4 +1,9 @@
 # Interfaces (其他)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 > **说明：**
 >
@@ -83,6 +88,16 @@
 | 名称          | 类型                                                                | 只读 | 可选 | 说明             |
 | :------------ |:------------------------------------------------------------------| :--- |---| :--------------- |
 | reason        | [AudioSessionDeactivatedReason](arkts-apis-audio-e.md#audiosessiondeactivatedreason12) | 否 | 否 | 音频会话停用原因。       |
+
+## AudioSessionStateChangedEvent<sup>20+</sup>
+
+音频会话状态变更事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                                              | 只读 | 可选 | 说明             |
+| :------------ |:------------------------------------------------| :--- |---| :--------------- |
+| stateChangeHint        | [AudioSessionStateChangeHint](arkts-apis-audio-e.md#audiosessionstatechangehint20) | 否 | 否 | 音频会话状态变更提示。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
@@ -191,20 +206,21 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 ```ts
 import { audio } from '@kit.AudioKit';
 
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;
+
 function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;
 audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
   } else {
-    console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
+    console.error('Failed to getDevices.');
   }
 });
 ```
@@ -269,6 +285,18 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 | :---------------- |:------------------------------------------------------------------| :--- |---| :----------------- |
 | devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | 否 | 否 | 设备信息。 |
 | changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | 否 | 否 | 流设备变更原因。 |
+
+## CurrentOutputDeviceChangedEvent<sup>20+</sup>
+
+应用接收到输出设备的变更事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称              | 类型                                                                | 只读 | 可选 | 说明               |
+| :---------------- |:------------------------------------------------------------------| :--- |---| :----------------- |
+| devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | 否 | 否 | 设备信息。 |
+| changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | 否 | 否 | 设备变更原因。 |
+| recommendedAction | [OutputDeviceChangeRecommendedAction](arkts-apis-audio-e.md#outputdevicechangerecommendedaction20) | 否 | 否 | 设备变更后推荐的操作。 |
 
 ## AudioTimestampInfo<sup>19+</sup>
 

@@ -1,4 +1,9 @@
 # Interfaces (其他)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 > **说明：**
 >
@@ -189,7 +194,9 @@
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。可以通过[setWindowLimits](arkts-apis-window-Window.md#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](arkts-apis-window-Window.md#getwindowlimits11)获得当前的窗口尺寸限制。
+窗口尺寸限制参数。窗口存在默认系统大小限制，同时应用可以通过[setWindowLimits](arkts-apis-window-Window.md#setwindowlimits11)设置窗口尺寸限制，或在应用[module.json5配置文件中的abilities标签](../../quick-start/module-configuration-file.md#abilities标签)中配置该属性，最终生效结果由默认系统限制和应用设置的数据取交集得到。
+
+应用可以通过[getWindowLimits](arkts-apis-window-Window.md#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -345,7 +352,7 @@
 **系统能力：** SystemCapability.Window.SessionManager
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| animationsParams             | [StartAnimationParams](arkts-apis-window-i.md#startanimationparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。 |
+| animationParams             | [StartAnimationParams](arkts-apis-window-i.md#startanimationparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。 |
 
 ## Callback<sup>15+</sup>
 
@@ -444,3 +451,17 @@
 | zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性，即未设置isModal时生效。该参数是整数，取值范围为[-10000, 10000]，浮点数输入将向下取整。不设置，则默认为0。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | maximizeSupported<sup>19+</sup>    | boolean | 否 | 是 | 子窗口是否支持最大化特性。<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->true表示子窗口支持最大化，false表示子窗口不支持最大化。不设置，则默认为false。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 | outlineEnabled<sup>20+</sup>    | boolean | 否 | 是 | 子窗口是否显示描边。此接口仅可在2in1设备下使用。true表示子窗口显示描边，false表示子窗口不显示描边。不设置，则默认为false。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
+## KeyFramePolicy<sup>20+</sup>
+
+关键帧的策略配置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读  | 可选 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- |
+| enable | boolean | 否 | 否 | 是否开启关键帧。true表示开启，false表示关闭。 |
+| interval | number | 否 | 是 | 设置关键帧布局切换的拖拽时间间隔，单位为毫秒，默认值为1000。取值为正整数，浮点数向下取整。与distance判断为或的关系：满足其一即开始布局切换。 |
+| distance | number | 否 | 是 | 设置关键帧布局切换的拖拽距离间隔，单位为px，默认值为1000。取值为0或正整数，浮点数向下取整。设置为0时，忽略拖拽距离因素。与interval判断为或的关系：满足其一即开始布局切换。|
+| animationDuration | number | 否 | 是 | 设置关键帧布局的动效切换时间，单位为毫秒，默认值为100。取值为0或正整数，浮点数向下取整。 |
+| animationDelay | number | 否 | 是 | 设置关键帧布局切换动效延迟时间，单位为毫秒，默认值为100。取值为0或正整数，浮点数向下取整。 |

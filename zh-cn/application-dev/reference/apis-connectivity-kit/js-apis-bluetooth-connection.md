@@ -333,6 +333,47 @@ try {
 }
 ```
 
+## connection.getRemoteDeviceTransport<sup>20+</sup>
+
+getRemoteDeviceTransport(deviceId: string): BluetoothTransport
+
+获取对端蓝牙设备的传输类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                          | 说明       |
+| --------------------------- | -------- |
+| [BluetoothTransport](#bluetoothtransport) | 对端设备的传输类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Get transport failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+    let transport: connection.BluetoothTransport = connection.getRemoteDeviceTransport('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
 
 ## connection.getRemoteProfileUuids<sup>12+</sup>
 
@@ -1762,8 +1803,10 @@ try {
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| TRANSPORT_BR_EDR   | 0 | 传统蓝牙（Basic Rate/Enhanced Data Rate，BR/EDR）设备传输方式。若设备支持双模，默认使用该传输方式。 |
-| TRANSPORT_LE  | 1 | 低功耗蓝牙（Bluetooth Low Energy, BLE）设备传输方式。  |
+| TRANSPORT_BR_EDR   | 0 | 传统蓝牙（Basic Rate/Enhanced Data Rate，BR/EDR）设备传输方式。  |
+| TRANSPORT_LE  | 1 | 低功耗蓝牙（Bluetooth Low Energy，BLE）设备传输方式。  |
+| TRANSPORT_DUAL<sup>20+</sup>  | 2 | 同时支持传统蓝牙（BR/EDR）和低功耗蓝牙（BLE）的双模设备传输方式。设备可以根据需要选择使用传统蓝牙（BR/EDR）或低功耗蓝牙（BLE）进行通信。  |
+| TRANSPORT_UNKNOWN<sup>20+</sup>  | 3 | 未知的设备传输方式。  | 
 
 
 ## ScanMode

@@ -1,5 +1,10 @@
 # UIAbility组件生命周期
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay; @Luobniz21-->
+<!--SE: @altay-->
+<!--TSE: @lixueqing513-->
 
 ## 概述
 
@@ -9,14 +14,23 @@ UIAbility的生命周期示意图如下所示。
 
 ![UIAbility-Life-Cycle](figures/UIAbility-Life-Cycle-WindowStage.png)
 
-以UIAbility实例的冷启动为例说明：
+以下是UIAbility启动到前台和后台两种场景说明，以及生命周期回调流程讲解。
 
-1. 当用户启动一个UIAbility时，系统首先触发onCreate()回调告知应用该UIAbility正在被启动。紧接着，系统触发onForeground()回调将UIAbility切换到与用户交互的前台状态。
- 
-2. 当用户跳转到其他应用时，系统会触发onBackground()回调将UIAbility切换到后台状态。
- 
-3. 当用户退出UIAbility时，系统会触发onDestroy()回调告知应用该UIAbility将被销毁。
+- UIAbility启动到前台，对应流程图参见上图。
 
+  1. 当用户启动一个UIAbility时，系统会依次触发onCreate()、onWindowStageCreate()、onForeground()生命周期回调。
+
+  2. 当用户跳转到其他应用（当前UIAbility切换到后台）时，系统会触发onBackground()生命周期回调。
+
+  3. 当用户再次将UIAbility切换到前台时，系统会依次触发onNewWant()、onForeground()生命周期回调。
+
+- UIAbility启动到后台，对应流程图参见下图。
+
+  1. 当用户通过[UIAbilityContext.startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动一个UIAbility到后台时，系统会依次触发onCreate()、onBackground()（不会执行onWindowStageCreate()生命周期回调）生命周期回调。
+
+  2. 当用户将UIAbility拉到前台，系统会依次触发onNewWant()、onWindowStageCreate()、onForeground()生命周期回调。
+
+  ![UIAbility启动到后台](figures/UIAbility-Life-Cycle-StartAbilityToTheBackground.png)
 
 ## 生命周期回调
 
@@ -105,7 +119,7 @@ export default class EntryAbility extends UIAbility {
 
 在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)切换至前台时且UIAbility的UI可见之前，系统触发[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)回调。开发者可以在该回调中申请系统需要的资源，或者重新申请在`onBackground()`中释放的资源。系统回调该方法后，UIAbility实例进入前台状态，即UIAbility实例可以与用户交互的状态。UIAbility实例会一直处于这个状态，直到被某些动作打断（例如屏幕关闭、用户跳转到其他UIAbility）。
 
-例如，应用在使用过程中需要使用用户定位时，假设应用已获得用户的定位权限授权。在UI显示之前，开发者可以在`onForeground()`回调中开启定位功能，从而获取到当前的位置信息。
+例如，应用已获得地理位置权限。在UI显示之前，开发者可以在`onForeground()`回调中开启定位功能，从而获取到当前的位置信息。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -123,7 +137,7 @@ export default class EntryAbility extends UIAbility {
 
 ### onBackground()
 
-在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的UI完全不可见之后，系统触发[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)回调，回调后触发UIAbility实例切换至后台状态。开发者可以在该回调中释放UI不可见时的无用资源，例如停止定位功能，以节省系统的资源消耗。
+在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的UI完全不可见之后，系统触发[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)回调，将UIAbility实例切换至后台状态。开发者可以在该回调中释放UI不可见时的无用资源，例如停止定位功能，以节省系统的资源消耗。
 
 `onBackground()`执行时间较短，无法提供足够的时间做一些耗时动作。请勿在该方法中执行保存用户数据或执行数据库事务等耗时操作。
 
@@ -142,7 +156,7 @@ export default class EntryAbility extends UIAbility {
 
 
 ### onWindowStageWillDestroy()
-在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例销毁之前，系统触发[onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagewilldestroy12)回调。该回调在WindowStage销毁前执行，此时WindowStage可以使用。开发者可以在该回调用释放通过WindowStage获取的资源、注销WindowStage事件订阅等。
+在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例销毁之前，系统触发[onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagewilldestroy12)回调。该回调在WindowStage销毁前执行，此时WindowStage可以使用。开发者可以在该回调中释放通过WindowStage获取的资源、注销WindowStage事件订阅等。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -200,8 +214,8 @@ export default class EntryAbility extends UIAbility {
 
 在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例销毁之前，系统触发[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)回调。该回调是UIAbility接收到的最后一个生命周期回调，开发者可以在onDestroy()回调中进行系统资源的释放、数据的保存等操作。
 
-例如，调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)方法停止当前UIAbility实例，执行onDestroy()回调，并完成UIAbility实例的销毁。
-<!--RP1-->再比如，用户使用最近任务列表关闭该UIAbility实例，执行onDestroy()回调，并完成UIAbility实例的销毁。<!--RP1End-->
+例如，开发者调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)方法通知系统停止当前UIAbility实例时，系统会触发onDestroy()回调。
+<!--RP1-->再比如，用户在最近任务列表中上滑关闭UIAbility实例时，系统会触发onDestroy()回调。<!--RP1End-->
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -214,7 +228,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
 
 ### onNewWant()
 

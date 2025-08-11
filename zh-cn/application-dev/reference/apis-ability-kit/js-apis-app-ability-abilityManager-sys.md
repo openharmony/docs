@@ -1,5 +1,11 @@
 # @ohos.app.ability.abilityManager (AbilityManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 AbilityManager模块提供获取、新增、修改Ability相关信息和运行状态信息的能力。
 
 > **说明：**
@@ -126,7 +132,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';;
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
