@@ -140,9 +140,9 @@ startFloatingBall(params: FloatingBallParams): Promise&lt;void&gt;
 |------------|------------|
 | 201 | Permission verification failed, usually returned by VerifyAccessToken. |
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300020 | Failed to create the floating Ball window. |
-| 1300021 | Failed to start multiple floating Ball windows. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300020 | Failed to create the floating ball window. |
+| 1300021 | Failed to start multiple floating ball windows. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 | 1300025 | The floating ball state does not support this operation. |
@@ -245,7 +245,7 @@ stopFloatingBall(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |------------|------------|
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -283,7 +283,7 @@ on(type: 'stateChange', callback: Callback&lt;FloatingBallState&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -361,7 +361,7 @@ on(type: 'click', callback: Callback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
