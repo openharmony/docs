@@ -1,4 +1,9 @@
 # drawing_types.h
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 ## 概述
 
