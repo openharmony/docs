@@ -1410,7 +1410,7 @@ huks.exportKeyItem(keyAlias, emptyOptions)
 
 wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
-加密导出密钥（与[unwrapKeyItem](#huksunwrapKeyItem20)对应，待导出的密钥在生成时要添加[HUKS_TAG_IS_ALLOWED_WRAP](#hukstag)，指定密钥允许导出）。使用Promise异步回调。
+加密导出密钥（与[unwrapKeyItem](#huksunwrapkeyitem20)对应，待导出的密钥在生成时要添加[HUKS_TAG_IS_ALLOWED_WRAP](#hukstag)，指定密钥允许导出）。使用Promise异步回调。
 
 <!--Del-->该功能暂不支持。<!--DelEnd-->
 
@@ -1450,7 +1450,7 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
 unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Promise\<HuksReturnResult>
 
-加密导入密钥，与[wrapKeyItem](#hukswrapKeyItem20)对应。使用Promise异步回调。
+加密导入密钥，与[wrapKeyItem](#hukswrapkeyitem20)对应。使用Promise异步回调。
 
 <!--Del-->该功能暂不支持。<!--DelEnd-->
 
