@@ -66,37 +66,6 @@ enum OH_Drawing_TileMode
 
 ## 函数说明
 
-### OH_Drawing_ShaderEffectCreatePixelMapShader()
-
-```
-OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreatePixelMapShader(OH_Drawing_PixelMap* pixelMap,OH_Drawing_TileMode tileX, OH_Drawing_TileMode tileY, const OH_Drawing_SamplingOptions* samplingOptions,const OH_Drawing_Matrix* matrix)
-```
-
-**描述**
-
-创建像素图着色器。
-
-**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。 |
-| [OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode) tileX | 水平方向着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode)枚举。 |
-| [OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode) tileY | 垂直方向着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode)枚举。 |
-| [const OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针。 |
-| [const OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。如果矩阵指针为空，默认传入单位矩阵。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| OH_Drawing_ShaderEffect* | 返回创建的着色器对象的指针。 |
-
 ### OH_Drawing_ShaderEffectCreateColorShader()
 
 ```
