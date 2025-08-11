@@ -1,6 +1,6 @@
 # @ohos.distributedsched.linkEnhance (增强连接)
 <!--Kit: Distributed Service Kit-->
-<!--Subsystem: linkEnhance-->
+<!--Subsystem: DistributedSched-->
 <!--Owner: @wangJE-->
 <!--SE: @lee_jet520-->
 <!--TSE: @Ytt-test-->
