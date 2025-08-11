@@ -60,10 +60,10 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态。|
-| error | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [SyncState](#syncstate12) | 否   | 否   | 枚举值，端云同步状态。|
+| error | [ErrorType](#errortype12) | 否   | 否   | 枚举值，同步失败错误类型。|
 
 ## State<sup>11+</sup>
 
@@ -86,13 +86,13 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
-| processed | number | 是   | 已下载数据大小，取值范围[0，9223372036854775807]（单位：Byte）。|
-| size | number | 是   | 当前云文件大小，取值范围[0，9223372036854775807]（单位：Byte）。|
-| uri | string | 是   | 当前云文件URI。|
-| error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [State](#state11) | 否   | 否   | 枚举值，云文件下载状态。|
+| processed | number | 否   | 否   | 已下载数据大小，取值范围[0，9223372036854775807]（单位：Byte）。|
+| size | number | 否   | 否   | 当前云文件大小，取值范围[0，9223372036854775807]（单位：Byte）。|
+| uri | string | 否   | 否   | 当前云文件URI。|
+| error | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 下载的错误类型。|
 
 ## FileSync<sup>12+</sup>
 
