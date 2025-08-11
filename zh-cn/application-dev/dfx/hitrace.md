@@ -318,7 +318,6 @@ $ hitrace --trace_dump
  state_change_ha-1139    (    952) [001] .... 610866.506782: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.506824: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.557458: tracing_mark_write: B|952|H:ProcessEvent, eventId: 0|I62
- state_change_ha-1139    (    952) [001] .... 610866.557624: tracing_mark_write: B|952|H:HandleStateTransition, 20020016_com.huawei.hmos.aidataservice_[6111]|I62
  state_change_ha-1139    (    952) [001] .... 610866.558060: tracing_mark_write: E|952|I62
  state_change_ha-1139    (    952) [001] .... 610866.558101: tracing_mark_write: E|952|I62
 ```

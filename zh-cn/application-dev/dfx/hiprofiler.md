@@ -1,5 +1,11 @@
 # hiprofiler
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @zyxzyx-->
+<!--SE: @Maplestroy-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 
 ## Hiprofiler简介
 
@@ -7,7 +13,7 @@
 HiProfiler性能调优组件包含系统和应用调优框架，旨在为开发者提供一套性能调优平台，可以用来分析内存、性能等问题。
 
 
-整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在鸿蒙系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向IDE，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
+整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
 
 
 
@@ -392,7 +398,7 @@ CONFIG
 
 **可能原因&amp;解决方法**
 
-调优服务未能开启，说明正在使用IDE调优或者上次调优异常退出，需要执行hiprofiler_cmd -k之后再重新执行调优命令。
+调优服务未能开启，说明正在使用DevEco Studio调优或者上次调优异常退出，需要执行hiprofiler_cmd -k之后再重新执行调优命令。
 
 抓取到的trace文件为空
 
