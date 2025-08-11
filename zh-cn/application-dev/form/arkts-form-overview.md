@@ -52,7 +52,7 @@ ArkTS卡片分为动态卡片、静态卡片和互动卡片三种类型。
 ### 动态卡片
 ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)接口用于卡片Card.ets和FormExtensionAbility之间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
 
-**图4** ArkTS事件交互实现原理 
+**图4** ArkTS事件交互实现原理<br>
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 动态卡片事件的主要使用场景如下：
