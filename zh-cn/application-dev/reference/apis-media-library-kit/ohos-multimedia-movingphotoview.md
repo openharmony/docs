@@ -1,4 +1,9 @@
 # @ohos.multimedia.movingphotoview (动态照片)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 用于播放动态照片文件并控制其播放状态的组件。
 
@@ -102,7 +107,9 @@ autoPlayPeriod(startTime: number, endTime: number)
 
 autoPlay(isAutoPlay: boolean)
 
-设置自动播放，自动播放一遍视频，完成播放后显示静态图。
+设置自动播放，自动播放一遍视频。
+
+动态照片加载完成后，准备播放时可以调用，播放完成后显示静态图。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -259,7 +266,7 @@ onStop(callback: MovingPhotoViewEventCallback)
 
 onPrepared(callback: MovingPhotoViewEventCallback)
 
-动态照片准备完成图片时触发该事件。
+动态照片准备播放时触发该事件。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -270,7 +277,7 @@ onPrepared(callback: MovingPhotoViewEventCallback)
 
 | 参数名   | 类型                                                          | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
-| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片加载完成图片的回调。 |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片准备播放时的回调。 |
 
 ## MovingPhotoViewEventCallback
 
@@ -278,15 +285,29 @@ declare type MovingPhotoViewEventCallback = () => void
 
 动态照片播放状态发生变化时触发的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## MovingPhotoViewController
 
 一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/arkts-apis-media.md)。
+
+### constructor
+
+constructor(): void
+
+MovingPhotoViewController的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### startPlayback
 
 startPlayback(): void
 
-开始播放。
+开始播放，动态照片加载完成后，在播放准备，暂停，完成时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -466,7 +487,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { emitter } from '@kit.BasicServicesKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
-import visionImageAnalyzer from '@hms.ai.visionImageAnalyzer';
+import { visionImageAnalyzer } from '@kit.VisionKit';
 const PHOTO_SELECT_EVENT_ID: number = 80001
 
 @Entry
