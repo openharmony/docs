@@ -6,6 +6,8 @@
 <!--SE: @dpy2650--->
 <!--TSE: @cyakee-->
 
+从API 20开始，支持视频解码同步模式。
+
 开发者可以调用本模块的Native API接口，完成同步模式的视频解码。
 
 当前支持的解码能力，请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。

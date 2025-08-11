@@ -6,6 +6,8 @@
 <!--SE: @dpy2650--->
 <!--TSE: @cyakee-->
 
+从API 20开始，支持视频编码同步模式。
+
 开发者可以调用本模块的Native API接口，完成同步模式的视频编码。
 
 当前支持的编码能力，请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
