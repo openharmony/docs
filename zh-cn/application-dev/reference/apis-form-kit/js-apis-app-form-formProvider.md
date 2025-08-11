@@ -513,7 +513,7 @@ getPublishedFormInfoById(formId: string): Promise&lt;formInfo.FormInfo&gt;
 
 > **说明：**
 >
-> 该字段从API version 18开始支持，从API version 20开始废弃，建议使用[getPublishedRunningFormInfoById](#getpublishedrunningformInfobyId)替代。
+> 该字段从API version 18开始支持，从API version 20开始废弃，建议使用[getPublishedRunningFormInfoById](#formprovidergetpublishedrunningforminfobyid20)替代。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -567,7 +567,7 @@ getPublishedFormInfos(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 > **说明：**
 >
-> 该字段从API version 18开始支持，从API version 20开始废弃，建议使用[getPublishedRunningFormInfos](#getPublishedRunningFormInfos)替代。
+> 该字段从API version 18开始支持，从API version 20开始废弃，建议使用[getPublishedRunningFormInfos](#formprovidergetpublishedrunningforminfos20)替代。
 
 **系统能力：** SystemCapability.Ability.Form
 
