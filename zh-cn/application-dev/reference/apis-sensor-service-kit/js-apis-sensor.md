@@ -5764,11 +5764,11 @@ try {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   }, (err: BusinessError) => {
-    console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getOrientation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
+  console.error(`Failed to getOrientation Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -7892,9 +7892,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
-  console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
+  console.info('Succeeded in invoking the device rotating at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking the device rotating at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking the device rotating at an angle around the Z axis: ' + data.alpha);
 });
 ```
 
