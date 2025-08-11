@@ -1128,9 +1128,9 @@ async function DeleteKey() {
 
 export async function TestEncryptDecrypt()
 {
-  await GenerateDesKey();
-  await EncryptData();
-  await DecryptData();
+  await GenerateSm2Key();
+  await EncryptDataSm2();
+  await DecryptDataSm2();
   await DeleteKey();
 }
 ```

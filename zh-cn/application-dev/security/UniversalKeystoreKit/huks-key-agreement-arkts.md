@@ -14,7 +14,7 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数[HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md###OH_Huks_KeyStorageType)（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
+密钥生成时，可指定参数[HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keystoragetype)（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
 
 - 当TAG设置为HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
 
