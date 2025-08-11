@@ -201,7 +201,7 @@
 | 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 否   | 拍照的ID。|
-| timestamp | number | 否   | 否   | 快门时间戳(毫秒)。|
+| timestamp | number | 否   | 否   | 快门时间戳，单位毫秒。|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -280,7 +280,7 @@
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
 | type        | [MetadataObjectType](arkts-apis-camera-e.md#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  否  | 当前时间戳（毫秒）。|
+| timestamp   | number                                      |  是  |  否  | 当前时间戳，单位毫秒。|
 | boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## SmoothZoomInfo<sup>11+</sup>
