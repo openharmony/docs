@@ -1,7 +1,7 @@
 # Contacts Kit开发概述
 
-<!--Kit: contacts-kit-->
-<!--Subsystem: contacts-->
+<!--Kit: Contacts Kit-->
+<!--Subsystem: Applications-->
 <!--Owner: @librahCode-->
 <!--SE: @yanghaoqian-->
 <!--TSE: @shangzhijie-->

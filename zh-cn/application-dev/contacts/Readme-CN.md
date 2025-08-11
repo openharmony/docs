@@ -1,7 +1,7 @@
 # Contacts Kit（联系人服务）<!--contacts-kit-->
 
-<!--Kit: contacts-kit-->
-<!--Subsystem: contacts-->
+<!--Kit: Contacts Kit-->
+<!--Subsystem: Applications-->
 <!--Owner: @librahCode-->
 <!--SE: @yanghaoqian-->
 <!--TSE: @shangzhijie-->
