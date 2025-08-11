@@ -69,7 +69,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
 
 解析图片中携带的信息。
 
