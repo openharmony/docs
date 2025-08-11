@@ -99,7 +99,7 @@
    }
    ```
 
-   如下是发送参数的逻辑：
+   发送参数的实现逻辑如下：
 
    ```ts
    private context: Context | undefined;
