@@ -71,31 +71,31 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 ### 生命周期概述
 
-在Stage模型下，UIAbility、WindowStage和应用主窗三者之间的关系如下图所示。
+在Stage模型下，一个UIAbility对应一个WindowStage，一个WindowStage对应一个应用主窗，UIAbility、WindowStage和应用主窗三者之间的关系如下图所示。
 
 ![windowRelation](figures/uiability-windowstage-mainwindow.png)
 
 每个UIAbility实例都会与一个WindowStage类实例绑定，该类起到了应用进程内窗口管理器的作用。它包含一个主窗口，也就是说UIAbility实例通过WindowStage持有了一个主窗口，该主窗口为ArkUI提供了绘制区域，可以加载不同的ArkUI页面。
 
-在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md)。
+在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过[onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)和[onWindowStageDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagedestroy)接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md)。
 
 ### 生命周期状态
 
 窗口在进入前台、前后台切换及退后台时，会触发窗口相应的生命周期状态变化。
 
 Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可交互状态（RESUMED）、不可交互状态（PAUSED）和切到后台（HIDDEN）。
-- **SHOWN**：窗口进入到前台。窗口触发SHOWN生命周期事件后，将会进入到可交互状态。特殊场景下，会进入不可交互状态。
+- **SHOWN**：窗口进入到前台。当应用从后台切换至前台时，会触发SHOWN事件。
 
-- **RESUMED**：窗口进入可交互状态。窗口到前台后会进入该状态，另外，窗口恢复，也会触发RESUMED生命周期事件。
+- **RESUMED**：窗口进入可交互状态。窗口到前台后会进入该状态，另外窗口恢复，也会触发RESUMED事件。
 
-- **PAUSED**：窗口进入不可交互状态。窗口在前台可见但是不可交互时，触发PAUSED生命周期事件。窗口会保持这种状态，直到重新恢复或退后台。如果窗口恢复，则会触发RESUMED生命周期事件，进入可交互状态。
+- **PAUSED**：窗口进入不可交互状态。窗口在前台可见但是不可交互时，触发PAUSED事件。窗口会保持这种状态，直到重新恢复或退后台。如果窗口恢复，则会触发RESUMED事件，进入可交互状态。
 
-- **HIDDEN**：窗口进入到后台。当窗口不在对用户可见时，触发HIDDEN生命周期事件，它会进入到后台。
+- **HIDDEN**：窗口进入到后台。当应用从前台切换至后台时，会触发HIDDEN事件。
 
 > **说明**
 >
 > RESUMED和PAUSED状态分别在窗口切换至前台和切换至后台时触发。但是在一些场景下，RESUMED和PAUSED状态触发会有差异。
-> - 如果前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。
+> - 前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。如果前台窗口是全屏状态，从底部导航条上滑时，触发PAUSED事件；如果前台窗口是悬浮窗状态，从底部导航条上滑进入多任务界面时，触发PAUSED事件。
 > - 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用管控场景，应用窗口在切换至前台进入到认证界面时，触发PAUSED事件。
 
 |**生命周期状态**|**触发场景举例**|
