@@ -1,4 +1,10 @@
 # @ohos.wifiManager (WLAN)（系统接口）
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--SE: @qq_43802146-->
+<!--TSE: @furryfurry123-->
+
 该模块主要提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 > **说明：**
@@ -346,6 +352,7 @@ connectToDevice(config: WifiDeviceConfig): void
 | chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
 | snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
 | suppState | [SuppState](#suppstate9) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
+| isHiLinkProNetwork<sup>20+</sup> | boolean | 否 | 是 | 是否是HiLinkPro网络。true表示是HiLinkPro网络，false表示不是HiLinkPro网络。<br /> **系统接口：** 此接口为系统接口。 |
 
 
 
@@ -1896,3 +1903,12 @@ wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
 
+## WifiScanInfo<sup>9+</sup>
+
+提供WLAN连接的相关信息。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| isHiLinkProNetwork<sup>20+</sup> | boolean | 否 | 是 | 是否是HiLinkPro网络。true表示是HiLinkPro网络，false表示不是HiLinkPrp网络。<br /> **系统接口：** 此接口为系统接口。 |
