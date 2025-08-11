@@ -1,5 +1,9 @@
 # DRM解决方案开发指导
-
+<!--Kit:DrmKit-->
+<!--Subsystem:Multimedia-->
+<!--Owner:@qin_wei_jie-->
+<!--SE:@chris2981-->
+<!--TSE:@xdlinc-->
 DRM 解决方案插件实现 DRM HDI 接口（链接），DRM Kit的DRM框架将通过HDI接口加载DRM解决方案插件。
 
 插件由DRM解决方案集成方开发，放置在设备的 /vendor 分区中。

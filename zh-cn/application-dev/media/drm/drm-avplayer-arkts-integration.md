@@ -1,5 +1,9 @@
 # 基于AVPlayer播放DRM节目(ArkTS)
-
+<!--Kit:DrmKit-->
+<!--Subsystem:Multimedia-->
+<!--Owner:@qin_wei_jie-->
+<!--SE:@chris2981-->
+<!--TSE:@xdlinc-->
 开发者可以调用DRM Kit和Media Kit的ArkTS接口实现AVPlayer播放器，完成DRM节目播放。
 
 ## 开发步骤
