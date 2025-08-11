@@ -5124,11 +5124,15 @@ OAuth认证器回调接口。
 >
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthCallback](#authcallback9)替代。
 
-### onResult<sup>8+</sup>
+### onResult<sup>(deprecated)</sup>
 
 onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 通知请求结果。
+
+> **说明：** 
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onResult](#onresult9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5158,11 +5162,15 @@ onResult: (code: number, result: {[key: string]: any;}) =&gt; void
   });
   ```
 
-### onRequestRedirected<sup>8+</sup>
+### onRequestRedirected<sup>(deprecated)</sup>
 
 onRequestRedirected: (request: Want) =&gt; void
 
 通知请求被跳转。
+
+> **说明：** 
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onRequestRedirected](#onrequestredirected9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
