@@ -35,6 +35,7 @@ import { c } from "./mod2";         // "mod2" 执行
 console.info("main executed");
 while (false) {
     let xx = a;
+    let yy = c;
 }
         
 // mod1.ets
@@ -67,6 +68,8 @@ import { b } from "./mod1";         // "mod1" 执行
 console.info("main executed");
 while (false) {
     let xx = a;
+    let yy = c;
+    let zz = b;
 }
         
 // mod1.ets
