@@ -1,5 +1,11 @@
 # JsLeakWatcher错误码
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lu-tao-->
+<!--SE: @martin-duan-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -69,5 +75,5 @@ The parameter callback is invalid.
 
 确保传入参数callback的类型正确。callback是一个回调函数，该回调函数入参是一个包含两个元素字符串类型数组。
 
-索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshort。
+索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshot。
 
