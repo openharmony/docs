@@ -22,16 +22,17 @@
 | [EVENT_USER_LOGIN](#event_user_login) "hiappevent.user_login"                                              | 用户登录事件。<br>**起始版本：** 8        |
 | [EVENT_USER_LOGOUT](#event_user_logout) "hiappevent.user_logout"                                           | 用户登出事件。<br>**起始版本：** 8        |
 | [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start) "hiappevent.distributed_service_start" | 分布式服务事件。<br>**起始版本：** 8       |
-| [EVENT_APP_CRASH](#event_app_crash) "APP_CRASH"                                                            | 应用崩溃事件。<br>**起始版本：** 12       |
-| [EVENT_APP_FREEZE](#event_app_freeze) "APP_FREEZE"                                                         | 应用卡顿事件。<br>**起始版本：** 12       |
-| [EVENT_APP_LAUNCH](#event_app_launch) "APP_LAUNCH"                                                         | 应用加载事件。<br>**起始版本：** 12       |
-| [EVENT_SCROLL_JANK](#event_scroll_jank) "SCROLL_JANK"                                                      | 应用滑动卡顿事件。<br>**起始版本：** 12     |
-| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high) "CPU_USAGE_HIGH"                                             | 应用CPU资源占用高事件。<br>**起始版本：** 12 |
-| [EVENT_BATTERY_USAGE](#event_battery_usage) "BATTERY_USAGE"                                                | 应用电源使用率事件。<br>**起始版本：** 12    |
-| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit) "RESOURCE_OVERLIMIT"                                 | 应用资源超限事件。<br>**起始版本：** 12     |
-| [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer) "ADDRESS_SANITIZER"                                    | 应用踩内存事件。<br>**起始版本：** 12      |
-| [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank) "MAIN_THREAD_JANK"                                       | 应用主线程超时事件。<br>**起始版本：** 12    |
-| [EVENT_APP_HICOLLIE](#event_app_hicollie) "APP_HICOLLIE"                                                   | 应用任务执行超时事件。<br>**起始版本：** 18   |
+| [EVENT_APP_CRASH](#event_app_crash) "APP_CRASH"                                                            | 崩溃事件。<br>**起始版本：** 12       |
+| [EVENT_APP_FREEZE](#event_app_freeze) "APP_FREEZE"                                                         | 应用冻屏事件。<br>**起始版本：** 12       |
+| [EVENT_APP_LAUNCH](#event_app_launch) "APP_LAUNCH"                                                         | 启动耗时事件。<br>**起始版本：** 12       |
+| [EVENT_SCROLL_JANK](#event_scroll_jank) "SCROLL_JANK"                                                      | 滑动丢帧事件。<br>**起始版本：** 12     |
+| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high) "CPU_USAGE_HIGH"                                             | CPU高负载事件。<br>**起始版本：** 12 |
+| [EVENT_BATTERY_USAGE](#event_battery_usage) "BATTERY_USAGE"                                                | 24h功耗器件分解统计事件。<br>**起始版本：** 12    |
+| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit) "RESOURCE_OVERLIMIT"                                 | 资源泄漏事件。<br>**起始版本：** 12     |
+| [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer) "ADDRESS_SANITIZER"                                    | 地址越界事件。<br>**起始版本：** 12      |
+| [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank) "MAIN_THREAD_JANK"                                       | 主线程超时事件。<br>**起始版本：** 12    |
+| [EVENT_APP_HICOLLIE](#event_app_hicollie) "APP_HICOLLIE"                                                   | 任务执行超时事件。<br>**起始版本：** 18   |
+| [EVENT_APP_KILLED](#event_app_killed) "APP_KILLED"                                                         | 应用查杀事件。<br>**起始版本：** 20      |
 | [DOMAIN_OS](#domain_os) "OS"                                                                               | OS作用域。<br>**起始版本：** 12        |
 
 ## 宏定义说明
@@ -80,7 +81,7 @@
 
 **描述**
 
-应用崩溃事件。
+崩溃事件。
 
 **起始版本：** 12
 
@@ -92,7 +93,7 @@
 
 **描述**
 
-应用卡顿事件。
+应用冻屏事件。
 
 **起始版本：** 12
 
@@ -104,7 +105,7 @@
 
 **描述**
 
-应用加载事件。
+启动耗时事件。
 
 **起始版本：** 12
 
@@ -116,7 +117,7 @@
 
 **描述**
 
-应用滑动卡顿事件。
+滑动丢帧事件。
 
 **起始版本：** 12
 
@@ -128,7 +129,7 @@
 
 **描述**
 
-应用CPU资源占用高事件。
+CPU高负载事件。
 
 **起始版本：** 12
 
@@ -140,7 +141,7 @@
 
 **描述**
 
-应用电源使用率事件。
+24h功耗器件分解统计事件。
 
 **起始版本：** 12
 
@@ -152,7 +153,7 @@
 
 **描述**
 
-应用资源超限事件。
+资源泄漏事件。
 
 **起始版本：** 12
 
@@ -164,7 +165,7 @@
 
 **描述**
 
-应用踩内存事件
+地址越界事件。
 
 **起始版本：** 12
 
@@ -176,7 +177,7 @@
 
 **描述**
 
-应用主线程超时事件。
+主线程超时事件。
 
 **起始版本：** 12
 
@@ -188,9 +189,21 @@
 
 **描述**
 
-应用任务执行超时事件。
+任务执行超时事件。
 
 **起始版本：** 18
+
+### EVENT_APP_KILLED
+
+```
+#define EVENT_APP_KILLED "APP_KILLED"
+```
+
+**描述**
+
+应用查杀事件。
+
+**起始版本：** 20
 
 ### DOMAIN_OS
 
