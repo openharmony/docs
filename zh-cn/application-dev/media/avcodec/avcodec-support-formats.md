@@ -1,5 +1,11 @@
 # AVCodec支持的格式
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
+
 ## 媒体编解码
 
 ### 视频解码
