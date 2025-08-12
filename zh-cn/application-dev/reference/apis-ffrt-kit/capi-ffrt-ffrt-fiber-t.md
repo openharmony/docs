@@ -1,4 +1,4 @@
-# ffrt_mutex_t
+# ffrt_fiber_t
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
@@ -8,9 +8,9 @@
 
 ## 概述
 
-FFRT互斥锁结构。
+纤程结构。
 
-**起始版本：** 10
+**起始版本：** 20
 
 **相关模块：** [FFRT](capi-ffrt.md)
 
@@ -18,10 +18,10 @@ FFRT互斥锁结构。
 
 ## 汇总
 
-### 成员变量	
+### 成员变量
 
-| 名称 | 描述 |	
-| -- | -- |	
-| uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)] | FFRT互斥锁所占空间 |
+| 名称 | 描述 |
+| -- | -- |
+| uintptr_t storage[ffrt_fiber_storage_size] | 纤程上下文所占空间。 |
 
 
