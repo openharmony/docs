@@ -1734,13 +1734,12 @@
       - Image Kit常见问题<!--image-faqs-->
         - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
         - [如何获取图片的旋转角度信息](media/image/image-faqs/image-rotate-faq.md)
-      - 不再推荐使用<!--imagekit-not-recommended-->
-        - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
-          - [图片解码](media/image/image-decoding-native.md)
-          - [图片编码](media/image/image-encoding-native.md)
-          - [图像变换](media/image/image-transformation-native.md)
-          - [位图操作](media/image/image-pixelmap-operation-native.md)
-          - [图片接收](media/image/image-receiver-native.md)
+      - 图片开发指导(依赖JS对象)(不再推荐)<!--image-native-js-objects-->
+        - [图片解码](media/image/image-decoding-native.md)
+        - [图片编码](media/image/image-encoding-native.md)
+        - [图像变换](media/image/image-transformation-native.md)
+        - [位图操作](media/image/image-pixelmap-operation-native.md)
+        - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
