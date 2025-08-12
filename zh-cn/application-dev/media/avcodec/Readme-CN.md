@@ -2,7 +2,7 @@
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @zhanghongran; @mr-chencxy; @xhjgc; @tianjian97861-->
+<!--Owner: @zhanghongran; @mr-chencxy; @xhjgc-->
 <!--SE: @dpy2650--->
 <!--TSE: @cyakee; @baotianhao-->
 
