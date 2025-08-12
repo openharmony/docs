@@ -2837,7 +2837,9 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir);
+let result = range.intersect(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
 ```
 
 ### intersect<sup>9+</sup>
