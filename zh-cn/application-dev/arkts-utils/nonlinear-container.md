@@ -68,7 +68,7 @@ HashSet支持增、删、改、查操作，常用API如下：
 | 访问元素 | entries() | 返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
+| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | 通过遍历对set中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(value: T) | 删除指定的元素。 |
 | 删除元素 | clear() | 清空整个set。 |
 
@@ -96,7 +96,7 @@ TreeMap支持增、删、改、查操作，常用 API 如下：
 | 访问元素 | forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | 遍历访问整个map的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | replace(key: K, newValue: V) | 修改指定key对应的value值。 |
-| 修改元素 | forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | 通过遍历修改整个map的元素。 |
+| 修改元素 | forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | 通过遍历对map中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(key: K) | 删除map中匹配到的键值对。 |
 | 删除元素 | clear() | 清空整个map。 |
 
@@ -123,7 +123,7 @@ TreeSet支持增、删、改、查操作，常用API如下：
 | 访问元素 | getLastValue() | 获取set中排在末位的value值。 |
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
+| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 通过遍历对set中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(value: T) | 删除指定的元素。 |
 | 删除元素 | clear() | 清空整个set。 |
 
@@ -153,7 +153,7 @@ LightWeightMap支持增、删、改、查操作，常用API如下：
 | 访问元素 | forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | 遍历访问整个map的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | setValueAt(index: number, newValue: V) | 修改指定index对应的value值。 |
-| 修改元素 | forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | 通过遍历修改整个map的元素。 |
+| 修改元素 | forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | 通过遍历对map中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(key: K) | 删除map中指定key匹配到的键值对。 |
 | 删除元素 | removeAt(index: number) | 删除map中指定index对应的键值对。 |
 | 删除元素 | clear() | 清空整个map。 |
@@ -181,7 +181,7 @@ LightWeightSet支持增、删、改、查操作。常用API如下：
 | 访问元素 | entries() | 返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
+| 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | 通过遍历对set中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(key: K) | 删除指定的元素。 |
 | 删除元素 | removeAt(index: number) | 删除set中指定index对应的值。 |
 | 删除元素 | clear() | 清空整个set。 |
@@ -209,7 +209,7 @@ PlainArray支持增、删、改、查操作。常用API如下：
 | 访问元素 | forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | 遍历访问整个PlainArray的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;[number, T]&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | setValueAt(index:number, value: T) | 修改指定index对应的value值。 |
-| 修改元素 | forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | 通过遍历修改整个PlainArray的元素。 |
+| 修改元素 | forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | 通过遍历对PlainArray中的元素进行操作，可能包括但不限于修改元素。 |
 | 删除元素 | remove(key: number) | 删除PlainArray中指定key匹配到的键值对。 |
 | 删除元素 | removeAt(index: number) | 删除PlainArray中指定index对应的键值对。 |
 | 删除元素 | removeRangeFrom(index: number, size: number) | 删除PlainArray中指定范围内的元素。 |
