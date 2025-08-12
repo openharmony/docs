@@ -81,6 +81,7 @@ The module provides capabilities related to the ability framework.
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsMaxWindowHeight](#oh_abilityruntime_setstartoptionsmaxwindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t maxWindowHeig) | Sets the maximum window height for starting the ability, in vp.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsMaxWindowHeight](#oh_abilityruntime_getstartoptionsmaxwindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &maxWindowHeight) | Obtains the maximum window height for starting the ability, in vp.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions](#oh_abilityruntime_startselfuiabilitywithstartoptions)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want, [AbilityRuntime_StartOptions](#abilityruntime_startoptions) *options) | Starts the UIAbility of the current application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetVersionCode](#oh_abilityruntime_applicationcontextgetversioncode)(int64_t* versionCode) | Obtains the version code of the application.|
 
 ## Structs
 
@@ -132,6 +133,7 @@ Enumerates the error codes used by the ability framework.
 | ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED | The number of instances has reached the upper limit.<br>**Since**: 17|
 | ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED | The application does not support multi-instance mode.<br>**Since**: 17|
 | ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED | Setting **instanceKey** is not supported.<br>**Since**: 17|
+| ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED  | The application info does not exist.<br>**Since**: 21|
 
 ### AbilityRuntime_AreaMode
 
@@ -2264,3 +2266,31 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
+### OH_AbilityRuntime_ApplicationContextGetVersionCode
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)
+```
+
+**Description**
+
+Obtains the version code of the application.
+
+**Since**: 21
+
+**Parameters**
+
+| Name    | Description                    |
+| -------- | ------------------------ |
+| versionCode | Pointer to the version code of the application.|
+
+**Returns**
+
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
+
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **versionCode** is null.
+
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+**ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED**: The application info does not exist.
