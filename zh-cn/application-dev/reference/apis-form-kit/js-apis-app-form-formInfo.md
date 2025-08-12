@@ -241,7 +241,7 @@ import { formInfo } from '@kit.FormKit';
 
 ## RunningFormInfo<sup>20+</sup>
 
-已添加的卡片信息，包括使用中的以及未使用的卡片。
+已经创建卡片信息，包括卡片添加页的卡片以及已加到桌面、负一屏、锁屏等场景的卡片。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

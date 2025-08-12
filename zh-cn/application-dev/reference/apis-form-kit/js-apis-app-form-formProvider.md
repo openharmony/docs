@@ -784,7 +784,7 @@ try {
 
 getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
-获取设备上当前应用程序已经加桌的指定卡片信息，使用Promise异步回调。
+获取当前应用已加桌卡片中指定的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -800,7 +800,7 @@ getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningForm
 
 | 类型                                                                | 说明                                |
 |-------------------------------------------------------------------| ---------------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回符合条件的卡片信息。 |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回符合条件的卡片信息，包括卡片名称、卡片尺寸等。 |
 
 **错误码：**
 
@@ -838,7 +838,7 @@ try {
 
 getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
-获取设备上当前应用程序所有已经加桌的卡片信息，使用Promise异步回调。
+获取当前应用所有已经加桌的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
