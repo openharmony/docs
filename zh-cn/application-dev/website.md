@@ -221,6 +221,7 @@
       - Native子进程开发指导<!--native-childprocess-development-->
           - [创建Native子进程](application-models/capi_nativechildprocess_development_guideline.md)
           - [获取Native子进程退出信息](application-models/capi-nativechildprocess-exit-info.md)
+      - [Ability Kit术语](application-models/ability-terminology.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
