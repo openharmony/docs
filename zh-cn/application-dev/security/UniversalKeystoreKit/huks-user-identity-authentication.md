@@ -12,7 +12,7 @@
 
 ### 生成密钥
 
-生成密钥，指定指纹访问控制类型及相关属性。
+指定指纹访问控制类型及相关属性。
 
 生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
 
@@ -111,7 +111,7 @@ async function TestGenKeyForFingerprintAccessControl() {
 
 ### 初始化密钥会话
 
-初始化密钥会话，发起指纹认证获取认证令牌。
+发起指纹认证获取认证令牌。
    
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
@@ -254,7 +254,7 @@ async function testInitAndAuthFinger() {
 
 ### 传入认证令牌
 
-传入认证令牌，进行数据操作。
+进行数据操作。
    
 ```ts
 /*
