@@ -1,8 +1,10 @@
 # Scene
-The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
+
+The module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
 
 > **NOTE**
-> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 ```ts
@@ -45,7 +47,7 @@ Describes the scene node parameters, which are used to provide the name and path
 **System capability**: SystemCapability.ArkUi.Graphics3D
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | No| No| Name of the scene node. It is customizable.
+| name | string | No| No| Name of the scene node. It is customizable.|
 | path | string | No| Yes| Path in the scene node tree. It specifies the position of the created camera, light, or node in the scene node tree. Each layer is separated by a slash (/). If no path is provided, the node is set as a child node of the root node. The default value is undefined.|
 
 **Example**
@@ -86,7 +88,7 @@ Creates a camera based on scene node parameters. This API uses a promise to retu
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Camera](js-apis-inner-scene-nodes.md#camera)> | Promise used to return the **Camera** object created.|
+| Promise\<[Camera](js-apis-inner-scene-nodes.md#camera)> | Promise used to return the Camera object created.|
 
 **Example**
 ```ts
@@ -123,7 +125,7 @@ Creates a light based on the scene node parameters and light type. This API uses
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Light](js-apis-inner-scene-nodes.md#light)> | Promise used to return the **Light** object created.|
+| Promise\<[Light](js-apis-inner-scene-nodes.md#light)> | Promise used to return the Light object created.|
 
 **Example**
 ```ts
@@ -159,7 +161,7 @@ Creates a node. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Node](js-apis-inner-scene-nodes.md#node)> | Promise used to return the **Node** object.|
+| Promise\<[Node](js-apis-inner-scene-nodes.md#node)> | Promise used to return the Node object.|
 
 **Example**
 ```ts
@@ -197,7 +199,7 @@ Creates a material based on the scene resource parameters and material type. Thi
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Material](js-apis-inner-scene-resources.md#material)> | Promise used to return the **Material** object.|
+| Promise\<[Material](js-apis-inner-scene-resources.md#material)> | Promise used to return the Material object.|
 
 **Example**
 ```ts
@@ -228,12 +230,12 @@ Creates a shader based on the scene resource parameters. This API uses a promise
 **Parameters**
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | Yes| Scene resource parameters.|
+| params | [SceneResourceParameters](#sceneresourceparameters) | Yes| Parameters for creating the shader.|
 
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | Promise used to return the **Shader** object created.|
+| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | Promise used to return the Shader object created.|
 
 **Example**
 ```ts
@@ -266,12 +268,12 @@ Creates an image. This API uses a promise to return the result.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | Yes| Scene resource parameters.|
+| params | [SceneResourceParameters](#sceneresourceparameters) | Yes| Parameters for creating the image.|
 
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Image](js-apis-inner-scene-resources.md#image)> | Promise used to return the **Image** object created.|
+| Promise\<[Image](js-apis-inner-scene-resources.md#image)> | Promise used to return the Image object created.|
 
 **Example**
 ```ts
@@ -307,7 +309,7 @@ Creates an environment based on the scene resource parameters. This API uses a p
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Environment](js-apis-inner-scene-resources.md#environment)> | Promise used to return the **Environment** object created.|
+| Promise\<[Environment](js-apis-inner-scene-resources.md#environment)> | Promise used to return the Environment object created.|
 
 **Example**
 ```ts
@@ -344,7 +346,7 @@ Creates a geometry object based on the scene node parameters and mesh data. This
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise used to return the **Geometry** object created.|
+| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise used to return the Geometry object created.|
 
 **Example**
 ```ts
@@ -485,7 +487,7 @@ Loads a resource by path.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Scene](#scene)> | Promise used to return the **Scene** object created.|
+| Promise\<[Scene](#scene-1)> | Promise used to return the Scene object created.|
 
 **Example**
 ```ts
@@ -515,7 +517,7 @@ Obtains a node by path.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [Node](js-apis-inner-scene-nodes.md#node) \| null | Returns the **Node** object requested. If no node is found in the specified path or the found node type does not match the expected type, null is returned.|
+| [Node](js-apis-inner-scene-nodes.md#node) \| null | Returns the Node object requested. If no node is found in the specified path or the found node type does not match the expected type, null is returned.|
 
 **Example**
 ```ts
