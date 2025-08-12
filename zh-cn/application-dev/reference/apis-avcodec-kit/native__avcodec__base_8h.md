@@ -1,5 +1,10 @@
 # native_avcodec_base.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy; @xhjgc-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee; @baotianhao-->
 
 ## 概述
 
