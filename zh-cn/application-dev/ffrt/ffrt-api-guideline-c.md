@@ -1675,7 +1675,7 @@ FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
 
 返回值
 
-- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval。
+- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval`。
 
 描述
 
