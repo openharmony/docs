@@ -404,7 +404,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
     > **注意：**
-    > 配置非必须参数错误时，会返回AV_ERR_INVAILD_VAL错误码。但OH_VideoEncoder_Configure()不会失败，而是使用默认值继续执行。
+    > 配置非必须参数错误时，会返回AV_ERR_INVALID_VAL错误码。但OH_VideoEncoder_Configure()不会失败，而是使用默认值继续执行。
     >
 
 6. 获取surface。
