@@ -1,5 +1,5 @@
 # @ohos.telephony.sim (SIM卡管理)
-<!--Kit: Telephony kit-->
+<!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @Fanyl8-->
 <!--SE: @ghxbob-->
