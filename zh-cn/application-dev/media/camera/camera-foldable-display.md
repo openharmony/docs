@@ -88,6 +88,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 - **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备折叠态变化。**
     ```ts
     import { display } from '@kit.ArkUI';
+    
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
     display.on('foldStatusChange', (foldStatus: display.FoldStatus) => {
       // 从半折叠态（FOLD_STATUS_HALF_FOLDED）和展开态（FOLD_STATUS_EXPANDED），相机框架返回所支持的相机是一致的，所以从半折叠态到展开态不需要重新配流，从展开态到半折叠态也是一样的。
