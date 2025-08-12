@@ -1,5 +1,9 @@
 # @ohos.telephony.sim (SIM卡管理)
-
+<!--Kit: Telephony kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @Fanyl8-->
+<!--SE: @ghxbob-->
+<!--TSE: @weitiantian-->
 SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活等。
 
 > **说明：** 
