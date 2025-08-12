@@ -4058,11 +4058,11 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | 是 | 媒体源的类型。 |
-| source | string | 是 | 媒体源地址。 |
-| format | string | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | 否 | 否 | 媒体源的类型。 |
+| source | string | 否 | 否 | 媒体源地址。 |
+| format | string | 否 | 否 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -4070,10 +4070,10 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| id | string | 是 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 是 | surface的位置信息。 |
+| 名称 | 类型 | 只读 | 可选  | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | 否 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 否 | 否 | surface的位置信息。 |
 
 ## MediaInfo<sup>12+<sup>
 
@@ -4082,20 +4082,19 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
-| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
-| posterUrl | string | 是 | 海报的地址。 |
-| preload | [Preload](./js-apis-webview-e.md#preload12) | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
-
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)  | 否 | 否 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 否 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
+| controlList | string[] | 否 | 否 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 否 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
+| posterUrl | string | 否 | 否 | 海报的地址。 |
+| preload | [Preload](./js-apis-webview-e.md#preload12) | 否 | 否 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 否 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 否 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
