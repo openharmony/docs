@@ -2066,6 +2066,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### moveAbilityToBackground<sup>12+<sup>
+
 moveAbilityToBackground(): Promise\<void>
 
 将处于前台的UIAbility移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--><!--RP1End-->
@@ -2082,7 +2083,7 @@ moveAbilityToBackground(): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码]。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
