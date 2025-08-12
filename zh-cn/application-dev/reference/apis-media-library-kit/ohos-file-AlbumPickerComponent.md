@@ -57,7 +57,7 @@ Album Picker配置选项。
 |----------------|-------|-----|-------------------------------------------------------------|
 | themeColorMode | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | 否   | 相册页主题颜色，包括跟随系统、浅色模式以及深色模式，默认为跟随系统。 <br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                         |
 | filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | 否   | 相册组件过滤参数，可筛选只显示图片、视频或者图片和视频。若未配置此参数，则某个具体相册中显示图片和视频类型的所有资源。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
-| fontSize<sup>20+</sup> | number &verbar; string | 否 | 字体大小，取值范围参考[text组件](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。<br> **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。  |
+| fontSize<sup>20+</sup> | number \| string | 否 | 字体大小，取值范围参考[fontsize](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。<br> **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## EmptyAreaClickCallback<sup>13+</sup>
 
@@ -102,7 +102,7 @@ setFontSize(fontSize: number | string): void
 
 |  参数名        | 类型                                    | 必填  | 说明  |
 | ------------------------- | ------------------ | ----- | --------------- |
-| fontSize | number &verbar; string | 是 | 字体大小，取值范围参考[text组件](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。 |
+| fontSize | number \| string | 是 | 字体大小，取值范围参考[fontsize](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。 |
 
 ## 示例
 
