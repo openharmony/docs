@@ -1199,7 +1199,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- recordTime表示时间戳，recordPower表示当前时刻的电量。
   >
-  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。具体请参考[查看csv采集结果](#查看csv采集结果)。
+  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。具体请参考查看csv采集结果。
 
 - 采集当前界面fps
 
