@@ -1,4 +1,9 @@
 # MenuItemGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--SE: @zhanghaibo0-->
+<!--TSE: @lxl007-->
 
 该组件用来展示菜单MenuItem的分组。
 
