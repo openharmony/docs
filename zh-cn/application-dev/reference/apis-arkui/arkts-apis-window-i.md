@@ -95,13 +95,13 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。true表示可见；false表示不可见。 |
-| leftRect   | [Rect](arkts-apis-window-i.md#rect7) | 是   | 是   | 屏幕左侧的矩形区。 |
-| topRect    | [Rect](arkts-apis-window-i.md#rect7) | 是   | 是   | 屏幕顶部的矩形区。 |
-| rightRect  | [Rect](arkts-apis-window-i.md#rect7) | 是   | 是   | 屏幕右侧的矩形区。 |
-| bottomRect | [Rect](arkts-apis-window-i.md#rect7) | 是   | 是   | 屏幕底部的矩形区。 |
+| visible<sup>9+</sup>    | boolean       | 否   | 否   | 规避区域是否可见。true表示可见；false表示不可见。 |
+| leftRect   | [Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 屏幕左侧的矩形区。 |
+| topRect    | [Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 屏幕顶部的矩形区。 |
+| rightRect  | [Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 屏幕右侧的矩形区。 |
+| bottomRect | [Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 屏幕底部的矩形区。 |
 
 ## Size<sup>7+</sup>
 
@@ -111,10 +111,10 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
-| height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
+| width  | number   | 否   | 否   | 窗口宽度，单位为px，该参数应为整数。 |
+| height | number   | 否   | 否   | 窗口高度，单位为px，该参数应为整数。 |
 
 ## Position<sup>20+</sup>
 
@@ -135,10 +135,10 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [Rect](arkts-apis-window-i.md#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
-| reason    | [RectChangeReason](arkts-apis-window-e.md#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
+| rect   | [Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 窗口矩形变化后的值。 |
+| reason    | [RectChangeReason](arkts-apis-window-e.md#rectchangereason12) | 否   | 否   | 窗口矩形变化的原因。 |
 
 ## AvoidAreaOptions<sup>12+</sup>
 
@@ -148,10 +148,10 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| type   | [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是   | 是   | 系统规避区变化后返回的规避区域类型。 |
-| area   | [AvoidArea](arkts-apis-window-i.md#avoidarea7)         | 是   | 是   | 系统规避区变化后返回的规避区域。 |
+| type   | [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 否   | 否   | 系统规避区变化后返回的规避区域类型。 |
+| area   | [AvoidArea](arkts-apis-window-i.md#avoidarea7)         | 否   | 否   | 系统规避区变化后返回的规避区域。 |
 
 ## WindowProperties
 
@@ -183,14 +183,14 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围8vp-24vp，默认值12vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围6vp-22vp，默认值20vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| buttonIconSize<sup>20+</sup> | number        | 是   | 是   | 按键icon的大小，取值范围16vp-24vp，默认值20vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4vp-8vp，默认值4vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 否   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| buttonBackgroundSize   | number        | 否   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| spacingBetweenButtons  | number        | 否   | 是   | 按钮间距，取值范围8vp-24vp，默认值12vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| closeButtonRightMargin | number        | 否   | 是   | 关闭按钮右侧距窗口边距，取值范围6vp-22vp，默认值20vp。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| buttonIconSize<sup>20+</sup> | number        | 否   | 是   | 按键icon的大小，取值范围16vp-24vp，默认值20vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 否   | 是   | 按键背板圆角半径，取值范围4vp-8vp，默认值4vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## WindowLimits<sup>11+</sup>
 
@@ -202,12 +202,12 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称      | 类型   | 只读 | 可选 | 说明                                                         |
 | :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | 是   | 是   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
-| maxHeight | number | 是   | 是   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
-| minWidth  | number | 是   | 是   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
-| minHeight | number | 是   | 是   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+| maxWidth  | number | 否   | 是   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
+| maxHeight | number | 否   | 是   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
+| minWidth  | number | 否   | 是   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
+| minHeight | number | 否   | 是   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
 
 ## TitleButtonRect<sup>11+</sup>
 
@@ -217,12 +217,12 @@
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型   | 可读 | 可写 | 说明                                       |
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
 | ------ | ------ | ---- | ---- | ------------------------------------------ |
-| right  | number | 是   | 是   | 矩形区域的右边界，单位为vp，该参数为整数。 |
-| top    | number | 是   | 是   | 矩形区域的上边界，单位为vp，该参数为整数。 |
-| width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
-| height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
+| right  | number | 否   | 否   | 矩形区域的右边界，单位为vp，该参数为整数。 |
+| top    | number | 否   | 否   | 矩形区域的上边界，单位为vp，该参数为整数。 |
+| width  | number | 否   | 否   | 矩形区域的宽度，单位为vp，该参数为整数。   |
+| height | number | 否   | 否   | 矩形区域的高度，单位为vp，该参数为整数。   |
 
 ## MoveConfiguration<sup>15+</sup>
 
@@ -244,11 +244,11 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小缩放系数，跟随用户设置变化，该参数变化范围为0.5-4.0。 |
-| defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小缩放系数，跟随窗口所在屏幕变化，该参数变化范围为0.5-4.0。 |
-| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。该参数仅主窗口生效，在子窗或系统窗口上等于系统显示大小缩放系数(systemDensity)。 |
+| systemDensity  | number   | 否   | 否   | 窗口所在屏幕的系统显示大小缩放系数，跟随用户设置变化，该参数变化范围为0.5-4.0。 |
+| defaultDensity | number   | 否   | 否   | 窗口所在屏幕的系统默认显示大小缩放系数，跟随窗口所在屏幕变化，该参数变化范围为0.5-4.0。 |
+| customDensity | number   | 否   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。该参数仅主窗口生效，在子窗或系统窗口上等于系统显示大小缩放系数(systemDensity)。 |
 
 ## WindowLayoutInfo<sup>15+</sup>
 
