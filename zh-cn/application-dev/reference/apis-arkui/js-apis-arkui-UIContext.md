@@ -274,13 +274,6 @@ getOverlayManager(): OverlayManager
 | ----------------------------- | ------------------- |
 | [OverlayManager](#overlaymanager12) | 返回OverlayManager实例对象。 |
 
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getOverlayManager();
-```
-
 ### setOverlayManagerOptions<sup>15+</sup>
 
 setOverlayManagerOptions(options: OverlayManagerOptions): boolean
@@ -1721,13 +1714,6 @@ getContextMenuController(): ContextMenuController
 |类型|说明|
 |----|----|
 |[ContextMenuController](#contextmenucontroller12)| 获取ContextMenuController对象。|
-
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getContextMenuController();
-```
 
 ### getMeasureUtils<sup>12+</sup>
 
@@ -7050,7 +7036,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset18](#opentoast18)的示例。
+示例请看[openToast18](#opentoast18)的示例。
 
 ### showDialog
 
@@ -7413,7 +7399,7 @@ struct Index {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7545,7 +7531,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
-通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。
 
 暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
