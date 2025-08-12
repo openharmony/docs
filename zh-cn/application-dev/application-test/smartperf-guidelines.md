@@ -916,7 +916,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 开始采集示例5（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd -print。
    >
-   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
+   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考查看csv采集结果。
 
 **3. 查看csv采集结果**
 
