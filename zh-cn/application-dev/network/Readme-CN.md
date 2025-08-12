@@ -1,5 +1,11 @@
 # Network Kit（网络服务）<!--network-kit-->
 
+< !--Kit: Network Kit-->
+< !--Subsystem: Communnication-->
+< !--Owner: @wmyao_mm-->
+< !--SE: @guo-min_net-->
+< !--TSE: @tongxilin-->
+
 - [Network Kit简介](net-mgmt-overview.md)
 
 - [术语](network-terminology.md)
