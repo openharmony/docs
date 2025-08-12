@@ -24,7 +24,7 @@ PasteButton()
 
 默认创建带有图标、文本、背景的粘贴控件。
 
-为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+为避免因控件样式不合法而导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +36,7 @@ PasteButton(options: PasteButtonOptions)
 
 创建包含指定元素的粘贴控件。
 
-为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+为避免因控件样式不合法而导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -55,14 +55,14 @@ PasteButton(options: PasteButtonOptions)
 > **说明：**
 >
 > - icon或text需至少传入一个。<br>
-> - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式，默认样式：
+> - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式。
 >
->   PasteIconStyle默认样式为LINES；
+>     - PasteIconStyle默认样式为LINES。
 >
->   PasteDescription默认样式为PASTE；
+>     - PasteDescription默认样式为PASTE。
 >
->   ButtonType默认样式为Capsule。
-> - icon、text、buttonType不支持动态修改。
+>     - ButtonType默认样式为Capsule。
+> - icon、text和buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
