@@ -1,4 +1,9 @@
 # LauncherAbilityInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 LauncherAbilityInfo信息，通过接口[innerBundleManager.getLauncherAbilityInfos](js-apis-Bundle-InnerBundleManager-sys.md#innerbundlemanagergetlauncherabilityinfosdeprecated)获取。
 
@@ -12,7 +17,7 @@ LauncherAbilityInfo信息，通过接口[innerBundleManager.getLauncherAbilityIn
 
 ## LauncherAbilityInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-LauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync18)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-LauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync)替代。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 

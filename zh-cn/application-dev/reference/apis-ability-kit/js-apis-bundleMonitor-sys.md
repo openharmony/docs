@@ -1,4 +1,9 @@
 # @ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供监听应用安装，卸载，更新的能力。
 

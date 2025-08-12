@@ -1,8 +1,8 @@
 # NativeBundle开发指导
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @lihaitao-->
-<!--SE: @hanfeng6; @lihaitao-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
 <!--TSE: @kongjing2-->
 
 ## 场景介绍

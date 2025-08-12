@@ -1,4 +1,9 @@
 # @ohos.bundle.distributedBundleManager (distributedBundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供分布式应用的管理能力。
 
