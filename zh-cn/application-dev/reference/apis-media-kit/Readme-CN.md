@@ -1,4 +1,9 @@
 # Media Kit（媒体服务）
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6;@zzs_911-->
+<!--SE: @HmQQQ;@stupig001-->
+<!--TSE: @xchaosioda;@xdlinc-->
 
 - ArkTS API<!--media-arkts-->
   - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
