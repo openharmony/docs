@@ -800,7 +800,7 @@ getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningForm
 
 | 类型                                                                | 说明                                |
 |-------------------------------------------------------------------| ---------------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回符合条件的卡片信息。 |
 
 **错误码：**
 
@@ -848,7 +848,7 @@ getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;
 
 | 类型          | 说明                                |
 | ------------ | ---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt;&gt; | Promise对象。返回符合条件的卡片信息。 |
 
 **错误码：**
 
