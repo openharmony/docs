@@ -17,7 +17,7 @@ import { asset } from '@kit.AssetStoreKit';
 
 addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
-在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
+在指定用户空间中新增一条关键资产。使用Promise异步回调。
 
 设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
@@ -36,7 +36,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -66,7 +66,6 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -79,23 +78,16 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.addAsUser(userId, attr).then(() => {
-    console.info(`Asset added to user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to add Asset to user space. Code is ${err.code}, message is ${err.message}`);
-  })
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset to user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.addAsUser(userId, attr).then(() => {
+  console.info(`Succeeded in adding Asset to user space.`);
+});
 ```
 
 ## asset.removeAsUser
 
 removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
-从指定用户空间中删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
+从指定用户空间中删除符合条件的一条或多条关键资产。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -112,7 +104,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -139,7 +131,6 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -149,23 +140,16 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.removeAsUser(userId, query).then(() => {
-    console.info(`Asset removed from user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to remove Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.removeAsUser(userId, query).then(() => {
+  console.info(`Succeeded in removing Asset from user space.`);
+});
 ```
 
 ## asset.updateAsUser
 
 updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
-在指定用户空间中更新符合条件的一条关键资产，使用Promise方式异步返回结果。
+在指定用户空间中更新符合条件的一条关键资产。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -183,7 +167,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -212,7 +196,6 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -224,23 +207,16 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
-    console.info(`Asset updated in user space successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to update Asset in user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset in user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.updateAsUser(userId, query, attrsToUpdate).then(() => {
+  console.info(`Succeeded in updating Asset in user space.`);
+});
 ```
 
 ## asset.preQueryAsUser
 
 preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
-在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQueryAsUser](#assetpostqueryasuser)。使用Promise方式异步返回结果。
+在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)和[asset.postQueryAsUser](#assetpostqueryasuser)接口。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -287,7 +263,6 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -297,23 +272,16 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
-    console.info(`Succeeded in pre-querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to pre-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
+  console.info(`Succeeded in pre-querying Asset from user space.`);
+});
 ```
 
 ## asset.queryAsUser
 
 queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
-在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)接口，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)接口，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -360,7 +328,6 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -370,27 +337,21 @@ function stringToArray(str: string): Uint8Array {
 let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
-    for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
-      let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
-    console.info(`Succeeded in querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
+  for (let i = 0; i < res.length; i++) {
+    // 解析属性。
+    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
+  }
+  console.info(`Succeeded in querying Asset from user space.`);
+});
 ```
 
 ## asset.postQueryAsUser
 
 postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
-在指定用户空间中查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现。使用Promise方式异步返回结果。
+在指定用户空间中查询的后置处理，用于需要用户认证的关键资产（与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现）。使用Promise异步回调。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -407,7 +368,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -429,20 +390,12 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQueryAsUser执行成功返回的挑战值
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQueryAsUser(userId, handle).then(() => {
-    console.info(`Succeeded in post-querying Asset from user space.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to post-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset from user space. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQueryAsUser(userId, handle).then(() => {
+  console.info(`Succeeded in post-querying Asset from user space.`);
+});
 ```
