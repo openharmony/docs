@@ -221,6 +221,7 @@
       - Native子进程开发指导<!--native-childprocess-development-->
           - [创建Native子进程](application-models/capi_nativechildprocess_development_guideline.md)
           - [获取Native子进程退出信息](application-models/capi-nativechildprocess-exit-info.md)
+      - [Ability Kit术语](application-models/ability-terminology.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -1273,7 +1274,7 @@
           <!--Del-->
           - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-guidelines.md)
           <!--DelEnd-->
-          - [增强连接开发指南](distributedservice/linnkEnhance_development-guide.md)
+          - [增强连接开发指南](distributedservice/linkEnhance_development-guide.md)
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
