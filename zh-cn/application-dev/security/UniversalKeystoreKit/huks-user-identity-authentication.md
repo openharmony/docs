@@ -8,18 +8,24 @@
 
 场景介绍及相关概念说明请参考[用户身份认证访问控制简介](huks-identity-authentication-overview.md)。
 
+> **说明：**
+>
+> 从API version 20开始支持用户身份认证访问控制。
+
 ## 开发步骤
 
-### 1. 生成密钥，指定指纹访问控制类型及相关属性。
+### 生成密钥
 
-   生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
+生成密钥，指定指纹访问控制类型及相关属性。
+
+生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /*
-* 确定密钥别名和封装密钥属性参数集
-*/
+ * 确定密钥别名和封装密钥属性参数集。
+ */
 let keyAlias = 'test_sm4_key_alias';
 let properties: Array<huks.HuksParam> = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -59,7 +65,7 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /*
- * 生成密钥
+ * 生成密钥。
  */
 class ThrowObject {
   isThrow: boolean = false
@@ -107,14 +113,16 @@ async function TestGenKeyForFingerprintAccessControl() {
 }
 ```
 
-### 2. 初始化密钥会话，发起指纹认证获取认证令牌。
+### 初始化密钥会话
+
+初始化密钥会话，发起指纹认证获取认证令牌。
    
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 /*
- * 确定密钥别名和封装密钥属性参数集
+ * 确定密钥别名和封装密钥属性参数集。
  */
 let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
 let srcKeyAlias = 'test_sm4_key_alias';
@@ -123,7 +131,7 @@ let challenge: Uint8Array;
 let fingerAuthToken: Uint8Array;
 let authType = userAuth.UserAuthType.FINGERPRINT;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
-/* 集成生成密钥参数集 & 加密参数集 */
+/* 集成生成密钥参数集&加密参数集。 */
 let properties: Array<huks.HuksParam> = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -199,7 +207,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.error(`promise: doInit input arg invalid, ` + JSON.stringify(error));
   }
 }
-/* 调用UserIAM拉起指纹认证，触发HUKS的访问控制流程 */
+/* 调用UserIAM拉起指纹认证，触发HUKS的访问控制流程。 */
 function userIAMAuthFinger(huksChallenge: Uint8Array) {
   // 获取认证对象。
   let authTypeList: userAuth.UserAuthType[] = [authType];
@@ -241,24 +249,26 @@ function userIAMAuthFinger(huksChallenge: Uint8Array) {
 }
 
 async function testInitAndAuthFinger() {
-  /* 初始化密钥会话获取挑战值 */
+  /* 初始化密钥会话获取挑战值。 */
   await publicInitFunc(srcKeyAlias, huksOptions);
-  /* 调用userIAM进行身份认证 */
+  /* 调用userIAM进行身份认证。 */
   userIAMAuthFinger(challenge);
 }
 ```
 
-### 3. 传入认证令牌进行数据操作。
+### 传入认证令牌
+
+传入认证令牌，进行数据操作。
    
 ```ts
 /*
-* 以下以SM4 128密钥为例
-*/
+ * 以下以SM4 128密钥为例。
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /*
-* 确定封装密钥属性参数集
-*/
+ * 确定封装密钥属性参数集。
+ */
 let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
 let handle: number;
@@ -269,7 +279,7 @@ class ThrowObject {
   isThrow: boolean = false;
 }
 
-/* 集成生成密钥参数集 & 加密参数集 */
+/* 集成生成密钥参数集&加密参数集。 */
 class propertyEncryptType {
   tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
   value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
@@ -400,9 +410,9 @@ async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: 
 
 async function testSm4Cipher() {
   encryptOptions.inData = StringToUint8Array(cipherInData);
-  /* 传入认证令牌 */
+  /* 传入认证令牌。 */
   await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
-  /* 传入认证令牌 */
+  /* 传入认证令牌。 */
   await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
   if (Uint8ArrayToString(finishOutData) == cipherInData) {
     console.info('test finish encrypt error ');
