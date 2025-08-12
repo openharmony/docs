@@ -1,9 +1,4 @@
 # 位置服务错误码
-<!--Kit: Location Kit-->	
-<!--Subsystem: Location-->	
-<!--Owner: @liu-binjun-->	
-<!--SE: @liu-binjun-->	
-<!--TSE: @mhy123456789-->
 
 > **说明：**
 >
