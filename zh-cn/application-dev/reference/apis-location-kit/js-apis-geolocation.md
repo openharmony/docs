@@ -1,4 +1,9 @@
 # @ohos.geolocation (位置服务)
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @liu-binjun-->
+<!--SE: @liu-binjun-->
+<!--TSE: @mhy123456789-->
 
 位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
