@@ -148,6 +148,8 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
 
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
@@ -217,6 +219,8 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
 
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
@@ -280,6 +284,8 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
