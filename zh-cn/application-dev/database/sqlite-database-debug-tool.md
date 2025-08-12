@@ -7,11 +7,11 @@
 
 SQLite是一款轻量级、嵌入式、无服务器的关系型数据库管理系统，其核心优势在于将整个数据库存储于单一文件中，无需独立服务器进程，支持跨平台运行，被广泛应用于移动应用、嵌入式设备和桌面软件等场景。
 
-本调试工具基于HDC命令实现对SQLite数据库的操作，提供一种通过命令行接口高效管理SQLite数据库的方式，适用于开发、调试和运维阶段对数据库的快速操作与验证。
+本调试工具基于hdc命令实现对SQLite数据库的操作，提供一种通过命令行接口高效管理SQLite数据库的方式，适用于开发、调试和运维阶段对数据库的快速操作与验证。
 
 ## 环境要求
 
-- 开发者在使用本工具前需开启开发者模式，且需要获取HDC工具，执行HDC shell。
+- 开发者在使用本工具前需开启[开发者模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-developer-mode#section530763213432)，且需要获取[hdc工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/hdc)，执行hdc shell。
 - 连接设备。
 
 ## 操作准备
@@ -19,10 +19,10 @@ SQLite是一款轻量级、嵌入式、无服务器的关系型数据库管理�
 在使用SQLite之前需先切换至目标调试应用路径下，再使用命令进入到SQLite调试工具。
 
 ```bash
-# 打开 HDC 命令行
+# 打开 hdc 命令行
 c:/users/zzz>hdc shell
-$ cd /data/app/el1/100/base/com.test.myapplication   // 进入到目标调试应用路径下（当前路径为示例，开发者需自己获取调试应用路径）
-$ ls -lZ                                             // 查看路径下的数据库文件，有debug_hap_data_file标签，则确认为调试引用的文件。
+$ cd /data/app/el1/100/base/com.test.myapplication   // 进入到目标调试应用路径下（当前路径为示例，开发者需自己获取调试应用路径）。
+$ ls -lZ                                             // 查看路径下的数据库文件，有debug_hap_data_file标签，则确认为调试应用的文件。
 total 9531
 drwxrwsr-x 2 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024     3440 2025-08-08 16:54 lock
 -rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024  9228288 2025-08-08 16:55 rdbPerfTest.db
@@ -36,12 +36,12 @@ Enter ".help" for usage hints.
 sqlite>
 ```
 
-当在不具备读写权限的路径下尝试执行数据库和表的创建操作时，系统将抛出权限错误。  
+在非调试应用路径下，尝试执行数据库和表的创建操作时，系统将抛出权限错误。  
 
 使用SQL语句中的`CREATE TABLE`命令创建表，具体如下：
 
 ```bash
-# 打开 HDC 命令行
+# 打开 hdc 命令行
 c:/users/zzz>hdc shell
 # 尝试打开或创建新的数据库
 $ sqlite3 a.db
