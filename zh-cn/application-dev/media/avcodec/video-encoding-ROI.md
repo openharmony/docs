@@ -1,5 +1,11 @@
 # ROI视频编码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xhjgc-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
+
 ## 基础概念
 
 ROI视频编码是在现有的硬件编码基础上开放的高级能力，允许开发者自主指定ROI区域，并通过调整ROI区域码率分配优化编码效果。
