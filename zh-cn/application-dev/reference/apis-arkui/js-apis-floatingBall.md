@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @betafringe007-->
-<!--SE: @zhoulin_-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @zhoulin_-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 该模块提供闪控球的基础功能，包括判断设备是否支持闪控球功能，以及创建闪控球控制器来启动、更新或停止闪控球。适用于比价、搜题或抢单等场景，以小窗模式呈现内容。闪控球以悬浮小组件形式显示在其他应用之上，即时呈现应用的关键信息。
 
@@ -460,7 +461,7 @@ floatingBallController.getFloatingBallWindowInfo().then((data: floatingBall.Floa
 
 restoreMainWindow(want: Want): Promise&lt;void&gt;
 
-恢复应用主窗口并加载指定页面。仅支持在闪控球点击事件回调上下文的5秒内调用，使用Promise异步回调。
+恢复应用主窗口并加载指定页面。仅支持在点击闪控球后调用，使用Promise异步回调。
 
 **需要权限：** ohos.permission.USE_FLOAT_BALL
 
