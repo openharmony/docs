@@ -8,10 +8,6 @@
 
 场景介绍及相关概念说明请参考[用户身份认证访问控制简介](huks-identity-authentication-overview.md)。
 
-> **说明：**
->
-> 从API version 20开始支持用户身份认证访问控制。
-
 ## 开发步骤
 
 ### 生成密钥
