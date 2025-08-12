@@ -31,7 +31,7 @@
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
