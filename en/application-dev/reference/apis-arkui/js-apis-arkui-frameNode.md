@@ -26,7 +26,7 @@ Provides options for configuring or querying the cross-language access permissio
 
 | Name  | Type  | Read Only| Optional| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| attributeSetting  | boolean | No  | Yes  | Whether the FrameNode supports cross-language settings. The default value is **false**.|
+| attributeSetting  | boolean | No  | Yes  | Whether the FrameNode supports cross-language settings.<br>The value **true** means the FrameNode supports cross-language settings, and **false** means the opposite.<br>Default value: **false**.|
 
 ## ExpandMode<sup>15+</sup>
 
@@ -42,13 +42,28 @@ Enumerates the expansion mode of child nodes.
 | EXPAND | 1 | The child nodes of the current FrameNode are expanded. If the FrameNode contains [LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md) child nodes, all child nodes are expanded when being obtained. The child node sequence numbers are calculated based on all child nodes.|
 | LAZY_EXPAND | 2 | The child nodes of the current FrameNode are expanded on demand. If the FrameNode contains [LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md) child nodes, the child nodes are not expanded when the nodes in the main tree are being obtained, but are expanded when nodes not in the main tree are being obtained. The child node sequence numbers are calculated based on all child nodes.|
 
+## InteractionEventBindingInfo<sup>19+</sup>
+
+Represents detailed information of interaction event binding on the current node. If the current node is bound to the specified interaction event, an **InteractionEventBindingInfo** object is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  | Read Only| Optional| Description                  |
+| ------ | ------ | ---- | ---- | ---------------------- |
+| baseEventRegistered  | boolean |  No  | No  | Whether the event is bound declaratively.<br>**true** means that the event is bound declaratively, and **false** means the opposite.|
+| nodeEventRegistered  | boolean | No  | No  | Whether the event is bound through a custom component node. For the implementation example, see [Basic Event Example](#basic-event-example).<br>The value **true** means that the event is bound through a custom component node, and **false** means the opposite.|
+| nativeEventRegistered  | boolean | No  | No  | Whether the event is bound through node event registration ([registerNodeEvent](_ark_u_i___native_node_a_p_i__1.md#registernodeevent)).<br>The value **true** means that the event is bound through node event registration, and **false** means the opposite.|
+| builtInEventRegistered  | boolean | No  | No  | Whether the component has built-in events (events that are defined internally by the component and do not require manual binding).<br>The value **true** means that the component has built-in events, and **false** means the opposite.|
+
 ## FrameNode
 
 ### constructor
 
 constructor(uiContext: UIContext)
 
-Constructor used to create a FrameNode.
+A constructor used to create a FrameNode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -123,7 +138,7 @@ Checks whether this FrameNode is modifiable.
 
 | Type   | Description                                                                                                                                 |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean | Whether the current FrameNode is modifiable. When **false** is returned, the FrameNode does not support the **appendChild**, **insertChildAfter**, **removeChild**, and **clearChildren** operations.|
+| boolean | Whether the current FrameNode is modifiable.<br>The value **true** means that the FrameNode is modifiable, and **false** means the opposite.<br>Returns **false** if the node is a proxy node of a built-in component or if the node has been disposed of using [dispose](#dispose12).<br>When **false** is returned, the FrameNode does not support the following operations: **appendChild**, **insertChildAfter**, **removeChild**, **clearChildren**, **createAnimation**, **cancelAnimations**.|
 
 **Example**
 
@@ -143,7 +158,7 @@ Appends a child node to the end of this FrameNode. If this FrameNode is not modi
 
 | Name| Type                   | Mandatory| Description                 |
 | ------ | ----------------------- | ---- | --------------------- |
-| node   | [FrameNode](#framenode) | Yes  | Child node to append.<br>**NOTE**<br> The child node cannot be one created declaratively, which is not modifiable. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The FrameNode cannot have a parent node. Otherwise, an exception is thrown.|
+| node   | [FrameNode](#framenode-1) | Yes  | Child node to append.<br>**NOTE**<br> The child node cannot be one created declaratively, which is not modifiable. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The FrameNode cannot have a parent node. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -169,8 +184,8 @@ Inserts a child node after the specified child node of this FrameNode. If this F
 
 | Name | Type                                     | Mandatory| Description                                                                        |
 | ------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [FrameNode](#framenode)                   | Yes  | Child node to add.<br>**NOTE**<br> The child node cannot be a declarative node, that is, a FrameNode that cannot be modified. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The child node cannot have a parent node. Otherwise, an exception is thrown.                                                          |
-| sibling | [FrameNode](#framenode) \| null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
+| child   | [FrameNode](#framenode-1)                   | Yes  | Child node to add.<br>**NOTE**<br> The child node cannot be a declarative node, that is, a FrameNode that cannot be modified. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The child node cannot have a parent node. Otherwise, an exception is thrown.                                                          |
+| sibling | [FrameNode](#framenode-1) \| null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
 
 **Error codes**
 
@@ -196,7 +211,7 @@ Deletes the specified child node from this FrameNode. If this FrameNode is not m
 
 | Name| Type                   | Mandatory| Description              |
 | ------ | ----------------------- | ---- | ------------------ |
-| node   | [FrameNode](#framenode) | Yes  | Child node to delete.|
+| node   | [FrameNode](#framenode-1) | Yes  | Child node to delete.|
 
 **Error codes**
 
@@ -242,13 +257,13 @@ Obtains the child node in the specified position of this RenderNode.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| index  | number | Yes  | Index of the child node to obtain.|
+| index  | number | Yes  | Index of the child node to obtain.<br>If the current node has *n* child nodes, the index range is [0, *n*-1].|
 
 **Return value**
 
 | Type                           | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
 
 **Example**
 
@@ -268,14 +283,14 @@ Obtains a child node at a specified index from this FrameNode, with optional sup
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| index  | number | Yes  | Index of the child node to obtain.|
-| expandMode | [ExpandMode](#expandmode15) | No| Expansion mode of the child node.<br>Default value: **ExpandMode.Expand**|
+| index  | number | Yes  | Index of the child node to obtain.<br>If the current node has *n* child nodes, the index range is [0, *n*-1].|
+| expandMode | [ExpandMode](#expandmode15) | No| Expansion mode of the child node.<br>Default value: **ExpandMode.EXPAND**.|
 
 **Return value**
 
 | Type                           | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
 
 **Example**
 
@@ -335,7 +350,7 @@ Obtains the first child node of this FrameNode.
 
 | Type                           | Description                                                     |
 | ------------------------------- | --------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | First child node. If the FrameNode does not contain any child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | First child node. If the FrameNode does not contain any child node, null is returned.|
 
 **Example**
 
@@ -355,7 +370,7 @@ Obtains the next sibling node of this FrameNode.
 
 | Type                           | Description                                                                                |
 | ------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | Next sibling node of the current FrameNode. If the FrameNode does not have the next sibling node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Next sibling node of the current FrameNode. If the FrameNode does not have the next sibling node, null is returned.|
 
 **Example**
 
@@ -375,7 +390,7 @@ Obtains the previous sibling node of this FrameNode.
 
 | Type                            | Description                                                                                |
 | -------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | Previous sibling node of the current FrameNode. If the FrameNode does not have the previous sibling node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Previous sibling node of the current FrameNode. If the FrameNode does not have the previous sibling node, null is returned.|
 
 **Example**
 
@@ -383,7 +398,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 ### getParent<sup>12+</sup> 
 
-getParent(): FrameNode | null;
+getParent(): FrameNode | null
 
 Obtains the parent node of this FrameNode.
 
@@ -395,16 +410,16 @@ Obtains the parent node of this FrameNode.
 
 | Type                            | Description                                                                |
 | -------------------------------- | -------------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Parent node of the current FrameNode. If the FrameNode does not contain a parent node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Parent node of the current FrameNode. If the FrameNode does not contain a parent node, null is returned.|
 
 **Example**
 
-See [Example of Node Operations](#example-of-node-operations).
+See [Example of Node Operations](#example-of-node-operations) and [Example of Obtaining the Root Node](#example-of-obtaining-the-root-node).
 
 
 ### getChildrenCount<sup>12+</sup> 
 
-  getChildrenCount(): number;
+getChildrenCount(): number
 
 Obtains the number of child nodes of this FrameNode.
 
@@ -422,7 +437,7 @@ Obtains the number of child nodes of this FrameNode.
 
 See [Example of Node Operations](#example-of-node-operations).
 
-### moveTo<sup>16+</sup>
+### moveTo<sup>18+</sup>
 
 moveTo(targetParent: FrameNode, index?: number): void
 
@@ -430,9 +445,11 @@ Moves this FrameNode to a specified position within the target FrameNode. If thi
 
 > **NOTE**
 >
-> Currently, only the following types of [TypedFrameNode](#typedframenode12) are supported for the movement operations: [Stack](#stack12), [XComponent](#xcomponent12).
+> Currently, only the following types of [TypedFrameNode](#typedframenode12) are supported for the movement operations: [Stack](#stack12), [XComponent](#xcomponent12). This API does not work for other node types.
+>
+> This API only supports [BuilderNode](./js-apis-arkui-builderNode.md#buildernode-1) with root components of these types: [Stack](./arkui-ts/ts-container-stack.md), [XComponent](./arkui-ts/ts-basic-components-xcomponent.md), [EmbeddedComponent](./arkui-ts/ts-container-embedded-component.md).  
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -440,8 +457,8 @@ Moves this FrameNode to a specified position within the target FrameNode. If thi
 
 | Name       | Type                   | Mandatory| Description                 |
 | ------------ | ----------------------- | ---- | --------------------- |
-| targetParent | [FrameNode](#framenode) | Yes  | Target parent node.<br>**NOTE**<br>The target parent node must not be a declaratively created node, that is, a FrameNode that is not modifiable. If it does not meet the specifications, an exception is thrown.|
-| index        | number                  | No  | Sequence number of the child node. The current FrameNode will be inserted before the child node at the specified sequence number in the target FrameNode. If the target FrameNode has *n* nodes, the value range for **index** is 0 to *n*-1.<br>If the parameter is invalid or not specified, the current FrameNode will be added to the end of the target FrameNode.<br>Default value: **-1**|
+| targetParent | [FrameNode](#framenode-1) | Yes  | Target parent node.<br>**NOTE**<br>The target parent node must not be a declaratively created node, that is, a FrameNode that is not modifiable. If it does not meet the specifications, an exception is thrown.|
+| index        | number                  | No  | Sequence number of the child node. The current FrameNode will be inserted before the child node at the specified sequence number in the target FrameNode. If the target FrameNode has *n* nodes, the value range for **index** is 0, *n*-1].<br>If the parameter is invalid or not specified, the current FrameNode will be added to the end of the target FrameNode.<br>Default value: **-1**|
 
 **Error codes**
 
@@ -455,7 +472,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 ### getPositionToWindow<sup>12+</sup> 
 
-  getPositionToWindow(): Position
+getPositionToWindow(): Position
 
 Obtains the position offset of this FrameNode relative to the window, in vp.
 
@@ -470,6 +487,67 @@ Obtains the position offset of this FrameNode relative to the window, in vp.
 | [Position](./js-apis-arkui-graphics.md#position) | Position offset of the node relative to the window, in vp.|
 
 **Example**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindow() {
+    let positionToWindow = this.rootNode?.getPositionToWindow();
+    console.info(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToWindow")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindow();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+
+```
 
 See [Example of Node Operations](#example-of-node-operations).
 
@@ -492,11 +570,73 @@ Obtains the position offset of this FrameNode relative to the parent component, 
 
 **Example**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParent() {
+    let positionToParent = this.rootNode?.getPositionToParent();
+    console.info(TEST_TAG + JSON.stringify(positionToParent));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParent")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParent();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+
+```
+
 See [Example of Node Operations](#example-of-node-operations).
 
 ### getPositionToScreen<sup>12+</sup> 
 
-  getPositionToScreen(): Position
+getPositionToScreen(): Position
 
 Obtains the position offset of this FrameNode relative to the screen, in vp.
 
@@ -511,6 +651,68 @@ Obtains the position offset of this FrameNode relative to the screen, in vp.
 | [Position](./js-apis-arkui-graphics.md#position) | Position offset of the node relative to the screen, in vp.|
 
 **Example**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreen() {
+    let positionToScreen = this.rootNode?.getPositionToScreen();
+    console.info(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreen")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreen();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+
+```
 
 See [Example of Node Operations](#example-of-node-operations).
 
@@ -533,6 +735,67 @@ Obtains the position offset of this FrameNode relative to the parent component, 
 
 **Example**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParentWithTransform() {
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParentWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParentWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+```
+
 See [Example of Node Operations](#example-of-node-operations).
 
 ### getPositionToWindowWithTransform<sup>12+</sup>
@@ -553,6 +816,66 @@ Obtains the position offset of this FrameNode relative to the window, taking int
 
 **Example**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindowWithTransform() {
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+        Button("getPositionToWindowWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindowWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+```
+
 See [Example of Node Operations](#example-of-node-operations).
 
 ### getPositionToScreenWithTransform<sup>12+</sup>
@@ -572,6 +895,67 @@ Obtains the position offset of this FrameNode relative to the screen, taking int
 | [Position](./js-apis-arkui-graphics.md#position) | Position offset of the node relative to the screen, in vp. If other drawing attributes (such as **transform** and **translate**) are set, the return value may slightly deviate due to the precision of floating point numbers.|
 
 **Example**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreenWithTransform() {
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreenWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreenWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+  }
+}
+```
 
 See [Example of Node Operations](#example-of-node-operations).
 
@@ -741,7 +1125,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 getNodeType(): string
 
-Obtains the type of the node. Built-in component types are named after the components themselves, for example, the type of a **Button** component is Button. For custom components, if they have rendering content, their type is __Common__.
+Obtains the type of the node. Built-in component types are named after the components themselves. For example, the type of a **Button** component is Button. For custom components with rendering content, their type is __Common__.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -771,7 +1155,7 @@ Obtains the opacity of the node. The minimum value is 0, and the maximum value i
 
 | Type                                                          | Description                                                                 |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| number | Opacity of the node.|
+| number | Opacity of the node. Value range: [0, 1]. A larger value indicates lower transparency.|
 
 **Example**
 
@@ -791,7 +1175,7 @@ Obtains whether the node is visible.
 
 | Type                                                          | Description                                                                 |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | Whether the node is visible.|
+| boolean | Whether the node is visible.<br>The value **true** means that the node is visible, and **false** means the opposite.|
 
 **Example**
 
@@ -811,7 +1195,7 @@ Checks whether the node is clipped to the component area. This API returns **tru
 
 | Type                                                          | Description                                                                 |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | Whether the node is clipped to the component area.|
+| boolean | Whether the node is clipped to the component area.<br>The value **true** means that the node is clipped to the component area, and **false** means the opposite.|
 
 **Example**
 
@@ -831,7 +1215,7 @@ Obtains whether the node is mounted to the main node tree.
 
 | Type                                                          | Description                                                                 |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | Whether the node is mounted to the main node tree.|
+| boolean | Whether the node is mounted to the main node tree.<br>The value **true** means that the node is mounted to the main node tree, and **false** means the opposite.|
 
 **Example**
 
@@ -843,6 +1227,10 @@ getInspectorInfo(): Object
 
 Obtains the structure information of the node, which is consistent with what is found in DevEco Studio's built-in <!--RP1-->ArkUI Inspector <!--RP1End-->tool.
 
+> **NOTE**
+>
+> The **getInspectorInfo** API is designed for debugging purposes to obtain information about all nodes. Frequent calls to this API may cause performance degradation.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -852,6 +1240,32 @@ Obtains the structure information of the node, which is consistent with what is 
 | Type                                                          | Description                                                                 |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | Structure information of the node.|
+
+Example (**Button** component inspection):
+```json
+{
+    "$type": "Button", // Component type.
+    "$ID": 44, // Component ID.
+    "type": "build-in", // "build-in" for built-in components, and "custom" for custom components.
+    "$rect": "[498.00, 468.00],[718.00,598.00]", // Coordinates of the upper left corner and lower right corner of the component bounding box.
+    "$debugLine": "", // Debug information including the source path and line number.
+    "$attrs": {
+        "borderStyle": "BorderStyle.Solid",
+        "borderColor": "#FF000000",
+        "borderWidth": "0.00vp",
+        "borderRadius": {
+            "topLeft": "65.00px",
+            "topRight": "65.00px",
+            "bottomLeft": "65.00px",
+            "bottomRight": "65.00px"
+        },
+        "border": "{\"style\":\"BorderStyle.Solid\",\"color\":\"#FF000000\",\"width\":\"0.00vp\",\"radius\":{\"topLeft\":\"65.00px\",\"topRight\":\"65.00px\",\"bottomLeft\":\"65.00px\",\"bottomRight\":\"65.00px\"},\"dashGap\":\"0.00vp\",\"dashWidth\":\"0.00vp\"}",
+        "outlineStyle": "OutlineStyle.SOLID",
+        "outlineColor": "#FF000000"
+    }
+}
+```
+The attributes in the **$attrs** field vary by component type.
 
 **Example**
 
@@ -3712,7 +4126,7 @@ struct FrameNodeTypeTest {
 
 ## Example of Node Operations
 ```ts
-import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, FrameNode, UIContext, typeNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
@@ -3731,7 +4145,7 @@ class MyNodeController extends NodeController {
     this.frameNode = new FrameNode(uiContext);
     this.frameNode.commonAttribute.backgroundColor(Color.Pink);
     this.frameNode.commonAttribute.size({ width: 100, height: 100 });
-
+    this.addCommonEvent(this.frameNode)
     this.rootNode.appendChild(this.frameNode);
     this.childrenCount = this.childrenCount + 1;
     for (let i = 0; i < 10; i++) {
@@ -3739,7 +4153,15 @@ class MyNodeController extends NodeController {
       this.childList.push(childNode);
       this.frameNode.appendChild(childNode);
     }
+    let stackNode = typeNode.createNode(uiContext, "Stack");
+    this.frameNode.appendChild(stackNode);
     return this.rootNode;
+  }
+
+  addCommonEvent(frameNode: FrameNode) {
+    frameNode.commonEvent.setOnClick((event: ClickEvent) => {
+      console.log(`Click FrameNode: ${JSON.stringify(event)}`)
+    })
   }
 
   createFrameNode() {
@@ -3819,7 +4241,7 @@ class MyNodeController extends NodeController {
   }
 
   moveFrameNode() {
-    const currentNode = this.frameNode!.getChild(4);
+    const currentNode = this.frameNode!.getChild(10);
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
@@ -3945,6 +4367,15 @@ class MyNodeController extends NodeController {
       console.log(TEST_TAG + " setCrossLanguageOptions fail.");
     }
     console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+  }
+
+  getInteractionEventBindingInfo() {
+    let bindingInfo = this.frameNode?.getInteractionEventBindingInfo(EventQueryType.ON_CLICK);
+    console.log(TEST_TAG + bindingInfo?.baseEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.nodeEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.nativeEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.builtInEventRegistered);
+    console.log(TEST_TAG + JSON.stringify(bindingInfo));
   }
 
   throwError() {
@@ -4175,6 +4606,11 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.setCrossLanguageOptions();
+          })
+        Button("getInteractionEventBindingInfo")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getInteractionEventBindingInfo();
           })
         Button("throwError")
           .width(300)
@@ -5257,4 +5693,55 @@ struct ListNodeTest {
   }
 }
 
+```
+## Example of Obtaining the Root Node
+
+This example demonstrates how to obtain the root node of the current page using the [getParent](#getparent12) API of **FrameNode**.
+
+```ts
+@Component
+struct ChildView {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          // Obtain the FrameNode object of the Text node by ID. Avoid setting multiple nodes with the same ID.
+          let node = this.getUIContext().getFrameNodeById("HelloWorld");
+          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          // Use a while loop to traverse and find the root node of the page. If the current node is a custom component, continue traversing its parent node.
+          while (node && node.getParent() && node.getParent()!.getUniqueId() > 0) {
+            node = node.getParent();
+            console.log(`Find FrameNode Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      ChildView({ message: this.message })
+        .height('100%')
+        .width('100%')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
