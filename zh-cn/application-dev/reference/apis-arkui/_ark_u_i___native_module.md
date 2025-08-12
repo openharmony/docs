@@ -1519,7 +1519,7 @@ typedef void(* ArkUI_NodeContentCallback) (ArkUI_NodeContentEvent *event)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_NodeContentEvent](#ArkUI_NodeContentEvent)* event | NodeContent事件指针。 |
+| [ArkUI_NodeContentEvent](#arkui_nodecontentevent)* event | NodeContent事件指针。 |
 
 
 ### ArkUI_NodeContentEvent
@@ -3766,8 +3766,8 @@ enum ArkUI_NodeAttributeType
 | NODE_CHECKBOX_NAME  | CheckBox名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框名称。<br/>**起始版本：** 15 | 
 | NODE_CHECKBOX_GROUP  | CheckBox多选框所属群组的名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框所属群组的名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框所属群组的名称。<br/>**起始版本：** 15 | 
 | NODE_XCOMPONENT_ID  | XComponent组件ID属性，支持属性设置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。 | 
-| NODE_XCOMPONENT_TYPE  | XComponent的类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)，默认值为ARKUI_XCOMPONENT_TYPE_SURFACE；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)。 | 
-| NODE_XCOMPONENT_SURFACE_SIZE  | 设置XComponent的宽高，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px； | 
+| NODE_XCOMPONENT_TYPE  | XComponent组件的类型，仅支持属性获取接口。<br/>XComponent组件的类型需要在组件创建时通过[ArkUI_NodeType](#arkui_nodetype)中的ARKUI_NODE_XCOMPONENT或者ARKUI_NODE_XCOMPONENT_TEXTURE明确，不允许后续修改。<br/>使用[setAttribute](_ark_u_i___native_node_a_p_i__1.md#setattribute)接口尝试修改XComponent组件的类型时会发生绘制内容异常。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)。 |
+| NODE_XCOMPONENT_SURFACE_SIZE  | XComponent组件的宽高，仅支持属性获取接口。<br/>使用[setAttribute](_ark_u_i___native_node_a_p_i__1.md#setattribute)接口尝试修改XComponent组件的宽高时设置不会生效。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px。 |
 | NODE_XCOMPONENT_SURFACE_RECT | 设置XComponent组件持有Surface的显示区域，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>**起始版本：** 18 |
 | NODE_XCOMPONENT_ENABLE_ANALYZER | 设置XComponent组件是否支持图像分析，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>**起始版本：** 18 |
 | NODE_DATE_PICKER_LUNAR  | 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历。 | 
