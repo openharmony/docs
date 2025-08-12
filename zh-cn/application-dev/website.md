@@ -1274,7 +1274,7 @@
           <!--Del-->
           - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-guidelines.md)
           <!--DelEnd-->
-          - [增强连接开发指南](distributedservice/linnkEnhance_development-guide.md)
+          - [增强连接开发指南](distributedservice/linkEnhance_development-guide.md)
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
