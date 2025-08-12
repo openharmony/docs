@@ -192,19 +192,19 @@ WebViewController与Web组件的绑定状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
-| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
-| posterUrl | string | 是 | 海报的地址。 |
-| preload | [Preload](./arkts-apis-webview-e.md#preload12) | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 否 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
+| controlList | string[] | 否 | 否 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 否 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
+| posterUrl | string | 否 | 否 | 海报的地址。 |
+| preload | [Preload](./arkts-apis-webview-e.md#preload12) | 否 | 否 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 否 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 否 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 ## RectEvent<sup>12+<sup>
 
