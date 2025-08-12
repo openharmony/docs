@@ -1,9 +1,4 @@
 # @ohos.geoLocationManager (位置服务)
-<!--Kit: Location Kit-->	
-<!--Subsystem: Location-->	
-<!--Owner: @liu-binjun-->	
-<!--SE: @liu-binjun-->	
-<!--TSE: @mhy123456789-->
 
 位置服务提供GNSS定位、网络定位（蜂窝基站、WLAN、蓝牙定位技术）、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
@@ -2883,7 +2878,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
     geoLocationManager.removeBeaconFence(beacon).then(() => {
       console.info("promise, removeBeaconFence success");
     })
-    .catch((error:BussinessError) => {
+    .catch((error:BusinessError) => {
       console.error("promise, removeBeaconFence: errCode" + error.code + ", errMessage" + error.message);
     });
   } catch(error) {
