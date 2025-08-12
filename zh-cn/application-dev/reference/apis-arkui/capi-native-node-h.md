@@ -2827,7 +2827,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>          [ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL](capi-native-node-h.md#arkui_inspectorerrorcode) 成功。<br>         [ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER](capi-native-node-h.md#arkui_inspectorerrorcode) 参数错误。 |
+| int32_t  | 错误码。<br>          [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 参数错误。 |
 
 ### OH_ArkUI_RegisterDrawCallbackOnNodeHandle()
 
@@ -2855,7 +2855,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>          [ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL](capi-native-node-h.md#arkui_inspectorerrorcode) 成功。<br>         [ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER](capi-native-node-h.md#arkui_inspectorerrorcode) 参数错误。 |
+| int32_t  | 错误码。<br>          [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 参数错误。 |
 
 ### OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle()
 
@@ -2881,7 +2881,7 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>          [ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL](capi-native-node-h.md#arkui_inspectorerrorcode) 成功。<br>         [ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER](capi-native-node-h.md#arkui_inspectorerrorcode) 参数错误。 |
+| int32_t  | 错误码。<br>          [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 参数错误。 |
 
 ### OH_ArkUI_UnregisterDrawCallbackOnNodeHandle()
 
@@ -2907,7 +2907,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>          [ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL](capi-native-node-h.md#arkui_inspectorerrorcode) 成功。<br>         [ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER](capi-native-node-h.md#arkui_inspectorerrorcode) 参数错误。 |
+| int32_t  | 错误码。<br>          [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 参数错误。 |
 
 ### OH_ArkUI_GetNodeSnapshot()
 
