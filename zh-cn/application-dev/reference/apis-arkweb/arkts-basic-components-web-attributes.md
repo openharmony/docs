@@ -750,6 +750,7 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
