@@ -225,7 +225,7 @@ import * as ns from "./B";
 console.info(ns.c);
 
 // B.ets
-import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
+import lazy { c } from "./C";    // 从“C”内获取c对象，标记为延迟加载
 export { c }
 
 // C.ets
