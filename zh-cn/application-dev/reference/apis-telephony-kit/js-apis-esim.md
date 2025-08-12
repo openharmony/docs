@@ -1,4 +1,9 @@
 # @ohos.telephony.esim (eSIM卡管理)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @yangyannanyangyannan-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
 
 eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能，如果支持则允许用户添加单个配置文件。
 
@@ -66,7 +71,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型                                            | 必填 | 说明                                   |
 | ------ |-----------------------------------------------| ---- | -------------------------------------- |
-| profile | [DownloadableProfile](#downloadableProfile18) | 是   | 可下载的配置文件信息。 |
+| profile | [DownloadableProfile](#downloadableprofile18) | 是   | 可下载的配置文件信息。 |
 
 **返回值：**
 
@@ -121,7 +126,7 @@ eSIM.addProfile(profile).then(() => {
 | activationCode   | string                               |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
 | confirmationCode | string                               |  否  | 确认码。      |
 | carrierName      | string                               |  否  | 订阅名称。    |
-| accessRules      | Array\<[AccessRule](#accessRule18)\> |  否  | 访问规则数组。 |
+| accessRules      | Array\<[AccessRule](#accessrule18)\> |  否  | 访问规则数组。 |
 
 ## AccessRule<sup>18+</sup>
 
