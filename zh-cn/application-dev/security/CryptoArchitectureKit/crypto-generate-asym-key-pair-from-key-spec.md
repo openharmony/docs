@@ -168,7 +168,7 @@
 
 2. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-3. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对（KeyPair）。
+3. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair10)，得到随机生成的密钥对（KeyPair）。
 
 4. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1)、[PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
 
@@ -258,7 +258,7 @@
     try {
       let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
-      let keyPairPromise = generatorBySpec.generateKeyPair(); // Generate an ECC key pair.
+      let keyPairPromise = generatorBySpec.generateKeyPair(); // Generates an ECC key pair.
       keyPairPromise.then(keyPair => { // 使用生成器创建ECC密钥对。
         showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性。
         showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性。
@@ -358,7 +358,7 @@
     try {
       let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
-      let keyPair = generatorBySpec.generateKeyPairSync(); // Generate an ECC key pair.
+      let keyPair = generatorBySpec.generateKeyPairSync(); // Generates an ECC key pair.
       if (keyPair !== null) {
         showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性。
         showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性。
@@ -385,7 +385,7 @@
 
 3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCKeyPairSpec对象传入，创建非对称密钥生成器。
 
-4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，得到各项数据与密钥参数一致的密钥对（KeyPair）。
+4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair10)，得到各项数据与密钥参数一致的密钥对（KeyPair）。
 
 5. 调用[PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1)，获取SM2算法中椭圆曲线参数。
 

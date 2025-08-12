@@ -1,5 +1,9 @@
 # OH_Drawing_FontAliasInfo
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 别名字体信息结构体。

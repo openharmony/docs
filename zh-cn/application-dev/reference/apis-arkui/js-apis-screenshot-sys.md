@@ -1,4 +1,9 @@
 # @ohos.screenshot (屏幕截图)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 本模块提供屏幕截图的能力，截取屏幕时支持设置截取的区域、大小等图像信息。
 
@@ -28,7 +33,7 @@ import { screenshot } from '@kit.ArkUI';
 | rotation               | number        | 否   | 表示截取图像后要旋转的角度，当前仅支持输入值为0，默认值为0。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 | isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
-| isCaptureFullOfScreen<sup>19+</sup> | boolean        | 否   | 表示是否截取当前Screen上的所有display。对于一个Screen上有多个display的场景，为true表示截取整个Screen，false则只截取displayId所在逻辑屏的区域，默认值为false。 |
+| isCaptureFullOfScreen<sup>20+</sup> | boolean        | 否   | 表示是否截取当前Screen上的所有display。对于一个Screen上有多个display的场景，为true表示截取整个Screen，false则只截取displayId所在逻辑屏的区域，默认值为false。 |
 
 ## HdrScreenshotOptions<sup>20+</sup>
 
@@ -73,7 +78,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。 |
+| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。当指定截取屏幕为虚拟屏时，截取图像为白屏。 |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt;     | 是   | 回调函数。返回一个PixelMap对象，其大小为指定的imageSize大小，若未指定默认为displayId所在逻辑屏的大小。                                   |
 
 **错误码：**
@@ -177,7 +182,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | 否   | 要截取的图像信息。 |
+| options | [ScreenshotOptions](#screenshotoptions) | 否   | 要截取的图像信息。当指定截取屏幕为虚拟屏时，截取图像为白屏。 |
 
 **返回值：**
 

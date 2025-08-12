@@ -1,4 +1,9 @@
 # 使用WebSocket访问网络(C/C++)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 场景介绍
 
@@ -351,3 +356,9 @@ struct Index {
 ![demo输入界面](./figures/websocket-demo-2.jpg)
 
 ![demo日志输出](./figures/websocket-demo-log.png)
+
+## 相关实例
+
+针对WebSocket连接的开发，有以下相关实例可供参考：
+
+- [WebSocket连接（C/C++）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C)

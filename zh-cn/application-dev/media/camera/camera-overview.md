@@ -11,7 +11,7 @@
 
 当开发者需要开发一个相机应用（或是在应用内开发相机模块）时，可参考以下开发模型了解相机的工作流程，进而开发相机应用。
 
-如果开发者仅是需要拉起系统相机拍摄一张照片、录制一段视频，可直接使用CameraPicker，无需申请相机权限，直接拉起系统相机完成拍摄，具体可参考[Camera Picker](../../reference/apis-camera-kit/js-apis-cameraPicker.md)。
+如果开发者仅是需要拉起系统相机拍摄一张照片、录制一段视频，可直接使用CameraPicker，无需申请相机权限，直接拉起系统相机完成拍摄，具体可参考[CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md)。
 
 ## 开发模型
 

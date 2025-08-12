@@ -1,4 +1,9 @@
 # @ohos.display (屏幕属性)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 

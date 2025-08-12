@@ -1,5 +1,10 @@
 # CodecBase
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @baotianhao-->
 
 ## 概述
 
@@ -24,9 +29,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。                              |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Audio Vivid音频解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->     |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。                           |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
-| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频<!--RP4--><!--RP4End-->解码器的MIME类型。                           |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频<!--RP4--><!--RP4End-->解码器的MIME类型。                           |
+| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) | APE音频解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
@@ -165,6 +170,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)          | 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。 |
 | [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)          | 媒体文件辅助轨类型，值类型为string。 |
 | [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 媒体文件辅助轨描述信息，值类型为string。 |
+| [OH_MD_KEY_ENABLE_MOOV_FRONT](#oh_md_key_enable_moov_front)          | 媒体文件moov元数据是否前置标志，值类型为int32_t。|
 
 
 ## 汇总
@@ -378,6 +384,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)          | 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。 |
 | const char \* [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)          | 媒体文件辅助轨类型，值类型为string。 |
 | const char \* [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 媒体文件辅助轨描述信息，值类型为string。 |
+| const char \* [OH_MD_KEY_ENABLE_MOOV_FRONT](#oh_md_key_enable_moov_front)          | 媒体文件moov元数据是否前置标志，值类型为int32_t。|
 
 
 ## 类型定义说明
@@ -1759,7 +1766,7 @@ AAC音频编解码器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB
 ```
 **描述**
-AMR_NB音频解码器的MIME类型。
+AMR_NB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1772,7 +1779,7 @@ AMR_NB音频解码器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB
 ```
 **描述**
-AMR_WB音频解码器的MIME类型。
+AMR_WB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -3243,6 +3250,18 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS
 参数需满足"Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;"的格式，多个ROI参数之间使用";"连接。
 
 Top、Left、Bottom、Right指定一个ROI区域的上、左、下、右边界，Offset指定deltaQP，“=Offset”可以省略，省略时使用默认值（-3）。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+### OH_MD_KEY_ENABLE_MOOV_FRONT
+
+```
+const char* OH_MD_KEY_ENABLE_MOOV_FRONT
+```
+**描述**
+用于媒体封装，使能mp4的moov元数据前置，1代表前置，0代表不前置。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

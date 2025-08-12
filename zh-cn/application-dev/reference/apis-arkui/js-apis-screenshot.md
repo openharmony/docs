@@ -1,4 +1,9 @@
 # @ohos.screenshot (屏幕截图)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 本模块提供屏幕截图的能力。
 
@@ -56,11 +61,13 @@ import { screenshot } from '@kit.ArkUI';
 
 pick(): Promise&lt;PickInfo&gt;
 
-获取屏幕截图。此接口仅可在2in1设备上使用。当前仅支持获取displayId为0的屏幕截图。使用Promise异步回调。
+获取屏幕截图，当前仅支持获取displayId为0的屏幕截图。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -100,12 +107,14 @@ try {
 
 capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
-获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。使用Promise异步回调。
+获取屏幕全屏截图，使用Promise异步回调。
 此接口可以通过设置不同的displayId截取不同屏幕的截图，且只能截取全屏；[pick](#screenshotpick)接口可实现区域截屏。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限**：ohos.permission.CUSTOM_SCREEN_CAPTURE
 

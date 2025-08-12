@@ -1,5 +1,11 @@
 # USB实时传输
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 场景介绍
 
 实时传输是通过USB协议在固定时间窗口内完成数据传输，确保数据流的时序稳定性和低延迟，但允许少量数据丢失（如视频丢帧、音频杂音）的传输模式。这种传输方式适用于USB耳机、USB音响、视频会议设备等对连续性要求高、容错性强的场景。
@@ -97,14 +103,14 @@
    let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
-     for (let i = 0; i < usbInterfaces.length; i++) {
-       usbEndpoints = usbInterfaces[i].endpoints;
+     for (let j = 0; j < usbInterfaces.length; j++) {
+       usbEndpoints = usbInterfaces[j].endpoints;
        usbEndpoint = usbEndpoints.find((value) => {
          // direction为请求方向，0表示写入数据，128表示读取数据
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
        })
        if (usbEndpoint !== undefined) {
-         usbInterface = usbInterfaces[i];
+         usbInterface = usbInterfaces[j];
          break;
        }
      }

@@ -1,5 +1,11 @@
 # Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mzyan-->
+<!--SE: @liyueric-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 - [Performance Analysis Kit简介](performance-analysis-kit-overview.md)
 - 故障检测<!--fault-analysis-->
   - [简介](fault-detection-overview.md)
@@ -81,7 +87,7 @@
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
   - [hiprofiler](hiprofiler.md)
+  - [uinput](uinput.md)
   <!--Del-->
   - [hisysevent](hisysevent.md)
-  - [uinput](uinput.md)
   <!--DelEnd-->

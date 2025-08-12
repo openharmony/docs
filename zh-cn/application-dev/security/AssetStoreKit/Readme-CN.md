@@ -1,5 +1,11 @@
 # Asset Store Kit（关键资产存储服务）
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 - [Asset Store Kit简介](asset-store-kit-overview.md)
 - 常见场景<!--asset-scenarios-->
   - [保护密码类数据](asset-scenario1.md)
@@ -13,7 +19,7 @@
   - [管理群组关键资产(ArkTS)](asset-js-group-access-control.md)
   - [同步（备份恢复）关键资产](asset-js-sync.md)
   <!--Del-->
-  - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](asset-as-user-sys.md)
+  - [操作指定用户空间下的关键资产(仅对系统应用开放)(ArkTS)](asset-as-user-sys.md)
   <!--DelEnd-->
 - Asset Store Kit开发指导(C/C++)<!--asset-native-->
   - [新增关键资产(C/C++)](asset-native-add.md)

@@ -1,5 +1,11 @@
 # USB中断传输
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 场景介绍
 
 中断传输主要用于主机（Host）接收设备（Device）发送的数据包。设备的端点模式决定了接口支持中断读或中断写，这种传输方式适用于少量的、分散的、不可预测的数据类型的传输，鼠标、键盘和操纵杆等设备均属于这种类型，且此类设备的端点一般只支持中断读操作。
@@ -97,13 +103,13 @@
    let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
-     for (let i = 0; i < usbInterfaces.length; i++) {
-       usbEndpoints = usbInterfaces[i].endpoints;
+     for (let j = 0; j < usbInterfaces.length; j++) {
+       usbEndpoints = usbInterfaces[j].endpoints;
        usbEndpoint = usbEndpoints.find((value) => {
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
        if (usbEndpoint !== undefined) {
-         usbInterface = usbInterfaces[i];
+         usbInterface = usbInterfaces[j];
          break;
        }
      }

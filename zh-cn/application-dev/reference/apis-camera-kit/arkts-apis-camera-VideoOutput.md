@@ -31,7 +31,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当启动录制成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -62,7 +62,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
 
 start(): Promise\<void\>
 
-启动录制，通过Promise获取结果。
+启动录制。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -72,7 +72,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当结束录制成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -133,7 +133,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
 
 stop(): Promise\<void\>
 
-结束录制，通过Promise获取结果。
+结束录制。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +143,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **示例：**
 

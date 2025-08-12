@@ -1,6 +1,10 @@
 # USB服务开发指导
 
-
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 场景介绍
 

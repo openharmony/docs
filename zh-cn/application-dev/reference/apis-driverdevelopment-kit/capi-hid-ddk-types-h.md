@@ -1,4 +1,9 @@
 # hid_ddk_types.h
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 概述
 

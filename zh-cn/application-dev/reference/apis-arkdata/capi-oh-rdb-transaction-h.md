@@ -386,7 +386,7 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
 | -------------------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md) *trans  | 表示指向[OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md)实例的指针。 |
 | const [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示[OH_Predicates](capi-rdb-oh-predicates.md)指定的查询条件。   |
-| columns                                                  | 表示要查询的列，如果传入空值，则查询适用于所有列。           |
+| const char *columns[]                       | 表示要查询的列，如果传入空值，则查询适用于所有列。           |
 | int len                                                  | 表示列中元素的个数。                                         |
 
 **返回：**

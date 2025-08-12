@@ -1,4 +1,9 @@
 # DriverExtensionContext
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 DriverExtensionContext模块是DriverExtensionAbility的上下文环境，继承自ExtensionContext。
 

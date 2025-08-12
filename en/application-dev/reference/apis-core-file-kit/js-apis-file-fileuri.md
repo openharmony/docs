@@ -1,4 +1,9 @@
 # @ohos.file.fileuri (File URI)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 The **fileUri** module allows the uniform resource identifier (URI) of a file to be obtained based on the file path. With the file URI, you can use the APIs provided by [@ohos.file.fs](js-apis-file-fs.md) to operate the file.
 
@@ -28,7 +33,7 @@ Before using this module, you need to obtain the application sandbox path of the
 
 ## FileUri<sup>10+</sup>
 
-### Properties
+### Attributes
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
@@ -51,7 +56,7 @@ A constructor used to create a **FileUri** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- |--------|
-| uriOrPath | string | Yes| URI or path. The following types of URIs are available:<br>- Application sandbox URI: file://\<bundleName>/\<sandboxPath><br>- User directory file URI: file://docs/storage/Users/currentUser/\<publicPath><br>- User directory media URI: file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName>|
+| uriOrPath | string | Yes| URI or path. URI types:<br>- Application sandbox URI: file://\<bundleName>/\<sandboxPath><br>- User directory file URI: file://docs/storage/Users/currentUser/\<publicPath><br>- User directory media URI: file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName>|
 
 **Error codes**
 
@@ -102,7 +107,7 @@ Obtains the URI of the path. If the URI points to a file, the URI of the path is
 
 For a file, this API returns the URI of the directory where the file is located. For example, `xxx` will be returned for the `xxx/example.txt` file.
 
-If the current FileUri points to a directory, the URI of the current path is returned.
+For a directory, this API returns the URI of the directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 

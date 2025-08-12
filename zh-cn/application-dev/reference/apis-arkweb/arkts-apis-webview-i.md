@@ -80,10 +80,10 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 |  必填 | 说明 |
-|------|------|------|------|
-| id | string | 否 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
+| 名称 | 类型 |  只读 |  可选 | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | 是 | snapshot的id。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -91,12 +91,12 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 |  说明 |
-|------|------|--|---------|
-| id | string | 否 | snapshot的id。|
-| status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 全量绘制结果image.pixelMap格式。|
+| 名称 | 类型 | 只读 | 可选 |  说明 |
+|------|------|-- |--|---------|
+| id | string | 否 | 是 | snapshot的id。|
+| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果image.pixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -121,16 +121,16 @@ createPdf函数输入参数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称                  | 类型    | 必填 | 说明                                                         |
-| --------------------- | ------- | ---- | ------------------------------------------------------------ |
-| width                 | number  | 是   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
-| height                | number  | 是   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
-| scale                 | number  | 否   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
-| marginTop             | number  | 是   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginBottom          | number  | 是   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginRight           | number  | 是   | 右边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginLeft            | number  | 是   | 左边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。<br>默认值：false。                            |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| width                 | number  | 否 | 否   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 否 | 否   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否 | 是   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
+| marginTop             | number  | 否 | 否   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginBottom          | number  | 否 | 否   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginRight           | number  | 否 | 否   | 右边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginLeft            | number  | 否 | 否   | 左边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| shouldPrintBackground | boolean | 否 | 是   | true表示打印背景颜色，false表示不打印背景颜色。<br>默认值：false。                            |
 
 ## ScrollOffset<sup>13+</sup>
 
@@ -185,7 +185,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |

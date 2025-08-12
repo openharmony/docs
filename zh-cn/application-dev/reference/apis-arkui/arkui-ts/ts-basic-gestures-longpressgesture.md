@@ -16,7 +16,11 @@
 
 ## 接口
 
+### LongPressGesture
+
 LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
+
+设置长按手势事件。
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
@@ -30,17 +34,34 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 **参数：**
 
-| 参数名称 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fingers | number | 否 | 触发长按的最少手指数，最小值为1，&nbsp;最大值为10。<br/>默认值：1 <br/> **说明：** <br/>手指按下后若发生超过15px的移动，则判定当前长按手势识别失败。|
-| repeat | boolean | 否 | 是否连续触发事件回调。true表示连续触发事件回调，false表示不连续触发事件回调。<br/>默认值：false |
-| duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 <br/>**说明：** <br/>取值范围：[0, +∞)，设置小于等于0时，按照默认值500处理。|
-| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指的数量不等于设置的触发长按的最少手指数（即上述fingers参数），手势识别将失败。<br>对于已成功识别的手势，后续触摸屏幕的手指数变化，将不触发repeat事件（若触摸屏幕的手指数恢复到设置的触发长按的最少手指数时，可以触发onAction[事件](ts-basic-gestures-longpressgesture.md#事件)），但可以触发onActionEnd[事件](ts-basic-gestures-longpressgesture.md#事件)。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false|
+| value | { fingers?: number, repeat?: boolean, duration?: number } | 否 | 设置长按手势事件参数。<br> - fingers：触发长按的最少手指数，最小值为1，&nbsp;最大值为10。<br/>默认值：1 <br> - repeat：是否连续触发事件回调。true表示连续触发事件回调，false表示不连续触发事件回调。<br/>默认值：false <br> - duration：触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 |
+
+### LongPressGesture<sup>15+</sup>
+
+LongPressGesture(options?: LongPressGestureHandlerOptions)
+
+设置长按手势事件。与[LongPressGesture](#longpressgesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
+
+当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
+
+当长按触发时间小于500毫秒时，系统优先响应长按事件而非拖拽事件。 
+
+当长按触发时间达到或超过500毫秒时，系统优先响应拖拽事件而非长按事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [LongPressGestureHandlerOptions](./ts-uigestureevent.md#longpressgesturehandleroptions) | 否 | 长按手势处理器配置参数。 |
 
 
 ## 事件
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 >  **说明：**
 >
@@ -48,12 +69,69 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 >
 >  长按手势触发后，[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)中fingerList和fingerInfo的信息仅在有手指按下时才会更新，手指抬起时不会更新。
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionEnd(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，最后一根手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;Callback<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)>)<sup>18+</sup> | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+### onAction
+
+onAction(event: (event: GestureEvent) => void)
+
+LongPress手势识别成功回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+
+### onActionEnd
+
+onActionEnd(event: (event: GestureEvent) => void)
+
+LongPress手势识别成功，最后一根手指抬起后触发回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+
+### onActionCancel
+
+onActionCancel(event: () => void)
+
+LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  () => void | 是   | 手势事件回调函数。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent\>)
+
+LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 手势事件回调函数。 |
 
 ## 属性
 

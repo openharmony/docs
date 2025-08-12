@@ -1059,6 +1059,47 @@ int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 
 - 获取当前属性中设置的最大并发数（仅支持并发队列）。
 
+##### ffrt_queue_attr_set_thread_mode
+
+```c
+void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr, bool mode);
+```
+
+参数
+
+- `attr`：队列属性指针。
+- `mode`：设置队列任务运行方式。`true`表示以线程模式运行，`false`表示以协程模式运行。
+
+描述
+
+- 设置队列中的任务是以协程模式还是以线程模式运行。默认以协程模式运行。
+
+> **说明：**
+
+> 从API version 20开始，支持该接口。
+
+##### ffrt_queue_attr_get_thread_mode
+
+```c
+bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
+```
+
+参数
+
+- `attr`：队列属性指针。
+
+返回值
+
+- `true`表示以线程模式运行，`false`表示以协程模式运行。
+
+描述
+
+- 获取队列中的任务是以协程模式还是以线程模式运行。
+
+> **说明：**
+
+> 从API version 20开始，支持该接口。
+
 #### 样例
 
 ```cpp

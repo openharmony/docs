@@ -34,7 +34,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 
 ## 创建
-开发者可以通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
+开发者可以通过DevEco Studio创建一个用于调用C++代码的HAR模块，创建过程中需要在Configure New Module界面中开启Enable native。详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
 
 
 ## 开发

@@ -1,5 +1,10 @@
 # OpenHarmony IDL工具规格及使用说明书（仅对系统应用开放）
 
+<!--Kit: IDL-->
+<!--Subsystem: SystemManagementServices-->
+<!--Owner: @c_bing_b-->
+<!--SE: @liveery-->
+<!--TSE: @alien0208-->
 ## IDL接口描述语言简介
 当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。
 
@@ -62,7 +67,7 @@ sequenceable a.b..C.D
  上述声明在生成的的C++头文件中将被解析为如下代码：
 
 ```cpp
-#include  “a/b/d.h”
+#include  "a/b/d.h"
 using C::D;
 ```
 
@@ -384,12 +389,11 @@ let onAbilityConnectDone: common.ConnectOptions = {
   onConnect: (elementName, proxy) => {
     let testProxy: IdlTestServiceProxy = new IdlTestServiceProxy(proxy);
     let testMap: Map<number, number> = new Map();
-    testMap.set(1, 1);
     testMap.set(1, 2);
     testProxy.testIntTransaction(123, callbackTestIntTransaction);
     testProxy.testStringTransaction('hello', callbackTestStringTransaction);
     testProxy.testMapTransaction(testMap, callbackTestMapTransaction);
-    testProxy.testArrayTransaction(['1','2'], callbackTestMapTransaction);
+    testProxy.testArrayTransaction(['1','2'], callbackTestArrayTransaction);
   },
   onDisconnect: (elementName) => {
     console.log('onDisconnectService onDisconnect');
@@ -519,7 +523,7 @@ interface OHOS.AAFwk.IQuickFixManager {
      sequenceable_pub_deps = []
 
      # 编译so时增加external_deps配置
-     sequeceable_ext_deps = []
+     sequenceable_ext_deps = []
 
      # 编译so时增加innerapi_tags
      innerapi_tags = ""

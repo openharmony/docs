@@ -1,4 +1,9 @@
 # ArkTS运行时常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @DaiHuina1997-->
+<!--SE: @yao_dashuai-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 ## 方舟正则运算与预期输出结果不一致场景
 
@@ -9,7 +14,7 @@
    ```ts
    let str = "\u2642";
    let res = str.replace(/\b/g, "/");
-   console.log("res = " + res);
+   console.info("res = " + res);
    // 期望输出: res = ♂
    // 实际输出: res = /♂/
    ```
@@ -22,7 +27,7 @@
 ### 方舟正则运算对于先行断言((?=pattern)或(?!pattern)) 嵌套在后行断言((?<=pattern)或(?<!pattern))内部的场景与预期不一致
 
    ```ts
-   console.log('res:${"abcdef".match(/(?<=ab(?=c)cd)ef/)}');
+   console.info(`res:${"abcdef".match(/(?<=ab(?=c)cd)ef/)}`);
    // 期望输出: res:ef
    // 实际输出: res:null
    ```
@@ -33,7 +38,7 @@
 
    ```ts
    let res = /\u{10400}/ui.test("\u{10428}");
-   console.log("res = " + res);
+   console.info("res = " + res);
    // 期望输出: res = true
    // 实际输出: res = false
    ```
@@ -45,11 +50,10 @@
    ```ts
    let L = "\ud800";
    let T = "\udc00";
-   let x = "x";
    let u = /()/ug;
    u.lastIndex = 1;
    u.exec(L + T + L + T);
-   console.log("u.lastIndex = " + u.lastIndex);
+   console.info("u.lastIndex = " + u.lastIndex);
    // 期望输出: u.lastIndex = 0
    // 实际输出: u.lastIndex = 1
    ```
@@ -61,7 +65,7 @@
    ```ts
    let str =  "a-b";
    let reg = /[+-\s]/;
-   console.log("reg.exec(str) = " + reg.exec(str));
+   console.info("reg.exec(str) = " + reg.exec(str));
    // 期望输出: reg.exec(str) = -
    // 实际输出: reg.exec(str) = null
    ```
@@ -70,7 +74,7 @@
    ```ts
    let str =  "a-b";
    let reg = /[+\-\s]/;
-   console.log("reg.exec(str) = " + reg.exec(str));
+   console.info("reg.exec(str) = " + reg.exec(str));
    ```
 
 ### 方舟正则运算具名捕获组获取与预期不一致
@@ -78,7 +82,7 @@
    ```ts
    let reg = new RegExp("(a)(?<b>b)");
    let res = reg.exec("ab");
-   console.log("JSON.stringify(res?.groups) = " + JSON.stringify(res?.groups));
+   console.info("JSON.stringify(res?.groups) = " + JSON.stringify(res?.groups));
    // 期望输出: JSON.stringify(res?.groups) = {"b":"b"}
    // 实际输出: JSON.stringify(res?.groups) = {"b":"a"}
    ```
@@ -87,8 +91,8 @@
 
    ```ts
    let reg = new RegExp("(a)(?<b>b)");
-   let res = reg.exec("ab");
-   console.log(JSON.stringify(res[2]));
+   let res = reg.exec("ab") as Array<string>;
+   console.info(JSON.stringify(res[2]));
    ```
 
 ### 方舟正则匹配使用'|'与预期不一致
@@ -98,7 +102,7 @@
    ```ts
    let reg = /a(?:|x)$/;
    let res = reg.exec("ax");
-   console.log("JSON.stringify(res) = " + JSON.stringify(res));
+   console.info("JSON.stringify(res) = " + JSON.stringify(res));
    // 期望输出: JSON.stringify(res) = ["ax"]
    // 实际输出: JSON.stringify(res) = null
    ```
@@ -123,7 +127,7 @@
 
    ```ts
       errorManager.on("unhandledRejection", (a:ESObject, b:Promise<ESObject>) => {
-         console.log("Async test", a);
+         console.info("Async test", a);
       })
    ```
 
@@ -143,4 +147,4 @@
 ```
 
 然后点击DevEco Studio下方HiLog选项卡，输入过滤条件“Throw error:”，即可查看到Async函数内产生的异常信息。
-![alt text](image.png)
+![alt text](figures/arkts-runtime-faq.png)

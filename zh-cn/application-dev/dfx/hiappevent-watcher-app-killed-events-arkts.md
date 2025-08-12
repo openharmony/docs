@@ -1,5 +1,11 @@
 # 订阅应用查杀事件（ArkTS）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @shead-master-->
+<!--SE: @peterhuangyu-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 应用查杀事件规格说明
 
 请参考[应用查杀事件介绍](./hiappevent-watcher-app-killed-events.md)。

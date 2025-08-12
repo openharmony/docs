@@ -1,5 +1,11 @@
 # ArkGraphics 2D（方舟2D图形服务）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@goumiao;@hangmengxin-->
+<!--SE: @liumingxiang;@wangyanglan-->
+<!--TSE: @yhl0101;@nobuggers-->
+
 - [ArkGraphics 2D简介](arkgraphics2D-introduction.md)
 - 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->
   - [可变帧率简介](displaysync-overview.md)

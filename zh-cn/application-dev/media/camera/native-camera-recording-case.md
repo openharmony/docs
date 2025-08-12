@@ -157,7 +157,7 @@
 
         // 获取相机列表。
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size <= 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
             return;
         }
@@ -167,6 +167,11 @@
             OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // 获取相机位置。
             OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // 获取相机类型。
             OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // 获取相机连接类型。
+        }
+
+        if (size < cameraDeviceIndex + 1) {
+            OH_LOG_ERROR(LOG_APP, "cameraDeviceIndex is invalid.");
+            return;
         }
 
         // 获取相机设备支持的输出流能力。

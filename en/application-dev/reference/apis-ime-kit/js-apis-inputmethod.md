@@ -1,4 +1,9 @@
 # @ohos.inputMethod (Input Method Framework)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
@@ -2180,12 +2185,6 @@ Registers or unregisters MessageHandler.
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
 
-**Return value**
-
-| Type| Description        |
-| ---- | ------------ |
-| void | No value is returned.|
-
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -3279,7 +3278,7 @@ try {
     console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
 } catch(err) {
-  console.error(`Failed to subscribe to imeChange. Code: ${err.code}, Message: ${err.message}`);
+  console.error(`Failed to subscribing imeChange. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -3634,7 +3633,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 ```ts
 try {
-  let imeProp = inputMethodSetting.getInputMethodsSync(true);
+  let imeProperty = inputMethodSetting.getInputMethodsSync(true);
 } catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
@@ -3743,7 +3742,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 ```ts
 try {
-  let imeProp = inputMethodSetting.getAllInputMethodsSync();
+  let imeProperty = inputMethodSetting.getAllInputMethodsSync();
 } catch(err) {
   console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }

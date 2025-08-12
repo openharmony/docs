@@ -1,5 +1,10 @@
 # 自动化测试框架使用指导 
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--SE: @inter515-->
+<!--TSE: @laonie666-->
 
 ## 概述
 

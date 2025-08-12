@@ -151,10 +151,6 @@ getFont(): Font
 
 完整示例请参考[Font](arkts-apis-uicontext-font.md)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getFont();
-```
 ## getComponentUtils
 
 getComponentUtils(): ComponentUtils
@@ -193,10 +189,6 @@ getUIInspector(): UIInspector
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getUIInspector();
-```
 完整示例请参考[UIInspector](./arkts-apis-uicontext-uiinspector.md)中的示例。
 
 ## getUIObserver<sup>11+</sup>
@@ -308,11 +300,6 @@ getRouter(): Router
 
 完整示例请参考[pushUrl](arkts-apis-uicontext-router.md#pushurl)。
 
-<!--code_no_check-->
-```ts
-uiContext.getRouter();
-```
-
 ## getPromptAction
 
 getPromptAction(): PromptAction
@@ -332,11 +319,6 @@ getPromptAction(): PromptAction
 **示例：**
 
 完整示例请参考[PromptAction](arkts-apis-uicontext-promptaction.md)中的示例。
-
-<!--code_no_check-->
-```ts
-uiContext.getPromptAction();
-```
 
 ## getOverlayManager<sup>12+</sup>
 
@@ -515,7 +497,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 **返回值：**
 
-| 类型                             | 描述                |
+| 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](arkui-ts/ts-state-management.md#localstorage9)&nbsp;\|&nbsp;undefined | 返回LocalStorage实例。共享的LocalStorage实例不存在时返回undefined。 |
 
@@ -636,11 +618,6 @@ getFrameNodeById(id: string): FrameNode | null
 **示例：**
 
 完整示例请参考[获取根节点示例](js-apis-arkui-frameNode.md#获取根节点示例)。
-
-<!--code_no_check-->
-```ts
-uiContext.getFrameNodeById("TestNode");
-```
 
 ## getAttachedFrameNodeById<sup>12+</sup>
 
@@ -979,6 +956,8 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1046,6 +1025,8 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1106,6 +1087,8 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1175,6 +1158,8 @@ showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt)
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1459,20 +1444,23 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 ```ts
 // EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-    } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      } else {
+        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 ## getDragController<sup>11+</sup>
@@ -1511,6 +1499,66 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
 | keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // 设置关键帧动画整体播放3次
+          this.uiContext.keyframeAnimateTo({
+              iterations: 3,
+              expectedFrameRateRange: {
+                min: 10,
+                max: 120,
+                expected: 60,
+              }
+            }, [
+            {
+              // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ## getFocusController<sup>12+</sup>
 
@@ -3169,8 +3217,10 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -3195,9 +3245,21 @@ static destroyUIContextWithoutWindow(): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-UIContext.destroyUIContextWithoutWindow();
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+    UIContext.destroyUIContextWithoutWindow();
+  }
+
+  // ......
+}
 ```
 
 ## dispatchKeyEvent<sup>15+</sup>
@@ -3209,6 +3271,8 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |

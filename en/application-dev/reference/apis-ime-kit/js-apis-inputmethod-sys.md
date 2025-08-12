@@ -1,4 +1,9 @@
 # @ohos.inputMethod (Input Method Framework) (System API)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethod** module is oriented to common foreground applications (system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
@@ -54,26 +59,36 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let currentIme = inputMethod.getCurrentInputMethod();
-try {
-  inputMethod.switchInputMethod(currentIme.name).then(() => {
+async function switchInputMethodWithSubtype() {
+  // 1. Obtain the current input method.
+  const currentIme = inputMethod.getCurrentInputMethod();
+  if (!currentIme) {
+    console.error("Failed to get current input method");
+    return;
+  }
+  // 2. Switch the input method.
+  try {
+    await inputMethod.switchInputMethod(currentIme.name);
     console.info('Succeeded in switching inputmethod.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-  })
-} catch (err) {
-  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-}
-let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
-try {
-  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
+  } catch (err) {
+    console.error(`Failed to switch input method: Code: ${err.code}, Message: ${err.message}`);
+    return;
+  }
+  // 3. Obtain the current input method subtype.
+  const currentSubtype = inputMethod.getCurrentInputMethodSubtype();
+  if (!currentSubtype) {
+    console.error("Failed to get current input subtype");
+    return;
+  }
+  // 4. Switch the input method subtype.
+  try {
+    await inputMethod.switchInputMethod(currentIme.name, currentSubtype.id);
     console.info('Succeeded in switching inputmethod.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-  })
-} catch (err) {
-  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  } catch (err) {
+    console.error(`Failed to switch input subtype: Code: ${err.code}, Message: ${err.message}`);
+  }
 }
+switchInputMethodWithSubtype();
 ```
 
 ## InputMethodSetting<sup>8+</sup>
@@ -113,7 +128,7 @@ try {
     console.info('Succeeded in subscribing imeShow event.');
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribing imeShow. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -151,7 +166,7 @@ try {
     console.info('Succeeded in subscribing imeHide event.');
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribing imeHide. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -178,7 +193,7 @@ Unsubscribes from the soft keyboard show event of the [input method panel](js-ap
 try {
   inputMethodSetting.off('imeShow');
 } catch(err) {
-  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing imeShow. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -205,7 +220,7 @@ Unsubscribes from the soft keyboard hide event of the [input method panel](js-ap
 try {
   inputMethodSetting.off('imeHide');
 } catch(err) {
-  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing imeHide. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -301,14 +316,18 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let currentIme = inputMethod.getCurrentInputMethod();
-try {
+function enableInputMethodSafely() {
+  const currentIme = inputMethod.getCurrentInputMethod();
+  if (!currentIme) {
+    console.error("Failed to get current input method");
+    return;
+  }
+
   inputMethodSetting.enableInputMethod(currentIme.name, currentIme.id, inputMethod.EnabledState.BASIC_MODE).then(() => {
     console.info('Succeeded in enable inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
+  });
 }
+enableInputMethodSafely();
 ```

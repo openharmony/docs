@@ -10,9 +10,9 @@
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](js-apis-app-ability-abilityLifecycleCallback.md)
-    - [@ohos.app.ability.AbilityStage (AbilityStage组件容器)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.AbilityStage 组件管理器](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
-    - [@ohos.app.ability.application (应用基础能力)](js-apis-app-ability-application.md)
+    - [@ohos.app.ability.application (应用工具类)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](js-apis-app-ability-appServiceExtensionAbility.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
@@ -31,7 +31,7 @@
     - [@ohos.app.ability.insightIntent (意图调用基础能力)](js-apis-app-ability-insightIntent.md)
     - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](js-apis-app-ability-InsightIntentDecorator.md)
-    - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
+    - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
     - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
     - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](js-apis-app-ability-photoEditorExtensionAbility.md)
     - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](js-apis-app-ability-openLinkOptions.md)
@@ -257,7 +257,7 @@
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (应用管理)](js-apis-system-package.md)
-    - ability<!--fa-model-ability-->
+    - ability<!--ability-deprecated-->
       - [want](js-apis-inner-ability-want.md)
     - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)

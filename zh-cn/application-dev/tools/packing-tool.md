@@ -1,4 +1,9 @@
 # 打包工具
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jsjzju-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 打包工具用于在程序编译完成后，对编译出的文件等进行打包，以供安装发布。开发者可以使用DevEco Studio进行打包，也可使用打包工具的JAR包进行打包，JAR包通常存放在SDK路径下的toolchains目录中。
 
@@ -106,15 +111,22 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表4** App打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
+| versionName                | 从API version 12开始，不再对versionName校验。      |
 
 >**说明：**
 >
-> - 从API version 12开始，App打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
-> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
@@ -125,7 +137,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>] [--atomic-service-entry-size-limit <size>] [--atomic-service-non-entry-size-limit <size>]
 ```
 
-**表4** App打包指令参数说明
+**表5** App打包指令参数说明
 
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -139,7 +151,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | --pack-res-path    | 否     | NA          | pack.res快照文件路径。                                 |
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                           |
 | --encrypt-path     | 否     | NA          | 文件名必须为encrypt.json 。                           |
-| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。                           |
+| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>从API Version 20开始支持该参数。|
 | --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                       |
 | --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
 
@@ -149,15 +161,22 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
-**多工程打包合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表6** 多工程打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
+| versionName                | 从API version 12开始，不再对versionName校验。      |
 
 >**说明：**
 >
-> - 从API version 12开始，多工程打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
-> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 示例：
@@ -166,7 +185,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true] [--encrypt-path <path>] [--pac-json-path <path>] [--atomic-service-entry-size-limit <size>] [--atomic-service-non-entry-size-limit <size>]
 ```
 
-**表5** 多工程打包指令参数说明
+**表7** 多工程打包指令参数说明
 
 | 指令         | 是否必选项 | 选项        | 描述                                                        |
 |------------|-------|-----------|----------------------------------------------------------------|
@@ -177,7 +196,7 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.app为后缀。 |
 | --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
-| --pac-json-path | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>最终app产物中pac.json文件只来源于该参数，不配置的话，最终app产物不包含该文件。<br/>--app-list参数指定的app包中的pac.json不会打包进最终app。|
+| --pac-json-path | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>最终app产物中pac.json文件只来源于该参数，不配置的话，最终app产物不包含该文件。<br/>--app-list参数指定的app包中的pac.json不会打包进最终app。<br/>从API Version 20开始支持该参数。|
 | --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                       |
 | --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
 
@@ -193,7 +212,7 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>] [--ets-path <path>] [--resources-path <path>] --out-path <path> [--force true]
 ```
 
-**表6** HQF打包指令参数说明
+**表8** HQF打包指令参数说明
 
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
@@ -221,7 +240,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> [--force true]
 ```
 
-**表7** APPQF打包指令参数说明
+**表9** APPQF打包指令参数说明
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
@@ -236,10 +255,10 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out\
+java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out
 ```
 
-**表8** versionNormalize指令参数说明
+**表10** versionNormalize指令参数说明
 
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|
@@ -255,10 +274,10 @@ java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out\
+java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out
 ```
 
-**表9**  参数含义及规范
+**表11**  参数含义及规范
 
 | 指令             | 是否必选项 | 选项            | 描述                                                  |
 |----------------|-------|---------------|-----------------------------------------------------|
@@ -280,10 +299,10 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out\
+java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out
 ```
 
-**表10**  参数含义及规范
+**表12**  参数含义及规范
 
 | 指令                          | 是否必选项 | 选项                                               | 描述                                                         |
 | ----------------------------- | ---------- | -------------------------------------------------- | ------------------------------------------------------------ |
@@ -312,7 +331,7 @@ java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp 
 java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-path <path> --out-path <path> [--force true]
 ```
 
-**表11** 参数含义及规范
+**表13** 参数含义及规范
 
 | 指令               | 是否必选项 | 选项            | 描述                                 |
 |------------------|-------|---------------|------------------------------------|
@@ -326,14 +345,21 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
-- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+**表14** fastApp打包合法性校验规则
+
+| HAP/HSP的module.json中的被校验字段  | 校验规则                           |
+| --------------------------------- | --------------------------------- |
+| module下的name字段                | 要求所有HAP/HSP的name字段值均不相同。      |
+| bundleName                       | 要求所有HAP/HSP的bundleName字段值均保持一致。  |
+| bundleType                       | 要求所有HAP/HSP的bundleType字段值均保持一致。  |
+| versionCode                      | 要求所有HAP/HSP的versionCode字段值均保持一致。 |
+| debug                            | 从API version 20开始，要求所有HAP的debug字段值均保持一致，如果HAP的debug字段值为false，HSP的debug字段值也必须为false。如果HAP的debug字段值为true，对HSP的debug字段值无要求。<br/>对于API version 19及之前版本，要求所有HAP/HSP的debug字段值均保持一致。    |
+| minAPIVersion                    | 从API version 20开始，要求所有HAP的minAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 19及之前版本，要求所有HAP/HSP的minAPIVersion字段值均保持一致。    |
+| minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
+| targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 
 >**说明：**
 >
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
-> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
@@ -344,7 +370,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>] [--atomic-service-entry-size-limit <size>] [--atomic-service-non-entry-size-limit <size>]
 ```
 
-**表12** 参数含义及规范
+**表15** 参数含义及规范
 
 | 指令                 | 是否必选项 | 选项         | 描述                                                     |
 |--------------------|-------|------------|----------------------------------------------------|
@@ -358,7 +384,7 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 | --pack-res-path    | 否     | NA         | pack.res快照文件路径。                   |
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。           |
 | --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。           |
-| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。                           |
+| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>从API Version 20开始支持该参数。|
 | --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                      |
 | --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
 
@@ -634,6 +660,29 @@ Check atomicService size failed.
 **处理步骤**
 
 优化并减少包的大小，例如删除不必要的资源、精简代码或减少依赖。
+
+### 10013005 检查模块bundleType失败
+**错误信息**
+
+Failed to parse module.json and bundleType.
+
+**错误描述**
+
+检查模块bundleType失败。
+
+**可能原因**
+
+不符合配置要求，例如：
+1. 模块的[app.json5](../quick-start/app-configuration-file.md)配置文件中`bundleType`为app，但[module.json5](../quick-start/module-configuration-file.md)中的`installationFree`属性值为true。
+2. 模块的app.json5配置文件中`bundleType`为atomicService，但module.json5中的`installationFree`属性值为false。
+3. 模块的app.json5配置文件中`bundleType`为shared，但module.json5中的`type`属性值不是shared。
+
+**处理步骤**
+
+1. 确保app.json5配置文件中`bundleType`为app时，module.json5中的`installationFree`属性值为false。
+2. 确保app.json5配置文件中`bundleType`为atomicService时，module.json5中的`installationFree`属性值为true。
+3. 确保app.json5配置文件中`bundleType`为shared时，module.json5中的`type`属性值也是shared。
+4. 当有多条报错信息时，优先根据第一条报错信息进行排查。
 
 ### 10013006 检查entry模块中的ability失败
 **错误信息**

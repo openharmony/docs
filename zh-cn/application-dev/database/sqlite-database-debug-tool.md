@@ -12,24 +12,28 @@ SQLite是一款轻量级、嵌入式、无服务器的关系型数据库管理�
 ## 环境要求
 
 - 开发者在使用本工具前需开启开发者模式，且需要获取HDC工具，执行HDC shell。
-- 连接设备。当前版本不支持在非root权限的设备上使用此调试工具，仅支持在[模拟器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-emulator)中调用。具备root权限的命令提示符为#，非root权限的命令提示符为$。
+- 连接设备。
 
 ## 操作准备
 
-在使用SQLite之前需先切换至具备读写权限的目录，并且关闭SElinux再使用命令进入到SQLite调试工具。
+在使用SQLite之前需先切换至目标调试应用路径下，再使用命令进入到SQLite调试工具。
 
 ```bash
 # 打开 HDC 命令行
 c:/users/zzz>hdc shell
-# setenforce 0   // 关闭SElinux
-# cd data
-# mkdir temp
-# cd temp
-# sqlite3
-SQLite version 3.40.1 2022-12-28 14:03:47
+$ cd /data/app/el1/100/base/com.test.myapplication   // 进入到目标调试应用路径下（当前路径为示例，开发者需自己获取调试应用路径）
+$ ls -lZ                                             // 查看路径下的数据库文件，有debug_hap_data_file标签，则确认为调试引用的文件。
+total 9531
+drwxrwsr-x 2 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024     3440 2025-08-08 16:54 lock
+-rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024  9228288 2025-08-08 16:55 rdbPerfTest.db
+-rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024      343 2025-08-08 16:54 rdbPerfTest.db-compare
+-rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024    12288 2025-08-08 16:55 rdbPerfTest.db-dwr
+-rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024    32768 2025-08-08 16:55 rdbPerfTest.db-shm
+-rw-rw---- 1 20020197 ddms o:object_r:debug_hap_data_file:s0:x229,x334,x512,x868,x1024   444992 2025-08-08 16:55 rdbPerfTest.db-wal
+$ sqlite3 rdbPerfTest.db                             // 打开数据库文件。
+SQLite version 3.44.4 2025-02-19 00:18:53
 Enter ".help" for usage hints.
-Connected to a transient in-memory database.
-Use ".open FILENAME" to reopen on a persistent database.
+sqlite>
 ```
 
 当在不具备读写权限的路径下尝试执行数据库和表的创建操作时，系统将抛出权限错误。  
@@ -40,13 +44,13 @@ Use ".open FILENAME" to reopen on a persistent database.
 # 打开 HDC 命令行
 c:/users/zzz>hdc shell
 # 尝试打开或创建新的数据库
-#sqlite3 a.db
+$ sqlite3 a.db
 SQLiteversion 3.40.1
 2022-12-28 14:03:47
 Enter ".help" for usage hints.
 # 创建表
 sqlite>create table t1(a int);
-Error:unable to open
+Error: unable to open database "a.db": unable to open database file
 # 打开asd.db数据库
 sqlite> .open asd.db
 Error: unable to open database "asd.db": unable to open database file
@@ -58,7 +62,7 @@ Notice: using substitute in-memory database instead of "asd.db"
 ```bash
 # 创建表
 sqlite>create table t1(a int);
-Error:unable to open
+Error: unable to open database "a.db": unable to open database file
 # 打开asd.db数据库
 sqlite> .open asd.db
 Error: unable to open database "asd.db": unable to open database file
@@ -74,13 +78,6 @@ Parse error: file is not a database (26)
 sqlite> .table
 Error: file is not a database
 sqlite> .q
-# pwd
-/data/temp
-# ls
-wallet_personal_info_data_relational_store
-wallet_personal_info_data_relational_store-compare
-wallet_personal_info_data_relational_store-shm
-wallet_personal_info_data_relational_store-wal
 ```
 
 ## 命令列表
@@ -94,7 +91,7 @@ wallet_personal_info_data_relational_store-wal
 | `.databases`       | 列出当前连接的所有数据库。              |
 | `.tables`          | 列出当前数据库中的所有表。              |
 | ` .show`           | 查看SQLite命令提示符的默认设置。        |
-| `.schema`          | 获取表的完整信息                        |
+| `.schema`          | 获取表的完整信息。                     |
 | `.quit` 或 `.exit` | 退出SQLite命令行界面。                  |
 | `.schema [TABLE]`  | 显示表的创建SQL语句（或所有表的结构）。 |
 
@@ -117,14 +114,14 @@ sqlite>.help
   若数据库文件已存在，可通过`.open`打开：
 
   ```SQLite
-  sqlite3          # 进入SQLite交互式Shell
-  .open mydb.db    # 在Shell内打开已有数据库
+  sqlite3                                                        # 进入SQLite交互式Shell
+  .open /data/app/el1/100/base/com.test.myapplication/mydb.db    # 在Shell内打开已有数据库
   ```
 
   或直接在命令行指定文件路径：
 
   ```SQLite
-  sqlite3 mydb.db  # 直接打开数据库（跳过进入Shell步骤）
+  sqlite3 /data/app/el1/100/base/com.test.myapplication/mydb.db  # 直接打开数据库（跳过进入Shell步骤）
   ```
 
 
@@ -133,14 +130,14 @@ sqlite>.help
   若指定的数据库文件不存在，SQLite将自动创建该文件：
 
   ```SQLite
-  sqlite3          # 进入SQLite Shell
-  .open newdb.db   # 在Shell内创建并打开新数据库
+  sqlite3                                                        # 进入SQLite Shell
+  .open /data/app/el1/100/base/com.test.myapplication/newdb.db   # 在Shell内创建并打开新数据库
   ```
 
   或直接通过命令行创建：
 
   ```SQLite
-  sqlite3 newdb.db  # 直接创建并打开新数据库
+  sqlite3 /data/app/el1/100/base/com.test.myapplication/newdb.db  # 直接创建并打开新数据库
   ```
 
 ### 创建表
@@ -222,7 +219,7 @@ sqlite>.tables
      ...> (4, '赵六', 40, '深圳市南山区', 30000.25);
   ```
 
-  通过SQL语句`SELECT * FROM 表的名称`可获取表的完整信息，具体如下：
+  通过SQL语句`SELECT * FROM 表的名称`查询所有数据，具体如下：
 
   ```sql
   sqlite> SELECT * FROM COMPANY;
@@ -303,3 +300,6 @@ sqlite> SELECT * FROM COMPANY;
 在实际的数据库操作中，有时会遇到查询结果为空的情况，这是因为表中没有数据。
 
 为了避免这种情况，需确保已在表中插入相关数据，再进行查询操作。
+
+### 如何删除字符
+使用Ctrl+BackSpace删除单个字符，使用Ctrl+U删除全部字符。

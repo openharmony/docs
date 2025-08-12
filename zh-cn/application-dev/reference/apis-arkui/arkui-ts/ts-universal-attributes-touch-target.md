@@ -36,6 +36,28 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
+## mouseResponseRegion<sup>10+</sup>
+
+mouseResponseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
+
+设置一个或多个触摸热区。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 是   | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>}<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## Rectangle对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -60,7 +82,8 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
   >  百分比相对于组件自身宽高进行计算。
   >
   >  当父组件设置[clip](ts-universal-attributes-sharp-clipping.md#clip12)(true)时，子组件的响应会受到父组件触摸热区的影响，不在父组件触摸热区内的子组件无法响应手势和事件。
-
+  >
+  >  width和height不支持calc()的动态计算。
 
 ## 示例
 

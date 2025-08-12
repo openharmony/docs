@@ -1,7 +1,7 @@
 # @ohos.util (util工具函数)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -183,7 +183,7 @@ console.info("result = " + result);
 
 ## util.callbackWrapper
 
-callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
+callbackWrapper(original: Function): (err: Object, value: Object)=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
@@ -205,7 +205,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
+| (err: Object, value: Object)=&gt;void | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
 
 **错误码：**
 
@@ -243,7 +243,7 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
+| original | (err: Object, value: Object) =&gt; void | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
 
 **返回值：**
 
@@ -475,13 +475,13 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 异步函数。 |
+| original | (err: Object, value: Object) =&gt; void | 是 | 异步函数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数），并返回一个promise的函数。 |
+| Object | 返回promise函数，采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数）。 |
 
 
 ## util.getHash<sup>12+</sup>
@@ -1035,7 +1035,7 @@ TextDecoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
-| options | object | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options | { fatal?: boolean; ignoreBOM?: boolean } | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
@@ -1067,7 +1067,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | object | 否 | 解码相关选项参数。 |
+| options | { stream?: false } | 否 | 解码相关选项参数。 |
 
 **表2** options
 
@@ -1272,7 +1272,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，written表示编码字符所占用的字节数。 |
 
 **错误码：**
 
@@ -1320,7 +1320,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Uint8Array | 返回编码后的Uint8Array对象。 |
+| { read: number; written: number } | 返回一个对象，read表示已编码的字符数，written表示编码字符所占用的字节数。 |
 
 **示例：**
 
@@ -1429,7 +1429,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber
 
 使用给定的字符串创建RationalNumber对象。
 
