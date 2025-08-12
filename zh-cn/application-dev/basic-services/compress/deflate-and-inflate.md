@@ -313,6 +313,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;
@@ -466,6 +467,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;
