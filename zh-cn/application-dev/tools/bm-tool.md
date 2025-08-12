@@ -872,7 +872,7 @@ error: install parse profile missing prop.
 
     落盘位置：/data/log/hilog。
 
-    打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
+    打开日志查看“profile prop %{public}s is missing”。如“profile prop icon is missing”表示“icon”字段缺失。
 
 
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
