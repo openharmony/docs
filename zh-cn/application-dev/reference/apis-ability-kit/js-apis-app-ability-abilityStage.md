@@ -1,4 +1,10 @@
-# @ohos.app.ability.AbilityStage (AbilityStage组件容)
+# @ohos.app.ability.AbilityStage (组件管理器)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
 
 AbilityStage是一个[Module](../../../application-dev/quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../../../application-dev/quick-start/hap-package.md)/[HSP](../../../application-dev/quick-start/in-app-hsp.md)在首次加载时会创建一个AbilityStage实例，开发者可以通过该实例进行Module级别的资源预加载、线程创建等初始化操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
@@ -57,7 +63,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-当[启动模式配置为specified的UIAbility](../../../application-dev/application-models/uiability-launch-type.md#specified启动模式)被拉起时，会触发该回调，并返回一个string作为待启动的UIAbility实例的唯一标识。同步接口，不支持异步回调。
+当启动模式配置为[specified](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility被拉起时，会触发该回调，并返回一个string作为待启动的UIAbility实例的唯一标识。同步接口，不支持异步回调。
 
 如果系统中已经有相同标识的UIAbility实例存在，则复用已有实例，否则创建新的实例。
 
@@ -95,7 +101,15 @@ export default class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-在指定进程中启动UIAbility时，会触发该回调。同步接口，不支持异步回调。
+如果UIAbility或UIExtensionAbility配置了在独立进程中运行（即[module.json5配置文件](../../quick-start/module-configuration-file.md)中UIAbility或UIExtensionAbility的isolationProcess字段取值为true），当该UIAbility或UIExtensionAbility被拉起时，会触发该回调，并返回一个string作为进程唯一标识。同步接口，不支持异步回调。
+
+如果该应用已有相同标识的进程存在，则待启动的UIAbility或UIExtensionAbility运行在此进程中，否则创建新的进程。
+
+如果开发者同时实现onNewProcessRequest和[onAcceptWant](#onacceptwant)，将先收到onNewProcessRequest回调，再收到onAcceptWant回调。
+
+<!--Del-->
+仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)配置文件中配置isolationProcess字段为true。
+<!--DelEnd-->
 
 该接口仅在2in1和tablet设备上生效。
 
@@ -159,7 +173,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-该接口用于监听系统内存状态变化。当系统检测到内存资源紧张时，将主动触发该回调。开发者可通过实现此接口，在收到内存紧张事件时，及时释放非必要资源（如缓存数据、临时对象等），以避免应用进程被系统强制终止。
+该接口用于监听系统内存状态变化。当整机可用内存变化到指定程度时，系统会触发该回调。开发者可通过实现此接口，在收到内存紧张事件时，及时释放非必要资源（如缓存数据、临时对象等），以避免应用进程被系统强制终止。
 
 同步接口，不支持异步回调。
 
