@@ -139,6 +139,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestObj {
     constructor() {
