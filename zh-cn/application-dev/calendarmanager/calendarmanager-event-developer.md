@@ -174,8 +174,8 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
      service: {
        // 服务类型，比如一键查看、一键入会、一键追剧等。
        type: calendarManager.ServiceType.TRIP,
-       // 服务的uri。可以跳转到三方应用相应界面，格式为deeplink。使用deeplink方式需要在华为HAG云侧进行注册，注册提供的信息为应用包名、应用的服务类型。
-       // deeplink包括scheme、host、path以及参数（不包含参数值）
+       // 服务的uri。可以跳转到三方应用相应界面，格式为DeepLink。使用DeepLink方式需要在华为HAG云侧进行注册，注册提供的信息为应用包名、应用的服务类型。
+       // DeepLink包括scheme、host、path以及参数（不包含参数值）
        uri: 'xxx://xxx.xxx.com/xxx',
        // 服务辅助描述信息，可选字段
        description: '一键服务'
