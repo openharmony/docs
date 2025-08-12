@@ -1,4 +1,9 @@
 # @ohos.multimedia.movingphotoview (MovingPhotoView) (System API)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 The **MovingPhotoView** component is used to play moving photos and control the playback status.
 
@@ -198,7 +203,7 @@ Enables or disables the zoom-in transition effect when the video starts to play.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| Yes  | Whether to enable the zoom-in transition effect. The value **true** means to enable the zoom-in transition effect, and **false** means the opposite.<br></div>The default value is **true**.|
+| enabled| boolean| Yes  | Whether to enable the zoom-in transition effect. **true** to enable, **false** otherwise.<br></div>The default value is **true**.|
 
 **Error codes**
 
@@ -222,7 +227,7 @@ Enables or disables the embedded video in a moving photo to play automatically, 
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| Yes  | Whether to enable autoplay. The value **true** means to enable the embedded video in a moving photo to play automatically, and **false** means the opposite.<br></div>The default value is **false**.|
+| enabled| boolean| Yes  | Whether to enable autoplay. **true** to enable, **false** otherwise.<br></div>The default value is **false**.|
 
 **Error codes**
 
