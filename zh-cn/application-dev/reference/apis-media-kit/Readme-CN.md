@@ -94,6 +94,8 @@
     - [OH_LowPowerVideoSinkCallback](capi-lowpowervideosink-oh-lowpowervideosinkcallback.md)
     - [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)
     - [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)
+    - [NativeWindow](capi-videoprocessing-nativewindow.md)
+    - [OH_AVFormat](capi-videoprocessing-oh-avformat.md)
     - [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)
 - 错误码<!--media-arkts-errcode-->
   - [Media错误码](errorcode-media.md)

@@ -5087,6 +5087,8 @@
           - [OH_LowPowerVideoSinkCallback](reference/apis-media-kit/capi-lowpowervideosink-oh-lowpowervideosinkcallback.md)
           - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-videoprocessing-colorspaceinfo.md)
           - [OH_VideoProcessing](reference/apis-media-kit/capi-videoprocessing-oh-videoprocessing.md)
+          - [NativeWindow](reference/apis-media-kit/capi-videoprocessing-nativewindow.md)
+          - [OH_AVFormat](reference/apis-media-kit/capi-videoprocessing-oh-avformat.md)
           - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-videoprocessing-callback.md)
       - 错误码<!--media-arkts-errcode-->
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
