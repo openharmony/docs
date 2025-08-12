@@ -1,5 +1,9 @@
 # 增强连接开发指导
-
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @wangJE-->
+<!--SE: @lee_jet520-->
+<!--TSE: @Ytt-test-->
 ## 简介
 
 随着技术的发展，各种应用层出不穷，设备间的互联关系也成为一种常态，此时对于网络环境的依赖也不可避免。然而，在某些特殊场景下（如航空、远洋航行等），网络受限，蓝牙成为少数可行的连接方式。但是传统蓝牙连接存在着连接数量有限、连接成功率低、连接不稳定等缺点，影响了用户体验。
@@ -23,6 +27,8 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
 - 不同设备间只有相同bundleName的应用才能进行互联。
 
 - 需要配置ohos.permission.DISTRIBUTED_DATASYNC权限。
+
+- 该接口提供连接能力，链路安全策略遵循调用者初始设置的蓝牙配对策略（如：Numeric Comparion、Passkey Entry、Just Works、Out of Band四种方式）。
 
 ## 环境准备
 
@@ -123,8 +129,8 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
       try {
 
         // 收到连接请求后，订阅connection的断连事件。
-        connection.on('disconnected', (number: number)=> {
-          console.info(TAG + 'disconnected, reason = ' + number);
+        connection.on('disconnected', (reason: number)=> {
+          console.info(TAG + 'disconnected, reason = ' + reason);
         });
         // 收到连接请求后，订阅connection的数据接收事件。
         connection.on('dataReceived', (data: ArrayBuffer)=> {
@@ -169,7 +175,7 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
     }
     // Server端停止服务并取消所有的订阅事件
     linkEnhanceClose(server: linkEnhance.Server) {
-      console.info(TAG + 'close serever' );
+      console.info(TAG + 'close server' );
       try {
         server.close();
       } catch (err) {
@@ -224,8 +230,8 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
             connection.sendData(arraybuffer);
           }
         });
-        connection.on('disconnected', (number: number)=> {
-          console.info(TAG + 'disconnected reason = ' + number);
+        connection.on('disconnected', (reason: number)=> {
+          console.info(TAG + 'disconnected reason = ' + reason);
         });
         connection.on('dataReceived', (data: ArrayBuffer)=> {
         console.info(TAG + 'dataReceived, dataLen=' + data.byteLength);
