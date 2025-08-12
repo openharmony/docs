@@ -35,7 +35,7 @@ HiAppEvent是系统为应用开发者提供的事件打点机制，支持记录�
 
 在当前系统应用沙箱机制下，应用进程仅可以直接访问自己的应用沙箱目录，参考[应用沙箱目录](../file-management/app-sandbox-directory.md)。而系统事件信息的存放路径不在应用沙箱目录中，因此无法直接获取。
 
-应用调用HiAppEvent的addWatcher()接口订阅系统事件并创建共享目录。当应用进程发生故障时，DFX系统捕获相关信息，生成事件和日志，并分享到共享目录。HiAppEvent检测到事件后，通过回调函数通知应用。
+应用调用HiAppEvent的addWatcher()接口订阅系统事件并创建共享目录。当应用进程发生故障时，DFX系统捕获相关信息，生成事件和日志，并分享到共享目录。HiAppEvent监听到事件后，将事件回调给应用。
 
 ![hiappevent-watch-systemevents](figures/hiappevent-watch-systemevents.PNG)
 
@@ -43,7 +43,7 @@ HiAppEvent是系统为应用开发者提供的事件打点机制，支持记录�
 
 应用调用addWatcher()接口订阅关注的应用事件后，还需在应用事件发生时，调用write()接口进行打点，用来记录应用事件。
 
-在相同生命周期内，HiAppEvent通过事件领域和事件名称关联应用事件，并通过addWatcher()接口设置的回调方式将事件回调给应用。
+HiAppEvent通过事件领域和事件名称关联应用事件，并通过addWatcher()接口设置的回调方式将事件回调给应用。
 
 ![hiappevent-watch-appevents](figures/hiappevent-watch-appevents.PNG)
 
