@@ -1,5 +1,10 @@
 # native_avcapability.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yang-xiaoyu5-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
 
 ## 概述
 
