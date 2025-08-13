@@ -1,7 +1,7 @@
 # OpenHarmony应用开发文档
 - reference文件夹<!--reference-fold-->
   - 原子化服务批量添加标签<!---->
-   - [AtomicServiceNavigation](onlyfortest/reference/apis-arkdata/ohos-atomicservice-AtomicServiceNavigation.md)
+    - [AtomicServiceNavigation](onlyfortest/reference/apis-arkdata/ohos-atomicservice-AtomicServiceNavigation.md)
   - C APIC API新增版本筛选标签需求<!--reference-fold--0624-->
     - [@ohos.data.dataAbility (DataAbility谓词)](onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
     - [以errorcode-*开头文档](onlyfortest/reference/apis-media-kit/errorcode-media.md)
