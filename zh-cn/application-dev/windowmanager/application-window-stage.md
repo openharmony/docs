@@ -1,5 +1,9 @@
 # 管理应用窗口（Stage模型）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 ## 基本概念
 
@@ -128,6 +132,12 @@ export default class EntryAbility extends UIAbility {
 2. 设置子窗口属性。
 
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
+
+   在调用`showWindow`之前，建议设置子窗口的大小和位置。
+
+   如果没有设置子窗口的大小，调用`showWindow`后:
+    + [自由窗口](./window-terminology.md#自由窗口)状态下，默认子窗口大小为当前物理屏幕的大小。<!--RP3--><!--RP3End-->
+    + 非自由窗口状态下，默认子窗口大小为主窗口大小。
 
 3. 加载显示子窗口的具体内容。
 
