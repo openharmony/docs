@@ -62,7 +62,7 @@
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`'#E5FFFFFF'`。|
+| statusBarContentColor   | string   | 否   | 是   | 状态栏文字颜色。默认值：`'#E5FFFFFF'`。|
 
 ## Rect<sup>7+</sup>
 
@@ -164,18 +164,18 @@
 | type<sup>7+</sup>                     | [WindowType](arkts-apis-window-e.md#windowtype7) | 否   | 否   | 窗口类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isFullScreen                          | boolean                   | 否   | 否   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 窗口是否为沉浸式且处于全屏模式（不在悬浮窗、分屏等场景下），默认为false。true表示沉浸式且处于全屏模式；false表示非沉浸式或非全屏模式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| focusable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| touchable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。当前无可替代接口。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。当前无可替代接口。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口背景是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| name<sup>18+</sup>               | string                    | 是   | 是   | 窗口名字，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| globalDisplayRect<sup>20+</sup> | [Rect](arkts-apis-window-i.md#rect7)   | 是   | 是   | 全局坐标系下的窗口尺寸。拓展屏场景下以主屏左上角为坐标原点，虚拟屏场景下以所在屏幕组中的主屏左上角为坐标原点。默认值：[0, 0, 0, 0]。<br/>**系统能力：**  SystemCapability.Window.SessionManager |
+| id<sup>9+</sup>                       | number                    | 否   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| displayId<sup>12+</sup>               | number                    | 否   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| name<sup>18+</sup>               | string                    | 否   | 是   | 窗口名字，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| globalDisplayRect<sup>20+</sup> | [Rect](arkts-apis-window-i.md#rect7)   | 否   | 是   | 全局坐标系下的窗口尺寸。拓展屏场景下以主屏左上角为坐标原点，虚拟屏场景下以所在屏幕组中的主屏左上角为坐标原点。默认值：[0, 0, 0, 0]。<br/>**系统能力：**  SystemCapability.Window.SessionManager |
 
 ## DecorButtonStyle<sup>14+</sup>
 
