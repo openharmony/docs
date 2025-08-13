@@ -1194,7 +1194,7 @@ void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
 ### OH_Drawing_SetTextStyleBackgroundBrush()
 
 ```
-void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen)
+void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush)
 ```
 
 **描述**
@@ -1211,7 +1211,7 @@ void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Draw
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)对象的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* foregroundPen | 指向画刷[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针，由[OH_Drawing_BrushCreate](capi-drawing-brush-h.md#oh_drawing_brushcreate)获取。 |
+| [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* backgroundBrush | 指向画刷[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针，由[OH_Drawing_BrushCreate](capi-drawing-brush-h.md#oh_drawing_brushcreate)获取。 |
 
 ### OH_Drawing_TextStyleGetBackgroundBrush()
 
@@ -1466,7 +1466,7 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
 ### OH_Drawing_TypographyPaint()
 
 ```
-void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,double potisionX, double potisionY)
+void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,double positionX, double positionY)
 ```
 
 **描述**
@@ -1484,8 +1484,8 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
 | -- | -- |
 | [OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)* typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](capi-drawing-text-typography-h.md#oh_drawing_createtypography)获取。 |
 | [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向OH_Drawing_Canvas对象的指针，由[OH_Drawing_CanvasCreate](capi-drawing-canvas-h.md#oh_drawing_canvascreate)获取。 |
-| double potisionX | x坐标。 |
-| double potisionY | y坐标。 |
+| double positionX | x坐标。 |
+| double positionY | y坐标。 |
 
 ### OH_Drawing_TypographyPaintOnPath()
 
