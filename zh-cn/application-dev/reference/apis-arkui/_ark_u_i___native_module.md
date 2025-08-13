@@ -653,7 +653,7 @@
 | [ArkUI_Margin](_ark_u_i___margin.md) [OH_ArkUI_WaterFlowSectionOption_GetMargin](#oh_arkui_waterflowsectionoption_getmargin) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float(\*callback)(int32_t itemIndex)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindexwithuserdata) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, void \*userData, float(\*callback)(int32_t itemIndex, void \*userData)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
-| [ArkUI_GuidelineOption](#arkui_guidelineoption) \* [OH_ArkUI_GuidelineOption_Create](#oh_arkui_guidelineoption_create) (int32_t size) | 创建RelativeContaine容器内的辅助线信息。  | 
+| [ArkUI_GuidelineOption](#arkui_guidelineoption) \* [OH_ArkUI_GuidelineOption_Create](#oh_arkui_guidelineoption_create) (int32_t size) | 创建RelativeContainer容器内的辅助线信息。  | 
 | void [OH_ArkUI_GuidelineOption_Dispose](#oh_arkui_guidelineoption_dispose) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline) | 销毁辅助线信息。  | 
 | void [OH_ArkUI_GuidelineOption_SetId](#oh_arkui_guidelineoption_setid) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, const char \*value, int32_t index) | 设置辅助线的Id。  | 
 | void [OH_ArkUI_GuidelineOption_SetDirection](#oh_arkui_guidelineoption_setdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, [ArkUI_Axis](#arkui_axis) value, int32_t index) | 设置辅助线的方向。  | 
@@ -663,7 +663,7 @@
 | [ArkUI_Axis](#arkui_axis) [OH_ArkUI_GuidelineOption_GetDirection](#oh_arkui_guidelineoption_getdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取辅助线的方向。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionStart](#oh_arkui_guidelineoption_getpositionstart) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器左侧或者顶部的距离。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionEnd](#oh_arkui_guidelineoption_getpositionend) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器右侧或者底部的距离。  | 
-| [ArkUI_BarrierOption](#arkui_barrieroption) \* [OH_ArkUI_BarrierOption_Create](#oh_arkui_barrieroption_create) (int32_t size) | 创建RelativeContaine容器内的屏障信息。  | 
+| [ArkUI_BarrierOption](#arkui_barrieroption) \* [OH_ArkUI_BarrierOption_Create](#oh_arkui_barrieroption_create) (int32_t size) | 创建RelativeContainer容器内的屏障信息。  | 
 | void [OH_ArkUI_BarrierOption_Dispose](#oh_arkui_barrieroption_dispose) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle) | 销毁屏障信息。  | 
 | void [OH_ArkUI_BarrierOption_SetId](#oh_arkui_barrieroption_setid) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, const char \*value, int32_t index) | 设置屏障的Id。  | 
 | void [OH_ArkUI_BarrierOption_SetDirection](#oh_arkui_barrieroption_setdirection) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, [ArkUI_BarrierDirection](#arkui_barrierdirection) value, int32_t index) | 设置屏障的方向。  | 
@@ -3918,8 +3918,8 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_SCROLL_TO_INDEX  | 滑动到指定index。<br/>开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：要滑动到的目标元素在当前容器中的索引值。<br/>.value[1]?.i32：设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。<br/>.value[2]?.i32：指定滑动到的元素与当前容器的对齐方式，参数类型[ArkUI_ScrollAlignment](#arkui_scrollalignment)。默认值为：ARKUI_SCROLL_ALIGNMENT_START。 | 
 | NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE  | 设置当前瀑布流子组件的约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置； | 
 | NODE_WATER_FLOW_LAYOUT_MODE  | 定义瀑布流组件布局模式，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>**起始版本：** 18 |
-| NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线： | 
-| NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的屏障： | 
+| NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContainer容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线： | 
+| NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContainer容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的屏障： | 
 | NODE_GRID_COLUMN_TEMPLATE  | 设置当前Grid组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
 | NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
 | NODE_GRID_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. | 
@@ -7415,7 +7415,7 @@ ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create (int32_t size)
 ```
 **描述：**
 
-创建RelativeContaine容器内的屏障信息。
+创建RelativeContainer容器内的屏障信息。
 
 **起始版本：** 12
 
@@ -11506,7 +11506,7 @@ ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create (int32_t size)
 ```
 **描述：**
 
-创建RelativeContaine容器内的辅助线信息。
+创建RelativeContainer容器内的辅助线信息。
 
 **起始版本：** 12
 
