@@ -235,6 +235,7 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { camera } from '@kit.CameraKit';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
   if (err !== undefined && err.code !== 0) {
