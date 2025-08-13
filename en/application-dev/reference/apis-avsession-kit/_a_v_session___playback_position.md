@@ -16,7 +16,7 @@ The AVSession_PlaybackPosition struct describes the information related to the p
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-|  int64_t elapsedTime  | Elapsed time, in ms. | 
-|  int64_t updateTime  | Updated time, in ms. | 
+|  int64_t elapsedTime  | Elapsed time, in ms. |
+|  int64_t updateTime  | Updated time, in ms. |

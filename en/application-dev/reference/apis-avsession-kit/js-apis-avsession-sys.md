@@ -37,7 +37,7 @@ Obtains the descriptors of all sessions that have set media information and regi
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise used to return an array of **AVSessionDescriptor** objects, each of which is read only.|
+| Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise used to return an array of AVSessionDescriptor objects, each of which is read only.|
 
 **Error codes**
 
@@ -81,7 +81,7 @@ Obtains the descriptors of all sessions that have set media information and regi
 
 | Name  | Type                                                        | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of **AVSessionDescriptor** objects, each of which is read only.|
+| callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of AVSessionDescriptor objects, each of which is read only.|
 
 **Error codes**
 
@@ -133,7 +133,7 @@ Obtains the descriptors of all historical sessions. This API uses a promise to r
 
 | Type                                                                       | Description                                  |
 | --------------------------------------------------------------------------- | -------------------------------------- |
-| Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise used to return an array of **AVSessionDescriptor** objects, each of which is read only.|
+| Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise used to return an array of AVSessionDescriptor objects, each of which is read only.|
 
 **Error codes**
 
@@ -180,7 +180,7 @@ Obtains the descriptors of all historical sessions. This API uses an asynchronou
 | Name  | Type                                                                           | Mandatory| Description                                                            |
 | -------- | ------------------------------------------------------------------------------ | ---- | -----------------------------------------------------------------|
 | maxSize  | number                                                                         | Yes | Maximum number of descriptors to obtain. The value ranges from 0 to 10.|
-| callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of **AVSessionDescriptor** objects, each of which is read only.                             |
+| callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of AVSessionDescriptor objects, each of which is read only.                             |
 
 **Error codes**
 
@@ -325,7 +325,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
+| Promise<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
 
@@ -369,7 +369,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 | Name   | Type                                                       | Mandatory| Description                                                        |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sessionId | string                                                      | Yes  | Session ID. If the value is set to **'default'**, the system creates a default controller to control the system default session.                                                    |
-| callback  | AsyncCallback<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Yes  | Callback used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
+| callback  | AsyncCallback<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Yes  | Callback used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
 
@@ -984,7 +984,7 @@ Unsubscribes from the latest distributed remote session change events.
 | -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
 | type     | string                                                                              | Yes | Event type. The event **'distributedSessionChange'** is triggered when the latest distributed session is changed.                   |
 | distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | Yes | Remote session type.                                                      |
-| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | No | Callback used for unsubscription. In the callback, the parameter indicates an array of session controller instances of the corresponding type. You can view the session ID, send commands and events to the session, and obtain metadata and playback status information.|
+| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | No | Callback used to return an array of session controller instances of the corresponding type. You can view the session ID, send commands and events to the session, and obtain metadata and playback status information.|
 
 **Error codes**
 
@@ -1437,7 +1437,7 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 
 | Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
+| enable | boolean | Yes| Whether to allow the device discoverable. **true** if discoverable, **false** otherwise.|
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1476,7 +1476,7 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 
 | Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
+| enable | boolean | Yes| Whether to allow the device discoverable. **true** if discoverable, **false** otherwise.|
 
 **Error codes**
 
@@ -2360,15 +2360,15 @@ Declares the session descriptor.
 
 **System API**: This is a system API.
 
-| Name         | Type             | Readable| Writable| Description |
+| Name         | Type             | Read-Only| Optional| Description |
 | --------------| ---------------- | ---------------- | ---------------- |------|
-| sessionId    | string    | Yes| Yes | Session ID.     |
-| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | Yes| Yes| Session type.   |
-| sessionTag   | string             | Yes| Yes| Custom session name.   |
-| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | Yes| Yes| Information about the application to which the session belongs, including the bundle name and ability name.|
-| isActive     | boolean             | Yes| Yes| Whether the session is activated.<br>**true**: The session is activated.<br>**false**: The service is not activated.                                     |
-| isTopSession | boolean             | Yes| Yes| Whether the session is the top session.<br>**true**: The session is the top session.<br>**false**: The session is not the top session.               |
-| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | Yes| Yes| Information about the output device.  |
+| sessionId    | string    | No| No | Session ID.     |
+| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | No| No| Session type.   |
+| sessionTag   | string             | No| No| Custom session name.   |
+| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | No| No| Information about the application to which the session belongs, including the bundle name and ability name.|
+| isActive     | boolean             | No| No| Whether the session is activated.<br>**true**: The session is activated.<br>**false**: The session is not activated.                                     |
+| isTopSession | boolean             | No| No| Whether the session is the top session.<br>**true**: The session is the top session.<br>**false**: The session is not the top session.               |
+| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | No| No| Information about the output device.  |
 
 ## DeviceLogEventCode<sup>13+</sup>
 
