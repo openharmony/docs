@@ -24,7 +24,7 @@
    import { inputMethodEngine } from '@kit.IMEKit';
 
    inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
-      console.log("recv editorAttributeChanged, immersiveMode: " + attr.immersiveMode);
+      console.info("received editorAttributeChanged, immersiveMode: " + attr.immersiveMode);
    })
    ```
 
