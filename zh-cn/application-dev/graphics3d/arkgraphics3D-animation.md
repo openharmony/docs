@@ -15,7 +15,7 @@ function createAnimation() : void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       // 获取动画资源
       let anim: Animation = result.animations[0];
     }
@@ -41,9 +41,9 @@ function animationControl() : void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
-      // 动画状态控制
+      // 动画状态控制方法示例，仅用于展示接口，非实际播放流程
       anim.start();
       anim.pause();
       anim.stop();
@@ -69,7 +69,7 @@ function callBacks() : void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onFinished(()=>{
