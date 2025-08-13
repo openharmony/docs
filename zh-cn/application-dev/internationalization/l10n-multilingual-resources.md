@@ -1,5 +1,10 @@
 # 提供多语言资源
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
 
 ## 功能介绍
 
