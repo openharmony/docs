@@ -292,9 +292,9 @@
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
           - [TaskPool与Worker对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
-        - 并发线程间通信<!--interthead-communication-->
+        - 并发线程间通信<!--interthread-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
-          - 线程间通信对象<!--interthead-communication-object-->
+          - 线程间通信对象<!--interthread-communication-object-->
             - [线程间通信对象概述](arkts-utils/serializable-overview.md)
             - [普通对象](arkts-utils/normal-object.md)
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
@@ -310,7 +310,7 @@
               - [共享模块](arkts-utils/arkts-sendable-module.md)
               - [Sendable对象冻结](arkts-utils/sendable-freeze.md)
               - [Sendable使用场景](arkts-utils/sendable-guide.md)
-          - 线程间通信场景<!--interthead-communication-guide-->
+          - 线程间通信场景<!--interthread-communication-guide-->
             - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
             - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
