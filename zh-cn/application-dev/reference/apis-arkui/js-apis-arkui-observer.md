@@ -1,5 +1,11 @@
 # @ohos.arkui.observer (无感监听)
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
+<!--TSE: @fredyuan912-->
+
 提供UI组件行为变化的无感监听能力。
 
 > **说明：**
@@ -411,7 +417,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.off('scrollEvent')<sup>12+</sup>
 
@@ -432,7 +438,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.on('scrollEvent')<sup>12+</sup>
 
@@ -454,7 +460,7 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.off('scrollEvent')<sup>12+</sup>
 
