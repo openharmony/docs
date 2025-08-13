@@ -1,10 +1,10 @@
-<!--Kit: Localization Kit -->
-<!--Subsystem: NumberFormat -->
-<!--Owner: @sunyaozu -->
-<!--SE: @sunyaozu -->
-<!--TSE: @lpw_work -->
-
 # 数字与度量衡国际化
+
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--SE: @sunyaozu-->
+<!--TSE: @lpw_work-->
 
 ## 使用场景
 
