@@ -1,7 +1,7 @@
 # Network Kit（网络服务）<!--network-kit-->
 
 <!--Kit: Network Kit-->
-<!--Subsystem: Communnication-->
+<!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--SE: @guo-min_net-->
 <!--TSE: @tongxilin-->
