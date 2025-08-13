@@ -1,4 +1,9 @@
 # LauncherAbilityResourceInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 应用配置的入口图标和名称信息，可以通过[getLauncherAbilityResourceInfo](js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetlauncherabilityresourceinfo)获取。
 

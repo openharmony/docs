@@ -137,7 +137,7 @@ closeToast(toastId: number): void
 > 
 > 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](arkts-apis-uicontext-promptaction.md#closetoast18)实现。
 
-示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
+示例请看[promptAction.openToast18](#promptactionopentoast18)的示例。
 
 ## ShowToastOptions
 

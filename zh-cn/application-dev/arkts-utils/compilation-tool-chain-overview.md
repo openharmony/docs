@@ -23,7 +23,7 @@ ArkTS编译工具链目前主要包含以下功能：
 
 6. 反汇编：使用Disassembler反汇编工具将字节数据反汇编成可阅读的汇编指令。
 
-ArkTS编译工具链在构建hap流程参考下图：
+ArkTS编译工具链在构建hap流程如下图所示：
 
 ![compilation-tool-overview](figures/compilation-tool-overview.png)
 

@@ -2,9 +2,11 @@
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @dpy2650-->
+<!--Owner: @zhanghongran-->
 <!--SE: @dpy2650--->
 <!--TSE: @cyakee-->
+
+从API 20开始，支持视频解码同步模式。
 
 开发者可以调用本模块的Native API接口，完成同步模式的视频解码。
 

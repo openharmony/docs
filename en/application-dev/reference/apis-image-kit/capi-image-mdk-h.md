@@ -1,8 +1,13 @@
 # image_mdk.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_mdk.h** file declares the APIs used to access the image rectangle, size, format, and component data.
+The file declares the APIs used to access the image rectangle, size, format, and component data.
 
 **Library**: libimage_ndk.z.so
 

@@ -1,5 +1,9 @@
 # 接入ArkTS页面
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ## 占位组件
 
@@ -267,6 +271,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #include <hilog/log.h>
    #include <js_native_api.h>
    #include "NativeEntry.h"
+   #include "NormalTextListExample.h"
    
    namespace NativeModule {
    

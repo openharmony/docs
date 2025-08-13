@@ -1,4 +1,9 @@
 # 机械体控制模块错误码
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--SE: @saga2025-->
+<!--TSE: @zhaodengqi-->
 
 > **说明：**
 >
