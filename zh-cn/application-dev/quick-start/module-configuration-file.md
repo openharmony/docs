@@ -62,19 +62,9 @@
         ]
       }
     ],
-    "definePermissions": [
-      {
-        "name": "ohos.abilitydemo.permission.PROVIDER",
-        "grantMode": "system_grant",
-        "availableLevel": "system_core",
-        "provisionEnable": true,
-        "distributedSceneEnable": false,
-        "label": "$string:EntryAbility_label"
-      }
-    ],
     "requestPermissions": [
       {
-        "name": "ohos.abilitydemo.permission.PROVIDER",
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
@@ -127,9 +117,9 @@ module.json5配置文件包含以下标签。
 | <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该Module的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称，取值为长度不超过255字节的字符串。<br/>**说明：**<br/>如果在[abilities](#abilities标签)中配置了多个入口[UIAbility](../application-models/uiability-overview.md)，则桌面图标、名称和启动入口以该字段配置为准。如果该字段缺省或未匹配到，则按照ASCII字典序对UIAbility的name字段正序排序，返回第一个作为桌面图标、名称和启动入口。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块的配置可以不同，但都必须包含将要安装的设备类型，以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
-| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
+| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段需要配置为true。反之，该字段需要配置为false。 | 布尔值 | 该标签不可缺省。 |
-| virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
+| virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签可缺省，手动配置不生效，由编译构建时自动生成。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，可通过资源引用的方式配置[distributionFilter](#distributionfilter标签)、[shortcuts](#shortcuts标签)等信息。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
@@ -138,8 +128,8 @@ module.json5配置文件包含以下标签。
 | [requestPermissions](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
-| [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
-| targetModuleName | 标识当前包所指定的目标module，取值为长度不超过128字节的字符串，不支持中文。配置该字段的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
+| [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。手动配置不生效，由编译构建时自动生成。  |
+| targetModuleName | 标识当前包所指定的目标Module。取值为长度不超过128字节的字符串，不支持中文。配置该字段的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
 | targetPriority | 标识当前Module的优先级，取值范围为1~100。配置targetModuleName字段之后，才需要配置该字段。仅在动态共享包（HSP）中适用。 |整型数值|该标签可缺省，缺省值为1。|
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。<br/>**说明：**<br/>1.仅2in1和tablet设备支持将当前Module设置为独立进程。<br/>2.该字段仅对HAP生效。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
@@ -537,7 +527,7 @@ extensionAbilities示例：
       "label" : "$string:extension_name",
       "description": "$string:form_description",
       "type": "form",
-      "permissions": ["ohos.abilitydemo.permission.PROVIDER"],
+      "permissions": ["ohos.permission.ACCESS_BLUETOOTH"],
       "readPermission": "",
       "writePermission": "",
       "exported": true,
@@ -925,8 +915,8 @@ proxyData标签示例：
     "proxyData": [
       {
         "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
-        "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-        "requiredWritePermission": "ohos.permission.GET_BUNDLE_INFO",
+        "requiredReadPermission": "ohos.permission.ACCESS_BLUETOOTH",
+        "requiredWritePermission": "ohos.permission.ACCESS_BLUETOOTH",
         "metadata": {
           "name": "datashare_metadata",
           "resource": "$profile:datashare"
@@ -1210,7 +1200,7 @@ definePermissions标签示例：
   "module" : {
     "definePermissions": [
       {
-        "name": "ohos.abilitydemo.permission.PROVIDER",
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
         "grantMode": "system_grant",
         "availableLevel": "system_core",
         "provisionEnable": true,
