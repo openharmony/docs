@@ -14,9 +14,8 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | 卡片提供方接收处理卡片事件的通知接口。 |
 | onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收销毁卡片的通知接口。 |
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | 卡片提供方接收卡片分享的通知接口。 |
 
-formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
+formProvider类部分API接口如下，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
