@@ -24,11 +24,11 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 
 对公共目录文件URI进行授权操作，使用callback异步回调。  
 
-**需要权限**：ohos.permission.WRITE_MEDIA  
+**需要权限：** ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口。  
+**系统接口：** 此接口为系统接口。  
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService
 
 **参数：**
 
@@ -78,11 +78,11 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 将公共目录文件URI进行授权操作，使用Promise异步回调。  
 
-**需要权限**：ohos.permission.WRITE_MEDIA  
+**需要权限：** ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口。  
+**系统接口：** 此接口为系统接口。  
 
-**系统能力**：SystemCapability.FileManagement.AppFileService  
+**系统能力：** SystemCapability.FileManagement.AppFileService  
 
 **参数：**
 
@@ -135,9 +135,9 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 异步方法校验所选择的多个文件或目录是否有临时或持久化授权，以promise形式返回结果。
 
-**需要权限**：ohos.permission.CHECK_SANDBOX_POLICY
+**需要权限：** ohos.permission.CHECK_SANDBOX_POLICY
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -206,11 +206,11 @@ grantUriPermission(policies: Array&lt;PolicyInfo&gt;, targetBundleName: string, 
 
 给应用授予目标文件临时权限，使用Promise异步回调。
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+**需要权限：** ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
