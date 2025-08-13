@@ -31,6 +31,7 @@
      } catch (error) {
        let err = error as BusinessError;
        console.error(`getCameraManager error, errCode: ${err.code}`);
+       return undefined;
      }
      return cameraManager;
    }
