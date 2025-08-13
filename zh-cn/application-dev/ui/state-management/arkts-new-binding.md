@@ -1,8 +1,8 @@
 # !!语法：双向绑定
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @Cuecuexiaoyu--> 
-<!--SE: @lixingchi1--> 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Cuecuexiaoyu-->
+<!--SE: @lixingchi1-->
 <!--TSE: @TerryTsao-->
 
 在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
@@ -88,7 +88,7 @@ struct BindMenuInterface {
   build() {
     Column() {
       Row() {
-        Text('Click to show')
+        Text('click show Menu')
           .bindMenu(this.isShow!!, // 双向绑定。
             [
               {
