@@ -155,7 +155,7 @@ getWhitePoint(): collections.Array\<number\>
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| [collections.Array\<number\>](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)  | 返回色域白点值[x, y]。 |
+| [collections.Array\<number\>](../apis-arkts/arkts-apis-arkts-collections-Array.md)  | 返回色域白点值[x, y]。 |
 
 **错误码：**
 

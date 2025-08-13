@@ -66,7 +66,7 @@ Sendable interface需同时满足以下两个规则：
 
 - ArkTS基本数据类型：boolean、number、string、bigint、null、undefined。
 
-- ArkTS语言标准库中定义的[容器类型数据](arkts-collections-introduction.md)（须显式引入[@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md)）。
+- ArkTS语言标准库中定义的[容器类型数据](arkts-collections-introduction.md)（须显式引入[@arkts.collections](../reference/apis-arkts/arkts-apis-arkts-collections.md)）。
 
 - ArkTS语言标准库中定义的[异步锁对象](arkts-async-lock-introduction.md)（须显式引入[@arkts.utils](../reference/apis-arkts/arkts-apis-arkts-utils.md)）。
 
