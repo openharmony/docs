@@ -63,9 +63,9 @@ zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @chang
 
 
 [开发-Accessibility Kit]
-zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @z7o  @A_qqq
+zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @z7o  @A_qqq
+zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @z7o  @A_qqq
 
 
 [开发-ArkData]
@@ -548,12 +548,12 @@ zh-cn/application-dev/reference/apis-ability-kit/capi-ability-access-control-h.m
 
 
 [API参考-Accessibility kit]
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @z7o @A_qqq
 
 
 [API参考-ArkGraphics2D]
@@ -1069,7 +1069,7 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 [API参考-Distributedservice Kit]
 zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 @w_Machine_cc
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 
 
 [API参考-Driverdevelopment kit]
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen
