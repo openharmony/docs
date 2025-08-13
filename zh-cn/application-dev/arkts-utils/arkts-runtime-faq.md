@@ -115,6 +115,25 @@
    let reg3 = /a(?:x){0,1}$/;
    ```
 
+### 方舟字符串 `replace` 接口对于第一个参数为空字符串的场景与预期不一致
+
+   在使用字符串replace接口时，如果第一个参数是空字符串，则直接返回原始字符串。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace("", "abc");
+   console.info("res = " + res);
+   // 期望输出: res = abcdddd
+   // 实际输出: res = dddd
+   ```
+
+   规避方案：使用正则表达式 `/^/` 表示字符串起始符，作为第一个参数。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace(/^/, "abc");
+   ```
+
 ## Async函数内部异常的处理机制
 
 **场景**
