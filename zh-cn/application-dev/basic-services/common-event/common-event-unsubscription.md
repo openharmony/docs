@@ -1,6 +1,6 @@
 # 取消动态订阅公共事件
 
-<!--Kit: Basic Services Kit -->
+<!--Kit: Basic Services Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @peixu-->
 <!--SE: @dongqingran; @wulong158-->
