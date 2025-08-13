@@ -3836,7 +3836,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### off('scrollEvent')<sup>12+</sup>
 
@@ -3857,7 +3857,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -3879,7 +3879,7 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### off('scrollEvent')<sup>12+</sup>
 
