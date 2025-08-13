@@ -784,7 +784,7 @@ try {
 
 getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
-获取当前应用已加桌卡片中指定的卡片信息，使用Promise异步回调。
+获取已创建卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -800,7 +800,7 @@ getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningForm
 
 | 类型                                                                | 说明                                |
 |-------------------------------------------------------------------| ---------------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回符合条件的卡片信息，包括卡片名称、卡片尺寸等。 |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo20)&gt; | Promise对象。返回符合条件的卡片信息，包括卡片名称、尺寸等。 |
 
 **错误码：**
 
@@ -827,10 +827,10 @@ try {
   formProvider.getPublishedRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
     console.log(`formProvider getPublishedRunningFormInfoById, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -838,7 +838,7 @@ try {
 
 getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
-获取当前应用所有已经加桌的卡片信息，使用Promise异步回调。
+获取所有已创建卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -852,7 +852,7 @@ getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)：
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

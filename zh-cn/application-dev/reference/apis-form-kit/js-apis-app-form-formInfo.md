@@ -241,7 +241,7 @@ import { formInfo } from '@kit.FormKit';
 
 ## RunningFormInfo<sup>20+</sup>
 
-已经创建卡片信息，包括卡片添加页的卡片以及已加到桌面、负一屏、锁屏等场景的卡片。
+[已经创建卡片信息](../../form/arkts-ui-widget-creation.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -251,7 +251,7 @@ import { formInfo } from '@kit.FormKit';
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formId  | string               | 是    | 否     | 卡片标识。                   |
 | bundleName  | string               | 是    | 否     | 卡片提供方所属包的Bundle名称。                   |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
