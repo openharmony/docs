@@ -1,4 +1,9 @@
 # @ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供launcher应用使用的接口。
 

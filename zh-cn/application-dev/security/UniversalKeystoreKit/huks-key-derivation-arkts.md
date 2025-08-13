@@ -12,7 +12,7 @@
 
 **生成密钥**
 
-1. 指定密钥别名。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集，可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥派生出的密钥是否由HUKS管理。
 
@@ -62,7 +62,7 @@
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -156,11 +156,11 @@ let finishOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 
-class throwObject {
+class ThrowObject {
   isThrow = false;
 }
 
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -179,7 +179,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
 
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await generateKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -197,7 +197,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
   }
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -216,7 +216,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await initSession(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -235,7 +235,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   }
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksOptions>((resolve, reject) => {
     try {
       huks.updateSession(handle, huksOptions, (error, data) => {
@@ -254,7 +254,7 @@ function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doUpdate`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await updateSession(handle, huksOptions, throwObject)
       .then((data) => {
@@ -272,7 +272,7 @@ async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, (error, data) => {
@@ -291,7 +291,7 @@ function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doFinish`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await finishSession(handle, huksOptions, throwObject)
       .then((data) => {
@@ -310,7 +310,7 @@ async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
   }
 }
 
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -329,7 +329,7 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
 
 async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await deleteKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -366,7 +366,7 @@ async function testDerive() {
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -397,7 +397,7 @@ let properties: Array<huks.HuksParam> = [
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
   }, {
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
@@ -474,11 +474,11 @@ let finishOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 
-class throwObject {
+class ThrowObject {
   isThrow = false;
 }
 
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -497,7 +497,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
 
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await generateKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -515,7 +515,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
   }
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -534,7 +534,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await initSession(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -553,7 +553,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   }
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksOptions>((resolve, reject) => {
     try {
       huks.updateSession(handle, huksOptions, (error, data) => {
@@ -572,7 +572,7 @@ function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doUpdate`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await updateSession(handle, huksOptions, throwObject)
       .then((data) => {
@@ -590,7 +590,7 @@ async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, (error, data) => {
@@ -609,7 +609,7 @@ function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObjec
 
 async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doFinish`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await finishSession(handle, huksOptions, throwObject)
       .then((data) => {
@@ -628,7 +628,7 @@ async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
   }
 }
 
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -647,7 +647,7 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
 
 async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await deleteKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {

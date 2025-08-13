@@ -1,9 +1,14 @@
-# AbilityStage组件容器
+# AbilityStage组件管理器
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
 
 ## 概述
 
-[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../quick-start/hap-package.md)在首次加载时会创建一个AbilityStage实例，可以对该Module进行初始化等操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件管理器，应用的[HAP](../quick-start/hap-package.md)在首次加载时会创建一个AbilityStage实例，可以对该Module进行初始化等操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
 AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)、[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#ondestroy12)生命周期回调和[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant)、[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)、[onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)、[onNewProcessRequest()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)、[onPrepareTermination()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onpreparetermination15)等事件回调。
 

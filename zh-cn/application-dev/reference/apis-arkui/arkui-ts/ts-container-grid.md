@@ -751,7 +751,7 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
 
@@ -775,14 +775,7 @@ onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemai
 
 | 参数名 | 类型                                                    | 必填 | 说明                       |
 | ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
-
-**返回值：** 
-
-| 类型                     | 说明                 |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | 实际滑动量，单位vp。 |
+| event | [OnScrollFrameBeginCallback](ts-container-scroll.md#onscrollframebegincallback18)   | 是   | 每帧滚动开始回调函数。 |
 
 ### onScrollStart<sup>10+</sup>
 
@@ -2447,8 +2440,8 @@ struct GridItemExample {
   @State dragItem: number = -1
   @State scaleItem: number = -1
   @State item: number = -1
-  private dragRefOffsetx: number = 0
-  private dragRefOffsety: number = 0
+  private dragRefOffsetX: number = 0
+  private dragRefOffsetY: number = 0
   @State offsetX: number = 0
   @State offsetY: number = 0
   private FIX_VP_X: number = 108
@@ -2476,7 +2469,7 @@ struct GridItemExample {
       return
     }
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 3)
   }
 
@@ -2486,7 +2479,7 @@ struct GridItemExample {
       return
     }
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 3)
   }
 
@@ -2496,7 +2489,7 @@ struct GridItemExample {
       return
     }
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 3)
   }
 
@@ -2506,7 +2499,7 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.itemMove(index, index - 1)
   }
 
@@ -2516,7 +2509,7 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.itemMove(index, index + 1)
   }
 
@@ -2526,9 +2519,9 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 4)
   }
 
@@ -2538,9 +2531,9 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 2)
   }
 
@@ -2550,9 +2543,9 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 2)
   }
 
@@ -2562,9 +2555,9 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 4)
   }
 
@@ -2622,12 +2615,12 @@ struct GridItemExample {
               PanGesture({ fingers: 1, direction: null, distance: 0 })
                 .onActionStart(() => {
                   this.dragItem = item
-                  this.dragRefOffsetx = 0
-                  this.dragRefOffsety = 0
+                  this.dragRefOffsetX = 0
+                  this.dragRefOffsetY = 0
                 })
                 .onActionUpdate((event: GestureEvent) => {
-                  this.offsetY = event.offsetY - this.dragRefOffsety
-                  this.offsetX = event.offsetX - this.dragRefOffsetx
+                  this.offsetY = event.offsetY - this.dragRefOffsetY
+                  this.offsetX = event.offsetX - this.dragRefOffsetX
                   this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     let index = this.numbers.indexOf(this.dragItem)
                     if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&

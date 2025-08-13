@@ -377,7 +377,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 
 | 参数名    | 类型                                                         | 必填 | 说明                       |
 | --------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。             |
 | httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络代理配置信息。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
@@ -493,7 +493,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **返回值：**
@@ -589,7 +589,12 @@ let firewallRule: networkManager.FirewallRule = {
   "protocol": networkManager.Protocol.UDP
 };
 
-networkManager.addFirewallRule(wantTemp, firewallRule);
+try {
+  networkManager.addFirewallRule(wantTemp, firewallRule);
+  console.info('Succeeded in adding firewall rule.');
+} catch (err) {
+  console.error(`Failed to add firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.removeFirewallRule
@@ -646,11 +651,22 @@ let firewallRule: networkManager.FirewallRule = {
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
 };
+
 // 移除指定的规则
-networkManager.removeFirewallRule(wantTemp, firewallRule);
+try {
+  networkManager.removeFirewallRule(wantTemp, firewallRule);
+  console.info('Succeeded in removing firewall rule.');
+} catch (err) {
+  console.error(`Failed to remove firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 
 // 清空所有规则
-networkManager.removeFirewallRule(wantTemp);
+try {
+  networkManager.removeFirewallRule(wantTemp);
+  console.info('Succeeded in removing all firewall rule.');
+} catch (err) {
+  console.error(`Failed to remove all firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.getFirewallRules
@@ -700,7 +716,12 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let firewallRule: Array<networkManager.FirewallRule>;
-firewallRule = networkManager.getFirewallRules(wantTemp);
+try {
+  firewallRule = networkManager.getFirewallRules(wantTemp);
+  console.info('Succeeded in getting firewall rules');
+} catch (err) {
+  console.error(`Failed to get firewall rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.addDomainFilterRule
@@ -752,7 +773,12 @@ let domainFilterRule: networkManager.DomainFilterRule = {
   "action": networkManager.Action.DENY
 };
 
-networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+try {
+  networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+  console.info('Succeeded in adding domain filter rules');
+} catch (err) {
+  console.error(`Failed to add domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.removeDomainFilterRule
@@ -806,10 +832,20 @@ let domainFilterRule: networkManager.DomainFilterRule = {
 };
 
 // 移除指定的规则
-networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+try {
+  networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+  console.info('Succeeded in removing domain filter rules');
+} catch (err) {
+  console.error(`Failed to remove domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 
 // 清空所有规则
-networkManager.removeDomainFilterRule(wantTemp);
+try {
+  networkManager.removeDomainFilterRule(wantTemp);
+  console.info('Succeeded in removing all domain filter rules');
+} catch (err) {
+  console.error(`Failed to remove all domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.getDomainFilterRules
@@ -859,7 +895,12 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let domainFilterRule: Array<networkManager.DomainFilterRule>;
-domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+try {
+  domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+  console.info('Succeeded in getting  domain filter rules');
+} catch (err) {
+  console.error(`Failed to get domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.turnOnMobileData<sup>20+</sup>
@@ -1301,7 +1342,7 @@ try {
 | appUid    | string                  | 否   | 是 |应用uid。                                                    |
 | direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
+| protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，设置srcPort与destPort无效。 |
 
 ## DomainFilterRule
 

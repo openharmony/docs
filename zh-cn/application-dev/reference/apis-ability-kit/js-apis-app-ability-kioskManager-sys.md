@@ -1,4 +1,9 @@
 # @ohos.app.ability.kioskManager (Kiosk模式管理)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
 
 KioskManager模块提供Kiosk模式管理能力，包括系统进入/退出Kiosk模式操作、查询当前系统Kiosk模式状态。
 
@@ -39,7 +44,7 @@ getKioskStatus(): Promise&lt;KioskStatus&gt;
 | 错误码ID | 错误信息 |
 |---------|---------|
 | 202 | Not system application. |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 
 **示例**：

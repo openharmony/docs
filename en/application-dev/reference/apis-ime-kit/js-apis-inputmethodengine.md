@@ -1,4 +1,9 @@
 # @ohos.inputMethodEngine (Input Method Service)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethodEngine** module is oriented to input method applications (including system and third-party input method applications). With the APIs of this module, input method applications are able to create soft keyboard windows, insert or delete characters, select text, and listen for physical keyboard events.
 
@@ -4699,12 +4704,6 @@ Registers or unregisters MessageHandler.
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
 
-**Return value**
-
-| Type| Description        |
-| ---- | ------------ |
-| void | No value is returned.|
-
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -5136,7 +5135,7 @@ textInputClient.getBackward(length, (err: BusinessError, text: string) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in getting borward, text: ' + text);
+  console.info('Succeeded in getting backward, text: ' + text);
 });
 ```
 
@@ -5518,7 +5517,7 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
   console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```

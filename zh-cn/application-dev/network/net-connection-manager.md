@@ -1,4 +1,9 @@
 # 管理网络连接
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--SE: @guo-min_net-->
+<!--TSE: @tongxilin-->
 
 ## 简介
 
@@ -375,3 +380,9 @@ function socketTest() {
       console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     ```
+
+## 相关实例
+
+针对网络连接的开发，有以下相关实例可供参考：
+
+- [NetConnection_Manage_case(网络连接管理)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case)

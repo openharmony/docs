@@ -40,8 +40,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
     #include <fcntl.h>
-    #include "string"
-    #include "unistd.h"
+    #include <string>
     ```
 
 2. 创建AVScreenCapture实例capture。
@@ -137,8 +136,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <fcntl.h>
-#include "string"
-#include "unistd.h"
+#include <string>
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;

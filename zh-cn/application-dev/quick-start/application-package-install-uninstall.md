@@ -1,8 +1,8 @@
 # 应用安装卸载与更新开发指导
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @wangtiantian-->
-<!--SE: @hanfeng6; @lihaitao-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
 <!--TSE: @kongjing2-->
 
 本章节介绍应用程序包的安装卸载流程和两种更新方式。

@@ -1,4 +1,9 @@
 # Mechanic Kit（机械设备管理）<!--mechanic-kit-->
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--SE: @saga2025-->
+<!--TSE: @zhaodengqi-->
 
 - [Mechanic Kit简介](mechanic-kit-intro.md)
 - [智能拍摄跟踪开发指南](camera-tracking-guide.md)

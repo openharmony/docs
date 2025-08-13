@@ -1,5 +1,10 @@
 # 字块绘制（ArkTS）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 ## 场景介绍
 

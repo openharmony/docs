@@ -1,5 +1,9 @@
 # 复杂文本绘制与显示（C/C++）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 在进行文本绘制时，可以通过选择合适的字体、大小和颜色完成简单文本的绘制与显示；此外，还支持通过设置其他丰富的样式、语言、段落等进行复杂文本的绘制。
 
 复杂文本绘制主要包含以下几个场景：
@@ -197,6 +201,8 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 - **占位符绘制：** 可以在不确定文本内容时保持文本布局的稳定性，使得文本显示更为流畅和自然。
 
 - **自动间距绘制：** 可以在一些字符混排切换的地方自动添加额外间距，提升阅读体验。
+
+- **渐变色绘制：** 可以为文字提供颜色渐变效果，增强文字表现力。
 
 
 ### 装饰线
@@ -674,6 +680,55 @@ OH_Drawing_DestroyTypography(typography);
 | 不使能自动间距 | ![zh-cn_image_autoSpace_1](figures/zh-cn_image_autoSpace_1.png) | 
 | 使能自动间距 | ![zh-cn_image_autoSpace_2](figures/zh-cn_image_autoSpace_2.png) | 
 
+### 渐变色
+
+**渐变色**是一种在文字设计中广泛应用的视觉效果，通过在文字的不同部分应用不同的颜色，从而创造出从一种颜色平滑过渡到另一种颜色的效果。可以通过着色器实现文字渐变的效果，着色器的更多介绍请参考[着色器效果](complex-drawing-effect-c.md#着色器效果)。
+
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle\* style, OH_Drawing_Brush* foregroundBrush) | 添加前景画刷，渐变着色器属性依附于前景画刷中。 | 
+
+
+示例及效果如下所示：
+```c++
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+// 设置文字大小
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+// 创建着色器对象，并设置颜色、变化起始点与结束点
+OH_Drawing_Point *startPt = OH_Drawing_PointCreate(0, 0);
+OH_Drawing_Point *endPt = OH_Drawing_PointCreate(900, 900);
+uint32_t colors[] = {0xFFFFFF00, 0xFFFF0000, 0xFF0000FF};
+float pos[] = {0.0f, 0.5f, 1.0f};
+OH_Drawing_ShaderEffect *colorShaderEffect =
+    OH_Drawing_ShaderEffectCreateLinearGradient(startPt, endPt, colors, pos, 3, OH_Drawing_TileMode::CLAMP);
+// 创建画刷对象,并将着色器添加到画刷
+OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
+OH_Drawing_BrushSetShaderEffect(brush, colorShaderEffect);
+// 将画刷添加到文本样式中
+OH_Drawing_SetTextStyleForegroundBrush(txtStyle, brush);
+// 创建排版对象，并绘制
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+const char *text = "Hello World";
+OH_Drawing_TypographyHandlerAddText(handler, text);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1000);
+OH_Drawing_TypographyPaint(typography, canvas, 0, 0);
+
+// 释放对象
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_ShaderEffectDestroy(colorShaderEffect);
+OH_Drawing_BrushDestroy(brush);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+![zh-cn_image_gradient_c](figures/zh-cn_image_gradient_c.png)
 
 ## 样式的拷贝、绘制与显示
 支持拷贝文本样式、段落样式、阴影样式，以便快速复制相关样式作用到不同文字上。

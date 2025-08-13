@@ -113,7 +113,7 @@ node.collectEvent()
    Button("按钮")
      .responseRegion([
         { x: 0, y: 0, width: '30%', height: '100%' },      // 第一个热区为按钮的左侧1/3区域
-        { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的左侧1/3区域
+        { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的右侧1/3区域
       ])
    ```
 

@@ -1,9 +1,14 @@
 # 应用上下文Context
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2; @xuzhihao666-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
 
 ## 概述
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等。
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等。
 
 ## 不同类型Context的对比
 
@@ -19,7 +24,7 @@
 
   | Context类型 | 说明 | 获取方式 | 使用场景 |
   | -------- | -------- | -------- | -------- |
-  | [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | 应用的全局上下文，提供应用级别的信息和能力。| - 从API version 14开始，可以直接使用[getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14)获取。<br>- API version 14以前版本，只能使用其他Context实例的[getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext)方法获取。 | - [获取当前应用的基本信息](#获取基本信息)。<br>- [获取应用级别的文件路径](#获取应用文件路径)。<br>- [获取和修改加密分区](#获取和修改加密分区)。<br>- [注册生命周期监听](#监听应用前后台变化)。 |
+  | [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | 应用的全局上下文，提供应用级别的信息和能力。| - 从API version 14开始，可以直接使用[getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14)获取。<br>- API version 14以前版本，只能使用其他Context实例的[getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext)方法获取。 | - [获取当前应用的基本信息](#获取基本信息)。<br>- [获取应用级别的文件路径](#获取应用文件路径)。<br>- [获取和修改加密分区](#获取和修改加密分区)。<br>- [注册应用前后台变化监听](#监听应用前后台变化)。 |
   | [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) | 模块级别的上下文，提供模块级别的信息和能力。| - 如果需要获取当前AbilityStage的Context，可以直接通过AbilityStage实例获取[context](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#属性)属性。<br> - 如果需要获取同一应用中其他Module的Context，可以通过[createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法。 | - 获取当前模块的基本信息。<br>- [获取模块的文件路径](#获取应用文件路径)。|
   | [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | UIAbility组件对应的上下文，提供UIAbility对外的信息和能力。| - 通过UIAbility实例直接获取[context](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#属性)属性。<br>- 在UIAbility的窗口中加载的UI组件实例，需要使用UIContext的[getHostContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)方法。 | - 获取当前UIAbility基本信息。<br>- 启动其他应用或原子化服务、连接/断连系统应用创建的ServiceExtensionAbility等。<br>- 销毁自身的UIAbility。 |
   | [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) | ExtensionAbility组件对应的上下文，每种类型的ExtensionContext提供不同的信息和能力。| 通过ExtensionAbility实例直接获取Context属性。 | 不同类型的ExtensionAbility对应的Context提供的能力不同。以输入法上下文[InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)为例，主要提供如下能力：<br>- 获取InputMethodExtensionAbility的基本信息。<br>- 销毁当前输入法。|
@@ -46,7 +51,7 @@
 
 ### 获取AbilityStageContext（模块级别的上下文）
 
-[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
+[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)、[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)等信息。
 
   ```ts
   import { AbilityStage } from '@kit.AbilityKit';
@@ -61,7 +66,7 @@
 
 ### 获取本应用中其他Module的Context（模块级别的上下文）
 
-调用[createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+调用[createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
 
   ```ts
   import { common, application } from '@kit.AbilityKit';
@@ -405,7 +410,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 - EL2：对于更敏感的文件，如个人隐私信息等，应用可以将这些文件放到更高级别的加密分区（EL2）中，以保证更高的安全性。
 - EL3：对于应用中的记录步数、文件下载、音乐播放，需要在锁屏时读写和创建新文件，放在（EL3）的加密分区比较合适。
 - EL4：对于用户安全信息相关的文件，锁屏时不需要读写文件、也不能创建文件，放在（EL4）的加密分区更合适。
-- EL5：对于用户隐私敏感数据文件，锁屏后默认不可读写，如果锁屏后需要读写文件，则锁屏前可以调用[Access](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口申请继续读写文件，或者锁屏后也需要创建新文件且可读写，放在（EL5）的应用级加密分区更合适。
+- EL5：对于用户隐私敏感数据文件，锁屏后默认不可读写，如果锁屏后需要读写文件，则锁屏前可以调用[acquireAccess](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口申请继续读写文件，或者锁屏后也需要创建新文件且可读写，放在（EL5）的应用级加密分区更合适。
 
 要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)的`area`属性来实现。
 

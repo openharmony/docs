@@ -949,7 +949,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-window.create('test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
+window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
@@ -994,7 +994,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-let promise = window.create('test', window.WindowType.TYPE_SYSTEM_ALERT);
+let promise = window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
   console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));

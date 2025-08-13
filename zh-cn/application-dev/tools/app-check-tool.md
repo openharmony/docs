@@ -1,4 +1,9 @@
 # 扫描工具
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jsjzju-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 ## 简介
 

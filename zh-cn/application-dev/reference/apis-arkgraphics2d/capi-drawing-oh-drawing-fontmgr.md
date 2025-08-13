@@ -1,5 +1,9 @@
 # OH_Drawing_FontMgr
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 定义字体管理类, 用于字体管理。

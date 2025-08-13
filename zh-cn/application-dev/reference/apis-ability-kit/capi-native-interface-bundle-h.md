@@ -1,8 +1,8 @@
 # native_interface_bundle.h
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @lihaitao-->
-<!--SE: @hanfeng6; @lihaitao-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
 <!--TSE: @kongjing2-->
 
 ## 概述

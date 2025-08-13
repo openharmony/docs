@@ -1,8 +1,8 @@
 # 应用配置文件概述（Stage模型）
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @xuyicong-->
-<!--SE: @hanfeng6; @lihaitao-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
 <!--TSE: @kongjing2-->
 
 每个应用项目的代码目录下必须包含应用配置文件，这些配置文件会向编译工具、操作系统和应用市场提供应用的基本信息。

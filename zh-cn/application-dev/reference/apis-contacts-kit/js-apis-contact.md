@@ -1,7 +1,7 @@
 # @ohos.contact (联系人)
 
-<!--Kit: contacts-kit-->
-<!--Subsystem: contacts-->
+<!--Kit: Contacts Kit-->
+<!--Subsystem: Applications-->
 <!--Owner: @librahCode-->
 <!--SE: @yanghaoqian-->
 <!--TSE: @shangzhijie-->

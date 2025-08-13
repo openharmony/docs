@@ -121,7 +121,7 @@ OH_Predicates *(*beginWrap)(OH_Predicates *predicates)
 
 | 参数项                   | 描述                              |
 | ------------------------ | --------------------------------- |
-| H_Predicates *predicates | 表示指向OH_Predicates实例的指针。 |
+| OH_Predicates *predicates | 表示指向OH_Predicates实例的指针。 |
 
 **返回：**
 

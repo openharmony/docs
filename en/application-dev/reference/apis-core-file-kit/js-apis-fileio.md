@@ -1,4 +1,9 @@
 # @ohos.fileio (File Management)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **FileIO** module provides APIs for file storage and management, including basic file management, directory management, file information statistics, and stream read and write.
 
@@ -55,7 +60,7 @@ Obtains file information. This API uses a promise to return the result.
 
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise that returns the file information obtained.|
 
 **Example**
 
@@ -154,7 +159,7 @@ Opens a directory. This API uses a promise to return the result.
 
   | Type                        | Description      |
   | -------------------------- | -------- |
-  | Promise&lt;[Dir](#dir)&gt; | Promise used to return the **Dir** object opened.|
+  | Promise&lt;[Dir](#dir)&gt; | Promise that returns the **Dir** object opened.|
 
 **Example**
 
@@ -652,7 +657,7 @@ Opens a file. This API uses a promise to return the result.
 
   | Type                   | Description         |
   | --------------------- | ----------- |
-  | Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+  | Promise&lt;number&gt; | Promise that returns the file descriptor of the file opened.|
 
 **Example**
 
@@ -774,7 +779,7 @@ Reads data from a file. This API uses a promise to return the result.
 
   | Type                                | Description    |
   | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
+  | Promise&lt;[ReadOut](#readout)&gt; | Promise that returns the data read.|
 
 **Example**
 
@@ -1082,7 +1087,7 @@ Writes data into a file. This API uses a promise to return the result.
 
   | Type                   | Description      |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
+  | Promise&lt;number&gt; | Promise that returns the length of the data written.|
 
 **Example**
 
@@ -1191,7 +1196,7 @@ Calculates the hash value of a file. This API uses a promise to return the resul
 
   | Type                   | Description                        |
   | --------------------- | -------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+  | Promise&lt;string&gt; | Promise that returns the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Example**
 
@@ -1357,7 +1362,7 @@ Obtains file status based on the file descriptor. This API uses a promise to ret
 
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the detailed file status obtained.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise that returns the detailed file status obtained.|
 
 **Example**
 
@@ -1660,7 +1665,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 
   | Type                   | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the file content read.|
+  | Promise&lt;string&gt; | Promise that returns the file content read.|
 
 **Example**
 
@@ -1777,7 +1782,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the symbolic link information obtained. For details, see **stat**.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise that returns the symbolic link information obtained. For details, see **stat**.|
 
 **Example**
 
@@ -2365,7 +2370,7 @@ Creates a temporary directory. This API uses a promise to return the result.
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the directory created.|
+  | Promise&lt;string&gt; | Promise that returns the directory created.|
 
 **Example**
 
@@ -2564,7 +2569,7 @@ Creates a stream based on the file path. This API uses a promise to return the r
 
   | Type                               | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise that returns the stream opened.|
 
 **Example**
 
@@ -2666,7 +2671,7 @@ Opens a stream based on the file descriptor. This API uses a promise to return t
 
   | Type                              | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise that returns the stream opened.|
 
 **Example**
 
@@ -2975,7 +2980,7 @@ Listens for file or directory changes. This API uses an asynchronous callback to
 
   | Type                 | Description        |
   | -------------------- | ---------- |
-  | [Watcher](#watcher7) | Promise used to return the result.|
+  | [Watcher](#watcher7) | Promise that returns the file change.|
 
 **Example**
 
@@ -3291,7 +3296,7 @@ Closes the file stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns the file stream closed.|
 
 **Example**
 
@@ -3374,7 +3379,7 @@ Flushes the file stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns the file stream flushed.|
 
 **Example**
 
@@ -3464,7 +3469,7 @@ Writes data to a stream file. This API uses a promise to return the result.
 
   | Type                   | Description      |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
+  | Promise&lt;number&gt; | Promise that returns the length of the data written.|
 
 **Example**
 
@@ -3602,7 +3607,7 @@ Reads data from a stream file. This API uses a promise to return the result.
 
   | Type                                | Description    |
   | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
+  | Promise&lt;[ReadOut](#readout)&gt; | Promise that returns the data read.|
 
 **Example**
 
@@ -3746,7 +3751,7 @@ Reads the next directory entry. This API uses a promise to return the result.
 
   | Type                              | Description           |
   | -------------------------------- | ------------- |
-  | Promise&lt;[Dirent](#dirent)&gt; | Promise used to return the result.|
+  | Promise&lt;[Dirent](#dirent)&gt; | Promise that returns the next directory entry.|
 
 **Example**
 

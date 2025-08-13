@@ -1,4 +1,9 @@
 # Using Image_NativeModule to Decode Pictures
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 This topic describes how to create an ImageSource object, decode it to obtain a Picture object, and release the ImageSource object.
 

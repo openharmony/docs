@@ -19,10 +19,10 @@
 \@ReusableV2用于装饰V2的自定义组件，表明该自定义组件具有被复用的能力：
 
 - \@ReusableV2仅能装饰V2的自定义组件，即\@ComponentV2装饰的自定义组件。并且仅能将\@ReusableV2装饰的自定义组件作为V2自定义组件的子组件使用。
-- \@ReusableV2同样提供了aboutToRecycle和aboutToReuse的生命周期，在组件被回收时调用aboutToRecycle，在组件被复用时调用aboutToReuse，但与\@Reusable不同的是，aboutToReuse没有入参。
+- \@ReusableV2同样提供了[aboutToRecycle](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)和[aboutToReuse](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse18)的生命周期，在组件被回收时调用aboutToRecycle，在组件被复用时调用aboutToReuse，但与\@Reusable不同的是，aboutToReuse没有入参。
 - 在回收阶段，会递归地调用所有子组件的aboutToRecycle回调（即使子组件未被标记可复用）；在复用阶段，会递归地调用所有子组件的aboutToReuse回调（即使子组件未被标记可复用）。
-- \@ReusableV2装饰的自定义组件会在被回收期间保持冻结状态，即无法触发UI刷新、无法触发\@Monitor回调，与freezeWhenInactive标记位不同的是，在解除冻结状态后，不会触发延后的刷新。
-- \@ReusableV2装饰的自定义组件会在复用时自动重置组件内状态变量的值、重新计算组件内[\@Computed](./arkts-new-Computed.md)以及与之相关的[\@Monitor](./arkts-new-monitor.md)。不建议开发者在aboutToRecycle中更改组件内状态变量，详见[复用前的组件内状态变量重置](#复用前的组件内状态变量重置)。
+- \@ReusableV2装饰的自定义组件会在被回收期间保持冻结状态，即无法触发UI刷新、无法触发[\@Monitor](./arkts-new-monitor.md)回调，与[freezeWhenInactive](./arkts-custom-components-freezeV2.md)标记位不同的是，在解除冻结状态后，不会触发延后的刷新。
+- \@ReusableV2装饰的自定义组件会在复用时自动重置组件内状态变量的值、重新计算组件内[\@Computed](./arkts-new-Computed.md)以及与之相关的\@Monitor。不建议开发者在aboutToRecycle中更改组件内状态变量，详见[复用前的组件内状态变量重置](#复用前的组件内状态变量重置)。
 - V1和V2的复用组件可在一定规则下混用，详见[使用限制](#使用限制)第二点。
 - 不建议开发者嵌套滥用\@ReusableV2装饰器，这可能会导致复用效率降低以及内存开销变大。
 
@@ -151,7 +151,7 @@ struct ReusableV2Component {
 
   根据上表，仅支持12种可能的父子关系，不推荐开发者高度嵌套可复用组件，这会造成复用效率降低。
 
-- V2的复用组件当前不支持直接用于Repeat的template中，但是可以用在template中的V2自定义组件中。
+- V2的复用组件当前不支持直接用于[Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)的template中，但是可以用在template中的V2自定义组件中。
 
   ```ts
   @Entry
@@ -354,11 +354,11 @@ struct ReusableV2Component {
 
 | 装饰器     | 重置方法                                                     |
 | ---------- | ------------------------------------------------------------ |
-| \@Local    | 直接使用定义时的初始值重新赋值。                             |
-| \@Param    | 如果有外部传入则使用外部传入值重新赋值，否则用本地初始值重新赋值。注意：\@Once装饰的变量同样会被重置初始化一次。 |
-| \@Event    | 如果有外部传入则使用外部传入值重新赋值，否则用本地初始值重新赋值。如果本地没有初始值，则生成默认的空实现。 |
-| \@Provider | 直接使用定义时的初始值重新赋值。                             |
-| \@Consumer | 如果有对应的\@Provider则直接使用\@Provider对应的值，否则使用本地初始值重新赋值。 |
+| [\@Local](./arkts-new-local.md)    | 直接使用定义时的初始值重新赋值。                             |
+| [\@Param](./arkts-new-param.md)    | 如果有外部传入则使用外部传入值重新赋值，否则用本地初始值重新赋值。注意：\@Once装饰的变量同样会被重置初始化一次。 |
+| [\@Event](./arkts-new-event.md)    | 如果有外部传入则使用外部传入值重新赋值，否则用本地初始值重新赋值。如果本地没有初始值，则生成默认的空实现。 |
+| [\@Provider](./arkts-new-Provider-and-Consumer.md) | 直接使用定义时的初始值重新赋值。                             |
+| [\@Consumer](./arkts-new-Provider-and-Consumer.md) | 如果有对应的\@Provider则直接使用\@Provider对应的值，否则使用本地初始值重新赋值。 |
 | \@Computed | 使用当前最新的值重新计算一次，如果使用到的变量还未被重置，将会使用重置前的值，因此推荐开发者将\@Computed定义在所使用的变量之后。 |
 | \@Monitor  | 在上述所有变量重置完成之后触发。重置过程中产生的变量变化不会触发\@Monitor回调，仅更新IMonitorValue中的before值。重置过程中不产生变化的赋值不会触发\@Monitor的重置。 |
 | 常量       | 包括readonly的常量，不重置。                                 |
@@ -517,7 +517,7 @@ struct ReusableV2Component {
 
 由于冻结机制的存在，在aboutToRecycle中赋值不会被\@Monitor观察到。而在经历完变量重置后，变量又会被赋予新的值，因此对于组件内状态变量来说，在aboutToRecycle中赋值不会有明显的效果；而常量（例如上面的`noDecoInfo`）由于冻结机制的存在，在aboutToRecycle中更改`age`也不会被观察到，并且因为不会被重置，所以相关的\@Monitor也不会被重置，即这里的`age`值本身未被重置，也就不会重置与之绑定的\@Monitor。最终表现出来的现象即：第二步回调的\@Monitor中，`monitor.value()?.before`得到的值为31，而非age的初始值30。
 
-针对这一现象，推荐开发者在复用的场景减少使用类似的常量对象包含\@Trace属性的写法，以确保复用场景的功能符合预期。
+针对这一现象，推荐开发者在复用的场景减少使用类似的常量对象包含[\@Trace](./arkts-new-observedV2-and-trace.md)属性的写法，以确保复用场景的功能符合预期。
 
 ## 使用场景
 
@@ -674,7 +674,7 @@ struct ReusableV2Component {
 ### 在ForEach组件中使用
 >**说明：**
 >
->推荐开发者使用Repeat组件的非懒加载场景代替ForEach组件
+>推荐开发者使用Repeat组件的非懒加载场景代替[ForEach](../../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)组件
 
 下面的例子中使用了ForEach组件渲染了数个可复用组件，由于每次点击`点击修改`按钮时key值都会发生变化，因此从第二次点击开始都会触发回收与复用（由于ForEach先判断有无可复用节点时复用池仍未初始化，因此第一次点击会创建新的节点，而后初始化复用池同时回收节点）。
 
@@ -719,7 +719,7 @@ struct ReusableV2Component {
 ### 在LazyForEach组件中使用
 >**说明：**
 >
->推荐开发者使用Repeat组件的懒加载场景代替LazyForEach组件
+>推荐开发者使用Repeat组件的懒加载场景代替[LazyForEach](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)组件
 
 下面的例子中使用了LazyForEach渲染了数个可复用组件，在滑动时可以先观察到组件创建，直到预加载节点全部创建完成之后，再滑动则触发复用和回收。
 

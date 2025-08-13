@@ -1,5 +1,9 @@
 # OH_Drawing_FontFeature
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 描述文本字体特征结构体。

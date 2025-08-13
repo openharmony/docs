@@ -151,7 +151,7 @@ const nonSendableBucket = sendableRelationalStore.fromSendableValuesBucket(senda
 
 ## sendableRelationalStore.toSendableAsset
 
-function toSendableAsset(asset: NonSendableAsset): Asset
+toSendableAsset(asset: NonSendableAsset): Asset
 
 将不可跨线程传递的附件数据，转换为可跨线程传递的附件数据。
 
@@ -194,7 +194,7 @@ const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 
 ## sendableRelationalStore.fromSendableAsset
 
-function fromSendableAsset(asset: Asset): NonSendableAsset
+fromSendableAsset(asset: Asset): NonSendableAsset
 
 将可跨线程传递的附件数据，转换为不可跨线程传递的附件数据。
 
@@ -347,7 +347,7 @@ type Assets = collections.Array\<Asset>
 
 ## ValueType
 
-type ValueType = null | number | string | boolean | collection.Uint8Array | Asset | Assets | collection.Float32Array | bigint
+type ValueType = null | number | string | boolean | collections.Uint8Array | Asset | Assets | collections.Float32Array | bigint
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 

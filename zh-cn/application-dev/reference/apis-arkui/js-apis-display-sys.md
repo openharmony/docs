@@ -208,7 +208,7 @@ setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
-| reason     | string    | 否   | 更改显示模式的原因。不设置，则默认为空字符串。 |
+| reason     | string    | 是   | 更改显示模式的原因。不设置，则默认为空字符串。 |
 
 **错误码：**
 
@@ -414,7 +414,7 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -457,7 +457,7 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 

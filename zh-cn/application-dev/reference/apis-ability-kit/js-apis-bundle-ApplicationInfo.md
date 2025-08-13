@@ -1,4 +1,9 @@
 # ApplicationInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 应用程序信息，未做特殊说明的属性，均通过[bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated)获取。
 

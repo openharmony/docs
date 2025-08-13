@@ -1,4 +1,9 @@
 # avimage_generator.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 ## 概述
 
@@ -105,7 +110,7 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 | [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
 | int64_t timeUs | 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。 |
 | [OH_AVImageGenerator_QueryOptions](capi-avimage-generator-base-h.md#oh_avimagegenerator_queryoptions) options | 关于给定时间Us和视频帧之间关系的时间选项。 |
-| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md** pixelMap | 获取的视频帧对象。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md)** pixelMap | 获取的视频帧对象。 |
 
 **返回：**
 

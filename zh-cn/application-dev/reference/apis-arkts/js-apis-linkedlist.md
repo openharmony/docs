@@ -1,7 +1,7 @@
 # @ohos.util.LinkedList (线性容器LinkedList)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--SE: @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
@@ -235,7 +235,7 @@ has(element: T): boolean
 let linkedList = new LinkedList<string>();
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
-console.info("result:", result);  // result: 0
+console.info("result:", result);  // result: true
 ```
 
 ### get

@@ -1,5 +1,11 @@
 # Core File Kit（文件基础服务）<!--core-file-api-->
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25-->
+<!--SE: @bubble_mao; @zhuangzhuang; @gsl_1234-->
+<!--TSE: @liuhonggang123-->
+
 - ArkTS API<!--core-file-arkts-->
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)

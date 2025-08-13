@@ -1,4 +1,9 @@
 # app对象内部结构
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 
 app对象包含应用全局配置信息，内部结构如下：

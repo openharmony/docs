@@ -1,7 +1,7 @@
 # jsvm.h
 <!--Kit: Common Basic Capability-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 
@@ -55,7 +55,7 @@
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin(JSVM_Env env,JSVM_Value script,const uint8_t* cachedData,size_t cacheDataLength,bool eagerCompile,bool* cacheRejected,JSVM_ScriptOrigin* origin,JSVM_Script* result)](#oh_jsvm_compilescriptwithorigin) | 编译一串包含 sourcemap 信息的 JavaScript 代码，并返回编译后的脚本。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,JSVM_Value script,size_t optionCount,JSVM_CompileOptions options[],JSVM_Value* result)](#oh_jsvm_compilescriptwithoptions) | 编译一串JavaScript代码，并返回编译后的脚本。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CreateCodeCache(JSVM_Env env,JSVM_Script script,const uint8_t** data,size_t* length)](#oh_jsvm_createcodecache) | 为编译后的脚本创建代码缓存。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_Value* result)](#oh_jsvm_runscript) | 执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_Value* result)](#oh_jsvm_runscript) | 执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，则打印一行日志提示开发者。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_SetInstanceData(JSVM_Env env,void* data,JSVM_Finalize finalizeCb,void* finalizeHint)](#oh_jsvm_setinstancedata) | 将data与当前运行的JSVM环境相关联。后续可以使用OH_JSVM_GetInstanceData()检索data。通过先前调用OH_JSVM_SetInstanceData()设置的任何与当前运行的JSVM环境相关联的现有数据都将被覆盖。如果先前提供了finalizeCb，则不会调用它。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetInstanceData(JSVM_Env env,void** data)](#oh_jsvm_getinstancedata) | 检索通过调用OH_JSVM_SetInstanceData()与当前运行JSVM环境产生关联的数据。如果未设置任何关联数据，该函数调用将成功，且data设置为NULL。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetLastErrorInfo(JSVM_Env env,const JSVM_ExtendedErrorInfo** result)](#oh_jsvm_getlasterrorinfo) | 检索JSVM_ExtendedErrorInfo结构，其中包含发生的最后一个错误的有关信息。返回的JSVM_ExtendedErrorInfo的内容仅在对同一env调用JSVM-API函数之前有效。这包括对OH_JSVM_IsExceptionPending的调用，因此可能经常需要复制信息以便以后使用。error_message中返回的指针指向一个静态定义的字符串，因此如果你在调用另一个JSVM-API函数之前将它从error_message字段（将被覆盖）中复制出来，则可以安全地使用该指针。 |
@@ -216,10 +216,10 @@
 | [JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript(JSVM_Env env, JSVM_Script script)](#oh_jsvm_retainscript) | 持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseScript(JSVM_Env env, JSVM_Script script)](#oh_jsvm_releasescript) | 释放由 OH_JSVM_RetainScript 保留的脚本，释放后应避免对传入 script 的再次使用。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName(JSVM_Env env,int pid,const char* name)](#oh_jsvm_openinspectorwithname) | 打开一个名为 name 的 inspector，为其打开对应 pid 的 unix domain 端口。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,const uint8_t *wasmBytecode,size_t wasmBytecodeLength,const uint8_t *cacheData,size_t cacheDataLength,bool *cacheRejected,JSVM_Value *wasmModule)](#oh_jsvm_compilewasmmodule) | 将 WebAssembly 字节码编译得到一个 WebAssembly 模块。如果提供了 WebAssembly 缓存，则会先尝试对缓存进行反序列化。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmFunction(JSVM_Env env,JSVM_Value wasmModule,uint32_t functionIndex,JSVM_WasmOptLevel optLevel)](#oh_jsvm_compilewasmfunction) | 对当前 WebAssembly 模块中指定索引的函数进行指定优化等级的编译优化。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,const uint8_t *wasmBytecode,size_t wasmBytecodeLength,const uint8_t *cacheData,size_t cacheDataLength,bool *cacheRejected,JSVM_Value *wasmModule)](#oh_jsvm_compilewasmmodule) | 将 WebAssembly 字节码编译得到一个 WebAssembly 模块。如果提供了 WebAssembly 缓存，则会先尝试对缓存进行反序列化。如果没有 JIT 权限支持，则打印一行日志提示开发者。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmFunction(JSVM_Env env,JSVM_Value wasmModule,uint32_t functionIndex,JSVM_WasmOptLevel optLevel)](#oh_jsvm_compilewasmfunction) | 对当前 WebAssembly 模块中指定索引的函数进行指定优化等级的编译优化。如果没有 JIT 权限支持，则打印一行日志提示开发者。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_IsWasmModuleObject(JSVM_Env env,JSVM_Value value,bool* result)](#oh_jsvm_iswasmmoduleobject) | 判断给定的 JSVM_Value 是否是一个 WebAssembly 模块。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,JSVM_Value wasmModule,const uint8_t** data,size_t* length)](#oh_jsvm_createwasmcache) | 为给定的 WebAssembly 模块生成缓存。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,JSVM_Value wasmModule,const uint8_t** data,size_t* length)](#oh_jsvm_createwasmcache) | 为给定的 WebAssembly 模块生成缓存。如果没有 JIT 权限支持，则打印一行日志提示开发者。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseCache(JSVM_Env env,const uint8_t* cacheData,JSVM_CacheType cacheType)](#oh_jsvm_releasecache) | 释放给定类型的缓存数据。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_IsBigIntObject(JSVM_Env env,JSVM_Value value,bool* result)](#oh_jsvm_isbigintobject) | 判断给定的 JSVM_Value 是否是一个 BigInt对象。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_IsBooleanObject(JSVM_Env env,JSVM_Value value,bool* result)](#oh_jsvm_isbooleanobject) | 判断给定的 JSVM_Value 是否是一个 Boolean对象。 |
@@ -779,7 +779,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_V
 
 **描述**
 
-执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。
+执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，则打印一行日志提示开发者。
 
 **起始版本：** 11
 
@@ -5188,7 +5188,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,const uint8_t *wa
 
 **描述**
 
-将 WebAssembly 字节码编译得到一个 WebAssembly 模块。如果提供了 WebAssembly 缓存，则会先尝试对缓存进行反序列化。
+将 WebAssembly 字节码编译得到一个 WebAssembly 模块。如果提供了 WebAssembly 缓存，则会先尝试对缓存进行反序列化。如果没有 JIT 权限支持，则打印一行日志提示开发者。
 
 **起始版本：** 12
 
@@ -5209,7 +5209,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,const uint8_t *wa
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示 env 或 wasmBytecode 参数为空，或传入的数据长度参数无效。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示编译失败。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示 env 或 wasmBytecode 参数为空，或传入的数据长度参数无效。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示编译失败。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。<br>         [JSVM_JIT_MODE_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示当前环境没有 JIT 权限支持。 |
 
 ### OH_JSVM_CompileWasmFunction()
 
@@ -5219,7 +5219,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmFunction(JSVM_Env env,JSVM_Value wasm
 
 **描述**
 
-对当前 WebAssembly 模块中指定索引的函数进行指定优化等级的编译优化。
+对当前 WebAssembly 模块中指定索引的函数进行指定优化等级的编译优化。如果没有 JIT 权限支持，则打印一行日志提示开发者。
 
 **起始版本：** 12
 
@@ -5237,7 +5237,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmFunction(JSVM_Env env,JSVM_Value wasm
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示 env 或 wasmModule 参数为空，或 wasmModule 不是一个真正的 WebAssembly 模块。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示函数索引越界，或编译失败。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示 env 或 wasmModule 参数为空，或 wasmModule 不是一个真正的 WebAssembly 模块。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示函数索引越界，或编译失败。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。<br>         [JSVM_JIT_MODE_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示当前环境没有 JIT 权限支持。 |
 
 ### OH_JSVM_IsWasmModuleObject()
 
@@ -5274,7 +5274,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,JSVM_Value wasmModu
 
 **描述**
 
-为给定的 WebAssembly 模块生成缓存。
+为给定的 WebAssembly 模块生成缓存。如果没有 JIT 权限支持，则打印一行日志提示开发者。
 
 **起始版本：** 12
 
@@ -5292,7 +5292,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,JSVM_Value wasmModu
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示传入了空指针参数。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示缓存生成失败。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示传入了空指针参数。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示缓存生成失败。<br>         [JSVM_JIT_MODE_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示当前环境没有 JIT 权限支持。 |
 
 ### OH_JSVM_ReleaseCache()
 
