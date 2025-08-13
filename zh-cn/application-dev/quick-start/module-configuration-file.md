@@ -1,8 +1,8 @@
 # module.json5配置文件
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @hanfeng6-->
-<!--SE: @hanfeng6; @lihaitao-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
 <!--TSE: @kongjing2-->
 
 ## 配置文件示例
