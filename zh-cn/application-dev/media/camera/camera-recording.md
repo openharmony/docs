@@ -42,7 +42,7 @@
      if (avRecorder === undefined) {
        return undefined;
      }
-     avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
+     await avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
          console.info('prepare success');
        } else {
