@@ -31,19 +31,19 @@ The parameter isEnabled is invalid.
 
 确保传入参数isEnabled的类型正确。
 
-## 10801002  参数config无效
+## 10801002  参数configs无效
 
 **错误信息**
 
-The parameter config is invalid.
+The parameter configs is invalid.
 
 **错误描述**
 
-在调用接口函数enableLeakWatcher时，传入无效参数config。
+在调用接口函数enableLeakWatcher时，传入无效参数configs。
 
 **可能原因**
 
-1.传入参数config的类型错误。
+1.传入参数configs的类型错误。
 
 2.必填参数未指定。
 
@@ -51,7 +51,7 @@ The parameter config is invalid.
 
 **处理步骤**
 
-确保传入参数config的类型正确。
+确保传入参数configs的类型正确。
 
 ## 10801003  参数callback无效
 
