@@ -583,7 +583,7 @@ export default class EntryAbility extends UIAbility {
         }
         ```
 
-    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#modulejson5配置文件)中配置routerMap路由映射。
+    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#routermap标签)中配置routerMap路由映射。
 
         ```ts
         // module.json5
