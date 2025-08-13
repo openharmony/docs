@@ -206,7 +206,7 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 ```typescript
 import { BusinessError } from '@kit.BasicServicesKit';
-mport { Callback } from '@ohos.base';
+import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
   console.info('callback success: ' + data);
