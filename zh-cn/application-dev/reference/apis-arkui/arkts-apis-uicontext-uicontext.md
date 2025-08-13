@@ -275,11 +275,6 @@ getMediaQuery(): MediaQuery
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
-
 ## getRouter
 
 getRouter(): Router
