@@ -1,4 +1,9 @@
 # Image Kit（图片处理服务）
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 - [Image Kit简介](image-overview.md)
 - 图片开发指导(ArkTS)<!--image-arkts-dev-->
