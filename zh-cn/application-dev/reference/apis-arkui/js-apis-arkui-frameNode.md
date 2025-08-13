@@ -2206,6 +2206,108 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 请参考[动画创建与取消示例](#动画创建与取消示例)。
 
+### invalidateAttributes<sup>21+</sup>
+
+invalidateAttributes(): void
+
+在当前帧触发节点属性更新。<br/>
+
+当前节点的属性在构建阶段之后被修改，这些改动不会立即生效，而是会延迟到下一帧统一处理。<br/>
+此功能强制当前帧内的即时节点更新，确保同步应用渲染效果。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：** 
+
+ 从API version 21开始，通过if else动态切换两个节点，并且在节点创建时调用invalidateAttributes触发节点属性更新,避免组件切换过程中出现闪烁。
+ 
+ ```ts
+ //index.ets
+import { FrameNode, NodeController, typeNode, NodeContent } from '@kit.ArkUI';
+
+class MyNodeAdapterController extends NodeController {
+  rootNode: FrameNode | null = null;
+  imageUrl: string = "";
+  constructor(imageUrl:string) {
+    super();
+    this.imageUrl = imageUrl;
+  }
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r(this.imageUrl))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    return imageNode;
+  }
+}
+@Component
+struct NodeComponent3 {
+  private rootSlot: NodeContent = new NodeContent();
+  aboutToAppear(): void {
+    const uiContext = this.getUIContext();
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r('app.media.startIcon'))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    this.rootSlot.addFrameNode(imageNode);
+  }
+  build() {
+    ContentSlot(this.rootSlot)
+  }
+}
+@Component
+struct NodeComponent4 {
+  private rootSlot: NodeContent = new NodeContent();
+  aboutToAppear(): void {
+    const uiContext = this.getUIContext();
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r('app.media.startIcon'))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    this.rootSlot.addFrameNode(imageNode);
+  }
+  build() {
+    ContentSlot(this.rootSlot)
+  }
+}
+@Entry
+@Component
+struct ListNodeTest {
+  @State flag: boolean = true;
+  adapterController: MyNodeAdapterController = new MyNodeAdapterController('app.media.startIcon');
+  build() {
+    Column() {
+      Text("ListNode Adapter");
+      if (this.flag) {
+        NodeComponent3()
+      } else {
+        NodeComponent4()
+      }
+      if (this.flag) {
+        NodeContainer(this.adapterController)
+          .width(300).height(300)
+          .borderWidth(1).borderColor(Color.Black)
+      } else {
+        NodeContainer(this.adapterController)
+          .width(300).height(300)
+          .borderWidth(1).borderColor(Color.Black)
+      }
+      if (this.flag) {
+        Image($r('app.media.startIcon')).width(100).height(100).syncLoad(true)
+      } else {
+        Image($r('app.media.startIcon')).width(100).height(100).syncLoad(true)
+      }
+      Button('change').onClick(() => {
+        this.flag = !this.flag;
+      })
+    }.borderWidth(1)
+    .width("100%")
+  }
+}
+ ```
+
 ## TypedFrameNode<sup>12+</sup>
 
 TypedFrameNode继承自[FrameNode](#framenode-1)，用于声明具体类型的FrameNode。
