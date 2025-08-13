@@ -35,7 +35,7 @@
 
    > **说明：**
    >
-   > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
+   > 需要在avRecorder完成赋值后，再进行剩余操作。
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -43,11 +43,12 @@
 
    private avRecorder: media.AVRecorder | undefined = undefined;
 
-   media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     this.avRecorder = recorder;
-   }, (error: BusinessError) => {
-     console.error(`createAVRecorder failed`);
-   });
+   try {
+     this.avRecorder = await media.createAVRecorder();
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to create avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
@@ -60,14 +61,14 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // 状态上报回调函数。
-   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-     console.info(`current state is ${state}`);
+   this.avRecorder?.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+     console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
      // 用户可以在此补充状态发生切换后想要进行的动作。
    });
 
    // 错误上报回调函数。
-   this.avRecorder.on('error', (err: BusinessError) => {
-     console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
+   this.avRecorder?.on('error', (error) => {
+     console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
    });
    ```
 
@@ -106,54 +107,56 @@
      profile: avProfile,
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处。
    };
-    
-   this.avRecorder.prepare(avConfig).then(() => {
-     console.info('Invoke prepare succeeded.');
-   }, (err: BusinessError) => {
-     console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-   });
+  
+   try {
+     await this.avRecorder?.prepare(avConfig);
+     console.info('Succeeded in preparing avRecorder');
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to prepare avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 4. 开始录制，调用start()接口，此时进入started状态。
 
    ```ts
    // 开始录制。
-   await this.avRecorder.start();
+   await this.avRecorder?.start();
    ```
 
 5. 暂停录制，调用pause()接口，此时进入paused状态。
 
    ```ts
    // 暂停录制。
-   await this.avRecorder.pause();
+   await this.avRecorder?.pause();
    ```
 
 6. 恢复录制，调用resume()接口，此时再次进入started状态。
 
    ```ts
    // 恢复录制。
-   await this.avRecorder.resume();
+   await this.avRecorder?.resume();
    ```
 
 7. 停止录制，调用stop()接口，此时进入stopped状态。
 
    ```ts
    // 停止录制。
-   await this.avRecorder.stop();
+   await this.avRecorder?.stop();
    ```
 
 8. 重置资源，调用reset()重新进入idle状态，允许重新配置录制参数。
 
    ```ts
    // 重置资源。
-   await this.avRecorder.reset();
+   await this.avRecorder?.reset();
    ```
 
 9. 销毁实例，调用release()进入released状态，退出录制。
 
    ```ts
    // 销毁实例。
-   await this.avRecorder.release();
+   await this.avRecorder?.release();
    ```
 
 ## 完整示例
@@ -190,16 +193,16 @@ export class AudioRecorderDemo extends CustomComponent {
       this.fileFd = audioFile.fd;
   }
 
-  // 注册audioRecorder回调函数。
-  setAudioRecorderCallback() {
+  // 注册avRecorder回调函数。
+  setAVRecorderCallback() {
     if (this.avRecorder !== undefined) {
       // 状态机变化回调函数。
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.info(`AudioRecorder current state is ${state}`);
+        console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
       });
       // 错误上报回调函数。
-      this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
+      this.avRecorder.on('error', (error: BusinessError) => {
+        console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
       });
     }
   }
@@ -212,7 +215,7 @@ export class AudioRecorderDemo extends CustomComponent {
     }
     // 1.创建录制实例。
     this.avRecorder = await media.createAVRecorder();
-    this.setAudioRecorderCallback();
+    this.setAVRecorderCallback();
     // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档。
     await this.createAndSetFd();
 
