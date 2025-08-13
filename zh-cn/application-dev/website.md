@@ -1,5 +1,7 @@
 # OpenHarmony应用开发文档
 - reference文件夹<!--reference-fold-->
+  - 原子化服务批量添加标签<!---->
+    - [AtomicServiceNavigation](onlyfortest/reference/apis-arkdata/ohos-atomicservice-AtomicServiceNavigation.md)
   - C APIC API新增版本筛选标签需求<!--reference-fold--0624-->
     - [@ohos.data.dataAbility (DataAbility谓词)](onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
     - [以errorcode-*开头文档](onlyfortest/reference/apis-media-kit/errorcode-media.md)
@@ -62,6 +64,7 @@
           - [native_avsession_errors.h](onlyfortest/reference/apis-avsession-kit/native__avsession__errors_8h.md)
         - 结构体<!--reference-c-avsession-struct-->
           - [AVSession_PlaybackPosition](onlyfortest/reference/apis-avsession-kit/_a_v_session___playback_position.md)
+
 - 非reference文件夹<!--not-reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not-reference-fold--0624-->
     - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
