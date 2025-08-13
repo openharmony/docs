@@ -171,7 +171,7 @@ int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功，返回指向对应窗口id的避让区域的指针。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
 
 ### OH_WindowManager_ShowWindow()
 
@@ -196,7 +196,7 @@ int32_t OH_WindowManager_ShowWindow(int32_t windowId)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功，返回指向对应窗口id的避让区域的指针。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
 
 ### OH_WindowManager_SetWindowTouchable()
 

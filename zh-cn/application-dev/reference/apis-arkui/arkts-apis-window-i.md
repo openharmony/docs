@@ -31,16 +31,16 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称                                   | 类型 |  必填 | 说明                                                         |
-| -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后，`isStatusBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarColor                     | string   |  否   | 三键导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 三键导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 三键导航栏文字颜色。当设置此属性后，`isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
-| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能三键导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.Window.SessionManager|
+| 名称                                   | 类型 | 只读 | 可选 | 说明                                                         |
+| -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
+| statusBarColor                         | string   |  否  |  是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否  |  是   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| statusBarContentColor<sup>8+</sup>     | string   |  否  |  是   | 状态栏文字颜色。当设置此属性后，`isStatusBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarColor                     | string   |  否  |  是   | 三键导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否  |  是   | 三键导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarContentColor<sup>8+</sup> | string   |  否  |  是   | 三键导航栏文字颜色。当设置此属性后，`isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| enableStatusBarAnimation<sup>12+</sup> | boolean  |  否  |  是   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
+| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否  |  是   | 是否使能三键导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br><!--RP13--><!--RP13End--> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## StatusBarProperty<sup>18+</sup>
 
@@ -48,9 +48,9 @@
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-| 名称                                   | 类型 |  必填 | 说明 |
-| ------------------------------------- | -------- | ---- |------- |
-| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| 名称                                   | 类型 |  只读 |   可选  | 说明 |
+| ------------------------------------- | -------- | ---- | ---- | ------- |
+| contentColor     | string   |  否  |  否   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -232,9 +232,9 @@
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型   | 必填 | 说明                                       |
-| ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | 否 | 目标屏幕ID，该参数应为整数，输入非整数时将向下取整。填入该参数时，将移动到相对于目标屏幕左上角的指定位置。此参数不填或传入目标屏幕ID不存在时，将移动到相对于当前屏幕左上角的指定位置。 |
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| displayId | number | 否 | 是 |目标屏幕ID，该参数应为整数，输入非整数时将向下取整。填入该参数时，将移动到相对于目标屏幕左上角的指定位置。此参数不填或传入目标屏幕ID不存在时，将移动到相对于当前屏幕左上角的指定位置。 |
 
 ## WindowDensityInfo<sup>15+</sup>
 
@@ -258,9 +258,9 @@
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型   | 必填 | 说明                                       |
-| ------ | ------ | ---- | ------------------------------------------ |
-| windowRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- |------------------------------------------ |
+| windowRect | [Rect](arkts-apis-window-i.md#rect7)  | 否 | 否 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
 
 ## KeyboardInfo<sup>18+</sup>
 
@@ -268,12 +268,12 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型   | 必填 | 说明                                       |
-| ------ | ------ | ---- | ------------------------------------------ |
-| beginRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画开始前软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| endRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画结束后软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| config<sup>20+</sup> | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)  | 否 | 动画配置信息。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| beginRect | [Rect](arkts-apis-window-i.md#rect7)  |  否  |  否   | 动画开始前软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| endRect | [Rect](arkts-apis-window-i.md#rect7)  |  否  |  否   | 动画结束后软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| animated<sup>20+</sup> | boolean  |  否  |  是   | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| config<sup>20+</sup> | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)  |  否  |  是  | 动画配置信息。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ShowWindowOptions<sup>20+</sup>
 
@@ -283,9 +283,9 @@
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型   | 必填 | 说明                                       |
-| ------ | ------ | ---- | ------------------------------------------ |
-| focusOnShow | boolean  | 否 | 窗口调用[showWindow()](arkts-apis-window-Window.md#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- |------------------------------------------ |
+| focusOnShow | boolean  |  否  |  是  | 窗口调用[showWindow()](arkts-apis-window-Window.md#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
 
 ## WindowAnimationConfig<sup>20+</sup>
 
@@ -295,11 +295,11 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称     | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| curve    | [WindowAnimationCurve](arkts-apis-window-e.md#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
-| duration | number                                                    | 否   | 动画播放的时长，单位毫秒（ms）。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
-| param    | [WindowAnimationCurveParam](arkts-apis-window-t.md#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
+| 名称     | 类型                                                      | 只读 | 可选 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ---- |------------------------------------------------------------ |
+| curve    | [WindowAnimationCurve](arkts-apis-window-e.md#windowanimationcurve20)           |  否  |  否   | 动画曲线类型。                                               |
+| duration | number                                                    |  否  |  是   | 动画播放的时长，单位毫秒（ms）。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
+| param    | [WindowAnimationCurveParam](arkts-apis-window-t.md#windowanimationcurveparam20) |  否  |  是   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
 
 ## WindowInfo<sup>18+</sup>
 
@@ -325,10 +325,10 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称    | 类型                                              | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
-| opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                                                         |
+| ------- | ------------------------------------------------- | ---- | ---- |------------------------------------------------------------ |
+| config  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) |  否  |  否   | 本次转场动画配置。                                           |
+| opacity | number                                            |  否  |  是   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
 
 ## StartAnimationParams<sup>20+</sup>
 
@@ -370,9 +370,9 @@
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | -------------------------- |
-| data | T    | 是   | 回调函数调用时需要传入T类型的参数。 |
+| 参数名 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | -------------------------- |
+| data | T    |  否  |  是   | 回调函数调用时需要传入T类型的参数。 |
 
 **返回值：**
 
@@ -425,9 +425,9 @@
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | -------------------------- |
-| info | T    | 是   | 回调函数调用时系统传入[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)类型的参数。 |
+| 参数名 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | -------------------------- |
+| info | T    |  否  |  否   | 回调函数调用时系统传入[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)类型的参数。 |
 
 **返回值：**
 
