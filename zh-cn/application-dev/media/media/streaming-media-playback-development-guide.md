@@ -1,4 +1,9 @@
 # 使用AVPlayer播放流媒体(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 
 本开发指导将介绍如何使用[AVPlayer](media-kit-intro.md#avplayer)开发流媒体直播和点播功能。示例展示如何完整播放流媒体视频，实现端到端的流媒体资源播放。
 本指导仅介绍流媒体播放功能。本地音视频播放等其他场景，请参考[视频播放](video-playback.md)。

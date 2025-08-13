@@ -1,4 +1,9 @@
 # Functions
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -341,7 +346,7 @@ async function CreatePixelMapFromParcel() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -1229,10 +1234,13 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { image } from '@kit.ImageKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // 获取图像资源。
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
@@ -1278,10 +1286,13 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { image } from '@kit.ImageKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);

@@ -168,7 +168,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { videoProcessingEngine } from '@kit.ImageKit';
+import { image, videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -213,7 +213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { videoProcessingEngine } from '@kit.ImageKit';
+import { image, videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -260,7 +260,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { videoProcessingEngine } from '@kit.ImageKit';
+import { image, videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -307,7 +307,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { videoProcessingEngine } from '@kit.ImageKit';
+import { image, videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;

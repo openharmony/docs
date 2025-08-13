@@ -1,5 +1,9 @@
 # @ohos.app.form.formInfo (formInfo)
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
 > **说明：**
@@ -126,6 +130,7 @@ import { formInfo } from '@kit.FormKit';
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    （其他位置） <br>DESKTOP                       0     （桌面） <br>FORM_CENTER                   1     （桌面的卡片中心） <br>FORM_MANAGER                  2     （桌面的卡片管理器） <br>NEGATIVE_SCREEN               3     （负一屏） <br>FORM_CENTER_NEGATIVE_SCREEN   4     （负一屏的服务中心） <br>FORM_MANAGER_NEGATIVE_SCREEN  5     （负一屏的卡片管理器） <br>SCREEN_LOCK                   6     （锁屏） <br>AI_SUGGESTION                 7     （小艺建议推荐区）|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ORIGINAL_FORM_KEY<sup>20+</sup> | 'ohos.extra.param.key.original_form_id' | 用groupId关联的一组卡片，在调整大小时，会先创建新尺寸的卡片，再删除旧尺寸的卡片。新尺寸卡片创建时want参数会通过该key传递旧尺寸卡片的卡片id。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## FormDimension
 
@@ -197,6 +202,7 @@ import { formInfo } from '@kit.FormKit';
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
+| FORM_SIZE_CHANGE<sup>20+<sup>    | 3   | 表示卡片创建原因为尺寸变化。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## OverflowInfo<sup>20+</sup>
 

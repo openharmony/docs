@@ -1,4 +1,9 @@
 # \@Monitor装饰器：状态变量修改监听
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了增强状态管理框架对状态变量变化的监听能力，开发者可以使用\@Monitor装饰器对状态变量进行监听。
 
@@ -79,28 +84,11 @@ struct Index {
 | \@Monitor属性装饰器 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数          | 字符串类型的对象属性名。可同时监听多个对象属性，每个属性以逗号隔开，例如@Monitor("prop1", "prop2")。可监听深层的属性变化，如多维数组中的某一个元素，嵌套对象或对象数组中的某一个属性。详见[监听变化](#监听变化)。 |
-| 装饰对象            | \@Monitor装饰成员方法。当监听的属性发生变化时，会触发该回调方法。该回调方法以[IMonitor类型](#imonitor类型)的变量作为参数，开发者可以从该参数中获取变化前后的相关信息。 |
+| 装饰对象            | \@Monitor装饰成员方法。当监听的属性发生变化时，会触发该回调方法。该回调方法以[IMonitor类型](../../reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md#imonitor12)的变量作为参数，开发者可以从该参数中获取变化前后的相关信息。 |
 
 ## 接口说明
 
-### IMonitor类型
-
-IMonitor类型的变量用作\@Monitor装饰方法的参数。
-
-| 属性       | 类型            | 参数          | 返回值             | 说明                                                         |
-| ---------- | --------------- | ------------- | ------------------ | ------------------------------------------------------------ |
-| dirty      | Array\<string\> | 无            | 无                 | 保存发生变化的属性名。                                       |
-| value\<T\> | function        | path?: string | IMonitorValue\<T\> | 获得指定属性（path）的变化信息。当不填path时返回@Monitor监听顺序中第一个改变的属性的变化信息。 |
-
-### IMonitorValue\<T\>类型
-
-IMonitorValue\<T\>类型保存了属性变化的信息，包括属性名、变化前值、当前值。
-
-| 属性   | 类型   | 说明                       |
-| ------ | ------ | -------------------------- |
-| before | T      | 监听属性变化之前的值。     |
-| now    | T      | 监听属性变化之后的当前值。 |
-| path   | string | 监听的属性名。             |
+IMonitor类型和IMonitorValue\<T\>类型的接口说明参考API文档：[状态变量变化监听](../../reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)。
 
 ## 监听变化
 
@@ -253,7 +241,7 @@ struct Index {
   outer: Outer = new Outer();
   build() {
     Column() {
-      Button("change name")
+      Button("change num")
         .onClick(() => {
           this.outer.inner.num = 100; // 能够触发onChange方法
         })
@@ -518,6 +506,49 @@ struct Index {
       Button("change name")
         .onClick(() => {
           this.info.name = "Jack"; // 仅会触发onNameChangeDuplicate方法
+        })
+    }
+  }
+}
+```
+
+- 当@Monitor传入多个路径参数时，以参数的全拼接结果判断是否重复监听。以下示例中，`Monitor 1`、`Monitor 2`与`Monitor 3`都监听了name属性的变化。由于`Monitor 2`与`Monitor 3`的入参全拼接相等，因此`Monitor 2`不生效，仅`Monitor 3`生效。当name属性变化时，将同时触发onNameAgeChange与onNamePositionChangeDuplicate方法。但请注意，`Monitor 2`与`Monitor 3`的写法仍然被视作在一个类中对同一个属性进行多次@Monitor的监听，这是不建议的。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  @Trace position: string = "North";
+  @Monitor("name", "age") // Monitor 1
+  onNameAgeChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  @Monitor("name", "position") // Monitor 2
+  onNamePositionChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  // 重复监听name、position，仅最后定义的生效
+  @Monitor("name", "position") // Monitor3
+  onNamePositionChangeDuplicate(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change name")
+        .onClick(() => {
+          this.info.name = "Jack"; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
         })
     }
   }

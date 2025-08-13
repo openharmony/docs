@@ -208,9 +208,9 @@ Represents a class for defining a uniform data type. It provides properties and 
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name   | Type                   | Readable| Writable| Description                                                      |
+| Name   | Type                   | Read-Only| Optional| Description                                                      |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
-| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type, which is a value of [UniformDataType](#uniformdatatype).|
+| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type (that is, the enum value in [UTD list](#uniformdatatype)), or a custom UTD.|
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | Yes  | No  | Data types to which the uniform data type belongs.                                  |
 | description<sup>11+</sup>     | string                  | Yes  | No  | Brief description of the uniform data type.                                           |
 | referenceURL<sup>11+</sup>     | string                  | Yes  | No  | URL of the link to the reference (detailed information) of the uniform data type.                           |

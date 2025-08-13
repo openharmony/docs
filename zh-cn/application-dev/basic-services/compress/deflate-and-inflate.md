@@ -1,4 +1,9 @@
 # 压缩与解压
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jinsenjun-->
+<!--SE: @jinsenjun-->
+<!--TSE: @lixueqing-->
 
 本文针对常见的几种压缩、解压场景，介绍相关函数的使用方法。
 
@@ -313,6 +318,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;
@@ -466,6 +472,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;

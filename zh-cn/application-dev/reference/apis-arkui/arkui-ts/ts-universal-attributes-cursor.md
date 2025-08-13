@@ -1,4 +1,9 @@
 # 鼠标光标控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 控制鼠标光标的显示样式。
 
@@ -21,9 +26,9 @@ setCursor(value: PointerStyle): void
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是   | 设置的鼠标样式。 |
+| value | [PointerStyle](#pointerstyle12) | 是   | 设置的鼠标样式。 |
 
 
 ### restoreDefault
@@ -36,6 +41,20 @@ restoreDefault(): void
 
 方法语句中可使用的全局接口，调用此接口可将鼠标光标恢复成默认箭头样式。
 
+## PointerStyle<sup>12+</sup>
+
+type PointerStyle = pointer.PointerStyle
+
+光标样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
+
+|类型|说明|
+| -- | -- |
+|[pointer.PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
+
 
 ## 示例
 
@@ -43,7 +62,7 @@ restoreDefault(): void
 
 > **说明：**
 > 
-> 直接使用cursorControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12)获取绑定实例的cursorControl。
+> 直接使用cursorControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../arkts-apis-uicontext-uicontext.md)实例，并使用[getCursorController](../arkts-apis-uicontext-uicontext.md#getcursorcontroller12)获取绑定实例的cursorControl。
 
 ```ts
 // xxx.ets

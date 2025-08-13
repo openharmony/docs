@@ -269,7 +269,7 @@ libnative_display_soloist.so
    {
        // ...
        // Unregister the callback function for each frame.
-       OH_DisplaySoloist_Stop(g_displaySync[id]);; 
+       OH_DisplaySoloist_Stop(g_displaySync[id]);
        // ...
    }
    
@@ -293,7 +293,6 @@ libnative_display_soloist.so
         {"unregister", nullptr, SampleXComponent::NapiUnregister, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroy", nullptr, SampleXComponent::NapiDestroy, nullptr, nullptr, nullptr, napi_default, nullptr}};
    
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         SAMPLE_LOGE("Export: napi_define_properties failed");
     }

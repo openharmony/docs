@@ -3,7 +3,7 @@
 
 ## Overview
 
-The AbilityRuntime module provides capabilities related to the ability framework.
+The module provides capabilities related to the ability framework.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,23 +29,24 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br>} | Enumerates the error codes used by the ability framework.|
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br>} | Enumerates the data encryption levels.    |
 | [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br>} | Enumerates the visibility modes of the window and dock bar icons when the ability is started.    |
-| [AbilityRuntime_WindowMode](#abilityruntime_supportedwindowmode) {<br>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,<br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br>} | Enumerates the window modes in which an ability can be displayed at startup.    |
+| [AbilityRuntime_WindowMode](#abilityruntime_windowmode) {<br>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,<br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br>} | Enumerates the window modes in which an ability can be displayed at startup.    |
 | [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) {<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN = 0,<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_SPLIT = 1,<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FLOATING = 2<br>} | Enumerates the window modes supported by an ability when it is started.    |
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cache directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | Obtains the application-level data encryption level.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cache directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | Obtains the application-level data encryption level of the application.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleName](#oh_abilityruntime_applicationcontextgetbundlename)(char* buffer, int32_t bufferSize, int32_t* writeLength) | Obtains the bundle name of the application.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level temporary file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level common file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level database file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level preferences file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level installation file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level distributed file directory.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cloud file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level temporary file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level common file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level database file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level preferences file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level installation file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level distributed file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cloud file directory of the application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetResourceDir](#oh_abilityruntime_applicationcontextgetresourcedir)(const char* moduleName, char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level resource directory of the application.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbility](#oh_abilityruntime_startselfuiability)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want) | Starts the UIAbility of the current application.|
 | [AbilityRuntime_StartOptions*](#abilityruntime_startoptions) [OH_AbilityRuntime_CreateStartOptions](#oh_abilityruntime_createstartoptions)(void) | Creates the StartOptions struct required for starting the UIAbility of the current application.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_DestroyStartOptions](#oh_abilityruntime_destroystartoptions)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) **startOptions) | Destroys a StartOptions struct.|
@@ -65,8 +66,8 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowWidth](#oh_abilityruntime_getstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowWidth) | Obtains the width of the window when the ability is started, in px.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | Sets the visibility of the window and dock bar icons when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | Obtains the visibility of the window and dock bar icons when the ability is started.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) *startWindowIcon) | Sets the startup icon of the window when the ability is started.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) **startWindowIcon) | Obtains the startup icon of the window when the ability is started.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) *startWindowIcon) | Sets the startup icon of the window when the ability is started.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) **startWindowIcon) | Obtains the startup icon of the window when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_setstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, const char *startWindowBackgroundColor) | Sets the background color of the window when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_getstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, char **startWindowBackgroundColor, size_t &size) | Obtains the background color of the window when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsSupportedWindowModes](#oh_abilityruntime_setstartoptionssupportedwindowmodes)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) *supportedWindowModes, size_t size) | Sets the window modes supported by the ability when it is started.|
@@ -194,7 +195,7 @@ enum AbilityRuntime_SupportedWindowMode
 
 **Description**
 
-Enumerates the window modes supported by an ability when it is started. The supported window mode specifies whether to display the maximize, minimize, or split-screen button when the UIAbility is launched in an application. If this enum is not set, the value of **supportWindowMode** configured under [abilities](../../quick-start/module-configuration-file.md#abilities) in the [module.json5 file](../../quick-start/module-configuration-file.md) corresponding to the UIAbility is used by default.
+Enumerates the window modes supported by an ability when it is started. The supported window mode specifies whether to display the maximize, minimize, or split-screen button when the UIAbility is launched in an application. If this enum is not set, the value of **supportWindowMode** configured under [abilities](../../quick-start/module-configuration-file.md#abilities) in the [module.json5](../../quick-start/module-configuration-file.md) file corresponding to the UIAbility is used by default.
 
 **Since**: 17
 
@@ -214,7 +215,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(char* b
 ```
 **Description**
 
-Obtains the application-level cache directory.
+Obtains the application-level cache directory of the application.
 
 **Since**: 13
 
@@ -223,16 +224,16 @@ Obtains the application-level cache directory.
 | Name| Description|
 | -------- | -------- |
 | buffer | Pointer to the buffer. The cache directory string is written to this area.|
-| bufferSize | Buffer size.|
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize | Buffer siz, in bytes.|
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetAreaMode
 
@@ -242,7 +243,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(Ability
 
 **Description**
 
-Obtains the application-level data encryption level.
+Obtains the application-level data encryption level of the application.
 
 **Since**: 13
 
@@ -254,11 +255,11 @@ Obtains the application-level data encryption level.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **areaMode** is a null pointer.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **areaMode** is null.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetBundleName
 
@@ -277,16 +278,16 @@ Obtains the bundle name of the application.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The bundle name string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetTempDir
 
@@ -296,7 +297,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* bu
 
 **Description**
 
-Obtains the application-level temporary file directory.
+Obtains the application-level temporary file directory of the application.
 
 **Since**: 16
 
@@ -305,16 +306,16 @@ Obtains the application-level temporary file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetFilesDir
 
@@ -324,7 +325,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* b
 
 **Description**
 
-Obtains the application-level common file directory.
+Obtains the application-level common file directory of the application.
 
 **Since**: 16
 
@@ -333,16 +334,16 @@ Obtains the application-level common file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
 
@@ -352,7 +353,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char
 
 **Description**
 
-Obtains the application-level database file directory.
+Obtains the application-level database file directory of the application.
 
 **Since**: 16
 
@@ -361,16 +362,16 @@ Obtains the application-level database file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetPreferencesDir
 
@@ -380,7 +381,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(c
 
 **Description**
 
-Obtains the application-level preferences file directory.
+Obtains the application-level preferences file directory of the application.
 
 **Since**: 16
 
@@ -389,16 +390,16 @@ Obtains the application-level preferences file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetBundleCodeDir
 
@@ -408,7 +409,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(ch
 
 **Description**
 
-Obtains the application-level installation file directory.
+Obtains the application-level installation file directory of the application.
 
 **Since**: 16
 
@@ -417,16 +418,16 @@ Obtains the application-level installation file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir
 
@@ -436,7 +437,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
 
 **Description**
 
-Obtains the application-level distributed file directory.
+Obtains the application-level distributed file directory of the application.
 
 **Since**: 16
 
@@ -445,16 +446,16 @@ Obtains the application-level distributed file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_ApplicationContextGetCloudFileDir
 
@@ -464,7 +465,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(cha
 
 **Description**
 
-Obtains the application-level cloud file directory.
+Obtains the application-level cloud file directory of the application.
 
 **Since**: 16
 
@@ -473,16 +474,45 @@ Obtains the application-level cloud file directory.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
-| bufferSize  | Buffer size.                                                |
-| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetResourceDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(const char* moduleName, char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level resource directory of the application.
+
+**Since**: 20
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| moduleName  | Pointer to the module name.                                                    |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer siz, in bytes.                                                |
+| writeLength | Pointer to the length of the string actually written to the buffer, in bytes.|
+
+**Returns**
+
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
+
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The passed-in value of **buffer** or **writeLength** is null, or the buffer size is less than the size of the string to be written.
+
+**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_StartSelfUIAbility
 
@@ -510,35 +540,35 @@ Starts the UIAbility of the current application.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the API call is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The API call is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED** if permission verification failed.
+**ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification fails.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the Want information is empty, or if the bundleName or abilityName in the Want information is empty.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The Want information is null, or if the bundleName or abilityName in the Want information is null.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED** if the device type is not supported.
+**ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY** if the specified ability name does not exist.
+**ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE** if the ability type is incorrect.
+**ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED** if the crowdtesting application expires.
+**ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE** if the ability is started or stopped in Wukong mode.
+**ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTROLLED** if the application is under control.
+**ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED** if the application is under control by EDM.
+**ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CROSS_APP** for an attempt to redirection to third-party applications in API versions later than 11.
+**ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: Redirecting to third-party applications is not allowed in API versions later than 11.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error occurs.
+**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY** if the application is not a top one.
+**ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not a top one.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED** if the number of instances has reached the upper limit.
+**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper limit.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED** if **APP_INSTANCE_KEY** cannot be set.
+**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: **APP_INSTANCE_KEY** cannot be set.
 
 **Example**
 ```cpp
@@ -549,7 +579,7 @@ void startSelfUIAbilityTest()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
 
@@ -577,7 +607,7 @@ Creates the StartOptions struct required for starting the UIAbility of the curre
 
 **Returns**
 
-Returns the pointer to **AbilityRuntime_StartOptions**, which is the StartOptions struct.
+Pointer to **AbilityRuntime_StartOptions**, which is the StartOptions struct.
 
 **Example**
 ```cpp
@@ -616,9 +646,9 @@ Destroys a StartOptions struct.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the struct is destroyed successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The struct is destroyed successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -653,15 +683,15 @@ Sets the window mode for starting an ability.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| windowMode     | Window mode.                          |
+| windowMode     | Window mode. For details about the available options, see [AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode).                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **WindowMode** is invalid.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null or **WindowMode** is invalid.
 
 **Example**
 ```cpp
@@ -701,15 +731,15 @@ Obtains the window mode for starting an ability.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| windowMode     | Window mode.                          |
+| windowMode     | Window mode. For details about the available options, see [AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode).                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -754,9 +784,9 @@ Sets the ID of the display where the window is launched when the ability is star
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -800,9 +830,9 @@ Obtains the ID of the display where the window is launched when the ability is s
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -841,15 +871,15 @@ Sets whether to use animation effects when an ability is started.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| withAnimation     | Whether to use animation effects.                          |
+| withAnimation     | Whether to use animation effects.<br>**NOTE**<br>The value **true** means that the ability has an animation effect when being started.<br>The value **false** means that the ability does not have an animation effect when being started.<br>         |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -887,15 +917,15 @@ Checks whether animation effects are used when an ability is started.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| withAnimation     | Whether animation effects are used.                          |
+| withAnimation     | Whether animation effects are used.<br>**NOTE**<br>The value **true** means that the ability has an animation effect when being started.<br>The value **false** means that the ability does not have an animation effect when being started.<br>                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -940,9 +970,9 @@ Sets the left position of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -986,9 +1016,9 @@ Obtains the left position of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1033,9 +1063,9 @@ Sets the top position of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1079,9 +1109,9 @@ Obtains the top position of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1126,9 +1156,9 @@ Sets the height of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1172,9 +1202,9 @@ Obtains the height of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1219,9 +1249,9 @@ Sets the width of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1265,9 +1295,9 @@ Obtains the width of the window when the ability is started, in px.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1312,9 +1342,9 @@ Sets the startup icon of the window when the ability is started. The maximum siz
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **OH_PixelmapNative** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** or **OH_PixelmapNative** is null.
 
 **Example**
 ```cpp
@@ -1389,15 +1419,15 @@ Sets the visibility of the window and dock bar icons when the ability is started
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startVisibility     | Visibility.                          |
+| startVisibility     | Visibility. For details about the available options, see [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility).                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **startVisibility** is not an enumerated value of **AbilityRuntime_StartVisibility**.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null or **startVisibility** is not an enumerated value of **AbilityRuntime_StartVisibility**.
 
 **Example**
 ```cpp
@@ -1436,15 +1466,15 @@ Obtains the visibility of the window and dock bar icons when the ability is star
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startVisibility     | Visibility.                          |
+| startVisibility     | Visibility. For details about the available options, see [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility).                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **startVisibility** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** or **startVisibility** is null.
 
 **Example**
 ```cpp
@@ -1490,9 +1520,9 @@ Obtains the startup icon of the window when the ability is started.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **OH_PixelmapNative** is not set to a null pointer.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null or **OH_PixelmapNative** is not nullptr.
 
 **Example**
 ```cpp
@@ -1528,7 +1558,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundC
 
 **Description**
 
-Sets the background color of the window when the ability is started. Background color of the window. If this function is not called, the value of **startWindowBackground** configured under [abilities](../../quick-start/module-configuration-file.md#abilities) in the [module.json5 file](../../quick-start/module-configuration-file.md) corresponding to the UIAbility is used by default.
+Sets the background color of the window when the ability is started. Background color of the window. If this function is not called, the value of **startWindowBackground** configured under [abilities](../../quick-start/module-configuration-file.md#abilities) in the [module.json5](../../quick-start/module-configuration-file.md) file corresponding to the UIAbility is used by default.
 
 **Parameters**
 
@@ -1541,9 +1571,9 @@ Sets the background color of the window when the ability is started. Background 
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **StartWindowBackgroundColor** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** or **StartWindowBackgroundColor** is null.
 
 **Example**
 ```cpp
@@ -1589,11 +1619,11 @@ Obtains the background color of the window when the ability is started.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **StartWindowBackgroundColor** is not set to a null pointer.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null or **StartWindowBackgroundColor** is not mullptr.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error that cannot be rectified, such as internal malloc error or string copy function error, occurs.
+**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error that cannot be rectified, such as internal malloc error or string copy function error, occurs.
 
 **Example**
 ```cpp
@@ -1644,16 +1674,16 @@ Sets the window modes supported by the ability when it is started.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| supportedWindowModes     | Window modes supported.                          |
+| supportedWindowModes     | Window modes supported. For details about the available options, see [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode).                          |
 | size     | Size of the window modes supported.                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **SupportedWindowModes** is null, or **Size** is **0**.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** or **SupportedWindowModes** is null, or **Size** is **0**.
 
 **Example**
 ```cpp
@@ -1700,18 +1730,18 @@ Obtains the window modes supported by the ability when it is started.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| supportedWindowModes     | Window modes supported.                          |
+| supportedWindowModes     | Window modes supported. For details about the available options, see [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode).                          |
 | size     | Size of the window modes supported.                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **SupportWindowMode** is not set to a null pointer.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null or **SupportWindowMode** is not nullptr.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error that cannot be rectified, such as internal malloc error, occurs.
+**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error that cannot be rectified, such as internal malloc error, occurs.
 
 **Example**
 ```cpp
@@ -1767,9 +1797,9 @@ Sets the minimum window width for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1815,9 +1845,9 @@ Obtains the minimum window width for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1864,9 +1894,9 @@ Sets the maximum window width for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1912,9 +1942,9 @@ Obtains the maximum window width for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -1961,9 +1991,9 @@ Sets the minimum window height for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -2009,9 +2039,9 @@ Obtains the minimum window height for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -2058,9 +2088,9 @@ Sets the maximum window height for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -2106,9 +2136,9 @@ Obtains the maximum window height for starting the ability, in vp.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The information is obtained successfully.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **startOptions** is null.
 
 **Example**
 ```cpp
@@ -2160,43 +2190,43 @@ Starts the UIAbility of the current application.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED** if permission verification failed.
+**ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification fails.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the Want or StartOptions information is empty, or if the bundleName or abilityName in the Want information is empty.
+**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: The Want or StartOptions information is null, or if the bundleName or abilityName in the Want information is null.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED** if the device type is not supported.
+**ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY** if the specified ability name does not exist.
+**ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE** if the ability type is incorrect.
+**ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED** if the crowdtesting application expires.
+**ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE** if the ability is started or stopped in Wukong mode.
+**ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CONTROLLED** if the application is under control.
+**ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED** if the application is under control by EDM.
+**ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_CROSS_APP** if it is forbidden to start other applications.
+**ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: It is forbidden to start other applications.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error occurs.
+**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY** if the application is not a top ability.
+**ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not in the foreground.
 
-Returns **ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED** if it is forbidden to set the application visibility.
+**ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED**: It is forbidden to set the application visibility.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED** if the application does not support clone and multi-instance mode.
+**ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**: The application does not support clone and multi-instance mode.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY** if the instance key is invalid.
+**ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The instance key is invalid.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED** if the number of instances has reached the upper limit.
+**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper limit.
 
-Returns **ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED** if the application does not support multi-instance mode.
+**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: The application does not support multi-instance mode.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED** if APP_INSTANCE_KEY cannot be assigned a value.
+**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: APP_INSTANCE_KEY cannot be assigned a value.
 
 **Example**
 ```cpp
@@ -2207,7 +2237,7 @@ void demo()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
     if (want == nullptr) {

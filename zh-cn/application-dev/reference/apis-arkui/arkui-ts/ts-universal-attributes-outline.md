@@ -1,4 +1,9 @@
 # 外描边设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件外描边（outline）样式。外描边绘制在组件的外侧，不影响布局，不会占用组件本身大小。
 
@@ -66,11 +71,11 @@ outline(options: Optional\<OutlineOptions>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                            |
-| ------ | ----------------------------- |
-| SOLID  | 显示为一条实线。                      |
-| DASHED | 显示为一系列短的方形虚线。                 |
-| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+| 名称     | 值 | 说明                            |
+| ------ | ------ | ----------------------- |
+| SOLID  | 0 | 显示为一条实线。                      |
+| DASHED | 1 | 显示为一系列短的方形虚线。                 |
+| DOTTED | 2 | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
 
 ## outlineStyle
 

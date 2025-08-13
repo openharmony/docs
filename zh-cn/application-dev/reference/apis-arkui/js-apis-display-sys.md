@@ -1,4 +1,9 @@
 # @ohos.display (屏幕属性)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk;@logn-->
+<!--SE: @hejunfei1991-->
+<!--TSE: @qinliwen0417-->
 
 屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 
@@ -28,7 +33,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| displayId    | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
+| displayId    | number                    | 是   | 屏幕id，该参数仅支持整数输入。该参数大于等于0。 |
 
 **返回值：**
 
@@ -203,7 +208,7 @@ setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
-| reason     | string    | 否   | 更改显示模式的原因。不设置，则默认为空字符串。 |
+| reason     | string    | 是   | 更改显示模式的原因。不设置，则默认为空字符串。 |
 
 **错误码：**
 
@@ -409,7 +414,7 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -452,7 +457,7 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 

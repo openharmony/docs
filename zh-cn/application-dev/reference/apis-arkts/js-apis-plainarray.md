@@ -1,4 +1,9 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 PlainArray可用于存储具有关联关系的key-value键值对集合，其中key值唯一且类型为number，每个key对应一个value。
 
@@ -57,7 +62,7 @@ PlainArray的构造函数。
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 ```
 
 
@@ -88,9 +93,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const plainArray: PlainArray<string> = new PlainArray();
+const plainArray = new PlainArray<string>();
 let result = plainArray.isEmpty();
-console.info("result = ", result); // result = true
+console.info("result = ", result); // result =  true
 ```
 
 
@@ -128,7 +133,7 @@ has(key: number): boolean
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
 console.info("result = ", result); // result = true
@@ -169,10 +174,11 @@ get(key: number): T
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
+console.info("result:", result);  // result: squirrel
 ```
 
 
@@ -210,7 +216,7 @@ getIndexOfKey(key: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
@@ -251,10 +257,11 @@ getIndexOfValue(value: T): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
+console.info("result:", result);  // result: 0
 ```
 
 
@@ -292,7 +299,7 @@ getKeyAt(index: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
@@ -334,10 +341,11 @@ getValueAt(index: number): T
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
+console.info("result:", result);  // result: sparrow
 ```
 
 ### clone
@@ -367,10 +375,11 @@ clone(): PlainArray&lt;T&gt;
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
+console.info("result:", newPlainArray.get(1));  // result: squirrel
 ```
 
 
@@ -403,8 +412,9 @@ add(key: number, value: T): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
+console.info("result:", plainArray.get(1));  // result: squirrel
 ```
 
 
@@ -442,10 +452,11 @@ remove(key: number): T
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -483,10 +494,11 @@ removeAt(index: number): T
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -526,10 +538,11 @@ removeRangeFrom(index: number, size: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
+console.info("result:", result);  // result: 1
 ```
 
 
@@ -563,10 +576,12 @@ setValueAt(index: number, value: T): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string | number> = new PlainArray();
+let plainArray = new PlainArray<string | number>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
+let result = plainArray.getValueAt(1);
+console.info("result:", result);  // result: 3546
 ```
 
 
@@ -597,10 +612,11 @@ toString(): String
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
+console.info("result:", result);  // result: 1:squirrel,2:sparrow
 ```
 
 
@@ -625,10 +641,12 @@ clear(): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
+let result = plainArray.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -653,7 +671,7 @@ callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
+| index | number | 否 | 当前遍历到的下标值。 |
 | PlainArray | PlainArray&lt;T&gt;| 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
@@ -668,21 +686,24 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.forEach((value: string, index?: number) => {
+plainArray.forEach((value: string, index: number) => {
   console.info("value:" + value, "index:" + index);
 });
+// value:squirrel index:1
+// value:sparrow index:2
 ```
+
 ```ts
 // 不建议在forEach中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let plainArray: PlainArray<string> = new PlainArray();
-for(let i = 0;i < 10;i++) {
+let plainArray = new PlainArray<string>();
+for(let i = 0; i < 10; i++) {
   plainArray.add(i,"123");
 }
 
-for(let i = 0;i < 10;i++) {
+for(let i = 0; i < 10; i++) {
   plainArray.remove(i);
 }
 ```
@@ -714,26 +735,24 @@ for(let i = 0;i < 10;i++) {
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 
-let iter = plainArray[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next();
-while(!temp.done) {
-  console.info("key:" + temp.value[0]);
-  console.info("value:" + temp.value[1]);
-  temp = iter.next();
+for (let item of plainArray) {
+  console.info("value:" + item[1], "index:" + item[0]);
 }
+// value:squirrel index:1
+// value:sparrow index:2
 ```
 ```ts
 // 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let plainArray: PlainArray<string> = new PlainArray();
-for(let i = 0;i < 10;i++) {
+let plainArray = new PlainArray<string>();
+for(let i = 0; i < 10; i++) {
   plainArray.add(i,"123");
 }
 
-for(let i = 0;i < 10;i++) {
+for(let i = 0; i < 10; i++) {
   plainArray.remove(i);
 }
 ```

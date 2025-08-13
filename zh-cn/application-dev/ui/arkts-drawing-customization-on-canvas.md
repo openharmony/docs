@@ -1,4 +1,9 @@
 # 使用画布绘制自定义图形 (Canvas)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 
 Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制，绘制对象可以是基础形状、文本、图片等。
@@ -38,7 +43,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   }
   ```
 
-  ![2023022793003(1)](figures/2023022793003(1).jpg)
+  ![2023022793003](figures/2023022793003.jpg)
 
 - 离屏绘制是指将需要绘制的内容先绘制在缓存区，再将其转换成图片，一次性绘制到Canvas上，加快了绘制速度。过程为：
   1. 通过transferToImageBitmap方法将离屏画布最近渲染的图像创建为一个ImageBitmap对象。
@@ -77,7 +82,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   }
   ```
 
-  ![2023022793003(1)](figures/2023022793003(1).jpg)
+  ![2023022793003(1)](figures/2023022793003.jpg)
 
   >**说明：**
   >
@@ -107,7 +112,7 @@ Canvas(this.context)
   })
 ```
 
-![2023022793350(1)](figures/2023022793350(1).jpg)
+![2023022793350(1)](figures/2023022793350.jpg)
 
 
 ## 画布组件绘制方式
@@ -129,7 +134,7 @@ Canvas(this.context)
      })
   ```
 
-  ![2023022793719(1)](figures/2023022793719(1).jpg)
+  ![2023022793719(1)](figures/2023022793719.jpg)
 
 - 先单独定义path2d对象构造理想的路径，再通过调用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的stroke接口或者fill接口进行绘制，具体使用可以参考[Path2D](../reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)对象。
 
@@ -145,7 +150,7 @@ Canvas(this.context)
     })
   ```
 
-  ![2023022794031(1)](figures/2023022794031(1).jpg)
+  ![2023022794031(1)](figures/2023022794031.jpg)
 
 
 ## 画布组件常用方法
@@ -176,7 +181,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     })
   ```
 
-  ![2023022794521(1)](figures/2023022794521(1).jpg)
+  ![2023022794521(1)](figures/2023022794521.jpg)
 
 - 绘制文本。
 
@@ -199,7 +204,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     })
   ```
 
-  ![2023022795105(1)](figures/2023022795105(1).jpg)
+  ![2023022795105(1)](figures/2023022795105.jpg)
 
 - 绘制文本边框。
 
@@ -343,7 +348,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     })
   ```
 
-  ![2023022700701(1)](figures/2023022700701(1).jpg)
+  ![2023022700701(1)](figures/2023022700701.jpg)
 
 ## 使用状态变量驱动画布刷新
 
@@ -417,7 +422,7 @@ struct CanvasContentUpdate {
   }
   ```
 
-  ![2023022701120(1)](figures/2023022701120(1).jpg)
+  ![2023022701120(1)](figures/2023022701120.jpg)
 
 - 绘制不规则图形。
 
@@ -507,7 +512,7 @@ struct CanvasContentUpdate {
             this.cursorPosition.height = this.cursorWH
             this.cursorCenterPosition = {
               x: this.cursorPosition.x + this.cursorPosition.width / 2,
-              y: this.cursorPosition.y + this.cursorPosition.width / 2
+              y: this.cursorPosition.y + this.cursorPosition.height / 2
             }
             this.drawCursor()
           })
@@ -535,7 +540,7 @@ struct CanvasContentUpdate {
 
                 this.cursorCenterPosition = {
                   x: this.cursorPosition.x + this.cursorPosition.width / 2,
-                  y: this.cursorPosition.y + this.cursorPosition.width / 2
+                  y: this.cursorPosition.y + this.cursorPosition.height / 2
                 }
                 // 光标区域中心点位置限制
                 if (this.cursorCenterPosition.x < 0) {
@@ -656,13 +661,13 @@ struct CanvasContentUpdate {
 
 使用画布绘制自定义图形，有以下相关实例可供参考：
 
-- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
 
-- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
 
-- [ArkTS时钟（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)
+- [ArkTS时钟（ArkTS）(API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)
 
-- [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
+- [Lottie动画](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
 
 - [自定义抽奖转盘（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CanvasComponent)
 <!--RP1--><!--RP1End-->

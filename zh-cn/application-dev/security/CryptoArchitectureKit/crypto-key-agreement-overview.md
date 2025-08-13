@@ -1,5 +1,11 @@
 # 密钥协商介绍及算法规格
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 在非安全通道环境中，需要不共享任何秘密的情况下，协商出一个安全的共享密钥，可以使用密钥协商算法。
 
 接下来将说明系统目前支持的算法及其对应的规格。

@@ -1,4 +1,9 @@
 # TabContent
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 仅在Tabs中使用，对应一个切换页签的内容视图。
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.ConfigurationConstant (系统环境信息常量)
+# @ohos.app.ability.ConfigurationConstant (环境变量相关的常量定义)
 
 ConfigurationConstant模块提供了[Configuration](js-apis-app-ability-configuration.md)操作相关的系统预置枚举。
 

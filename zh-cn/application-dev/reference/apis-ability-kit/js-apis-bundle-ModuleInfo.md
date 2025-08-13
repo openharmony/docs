@@ -1,4 +1,9 @@
 # ModuleInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 应用程序的模块信息。
 

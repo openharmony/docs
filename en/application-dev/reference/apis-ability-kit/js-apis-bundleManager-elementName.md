@@ -1,10 +1,16 @@
 # ElementName
 
-The **ElementName** module provides element name information, which can be obtained through [Context.getElementName](js-apis-inner-app-context.md#contextgetelementname7).
+The module provides element name information, which can be obtained through [Context.getElementName](js-apis-inner-app-context.md#contextgetelementname7).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import { featureAbility } from '@kit.AbilityKit';
+```
 
 ## ElementName
 

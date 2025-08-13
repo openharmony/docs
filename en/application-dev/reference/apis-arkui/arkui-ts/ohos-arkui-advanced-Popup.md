@@ -5,12 +5,12 @@ The **Popup** component is used to display popups in a specific style.
 >  **NOTE**
 >
 >  - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
->
+>- This component is not supported on wearables.
 >  - Use this component with the custom popup features in [popup control](ts-universal-attributes-popup.md) for best results.
 
 ## Modules to Import
 
-```
+```ts
 import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
@@ -45,15 +45,15 @@ Defines the style parameters of the popup.
 | icon      | [PopupIconOptions](#popupiconoptions)                        | No  | Icon of the popup.<br>**NOTE**<br>The icon is not displayed when **size** is set to an invalid value or **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | title     | [PopupTextOptions](#popuptextoptions)                        | No  | Title of the popup.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | message   | [PopupTextOptions](#popuptextoptions)                        | Yes  | Content of the popup.<br>**NOTE**<br>**fontWeight** is not available for **messages**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button. The value **true** means to show the close icon, and **false** means the opposite. If the value is of the **Resource** type, the corresponding icon is displayed.<br>Default value: **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onClose   | () => void                                                   | No  | Callback for the popup close button.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | No  | Buttons of the popup. A maximum of two buttons can be set.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                               | Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | No                               | Maximum width of the popup. This API allows you to display the popup with a custom width.<br>Default value: 400 vp<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | No                               | Maximum width of the popup. This API allows the popup to display with a custom width.<br>**NOTE**<br>When using resource references, ensure that the parameter type matches the attribute method type. **maxWidth** accepts numeric values (both floating-point and integer values), such as **$r('app.float.maxWidth')** and **$r('app.integer.maxWidth')**.<br>Default value: 400 vp<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## PopupTextOptions
 
-Defines the text parameters of the popup.
+Provides text style settings.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -94,7 +94,7 @@ Defines the attributes of the icon (in the upper left corner).
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Icon content.                    |
 | width        | [Dimension](ts-types.md#dimension10)                         | No  | Icon width.<br>Default value: **32VP**|
 | height       | [Dimension](ts-types.md#dimension10)                         | No  | Icon height.<br>Default value: **32VP**|
-| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color.<br>**NOTE**<br>This property applies only to an SVG image.|
+| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color. This property applies only to an SVG image.|
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Rounded corner of the icon.<br>Default value: **$r('sys.float.ohos_id_corner_radius_default_s')** |
 
 ## Example
@@ -110,7 +110,6 @@ import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@
 @Entry
 @Component
 struct PopupExample {
-
   build() {
     Row() {
       // Define a popup.
@@ -118,9 +117,9 @@ struct PopupExample {
         // Set the icon through PopupIconOptions.
         icon: {
           image: $r('app.media.icon'),
-          width:32,
-          height:32,
-          fillColor:Color.White,
+          width: 32,
+          height: 32,
+          fillColor: Color.White,
           borderRadius: 16
         } as PopupIconOptions,
         // Set the text through PopupTextOptions.
@@ -138,13 +137,13 @@ struct PopupExample {
         } as PopupTextOptions,
         showClose: false,
         onClose: () => {
-          console.info('close Button click')
+          console.info('close Button click');
         },
         // Set the button through PopupButtonOptions.
         buttons: [{
           text: 'confirm',
           action: () => {
-            console.info('confirm button click')
+            console.info('confirm button click');
           },
           fontSize: 15,
           fontColor: Color.Black,
@@ -152,7 +151,7 @@ struct PopupExample {
           {
             text: 'cancel',
             action: () => {
-              console.info('cancel button click')
+              console.info('cancel button click');
             },
             fontSize: 15,
             fontColor: Color.Black
@@ -169,17 +168,17 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-### Example 2: Implementing a Mirror Effect
-This example shows how to achieve a mirror effect for a popup by configuring **direction**.
+### Example 2: Implementing an RTL Layout
+This example shows how to implement a right-to-left (RTL) layout for a popup by configuring **direction**.
 
 ```ts
 // xxx.ets
-import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Rtl
+  @State currentDirection: Direction = Direction.Rtl;
 
   build() {
     Column() {
@@ -210,13 +209,13 @@ struct PopupPage {
         } as PopupTextOptions,
         showClose: true,
         onClose: () => {
-          console.info('close Button click')
+          console.info('close Button click');
         },
         // Set the button through PopupButtonOptions.
         buttons: [{
           text: 'confirm',
           action: () => {
-            console.info('confirm button click')
+            console.info('confirm button click');
           },
           fontSize: 15,
           fontColor: Color.Black,
@@ -225,7 +224,7 @@ struct PopupPage {
           {
             text: 'cancel',
             action: () => {
-              console.info('cancel button click')
+              console.info('cancel button click');
             },
             fontSize: 15,
             fontColor: Color.Black,
@@ -247,61 +246,61 @@ This example demonstrates how to set the custom width for a popup using **maxWid
 
 ```ts
 // xxx.ets
-import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Rtl
+  @State currentDirection: Direction = Direction.Rtl;
 
   build() {
-     Row() {
-       // Define a popup.
-       Popup({
-         // Set the custom width.
-         maxWidth:'50%',
-         // Set the icon through PopupIconOptions.
-         icon: {
-           image: $r('app.media.startIcon'),
-           width: 32,
-           height: 32,
-           fillColor: Color.White,
-           borderRadius: 16,
-         } as PopupIconOptions,
-         // Set the text through PopupTextOptions.
-         message: {
-           text: 'This is the message. This is the message. This is the message. This is the message.',
-           fontSize: 15,
-           fontColor: Color.Black
-         } as PopupTextOptions,
-         showClose: false,
-         onClose: () => {
-           console.info('close Button click')
-         },
-         // Set the button through PopupButtonOptions.
-         buttons: [{
-           text: 'OK',
-           action: () => {
-             console.info('confirm button click')
-           },
-           fontSize: 15,
-           fontColor: Color.Black,
-         },
-           {
-             text: 'Cancel',
-             action: () => {
-               console.info('cancel button click')
-             },
-             fontSize: 15,
-             fontColor: Color.Black
-           },] as [PopupButtonOptions?, PopupButtonOptions?]
-       })
-     }
-     .width(400)
-     .height(200)
-     .borderWidth(2)
-     .justifyContent(FlexAlign.Center)
-   }
+    Row() {
+      // Define a popup.
+      Popup({
+        // Set the custom width.
+        maxWidth: '50%',
+        // Set the icon through PopupIconOptions.
+        icon: {
+          image: $r('app.media.startIcon'),
+          width: 32,
+          height: 32,
+          fillColor: Color.White,
+          borderRadius: 16,
+        } as PopupIconOptions,
+        // Set the text through PopupTextOptions.
+        message: {
+          text: 'This is the message. This is the message. This is the message. This is the message.',
+          fontSize: 15,
+          fontColor: Color.Black
+        } as PopupTextOptions,
+        showClose: false,
+        onClose: () => {
+          console.info('close Button click');
+        },
+        // Set the button through PopupButtonOptions.
+        buttons: [{
+          text: 'OK',
+          action: () => {
+            console.info('confirm button click');
+          },
+          fontSize: 15,
+          fontColor: Color.Black,
+        },
+          {
+            text: 'cancel',
+            action: () => {
+              console.info('cancel button click');
+            },
+            fontSize: 15,
+            fontColor: Color.Black
+          },] as [PopupButtonOptions?, PopupButtonOptions?]
+      })
+    }
+    .width(400)
+    .height(200)
+    .borderWidth(2)
+    .justifyContent(FlexAlign.Center)
+  }
 }
 ```
 

@@ -1,4 +1,9 @@
 # @ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备管理扩展能力。
 
@@ -14,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit'
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -25,11 +30,14 @@ onAdminEnabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminEnabled() {
   }
@@ -44,11 +52,14 @@ onAdminDisabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminDisabled() {
   }
@@ -63,6 +74,7 @@ onBundleAdded(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -74,6 +86,8 @@ onBundleAdded(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
@@ -89,6 +103,7 @@ onBundleAdded(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -101,8 +116,11 @@ onBundleAdded(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string, accountId: number) {
+  // 由于存在同名回调方法onBundleAdded(bundleName: string)，该回调方法无accountId参数，因此在实际调用时accountId必须为可选参数，写法请参考示例代码。如果删除accountId后的问号"?"，编译会报错。
+  onBundleAdded(bundleName: string, accountId?: number) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
@@ -116,6 +134,7 @@ onBundleRemoved(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -127,6 +146,8 @@ onBundleRemoved(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleRemoved(bundleName: string) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
@@ -142,6 +163,7 @@ onBundleRemoved(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -154,8 +176,11 @@ onBundleRemoved(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleRemoved(bundleName: string, accountId: number) {
+  // 由于存在同名回调方法onBundleRemoved(bundleName: string)，该回调方法无accountId参数，因此在实际调用时accountId必须为可选参数，写法请参考示例代码。如果删除accountId后的问号"?"，编译会报错。
+  onBundleRemoved(bundleName: string, accountId?: number) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
@@ -169,6 +194,7 @@ onAppStart(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -180,6 +206,8 @@ onAppStart(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
     console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
@@ -195,6 +223,7 @@ onAppStop(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -206,6 +235,8 @@ onAppStop(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
     console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
@@ -220,6 +251,7 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -231,7 +263,9 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 import { systemManager } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
@@ -247,11 +281,14 @@ EnterpriseAdminExtensionAbility启动事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onStart() {
     console.info(`Succeeded in calling onStart callback.`);
@@ -263,9 +300,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountAdded(accountId: number): void
 
-系统账号新增事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_ADDED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号新增事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+系统账号新增事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_ADDED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号新增事件，系统账号新增事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -276,6 +315,8 @@ onAccountAdded(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountAdded(accountId: number) {
     console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
@@ -287,9 +328,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountSwitched(accountId: number): void
 
-系统账号切换事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_SWITCHED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号切换事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+系统账号切换事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_SWITCHED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号切换事件，系统账号切换事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -300,6 +343,8 @@ onAccountSwitched(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountSwitched(accountId: number) {
     console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
@@ -311,9 +356,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountRemoved(accountId: number): void
 
-系统账号删除事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_REMOVED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号删除事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+系统账号删除事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_REMOVED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号删除事件，系统账号删除事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -324,6 +371,8 @@ onAccountRemoved(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountRemoved(accountId: number) {
     console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
@@ -340,6 +389,8 @@ onKioskModeEntering(bundleName: string, accountId: number): void
 Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -368,6 +419,8 @@ onKioskModeExiting(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+  
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |

@@ -52,6 +52,8 @@ MindSpore Lite is built in the OpenHarmony standard system as a system component
 
 ## Relationship with Other Kits
 
+<!--RP1-->
 Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing for AI models.
 
 MindSpore Lite allows you to configure NNRt for AI-dedicated chips (such as NPUs) to accelerate inference. Therefore, you can configure MindSpore Lite to use the NNRt hardware. The focus of this topic is about how to develop AI applications using MindSpore Lite. For details about how to use NNRt, see [Connecting the Neural Network Runtime to an AI Inference Framework](../nnrt/neural-network-runtime-guidelines.md).
+<!--RP1End-->

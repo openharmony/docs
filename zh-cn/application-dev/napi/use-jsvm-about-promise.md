@@ -1,4 +1,9 @@
 # 使用JSVM-API接口处理异步操作
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -24,7 +29,7 @@ Promise是JavaScript中用来处理异步操作的对象，Promise有pending（�
 | OH_JSVM_IsPromise            | 查询Promise是否为Promise对象|
 | OH_JSVM_CreatePromise        | 创建一个延迟对象和一个JavaScript promise|
 | OH_JSVM_ResolveDeferred      | 通过与之关联的延迟对象来解析JavaScript promise|
-| OH_JSVM_RejectDeferred       | 通过与之关联的延迟对象来拒绝JavaScript Promise|
+| OH_JSVM_RejectDeferred       | 通过与之关联的延迟对象来拒绝JavaScript promise|
 | OH_JSVM_PromiseRegisterHandler | 为 Promise 创建兑现或拒绝后的回调 |
 
 ## 使用示例
@@ -72,7 +77,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
-<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_ispromise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -159,7 +164,7 @@ const char *srcCallNative = R"JS(createPromise();
                                  resolveRejectDeferred('success', 'fail', true);
                                  resolveRejectDeferred('success', 'fail', false);)JS";
 ```
-<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -170,7 +175,7 @@ OH_JSVM_RejectDeferred reject
 
 ## OH_JSVM_PromiseRegisterHandler
 
-用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
+用于设置 Promise 解析或拒绝后的回调，等效于调用原生的 `Promise.then()` 或 `Promise.catch()`。
 
 以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
 
@@ -240,8 +245,10 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     // 解析 promise
     JSVM_Value resolveValue;
     CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
-    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
-    deferred = nullptr;
+    if (deferred != nullptr) {
+        OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+        deferred = nullptr;
+    }
 
     // 获取 promise 解析后 x1 和 x2 的值
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));

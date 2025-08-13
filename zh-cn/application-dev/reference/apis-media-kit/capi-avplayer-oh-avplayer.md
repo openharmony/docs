@@ -1,4 +1,9 @@
 # OH_AVPlayer
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--SE: @dongyu_dy-->
+<!--TSE: @xchaosioda-->
 
 ## 概述
 

@@ -1,6 +1,6 @@
-# @ohos.app.appstartup.StartupConfig
+# @ohos.app.appstartup.StartupConfig (Startup Task Configuration)
 
-The StartupConfig module provides APIs for startup task configuration.
+The module provides APIs for startup task configuration.
 
 > **NOTE**
 >
@@ -14,14 +14,14 @@ The StartupConfig module provides APIs for startup task configuration.
 import { StartupConfig } from '@kit.AbilityKit';
 ```
 
-## Properties
+## StartupConfig
 
 **System capability**: SystemCapability.Ability.AppStartup
 
-  | Name| Type| Read Only| Optional| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | Yes| Yes| Timeout for executing all startup tasks, measured in ms. The default value is 10000 ms.|
-| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | Yes| Yes| AppStartup listener, which is called when all the startup tasks are complete.|
+| timeoutMs | number | No| Yes| Timeout for executing all startup tasks, measured in ms. The default value is 10000 ms.|
+| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | No| Yes| AppStartup listener, which is called when all the startup tasks are complete.|
 
 **Example**
 
@@ -36,18 +36,19 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code,
+          error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
-    }
+    };
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
-    }
+    };
     let config: StartupConfig = {
       'timeoutMs': 10000,
       'startupListener': startupListener
-    }
+    };
     return config;
   }
 }

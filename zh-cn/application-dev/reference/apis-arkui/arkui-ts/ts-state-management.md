@@ -1,4 +1,9 @@
 # 应用级变量的状态管理
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
 
@@ -897,9 +902,9 @@ static getShared(): LocalStorage
 
 > **说明：**
 > 
-> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)替代。
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12)替代。
 >
-> 从API version 12开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)来明确UI的执行上下文。
+> 从API version 12开始，可以通过使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12)来明确UI的执行上下文。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1415,7 +1420,7 @@ static GetShared(): LocalStorage
 
 > **说明：** 
 > 
-> 从API version 10开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)替代。
+> 从API version 10开始废弃，建议使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2078,3 +2083,27 @@ let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnable
 | fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
+
+### ColorMode
+
+系统当前深浅色模式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值    | 说明      |
+| ----- | -----| ----------|
+| LIGHT | 0    | 浅色模式。 |
+| DARK  | 1    | 深色模式。 |
+
+
+### LayoutDirection
+
+系统的布局方向类型
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值    | 说明      |
+| ----- | -----| ----------|
+| LTR   | 0    | 从左向右布局。 |
+| RTL   | 1    | 从右向左布局。 |
+| AUTO  | 2    | 自动布局，跟随系统。 |

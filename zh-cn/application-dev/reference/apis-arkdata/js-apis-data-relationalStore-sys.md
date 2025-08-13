@@ -1,4 +1,9 @@
 # @ohos.data.relationalStore (关系型数据库)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
 ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
@@ -71,7 +76,9 @@ import { relationalStore } from '@kit.ArkData';
 
 提供管理关系型数据库（RDB）的接口。
 
-在使用以下相关接口前，请使用[executeSql](arkts-apis-data-relationalStore-RdbStore.md#executesql)接口初始化数据库表结构和相关数据。
+在使用以下API前，请先通过[getRdbStore](arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore-1)方法获取RdbStore实例，并使用该实例调用对应接口方法。
+
+在此基础上，建议优先使用[execute](arkts-apis-data-relationalStore-RdbStore.md#execute12)方法完成数据库表结构和初始数据的初始化，以确保相关接口调用的前置条件已满足。
 
 ### update
 
@@ -391,7 +398,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -629,10 +636,10 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloudSync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('Cloud sync succeeded');
@@ -657,10 +664,10 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('cloud sync succeeded');
@@ -719,11 +726,11 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('cloud sync succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+    console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
   });
 };
 ```
@@ -745,7 +752,7 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
@@ -999,7 +1006,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
     console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
@@ -1093,7 +1100,6 @@ restore(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore();
   promiseRestore.then(() => {
@@ -1137,7 +1143,7 @@ getFloat32Array(columnIndex: number): Float32Array
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | The capability is not supported because the database is not a vector DB. |
 | 14800011  | Failed to open the database because it is corrupted. |
-| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800013  | ResultSet is empty or column index is out of bounds. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |

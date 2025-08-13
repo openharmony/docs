@@ -77,6 +77,10 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
       }
       console.info('Succeeded in creating the volume window.')
       windowClass = data;
+      if (!windowClass) {
+        console.error('windowClass is null');
+        return;
+      }
       // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
       windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
         let errCode: number = err.code;
@@ -102,8 +106,12 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
           return;
         }
         console.info('Succeeded in loading the content.');
+        if (!windowClass) {
+          console.error('windowClass is null');
+          return;
+        }
         // 3.显示音量条窗口。
-        (windowClass as window.Window).showWindow((err: BusinessError) => {
+        windowClass.showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to show the window. Cause:' + JSON.stringify(err));
@@ -116,7 +124,11 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
       // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
       windowClass.on('touchOutside', () => {
         console.info('touch outside');
-        (windowClass as window.Window).hide((err: BusinessError) => {
+        if (!windowClass) {
+          console.error('windowClass is null');
+          return;
+        }
+        windowClass.hide((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
@@ -261,7 +273,7 @@ struct transferCtrlSubWindow {
       Button() {
         Text("close")
           .fontSize(24)
-          .fontSize(FontWeight.Normal)
+          .fontWeight(FontWeight.Normal)
       }.width(220).height(68)
       .margin({ left: 10, top: 10 })
       .onClick(() => {

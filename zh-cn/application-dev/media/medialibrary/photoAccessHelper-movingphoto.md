@@ -167,6 +167,7 @@ import { common } from '@kit.AbilityKit';
 @Component
 struct Index {
   @State outputText: string = '支持的类型为：\n';
+
   build() {
     Row() {
       Button("example").onClick(async () => {

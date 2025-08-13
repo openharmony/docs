@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆原理及功能
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao; @u012789010-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 术语清单
 
@@ -185,11 +190,11 @@ TestA.i;
   -enable-string-property-obfuscation
   ```
 
-根据上述配置，下面例子中的"fritstName"和"personAge"混淆效果如下：
+根据上述配置，下面例子中的"firstName"和"personAge"混淆效果如下：
 
   ```ts
   // 混淆前：
-  let person = {"fritstName": "abc"};
+  let person = {"firstName": "abc"};
   person["personAge"] = 22;
   ```
 
@@ -480,7 +485,7 @@ console.info(obj['t' + '1']);        // t1应该被保留
 obj.t = 0;
 console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
 
-obj.['v'] = 0;
+obj['v'] = 0;
 console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
 ```
 
@@ -771,7 +776,7 @@ class A {
 根据依赖模块的类型，混淆规则分为以下两个来源：
 
 - **本地HAR/HSP模块**
-  指该模块配置文件·build-profile.json5`中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
+  指该模块配置文件`build-profile.json5`中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
 
 - **远程HAR/HSP包**
   指该远程HAR/HSP包中obfuscation.txt文件内容。

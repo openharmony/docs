@@ -1,4 +1,9 @@
 # 支持触屏输入事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ![touch devices](figures/touch-devices.png)
 
@@ -47,7 +52,7 @@ struct Index {
       .height('100%')
       .width('100%')
       .onTouch((event:TouchEvent)=>{
-        console.log("touch event received on parent")
+        console.info("touch event received on parent")
       })
     }
     .height('100%')
@@ -92,7 +97,7 @@ struct Index {
           let allHistoricalPoints = event.getHistoricalPoints();
           if (allHistoricalPoints.length != 0) {
             for (const point of allHistoricalPoints) {
-              console.log("historical point: [" + point.touchObject.windowX + ", " + point.touchObject.windowY + "]")
+              console.info("historical point: [" + point.touchObject.windowX + ", " + point.touchObject.windowY + "]")
             }
           }
         })
@@ -130,18 +135,18 @@ struct Index {
           let allFingers = event.touches;
           if (allFingers.length > 0 && this.currentFingerCount == 0) {
             // 第1根手指按下
-            console.log("fingers start to press down")
+            console.info("fingers start to press down")
             this.currentFingerCount = allFingers.length
           }
           if (allFingers.length != 0) {
             for (const finger of allFingers) {
               this.allFingerIds.push(finger.id)
             }
-            console.log("current all fingers : " + this.allFingerIds.toString())
+            console.info("current all fingers : " + this.allFingerIds.toString())
           }
           if (event.type == TouchType.Up && event.touches.length == 1) {
             // 所有手指都已抬起
-            console.log("all fingers already up")
+            console.info("all fingers already up")
             this.currentFingerCount = 0
           }
         })

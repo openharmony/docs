@@ -1,8 +1,15 @@
 # @ohos.fastbuffer (FastBuffer)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
-**推荐使用场景：** 当构造FastBuffer的入参为已知类型，且为非Symbol.toPrimitive或valueOf()的对象时，推荐使用FastBuffer，可以高效处理大量二进制数据，如图片处理和文件接收上传等。
+FastBuffer通过from构造时，仅支持FastBuffer、Uint8Array、string、Array、ArrayBuffer类型的参数。
+
+需要高性能处理大型二进制数据（如图片、文件传输、网络通信等）时，推荐使用FastBuffer。
 
 > **说明：**
 >
@@ -80,9 +87,7 @@ console.info(buf3.toString());
 
 allocUninitializedFromPool(size: number): FastBuffer
 
-创建指定大小未初始化的FastBuffer对象。内存从缓冲池分配。
-
-创建的FastBuffer内容未知，需要使用[fill](#fill)函数来初始化FastBuffer对象。
+从缓冲池中创建指定大小未初始化的FastBuffer对象，需要使用[fill](#fill)函数来初始化FastBuffer对象。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -114,9 +119,7 @@ buf.fill(0);
 
 allocUninitialized(size: number): FastBuffer
 
-创建指定大小未初始化的FastBuffer对象。内存不从缓冲池分配。
-
-创建的FastBuffer的内容未知，需要使用[fill](#fill)函数来初始化FastBuffer对象。
+创建指定大小未初始化的FastBuffer对象，需要使用[fill](#fill)函数来初始化FastBuffer对象。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -172,7 +175,11 @@ byteLength(value: string | FastBuffer | TypedArray | DataView | ArrayBuffer | Sh
 ```ts
 import { fastbuffer } from '@kit.ArkTS';
 
-let str = '\u00bd + \u00bc = \u00be';
+let str = 'hello world';
+console.info(`${str}: ${str.length} characters, ${fastbuffer.byteLength(str, 'utf-8')} bytes`);
+// 输出结果：hello world: 11 characters, 11 bytes
+
+str = '\u00bd + \u00bc = \u00be';
 console.info(`${str}: ${str.length} characters, ${fastbuffer.byteLength(str, 'utf-8')} bytes`);
 // 输出结果：½ + ¼ = ¾: 9 characters, 12 bytes
 ```
@@ -349,6 +356,7 @@ console.info(buf.length.toString());
 from(buffer: FastBuffer | Uint8Array): FastBuffer
 
 当入参为FastBuffer对象时，创建新的FastBuffer对象并复制入参FastBuffer对象的数据，然后返回新对象。
+
 当入参为Uint8Array对象时，基于Uint8Array对象的内存创建新的FastBuffer对象并返回，保持数据的内存关联。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
@@ -519,7 +527,7 @@ transcode(source: FastBuffer | Uint8Array, fromEnc: string, toEnc: string): Fast
 
 将FastBuffer或Uint8Array对象从fromEnc编码转换为toEnc编码。
 
-fastbuffer.transcode支持的编码：'ascii' | 'utf8' | 'utf16le'| 'ucs2' | 'latin1'| 'binary'
+fastbuffer.transcode支持的编码：'ascii' | 'utf8' | 'utf16le'| 'ucs2' | 'latin1'| 'binary'。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -582,7 +590,7 @@ console.info(JSON.stringify(buf.byteOffset));
 
 compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
-比较当前FastBuffer对象与目标FastBuffer对象，并返回Buffer在排序中的结果。
+比较当前对象this与目标对象target，并返回比较结果。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -602,7 +610,7 @@ compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: numbe
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
+| -1 \| 0 \| 1 | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
 
 **错误码：**
 
@@ -892,7 +900,7 @@ console.info(buf.indexOf('is').toString());
 
 keys(): IterableIterator&lt;number&gt;
 
-返回包含key值的迭代器。
+返回一个包含key值的迭代器。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -910,18 +918,18 @@ keys(): IterableIterator&lt;number&gt;
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.from('buffer');
-let numbers = Array.from(buf.keys());
-for (const key of numbers) {
+let keys = buf.keys();
+for (const key of keys) {
   console.info(key.toString());
-  /*
-  输出结果：0
-           1
-           2
-           3
-           4
-           5
-  */
 }
+/*
+输出结果：0
+        1
+        2
+        3
+        4
+        5
+*/
 ```
 
 ### values
@@ -1042,11 +1050,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigInt64BE(0).toString());
 // 输出结果：7161960797921896816
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readBigInt64LE
@@ -1088,11 +1091,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigInt64LE(0).toString());
 // 输出结果：8100120198111388771
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64LE(BigInt(0xcafafecacefade), 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readBigUInt64BE
@@ -1134,10 +1132,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigUInt64BE(0).toString());
 // 输出结果：7161960797921896816
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readBigUInt64LE
@@ -1179,11 +1173,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigUInt64LE(0).toString());
 // 输出结果：8100120198111388771
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readDoubleBE
@@ -1224,10 +1213,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readDoubleBE(0).toString());
 // 输出结果：8.20788039913184e-304
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeDoubleBE(123.456, 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readDoubleLE
@@ -1268,10 +1253,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readDoubleLE(0).toString());
 // 输出结果：5.447603722011605e-270
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeDoubleLE(123.456, 0);
-console.info("result = " + result);
-// 输出结果：result = 8
 ```
 
 ### readFloatBE
@@ -1312,10 +1293,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readFloatBE(0).toString());
 // 输出结果：2.387939260590663e-38
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeFloatBE(0xcabcbcbc, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readFloatLE
@@ -1356,10 +1333,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readFloatLE(0).toString());
 // 输出结果：1.539989614439558e-36
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeFloatLE(0xcabcbcbc, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readInt8
@@ -1402,10 +1375,6 @@ console.info(buf.readInt8(0).toString());
 // 输出结果：-1
 console.info(buf.readInt8(1).toString());
 // 输出结果：5
-let buf1 = fastbuffer.allocUninitializedFromPool(2);
-let result = buf1.writeInt8(0x12);
-console.info("result = " + result);
-// 输出结果：result = 1
 ```
 
 ### readInt16BE
@@ -1446,10 +1415,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 5]);
 console.info(buf.readInt16BE(0).toString());
 // 输出结果：5
-let buf1 = fastbuffer.alloc(2);
-let result = buf1.writeInt16BE(0x1234, 0);
-console.info("result = " + result);
-// 输出结果：result = 2
 ```
 
 ### readInt16LE
@@ -1490,10 +1455,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 5]);
 console.info(buf.readInt16LE(0).toString());
 // 输出结果：1280
-let buf1 = fastbuffer.alloc(2);
-let result = buf1.writeInt16BE(0x1234, 0);
-console.info("result = " + result);
-// 输出结果：result = 2
 ```
 
 ### readInt32BE
@@ -1534,10 +1495,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 0, 0, 5]);
 console.info(buf.readInt32BE(0).toString());
 // 输出结果：5
-let buf1 = fastbuffer.alloc(4);
-let result = buf1.writeInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readInt32LE
@@ -1578,10 +1535,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 0, 0, 5]);
 console.info(buf.readInt32LE(0).toString());
 // 输出结果：83886080
-let buf1 = fastbuffer.alloc(4);
-let result = buf1.writeInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readIntBE
@@ -1606,7 +1559,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取的内容。当offset为小数时，返回undefined。 |
+| number | 读取出的内容。 |
 
 **错误码：**
 
@@ -1625,10 +1578,6 @@ let buf = fastbuffer.from("ab");
 let num = buf.readIntBE(0, 1);
 console.info(num.toString());
 // 输出结果：97
-let buf1 = fastbuffer.allocUninitializedFromPool(6);
-let result = buf1.writeIntBE(0x123456789011, 0, 6);
-console.info("result = " + result);
-// 输出结果：result = 6
 ```
 
 
@@ -1654,7 +1603,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。当offset为小数时，返回undefined。 |
+| number | 读取出的内容。 |
 
 **错误码：**
 
@@ -1672,10 +1621,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readIntLE(0, 6).toString(16));
 // 输出结果：-546f87a9cbee
-let buf1 = fastbuffer.allocUninitializedFromPool(6);
-let result = buf1.writeIntLE(0x123456789011, 0, 6);
-console.info("result = " + result);
-// 输出结果：result = 6
 ```
 
 ### readUInt8
@@ -1719,10 +1664,6 @@ console.info(buf.readUInt8(0).toString());
 // 输出结果：1
 console.info(buf.readUInt8(1).toString());
 // 输出结果：254
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt8(0x42);
-console.info("result = " + result);
-// 输出结果：result = 1
 ```
 
 ### readUInt16BE
@@ -1766,10 +1707,6 @@ console.info(buf.readUInt16BE(0).toString(16));
 // 输出结果：1234
 console.info(buf.readUInt16BE(1).toString(16));
 // 输出结果：3456
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt16BE(0x1234, 0);
-console.info("result = " + result);
-// 输出结果：result = 2
 ```
 
 ### readUInt16LE
@@ -1813,10 +1750,6 @@ console.info(buf.readUInt16LE(0).toString(16));
 // 输出结果：3412
 console.info(buf.readUInt16LE(1).toString(16));
 // 输出结果：5634
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt16LE(0x1234, 0);
-console.info("result = " + result);
-// 输出结果：result = 2
 ```
 
 ### readUInt32BE
@@ -1858,10 +1791,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78]);
 console.info(buf.readUInt32BE(0).toString(16));
 // 输出结果：12345678
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readUInt32LE
@@ -1903,10 +1832,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78]);
 console.info(buf.readUInt32LE(0).toString(16));
 // 输出结果：78563412
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt32LE(0x12345678, 0);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readUIntBE
@@ -1949,10 +1874,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readUIntBE(0, 6).toString(16));
 // 输出结果：1234567890ab
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUIntBE(0x13141516, 0, 4);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### readUIntLE
@@ -1995,10 +1916,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readUIntLE(0, 6).toString(16));
 // 输出结果：ab9078563412
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUIntLE(0x13141516, 0, 4);
-console.info("result = " + result);
-// 输出结果：result = 4
 ```
 
 ### subarray
@@ -2573,7 +2490,7 @@ writeFloatBE(value: number, offset?: number): number
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.allocUninitializedFromPool(8);
-let result = buf.writeFloatBE(0xcafebabe, 0);
+let result = buf.writeFloatBE(3.1415, 0);
 console.info("result = " + result);
 // 输出结果：result = 4
 ```
@@ -2617,7 +2534,7 @@ writeFloatLE(value: number, offset?: number): number
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.allocUninitializedFromPool(8);
-let result = buf.writeFloatLE(0xcafebabe, 0);
+let result = buf.writeFloatLE(3.1415, 0);
 console.info("result = " + result);
 // 输出结果：result = 4
 ```

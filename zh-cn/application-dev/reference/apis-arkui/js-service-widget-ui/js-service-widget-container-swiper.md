@@ -1,4 +1,9 @@
 # swiper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 
 滑动容器，提供切换子组件显示的能力。

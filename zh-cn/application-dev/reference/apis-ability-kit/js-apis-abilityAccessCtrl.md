@@ -1,6 +1,12 @@
 # @ohos.abilityAccessCtrl (程序访问控制管理)
 
-程序访问控制提供应用程序的权限校验和管理能力。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
+程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -237,7 +243,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -291,7 +297,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -352,7 +358,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -411,7 +417,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -689,7 +695,7 @@ type PermissionRequestResult = _PermissionRequestResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -705,7 +711,7 @@ type Context = _Context
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 此接口仅在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 

@@ -1,5 +1,11 @@
 # UIAbilityContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 UIAbilityContext是[UIAbility](./js-apis-app-ability-uiAbility.md)组件的上下文，继承自[Context](./js-apis-inner-application-context.md)。各类Context之间的关联与差异详见[应用上下文Context](../../application-models/application-context-stage.md)。
 
 每个UIAbility组件实例化时，系统都会自动创建对应的UIAbilityContext。开发者可以通过UIAbilityContext获取组件信息AbilityInfo、获取应用信息ApplicationInfo、拉起其他UIAbility、连接系统服务、销毁UIAbility等。
@@ -671,9 +677,9 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
 
     ```json
-    { 
-      "module": { 
-        // ... 
+    {
+      "module": {
+        // ...
         "abilities": [
           {
             // ...
@@ -2512,7 +2518,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)。使用Promise异步回调。
+启动一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2597,7 +2603,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-连接一个[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)。使用Promise异步回调。
+连接一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2710,7 +2716,7 @@ struct UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-断开与[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)的连接。使用Promise异步回调。
+断开与UIServiceExtensionAbility的连接。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2787,7 +2793,7 @@ struct UIServiceExtensionAbility {
       // 断开UIServiceExtension连接
       context.disconnectUIServiceExtensionAbility(this.comProxy)
         .then(() => {
-          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}`);
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -2859,20 +2865,25 @@ export default class EntryAbility extends UIAbility {
       }
 
       let newLabel: string = 'instance label';
-      let color = new ArrayBuffer(0);
-      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      });
+      let color = new ArrayBuffer(512 * 512 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
+      let opts: image.InitializationOptions = {
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
+      };
+      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, opts);
       this.context.setAbilityInstanceInfo(newLabel, imagePixelMap)
         .then(() => {
           console.info('setAbilityInstanceInfo success');
         }).catch((err: BusinessError) => {
-          console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
-        });
+        console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
       });
+    });
   }
 }
 ```

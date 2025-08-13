@@ -297,5 +297,5 @@ libnative_buffer.so
 
 针对NativeImage的开发，有以下相关实例可供参考：
 
-- [Native Window（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
-- [基于NdkNativeImage的平滑渐变动画效果（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)
+- [Native Window（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
+- [基于NdkNativeImage的平滑渐变动画效果（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)

@@ -1,4 +1,9 @@
 # @ohos.inputMethod.Panel (Input Method Panel)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethod.Panel** module provides APIs for managing the attributes of the input method panel.
 

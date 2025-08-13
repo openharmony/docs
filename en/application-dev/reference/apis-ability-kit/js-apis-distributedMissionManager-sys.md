@@ -1,6 +1,6 @@
 # @ohos.distributedMissionManager (Distributed Mission Management) (System API)
 
-The **distributedMissionManager** module implements mission management across devices. You can use the APIs provided by this module to register or unregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device by mission ID or bundle name.
+The distributedMissionManager module implements mission management across devices. You can use the APIs provided by this module to register or unregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device by mission ID or bundle name.
 
 > **NOTE**
 >
@@ -472,6 +472,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
@@ -542,6 +543,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
@@ -603,6 +605,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -666,6 +669,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -736,7 +740,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     console.error("continueStateChange err: " + JSON.stringify(error));
   }
-  ```
+```
 
 ## distributedMissionManager.off('continueStateChange')<sup>11+</sup>
 
@@ -776,7 +780,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (err) {
     console.error("continueStateChange err: " + JSON.stringify(err));
   }
-  ```
+```
 
 ## MissionCallback
 

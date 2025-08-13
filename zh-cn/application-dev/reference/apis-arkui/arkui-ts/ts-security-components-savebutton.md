@@ -1,5 +1,11 @@
 # SaveButton
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 安全控件的保存控件。用户点击保存控件，应用可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
@@ -62,13 +68,15 @@ SaveButton(options: SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存控件的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 是 | 设置保存控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 是 | 设置保存控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 是 | 设置保存控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
+
+保存控件的图标风格。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -80,6 +88,8 @@ SaveButton(options: SaveButtonOptions)
 | LINES | 1 | 保存控件展示线条样式图标。 |
 
 ## SaveDescription枚举说明
+
+保存控件的文本描述。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,6 +110,8 @@ SaveButton(options: SaveButtonOptions)
 | SAVE_ALL<sup>18+</sup> | 12 | 保存控件的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SaveButtonOnClickResult枚举说明
+
+保存控件点击后的授权结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -123,7 +135,7 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
-| result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
+| result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为一分钟，即触发点击后，可以在一分钟之内不限制次数的调用特定媒体库接口，超出一分钟的调用会鉴权失败。|
 | error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## SaveButtonAttribute
@@ -255,12 +267,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);
-          // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
+          // onClick触发后一分钟内通过createAsset接口创建图片文件，一分钟后createAsset权限收回。
           let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
           // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制。
           let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);

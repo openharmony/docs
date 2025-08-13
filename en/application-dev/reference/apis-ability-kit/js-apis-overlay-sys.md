@@ -1,6 +1,6 @@
 # @ohos.bundle.overlay (overlay) (System API)
 
-The overlay module provides APIs for installing a [module with the overlay feature](js-apis-overlay.md), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+The module provides APIs for installing a [module with the overlay feature](js-apis-overlay.md), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
 
 > **NOTE**
 >
@@ -18,7 +18,9 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean): Promise\<void>
 
-Enables or disables a module with the overlay feature in another application. This API uses a promise to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
+Enables or disables a module with the overlay feature in another application. This API uses a promise to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -81,7 +83,9 @@ try {
 
 setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-Enables or disables a module with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
+Enables or disables a module with the overlay feature in another application. This API uses an asynchronous callback to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -96,7 +100,7 @@ Enables or disables a module with the overlay feature in another application. Th
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.   |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -140,7 +144,9 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-Obtains the information about a module with the overlay feature in another application. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about a module with the overlay feature in another application. This API uses a promise to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -186,7 +192,7 @@ let moduleName = "feature";
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+        console.info('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -199,7 +205,9 @@ let moduleName = "feature";
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-Obtains the information about a module with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about a module with the overlay feature in another application. This API uses an asynchronous callback to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -213,7 +221,7 @@ Obtains the information about a module with the overlay feature in another appli
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | Name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
-| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.   |
 
 **Error codes**
 
@@ -243,7 +251,7 @@ try {
             console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -256,7 +264,9 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -269,7 +279,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) object. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -296,7 +306,7 @@ try {
             console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -309,7 +319,9 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses a promise to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -322,7 +334,7 @@ Obtains the information about modules with the overlay feature in another applic
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| moduleName | string | No   | Name of the target module, which is **targetModuleName** specified by modules with the overlay feature. By default, no value is passed, and the API obtains the information associated with all modules in that application.    |
+| moduleName | string | No   | Name of the target module. By default, no value is passed, and the API obtains the information associated with all modules in that application.    |
 
 **Return value**
 
@@ -355,7 +367,7 @@ let moduleName = "feature";
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+        console.info('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -368,7 +380,9 @@ let moduleName = "feature";
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses an asynchronous callback to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -381,8 +395,8 @@ Obtains the information about modules with the overlay feature in another applic
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| moduleName | string | Yes   | Name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
-| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| moduleName | string | Yes   | Name of the target module. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -412,7 +426,7 @@ try {
             console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -425,7 +439,9 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
+Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result.
+
+No permission is required when the specified application is the caller itself.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -438,7 +454,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -465,7 +481,7 @@ try {
             console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;

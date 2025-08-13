@@ -1,4 +1,9 @@
 # 应用文件访问(ArkTS)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--SE: @gsl_1234; @wangke25-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 应用需要对应用文件目录下的应用文件进行查看、创建、读写、删除、移动、复制、获取属性等访问操作，下文介绍具体方法。
 
@@ -229,7 +234,8 @@ function copyFileWithReadable(context: common.UIAbilityContext): void {
   });
 }
 
-function copyFileWithData(): void {
+function copyFileWithData(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // 创建文件可读流
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // 创建文件可写流

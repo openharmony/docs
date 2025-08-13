@@ -1,5 +1,11 @@
 # Function Flow Runtime并发队列(C)
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## 概述
 
 FFRT并发队列提供了设置任务优先级（Priority）和队列并发度的能力，使得队列中的任务能同时在多个线程上执行，获得更高的并行效果。
@@ -118,11 +124,11 @@ int main()
 
 | 名称                                                                                               | 描述                   |
 | -------------------------------------------------------------------------------------------------- | ---------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)                                     | 创建队列。             |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | 销毁队列。             |
-| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | 设置队列任务优先级。   |
-| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | 设置并发队列的并发度。 |
-| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_submit_h_f)                             | 向队列提交一个任务。   |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                                     | 创建队列。             |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                                   | 销毁队列。             |
+| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)     | 设置队列任务优先级。   |
+| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置并发队列的并发度。 |
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                             | 向队列提交一个任务。   |
 
 > **说明：**
 >

@@ -1,4 +1,9 @@
 # @ohos.data.dataSharePredicates (数据共享谓词)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 **谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare-sys.md#update))、删除数据([delete](js-apis-data-dataShare-sys.md#delete))和查询数据([query](js-apis-data-dataShare-sys.md#query))中。
 

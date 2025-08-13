@@ -1,4 +1,9 @@
 # 使用ImageSource完成多图对象解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 将所支持格式的图片文件解码成[Picture](image-overview.md)。当前支持的图片文件格式包括JPEG、HEIF。
 
@@ -28,10 +33,13 @@
       import { fileIo as fs } from '@kit.CoreFileKit';
 
       function getFileFd(context: Context): number | undefined {
-        const filePath: string = context.cacheDir + '/test.jpg';
+        const filePath: string = context.filesDir + '/test.jpg';
         const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-        const fd: number = file?.fd;
-        return fd;
+        if (file != undefined) {
+          const fd: number = file.fd;
+          return fd;
+        }
+        return undefined;
       }
       ```
 
@@ -121,11 +129,11 @@
          let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
          // 获取辅助图信息。
          if(auxPicture != null) {
-            let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-            console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
-               ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
-               ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
-               ' colorSpace: ' +  auxinfo.colorSpace);
+            let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+            console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
+               ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
+               ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
+               ' colorSpace: ' +  auxInfo.colorSpace);
             // 将辅助图数据读到ArrayBuffer。
             auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
                console.info('Read pixels to buffer success.');

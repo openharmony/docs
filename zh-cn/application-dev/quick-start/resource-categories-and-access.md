@@ -1,10 +1,16 @@
 # 资源分类与访问
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--SE: @buda_wy-->
+<!--TSE: @lpw_work-->
+
 应用开发过程中，需要使用字符串、颜色、字体、间距和图标等资源。不同设备或配置下，这些资源的值会有所不同。本文档对资源类型进行介绍，并提供资源开发指导。
 根据来源差异，可以将资源分为：
 
 - 应用资源：开发者在应用中自定义的资源，可以利用资源文件管理资源在不同的设备或配置中的表现。
-- 系统资源：系统提供的资源，开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统symbol图标资源信息、通过[系统资源分层设计表](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)获取系统颜色、间距、圆角等资源信息。此外，系统颜色资源还可以通过[系统色彩全量表](https://developer.huawei.com/consumer/cn/doc/design-guides/color-0000001776857164#section17672143841113)获取，系统色彩全量表与系统资源分层设计表内的资源不重合，均为推荐使用的系统颜色资源。<br>表格中未列出的其他系统资源均为系统组件和底层能力参数，推荐开发者优先使用上述表格中提供的系统资源。
+- 系统资源：系统提供的资源，开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统symbol图标资源信息、通过[系统资源分层设计表](https://gitcode.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)获取系统颜色、间距、圆角等资源信息。此外，系统颜色资源还可以通过[系统色彩全量表](https://developer.huawei.com/consumer/cn/doc/design-guides/color-0000001776857164#section17672143841113)获取，系统色彩全量表与系统资源分层设计表内的资源不重合，均为推荐使用的系统颜色资源。<br>表格中未列出的其他系统资源均为系统组件和底层能力参数，推荐开发者优先使用上述表格中提供的系统资源。
 
 ## 资源分类
 
@@ -15,6 +21,8 @@
 > - 资源目录和资源组目录下的文件均被视为资源文件，在应用打包时不会进行混淆。
 >
 > - stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。
+>
+> - 在编译构建时，AppScope目录下的资源文件会合入到模块下面的资源文件中，如果两个目录下的相同资源目录和资源组目录下存在重名资源，编译打包后只会保留AppScope目录下的资源。
 
 资源目录和资源组目录示例：
 ```
@@ -85,7 +93,7 @@ base目录默认存在。二级子目录element用于存放字符串、颜色、
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是`-2^128~2^128`<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是`-2^31~2^31-1`<!--Del--><br/>-&nbsp;pattern，样式（仅支持系统应用使用）<!--DelEnd--><br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串，[格式化字符串请参考API文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>-&nbsp;theme，主题（仅支持系统应用使用）<!--DelEnd-->| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<!--Del--><br/>-&nbsp;pattern.json<!--DelEnd--><br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是`-2^128到2^128`<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是`-2^31到2^31-1`<!--Del--><br/>-&nbsp;pattern，样式（仅支持系统应用使用）<!--DelEnd--><br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串，[格式化字符串请参考API文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>-&nbsp;theme，主题（仅支持系统应用使用）<!--DelEnd-->| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<!--Del--><br/>-&nbsp;pattern.json<!--DelEnd--><br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明见表3和表4。              | 文件名可自定义，例如：icon.png。                     |
 | profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持json文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
@@ -201,7 +209,7 @@ plural.json文件的内容如下：
 
 在resources目录右键菜单选择“New > Resource File”，可同时创建资源目录和资源文件，文件默认创建在base目录的对应资源组中。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录，并将文件创建在限定词目录中。
 
-不同类型的限定词可以组合，如同时选择Locale为zh_CN，ColorMode为Dark，将创建zh_CN-dark目录，具体组合规则参考[限定词目录](#限定词目录)。
+不同类型的限定词可以组合，如同时选择Locale为zh_CN，ColorMode为Dark，将创建zh_CN-dark目录，具体组合规则参考[限定词目录](#资源目录)。
 
 图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Available qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。<br/>创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark/element”。
 
@@ -228,7 +236,7 @@ plural.json文件的内容如下：
 
 2. 同理，语言选择en，地区选择US，创建en_US/element/string_sample.json文件。
 
-最终创建的资源文件如下。资源文件创建完成后，如何访问资源文件请参见[资源访问](#资源访问)与[相关实例](#相关实例)。
+最终创建的资源文件如下。资源文件创建完成后，如何访问资源文件请参见[资源访问](#资源访问)<!--Del-->与[相关实例](#相关实例)<!--DelEnd-->。
 
 ![create-resource-file-5](figures/create-resource-file-5.png)
 
@@ -335,7 +343,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 - 通过`$r`或`$rawfile`访问资源。具体操作如下：
 
-  1.在entry的oh-package.json5文件中添加依赖。如`"dependencies": {"library":"file":../library}`。
+  1.在entry的oh-package.json5文件中添加依赖。如`"dependencies": {"library": "file":../library}`。
 
   ![Alt text](figures/add_dependencies.png)
 
@@ -379,7 +387,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 ### 系统资源
 
-开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统symbol图标资源信息、通过[系统资源分层设计表](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)获取系统颜色、间距、圆角等资源信息。此外，系统颜色资源还可以通过[系统色彩全量表](https://developer.huawei.com/consumer/cn/doc/design-guides/color-0000001776857164#section17672143841113)获取，系统色彩全量表与系统资源分层设计表内的资源不重合，均为推荐使用的系统颜色资源。
+开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统symbol图标资源信息、通过[系统资源分层设计表](https://gitcode.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)获取系统颜色、间距、圆角等资源信息。此外，系统颜色资源还可以通过[系统色彩全量表](https://developer.huawei.com/consumer/cn/doc/design-guides/color-0000001776857164#section17672143841113)获取，系统色彩全量表与系统资源分层设计表内的资源不重合，均为推荐使用的系统颜色资源。
 获取的symbol图标资源可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)对图标颜色等进一步设置。
 
 对于系统资源，可以通过`$r('sys.type.name')`的形式访问。其中，sys表示系统资源，type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”，name为资源名称。
@@ -416,6 +424,10 @@ Image($r('sys.media.ohos_app_icon'))
 ## 资源匹配
 
 应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile和resfile是原始文件目录，不会根据设备状态去匹配资源。
+
+> **说明**
+>
+> - 在编译构建时，AppScope目录下的资源文件会合入到模块下面的资源文件中，如果两个目录下的相同资源目录和资源组目录下存在重名资源，编译打包后只会保留AppScope目录下的资源。
 
 ### 限定词目录与设备状态的匹配规则
 
@@ -498,23 +510,32 @@ struct Index {
   @State germanString: string = "";
 
   getString(): string {
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    let resMgr = context.resourceManager;
-    let resId = $r('app.string.greetings').id;
+    let resMgr = this.getUIContext().getHostContext()?.resourceManager;
+    if (!resMgr) {
+      return "";
+    }
+    let currentLanguageString: string = "";
+    try {
+      let resId = $r('app.string.greetings').id;
 
-    //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
-    let currentLanguageString = resMgr.getStringSync(resId);
+      //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
+      currentLanguageString = resMgr.getStringSync(resId);
 
-    //获取符合当前系统颜色模式、分辨率等配置的英文资源
-    let overrideConfig = resMgr.getOverrideConfiguration();
-    overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
-    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
-    this.englishString = overrideResMgr.getStringSync(resId);
+      //获取符合当前系统颜色模式、分辨率等配置的英文资源
+      let overrideConfig = resMgr.getOverrideConfiguration();
+      overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
+      let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
+      this.englishString = overrideResMgr.getStringSync(resId);
 
-    //获取符合当前系统颜色模式、分辨率等配置的德文资源
-    overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
-    overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
-    this.germanString = overrideResMgr.getStringSync(resId);
+      //获取符合当前系统颜色模式、分辨率等配置的德文资源
+      overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
+      overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
+      this.germanString = overrideResMgr.getStringSync(resId);
+    } catch (err) {
+      const code = (err as BusinessError).code;
+      const message = (err as BusinessError).message;
+      console.error(`get override resource failed, error code: ${code}, error msg: ${message}`);
+    }
     return currentLanguageString;
   }
 
@@ -551,7 +572,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ### 静态overlay配置方式
 
 包内overlay资源包中的配置文件app.json5中支持的字段：
-```
+```json
 {
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -559,12 +580,12 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
-    "label": "$string:app_name",
+    "label": "$string:app_name"
   }
 }
 ```
 包内overlay资源包中的配置文件module.json5中支持的字段：
-```
+```json
 {
   "module":{
     "name": "entry_overlay_module_name",
@@ -572,17 +593,17 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "description": "$string:entry_overlay_desc",
     "deviceTypes": [
       "default",
-      "tablet",
+      "tablet"
     ],
     "deliverywithInstall": true,
     "targetModuleName": "entry_module_name",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```
 <!--Del-->
 包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
-```
+```json
 {
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -592,12 +613,12 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```
 包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
-```
+```json
 {
   "module":{
     "name": "entry_overlay_module_name",
@@ -605,11 +626,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "description": "$string:entry_overlay_desc",
     "deviceTypes": [
       "default",
-      "tablet",
+      "tablet"
     ],
     "deliverywithInstall": true,
     "targetModuleName": "entry_module_name",
-    "targetPriority": 1,
+    "targetPriority": 1
   }
 }
 ```
@@ -630,8 +651,10 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 该功能默认使能，使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
 
+<!--Del-->
 ## 相关实例
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [资源管理（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+<!--DelEnd-->

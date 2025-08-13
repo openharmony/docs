@@ -1,5 +1,11 @@
 # ArcList
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 弧形列表包含一系列列表项。适合连续、多行呈现同类数据，例如图片和文本。
 
 > **说明：**
@@ -282,6 +288,8 @@ onReachStart(handler: Optional\<VoidCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达起始位置时触发。 |
@@ -298,6 +306,8 @@ ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达末尾位置时触发。 |
@@ -312,6 +322,8 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表滑动开始时触发。 |
@@ -325,6 +337,8 @@ onScrollStop(handler: Optional\<VoidCallback>)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
 
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
@@ -373,11 +387,11 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 名称       | 类型                                    | 必填 | 说明                                                     |
-| ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| initialIndex | number                                      | 否   | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
-| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
-| header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 支持标题设置。                                               |
+| 名称       | 类型                                    | 只读 | 可选 | 说明                                                     |
+| ------------ | ------------------------------------------- | ---- | --- | ------------------------------------------------------------ |
+| initialIndex | number                                      | 否   | 是 | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 是 | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
+| header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 是 | 支持标题设置。                                               |
 
 ## ArcScrollIndexHandler
 
@@ -447,7 +461,7 @@ struct Index {
               .focusOnTouch(true)
               .backgroundColor(0x17A98D)
           }.align(Alignment.Center)
-        }, (item: string, index: number) => item + index)
+        }, (item: number, index: number) => (item + index).toString())
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)

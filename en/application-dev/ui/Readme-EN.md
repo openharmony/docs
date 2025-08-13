@@ -48,15 +48,15 @@
        - [Fixed Style Dialog Box](arkts-fixes-style-dialog.md)
        - [Page-Level Dialog Box](arkts-embedded-dialog.md)
        - [Dialog Box Layer Management](arkts-dialog-levelorder.md)
-     - Using a Menu<!--arkts-use-menu-->
+     - Using Menus<!--arkts-use-menu-->
        - [Menu Overview](arkts-menu-overview.md)
        - [Menu Control (Menu)](arkts-popup-and-menu-components-menu.md)
        - [Global Menus Independent of UI Components (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
-     - Using a Popup<!--arkts-use-popup-->
+     - Using Popups<!--arkts-use-popup-->
        - [Popup Overview](arkts-popup-overview.md)
        - [Popup](arkts-popup-and-menu-components-popup.md)
        - [Global Popups Independent of UI Components (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
-     - Binding a Modal Page<!--arkts-bind-modal-->
+     - Binding Modal Pages<!--arkts-bind-modal-->
         - [Modal Page Overview](arkts-modal-overview.md)
         - [Binding a Semi-Modal Page (bindSheet)](arkts-sheet-page.md)
         - [Binding a Full-Modal Page (bindContentCover)](arkts-contentcover-page.md)
@@ -109,7 +109,7 @@
     - [Customization Capability Overview](arkts-user-defined.md)
     - Custom Nodes<!--arkts-nodes-->
       - [Custom Node Overview](arkts-user-defined-node.md)
-      - [Custom Placeholder Nodes](arkts-user-defined-place-hoder.md)
+      - [Custom Placeholder Nodes](arkts-user-defined-place-holder.md)
       - [Custom Component Node (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
       - [Custom RenderNode (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [Custom Declarative Node (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)

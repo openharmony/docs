@@ -1,12 +1,18 @@
 # ApplicationInfo (System API)
 
-The ApplicationInfo module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The module defines the application information. An application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).
+
+## Modules to Import
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
 
 ## ApplicationInfo
 

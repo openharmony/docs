@@ -1,4 +1,9 @@
 # 废弃的Interface (AudioRecorder, deprecated)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >

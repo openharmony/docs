@@ -851,11 +851,14 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).then((data: string) => {
+let transactionId = '';
+eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_REJECTION)
+  .then((data: eSIM.ResultCode) => {
     console.log(`cancelSession, result: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
+  })
+  .catch((err: BusinessError) => {
     console.error(`cancelSession execution failed: err->${JSON.stringify(err)}`);
-});
+  });
 ```
 
 ## AccessRule<sup>18+</sup>

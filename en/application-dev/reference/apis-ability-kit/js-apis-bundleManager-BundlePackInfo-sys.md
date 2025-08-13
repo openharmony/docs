@@ -1,12 +1,18 @@
 # BundlePackInfo (System API)
 
-The **BundlePackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall-sys.md#getbundlepackinfo).
+The module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall-sys.md#getbundlepackinfo).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
+
+## Modules to Import
+
+```js
+import { freeInstall } from '@kit.AbilityKit';
+```
 
 ## BundlePackInfo
 
@@ -30,7 +36,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 | deviceTypes          | Array\<string> | Yes  | No  | Device types supported by the bundle.                                      |
 | name                | string         | Yes  | No  | Bundle name.                                                  |
 | moduleType          | string         | Yes  | No  | Module type of the bundle.                                            |
-| deliveryWithInstall | boolean        | Yes  | No  | Whether the installation should occur during user-initiated installation. The value **true** means that the installation should occur during user-initiated installation, and **false** means the opposite.|
+| deliveryWithInstall | boolean        | Yes  | No  | Whether it should be installed together with the application. The value **true** means that it should be installed together with the application, and **false** means the opposite.|
 
 ## PackageSummary
 
@@ -77,7 +83,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 | Name               | Type   | Read-Only| Optional| Description                                                        |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| deliveryWithInstall | boolean | Yes  | No  | Whether the installation should occur during user-initiated installation. The value **true** means that the installation should occur during user-initiated installation, and **false** means the opposite.|
+| deliveryWithInstall | boolean | Yes  | No  | Whether it should be installed together with the application. The value **true** means that it should be installed together with the application, and **false** means the opposite.|
 | installationFree    | boolean | Yes  | No  | Whether the HAP file supports the installation-free feature. The value **true** means that the HAP file supports the installation-free feature and meets installation-free constraints, and **false** means the opposite.|
 | moduleName          | string  | Yes  | No  | Module name.                                                |
 | moduleType          | string  | Yes  | No  | Module type.                                                |

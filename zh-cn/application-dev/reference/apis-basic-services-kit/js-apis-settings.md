@@ -1,5 +1,11 @@
 # @ohos.settings (设置数据项名称)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--SE: @Kun_Wu-->
+<!--TSE: @dyx118186878-->
+
 本模块提供访问设置数据项的能力。
 
 > **说明：**
@@ -51,7 +57,7 @@ import { settings } from '@kit.BasicServicesKit';
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                                   |
 | ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。（当前版本参数仅支持固定值查询。）                                                                                      |
+| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。                                                                                      |
 | SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。取值范围:0到255。                                                                                                     |
 | AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>- 值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。<br/>- 值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。         |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                                 |
@@ -665,6 +671,8 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
+
+**参数**：
 
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                               |
 | -------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

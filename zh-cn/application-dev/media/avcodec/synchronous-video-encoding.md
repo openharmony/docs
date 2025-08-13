@@ -1,8 +1,16 @@
 # 视频编码同步模式
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
+
+从API 20开始，支持视频编码同步模式。
+
 开发者可以调用本模块的Native API接口，完成同步模式的视频编码。
 
-当前支持的编码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
+当前支持的编码能力，请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
 
 视频编码的限制约束、支持的能力、状态机调用关系请参考[视频编码](video-encoding.md)。
 
@@ -54,7 +62,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <shared_mutex>
     ```
     
-2. 全局变量（仅做参考，可以根据实际情况将其封装到对象中）。
+2. 全局变量（仅作参考，可以根据实际情况将其封装到对象中）。
 
     ```c++
     // 视频帧宽度。
@@ -80,7 +88,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
+参考以下示例代码，可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 
 1. 创建编码器实例。
@@ -112,25 +120,27 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
 
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 写入format。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);// 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_WIDTH, width); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_HEIGHT, height); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_PIXEL_FORMAT, pixelFormat);// 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置。
     // 配置编码器。
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    OH_AVErrCode ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
     > **注意：**
     >
-    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
-    > - 不支持Surface模式的随帧通路的同步模式。
+    > 1. 要使能视频编码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
+    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > 3. 不支持Surface模式的随帧通路的同步模式。
     >
 
 3. 设置surface。
@@ -140,7 +150,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     // 获取需要输入的surface，以进行编码。
-    int32_t ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow); 
+    OH_AVErrCode ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow); 
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -151,7 +161,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     该接口将在编码器运行前进行一些数据的准备工作。
 
     ```c++
-    int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
+    OH_AVErrCode ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -163,9 +173,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置待编码文件路径。
     std::string_view outputFilePath = "/*yourpath*.h264";
     std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
-    outputFile->open(outputFilePath.data(), std::ios::out | std::ios::binary | std::ios::ate);
+    if (outputFile != nullptr) {
+        outputFile->open(outputFilePath.data(), std::ios::out | std::ios::binary | std::ios::ate);
+    }
     // 启动编码器，开始编码。
-    int32_t ret = OH_VideoEncoder_Start(videoEnc);
+    OH_AVErrCode ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -190,8 +202,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
             
                 // 获取编码后信息。
                 OH_AVCodecBufferAttr info;
-                int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info);
+                if (getBufferRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
@@ -205,10 +217,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                    // 异常处理 
                    return false;
                 }
-                outputFile->write(reinterpret_cast<char *>(addr), info.size);
+                if (outputFile != nullptr && outputFile->is_open()) {
+                    outputFile->write(reinterpret_cast<char *>(addr), info.size);
+                }
                 // 释放已完成写入的数据，index为对应输出队列下标。
-                ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode freeOutputRet = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
+                if (freeOutputRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
@@ -218,11 +232,16 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                 break;
             }
             case AV_ERR_STREAM_CHANGED: {
-                OH_AVFormat *format = OH_VideoEncoder_GetOutputDescription(videoEnc);
+                auto format = std::shared_ptr<OH_AVFormat>(OH_VideoEncoder_GetOutputDescription(videoEnc), OH_AVFormat_Destroy);
+                if (format == nullptr) {
+                    // 异常处理。
+                }
                 // 获取新宽高。
-                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_WIDTH, &width);
-                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_HEIGHT, &height);
-                OH_AVFormat_Destroy(format);
+                bool getIntRet = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_WIDTH, &width) &&
+                                 OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_HEIGHT, &height);
+                if (!getIntRet) {
+                 	// 异常处理。
+                }
                 break;
             }
             default: {
@@ -238,7 +257,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
    ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。    
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：等待指定时长后退出。    
 
     while (!outputDone && result) {
         if (!outputDone ) {
@@ -251,7 +270,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     // Surface模式：通知视频编码器输入流已结束，只能使用此接口进行通知。
-    int32_t ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
+    OH_AVErrCode ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -266,14 +285,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codecMutex来避免调用Flush接口，状态切换后，编码线程还在跑会退出循环的问题。
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 刷新编码器videoEnc。
-    int32_t ret = OH_VideoEncoder_Flush(videoEnc);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode flushRet = OH_VideoEncoder_Flush(videoEnc);
+    if (flushRet != AV_ERR_OK) {
         // 异常处理。
     }
 
     // 重新开始编码。
-    ret = OH_VideoEncoder_Start(videoEnc);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode startRet = OH_VideoEncoder_Start(videoEnc);
+    if (startRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -285,22 +304,24 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 重置编码器videoEnc。
     std::unique_lock<std::shared_mutex> lock(codecMutex);
-    int32_t ret = OH_VideoEncoder_Reset(videoEnc);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode resetRet = OH_VideoEncoder_Reset(videoEnc);
+    if (resetRet != AV_ERR_OK) {
         // 异常处理。
     }
  
     // 重新配置编码器参数。
-    OH_AVFormat *format = OH_AVFormat_Create();
-    ret = OH_VideoEncoder_Configure(videoEnc, format);
-    if (ret != AV_ERR_OK) {
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
+    OH_AVErrCode configRet = OH_VideoEncoder_Configure(videoEnc, format.get());
+    if (configRet != AV_ERR_OK) {
+        // 异常处理。
+    }
 
     // 编码器重新就绪。
-    ret = OH_VideoEncoder_Prepare(videoEnc);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode prepareRet = OH_VideoEncoder_Prepare(videoEnc);
+    if (prepareRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -317,7 +338,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 终止编码器videoEnc。
     std::unique_lock<std::shared_mutex> lock(codecMutex);
-    int32_t ret = OH_VideoEncoder_Stop(videoEnc);
+    OH_AVErrCode ret = OH_VideoEncoder_Stop(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -328,7 +349,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 注销编码器。
     std::unique_lock<std::shared_mutex> lock(codecMutex);
-    int32_t ret = AV_ERR_OK;
+    OH_AVErrCode ret = AV_ERR_OK;
     if (videoEnc != nullptr) {
         ret = OH_VideoEncoder_Destroy(videoEnc);
         videoEnc = nullptr;
@@ -345,7 +366,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
+参考以下示例代码，可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 创建编码器实例。
 
@@ -355,7 +376,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codecname创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *videoEnc = OH_videoEncoder_CreateByName(name);
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(name);
     if (videoEnc == nullptr) {
         printf("create videoEnc failed");
         return;
@@ -367,24 +388,26 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     与Surface模式相同，此处不再赘述。
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 写入format。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);// 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_WIDTH, width); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_HEIGHT, height); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_PIXEL_FORMAT, pixelFormat);// 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置。
     // 配置编码器。
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    OH_AVErrCode ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
     > **注意：**
     >
-    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > 1. 要使能视频编码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
+    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
     >
 
 3. 调用OH_VideoEncoder_Prepare()编码器就绪。
@@ -408,10 +431,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     std::string_view outputFilePath = "/*yourpath*.h264";
     std::unique_ptr<std::ifstream> inputFile = std::make_unique<std::ifstream>();
     std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
-    inputFile->open(inputFilePath.data(), std::ios::in | std::ios::binary);
-    outputFile->open(outputFilePath.data(), std::ios::out | std::ios::binary | std::ios::ate);
+    if (inputFile != nullptr) {
+        inputFile->open(inputFilePath.data(), std::ios::in | std::ios::binary);
+    }
+    if (outputFile != nullptr) {
+        outputFile->open(outputFilePath.data(), std::ios::out | std::ios::binary | std::ios::ate);
+    }
     // 启动编码器，开始编码。
-    int32_t ret = OH_VideoEncoder_Start(videoEnc);
+    OH_AVErrCode ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -439,12 +466,17 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                 // 写入图像数据。
                 int32_t frameSize = 0;
                 bool isFirstFrame = true;
-                // 获取视频宽、高跨距。
+                // 获取视频宽跨距和高跨距。
                 if (isFirstFrame) {
-                    OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
-                    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
-                    OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
-                    OH_AVFormat_Destroy(format);
+                    auto format = std::shared_ptr<OH_AVFormat>(OH_VideoEncoder_GetInputDescription(videoEnc), OH_AVFormat_Destroy);
+                    if (format == nullptr) {
+                        // 异常处理。
+                    }
+                    bool getIntRet = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_STRIDE, &widthStride) &&
+                                     OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
+                     if (!getIntRet) {
+                     	// 异常处理。
+                     }
                     isFirstFrame = false;
                 }
                 if (widthStride == width && heightStride == height) {
@@ -455,9 +487,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                        // 异常处理 
                        return false;
                     }
-                    inputFile->read(reinterpret_cast<char *>(addr), frameSize);
+                    if (inputFile != nullptr && inputFile->is_open()) {
+                        inputFile->read(reinterpret_cast<char *>(addr), frameSize);
+                    }
                 } else {
-                    // 如果跨距不等于宽，需要开发者按照跨距进行偏移，视频编码Buffer“步骤-8. 写入编码图像”。
+                    // 如果跨距不等于宽，开发者需要按照跨距进行偏移，详情请参考视频编码Buffer模式“步骤-8. 写入编码图像”。
                 }
 
                 // 配置buffer info信息。
@@ -465,14 +499,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                 info.size = frameSize;
                 info.offset = 0;
                 info.pts = 0;
-                int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(buffer, &info);
+                if (setBufferRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
                 // 送入编码输入队列进行编码，index为对应输入队列的下标。
-                ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode pushInputRet = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
+                if (pushInputRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
@@ -506,12 +540,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     info.offset = 0;
     info.pts = 0;
     info.flags = AVCODEC_BUFFER_FLAGS_EOS;
-    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (setBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
-    ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode pushInputRet = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
+    if (pushInputRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -535,8 +569,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
             
                 // 获取编码后信息。
                 OH_AVCodecBufferAttr info;
-                int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info);
+                if (getBufferRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
@@ -546,13 +580,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                    // 异常处理 
                    return false;
                 }
-                outputFile->write(reinterpret_cast<char *>(addr), info.size);
+                if (outputFile != nullptr && outputFile->is_open()) {
+                    outputFile->write(reinterpret_cast<char *>(addr), info.size);
+                }
                 if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
                     outputDone = 1;
                 }
                 // 释放已完成处理的信息，index为对应buffer队列的下标。
-                ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
-                if (ret != AV_ERR_OK) {
+                OH_AVErrCode freeOutputRet = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
+                if (freeOutputRet != AV_ERR_OK) {
                     // 异常处理。
                     return false;
                 }
@@ -577,7 +613,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
   
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：等待指定时长后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
@@ -589,4 +625,4 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。
+后续流程（包括刷新、重置、停止和销毁编码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。

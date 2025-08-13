@@ -1,4 +1,9 @@
 # Media错误码
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -153,6 +158,26 @@ The parameter check failed, parameter value out of range.
 
 调整参数值，使其在取值范围内。
 
+<!--Del-->
+## 5400109 会话ID不存在
+
+**错误信息**
+
+Sessions not exist. Return by promise.
+
+**错误描述**
+
+当会话ID不存在时，返回错误。
+
+**可能原因**
+
+会话ID不存在。
+
+**处理步骤**
+
+检查传入的会话ID，确保其正确。
+<!--DelEnd-->
+
 ## 5411001 解析或链接服务端地址错误
 
 **错误信息**
@@ -176,7 +201,7 @@ Can not find host.
 
 **错误信息**
 
-Connection time out.
+Connection timeout.
 
 **错误描述**
 
@@ -195,7 +220,7 @@ Connection time out.
 
 **错误信息**
 
-NetWork abnormal.
+Network abnormal.
 
 **错误描述**
 
@@ -213,7 +238,7 @@ NetWork abnormal.
 
 **错误信息**
 
-NetWork unavailable.
+Network unavailable.
 
 **错误描述**
 
@@ -346,7 +371,7 @@ SSL服务端不可信，客户端校验服务端证书失败。
 
 **错误信息**
 
-Unsupportted request.
+Unsupported request.
 
 **错误描述**
 
@@ -365,7 +390,7 @@ Unsupportted request.
 
 **错误信息**
 
-seek continuous is unsupported.
+Seek continuous is unsupported.
 
 **错误描述**
 
@@ -383,7 +408,7 @@ seek continuous is unsupported.
 
 **错误信息**
 
-super resolution not supported.
+Super resolution not supported.
 
 **错误描述**
 
@@ -401,7 +426,7 @@ super resolution not supported.
 
 **错误信息**
 
-super resolution not enabled.
+Super resolution not enabled.
 
 **错误描述**
 

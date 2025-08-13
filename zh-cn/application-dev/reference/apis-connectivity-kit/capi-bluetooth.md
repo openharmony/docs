@@ -1,5 +1,11 @@
 # Bluetooth
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## 概述
 
 提供用于查询蓝牙开关状态的功能。

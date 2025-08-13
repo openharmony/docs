@@ -1095,7 +1095,7 @@ Invalid qualifier key 'xxx'. It should match the pattern of the qualifiers direc
 
 **处理步骤**
 
-检查限定词目录名称是否准确，限定词目录命名规则可参考[资源分类与访问-限定词目录](../quick-start/resource-categories-and-access.md#限定词目录)。
+检查限定词目录名称是否准确，限定词目录命名规则可参考[资源分类与访问-限定词目录](../quick-start/resource-categories-and-access.md#资源目录)。
 
 ### 11211104 无效的资源组目录
 

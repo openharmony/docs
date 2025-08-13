@@ -1,11 +1,16 @@
 # Interface (Stabilization)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-Stabilization extends [StabilizationQuery](arkts-apis-camera-StabilizationQuery.md)
+Stabilization 继承自 [StabilizationQuery](arkts-apis-camera-StabilizationQuery.md)。
 
 提供设备在录像模式下设置视频防抖的操作。
 

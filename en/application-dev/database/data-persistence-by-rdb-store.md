@@ -1,4 +1,4 @@
-# Persisting RDB Store Data
+# Persisting RDB Store Data (ArkTS)
 
 
 ## When to Use
@@ -84,8 +84,8 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
-         customDir: 'customDir/subCustomDir' // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
-         isReadOnly: false // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
+         customDir: 'customDir/subCustomDir', // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
+         isReadOnly: false, // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
          tokenizer: tokenType // (Optional) Type of the tokenizer used in full-text search (FTS). If this parameter is left blank, only English word segmentation is supported in FTS.
        };
 
@@ -102,7 +102,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // Create a table.
+           store.executeSql(SQL_CREATE_TABLE) // Create a table.
              .then(() => {
                // Set the RDB store version, which must be an integer greater than 0.
                store.version = 3;
@@ -370,7 +370,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
      })
    }
    if(store != undefined) {
-      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
+      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH 'Text'", (err, resultSet) => {
         if (err) {
           console.error(`Query failed.`);
           return;
@@ -384,7 +384,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    }
    ```
 
-5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb-store).
 
    Example: Perform manual backup of an RDB store.
 
@@ -445,4 +445,3 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    });
    ```
 
-<!--no_check-->

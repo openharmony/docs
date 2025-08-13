@@ -40,7 +40,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统应用**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -51,9 +51,13 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Cannot start an invisible component.                           |
@@ -67,8 +71,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not the current application.       |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -119,7 +121,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统应用**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -135,9 +137,13 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Cannot start an invisible component.                           |
@@ -151,8 +157,6 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not the current application.       |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

@@ -1,4 +1,9 @@
 # MultiNavigation
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 MultiNavigation用于在大尺寸设备上分栏显示、进行路由跳转。
 
@@ -322,7 +327,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。<br/>取值范围：[-1, +∞) |
 
 ### popToIndex
 
@@ -355,7 +360,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)  |
 | result | Object | 是 | 页面自定义处理结果。 |
 | animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
@@ -483,8 +488,7 @@ getParamByIndex(index: number): Object | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| Object   | 返回对应NavDestination页面的参数信息。 |
-| undefined   | 传入index无效是返回undefined。|
+| Object&nbsp;\|&nbsp;undefined | Object：返回对应NavDestination页面的参数信息。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName
 
@@ -566,7 +570,7 @@ disableAnimation(disable: boolean): void
 
 switchFullScreenState(isFullScreen?: boolean): boolean
 
-切换当前顶栈详情页面的显示模式。设置为true表示为全屏显示，false表示分栏显示。
+切换当前顶栈详情页面的显示模式。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -576,7 +580,7 @@ switchFullScreenState(isFullScreen?: boolean): boolean
 
 |  参数名   |             类型                | 必填 | 说明           |
 | :----------: | :-----: | :--: | ----------------------------------------------------- |
-| isFullScreen | boolean |  否  | 是否切换为全屏。true表示全屏模式，false表示分栏模式。 |
+| isFullScreen | boolean |  否  | 是否切换为全屏。默认值为false。true表示全屏模式，false表示分栏模式。 |
 
 **返回值：**
 
@@ -598,8 +602,8 @@ setHomeWidthRange(minPercent: number, maxPercent: number): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------------:|:--------:|:-----:|-------------------|
-| minPercent  | number  |   是   | 最小主页宽度百分比。 |
-| maxPercent  | number  |   是   | 最大主页宽度百分比。 |
+| minPercent  | number  |   是   | 最小主页宽度百分比。<br/>取值范围：[0, 100] |
+| maxPercent  | number  |   是   | 最大主页宽度百分比。<br/>取值范围：[0, 100] |
 
 ### keepBottomPage
 
@@ -829,7 +833,7 @@ export struct PageHome1 {
                 .type(InputType.Number)
                 .fontSize(14)
                 .fontColor(Color.Black)
-                .onChange((value: String) => {
+                .onChange((value: string) => {
                   this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
@@ -1117,7 +1121,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .fontSize(14)
                 .fontColor(Color.Black)
-                .onChange((value: String) => {
+                .onChange((value: string) => {
                   this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
@@ -1292,7 +1296,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .fontSize(14)
                 .fontColor(Color.Black)
-                .onChange((value: String) => {
+                .onChange((value: string) => {
                   this.text = value;
                 })
               Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule})
@@ -1325,7 +1329,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .fontSize(14)
                 .fontColor(Color.Black)
-                .onChange((value: String) => {
+                .onChange((value: string) => {
                   this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
@@ -1492,7 +1496,7 @@ export struct PageFull1 {
                 .type(InputType.Number)
                 .fontSize(14)
                 .fontColor(Color.Black)
-                .onChange((value: String) => {
+                .onChange((value: string) => {
                   this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule })

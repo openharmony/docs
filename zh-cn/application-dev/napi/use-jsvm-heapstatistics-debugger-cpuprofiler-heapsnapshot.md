@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行JavaScript代码调试调优
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -25,11 +30,11 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++代码。
 
 ### OH_JSVM_GetVM
 
-将检索给定环境的虚拟机实例。
+检索给定环境中的虚拟机实例。
 
 cpp部分代码
 
@@ -71,12 +76,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
-<!-- @[oh_jsvm_get_vm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
-
-预计的输出结果：
-```
-JSVM OH_JSVM_GetVM: success
-```
+<!-- @[oh_jsvm_get_vm](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -144,7 +144,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
-<!-- @[oh_jsvm_get_heap_statistics](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_heap_statistics](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM API heap totalHeapSize: 1597440
@@ -164,7 +164,7 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 以下接口的示例代码可以参考链接：
 
-[JSVM-API调试&定位](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+[JSVM-API调试&定位](./jsvm-debugger-cpuprofiler-heapsnapshot.md)
 
 ### OH_JSVM_StartCpuProfiler
 
@@ -172,19 +172,15 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 ### OH_JSVM_StopCpuProfiler
 
-停止CPU profiler并将结果输出到流。
+停止CPU profiler并将结果输出到流中。
 
 ### OH_JSVM_TakeHeapSnapshot
 
-获取当前堆快照并将其输出到流。
+获取当前堆快照并输出到流中。
 
 ### OH_JSVM_OpenInspector
 
-在指定的主机和端口上激活inspector，将用来调试JS代码。
-
-### OH_JSVM_OpenInspectorWithName
-
-基于传入的 pid 和 name 激活 inspector。
+在指定的主机和端口上激活inspector，用于调试JS码。
 
 ### OH_JSVM_CloseInspector
 
@@ -192,4 +188,4 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 ### OH_JSVM_WaitForDebugger
 
-等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。
+等待主机与inspector建立socket连接。连接建立后，程序将继续运行并发送Runtime.runIfWaitingForDebugger命令。

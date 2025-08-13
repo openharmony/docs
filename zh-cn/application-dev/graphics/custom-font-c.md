@@ -1,5 +1,9 @@
 # 自定义字体的注册和使用（C/C++）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 
 ## 场景介绍
 
@@ -68,7 +72,7 @@
    0表示注册成功，1表示文件不存在，2表示打开文件失败，3表示读取文件失败，4表示寻找文件失败，5表示获取大小失败，9表示文件损坏。
 
    ```c++
-   // 返回0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9文件损坏
+   // 返回0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9为文件损坏
    int errorCode = OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath); 
    ```
 

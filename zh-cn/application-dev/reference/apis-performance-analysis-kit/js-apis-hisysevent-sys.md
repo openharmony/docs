@@ -1,5 +1,11 @@
 # @ohos.hiSysEvent (系统事件打点)(系统接口)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lyj_love_code-->
+<!--SE: @tangyyan-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。
 
 > **说明：**
@@ -32,12 +38,12 @@ import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| domain | string | 是 | 事件领域。 |
-| name | string | 是 | 事件名称。 |
-| eventType | [EventType](#eventtype) | 是 | 事件类型。 |
-| params | object | 否 | 事件参数。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | 否 | 否 | 事件领域。 |
+| name | string | 否 | 否 | 事件名称。 |
+| eventType | [EventType](#eventtype) | 否 | 否 | 事件类型。 |
+| params | object | 否 | 是 | 事件参数。 |
 
 
 ## hiSysEvent.write
@@ -188,12 +194,12 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| domain | string | 是 | 事件领域。 |
-| name | string | 是 | 事件名称。 |
-| tag | string | 否 | 事件标签。 |
-| ruleType | [RuleType](#ruletype) | 是 | 匹配规则类型。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | 否 | 否 | 事件领域。 |
+| name | string | 否 | 否 | 事件名称。 |
+| tag | string | 否 | 是 | 事件标签。 |
+| ruleType | [RuleType](#ruletype) | 否 | 否 | 匹配规则类型。 |
 
 ## Watcher
 
@@ -201,11 +207,11 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| rules | [WatchRule](#watchrule)[] | 是 | 订阅对象数组，每个订阅者对象包含多个订阅规则。 |
-| onEvent | function | 是 | 订阅事件的回调方法(info: [SysEventInfo](#syseventinfo)) => void。 |
-| onServiceDied | function | 是 | 系统事件服务关闭的回调方法() => void。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| rules | [WatchRule](#watchrule)[] | 否 | 否 | 订阅对象数组，每个订阅者对象包含多个订阅规则。 |
+| onEvent | function | 否 | 否 | 订阅事件的回调方法(info: [SysEventInfo](#syseventinfo)) => void。 |
+| onServiceDied | function | 否 | 否 | 系统事件服务关闭的回调方法() => void。 |
 
 ## hiSysEvent.addWatcher
 
@@ -325,13 +331,13 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| beginTime | number | 是 | 查询的系统事件起始时间（13位时间戳）。 |
-| endTime | number | 是 | 查询的系统事件结束时间（13位时间戳）。 |
-| maxEvents | number | 是 | 查询的系统事件最多条数。 |
-| fromSeq<sup>10+</sup> | number | 否   | 查询的系统事件起始序列号，默认值为-1。 |
-| toSeq<sup>10+</sup> | number | 否   | 查询的系统事件结束序列号，默认值为-1。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| beginTime | number | 否 | 否 | 查询的系统事件起始时间（13位时间戳）。 |
+| endTime | number | 否 | 否 | 查询的系统事件结束时间（13位时间戳）。 |
+| maxEvents | number | 否 | 否 | 查询的系统事件最多条数。 |
+| fromSeq<sup>10+</sup> | number | 否 | 是 | 查询的系统事件起始序列号，默认值为-1。 |
+| toSeq<sup>10+</sup> | number | 否 | 是 | 查询的系统事件结束序列号，默认值为-1。 |
 
 ## QueryRule 
 
@@ -339,11 +345,11 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| domain | string | 是 | 查询包含的事件领域。 |
-| names | string[] | 是 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
-| condition<sup>10+</sup> | string | 否 | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符","value":"比较值"}]}} |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | 否 | 否 | 查询包含的事件领域。 |
+| names | string[] | 否 | 否 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
+| condition<sup>10+</sup> | string | 否 | 是 | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符","value":"比较值"}]}} |
 
 ## Querier
 
@@ -351,10 +357,10 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
-| onComplete | function | 是 | 查询结果统计的回调方法(reason: number, total: number) => void。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| onQuery | function | 否 | 否 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
+| onComplete | function | 否 | 否 | 查询结果统计的回调方法(reason: number, total: number) => void。 |
 
 ## hiSysEvent.query
 

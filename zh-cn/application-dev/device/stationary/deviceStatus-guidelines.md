@@ -1,4 +1,9 @@
 # 设备状态感知开发指导
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--SE: @zou_ye-->
+<!--TSE: @judan-->
 
 DeviceStatus（设备状态感知）模块提供设备状态感知能力，可以获取到设备的状态感知信息，例如：获取设备静止姿态感知状态（支架态）。
 
@@ -20,7 +25,7 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 ### 约束与限制
 
-<!--RP1-->设备需要支持加速度计，并支持特定芯片。<!--RP1End-->
+设备需要支持加速度计。
 
 ### 接口说明
 

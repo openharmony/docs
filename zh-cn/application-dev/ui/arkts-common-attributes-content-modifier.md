@@ -1,4 +1,4 @@
-# ContentModifier (内容修改器)
+# 内容修改器 (ContentModifier)
 
 当开发者期望自定义组件的内容区时，比如CheckBox的内部显示一个五角星等场景时，可以使用此功能。
 

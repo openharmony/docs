@@ -11,7 +11,7 @@
 - The UIExtensionAbility can be started only by applications that are running in the foreground.
 
 ## Lifecycle
-The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) class provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityondestroy). You must override them as required.
+The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) class provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy). You must override them as required.
 
 - **onCreate**: called to initialize the service logic when a UIExtensionAbility is created.
 - **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the UIExtensionAbility.
@@ -386,7 +386,7 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
 
 2. Right-click the **uiextensionability** directory, and choose **New > File** to create a file named **UIExtensionAbility.ets**.
 
-3. Open the **UIExtensionAbility.ets** file and import its dependencies. Customize a class that inherits from **UIExtensionAbility** and implement the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityondestroy).
+3. Open the **UIExtensionAbility.ets** file and import its dependencies. Customize a class that inherits from **UIExtensionAbility** and implement the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy).
 
     ```ts
     import { Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
@@ -423,7 +423,7 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
     }
     ```
 
-4. Write the entry page file **pages/extension.ets**, which will be loaded in [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) of the [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md), and declare "pages/Extension" in the **entry\src\main\resources\base\profile\main_pages.json** file. The content of **extension.ets** is as follows:
+4. Write the entry page file **pages/extension.ets**, which will be loaded in [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) of the [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md), and declare "pages/Extension" in the **entry\src\main\resources\base\profile\main_pages.json** file. The content of **extension.ets** is as follows:
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';

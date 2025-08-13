@@ -1,4 +1,9 @@
 # MVVM模式（状态管理V2）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @katabanga-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 ## 概述
 
@@ -1272,4 +1277,4 @@ struct SettingPage {
 本教程通过待办事项应用示例，引入状态管理V2装饰器，通过代码重构实现MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量，实现高效的数据与UI同步，简化开发流程。
 
 ## 代码示例
-[完整源码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)
+[完整源码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)

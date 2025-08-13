@@ -1,5 +1,9 @@
 # 文本测量（C/C++）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 场景介绍
 
 文本测量指的是在图形绘制中，对文本的尺寸和布局进行评估，计算文本在给定字体和样式下占用的空间（例如宽度、高度和其他相关信息）的过程。文本测量用于文本排版、布局、渲染以及调整文本显示的位置和大小等场景，便于对界面的布局和呈现更好地把控和调整，以达到设计预期。
@@ -74,15 +78,14 @@
    
    // case3:获取段落每行的度量信息
    OH_Drawing_LineMetrics* lineMetrics = OH_Drawing_TypographyGetLineMetrics(typography);
-   int lineCnt = OH_Drawing_LineMetricsGetSize(lineMetrics);
-   for (int i = 0; i < lineCnt; ++i) {
+   int lineMetricsSize = OH_Drawing_LineMetricsGetSize(lineMetrics);
+   for (int i = 0; i < lineMetricsSize; ++i) {
        // lineMetrics为经过排版测量的文字度量信息
        double curLineAscender = lineMetrics[i].ascender;
        double curLineWidth = lineMetrics[i].width;
    }
    
-   // case4:获取段落最长行宽度与带缩进最长行行宽
-   double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
+   // case4:获取段落带缩进最长行行宽
    double longestLineWithIndent = OH_Drawing_TypographyGetLongestLineWithIndent(typography);
    ```
 

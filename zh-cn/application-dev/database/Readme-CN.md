@@ -1,4 +1,9 @@
 # ArkData（方舟数据管理）
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--SE: @widecode-->
+<!--TSE: @logic42-->
 
 - [ArkData简介](data-mgmt-overview.md)
 - 标准化数据定义<!--uniform-data-definition-->

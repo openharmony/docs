@@ -1,5 +1,11 @@
 # 管理分布式账号（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-kit/js-apis-distributed-account.md)将自有账号与本地系统账号建立关联关系。
 
 ## 开发准备

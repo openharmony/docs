@@ -1,9 +1,13 @@
 # 卡片编辑开发指导
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--SE: @xueyulong-->
+<!--TSE: @chenmingze-->
 桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
 
 ## 开发步骤
-1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
+1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
 
 ```ts
 // src/main/ets/entryformeditability/EntryFormEditAbility.ets
@@ -34,7 +38,6 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     storage.setOrCreate('extensionEvent', extensionEvent);
     try {
       session.loadContent('pages/Extension', storage);
-      session.setWindowBackgroundColor('#00000000');
     } catch (e) {
       console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
@@ -104,7 +107,7 @@ struct Extension {
 }
 ```
 
-3. 新增ExtensionEvent文件，使用startFormEditSecondPage方法调用[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage)方法。
+3. 新增ExtensionEvent文件，使用startFormEditSecondPage方法调用[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法。
 
 ```ts
 // src/main/ets/widget/pages/model/ExtensionEvent.ets
@@ -138,7 +141,7 @@ export class ExtensionEvent {
 ]
 ```
 
-5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md)配置文件中添加formConfigAbility配置项信息。
+5. 在卡片的[form_config.json](./arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中添加formConfigAbility配置项信息。
 
 ```json
 {

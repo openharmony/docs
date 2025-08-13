@@ -43,7 +43,7 @@
 > 同一Bundle中声明的linkFeature数量不能超过150个。 
 
 
-目标应用在linkFeature字段中申明功能类型，并通过应用市场上架审核后，可以提升应用跳转体验。主要用于以下两种场景：
+目标应用在linkFeature字段中声明功能类型，并通过应用市场上架审核后，可以提升应用跳转体验。主要用于以下两种场景：
 
 1. 支持系统识别同类应用：当调用方拉起垂类应用（例如导航类应用）时，系统会根据linkFeature字段识别到匹配的应用，并在应用面板中展现。
 
@@ -55,7 +55,7 @@
     |RoutePlan|指示路线规划功能|
     |PlaceSearch|指示地点搜索功能|
 
-2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkfeature，则用户在B应用内完成操作后，可一键返回A应用。
+2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkFeature，则用户在B应用内完成操作后，可一键返回A应用。
 
     |值|说明|
     |---|---|

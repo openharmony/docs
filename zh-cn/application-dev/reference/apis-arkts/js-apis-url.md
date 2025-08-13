@@ -1,4 +1,9 @@
 # @ohos.url (URL字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
@@ -183,12 +188,13 @@ entries(): IterableIterator<[string, string]>
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
-let pair:Iterable<Object[]> = searchParamsObject.entries();
-let arrayValue = Array.from(pair);
-for (let pair of arrayValue) { // Show keyName/valueName pairs
-  console.info(pair[0]+ ', '+ pair[1]);
+let paramsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
+let pair = paramsObject.entries();
+for (let item of pair) {
+    console.info(item[0] + '=' + item[1]);
 }
+// keyName1=valueName1
+// keyName2=valueName2
 ```
 
 
@@ -259,8 +265,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **错误码：**
 
@@ -357,7 +362,7 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 sort(): void
 
-对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+对包含在此对象中的所有键值对进行排序。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法（保留具有相等键的键值对之间的相对顺序）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -366,9 +371,9 @@ sort(): void
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
-searchParamsObject.sort(); // Sort the key/value pairs
-console.info(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+let paramsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLParams object
+paramsObject.sort(); // Sort the key/value pairs
+console.info(paramsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -376,7 +381,7 @@ console.info(searchParamsObject.toString()); // Display the sorted query string 
 
 keys(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的name的ES6迭代器。
+返回一个包含所有键值对的name的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -386,16 +391,18 @@ keys(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的name的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的name的ES6迭代器。 |
 
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let keys = paramsObject.keys();
+for (let key of keys) {
   console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -403,7 +410,7 @@ for (let key of keys) { // Output key-value pairs
 
 values(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的value的ES6迭代器。
+返回一个包含所有键值对的value的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -413,16 +420,18 @@ values(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的value的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的value的ES6迭代器。 |
 
 **示例：**
 
 ```ts
-let searchParams = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let values = paramsObject.values();
 for (let value of values) {
   console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -446,11 +455,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
-for (let pair of pairs) {
+let iter = paramsObject[Symbol.iterator]();
+for (let pair of iter) {
   console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 
@@ -503,6 +513,19 @@ console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
+> **说明：**
+>
+> 在解析URL字符串时，如果入参中的port内容是当前protocol的默认端口，那么port将被解析为空字符串。默认端口为：
+>
+> | 协议 | 默认端口 |
+> | -------- | -------- |
+> | http: | 80 |
+> | https: | 443 |
+> | ftp: | 21 |
+> | gopher: | 70 |
+> | ws: | 80 |
+> | wss: | 443 |
+
 **示例：**
 
 ```ts
@@ -520,6 +543,10 @@ console.info("search " + that.search); // search ?foo=1&bar=2
 console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
 console.info("params: foo " + that.params.get("foo")); // params: foo 1
+
+let urlObj = url.URL.parseURL('http://testhost:80/directory/file?foo=1');
+console.info("port " + urlObj.port); // port 
+console.info("toString " + urlObj.port); // toString http://testhost/directory/file?foo=1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -806,11 +833,12 @@ entries(): IterableIterator<[string, string]>
 
 ```ts
 let searchParamsObject = new url.URLSearchParams("keyName1=valueName1&keyName2=valueName2");
-let iter: Iterable<Object[]> = searchParamsObject.entries();
-let pairs = Array.from(iter);
-for (let pair of pairs) { // Show keyName/valueName pairs
+let iter = searchParamsObject.entries();
+for (let pair of iter) {
   console.info(pair[0]+ ', '+ pair[1]);
 }
+// keyName1, valueName1
+// keyName2, valueName2
 ```
 
 
@@ -874,8 +902,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **示例：**
 
@@ -990,11 +1017,13 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
+let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2");
+let keys = searchParamsObject.keys();
+for (let key of keys) {
   console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -1019,11 +1048,13 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParams = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let searchParams = new url.URLSearchParams("key1=value1&key2=value2");
+let values = searchParams.values();
 for (let value of values) {
   console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -1049,11 +1080,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLSearchParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
+let pairs = paramsObject[Symbol.iterator]();
 for (let pair of pairs) {
   console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 ### toString<sup>(deprecated)</sup>

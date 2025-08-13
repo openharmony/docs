@@ -118,12 +118,12 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型   | 必填 | 说明                        |
-| ---- | ------ | ---- | --------------------------- |
-| left  | number | 是   | 弹框边框的左上角的X坐标。 |
-| top  | number | 是   | 弹框边框的左上角的Y坐标。 |
-| width  | number | 是   | 弹框的宽度，单位为px。 |
-| height  | number | 是   | 弹框的高度，单位为px。 |
+| 名称 | 类型   | 只读 | 可选 | 说明                        |
+| ---- | ------ | ---- | ----| --------------------------- |
+| left  | number | 否  | 否 |弹框边框的左上角的X坐标。 |
+| top  | number | 否   | 否 |弹框边框的左上角的Y坐标。 |
+| width  | number | 否   | 否 | 弹框的宽度，单位为px。 |
+| height  | number | 否   | 否 |弹框的高度，单位为px。 |
 
 ## RequestInfo
 
@@ -133,9 +133,9 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称      | 类型       | 必填   | 说明     |
-| ------------ | ------------------| ------ | ---------------------- |
-| windowRect<sup>10+</sup>            | [WindowRect](#windowrect10)    | 否   | 表示模态弹框的位置属性。          |
+| 名称      | 类型       | 只读 | 可选   | 说明     |
+| ------------ | --------| ------ | ----- | ----------------- |
+| windowRect<sup>10+</sup>   | [WindowRect](#windowrect10)    | 否 | 是  | 表示模态弹框的位置属性。          |
 
 **示例：**
 

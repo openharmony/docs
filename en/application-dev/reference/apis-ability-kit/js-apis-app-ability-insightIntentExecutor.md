@@ -1,6 +1,6 @@
-# @ohos.app.ability.InsightIntentExecutor (Base Class for InsightIntent Call Execution)
+# @ohos.app.ability.InsightIntentExecutor (Base Class for Intent Call Execution)
 
-The InsightIntentExecutor module provides the base class for InsightIntent call execution. Through this base class, you can access the InsightIntent framework on the device side. You need to implement the service logic to respond to InsightIntent calls. To access the InsightIntent framework, you need to declare the InsightIntent name and InsightIntent access mode in the InsightIntent configuration file. The system calls the InsightIntent based on the user interaction and InsightIntent configuration file and triggers the corresponding InsightIntent call execution callback.
+The module provides the base class for intent call execution. Through this base class, you can access the InsightIntent framework on the device side. You need to implement the service logic to respond to intent calls. To access the InsightIntent framework, you need to declare the intent name and intent access mode in the intent configuration file. The system calls the intent based on the user interaction and intent configuration file and triggers the corresponding intent call execution callback.
 
 > **NOTE**
 >
@@ -14,7 +14,11 @@ The InsightIntentExecutor module provides the base class for InsightIntent call 
 import { InsightIntentExecutor } from '@kit.AbilityKit';
 ```
 
-## Properties
+## InsightIntentExecutor
+
+Base class for intent call execution.
+
+### Properties
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -24,14 +28,18 @@ import { InsightIntentExecutor } from '@kit.AbilityKit';
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| No| InsightIntent call execution context.|
+| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| No| Intent call execution context.|
 
-## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
+### onExecuteInUIAbilityForegroundMode
 
 onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage):
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-Called when the InsightIntent call displays a UIAbility in the foreground. Both synchronous calls and asynchronous calls using Promise are supported.
+Called when the intent is to bring the UIAbility to the foreground. Both synchronous calls and asynchronous calls using Promise are supported.
+
+- If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onWindowStageCreate**, **onExecuteInUIAbilityForegroundMode**, and **onForeground**.
+- If the UIAbility is hot started in the background, the UIAbility lifecycle callbacks are triggered in the following sequence: **onNewWant**, **onExecuteInUIAbilityForegroundMode**, and **onForeground**.
+- If the UIAbility is hot started in the foreground, the UIAbility lifecycle callbacks are triggered in the following sequence: **onExecuteInUIAbilityForegroundMode**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -43,20 +51,20 @@ Called when the InsightIntent call displays a UIAbility in the foreground. Both 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| InsightIntent name.|
-| param | Record<string, Object> | Yes| InsightIntent call parameter.|
-| pageLoader | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| Page loader.|
+| name | string | Yes| Intent name.|
+| param | Record<string, Object> | Yes| Intent call parameter.|
+| pageLoader | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Page loader.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | InsightIntent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the InsightIntent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
 
 **Example**
 
-The code snippet below shows the synchronous call that returns the InsightIntent call result:
+The code snippet below shows the synchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
   import { window } from '@kit.ArkUI';
@@ -97,7 +105,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
   }
   ```
 
-The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
+The code snippet below shows the promise-based asynchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
   import { window } from '@kit.ArkUI';
@@ -136,12 +144,15 @@ The code snippet below shows the promise-based asynchronous call that returns th
   }
   ```
 
-## InsightIntentExecutor.onExecuteInUIAbilityBackgroundMode
+### onExecuteInUIAbilityBackgroundMode
 
 onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-Called when the InsightIntent call displays a UIAbility in the background. Both synchronous calls and asynchronous calls using Promise are supported.
+Called when the intent is to bring the UIAbility to the background. Both synchronous calls and asynchronous calls using Promise are supported.
+
+- If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onExecuteInUIAbilityBackgroundMode**, and **onBackground**.
+- If the UIAbility is hot started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onExecuteInUIAbilityBackgroundMode**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -153,19 +164,19 @@ Called when the InsightIntent call displays a UIAbility in the background. Both 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| InsightIntent name.|
-| param | Record<string, Object> | Yes| InsightIntent call parameter.|
+| name | string | Yes| Intent name.|
+| param | Record<string, Object> | Yes| Intent call parameter.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | InsightIntent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the InsightIntent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
 
 **Example**
 
-The code snippet below shows the synchronous call that returns the InsightIntent call result:
+The code snippet below shows the synchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
@@ -182,7 +193,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
   }
   ```
 
-The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
+The code snippet below shows the promise-based asynchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
@@ -206,12 +217,14 @@ The code snippet below shows the promise-based asynchronous call that returns th
   }
   ```
 
-## InsightIntentExecutor.onExecuteInUIExtensionAbility
+### onExecuteInUIExtensionAbility
 
 onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession):
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-Called when the InsightIntent call starts a UIExtensionAbility. Both synchronous calls and asynchronous calls using Promise are supported.
+Called when the intent call starts a UIExtensionAbility. Both synchronous calls and asynchronous calls using Promise are supported.
+
+When an intent is called, the UIExtensionAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onSessionCreate**, **onExecuteInUIExtensionAbility**, and **onForeground**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -221,20 +234,20 @@ Called when the InsightIntent call starts a UIExtensionAbility. Both synchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| InsightIntent name.|
-| param | Record<string, Object> | Yes| InsightIntent call parameter.|
+| name | string | Yes| Intent name.|
+| param | Record<string, Object> | Yes| Intent call parameter.|
 | pageLoader | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| Page loader.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | InsightIntent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the InsightIntent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
 
 **Example**
 
-The code snippet below shows the synchronous call that returns the InsightIntent call result:
+The code snippet below shows the synchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -268,7 +281,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
   }
   ```
 
-The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
+The code snippet below shows the promise-based asynchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -306,12 +319,14 @@ The code snippet below shows the promise-based asynchronous call that returns th
   }
   ```
 
-## InsightIntentExecutor.onExecuteInServiceExtensionAbility
+### onExecuteInServiceExtensionAbility
 
 onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-Called when the InsightIntent call starts a ServiceExtensionAbility. Both synchronous calls and asynchronous calls using Promise are supported.
+Called when the intent call starts a ServiceExtensionAbility. Both synchronous calls and asynchronous calls using Promise are supported.
+
+When an intent is called, the ServiceExtensionAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onRequest**, and **onExecuteInServiceExtensionAbility**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -321,19 +336,19 @@ Called when the InsightIntent call starts a ServiceExtensionAbility. Both synchr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| InsightIntent name.|
-| param | Record<string, Object> | Yes| InsightIntent call parameter.|
+| name | string | Yes| Intent name.|
+| param | Record<string, Object> | Yes| Intent call parameter.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | InsightIntent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the InsightIntent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
 
 **Example**
 
-The code snippet below shows the synchronous call that returns the InsightIntent call result:
+The code snippet below shows the synchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -364,7 +379,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
   }
   ```
 
-The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
+The code snippet below shows the promise-based asynchronous call that returns the intent call result:
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';

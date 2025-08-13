@@ -1,5 +1,11 @@
 # 查询密钥别名集(C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 HUKS提供了接口供应用查询密钥别名集。
 
 >**说明：**

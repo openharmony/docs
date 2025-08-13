@@ -1,5 +1,10 @@
 # CodecBase
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @baotianhao-->
 
 ## 概述
 
@@ -24,9 +29,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。                              |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Audio Vivid音频解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->     |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。                           |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
-| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频<!--RP4--><!--RP4End-->解码器的MIME类型。                           |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频<!--RP4--><!--RP4End-->解码器的MIME类型。                           |
+| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) | APE音频解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
@@ -103,6 +108,12 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。该键是可选的且只用于视频编码。  |
 | [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)         | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。该键只用于视频编码Surface模式，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)         | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。该键仅在OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER可用时生效，在Configure阶段使用。|
+| [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame)    | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES](#oh_md_key_video_encoder_max_b_frames)    | 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。该键是可选的。 |
 | [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。（API14废弃）|
@@ -111,10 +122,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
-| [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN](#oh_md_key_video_decoder_blank_frame_on_shutdown)   | 用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示其他情况。该键是可选的且仅用于视频解码Surface模式。 |
+
 
 音频专有的键值对：
 
@@ -163,6 +172,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)          | 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。 |
 | [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)          | 媒体文件辅助轨类型，值类型为string。 |
 | [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 媒体文件辅助轨描述信息，值类型为string。 |
+| [OH_MD_KEY_ENABLE_MOOV_FRONT](#oh_md_key_enable_moov_front)          | 媒体文件moov元数据是否前置标志，值类型为int32_t。|
 
 
 ## 汇总
@@ -318,6 +328,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
 | const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode) | 使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame) | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES](#oh_md_key_video_encoder_max_b_frames) | 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为int32_t。 |
@@ -337,6 +349,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)    | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。|
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
+| const char \* [OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN](#oh_md_key_video_decoder_blank_frame_on_shutdown)   | 用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示其他情况。该键是可选的且仅用于视频解码Surface模式。 |
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为int32_t。请参见[OH_BitsPerSample](#oh_bitspersample-1)。 |
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为int32_t。 |
@@ -375,6 +388,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)          | 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。 |
 | const char \* [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)          | 媒体文件辅助轨类型，值类型为string。 |
 | const char \* [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 媒体文件辅助轨描述信息，值类型为string。 |
+| const char \* [OH_MD_KEY_ENABLE_MOOV_FRONT](#oh_md_key_enable_moov_front)          | 媒体文件moov元数据是否前置标志，值类型为int32_t。|
 
 
 ## 类型定义说明
@@ -1756,7 +1770,7 @@ AAC音频编解码器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB
 ```
 **描述**
-AMR_NB音频解码器的MIME类型。
+AMR_NB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1769,7 +1783,7 @@ AMR_NB音频解码器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB
 ```
 **描述**
-AMR_WB音频解码器的MIME类型。
+AMR_WB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -3245,6 +3259,18 @@ Top、Left、Bottom、Right指定一个ROI区域的上、左、下、右边界�
 
 **起始版本：** 20
 
+### OH_MD_KEY_ENABLE_MOOV_FRONT
+
+```
+const char* OH_MD_KEY_ENABLE_MOOV_FRONT
+```
+**描述**
+用于媒体封装，使能mp4的moov元数据前置，1代表前置，0代表不前置。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
 ### OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
 
 ```
@@ -3258,6 +3284,47 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
 如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。Surface模式下，通过[OH_NativeWindow_NativeWindowHandleOpt](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口设置PTS，时间单位为纳秒(ns)；Buffer模式下，通过[OH_AVBuffer_SetBufferAttr](_core.md#oh_avbuffer_setbufferattr)接口设置PTS，时间单位为微秒(us)。
 
 在Configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+### OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME
+```
+**描述**
+使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。
+
+该键值是可选的且只用于视频编码，默认值为0。
+
+使用前可以通过[OH_AVCapability_isFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持该特性。 
+
+该键是可选的且只用于视频编码，在Configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+### OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
+```
+**描述**
+在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。
+
+使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码。
+
+通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
+
+通过[OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue)接口查询支持的B帧数目。
+
+该键是可选的且只用于视频编码，在Configure阶段使用。
+
+详情请参见：[B帧视频编码](../../media/avcodec/video-encoding-b-frame.md#接口介绍-1)。
+ 
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -3334,6 +3401,21 @@ const char *OH_MD_KEY_TRACK_DESCRIPTION
 ```
 **描述**
 媒体文件辅助轨描述信息，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
+### OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN
+
+```
+const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN
+```
+**描述**
+用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示其他情况。该键是可选的且仅用于视频解码Surface模式。
+
+使能后，视频解码器在停止或释放时将输出空白帧（通常为黑色），以确保显示设备平滑过渡到无信号状态。该机制可避免因解码器突然终止导致的显示残留或画面闪烁问题。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

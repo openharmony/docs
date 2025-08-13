@@ -1,12 +1,18 @@
 # 密钥删除(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 为保证数据安全性，当不需要使用该密钥时，应该删除密钥。
 
 ## 开发步骤
 
 以删除HKDF256密钥为例。
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集。用于删除时指定[密钥的属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)，当删除单个时，TAG字段可传空。
 
@@ -17,19 +23,71 @@
  * 以下以HKDF256密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
-
 /* 1.确定密钥别名 */
-let keyAlias = "test_Key";
-/* 2.构造空对象 */
-let huksOptions: huks.HuksOptions = {
+let keyAlias = 'test_Key';
+/* 2.初始化密钥属性集 */
+let generateProperties: huks.HuksParam[] = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_DH
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
+  }
+];
+let generateHuksOptions: huks.HuksOptions = {
+  properties: generateProperties,
+  inData: new Uint8Array([])
+}
+/* 3.生成密钥 */
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  return new Promise<void>((resolve, reject) => {
+    try {
+      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
+    } catch (error) {
+      throw (error as Error);
+    }
+  });
+}
+async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+  console.info(`enter promise generateKeyItem`);
+  try {
+    await generateKeyItem(keyAlias, huksOptions)
+      .then((data) => {
+        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: Error) => {
+        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+      });
+    return 'Success';
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    return 'Failed';
+  }
+}
+async function testGenKey(): Promise<string> {
+  let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
+  return ret;
+}
+let deleteHuksOptions: huks.HuksOptions = {
   properties: []
 }
-
-class throwObject {
-  isThrow = false;
+class ThrowObject {
+  public isThrow = false;
 }
-
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+/* 4.删除密钥 */
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -45,12 +103,11 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
     }
   });
 }
-
-/* 3.删除密钥*/
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
+async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
+    await testGenKey();
     await deleteKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
@@ -62,12 +119,14 @@ async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptio
           console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
+    return 'Success';
   } catch (error) {
     console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    return 'Failed';
   }
 }
-
-async function testDerive() {
-  await publicDeleteKeyFunc(keyAlias, huksOptions);
+async function testDelete(): Promise<string> {
+  let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
+  return ret;
 }
 ```

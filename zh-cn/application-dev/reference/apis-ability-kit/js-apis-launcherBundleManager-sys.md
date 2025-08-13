@@ -1,4 +1,9 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)信息的查询。
 
@@ -242,7 +247,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<ShortcutInfo
 
 查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
-调用方获取自己的信息时不需要权限。
+获取调用方自身的信息时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -297,7 +302,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<ShortcutInfo\>\>
 
 查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
-调用方获取自己的信息时不需要权限。
+获取调用方自身的信息时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -355,7 +360,7 @@ getShortcutInfoSync(bundleName : string) : Array\<ShortcutInfo\>
 
 查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
-调用方获取自己的信息时不需要权限。
+获取调用方自身的信息时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -409,7 +414,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<ShortcutInfo\>
 
 查询指定用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
-调用方获取自己的信息时不需要权限。
+获取调用方自身的信息时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 

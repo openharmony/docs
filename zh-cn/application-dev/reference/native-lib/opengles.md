@@ -450,7 +450,7 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
-有关ArkTS XComponent 组件的使用，请参考：[ArkTS XComponent组件使用示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent/README_zh.md#)。
+有关ArkTS XComponent 组件的使用，请参考：[ArkTS XComponent组件使用示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent/README_zh.md#)。
 ### 使用eglCreateContext创建渲染上下文 
 
 eglCreateContext函数用于创建一个新的EGL上下文，并将其与特定的显示设备（display）和配置（config）关联起来。允许指定共享上下文（shareContext），以便与已经存在的OpenGL上下文共享状态信息。该函数的参数说明如下：

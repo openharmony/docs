@@ -1,4 +1,9 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息的查询。
 
@@ -12,7 +17,7 @@
 import { launcherBundleManager } from '@kit.AbilityKit';
 ```
 
-## launcherBundleManager.getLauncherAbilityInfoSync<sup>18+</sup>
+## launcherBundleManager.getLauncherAbilityInfoSync
 
 getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>
 
@@ -62,7 +67,7 @@ try {
 }
 ```
 
-## LauncherAbilityInfo<sup>18+</sup>
+## LauncherAbilityInfo
 
 type LauncherAbilityInfo = _LauncherAbilityInfo
 
@@ -84,7 +89,7 @@ type ShortcutInfo = _ShortcutInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | 应用module.json5配置文件中定义的快捷方式信息。 |
 
 ## ShortcutWant<sup>20+</sup>
 

@@ -1,4 +1,9 @@
 # 支持焦点处理
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ## 基础概念与规范
 
@@ -42,13 +47,13 @@ struct FocusActiveExample {
 ![Active_Focus_1](figures/Active_Focus_1.gif)
 
 
-调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入和退出焦点激活态。
+调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口进入和退出焦点激活态。
 
 ![Active_Focus_2](figures/Active_Focus_2.gif)
 
 示例操作步骤：
-1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入焦点激活态。
-2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口退出焦点激活态。
+1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口进入焦点激活态。
+2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口退出焦点激活态。
 
 **层级页面**
 
@@ -99,7 +104,7 @@ Shift+Tab键：与Tab键具有相反的焦点转移效果。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
 详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
@@ -313,7 +318,7 @@ struct FocusEventExample {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -361,17 +366,17 @@ struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.log("Button1 onFocus");
+              console.info("Button1 onFocus");
             })
             .onBlur(() => {
-              console.log("Button1 onBlur");
+              console.info("Button1 onBlur");
             })
         }
         .onFocus(() => {
-          console.log("Row1 onFocus");
+          console.info("Row1 onFocus");
         })
         .onBlur(() => {
-          console.log("Row1 onBlur");
+          console.info("Row1 onBlur");
         })
 
         Row() { // 父节点Row2
@@ -380,17 +385,17 @@ struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.log("Button2 onFocus");
+              console.info("Button2 onFocus");
             })
             .onBlur(() => {
-              console.log("Button2 onBlur");
+              console.info("Button2 onBlur");
             })
         }
         .onFocus(() => {
-          console.log("Row2 onFocus");
+          console.info("Row2 onFocus");
         })
         .onBlur(() => {
-          console.log("Row2 onBlur");
+          console.info("Row2 onBlur");
         })
       }.width('100%').margin({ top: 5 })
     }.width('100%')
@@ -577,7 +582,7 @@ struct ScopeFocusExample {
         .margin(5)
         .onClick(() => {
           this.scopeFocusState = !this.scopeFocusState;
-          console.log("Button1 onFocus");
+          console.info("Button1 onFocus");
         })
       Button('Button2')
         .width(140)
@@ -683,7 +688,7 @@ struct morenjiaodian {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -819,7 +824,7 @@ struct RequestFocusExample {
   - 有异常值返回，便于排查主动获取焦点失败的原因。
   - 避免多实例场景中取到错误实例。
 
-  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
   ```ts
   requestFocus(key: string): void
@@ -920,19 +925,78 @@ struct RequestExample {
 - 点击focusControl.requestFocus按钮，第二个Button获焦。
 - 点击clearFocus按钮，第二个Button失焦。
 
-## 自定义组件Tab键走焦顺序
+## 自定义组件走焦顺序
+
+### nextFocus自定义走焦
+
+```ts
+nextFocus(nextStep: Optional<FocusMovement>): T
+```
+
+若存在配置了nextFocus的组件，则走焦只会按照设置的nextFocus走焦顺序走焦，没有设置自定义走焦或者设置自定义走焦的组件或容器不存在时，仍进行默认走焦规则。
+
+>  **说明：**
+>
+>  - 该能力从API version 18开始支持。
+
+```ts
+@Entry
+@Component
+struct NextFocusExample {
+  build() {
+    Column({space: 30}) {
+      Row().height('30%')
+      Row({space: 10}) {
+        Button('A')
+          .id('A')
+          .nextFocus({forward: 'F', backward: 'C', down: 'B'})
+        Button('B')
+          .id('B')
+          .nextFocus({ down: 'C'})
+        Button('C')
+          .id('C')
+      }
+      Column({space: 10}) {
+        Button('D')
+          .id('D')
+        Button('E')
+          .id('E')
+          .nextFocus({forward: 'A', backward: 'M', up: 'E', right: 'F'})
+      }
+      Row({space: 10}) {
+        Button('F')
+          .id('F')
+          .nextFocus({forward: 'B', down: 'A'});
+      }
+    }.width('100%')
+  }
+}
+```
+Tab键走焦：未配置nextFocus时，Tab键走焦顺序为A->B->C->D->E->F。配置nextFocus之后，Tab键走焦顺序为A->F->B->C->D->E->A。
+
+![NextFocus_Focus_1.gif](figures/NextFocus_Focus_1.gif)
+
+方向键走焦（以方向下键为例）：未配置nextFocus时，按下Tab键激活焦点态之后，按方向下键走焦顺序为A->D->E->F。配置nextFocus之后，按下Tab键激活焦点态之后，按方向下键走焦顺序为A->B->C->D->E->F->A。
+
+![NextFocus_Focus_2.gif](figures/NextFocus_Focus_2.gif)
+
+### tabIndex自定义走焦
+
 ```ts
 tabIndex(index: number)
 ```
 
-自定义组件Tab键走焦能力。
+tabIndex自定义组件Tab键走焦顺序。
 
 若存在配置了tabIndex大于0的组件，则Tab键走焦只会在tabIndex大于0的组件内，按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。
 
 > **说明：**
 >
 > 不能同时设置tabIndex与focusScopeId属性。
+> 
 > 不建议在[层级页面](#基础概念)中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。
+> 
+> tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextfocus](#nextfocus自定义走焦)。
 
 ```ts
 @Entry
@@ -1247,9 +1311,7 @@ struct FocusOnclickExample {
         .fontSize(30)
         .onClick(() => {
           this.count++
-          if (this.count <= 0) {
-            this.name = "count is negative number"
-          } else if (this.count % 2 === 0) {
+          if (this.count % 2 === 0) {
             this.name = "count is even number"
           } else {
             this.name = "count is odd number"

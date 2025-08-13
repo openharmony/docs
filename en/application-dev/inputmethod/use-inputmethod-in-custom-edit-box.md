@@ -1,4 +1,9 @@
 # Using the Input Method in a Custom Edit Box
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain the [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance for binding the input method and listening to various events of the input method application, such as insertion, deletion, selection, and cursor movement. In this way, the input method can be used in the custom edit box, implementing more flexible and free editing operations.
 
@@ -65,15 +70,19 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
            this.attachAndListener(); // Click the component.
          })
      }
-   
+
      async attachAndListener() { // Bind and set a listener.
        focusControl.requestFocus('CustomInput');
-       await this.inputController.attach(true, {
+       try {
+        await this.inputController.attach(true, {
          inputAttribute: {
            textInputType: inputMethod.TextInputType.TEXT,
            enterKeyType: inputMethod.EnterKeyType.SEARCH
          }
-       });
+       });       
+       } catch(err) {
+         console.error(`Failed to attach: code:${err.code}, message:${err.message}`);
+       }
        if (!this.isAttach) {
          this.inputController.on('insertText', (text) => {
            this.inputText += text;

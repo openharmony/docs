@@ -6,7 +6,7 @@ ArkUI（方舟UI框架）为应用的UI开发提供了完整的基础设施，�
 
 ## 基本概念
 
-- **UI：** 即用户界面。开发者可以将应用的用户界面设计为多个功能页面，每个页面进行单独的文件管理，并通过[页面路由](arkts-routing.md)API完成页面间的调度管理如跳转、回退等操作，以实现应用内的功能解耦。
+- **UI：** 即用户界面。开发者可以将应用的用户界面设计为多个功能页面[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)，页面通过栈结构管理，并通过导航容器[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)完成页面间的调度管理如跳转、回退等操作，以实现应用内的功能解耦。
 
 - **组件：** UI构建与显示的最小单位，如列表、网格、按钮、单选框、进度条、文本等。开发者通过多种组件的组合，构建出满足自身应用诉求的完整界面。
 
@@ -44,3 +44,17 @@ ArkUI（方舟UI框架）为应用的UI开发提供了完整的基础设施，�
 |             | 卡片       | 声明式开发范式（推荐）<br/>类Web开发范式 |
 | FA模型        | 应用或服务的页面 | 声明式开发范式<br/>类Web开发范式     |
 |             | 卡片       | 类Web开发范式                 |
+
+## 分层API架构与选型建议
+
+- **声明式开发范式**：采用ArkTS语言，通过声明UI结构和状态，自动驱动界面渲染。开发者只需描述“界面应该是什么样”，无需手动管理UI更新。适用于复杂度较高、团队协作的应用开发，具有高开发效率、良好性能和易维护等优势。
+
+  **适用场景**：复杂应用、需要高效开发和维护的项目、推荐新项目优先选用。
+
+- **自定义能力**：ArkUI支持多层次自定义能力，包括自定义组合、自定义扩展（[Modifier](arkts-user-defined-modifier.md)）、自定义节点（[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)、[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)）、自定义渲染等。开发者可根据业务需求选择不同层级的自定义方式，实现灵活的UI定制和扩展。
+
+  **适用场景**：需要特殊UI表现、底层渲染控制、与系统组件深度集成等场景。
+
+- **NDK开发**：ArkUI开发框架提供了一系列NDK接口，能够在应用中使用C和C++代码构建UI界面，包括UI组件创建、UI树操作、属性设置和事件监听等。详细使用方式可参考[NDK接口概述](ndk-build-ui-overview.md)。
+
+  **适用场景**：需要精细化创建和挂载UI组件、对性能有高要求的场景、业务已存在C或C++库可使用NDK能力进行对接。

@@ -22,9 +22,10 @@
 import bundleState from '@ohos.bundleState'
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfos](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfos)替代。
 
 通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
 
@@ -58,9 +59,10 @@ bundleState.queryBundleStateInfos(0, 20000000000000, (err: BusinessError ,
 });
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfos](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfos-1)替代。
 
 通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
 
@@ -96,9 +98,10 @@ bundleState.queryBundleStateInfos(0, 20000000000000).then((res: bundleState.Bund
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfoByInterval](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfobyinterval)替代。
 
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
 
@@ -115,7 +118,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | byInterval | [IntervalType](js-apis-deviceUsageStatistics-sys.md#intervaltype)            | 是    | 查询类型。                                    |
 | begin      | number                                   | 是    | 起始时间，单位毫秒。                                    |
 | end        | number                                   | 是    | 结束时间，单位毫秒。                                    |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -135,9 +138,10 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfoByInterval](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfobyinterval-1)替代。
 
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
 
@@ -159,7 +163,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -177,9 +181,10 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundleevents)替代。
 
 通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
 
@@ -195,7 +200,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -215,9 +220,10 @@ bundleState.queryBundleActiveStates(0, 20000000000000, (err: BusinessError, res:
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundleevents-1)替代。
 
 通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
 
@@ -238,7 +244,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -256,9 +262,10 @@ bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleSt
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(): Promise&lt;number&gt;
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryAppGroup](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsqueryappgroup)替代。
 
 查询当前应用的优先级分组。使用Promise异步回调。
 
@@ -284,9 +291,10 @@ bundleState.queryAppUsagePriorityGroup().then((res: number) => {
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryAppGroup](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsqueryappgroup-1)替代。
 
 查询当前应用的优先级分组。使用callback异步回调。
 
@@ -314,9 +322,10 @@ bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryCurrentBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerycurrentbundleevents)替代。
 
 通过指定起始和结束时间查询当前应用的事件集合，使用Callback异步回调。
 
@@ -330,7 +339,7 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是    | callback回调方法。返回当前应用在指定起始和结束时间内的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestatedeprecated)&gt;&gt; | 是    | callback回调方法。返回当前应用在指定起始和结束时间内的事件集合。 |
 
 **示例**：
 
@@ -350,9 +359,10 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessErro
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.queryCurrentBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerycurrentbundleevents)替代。
 
 通过指定起始和结束时间查询当前应用的事件集合，使用Promise异步回调。
 
@@ -371,7 +381,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestatedeprecated)&gt;&gt; | Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
 **示例**：
 
@@ -389,7 +399,8 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<b
 });
 ```
 
-## BundleStateInfo
+## BundleStateInfo<sup>(deprecated)</sup>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.BundleStatsInfo](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsinfo)替代。
 
 提供应用使用时长的具体信息。
 
@@ -422,9 +433,10 @@ merge(toMerge: BundleStateInfo): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | 是 | 相同包名的应用使用统计信息。|
+| toMerge | [BundleStateInfo](#bundlestateinfodeprecated) | 是 | 相同包名的应用使用统计信息。|
 
-## BundleActiveState
+## BundleActiveState<sup>(deprecated)</sup>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.BundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundleevents)替代。
 
 提供应用事件的具体信息。
 
@@ -439,7 +451,8 @@ merge(toMerge: BundleStateInfo): void
 | indexOfLink           | string | 否    | 快捷方式id。|
 | nameOfClass           | string | 否    | 类名。|
 
-## BundleActiveInfoResponse
+## BundleActiveInfoResponse<sup>(deprecated)</sup>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.BundleStatsMap](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsmap)替代。
 
 提供应用使用时长的具体信息。
 
@@ -447,9 +460,10 @@ merge(toMerge: BundleStateInfo): void
 
 | 参数名                            | 类型                                       | 必填   | 说明             |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是    | 不同应用的使用时长统计信息。 |
+| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfodeprecated) | 是    | 不同应用的使用时长统计信息。 |
 
-## IntervalType
+## IntervalType<sup>(deprecated)</sup>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[usageStatistics.intervaltype](js-apis-resourceschedule-deviceUsageStatistics-sys.md#intervaltype)替代。
 
 提供应用使用时长的查询类型。
 

@@ -19,11 +19,11 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
     | originName           | string                 | No  | Name of the source.                                            |
     | originLatitude       | number                 | No  | Latitude of the source.                                            |
     | originLongitude      | number                 | No  | Longitude of the source.                                            |
-    | originPoiIds         | Record<number, string> | No  | List of POI IDs of the source. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+    | originPoiIds         | Record<number, string> | No  | List of POI IDs of the source. Currently, only POI IDs of Petal Maps, AutoNavi Maps, and Baidu Maps can be passed.|
     | destinationName      | string                 | No  | Name of the destination.                                            |
     | destinationLatitude  | number                 | Yes  | Latitude of the destination.                                            |
     | destinationLongitude | number                 | Yes  | Longitude of the destination.                                            |
-    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps, AutoNavi Maps, and Baidu Maps can be passed.|
     | vehicleType          | number                 | No  | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation.|
 
 - Navigation scenarios
@@ -34,7 +34,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
     | destinationName      | string                 | No  | Name of the destination.         |
     | destinationLatitude  | number                 | Yes  | Latitude of the destination.         |
     | destinationLongitude | number                 | Yes  | Longitude of the destination.         |
-    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps, AutoNavi Maps, and Baidu Maps can be passed.|
 
 - Place search scenarios
 
@@ -75,15 +75,17 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
 								'destinationLongitude': 118.78315,
 								'destinationName': 'No.xx, xx Road, xx City',
 								'destinationPoiIds': {
-									1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-									2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+									1: '1001', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2: '2002', // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Maps.
+									3: '3003' // Key 3 indicates Baidu Maps, and the value must be a POI in Baidu Maps.
 								} as Record<number, string>,
 								'originName': 'xx Park in xx City',
 								'originLatitude': 31.060844,
 								'originLongitude': 120.78315,
 								'originPoiIds': {
-									1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-									2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+									1: '1101', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2: '2202', // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Maps.
+									3: '3303' // Key 3 indicates Baidu Maps, and the value must be a POI in Baidu Maps.
 								} as Record<number, string>,
 								'vehicleType': 0
 							};
@@ -177,11 +179,11 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
         | originName           | string | No  | Name of the source.                                            |
         | originLatitude       | number | No  | Latitude of the source.                                            |
         | originLongitude      | number | No  | Longitude of the source.                                            |
-        | originPoiId          | string | No  | POI ID of the source. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.     |
+        | originPoiId          | string | No  | POI ID of the source. Currently, this parameter can be obtained only from Petal Maps, AutoNavi Maps, and Baidu Maps.     |
         | destinationName      | string | No  | Name of the destination.                                            |
         | destinationLatitude  | number | Yes  | Latitude of the destination.                                            |
         | destinationLongitude | number | Yes  | Longitude of the destination.                                            |
-        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.     |
+        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps, AutoNavi Maps, and Baidu Maps.     |
         | vehicleType          | number | No  | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation.|
     
     - Navigation scenarios
@@ -191,7 +193,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
         | destinationName      | string | No  | Name of the destination.  |
         | destinationLatitude  | number | Yes  | Latitude of the destination.  |
         | destinationLongitude | number | Yes  | Longitude of the destination.  |
-        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.|
+        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps, AutoNavi Maps, and Baidu Maps.|
 
     - Place search scenarios
     
@@ -208,7 +210,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

@@ -1,4 +1,9 @@
 # GridContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 纵向排布栅格布局容器，仅在栅格布局场景中使用。
 

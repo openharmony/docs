@@ -12,7 +12,7 @@ Inner error.
 
 **Description**
 
-Internal error.
+This error code is reported if an internal error is thrown.
 
 **Possible Causes**
 
@@ -29,15 +29,33 @@ View the error log to determine the cause of the error. Possible causes include 
 3. Check whether the APIs are correctly used.
 4. If the problem persists, ask the user to restart or upgrade the application or upgrade the device version.
 
+##  14800001 Invalid Arguments
+
+**Error Message**
+
+Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause.
+
+**Description**
+
+This error code is reported if the arguments are invalid.
+
+**Possible Causes**
+
+The input arguments do not meet the API requirements, such as the value range, length, and format.
+
+**Solution**
+
+Modify the arguments according to the API reference.
+
 ## 14800010 Invalid Database Path
 
 **Error Message**
 
-Invalid database path.
+Failed to open or delete the database by an invalid database path.
 
 **Description**
 
-The RDB store path is invalid.
+This error code is reported if the database fails to be opened or deleted due to invalid database path.
 
 **Possible Causes**
 
@@ -51,11 +69,11 @@ Check the RDB store path.
 
 **Error Message**
 
-Database corrupted.
+Failed to open the database because it is corrupted.
 
 **Description**
 
-The database is abnormal.
+This error code is reported if the database is abnormal and fails to be opened.
 
 **Possible Causes**
 
@@ -69,11 +87,11 @@ If data loss is acceptable, delete the RDB store and create a new one. Otherwise
 
 **Error Message**
 
-Row out of bounds.
+ResultSet is empty or pointer index is out of bounds.
 
 **Description**
 
-The result set is empty or the specified location is invalid.
+This error code is reported if the result set is empty or the specified location is invalid.
 
 **Possible Causes**
 
@@ -87,11 +105,11 @@ Check whether the result set is empty or whether the specified row number is out
 
 **Error Message**
 
-Column out of bounds.
+Resultset is empty or column index is out of bounds.
 
 **Description**
 
-The column value is null, or the column data type is incompatible with the API called.
+This error code is reported if the column value is null, or the column data type is incompatible with the API called.
 
 **Possible Causes**
 
@@ -110,11 +128,11 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Error Message**
 
-Already closed.
+The RdbStore or ResultSet is already closed.
 
 **Description**
 
-The RDB store or result set is closed.
+This error code is reported if the RDB store or result set is closed.
 
 **Possible Causes**
 
@@ -132,7 +150,7 @@ The database does not respond.
 
 **Description**
 
-The RDB store does not respond.
+This error code is reported if the RDB store does not respond.
 
 **Possible Causes**
 
@@ -141,7 +159,7 @@ A read, write, attach, or detach operation is being performed, and cannot be com
 **Solution**
 
 1. Try again later.
-2. For the [attach](./js-apis-data-relationalStore.md#attach12) or [detach](./js-apis-data-relationalStore.md#detach12) API, increase the value of **waitTime**.
+2. If the [attach](arkts-apis-data-relationalStore-RdbStore.md#attach12) or [detach](arkts-apis-data-relationalStore-RdbStore.md#detach12) API is used, modify the value of **waitTime** to increase the waiting duration.
 
 ## 14800016 Duplicate RDB Alias
 
@@ -151,7 +169,7 @@ The database alias already exists.
 
 **Description**
 
-The RDB store alias already exists.
+This error code is reported if the RDB store alias already exists.
 
 **Possible Causes**
 
@@ -165,19 +183,20 @@ Stop the attach operation or change the RDB store alias.
 
 **Error Message**
 
-Config changed.
+StoreConfig is changed.
 
 **Description**
 
-The key configuration of the RDB store has been modified.
+This error code is reported if the key configuration of the RDB store has been modified.
 
 **Possible Causes**
 
-Key configuration, such as **area** and **securityLevel**, of the RDB store is changed.
+Key configuration, such as **area**, **securityLevel**, or the read/write permission of the RDB store is changed.
 
 **Solution**
 
 Restore the original configuration if required. Otherwise, delete the old RDB store, use the new configuration to create a new RDB store, and import the data to the new RDB store.
+Check whether the read/write permission on the database file is modified using chmod. Ensure that the current user has sufficient permissions to read and write the database file.
 
 ## 14800018 No Match
 
@@ -187,7 +206,7 @@ No data meets the condition.
 
 **Description**
 
-No data matching the search criteria is found.
+This error code is reported if no data matching the search criteria is found.
 
 **Possible Causes**
 
@@ -205,7 +224,7 @@ The SQL must be a query statement.
 
 **Description**
 
-The SQL statement used is not a query statement.
+This error code is reported if the SQL statement used is not a query statement.
 
 **Possible Causes**
 
@@ -223,7 +242,7 @@ The secret key is corrupted or lost.
 
 **Description**
 
-The operation for obtaining the secret key fails.
+This error code is reported if obtaining the secret key fails.
 
 **Possible Causes**
 
@@ -238,11 +257,11 @@ The root key is lost, the application does not have the permission to read the k
 
 **Error Message**
 
-SQLite: Generic error.
+SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.
 
 **Description**
 
-An SQLite generic error occurs.
+This error code is reported if an SQLite generic error occurs.
 
 **Possible Causes**
 
@@ -263,7 +282,7 @@ SQLite: Callback routine requested an abort.
 
 **Description**
 
-The asynchronous callback request is aborted. This error is reported by the underlying SQLite.
+This error code is reported if the asynchronous callback request is aborted.
 
 **Possible Causes**
 
@@ -282,7 +301,7 @@ SQLite: Access permission denied.
 
 **Description**
 
-SQLite access is denied.
+This error code is reported if the SQLite access is denied.
 
 **Possible Causes**
 
@@ -305,7 +324,7 @@ SQLite: The database file is locked.
 
 **Description**
 
-The SQLite database file is locked. This error is reported by the underlying SQLite.
+This error code is reported if the SQLite database file is locked.
 
 **Possible Causes**
 
@@ -325,7 +344,7 @@ SQLite: A table in the database is locked.
 
 **Description**
 
-An SQLite database table is locked. This error is reported by the underlying SQLite.
+This error code is reported if an SQLite database table is locked.
 
 **Possible Causes**
 
@@ -348,7 +367,7 @@ SQLite: The database is out of memory.
 
 **Description**
 
-The database memory is insufficient. This error is reported by the underlying SQLite.
+This error code is reported if the database memory is insufficient.
 
 **Possible Causes**
 
@@ -366,7 +385,7 @@ SQLite: Attempt to write a readonly database.
 
 **Description**
 
-A write operation is invoked on a read-only database. This error is reported by the underlying SQLite.
+This error code is reported if a write operation is invoked on a read-only database.
 
 **Possible Causes**
 
@@ -387,7 +406,7 @@ SQLite: Some kind of disk I/O error occurred.
 
 **Description**
 
-A disk I/O error occurs. This error is reported by the underlying SQLite. 
+This error code is reported if a disk I/O error occurs.
 
 **Possible Causes**
 
@@ -413,7 +432,7 @@ SQLite: The database is full.
 
 **Description**
 
-The SQLite database is full. This error is reported by the underlying SQLite.
+This error code is reported if the SQLite database is full.
 
 **Possible Causes**
 
@@ -431,7 +450,7 @@ SQLite: Unable to open the database file.
 
 **Description**
 
-The database file fails to be opened. This error is reported by the underlying SQLite.
+This error code is reported if the database file fails to be opened.
 
 **Possible Causes**
 
@@ -454,7 +473,7 @@ SQLite: TEXT or BLOB exceeds size limit.
 
 **Description**
 
-The size of the text or BLOB exceeds the limit. This error is reported by the underlying SQLite.
+This error code is reported if the size of the text or BLOB exceeds the limit.
 
 **Possible Causes**
 
@@ -473,7 +492,7 @@ SQLite: Abort due to constraint violation.
 
 **Description**
 
-The database operation violates the constraint rule and is aborted. This error is reported by the underlying SQLite.
+This error code is reported if the database operation violates the constraint rule and is aborted.
 
 **Possible Causes**
 
@@ -492,7 +511,7 @@ SQLite: Data type mismatch.
 
 **Description**
 
-The data types mismatch. This error is reported by the underlying SQLite.
+This error code is reported if the data types mismatch.
 
 **Possible Causes**
 
@@ -511,7 +530,7 @@ SQLite: Library used incorrectly.
 
 **Description**
 
-The SQLite interface is used incorrectly. This error is reported by the underlying SQLite.
+This error code is reported if the SQLite interface is used incorrectly.
 
 **Possible Causes**
 
@@ -535,7 +554,7 @@ The WAL file size exceeds the default limit.
 
 **Description**
 
-The WAL file exceeds 512 MB, which is the default limit.
+This error code is reported if the WAL file exceeds 512 MB, which is the default limit.
 
 **Possible Causes**
 
@@ -543,9 +562,9 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 **Solution**
 
-1. Check for unclosed result sets or transactions.
+Check for unclosed result sets or transactions.
 
-2. Close all result sets or transactions.
+Close all result sets or transactions.
 
 ## 14800050 Failed to Obtain the Subscription Service
 
@@ -555,7 +574,7 @@ Failed to obtain the subscription service.
 
 **Description**
 
-The error code is returned when the subscription service failed to be obtained.
+The error code is reported if the subscription service failed to be obtained.
 
 **Possible Causes**
 
@@ -573,7 +592,7 @@ The operation is supported in the stage model only.
 
 **Description**
 
-This operation can be performed only on the stage model.
+This error code is reported if this operation is not performed on the stage model.
 
 **Possible Causes**
 
@@ -591,7 +610,7 @@ Invalid data group ID.
 
 **Description**
 
-The **dataGroupId** parameter is invalid.
+This error code is reported if the **dataGroupId** parameter is invalid.
 
 **Possible Causes**
 
@@ -609,11 +628,11 @@ The type of the distributed table does not match.
 
 **Description**
 
-Different distributed table types are set for the same database table.
+This error code is reported if different distributed table types are set for the same database table.
 
 **Possible Causes**
 
-The same database table is set with different [DistributedType](js-apis-data-relationalStore.md#distributedtype10).
+The same database table is set with different [DistributedType](arkts-apis-data-relationalStore-e.md#distributedtype10).
 
 **Solution**
 

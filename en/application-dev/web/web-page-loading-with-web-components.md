@@ -16,7 +16,7 @@ If you need to load online resources, declare the network access permission in t
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the **Web** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
+You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/arkts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl).
 
 
 In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
@@ -54,9 +54,11 @@ struct WebComponent {
 
 ## Loading Local Pages
 
+To reduce user waiting time in scenarios such as startup, redirection, and weak network, and save time for dynamic content loading, you can load local pages to optimize user experience.
+
 The following example shows how to load a local page file.
 
-Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
+Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) to change the displayed page of the **Web** component.
 
 To reference a local CSS file when loading a local HTML file, perform the following steps:
 
@@ -129,7 +131,7 @@ To reference a local CSS file when loading a local HTML file, perform the follow
 
 Example of loading local page files in the sandbox:
 
-1. To obtain the sandbox path through the constructed singleton object **GlobalContext**, you need to enable [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess) in the application.
+1. Obtain the sandbox path through the constructed singleton object **GlobalContext**. You need to enable the [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) permission of the file system in the application.
 
    ```ts
    // GlobalContext.ets
@@ -211,7 +213,7 @@ Example of loading local page files in the sandbox:
 
 ## Loading HTML Rich Text Data
 
-The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to data.
+The **Web** component provides the [loadData()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to data.
 
 ```ts
 // xxx.ets
@@ -267,8 +269,63 @@ struct WebComponent {
 }
 ```
 
+## Loading Local Resources Using the Resource Protocol
+
+The resource protocol allows access to files in the application resource directory.
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct ResourceWebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button ('Load resources')
+        .onClick(() => {
+          try {
+            // Load the index1.html file in resources/rawfile through using the resource protocol.
+            this.controller.loadUrl('resource://rawfile/index1.html');
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+          }
+        })
+
+      // When the component is created, use the resource protocol to load resources.
+      Web({
+        src: 'resource://rawfile/index.html', controller: this.controller})
+    }
+  }
+}
+```
+
+Create the **index.html** file in **src/main/resources/rawfile**.
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
+```
+
+Create the **index1.html** file in **src/main/resources/rawfile**.
+
+```html
+<!-- index1.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World Again</p>
+  </body>
+</html>
+```
+
 ## Samples
 
-The following samples are provided to help you better understand how to develop the **Web** component:
+The following samples are provided to help you better understand how to develop **Web** component:
 
 - [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)

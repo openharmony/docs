@@ -220,7 +220,7 @@ export default {
 }
 ```
 
-![picker-view1](figures/picker-view1.gif)
+![picker-view1](figures/picker-view1.png)
 
 ### 日期选择器
 
@@ -261,7 +261,7 @@ export default {
     },
 }
 ```
-![picker-view2](figures/picker-view2.gif)
+![picker-view2](figures/picker-view2.png)
 
 ### 日期时间选择器
 
@@ -302,7 +302,7 @@ export default {
     },
 }
 ```
-![picker-view3](figures/picker-view3.gif)
+![picker-view3](figures/picker-view3.png)
 
 ### 多列文本选择器
 
@@ -348,4 +348,4 @@ export default {
     },
 }
 ```
-![picker-view4](figures/picker-view4.gif)
+![picker-view4](figures/picker-view4.png)

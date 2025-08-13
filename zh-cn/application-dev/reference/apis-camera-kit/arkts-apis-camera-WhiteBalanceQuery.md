@@ -1,4 +1,9 @@
 # Interface (WhiteBalanceQuery)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -6,8 +11,6 @@
 > - 本Interface首批接口从API version 20开始支持。
 
 提供了查询设备对指定的白平衡模式是否支持，以及获取设备支持的白平衡模式范围的方法。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## 导入模块
 
@@ -54,7 +57,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isWhiteBalanceModeSupported(session: camera.PhotoSession | camera.VideoSession): boolean {
   let status: boolean = false;
   try {
-  let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
+  let mode: camera.WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
     status = session.isWhiteBalanceModeSupported(mode);
   } catch (error) {
     let err = error as BusinessError;

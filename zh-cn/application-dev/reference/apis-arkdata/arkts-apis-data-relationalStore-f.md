@@ -1,4 +1,9 @@
 # Functions
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
@@ -260,7 +265,6 @@ FA模型示例：
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -268,7 +272,8 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  store = undefined;
+  // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+  // 及时将相关变量置空以释放资源。
   console.info('Delete RdbStore successfully.');
 });
 ```
@@ -280,8 +285,6 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
@@ -289,7 +292,8 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      store = undefined;
+      // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+      // 及时将相关变量置空以释放资源。
       console.info('Delete RdbStore successfully.');
     });
   }
@@ -340,11 +344,11 @@ FA模型示例：
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(() => {
-  store = undefined;
+  // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+  // 及时将相关变量置空以释放资源。
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -358,12 +362,11 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(() => {
-      store = undefined;
+      // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+      // 及时将相关变量置空以释放资源。
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -413,7 +416,6 @@ FA模型示例：
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -426,7 +428,8 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  store = undefined;
+  // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+  // 及时将相关变量置空以释放资源。
   console.info('Delete RdbStore successfully.');
 });
 ```
@@ -437,8 +440,6 @@ Stage模型示例：
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -451,7 +452,8 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      store = undefined;
+      // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+      // 及时将相关变量置空以释放资源。
       console.info('Delete RdbStore successfully.');
     });
   }
@@ -505,7 +507,6 @@ FA模型示例：
 import { featureAbility } from "@kit.AbilityKit";
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -514,7 +515,8 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(() => {
-  store = undefined;
+  // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+  // 及时将相关变量置空以释放资源。
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -528,8 +530,6 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -537,7 +537,8 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(() => {
-      store = undefined;
+      // 数据库删除成功后，已初始化的RdbStore实例将无法继续使用。
+      // 及时将相关变量置空以释放资源。
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -561,8 +562,39 @@ isVectorSupported(): boolean
 
 **示例：**
 
-```
-let result = relationalStore.isVectorSupported();
+```ts
+import { contextConstant, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
+    let supported = relationalStore.isVectorSupported();
+    if (supported) {
+      // 支持向量数据库
+      console.info("Vector database supported on current platform.");
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: "VectorTest.db",
+        securityLevel: relationalStore.SecurityLevel.S3,
+        vector: true
+      };
+      try {
+        const context = this.context.getApplicationContext().createAreaModeContext(contextConstant.AreaMode.EL3);
+        const rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
+        console.info('Get RdbStore successfully.');
+        store = rdbStore;
+        // 成功获取到 rdbStore 后执行后续操作
+      } catch (error) {
+        const err = error as BusinessError;
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+      }
+    } else {
+      console.info("Vector database not supported on current platform.");
+    }
+  }
+}
 ```
 
 ## relationalStore.isTokenizerSupported<sup>18+</sup>
@@ -634,7 +666,7 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -682,7 +714,7 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -730,7 +762,7 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -771,7 +803,7 @@ getQuerySqlInfo(predicates: RdbPredicates, columns?: Array\<string>): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**

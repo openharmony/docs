@@ -1,4 +1,9 @@
 # 包管理子系统通用错误码
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 > **说明：**
 >

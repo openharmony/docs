@@ -1,86 +1,13 @@
 # 合理使用系统提供的接口
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--SE: @jiangwensai-->
+<!--TSE: @Lyuxin-->
 
 ## 简介
 
 在应用开发中，经常会调用系统提供的接口，比如读取本地文件、处理服务端数据等等。若对接口使用不合理，可能引起延迟、卡顿、丢帧等性能问题。本文以如下系统提供的接口为例，总结了使用中的注意事项。
-
-- [ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)的getXXXSync接口
-- [wordBreak](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#wordbreak11)属性
-
-## ResourceManager的getXXXSync接口
-
-ResourceManager通过getXXXSync接口获取资源的方式有两种：通过resource对象```resourceManager.getStringSync($r('app.string.test'))```和通过id```resourceManager.getStringSync($r('app.string.test').id)```。
-下面以[getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)为例，测试一下这两种参数在方法中的使用是否会有耗时区别。
-
-### 通过resource对象获取
-
-```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'getStringSync';
-
-  aboutToAppear(): void {
-    hiTraceMeter.startTrace('getStringSync', 1);
-    // getStringSync接口的入参直接使用资源，未使用资源ID
-    (this.getUIContext().getHostContext() as Context).resourceManager.getStringSync($r('app.string.test'));
-    hiTraceMeter.finishTrace('getStringSync', 1);
-  }
-
-  build() {
-    RelativeContainer() {
-      Text(this.message)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-通过[SmartPerf Host](performance-optimization-using-smartperf-host.md)工具抓取Trace。持续时间为1.621ms。
-
-![](figures/reasonable_using_system_interfaces_getstringsync.png)
-
-### 通过id获取
-
-```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'getStringSyncAfter';
-
-  aboutToAppear(): void {
-    hiTraceMeter.startTrace('getStringSyncAfter', 2);
-    // getStringSync接口的入参使用了资源ID
-    (this.getUIContext().getHostContext() as Context).resourceManager.getStringSync($r('app.string.test').id);
-    hiTraceMeter.finishTrace('getStringSyncAfter', 2);
-  }
-
-  build() {
-    RelativeContainer() {
-      Text(this.message)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-通过[SmartPerf Host](performance-optimization-using-smartperf-host.md)工具抓取Trace。持续时间为0.124ms。
-
-![](figures/reasonable_using_system_interfaces_getstringsyncafter.png)
-
-### 总结
-
-参数为资源信息时（1.621ms）比参数为资源ID值时（0.124ms）耗时更多。所以当需要使用类似方法时，使用资源ID值作为参数更优。
 
 ## wordBreak属性
 

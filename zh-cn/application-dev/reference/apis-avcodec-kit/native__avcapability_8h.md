@@ -1,5 +1,10 @@
 # native_avcapability.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yang-xiaoyu5-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee-->
 
 ## 概述
 
@@ -40,7 +45,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | 编解码器类别。  | 
-| [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br/> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br/>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br/>VIDEO_LOW_LATENCY = 2 <br/>} | 可以在特定编解码器场景中使用的可选特性。  | 
+| [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br/> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br/>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br/>VIDEO_LOW_LATENCY = 2, <br/>VIDEO_ENCODER_B_FRAME = 7 <br/>} | 可以在特定编解码器场景中使用的可选特性。  | 
 
 
 ### 函数
@@ -57,6 +62,7 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](_a_v_capability.md#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | 获取编码器支持的质量范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](_a_v_capability.md#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | 获取编码器支持的编码器复杂性范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | 获取音频编解码器支持的采样率。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRateRanges](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerateranges) (OH_AVCapability \*capability, OH_AVRange \*\*sampleRateRanges, uint32_t \*rangesNum) | 获取音频编解码器支持的采样率范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioChannelCountRange](_a_v_capability.md#oh_avcapability_getaudiochannelcountrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*channelCountRange) | 获取音频编解码器支持的音频通道计数范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](_a_v_capability.md#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | 获取视频编解码器支持的视频宽度对齐。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](_a_v_capability.md#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | 获取视频编解码器支持的视频高度对齐。  | 

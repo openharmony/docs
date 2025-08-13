@@ -7,6 +7,8 @@ The **Toolbar** component is designed to present a set of action options related
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
@@ -91,6 +93,12 @@ Sets the background color of the toolbar. By overriding this API, you can implem
 | ------- | ------------------------------------------------------ | ---- |------------------------------------------------------------------|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Toolbar background color<br>Default value: **$r('sys.color.ohos_id_color_toolbar_bg')**|
 
+**Return value**
+
+| Type                                   | Description                                   |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | **ToolBarModifier** object after the background color is set.|
+
 ### padding
 
 padding(padding: LengthMetrics): ToolBarModifier
@@ -106,6 +114,12 @@ Sets the left and right padding of the toolbar. By overriding this API, you can 
 | Name | Type    | Mandatory| Description                                                                                 |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | Yes  | Left and right padding of the toolbar, which is effective only when there are fewer than five items.<br>By default, the padding is 24 vp when there are fewer than five items and 0 when there are five or more items.|
+
+**Return value**
+
+| Type                                   | Description                                   |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | **ToolBarModifier** object after the padding is set.|
 
 ### height
 
@@ -123,6 +137,13 @@ Sets the height of the toolbar. By overriding this API, you can implement custom
 | ------- |---------------------------------| ---- |------------------------------------|
 | height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | Yes  | Height of the toolbar.<br>The default height of the toolbar is 56 vp, which does not include the divider.|
 
+**Return value**
+
+| Type                                   | Description                                   |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | **ToolBarModifier** object after the height is set.|
+
+
 ### stateEffect
 
 stateEffect(stateEffect: boolean): ToolBarModifier
@@ -138,6 +159,12 @@ Sets whether to display the pressed state effect.
 | Name | Type                            | Mandatory| Description                                                      |
 | ------- |--------------------------------| ---- |----------------------------------------------------------|
 | stateEffect | boolean | Yes  | Whether to display the pressed state effect on the toolbar.<br>The value **true** means to display the pressed state effect on the toolbar, and **false** means the opposite.<br>Default value: **true**|
+
+**Return value**
+
+| Type                                   | Description                                   |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | **ToolBarModifier** object after the pressed state effect is set.|
 
 ## ItemState
 
@@ -241,7 +268,7 @@ struct Index {
 ![en-us_image_toolbar_example01](figures/en-us_image_toolbar_example01.png)
 
 ### Example 2: Customizing the Toolbar Style
-This example demonstrates how to customize the toolbar's height, background color, and other styles using **ToolBarModifier**.
+This example demonstrates how to customize the toolbar's height, background color, and other styles using **ToolBarModifier**. This functionality is supported since API version 13.
 ```ts
 import {
   SymbolGlyphModifier,
@@ -340,7 +367,7 @@ struct Index {
 
 
 ### Example 3: Implementing Screen Reader Announcement
-This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the toolbar item.
+This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the toolbar item. This functionality is supported since API version 18.
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 

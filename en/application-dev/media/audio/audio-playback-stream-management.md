@@ -4,9 +4,9 @@ An audio playback application must notice audio stream state changes and perform
 
 ## Reading or Listening for Audio Stream State Changes in the Application
 
-Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md) or [audio.createAudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8). Then obtain the audio stream state changes in either of the following ways:
+Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md) or [audio.createAudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8). Then obtain the audio stream state changes in either of the following ways:
 
-- Check the [state](../../reference/apis-audio-kit/js-apis-audio.md#attributes) of the AudioRenderer.
+- Check the [state](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#properties) of the AudioRenderer.
     
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -25,11 +25,11 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
   });
   ```
 
-The application then performs an operation, for example, changing the display of the **Play** button, by comparing the obtained state with [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
+The application then performs an operation, for example, changing the display of the **Play** button, by comparing the obtained state with [AudioState](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostate8).
 
 ## Reading or Listening for Changes in All Audio Streams
 
-If an application needs to obtain the change information about all audio streams, it can use **AudioStreamManager** to read or listen for the changes of all audio streams.
+If an application needs to obtain the change information about all audio streams, it can use AudioStreamManager to read or listen for the changes of all audio streams.
 
 <!--Del-->
 > **NOTE**
@@ -41,15 +41,15 @@ The figure below shows the call relationship of audio stream management.
 
 ![Call relationship of audio stream management](figures/audio-stream-mgmt-invoking-relationship.png)
 
-During application development, first use **getStreamManager()** to create an **AudioStreamManager** instance. Then call **on('audioRendererChange')** to listen for audio stream changes and obtain a notification when the audio stream state or device changes. To cancel the listening for these changes, call **off('audioRendererChange')**. You can also call **getCurrentAudioRendererInfoArray()** to obtain information such as the unique ID of the playback stream, UID of the playback stream client, and stream status.
+During application development, first use **getStreamManager()** to create an AudioStreamManager instance. Then call **on('audioRendererChange')** to listen for audio stream changes and obtain a notification when the audio stream state or device changes. To cancel the listening for these changes, call **off('audioRendererChange')**. You can also call **getCurrentAudioRendererInfoArray()** to obtain information such as the unique ID of the playback stream, UID of the playback stream client, and stream status.
 
-For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9).
+For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md).
 
 ## How to Develop
 
-1. Create an **AudioStreamManager** instance.
+1. Create an AudioStreamManager instance.
    
-   Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
+   Before using AudioStreamManager APIs, you must use **getStreamManager()** to create an AudioStreamManager instance.
 
    ```ts
    import { audio } from '@kit.AudioKit';
@@ -93,7 +93,7 @@ For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-
    ```
 
 4. (Optional) Call **getCurrentAudioRendererInfoArray()** to obtain the information about all audio playback streams.
-     
+
      This API can be used to obtain the unique ID of the audio playback stream, UID of the audio playback client, audio status, and other information about the audio player.
    > **NOTE**
    >

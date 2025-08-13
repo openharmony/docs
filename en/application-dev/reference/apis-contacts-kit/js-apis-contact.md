@@ -3955,13 +3955,13 @@ Enumerates contact filter types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.Contacts
+**System capability**: SystemCapability.Applications.ContactsData
 
 | Name                 | Type| Value| Description                              |
 | --------------------- | ---- | ---- | ---------------------------------- |
-| SHOW_FILTER    | number  | 0 | Shows only contacts that meet the filter criteria.|
-| DEFAULT_SELECT            | number  | 1 | Selects contacts that meet the filter criteria by default.                |
-| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default.                    |
+| SHOW_FILTER    | number  | 0 | Shows only contacts that meet the filter criteria.<br/>**System capability**:SystemCapability.Applications.Contacts|
+| DEFAULT_SELECT            | number  | 1 | Selects contacts that meet the filter criteria by default. <br/>**System capability**:SystemCapability.Applications.Contacts|
+| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default. <br/>**System capability**:SystemCapability.Applications.Contacts|
 
 ## FilterClause<sup>15+</sup>
 
@@ -3997,16 +3997,16 @@ Enumerates filter criteria.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.Contacts
+**System capability**: SystemCapability.Applications.ContactsData
 
-| Name                 | Type| Value| Description                              |
-| --------------------- | ---- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | number  | 0 | The corresponding field is not empty.|
-| EQUAL_TO            | number  | 1 | The corresponding field is equal to a value.                |
-| NOT_EQUAL_TO | number  | 2 | The corresponding field is not equal to a value.                    |
-| IN | number  | 3 | The value of the corresponding field is in an array.                    |
-| NOT_IN | number  | 4 | The value of the corresponding field is not in an array.                    |
-| CONTAINS | number  | 5 | The value of the corresponding field contains a certain value.                    |
+| Name                 | Type| Value| Description                                                    |
+| --------------------- | ---- | ---- |----------------------------------------------------------------|
+| IS_NOT_NULL    | number  | 0 | The corresponding field is not empty.<br/>**System capability**:SystemCapability.Applications.Contacts |
+| EQUAL_TO            | number  | 1 | The corresponding field is equal to a value.<br/>**System capability**:SystemCapability.Applications.Contacts                   |
+| NOT_EQUAL_TO | number  | 2 | The corresponding field is not equal to a value.<br/>**System capability**:SystemCapability.Applications.Contacts               |
+| IN | number  | 3 | The value of the corresponding field is in an array.<br/>**System capability**:SystemCapability.Applications.Contacts           |
+| NOT_IN | number  | 4 | The value of the corresponding field is not in an array.<br/>**System capability**:SystemCapability.Applications.Contacts       |
+| CONTAINS | number  | 5 | The value of the corresponding field contains a certain value.<br/>**System capability**:SystemCapability.Applications.Contacts |
 
 ## DataFilter<sup>15+</sup>
 
@@ -4027,13 +4027,13 @@ Enumerates contact data fields.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.Contacts
+**System capability**: SystemCapability.Applications.ContactsData
 
-| Name                 | Type| Value| Description                              |
-| --------------------- | ---- | --- | ---------------------------------- |
-| EMAIL    | number | 0 | Email of the contact.|
-| PHONE            | number | 1 | Phone number of the contact.                |
-| ORGANIZATION | number | 2 | Organization of the contact.                    |
+| Name                 | Type| Value| Description                  |
+| --------------------- | ---- | --- |------------------------------|
+| EMAIL    | number | 0 | Email of the contact.<br/>**System capability**: SystemCapability.Applications.Contacts|
+| PHONE            | number | 1 | Phone number of the contact.<br/>**System capability**: SystemCapability.Applications.Contacts|
+| ORGANIZATION | number | 2 | Organization of the contact.<br/>**System capability**: SystemCapability.Applications.Contacts |
 
 ## Contact
 

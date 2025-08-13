@@ -1,4 +1,9 @@
 # 使用运动和方向传感器监测设备状态
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhang-yinglie-->
+<!--SE: @handyohos-->
+<!--TSE: @ghiker-->
 
 ## 概述
 
@@ -18,7 +23,8 @@
 
 ## 需要权限
 
-使用加速度、陀螺仪及设备运动事件接口时，需在配置文件module.json5中声明相应的传感器权限。具体配置方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用加速度、陀螺仪及设备运动事件接口时，需在配置文件module.json5中声明相应的传感器权限。具体配置方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
+
 
 ```
     "requestPermissions":[
@@ -38,6 +44,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
 1. 应用侧代码中，Web组件配置[onPermissionRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpermissionrequest9)接口，可通过[PermissionRequest](../reference/apis-arkweb/arkts-basic-components-web-PermissionRequest.md)的[getAccessibleResource](../reference/apis-arkweb/arkts-basic-components-web-PermissionRequest.md#getaccessibleresource9)接口获取请求权限的资源类型，当资源类型为TYPE_SENSOR时，进行传感器授权处理。
 
    ```ts
+   import { UIContext } from '@kit.ArkUI';
    import { webview } from '@kit.ArkWeb';
    import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -56,8 +63,12 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
        try {
          atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
            , (err: BusinessError, data: PermissionRequestResult) => {
-           console.info('data permissions:' + data.permissions);
-           console.info('data authResults:' + data.authResults);
+           if (err) {
+             console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+           } else {
+             console.info('data permissions:' + data.permissions);
+             console.info('data authResults:' + data.authResults);
+           }
          })
        } catch (error) {
          console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
@@ -104,11 +115,10 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
    <head>
        <meta charset="utf-8" />
        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-       <meta name="misapplication-tap-highlight" content="no" />
+       <meta name="msapplication-tap-highlight" content="no" />
        <meta name="HandheldFriendly" content="true" />
        <meta name="MobileOptimized" content="320" />
        <title>运动和方向传感器</title>
-       <meta charset="UTF-8">
        <style>
            body {
                font-family: Arial, sans-serif;
@@ -163,7 +173,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceMotionEvent' in window) {
                  window.removeEventListener('devicemotion', handleMotionEvent, false);
                } else {
-                 console.log('不支持DeviceOrientationEvent');
+                 console.log('不支持DeviceMotionEvent');
                }
            }
    

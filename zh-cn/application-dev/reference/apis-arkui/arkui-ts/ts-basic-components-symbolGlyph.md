@@ -1,4 +1,9 @@
 # SymbolGlyph
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 显示图标小符号的组件。<!--RP1--><!--RP1End-->
 
@@ -188,7 +193,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1] <br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。   |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1] <br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。   |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -204,7 +209,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 ### shaderStyle<sup>20+</sup>
 
@@ -240,7 +245,7 @@ symbolShadow(shadow: Optional\<ShadowOptions\>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| shadow  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)\>  | 是  | SymbolGlyph组件的阴影效果。<br>单位：[vp](ts-pixel-units.md)<br>默认值：{<br>radius：0,<br>color：Color.Black,<br>offsetX：0,<br>offsetY：0<br>} <br>不支持fill、type属性和color中的ColoringStrategy枚举值。|
+| shadow  |[Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)\>  | 是  | SymbolGlyph组件的阴影效果。<br>单位：[vp](ts-pixel-units.md)<br>默认值：{<br>radius：0,<br>color：Color.Black,<br>offsetX：0,<br>offsetY：0<br>} <br>不支持fill、type属性和color中的ColoringStrategy枚举值。|
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -254,10 +259,10 @@ ScaleSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -290,9 +295,9 @@ HierarchicalSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 是 | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ### constructor<sup>12+</sup>
 
@@ -324,9 +329,9 @@ AppearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -358,9 +363,9 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -392,10 +397,10 @@ BounceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -428,9 +433,9 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -527,9 +532,9 @@ DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ### constructor<sup>20+</sup>
 
@@ -561,9 +566,9 @@ QuickReplaceSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>20+</sup>
 
@@ -617,7 +622,7 @@ QuickReplaceSymbolEffect的构造函数，快速替换动效。
 
 ###  示例1（设置渲染和动效策略）
 
-该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+从API version 11开始，该示例通过[renderingStrategy](#renderingstrategy)、[effectStrategy](#effectstrategy)属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -687,14 +692,14 @@ struct Index {
           Text("整体缩放动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(1)
+            .effectStrategy(SymbolEffectStrategy.SCALE)
         }
 
         Column() {
           Text("层级动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(2)
+            .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
         }
       }
     }
@@ -705,7 +710,7 @@ struct Index {
 
 ###  示例2（设置动效和阴影）
 
-该示例通过symbolEffect属性展示了各种动效的效果以及结合symbolShadow的阴影效果。
+从API version 12开始，该示例通过[symbolEffect](#symboleffect12)属性展示了各种动效的效果以及结合[symbolShadow](#symbolshadow20)（从API version 20开始）的阴影效果。
 
 ```ts
 // xxx.ets
@@ -808,7 +813,7 @@ struct Index {
 
 ### 示例3（设置颜色渐变）
 
-该示例通过shaderStyle接口实现了symbolGlyph控件显示为渐变色的功能。
+从API version 20开始，该示例通过[shaderStyle](#shaderstyle20)接口实现了symbolGlyph组件显示为渐变色的功能。
 
 ```ts
 @Entry

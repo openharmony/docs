@@ -53,10 +53,12 @@
   - [Web组件支持视频沉浸式全屏播放](web_full_screen.md)
 - 处理网页内容<!--web-process-page-content-->
   - [使用Web组件打印前端页面](web-print.md)
+  - [使用Web组件保存前端页面为PDF](web-createpdf.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
   - [网页中安全区域计算和避让适配](web-safe-area-insets.md)
   - [使用Web组件菜单处理网页内容](web_menu.md)
   - [使用Web组件与系统剪贴板交互处理网页内容](web-clipboard.md)
+  - [使用Web组件的智能分词能力](web-data-detector.md)
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
 - Web调试维测<!--web-debugging-->

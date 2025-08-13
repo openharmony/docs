@@ -1,9 +1,14 @@
 # 使用JSVM-API接口进行生命周期相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
 在JSVM-API中，JSVM_Value是一个表示JavaScript值的抽象类型，它可以表示任何JavaScript值，包括基本类型（如数字、字符串、布尔值）和对象类型（如数组、函数、对象等）。
-JSVM_Value的生命周期与JavaScript值的生命周期相关。JavaScript值被垃圾回收后，JSVM_Value将失效。请勿在JavaScript值不存在时使用JSVM_Value。
+JSVM_Value的生命周期与JavaScript值的生命周期相关。JavaScript值被垃圾回收后，JSVM_Value将不再有效。避免在JavaScript值不存在时使用JSVM_Value。
 
 框架层的scope通常用于管理JSVM_Value的生命周期。在JSVM-API中，可以使用OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope函数来创建和销毁scope。通过在scope内创建JSVM_Value，可以确保在scope结束时自动释放JSVM_Value，避免内存泄漏。
 
@@ -42,11 +47,11 @@ JSVM-API提供了一组功能，使开发人员能够在JSVM-API模块中创建�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++代码。
 
 ### OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope
 
-通过接口OH_JSVM_OpenHandleScope创建一个上下文环境，使用时需调用OH_JSVM_CloseHandleScope进行关闭。该机制用于管理JavaScript对象的生命周期，确保在JSVM-API模块中处理JavaScript对象时能正确管理其句柄，避免垃圾回收相关的问题。
+通过接口OH_JSVM_OpenHandleScope创建上下文环境，并使用OH_JSVM_CloseHandleScope关闭。这用于管理JavaScript对象的生命周期，确保在JSVM-API模块中正确处理JavaScript对象句柄，避免垃圾回收问题。
 
 cpp部分代码：
 
@@ -55,9 +60,9 @@ cpp部分代码：
 static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。
     // 下面例子中，每次循环结束局部变量res的生命周期已结束，因此加scope及时释放其持有的js对象，防止内存泄漏
-    constexpr uint32_t DIFF_VALUE_HUNDRED_THOUSAND = 10000;
+    constexpr uint32_t DIFF_VALUE_TEN_THOUSAND = 10000;
     JSVM_Value checked = nullptr;
-    for (int i = 0; i < DIFF_VALUE_HUNDRED_THOUSAND; i++) {
+    for (int i = 0; i < DIFF_VALUE_TEN_THOUSAND; i++) {
         JSVM_HandleScope scope = nullptr;
         JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
         if (status != JSVM_OK || scope == nullptr) {
@@ -90,7 +95,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "HandleScopeFor()";
 ```
-<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_handle_scope_and_oh_jsvm_close_handle_scope](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openhandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 ```
@@ -99,7 +104,7 @@ JSVM HandleScopeFor: success
 
 ### OH_JSVM_OpenEscapableHandleScope、OH_JSVM_CloseEscapableHandleScope、OH_JSVM_EscapeHandle
 
-通过接口 OH_JSVM_OpenEscapableHandleScope 创建出一个可逃逸的 handel scope，可将 1 个范围内声明的值返回到父作用域。创建的 scope 需使用 OH_JSVM_CloseEscapableHandleScope 进行关闭。OH_JSVM_EscapeHandle 将传入的 JavaScript 对象的生命周期提升到其父作用域。
+通过接口 OH_JSVM_OpenEscapableHandleScope 创建出一个可逃逸的 handle scope，可将 1 个范围内声明的值返回到父作用域。创建的 scope 需使用 OH_JSVM_CloseEscapableHandleScope 进行关闭。OH_JSVM_EscapeHandle 将传入的 JavaScript 对象的生命周期提升到其父作用域。
 通过上述接口可以更灵活的使用管理传入的 JavaScript 对象，特别是在处理跨作用域的值传递时非常有用。
 
 cpp 部分代码
@@ -116,7 +121,7 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
         return nullptr;
     }
     // 在可逃逸的句柄作用域内创建一个obj
-    JSVM_Value obj;
+    JSVM_Value obj = nullptr;
     OH_JSVM_CreateObject(env, &obj);
     // 在对象中添加属性
     JSVM_Value value = nullptr;
@@ -153,7 +158,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "escapableHandleScopeTest()";
 ```
-<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_open_escapable_handle_scope_close_escapable_handle_scope_escape_handle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/openescapablehandlescope/src/main/cpp/hello.cpp) -->
 
 预期输出
 
@@ -171,7 +176,7 @@ JSVM EscapableHandleScopeTest: success
 
 ### OH_JSVM_ReferenceRef、OH_JSVM_ReferenceUnref
 
-增加/减少 传入的引用的引用计数，并获取新的计数。当引用计数被置为 0 后，对于可以被设置为弱引用的 JavaScript 类型（对象、函数、外部变量），引用将被置为弱引用，在垃圾回收机制认为必要的时候该变量会被回收，当变量被回收后，调用 OH_JSVM_GetReferenceValue 会获得 C NULL；对于不可被置为弱引用的 JavaScript 类型，该引用会被清除，调用 OH_JSVM_GetReferenceValue 会获得 C NULL。
+增加/减少传入的引用的引用计数，并获取新的计数。当引用计数被置为 0 后，对于可以被设置为弱引用的 JavaScript 类型（对象、函数、外部变量），引用将被置为弱引用，在垃圾回收机制认为必要的时候该变量会被回收，当变量被回收后，调用 OH_JSVM_GetReferenceValue 会获得 C NULL；对于不可被置为弱引用的 JavaScript 类型，该引用会被清除，调用 OH_JSVM_GetReferenceValue 会获得 C NULL。
 
 cpp部分代码：
 
@@ -241,7 +246,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 const char *srcCallNative = "useReference()";
 ```
-<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_reference_ref_and_oh_jsvm_reference_unref](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/referenceref/src/main/cpp/hello.cpp) -->
 
 预期结果：
 
@@ -253,7 +258,7 @@ JSVM UseReference success
 
 ### OH_JSVM_AddFinalizer
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
-Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
+Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JSVM_DestroyEnv 时执行。
 
 cpp 部分代码
 
@@ -263,7 +268,7 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
     JSVM_HandleScope handleScope;
     CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
     // 创建 object 并设置回调
-    JSVM_Value obj;
+    JSVM_Value obj = nullptr;
     CHECK_RET(OH_JSVM_CreateObject(env, &obj));
     CHECK_RET(OH_JSVM_AddFinalizer(
         env, obj, nullptr,
@@ -305,7 +310,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
-<!-- @[oh_jsvm_add_finalizer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_add_finalizer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/addfinalizer/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```ts

@@ -1,4 +1,9 @@
 # 组件快捷键事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 开发者可以设置组件的自定义组合键，每个组件可以设置多个组合键。
 
@@ -22,7 +27,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 **参数：**
 
-| 参数名   | 参数类型                                  | 必填   | 参数描述                                     |
+| 参数名   | 类型                                  | 必填   | 说明                                     |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
 | value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | 是 | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-appendix-enums.md#functionkey10)。<br />空字符串意为取消快捷键绑定。<br/> |
 | keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | 是 | 热键组合。<br />仅当value为[FunctionKey](ts-appendix-enums.md#functionkey10)的情况下可以为空。<br/> |
@@ -94,25 +99,25 @@ struct Index {
         Text(this.message)
         Button("Test short cut 1").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 1";
-          console.log("I clicked 1");
+          console.info("I clicked 1");
         }).keyboardShortcut('.', [ModifierKey.SHIFT, ModifierKey.CTRL, ModifierKey.ALT])
           .onKeyEvent((event: KeyEvent)=>{
-            console.log("event.keyCode: " + JSON.stringify(event));
+            console.info("event.keyCode: " + JSON.stringify(event));
           })
         Button("Test short cut 2").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 2";
-          console.log("I clicked 2");
+          console.info("I clicked 2");
         }).keyboardShortcut('1', [ModifierKey.CTRL])
         Button("Test short cut 3").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 3";
-          console.log("I clicked 3");
+          console.info("I clicked 3");
         }).keyboardShortcut('A', [ModifierKey.SHIFT])
         Button("Test short cut 4").onClick((event: ClickEvent) => {
           this.message = "I clicked Button 4";
-          console.log("I clicked 4");
+          console.info("I clicked 4");
         }).keyboardShortcut(FunctionKey.F5, [], () => {
           this.message = "I clicked Button 4";
-          console.log("I clicked user callback.");
+          console.info("I clicked user callback.");
         }).keyboardShortcut(FunctionKey.F3, [])
       }
       .width('100%')
@@ -142,7 +147,7 @@ struct Index {
         Text('Ctrl+A is ' + this.message)
         Button("Test short cut").onClick((event: ClickEvent) => {
           this.message = "I clicked Button";
-          console.log("I clicked");
+          console.info("I clicked");
         }).keyboardShortcut(this.keyValue, [ModifierKey.CTRL])
         Button(this.message + 'shortCut').onClick((event: ClickEvent) => {
           this.shortCutEnable = !this.shortCutEnable;
@@ -150,7 +155,7 @@ struct Index {
           this.keyValue = this.shortCutEnable ? 'a' : '';
         })
         Button('multi-shortcut').onClick((event: ClickEvent) => {
-          console.log('Trigger keyboard shortcut success.')
+          console.info('Trigger keyboard shortcut success.')
         }).keyboardShortcut('q', [ModifierKey.CTRL])
           .keyboardShortcut('w', [ModifierKey.CTRL])
           .keyboardShortcut('', []) // 不生效，绑定了多个快捷键的组件不能取消快捷键

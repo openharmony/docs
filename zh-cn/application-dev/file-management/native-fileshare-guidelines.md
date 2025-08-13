@@ -1,4 +1,9 @@
 # 授权持久化(C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 ## 场景介绍
 
@@ -6,7 +11,7 @@
 
 ## 接口说明
 
-接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/file_share.md)。
+接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/capi-oh-file-share-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

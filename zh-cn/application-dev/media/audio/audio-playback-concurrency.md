@@ -1,4 +1,9 @@
 # 音频焦点和音频会话介绍
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 在应用播放或录制声音时，常出现与其他音频流的并发或中断情况，这对用户体验构成显著影响。例如，当应用启动视频播放时，若后台正在播放音乐，用户会期望音乐能自动暂停，以确保视频音频优先播放，这正是音频焦点功能的体现。对于涉及音频服务的应用而言，妥善地管理音频焦点非常重要，它可以显著提升用户的音频体验。
 
@@ -18,7 +23,7 @@
 
 - 在播放或录制的过程中，需[监听音频焦点事件](#处理音频焦点变化)，并在接收到音频焦点中断事件（[InterruptEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)）时，采取相应的处理措施。
 
-- 若应用程序有意主动管理音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)相关的接口进行操作。
+- 如果应用程序有意主动管理音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)相关的接口进行操作。
 
 ### 申请音频焦点
 
@@ -29,6 +34,8 @@
 若音频焦点请求成功，音频流将正常启动；反之，若音频焦点请求被拒绝，音频流将无法开始播放或录制。
 
 建议应用主动[监听音频焦点事件](#处理音频焦点变化)，一旦音频焦点请求被拒绝，应用将接收到[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)。
+
+如果应用希望只申请一次焦点，连续播放多条音频流不被中断，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)的焦点申请接口。
 
 **特殊场景：**
 
@@ -50,7 +57,8 @@
 
 当音频流释放音频焦点时，若存在受其影响的其他音频流（如音量被调低或被暂停的流），将触发恢复操作。
 
-若应用不希望在音频流停止时立即释放音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)的相关接口，实现音频焦点释放的延迟效果。
+如果应用不希望在音频流停止时立即释放音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)的相关接口，实现音频焦点释放的延迟效果。
+如果应用通过激活[音频会话（AudioSession）](#使用audiosession管理音频焦点)申请过焦点，需要结束AudioSession以释放焦点。
 
 ### 音频焦点策略
 
@@ -142,11 +150,23 @@
   - 降低音量（INTERRUPT_HINT_DUCK）：音频降低音量播放，而不会停止。默认降低至正常音量的20%。
   - 恢复音量（INTERRUPT_HINT_UNDUCK）：音频恢复正常音量。
 
+### 典型场景
+
+典型焦点的适配场景如下表所示。
+
+| 先播放的音频类型       | 推荐流类型         | 后播放的音频类型 | 推荐流类型            | 推荐体验                                                     | 适配方案                                                     |
+| ---------------- | ------------------ | ------------ | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 音乐         | STREAM_USAGE_MUSIC | 音乐         | STREAM_USAGE_MUSIC    | 后播音乐正常播放，先播音乐停止播放，UI变成停止播放状态。 | 先播音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_STOP`事件时，停止音乐播放，并更新UI界面。 |
+| 音乐         | STREAM_USAGE_MUSIC | 导航         | STREAM_USAGE_NAVIGATION    | 导航正常播放，音乐降低音量播放。<br>导航结束后，音乐恢复正常音量。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_DUCK`和`INTERRUPT_HINT_UNDUCK`事件时，可以选择更新UI界面。 |
+| 视频           | STREAM_USAGE_MOVIE | 闹铃         | STREAM_USAGE_ALARM    | 闹铃响起后，视频暂停播放。<br>闹钟结束后，视频继续播放。         | 视频应用注册焦点事件监听。接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停视频播放，并更新UI界面。<br>当闹铃结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+| 音乐         | STREAM_USAGE_MUSIC | 来电铃声     | STREAM_USAGE_RINGTONE | 开始响铃，音乐暂停播放。<br>不接通或者接通再挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听。接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。<br>当电话结束后，音频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+| 音乐         | STREAM_USAGE_MUSIC | VoIP通话     | STREAM_USAGE_VOICE_COMMUNICATION | 通话接通时，音乐暂停播放。<br>通话挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听。<br>接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。<br>当通话结束后，音乐应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+
 **处理音频焦点示例:**
 
 为了带给用户更好的音频体验，针对不同的音频焦点事件内容，应用需要做出相应的处理操作。此处以[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考。
 
-若使用其他接口开发音频播放或音频录制功能，处理方法类似，具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
+在监听音频播放焦点变化事件之前，需要先获取[AudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)实例。若使用其他接口开发音频播放或音频录制功能，处理方法类似，具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
 
 ```ts
 import { audio } from '@kit.AudioKit';  // 导入audio模块。
@@ -302,16 +322,42 @@ async function onAudioInterrupt(): Promise<void> {
 - 超时（DEACTIVATED_TIMEOUT）：若AudioSession处于激活状态，但该应用没有音频流在运行状态，则AudioSession会在1分钟之后被超时停用。
 
    > **注意：**
+   >
    > 当AudioSession因超时而停用时，被其压低音量（Duck）的音频会触发恢复音量（Unduck）操作，被其暂停（Pause）的音频流会触发停止（Stop）操作。
 
-## 典型场景
 
-以下列举一些典型的焦点适配场景。
+### 通过设置AudioSession场景参数申请焦点
+在保持现有特性的基础上，从API 20开始，应用可通过AudioSession申请焦点，提升多音频流播放的连续性。
+典型使用场景如下：
+- 在多个小视频滑动播放时，多个音频流频繁申请和释放焦点可能导致漏音。使用AudioSession申请一次焦点，可以避免中间多个音频流播放时频繁申请和释放焦点，从而防止漏音。
+- 在VoIP通话场景下，可能需要启动铃声流、录音流和播放流，这些音频流的焦点优先级不同，部分音频流可能被其他应用的音频流中断。为了保持业务体验的连续性，可以使用AudioSession申请焦点，避免音频流被中断。
+- 应用使用播放器的SDK播放音频流，不持有AudioRenderer对象，但希望监听焦点变化。
 
-| 先播放的音频类型       | 推荐流类型         | 后播放的音频类型 | 推荐流类型            | 推荐体验                                                     | 适配方案                                                     |
-| ---------------- | ------------------ | ------------ | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 音乐         | STREAM_USAGE_MUSIC | 音乐         | STREAM_USAGE_MUSIC    | 后播音乐正常播放，先播音乐停止播放，UI变成停止播放状态。 | 先播音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_STOP`事件时，停止音乐播放，并更新UI界面。 |
-| 音乐         | STREAM_USAGE_MUSIC | 导航         | STREAM_USAGE_NAVIGATION    | 导航正常播放，音乐降低音量播放。当导航结束后，音乐恢复正常音量。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_DUCK`和`INTERRUPT_HINT_UNDUCK`事件时，可以选择更新UI界面。 |
-| 视频           | STREAM_USAGE_MOVIE | 闹铃         | STREAM_USAGE_ALARM    | 闹铃响起后，视频暂停播放；闹钟结束后，视频继续播放。         | 视频应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停视频播放，并更新UI界面。当闹铃结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
-| 音乐         | STREAM_USAGE_MUSIC | 来电铃声     | STREAM_USAGE_RINGTONE | 开始响铃，音乐暂停播放；不接通或者接通再挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当电话结束后，音频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
-| 音乐         | STREAM_USAGE_MUSIC | VoIP通话     | STREAM_USAGE_VOICE_COMMUNICATION | 通话接通时，音乐暂停播放；通话挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当通话结束后，音乐应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+通过AudioSession申请焦点，首先要调用[setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setaudiosessionscene20)设置场景参数。然后调用[activateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12)激活AudioSession。
+当前支持的AudioSessionScene如下，应用可以根据具体的业务场景，选择不同的场景参数配置。
+| 名称                   | 值 | 说明      |
+| :--------------------- |:--|:--------|
+| AUDIO_SESSION_SCENE_MEDIA | 0 | 媒体音频会话场景。     |
+| AUDIO_SESSION_SCENE_GAME | 1 | 游戏音频会话场景。     |
+| AUDIO_SESSION_SCENE_VOICE_COMMUNICATION  | 2 | VoIP语音通话音频会话场景。 |
+
+**AudioSession焦点生效规则：**
+- 通过AudioSession申请焦点，仅对播放流有效，对录音流及部分播放音频流（如STREAM_USAGE_ALARM、STREAM_USAGE_NOTIFICATION、STREAM_USAGE_ACCESSIBILITY等）无效。
+- 如果AudioSession主动结束或被超时释放，需要重新设置AudioSessionScene并调用activateAudioSession以再次申请焦点。
+- 在AudioSession激活过程中，如果动态修改AudioSessionScene，需要重新调用activateAudioSession才能生效。
+- 如果AudioSession的焦点被暂停，所有受其管理的音频流也会被暂停。
+- AudioSession申请的焦点是应用级别的，如果应用内部包含不同的模块，各个模块间要做好协调处理，避免其中一个模块使用AudioSession申请了焦点，另一个模块的音频流被AudioSession的焦点管控而产生非预期的效果。
+
+### 监听AudioSession焦点状态变化事件
+AudioSession申请的焦点，跟通过AudioRenderer申请的焦点是同等地位，若有其他应用音频流申请焦点，系统会根据[焦点策略](#音频焦点策略)进行焦点处理。若判定当前AudioSession的焦点有变化，需要执行暂停、继续、降低音量、恢复音量等操作，则系统会自动执行一些必要的操作，并通过[AudioSession焦点状态事件（AudioSessionStateChangedEvent）](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiosessionstatechangedevent20)通知应用。
+
+为了维持应用和系统的状态一致性，确保良好的用户体验，应用应监听AudioSession焦点状态事件，并在焦点变化时做出必要响应。
+
+> **注意：**
+> 如果应用同时注册了AudioRenderer的焦点事件监听，需要注意以下两点：
+> 1. 应用会收到AudioSession焦点状态变化和AudioRenderer焦点变化的回调（[InterruptEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)），根据需要处理这些回调即可。
+> 2. 如果AudioSession的焦点被暂停，恢复暂停状态时，只会给AudioSession发送焦点恢复事件，不会再给AudioRenderer发送焦点恢复事件。
+
+### 通过AudioSession管理全局音频输出设备
+应用使用播放器的SDK播放音频流，不持有AudioRenderer对象，无法灵活控制播放设备的选择和设备状态的监听。因此，从API 20开始，AudioSession不仅增加了焦点管理能力，还提供了音频输出设备管理功能，包括设置默认输出设备和监听设备变化。具体API接口说明请参考文档[AudiSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)。
+API接口使用指导请参考[通过AudioSession管理全局音频输出设备](./audio-output-device-management.md)。

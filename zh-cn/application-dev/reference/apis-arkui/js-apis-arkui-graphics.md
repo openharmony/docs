@@ -1,4 +1,9 @@
 # Graphics
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 自定义节点相关属性定义的详细信息。
 
@@ -205,12 +210,6 @@ const transform: Matrix4 = [
 ## DrawContext
 
 图形绘制上下文，提供绘制所需的画布宽度和高度。
-
-| 名称 | 类型   | 只读 | 可选 | 说明              |
-| ---- | ------ | ---- | ---- | ----------------- |
-| size | [Size](#size) | 是  | 否  | 画布的宽度和高度。 |
-| sizeInPixel | [Size](#size) | 是  | 否  | 画布的宽度和高度，以px为单位。 |
-| canvas | [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)| 是  | 否  | 用于绘制的画布。 |
 
 ### size
 
@@ -1213,6 +1212,12 @@ fillColor: number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。 |
+
 **示例：**
 
 ```ts
@@ -1265,6 +1270,12 @@ strokeColor: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。 |
 
 **示例：**
 
@@ -1319,6 +1330,12 @@ strokeWidth: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框宽度，单位为px。默认值为0。 |
 
 **示例：**
 

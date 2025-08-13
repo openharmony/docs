@@ -1,5 +1,11 @@
 # HiDebug_NativeMemInfo
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 ## 概述
 
 应用程序进程本机内存信息结构类型定义。

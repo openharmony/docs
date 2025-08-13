@@ -1,4 +1,9 @@
 #  OffscreenCanvas
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 OffscreenCanvas组件用于绘制自定义图形。
 
@@ -135,7 +140,7 @@ transferToImageBitmap(): ImageBitmap
 
 **返回值：**
 
-| 类型                                               | 描述                    |
+| 类型                                               | 说明                    |
 | -------------------------------------------------- | ----------------------- |
 | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 创建的ImageBitmap对象。 |
 
@@ -148,7 +153,7 @@ transferToImageBitmap(): ImageBitmap
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(400, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -156,14 +161,14 @@ struct OffscreenCanvasPage {
         .width('100%')
         .height('100%')
         .borderWidth(5)
-        .borderColor('#057D02')
+        .borderColor('rgb(39,135,217)')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#CDCDCD'
-          offContext.fillRect(0, 0, 300, 500)
+          offContext.fillRect(0, 0, 400, 600)
           offContext.fillStyle = '#000000'
-          offContext.font = '70px serif bold'
+          offContext.font = '40px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -196,7 +201,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 **返回值：**
 
-| 类型                                                         | 描述                              |
+| 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
 | [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。如果getContext方法的入参contextType为"2d"以外类型（包括null或者undefined），返回null。 |
 

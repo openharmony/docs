@@ -1,4 +1,9 @@
 # 无障碍属性
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 设置组件的无障碍属性和事件，以充分利用无障碍功能。
 
@@ -53,21 +58,13 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 | 参数名               | 类型                                                    | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | isGroup              | boolean                                                 | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读；设置为false时，应用进行屏幕朗读时不会优先使用无障碍文本。<br/>默认值：false            |
+| accessibilityOptions | [AccessibilityOptions](ts-types.md#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读；设置为false时，应用进行屏幕朗读时不会优先使用无障碍文本。<br/>默认值：false            |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前对象。 |
-
-## AccessibilityOptions<sup>14+</sup>对象说明
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称                   | 类型    | 只读 | 可选 | 说明                                                         |
-| ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | 否 | 是   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
 
 ## accessibilityText
 
@@ -290,6 +287,8 @@ accessibilityRole(role: AccessibilityRoleType):T
 
 定义组件的屏幕朗读功能角色类型。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -498,6 +497,8 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode):T
 
 当前跨进程嵌入式显示的组件和宿主应用的同page模式。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -523,7 +524,7 @@ accessibilityScrollTriggerable(isTriggerable: boolean):T
 
 | 参数名         |  类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
-| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow等。|
+| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，WaterFlow等。|
 
 **返回值：**
 

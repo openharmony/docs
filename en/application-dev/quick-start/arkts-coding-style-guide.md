@@ -8,7 +8,7 @@ This guide is applicable when you use ArkTS for coding during system or applicat
 
 ## Source
 
-ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some rules in this topic are selected from the [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md), providing standards for ArkTS-specific syntax to improve code readability and execution performance.
+ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some rules in this topic are selected from the [TypeScript and JavaScript Coding Style Guide](https://gitcode.com/openharmony/docs/blob/master/en/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md), providing standards for ArkTS-specific syntax to improve code readability and execution performance.
 
 ## Document Structure
 
@@ -563,7 +563,7 @@ function foo() {
   //...
 }
 ```
- 
+
 ## Programming Practices
 
 ### Add Accessible Modifiers for Class Attributes

@@ -1,4 +1,9 @@
 # 使用Web组件管理网页缩放
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 Web组件支持手势缩放、鼠标滚轮、键盘缩放，以方便用户调整到舒适的显示大小。并对应用提供监听、控制页面缩放比例的功能，以便应用实现个性化的视觉效果。
 
@@ -75,8 +80,8 @@ struct WebComponent {
           if (event.type == KeyType.Down &&
               event.getModifierKeyState &&
               event.getModifierKeyState(['Ctrl']) &&
-              (event.keyCode == KeyCode.KEYCODE_MINUS || event.keyCode == KeyCode.KEYCODE_EQUALS) ||
-               event.keyCode == KeyCode.KEYCODE_NUMPAD_SUBTRACT || event.keyCode == KeyCode.KEYCODE_NUMPAD_ADD) {
+              (event.keyCode == KeyCode.KEYCODE_MINUS || event.keyCode == KeyCode.KEYCODE_EQUALS ||
+               event.keyCode == KeyCode.KEYCODE_NUMPAD_SUBTRACT || event.keyCode == KeyCode.KEYCODE_NUMPAD_ADD)) {
             return true;
           }
           return false;
@@ -113,11 +118,13 @@ struct WebComponent {
 
 ## 控制网页的缩放比例
 
+应用可以通过设置[initialScale](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#initialscale9)属性设置页面初始缩放比例。
+
 应用可以通过[zoom](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#zoom)、[zoomIn](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#zoomin)、[zoomOut](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#zoomout)接口控制页面缩放。
 
  > **说明：**
  >
- > 使用`zoom`类接口控制页面缩放时，必须设置属性`zoomAccess`为`true`。`zoomAccess`为`false`时，`zoom`类接口会抛出异常`17100004`。
+ > 使用以上接口控制页面缩放时，必须设置属性`zoomAccess`为`true`。`zoomAccess`为`false`时，`zoom`类接口会抛出异常`17100004`。
 
 ### 以固定比例缩放页面
 

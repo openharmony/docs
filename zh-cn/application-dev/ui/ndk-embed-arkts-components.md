@@ -1,15 +1,19 @@
 # 嵌入ArkTS组件
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Native侧提供，如声明式UI语法，自定义struct组件，UI高级组件。
 
 
-针对需要使用ArkTS侧独立能力的场景，ArkUI开发框架提供了Native侧嵌入ArkTS组件的能力，该能力依赖[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md)机制，通过ComponentContent完成对ArkTS组件的封装，然后将封装对象转递到Native侧，通过Native侧的[OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getnodehandlefromnapivalue)接口转化为ArkUI_NodeHandle对象用于Native侧组件挂载使用。
+针对需要使用ArkTS侧独立能力的场景，ArkUI开发框架提供了Native侧嵌入ArkTS组件的能力，该能力依赖[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md)机制，通过ComponentContent完成对ArkTS组件的封装，然后将封装对象转递到Native侧，通过Native侧的[OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md#oh_arkui_getnodehandlefromnapivalue)接口转化为ArkUI_NodeHandle对象用于Native侧组件挂载使用。
 
 
 > **说明：**
 >
-> - 通过OH_ArkUI_GetNodeHandleFromNapiValue接口获得的ArkUI_NodeHandle对象只能作为子组件参数使用，如[addChild](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#addchild)接口的第二个参数，将该对象使用在其他场景下，如[setAttribute](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#setattribute)设置属性将不生效并返回错误码。
+> - 通过OH_ArkUI_GetNodeHandleFromNapiValue接口获得的ArkUI_NodeHandle对象只能作为子组件参数使用，如[addChild](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#addchild)接口的第二个参数，将该对象使用在其他场景下，如[setAttribute](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#setattribute)设置属性将不生效并返回错误码。
 > 
 > - 针对Native侧修改ArkTS组件的场景，需要在Native侧通过Node-API方式构建ArkTS侧的更新数据，再通过ComponentContent的[update](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#update)接口更新。
 > 
@@ -639,7 +643,82 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    
    ```
 
-6. 使用[接入ArkTS页面](ndk-access-the-arkts-page.md)章节的页面结构，并沿用[定时器模块相关简单实现](ndk-loading-long-list.md)，将Refresh组件作为文本列表的父组件。
+6. 定时器模块相关简单实现。
+   ```c
+   // UITimer.h
+   // 定时器模块。
+   
+   #ifndef MYAPPLICATION_UITIMER_H
+   #define MYAPPLICATION_UITIMER_H
+   
+   #include <hilog/log.h>
+   #include <js_native_api.h>
+   #include <js_native_api_types.h>
+   #include <node_api.h>
+   #include <node_api_types.h>
+   #include <string>
+   #include <thread>
+   #include <uv.h>
+   
+   namespace NativeModule {
+   
+   struct UIData {
+       void *userData = nullptr;
+       int32_t count = 0;
+       int32_t totalCount = 0;
+       void (*func)(void *userData, int32_t count) = nullptr;
+   };
+   
+   napi_threadsafe_function threadSafeFunction = nullptr;
+   
+   void CreateNativeTimer(napi_env env, void *userData, int32_t totalCount, void (*func)(void *userData, int32_t count)) {
+       napi_value name;
+       std::string str = "UICallback";
+       napi_create_string_utf8(env, str.c_str(), str.size(), &name);
+       // UI主线程回调函数。
+       napi_create_threadsafe_function(
+           env, nullptr, nullptr, name, 0, 1, nullptr, nullptr, nullptr,
+           [](napi_env env, napi_value value, void *context, void *data) {
+               auto userdata = reinterpret_cast<UIData *>(data);
+               userdata->func(userdata->userData, userdata->count);
+               delete userdata;
+           },
+           &threadSafeFunction);
+       // 启动定时器，模拟数据变化。
+       std::thread timerThread([data = userData, totalCount, func]() {
+           uv_loop_t *loop = uv_loop_new();
+           uv_timer_t *timer = new uv_timer_t();
+           uv_timer_init(loop, timer);
+           timer->data = new UIData{data, 0, totalCount, func};
+           uv_timer_start(
+               timer,
+               [](uv_timer_t *handle) {
+                   OH_LOG_INFO(LOG_APP, "on timeout");
+                   napi_acquire_threadsafe_function(threadSafeFunction);
+                   auto *customData = reinterpret_cast<UIData *>(handle->data);
+                   // 创建回调数据。
+                   auto *callbackData =
+                       new UIData{customData->userData, customData->count, customData->totalCount, customData->func};
+                   napi_call_threadsafe_function(threadSafeFunction, callbackData, napi_tsfn_blocking);
+                   customData->count++;
+                   if (customData->count > customData->totalCount) {
+                       uv_timer_stop(handle);
+                       delete handle;
+                       delete customData;
+                   }
+               },
+               4000, 4000);
+           uv_run(loop, UV_RUN_DEFAULT);
+           uv_loop_delete(loop);
+       });
+       timerThread.detach();
+   }
+   } // namespace NativeModule
+   
+   #endif // MYAPPLICATION_UITIMER_H
+   ```
+
+7. 使用[接入ArkTS页面](ndk-access-the-arkts-page.md)章节的页面结构，并沿用[定时器模块相关简单实现](ndk-embed-arkts-components.md)，将Refresh组件作为文本列表的父组件。
    ```c
    // MixedRefreshExample.h
    // 混合模式示例代码。

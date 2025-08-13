@@ -1,5 +1,11 @@
 # oh_bluetooth.h
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## 概述
 
 定义查询蓝牙开关状态的接口。

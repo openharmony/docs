@@ -134,7 +134,7 @@ API 12。
 
 **变更的接口/组件**
 
-RichEditor
+onWillChange
 
 **适配指导**
 

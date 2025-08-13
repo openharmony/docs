@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuth (用户认证)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供用户认证能力，应用于设备解锁、支付、应用登录等场景。
 
 > **说明：**
@@ -107,8 +113,8 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -117,12 +123,14 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
   console.info(`get current enrolled state success, enrolledState = ${JSON.stringify(enrolledState)}`);
 } catch (error) {
-  console.error(`get current enrolled state failed, error = ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -136,7 +144,7 @@ try {
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | challenge      | Uint8Array                         | 是   | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md#生物认证可信等级划分原则)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用解锁认证的结果。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | skipLockedBiometricAuth<sup>20+</sup> | boolean | 否   | 是否跳过已禁用的认证方式自动切换至其它方式的认证，true表示已跳过，false表示未跳过，若无可切换的认证方式则关闭控件，返回认证冻结错误码。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
@@ -148,7 +156,7 @@ try {
 
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| title                | string                              | 是   | 用户认证界面的标题，建议传入认证目的，例如用于支付、登录应用等，不支持传空字串，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。在单指纹、单人脸场景下支持，从API 18开始，增加支持人脸+指纹场景。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | uiContext<sup>18+</sup>            | Context               | 否   | 以模应用方式显示身份认证对话框，仅支持在2in1设备上使用，如果没有此参数或其他类型的设备，身份认证对话框将以模系统方式显示。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
@@ -199,7 +207,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -228,7 +247,7 @@ try {
 
 **示例2：**
 
-发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令+认证类型相关+复用设备解锁最大有效时长认证，获取认证结果。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -242,7 +261,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -271,7 +301,7 @@ try {
 
 **示例3：**
 
-发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令+任意应用认证类型相关+复用任意应用最大有效时长认证，获取认证结果。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -285,7 +315,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -341,7 +382,7 @@ type AuthTipCallback = (authTipInfo: AuthTipInfo) => void
 | ------ | -----------------------------------| ---- | ---------- |
 | authTipInfo | [AuthTipInfo](#authtipinfo20)   | 是   | 认证中间状态。 |
 
-**示例1：**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -351,7 +392,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -404,7 +456,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例1：**
@@ -419,7 +471,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -461,7 +524,18 @@ struct Index {
     try {
       const rand = cryptoFramework.createRandom();
       const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      let randData: Uint8Array | null = null;
+      let retryCount = 0;
+      while(retryCount < 3){
+        randData = rand?.generateRandomSync(len)?.data;
+        if(randData){
+          break;
+        }
+        retryCount++;
+      }
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN],
@@ -528,7 +602,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -541,7 +615,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -587,8 +672,8 @@ start(): void
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 201      | Permission verification failed. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
@@ -611,7 +696,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -650,8 +746,8 @@ cancel(): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
@@ -664,7 +760,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam : userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -690,7 +797,7 @@ try {
 
 on(type: 'authTip', callback: AuthTipCallback): void
 
-订阅用户身份认证的结果。
+订阅身份认证中间状态。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -710,9 +817,8 @@ on(type: 'authTip', callback: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
-**示例1：**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -722,7 +828,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -756,7 +873,7 @@ off(type: 'authTip', callback?: AuthTipCallback): void
 > 
 > 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -774,7 +891,6 @@ off(type: 'authTip', callback?: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
@@ -786,7 +902,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -839,7 +966,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -854,7 +981,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -994,8 +1132,10 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
+          break;
         default:
           // do others.
       }
@@ -1041,7 +1181,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1069,8 +1209,10 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
+          break;
         default:
           // do others.
       }
@@ -1106,7 +1248,7 @@ off : (name : AuthEventKey) => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1157,8 +1299,8 @@ start : () => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
@@ -1208,8 +1350,8 @@ cancel : () => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1264,7 +1406,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -1321,8 +1463,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -1346,22 +1488,21 @@ try {
 
 表示返回码的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
-| SUCCESS                 | 12500000      | 执行成功。           |
-| FAIL                    | 12500001      | 认证失败。           |
-| GENERAL_ERROR           | 12500002      | 操作通用错误。       |
-| CANCELED                | 12500003      | 认证取消。           |
-| TIMEOUT                 | 12500004      | 认证超时。           |
-| TYPE_NOT_SUPPORT        | 12500005      | 认证类型不支持。      |
-| TRUST_LEVEL_NOT_SUPPORT | 12500006      | 认证等级不支持。      |
-| BUSY                    | 12500007      | 系统繁忙。           |
-| LOCKED                  | 12500009      | 认证器已锁定。       |
-| NOT_ENROLLED            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
+| SUCCESS<sup>9+</sup>    | 12500000      | 执行成功。           |
+| FAIL<sup>9+</sup>                    | 12500001      | 认证失败。           |
+| GENERAL_ERROR<sup>9+</sup>           | 12500002      | 操作通用错误。       |
+| CANCELED<sup>9+</sup>                | 12500003      | 认证取消。           |
+| TIMEOUT<sup>9+</sup>                 | 12500004      | 认证超时。           |
+| TYPE_NOT_SUPPORT<sup>9+</sup>        | 12500005      | 认证类型不支持。      |
+| TRUST_LEVEL_NOT_SUPPORT<sup>9+</sup> | 12500006      | 认证等级不支持。      |
+| BUSY<sup>9+</sup>                    | 12500007      | 系统繁忙。           |
+| INVALID_PARAMETERS<sup>20+</sup>      | 12500008      | 参数校验失败。           |
+| LOCKED<sup>9+</sup>                  | 12500009      | 认证器已锁定。       |
+| NOT_ENROLLED<sup>9+</sup>            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
 | CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。 |
 | PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。 |
 
@@ -1750,7 +1891,7 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 表示认证结果的信任等级枚举。
 
-典型场景及举例可参考[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。
+典型场景及举例可参考[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md#生物认证可信等级划分原则)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

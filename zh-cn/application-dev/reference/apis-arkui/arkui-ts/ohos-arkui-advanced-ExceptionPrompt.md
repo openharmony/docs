@@ -245,7 +245,7 @@ struct Index1 {
 
 ### 示例3（设置Symbol类型图标）
 
-该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { ExceptionPrompt, MarginType, SymbolGlyphModifier } from '@kit.ArkUI';

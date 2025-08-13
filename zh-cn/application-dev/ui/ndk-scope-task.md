@@ -1,16 +1,16 @@
 # 在NDK中保证多实例场景功能正常
 
-从API version 20开始，ArkUI开发框架提供了Native侧嵌入跨实例相关能力[OH_ArkUI_RunTaskInScope](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_runtaskinscope)。
+从API version 20开始，ArkUI开发框架提供了Native侧嵌入跨实例相关能力[OH_ArkUI_RunTaskInScope](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_runtaskinscope)。
 
 在NDK多窗口开发时，可能会涉及到组件的跨实例设置属性等场景，使用该能力可确保在调用跨实例组件设置属性时的上下文正确性，避免跨实例接口调用失败。
 
 > **说明：**
-> - 使用[OH_ArkUI_RunTaskInScope](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_runtaskinscope)接口在B页面设置A页面内的组件，或由A页面创建但未上树的组件的属性或逻辑，保证回调范围内执行的逻辑实例正确性。
+> - 使用[OH_ArkUI_RunTaskInScope](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_runtaskinscope)接口在B页面设置A页面内的组件，或由A页面创建但未上树的组件的属性或逻辑，保证回调范围内执行的逻辑实例正确性。
 >
-> - [OH_ArkUI_RunTaskInScope](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_runtaskinscope)的userData入参为自定义属性类型，开发者可根据业务实际需要，传入任意类型的数据或结构体。
+> - [OH_ArkUI_RunTaskInScope](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_runtaskinscope)的userData入参为自定义属性类型，开发者可根据业务实际需要，传入任意类型的数据或结构体。
 
 
-本示例展示OH_ArkUI_RunTaskInScope接口的基础使用方式，OH_ArkUI_NodeUtils_GetAttachedNodeHandleById用于获取前置实例页面内的组件，相关使用请参考[OH_ArkUI_NodeUtils_GetAttachedNodeHandleById](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeutils_getattachednodehandlebyid)，此处userData传入的数据类型为最终要设置的组件指针，便于设置对应组件属性。
+本示例展示OH_ArkUI_RunTaskInScope接口的基础使用方式，OH_ArkUI_NodeUtils_GetAttachedNodeHandleById用于获取前置实例页面内的组件，相关使用请参考[OH_ArkUI_NodeUtils_GetAttachedNodeHandleById](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeutils_getattachednodehandlebyid)，此处userData传入的数据类型为最终要设置的组件指针，便于设置对应组件属性。
 
 
 ```c

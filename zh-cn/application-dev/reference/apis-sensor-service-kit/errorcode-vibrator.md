@@ -1,4 +1,9 @@
 # 振动错误码
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 > **说明：**
 >

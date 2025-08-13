@@ -1,4 +1,9 @@
 # FileUri Development (C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 ## When to Use
 
@@ -6,7 +11,7 @@ FileUri provides APIs for basic file URI operations, such as converting URIs to 
 
 ## Basic Concepts
 
-**Result set**: path or URI that meets the service requirements.
+Result set: path or URI that meets the service requirements.
 
 ## Constraints
 
@@ -16,7 +21,7 @@ FileUri provides APIs for basic file URI operations, such as converting URIs to 
 
 ## Available APIs
 
-For details about the APIs, see [File URI](../reference/apis-core-file-kit/fileuri.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/capi-oh-file-uri-h.md).
 
 | API| Description|
 | -------- |-------|
@@ -107,7 +112,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
     void OH_FileUri_IsValidUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
-        bool falgs = OH_FileUri_IsValidUri(uri, length);
+        bool flags = OH_FileUri_IsValidUri(uri, length);
         printf("The URI is valid? flags=%d", flags);
     }
    ```

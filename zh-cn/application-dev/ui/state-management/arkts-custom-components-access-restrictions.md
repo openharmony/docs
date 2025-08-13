@@ -1,4 +1,9 @@
 # 自定义组件成员属性访问限定符使用限制
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @BlYynNe--> 
+<!--SE: @lixingchi1--> 
+<!--TSE: @TerryTsao-->
 
 在状态管理V1版本中，完成自定义组件封装后，调用方难以明确知晓应传入哪些变量作为组件的输入参数。当组件开发者不希望状态变量被外部初始化时，可以使用private限定符来限制当前变量不允许被进行外部初始化。外部初始化也需要遵循装饰器自身的规则，具体规则见[使用限制](#使用限制)。
 
@@ -177,11 +182,11 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
 
     ```ts
-    Property 'local_prop_value' can not be decorated with both @LocalStorageProp and public.
-    Property 'local_link_value' can not be decorated with both @LocalStorageLink and public.
-    Property 'storage_prop_value' can not be decorated with both @StorageProp and public.
-    Property 'storage_link_value' can not be decorated with both @StorageLink and public.
-    Property 'consume_value' can not be decorated with both @Consume and public.
+    Property 'local_prop_value' can not be decorated with both '@LocalStorageProp' and public.
+    Property 'local_link_value' can not be decorated with both '@LocalStorageLink' and public.
+    Property 'storage_prop_value' can not be decorated with both '@StorageProp' and public.
+    Property 'storage_link_value' can not be decorated with both '@StorageLink' and public.
+    Property 'consume_value' can not be decorated with both '@Consume' and public.
     ```
     
     【正例】
@@ -255,8 +260,8 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
     
     ```ts
-    Property 'link_value' can not be decorated with both @Link and private.
-    Property 'objectLink_value' can not be decorated with both @ObjectLink and private.
+    Property 'link_value' can not be decorated with both '@Link' and private.
+    Property 'objectLink_value' can not be decorated with both '@ObjectLink' and private.
     ```
     
     【正例】
@@ -384,7 +389,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     编译告警日志如下：
     
     ```ts
-    Property 'prop_value' can not be decorated with both @Require and private.
+    Property 'prop_value' can not be decorated with both '@Require' and private.
     Property 'prop_value' is private and can not be initialized through the component constructor.
     ```
     

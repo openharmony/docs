@@ -1,4 +1,9 @@
 # Class (RdbPredicates)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 > 
@@ -1181,7 +1186,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause. |
 
 **示例1：**
 

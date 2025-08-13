@@ -1,4 +1,9 @@
 # @ohos.systemDateTime (系统时间、时区)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Time-->
+<!--Owner: @huaxin05-->
+<!--SE: @hu-kai45-->
+<!--TSE: @murphy1984-->
 
 本模块主要由系统时间和系统时区功能组成。开发者可以设置、获取系统时间及系统时区。
 
@@ -555,7 +560,7 @@ try {
       console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in getting date : ${date}`);;
+    console.info(`Succeeded in getting date : ${date}`);
   });
 } catch(e) {
   let error = e as BusinessError;
@@ -631,7 +636,7 @@ try {
       console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in get timezone : ${data}`);;
+    console.info(`Succeeded in get timezone : ${data}`);
   });
 } catch(e) {
   let error = e as BusinessError;

@@ -1,12 +1,12 @@
 # PhotoEditorExtensionContext
-**PhotoEditorExtensionContext**, which inherits from **ExtensionContext**, provides the context environment for the PhotoEditorExtensionAbility. It provides PhotoEditorExtensionAbility related configuration and APIs for saving images.
+PhotoEditorExtensionContext provides the context environment for the PhotoEditorExtensionAbility. It inherits from ExtensionContext and provides PhotoEditorExtensionAbility related configuration and APIs for saving images.
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
 > The APIs of this module can be used only in the stage model.
 > 
-> The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
+> The APIs of this module must be used in the main thread, but not in child threads such as Worker and TaskPool.
 
 ## Modules to Import
 ```ts
@@ -31,7 +31,7 @@ Saves an edited image, which is passed in through a URI.
 **Return value**
 |  Type| Description |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise used to return an **AbilityResult** object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
+| Promise\<AbilityResult\> | Promise used to return an AbilityResult object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
 
 **Error codes**
 
@@ -105,7 +105,7 @@ struct Index {
 
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 
-Saves an edited image, which is passed in through a **PixelMap** object.
+Saves an edited image, which is passed in through a PixelMap object.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -114,13 +114,13 @@ Saves an edited image, which is passed in through a **PixelMap** object.
 **Parameters**
 | Name | Type | Mandatory | Description |
 | ------------ | ------------ | ------------ | ------------ |
-| pixeMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | Yes | Edited image, which is an **image.PixelMap** object. |
-| option  | [image.PackingOption](..//apis-image-kit/js-apis-image.md#packingoption)  |  Yes| Option for image packing. |
+| pixeMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | Yes | Edited image, which is an image.PixelMap object. |
+| option  | [image.PackingOption](..//apis-image-kit/arkts-apis-image-i.md#packingoption)  |  Yes| Option for image packing. |
 
 **Return value**
 |  Type| Description |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise used to return an **AbilityResult** object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
+| Promise\<AbilityResult\> | Promise used to return an AbilityResult object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
 
 **Error codes**
 

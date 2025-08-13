@@ -1,6 +1,6 @@
 # BusinessAbilityInfo (System API)
 
-The BusinessAbilityInfo module provides basic information about a business ability.
+The module provides basic information about a business ability.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The BusinessAbilityInfo module provides basic information about a business abili
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                             | Type                                                        | Readable| Writable| Description                |
+| Name                             | Type                                                        | Read-Only| Optional| Description                |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | bundleName                        | string                                                       | Yes  | No  | Bundle name.|
 | moduleName                        | string                                                       | Yes  | No  | Module name.|

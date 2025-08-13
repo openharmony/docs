@@ -1,6 +1,11 @@
-# @ohos.app.ability.CompletionHandler (拉端结果操作类)
+# @ohos.app.ability.CompletionHandler (拉起应用结果的操作类)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1; @yangxuguang-huawei; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
 
-CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉端请求的结果。
+CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉起应用请求的结果。
 
 
 > **说明：**
@@ -34,13 +39,13 @@ import { CompletionHandler } from '@kit.AbilityKit';
 
 ## CompletionHandler
 
-CompletionHandler提供了[onRequestSuccess](#onrequestsuccess)和[onRequestFailure](#onrequestfailure)两个回调函数，分别用来处理拉端成功和失败时的结果。
+CompletionHandler提供了[onRequestSuccess](#onrequestsuccess)和[onRequestFailure](#onrequestfailure)两个回调函数，分别用来处理拉起应用成功和失败时的结果。
 
 ### onRequestSuccess
 
 onRequestSuccess(elementName: ElementName, message: string): void
 
-拉端成功时的回调函数。
+拉起应用成功时的回调函数。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -50,8 +55,8 @@ onRequestSuccess(elementName: ElementName, message: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 被拉起应用的ElementName信息。 |
-| message | string | 是 | 成功拉起应用时的信息。该信息采用JSON格式，样式如下：<br>{<br>    "errMsg": "Succeeded."<br>}</br> |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是 | ElementName信息用于标识被拉起应用。<br>- 通常，ElementName仅包含abilityName和bundleName。moduleName和deviceId信息是否存在取决于调用方是否传入。shortName和uri为空。<br>- 若被拉起方为原子化服务，ElementName仅包含bundleName信息。|
+| message | string | 是 | 成功拉起应用时的信息。该信息采用JSON格式，样式如下：<br>{<br>&emsp;"errMsg": "Succeeded."<br>}</br> |
 
 **示例：**
 
@@ -61,7 +66,7 @@ onRequestSuccess(elementName: ElementName, message: string): void
 
 onRequestFailure(elementName: ElementName, message: string): void
 
-拉端失败时的回调函数。
+拉起应用失败时的回调函数。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -71,8 +76,8 @@ onRequestFailure(elementName: ElementName, message: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 被拉起应用的ElementName信息。 |
-| message | string | 是 | 拉起应用失败时的信息。该信息采用JSON格式，样式如下：<br>{<br>    "errMsg": "xxx"<br>}<br>其中，"xxx"的取值说明如下：<br>Failed to call \<api-name\>：表示调用接口出错。其中，\<api-name\>为具体的接口名，比如startAbility、openAtomicService。<br>User refused redirection：表示用户关闭了应用跳转弹框。<br>User closed the implicit startup picker：表示用户关闭了隐式启动时的应用选择弹框。<br>User closed the app clone picker：表示用户关闭了分身应用选择弹框。<br>Free installation failed：表示免安装失败。</br> |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是 | ElementName信息用于标识被拉起应用。<br>- 通常，ElementName仅包含abilityName和bundleName。moduleName和deviceId信息是否存在取决于调用方是否传入。shortName和uri为空。<br>- 若被拉起方为原子化服务，ElementName仅包含bundleName信息。<br>- 隐式启动失败时，无法获取ElementName信息。 |
+| message | string | 是 | 拉起应用失败时的信息。该信息采用JSON格式，样式如下：<br>{<br>&emsp;"errMsg": "xxx"<br>}<br>其中，"xxx"的取值说明如下：<br>Failed to call \<api-name\>：表示调用接口出错。其中，\<api-name\>为具体的接口名，比如startAbility、openAtomicService。<br>User refused redirection：表示用户关闭了应用跳转弹框。<br>User closed the implicit startup picker：表示用户关闭了隐式启动时的应用选择弹框。<br>User closed the app clone picker：表示用户关闭了分身应用选择弹框。<br>Free installation failed：表示免安装失败。</br> |
 
 **示例：**
 
@@ -94,10 +99,10 @@ onRequestFailure(elementName: ElementName, message: string): void
 
       let completionHandler: CompletionHandler = {
         onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+          console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
         },
         onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+          console.error(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
         }
       };
 

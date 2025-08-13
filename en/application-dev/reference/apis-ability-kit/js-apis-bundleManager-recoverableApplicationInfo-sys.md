@@ -1,12 +1,18 @@
 # RecoverableApplicationInfo (System API)
 
-The RecoverableApplicationInfo module defines the information about a preinstalled application that can be restored after being uninstalled. The information can be obtained through [bundleManager.getRecoverableApplicationInfo](./js-apis-bundleManager-sys.md#bundlemanagergetrecoverableapplicationinfo11).
+The module defines the information about a preinstalled application that can be restored after being uninstalled. The information can be obtained through [bundleManager.getRecoverableApplicationInfo](./js-apis-bundleManager-sys.md#bundlemanagergetrecoverableapplicationinfo11).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
+
+## Modules to Import
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
 
 ## RecoverableApplicationInfo
 

@@ -1,6 +1,6 @@
 # @ohos.ability.featureAbility (FeatureAbility)
 
-The FeatureAbility module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a **dataAbilityHelper** object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
+The module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a dataAbilityHelper object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The FeatureAbility module provides APIs that enable user interaction. You can us
 
 ## Constraints
 
-The APIs of the **FeatureAbility** module can be called only by PageAbilities.
+The APIs of the FeatureAbility module can be called only by PageAbilities.
 
 ## Modules to Import
 
@@ -128,7 +128,7 @@ featureAbility.startAbility(
 
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-Obtains a **dataAbilityHelper** object.
+Obtains a dataAbilityHelper object.
 
 > **NOTE**
 >
@@ -167,7 +167,7 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability. This API uses an asynchronous callback to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -185,7 +185,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an **AbilityResult** object; otherwise, err is an error object.     |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an AbilityResult object; otherwise, err is an error object.     |
 
 **Example**
 
@@ -222,7 +222,7 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability. This API uses a promise to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -560,7 +560,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | Name      | Type                  | Mandatory  | Description      |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -778,7 +778,7 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 
 | Name    | Type                         | Mandatory| Description                         |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Yes  | Callback used to return the window.|
+| callback | AsyncCallback\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | Yes  | Callback used to return the window.|
 
 **Example**
 
@@ -811,7 +811,7 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 | Type                   | Description                         |
 | ----------------------- | ----------------------------- |
-| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise used to return the window.|
+| Promise\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | Promise used to return the window.|
 
 **Example**
 
@@ -926,7 +926,7 @@ Defines the Context module.
 
 type AppVersionInfo = _AppVersionInfo
 
-Defines an **AppVersionInfo** object.
+Defines an AppVersionInfo object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -934,13 +934,13 @@ Defines an **AppVersionInfo** object.
 
 | Type| Description|
 | --- | --- |
-| [_AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | **AppVersionInfo** object.|
+| [_AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | AppVersionInfo object.|
 
 ## ProcessInfo<sup>9+</sup>
 
 type ProcessInfo = _ProcessInfo
 
-Defines a **ProcessInfo** object.
+Defines a ProcessInfo object.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -948,4 +948,4 @@ Defines a **ProcessInfo** object.
 
 | Type| Description|
 | --- | --- |
-| [_ProcessInfo](js-apis-inner-app-processInfo.md) | **ProcessInfo** object.|
+| [_ProcessInfo](js-apis-inner-app-processInfo.md) | ProcessInfo object.|

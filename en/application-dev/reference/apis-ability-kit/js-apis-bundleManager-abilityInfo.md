@@ -1,10 +1,16 @@
 # AbilityInfo
 
-The AbilityInfo module defines the ability information. A third-party application can obtain its own ability information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The module defines the ability information. An application can obtain its own ability information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
 
 ## AbilityInfo
 
@@ -15,7 +21,7 @@ The AbilityInfo module defines the ability information. A third-party applicatio
 | bundleName            | string                                                   | Yes  | No  | Bundle name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | moduleName            | string                                                   | Yes  | No  | Module name to which the ability belongs.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | name                  | string                                                   | Yes  | No  | Ability name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| label                 | string                                                   | Yes  | No  | Resource descriptor of the ability name visible to users. Example: **"label": "$string: mainability_description"**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| label                 | string                                                   | Yes  | No  | Resource descriptor of the ability name visible to users. Example: **"label": "$string: mainability_description"**. Since API version 20, if [bundleManager.getAbilityInfo](js-apis-bundleManager.md#bundlemanagergetabilityinfo20) is used to obtain ability information, this field is the ability name visible to users.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | labelId               | number                                                   | Yes  | No  | ID of the ability label.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description           | string                                                   | Yes  | No  | Ability description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | descriptionId         | number                                                   | Yes  | No  | ID of the ability description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

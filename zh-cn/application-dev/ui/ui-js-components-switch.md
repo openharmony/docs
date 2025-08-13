@@ -1,4 +1,9 @@
 # switch开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 
 switch为开关选择器，切换开启或关闭状态。具体用法请参考[switch](../reference/apis-arkui/arkui-js/js-components-basic-switch.md)。

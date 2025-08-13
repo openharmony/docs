@@ -1,5 +1,11 @@
 # @ohos.charger (充电类型)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 提供充电类型。
 
 > **说明：**

@@ -6,76 +6,9 @@
 
 应用需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置bundleName标签，该标签用于标识应用的唯一性。推荐采用反域名形式命名（如com.example.demo，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。
 
-## 图标和标签配置
-图标和标签通常一起配置，对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label。在DevEco Studio 5.0.3.800版本及之后，[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label不再强制要求配置，而[app.json5配置文件](../quick-start/app-configuration-file.md)中的icon和label仍然是必选参数。因此，[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label可以省略。
+## 应用图标和名称配置
 
-### 生成机制
-* HAP中包含UIAbility
-
-  * 如果在module.json5配置文件的abilities标签中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"ohos.want.action.home"，则系统将优先返回module.json5中的icon与label。如果存在多个满足条件的ability，优先返回module.json5中mainElement对应的ability配置的icon和label。
-
-  * 如果在module.json5配置文件的abilities标签中未设置icon和label，系统将返回app.json5中的icon和label。
-
-* HAP中不包含UIAbility，系统将返回app.json5中的icon和label。
-
-
-### 应用场景
-<!--RP1-->
-- 用于在应用界面内展示当前应用。例如：在设置应用中展示应用列表，在设置的隐私管理中展示应用申请的权限。
-- 用于在设备桌面上展示当前应用。例如：桌面或者最近任务列表中显示应用。
-<!--RP1End-->
-
-效果图如下：
-<!--RP2-->
-![application-component-configuration-stage-app-module](figures/application-component-configuration-stage-app-module.png)
-<!--RP2End-->
-
-### 配置示例
-
-- **方式一：配置app.json5（推荐）**
-
-  ```json
-  {
-    "app": {
-      "icon": "$media:app_icon",
-      "label": "$string:app_name"
-      // ...
-    }
-  }
-  ```
-
-- **方式二：配置module.json5**
-
-  如果需要在桌面显示UIAbility图标，除了需要配置icon与label字段，还需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。
-
-  ```json
-  {
-    "module": {
-      // ...
-      "abilities": [
-        {
-          "icon": "$media:icon",
-          "label": "$string:EntryAbility_label",
-          "skills": [
-            {
-              "entities": [
-                "entity.system.home"
-              ],
-              "actions": [
-                "ohos.want.action.home"
-              ]
-            }
-          ],
-        }
-      ]
-    }
-  }
-  ```
-### 管控规则
-系统对无图标应用实施严格管控，防止一些恶意应用故意配置无桌面应用图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
-
-如果预置应用确需隐藏桌面应用图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。申请该特权后，应用不会在桌面上显示。除预置应用外，其他应用不支持隐藏桌面图标。
-
+应用图标和名称配置通常一起配置，对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label。在DevEco Studio 5.0.3.800版本及之后，module.json5配置文件中的icon和label不再强制要求配置，而app.json5配置文件中的icon和label仍然是必选参数。因此，module.json5配置文件中的icon和label可以省略。app.json5配置文件和module.json5配置文件中的icon和label存在优先级和生效策略，详情参考[配置优先级和生成策略](../quick-start/layered-image.md#配置优先级和生成策略)。
 
 ## 应用版本声明配置
 

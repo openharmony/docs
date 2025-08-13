@@ -13,6 +13,7 @@ Typical development scenarios are as follows:
     - In a mobile application, touching a **Feedback** button may cause the application to activate the system's default email client, with the feedback email address and issue details preset.
     - In a mobile application, when users touch a **Share via email** button, the application can use the mailto protocol to initiate the email client, pre-populating the subject and body of the email.
 > **NOTE**
+>
 > - To start an email application through mailto, the initiating application must first format the string according to the mailto protocol and then use this method to launch the email application. The email application parses the mailto string to populate fields like the sender, recipient, and email body.
 > - If the initiating application already has details such as the sender, recipient, and email body, you are advised to [use startAbilityByType to start an email application](start-email-apps.md).
 
@@ -35,6 +36,16 @@ mailto:someone@example.com?key1=value1&key2=value2
   | body | Email body.| string | No|
   | cc| Copy-to person. Use commas (,) to separate multiple recipients.| string | No|
   | bcc| Bcc recipient. Use commas (,) to separate multiple recipients.| string | No|
+
+Handling Special Characters
+
+Special characters (for example, @ ? = &) in email header parameter values can lead to configuration issues. To avoid this, replace these characters with their ASCII codes, preceded by a percent sign (%).
+
+Refer to the following for the mapping between common symbols and ASCII codes:
+
+|Special Character| :    | @    | ?    | =    | &    | #    | $    |
+|---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+|ASCII Code| %3A  | %40  | %3F  | %3D  | %26  | %23  | %24  |
 
 ## Developing a Caller Application
 
@@ -72,7 +83,6 @@ struct Index {
   }
 }
 ```
-
 
 
 ## Developing a Target Application
@@ -114,12 +124,12 @@ struct Index {
         // Callback of the application cold start lifecycle, where other services are processed.
         parseMailto(want);
       }
-
+    
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // Callback of the application hot start lifecycle, where other services are processed.
         parseMailto(want);
       }
-
+    
       public parseMailto(want: Want) {
         const uri = want?.uri;
         if (!uri || uri.length <= 0) {
@@ -128,5 +138,5 @@ struct Index {
         // Start to parse mailto...
       }
     }
-
+    
     ```

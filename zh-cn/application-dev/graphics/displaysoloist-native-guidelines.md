@@ -271,7 +271,7 @@ libnative_display_soloist.so
    {
        // ...
        // 取消注册每帧回调
-       OH_DisplaySoloist_Stop(g_displaySync[id]);; 
+       OH_DisplaySoloist_Stop(g_displaySync[id]);
        // ...
    }
    
@@ -295,7 +295,6 @@ libnative_display_soloist.so
         {"unregister", nullptr, SampleXComponent::NapiUnregister, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroy", nullptr, SampleXComponent::NapiDestroy, nullptr, nullptr, nullptr, napi_default, nullptr}};
    
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         SAMPLE_LOGE("Export: napi_define_properties failed");
     }
@@ -358,4 +357,4 @@ libnative_display_soloist.so
 
 针对可变帧率的开发，有以下相关实例可供参考：
 
-- [DisplaySoloist分级管控（API12）（C/C++）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySoloist)
+- [DisplaySoloist分级管控（API12）（C/C++）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySoloist)

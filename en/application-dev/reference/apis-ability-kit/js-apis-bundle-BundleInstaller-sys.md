@@ -1,6 +1,6 @@
 # BundleInstaller (System API)
 
-The BundleInstaller module provides APIs for you to install, uninstall, and recover bundles on devices.
+The module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
 >
@@ -194,11 +194,11 @@ Describes the bundle installation or uninstall status.
 
 | Name         | Type                                                        | Read-Only| Optional| Description                                                        |
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | No  | No  | Installation or uninstall error code. The value must be defined in [InstallErrorCode](js-apis-Bundle.md#installerrorcode).|
+| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcodedeprecated) | No  | No  | Installation or uninstall error code. The value must be defined in [InstallErrorCode](js-apis-Bundle.md#installerrorcodedeprecated).|
 | statusMessage | string                                                       | No  | No  | Installation or uninstall status message.  <br>**SUCCESS**: Installation succeeded.<br>**STATUS_INSTALL_FAILURE**: Installation failed (no installation file exists).<br>**STATUS_INSTALL_FAILURE_ABORTED**: Installation aborted.<br>**STATUS_INSTALL_FAILURE_INVALID**: Invalid installation parameter.<br>**STATUS_INSTALL_FAILURE_CONFLICT**: Installation conflict. (The basic information of the application to update is inconsistent with that of the existing application.)<br>**STATUS_INSTALL_FAILURE_STORAGE**: Failed to store the bundle information.<br>**STATUS_INSTALL_FAILURE_INCOMPATIBLE**: Installation incompatibility. (A downgrade occurs or the signature information is incorrect.)<br>**STATUS_UNINSTALL_FAILURE**: Uninstall failed. (The application to be uninstalled is not found.)<br>**STATUS_UNINSTALL_FAILURE_ABORTED**: Uninstall aborted. (This error code is not in use.)<br>**STATUS_UNINSTALL_FAILURE_ABORTED**: Uninstall conflict. (Failed to uninstall a system application or end the application process.)<br>**STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT**: Installation failed. (Download timed out.)<br>**STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED**: Installation failed. (Download failed.)<br>**STATUS_RECOVER_FAILURE_INVALID**: Failed to restore the pre-installed application.<br>**STATUS_ABILITY_NOT_FOUND**: Ability not found.<br>**STATUS_BMS_SERVICE_ERROR**: BMS service error.<br>**STATUS_FAILED_NO_SPACE_LEFT**: Insufficient device space.<br>**STATUS_GRANT_REQUEST_PERMISSIONS_FAILED**: Application authorization failed.<br>**STATUS_INSTALL_PERMISSION_DENIED**: No installation permission.<br>**STATUS_UNINSTALL_PERMISSION_DENIED**: No uninstall permission.|
 
 ## Obtaining the Sandbox Path
-For the FA model, the sandbox path of a bundle can be obtained using the APIs in [Context](js-apis-inner-app-context.md). For the stage model, the sandbox path can be obtained using the property in [Context](js-apis-inner-application-uiAbilityContext-sys.md#abilitycontext). The following describes how to obtain the sandbox path.
+For the FA model, the sandbox path of a bundle can be obtained using the APIs in [Context](js-apis-inner-app-context.md). For the stage model, the sandbox path can be obtained using the property in [Context](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontext). The following describes how to obtain the sandbox path.
 
 **Example**
 ``` ts

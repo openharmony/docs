@@ -6,6 +6,8 @@ This component is implemented based on [state management V2](../../../ui/state-m
 > **NOTE**
 >
 > - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
+> 
+> - This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -372,7 +374,7 @@ Defines the options for initializing a **ToolBarV2SymbolGlyph** object.
 This example shows the various display effects when the **state** property of toolbar items is set to **ENABLE**, **DISABLE**, or **ACTIVATE**.
 
 ```ts
-import { ToolBarV2ItemImage, ToolBarV2ItemState, ToolBarV2ItemText, ToolBarV2Item, ToolBarV2 } from '@kit.ArkUI'
+import { ToolBarV2ItemImage, ToolBarV2ItemState, ToolBarV2ItemText, ToolBarV2Item, ToolBarV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

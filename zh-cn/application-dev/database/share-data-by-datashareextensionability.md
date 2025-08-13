@@ -1,4 +1,9 @@
 # 通过DataShareExtensionAbility实现数据共享 (ArkTS)(仅对系统应用开放)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 
 ## 场景介绍
@@ -83,7 +88,11 @@
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
-           console.error(`DataShareExtAbility onCreate, executeSql done err:${err}`);
+           if (err) {
+             console.error(`ExecuteSql failed, code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           console.info('DataShareExtAbility onCreate, executeSql done.');
          });
          if (callback) {
            callback();
@@ -95,6 +104,7 @@
      query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
          console.error('invalid predicates');
+         return;
        }
        try {
          rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {
@@ -136,6 +146,7 @@
 
      batchInsert(uri: string, valueBuckets:Array<ValuesBucket>, callback:Function) {
        if (valueBuckets == null || valueBuckets.length == undefined) {
+        console.error('invalid valueBuckets');
         return;
        }
        let resultNum = valueBuckets.length;
@@ -351,4 +362,4 @@
 
 针对数据共享开发，有以下相关实例可供参考：
 
-- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)
+- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)

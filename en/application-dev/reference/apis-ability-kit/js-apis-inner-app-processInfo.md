@@ -1,6 +1,6 @@
 # ProcessInfo
 
-The ProcessInfo module defines process information. You can use [getProcessInfo](js-apis-inner-app-context.md#contextgetprocessinfo7) to obtain information about the processes running on the current ability.
+The module defines process information. You can use [getProcessInfo](js-apis-inner-app-context.md#contextgetprocessinfo7) to obtain information about the processes running on the current ability.
 
 > **NOTE**
 > 
@@ -16,10 +16,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| Process ID.|
-| processName | string | Yes| No| Process name.|
+| pid | number | No| No| Process ID.|
+| processName | string | No| No| Process name.|
 
 **Example**
 <!--code_no_check_fa-->

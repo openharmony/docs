@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **video_processing_types.h** file declares the video processing types.
+The file declares the video processing types.
 
 **Library**: libvideo_processing.so
 
@@ -18,9 +18,9 @@ The **video_processing_types.h** file declares the video processing types.
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | Describes the color space information of video processing.|
-| [OH_VideoProcessing](capi-oh-videoprocessing.md) | OH_VideoProcessing | Describes an object for video processing.<br>You should define a null pointer for **OH_VideoProcessing** and use [OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create) to create a video processing instance. Before creation, ensure that the pointer is null. You can create different video processing instances with different processing types.|
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md) | VideoProcessing_Callback | Describes a callback object for handling video processing events.<br>You should define a null pointer for **VideoProcessing_Callback** and use [OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create) to create a callback object. Before creation, ensure that the pointer is null. After creating the callback object, call [OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback) to register it with the video processing instance.|
+| [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | Describes the color space information of video processing.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | Describes an object for video processing.<br>You should define a null pointer for **OH_VideoProcessing** and use [OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create) to create a video processing instance. Before creation, ensure that the pointer is null. You can create different video processing instances with different processing types.|
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | Describes a callback object for handling video processing events.<br>You should define a null pointer for **VideoProcessing_Callback** and use [OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create) to create a callback object. Before creation, ensure that the pointer is null. After creating the callback object, call [OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback) to register it with the video processing instance.|
 
 ### Enums
 
@@ -136,7 +136,7 @@ The following error codes are defined in [VideoProcessing_ErrorCode](#videoproce
 
 **VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING**: unsupported processing. For example, conversion between the color space types for input and output is not supported.
 
-**VIDEO_PROCESSING_ERROR_INVALID_VALUE**: invalid video attribute. For example, the video color space is invalid.
+**VIDEO_PROCESSING_ERROR_INVALID_VALUE**: invalid video property. For example, the video color space is invalid.
 
 **VIDEO_PROCESSING_ERROR_NO_MEMORY**: out of memory.
 
@@ -149,7 +149,7 @@ The following error codes are defined in [VideoProcessing_ErrorCode](#videoproce
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 | [VideoProcessing_ErrorCode](#videoprocessing_errorcode) error | Error code reported.|
 |  void* userData | Pointer to user-defined data.|
 
@@ -172,7 +172,7 @@ After [OH_VideoProcessing_Start](capi-video-processing-h.md#oh_videoprocessing_s
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 |  [VideoProcessing_State](#videoprocessing_state) state | Video processing state.|
 | void* userData | Pointer to user-defined data.|
 
@@ -195,6 +195,6 @@ After data is filled in each new output buffer, the index of the buffer is repor
 
 | Parameter| Description|
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
 |  uint32_t index | Index of the output buffer.|
 | void* userData | Pointer to user-defined data.|

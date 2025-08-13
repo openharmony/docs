@@ -1,5 +1,11 @@
 # ArcListItem
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 用来展示列表具体子组件，必须配合[ArcList](ts-container-arclist.md)来使用。
 
 > **说明：**
@@ -102,7 +108,7 @@ struct ArcListItemExample {
               .backgroundColor(0x17A98D)
           }
           .autoScale(item % 3 == 0 || item % 5 == 0)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)

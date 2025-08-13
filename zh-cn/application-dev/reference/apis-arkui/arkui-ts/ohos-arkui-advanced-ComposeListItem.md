@@ -184,7 +184,7 @@ struct ComposeListItemExample {
 ![示例1-ComposeListItem示例 左右元素+文本](figures/zh-cn_image_composelistitem_demo_01.jpg)
 
 ### 示例2（设置右侧不同元素自定义播报）
-该示例通过设置属性accessibilityText、accessibilityDescription、accessibilityLevel，实现右侧图标、按钮、单选框自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置属性accessibilityText、accessibilityDescription、accessibilityLevel，实现右侧图标、按钮、单选框自定义屏幕朗读播报文本。
 ```ts
 import { IconType, ComposeListItem } from '@kit.ArkUI';
 @Entry
@@ -265,7 +265,7 @@ struct ComposeListItemExample {
 
 ### 示例3（设置Symbol类型图标）
 
-该示例通过设置ContentItem、OperateItem、OperateIcon的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置ContentItem、OperateItem、OperateIcon的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { IconType, ComposeListItem, SymbolGlyphModifier } from '@kit.ArkUI';

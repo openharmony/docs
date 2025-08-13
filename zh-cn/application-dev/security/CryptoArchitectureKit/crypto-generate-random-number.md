@@ -1,5 +1,11 @@
 # 安全随机数生成(ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 > **说明：**
 >
 > 从API version 12开始，轻量级智能穿戴设备支持获取随机数相关操作。

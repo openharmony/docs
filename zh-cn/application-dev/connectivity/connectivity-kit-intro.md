@@ -1,5 +1,11 @@
 # Connectivity Kit简介
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## Connectivity Kit开发概述
 
 移动终端设备已经深入人民日常生活的方方面面，如连接蓝牙耳机听音乐、连接WIFI上网、使用NFC进行一碰开门等已成为终端用户日常生活中常见的行为。
@@ -51,7 +57,7 @@ WLAN系统为用户提供接入WLAN网络功能（STA模式）、点对点的数
   STA模式即工作站模式，可以理解为某网络中的一个工作站即客户端。当某设备具备该功能时，它可以连到另外的一个路由网络中，如家用路由器，通常用于提供网络的数据上行服务。详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 - **P2P模式**<br/>
-  P2P模式也为Wi-Fi Direct；Wi-Fi Direct 是一种点对点连接技术，它可以在两台 STA 之间直接建立 TCP/IP 链接，并不需要AP的参与；其中一台STA会起到传统意义上的AP的作用，称为Group Owner(GO),另外一台station则称为Group Client(GC)，像连接AP一样连接到GO。详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
+  P2P模式也是Wi-Fi Direct；Wi-Fi Direct是一种点对点连接技术，它可以在两台STA之间直接建立TCP/IP链接，并不需要AP的参与；其中一台STA会起到传统意义上的AP的作用，称为Group Owner(GO),另外一台station则称为Group Client(GC)，像连接AP一样连接到GO。详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 - **AP模式**<br/>
   AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当于WLAN的中心设备。详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
@@ -80,4 +86,4 @@ Connectivity能力作为系统为应用提供的一种基础通信服务，需�
 
 针对蓝牙相关的业务，有以下相关实例可供参考：
 
-- [`bluetooth`](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+- [bluetooth](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)

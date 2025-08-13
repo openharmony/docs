@@ -153,6 +153,26 @@ The value of the parameter exceeds the expected range.
 
 Adjust the parameter value to fall within the acceptable range.
 
+<!--Del-->
+## 5400109 Session ID Does Not Exist
+
+**Error Message**
+
+Sessions not exist. Return by promise.
+
+**Description**
+
+This error is reported when the session ID does not exists.
+
+**Possible Causes**
+
+The session ID does not exist.
+
+**Solution**
+
+Pass in a correct session ID.
+<!--DelEnd-->
+
 ## 5411001 Failed to Parse or Connect to the Server Address
 
 **Error Message**
@@ -409,7 +429,7 @@ Super resolution is not enabled. As a result, super resolution related APIs are 
 
 **Possible Causes**
 
-Super resolution is not enabled by using [PlaybackStrategy](./js-apis-media.md#playbackstrategy12).
+Super resolution is not enabled by using [PlaybackStrategy](./arkts-apis-media-i.md#playbackstrategy12).
 
 **Solution**
 

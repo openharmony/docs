@@ -18,33 +18,17 @@ The environment requirements for NNRt are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device whose built-in hardware accelerator driver has been connected to NNRt.
 
-NNRt is opened to external systems through native APIs. Therefore, you need to use the native development suite to build NNRt applications. You can download the ohos-sdk package of the corresponding version from the daily build in the OpenHarmony community and then decompress the package to obtain the native development suite of the corresponding platform. Take Linux as an example. The package of the native development suite is named `native-linux-{version number}.zip`.
+NNRt is opened to external systems through native APIs. Therefore, you need to download the corresponding SDK and build NNRt applications using the native development kit. You can use DevEco Studio to set up the environment and compile code.
 
 ### Environment Setup
 
 1. Start the Ubuntu server.
-2. Copy the downloaded package of the Native development suite to the root directory of the current user.
-3. Decompress the package of the native development suite.
-    ```shell
-    unzip native-linux-{version number}.zip
-    ```
+2. Specify the native toolchain path for compilation.
+3. Download the required SDK. Specifically, choose **File** >** Settings...** on the DevEco Studio project page to navigate to the DevEco Studio installation directory, and search for the required SDK and download it to the local directory.
 
-    The directory structure after decompression is as follows. The content in the directory may vary depending on the version. Use the native APIs of the latest version.
-    ```text
-    native/
-    ├── build // Cross-compilation toolchain
-    ├── build-tools // Compilation and build tools
-    ├── docs
-    ├── llvm
-    ├── nativeapi_syscap_config.json
-    ├── ndk_system_capability.json
-    ├── NOTICE.txt
-    ├── oh-uni-package.json
-    └── sysroot // Native API header files and libraries
-    ```
 ## Available APIs
 
-This section describes the common APIs used in the NNRt development process.
+The following table lists the common APIs used in the NNRt development. For details, see [NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/capi-neuralnetworkruntime.md).
 
 ### Structs
 

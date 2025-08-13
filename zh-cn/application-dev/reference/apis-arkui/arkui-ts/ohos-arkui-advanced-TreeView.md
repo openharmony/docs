@@ -1,4 +1,9 @@
 # TreeView
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 
 树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。
@@ -64,8 +69,9 @@ addNode(nodeParam?: NodeParam): TreeController
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 |
 
@@ -119,7 +125,9 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | parentId | number | 是 | 父节点Id。 |
 | parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 |
@@ -199,7 +207,9 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
 | callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 |
@@ -215,7 +225,9 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
 | callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 |
@@ -232,8 +244,9 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
 | callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 否 | 节点信息。 |
@@ -388,7 +401,7 @@ struct TreeViewDemo {
 
 ### 示例2（设置Symbol类型图标）
 
-该示例通过设置NodeParam的属性symbolIconStyle、symbolEditIconStyle、symbolSelectedIconStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置NodeParam的属性symbolIconStyle、symbolEditIconStyle、symbolSelectedIconStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam,

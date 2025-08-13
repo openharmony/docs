@@ -1,4 +1,9 @@
 # 音效管理
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 音效管理主要包括播放实例音效管理和全局音效查询两部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)对应场景支持的音效模式。
 

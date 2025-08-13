@@ -1,4 +1,9 @@
 # 应用侧与前端页面的相互调用(C/C++)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--SE: @yaomingliu-->
+<!--TSE: @ghiker-->
 
 本指导适用于ArkWeb应用侧与前端网页通信场景，开发者可根据应用架构选择使用ArkWeb Native接口完成业务通信机制（以下简称Native JSBridge）。
 针对JSBridge进行性能优化可参考[JSBridge优化解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-web-develop-optimization#section58781855115017)
@@ -244,10 +249,6 @@
               return "objName  test undefined"
         }
 
-        if (window.ndkProxy.method2 == undefined) {
-              document.getElementById("webDemo").innerHTML = "ndkProxy method2 undefined"
-              return "objName  test undefined"
-        }
         let retStr = window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
         console.log("ndkProxy and method1 is ok, " + retStr + ", type:" + typeof(retStr));
   }
@@ -256,11 +257,6 @@
         if (window.ndkProxy == undefined) {
               document.getElementById("webDemo").innerHTML = "ndkProxy undefined"
               return "objName undefined"
-        }
-
-        if (window.ndkProxy.method1 == undefined) {
-              document.getElementById("webDemo").innerHTML = "ndkProxy method1 undefined"
-              return "objName  test undefined"
         }
 
         if (window.ndkProxy.method2 == undefined) {
@@ -597,6 +593,8 @@
 
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
 
+    delete[] webTagValue;
+
     return nullptr;
   }
 
@@ -629,6 +627,11 @@
       ArkWeb_JavaScriptObject object = {(uint8_t *)jsCode, bufferSize, &JSBridgeObject::StaticRunJavaScriptCallback,
                                        static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
       controller->runJavaScript(webTagValue, &object);
+
+      delete[] webTagValue;
+
+      delete[] jsCode;
+
       return nullptr;
   }
 
@@ -858,7 +861,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
 
   ```c++
   // 构造runJS执行的结构体
-  char* jsCode = "runJSRetStr()";
+  const char* jsCode = "runJSRetStr()";
   ArkWeb_JavaScriptObject object = {(uint8_t *)jsCode, bufferSize, &JSBridgeObject::StaticRunJavaScriptCallback,
                                        static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
   // 调用前端页面runJSRetStr()函数
@@ -902,10 +905,6 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
               return "objName  test undefined"
         }
 
-        if (window.ndkProxy.method2 == undefined) {
-              document.getElementById("webDemo").innerHTML = "ndkProxy method2 undefined"
-              return "objName  test undefined"
-        }
         window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
   }
 
@@ -913,11 +912,6 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
         if (window.ndkProxy == undefined) {
               document.getElementById("webDemo").innerHTML = "ndkProxy undefined"
               return "objName undefined"
-        }
-
-        if (window.ndkProxy.method1 == undefined) {
-              document.getElementById("webDemo").innerHTML = "ndkProxy method1 undefined"
-              return "objName  test undefined"
         }
 
         if (window.ndkProxy.method2 == undefined) {
@@ -1233,6 +1227,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
       SetComponentCallback(component, webTagValue);
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -1265,6 +1260,8 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
       ArkWeb_JavaScriptObject object = {(uint8_t *)jsCode, bufferSize, &JSBridgeObject::StaticRunJavaScriptCallback,
                                        static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
       controller->runJavaScript(webTagValue, &object);
+      delete[] webTagValue;
+      delete[] jsCode;
       return nullptr;
   }
 

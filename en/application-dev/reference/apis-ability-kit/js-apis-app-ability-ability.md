@@ -41,16 +41,17 @@ Called when the configuration of the environment where the ability is running is
 | newConfig | [Configuration](js-apis-app-ability-configuration.md) | Yes| New configuration.|
 
 **Example**
-  ```ts
+
+```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
 import { UIAbility, Configuration } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onConfigurationUpdate(config: Configuration) {
-        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
-    }
+  onConfigurationUpdate(config: Configuration) {
+    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+  }
 }
-  ```
+```
 
 ## Ability.onMemoryLevel
 
@@ -70,7 +71,7 @@ Called when the system adjusts the memory level.
 
 **Example**
 
-  ```ts
+```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
@@ -79,4 +80,4 @@ class MyUIAbility extends UIAbility {
     console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
   }
 }
-  ```
+```

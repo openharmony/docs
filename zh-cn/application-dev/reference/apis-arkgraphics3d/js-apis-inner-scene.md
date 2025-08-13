@@ -1,4 +1,10 @@
 # Scene
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
 本模块作为ArkGraphics 3D基础模块，提供SceneResourceParameters、SceneNodeParameters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
 
 > **说明：** 
@@ -116,20 +122,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createShaderResource(): Promise<Shader> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let shaderParams: SceneResourceParameters = {
-        name: "custom_shader",
-        uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
-      };
-      return renderResourceFactory.createShader(shaderParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let shaderParams: SceneResourceParameters = {
+    name: "custom_shader",
+    uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
+  };
+  return renderResourceFactory.createShader(shaderParams);
 }
 ```
 ### createImage
@@ -155,20 +157,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createImageResource(): Promise<Image> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let imageParams: SceneResourceParameters = {
-        name: "sampleImage",
-        uri: $rawfile("image/Cube_BaseColor.png")
-      };
-      return renderResourceFactory.createImage(imageParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let imageParams: SceneResourceParameters = {
+    name: "sampleImage",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createImage(imageParams);
 }
 ```
 
@@ -285,20 +283,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   Sampler } from '@kit.ArkGraphics3D';
 
 function createSamplerResource(): Promise<Sampler> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let samplerParams: SceneResourceParameters = {
-        name: "sampler1",
-        uri: $rawfile("image/Cube_BaseColor.png")
-      };
-      return renderResourceFactory.createSampler(samplerParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let samplerParams: SceneResourceParameters = {
+    name: "sampler1",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createSampler(samplerParams);
 }
 ```
 
@@ -605,17 +599,13 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function getRenderResourceFactory(): void {
-  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        console.error("RenderContext is null");
-        return;
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      console.info("TEST getRenderResourceFactory");
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    console.error("RenderContext is null");
+    return;
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  console.info("TEST getRenderResourceFactory");
 }
 ```
 
@@ -642,23 +632,13 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
   RenderResourceFactory } from '@kit.ArkGraphics3D';
 
-function loadPlugin(): void {
-  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        console.error("RenderContext is null");
-        return Promise.resolve(false);
-      }
-      return renderContext.loadPlugin("pluginName");
-    })
-    .then(result => {
-      if (result) {
-        console.info("plugin load success");
-      } else {
-        console.error("plugin load failed");
-      }
-    });
+function loadPlugin(): Promise<boolean> {
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    console.error("RenderContext is null");
+    return Promise.resolve(false);
+  }
+  return renderContext.loadPlugin("pluginName");
 }
 ```
 
@@ -672,8 +652,8 @@ registerResourcePath(protocol: string, uri: string): boolean
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| protocol | string | 是 | 要注册的路径检索名，必须是系统未预定义或未注册且非空的检索名称，且符合命名规范。|
-| uri | string | 是 | 要注册的资产路径目录，与检索名对应，必须是资产文件所在文件夹路径，且符合路径描述规范。|
+| protocol | string | 是 | 要注册的路径检索名，必须是系统未预定义或未注册且非空的检索名称。|
+| uri | string | 是 | 要注册的资产路径目录，与检索名对应，必须是资产文件所在文件夹路径。|
 
 **返回值：**
 | 类型 | 说明 |
@@ -1038,8 +1018,8 @@ function getComponentTest() {
 }
 ```
 
-### getRenderContext<sup>20+</sup>
-getRenderContext(): RenderContext | null
+### getDefaultRenderContext<sup>20+</sup>
+static getDefaultRenderContext(): RenderContext | null
 
 获取当前图形对象所关联的渲染环境信息。
 
@@ -1053,16 +1033,13 @@ getRenderContext(): RenderContext | null
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent, RenderContext } from '@kit.ArkGraphics3D';
 
-function getRenderContextTest() {
-  Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
-    .then(result => {
-      console.info("TEST getRenderContextTest");
-      const context = result.getRenderContext();
-      if (context) {
-        console.info("getRenderContext success");
-      } else {
-        console.warn("RenderContext is null");
-      }
-    });
+function getDefaultRenderContextTest() {
+  console.info("TEST getDefaultRenderContextTest");
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (renderContext) {
+    console.info("getDefaultRenderContext success");
+  } else {
+    console.error("RenderContext is null");
+  }
 }
 ```

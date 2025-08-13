@@ -262,7 +262,7 @@ Compound assignment operators are as follows: `+=`, `-=`, `*=`, `/=`, `%=`, `<<=
 | Operator | Description                                                  |
 | -------- | ------------------------------------------------------------ |
 | `===`    | Returns true if both operands are strict equal.              |
-| `!==`    | Returns true if both operands are nots trict equal.          |
+| `!==`    | Returns true if both operands are not strict equal.          |
 | `==`     | Returns true if both operands are equal.                     |
 | `!=`     | Returns true if both operands are not equal.                 |
 | `>`      | Returns true if the left operand is greater than the right.  |
@@ -926,8 +926,8 @@ let jack = new Person()
 // jack.setName('Jack')
 
 // Compile-time(!) error: Compiler suspects that we
-// may possibly access something undefined and won't build the code:
-jack.getName().length; // The code won't build and run
+// may possibly access something undefined and will not build the code:
+jack.getName().length; // The code will not build and run
 
 jack.getName()?.length; // Builds ok, no runtime error
 ```
@@ -1010,8 +1010,8 @@ console.log(Cl.staticMethod());
 #### Inheritance
 
 A class can extend another class.
-The class that is being extended by another class is called ‘*base class*’, ‘parent class’, or ‘superclass’.
-The class that extends another class is called ‘*extended class*’, ‘derived class’, or ‘subclass’.
+The class that is being extended by another class is called 'base class', 'parent class', or 'superclass'.
+The class that extends another class is called 'extended class', 'derived class', or 'subclass'.
 
 An extended class can implement several interfaces by using the following syntax:
 
@@ -1329,7 +1329,7 @@ abstract class X {
 let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
 ```
 
-Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed:
 
 ```typescript
 abstract class Base {

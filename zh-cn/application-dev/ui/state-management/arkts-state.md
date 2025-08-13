@@ -1,4 +1,9 @@
 # \@State装饰器：组件内状态
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 被@State装饰的变量称为状态变量，使普通变量具备状态属性。当状态变量改变时，会触发其直接绑定的UI组件渲染更新。
 
@@ -18,8 +23,6 @@
 
 \@State装饰的变量拥有以下特点：
 
-- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步，与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
-
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
 ## 装饰器使用规则说明
@@ -28,8 +31,8 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
-| 被装饰变量的初始值 | 必须本地初始化。                                               |
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)、undefined和null类型。以及ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
+| 被装饰变量的初始值 | 必须本地初始化。      |
 
 ## 变量的传递/访问规则说明
 
@@ -162,45 +165,7 @@
   this.title[0].value = 6;
   ```
 
-- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性。
-
-  ```ts
-  @Entry
-  @Component
-  struct DatePickerExample {
-    @State selectedDate: Date = new Date('2021-08-08');
-  
-    build() {
-      Column() {
-        Button('set selectedDate to 2023-07-08')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate = new Date('2023-07-08');
-          })
-        Button('increase the year by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-          })
-        Button('increase the month by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
-          })
-        Button('increase the day by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-          })
-        DatePicker({
-          start: new Date('1970-1-1'),
-          end: new Date('2100-1-1'),
-          selected: this.selectedDate
-        })
-      }.width('100%')
-    }
-  }
-  ```
+- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性，详[装饰Date类型变量](#装饰date类型变量)。
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，以及通过调用Map的接口`set`, `clear`, `delete`更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -216,7 +181,7 @@
 
 1. \@State装饰的变量必须初始化，否则编译期会报错。
 
-    ```ts
+    ```ts	
     // 错误写法，编译报错
     @State count: number;
   
@@ -417,6 +382,49 @@ struct SetSample {
   }
 }
 ```
+
+### 装饰Date类型变量
+
+在下面的示例中，selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+  @Entry
+  @Component
+  struct DatePickerExample {
+    @State selectedDate: Date = new Date('2021-08-08');
+  
+    build() {
+      Column() {
+        Button('set selectedDate to 2023-07-08')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08');
+          })
+        Button('increase the year by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+          })
+        Button('increase the month by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+          })
+        Button('increase the day by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+          })
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        })
+      }.width('100%')
+    }
+  }
+  ```
+
 
 ## State支持联合类型实例
 
@@ -761,7 +769,8 @@ struct Test {
 }
 ```
 
-上述示例中，点击Button('change')，只会触发第二个Text组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`，会创建一个新的Info对象。再执行`this.user.info.address = '北京'`，改变的是这个新创建的Info对象中的address值，而原始的Info对象中的address值不会受到影响。
+上述示例中，点击`Button('change')`，只会触发第二个`Text`组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`。该变化属于第一层的赋值，可以被观察，会对当前自定义组件标脏，并请求下一帧刷新。
+再执行`this.user.info.address = '北京'`，该变化属于第二层的赋值，不能被观察到。但是需要注意，当前变化虽然无法被观察到，但赋值是可以生效的，即`this.user.info.address`会被修改为`北京`。如果上述示例注释掉`this.user.info = new Info('广州')`，则`Text`组件将无法更新。
 
 ### 复杂类型常量重复赋值给状态变量触发刷新
 
@@ -1036,10 +1045,11 @@ struct Index {
 }
 ```
 
-可以通过以下步骤为this.balloon保留Proxy代理，以实现UI刷新。
+状态变量观察类属性变化是通过代理捕获其变化的，当使用a.b(this.object)调用时，框架会将代理对象转换为原始对象。修改原始对象属性，无法观察，因此UI不会刷新。开发者可以使用如下方法修改：
 
 1. 先将this.balloon赋值给临时变量。
 2. 再使用临时变量完成原本的调用逻辑。
+具体见正例。
 
 【正例】
 

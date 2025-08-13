@@ -1,4 +1,9 @@
 # 关系型数据库错误码
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 > **说明：**
 >
@@ -33,7 +38,7 @@ Inner error.
 
 **错误信息**
 
-Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.
+Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause.
 
 **错误描述**
 
@@ -105,7 +110,7 @@ ResultSet is empty or pointer index is out of bounds.
 
 **错误信息**
 
-Resultset is empty or column index is out of bounds.
+ResultSet is empty or column index is out of bounds.
 
 **错误描述**
 

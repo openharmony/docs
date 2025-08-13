@@ -1,4 +1,9 @@
 # 开发使用SCSI协议的设备驱动
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 简介
 
@@ -120,7 +125,7 @@ libscsi.z.so
     uint64_t deviceId = 0x100000003;
     uint8_t interfaceIndex = 0;
     ScsiPeripheral_Device *dev = NULL;
-    // 打开deviceId和interfaceIndex1指定的SCSI设备
+    // 打开deviceId和interfaceIndex指定的SCSI设备
     ret = OH_ScsiPeripheral_Open(deviceId, interfaceIndex, &dev);
     ```
 

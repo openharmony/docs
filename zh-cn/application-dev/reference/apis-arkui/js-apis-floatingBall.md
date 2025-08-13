@@ -1,4 +1,9 @@
 # @ohos.window.floatingBall (闪控球窗口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @betafringe007-->
+<!--SE: @zhoulin_-->
+<!--TSE: @qinliwen0417-->
 
 该模块提供闪控球的基础功能，包括判断设备是否支持闪控球功能，以及创建闪控球控制器来启动、更新或停止闪控球。适用于比价、搜题或抢单等场景，以小窗模式呈现内容。闪控球以悬浮小组件形式显示在其他应用之上，即时呈现应用的关键信息。
 
@@ -135,9 +140,9 @@ startFloatingBall(params: FloatingBallParams): Promise&lt;void&gt;
 |------------|------------|
 | 201 | Permission verification failed, usually returned by VerifyAccessToken. |
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300020 | Failed to create the floating Ball window. |
-| 1300021 | Failed to start multiple floating Ball windows. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300020 | Failed to create the floating ball window. |
+| 1300021 | Failed to start multiple floating ball windows. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 | 1300025 | The floating ball state does not support this operation. |
@@ -240,7 +245,7 @@ stopFloatingBall(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |------------|------------|
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -278,7 +283,7 @@ on(type: 'stateChange', callback: Callback&lt;FloatingBallState&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -356,7 +361,7 @@ on(type: 'click', callback: Callback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -517,11 +522,11 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------------|------------|------------|------------|------------|
-| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，传入content无效；普通文本布局和强调文本布局时，传入icon无效；纯文本布局时，传入content和icon均无效。 |
+| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，icon必选，content无效；普通文本布局和强调文本布局时，icon无效；纯文本布局时，content和icon均无效。 |
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。 |
 | content | string | 否 | 是 | 闪控球内容，可选字段，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
 | backgroundColor | string | 否 | 是 | 闪控球背景颜色，可选字段，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球使用默认颜色（浅色模式'#FFFFFF'，深色模式'#000000'）。 |
-| icon | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
+| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
 
 ## FloatingBallState
 
@@ -542,8 +547,8 @@ try {
 
 | 名称 | 值 | 说明 |
 |------------|------------|------------|
-| STATIC | 1 | 静态布局，支持图标和标题。标题不超过2个中文字符或6个英文字符。 |
-| NORMAL | 2 | 普通文本布局，支持标题和内容，主要使用不同颜色区分。 |
+| STATIC | 1 | 静态布局，支持图标和标题。 |
+| NORMAL | 2 | 普通文本布局，支持标题和内容。 |
 | EMPHATIC | 3 | 强调文本布局，支持标题和内容，使用不同字号区分。 |
 | SIMPLE | 4 | 纯文本布局，只支持标题，可双行展示。 |
 

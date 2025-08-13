@@ -1,5 +1,11 @@
 # @ohos.accessibility.config (系统辅助功能配置)(系统接口)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 本模块提供系统辅助功能的配置，包括辅助扩展的启用与关闭、高对比度文字显示、鼠标键、无障碍字幕配置等。
 
 > **说明：**
@@ -422,6 +428,7 @@ setMagnificationState(state: boolean): void
 | ------- | -------------------------------- |
 | 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 9300007  | Trigger magnification failed. |
 
 **示例：**

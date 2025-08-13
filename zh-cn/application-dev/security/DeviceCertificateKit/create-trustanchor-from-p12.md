@@ -1,5 +1,11 @@
 # 证书链校验时从p12文件构造TrustAnchor对象数组
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 证书链校验时从p12文件构造TrustAnchor对象数组。
 
 ## 开发步骤

@@ -59,7 +59,7 @@ When a query API is called, the ability name passed in does not exist.
 The specified user ID is not found.
 
 **Description**<br>
-When a user-related API is called, the user ID passed in does not exist.
+When a user-related API is called, the user ID passed in does not exist. <!--Del-->When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.<!--DelEnd-->
 
 **Possible Causes**<br>
 1. Incorrect username.
@@ -121,7 +121,7 @@ When an API of the [distributedBundle module](../apis-ability-kit/js-apis-distri
 Failed to install the HAP because the HAP fails to be parsed.
 
 **Description**<br>
-When the install API of the [install module](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) is called, the HAP passed in fails to be parsed.
+When the install API of the [install module](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) is called, the HAP passed in fails to be parsed. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The HAP is not in ZIP format.
@@ -139,7 +139,7 @@ When the install API of the [install module](../apis-ability-kit/js-apis-install
 Failed to install the HAP because the HAP signature fails to be verified.
 
 **Description**<br>
-Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails due to signature verification failure.
+Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails due to signature verification failure. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 
@@ -160,7 +160,7 @@ Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstall
 Failed to install the HAP because the HAP path is invalid or the HAP is too large.
 
 **Description**<br>
-Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the HAP path is invalid or the HAP is too large.
+Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the HAP path is invalid or the HAP is too large. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The path of the HAP does not exist.
@@ -178,7 +178,7 @@ Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstall
 Failed to install the HAPs because they have different configuration information.
 
 **Description**<br>
-Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the HAPs have different configuration information.
+Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the HAPs have different configuration information. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The fields under **app** in the profiles of these HAPs are inconsistent.
@@ -192,7 +192,7 @@ Check whether the fields under **app** are the same.
 Failed to install the HAP because of insufficient system disk space.
 
 **Description**<br>
-Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails due to insufficient system disk space.
+Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails due to insufficient system disk space. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The system disk space is insufficient.
@@ -206,7 +206,7 @@ Check whether the system has sufficient disk space.
 Failed to install the HAP since the version of the HAP to install is too early.
 
 **Description**<br>
-Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the version to install is earlier than the version in use.
+Calling the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API of the installer module to install the bundle fails because the version to install is earlier than the version in use. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The version number is earlier than the version in use.
@@ -232,7 +232,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 Failed to install the HAP or HSP because the dependent module does not exist.
 
 **Description**<br>
-The dependent module does not exist during the HAP or HPS installation.
+The dependent module does not exist during the HAP or HPS installation. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The dependent module is not installed.
@@ -326,7 +326,7 @@ When an API for querying the profile is called, the profile does not exist.
 The specified type is invalid.
 
 **Description**<br>
-When an API of the **defaultAppManager** module is called, the type passed in is invalid.
+When an API of the defaultAppManager module is called, the type passed in is invalid.
 
 **Possible Causes**<br>
 1. The type passed in the API is misspelled.
@@ -412,7 +412,7 @@ The application is a system application and the **AllowAppDataNotCleared** field
 Failed to install the HAP because the overlay check of the HAP failed.
 
 **Description**<br>
-The target application and the to-be-installed application with the overlay feature are not preset applications, or the target application or target module is one with the overlay feature.
+The target application and the to-be-installed application with the overlay feature are not preset applications, or the target application or target module is one with the overlay feature. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. To use the overlay feature between applications, the following conditions must be met:<br>The application with the overlay feature must be a preset application.
@@ -432,7 +432,7 @@ The target application and the to-be-installed application with the overlay feat
 The specified bundle does not contain any overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object of another application, but that application does not contain a module with the overlay feature.
+An API is called to obtain the overlayModuleInfo object of another application, but that application does not contain a module with the overlay feature.
 
 **Possible Causes**<br>
 The specified application does not contain a module with the overlay feature.
@@ -446,7 +446,7 @@ Check whether the application contains a module with the overlay feature.
 The specified module is not an overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object of a module, but the module is not configured with the overlay feature.
+An API is called to obtain the overlayModuleInfo object of a module, but the module is not configured with the overlay feature.
 
 **Possible Causes**<br>
 The specified module is not a module with the overlay feature.
@@ -460,7 +460,7 @@ Check whether the module is configured with the overlay feature.
 The specified module is an overlay module.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object based on the target module name, but that module is configured with the overlay feature.
+An API is called to obtain the overlayModuleInfo object based on the target module name, but that module is configured with the overlay feature.
 
 **Possible Causes**<br>
 The specified module is configured with the overlay feature.
@@ -474,7 +474,7 @@ Check whether the specified module is configured with the overlay feature.
 The specified bundle is an overlay bundle.
 
 **Description**<br>
-An API is called to obtain the **overlayModuleInfo** object based on the target module name of another application, but that application contains only modules with the overlay feature.
+An API is called to obtain the overlayModuleInfo object based on the target module name of another application, but that application contains only modules with the overlay feature.
 
 **Possible Causes**<br>
 The specified application contains only modules with the overlay feature.
@@ -488,7 +488,7 @@ Check whether the application contains only modules with the overlay feature.
 Failed to install the HSP due to the lack of required permission.
 
 **Description**<br>
-The shared library is not configured with the **AllowAppShareLibrary** privilege, resulting in security and privacy risks. As a result, the installation fails.
+The shared library is not configured with the **AllowAppShareLibrary** privilege, resulting in security and privacy risks. As a result, the installation fails. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The shared library does not request the **AllowAppShareLibrary** privilege before being released.
@@ -533,7 +533,7 @@ The shared library to uninstall does not exist.
 Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **Description**<br>
-During application installation, the installation package passed in is of the inter-application shared library type.
+During application installation, the installation package passed in is of the inter-application shared library type. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. When [Bundle Manager](../../tools/bm-tool.md) is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
@@ -563,7 +563,7 @@ During application uninstall, the bundle name of an inter-application shared lib
 Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **Description**<br>
-The installation of this application is prohibited by enterprise device management.
+The installation of this application is prohibited by enterprise device management. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The enterprise device management does not allow the installation of this application.
@@ -576,7 +576,7 @@ Check whether the application installation is prohibited by the enterprise devic
 Failed to install the HAP because of incorrect URI in the data proxy.
 
 **Description**<br>
-During application installation, the URI of the data proxy is incorrectly configured.
+During application installation, the URI of the data proxy is incorrectly configured. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The bundle name in the URI is different from that of the current application.
@@ -591,7 +591,7 @@ During application installation, the URI of the data proxy is incorrectly config
 Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core).
 
 **Description**<br>
-During application installation, the permission level of the data proxy of a non-system application is too low. The permission level should be **system_basic** or **system_core**.
+During application installation, the permission level of the data proxy of a non-system application is too low. The permission level should be **system_basic** or **system_core**. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. No permission is configured for the data proxy of a non-system application.
@@ -606,7 +606,7 @@ During application installation, the permission level of the data proxy of a non
 Failed to install the HAP because the isolationMode configured is not supported.
 
 **Description**<br>
-During application installation, the value of **isolationMode** in the HAP conflicts with the isolation mode of the device.
+During application installation, the value of **isolationMode** in the HAP conflicts with the isolation mode of the device. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The device supports the isolation mode (the value of **persist.bms.supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
@@ -633,7 +633,7 @@ Check whether the application uninstall is prohibited by the enterprise device m
 Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode.
 
 **Description**<br>
-The version of the application to be updated is not later than the current version.
+The version of the application to be updated is not later than the current version. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The version number of the application to be updated is earlier than or equal to that of the current version number.
@@ -648,7 +648,7 @@ The version of the application to be updated is not later than the current versi
 Failed to install the HAP because the code signature verification failed.
 
 **Description**<br>
-During application installation, the code signature file of the installation package fails to be verified.
+During application installation, the code signature file of the installation package fails to be verified. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The module corresponding to the code signature file does not exist in the installation package.
@@ -678,7 +678,7 @@ Ensure that the HAP or HSP to be installed belongs to the current application.
 Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **Description**<br>
-Users try to install an enterprise Normal or MDM application on a non-enterprise device.
+Users try to install an enterprise Normal or MDM application on a non-enterprise device. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The device is not an enterprise device.
@@ -705,7 +705,7 @@ Ensure that the signature file of the application is correctly configured.
 Failed to install the HAP because a debug bundle can be installed only in developer mode.
 
 **Description**<br>
-A debugging application can be installed only in the developer mode.
+A debugging application can be installed only in the developer mode. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The application is a debugging application, but the device is not in developer mode.
@@ -731,7 +731,7 @@ Use AppGallery to call the API.
 Failed to install the HAP because the HAP requests wrong permissions.
 
 **Description**<br>
-The application has applied for an incorrect permission, causing the installation to fail.
+The application has applied for an incorrect permission, causing the installation to fail. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The application is not an MDM application and has applied for the MDM permission.
@@ -789,7 +789,7 @@ Check whether the specified application is a preset application.
 Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
 
 **Description**<br>
-The specified application cannot be installed on this device or by this user.
+The specified application cannot be installed on this device or by this user. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 1. The device in use has undergone a whitewashing process.
@@ -881,7 +881,7 @@ Check the validity of **want** in the **ShortcutInfo** struct.
 Failed to install the HAP because installing the native package failed.
 
 **Description**<br>
-The native software package fails to be installed during HAP installation.
+The native software package fails to be installed during HAP installation. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>The configuration of the native software package is incorrect.
 
@@ -937,7 +937,7 @@ It is not allowed to install enterprise applications through a [specific install
 Due to policy control, enterprise applications cannot be installed through the specific API.
 
 **Solution**<br>
-Use the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API instead.
+Use the [install](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall) API instead.<!--DelEnd-->
 
 
 ## 17700072 Launch Want Does Not Exist
@@ -948,17 +948,18 @@ The launch want is not found.
 The launch want does not exist.
 
 **Possible Causes**<br>
-The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **ohos.want.action.home**.
 
 **Solution**<br>
-Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **ohos.want.action.home** for the application.
 
+<!--Del-->
 ## 17700073 Installation Failure Caused by an Application with the Same Bundle Name but Different Signature Information
 **Error Message**<br>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
 
 **Description**<br>
-The installation fails because an application with the same bundle name but different signature information exists on the device.
+The installation fails because an application with the same bundle name but different signature information exists on the device. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 
@@ -1002,7 +1003,7 @@ Change the value of **bundleName** in **want** to be the same as that of the cal
 Failed to install the HAP or HSP because the app distribution type is not allowed.
 
 **Description**<br>
-The application fails to be installed on the device because the distribution type in the signing certificate profile is not supported.
+The application fails to be installed on the device because the distribution type in the signing certificate profile is not supported. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The type of the [signing certificate profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-releaseprofile-0000001914714796) of the application is not supported on the device.
@@ -1016,7 +1017,7 @@ Change the type of the signing certificate profile.
 Failed to install the HAP and restore to preinstalled bundle.
 
 **Description**<br>
-If the preinstalled application corresponding to the specified application has been uninstalled, the system first attempts to reinstall the preinstalled application. If the preinstalled application is successfully reinstalled but the specified application fails to install afterward, this error code is reported.
+If the preinstalled application corresponding to the specified application has been uninstalled, the system first attempts to reinstall the preinstalled application. If the preinstalled application is successfully reinstalled but the specified application fails to install afterward, this error code is reported. When [BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall) throws this error code, an internal error code, for example, [8519687], is added to the error message to pinpoint the reason for the error.
 
 **Possible Causes**<br>
 The version number of the application to be installed is earlier than or the same as the version number of the preinstalled application.
@@ -1238,22 +1239,32 @@ Bundle manager service is excepted.
 The Bundle Manager service is abnormal.
 
 **Possible Causes**<br>
+Scenario 1:
+
 An unknown system exception occurs.
+
+Scenario 2:
+
+The system throws an uncaught error code, such as IPC failure or file copy failure.
 
 **Solution**<br>
 1. Restart the phone and try again.
 
 2. If the request still fails after the preceding steps are performed for three to five times, check whether a crash file containing **foundation** exists in the **/data/log/faultlog/faultlogger/** directory of the device.
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+    ```
+    hdc shell
+    cd /data/log/faultlog/faultlogger/
+    ls -ls
+    ```
+
 3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+    ```
+    hdc file recv /data/log/faultlog/faultlogger/
+    hdc file recv /data/log/hilog/
+    ```
+
 <!--Del-->
 ## 17700201 .abc File Verification Failure
 **Error Message**<br>
@@ -1357,4 +1368,18 @@ Failed to obtain the dynamic icon.
 The HSP does not contain the correct icon resource.
 
 **Solution**<br>
-Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.<!--DelEnd-->
+Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.
+
+## 17700307 Dynamic Icon Does Not Take Effect Because of a Custom Theme
+**Error Message**<br>
+Dynamic icons cannot take effect due to existing custom themes.
+
+**Description**<br>
+Dynamic icons cannot take effect because a custom theme is used.
+
+**Possible Causes**<br>
+The user uses a custom theme (for example, a non-official theme set in the theme application), and the theme package contains icon resources for the corresponding application. When the caller attempts to enable the dynamic icon for the application, it fails and throws the error code 17700307.
+
+**Solution**<br>
+1. Check whether the current theme is a custom theme.<br>
+2. Switch to an official theme and retry the API call.<!--DelEnd-->

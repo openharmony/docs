@@ -1,5 +1,10 @@
 # AudioCodec
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @baotianhao-->
 
 ## 概述
 
@@ -45,10 +50,10 @@ AudioCodec模块提供用于音频编解码功能的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs)| 同步接口，查询编解码器可用的输入缓冲区。|
-| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetInputBuffer](#oh_audiocodec_getinputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index)|通过输入缓冲区索引，获取编解码器对应的输入缓冲区。|
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs)| 同步接口，查询编解码器可用的输出缓冲区。|
-| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetOutputBuffer](#oh_audiocodec_getoutputbuffer)([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index)|通过输入缓冲区索引，获取编解码器对应的输入缓冲区。|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 同步接口，查询编解码器可用的输入缓冲区。|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetInputBuffer](#oh_audiocodec_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 通过输入缓冲区索引，获取编解码器对应的输入缓冲区。|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 同步接口，查询编解码器可用的输出缓冲区。|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetOutputBuffer](#oh_audiocodec_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 通过输出缓冲区索引，获取编解码器对应的输出缓冲区。|
 
 ## 函数说明
 
@@ -422,7 +427,7 @@ AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等
 
 AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
 
-AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription]((#oh_audiocodec_getoutputdescription))接口获取新的流信息。
+AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。
 
 AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
 

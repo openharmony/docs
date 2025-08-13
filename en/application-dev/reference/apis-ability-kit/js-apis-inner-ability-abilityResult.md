@@ -1,10 +1,10 @@
 # AbilityResult
 
-The AbilityResult module defines the result code and data returned when an ability is terminated after being started.
+The module defines the result code and data returned when an ability is terminated after being started.
 
-In the stage model, you can use [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) to obtain the **AbilityResult** object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
+In the stage model, you can use [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult) to obtain the AbilityResult object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult).
 
-In the FA model, you can use [startAbilityForResult](js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7) to obtain the **AbilityResult** object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7).
+In the FA model, you can use [startAbilityForResult](js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7) to obtain the AbilityResult object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7).
 
 > **NOTE**
 >

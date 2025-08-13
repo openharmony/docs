@@ -21,7 +21,7 @@ The following figure shows the relationship.
 
 ## Environment Setup
 
-Download and install [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
+Download and install [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
 
 ### (Optional) Running the hdc Program on the CLI
 

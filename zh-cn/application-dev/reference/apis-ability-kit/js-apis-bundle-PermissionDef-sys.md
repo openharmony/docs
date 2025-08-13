@@ -1,4 +1,9 @@
 # PermissionDef (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 配置文件中定义的权限详细信息。
 

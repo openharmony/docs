@@ -1,5 +1,9 @@
 # 应用启动框架AppStartup
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 ## 概述
 
@@ -9,7 +13,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 ## 运行机制
 
-启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在构造[AbilityStage组件容器](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)过程中开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在AbilityStage创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
+启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在构造[AbilityStage](ability-terminology.md#abilitystage)过程中开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在AbilityStage创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
 
   **图1** 启动框架执行时机  
   ![app-startup-procedure](figures/app-startup-procedure.png)
@@ -177,7 +181,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | -------- | -------- | -------- | -------- |
         | startupTasks | 启动任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | appPreloadHintStartupTasks | 预加载so任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | configEntry | 启动参数配置文件所在路径。<br/>**说明：**<br/> HSP、HAR中不允许配置`configEntry`字段。 | 字符串 | 该标签不可缺省。 |
+        | configEntry | 启动参数配置文件所在路径。<br/>**说明：**<br/>- HSP、HAR中不允许配置`configEntry`字段。<br/>- 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
         
         
         **表2** startupTasks标签说明
@@ -185,7 +189,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
         | -------- | -------- | -------- | -------- |
         | name | 启动任务名称，可自定义，推荐与类名保持一致。 | 字符串 | 该标签不可缺省。 |
-        | srcEntry | 启动任务对应的文件路径。 | 字符串 | 该标签不可缺省。 |
+        | srcEntry | 启动任务对应的文件路径。<br/>**说明：** <br/> 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
         | dependencies | 启动任务依赖的其他启动任务的类名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中startupTask里的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。 |
         | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
@@ -392,7 +396,7 @@ export default class StartupTask_001 extends StartupTask {
 
 AppStartup分别提供了自动和手动两种方式来执行启动任务，entry模块中默认采用自动模式，开发者可以根据需要修改为手动模式，HSP与HAR只能配置为手动模式。
 
-- 自动模式：当AbilityStage组件容器完成创建后，自动执行启动任务。
+- 自动模式：当AbilityStage完成创建后，自动执行启动任务。
 - 手动模式：在UIAbility完成创建后手动调用，来执行启动任务与so预加载任务。对于某些使用频率不高的模块，不需要应用最开始启动时就进行初始化。开发者可以选择将该部分启动任务修改为手动模式，在应用启动完成后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法来执行启动任务与so预加载任务。
 
 下面以UIAbility的onCreate生命周期中为例，介绍如何采用手动模式来启动任务，示例代码如下。
@@ -464,7 +468,7 @@ struct Index {
 
 ### （可选）添加任务匹配规则
 
-在通过卡片、通知、意图调用等方式拉起某个页面时，为了实现功功能服务一步直达，可以通过添加matchRules匹配规则，仅加载与当前场景相关的部分启动任务，无需加载全部默认的自动启动任务，以提高启动性能。
+在通过卡片、通知、意图调用等方式拉起某个页面时，为了实现功能服务一步直达，可以通过添加matchRules匹配规则，仅加载与当前场景相关的部分启动任务，无需加载全部默认的自动启动任务，以提高启动性能。
 
 可以通过以下两种方式添加匹配规则：
 
@@ -545,7 +549,7 @@ struct Index {
           if (want?.parameters?.fromType == 'card') {
             return 'ruleCard';
           }
-          return "";
+          return '';
         }
 
       }

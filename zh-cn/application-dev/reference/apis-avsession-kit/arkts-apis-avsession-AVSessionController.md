@@ -1,4 +1,9 @@
 # Interface (AVSessionController)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **说明：**
 >
@@ -63,7 +68,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -103,7 +108,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -141,7 +146,7 @@ getAVMetadata(): Promise\<AVMetadata>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -177,7 +182,7 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -217,7 +222,7 @@ getAVQueueTitle(): Promise\<string>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -253,7 +258,7 @@ getAVQueueTitle(callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -293,7 +298,7 @@ getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -329,7 +334,7 @@ getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -376,7 +381,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -415,7 +420,7 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -456,7 +461,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 600101  | Session service exception. |
 | 600103  | The session controller does not exist. |
 
 **示例：**
@@ -491,7 +496,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 600101  | Session service exception. |
 | 600103  | The session controller does not exist. |
 
 **示例：**
@@ -531,7 +536,7 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
 | 600105  | Invalid session command. |
@@ -582,7 +587,7 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
 | 600105  | Invalid session command. |
@@ -627,7 +632,7 @@ getLaunchAbility(): Promise\<WantAgent>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -663,7 +668,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -703,7 +708,7 @@ getRealPlaybackPositionSync(): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -734,7 +739,7 @@ isActive(): Promise\<boolean>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -770,7 +775,7 @@ isActive(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -810,7 +815,7 @@ destroy(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -845,7 +850,7 @@ destroy(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -884,7 +889,7 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -920,7 +925,7 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -971,12 +976,12 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600105  | Invalid session command. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -1017,12 +1022,12 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600105  | Invalid session command. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -1072,12 +1077,12 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600105  | Invalid session command. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -1132,12 +1137,12 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.|
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600105  | Invalid session command. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -1166,6 +1171,61 @@ if (controller !== undefined) {
 }
 ```
 
+## sendCustomData<sup>20+</sup>
+
+sendCustomData(data: Record\<string, Object>): Promise\<void>
+
+发送私有数据到远端设备。使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| data   | Record\<string, Object> | 是   | 应用程序填充的自定义数据。服务端仅解析key为'customData'，且Object为string类型的对象。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist.                                  |
+| 6600103  | The session controller does not exist.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+          
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).sendCustomData({customData : "This is my data"})
+}
+```
+
 ## getExtras<sup>10+</sup>
 
 getExtras(): Promise\<{[key: string]: Object}>
@@ -1189,11 +1249,11 @@ getExtras(): Promise\<{[key: string]: Object}>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
-| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -1242,11 +1302,11 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
-| 6600107  |Too many commands or events.Controls the frequency of sending self-query and control commands. |
+| 6600105  | Invalid session command. |
+| 6600107  |Too many commands or events. |
 
 **示例：**
 
@@ -1302,10 +1362,10 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600105  | Invalid session command. |
 
 **示例：**
 
@@ -1343,6 +1403,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 设置元数据变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -1362,7 +1424,7 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1382,7 +1444,7 @@ avsessionController.on('metadataChange', ['assetId', 'title', 'description'], (m
 
 off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
-媒体控制器取消监听元数据变化的事件。
+取消元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1402,7 +1464,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1416,6 +1478,8 @@ avsessionController.off('metadataChange');
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
 
 设置播放状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1436,7 +1500,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1455,7 +1519,7 @@ avsessionController.on('playbackStateChange', ['state', 'speed', 'loopMode'], (p
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1475,7 +1539,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1489,6 +1553,8 @@ avsessionController.off('playbackStateChange');
 on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1509,7 +1575,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1528,7 +1594,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
-取消设置通话元数据变化的监听事件。
+取消设置通话元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1548,7 +1614,7 @@ off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1562,6 +1628,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1582,7 +1650,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1601,7 +1669,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
-取消设置通话状态变化的监听事件。
+取消设置通话状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1621,7 +1689,7 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1635,6 +1703,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'sessionDestroy', callback: () => void)
 
 会话销毁的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1654,7 +1724,7 @@ on(type: 'sessionDestroy', callback: () => void)
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1669,7 +1739,7 @@ avsessionController.on('sessionDestroy', () => {
 
 off(type: 'sessionDestroy', callback?: () => void)
 
-媒体控制器取消监听会话的销毁事件。
+取消监听会话的销毁事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1689,7 +1759,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1703,6 +1773,8 @@ avsessionController.off('sessionDestroy');
 on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 会话的激活状态的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1722,7 +1794,7 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  |The session controller does not exist. |
 
 **示例：**
@@ -1737,7 +1809,7 @@ avsessionController.on('activeStateChange', (isActive: boolean) => {
 
 off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
-媒体控制器取消监听会话激活状态变化的事件。
+取消监听会话激活状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1757,7 +1829,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1771,6 +1843,8 @@ avsessionController.off('activeStateChange');
 on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
 
 会话支持的有效命令变化监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1790,7 +1864,7 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1806,7 +1880,7 @@ avsessionController.on('validCommandChange', (validCommands: avSession.AVControl
 
 off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消监听会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1826,7 +1900,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1840,6 +1914,8 @@ avsessionController.off('validCommandChange');
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
 设置播放设备变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1859,7 +1935,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 | 错误码ID | 错误信息 |
 | -------- | ----------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1874,7 +1950,7 @@ avsessionController.on('outputDeviceChange', (state: avSession.ConnectionState, 
 
 off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-媒体控制器取消监听分布式设备变化的事件。
+取消监听分布式设备变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1894,7 +1970,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1908,6 +1984,8 @@ avsessionController.off('outputDeviceChange');
 on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1927,7 +2005,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1958,7 +2036,7 @@ if (controller !== undefined) {
 
 off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听会话事件的变化通知。
+取消会话事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1978,7 +2056,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -1992,6 +2070,8 @@ avsessionController.off('sessionEvent');
 on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](arkts-apis-avsession-i.md#avqueueitem10)\>) => void): void
 
 媒体控制器设置会话自定义播放列表变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2011,7 +2091,7 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](arkts-apis-av
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2026,7 +2106,7 @@ avsessionController.on('queueItemsChange', (items: avSession.AVQueueItem[]) => {
 
 off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](arkts-apis-avsession-i.md#avqueueitem10)\>) => void): void
 
-媒体控制器取消监听播放列表变化的事件。
+取消播放列表变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2046,7 +2126,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](arkts-apis-
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2079,7 +2159,7 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2094,7 +2174,7 @@ avsessionController.on('queueTitleChange', (title: string) => {
 
 off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
-媒体控制器取消监听播放列表名称变化的事件。
+取消播放列表名称变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2114,7 +2194,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2147,7 +2227,7 @@ on(type: 'extrasChange', callback: (extras: {[key: string]: Object}) => void): v
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2178,7 +2258,7 @@ if (controller !== undefined) {
 
 off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听自定义媒体数据包变化事件。
+取消自定义媒体数据包变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2198,13 +2278,95 @@ off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void):
 | 错误码ID | 错误信息 |
 | -------- | ----------------                       |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
 
 ```ts
 avsessionController.off('extrasChange');
+```
+
+## on('customDataChange')<sup>20+</sup>
+
+on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
+
+注册从远程设备发送的自定义数据的监听器。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                         |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                             | 是   | 事件回调类型，支持事件'customDataChange'，当媒体提供方发送自定义数据时，触发该事件。 |
+| callback | Callback\<Record\<string, Object>> | 是   | 回调函数，用于接收自定义数据。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).on('customDataChange', (callback) => {
+    console.info(`Caught customDataChange event,the new callback is: ${JSON.stringify(callback)}`);
+  });
+}
+```
+
+## off('customDataChange')<sup>20+</sup>
+
+off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): void
+
+取消自定义数据监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                         |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                             | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
+| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist.                       |
+
+**示例：**
+
+```ts
+avsessionController.off('customDataChange');
 ```
 
 ## getAVPlaybackStateSync<sup>10+</sup>
@@ -2229,7 +2391,7 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2268,7 +2430,7 @@ getAVMetadataSync(): AVMetadata
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2304,7 +2466,7 @@ getAVCallState(): Promise\<AVCallState>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2340,7 +2502,7 @@ getAVCallState(callback: AsyncCallback\<AVCallState>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2378,7 +2540,7 @@ getCallMetadata(): Promise\<CallMetadata>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2414,7 +2576,7 @@ getCallMetadata(callback: AsyncCallback\<CallMetadata>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2454,7 +2616,7 @@ getAVQueueTitleSync(): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2493,7 +2655,7 @@ getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2532,7 +2694,7 @@ getOutputDeviceSync(): OutputDeviceInfo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
@@ -2570,7 +2732,7 @@ isActiveSync(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 
@@ -2609,7 +2771,7 @@ getValidCommandsSync(): Array\<AVControlCommandType\>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
 

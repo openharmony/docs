@@ -1,4 +1,9 @@
 # Chip
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @xieziang--> 
+<!--SE: @youzhi92--> 
+<!--TSE: @TerryTsao-->
 
 操作块，用于搜索框历史记录或者邮件发送列表等场景。
 

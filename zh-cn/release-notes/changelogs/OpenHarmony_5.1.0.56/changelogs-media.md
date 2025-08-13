@@ -28,7 +28,7 @@ API 10
 
 **变更的接口/组件**
 
-无变更接口
+- [media.createSoundPool](../../../application-dev/reference/apis-media-kit/arkts-apis-media-f.md#mediacreatesoundpool10)
 
 **适配指导**
 

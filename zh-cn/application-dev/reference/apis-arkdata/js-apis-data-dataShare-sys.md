@@ -1,4 +1,9 @@
 # @ohos.data.dataShare (数据共享)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 **DataShare**用于应用管理其自身数据，同时支持同个设备上不同应用间的数据共享。
 
@@ -186,7 +191,7 @@ export default class EntryAbility extends UIAbility {
       dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
-      }). catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       });
     } catch (err) {
@@ -246,7 +251,7 @@ export default class EntryAbility extends UIAbility {
     let context = this.context;
     dataShare.enableSilentProxy(context, uri).then(() => {
       console.info("enableSilentProxy succeed");
-    }). catch((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
     });
   };
@@ -301,7 +306,7 @@ export default class EntryAbility extends UIAbility {
     let context = this.context;
     dataShare.disableSilentProxy(context, uri).then(() => {
       console.info("disableSilentProxy succeed");
-    }). catch((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
     });
   };
@@ -429,7 +434,7 @@ DataShare管理工具实例，可使用此实例访问或管理服务端的数�
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若订阅者已注册了观察者，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知。使用callback异步回调。该功能不支持跨用户订阅通知。
+订阅指定URI对应数据的数据变更事件。若订阅者已注册了观察者，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知。使用callback异步回调。该功能不支持跨用户订阅通知。同一应用内对单个URI的重复订阅上限为51次。
 
 触发通知：非静默场景下，通知者调用了下文中的notifyChange方法，就会触发通知；或者静默场景下，通知者使用静默访问修改了数据，也会自动触发通知。
 
@@ -469,7 +474,7 @@ if (dataShareHelper !== undefined) {
 
 on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若订阅者已注册变更通知，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。该功能不支持跨用户订阅通知。
+订阅指定URI对应数据的数据变更事件。若订阅者已注册变更通知，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。该功能不支持跨用户订阅通知。同一应用内对单个URI的重复订阅上限为51次。
 
 触发通知：非静默场景下，通知者调用了下文中的notifyChange方法，就会触发通知；或者静默场景下，通知者使用静默访问修改了数据，也会自动触发通知。
 
@@ -553,7 +558,7 @@ if (dataShareHelper != undefined) {
 
 off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
 
-取消订阅指定URI下指定callback对应的数据资源的变更通知。仅支持非静默访问。
+取消订阅指定URI下指定callback对应的数据资源的变更通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -728,6 +733,10 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
+  if (!node.data.length) {
+    console.error("node.data.length is empty");
+    return;
+  }
   console.info("onCallback " + JSON.stringify(node.uri));
   console.info("onCallback " + JSON.stringify(node.templateId));
   console.info("onCallback " + node.data.length);
@@ -917,7 +926,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 | -------- | -------------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| The URI does not exist. | The data area does not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -965,7 +974,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | -------- | -------------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| The URI does not exist. | The data area does not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1015,7 +1024,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 | -------- | -------------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| The URI does not exist. | The data area does not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1097,7 +1106,7 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 | -------- | -------------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| The URI does not exist. | The data area does not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
