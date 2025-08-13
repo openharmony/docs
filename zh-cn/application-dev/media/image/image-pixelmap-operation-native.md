@@ -1,4 +1,9 @@
 # 位图操作
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--SE: @yaozhupeng-->
+<!--TSE: @zhaoxiaoguang2-->
 
 > **说明：**
 >
