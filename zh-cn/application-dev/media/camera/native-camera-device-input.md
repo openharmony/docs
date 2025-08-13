@@ -90,7 +90,7 @@
        }
        // 获取相机列表。
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size == 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
             return;
         }
@@ -129,7 +129,7 @@
            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedSceneModes failed.");
            return false;
        }
-       for (int index = 0; index < sceneModeSize; index++) {
+       for (uint32_t index = 0; index < sceneModeSize; index++) {
            OH_LOG_INFO(LOG_APP, "scene mode = %{public}u ", sceneModes[index]);    // 获取相机指定模式。
            if (sceneModes[index] == sceneMode) {
                return true;

@@ -61,10 +61,10 @@
    {
        // 获取相机列表。
        Camera_ErrorCode ret = OH_CameraManager_GetSupportedCameras(cameraManager, cameras, &size);
-       if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+       if (cameras == nullptr || size == 0 || ret != CAMERA_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
        }
-       for (int index = 0; index < size; index++) {
+       for (uint32_t index = 0; index < size; index++) {
           OH_LOG_INFO(LOG_APP, "cameraId  =  %{public}s ", (*cameras)[index].cameraId);              // 获取相机ID。
           OH_LOG_INFO(LOG_APP, "cameraPosition  =  %{public}d ", (*cameras)[index].cameraPosition);  // 获取相机位置。
           OH_LOG_INFO(LOG_APP, "cameraType  =  %{public}d ", (*cameras)[index].cameraType);          // 获取相机类型。
