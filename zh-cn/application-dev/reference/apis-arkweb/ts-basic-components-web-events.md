@@ -1536,8 +1536,9 @@ struct Index {
     ```
 
 2. 构造 `CertManagerService` 对象以对接证书管理。
+<!--code_no_check-->
     ```ts
-    // CertManagerService.ets
+    // CertMgrService.ets
     import { bundleManager, common, Want } from "@kit.AbilityKit";
     import { BusinessError } from "@kit.BasicServicesKit";
     import { GlobalContext } from './GlobalContext';
@@ -1593,6 +1594,7 @@ struct Index {
     }
     ```
 3. 实现双向认证功能。
+<!--code_no_check-->
     ```ts
     import { webview } from '@kit.ArkWeb';
     import CertManagerService from './CertMgrService';
