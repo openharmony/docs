@@ -1519,7 +1519,7 @@ typedef void(* ArkUI_NodeContentCallback) (ArkUI_NodeContentEvent *event)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_NodeContentEvent](#ArkUI_NodeContentEvent)* event | NodeContent事件指针。 |
+| [ArkUI_NodeContentEvent](#arkui_nodecontentevent)* event | NodeContent事件指针。 |
 
 
 ### ArkUI_NodeContentEvent
