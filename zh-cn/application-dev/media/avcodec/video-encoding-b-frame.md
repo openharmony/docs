@@ -80,12 +80,12 @@ B帧编码预测过程同时利用前后帧的信息，可以显著降低信号�
     OH_AVFormat *format = OH_AVFormat_Create();
     // 2.2 填充使能参数键值对。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME, 1);
-    // 2.4 参数配置。
+    // 2.3 参数配置。
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    // 2.5 配置完成后销毁临时AVFormat。
+    // 2.4 配置完成后销毁临时AVFormat。
     OH_AVFormat_Destroy(format);
     ```
 
