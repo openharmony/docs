@@ -20,13 +20,14 @@
 
    ```ts
    function getCameraManager(context: common.BaseContext): camera.CameraManager {
-    try {
-      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-    } catch (err) {
-      let err = error as BusinessError;
-      console.error(`getCameraManager error, errCode: ${err.code}`);
-    }
-    return cameraManager;
+     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+     try {
+       let cameraManage = camera.getCameraManager(context);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`getCameraManager error, errCode: ${err.code}`);
+     }
+     return cameraManager;
    }
    ```
 
