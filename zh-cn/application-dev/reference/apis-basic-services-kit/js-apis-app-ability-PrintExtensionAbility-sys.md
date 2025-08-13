@@ -1,5 +1,11 @@
 # @ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--SE: @gcw_4D6e0BBd-->
+<!--TSE: @guoshengbang-->
+
 该模块为打印扩展能力的操作API，提供调用打印扩展能力的接口。
 
 > **说明：**  
