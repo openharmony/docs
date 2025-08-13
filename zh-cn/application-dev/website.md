@@ -4405,7 +4405,7 @@
             - [sleep.h](reference/apis-ffrt-kit/capi-sleep-h.md)
             - [task.h](reference/apis-ffrt-kit/capi-task-h.md)
             - [timer.h](reference/apis-ffrt-kit/capi-timer-h.md)
-            - [fiber.h](reference/capi-fiber-h.md)
+            - [fiber.h](reference/apis-ffrt-kit/capi-fiber-h.md)
             - [type_def.h](reference/apis-ffrt-kit/capi-type-def-h.md)
           - 结构体<!--function-flow-runtime-struct-->
             - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
@@ -4422,7 +4422,7 @@
             - [ffrt_loop_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md)
             - [ffrt_queue_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md)
             - [ffrt_task_handle_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md)
-            - [ffrt_fiber_t](reference/capi-ffrt-ffrt-fiber-t.md)
+            - [ffrt_fiber_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-fiber-t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
