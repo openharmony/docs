@@ -20,7 +20,7 @@
 
    ```ts
    function getCameraManager(context: common.BaseContext): camera.CameraManager {
-     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+     let cameraManager: camera.CameraManager;
      try {
        let cameraManage = camera.getCameraManager(context);
      } catch (error) {
