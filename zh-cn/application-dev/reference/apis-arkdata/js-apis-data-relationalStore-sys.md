@@ -1143,7 +1143,7 @@ getFloat32Array(columnIndex: number): Float32Array
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | The capability is not supported because the database is not a vector DB. |
 | 14800011  | Failed to open the database because it is corrupted. |
-| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800013  | ResultSet is empty or column index is out of bounds. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
