@@ -110,7 +110,7 @@ ResultSet is empty or pointer index is out of bounds.
 
 **错误信息**
 
-Resultset is empty or column index is out of bounds.
+ResultSet is empty or column index is out of bounds.
 
 **错误描述**
 
