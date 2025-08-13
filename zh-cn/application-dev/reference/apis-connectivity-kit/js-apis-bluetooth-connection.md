@@ -698,7 +698,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
+        console.info('setDevicePinCode,device name err: ' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1048,15 +1048,14 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
         console.info('setRemoteDeviceName success');
     }, (error: BusinessError) => {
-        console.error('setRemoteDeviceName: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('setRemoteDeviceName: errCode: ' + error.code + ',errMessage' + error.message);
     })
-
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

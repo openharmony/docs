@@ -70,7 +70,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
-    console.info(`err: ${JSON.stringify(err)}`);
+    console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;

@@ -2277,7 +2277,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 **描述**
 
-该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
+该接口与[OH_CommonEvent_FinishCommonEvent](#oh_commonevent_finishcommonevent)配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
 
 **起始版本：** 18
 
@@ -2301,7 +2301,7 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 **描述**
 
-该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
+该接口与[OH_CommonEvent_FinishCommonEvent](#oh_commonevent_finishcommonevent)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
 
 **起始版本：** 18
 

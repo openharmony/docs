@@ -62,7 +62,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当提交配置信息成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) |
 
 **错误码：**
 
@@ -93,7 +93,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
 
 commitConfig(): Promise\<void\>
 
-提交配置信息，通过Promise获取结果。
+提交配置信息。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)替代。
@@ -104,7 +104,7 @@ commitConfig(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -313,7 +313,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当开始会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -344,7 +344,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
 
 start(): Promise\<void\>
 
-开始会话工作，通过Promise获取结果。
+开始会话工作。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](arkts-apis-camera-Session.md#start11-1)替代。
@@ -355,7 +355,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -395,7 +395,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当停止会话工作成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -425,7 +425,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
 
 stop(): Promise\<void\>
 
-停止会话工作，通过Promise获取结果。
+停止会话工作。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](arkts-apis-camera-Session.md#stop11-1)替代。
@@ -436,7 +436,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -475,7 +475,7 @@ release(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当释放会话资源成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -505,7 +505,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
 
 release(): Promise\<void\>
 
-释放会话资源，通过Promise获取结果。
+释放会话资源。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](arkts-apis-camera-Session.md#release11-1)替代。
@@ -516,7 +516,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 

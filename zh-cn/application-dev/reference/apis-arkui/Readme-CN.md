@@ -176,6 +176,7 @@
       - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
       - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
+      - [动态SymbolGlyphModifier属性设置](arkui-ts/ts-universal-attributes-attribute-symbolglyphmodifier.md)
     - 其他<!--other-property-->
       - [复用标识](arkui-ts/ts-universal-attributes-reuse-id.md)
       - [复用选项](arkui-ts/ts-universal-attributes-reuse.md)
@@ -396,6 +397,9 @@
     - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
     - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
     - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 组件扩展装饰器<!--arkts-extend-component-decorator-->
+      - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
+    - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -434,6 +438,8 @@
     <!--Del-->
     - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
     <!--DelEnd-->
+  - 组件预览<!--component-preview-->
+    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 公共定义<!--common-definitions-->
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)

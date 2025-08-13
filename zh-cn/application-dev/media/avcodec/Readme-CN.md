@@ -1,5 +1,11 @@
 # AVCodec Kit（音视频编解码服务）
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--SE: @dpy2650--->
+<!--TSE: @cyakee; @baotianhao-->
+
 - [AVCodec Kit简介](avcodec-kit-intro.md)
 - [AVCodec支持的格式](avcodec-support-formats.md)
 - 音视频编解码<!--audio-video-codec-->

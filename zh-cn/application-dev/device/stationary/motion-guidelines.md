@@ -18,7 +18,7 @@
 
 ### 约束与限制
 
- - 设备需支持触控屏并兼容特定芯片。
+ - 此功能如果设备不支持，将返回801错误码。
 
  - 指关节操作不属于使用手操作场景。
 
@@ -33,12 +33,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收操作手结果
 
    ```
-   callback(data:motion.OperatingHandStatus) {
+   let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
      console.info('callback success' + data);
    };
    ```
@@ -47,7 +48,7 @@
 
    ```
    try {
-      motion.on('operatingHandChanged', this.callback);
+      motion.on('operatingHandChanged', callback);
       console.info("on succeeded");
    } catch (err) {
       let error = err as BusinessError;
@@ -91,15 +92,17 @@
 
 ### 约束与限制
 
- - 此功能需要开启设备的“握姿跟随”开关（可以在“设置-系统”中查看并开启）。如果设备不支持或未开启此开关，将返回801错误码。
-
- - 设备需要亮屏解锁。
-
- - 正常姿态握持手机，五指或拇指外的四指及掌心接触手机。
-
- - 竖屏握持时摄像头朝上，支持横屏握持，但需要注意应用横屏时握持手机长边及应用竖屏时握持手机短边属于异常场景，无法保证成功率，握持时屏幕需要朝向握持人方向。
-
- - 握持时设备不能同时接触其他物体。
+ - 此功能当前支持部分机型，若设置菜单中存在“握姿跟随”开关（可在“设置-系统”中查看），则表明该设备支持此功能，若无此开关，将返回801错误码。
+ - 设备屏幕需处于亮屏且解锁状态。
+ - 设备保护壳（若有）厚度不得超过3毫米。
+ - 需以五指自然握持设备，同时掌心区域接触设备（或拇指外的四指及掌心区域接触）。
+ - 握持时确保每根接触手指的接触面积尽可能大（理想情况下不低于30mm²）。
+ - 佩戴手套会显著降低识别准确率。
+ - 竖屏握持时，摄像头需朝上。
+ - 支持横屏握持，但需要注意：应用横屏时竖屏握持（握持设备短边），应用竖屏时横屏握持（握持设备长边），均属异常姿态，无法保证识别成功。
+ - 握持时屏幕需朝向握持人。
+ - 握持时不得同时接触其他物体（如桌面、其他身体部位等）。
+ - 未握持的识别依赖设备状态，设备非静止时无法保证识别成功。
 
 ### 开发步骤
 
@@ -108,12 +111,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收握持手结果
 
    ```
-   callback(data:motion.HoldingHandStatus) {
+   let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
      console.info('callback success' + data);
    };
    ```
@@ -122,7 +126,7 @@
 
    ```
    try {
-      motion.on('holdingHandChanged', this.callback);
+      motion.on('holdingHandChanged', callback);
       console.info("on succeeded");
    } catch (err) {
       let error = err as BusinessError;

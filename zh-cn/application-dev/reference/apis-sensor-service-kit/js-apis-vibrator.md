@@ -983,7 +983,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 | 类型                            | 说明                                                      |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | 马达设备的信息。 |
+| Array&lt;[VibratorInfo](#vibratorinfo19)&gt; | 马达设备的信息。 |
 
 
 **示例**：
@@ -1404,7 +1404,7 @@ build(): VibratorPattern;
 
 ## VibrateEffect<sup>9+</sup>
 
-马达振动效果，支持以下三种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的三种类型表示以三种不同的形式触发振动。
+马达振动效果，支持以下四种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的四种类型表示以四种不同的形式触发振动。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 

@@ -301,7 +301,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200001 | The value of index is out of range. |
+| 10200001 | The value of "index" is out of range. |
 | 10200011 | The removeByIndex method cannot be bound. |
 
 **示例：**

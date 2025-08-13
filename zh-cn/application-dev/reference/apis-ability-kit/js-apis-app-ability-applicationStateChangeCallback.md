@@ -1,12 +1,29 @@
-# @ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)
+# @ohos.app.ability.ApplicationStateChangeCallback (应用进程状态变化监听器)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
-ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对当前应用前后台变化监听回调的能力。
+本模块用于监听当前应用进程的状态变化。为了便于表述，下文中将“应用进程”简称为“进程”。
+
+开发者可调用[ApplicationContext.on('applicationStateChange')](js-apis-inner-application-applicationContext.md#applicationcontextonapplicationstatechange10)方法传入自定义ApplicationStateChangeCallback来监听当前进程的前后台状态变化，从而根据进程前后台状态变化来执行某些操作。例如，统计进程前后台时长、或者当进程退到后台时清理内存缓存。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
+
+## 约束限制
+
+该模块仅支持监听当前进程的前后台状态变化。如果需要监听整个应用的前后台状态变化，可使用[ApplicationStateObserver.onForegroundApplicationChanged](js-apis-inner-application-applicationStateObserver.md#applicationstateobserveronforegroundapplicationchanged)。
+
+>**说明**
+>
+> 进程的前后台状态不同于应用的前后台状态，两者的差别如下：
+>- 进程的前后台状态：如果进程中存在任何前台状态的UIAbility/UIExtensionAbility或可见窗口，则认为进程状态为前台，反之为后台。
+>- 应用的前后台状态：如果应用下有任何一个进程状态为前台，则认为应用状态为前台，反之为后台。
 
 ## 导入模块
 
@@ -18,7 +35,7 @@ import { ApplicationStateChangeCallback } from '@kit.AbilityKit';
 
 onApplicationForeground(): void
 
-注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
+当前进程从后台切换到前台时触发回调。当该回调触发时，并不表示进程已完全处于前台状态，而是即将进入前台状态，此时无法执行需要依赖前台状态的操作（例如启动其他UIAbility）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -32,7 +49,7 @@ onApplicationForeground(): void
 
 onApplicationBackground(): void
 
-注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
+当前进程从前台切换到后台时触发回调。当该回调触发时，表示进程已完全处于后台状态，可以执行适合在后台状态下完成的操作（例如清理内存缓存）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -59,7 +76,7 @@ export default class MyAbility extends UIAbility {
     // 1.获取applicationContext
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 2.通过applicationContext注册应用前后台状态监听
+      // 2.通过applicationContext注册当前进程状态监听
       if (applicationContext != undefined) {
         applicationContext.on('applicationStateChange', applicationStateChangeCallback);
       }
@@ -71,7 +88,7 @@ export default class MyAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 1.通过applicationContext解除注册应用前后台状态监听
+      // 1.通过applicationContext解除注册当前进程状态监听
       if (applicationContext != undefined) {
         applicationContext.off('applicationStateChange', applicationStateChangeCallback);
       } 

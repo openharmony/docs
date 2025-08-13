@@ -39,7 +39,7 @@ getKioskStatus(): Promise&lt;KioskStatus&gt;
 | 错误码ID | 错误信息 |
 |---------|---------|
 | 202 | Not system application. |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 
 **示例**：

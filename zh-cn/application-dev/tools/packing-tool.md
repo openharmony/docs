@@ -142,8 +142,8 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
 | --mode             | 是     | app         | 多个HAP需满足HAP的合法性校验。                                           |
-| --hap-path         | 否     | NA          | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要用“，”分隔。<br/>HAP包文件路径也可以是目录。 |
-| --hsp-path         | 否     | NA          | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要用“，”分隔。<br/>HSP包文件路径也可以是目录。 |
+| --hap-path         | 否     | NA          | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要用“,”分隔。<br/>HAP包文件路径也可以是目录。 |
+| --hsp-path         | 否     | NA          | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要用“,”分隔。<br/>HSP包文件路径也可以是目录。 |
 | --pack-info-path   | 是     | NA          | 文件名必须为pack.info。                                             |
 | --out-path         | 是     | NA          | 目标文件路径，文件名必须以.app为后缀。                                        |
 | --signature-path   | 否     | NA          | 签名路径。                                                        |
@@ -188,9 +188,9 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 | 指令         | 是否必选项 | 选项        | 描述                                                        |
 |------------|-------|-----------|----------------------------------------------------------------|
 | --mode     | 是     | multiApp  | 打包类型，在将多个HAP打入同一个App时，需保证每个HAP满足合法性校验规则。                                                            |
-| --hap-list | 否     | HAP的路径    | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要”，“分隔。<br/>HAP文件路径也可以是目录。                                          |
-| --hsp-list | 否     | HSP的路径    | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要”，“分隔。<br/>HSP文件路径也可以是目录。                                          |
-| --app-list | 否     | App的路径    | App文件路径，文件名必须以.app为后缀。如果是多个App包需要用”，“分隔。<br/>App文件路径也可以是目录。<br/>--hap-list，--hsp-list，--app-list不可以都不传。 |
+| --hap-list | 否     | HAP的路径    | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要“,”分隔。<br/>HAP文件路径也可以是目录。                                          |
+| --hsp-list | 否     | HSP的路径    | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。<br/>HSP文件路径也可以是目录。                                          |
+| --app-list | 否     | App的路径    | App文件路径，文件名必须以.app为后缀。如果是多个App包需要用“,”分隔。<br/>App文件路径也可以是目录。<br/>--hap-list，--hsp-list，--app-list不可以都不传。 |
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.app为后缀。 |
 | --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
@@ -251,7 +251,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out\
+java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out
 ```
 
 **表10** versionNormalize指令参数说明
@@ -270,7 +270,7 @@ java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp 
 
 示例：
 ```
-java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out\
+java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out
 ```
 
 **表11**  参数含义及规范
@@ -295,7 +295,7 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out\
+java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out
 ```
 
 **表12**  参数含义及规范

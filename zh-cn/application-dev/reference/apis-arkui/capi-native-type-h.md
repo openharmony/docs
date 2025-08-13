@@ -220,7 +220,7 @@
 | [ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index)](#oh_arkui_waterflowsectionoption_getmargin) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。 |
 | [void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkUI_WaterFlowSectionOption* option,int32_t index, float(\*callback)(int32_t itemIndex))](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。 |
 | [void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData,float (\*callback)(int32_t itemIndex, void* userData))](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindexwithuserdata) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。 |
-| [ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size)](#oh_arkui_guidelineoption_create) | 创建RelativeContaine容器内的辅助线信息。 |
+| [ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size)](#oh_arkui_guidelineoption_create) | 创建RelativeContainer容器内的辅助线信息。 |
 | [void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline)](#oh_arkui_guidelineoption_dispose) | 销毁辅助线信息。 |
 | [void OH_ArkUI_GuidelineOption_SetId(ArkUI_GuidelineOption* guideline, const char* value, int32_t index)](#oh_arkui_guidelineoption_setid) | 设置辅助线的Id。 |
 | [void OH_ArkUI_GuidelineOption_SetDirection(ArkUI_GuidelineOption* guideline, ArkUI_Axis value, int32_t index)](#oh_arkui_guidelineoption_setdirection) | 设置辅助线的方向。 |
@@ -230,7 +230,7 @@
 | [ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection(ArkUI_GuidelineOption* guideline, int32_t index)](#oh_arkui_guidelineoption_getdirection) | 获取辅助线的方向。 |
 | [float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline, int32_t index)](#oh_arkui_guidelineoption_getpositionstart) | 获取距离容器左侧或者顶部的距离。 |
 | [float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, int32_t index)](#oh_arkui_guidelineoption_getpositionend) | 获取距离容器右侧或者底部的距离。 |
-| [ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size)](#oh_arkui_barrieroption_create) | 创建RelativeContaine容器内的屏障信息。 |
+| [ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size)](#oh_arkui_barrieroption_create) | 创建RelativeContainer容器内的屏障信息。 |
 | [void OH_ArkUI_BarrierOption_Dispose(ArkUI_BarrierOption* barrierStyle)](#oh_arkui_barrieroption_dispose) | 销毁屏障信息。 |
 | [void OH_ArkUI_BarrierOption_SetId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index)](#oh_arkui_barrieroption_setid) | 设置屏障的Id。 |
 | [void OH_ArkUI_BarrierOption_SetDirection(ArkUI_BarrierOption* barrierStyle, ArkUI_BarrierDirection value, int32_t index)](#oh_arkui_barrieroption_setdirection) | 设置屏障的方向。 |
@@ -3518,7 +3518,7 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkU
 
 | 参数项                                            | 描述 |
 |------------------------------------------------| -- |
-| [ArkUI_WaterFlowSectionOption](capi-arkui-nativemodule-arkui-waterflowsectionoption.md)* optionoption | FlowItem分组配置信息。 |
+| [ArkUI_WaterFlowSectionOption](capi-arkui-nativemodule-arkui-waterflowsectionoption.md)* option | FlowItem分组配置信息。 |
 | int32_t index                                  | 分组配置信息数组索引值。 |
 | callback                                       | 根据index获取指定Item的主轴大小。itemIndex：FlowItem索引值。 |
 
@@ -3554,7 +3554,7 @@ ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size)
 **描述：**
 
 
-创建RelativeContaine容器内的辅助线信息。
+创建RelativeContainer容器内的辅助线信息。
 
 **起始版本：** 12
 
@@ -3796,7 +3796,7 @@ ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size)
 **描述：**
 
 
-创建RelativeContaine容器内的屏障信息。
+创建RelativeContainer容器内的屏障信息。
 
 **起始版本：** 12
 

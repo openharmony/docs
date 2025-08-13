@@ -108,7 +108,7 @@
 | [void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name)](#oh_arkui_nodeutils_removecustomproperty) | - | 移除组件已设置的自定义属性。 |
 | [int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* name, ArkUI_CustomProperty** handle)](#oh_arkui_nodeutils_getcustomproperty) | - | 获取组件的自定义属性的值。 |
 | [ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node)](#oh_arkui_nodeutils_getparentinpagetree) | - | 获取父节点，可获取由ArkTs创建的组件节点。 |
-| [int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle)](#oh_arkui_nodeutils_getactivechildreninfo) | - | 获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。 |
+| [int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle)](#oh_arkui_nodeutils_getactivechildreninfo) | - | 获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。 |
 | [ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetCurrentPageRootNode(ArkUI_NodeHandle node)](#oh_arkui_nodeutils_getcurrentpagerootnode) | - | 获取当前页面的根节点。 |
 | [bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node)](#oh_arkui_nodeutils_iscreatedbyndk) | - | 获取组件是否由C-API创建的标签。 |
 | [int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node)](#oh_arkui_nodeutils_getnodetype) | - | 获取节点的类型。 |
@@ -202,7 +202,7 @@ enum ArkUI_NodeType
 | ARKUI_NODE_GRID | 网格容器。                                |
 | ARKUI_NODE_GRID_ITEM | 网格子组件。                               |
 | ARKUI_NODE_CUSTOM_SPAN | 自定义文本段落。                             |
-| ARKUI_NODE_EMBEDDED_COMPONENT |                                      |
+| ARKUI_NODE_EMBEDDED_COMPONENT | 同应用进程嵌入式组件。 <br>**起始版本：** 20  |
 
 ### ArkUI_NodeAttributeType
 
@@ -472,8 +472,8 @@ enum ArkUI_NodeAttributeType
 | NODE_CHECKBOX_NAME | 定义复选框的名称, 支持属性设置，属性重置和属性获取。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式： <br> .string: 组件名称。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: 组件名称。 <br> **起始版本：** 15  |
 | NODE_CHECKBOX_GROUP | 定义复选框的组的名称, 支持属性设置，属性重置和属性获取。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式： <br> .string: 组件名称。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: 组件名称。 <br>**起始版本：** 15   |
 | NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT | XComponent组件ID属性，支持属性设置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: ID的内容。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: ID的内容。 |
-| NODE_XCOMPONENT_TYPE | XComponent的类型，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：字体样式[ArkUI_XComponentType](capi-native-type-h.md#arkui_xcomponenttype)，默认值为ARKUI_XCOMPONENT_TYPE_SURFACE；<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：字体样式[ArkUI_XComponentType](capi-native-type-h.md#arkui_xcomponenttype)。 |
-| NODE_XCOMPONENT_SURFACE_SIZE | 设置XComponent的宽高，支持属性设置和获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：宽数值，单位为px；<br> .value[1].u32：高数值，单位为px；<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：宽数值，单位为px；<br> .value[1].u32：高数值，单位为px； |
+| NODE_XCOMPONENT_TYPE  | XComponent组件的类型，仅支持属性获取接口。<br/>XComponent组件的类型需要在组件创建时通过[ArkUI_NodeType](#arkui_nodetype)中的ARKUI_NODE_XCOMPONENT或者ARKUI_NODE_XCOMPONENT_TEXTURE明确，不允许后续修改。<br/>使用[setAttribute](capi-arkui-nativemodule-arkui-nativenodeapi-1.md#setattribute)接口尝试修改XComponent组件的类型时会发生绘制内容异常。<br/> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：字体样式[ArkUI_XComponentType](capi-native-type-h.md#arkui_xcomponenttype)。 |
+| NODE_XCOMPONENT_SURFACE_SIZE  | XComponent组件的宽高，仅支持属性获取接口。<br/>使用[setAttribute](capi-arkui-nativemodule-arkui-nativenodeapi-1.md#setattribute)接口尝试修改XComponent组件的宽高时设置不会生效。<br/> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：宽数值，单位为px；<br> .value[1].u32：高数值，单位为px。 |
 | NODE_XCOMPONENT_SURFACE_RECT | 设置XComponent组件持有Surface的显示区域，支持属性设置和获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32: Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br> .value[1].i32: Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br> .value[2].i32: Surface显示区域的宽度, 单位为px。<br> .value[3].i32: Surface显示区域的高度, 单位为px。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32: Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br> .value[1].i32: Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br> .value[2].i32: Surface显示区域的宽度, 单位为px。<br> .value[3].i32: Surface显示区域的高度, 单位为px。<br>**起始版本：** 18  |
 | NODE_XCOMPONENT_ENABLE_ANALYZER | 设置XComponent组件是否支持图像分析，支持属性设置和获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br>**起始版本：** 18  |
 | NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER | 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32： 是否显示农历，默认值false。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32： 是否显示农历。 |
@@ -632,8 +632,8 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_SCROLL_TO_INDEX | 滑动到指定index。开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。<br> <br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：要滑动到的目标元素在当前容器中的索引值。<br> .value[1]?.i32：设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。<br> .value[2]?.i32：指定滑动到的元素与当前容器的对齐方式，参数类型[ArkUI_ScrollAlignment](capi-native-type-h.md#arkui_scrollalignment)。默认值为：ARKUI_SCROLL_ALIGNMENT_START。|
 | NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE | 设置当前瀑布流子组件的约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：最小宽度，使用-1表示不设置； <br> .value[1].f32：最大宽度，使用-1表示不设置； <br> .value[2].f32：最小高度，使用-1表示不设置； <br> .value[3].f32：最大高度，使用-1表示不设置； <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：最小宽度，使用-1表示不设置； <br> .value[1].f32：最大宽度，使用-1表示不设置； <br> .value[2].f32：最小高度，使用-1表示不设置； <br> .value[3].f32：最大高度，使用-1表示不设置；  |
 | NODE_WATER_FLOW_LAYOUT_MODE | 定义瀑布流组件布局模式，支持属性设置、重置和获取。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .value[0].i32：布局模式，参数类型[ArkUI_WaterFlowLayoutMode](capi-native-type-h.md#arkui_waterflowlayoutmode)，默认值：ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：布局模式，参数类型[ArkUI_WaterFlowLayoutMode](capi-native-type-h.md#arkui_waterflowlayoutmode)。<br>**起始版本：** 18   |
-| NODE_RELATIVE_CONTAINER_GUIDE_LINE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RELATIVE_CONTAINER | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContaine容器内的辅助线： <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContaine容器内的辅助线：  |
-| NODE_RELATIVE_CONTAINER_BARRIER | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContaine容器内的辅助线： <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContaine容器内的屏障：   |
+| NODE_RELATIVE_CONTAINER_GUIDE_LINE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RELATIVE_CONTAINER | 设置RelativeContainer容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContainer容器内的辅助线： <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContainer容器内的辅助线：  |
+| NODE_RELATIVE_CONTAINER_BARRIER | 设置RelativeContainer容器内的屏障，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContainer容器内的辅助线： <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .object: RelativeContainer容器内的屏障：   |
 | NODE_GRID_COLUMN_TEMPLATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID | 设置当前Grid组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 布局列的数量。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: 布局列的数量。 |
 | NODE_GRID_ROW_TEMPLATE | 设置当前Grid布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 布局行的数量。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string: 布局行的数量。 |
 | NODE_GRID_COLUMN_GAP | 设置列与列的间距，支持属性设置、重置和获取。属性设置方法[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .value[0].f32：列与列的间距，默认值：0，单位vp。取值范围：[0, +∞)<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：列与列的间距，单位vp。 |
@@ -815,8 +815,8 @@ enum ArkUI_NodeCustomEventType
 | ARKUI_NODE_CUSTOM_EVENT_ON_DRAW = 1 << 2 | draw 类型。 |
 | ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW = 1 << 3 | foreground 类型。 |
 | ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW = 1 << 4 | overlay 类型。 |
-| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT = 1 << 5 |  |
-| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND = 1 << 6 |  |
+| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT = 1 << 5 | draw front 类型。 <br>**起始版本：** 20 |
+| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND = 1 << 6 | draw behind 类型。 <br>**起始版本：** 20 |
 
 ### ArkUI_NodeAdapterEventType
 
@@ -2448,7 +2448,7 @@ int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_Ac
 **描述：**
 
 
-获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。
+获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。在LazyForEach场景中，推荐使用[OH_ArkUI_NodeUtils_GetChildWithExpandMode](#oh_arkui_nodeutils_getchildwithexpandmode)接口进行遍历。
 
 **起始版本：** 14
 

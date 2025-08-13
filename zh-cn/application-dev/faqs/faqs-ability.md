@@ -1,5 +1,11 @@
 # 应用模型常见问题
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @ccllee1-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 
 ## 如何获取设备横竖屏的状态变化通知(API 9)
 
@@ -78,7 +84,7 @@ FA和Stage模型中，应用可以创建进程并指定UIAbility运行在某个�
 
 **参考链接**
 
-[AbilityStage组件容器](../application-models/abilitystage.md)
+[AbilityStage组件管理器](../application-models/abilitystage.md)
 
 
 ## 多实例场景下当前Ability调用terminateSelf后，桌面最近任务列表如何设置不保留快照(API 9)

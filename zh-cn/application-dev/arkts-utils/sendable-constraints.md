@@ -492,7 +492,7 @@ NAPI相关接口请参考[Sendable相关的NAPI接口](../napi/use-napi-about-ex
 
 ## 与UI交互的规则
 
-Sendable数据需要与[makeObserved](../ui/state-management/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../ui/state-management/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
+Sendable数据需要与[makeObserved](../ui/state-management/arkts-new-makeObserved.md)配合使用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../ui/state-management/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
 
 
 ## 在HAR包中的使用规则

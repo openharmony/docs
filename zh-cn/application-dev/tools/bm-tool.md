@@ -14,7 +14,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | install | 安装命令，用于安装应用。 |
 | uninstall | 卸载命令，用于卸载应用。 |
 | dump | 查询命令，用于查询应用的相关信息。 |
-| clean | 清理命令，用于清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|
+| clean | 清理命令，用于清理应用的缓存和数据。<!--Del-->此命令在root版本下可用，<!--DelEnd-->在user版本下打开开发者模式可用。|
 | <!--DelRow-->enable | 使能命令，用于使能应用，使能后应用可以继续使用。此命令在root版本下可用，在user版本下不可用。 |
 | <!--DelRow-->disable | 禁用命令，用于禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |
 | get | 获取udid命令，用于获取设备的udid。 |
@@ -841,7 +841,7 @@ error: install parse profile missing prop.
 
     落盘位置：/data/log/hilog。
 
-    打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
+    打开日志查看“profile prop %{public}s is missing”。如“profile prop icon is missing”表示“icon”字段缺失。
 
 
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同

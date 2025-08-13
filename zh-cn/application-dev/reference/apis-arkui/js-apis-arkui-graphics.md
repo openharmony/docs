@@ -1,4 +1,9 @@
 # Graphics
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 自定义节点相关属性定义的详细信息。
 
@@ -1207,6 +1212,12 @@ fillColor: number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。 |
+
 **示例：**
 
 ```ts
@@ -1259,6 +1270,12 @@ strokeColor: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。 |
 
 **示例：**
 
@@ -1313,6 +1330,12 @@ strokeWidth: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框宽度，单位为px。默认值为0。 |
 
 **示例：**
 

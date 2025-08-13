@@ -69,6 +69,8 @@ backgroundColor(value: ResourceColor)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名 | 类型                                       | 必填 | 说明                                                       |
 | ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色。 |
@@ -233,6 +235,12 @@ onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型            | 必填 | 说明                                                         |
+| ------ | --------------- | ---- | ------------------------------------------------------------ |
+| callback  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 是   | 密码输入选中宫格圆点时触发该回调。 |
+
 ## CircleStyleOptions<sup>12+</sup>对象说明
 
 圆环样式的参数说明。
@@ -286,6 +294,8 @@ setChallengeResult(result: PatternLockChallengeResult): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |

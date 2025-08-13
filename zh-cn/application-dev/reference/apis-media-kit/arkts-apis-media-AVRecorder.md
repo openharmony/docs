@@ -1363,12 +1363,12 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-private context: Context | undefined;
+let context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
 }
 
-// 例:处理photoAsset回调，保存video。
+// 例：处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
@@ -1387,7 +1387,7 @@ avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
   if (asset != undefined) {
     photoAsset = asset;
     // 处理photoAsset回调。
-    // 例: this.saveVideo(asset);
+    // 例：this.saveVideo(asset);
   } else {
     console.error('photoAsset is undefined');
   }

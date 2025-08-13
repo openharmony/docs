@@ -295,7 +295,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 **返回值：**
 
-| Type                         | Description                     |
+| 类型                         | 说明                     |
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定服务类型（serviceType）和Context的发现服务对象。 |
 
@@ -658,7 +658,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('discoveryStop')
 
-off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
+off(type: 'discoveryStop', callback?: Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>): void
 
 取消订阅停止监听MDNS服务的通知。
 

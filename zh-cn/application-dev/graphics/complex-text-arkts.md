@@ -150,7 +150,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -364,7 +363,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -479,7 +477,7 @@ struct Font08 {
 
 占位符绘制用于处理文本中占位符符号的渲染。
 
-占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
+占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供或替代某个位置的视觉元素。
 
 ### 开发步骤
 
@@ -711,7 +709,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }

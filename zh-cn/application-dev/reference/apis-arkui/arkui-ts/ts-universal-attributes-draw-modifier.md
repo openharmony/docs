@@ -1,4 +1,9 @@
 # 自定义绘制设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--SE: @xiang-shouxing-->
+<!--TSE: @sally__-->
 
 当某些组件本身的绘制内容不满足需求时，可使用自定义组件绘制功能，在原有组件基础上部分绘制、或者全部自行绘制，以达到预期效果。例如：独特的按钮形状、文字和图像混合的图标等。自定义组件绘制提供了自定义绘制修改器，来实现更自由地组件绘制。
 
@@ -58,7 +63,7 @@ drawFront?(drawContext: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### drawContent
 
@@ -74,7 +79,7 @@ drawContent?(drawContext: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### drawBehind
 
@@ -90,7 +95,7 @@ drawBehind?(drawContext: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### drawForeground<sup>20+</sup>
 
@@ -106,7 +111,7 @@ drawForeground(drawContext: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### invalidate
 
@@ -117,6 +122,18 @@ invalidate(): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### DrawContext
+
+type DrawContext = DrawContext
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 图形绘制上下文。 |
 
 ## 示例
 

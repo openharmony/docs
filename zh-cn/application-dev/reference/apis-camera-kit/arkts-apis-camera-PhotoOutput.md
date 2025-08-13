@@ -26,7 +26,7 @@ capture(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当以默认设置触发拍照成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -57,7 +57,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(): Promise\<void\>
 
-以默认设置触发一次拍照，通过Promise获取结果。
+以默认设置触发一次拍照。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -67,7 +67,7 @@ capture(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -150,7 +150,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(setting: PhotoCaptureSetting): Promise\<void\>
 
-以指定参数触发一次拍照，通过Promise获取结果。
+以指定参数触发一次拍照。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -166,7 +166,7 @@ capture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -628,7 +628,7 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 ```ts
 function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
-   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
+  photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
 }
 ```
 
@@ -1070,7 +1070,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度 |
+| deviceDegree | number | 是   | 设备旋转角度，单位度，取值范围：0-360。 |
 
 **返回值：**
 
