@@ -309,7 +309,7 @@
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                       |
 | ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](arkts-apis-window-i.md#rect7)   | 是   | 否   | 窗口尺寸。 |
+| rect  | [Rect](arkts-apis-window-i.md#rect7)   | 否   | 否   | 窗口尺寸。 |
 | bundleName  | string   | 否   | 否   | 应用Bundle的名称。          |
 | abilityName | string   | 否   | 否   | Ability的名称。               |
 | windowId | number | 否   | 否   | 窗口ID。   |
