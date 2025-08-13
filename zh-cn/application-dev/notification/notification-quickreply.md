@@ -1,5 +1,12 @@
 # 为跨设备协同通知添加快捷回复
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 从API version 18开始，支持为跨设备协同通知添加快捷回复。
 
 当手机应用通过指定事件ID订阅通知回复事件、并发布支持快捷回复的通知到手表时，用户无需解锁手机，即可在手表上查看通知消息并快捷回复。
@@ -7,7 +14,7 @@
 ## 前提条件
 
  - 用户已通过手机中运动健康App连接手表。
- - 用户已在手机的“运动健康App > 设备 > 消息通知”中，开启通知总开关与当前应用的通知开关。
+ - 用户已在手机的“运动健康App > 设备 > 消息通知”中，开启“同步手机消息通知至手表”开关与“支持的应用”通知开关。
 
 ## 实现原理
 
@@ -97,7 +104,7 @@
       wants: [
         {
           deviceId: '',
-          bundleName: 'com.samples.notification',
+          bundleName: 'com.samples.notification', // 使用时修改为发送通知的应用包名
           abilityName: 'EntryAbility',
           action: '',
           entities: [],
@@ -151,4 +158,4 @@
 
 1. 手表上进行快捷回复。
 
-2. 在手机应用中查看是否可以收到快捷消息。如果可以，表明功能实现正常。
+2. 在手机侧通过过滤日志"inputKey"或"userInput"等方式查看是否有消息通知回调sendMsgCallback。如果有，表明功能实现正常。
