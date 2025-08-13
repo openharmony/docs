@@ -1,4 +1,9 @@
 # 状态管理优秀实践
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 本章节旨在帮助开发者提高ArkUI应用质量，重点提高状态管理效率。章节中列举了常见的低效开发场景及对应解决方案，并通过对比推荐用法与非推荐用法，帮助开发者正确使用状态变量，实现高性能开发。
 
@@ -296,11 +301,11 @@ struct Page1 {
 
 ## 合理控制对象类型状态变量关联的组件数量
 
-如果将一个复杂对象定义为状态变量，需要合理控制其关联的组件数。当对象中某个成员属性发生变化时，会导致该对象关联的所有组件刷新，即使这些组件并未直接使用该属性。为了避免这种“冗余刷新”对性能产生影响，建议合理拆分该复杂对象，控制对象关联的组件数量。具体可参考[精准控制组件的更新范围](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/precisely-control-render-scope.md)和[状态管理合理使用开发指导](properly-use-state-management-to-develope.md)两篇文章。
+如果将一个复杂对象定义为状态变量，需要合理控制其关联的组件数。当对象中某个成员属性发生变化时，会导致该对象关联的所有组件刷新，即使这些组件并未直接使用该属性。为了避免这种“冗余刷新”对性能产生影响，建议合理拆分该复杂对象，控制对象关联的组件数量。具体可参考[精准控制组件的更新范围](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/precisely-control-render-scope.md)和[状态管理合理使用开发指导](properly-use-state-management-to-develope.md)两篇文章。
 
 ## 查询状态变量关联的组件数
 
-在应用开发中，可以通过HiDumper查看状态变量关联的组件数，进行性能优化。具体可参考[状态变量组件定位工具实践](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/state_variable_dfx_pratice.md)。
+在应用开发中，可以通过HiDumper查看状态变量关联的组件数，进行性能优化。具体可参考[状态变量组件定位工具实践](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/state_variable_dfx_pratice.md)。
 
 ## 避免在for、while等循环逻辑中频繁读取状态变量
 

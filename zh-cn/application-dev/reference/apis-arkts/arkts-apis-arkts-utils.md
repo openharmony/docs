@@ -1,4 +1,9 @@
 # 模块描述
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--SE: @weng-changcheng-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供了以下ArkTS实用工具：
 

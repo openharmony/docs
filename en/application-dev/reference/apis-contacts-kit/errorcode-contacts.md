@@ -1,5 +1,10 @@
 # Contact Error Codes
 
+<!--Kit: contacts-kit-->
+<!--Subsystem: contacts-->
+<!--Owner: @librahCode-->
+<!--SE: @yanghaoqian-->
+<!--TSE: @shangzhijie-->
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -16,7 +21,7 @@ This error code is reported if an internal system error occurs.
 
 **Possible Cause**
 
-Th internal system processing is abnormal.
+The internal system processing is abnormal.
 
 **Solution**
 
@@ -68,11 +73,11 @@ Database access has failed. Try again later.
 
 **Error Message**
 
-User cancel.
+User canceled.
 
 **Symptom**
 
-This error code is reported if an operation is canceled by the user
+This error code is reported if an operation is canceled by the user.
 
 **Possible Cause**
 

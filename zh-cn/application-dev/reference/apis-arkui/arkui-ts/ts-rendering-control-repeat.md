@@ -1,4 +1,9 @@
 # Repeat
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liubihao-->
+<!--SE: @lixingchi1-->
+<!--TSE: @TerryTsao-->
 
 > **说明：**
 > 

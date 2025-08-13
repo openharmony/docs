@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuth (用户认证)(系统接口)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
 
 > **说明：**
@@ -83,15 +89,16 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 
 **示例：**
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface  EventData {
   widgetContextId: number;
@@ -116,7 +123,8 @@ try {
   userAuth.sendNotice(noticeType, jsonEventData);
   console.info('sendNotice success');
 } catch (error) {
-  console.error(`sendNotice catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`sendNotice catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -147,13 +155,14 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -166,7 +175,8 @@ try {
   })
   console.info('subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -193,13 +203,14 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -212,7 +223,8 @@ try {
   })
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -249,22 +261,24 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
 | 12500002 | General operation error.                |
 
 **示例：**
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.info('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -292,6 +306,7 @@ sendCommand(cmdData: string): void
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -304,7 +319,8 @@ try {
   })
   console.info('subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`userAuth widgetMgr catch error: Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -320,7 +336,7 @@ try {
 
 **示例：**
 
-发起用户认证，采用认证可信等级≥ATL3的隐私密码认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的隐私密码认证，获取认证结果。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -387,8 +403,8 @@ queryReusableAuthResult(authParam: AuthParam): Uint8Array
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
+| 201      | Permission denied.       |
+| 202      | Permission denied. Called by non-system application. |
 | 12500002 | General operation error.                |
 | 12500008 | The parameter is out of range.          |
 | 12500017 | Failed to reuse authentication result.       |
@@ -417,7 +433,8 @@ try {
   let authToken = userAuth.queryReusableAuthResult(authParam);
   console.info('query reuse auth result success');
 } catch (error) {
-  console.error(`query reuse auth result catch error. Code is ${error?.code}, message is ${error?.message}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`query reuse auth result catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -427,7 +444,10 @@ try {
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
+**系统接口**: 此接口为系统接口。
+
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | AUTH_TOKEN_CHECK_FAILED | 12500015      | verifyAuthToken系统接口错误码，表示验证的AuthToken无效。|
 | AUTH_TOKEN_EXPIRED      | 12500016      | verifyAuthToken系统接口错误码，AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长。|
+| REUSE_AUTH_RESULT_FAILED<sup>20+</sup>| 12500017      | queryReusableAuthResult系统接口错误码，表示复用身份认证结果失败。|

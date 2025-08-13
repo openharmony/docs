@@ -1,4 +1,9 @@
 # 通过向量数据库实现数据持久化 (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @cuile44; @baijidong-->
+<!--SE: @houpengtao1-->
+<!--TSE: @logic42-->
 
 
 ## 场景介绍

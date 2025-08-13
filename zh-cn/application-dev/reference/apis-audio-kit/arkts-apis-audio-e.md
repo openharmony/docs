@@ -1,4 +1,9 @@
 # Enums
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 > **说明：**
 >
@@ -95,6 +100,7 @@
 | HDMI<sup>19+</sup>        | 27 | HDMI设备（例如HDMI、ARC、eARC等）。           |
 | LINE_DIGITAL<sup>19+</sup>        | 28 | 有线数字设备（例如S/PDIF等）。           |
 | REMOTE_DAUDIO<sup>18+</sup>        | 29 | 分布式设备。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| HEARING_AID<sup>20+</sup>        | 30 | 助听器设备。 |
 | NEARLINK<sup>20+</sup>        | 31 | 星闪设备。 |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -435,6 +441,19 @@
 | REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
 | REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。 |
 | REASON_OVERRODE | 3 | 强选。 |
+| REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | 音频会话已激活。 |
+| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 更高优先级的音频流出现导致的系统设备切换。 |
+
+## OutputDeviceChangeRecommendedAction<sup>20+</sup>
+
+表示输出设备变更后推荐操作的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                                        |  值     | 说明              |
+|:------------------------------------------| :----- |:----------------|
+| DEVICE_CHANGE_RECOMMEND_TO_CONTINUE | 0 | 推荐继续播放。           |
+| DEVICE_CHANGE_RECOMMEND_TO_STOP | 1 | 推荐停止播放。         |
 
 ## DeviceChangeType
 
@@ -510,6 +529,39 @@
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
 | DEACTIVATED_TIMEOUT | 1 | 音频会话等待超时。    |
+
+## AudioSessionScene<sup>20+</sup>
+
+枚举音频会话场景。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                   | 值 | 说明      |
+| :--------------------- |:--|:--------|
+| AUDIO_SESSION_SCENE_MEDIA | 0 | 媒体音频会话场景。     |
+| AUDIO_SESSION_SCENE_GAME | 1 | 游戏音频会话场景。     |
+| AUDIO_SESSION_SCENE_VOICE_COMMUNICATION  | 2 | VoIP语音通话音频会话场景。 |
+
+## AudioSessionStateChangeHint<sup>20+</sup>
+
+枚举用于音频会话状态变更提示。
+
+当用户监听到音频会话状态变化事件（即收到[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)事件）时，获取相关信息。
+
+此类型表示根据焦点策略对音频会话执行的操作，包括暂停、调整音量等。
+
+详情请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                               |  值     | 说明                                         |
+| ---------------------------------- | ------ | -------------------------------------------- |
+| AUDIO_SESSION_STATE_CHANGE_HINT_RESUME              | 0      | 提示音频会话恢复，应用可主动触发开始渲染等操作。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE               | 1      | 提示音频会话暂停，暂时失去音频焦点。当焦点再次可用时，会收到 AUDIO_SESSION_STATE_CHANGE_HINT_RESUME 事件。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_STOP                | 2      | 提示音频会话因焦点被抢占而停止，彻底失去音频焦点。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | 提示音频会话因长时间无业务而被系统停止，导致失去音频焦点。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_DUCK                | 4      | 提示音频会话躲避开始，降低音量播放。 |
+| AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK | 5      | 提示音频会话躲避结束，恢复音量播放。 |
 
 ## AudioDataCallbackResult<sup>12+</sup>
 

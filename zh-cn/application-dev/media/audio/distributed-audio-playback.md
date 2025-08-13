@@ -1,4 +1,9 @@
 # 分布式音频播放(仅对系统应用开放)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 通过分布式音频播放的能力，用户可以将音频投播远端设备播放，实现音频在组网中不同设备之间流转。
 

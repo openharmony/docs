@@ -1,5 +1,11 @@
 # ArkUI_ListItemSwipeActionOption
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 ## 概述
 
 定义ListItemSwipeActionOption方法的配置信息。

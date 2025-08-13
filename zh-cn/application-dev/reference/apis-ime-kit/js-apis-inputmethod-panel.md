@@ -1,4 +1,9 @@
 # @ohos.inputMethod.Panel (输入法面板)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 本模块提供对输入法面板的属性管理。
 

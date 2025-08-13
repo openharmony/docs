@@ -1,4 +1,9 @@
 # @ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理功能，包括创建相册和访问、修改相册中的媒体数据。
 
@@ -584,7 +589,7 @@ set(member: string, value: string): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | member | string | 是   | 成员参数名称例如：[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE。字符串长度为1~255。 |
-| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
+| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
@@ -1138,9 +1143,11 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 类型                    | 说明                                                      |
-| ----------------------- | --------------------------------------------------------- |
-| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 非Sendable类型Album。 |
+**返回值：**
+
+| 类型                         | 说明                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 返回非Sendable类型的Album。 |
 
 **错误码：**
 

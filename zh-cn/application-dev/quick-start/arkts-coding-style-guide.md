@@ -1,5 +1,11 @@
 # ArkTS编程规范
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @yyytiancai-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 ## 目标和适用范围
 
 本文参考业界标准和实践，结合ArkTS语言特点，提供编码指南，以提高代码的规范性、安全性和性能。
@@ -8,7 +14,7 @@
 
 ## 规则来源
 
-ArkTS在保持TypeScript基本语法风格的基础上，进一步强化静态检查和分析。本文部分规则筛选自《[OpenHarmony应用TS&JS编程指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)》，为ArkTS语言新增的语法添加了规则，旨在提高代码可读性、执行性能。
+ArkTS在保持TypeScript基本语法风格的基础上，进一步强化静态检查和分析。本文部分规则筛选自《[OpenHarmony应用TS&JS编程指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)》，为ArkTS语言新增的语法添加了规则，旨在提高代码可读性、执行性能。
 
 ## 章节概览
 
@@ -46,9 +52,9 @@ ArkTS在保持TypeScript基本语法风格的基础上，进一步强化静态�
 **【描述】**
 
 好的标识符命名应遵循以下原则：
- - 能清晰的表达意图，避免使用单个字母、未形成惯例的缩写来命名
- - 使用正确的英文单词并符合英文语法，不要使用中文拼音
- - 能区分出意思，避免造成误导
+ - 清晰表达意图，避免使用单个字母或非标准缩写命名。
+ - 使用正确的英文单词并符合英文语法，不要使用中文拼音。
+ - 确保语句清晰，避免歧义。
 
 ### 类名、枚举名、命名空间名采用UpperCamelCase风格
 
@@ -233,7 +239,7 @@ function test(dataSource: DataSource[]) {
 建议每行字符数不超过120个，除非需要显著增加可读性（超过120个），且不会隐藏信息。
 例外：如果一行注释包含了超过120个字符的命令或URL，则可以保持一行，以方便复制、粘贴和通过grep查找；预处理的error信息在一行便于阅读和理解，即使超过120个字符。
 
-### 条件语句和循环语句的实现必须使用大括号
+### 条件语句和循环语句的实现建议使用大括号
 
 **【级别】建议**
 
@@ -426,7 +432,7 @@ myFunc(bar, foo, baz);  // 函数的多个参数之间的逗号后加个空格�
 
 **【描述】**
 
-通常情况下，建议使用单引号。
+为了保持代码一致性和可读性，建议使用单引号。
 
 **【反例】**
 

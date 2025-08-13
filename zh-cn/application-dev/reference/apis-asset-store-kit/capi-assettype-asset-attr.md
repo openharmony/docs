@@ -1,5 +1,11 @@
 # Asset_Attr
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--SE: @skye_you-->
+<!--TSE: @nacyli-->
+
 ## 概述
 
 关键资产属性。

@@ -1,4 +1,9 @@
 # switch
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -62,7 +67,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <switch @change="normalswitchChange">
+    <switch @change="normalSwitchChange">
     </switch>
     <switch class="switch" showtext="true" texton="开启" textoff="关闭" @change="switchChange">
     </switch>
@@ -107,7 +112,7 @@ export default {
             });
         }
     },
-    normalswitchChange(e) {
+    normalSwitchChange(e) {
         if (e.checked) {
             promptAction.showToast({
                 message: "switch on"

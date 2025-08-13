@@ -50,7 +50,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 acquireAccess(): AccessStatus
 
-以同步方法申请锁屏下应用敏感数据访问权限。锁屏后，敏感数据无法被访问，但可通过调用该方法，访问指定类型的敏感数据。
+以同步方法申请锁屏下应用敏感数据访问权限。锁屏后，敏感数据无法被访问，但可通过调用该方法，访问本应用的敏感数据。
 
 **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -94,7 +94,7 @@ try {
 
 releaseAccess(): ReleaseStatus
 
-以同步方法取消锁屏下应用敏感数据访问权限。
+以同步方法取消锁屏下本应用敏感数据访问权限。
 
 **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -138,7 +138,7 @@ try {
 
 queryAppKeyState(): KeyStatus
 
-以同步方法查询锁屏下应用敏感数据访问权限。
+以同步方法查询锁屏下本应用敏感数据访问权限。
 
 **系统能力：** SystemCapability.Security.ScreenLockFileManager
 

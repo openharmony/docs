@@ -1,4 +1,9 @@
 # 编译工具链错误码
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @aftott-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 > **说明：**
 >

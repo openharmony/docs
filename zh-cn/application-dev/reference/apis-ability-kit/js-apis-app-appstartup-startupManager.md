@@ -1,4 +1,9 @@
 # @ohos.app.appstartup.startupManager (启动框架管理能力)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--SE: @yzkp-->
+<!--TSE: @lixueqing513-->
 
 本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
 

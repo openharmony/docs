@@ -1,4 +1,9 @@
 # makeObserved接口：将非观察数据变为可观察数据
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
 
@@ -224,7 +229,8 @@ struct ObservedSendableTest {
 collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/js-apis-arkts-collections.md)。
 makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和[@Prop](./arkts-prop.md)等配合使用，否则会抛出运行时异常。
 
-#### collections.Array
+**collections.Array**
+
 collections.Array可以触发UI刷新的API有：
 - 改变数组长度：push、pop、shift、unshift、splice、shrinkTo、extendTo
 - 改变数组项本身：sort、fill
@@ -349,7 +355,8 @@ struct Index {
   }
 }
 ```
-#### collections.Map
+
+**collections.Map**
 
 collections.Map可以触发UI刷新的API有：set、clear、delete。
 ```ts
@@ -404,7 +411,8 @@ struct CollectionMap {
 }
 ```
 
-#### collections.Set
+**collections.Set**
+
 collections.Set可以触发UI刷新的API有：add、clear、delete。
 
 ```ts

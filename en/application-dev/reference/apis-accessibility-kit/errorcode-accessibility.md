@@ -16,7 +16,7 @@ This error code is reported when the entered bundle name or ability name is inva
 
 **Possible Causes**
 
- 
+
 1. The bundle name does not exist.
 2. The bundle does not contain the target ability.
 
@@ -63,7 +63,7 @@ The permission for performing the accessibility operation is not granted when th
 1. Request from the user the permission for performing the accessibility operation, stating the reason for the request.
 2. Have the accessibility application re-enabled and the required accessibility operation enabled.
 
-## 9300004 Attribute Not Found
+## 9300004 Property Not Found
 
 **Error Message**
 
@@ -71,15 +71,15 @@ This property does not exist.
 
 **Description**
 
-This error code is reported when the entered attribute of the accessibility element does not exist.
+This error code is reported when the entered property of the accessibility element does not exist.
 
 **Possible Causes**
 
-The attribute does not exist in the accessibility element.
+The property does not exist in the accessibility element.
 
 **Solution**
 
-Make sure the accessibility element has the target attribute.
+Make sure the accessibility element has the target property.
 
 ## 9300005 Operation Not Supported
 

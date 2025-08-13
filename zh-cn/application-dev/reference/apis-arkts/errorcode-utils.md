@@ -1,4 +1,9 @@
 # 语言基础类库错误码
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 > **说明：**
 >
@@ -156,7 +161,7 @@ Buffer长度要求为size的整数倍。其中size为16-bits、32-bits或者64-b
 
 **错误信息**
 
-The container is empty.
+Container is empty.
 
 **错误描述**
 
@@ -956,7 +961,7 @@ ArrayBuffer已分离，或者ArrayBuffer为空。
 
 **错误信息**
 
-Load native module failed.
+Loading native module failed.
 
 **错误描述**
 

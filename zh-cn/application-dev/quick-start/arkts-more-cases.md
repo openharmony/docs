@@ -1,5 +1,11 @@
 # 适配指导案例
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @anxuesm-->
+<!--SE: @qyhuo32-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
+
 本文通过具体应用场景中的案例，提供在ArkTS语法规则下将TS代码适配成ArkTS代码的建议。各章以ArkTS语法规则的英文名称命名，每个案例展示适配前的TS代码和适配后的ArkTS代码。
 
 ## arkts-identifiers-as-prop-names
@@ -717,7 +723,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option = { id: '', type: 0 };
 test.foo('', option);
@@ -739,7 +745,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option: test.I = { id: '', type: 0 };
 test.foo('', option);

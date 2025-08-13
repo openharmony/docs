@@ -1,4 +1,9 @@
 # 焦点控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 自定义组件的走焦效果，可设置组件是否走焦和具体的走焦顺序，tab键或者方向键切换焦点。
 
@@ -174,7 +179,7 @@ requestFocus(value: string): boolean
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
 | value | string | 是   | 目标组件使用接口key(value: string)或id(value: string)绑定的字符串。 |
 
@@ -229,11 +234,11 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 描述        |
-| ----------- | --------- |
-| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
-| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
-| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
+| 名称    | 值      | 说明        |
+| ----------- | ----- |-------- |
+| AUTO | 0|默认的优先级，缺省时组件的获焦优先级。 |
+| PRIOR | 2000|容器内优先获焦的优先级。优先级高于AUTO。 |
+| PREVIOUS | 3000|上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ### KeyProcessingMode<sup>15+</sup>
 
@@ -335,7 +340,7 @@ nextFocus(nextStep: Optional\<FocusMovement>): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| nextStep  | Optional\<[FocusMovement](#focusmovement18对象说明)> | 否 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
+| nextStep  | Optional\<[FocusMovement](#focusmovement18对象说明)> | 是 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
 
 **返回值：**
 

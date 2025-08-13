@@ -1,4 +1,9 @@
 # ArkData（方舟数据管理）
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--SE: @widecode-->
+<!--TSE: @logic42-->
 
 - ArkTS API<!--arkdata-arkts--> 
   - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)

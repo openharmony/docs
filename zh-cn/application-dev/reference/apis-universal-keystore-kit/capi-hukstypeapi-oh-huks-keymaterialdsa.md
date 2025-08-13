@@ -1,5 +1,11 @@
 # OH_Huks_KeyMaterialDsa
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
 ## 概述
 
 定义Dsa密钥的结构体类型。

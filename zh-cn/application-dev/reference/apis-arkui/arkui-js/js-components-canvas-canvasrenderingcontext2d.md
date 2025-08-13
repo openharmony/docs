@@ -1,4 +1,9 @@
 # CanvasRenderingContext2D对象
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 >  **说明：**
 >

@@ -1,5 +1,11 @@
 # list-item
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 &lt;[list](js-lite-components-container-list.md)&gt;的子组件，用来展示列表具体item。
 
 > **说明：**

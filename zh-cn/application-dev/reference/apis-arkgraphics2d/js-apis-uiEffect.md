@@ -1,5 +1,11 @@
 # @ohos.graphics.uiEffect (效果级联)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hanamaru-->
+<!--SE: @comicchang-->
+<!--TSE: @gcw_fsLqk7gL-->
+
 本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
@@ -77,7 +83,30 @@ blur(blurRadius: number): Filter
 **示例：**
 
 ```ts
-filter.blur(20)
+// xxx.ts
+import { uiEffect } from '@kit.ArkGraphics2D';
+
+let filter: uiEffect.Filter = uiEffect.createFilter();
+filter.blur(10);
+
+@Entry
+@Component
+struct UIEffectFilterExample {
+    build(){
+        Column({ space: 15 }) {
+            Text('UIEffectFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+            Image($r('app.media.foreground'))
+                .width(100)
+                .height(100)
+                .backgroundImage($r('app.media.background'))
+                .backgroundImagePosition(Alignment.Center)
+                .backgroundImageSize({ width: 90, height: 90 })
+                .backgroundFilter(filter)
+        }
+        .height('100%')
+        .width('100%')
+    }
+}
 ```
 
 ## VisualEffect

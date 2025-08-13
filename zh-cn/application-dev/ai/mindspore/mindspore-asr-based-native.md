@@ -1,5 +1,11 @@
 # 使用MindSpore Lite实现语音识别（C/C++）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景说明
 
 开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现语音识别的应用。
@@ -599,24 +605,24 @@
    # AudioFile.h
    set(CMAKE_CXX_STANDARD 17)
    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   set(NATIVERENDER_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
    if(DEFINED PACKAGE_FIND_FILE)
        include(${PACKAGE_FIND_FILE})
    endif()
    
-   include_directories(${NATIVERENDER_ROOT_PATH}
-                       ${NATIVERENDER_ROOT_PATH}/include)
+   include_directories(${NATIVERENDER_PATH}
+                       ${NATIVERENDER_PATH}/include)
    
    # libsamplerate
-   set(LIBSAMPLERATE_DIR ${NATIVERENDER_ROOT_PATH}/third_party/libsamplerate)
+   set(LIBSAMPLERATE_DIR ${NATIVERENDER_PATH}/third_party/libsamplerate)
    include_directories(${LIBSAMPLERATE_DIR}/include)
    add_subdirectory(${LIBSAMPLERATE_DIR})
    
-   include_directories(${NATIVERENDER_ROOT_PATH}/third_party/opencc/include/opencc)
+   include_directories(${NATIVERENDER_PATH}/third_party/opencc/include/opencc)
    # src
    aux_source_directory(src SRC_DIR)
-   include_directories(${NATIVERENDER_ROOT_PATH}/src)
+   include_directories(${NATIVERENDER_PATH}/src)
    
    include_directories(${CMAKE_SOURCE_DIR}/third_party)
    
@@ -805,5 +811,5 @@ struct Index {
 
 针对使用MindSpore Lite进行语音识别应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
+- [基于Native接口的MindSpore Lite ASR应用开发（C/C++）（API14）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/AI/MindSporeLiteCDemoASR)
 

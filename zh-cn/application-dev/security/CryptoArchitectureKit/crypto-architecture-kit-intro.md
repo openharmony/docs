@@ -1,5 +1,11 @@
 # Crypto Architecture Kit简介
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 Crypto Architecture Kit屏蔽了第三方密码学算法库实现差异的算法框架，提供加解密、签名验签、消息认证码、哈希、安全随机数、密钥派生等相关功能。
 
 开发者可以通过调用加解密算法框架服务，忽略底层不同第三方密码学算法库的差异，实现迅捷开发。

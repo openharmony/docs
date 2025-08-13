@@ -1,4 +1,9 @@
 # 图像类型定义
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--SE: @weixin_52725220-->
+<!--TSE: @xiong0104-->
 
 >**说明：**
 >
@@ -13,9 +18,9 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明                   |
-| ------ | ----------------- | ---- | -------------------- |
-| types | [ImageAnalyzerType[]](#imageanalyzertype) | 是 | 图像AI分析类型。
+| 名称     | 类型                | 只读 | 可选 | 说明                   |
+| ------ | ----------------- | ---- | -------------------- | -------------------- |
+| types | [ImageAnalyzerType[]](#imageanalyzertype) | 否 | 否 | 图像AI分析类型。|
 
 ## ImageAnalyzerType
 
@@ -28,8 +33,8 @@
 | 名称     | 值    | 说明           |
 | -------- | ----- | -------- |
 | SUBJECT | 0  | 主体识别功能。 |
-| TEXT | 1  | 文字识别功能。 |
-| OBJECT_LOOKUP | 2  | 对象查找功能。 |
+| TEXT | -  | 文字识别功能。 |
+| OBJECT_LOOKUP | -  | 对象查找功能。 |
 
 ## ImageAIOptions
 
@@ -39,10 +44,10 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明                   |
-| ------ | ----------------- | ---- | -------------------- |
-| types | [ImageAnalyzerType[]](#imageanalyzertype) | 否 | 图像AI分析类型。 |
-| aiController | [ImageAnalyzerController](#imageanalyzercontroller) | 否 | 图像AI分析控制器。 |
+| 名称     | 类型                | 只读 | 可选 | 说明                   |
+| ------ | ----------------- | ---- | -------------------- | -------------------- |
+| types | [ImageAnalyzerType[]](#imageanalyzertype) | 否 | 是 | 图像AI分析类型。 |
+| aiController | [ImageAnalyzerController](#imageanalyzercontroller) | 否 | 是 | 图像AI分析控制器。 |
 
 > **说明：**
 >
@@ -78,6 +83,7 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 
 **返回值:**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
-| ImageAnalyzerType[] | 对应组件支持的分析类型。 |
+| [ImageAnalyzerType[]](#imageanalyzertype) | 对应组件支持的分析类型。 |
+

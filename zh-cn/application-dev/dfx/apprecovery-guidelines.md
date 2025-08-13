@@ -26,7 +26,7 @@ API 10在API 9的基础上新增支持多Ability的Stage模型应用开发。支
 | saveAppState(context?: UIAbilityContext): boolean | 主动保存由Context指定的Ability状态。 |
 | setRestartWant(want: Want): void | 设置主动调用**restartApp**以及**RestartFlag**不为**NO_RESTART**时重启的Ability。该Ability必须在同一个包名下，且必须为**UIAbility**。 |
 
-由于上述接口可能在故障处理时使用，所以不会返回异常，需要开发者熟悉使用的场景。具体其各参数定义详见[参数说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)。
+由于上述接口可能在故障处理时使用，所以不会返回异常，需要开发者熟悉使用的场景。具体其各参数定义详见[参数说明](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)。
 
 **enableAppRecovery**：需要在应用初始化阶段调用，比如AbilityStage的OnCreate调用。
 

@@ -1,4 +1,9 @@
 # @ohos.data.distributedData (分布式数据管理)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--SE: @dboy190; @houpengtao1-->
+<!--TSE: @logic42-->
 
 分布式数据管理为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增加、删除、修改、查询、同步等操作。
 

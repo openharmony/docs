@@ -409,5 +409,5 @@ struct Index {
 
 针对音乐专辑应用，有以下相关实例可供参考：
 
-- [典型页面场景：音乐专辑页（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
+- [典型页面场景：音乐专辑页（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
 

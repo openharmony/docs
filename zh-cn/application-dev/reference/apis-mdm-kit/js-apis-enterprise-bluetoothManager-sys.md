@@ -1,4 +1,9 @@
 # @ohos.enterprise.bluetoothManager（蓝牙管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备蓝牙管理的能力，包括设置和查询蓝牙信息等。
 

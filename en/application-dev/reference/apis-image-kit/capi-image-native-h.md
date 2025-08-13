@@ -1,8 +1,13 @@
 # image_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_native.h** file declares the cropping rectangle, size, and component data of an image.
+The file declares the cropping rectangle, size, and component data of an image.
 
 **Library**: libohimage.so
 

@@ -1,4 +1,9 @@
 # @ohos.cooperate (键鼠穿越)（系统接口）
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: Msdp-->
+<!--Owner: @wuliangdong-->
+<!--SE: @butterls-->
+<!--TSE: @zhaodengqi-->
 
 键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
@@ -11,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import cooperate from '@ohos.cooperate';
+import { cooperate } from '@kit.DistributedServiceKit';
 ```
 
 ## cooperate.prepareCooperate<sup>11+</sup>
@@ -37,13 +42,13 @@ prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 示例：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.prepareCooperate((error: BusinessError) => {
     if (error) {
@@ -80,13 +85,14 @@ prepareCooperate(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.prepareCooperate().then(() => {
     console.info(`Keyboard mouse crossing prepareCooperate success.`);
@@ -121,13 +127,13 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.unprepareCooperate((error: BusinessError) => {
     if (error) {
@@ -164,12 +170,12 @@ unprepareCooperate(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.unprepareCooperate().then(() => {
     console.info(`Keyboard mouse crossing unprepareCooperate success.`);
@@ -208,14 +214,14 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -261,14 +267,14 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -308,13 +314,13 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.deactivateCooperate(false, (error: BusinessError) => {
     if (error) {
@@ -357,12 +363,12 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.deactivateCooperate(false).then(() => {
     console.info(`Stop Keyboard mouse crossing success.`);
@@ -400,13 +406,13 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -441,7 +447,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **错误码：**
 
@@ -450,13 +456,13 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor).then((data: boolean) => {
@@ -495,7 +501,7 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -538,7 +544,7 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -563,6 +569,7 @@ try {
 
 ```ts
 // 取消注册所有回调函数
+import { cooperate } from '@kit.DistributedServiceKit';
 function callbackOn(msg: cooperate.CooperateMessage) {
   console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
@@ -601,7 +608,7 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -646,7 +653,7 @@ off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocat
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -716,13 +723,13 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
-| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 20900001 | Operation failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -743,7 +750,7 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| 名称      | 类型           |只读 | 可选 | 说明                     |
 | --------- | -------------- | ---- | ---- | ------------------------ |
 | networkId | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
 | state     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
@@ -755,46 +762,29 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称           | 类型            | 可读 | 可写 | 说明                           |
+| 名称           | 类型            | 只读 | 	可选 | 说明                           |
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
-| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
+| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的Y坐标上的位置。 |
 | displayWidth   | number         | 是   | 否   | 屏幕宽度，单位：px。                      |
 | displayHeight  | number         | 是   | 否   | 屏幕高度，单位：px。                      |
 
 ## CooperateState<sup>11+</sup>
 
-键鼠穿越的状态。
+键鼠穿越状态的枚举。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                           | 类型    | 可读 | 可写 | 说明                   |
-| ------------------------------ | ------ | ---- | ---- | ---------------------- |
-| COOPERATE_PREPARE              | number | 是   | 否   | 表示准备键鼠穿越。     |
-| COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
-| COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
-| COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL        | number | 是   | 否   | 表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL      | number | 是   | 否   | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
-| COOPERATE_ACTIVATE_FAILURE     | number | 是   | 否   | 表示键鼠穿越无法启动。 |
-| COOPERATE_DEACTIVATE_FAILURE   | number | 是   | 否   | 表示键鼠穿越无法停止。 |
-
-
-## MouseLocation<sup>12+</sup>
-
-鼠标光标位置信息。
-
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
-
-| 名称           | 类型           | 可读 | 可写 | 说明                     |
-| ---------     | -------------- | ---- | ---- | ------------------------ |
-| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
-| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
-| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
-| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
-
+| 名称                           |  值 | 说明                   |
+| ------------------------------ | ---- | ---------------------- |
+| COOPERATE_PREPARE              | 0 | 表示准备键鼠穿越。     |
+| COOPERATE_UNPREPARE            | 1  | 表示取消键鼠穿越准备。 |
+| COOPERATE_ACTIVATE             | 2  | 表示启动键鼠穿越。     |
+| COOPERATE_ACTIVATE_SUCCESS     | 3  | 表示键鼠穿越启动成功。 |
+| COOPERATE_ACTIVATE_FAILURE        | 4 | 表示键鼠穿越无法启动。 |
+| COOPERATE_DEACTIVATE_SUCCESS   | 5  | 表示键鼠穿越停止成功。 |
+| COOPERATE_DEACTIVATE_FAILURE      | 6 | 表示键鼠穿越无法停止。 |
+| COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开。 |
 
 ## CooperateOptions<sup>20+</sup>
 
@@ -816,7 +806,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -832,13 +822,13 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.prepare((error: BusinessError) => {
     if (error) {
@@ -860,7 +850,7 @@ prepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -876,13 +866,13 @@ prepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.prepare().then(() => {
     console.info(`Keyboard mouse crossing prepare success.`);
@@ -904,7 +894,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -918,13 +908,13 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.unprepare((error: BusinessError) => {
     if (error) {
@@ -946,7 +936,7 @@ unprepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -962,13 +952,13 @@ unprepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.unprepare().then(() => {
     console.info(`Keyboard mouse crossing unprepare success.`);
@@ -990,7 +980,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -998,7 +988,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 | callback             | AsyncCallback&lt;void&gt; |  是    | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
@@ -1009,13 +999,13 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -1039,7 +1029,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1047,7 +1037,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
 
 
@@ -1056,7 +1046,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。     |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1065,13 +1055,13 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status.|
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -1095,7 +1085,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1112,13 +1102,13 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 |Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
@@ -1140,7 +1130,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1156,7 +1146,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise&lt;void&gt; |  无返回结果的Promise对象。      |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -1164,12 +1154,12 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   cooperate.deactivate(false).then(() => {
     console.info(`Stop Keyboard mouse crossing success.`);
@@ -1191,7 +1181,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1208,13 +1198,13 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -1237,7 +1227,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
+> 从API version 10开始不再维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1253,7 +1243,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **返回值**：
@@ -1267,7 +1257,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
@@ -1290,7 +1280,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1307,18 +1297,21 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
-function callback(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+import { cooperate } from '@kit.DistributedServiceKit';
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 try {
-  cooperate.on('cooperate', callback);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
 } catch (error) {
   console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -1334,7 +1327,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1351,36 +1344,40 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
 ```ts
 // 取消注册单个回调函数
-function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 function callbackOff() {
   console.info(`Keyboard mouse crossing event`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callbackOn);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
   cooperate.off('cooperate', callbackOff);
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error)}`);
 }
 ```
 ```ts
 // 取消注册所有回调函数
-function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
-  return false;
+class Data {
+  networkId: string = "networkId";
+  msg: cooperate.CooperateMsg = 0;
 }
 try {
-  cooperate.on('cooperate', callbackOn);
+  cooperate.on('cooperate', (data: Data)=>{
+    console.info(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
+  });
   cooperate.off('cooperate');
 } catch (error) {
   console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -1395,7 +1392,7 @@ try {
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[CooperateMessage](#cooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[CooperateMessage](#cooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 

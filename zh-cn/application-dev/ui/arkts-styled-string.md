@@ -1,4 +1,9 @@
 # 属性字符串（StyledString/MutableStyledString）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。具体使用方法请参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)的文档。
 
@@ -451,8 +456,8 @@
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI';
-  import { drawing, text } from '@kit.ArkGraphics2D';
-  
+  import { drawing } from '@kit.ArkGraphics2D';
+
   class MyCustomSpan extends CustomSpan {
     constructor(word: string, width: number, height: number, context: UIContext) {
       super();
@@ -461,11 +466,11 @@
       this.height = height;
       this.context = context;
     }
-  
+
     onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
       return { width: this.width, height: this.height };
     }
-  
+
     onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
       let canvas = context.canvas;
       const brush = new drawing.Brush();
@@ -495,23 +500,22 @@
       canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
       canvas.detachBrush();
     }
-  
+
     setWord(word: string) {
       this.word = word;
     }
-  
+
     width: number = 160;
     word: string = "drawing";
     height: number = 10;
     context: UIContext;
   }
-  
+
   @Entry
   @Component
   struct Index {
-    @State pixelMap?: PixelMap = undefined;
     str: string =
-      "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty,   and dedicated to the proposition that all men are created equal."
+      "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.";
     mutableStr2 = new MutableStyledString(this.str, [
       {
         start: 0,
@@ -525,40 +529,43 @@
         styledKey: StyledStringKey.FONT,
         styledValue: new TextStyle({ fontColor: Color.Brown })
       }
-    ])
-  
+    ]);
+
+    // 测算属性字符串在指定宽度下能显示的行数
     getLineNum(styledString: StyledString, width: LengthMetrics) {
-      let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width })
-      let res = 0
+      let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width });
+      let res = 0;
       for (let i = 0; i < paragraphArr.length; ++i) {
-        res += paragraphArr[i].getLineCount()
+        res += paragraphArr[i].getLineCount();
       }
-      return res
+      return res;
     }
-  
+
+    // 测算属性字符串显示maxLines行时最多可以显示的字数
     getCorrectIndex(styledString: MutableStyledString, maxLines: number, width: LengthMetrics) {
-      let low = 0
+      let low = 0;
       let high = styledString.length - 1;
+      // 使用二分查找
       while (low <= high) {
         let mid = (low + high) >> 1;
-        console.log("demo: get " + low + " " + high + " " + mid)
+        console.log("demo: get " + low + " " + high + " " + mid);
         let moreStyledString = new MutableStyledString("... 全文", [{
           start: 4,
           length: 2,
           styledKey: StyledStringKey.FONT,
           styledValue: new TextStyle({ fontColor: Color.Blue })
-        }])
-        moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
-        let lineNum = this.getLineNum(moreStyledString, LengthMetrics.px(500))
+        }]);
+        moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid));
+        let lineNum = this.getLineNum(moreStyledString, LengthMetrics.px(500));
         if (lineNum <= maxLines) {
           low = mid + 1;
         } else {
           high = mid - 1;
         }
       }
-      return high
+      return high;
     }
-  
+
     mutableStrAllContent = new MutableStyledString(this.str, [
       {
         start: 0,
@@ -572,7 +579,7 @@
         styledKey: StyledStringKey.FONT,
         styledValue: new TextStyle({ fontColor: Color.Brown })
       }
-    ])
+    ]);
     customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
     mutableStrAllContent2 = new MutableStyledString(this.str, [
       {
@@ -587,59 +594,59 @@
         styledKey: StyledStringKey.FONT,
         styledValue: new TextStyle({ fontColor: Color.Brown })
       }
-    ])
-    controller: TextController = new TextController()
-    controller2: TextController = new TextController()
-    textController: TextController = new TextController()
-    textController2: TextController = new TextController()
-  
+    ]);
+    controller: TextController = new TextController();
+    controller2: TextController = new TextController();
+    textController: TextController = new TextController();
+    textController2: TextController = new TextController();
+
     aboutToAppear() {
       this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
       this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
     }
-  
+
     build() {
       Scroll() {
         Column() {
           Text('原文')
           Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
-            this.controller.setStyledString(this.mutableStrAllContent)
+            this.controller.setStyledString(this.mutableStrAllContent);
           })
           Divider().strokeWidth(8).color('#F1F3F5')
           Text('排版后')
           Text(undefined, { controller: this.textController }).onAppear(() => {
-            let now = this.getCorrectIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
+            let now = this.getCorrectIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500));
             if (now != this.mutableStrAllContent.length - 1) {
               let moreStyledString = new MutableStyledString("... 全文", [{
                 start: 4,
                 length: 2,
                 styledKey: StyledStringKey.FONT,
                 styledValue: new TextStyle({ fontColor: Color.Blue })
-              }])
-              moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
-              this.textController.setStyledString(moreStyledString)
+              }]);
+              moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now));
+              this.textController.setStyledString(moreStyledString);
             } else {
-              this.textController.setStyledString(this.mutableStrAllContent)
+              this.textController.setStyledString(this.mutableStrAllContent);
             }
           })
             .width('500px')
           Divider().strokeWidth(8).color('#F1F3F5')
           Text('原文')
           Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
-            this.controller2.setStyledString(this.mutableStrAllContent2)
+            this.controller2.setStyledString(this.mutableStrAllContent2);
           })
           Divider().strokeWidth(8).color('#F1F3F5')
           Text('排版后')
           Text(undefined, { controller: this.textController2 }).onAppear(() => {
-            let now = this.getCorrectIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
+            let now = this.getCorrectIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500));
             let moreStyledString = new MutableStyledString("... 全文", [{
               start: 4,
               length: 2,
               styledKey: StyledStringKey.FONT,
               styledValue: new TextStyle({ fontColor: Color.Blue })
-            }])
-            moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
-            this.textController2.setStyledString(moreStyledString)
+            }]);
+            moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now));
+            this.textController2.setStyledString(moreStyledString);
           })
             .width('500px')
         }.width('100%')
@@ -687,11 +694,7 @@
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-        bundleName: resource.bundleName,
-        moduleName: resource.moduleName,
-        id: resource.id
-      });
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
       let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -980,11 +983,7 @@ struct styled_string_demo8 {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888

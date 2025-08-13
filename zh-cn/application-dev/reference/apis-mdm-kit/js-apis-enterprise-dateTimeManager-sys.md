@@ -1,4 +1,9 @@
 # @ohos.enterprise.dateTimeManager （系统时间管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供系统时间管理能力。
 

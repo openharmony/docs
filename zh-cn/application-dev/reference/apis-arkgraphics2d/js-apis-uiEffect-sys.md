@@ -1,5 +1,11 @@
 # @ohos.graphics.uiEffect (效果级联)(系统接口)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hanamaru-->
+<!--SE: @comicchang-->
+<!--TSE: @gcw_fsLqk7gL-->
+
 本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
@@ -602,9 +608,7 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 ```ts
 import {image} from '@kit.ImageKit'
 import {common2D, uiEffect} from '@kit.ArkGraphics2D'
-
-const context = getContext(this)
-const resourceMgr =context.resourceManager
+import {common} from '@kit.AbilityKit'
 
 @Entry
 @Component
@@ -615,11 +619,12 @@ struct MaskDispersion {
   @State fillColor: uiEffect.Color = { red: 0, green: 0, blue: 0, alpha: 0 }
 
   onPageShow(): void {
-    resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    context.resourceManager.getMediaContent($r("app.media.mask_alpha")).then(val => {
       let buffer = val.buffer.slice(0, val.buffer.byteLength)
       let imageSource = image.createImageSource(buffer);
-      imageSource.createPixelMap().then(pixelmap => {
-        this.pixelMap_ = pixelmap
+      imageSource.createPixelMap().then(pixelMap => {
+        this.pixelMap_ = pixelMap
       })
     })
   }
@@ -1151,6 +1156,7 @@ static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstR
 ```ts
 import { image } from "@kit.ImageKit";
 import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+import { BusinessError } from '@kit.BasicServicesKit'
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -1181,6 +1187,8 @@ image.createPixelMap(color, opts).then((pixelMap) => {
     alpha: 1
   }
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
+}).catch((error: BusinessError)=>{
+  console.error('Failed to create pixelmap. code is ${error.code}, message is ${error.message}');
 })
 ```
 ### createRadialGradientMask<sup>20+</sup>

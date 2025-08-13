@@ -1,8 +1,13 @@
 # image_mdk_common.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_mdk_common.h** file declares the common enums and structs used by the image interface.
+The file declares the common enums and structs used by the image interface.
 
 **Library**: libimage_ndk.z.so
 

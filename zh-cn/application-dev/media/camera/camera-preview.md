@@ -1,4 +1,9 @@
 # 预览(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -154,8 +159,6 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private imageReceiver: image.ImageReceiver | undefined = undefined;
-  private imageReceiverSurfaceId: string = '';
   private xComponentCtl: XComponentController = new XComponentController();
   private xComponentSurfaceId: string = '';
   @State imageWidth: number = 1920;

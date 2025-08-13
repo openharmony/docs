@@ -1,4 +1,9 @@
 # \@Require装饰器：校验构造传参
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @VictorS67--> 
+<!--SE: @lixingchi1--> 
+<!--TSE: @TerryTsao-->
 
 \@Require是校验\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)是否需要构造传参的一个装饰器。
 

@@ -1,5 +1,9 @@
 # DRM解决方案开发指导
-
+<!--Kit:Drm Kit-->
+<!--Subsystem:Multimedia-->
+<!--Owner:@qin_wei_jie-->
+<!--SE:@chris2981-->
+<!--TSE:@xdlinc-->
 DRM 解决方案插件实现 DRM HDI 接口（链接），DRM Kit的DRM框架将通过HDI接口加载DRM解决方案插件。
 
 插件由DRM解决方案集成方开发，放置在设备的 /vendor 分区中。
@@ -399,7 +403,7 @@ passwd文件为系统用户配置文件，存储了系统中所有用户的基�
 
 ```
 //base/startup/init/services/etc/passwd
-clearplay_host:x:1089:1089:::/bin/false
+clearplay_host:x:1089:1089::/bin/false
 ```
 
 `//base/startup/init/services/etc/passwd`中每行用户信息使用“:”作为分隔符，划分为7个字段，每个字段所表示的含义如下：

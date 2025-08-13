@@ -1,5 +1,9 @@
 # 复杂文本绘制与显示（ArkTS）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 在进行文本绘制时，可以通过选择合适的字体、大小和颜色完成简单文本的绘制与显示；此外，还支持通过设置其他丰富的样式、语言、段落等进行复杂文本的绘制。
 
 复杂文本绘制主要包含以下几个场景：
@@ -150,7 +154,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -364,7 +367,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -490,7 +492,7 @@ struct Font08 {
 
 占位符绘制用于处理文本中占位符符号的渲染。
 
-占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
+占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供或替代某个位置的视觉元素。
 
 具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
@@ -600,7 +602,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -734,7 +735,7 @@ class MyRenderNode extends RenderNode {
     let left = placeholderRects[0].rect.left
     // 获取第一个占位符的上边界
     let top = placeholderRects[0].rect.top
-    // 获取第一个占位符的有边界
+    // 获取第一个占位符的右边界
     let right = placeholderRects[0].rect.right
     // 获取第一个占位符的下边界
     let bottom = placeholderRects[0].rect.bottom
@@ -775,7 +776,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }

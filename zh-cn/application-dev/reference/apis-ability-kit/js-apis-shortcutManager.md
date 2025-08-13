@@ -1,4 +1,9 @@
 # @ohos.bundle.shortcutManager (shortcutManager模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供应用对于快捷方式管理能力，包括设置快捷方式是否显示等。
 
@@ -93,7 +98,7 @@ type ShortcutInfo = _ShortcutInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | 应用module.json5配置文件中定义的快捷方式信息。 |
 
 ## ShortcutWant
 

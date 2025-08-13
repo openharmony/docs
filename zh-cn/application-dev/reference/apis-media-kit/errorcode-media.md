@@ -1,4 +1,9 @@
 # Media错误码
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -196,7 +201,7 @@ Can not find host.
 
 **错误信息**
 
-Connection time out.
+Connection timeout.
 
 **错误描述**
 
@@ -215,7 +220,7 @@ Connection time out.
 
 **错误信息**
 
-NetWork abnormal.
+Network abnormal.
 
 **错误描述**
 
@@ -233,7 +238,7 @@ NetWork abnormal.
 
 **错误信息**
 
-NetWork unavailable.
+Network unavailable.
 
 **错误描述**
 
@@ -366,7 +371,7 @@ SSL服务端不可信，客户端校验服务端证书失败。
 
 **错误信息**
 
-Unsupportted request.
+Unsupported request.
 
 **错误描述**
 
@@ -385,7 +390,7 @@ Unsupportted request.
 
 **错误信息**
 
-seek continuous is unsupported.
+Seek continuous is unsupported.
 
 **错误描述**
 
@@ -403,7 +408,7 @@ seek continuous is unsupported.
 
 **错误信息**
 
-super resolution not supported.
+Super resolution not supported.
 
 **错误描述**
 
@@ -421,7 +426,7 @@ super resolution not supported.
 
 **错误信息**
 
-super resolution not enabled.
+Super resolution not enabled.
 
 **错误描述**
 

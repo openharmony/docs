@@ -1,5 +1,9 @@
 # 输入法应用沉浸模式
-
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 ## 场景介绍
 

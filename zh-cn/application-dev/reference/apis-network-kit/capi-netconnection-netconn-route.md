@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char iface[NETCONN_MAX_STR_LEN] | 网络接口 |
+| char iface[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#宏定义) | 网络接口 |
 | [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) destination | 目标地址 |
 | [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) gateway | 网关地址 |
 | int32_t hasGateway | 是否存在网关 |

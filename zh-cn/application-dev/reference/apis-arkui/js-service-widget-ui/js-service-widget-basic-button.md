@@ -1,4 +1,9 @@
 # button
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 
 按钮组件，包括胶囊按钮、圆形按钮和文本按钮。

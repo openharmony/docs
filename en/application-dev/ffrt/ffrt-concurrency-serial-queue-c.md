@@ -1,5 +1,11 @@
 # Function Flow Runtime Serial Queue (C)
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## Overview
 
 The FFRT serial queue is implemented based on the coroutine scheduling model. It provides efficient message queue functions and supports multiple service scenarios, such as asynchronous communication, mobile data peak clipping, lock-free status and resource management, and architecture decoupling. The following functions are supported:
@@ -141,9 +147,9 @@ The main FFRT APIs involved in the preceding example are as follows:
 
 | Name                                                              | Description                |
 | ------------------------------------------------------------------ | -------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | Creates a queue.          |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | Destroys a queue.          |
-| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_submit_f) | Submits a task to a queue.|
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)     | Creates a queue.          |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)   | Destroys a queue.          |
+| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_t) | Submits a task to a queue.|
 
 > **NOTE**
 >

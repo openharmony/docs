@@ -1,4 +1,9 @@
 # oh_pasteboard_err_code.h
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 ## 概述
 

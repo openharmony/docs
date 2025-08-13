@@ -1,4 +1,9 @@
 # 用户文件概述
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 用户文件：登录到该终端设备的用户所拥有的文件，包括用户私有的[图片、视频](../media/medialibrary/photoAccessHelper-overview.md)、音频、文档等。
 

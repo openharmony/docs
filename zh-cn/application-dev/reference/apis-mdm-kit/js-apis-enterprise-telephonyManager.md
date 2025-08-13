@@ -1,4 +1,9 @@
 # @ohos.enterprise.telephonyManager（通话管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供通话管理能力。
 

@@ -1,5 +1,9 @@
 # NN_Tensor
-<!--Kit_Neural Network Runtime Kit--><!--System_AI-->
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--SE: @GbuzhidaoR-->
+<!--TSE @GbuzhidaoR-->
 
 ## 概述
 

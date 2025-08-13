@@ -1,4 +1,9 @@
 # XComponentNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 <!--deprecated_code_no_check-->
 
 提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
@@ -77,7 +82,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 **返回值：**
 
-| 类型 | 描述                   |
+| 类型 | 说明                   |
 | ---- | ---------------------- |
 | boolean | 修改渲染类型是否成功。<br/>true：修改渲染类型成功；false：修改渲染类型失败。 |
 
@@ -139,5 +144,5 @@ struct Index {
 <!--Del-->
 > **说明：**
 >
-> 示例中的Native层编译输出动态库参考自[OpenGL三棱锥（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
+> 示例中的Native层编译输出动态库参考自[OpenGL三棱锥（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
 <!--DelEnd-->

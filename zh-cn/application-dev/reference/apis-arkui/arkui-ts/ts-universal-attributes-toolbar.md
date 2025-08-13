@@ -1,4 +1,9 @@
 # 工具栏设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 设置组件对应的工具栏。
 
@@ -10,7 +15,7 @@
 
 ## toolbar
 
-toolbar(value: CustomBuilder)
+toolbar(value: CustomBuilder): T
 
 为绑定该属性的组件，在窗口顶部标题栏相应分栏创建与该组件绑定的由[ToolBarItem](ts-basic-components-toolbaritem.md)构成的工具栏，分栏位置依据绑定该属性的组件所在分栏位置确定。[CustomBuilder](ts-types.md#custombuilder8)必须由[ToolBarItem](ts-basic-components-toolbaritem.md)构成，该工具栏才能生效。
 
@@ -21,6 +26,12 @@ toolbar(value: CustomBuilder)
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
 | value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 为当前组件配置CustomBuilder类型的自定义工具栏。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 >  **说明：**
 >  1. toolbar仅支持固定标题栏，不支持悬浮标题栏（仅限三键模式）。

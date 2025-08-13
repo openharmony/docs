@@ -1,4 +1,9 @@
 # V1->V2迁移指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @katabanga-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 ## 概述
 ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同步到UI界面，实现数据驱动的UI刷新，使开发者能更加够专注于UI界面的实现和设计。
@@ -39,6 +44,6 @@ ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同
 ## V1V2迁移场景
 | 场景                | 涉及V2装饰器和API                  | 说明 |
 |------------------------|--------------------------|--------------------------|
-| V1现有功能向V2的逐步迁移场景      | \@ObservedV2、\@Trace和\@Monitor |对于已经使用V1开发的应用，逐步迁移V2的示例，详情见[V1现有功能向V2的逐步迁移场景](./arkts-v1-v2-migration-application-and-others.md#V1现有功能向V2的逐步迁移场景)。|
+| V1现有功能向V2的逐步迁移场景      | \@ObservedV2、\@Trace和\@Monitor |对于已经使用V1开发的应用，逐步迁移V2的示例，详情见[V1现有功能向V2的逐步迁移场景](./arkts-v1-v2-migration-application-and-others.md#v1现有功能向v2的逐步迁移场景)。|
 | 滑动组件场景      | [makeObserved](./arkts-new-makeObserved.md)|详情见[滑动组件迁移场景](./arkts-v1-v2-migration-application-and-others.md#滑动组件)。|
 | [Modifier](../arkts-user-defined-modifier.md)场景     | makeObserved、\@ObservedV2、\@Trace|详情见[Modifier迁移场景](./arkts-v1-v2-migration-application-and-others.md#modifier)。|

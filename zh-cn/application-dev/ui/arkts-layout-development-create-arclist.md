@@ -1,5 +1,11 @@
 # 弧形列表 (ArcList)（圆形屏幕推荐使用）
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 弧形列表是一种专为圆形屏幕设备设计的特殊列表，它能够以结构化、可滚动的形式高效展示信息。具体用法可参考[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)。
 
 使用弧形列表可以通过在[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件中按垂直方向线性排列子组件[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)，可以为弧形列表中的每一项提供独立视图。此外，可以使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)来迭代一组列表项，或结合任意数量的单个视图与[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)结构，构建复杂的弧形列表。[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件支持多种[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)方式，包括条件渲染、循环渲染和懒加载，以生成子组件。

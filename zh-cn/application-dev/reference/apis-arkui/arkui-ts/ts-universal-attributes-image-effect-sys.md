@@ -1,4 +1,9 @@
 # 图像效果 (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 设置组件与下方画布已有内容进行混合的图像效果。
 

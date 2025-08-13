@@ -1,4 +1,9 @@
 # @ohos.promptAction (弹窗)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 创建并显示文本提示框、对话框和操作菜单。
 

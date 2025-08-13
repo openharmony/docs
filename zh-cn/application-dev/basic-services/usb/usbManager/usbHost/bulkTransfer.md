@@ -1,5 +1,11 @@
 # USB批量传输
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
+
 ## 场景介绍
 
 批量传输主要应用在传输和接收大量数据同时又没有带宽和间隔时间要求的情况下，例如传输文件、图像等场景，打印机和扫描仪等设备属于这种类型的设备。
@@ -56,8 +62,12 @@
    ```
    
 2. 获取设备列表。
+
+> **说明：** 
+>
+> 批量传输只能在[传输类型](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18)为2的端点上进行，若不匹配会返回IO错误。
    
-    ```ts
+   ```ts
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    console.info(`deviceList: ${deviceList}`);
@@ -105,7 +115,7 @@
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 3,
+                   type: 2, // 决定传输类型。
                    interfaceId: 0,
                  }
                ]
@@ -144,6 +154,12 @@
    ```
 
 5. 数据传输。
+
+**说明：**
+
+> 在数据传输前建议先获取interface所属endpointer的type，通过type判断interface是否支持所需的传输类型。
+>
+> 若调用传输接口失败，请先确认设备interface是否支持[模式切换](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbinterface)。若alternateSetting支持切换设置，可在传输前调用[usbManager.setInterface](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbmanagersetinterface)重新设置interface，使端点和传输类型匹配，保证端点正常通信。
 
     ```ts
     /*

@@ -1,4 +1,9 @@
 # JSVM-API使用规范
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 生命周期管理
 
@@ -164,6 +169,7 @@ class LockWrapper {
 static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     static JSVM_VM vm;
     static JSVM_Env env;
+    static int aa = 0;
     if (aa == 0) {
         OH_JSVM_Init(nullptr);
         aa++;
@@ -256,7 +262,7 @@ static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
     // 业务代码
     // ... ...
     // argv 为 new 创建的对象，在使用完成后手动释放
-    delete argv;
+    delete[] argv;
     return nullptr;
 }
 
@@ -264,7 +270,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value* argv[2] = {nullptr};
     // OH_JSVM_GetCbInfo 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    OH_JSVM_GetCbInfo(env, info, &argc, nullptr, nullptr, nullptr);
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
@@ -314,9 +320,13 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
             throw Error('Error throw from js');
         )JS";
         JSVM_Value sourcecodevalue = nullptr;
-        OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+        JSVM_CALL(OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue));
         JSVM_Script script;
         auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
+        if (status != JSVM_OK) {
+            OH_JSVM_ThrowError(env, nullptr, "compile script failed");
+            return nullptr;
+        }
         JSVM_Value result;
         // 执行JS脚本，执行过程中抛出JS异常
         status = OH_JSVM_RunScript(env, script, &result);
@@ -345,13 +355,12 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
         }
     )JS";
     JSVM_Value sourcecodevalue = nullptr;
-    OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+    JSVM_CALL(OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue));
     JSVM_Script script;
-    auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
-    OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}d", (uint32_t)status);
+    JSVM_CALL(OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script));
     JSVM_Value result;
     // 执行JS脚本，JS调用Native方法
-    status = OH_JSVM_RunScript(env, script, &result);
+    JSVM_CALL(OH_JSVM_RunScript(env, script, &result));
     ```
 
 2. C++调用JSVM-API（Native主，JS从）失败，需清理JSVM中等待处理的异常，避免影响后续JSVM-API的执行，并设置C++异常处理分支（或抛出C++异常）。
@@ -367,7 +376,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         JSVM_Value error = nullptr;
         // 获取并清理异常
-        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        JSVM_CALL(OH_JSVM_GetAndClearLastException((env), &error));
         // 处理异常，如打印信息，省略
         // 抛出 C++ 异常或结束函数执行
         throw "JS Compile Error";
@@ -380,7 +389,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         JSVM_Value error = nullptr;
         // 获取并清理异常
-        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        JSVM_CALL(OH_JSVM_GetAndClearLastException((env), &error));
         // 处理异常，如打印信息，省略
         // 抛出 C++ 异常或结束函数执行
         throw "JS RunScript Error";

@@ -20,9 +20,9 @@
 
 ### 成员变量
 
-| 名称                                 | 描述 |
-|------------------------------------| -- |
-| uint32_t len                       | 依赖数量 |
-| const [ffrt_dependence_t](capi-ffrt-ffrt-dependence-t.md)* items | 依赖数据 |
+| 名称 | 描述 |
+| -- | -- |
+| uint32_t len | 依赖数量 |
+| const [ffrt_dependence_t*](capi-ffrt-ffrt-dependence-t.md) items | 依赖数据 |
 
 

@@ -1,5 +1,11 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
 
 > **说明：**
@@ -34,8 +40,8 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 否  | 是    | 发生事件的目标组件。  |
 | timeStamp | number              | 否        | 是         | 事件时间戳，单位是毫秒。默认值为0。                          |
 | elementId<sup>12+</sup> | number            | 否             | 是             | 主动聚焦的组件ID。默认值为0。                 |
-| textAnnouncedForAccessibility<sup>12+</sup> | string    | 否           | 是     | 主动播报的内容。                  |
-| extraInfo<sup>20+</sup> | string    | 否           | 是     | 针对TextArea、TextInput、SearchField、RichEdit组件，当文本内容有新增或删除时，携带的文本内容。                 |
+| textAnnouncedForAccessibility<sup>12+</sup> | string    | 否           | 是     | 主动播报的内容。当应用需要主动播报时根据实际场景设置播报内容，无特殊限制。                  |
+| extraInfo<sup>20+</sup> | string    | 否           | 是     | 针对TextArea、TextInput、SearchField、RichEdit组件，当文本内容有新增或删除时，携带的文本内容。根据实际场景设置，无特殊限制。                 |
 
 
 ## AccessibilityElement<sup>10+</sup>

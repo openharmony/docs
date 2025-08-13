@@ -1,4 +1,9 @@
 # 空间音频管理
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 空间音频是一种能够将传统的立体声体验扩展到三维空间的音频技术，在单声道、立体声、环绕声基础上，增加高度感知，营造全方位的听音体验的音频技术。空间音频为用户提供沉浸的、有互动的、有空间感的“声”临其境的音频体验。
 

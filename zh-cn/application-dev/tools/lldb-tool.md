@@ -66,8 +66,8 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 ```bash
 # 创建变量
-（lldb）print int $value1 = 7
-（lldb）expression int $value2 = 7
+(lldb)print int $value1 = 7
+(lldb)expression int $value2 = 7
 # 打印变量值
 (lldb) print $value1
 (lldb) expression $value2
@@ -227,7 +227,7 @@ int main() {
           (lldb) quit
           ```
 
-#### 使用LLDB工具调试已经启动的应用。
+**使用LLDB工具调试已经启动的应用。**
 
 此处以手机环境调试使用clang编译器生成的带有调试信息的可执行文件a.out为例。
 源文件：hello.cpp

@@ -1,4 +1,9 @@
 # 通过XComponent接入无障碍
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 通过XComponent接入的三方平台，NDK提供了对接无障碍的接口函数，实现三方平台的组件在ArkUI中的无障碍能力。
 
@@ -165,9 +170,9 @@ void SendAccessibilityAsyncEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_
     // 2.callback
     auto callback = [](int32_t errorCode){
          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "result: %{public}d", errorCode);
-    }
+    };
     // 3. 调用接口发送事件给OH侧
-    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback)
+    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback);
 }
 ```
 
@@ -192,7 +197,7 @@ int32_t ClearFocusedFocusAccessibilityNode()
 int32_t GetAccessibilityNodeCursorPosition(int64_t elementId, int32_t requestId, int32_t* index)
 {	
 	// 获取文本组件光标位置，并返回
-    // 查找对应组件节点
+    // 查找对应组件节点node
     // ...
     *index = node.cursorPosition;
     // ...
@@ -316,9 +321,9 @@ void SendAccessibilityAsyncEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_
     // 2.设置创建callback函数，获取发送事件结果
     auto callback = [](int32_t errorCode){
          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "result: %{public}d", errorCode);
-    }
+    };
     // 3. 调用接口发送事件给无障碍子系统
-    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback)
+    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback);
 }
 ```
 

@@ -1,4 +1,9 @@
 # \@Link装饰器：父子双向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
@@ -338,7 +343,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF,90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.items.push(this.items.length + 1);
         })
@@ -346,7 +351,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF,90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.items = [100, 200, 300];
         })

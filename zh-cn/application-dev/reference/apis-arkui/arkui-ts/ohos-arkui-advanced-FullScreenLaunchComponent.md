@@ -1,5 +1,9 @@
 # FullScreenLaunchComponent
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--SE: @lmleon-->
+<!--TSE: @fredyuan0912-->
 
 全屏启动原子化服务组件，当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 

@@ -1,4 +1,9 @@
 # AVSession Kit（音视频播控服务）
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 - [AVSession Kit简介](avsession-overview.md)
 - 本地媒体会话<!--local-avsession-->

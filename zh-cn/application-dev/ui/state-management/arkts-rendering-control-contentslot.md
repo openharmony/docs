@@ -1,4 +1,9 @@
 # ContentSlot：混合开发
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 用于渲染并管理Native层使用C-API创建的组件。
 
@@ -126,57 +131,57 @@ napi_value CreateNativeNode(napi_env env, napi_callback_info info) {
 
 ### Native侧主要接口使用说明
 
-#### 注册上下树事件，并通过事件获取对应的Content对象
+- 注册上下树事件，并通过事件获取对应的Content对象。
 
-```c++
-auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
-    ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
-    // 针对不同content需要额外做的逻辑
-    if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
-        // ContentSlot上树时需要触发的逻辑
-    } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
-        // ContentSlot下树时需要触发的逻辑
-    };
-};
-// 将该事件注册到nodeContent上
-OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
-```
+  ```c++
+  auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+      ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+      // 针对不同content需要额外做的逻辑
+      if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
+          // ContentSlot上树时需要触发的逻辑
+      } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
+          // ContentSlot下树时需要触发的逻辑
+      };
+  };
+  // 将该事件注册到nodeContent上
+  OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
+  ```
 
-#### 添加子组件
+- 添加子组件。
 
-```c++
-ArkUINodeHandle component;
-component = CreateNodeHandle();
-// 将组件添加到nodeContent管理器中
-OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
-```
+  ```c++
+  ArkUINodeHandle component;
+  component = CreateNodeHandle();
+  // 将组件添加到nodeContent管理器中
+  OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
+  ```
 
-#### 插入子组件
+- 插入子组件。
 
-```c++
-ArkUINodeHandle component;
-component = CreateNodeHandle();
-// 将组件插入nodeContent管理器对应位置
-OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
-```
+  ```c++
+  ArkUINodeHandle component;
+  component = CreateNodeHandle();
+  // 将组件插入nodeContent管理器对应位置
+  OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
+  ```
 
-#### 删除子组件
+- 删除子组件。
 
-```c++
-// 在nodeContent中移除对应组件
-OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle_, component);
-```
+  ```c++
+  // 在nodeContent中移除对应组件
+  OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle_, component);
+  ```
 
-#### 设置自定义属性
+- 设置自定义属性。
 
-```c++
-// 创建需要定义的自定义数据
-void *userData = CreateUserData();
-OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_, userData);
-```
+  ```c++
+  // 创建需要定义的自定义数据
+  void *userData = CreateUserData();
+  OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_, userData);
+  ```
 
-#### 获取自定义属性
+- 获取自定义属性。
 
-```
-void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
-```
+  ```
+  void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
+  ```

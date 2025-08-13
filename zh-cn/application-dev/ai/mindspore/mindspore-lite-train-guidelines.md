@@ -1,5 +1,11 @@
 # 使用MindSpore Lite进行端侧训练 (C/C++)
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--SE: @zhuguodong8; @jjfeing-->
+<!--TSE: @principal87-->
+
 ## 场景介绍
 
 MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型推理的功能，目前已经在图像分类、目标识别、人脸识别、文字识别等应用中广泛使用，同时支持在端侧设备上进行部署训练，让模型在实际业务场景中自适应用户的行为。
@@ -218,7 +224,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     )
     ```
 
-   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.camke"`。
+   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`。
 
    - 编译命令如下，其中OHOS_NDK需要设置为native工具链路径：
       ```shell

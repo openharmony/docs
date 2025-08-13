@@ -1,4 +1,9 @@
 # 基于设备分类和数据分级的访问控制 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 ## 基本概念
 

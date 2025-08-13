@@ -1,4 +1,9 @@
 # ExtensionRunningInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过[getExtensionRunningInfos接口](js-apis-app-ability-abilityManager-sys.md#getextensionrunninginfos)获取。
 

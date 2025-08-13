@@ -1,4 +1,9 @@
 # Matrix2D
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 矩阵对象，可以对矩阵进行缩放、旋转和平移等变换。
 
@@ -99,7 +104,7 @@ identity(): Matrix2D
 
 | 类型                  | 说明       |
 | --------------------- | ---------- |
-| [Matrix2D](#matrix2d) | 单位矩阵。 |
+| Matrix2D | 单位矩阵。 |
 
 **示例：**
 
@@ -150,7 +155,7 @@ invert(): Matrix2D
 
 | 类型                  | 说明         |
 | --------------------- | ------------ |
-| [Matrix2D](#matrix2d) | 逆矩阵结果。 |
+| Matrix2D | 逆矩阵结果。 |
 
 **示例：**
 
@@ -211,7 +216,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [Matrix2D](#matrix2d) | 相乘结果矩阵。 |
+| Matrix2D | 相乘结果矩阵。 |
 
 ### rotate<sup>(deprecated)</sup>
 
@@ -234,7 +239,7 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | 旋转后结果矩阵对象。 |
+| Matrix2D | 旋转后结果矩阵对象。 |
 
 **示例：**
 
@@ -299,7 +304,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | 旋转后结果矩阵对象。 |
+| Matrix2D | 旋转后结果矩阵对象。 |
 
 **示例：**
 
@@ -363,7 +368,7 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | 平移后结果矩阵对象。 |
+| Matrix2D | 平移后结果矩阵对象。 |
 
 **示例：**
 
@@ -427,7 +432,7 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 类型                  | 说明               |
 | --------------------- | ------------------ |
-| [Matrix2D](#matrix2d) | 缩放结果矩阵对象。 |
+| Matrix2D | 缩放结果矩阵对象。 |
 
 **示例：**
 

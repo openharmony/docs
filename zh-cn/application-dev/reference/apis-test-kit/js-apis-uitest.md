@@ -1,5 +1,12 @@
 # @ohos.UiTest
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--SE: @inter515-->
+<!--TSE: @laonie666-->
+
+
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
 该模块提供以下功能：
@@ -203,7 +210,7 @@ UI事件的相关信息。
 
 ## On<sup>9+</sup>
 
-UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
+UiTest框架从API version 9开始，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
 On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore9)和[ON.isAfter](#isafter9)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```ts
@@ -230,7 +237,7 @@ text(txt: string, pattern?: MatchPattern): On
 
 | 参数名  | 类型                          | 必填 | 说明                                                |
 | ------- | ----------------------------- | ---- | --------------------------------------------------- |
-| txt     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。                |
+| txt     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。<!--RP2--><!--RP2End--> |
 | pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
@@ -268,7 +275,7 @@ id(id: string): On
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| id     | string | 是   | 指定控件的id值。 |
+| id     | string | 是   | 指定控件的id值。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -306,7 +313,7 @@ id(id: string, pattern: MatchPattern): On
 
 | 参数名                   | 类型   | 必填 | 说明                                    |
 |-----------------------| ------ |----|---------------------------------------|
-| id                    | string | 是  | 指定控件的id值。                             |
+| id                    | string | 是  | 指定控件的id值。<!--RP2--><!--RP2End-->  |
 | pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
 
 **返回值：**
@@ -337,10 +344,6 @@ type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
->**说明**
->
->控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -349,7 +352,7 @@ type(tp: string): On
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。|
+| tp     | string | 是   | 指定控件类型。<!--RP2--><!--RP2End--> |
 
 **返回值：**
 
@@ -378,10 +381,6 @@ type(tp: string, pattern: MatchPattern): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
->**说明**
->
->控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
-
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -390,7 +389,7 @@ type(tp: string, pattern: MatchPattern): On
 
 | 参数名                   | 类型   | 必填 | 说明                                    |
 |-----------------------| ------ |----|---------------------------------------|
-| tp                    | string | 是  | 指定控件类型。                               |
+| tp                    | string | 是  | 指定控件类型。<!--RP2--><!--RP2End-->  |
 | pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
 
 **返回值：**
@@ -428,7 +427,7 @@ clickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -465,7 +464,7 @@ longClickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可长按点击状态。true：可长按点击。false：不可长按点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可长按点击状态。true：可长按点击。false：不可长按点击。默认为true。<!--RP2--><!--RP2End--> |
 
 **返回值：**
 
@@ -502,7 +501,7 @@ scrollable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -539,7 +538,7 @@ enabled(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -576,7 +575,7 @@ focused(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。 |
+| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -613,7 +612,7 @@ selected(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -650,7 +649,7 @@ checked(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为true。 |
+| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -687,7 +686,7 @@ checkable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为true。 |
+| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为true。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -724,13 +723,13 @@ isBefore(on: On): On
 
 | 参数名 | 类型       | 必填 | 说明                 |
 | ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | 是   | 特征控件的属性要求。 |
+| on     | [On](#on9) | 是   | 特征控件的属性要求。 <!--RP3--><!--RP3End-->  |
 
 **返回值：**
 
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
-| [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。 |
+| [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。|
 
 **错误码：**
 
@@ -763,13 +762,13 @@ isAfter(on: On): On
 
 | 参数名 | 类型       | 必填 | 说明                 |
 | ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | 是   | 特征控件的属性要求。 |
+| on     | [On](#on9) | 是   | 特征控件的属性要求。 <!--RP3--><!--RP3End-->  |
 
 **返回值：**
 
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
-| [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。 |
+| [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。  |
 
 **错误码：**
 
@@ -802,7 +801,7 @@ within(on: On): On
 
 | 参数名 | 类型       | 必填 | 说明                 |
 | ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | 是   | 特征控件的属性要求。 |
+| on     | [On](#on9) | 是   | 特征控件的属性要求。<!--RP3--><!--RP3End-->  |
 
 **返回值：**
 
@@ -840,7 +839,7 @@ inWindow(bundleName: string): On
 
 | 参数名     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---- | ---------------- |
-| bundleName | string | 是   | 应用窗口的包名。 |
+| bundleName | string | 是   | 应用窗口的包名。<!--RP2--><!--RP2End-->  |
 
 **返回值：**
 
@@ -877,7 +876,7 @@ description(val: string, pattern?: MatchPattern): On
 
 | 参数名  | 类型                          | 必填 | 说明                                                |
 | ------- | ----------------------------- | ---- | --------------------------------------------------- |
-| val     | string                        | 是   | 控件的描述属性。                                    |
+| val     | string                        | 是   | 控件的描述属性。 <!--RP2--><!--RP2End-->   |
 | pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
@@ -915,7 +914,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ |----|---------------------------------------|
-| val     | string | 是  | 指定控件提示文本。                              |
+| val     | string | 是  | 指定控件提示文本。  <!--RP2--><!--RP2End-->   |
 | pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
@@ -954,7 +953,7 @@ belongingDisplay(displayId: number): On
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ |----|---------------------------------------|
-| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。可通过[getAllDisplays](../apis-arkui/js-apis-display.md#displaygetalldisplays9)获取当前所有的display对象，并由display对象获取对应的屏幕ID。 |
+| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。可通过[getAllDisplays](../apis-arkui/js-apis-display.md#displaygetalldisplays9)获取当前所有的display对象，并由display对象获取对应的屏幕ID。<!--RP2--><!--RP2End--> |
 
 **返回值：**
 
@@ -996,7 +995,7 @@ originalText(text: string, pattern?: MatchPattern): On
 
 | 参数名  | 类型                          | 必填 | 说明                                                |
 | ------- | ----------------------------- | ---- | --------------------------------------------------- |
-| text     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。                |
+| text     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。 <!--RP2--><!--RP2End-->  |
 | pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
@@ -1714,7 +1713,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -2669,7 +2668,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
-通过给定的key值，找到对应组合键并点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如ctrl+c。
+通过给定的key值，找到对应组合键并点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如Ctrl+c。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2712,7 +2711,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number, displayId?: number): Promise\<void>
 
-通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如ctrl+c。
+通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如Ctrl+c。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3988,7 +3987,7 @@ async function demo() {
 
 mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
 
-在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
+在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下Ctrl并进行鼠标点击动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4032,7 +4031,7 @@ async function demo() {
 
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
-在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
+在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下Ctrl并进行鼠标滚轮滑动动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4202,7 +4201,7 @@ async function demo() {
 
 mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
-在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
+在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下Ctrl并进行鼠标双击动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4246,7 +4245,7 @@ async function demo() {
 
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
-在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下Ctrl并进行鼠标长按动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4290,7 +4289,7 @@ async function demo() {
 
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number, duration?: number): Promise\<void>
 
-在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键，支持指定长按时长，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键，支持指定长按时长，使用Promise异步回调。例如，Key值为2072时，按下Ctrl并进行鼠标长按动作。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -5608,7 +5607,7 @@ async function demo() {
 
 UI事件监听器。
 
-### once('toastShow')
+### once('toastShow')<sup>10+</sup>
 
 once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
@@ -5650,7 +5649,7 @@ async function demo() {
 }
 ```
 
-### once('dialogShow')
+### once('dialogShow')<sup>10+</sup>
 
 once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
@@ -6050,6 +6049,12 @@ click(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6071,6 +6076,12 @@ doubleClick(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6091,6 +6102,12 @@ longClick(): Promise\<void>
 从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6384,6 +6401,12 @@ inputText(text: string): Promise\<void>
 | ------ | ------ | ---- | ---------------- |
 | text   | string | 是   | 输入的文本信息。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6476,6 +6499,12 @@ UiDriver对象在给定的时间内延时。
 | -------- | ------ | ---- | ------------ |
 | duration | number | 是   | 给定的时间。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6566,6 +6595,12 @@ assertComponentExist(by: By): Promise\<void>
 | ------ | ------------------- | ---- | -------------------- |
 | by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -6596,6 +6631,12 @@ UiDriver对象进行点击BACK键的操作。
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6621,6 +6662,12 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
 | keyCode | number | 是   | 指定的key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6650,6 +6697,12 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6677,6 +6730,12 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 | ------ | ------ | ---- | -------------------------------------- |
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -6706,6 +6765,12 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -6734,6 +6799,12 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。 |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。 |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

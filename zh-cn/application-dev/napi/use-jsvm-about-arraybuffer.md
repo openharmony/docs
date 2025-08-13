@@ -1,4 +1,9 @@
 # 使用JSVM-API接口进行ArrayBuffer相关开发
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 简介
 
@@ -46,6 +51,7 @@ static JSVM_Value GetArraybufferInfo(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_IsArraybuffer(env, args[0], &isArrayBuffer);
     if (!isArrayBuffer) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetArraybufferInfo isArrayBuffer:false");
+        return nullptr;
     }
     void *data;
     size_t byteLength = 0;
@@ -78,7 +84,7 @@ getArraybufferInfo(new ArrayBuffer(10));
 JSVM GetArraybufferInfo: success
 ```
 
-<!-- @[oh_jsvm_get_arraybuffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_arraybuffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsArraybuffer
 
@@ -131,7 +137,7 @@ JSVM IsArrayBuffer: success
 JSVM IsArrayBuffer: 1
 ```
 
-<!-- @[oh_jsvm_is_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_DetachArraybuffer
 
@@ -208,7 +214,7 @@ JSVM IsDetachedArraybuffer: success
 JSVM IsArrayBuffer: 1
 ```
 
-<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_CreateArraybuffer
 
@@ -231,13 +237,14 @@ static JSVM_Value CreateArraybuffer(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     int32_t value = 0;
     size_t length = 0;
-    OH_JSVM_GetValueInt32(env, argv[0], &value);
+    JSVM_CALL(OH_JSVM_GetValueInt32(env, argv[0], &value));
     length = size_t(value);
     void *data;
     // 创建一个新的ArrayBuffer
     JSVM_Status status = OH_JSVM_CreateArraybuffer(env, length, &data, &result);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM CreateArraybuffer: failed");
+        return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM CreateArraybuffer: success");
         OH_LOG_INFO(LOG_APP, "JSVM ArrayBuffer length: %{public}d", length);
@@ -266,4 +273,4 @@ JSVM CreateArraybuffer: success
 JSVM ArrayBuffer length: 8
 ```
 
-<!-- @[oh_jsvm_create_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->

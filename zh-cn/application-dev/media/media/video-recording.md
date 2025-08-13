@@ -1,4 +1,9 @@
 # 使用AVRecorder录制视频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xdlinc-->
 
 当前仅支持[AVRecorder](media-kit-intro.md#avrecorder)开发视频录制，集成了音频捕获，音频编码，视频编码，音视频封装功能，适用于实现简单视频录制并直接得到视频本地文件的场景。
 
@@ -42,12 +47,13 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let avRecorder: media.AVRecorder;
+   private avRecorder: media.AVRecorder | undefined = undefined;
+
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     avRecorder = recorder;
+     this.avRecorder = recorder;
    }, (error: BusinessError) => {
      console.error('createAVRecorder failed');
-   })
+   });
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
@@ -63,11 +69,11 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    // 状态上报回调函数。
    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
-   })
+   });
    // 错误上报回调函数。
    this.avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
-   })
+   });
    ```
 
 3. 配置视频录制参数，调用prepare()接口，此时进入prepared状态。
@@ -91,12 +97,12 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
-     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
-     videoBitrate : 200000, // 视频比特率。
-     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
-     videoFrameWidth : 640,  // 视频分辨率的宽。
-     videoFrameHeight : 480, // 视频分辨率的高。
-     videoFrameRate : 30 // 视频帧率。
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
+     videoBitrate: 200000, // 视频比特率。
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
+     videoFrameWidth: 640,  // 视频分辨率的宽。
+     videoFrameHeight: 480, // 视频分辨率的高。
+     videoFrameRate: 30 // 视频帧率。
    };
 
    let videoMetaData: media.AVMetadata = {
@@ -106,19 +112,19 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-   let fileFd = videoFile.fd; // 获取文件fd。
+   let fileFd: number = videoFile.fd; // 获取文件fd。
   
    let avConfig: media.AVRecorderConfig = {
-     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
-     profile : avProfile,
+     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
+     profile: avProfile,
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件。
-     metadata : videoMetaData
+     metadata: videoMetaData
    };
    this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
    }, (error: BusinessError) => {
      console.error('avRecorder prepare failed');
-   })
+   });
    ```
 
 4. 获取视频录制需要的SurfaceID。
@@ -133,7 +139,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      console.info('avRecorder getInputSurface success');
    }, (error: BusinessError) => {
      console.error('avRecorder getInputSurface failed');
-   })
+   });
    ```
 
 5. 初始化视频数据输入源。该步骤需要在输入源模块完成，以相机为例，需要创建录像输出流，包括创建Camera对象、获取相机列表、创建相机输入流等，相机详细步骤请参考[相机-录像方案](../camera/camera-recording.md)。
@@ -173,24 +179,23 @@ export class VideoRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
-    fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
-    videoBitrate : 100000, // 视频比特率。
-    videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
-    videoFrameWidth : 640,  // 视频分辨率的宽。
-    videoFrameHeight : 480, // 视频分辨率的高。
-    videoFrameRate : 30 // 视频帧率。
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
+    videoBitrate: 100000, // 视频比特率。
+    videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
+    videoFrameWidth: 640,  // 视频分辨率的宽。
+    videoFrameHeight: 480, // 视频分辨率的高。
+    videoFrameRate: 30 // 视频帧率。
   };
   private videoMetaData: media.AVMetadata = {
     videoOrientation: '0' // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
   };
   private avConfig: media.AVRecorderConfig = {
-    videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
-    profile : this.avProfile,
-    url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
-    metadata : this.videoMetaData
+    videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
+    profile: this.avProfile,
+    url: 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
+    metadata: this.videoMetaData
   };
   
-  private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源。
   private filePath: string = ''; // 文件路径。
   private fileFd: number = 0;
   
@@ -205,15 +210,15 @@ export class VideoRecorderDemo extends CustomComponent {
 
   // 注册avRecorder回调函数。
   setAvRecorderCallback() {
-    if (this.avRecorder != undefined) {
+    if (this.avRecorder !== undefined) {
       // 状态机变化回调函数。
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.info(TAG + 'current state is: ' + state);
-      })
+        console.info(TAG + 'current state is: ' + state + ', reason is: ' + reason);
+      });
       // 错误上报回调函数。
       this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
-      })
+        console.error(TAG + 'error occurred, error message is: ' + err.message);
+      });
     }
   }
 
@@ -244,7 +249,8 @@ export class VideoRecorderDemo extends CustomComponent {
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
     }
-    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略。
+    // 2.获取录制文件fd，将获取到的值传递给avConfig中的url属性。
+    await this.createAndSetFd();
     // 3.配置录制参数完成准备工作。
     await this.avRecorder.prepare(this.avConfig);
     this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
@@ -252,14 +258,14 @@ export class VideoRecorderDemo extends CustomComponent {
     await this.prepareCamera();
     // 5.启动相机出流。
     await this.startCameraOutput();
-    // 6. 启动录制。
+    // 6.启动录制。
     await this.avRecorder.start();
 
   }
 
   // 暂停录制对应的流程。
   async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换。
+    if (this.avRecorder !== undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换。
       await this.avRecorder.pause();
       await this.stopCameraOutput(); // 停止相机出流。
     }
@@ -267,15 +273,15 @@ export class VideoRecorderDemo extends CustomComponent {
 
   // 恢复录制对应的流程。
   async resumeRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换。
+    if (this.avRecorder !== undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换。
       await this.startCameraOutput();  // 启动相机出流。
       await this.avRecorder.resume();
     }
   }
 
   async stopRecordingProcess() {
-    if (this.avRecorder != undefined) {
-      // 1. 停止录制。
+    if (this.avRecorder !== undefined) {
+      // 1.停止录制。
       if (this.avRecorder.state === 'started'
         || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换。
         await this.avRecorder.stop();
@@ -285,7 +291,7 @@ export class VideoRecorderDemo extends CustomComponent {
       await this.avRecorder.reset();
       // 3.释放录制实例。
       await this.avRecorder.release();
-      // 4.文件录制完成后，关闭fd,实现略。
+      // 4.文件录制完成后，关闭fd。
       await fs.close(this.fileFd);
       // 5.释放相机相关实例。
       await this.releaseCamera();
@@ -294,11 +300,11 @@ export class VideoRecorderDemo extends CustomComponent {
   
   // 安全控件保存媒体资源至图库。
   async saveRecorderAsset() {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     // 需要确保uriPath对应的资源存在。
-    this.uriPath = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库。
+    let uriPath: string = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库。
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
-      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
+      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, uriPath);
     await phAccessHelper.applyChanges(assetChangeRequest);
   }
 

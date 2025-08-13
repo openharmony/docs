@@ -1,4 +1,9 @@
 # @ohos.arkui.componentUtils (componentUtils)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 提供获取组件绘制区域坐标和大小的能力。
 

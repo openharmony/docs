@@ -1,4 +1,9 @@
 # 自定义事件拦截
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 为组件提供自定义的事件拦截能力，开发者可根据事件在控件上按下时发生的位置，输入源等事件信息决定控件上的HitTestMode属性。
 
@@ -9,7 +14,7 @@
 
 ## onTouchIntercept
 
-onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
+onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>): T
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -17,10 +22,15 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 **参数：**
 
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明), [HitTestMode](ts-appendix-enums.md#hittestmode9)> | 是     |  给组件绑定自定义事件拦截回调，并使能在做[触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)时回调此函数。通过返回值设置组件的[触摸碰撞测试模式](ts-universal-attributes-hit-test-behavior.md)。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 

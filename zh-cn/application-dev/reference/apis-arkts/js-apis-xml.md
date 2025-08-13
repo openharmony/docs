@@ -1,4 +1,9 @@
 # @ohos.xml (XML解析与生成)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供XML生成和解析的接口。
 

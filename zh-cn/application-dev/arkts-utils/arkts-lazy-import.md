@@ -1,4 +1,9 @@
 # 延迟加载（lazy import）
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @DaiHuina1997-->
+<!--SE: @yao_dashuai-->
+<!--TSE: @kirl75;@zsw_zhushiwei-->
 
 随着应用程序功能的扩展，冷启动时间显著增加，主要是因为启动初期加载了大量未实际执行的模块。这不仅延长了应用的初始化时间，还浪费了资源。需要精简加载流程，剔除非必需的文件执行，优化冷启动性能，确保用户体验流畅。
 
@@ -15,7 +20,7 @@
 
 ## 使用方式
 
-开发者可以利用[可延迟加载文件检测](#可延迟加载文件检测)、<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[可延迟加载文件检测](#可延迟加载文件检测)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
+开发者可以利用[DevEco Profiler展示冷启动过程文件加载情况](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-launch)、[可延迟加载文件检测](#可延迟加载文件检测)、<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[可延迟加载文件检测](#可延迟加载文件检测)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
 > **说明：**
 >
@@ -35,6 +40,7 @@ import { c } from "./mod2";         // "mod2" 执行
 console.info("main executed");
 while (false) {
     let xx = a;
+    let yy = c;
 }
         
 // mod1.ets
@@ -67,6 +73,8 @@ import { b } from "./mod1";         // "mod1" 执行
 console.info("main executed");
 while (false) {
     let xx = a;
+    let yy = c;
+    let zz = b;
 }
         
 // mod1.ets
@@ -149,7 +157,7 @@ export lazy * from "mod";             // 编译器提示报错：应用编译报
 
 import lazy * as ns from "mod";            // 编译器提示报错：应用编译报错
 import lazy KitClass from "@kit.SomeKit"   // 编译器提示报错：应用编译报错
-impott lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编译报错
+import lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编译报错
 ```
 
 与type关键词同时使用会导致编译报错。
@@ -220,7 +228,7 @@ import * as ns from "./B";
 console.info(ns.c);
 
 // B.ets
-import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
+import lazy { c } from "./C";    // 从“C”内获取c对象，标记为延迟加载
 export { c }
 
 // C.ets

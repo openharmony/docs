@@ -1,4 +1,9 @@
 # MenuItemGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--SE: @zhanghaibo0-->
+<!--TSE: @lxl007-->
 
 该组件用来展示菜单MenuItem的分组。
 
@@ -30,10 +35,10 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型                                                         | 必填 | 说明                          |
-| ------ | ------------------------------------------------------------ | ---- | ----------------------------- |
-| header | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的标题显示信息。 |
-| footer | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的尾部显示信息。 |
+| 名称   | 类型                                                         | 只读 | 可选 | 说明                          |
+| ------ | ------------------------------------------------------------ | ---- | ---- | ----------------------------- |
+| header | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 是   | 设置对应group的标题显示信息。 |
+| footer | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 是   | 设置对应group的尾部显示信息。 |
 
 ## 示例
 

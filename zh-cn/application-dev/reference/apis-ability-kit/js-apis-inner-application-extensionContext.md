@@ -1,4 +1,9 @@
 # ExtensionContext
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--SE: @jsjzju-->
+<!--TSE: @lixueqing513-->
 
 ExtensionContext是Extension的上下文环境，继承自Context。
 

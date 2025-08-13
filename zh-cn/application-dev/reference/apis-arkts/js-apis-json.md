@@ -1,4 +1,9 @@
 # @ohos.util.json (JSON解析与生成)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 本模块提供了将JSON文本转换为JSON对象或值，以及将对象转换为JSON文本等功能。
 
