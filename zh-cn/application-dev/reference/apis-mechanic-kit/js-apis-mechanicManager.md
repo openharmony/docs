@@ -1,4 +1,9 @@
 # @ohos.distributedHardware.mechanicManager (机械体控制模块)
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--SE: @saga2025-->
+<!--TSE: @zhaodengqi-->
 
 本模块提供与机械设备交互的能力，包括设备连接状态监听、跟踪控制和跟踪状态监听功能。
 
