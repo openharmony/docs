@@ -30,7 +30,7 @@ formProvider类部分API接口如下，具体的API介绍详见[接口文档](..
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 更新指定的卡片。 |
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | 更新指定的卡片，以promise方式返回。 |
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
+formBindingData类部分API接口如下，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
