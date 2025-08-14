@@ -59,7 +59,7 @@ key(value: string): T
 
 ## 基于组件标识的拓展能力
 
-组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考[编写白盒性能测试脚本](../../../../application-dev/application-test/arkxtest-guidelines.md#编写白盒性能测试脚本)。
+组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考[编写UI测试脚本](../../../../application-dev/application-test/arkxtest-guidelines.md#编写UI测试脚本)。
 
 ### getInspectorByKey<sup>9+</sup>
 
