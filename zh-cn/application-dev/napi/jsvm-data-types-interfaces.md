@@ -59,7 +59,7 @@ typedef struct {
 
 ### JSVM_Value
 
-在C++代码中，表示JavaScript值。
+在C++代码中，用于表示JavaScript值。
 
 ### JSVM_Env
 
