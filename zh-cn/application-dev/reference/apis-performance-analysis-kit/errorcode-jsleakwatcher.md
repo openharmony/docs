@@ -47,7 +47,7 @@ The parameter config is invalid.
 
 2.必填参数未指定。
 
-3.参数校验失败。该参数为字符串类型数组，数组元素必须包含：XComponent，NodeContainer，Window，Custom Component，和Ability中一个或者多个。
+3.参数校验失败。该参数为字符串类型数组，数组元素必须包含：XComponent，NodeContainer，Window，Custom Component和Ability中一个或者多个。
 
 **处理步骤**
 
