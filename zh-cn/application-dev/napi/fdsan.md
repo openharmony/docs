@@ -1,6 +1,6 @@
 # fdsan使用指导
 <!--Kit: NDK Development-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @liyiming13-->
 <!--Designer: @huang_huijin-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->

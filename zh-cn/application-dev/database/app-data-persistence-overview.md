@@ -2,7 +2,7 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong; @yanhuii; @cuile44-->
-<!--Designer: @houpengtao1; @widecode; @htt1997; @dboy190-->
+<!--Designer: @houpengtao1; @widecode; @htt1997-->
 <!--Tester: @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
 

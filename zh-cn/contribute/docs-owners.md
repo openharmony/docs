@@ -56,6 +56,8 @@ Image Kit<br>
 Accessibility Kit<br>
 IME Kit<br>
 TEE Kit<br>
+Neural Network Runtime Kit<br>
+Standard Libraries<br>
 
 ## Subsystem
 Location<br>

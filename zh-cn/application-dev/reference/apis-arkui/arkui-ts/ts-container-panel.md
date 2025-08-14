@@ -1,5 +1,5 @@
 # Panel
-<!--deprecated_code_no_check-->
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
@@ -7,6 +7,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
+<!--deprecated_code_no_check-->
 可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 
 >  **说明：**
