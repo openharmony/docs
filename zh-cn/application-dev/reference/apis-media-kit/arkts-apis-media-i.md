@@ -392,7 +392,7 @@ async function setupPlayer() {
 | 名称                  | 类型    | 只读 | 可选 | 说明                 |
 | --------------------- | ------- | --- | --- | -------------------- |
 | keepCaptureDuringCall | boolean | 否 | 是  | 蜂窝通话时是否保持录屏。 |
-| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>如果芯片平台不支持B帧编码，则正常录制不含B帧的视频，不会返回错误。 |
+| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>B帧视频编码相关的约束和限制可以参考文档[B帧视频编码约束和限制](../../media/avcodec/video-encoding-b-frame.md#约束和限制)。如果当前不符合B帧视频编码的约束和限制，则正常录制不含B帧的视频，不会返回错误。 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
