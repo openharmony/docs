@@ -168,7 +168,7 @@ stringify(value: Object | null | undefined): string
 
 > **说明：**
 >
-> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型（除[collections.TypedArray](js-apis-arkts-collections.md#collectionstypedarray)外）。
+> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型（除[Int8Array](arkts-apis-arkts-collections-Int8Array.md)、[Uint8Array](arkts-apis-arkts-collections-Uint8Array.md)、[Int16Array](arkts-apis-arkts-collections-Int16Array.md)、[Uint16Array](arkts-apis-arkts-collections-Uint16Array.md)、[Int32Array](arkts-apis-arkts-collections-Int32Array.md)、[Uint32Array](arkts-apis-arkts-collections-Uint32Array.md)、[Uint8ClampedArray](arkts-apis-arkts-collections-Uint8ClampedArray.md)、[Float32Array](arkts-apis-arkts-collections-Float32Array.md)外）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
