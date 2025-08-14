@@ -146,6 +146,11 @@ Text组件提供[OH_ArkUI_StyledString_Destroy](../reference/apis-arkui/capi-sty
 
 ## 完整示例
 ```c++
+#include <arkui/native_interface.h>
+#include <arkui/styled_string.h>
+#include <native_drawing/drawing_font_collection.h>
+#include <native_drawing/drawing_text_declaration.h>
+
 void CreateNativeNode() {
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
