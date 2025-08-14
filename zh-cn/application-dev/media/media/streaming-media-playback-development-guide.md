@@ -70,6 +70,11 @@
 监听当前bufferingUpdate缓冲状态示例代码：
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+// 创建avPlayer实例对象。
+this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+// 监听当前bufferingUpdate缓冲状态
 this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
   console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
 })
@@ -82,6 +87,8 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 1. 通过[on('availableBitrates')](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onavailablebitrates9)监听当前HLS协议流可用的码率。如果监听的码率列表长度为0，则不支持设置指定码率。
 
     ```ts
+    import { media } from '@kit.MediaKit';
+
     // 创建avPlayer实例对象。
     this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 监听当前HLS协议流可用的码率。
@@ -93,6 +100,8 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 2. 通过[setBitrate](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setbitrate9)接口设置播放码率。若用户设置的码率不在可用码率中，播放器将选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onbitratedone9)事件确认是否生效。
 
     ```ts
+    import { media } from '@kit.MediaKit';
+
     // 创建avPlayer实例对象。
     this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 监听码率设置是否生效。
@@ -101,7 +110,7 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
     })
     // 设置播放码率。
     this.bitrate: number = 96000;
-    avPlayer.setBitrate(bitrate);
+    this.avPlayer.setBitrate(this.bitrate);
     ```
 
 ### DASH设置视频起播策略
@@ -111,6 +120,8 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 下述示例代码描述了设置视频宽度1920px、高度1080px起播。AVPlayer会选择MPD资源中一路分辨率为1920x1080的视频资源进行播放。
 
 ```ts
+import { media } from '@kit.MediaKit';
+
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
 let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1920, preferredHeight: 1080};
 this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
@@ -123,6 +134,10 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#ontrackchange12)。
 
     ```ts
+    import { media } from '@kit.MediaKit';
+
+    // 创建avPlayer实例对象。
+    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     this.avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
       console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
@@ -132,6 +147,10 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 
     ```ts
     // 以获取1080p视频轨道索引为例。
+    import { media } from '@kit.MediaKit';
+
+    // 创建avPlayer实例对象。
+    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -201,6 +220,31 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 ## 开发示例
 
 ```ts
+import { media } from '@kit.MediaKit';
+import { emitter } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+const TIME_ONE = 60000; // 1分钟的毫秒数。
+const TIME_TWO = 1000;  // 1秒的毫秒数。
+const SET_INTERVAL = 1000; // 每秒更新一次当前播放时间。
+const SPEED_ZERO: number = 0; // 对应1.00x。
+const SPEED_ONE: number = 1;  // 对应1.25x。
+const SPEED_TWO: number = 2;  // 对应1.75x。
+const SPEED_THREE: number = 3; // 对应2.00x。
+const PROPORTION: number = 0.99;
+let innerEventFalse: emitter.InnerEvent = {
+  eventId: 1,
+  priority: emitter.EventPriority.HIGH
+};
+let innerEventTrue: emitter.InnerEvent = {
+  eventId: 2,
+  priority: emitter.EventPriority.HIGH
+};
+
+let innerEventWH: emitter.InnerEvent = {
+  eventId: 3,
+  priority: emitter.EventPriority.HIGH
+};
 @Entry
 @Component
 struct Index {
@@ -208,8 +252,20 @@ struct Index {
   private context: Context | undefined = undefined;
   public videoTrackIndex: number = 0;
   public bitrate: number = 0;
-  ...
-
+  @State durationTime: number = 0;
+  @State currentTime: number = 0;
+  @State percent: number = 0;
+  @State isSwiping: boolean = false;
+  @State tag: string = 'StreamingMedia'
+  private surfaceId: string = '';
+  @State speedSelect: number = -1;
+  public intervalID: number = -1;
+  @State windowWidth: number = 300;
+  @State windowHeight: number = 300;
+  @State surfaceW: number | null = null;
+  @State surfaceH: number | null = null;
+  @State isPaused: boolean = true;
+  @State XComponentFlag: boolean = false;
   getDurationTime(): number {
     return this.durationTime;
   }
@@ -234,7 +290,7 @@ struct Index {
     })
   }
 
-  async avSetupStreaminMediaVideo() {
+  async avSetupStreamingMediaVideo() {
     if (this.context == undefined) return;
     // 创建avPlayer实例对象
     this.avPlayer = await media.createAVPlayer();
@@ -287,7 +343,7 @@ struct Index {
     // 情况六：DASH切换音视频轨道
     /*
     this.avPlayer.url = "http://poster-inland.hwcloudtest.cn/AiMaxEngine/ProductionEnvVideo/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3.mpd";
-    // 
+    //
     this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -516,10 +572,15 @@ struct Index {
   aboutToAppear() {
     this.windowWidth = display.getDefaultDisplaySync().width;
     this.windowHeight = display.getDefaultDisplaySync().height;
-    this.surfaceW = this.windowWidth * SURFACE_W;
-    this.surfaceH = this.surfaceW / SURFACE_H;
+    if (this.percent >= 1) { // 横向视频。
+      this.surfaceW = Math.round(this.windowWidth * PROPORTION);
+      this.surfaceH = Math.round(this.surfaceW / this.percent);
+    } else { // 纵向视频。
+      this.surfaceH = Math.round(this.windowHeight * PROPORTION);
+      this.surfaceW = Math.round(this.surfaceH * this.percent);
+    }
     this.isPaused = true;
-    this.context = this.getUIContext().getHostContext()!;
+    this.context = this.getUIContext().getHostContext();
   }
 
   aboutToDisappear() {
@@ -564,10 +625,10 @@ struct Index {
   }
 
   setVideoWH(): void {
-    if (this.percent >= 1) { // 横向视频
+    if (this.percent >= 1) { // 横向视频。
       this.surfaceW = Math.round(this.windowWidth * PROPORTION);
       this.surfaceH = Math.round(this.surfaceW / this.percent);
-    } else { // 纵向视频
+    } else { // 纵向视频。
       this.surfaceH = Math.round(this.windowHeight * PROPORTION);
       this.surfaceW = Math.round(this.surfaceH * this.percent);
     }
