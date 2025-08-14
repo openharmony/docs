@@ -825,7 +825,7 @@ const formId: string = '388344236';
 
 try {
   formProvider.getPublishedRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
-    console.log(`formProvider getPublishedRunningFormInfoById, data: ${JSON.stringify(data)}`);
+    console.info(`formProvider getPublishedRunningFormInfoById, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message}`);
   });
@@ -868,7 +868,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formProvider.getPublishedRunningFormInfos().then((data: formInfo.RunningFormInfo[]) => {
-    console.log(`formProvider getPublishedRunningFormInfos, data: ${JSON.stringify(data)}`);
+    console.info(`formProvider getPublishedRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
