@@ -74,8 +74,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_ArkUI_GetModuleInterface](#oh_arkui_getmoduleinterface)(nativeAPIVariantKind, structType, structPtr) | 基于结构体类型获取对应结构体指针的宏函数。  | 
-| **MAX_NODE_SCOPE_NUM** | 1000 | 
-| **MAX_COMPONENT_EVENT_ARG_NUM** | 12 | 
+| **MAX_NODE_SCOPE_NUM 1000** | 定义组件最大方法数量。 | 
+| **MAX_COMPONENT_EVENT_ARG_NUM 12** | 定义组件事件最大参数数量。 | 
 | **UDMF_KEY_BUFFER_LEN** | 512 | 
 
 
@@ -15248,7 +15248,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_RegisterSystemFontStyleChangeEvent()
@@ -15272,7 +15272,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_RotationGesture_GetAngle()
