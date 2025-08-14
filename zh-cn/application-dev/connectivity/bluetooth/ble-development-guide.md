@@ -226,7 +226,7 @@ let advData: ble.AdvertiseData = {
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
   manufactureData: [],
-  serviceData: [serviceDataUnit1, serviceDataUnit2],
+  serviceData: [serviceDataUnit1, serviceDataUnit2]
 };
 // 构造广播启动完整参数AdvertisingParams
 let advertisingParams: ble.AdvertisingParams = {
@@ -309,7 +309,7 @@ let advData: ble.AdvertiseData = {
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
   manufactureData: [],
-  serviceData: [serviceDataUnit1, serviceDataUnit2],
+  serviceData: [serviceDataUnit1, serviceDataUnit2]
 };
 try {
   // 启动广播
@@ -658,7 +658,7 @@ export class BleAdvertisingManager {
     let advResponse: ble.AdvertiseData = {
       serviceUuids: [],
       manufactureData: [],
-      serviceData: [serviceDataUnit1, serviceDataUnit2],
+      serviceData: [serviceDataUnit1, serviceDataUnit2]
     };
     // 2.3 构造广播启动完整参数AdvertisingParams
     let advertisingParams: ble.AdvertisingParams = {
@@ -710,9 +710,7 @@ export class BleAdvertisingManager {
   public async stopAdvertising() {
     try {
       await ble.stopAdvertising(this.advHandle);
-      ble.off('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) => {
-        console.info(TAG, 'bluetooth advertising state = ' + JSON.stringify(data));
-      });
+      ble.off('advertisingStateChange', this.onReceiveEvent);
     } catch (err) {
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
