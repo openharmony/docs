@@ -23,8 +23,6 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、PC/2in1、智能穿戴设备、智慧屏、车机。
-
 
 ## 导入模块
 
@@ -204,7 +202,8 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 只读 | 可选 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 否  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** 1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。|
+| paste | boolean | 否  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** 
+当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。|
 | addition       | boolean | 否  | 是  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
@@ -1947,7 +1946,7 @@ dragTo(target: Component): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3152,7 +3151,7 @@ dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3283,7 +3282,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3402,7 +3401,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3632,7 +3631,7 @@ pressHome(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3668,7 +3667,7 @@ pressHome(displayId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4373,7 +4372,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4419,7 +4418,7 @@ mouseDrag(from: Point, to: Point, speed?: number, duration?: number): Promise\<v
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用不生效。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4516,7 +4515,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 |
-| mode | [InputTextMode](#inputtextmode20) | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
+| mode | [InputTextMode](#inputtextmode20) | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** <br> InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **返回值：**
 
