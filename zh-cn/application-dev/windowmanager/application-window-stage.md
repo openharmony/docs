@@ -1,5 +1,9 @@
 # 管理应用窗口（Stage模型）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--SE: @nyankomiya-->
+<!--TSE: @qinliwen0417-->
 
 ## 基本概念
 
