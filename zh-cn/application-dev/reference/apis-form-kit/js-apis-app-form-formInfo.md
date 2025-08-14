@@ -254,5 +254,5 @@ import { formInfo } from '@kit.FormKit';
 | moduleName  | string               | 是    | 否     | 卡片所属模块的名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName        | string               | 是    | 否     | 卡片名称。                                 |
-| dimension | number               | 是    | 否     | 卡片尺寸，取值及其对应含义请参考FormDimension(#formdimension)。   |
+| dimension | number               | 是    | 否     | 卡片尺寸，取值及其对应含义请参考[FormDimension](#formdimension)。   |
 | formLocation | [FormLocation](#formlocation20)| 是    | 否     | 卡片位置信息。   |
