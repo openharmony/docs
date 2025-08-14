@@ -434,8 +434,8 @@ avTranscoder = await media.createAVTranscoder();
 avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
   if (avTranscoder != undefined) {
-    // 开发者须在此监听转码完成事件
-    // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理
+    // 开发者须在此监听转码完成事件。
+    // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理。
     await avTranscoder.release();
     avTranscoder = undefined;
   }
