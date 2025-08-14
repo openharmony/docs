@@ -41,7 +41,7 @@
    // module.json5
    "requestPermissions": [
      {
-       "name": "ohos.permission.ACCELEROMETER",
+       "name": "ohos.permission.ACCELEROMETER"
      }
    ]
    ```

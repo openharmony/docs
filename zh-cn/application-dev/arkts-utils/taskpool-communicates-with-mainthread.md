@@ -90,6 +90,7 @@
                await taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
+               console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
              })
          }
          .width('100%')
