@@ -127,9 +127,9 @@ const myMap = new collections.Map<number, string>([
 ]);
 
 const iterator = myMap.entries();
-// Expected output: [0, "foo"]
+// Expected output: 0, foo
 console.info(iterator.next().value);
-// Expected output: [1, "bar"]
+// Expected output: 1, bar
 console.info(iterator.next().value);
 ```
 
