@@ -3,10 +3,14 @@
 - [Introduction to Connectivity Kit](connectivity-kit-intro.md)
 - Bluetooth<!--bluetooth-->
   - [Bluetooth Overview](bluetooth/bluetooth-overview.md)
-  - [Bluetooth Setting Development](bluetooth/br-development-guide.md)
-  - [BLE Development](bluetooth/ble-development-guide.md)
-  - [GATT Development](bluetooth/gatt-development-guide.md)
-  - [SPP Development](bluetooth/spp-development-guide.md)
+  - [Bluetooth Setup](bluetooth/br-development-guide.md)
+  - Bluetooth Classic<!--bluetooth-br-->
+    - [Bluetooth Discovery](bluetooth/br-discovery-development-guide.md)
+    - [Device Pairing](bluetooth/br-pair-device-development-guide.md)
+    - [SPP-based Connection and Data Transmission](bluetooth/spp-development-guide.md)
+  - Bluetooth Low Energy<!--bluetooth-ble-->
+    - [BLE Advertising and Scanning](bluetooth/ble-development-guide.md)
+    - [GATT-based Connection and Data Transmission](bluetooth/gatt-development-guide.md)
 - NFC<!--nfc-->
   - [NFC Tag Read/Write Development](nfc/nfc-tag-access-guide.md)
   - [HCE Development](nfc/nfc-hce-guide.md)
@@ -14,3 +18,6 @@
 - WLAN<!--wlan-->
   - [WLAN Service Development Overview](wlan/wlan-overview.md)
   - [P2P Development Guide](wlan/p2p-development-guide.md)
+  - [STA Development](wlan/sta-development-guide.md)
+  - [Wi-Fi Scanning Development](wlan/scan-development-guide.md)
+- [Connectivity Kit Terminology](terminology.md)

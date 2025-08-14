@@ -37,9 +37,9 @@ Declare the required permission in the **module.json5** file. For details, see [
 ]
 ```
 
-### Creating an Event Interceptor
+### Enabling Event Interception
 
-#### Key Events
+- **Key Events**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -60,7 +60,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestInterceptor()
+void TestKeyEventInterceptor()
 {
     // Add the key event interceptor.
     Input_Result ret = OH_Input_AddKeyEventInterceptor(OnKeyEventCallback, nullptr);
@@ -69,7 +69,7 @@ void TestInterceptor()
 }
 ```
 
-#### Input Events
+- **Input Events (Mouse, Touch, and Axis Events)**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -165,7 +165,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
 // Structure of the input event callback function
 Input_InterceptorEventCallback g_eventCallback;
 
-void TestInterceptor()
+void TestInputEventInterceptor()
 {
     // Set the mouse event callback function.
     g_eventCallback.mouseCallback = OnMouseEventCallback;
