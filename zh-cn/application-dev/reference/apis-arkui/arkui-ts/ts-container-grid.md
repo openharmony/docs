@@ -72,6 +72,10 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 > **说明：** 
 >
 > Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> 设置Grid的padding后，如果子组件部分位于Grid内容区且部分位于padding区域内，则会显示；如果子组件完全位于padding区域内，则不会显示。如下图所示，GridItem1显示，而GridItem2不显示。
+>
+> ![GridPadding示意图](figures/gridPadding.png)
 
 ### columnsTemplate
 
