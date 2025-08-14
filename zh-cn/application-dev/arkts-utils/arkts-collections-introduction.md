@@ -72,7 +72,7 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 
 ### Array
 
-支持通过[collections.Array.from](../reference/apis-arkts/arkts-apis-arkts-collections-Array#from)方法将原生容器Array转换为ArkTS Array容器；支持通过原生容器Array的from方法将 ArkTS Array容器转换为原生容器Array。
+支持通过[collections.Array.from](../reference/apis-arkts/arkts-apis-arkts-collections-Array.md#from)方法将原生容器Array转换为ArkTS Array容器；支持通过原生容器Array的from方法将 ArkTS Array容器转换为原生容器Array。
 
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
