@@ -156,7 +156,6 @@ static create\<T>(arrayLength: number, initialValue: T): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error.                   |
-| 10200011 | The create method cannot be bound. |
 
 **示例：**
 
@@ -193,7 +192,6 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error.                 |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -239,7 +237,6 @@ static from\<T>(iterable: Iterable\<T>): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -283,7 +280,6 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -323,7 +319,6 @@ static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapF
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
