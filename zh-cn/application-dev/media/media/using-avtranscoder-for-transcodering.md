@@ -170,6 +170,9 @@
          this.avTranscoder = undefined;
        }
       // 开始转码前需要创建转码实例、设置回调、设置fd并完成prepare。
+      // 具体创建步骤参考开发步骤1-5
+      this.avTranscoder = await media.createAVTranscoder(); 
+
       // 开始转码。
       await this.avTranscoder.start();
     }
