@@ -4,7 +4,7 @@
 
 ## 利用资源限定词配置国际化资源
 
-在开发阶段，通过DevEco Studio，可以为应用在对应语言和地区的资源限定词目录下配置不同的资源，来实现UI国际化。详解介绍请参考[资源分类与访问](../quick-start/resource-categories-and-access.md)。
+在开发阶段，通过DevEco Studio，可以为应用在对应语言和地区的资源限定词目录下配置不同的资源，来实现UI国际化。详细介绍请参考[资源分类与访问](../quick-start/resource-categories-and-access.md)。
 
 ## 使用镜像能力
 
