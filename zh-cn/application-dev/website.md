@@ -1854,6 +1854,7 @@
         - [创建并使用材质资源](graphics3d/arkgraphics3D-resource-material.md)
         - [创建并使用图片资源](graphics3d/arkgraphics3D-resource-image.md)
         - [创建并使用环境资源](graphics3d/arkgraphics3D-resource-environment.md)
+        - [.shader资源文件格式要求](graphics3d/arkgraphics3D-shader-resource.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
     - Ads Kit（广告服务）<!--ads-kit-->
