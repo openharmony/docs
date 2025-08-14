@@ -1,5 +1,11 @@
 # application_context.h
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
+
 ## 概述
 
 提供应用级别上下文相关的接口。

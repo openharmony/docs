@@ -1,5 +1,11 @@
 # ability_runtime_common.h
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--SE: @li-weifeng2-->
+<!--TSE: @lixueqing513-->
+
 ## 概述
 
 声明AbilityRuntime模块的错误码。
