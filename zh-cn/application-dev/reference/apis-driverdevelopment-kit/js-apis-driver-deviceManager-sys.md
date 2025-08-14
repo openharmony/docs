@@ -44,6 +44,8 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
 | 错误码ID    | 错误信息                                                                  |
 |----------|-----------------------------------------------------------------------|
 | 201      | The permission check failed.                                          |
@@ -93,6 +95,8 @@ queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 | Array&lt;Readonly&lt;[DriverInfo](#driverinfo)&gt;&gt; | 扩展外设驱动详细信息列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID    | 错误信息                                                                  |
 |----------|-----------------------------------------------------------------------|
