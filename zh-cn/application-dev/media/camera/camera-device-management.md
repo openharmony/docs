@@ -19,13 +19,14 @@
    Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   function getCameraManager(context: common.BaseContext): camera.CameraManager {
+   function getCameraManager(context: common.BaseContext): camera.CameraManager | undefined {
      let cameraManager: camera.CameraManager;
      try {
-       let cameraManage = camera.getCameraManager(context);
+       cameraManager = camera.getCameraManager(context);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`getCameraManager error, errCode: ${err.code}`);
+       return undefined;
      }
      return cameraManager;
    }
