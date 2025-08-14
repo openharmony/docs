@@ -8,6 +8,7 @@
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Once装饰器。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
