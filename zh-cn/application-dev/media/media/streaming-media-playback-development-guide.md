@@ -74,7 +74,7 @@ import { media } from '@kit.MediaKit';
 
 // 创建avPlayer实例对象。
 this.avPlayer: media.AVPlayer = await media.createAVPlayer();
-// 监听当前bufferingUpdate缓冲状态
+// 监听当前bufferingUpdate缓冲状态。
 this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
   console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
 })
@@ -292,55 +292,55 @@ struct Index {
 
   async avSetupStreamingMediaVideo() {
     if (this.context == undefined) return;
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     this.avPlayer = await media.createAVPlayer();
 
-    // 创建状态机变化回调函数
+    // 创建状态机变化回调函数。
     await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
       this.percent = avPlayer.width / avPlayer.height;
       this.setVideoWH();
       this.durationTime = this.getDurationTime();
-      setInterval(() => { // 更新当前时间
+      setInterval(() => { // 更新当前时间。
         if (!this.isSwiping) {
           this.currentTime = this.getCurrentTime();
         }
       }, SET_INTERVAL);
     });
 
-    // 情况一：HTTP视频播放
+    // 情况一：HTTP视频播放。
     this.avPlayer.url = "http://media.iyuns.top:1000/http/720p_1m.mp4";
 
-    // 情况二：HLS视频播放
+    // 情况二：HLS视频播放。
     // this.avPlayer.url = "http://media.iyuns.top:1000/720-270-480.m3u8";
 
-    // 情况三：DASH视频播放
+    // 情况三：DASH视频播放。
     // this.avPlayer.url = "http://media.iyuns.top:1000/dash/720p/720-1/720-1.mpd";
 
-    // 情况四：通过setMediaSource设置自定义头域及播放优选参数实现初始播放参数设置，以流媒体HTTP点播为例
+    // 情况四：通过setMediaSource设置自定义头域及播放优选参数实现初始播放参数设置，以流媒体HTTP点播为例。
     /*
     let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://media.iyuns.top:1000/http/720p_1m.mp4", {"":""});
-    // 设置播放策略，设置为缓冲区数据为20s
+    // 设置播放策略，设置为缓冲区数据为20s。
     let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
-    // 为avPlayer设置媒体来源和播放策略
+    // 为avPlayer设置媒体来源和播放策略。
     this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
     * */
 
-    // 情况五：HLS切码率
+    // 情况五：HLS切码率。
     /*
     this.avPlayer.url = "https://upftimae.dailyworkout.cn/videos/course/c800f81a209b5ee7891f1128ed301db/4/master.m3u8";
     let bitrate: number = 0;
-    // 监听当前HLS协议流可用的码率
+    // 监听当前HLS协议流可用的码率。
     this.avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
       console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
-      this.bitrate = bitrates[0]; // 保存需要切换的码率
+      this.bitrate = bitrates[0]; // 保存需要切换的码率。
     })
-    // 监听码率设置是否生效
+    // 监听码率设置是否生效。
     this.avPlayer.on('bitrateDone', (bitrate: number) => {
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
     })
     * */
 
-    // 情况六：DASH切换音视频轨道
+    // 情况六：DASH切换音视频轨道。
     /*
     this.avPlayer.url = "http://poster-inland.hwcloudtest.cn/AiMaxEngine/ProductionEnvVideo/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3.mpd";
     //
@@ -362,12 +362,12 @@ struct Index {
     * */
   }
 
-  // HLS切换码率
+  // HLS切换码率。
   changeBitrate(bitrate: number) {
     if (this.avPlayer == null) {
       return;
     }
-    // 设置播放码率
+    // 设置播放码率。
     try {
       this.avPlayer.setBitrate(bitrate);
     } catch (error) {
@@ -375,18 +375,18 @@ struct Index {
     }
   }
 
-  // DASH切换音视频轨道
+  // DASH切换音视频轨道。
   changeTrack(track: number) {
     if (this.avPlayer == null) {
       return;
     }
-    // 切换至目标视频轨道
+    // 切换至目标视频轨道。
     try {
       this.avPlayer.selectTrack(track);
     } catch (error) {
       console.error(`${this.tag}: selectTrack failed, error message is = ${JSON.stringify(error.message)}`);
     }
-    // 取消选择目标视频轨道
+    // 取消选择目标视频轨道。
     /*
     try {
       this.avPlayer.deselectTrack(track);
@@ -440,9 +440,9 @@ struct Index {
     }
   }
 
-  // 注册avplayer回调函数
+  // 注册avplayer回调函数。
   async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
-    // seek操作结果回调函数
+    // seek操作结果回调函数。
     if (this.avPlayer == null) {
       console.error(`${this.tag}: avPlayer has not init!`);
       return;
@@ -453,7 +453,7 @@ struct Index {
     this.avPlayer.on('speedDone', (speed) => {
       console.info(`${this.tag}: setAVPlayerCallback AVPlayer speedDone, speed is ${speed}`);
     });
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
+    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程。
     this.avPlayer.on('error', (err) => {
       console.error(`${this.tag}: setAVPlayerCallback Invoke avPlayer failed ${JSON.stringify(err)}`);
       if (this.avPlayer == null) {
@@ -462,32 +462,32 @@ struct Index {
       }
       this.avPlayer.reset();
     });
-    // 状态机变化回调函数
+    // 状态机变化回调函数。
     this.avPlayer.on('stateChange', async (state, reason) => {
       if (this.avPlayer == null) {
         console.info(`${this.tag}: avPlayer has not init on state change`);
         return;
       }
       switch (state) {
-        case 'idle': // 成功调用reset接口后触发该状态机上报
+        case 'idle': // 成功调用reset接口后触发该状态机上报。
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state idle called.`);
           break;
-        case 'initialized': // avplayer 设置播放源后触发该状态上报
+        case 'initialized': // avplayer 设置播放源后触发该状态上报。
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state initialized called.`);
           if (this.surfaceId) {
-            this.avPlayer.surfaceId = this.surfaceId; // 设置显示画面，当播放的资源为纯音频时无需设置
+            this.avPlayer.surfaceId = this.surfaceId; // 设置显示画面，当播放的资源为纯音频时无需设置。
             console.info(`${this.tag}: setAVPlayerCallback this.avPlayer.surfaceId = ${this.avPlayer.surfaceId}`);
             this.avPlayer.prepare();
           }
           break;
-        case 'prepared': // prepare调用成功后上报该状态机
+        case 'prepared': // prepare调用成功后上报该状态机。
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state prepared called.`);
           this.avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
             console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}}`);
           })
           this.durationTime = this.avPlayer.duration;
           this.currentTime = this.avPlayer.currentTime;
-          this.avPlayer.play(); // 调用播放接口开始播放
+          this.avPlayer.play(); // 调用播放接口开始播放。
           console.info(`${this.tag}:
             setAVPlayerCallback speedSelect: ${this.speedSelect}, duration: ${this.durationTime}`);
           if (this.speedSelect != -1) {
@@ -508,12 +508,12 @@ struct Index {
           }
           callback(this.avPlayer);
           break;
-        case 'playing': // play成功调用后触发该状态机上报
+        case 'playing': // play成功调用后触发该状态机上报。
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state playing called.`);
           if (this.intervalID != -1) {
             clearInterval(this.intervalID)
           }
-          this.intervalID = setInterval(() => { // 更新当前时间
+          this.intervalID = setInterval(() => { // 更新当前时间。
             AppStorage.setOrCreate('durationTime', this.durationTime);
             AppStorage.setOrCreate('currentTime', this.currentTime);
           }, 100);
@@ -528,7 +528,7 @@ struct Index {
           };
           emitter.emit(innerEventTrue, eventDataTrue);
           break;
-        case 'completed': // 播放结束后触发该状态机上报
+        case 'completed': // 播放结束后触发该状态机上报。
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state completed called.`);
           let eventDataFalse: emitter.EventData = {
             data: {
@@ -563,7 +563,7 @@ struct Index {
           break;
       }
     });
-    // 时间上报监听函数
+    // 时间上报监听函数。
     this.avPlayer.on('timeUpdate', (time: number) => {
       this.currentTime = time;
     });

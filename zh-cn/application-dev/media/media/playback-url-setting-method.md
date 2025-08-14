@@ -85,7 +85,7 @@
  // 用文件描述符构造本地m3u8的URL。
  let fdUrl : string = "fd://" + fileDescriptor.fd +
    "?offset=" + fileDescriptor.offset + "&size=" + fileDescriptor.length;
- // 按需设置HTTP请求头
+ // 按需设置HTTP请求头。
  let headers : Record<string,string> = {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value"};
  // 通过本地m3u8的URL和HTTP请求头构造mediaSource媒体来源。
  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl, headers);
@@ -144,7 +144,7 @@
  import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
  import { common } from '@kit.AbilityKit'
- // 类成员定义avPlayer,context和fileName
+ // 类成员定义avPlayer,context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
  private fileName: string = '';
@@ -155,9 +155,9 @@
  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  let fdPath = 'fd://';
  let fileName = 'test.mp4'; // test.mp4为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
- // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
+ // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
  let path = `${this.context.filesDir}/${this.fileName}`;
- // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
+ // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
  let file = await fs.open(path);
  fdPath = fdPath + '' + file.fd;
  this.avPlayer.url = fdPath;
