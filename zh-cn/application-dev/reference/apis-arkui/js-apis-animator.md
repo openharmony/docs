@@ -1082,8 +1082,8 @@ struct AnimatorTest {
   private TAG: string = '[AnimatorTest]'
   private backAnimator: AnimatorResult | undefined = undefined
   private flag: boolean = false
-  @State wid: number = 100
-  @State hei: number = 100
+  @State columnWidth: number = 100
+  @State columnHeight: number = 100
 
   create() {
     this.backAnimator = this.getUIContext().createAnimator({
@@ -1108,8 +1108,8 @@ struct AnimatorTest {
       console.info(this.TAG, 'backAnimator cancel')
     }
     this.backAnimator.onFrame = (value: number) => {
-      this.wid = value
-      this.hei = value
+      this.columnWidth = value
+      this.columnHeight = value
     }
   }
 
@@ -1125,8 +1125,8 @@ struct AnimatorTest {
     Column() {
       Column() {
         Column()
-          .width(this.wid)
-          .height(this.hei)
+          .width(this.columnWidth)
+          .height(this.columnHeight)
           .backgroundColor(Color.Red)
       }
       .width('100%')
