@@ -255,6 +255,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 **系统接口**：此接口为系统接口，三方应用不支持调用。
 
+**设备行为差异：** 该接口在2in1设备中，shouldHide为true时，全局悬浮窗不会被隐藏。
+
 **参数：**
 
 | 参数名      | 类型                      | 必填 | 说明       |
