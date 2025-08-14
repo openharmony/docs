@@ -434,7 +434,7 @@ struct Index {
 
 ### constructor
 
-constructor(jsonObject)
+constructor(jsonObject: Object)
 
 构造函数。
 
