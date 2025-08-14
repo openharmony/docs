@@ -1,4 +1,9 @@
 # ArkTS（方舟编程语言）
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @flyingwolf-->
+<!--SE: @flyingwolf-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 - [ArkTS简介](arkts-overview.md)
 - ArkTS基础类库<!--arkts-utils-->
