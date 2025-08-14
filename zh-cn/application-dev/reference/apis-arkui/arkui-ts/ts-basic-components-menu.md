@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Armstrong15-->
-<!--SE: @zhanghaibo0-->
-<!--TSE: @lxl007-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 以垂直列表形式显示的菜单。
 

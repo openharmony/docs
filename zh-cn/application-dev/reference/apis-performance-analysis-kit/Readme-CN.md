@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mzyan-->
-<!--SE: @liyueric-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @liyueric-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 - ArkTS API<!--performance-analysis-arkts-->
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)

@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao-->
-<!--SE: @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](../quick-start/hap-package.md)、[HAR](../quick-start/har-package.md)和[HSP](../quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
 为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解混淆原理及混淆开启流程，并优先阅读[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。

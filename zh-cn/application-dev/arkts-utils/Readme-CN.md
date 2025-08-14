@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @flyingwolf-->
-<!--SE: @flyingwolf-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @flyingwolf-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 - [ArkTS简介](arkts-overview.md)
 - ArkTS基础类库<!--arkts-utils-->

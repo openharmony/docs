@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @zsyztt; @Hermits; @reminder2352-->
-<!--SE: @yunlanying-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @yunlanying-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 该模块向应用提供端云同步能力，包括启动/停止端云同步以及启动/停止原图下载功能。
 

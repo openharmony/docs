@@ -2,8 +2,9 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选其一即可。<br>
 方式一：卡片和应用共包方式，创建步骤请参考[共包方式创建卡片](./arkts-ui-widget-creation.md#方式一共包方式创建卡片)，此时卡片UI和应用代码在一个module内，最终编译产物也在同一个HAP包内。<br>
 方式二：独立卡片包方式，创建步骤请参考[独立包方式创建卡片](./arkts-ui-widget-creation.md#方式二独立包方式创建卡片)，此时卡片UI和应用代码在不同module内，最终编译产物分为卡片包和应用包。<br>

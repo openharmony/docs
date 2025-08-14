@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @altay-->
-<!--SE: @altay-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的其他UIAbility、或者其他应用的UIAbility（例如启动三方支付UIAbility）。
 

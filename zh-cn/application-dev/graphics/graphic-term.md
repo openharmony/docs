@@ -2,9 +2,10 @@
 
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@goumiao;@hangmengxin-->
-<!--SE: @liumingxiang;@wangyanglan-->
-<!--TSE: @yhl0101;@nobuggers-->
+<!--Owner: @oh_wangxk; @goumiao; @hangmengxin-->
+<!--Designer: @liumingxiang; @wangyanglan-->
+<!--Tester: @yhl0101; @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 ## BlendMode
 

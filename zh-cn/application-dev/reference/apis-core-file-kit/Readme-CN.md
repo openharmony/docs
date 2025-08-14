@@ -3,8 +3,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25-->
-<!--SE: @bubble_mao; @zhuangzhuang; @gsl_1234-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @bubble_mao; @zhuangzhuang; @gsl_1234-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 - ArkTS API<!--core-file-arkts-->
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)

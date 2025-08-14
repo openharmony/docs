@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: PowerManager-->
 <!--Owner: @zhang-yinglie; @volcano_wang-->
-<!--SE: @wangyantian0-->
-<!--TSE: @alien0208-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
 
 该模块提供软硬件耗电统计信息的查询接口。
 

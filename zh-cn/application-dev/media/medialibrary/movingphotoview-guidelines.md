@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @tangye123456-->
-<!--SE: @YanSanzo-->
-<!--TSE: @tinygreyy-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 系统提供了MovingPhotoView组件，在一些社交类、图库类应用中，可用于播放动态照片文件。
 
