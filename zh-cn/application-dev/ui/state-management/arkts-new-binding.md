@@ -18,47 +18,48 @@
 
 ### 自定义组件间双向绑定
 1. 在Index中构造Star子组件，双向绑定父子组件中的value，并初始化子组件的`@Param value`和`@Event $value`。
-- 双向绑定语法糖：
 
-    ```
-    Star({ value: this.value, $value: (val: number) => { this.value = val; }})
-    ```
+   双向绑定语法糖。
+
+   ```
+   Star({ value: this.value, $value: (val: number) => { this.value = val; }})
+   ```
 2. 点击Index中的Button改变value值，父组件Index和子组件Star中的Text将同步更新。
 3. 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
 
-```ts
-@Entry
-@ComponentV2
-struct Index {
-  @Local value: number = 0;
+   ```ts
+   @Entry
+   @ComponentV2
+   struct Index {
+     @Local value: number = 0;
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.value++;
-      })
-      Star({ value: this.value!! })
-    }
-  }
-}
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.value++;
+         })
+         Star({ value: this.value!! })
+       }
+     }
+   }
 
 
-@ComponentV2
-struct Star {
-  @Param value: number = 0;
-  @Event $value: (val: number) => void = (val: number) => {};
+   @ComponentV2
+   struct Star {
+     @Param value: number = 0;
+     @Event $value: (val: number) => void = (val: number) => {};
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.$value(10);
-      })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.$value(10);
+         })
+       }
+     }
+   }
+   ```
 
 **使用限制**
 - `!!`双向绑定语法不支持多层父子组件传递。
@@ -82,7 +83,7 @@ struct BindMenuInterface {
     Column() {
       Row() {
         Text('click show Menu')
-          .bindMenu(this.isShow!!, // 双向绑定
+          .bindMenu(this.isShow!!, // 双向绑定。
             [
               {
                 value: 'Menu1',
