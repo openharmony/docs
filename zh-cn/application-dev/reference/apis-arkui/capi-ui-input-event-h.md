@@ -139,7 +139,10 @@ UI输入事件类型定义。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | Mouse event. |
+| ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0 | 未知。 |
+| ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1 | 触摸事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 | 轴事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | 鼠标事件。|
 | ARKUI_UIINPUTEVENT_TYPE_KEY = 4 | 按键事件。<br>**起始版本：** 20 |
 
 ### anonymous1
@@ -222,8 +225,6 @@ enum HitTestMode
 | HTM_BLOCK | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
 | HTM_TRANSPARENT | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。 |
 | HTM_NONE | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
-| HTM_BLOCK_HIERARCHY | 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。<br>**起始版本：** 20 |
-| HTM_BLOCK_DESCENDANTS | 自身不响应触摸测试，并且所有的后代（孩子，孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。<br>**起始版本：** 20 |
 
 ### anonymous4
 
