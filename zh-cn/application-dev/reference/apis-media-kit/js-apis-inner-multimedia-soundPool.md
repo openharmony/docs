@@ -122,7 +122,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`);
     let uri:string = "";
     let file: fileIo.File;
-    //获取fd的uri路径。
+    // 获取fd的uri路径。
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -183,7 +183,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -199,7 +199,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let uri:string = "";
     let soundID: number = 0;
     let file: fileIo.File;
-    //获取fd的uri路径。
+    // 获取fd的uri路径。
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -256,7 +256,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -271,9 +271,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`);
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; //通过fileIo.stat()获取size值。
+    let fileSize: number = 1; // 通过fileIo.stat()获取size值。
     let uri: string = "";
-    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频。
+    // 获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频。
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -300,7 +300,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 create(context: Context) {
-  //创建soundPool实例。
+  // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -314,7 +314,7 @@ create(context: Context) {
     } else {
       soundPool = soundPool_;
       console.info(`Succeeded in createSoundPool`);
-      //test_01.mp3为rawfile目录资源下面的音频。
+      // test_01.mp3为rawfile目录资源下面的音频。
       let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
       soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
         if (error) {
@@ -375,7 +375,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -390,9 +390,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`);
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; //通过fileIo.stat()获取size值。
+    let fileSize: number = 1; // 通过fileIo.stat()获取size值。
     let uri: string = "";
-    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频。
+    // 获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频。
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -417,7 +417,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 create(context: Context) {
-  //创建soundPool实例。
+  // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -431,7 +431,7 @@ create(context: Context) {
     } else {
       soundPool = soundPool_;
       console.info(`Succeeded in createSoundPool`);
-      //test_01.mp3为rawfile目录资源下面的音频。
+      // test_01.mp3为rawfile目录资源下面的音频。
       let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
       soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
         console.info('Succeeded in loading soundpool');
@@ -478,7 +478,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -545,7 +545,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -611,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -677,7 +677,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -691,7 +691,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`);
     let streamID: number = 0;
-    //先调用play方法给拿到对应的streamID。
+    // 先调用play方法给拿到对应的streamID。
     soundPool.stop(streamID, (error: BusinessError) => {
       if (error) {
         console.error(`Failed to stop soundpool: errCode is ${error.code}, errMessage is ${error.message}`);
@@ -741,7 +741,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -755,7 +755,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`);
     let streamID: number = 0;
-    //先调用play方法给拿到对应的streamID。
+    // 先调用play方法给拿到对应的streamID。
     soundPool.stop(streamID).then(() => {
       console.info('Succeeded in stopping soundpool');
     }, (err: BusinessError) => {
@@ -798,7 +798,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -812,8 +812,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`);
     let streamID: number = 0;
-    //先通过调用play方法获取到对应的streamID。
-    //设置循环2次。
+    // 先通过调用play方法获取到对应的streamID。
+    // 设置循环2次。
     soundPool.setLoop(streamID, 2, (error: BusinessError) => {
       if (error) {
         console.error(`Failed to setLoop soundPool: errCode is ${error.code}, errMessage is ${error.message}`);
@@ -864,7 +864,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -878,8 +878,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`);
     let streamID: number = 0;
-    //先通过调用play方法获取到对应的streamID。
-    //设置循环1次。
+    // 先通过调用play方法获取到对应的streamID。
+    // 设置循环1次。
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('Succeeded in setLoopping soundpool, streamID:' + streamID);
     }).catch((err: BusinessError) => {
@@ -923,7 +923,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -989,7 +989,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1049,7 +1049,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1115,7 +1115,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1175,7 +1175,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1190,7 +1190,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`);
     let streamID: number = 0;
     // 先调用play方法获取到对应资源的streamID。
-    //设置音量为0.5。
+    // 设置音量为0.5。
     soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {
       if (error) {
         console.error(`Failed to setVolume soundPool: errCode is ${error.code}, errMessage is ${error.message}`);
@@ -1242,7 +1242,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1300,7 +1300,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1364,7 +1364,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1419,7 +1419,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1474,7 +1474,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1519,7 +1519,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1561,7 +1561,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1606,7 +1606,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool_: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1647,7 +1647,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool_: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1687,7 +1687,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1729,7 +1729,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1770,7 +1770,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1813,7 +1813,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
