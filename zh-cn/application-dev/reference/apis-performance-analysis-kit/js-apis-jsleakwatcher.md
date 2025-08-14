@@ -148,7 +148,7 @@ enableLeakWatcher(isEnabled: boolean, configs: Array&lt;string&gt;, callback: Ca
 | 错误码ID| 错误信息|
 | ------- | ----------------------------------------------------------------- |
 | 10801001 | The parameter isEnabled is invalid.                              |
-| 10801002 | The parameter configs is invalid.                                 |
+| 10801002 | The parameter config is invalid.                                 |
 | 10801003 | The parameter callback is invalid. Input parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
