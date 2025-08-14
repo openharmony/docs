@@ -24,7 +24,7 @@ import { convertxml } from '@kit.ArkTS';
 
 fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-转换xml文本为JavaScript对象。
+转换xml文本为Object类型对象。
 
 > **说明：**
 >
@@ -87,7 +87,7 @@ try {
 
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-转换xml文本为JavaScript对象。
+转换xml文本为Object类型对象。
 
 > **说明：**
 >
