@@ -784,7 +784,7 @@ try {
 
 getPublishedRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
-获取已创建卡片信息，使用Promise异步回调。
+获取当前应用已加桌卡片中指定的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -838,7 +838,7 @@ try {
 
 getPublishedRunningFormInfos(): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
-获取所有已创建卡片信息，使用Promise异步回调。
+获取所有已加桌的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

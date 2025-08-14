@@ -241,7 +241,7 @@ import { formInfo } from '@kit.FormKit';
 
 ## RunningFormInfo<sup>20+</sup>
 
-[已经创建卡片信息](../../form/arkts-ui-widget-creation.md)。
+已经添加到桌面的卡片信息。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
