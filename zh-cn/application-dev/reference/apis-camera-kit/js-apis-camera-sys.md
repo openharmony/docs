@@ -4491,7 +4491,9 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)、[PhotoOutput](arkts-apis-camera-PhotoOutput.md)。
+
+夜景拍照需要监听拍照结束事件[onCaptureEnd](arkts-apis-camera-PhotoOutput.md#oncaptureend)作为一次拍照的结束。
 
 ### on('error')<sup>11+</sup>
 
