@@ -7,8 +7,9 @@
 
 >**说明：**
 >
->\@Monitor装饰器从API version 12开始支持。
+> \@Monitor装饰器从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
