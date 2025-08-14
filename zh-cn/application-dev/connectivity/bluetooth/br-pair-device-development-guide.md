@@ -1,4 +1,4 @@
-# 配对连接设备
+# 配对与连接设备
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->

@@ -261,6 +261,7 @@ let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
+console.info("result:", result);  // result: 0
 ```
 
 

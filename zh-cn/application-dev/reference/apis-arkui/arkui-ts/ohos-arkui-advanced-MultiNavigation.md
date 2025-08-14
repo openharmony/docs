@@ -27,7 +27,7 @@ import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@kit.ArkUI';
 
 ## MultiNavigation
 
-MultiNavigation({navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback})
+MultiNavigation({navDestination: NavDestinationBuildFunction, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback})
 
 创建并初始化MultiNavigation组件。
 
@@ -488,8 +488,7 @@ getParamByIndex(index: number): Object | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| Object   | 返回对应NavDestination页面的参数信息。 |
-| undefined   | 传入index无效是返回undefined。|
+| Object&nbsp;\|&nbsp;undefined | Object：返回对应NavDestination页面的参数信息。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName
 
@@ -824,7 +823,7 @@ export struct PageHome1 {
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
-              TextInput({placeholder: 'input your poptoindex ...', controller: this.controller })
+              TextInput({placeholder: 'input your popToIndex ...', controller: this.controller })
                 .placeholderColor(Color.Grey)
                 .placeholderFont({ size: 14, weight: 400 })
                 .caretColor(Color.Blue)
@@ -837,7 +836,7 @@ export struct PageHome1 {
                 .onChange((value: string) => {
                   this.text = value;
                 })
-              Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
+              Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
                 .height(40)
                 .margin(20)
@@ -905,7 +904,7 @@ export struct PageHome1 {
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     let result = this.pageStack.getAllPathName();
-                    hilog.info(0x0000, 'demotest', 'getAllPathName: ' + result.toString());
+                    hilog.info(0x0000, 'demoTest', 'getAllPathName: ' + result.toString());
                   }
                 })
               Button('getParamByIndex0', { stateEffect: true, type: ButtonType.Capsule})
@@ -916,7 +915,7 @@ export struct PageHome1 {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     // 获取index为0的页面的参数
                     let result = this.pageStack.getParamByIndex(0);
-                    hilog.info(0x0000, 'demotest', 'getParamByIndex: ' + result);
+                    hilog.info(0x0000, 'demoTest', 'getParamByIndex: ' + result);
                   }
                 })
               Button('getParamByNameHomePage', { stateEffect: true, type: ButtonType.Capsule})
@@ -927,7 +926,7 @@ export struct PageHome1 {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     // 获取名称为PageHome1的页面的参数
                     let result = this.pageStack.getParamByName('PageHome1');
-                    hilog.info(0x0000, 'demotest', 'getParamByName: ' + result.toString());
+                    hilog.info(0x0000, 'demoTest', 'getParamByName: ' + result.toString());
                   }
                 })
               Button('getIndexByNameHomePage', { stateEffect: true, type: ButtonType.Capsule})
@@ -938,7 +937,7 @@ export struct PageHome1 {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     // 获取名称为PageHome1的页面的Index
                     let result = this.pageStack.getIndexByName('PageHome1');
-                    hilog.info(0x0000, 'demotest', 'getIndexByName: ' + result);
+                    hilog.info(0x0000, 'demoTest', 'getIndexByName: ' + result);
                   }
                 })
               Button('keepBottomPage True', { stateEffect: true, type: ButtonType.Capsule})
@@ -981,7 +980,7 @@ export struct PageHome1 {
     }
 
   log(): boolean {
-    hilog.info(0x0000, 'demotest', 'PageHome1 build called');
+    hilog.info(0x0000, 'demoTest', 'PageHome1 build called');
     return true;
   }
 }
@@ -1112,7 +1111,7 @@ export struct PageDetail1 {
                     this.pageStack.popToName('PageHome1');
                   }
                 })
-              TextInput({placeholder: 'input your poptoindex ...', controller: this.controller })
+              TextInput({placeholder: 'input your popToIndex ...', controller: this.controller })
                 .placeholderColor(Color.Grey)
                 .placeholderFont({ size: 14, weight: 400 })
                 .caretColor(Color.Blue)
@@ -1125,7 +1124,7 @@ export struct PageDetail1 {
                 .onChange((value: string) => {
                   this.text = value;
                 })
-              Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
+              Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
                 .height(40)
                 .margin(20)
@@ -1215,7 +1214,7 @@ export struct PageDetail1 {
   }
 
   log(): boolean {
-    hilog.info(0x0000, 'demotest', 'PageDetail1 build called');
+    hilog.info(0x0000, 'demoTest', 'PageDetail1 build called');
     return true;
   }
 }
@@ -1287,7 +1286,7 @@ export struct PageDetail2 {
                     this.pageStack.replacePathByName('PageDetail2', 'testParam');
                   }
                 })
-              TextInput({placeholder: 'input your poptoindex ...', controller: this.controller })
+              TextInput({placeholder: 'input your popToIndex ...', controller: this.controller })
                 .placeholderColor(Color.Grey)
                 .placeholderFont({ size: 14, weight: 400 })
                 .caretColor(Color.Blue)
@@ -1320,7 +1319,7 @@ export struct PageDetail2 {
                     this.pageStack.pop();
                   }
                 })
-              TextInput({placeholder: 'input your poptoindex ...', controller: this.controller })
+              TextInput({placeholder: 'input your popToIndex ...', controller: this.controller })
                 .placeholderColor(Color.Grey)
                 .placeholderFont({ size: 14, weight: 400 })
                 .caretColor(Color.Blue)
@@ -1333,7 +1332,7 @@ export struct PageDetail2 {
                 .onChange((value: string) => {
                   this.text = value;
                 })
-              Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
+              Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
                 .height(40)
                 .margin(20)
@@ -1386,7 +1385,7 @@ export struct PageDetail2 {
   }
 
   log(): boolean {
-    hilog.info(0x0000, 'demotest', 'PageDetail2 build called');
+    hilog.info(0x0000, 'demoTest', 'PageDetail2 build called');
     return true;
   }
 }
@@ -1487,7 +1486,7 @@ export struct PageFull1 {
                     this.pageStack.pop();
                   }
                 })
-              TextInput({ placeholder: 'input your poptoindex ...', controller: this.controller })
+              TextInput({ placeholder: 'input your popToIndex ...', controller: this.controller })
                 .placeholderColor(Color.Grey)
                 .placeholderFont({ size: 14, weight: 400 })
                 .caretColor(Color.Blue)
@@ -1500,7 +1499,7 @@ export struct PageFull1 {
                 .onChange((value: string) => {
                   this.text = value;
                 })
-              Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule })
+              Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
                 .width('50%')
                 .height(40)
                 .margin(20)
@@ -1519,14 +1518,14 @@ export struct PageFull1 {
       }
       .hideTitleBar(true)
       .onBackPressed(() => {
-        hilog.info(0x0000, 'demotest', 'PageFull1 onBackPressed: ');
+        hilog.info(0x0000, 'demoTest', 'PageFull1 onBackPressed: ');
         return false;
       })
     }
   }
 
   log(): boolean {
-    hilog.info(0x0000, 'demotest', 'PageFull1 build called');
+    hilog.info(0x0000, 'demoTest', 'PageFull1 build called');
     return true;
   }
 }
@@ -1571,7 +1570,7 @@ export struct PagePlaceholder {
   }
 
   log(): boolean {
-    hilog.info(0x0000, 'demotest', 'PagePlaceholder build called');
+    hilog.info(0x0000, 'demoTest', 'PagePlaceholder build called');
     return true;
   }
 }

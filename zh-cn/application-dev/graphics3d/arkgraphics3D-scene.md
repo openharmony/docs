@@ -116,7 +116,13 @@ function createCameraPromise() : Promise<Camera> {
         // 可以参照此方式设置相机很多其他的参数
         // ...
         resolve(cameraEntity);
+      }).catch((error:Error) => {
+        console.error('Camera create failed:', error);
+        reject(error);
       });
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -152,7 +158,13 @@ function createLightPromise() : Promise<Light> {
         // 可以参照此方式设置光源很多其他的参数
         // ...
         resolve(lightEntity);
+      }).catch((error: Error) => {
+        console.error('Light create failed:', error);
+        reject(error);
       });
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }

@@ -67,13 +67,15 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                     | 只读    | 可选   |  说明                                |
-| --------- | --------- | ---- |--------------------------------------- |
+| --------- | --------- | ---- |--------------------------------------- | ---- |
 | strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 否     | 否  |事件派发策略。                     |
 | id  | string | 否    | 是  |通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFAULT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPETITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
 
 ## TouchTestStrategy枚举说明
 
 事件的派发策略。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

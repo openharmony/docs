@@ -1,5 +1,11 @@
 # @ohos.app.ability.sendableContextManager (sendable上下文管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo; @xuzhihao666-->
+<!--SE: @zhangyafei-echo-->
+<!--TSE: @lixueqing513-->
+
 sendableContextManager模块提供Context与[SendableContext](js-apis-inner-application-sendableContext.md)相互转换的能力。
 
 > **说明：**
@@ -31,23 +37,19 @@ sendableContextManager模块提供Context与[SendableContext](js-apis-inner-appl
 import { sendableContextManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## SendableContext
+
+type SendableContext = _SendableContext
+
+Sendable上下文，符合[Sendable协议](../../arkts-utils/arkts-sendable.md#sendable协议)，继承自[lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------- | ------- | ------- | ------- |
-| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext二级模块。 |
-
-**示例：**
-
-```ts
-import { sendableContextManager } from '@kit.AbilityKit';
-
-let sendableContext: sendableContextManager.SendableContext;
-```
+| 类型 | 说明 |
+| --- | --- |
+| [_SendableContext](js-apis-inner-application-sendableContext.md) | 表示Sendable上下文，可以与Context对象相互转换，用于ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）的数据传递。 |
 
 ## sendableContextManager.convertFromContext
 

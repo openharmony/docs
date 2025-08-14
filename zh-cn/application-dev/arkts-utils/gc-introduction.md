@@ -241,7 +241,7 @@ heap中生成两个Semi Space，供copying使用。
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
-- 限制参数：`globalSpaceNativeLimit`。
+- 限制参数：`globalSpaceNativeLimit`
 - 说明：影响是否进行全量mark以及是否开启并发mark。
 
 #### 切换后台触发GC

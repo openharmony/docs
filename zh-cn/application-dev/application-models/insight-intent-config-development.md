@@ -1,4 +1,11 @@
 # 使用配置文件开发意图
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--SE: @zhangyafei-echo-->
+<!--TSE: @lixueqing513-->
+
 ## 简介
 从API version 11及以上版本，支持通过配置文件开发意图。主要包含两个环节：
 
@@ -89,7 +96,7 @@
 
 ### 意图绑定UIExtensionAbility组件
 
-参考[意图绑定uiability组件](#意图绑定uiability组件)完成工程创建。
+参考[意图绑定UIAbility组件](#意图绑定uiability组件)完成工程创建。
 
 意图配置示例：
 
@@ -131,7 +138,7 @@ export default class IntentExecutorImpl extends InsightIntentExecutor {
 <!--Del-->
 ### 意图绑定ServiceExtensionAbility组件
 
-参考[意图绑定uiability组件](#意图绑定uiability组件)完成工程创建。
+参考[意图绑定UIAbility组件](#意图绑定uiability组件)完成工程创建。
 
 意图配置示例：
 
@@ -173,7 +180,7 @@ export default class IntentExecutorImpl extends InsightIntentExecutor {
 
 ### 意图绑定卡片
 
-参考[意图绑定uiability组件](#意图绑定uiability组件)完成工程创建。
+参考[意图绑定UIAbility组件](#意图绑定uiability组件)完成工程创建。
 
 意图配置示例：
 

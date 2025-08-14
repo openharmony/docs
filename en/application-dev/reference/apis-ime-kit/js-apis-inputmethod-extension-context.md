@@ -1,4 +1,9 @@
 # @ohos.InputMethodExtensionContext (InputMethodExtensionContext)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **InputMethodExtensionContext** module, inherited from **ExtensionContext**, provides context for **InputMethodExtension** abilities. You can use the APIs of this module to start, terminate, connect, and disconnect abilities.
 
@@ -20,7 +25,7 @@ Before using the **InputMethodExtensionContext** module, you must define a child
 ```ts
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -48,7 +53,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -85,7 +90,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
   }
@@ -153,26 +158,26 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class InputMethodExtnAbility extends InputMethodExtensionAbility {
+class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    let context = this.context;
-  }
-  onDestroy() {
-    let want: Want = {
+    const context = this.context;
+    const targetWant: Want = {
       bundleName: "com.example.aafwk.test",
       abilityName: "com.example.aafwk.test.TwoAbility"
     };
-    try {
-      this.context.startAbility(want).then(() => {
-        console.info(`startAbility success`);
-      }).catch((err: BusinessError) => {
-        let error = err as BusinessError;
-        console.error(`startAbility error: ${error.code} ${error.message}`);
-      })
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error(`startAbility error: ${error.code} ${error.message}`);
-    }
+
+    context.startAbility(targetWant)
+      .then(() => console.info('startAbility success'))
+      .catch((err: BusinessError) => {
+        console.error(`StartAbility failed. Code: ${err.code}, Message: ${err.message}`);
+      });
+  }
+  onDestroy() {
+    this.context.destroy().then(() => {
+      console.info('Succeed in destroying context.');
+    }).catch((err: BusinessError)=>{
+      console.error(`Failed to destroy context, err code = ${err.code}`);
+    });
   }
 }
 ```

@@ -1,4 +1,9 @@
 # SubHeaderV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
@@ -444,7 +449,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        Prompt.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectDemo' })
       }
     })
 
@@ -614,7 +619,7 @@ struct SubHeaderExample {
 ![子标题5](figures/zh-cn_image_subheader_example05.png)
 
 ### 示例6（自定义标题内容）
- 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
+ 该示例主要演示SubHeaderV2设置titleBuilder自定义标题内容的效果。
 
 ```ts
 import {
@@ -671,7 +676,7 @@ struct SubHeaderExample {
 ![子标题6](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
-该示例主要演示SubHeader设置标题和副标题字体样式。
+该示例主要演示SubHeaderV2设置标题和副标题字体样式。
 
 ```ts
 import {
@@ -722,7 +727,7 @@ struct SubHeaderExample {
 
 
 ### 示例8（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,
@@ -819,7 +824,7 @@ struct SubHeaderExample {
 ![子标题8](figures/zh-cn_image_subheader_example08.png)
 
 ### 示例9（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,

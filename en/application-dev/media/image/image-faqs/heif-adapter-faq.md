@@ -1,4 +1,9 @@
 # Handling HEIF Images
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Introduction to HEIF Images
 

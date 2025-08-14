@@ -1,4 +1,9 @@
 # Functions
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
@@ -219,7 +224,7 @@ async function CreatePixelMap() {
 
 ## image.createPixelMapUsingAllocator<sup>20+</sup>
 
-createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
+createPixelMapUsingAllocator(colors: ArrayBuffer, param: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
 Creates a PixelMap object with the specified properties and memory type. By default, the BGRA_8888 format is used to process data. This API uses a promise to return the result.
 
@@ -230,7 +235,7 @@ Creates a PixelMap object with the specified properties and memory type. By defa
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](arkts-apis-image-i.md#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
-| options  | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| param  | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 | allocatorType  | [AllocatorType](arkts-apis-image-e.md#allocatortype15)          | No  | Memory type for creating the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported for this memory type: UNKNOWN, YCBCR_P010, YCRCB_P010, and ASTC_4x4. For RGBA_1010102, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGBA_1010102, RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16 support DMA memory types. Other formats do not support DMA memory types.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
 
 **Return value**
@@ -245,7 +250,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation. |
 |  7600301    | Memory alloc failed. |
 |  7600302    | Memory copy failed. |
 
@@ -291,7 +296,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
@@ -341,7 +346,7 @@ async function CreatePixelMapFromParcel() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -624,7 +629,7 @@ async function CreatePixelMapSync() {
 
 ## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
 
-createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(colors: ArrayBuffer, param: InitializationOptions, allocatorType?: AllocatorType): PixelMap
 
 Creates a PixelMap object with the specified properties and memory type. By default, the BGRA_8888 format is used to process data. This API returns the result synchronously.
 
@@ -635,8 +640,8 @@ Creates a PixelMap object with the specified properties and memory type. By defa
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](arkts-apis-image-i.md#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
-| options | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
-| allocatorType  | [AllocatorType](arkts-apis-image-e.md#allocatortype15)          | No  | Memory type for creating the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported for this memory type: **UNKNOWN**, **YCBCR_P010**, **YCRCB_P010**, and **ASTC_4x4**. For RGBA_1010102, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGBA_1010102, RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16 support DMA memory types. Other formats do not support DMA memory types.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
+| param | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| allocatorType  | [AllocatorType](arkts-apis-image-e.md#allocatortype15)          | No  | Memory type for creating the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported for this memory type: UNKNOWN, YCBCR_P010, YCRCB_P010, and ASTC_4x4. For RGBA_1010102, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGBA_1010102, RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16 support DMA memory types. Other formats do not support DMA memory types.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
 
 **Return value**
 
@@ -650,7 +655,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation. |
 |  7600301    | Memory alloc failed. |
 |  7600302    | Memory copy failed. |
 
@@ -669,7 +674,7 @@ async function CreatePixelMapSync() {
 
 ## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
 
-createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(param: InitializationOptions, allocatorType?: AllocatorType): PixelMap
 
 Creates a PixelMap object with the specified pixel properties. This API returns the result synchronously.
 
@@ -679,7 +684,7 @@ Creates a PixelMap object with the specified pixel properties. This API returns 
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| options | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| param | [InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 | allocatorType  | [AllocatorType](arkts-apis-image-e.md#allocatortype15)          | No  | Memory type for creating the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported for this memory type: UNKNOWN and ASTC_4x4. For RGBA_1010102, YCBCR_P010, and YCRCB_P010, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGB_565, RGBA_8888, BGRA_8888, RGBAF_16, RGBA_1010102, YCBCR_P010, and YCRCB_P010 support DMA memory type. Other formats do not support DMA memory type.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
 
 **Return value**
@@ -694,7 +699,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation.|
 |  7600301    | Memory alloc failed. |
 
 **Example**
@@ -1231,10 +1236,13 @@ The ImageSource instance created in incremental mode supports the following capa
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { image } from '@kit.ImageKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // Obtain the image resource.
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // Obtain the image resource.
 // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
@@ -1280,10 +1288,13 @@ The capabilities supported by the ImageSource instance created by this API are t
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { image } from '@kit.ImageKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // Obtain the image resource.
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id) // Obtain the image resource.
 // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
@@ -1617,5 +1628,3 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1, 
 - textPath
 - tspan
 - use
-
-<!--no_check-->

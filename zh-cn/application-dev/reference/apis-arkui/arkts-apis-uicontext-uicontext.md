@@ -151,10 +151,6 @@ getFont(): Font
 
 完整示例请参考[Font](arkts-apis-uicontext-font.md)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getFont();
-```
 ## getComponentUtils
 
 getComponentUtils(): ComponentUtils
@@ -279,11 +275,6 @@ getMediaQuery(): MediaQuery
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
-
 ## getRouter
 
 getRouter(): Router
@@ -303,11 +294,6 @@ getRouter(): Router
 **示例：**
 
 完整示例请参考[pushUrl](arkts-apis-uicontext-router.md#pushurl)。
-
-<!--code_no_check-->
-```ts
-uiContext.getRouter();
-```
 
 ## getPromptAction
 
@@ -506,7 +492,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 **返回值：**
 
-| 类型                             | 描述                |
+| 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](arkui-ts/ts-state-management.md#localstorage9)&nbsp;\|&nbsp;undefined | 返回LocalStorage实例。共享的LocalStorage实例不存在时返回undefined。 |
 
@@ -627,11 +613,6 @@ getFrameNodeById(id: string): FrameNode | null
 **示例：**
 
 完整示例请参考[获取根节点示例](js-apis-arkui-frameNode.md#获取根节点示例)。
-
-<!--code_no_check-->
-```ts
-uiContext.getFrameNodeById("TestNode");
-```
 
 ## getAttachedFrameNodeById<sup>12+</sup>
 
@@ -970,6 +951,8 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1037,6 +1020,8 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1097,6 +1082,8 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1166,6 +1153,8 @@ showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt)
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1802,13 +1791,6 @@ getContextMenuController(): ContextMenuController
 |----|----|
 |[ContextMenuController](arkts-apis-uicontext-contextmenucontroller.md)| 获取ContextMenuController对象。|
 
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getContextMenuController();
-```
-
 ## getMeasureUtils<sup>12+</sup>
 
 getMeasureUtils(): MeasureUtils
@@ -1828,11 +1810,6 @@ getMeasureUtils(): MeasureUtils
 **示例：**
 
 完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
-
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
 
 ## getComponentSnapshot<sup>12+</sup>
 
@@ -3223,8 +3200,10 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -3249,9 +3228,21 @@ static destroyUIContextWithoutWindow(): void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-UIContext.destroyUIContextWithoutWindow();
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+    UIContext.destroyUIContextWithoutWindow();
+  }
+
+  // ......
+}
 ```
 
 ## dispatchKeyEvent<sup>15+</sup>
@@ -3263,6 +3254,8 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |

@@ -1,5 +1,11 @@
 # drawing_color_filter.h
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
+
 ## 概述
 
 声明与绘图模块中的颜色滤波器对象相关的函数。

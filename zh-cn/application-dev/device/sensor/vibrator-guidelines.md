@@ -308,9 +308,9 @@ Json文件共包含3个属性。
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
                  }
+                 // 关闭文件资源描述符
+                 this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                }
-               // 关闭文件资源描述符
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')

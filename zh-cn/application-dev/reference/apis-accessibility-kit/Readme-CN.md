@@ -1,4 +1,10 @@
-# Accessibility Kit（无障碍开发服务）
+# Accessibility Kit（无障碍服务）
+
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
 
 - ArkTS API<!--accessibility-arkts-->
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)

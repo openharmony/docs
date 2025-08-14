@@ -1,5 +1,10 @@
 # 画布的获取与绘制结果的显示（C/C++）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 ## 场景介绍
 

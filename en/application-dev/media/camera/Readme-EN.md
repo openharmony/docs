@@ -1,4 +1,9 @@
 # Camera Kit
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 - [Introduction to Camera Kit](camera-overview.md)
 - [Requesting Camera Development Permissions](camera-preparation.md)
@@ -22,7 +27,7 @@
   - [Basic Camera Animation (ArkTS)](camera-animation.md)
   - [Using the Camera in the Worker Thread (ArkTS)](camera-worker.md)
   - [Practices for Camera Recovery from the Background (ArkTS)](camera-background-recovery.md)
-  - [Practices for Automatic Camera Switching (ArkTS)](camera_auto_switch.md)
+  - [Practices for Automatic Camera Switching (ArkTS)](camera-auto-switch.md)
   <!--Del-->
   - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md)
   - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)

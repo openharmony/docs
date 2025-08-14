@@ -1,5 +1,10 @@
 # 图形开发术语
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@goumiao;@hangmengxin-->
+<!--SE: @liumingxiang;@wangyanglan-->
+<!--TSE: @yhl0101;@nobuggers-->
 
 ## BlendMode
 

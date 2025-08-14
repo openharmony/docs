@@ -1,5 +1,11 @@
 # AccessibilityExtensionContext (辅助功能扩展上下文)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，继承自ExtensionContext。
 
 辅助功能扩展上下文模块提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
@@ -40,10 +46,10 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | 否   | 否   | 所有子元素。 |
 | clickable            | boolean                                                            | 否   | 否   | 表示元素是否可点击。true表示元素可点击，false表示元素不可点击，默认值为false。|
 | componentId          | number                                                             | 否   | 否   | 元素所属的组件ID。默认值为-1。|
-| componentType        | string                                                             | 否   | 否   | 元素所属的组件类型。 |
-| contents             | Array&lt;string&gt;                                                | 否   | 否   | 内容。 |
+| componentType        | string                                                             | 否   | 否   | 应与元素所属的组件类型所对应，如：按钮Button类型->'Button'、图像Image类型->'Image'。 |
+| contents             | Array&lt;string&gt;                                                | 否   | 否   | 内容列表。根据实际场景设置，无特殊限制。 |
 | currentIndex         | number                                                             | 否   | 否   | 当前项的索引。默认值为0。|
-| description          | string                                                             | 否   | 否   | 元素的描述信息。 |
+| description          | string                                                             | 否   | 否   | 元素的描述信息。根据实际场景设置，无特殊限制。 |
 | editable             | boolean                                                            | 否   | 否   | 表示元素是否可编辑。true表示元素可编辑，false表示元素不可编辑，默认值为false。 |
 | endIndex             | number                                                             | 否   | 否   | 屏幕最后显示项的列表索引。默认值为0。 |
 | error                | string                                                             | 否   | 否   | 错误状态字符串。 |

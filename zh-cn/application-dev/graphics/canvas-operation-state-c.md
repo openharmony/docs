@@ -1,5 +1,10 @@
 # 画布操作及状态处理（C/C++）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 ## 场景介绍
 

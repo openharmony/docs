@@ -27,7 +27,7 @@
      */
     let keyAlias = 'test_sm4_key_alias';
     
-    class throwObject {
+    class ThrowObject {
       isThrow: boolean = false;
     }
     
@@ -78,7 +78,7 @@
     /*
      * 生成密钥
      */
-    async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<void>((resolve, reject) => {
         try {
           huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -97,7 +97,7 @@
     
     async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
       console.info(`enter promise generateKeyItem`);
-      let throwObject: throwObject = { isThrow: false };
+      let throwObject: ThrowObject = { isThrow: false };
       try {
         await generateKeyItem(keyAlias, huksOptions, throwObject)
           .then((data) => {
@@ -180,11 +180,11 @@
       inData: new Uint8Array(new Array())
     }
     
-    class throwObject1 {
+    class ThrowObject {
       isThrow: boolean = false;
     }
     
-    function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject1) {
+    function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
         try {
           huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -203,7 +203,7 @@
     
     async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doInit`);
-      let throwObject: throwObject1 = { isThrow: false };
+      let throwObject: ThrowObject = { isThrow: false };
       try {
         await initSession(keyAlias, huksOptions, throwObject)
           .then((data) => {
@@ -222,7 +222,7 @@
       }
     }
     
-    function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject1) {
+    function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
           huks.finishSession(handle, huksOptions, (error, data) => {
@@ -241,7 +241,7 @@
     
     async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doFinish`);
-      let throwObject: throwObject1 = { isThrow: false };
+      let throwObject: ThrowObject = { isThrow: false };
       try {
         await finishSession(handle, huksOptions, throwObject)
           .then((data) => {
@@ -289,7 +289,7 @@
     let authType = userAuth.UserAuthType.FINGERPRINT;
     let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
     
-    class throwObject {
+    class ThrowObject {
       isThrow: boolean = false;
     }
     
@@ -339,7 +339,7 @@
       inData: new Uint8Array(new Array())
     }
     
-    function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
         try {
           huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -358,7 +358,7 @@
     
     async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doInit`);
-      let throwObject: throwObject = { isThrow: false };
+      let throwObject: ThrowObject = { isThrow: false };
       try {
         await initSession(keyAlias, huksOptions, throwObject)
           .then((data) => {
@@ -418,7 +418,7 @@
       }
     }
     
-    function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+    function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
       return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
           huks.finishSession(handle, huksOptions, token, (error, data) => {
@@ -437,7 +437,7 @@
     
     async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doFinish`);
-      let throwObject: throwObject = { isThrow: false };
+      let throwObject: ThrowObject = { isThrow: false };
       try {
         await finishSession(handle, huksOptions, token, throwObject)
           .then((data) => {

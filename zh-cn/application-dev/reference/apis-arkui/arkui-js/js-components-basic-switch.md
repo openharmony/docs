@@ -67,7 +67,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <switch @change="normalswitchChange">
+    <switch @change="normalSwitchChange">
     </switch>
     <switch class="switch" showtext="true" texton="开启" textoff="关闭" @change="switchChange">
     </switch>
@@ -112,7 +112,7 @@ export default {
             });
         }
     },
-    normalswitchChange(e) {
+    normalSwitchChange(e) {
         if (e.checked) {
             promptAction.showToast({
                 message: "switch on"

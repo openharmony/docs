@@ -159,8 +159,6 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private imageReceiver: image.ImageReceiver | undefined = undefined;
-  private imageReceiverSurfaceId: string = '';
   private xComponentCtl: XComponentController = new XComponentController();
   private xComponentSurfaceId: string = '';
   @State imageWidth: number = 1920;

@@ -49,5 +49,5 @@
     - [通过标准化数据通路实现数据共享 (ArkTS)](unified-data-channels.md)
     - [通过标准化数据通路实现数据共享 (C/C++)](unified-data-channels-c.md)
 - [应用数据向量化 (ArkTS)](aip-data-intelligence-embedding.md)
-- [SQLite调试工具](sqlite-database-debug-tool.md)
+- [SQLite调试工具指导](sqlite-database-debug-tool.md)
 - [ArkData术语](data-terminology.md)

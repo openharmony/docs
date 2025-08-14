@@ -1,6 +1,6 @@
 # ArkGuard字节码混淆工具概述
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao; @Valkisop_-->
 <!--SE: @hufeng20-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->

@@ -150,7 +150,10 @@ UI输入事件类型定义。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | Mouse event. |
+| ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0 | 未知。 |
+| ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1 | 触摸事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 | 轴事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | 鼠标事件。|
 | ARKUI_UIINPUTEVENT_TYPE_KEY = 4 | 按键事件。<br>**起始版本：** 20 |
 
 ### anonymous1

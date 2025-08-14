@@ -319,7 +319,7 @@ function testInstanceof() {
     // 打印test instanceof in main thread success
     console.info("test instanceof in main thread success");
   } else {
-    console.info("test instanceof in main thread fail");
+    console.info("test instanceof in main thread failed");
   }
   workerInstance.postMessageWithSharedSendable(a);
   workerInstance.onerror = (err: ErrorEvent) => {
@@ -352,7 +352,7 @@ workerPort.onmessage = (e: MessageEvents) => {
         // 打印test instanceof in worker thread success
         console.info("test instanceof in worker thread success");
     } else {
-        console.info("test instanceof in worker thread fail");
+        console.info("test instanceof in worker thread failed");
     }
 }
 ```

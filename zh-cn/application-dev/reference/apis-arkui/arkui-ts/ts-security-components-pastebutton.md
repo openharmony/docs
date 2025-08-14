@@ -24,7 +24,7 @@ PasteButton()
 
 默认创建带有图标、文本、背景的粘贴控件。
 
-为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+为避免因控件样式不合法而导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +36,7 @@ PasteButton(options: PasteButtonOptions)
 
 创建包含指定元素的粘贴控件。
 
-为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+为避免因控件样式不合法而导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -55,14 +55,14 @@ PasteButton(options: PasteButtonOptions)
 > **说明：**
 >
 > - icon或text需至少传入一个。<br>
-> - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式，默认样式：
+> - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式。
 >
->   PasteIconStyle默认样式为LINES；
+>     - PasteIconStyle默认样式为LINES。
 >
->   PasteDescription默认样式为PASTE；
+>     - PasteDescription默认样式为PASTE。
 >
->   ButtonType默认样式为Capsule。
-> - icon、text、buttonType不支持动态修改。
+>     - ButtonType默认样式为Capsule。
+> - icon、text和buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -149,7 +149,7 @@ onClick(event: PasteButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [PasteButtonCallback](#pastebuttoncallback18) |是 |见PasteButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtononClickResult](#pastebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为PasteButtonCallback。|
+| event | [PasteButtonCallback](#pastebuttoncallback18) |是 |见PasteButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为PasteButtonCallback。|
 
 ## 示例
 
@@ -177,10 +177,10 @@ struct Index {
         PasteButton().onClick(this.handlePasteButtonClick)
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         PasteButton({ icon: PasteIconStyle.LINES })
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1a，则会被系统强制调整为0xff。
         PasteButton({ icon: PasteIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1a，则会被系统强制调整为0xff。
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })

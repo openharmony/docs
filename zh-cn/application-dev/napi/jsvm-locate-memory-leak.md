@@ -1,7 +1,7 @@
 # JSVM-API 内存泄漏问题定位指导
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
+<!--Owner: @yuanxiaogou; @string_sz-->
 <!--SE: @knightaoko-->
 <!--TSE: @test_lzz-->
 
@@ -41,7 +41,7 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 1. 使用Profiler的Allocation模块记录一段时间内的Native内存信息。
 <div align=left><img src="figures/jsvm_locate_memory_leak_allocation1.png"/></div>  
 
-2. 比较这段时间内"Created & Existing"的内存变化情况，如果存在占比较大且Count较大的未释放内存，则怀疑未内存泄漏，展开进一步查看调用栈。
+2. 比较这段时间内"Created & Existing"的内存变化情况，如果存在占比较大且Count较大的未释放内存，则怀疑存在内存泄漏，展开进一步查看调用栈。
 <div align=left><img src="figures/jsvm_locate_memory_leak_allocation2.png"/></div> 
 
 
