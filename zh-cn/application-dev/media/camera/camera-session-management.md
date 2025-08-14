@@ -80,7 +80,7 @@
        videoSession.canAddOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add photoOutput error: ${err`);
+       console.error(`Failed to add photoOutput error: ${err}`);
      }
      try {
        videoSession.addOutput(photoOutput);
