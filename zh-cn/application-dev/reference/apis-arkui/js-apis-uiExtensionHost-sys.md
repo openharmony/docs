@@ -249,6 +249,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 >
 > 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，若要取消隐藏，需要申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限，并调用本接口将shouldHide设为false。
 
+**需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 **系统接口**：此接口为系统接口，三方应用不支持调用。
@@ -336,7 +338,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
@@ -415,9 +417,9 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
-| 1300002 | This window state is abnormal.                 |
+| 1300002 | The UIExtension window proxy is abnormal.      |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display. |
+| 1300008 | The display device is abnormal. |
 
 **示例：**
 
@@ -481,7 +483,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
-| 1300002  | The UIExtension window proxy is abnormal.                    |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The UIExtension window proxy is abnormal. <br> 2. Not the UIExtensionAbility process calling.                    |
 
 **示例：**
 

@@ -30,6 +30,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 > 
 > 此接口在2in1设备上调用不生效。
 
+**需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 **系统接口**：此接口为系统接口，三方应用不支持调用。
@@ -114,9 +116,9 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
-| 1300002 | This window state is abnormal.                 |
+| 1300002 | The UIExtension window proxy is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display. |
+| 1300008 | The display device is abnormal. |
 
 **示例** 
 
