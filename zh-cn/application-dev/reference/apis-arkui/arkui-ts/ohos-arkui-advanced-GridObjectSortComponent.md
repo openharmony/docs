@@ -1,4 +1,9 @@
 # GridObjectSortComponent
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--SE: @YanSanzo-->
+<!--TSE: @tinygreyy-->
 
 
 网格对象的编辑排序是用于网格对象的编辑、拖动排序、新增和删除。
