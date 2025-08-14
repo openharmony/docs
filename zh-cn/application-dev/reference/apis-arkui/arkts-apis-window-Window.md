@@ -8664,7 +8664,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: TransitionAnimation): Promise&lt;void&gt;
 
-该接口仅在自由窗口模式下生效，用于给特定场景下的窗口增加转场动画。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)模式下生效，用于给特定场景下的窗口增加转场动画。
 
 当前只支持在应用主窗下使用。
 
@@ -8748,7 +8748,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
 
-该接口仅在自由窗口模式下生效，用于获取特定场景下的窗口转场动画配置。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)模式下生效，用于获取特定场景下的窗口转场动画配置。
 
 当前只支持在应用主窗下使用。
 
