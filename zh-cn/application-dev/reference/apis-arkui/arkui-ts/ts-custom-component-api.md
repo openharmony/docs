@@ -151,7 +151,7 @@ queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undef
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| isInner  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | true：向内查询最近的，且在栈内的NavDestinationinfo的详细信息。<br/>false：向外查询最近的，且在栈内的NavDestinationinfo的详细信息。|
+| isInner  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | true：向内查询最近的，且在栈内的NavDestinationInfo的详细信息。<br/>false：向外查询最近的，且在栈内的NavDestinationInfo的详细信息。|
 
 **返回值：**
 
