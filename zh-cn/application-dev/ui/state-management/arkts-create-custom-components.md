@@ -84,6 +84,8 @@ struct ParentComponent {
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   > 
   > 从API version 11开始，\@Component可以接受一个可选的boolean类型参数。
+  >
+  > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
   ```ts
   @Component
@@ -142,7 +144,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   | 名称   | 类型   | 必填 | 说明                                                         |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
-  | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
+  | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。当未传入时，框架会创建一个新的LocalStorage实例作为默认值。 |
   | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的共享的[LocalStorage](arkts-localstorage.md)实例对象。默认值false。true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
 
   > **说明：**
