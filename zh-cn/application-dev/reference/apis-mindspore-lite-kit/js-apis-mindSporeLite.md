@@ -40,7 +40,6 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 let modelFile : string = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile, (mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -70,7 +69,6 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 let context: mindSporeLite.Context = {};
 context.target = ['cpu'];
 let modelFile : string = '/path/to/xxx.ms';
@@ -107,7 +105,6 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -136,7 +133,6 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -172,7 +168,6 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -215,7 +210,6 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -250,7 +244,6 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { fileIo } from '@kit.CoreFileKit';
 let modelFile = '/path/to/xxx.ms';
 let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
@@ -282,7 +275,6 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { fileIo } from '@kit.CoreFileKit';
 let modelFile = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
@@ -321,7 +313,6 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { fileIo } from '@kit.CoreFileKit';
 let modelFile = '/path/to/xxx.ms';
 let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
@@ -360,7 +351,6 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -397,7 +387,6 @@ loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Cont
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -611,8 +600,6 @@ deviceID() : bigint
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
-
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
@@ -643,8 +630,6 @@ deviceType() : NNRTDeviceType
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
-
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
@@ -675,8 +660,6 @@ deviceName() : string
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
-
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
@@ -782,7 +765,6 @@ getInputs(): MSTensor[]
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -811,7 +793,6 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -858,7 +839,6 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -965,7 +945,6 @@ getWeights(): MSTensor[]
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1013,7 +992,6 @@ updateWeights(weights: MSTensor[]): boolean
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1059,7 +1037,6 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1206,7 +1183,6 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1247,7 +1223,6 @@ setData(inputArray: ArrayBuffer): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
