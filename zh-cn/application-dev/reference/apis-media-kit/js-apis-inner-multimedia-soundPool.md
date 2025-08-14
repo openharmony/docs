@@ -109,6 +109,8 @@ load(uri: string, callback: AsyncCallback\<number>): void
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -183,6 +185,8 @@ load(uri: string): Promise\<number>
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -254,6 +258,8 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -298,7 +304,7 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function create(context: Context) {
+create(context: Context) {
   //创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
@@ -371,6 +377,8 @@ load(fd: number, offset: number, length: number): Promise\<number>
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -413,7 +421,7 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function create(context: Context) {
+create(context: Context) {
   //创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
@@ -472,6 +480,8 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -512,7 +522,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
-播放音频资源。使用callback方式异步获取音频流streamID。
+使用默认参数播放音频资源。使用callback方式异步获取音频流streamID。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -537,6 +547,8 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -601,6 +613,8 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -665,6 +679,8 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -727,6 +743,8 @@ stop(streamID: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -782,6 +800,8 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -846,6 +866,8 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -903,6 +925,8 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -967,6 +991,8 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1025,6 +1051,8 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1089,6 +1117,8 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1147,6 +1177,8 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1212,6 +1244,8 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1268,6 +1302,8 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1330,6 +1366,8 @@ unload(soundID: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1383,6 +1421,8 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1436,6 +1476,8 @@ release(): Promise\<void>
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1479,6 +1521,8 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1519,6 +1563,8 @@ off(type: 'loadComplete'): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1562,6 +1608,8 @@ on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool_: media.SoundPool;
@@ -1601,6 +1649,8 @@ off(type: 'playFinishedWithStreamId'): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool_: media.SoundPool;
@@ -1639,6 +1689,8 @@ on(type: 'playFinished', callback: Callback\<void>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1679,6 +1731,8 @@ off(type: 'playFinished'): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1718,6 +1772,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1759,6 +1815,8 @@ off(type: 'error'): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 //创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1797,6 +1855,8 @@ on(type: 'errorOccurred', callback: Callback\<ErrorInfo>): void
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // 创建soundPool实例。
 let soundPool: media.SoundPool;
@@ -1842,6 +1902,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // 创建soundPool实例。
 let soundPool: media.SoundPool;
