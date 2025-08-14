@@ -1041,7 +1041,7 @@ class MyRenderNode extends RenderNode {
       fontSize: 30,
     };
 
-    let superScriptStyle: text.TextStyle = {
+    let subScriptStyle: text.TextStyle = {
       color: {
         alpha: 255,
         red: 255,
@@ -1049,8 +1049,8 @@ class MyRenderNode extends RenderNode {
         blue: 0
       },
       fontSize: 30,
-      // 设置上标样式
-      badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
+      // 设置下标样式
+      badgeType: text.TextBadgeType.TEXT_SUBSCRIPT
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
@@ -1064,7 +1064,7 @@ class MyRenderNode extends RenderNode {
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
     paragraphBuilder.addText("The chemical formula for water: H");
-    paragraphBuilder.pushStyle(superScriptStyle);
+    paragraphBuilder.pushStyle(subScriptStyle);
     paragraphBuilder.addText("2");
     paragraphBuilder.pushStyle(myTextStyle);
     paragraphBuilder.addText("o");
