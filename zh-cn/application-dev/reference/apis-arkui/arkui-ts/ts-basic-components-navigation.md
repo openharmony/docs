@@ -511,7 +511,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
-设置是否启用Navigation和NavDestination的工具栏自适应能力。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
+设置是否启用Navigation和NavDestination的工具栏[toolbarConfiguration](#toolbarconfiguration10)自适应能力。关闭此能力后，底部工具栏[toolbarConfiguration](#toolbarconfiguration10)将不会再移动至页面右上角的菜单中。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -643,7 +643,7 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 | 参数名    | 类型                                                  | 必填 | 说明                    |
 | --------- | ----------------------------------------------------- | ---- | ----------------------- |
-| from      | [NavContentInfo](#navcontentinfo11)                   | 是   | 退场Destination的页面。 |
+| from      | [NavContentInfo](#navcontentinfo11)                   | 是   | 退场Destination的页面。 |	
 | to        | [NavContentInfo](#navcontentinfo11)                   | 是   | 进场Destination的页面。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是   | 转场类型。              |
 
@@ -1640,17 +1640,15 @@ Navigation首页名字。
 
 工具栏可配置参数。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
-| icon       | ResourceStr                              | 否    | 工具栏单个选项的图标资源路径。                          |
-| action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。                            |
-| status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
-| activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
+| value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                            |
+| icon       | ResourceStr                              | 否    | 工具栏单个选项的图标资源路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                            |
+| status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                |
 | symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
 | activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
 
@@ -3677,7 +3675,7 @@ class DerivedNavPathStack extends NavPathStack {
   // other function of base class...
 }
 
-class Param {
+class NewParam {
   info: string = "__default_param__";
 
   constructor(info: string) {
@@ -3704,7 +3702,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new Param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
+          param: new NewParam('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -3739,7 +3737,7 @@ struct PageOne {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new Param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+          param: new NewParam('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
     }.title('Page One')
