@@ -425,7 +425,7 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/network/ @zhang_yixin13 @guo-min_net
+zh-cn/application-dev/network/ @zhang_yixin13 @guo-min_net @tongxilin
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -467,9 +467,9 @@ zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixian
 
 
 [开发-Telephony Kit]
-zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 
-zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 
-zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 
+zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13  @jiang_99 @wnazgul
+zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13  @jiang_99 @wnazgul
+zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13  @jiang_99 @wnazgul
 
 
 [开发-Test Kit]
@@ -1178,7 +1178,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 @guo-min_net
+zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 @guo-min_net @tongxilin
 
 
 [API参考-Neural NetWork Runtime Kit]
