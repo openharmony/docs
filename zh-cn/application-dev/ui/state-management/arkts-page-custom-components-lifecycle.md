@@ -67,7 +67,7 @@
 @Component
 struct Parent {
   @State showChild: boolean = true;
-  @State btnColor: string = "#FF007DFF";
+  @State btnColor: string = '#FF007DFF';
 
   // 组件生命周期
   aboutToAppear() {
