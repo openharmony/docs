@@ -172,7 +172,6 @@
  import { media } from '@kit.MediaKit';
  import { common } from '@kit.AbilityKit'
  // 类成员定义avPlayer,context和fileName。
- // 类成员定义avPlayer,context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private fileName: string = '';
  private context: common.UIAbilityContext | undefined = undefined;
