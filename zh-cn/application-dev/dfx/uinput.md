@@ -100,21 +100,21 @@ uinput -M -m 100 100 200 200 1500 --trace
 ```
 
 ### 鼠标按键按下事件
-模拟鼠标按下按键，与抬起事件配合使用。key：[鼠标按键](#鼠标按键)。
+模拟鼠标按下按键，建议与抬起事件搭配使用，确保事件闭环。buttonId：[鼠标按键](#鼠标按键)。
 
 **命令**
 ```bash
-uinput -M -d <key>
-uinput --mouse --down <key>
+uinput -M -d <buttonId>
+uinput --mouse --down <buttonId>
 ```
 
 ### 鼠标按键抬起事件
-模拟鼠标抬起按键，与按下事件配合使用。key：[鼠标按键](#鼠标按键)。
+模拟鼠标抬起按键，建议与按下事件搭配使用，确保事件闭环。buttonId：[鼠标按键](#鼠标按键)。
 
 **命令**
 ```bash
-uinput -M -u <key>
-uinput --mouse --up <key>
+uinput -M -u <buttonId>
+uinput --mouse --up <buttonId>
 ```
 
 **使用示例**
@@ -124,12 +124,12 @@ uinput -M -d 0 -u 0
 ```
 
 ### 鼠标按键单击事件
-模拟鼠标单击按键。key：[鼠标按键](#鼠标按键)。
+模拟鼠标单击按键。buttonId：[鼠标按键](#鼠标按键)。
 
 **命令**
 ```bash
-uinput -M -c <key>
-uinput --mouse --click <key>
+uinput -M -c <buttonId>
+uinput --mouse --click <buttonId>
 ```
 
 **使用示例**
@@ -139,12 +139,12 @@ uinput -M -c 0
 ```
 
 ### 双击鼠标按键事件
-模拟双击鼠标按键。key：[鼠标按键](#鼠标按键)。
+模拟双击鼠标按键。buttonId：[鼠标按键](#鼠标按键)。
 
 **命令**
 ```bash
-uinput -M -b <dx> <dy> <key> [press time] [click interval time]
-uinput --mouse --double_click <dx> <dy> <key> [press time] [click interval time]
+uinput -M -b <dx> <dy> <buttonId> [press time] [click interval time]
+uinput --mouse --double_click <dx> <dy> <buttonId> [press time] [click interval time]
 
 # [press time]首次按压时间，可选参数，默认时间为：50ms，取值范围：[1,300]ms，仅支持整数。
 # [click interval time]点击间隔时间，可选参数，默认时间为：300ms，取值范围：[1,450]ms，仅支持整数。
@@ -225,21 +225,21 @@ uinput -M -c 0 -i 500 -c 0
 模拟编辑框键盘按键输入事件。
 
 ### 键盘按键按下事件
-模拟键盘按下按键，建议与抬起事件搭配使用，确保事件闭环。key：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
+模拟键盘按下按键，建议与抬起事件搭配使用，确保事件闭环。keyCode：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
 
 **命令**
 ```bash
-uinput -K -d <key>
-uinput --keyboard --down <key>
+uinput -K -d <keyCode>
+uinput --keyboard --down <keyCode>
 ```
 
 ### 键盘按键抬起事件
-模拟键盘抬起按键，必须与按下事件搭配使用，确保事件闭环。key：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
+模拟键盘抬起按键，必须与按下事件搭配使用，确保事件闭环。keyCode：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
 
 **命令**
 ```bash
-uinput -K -u <key>
-uinput --keyboard --up <key>
+uinput -K -u <keyCode>
+uinput --keyboard --up <keyCode>
 ```
 
 **使用示例**
@@ -249,12 +249,12 @@ uinput -K -d 2017 -u 2017
 ```
 
 ### 键盘按键长按事件
-模拟键盘按下一个按键并保持设定的时长后抬起。key：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
+模拟键盘按下一个按键并保持设定的时长后抬起。keyCode：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
 
 **命令**
 ```bash
-uinput -K -l <key> [long press time]
-uinput --keyboard --long_press <key> [long press time]
+uinput -K -l <keyCode> [long press time]
+uinput --keyboard --long_press <keyCode> [long press time]
 
 # [long press time]长按时间，可选参数，默认值为3000ms，取值范围：[3000,15000]ms，仅支持整数。
 ```
@@ -266,12 +266,12 @@ uinput -K -l 2017 6000
 ```
 
 ### 键盘按键持续输入事件
-模拟键盘按下一个按键并在设定的时长内持续输入按下事件后抬起。key：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
+模拟键盘按下一个按键并在设定的时长内持续输入按下事件后抬起。keyCode：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
 
 **命令**
 ```bash
-uinput -K -r <key> [repeat output time]
-uinput --keyboard --repeat <key> [repeat output time]
+uinput -K -r <keyCode> [repeat output time]
+uinput --keyboard --repeat <keyCode> [repeat output time]
 
 # [repeat output time]重复输出时间，可选参数，默认值为3000ms，取值范围：[3000,15000]ms，仅支持整数。
 ```
