@@ -1,6 +1,6 @@
 # 使用AVTranscoder实现视频转码(ArkTS)
 
-使用[AVTranscoder](media-kit-intro.md#avtranscoder)可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
+使用[AVTranscoder](media-kit-intro.md#avtranscoder)可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md#caniuse)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
 
 本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
