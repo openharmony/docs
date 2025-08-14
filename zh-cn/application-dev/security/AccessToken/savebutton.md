@@ -106,7 +106,7 @@
          .width('100%')
        }
        .height('100%')
-       .backgroundColor(0xF1F3F5)
+       .backgroundColor(0xf1f3f5)
      }
    }
    ```
