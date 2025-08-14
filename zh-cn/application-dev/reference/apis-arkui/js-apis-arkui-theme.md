@@ -37,9 +37,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColor
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-> **说明：**
->
-> 颜色对应的组件可参考[文本色与图标色](https://developer.huawei.com/consumer/cn/doc/design-guides/color-0000001776857164#section137153164914)。
+<!--RP1--><!--RP1End-->
 
 | 名称                           | 类型                                                 | 只读 | 可选 | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
