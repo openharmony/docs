@@ -1946,7 +1946,7 @@ dragTo(target: Component): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3101,7 +3101,7 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3149,7 +3149,7 @@ dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3280,7 +3280,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3399,7 +3399,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3629,7 +3629,7 @@ pressHome(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3665,7 +3665,7 @@ pressHome(displayId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4370,7 +4370,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4416,7 +4416,7 @@ mouseDrag(from: Point, to: Point, speed?: number, duration?: number): Promise\<v
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、Car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
