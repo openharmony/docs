@@ -45,8 +45,7 @@ sqlite>
 c:/users/zzz>hdc shell
 # 尝试打开或创建新的数据库
 $ sqlite3 a.db
-SQLiteversion 3.40.1
-2022-12-28 14:03:47
+SQLite version 3.44.4 2025-02-19 00:18:53
 Enter ".help" for usage hints.
 # 创建表
 sqlite>create table t1(a int);
@@ -210,7 +209,7 @@ sqlite>.tables
   ```
 
 
-- 输入以下SQL语句`INSERT INTOCOMPANY(字段)values()`语句插入多条数据：
+- 输入以下SQL语句`INSERT INTO COMPANY(字段)values()`语句插入多条数据：
 
   ```sql
   sqlite> INSERT INTO COMPANY(ID, NAME, AGE, ADDRESS, SALARY)
