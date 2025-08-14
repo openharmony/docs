@@ -518,6 +518,8 @@ let myParagraphStyle: text.ParagraphStyle = {
 };
 ```
 
+具体使用效果可参见下文[示例三](#示例三垂直对齐)。
+
 ### 上下标
 
 使能上下标，能将文本作为上标或下标参与排版。一般用于数学公式、化学式等场景。关键代码如下：
@@ -527,6 +529,8 @@ let superScriptStyle: text.TextStyle = {
     badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
 };
 ```
+
+具体使用效果可参见下文[示例四](#示例四上下标文本)。
 
 ### 示例一（装饰线、字体特征）
 这里以文本样式中的装饰线和字体特征为例，呈现多样式文本的绘制与显示。
@@ -1034,6 +1038,7 @@ class MyRenderNode extends RenderNode {
         blue: 0
       },
       fontSize: 30,
+      // 设置上标样式
       badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
     };
 
