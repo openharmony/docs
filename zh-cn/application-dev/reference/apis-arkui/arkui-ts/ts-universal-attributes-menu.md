@@ -148,7 +148,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | 名称                          | 类型                                   | 只读 | 可选 | 说明                                                         |
 | ----------------------------- | -------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 是   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是   | 是否在子窗口显示菜单。值为true表示在子窗口显示菜单，值为false表示不在子窗显示菜单。<br/>默认值：true<br>**说明：** <br/>仅对2in1设备生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是   | 是否在子窗口显示菜单。值为true表示在子窗口显示菜单，值为false表示不在子窗显示菜单。<br/>默认值：2in1设备上为true，其他设备为false。<br>**说明：** <br/>仅对2in1设备生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContextMenuOptions<sup>10+</sup>
 
@@ -182,12 +182,10 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 是 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：'#19ffffff'<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 是 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：菜单有预览图时默认显示蒙层，否则不显示。<br>**说明：** <br/>当设备配置不显示菜单蒙层时，该接口不生效。如当前在2in1设备上该接口不生效。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | modalMode<sup>20+</sup> | [ModalMode](#modalmode20枚举说明) | 否 | 是 | 设置菜单的模态模式。<br />**说明：**<br />默认值：ModalMode.AUTO<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| anchorPosition<sup>20+</sup> | [Position](ts-types.md#position) | 否   | 是  | 通过设定水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置，与单独使用offset接口不同的是可以覆盖显示在绑定组件上。<br/>默认值：{ x: 0, y: 0 }，不支持设置百分比。<br/>**说明：**<br />1.当菜单处于预览状态时，设定的定位偏移量将无法生效。<br/>2.预设的placement对齐参数将不再生效。<br/>3.叠加offset参数的偏移量，最终确定菜单的精确显示位置。<br/>4.当水平与垂直偏移量均设为负值时，菜单以绑定组件左下角为基准点进行显示。<br/>5.当水平或垂直偏移量存在负值时，组件将以绑定组件的左上角为定位基准点，通过叠加偏移量参数实现反向偏移。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | onWillAppear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 是 | 菜单显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br/>2.aboutToAppear是初始化时触发调用，onWillAppear是在动画执行前触发调用，onWillAppear在aboutToAppear之后执行。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 | onDidAppear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 是 | 菜单弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br />2.快速点击弹出，消失菜单时，存在onWillDisappear在onDidAppear前生效。<br />3. 当菜单入场动效未完成时关闭菜单，该回调不会触发。<br/>4.onAppear和onDidAppear触发时机相同，onDidAppear在onAppear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | onWillDisappear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 是 | 菜单退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br />2.快速点击弹出，消失菜单时，存在onWillDisappear在onDidAppear前生效。<br/>3.aboutToDisappear和onWillDisappear触发时机相同，onWillDisappear在aboutToDisappear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 | onDidDisappear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 是 | 菜单消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br/>2.onDisappear和onDidDisappear触发时机相同，onDidDisappear在onDisappear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| previewScaleMode<sup>20+</sup> | [PreviewScaleMode](#previewscalemode20枚举说明) | 否 | 是 | 预览图缩放方式。<br />默认值：PreviewScaleMode.AUTO<br />**说明：**<br />布局空间不足时，控制预览图的缩放方式。未设置或设置undefined按照PreviewScaleMode.AUTO处理。当设置成PreviewScaleMode.CONSTANT时，如果预览图过大，剩余的空间不足以放置菜单时，菜单将重叠显示在预览图之下。<br />预览图的最大宽高不会超过预览图最大可布局区域（窗口大小减去上下左右的安全边距）。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -210,7 +208,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 | 名称  | 类型                                       | 只读 | 可选 | 说明                                 |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ | ------------------------------------ |
-| scale | [AnimationRange](#animationrange11)\<number> | 否   | 是  | 动画开始和结束时相对预览原图缩放比例。<br/>**说明：** <br/>缩放比例需要根据实际开发场景设置，建议设置值为小于预览图宽度或布局的最大限制。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| scale | [AnimationRange](#animationrange11)\<number> | 否   | 是  | 动画开始和结束时相对预览原图缩放比例。<br/>默认值：[0.95, 1.1]<br/>**说明：** <br/>缩放比例需要根据实际开发场景设置，建议设置值为小于预览图宽度或布局的最大限制。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 是  | 设置菜单显示和退出的过渡效果。<br/>**说明：** <br/>在菜单退出动效过程中，横竖屏切换时，菜单会避让。二级菜单不继承自定义动效。弹出过程中可以点击二级菜单，但在退出动效执行过程中不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | 否   | 是  | 设置预览自定义长按场景下，浮起原组件截图的缩放动画开始和结束时相对预览原图缩放比例，且有与预览图的切换的过渡动效。 <br/>**说明：**<br /> 倍率设置参数小于等于0时，不生效。<br />[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)场景下，不生效。<br /> 设置transition接口时，不生效。<br /> 使用此接口且同时使用scale接口时，scale接口起始值不生效。<br /> 为保障最佳体验，最终预览图尺寸不建议小于原组件截图尺寸。当前预览动效宽高会受组件截图和自定义预览大小影响，请根据实际使用情况自行保障展示效果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | hoverScaleInterruption<sup>20+</sup> | boolean | 否   | 是  | 设置预览自定义长按场景且hoverScale为true时，在触发拖拽效果前抬起手是否允许取消预览菜单弹出。true表示允许取消预览菜单弹出，false表示不允许取消预览菜单弹出。<br/>默认值：false <br/>**说明：** <br />未设置hoverScale接口或设置了transition接口时，该参数不生效。长按时长不足以触发拖拽效果时抬起手，预览菜单hoverScale效果回退，预览菜单不弹出，并可触发原组件上绑定的click等手势事件。长按时长足以触发拖拽效果后抬起手，预览菜单正常弹出，并不再触发原组件上绑定的click等手势事件。 <br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
@@ -285,20 +283,6 @@ type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types
 | AUTO  | 0  | 自动模式，菜单组件在当前设备的默认行为。当前版本在所有设备上的效果等同于ModalMode.NONE。|
 | NONE  | 1   | 除菜单自身区域外，其他区域均可传递事件，下层控件可响应事件。|
 | TARGET_WINDOW | 2 | 菜单所在应用的窗口与菜单区域不可传递事件，其他区域可传递事件。|
-
-## PreviewScaleMode<sup>20+</sup>枚举说明
-
-预览图的缩放方式。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值 | 说明                                   |
-| ----- | -  | --------------------------------------|
-| AUTO  | 0  | 预览图根据[Placement](ts-appendix-enums.md#placement8)自动调整预览图宽高及缩放。|
-| CONSTANT  | 1 | 预览图不缩放，大小保持不变。最终仍会受到安全区的限制而出现压缩、裁剪。|
-| MAINTAIN | 2 | 预览图缩放时保持宽高比。|
 
 ## 示例
 
