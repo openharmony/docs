@@ -3,6 +3,7 @@
 [Common][Common]<br>
 [Common][Demo&Sample]<br>
 [Ability Kit][Ability]<br>
+[Ability Kit][AGC]<br>
 [Ability Kit][BundleManager]<br>
 [Ability Kit][ResourceSchedule]<br>
 [Ability Kit][Security]<br>
