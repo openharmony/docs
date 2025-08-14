@@ -233,9 +233,9 @@ struct PageOne {
   private text = '';
   private uniqueid = -1;
   aboutToAppear() {
-    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
-    if (navigationuniqueid) {
-      this.uniqueid = navigationuniqueid.valueOf();
+    let navigationUniqueId = this.queryNavigationInfo()?.uniqueId;
+    if (navigationUniqueId) {
+      this.uniqueid = navigationUniqueId.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
     this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
@@ -248,7 +248,7 @@ struct PageOne {
   build() {
     NavDestination() {
       Text("pageOne")
-      Text('navigationuniqueid是:' + this.text)
+      Text('navigationUniqueId是:' + this.text)
         .width('80%')
         .height(50)
         .margin(50)
