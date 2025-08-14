@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
-<!--SE: @xiao-peiyang; @dengxinyu-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 开启源码混淆
 

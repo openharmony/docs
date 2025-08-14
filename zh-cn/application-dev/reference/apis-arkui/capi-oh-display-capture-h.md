@@ -1,9 +1,10 @@
 # oh_display_capture.h
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk;@logn-->
-<!--SE: @hejunfei1991-->
-<!--TSE: @qinliwen0417-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 

@@ -3,8 +3,9 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供输入设备管理能力，包括监听输入设备的连接和断开状态，查询设备名称等输入设备信息。
 

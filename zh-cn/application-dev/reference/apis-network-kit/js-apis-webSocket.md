@@ -1,10 +1,11 @@
 # @ohos.net.webSocket (WebSocket连接)
 
-<!--Kit:Network Kit-->
-<!--Subsystem:Communication-->
-<!--Owner:@wmyao_mm-->
-<!--SE:@guo-min_net-->
-<!--TSE:@tongxilin-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >

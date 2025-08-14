@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 在使用相机过程中，如相机模式切换，前后置镜头切换等场景，不可避免出现预览流替换，为优化用户体验，可合理使用动效过渡。本文主要介绍如何使用预览流截图，并通过ArkUI提供的[显示动画能力](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)实现下方三种核心场景动效：
 

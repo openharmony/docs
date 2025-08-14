@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现请求广告的回调。
 

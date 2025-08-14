@@ -3,8 +3,9 @@
 <!--Kit: Background Tasks Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @hongjianfeng-->
-<!--SE: @zhouben25-->
-<!--TSE: @fenglili18-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。本模块接口仅对通过[OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)接口创建的子进程生效。
 

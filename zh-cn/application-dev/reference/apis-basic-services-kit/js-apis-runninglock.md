@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: PowerManager-->
 <!--Owner: @zhang-yinglie; @volcano_wang-->
-<!--SE: @wangyantian0-->
-<!--TSE: @alien0208-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
 
 该模块主要提供RunningLock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
 
