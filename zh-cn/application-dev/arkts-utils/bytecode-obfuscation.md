@@ -552,7 +552,7 @@ class A {
 
 ### -keep-global-name
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用[名称类通配符](#名称类通配符)。可按如下方式进行配置：
+指定要保留的顶层作用域及导入和导出元素的名称，支持使用[名称类通配符](#名称类通配符)。可按如下方式进行配置：
 
 ```txt
 -keep-global-name
@@ -564,7 +564,7 @@ printPersonName
 
 ```ts
 export namespace Ns {
-  export const age = 18; // -keep-global-name age 保留变量age
+  export const myAge = 18; // -keep-global-name myAge 保留变量myAge
   export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
 }
 ```
@@ -668,7 +668,7 @@ const module2 = import(moduleName)
 | 通配符 | 含义                   | 示例                                       |
 | ------ | ---------------------- | ------------------------------------------ |
 |?|匹配任意单个字符|"AB?"能匹配"ABC"等，但不能匹配"AB"|
-|*|匹配任意数量的任意字符|"*AB*"能匹配"AB"、"aABb"、"cAB"、"ABc"等|
+|*|匹配任意数量的任意字符|"\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等|
 
 **使用示例：**
 保留所有以a开头的属性名称：
