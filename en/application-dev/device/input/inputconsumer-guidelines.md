@@ -33,47 +33,73 @@ When an application that uses specific combination keys is started, call [on](..
 ```js
 import { inputConsumer } from '@kit.InputKit';
 
-let leftAltKey = 2045;
-let tabKey = 2049;
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.info(`keyOptions: ${JSON.stringify(keyOptions)}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.info(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          // Start the application.
+          let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+          try {
+            inputConsumer.on("key", keyOption, callback);// Subscribe to system hotkey change events.
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+          // Stop the application.
+          try {
+            inputConsumer.off("key", keyOption, callback);// Unsubscribe from system hotkey change events.
+            console.info(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
+    }
+  }
 }
-// Start the application.
-let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
-try {
-  inputConsumer.on("key", keyOption, callback);// Subscribe to system hotkey change events.
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-// Stop the application.
-try {
-  inputConsumer.off("key", keyOption, callback);// Unsubscribe from system hotkey change events.
-  console.info(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
+```
 
-let leftCtrlKey = 2072;
-let zKey = 2042;
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.info(`keyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: false};
-// Before subscribing to change events of the specified hotkey, you need to check whether the hotkey exists in the system hotkey list to avoid conflicts.
-inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {// Obtain all system hotkeys.
-  console.info(`List of system hotkeys : ${JSON.stringify(data)}`);
-});
-// Start the application.
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);// Subscribe to change events of the hotkey.
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-// Stop the application.
-try {
-  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);// Unsubscribe from change events of the hotkey.
-  console.info(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+```js
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.info(`keyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: false};
+          // Before subscribing to change events of the specified hotkey, you need to check whether the hotkey exists in the system hotkey list to avoid conflicts.
+          inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {// Obtain all system hotkeys.
+            console.info(`List of system hotkeys : ${JSON.stringify(data)}`);
+          });
+          // Start the application.
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);// Subscribe to change events of the hotkey.
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+          // Stop the application.
+          try {
+            inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);// Unsubscribe from change events of the hotkey.
+            console.info(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
+    }
+  }
 }
 ```
