@@ -1260,7 +1260,7 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 
 ## TextAreaController<sup>8+</sup>
 
-TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)以及系统接口[getText](ts-text-common-sys.md#gettext19)。
+TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
