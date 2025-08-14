@@ -1574,6 +1574,10 @@ getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
 
+> **说明：**
+>
+> getParams只获取页面的参数，并不会清除页面关联的参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
