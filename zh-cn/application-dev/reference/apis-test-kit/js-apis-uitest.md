@@ -1807,7 +1807,7 @@ dragTo(target: Component): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2586,7 +2586,7 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2675,7 +2675,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2752,7 +2752,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2898,7 +2898,7 @@ pressHome(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3505,7 +3505,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、car、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4455,6 +4455,8 @@ close(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
