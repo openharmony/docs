@@ -39,11 +39,11 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Failed to write data into parcel. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
 | 9800003 | Failed to complete inner transaction. |
-| 9800004 | Failed to get device standby service. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -95,11 +95,11 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Failed to write data into parcel. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
 | 9800003 | Failed to complete inner transaction. |
-| 9800004 | Failed to get device standby service. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -143,11 +143,11 @@ requestExemptionResource(request: ResourceRequest): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Failed to write data into parcel. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
 | 9800003 | Failed to complete inner transaction. |
-| 9800004 | Failed to get device standby service. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -188,11 +188,11 @@ releaseExemptionResource(request: ResourceRequest): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Failed to write data into parcel. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
 | 9800003 | Failed to complete inner transaction. |
-| 9800004 | Failed to get device standby service. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
