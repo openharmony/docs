@@ -50,7 +50,7 @@
 
 | 名称                                   | 类型 |  只读 |   可选  | 说明 |
 | ------------------------------------- | -------- | ---- | ---- | ------- |
-| contentColor     | string   |  否  |  否   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| contentColor     | string   |  否  |  否   | 状态栏文字颜色，固定为ARGB格式，如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -372,7 +372,7 @@
 
 | 参数名 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | -------------------------- |
-| data | T    |  否  |  是   | 回调函数调用时需要传入T类型的参数。 |
+| data | T    |  否  |  否   | 回调函数调用时需要传入T类型的参数。 |
 
 **返回值：**
 
