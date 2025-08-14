@@ -400,7 +400,7 @@ copyWithin(target: number, start: number, end?: number): Uint8Array
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | target | number | 是 | 目标起始位置的下标。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint8Array.length`位置开始。 |
-| end | number | 否 | 源终止位置下标，如果`end < 0`，则会从`end + Uint8Array.length`位置终止。默认为ArkTS Uint8Array的长度。|
+| end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint8Array.length`位置终止。默认为ArkTS Uint8Array的长度。|
 
 **返回值：**
 
@@ -1202,7 +1202,7 @@ array.sort((a: number, b: number) => b - a); // Uint8Array [5, 4, 3, 2, 1]
 ## subarray
 subarray(begin?: number, end?: number): Uint8Array
 
-返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS Uint8Array对象。
+从指定的位置截取数组，返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS Uint8Array对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
