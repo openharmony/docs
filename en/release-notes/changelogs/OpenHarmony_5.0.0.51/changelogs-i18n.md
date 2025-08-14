@@ -73,7 +73,7 @@ OpenHarmony SDK 5.0.0.51
 
 **Key API/Component Changes**
 
-i18n.System.getRegionInfoArray
+i18n.SystemLocaleManager.getRegionInfoArray
 
 **Adaptation Guide**
 
