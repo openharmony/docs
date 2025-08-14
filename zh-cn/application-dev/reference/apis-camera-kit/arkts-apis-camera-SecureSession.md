@@ -1,13 +1,18 @@
 # Interface (SecureSession)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 12开始支持。
 
-SecureSession extends [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md)
+SecureSession 继承自 [Session](arkts-apis-camera-Session.md)、[Flash](arkts-apis-camera-Flash.md)、[AutoExposure](arkts-apis-camera-AutoExposure.md)、[WhiteBalance](arkts-apis-camera-WhiteBalance.md)、[Focus](arkts-apis-camera-Focus.md)、[Zoom](arkts-apis-camera-Zoom.md)。
 
-安全模式会话类，提供了对闪光灯、曝光、对焦、变焦的操作。
+安全模式会话类，提供了对闪光灯、曝光、白平衡、对焦、变焦的操作。
 
 > **说明：**
 >

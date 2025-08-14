@@ -36,7 +36,7 @@ This scenario involves obtaining the **SurfaceId** on the ArkTS side, with layou
 
 **lifecycle Callbacks**
 
-- OnSurfaceCreated   	
+- onSurfaceCreated
 
   Triggered when the surface of the **XComponent** component is ready.
 
@@ -44,7 +44,7 @@ This scenario involves obtaining the **SurfaceId** on the ArkTS side, with layou
 
   ![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
 
-- OnSurfaceChanged
+- onSurfaceChanged
 
   Triggered after surface size changes trigger re-layout.
 
@@ -52,7 +52,7 @@ This scenario involves obtaining the **SurfaceId** on the ArkTS side, with layou
 
   ![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
 
-- OnSurfaceDestroyed
+- onSurfaceDestroyed
 
   Triggered when the **XComponent** component is destroyed, which is consistent with the destruction timing of common ArkUI components.
 
@@ -573,7 +573,7 @@ Unlike the scenario where the surface lifecycle is managed with **XComponentCont
 
 **How to Develop**
 
-This example shows how to create an **XComponent** of the SURFACE type on the ArkTS side (for details about how to create an **ArkUI_NodeHandle** object corresponding to the **XComponent** on the native side, see [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)). It describes how to use the **XComponent** component to call APIs related to **OH_ArkUI_SurfaceHolder** for managing the surface lifecycle, create an EGL/OpenGL ES environment on the native side to draw graphics on the main page, and change the color of the graphics.
+This example shows how to create an **XComponent** of the SURFACE type on the ArkTS side (for details about how to create an **ArkUI_NodeHandle** object corresponding to the **XComponent** on the native side, see [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)). It describes how to use the **XComponent** component to call APIs related to **OH_ArkUI_SurfaceHolder** for managing the surface lifecycle, create an EGL/OpenGL ES environment on the native side to draw graphics on the main page, and change the color of the graphics.
 
 1. Define the **XComponent** on the UI.
 
@@ -1501,7 +1501,7 @@ When constructing **XComponent** components, be sure to select the appropriate n
 | OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size) | Obtains the ID of an **XComponent**.                                        |
 | OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height) | Obtains the size of the surface held by an **XComponent**.                         |
 | OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y) | Obtains the offset of the surface held by the **XComponent** relative to the upper left corner of its parent component.     |
-| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | Obtains the touch event triggered by an **XComponent**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md).|
+| OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent) | Obtains the touch event triggered by an **XComponent**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-touchevent.md).|
 | OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType) | Obtains the tool type of an **XComponent** touch point.                            |
 | OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX) | Obtains the tilt of an **XComponent** touch point relative to the x-axis.                   |
 | OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY) | Obtains the tilt of an **XComponent** touch point relative to the y-axis.                   |

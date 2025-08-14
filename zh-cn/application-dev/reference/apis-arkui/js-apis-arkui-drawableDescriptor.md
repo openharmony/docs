@@ -37,10 +37,11 @@ getPixelMap(): image.PixelMap
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = this.getUIContext().getHostContext()?.resourceManager
+import { image } from '@kit.ImageKit'
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
 let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
+let pixmapNew: image.PixelMap | undefined = pixmap?.getPixelMap();
   ```
 
 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
@@ -145,11 +146,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
       // 根据资源，通过图片框架获取pixelMap
       private async getPixmapFromMedia(resource: Resource) {
-        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-          bundleName: resource.bundleName,
-          moduleName: resource.moduleName,
-          id: resource.id
-        });
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
         let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
         let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
           desiredPixelFormat: image.PixelMapFormat.BGRA_8888
@@ -434,13 +431,15 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct Example {
-  pixelmaps: Array<image.PixelMap>  = [];
-  options: AnimationOptions = {duration:1000, iterations:-1};
-  @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  pixelMaps: Array<image.PixelMap> = [];
+  options: AnimationOptions = { duration: 1000, iterations: -1 };
+  @State animated: AnimatedDrawableDescriptor = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
+
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    this.pixelMaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
+
   build() {
     Column() {
       Row() {
@@ -448,12 +447,9 @@ struct Example {
       }
     }
   }
+
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888

@@ -1,4 +1,9 @@
 # @ohos.bundle.defaultAppManager (默认应用管理)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供查询默认应用的能力，支持查询当前应用是否是默认应用。
 

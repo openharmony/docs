@@ -51,23 +51,24 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | No| @State | Information about the navigation stack.|
 | navigationContent | Callback\<void\> | No| @BuilderParam | Content of the navigation container.|
-| title | [ResourceStr](ts-types.md#resourcestr) | No|@Prop | Page title.|
-| titleOptions | [TitleOptions](#titleoptions) | No| @Prop | Title bar options.|
+| title | [ResourceStr](ts-types.md#resourcestr) | No|@Prop | Page title. The default value is an empty string. Title text will be hidden when the **titleBarType** field of **titleOption** is set to **[TitleBarType](#titlebartype18).ROUND_ICON** or **[TitleBarType](#titlebartype18).SQUARED_ICON** and **titleIcon** is configured.|
+| titleOptions | [TitleOptions](#titleoptions) | No| @Prop | Title bar options. Title text will be hidden when the **titleBarType** field of **titleBarType** is set to **[TitleBarType](#titlebartype18).ROUND_ICON** or **[TitleBarType](#titlebartype18).SQUARED_ICON** and **titleIcon** is configured.|
 | gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | No| @Prop | Background color options.|
-| hideTitleBar | boolean | No| @Prop | Whether to hide the title bar.|
-| navBarWidth | [Length](ts-types.md#length)| No| @Prop | Width of the navigation bar.<br>This attribute takes effect only when the component is split.|
+| hideTitleBar | boolean | No| @Prop | Whether to hide the title bar. The default value is **false**.<br>The value **true** means to hide the title bar, and **false** means the opposite.|
+| navBarWidth | [Length](ts-types.md#length)| No| @Prop | Width of the navigation bar. The default value is **240vp**.<br>This attribute takes effect only when the component is split.|
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9)| No| @Prop |Display mode of the navigation bar.<br>Available options are **Stack**, **Split**, and **Auto**.|
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | No| @BuilderParam | Builder data required for creating the [NavDestination](ts-basic-components-navdestination.md) component.|
-| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No| @Prop |Minimum and maximum widths of the navigation bar (effective in dual-column mode).|
+| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No| @Prop |Minimum and maximum widths of the navigation bar (effective in dual-column mode). Default value: **240vp** for the minimum value; 40% of the component width (not greater than 432 vp) for the maximum value; if either of the widths is not set, the default value is used for that width. Unit: vp.|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | No| @Prop | Minimum width of the navigation bar content area (effective in dual-column mode).|
 | sideBarOptions<sup>18+</sup> | [SideBarOptions](#sidebaroptions18) | No| @Prop | Sidebar options.|
 | sideBarContent<sup>18+</sup> | Callback\<void\> | No| @BuilderParam | Content of the sidebar.|
-| menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | No| @BuilderParam | Custom layouts for wide-screen scenarios. The default value is empty, with no styles displayed.|
+| menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | No| @BuilderParam | Custom layout styles for wide-screen scenarios. The default value is empty, with no styles displayed. Wide-screen scenarios refer to scenarios where the screen width is greater than or equal to 600 vp.|
 | stateChangeCallback | Callback\<boolean\> | No| - | Callback invoked when the navigation bar visibility status changes.|
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9)\>| No| - | Callback invoked when the component is displayed for the first time or its display mode switches between single-column and dual-column.|
 
 ## TitleOptions
 Title bar options.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -75,7 +76,7 @@ Title bar options.
 | Name| Type| Mandatory| Description|
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| Background color of the title bar.|
-| isBlurEnabled | boolean | No| Whether the title bar is blurred.<br>Default value: **true**|
+| isBlurEnabled | boolean | No| Whether the title bar is blurred.<br>**true** (default): The title bar is blurred.<br>**false**: The title bar is not blurred.|
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12)  | No| Style options of the title bar.|
 | titleBarType<sup>18+</sup> | [TitleBarType](#titlebartype18) | No| Type of the title bar. <br>Default value: **TitleBarType.ROUND_ICON**|
 | titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Icon of the title bar. Default value: **$r('sys.color.ohos_id_color_titlebar_icon')**|
@@ -106,7 +107,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | Name| Type| Mandatory| Description|
 | --------------- | ------ | ---- | ---------- |
 | name | string | Yes| Name of the [NavDestination](ts-basic-components-navdestination.md) page.|
-| param | Object | Yes| Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
+| param | Object | No| Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
 
 ## MixMode<sup>18+</sup>
 Provides options for background color blending modes.
@@ -180,8 +181,8 @@ Provides sidebar options.
 This example demonstrates how to set the basic style of the **AtomicServiceNavigation** component with a gradient background.
 
 ```ts
-import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
-import { MixMode, GradientAlpha, BackgroundTheme} from '@ohos.atomicservice.AtomicServiceNavigation'
+import { AtomicServiceNavigation, MixMode, GradientAlpha, BackgroundTheme } from '@kit.ArkUI';
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
@@ -259,8 +260,8 @@ struct Index {
             isBlurEnabled: false
           },
           gradientBackground: {
-            primaryColor: 'red',
-            secondaryColor: 'green',
+            primaryColor: '#FF0000',
+            secondaryColor: '#00FF00',
             backgroundTheme: BackgroundTheme.LIGHT,
             mixMode: MixMode.AVERAGE,
             alpha: GradientAlpha.OPACITY_100

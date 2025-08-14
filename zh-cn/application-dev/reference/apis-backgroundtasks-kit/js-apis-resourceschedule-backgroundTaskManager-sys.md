@@ -1,5 +1,11 @@
 # @ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--SE: @zhouben25-->
+<!--TSE: @fenglili18-->
+
 本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
@@ -41,7 +47,7 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed for an energy resource request. |
@@ -87,7 +93,7 @@ resetAllEfficiencyResources(): void
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed for an energy resource request. |

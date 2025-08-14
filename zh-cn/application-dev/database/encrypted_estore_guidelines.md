@@ -1,4 +1,9 @@
 # E类加密数据库的使用 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997; @dboy190-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍
@@ -84,7 +89,6 @@ export class Store {
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
     if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
       let kvStore: distributedKVStore.SingleKVStore | null;
       try {
         kvStore = await kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option);
@@ -193,32 +197,32 @@ export enum SecretStatus {
 
 export class SecretKeyObserver {
   onLock(): void {
-    this.lockStatuas = SecretStatus.Lock;
+    this.lockStatus = SecretStatus.Lock;
     this.storeManager.closeEStore();
   }
 
   onUnLock(): void {
-    this.lockStatuas = SecretStatus.UnLock;
+    this.lockStatus = SecretStatus.UnLock;
   }
 
   getCurrentStatus(): number {
-    return this.lockStatuas;
+    return this.lockStatus;
   }
 
   initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  updatelockStatus(code: number) {
+  updateLockStatus(code: number) {
     if (code === SecretStatus.Lock) {
       this.onLock();
     } else {
-      this.lockStatuas = code;
+      this.lockStatus = code;
     }
   }
 
   // 初始获取锁屏状态
-  private lockStatuas: number = SecretStatus.UnLock;
+  private lockStatus: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
@@ -249,9 +253,9 @@ export class ECStoreManager {
     this.mover = mover;
   }
 
-  async getCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
-    console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
-    if (screanStatus === SecretStatus.UnLock) {
+  async getCurrentStore(screenStatus: number): Promise<distributedKVStore.SingleKVStore> {
+    console.info(`ECDB_Encry GetCurrentStore start screenStatus: ${screenStatus}`);
+    if (screenStatus == SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
       } catch (e) {
@@ -356,7 +360,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatelockStatus(data.code);
+          e_secretKeyObserver.updateLockStatus(data.code);
         }
       });
     } catch (error) {
@@ -670,31 +674,31 @@ export enum SecretStatus {
 
 export class SecretKeyObserver {
   onLock(): void {
-    this.lockStatuas = SecretStatus.Lock;
+    this.lockStatus = SecretStatus.Lock;
     this.storeManager.closeEStore();
   }
 
   onUnLock(): void {
-    this.lockStatuas = SecretStatus.UnLock;
+    this.lockStatus = SecretStatus.UnLock;
   }
 
   getCurrentStatus(): number {
-    return this.lockStatuas;
+    return this.lockStatus;
   }
 
   initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  updatelockStatus(code: number) {
-    if (this.lockStatuas === SecretStatus.Lock) {
+  updateLockStatus(code: number) {
+    if (this.lockStatus === SecretStatus.Lock) {
       this.onLock();
     } else {
-      this.lockStatuas = code;
+      this.lockStatus = code;
     }
   }
 
-  private lockStatuas: number = SecretStatus.UnLock;
+  private lockStatus: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
@@ -725,8 +729,8 @@ export class ECStoreManager {
     this.mover = mover;
   }
 
-  async getCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
-    if (screanStatus === SecretStatus.UnLock) {
+  async getCurrentStore(screenStatus: number): Promise<relationalStore.RdbStore> {
+    if (screenStatus === SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
       } catch (e) {
@@ -814,7 +818,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatelockStatus(data.code);
+          e_secretKeyObserver.updateLockStatus(data.code);
         }
       });
     } catch (error) {

@@ -1,4 +1,9 @@
 # 使用通话设备切换组件
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 ## 切换通话输出设备
 
@@ -87,7 +92,7 @@
     if (err) {
       console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
     } else {
-      console.error('audioRender start success');
+      console.info('audioRender start success');
     }
    });
    ```

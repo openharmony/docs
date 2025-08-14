@@ -1,4 +1,9 @@
 # @ohos.matrix4 (矩阵变换)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 本模块提供矩阵变换功能，支持对图形进行平移、旋转和缩放等。
 

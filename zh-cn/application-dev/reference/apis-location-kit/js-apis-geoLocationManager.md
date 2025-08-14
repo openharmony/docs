@@ -47,7 +47,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 否 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。 |
 | country<sup>12+</sup> | string | 否 | 是 | 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2 。“CN”代表中国。默认值从设置中的“语言和地区”获取。 |
-| description | string | 否 | 否 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
+| description | string | 否 | 否 | 表示位置信息描述，如“上海市浦东新区xx路xx号”，字符串长度不超过100。 |
 | maxItems | number | 否 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
 | minLatitude | number | 否 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。如果该参数有值时，下面三个参数必填。 |
 | minLongitude | number | 否 | 是 | 表示最小经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
@@ -93,8 +93,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。默认值为FIRST_FIX。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。默认值为UNSET。 |
 | timeInterval | number | 否 | 是 |  表示上报位置信息的时间间隔，单位为秒。<br/>取值范围为大于等于0的值。<br/>默认值为对应定位模式下允许的最小时间间隔：<br/>默认值在GNSS定位时为1秒，网络定位时为20秒。<br/>当设置值小于最小间隔时，以最小时间间隔生效。<br/>设置为0时不对时间间隔进行校验，直接上报位置信息。 |
 | distanceInterval | number | 否 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。等于0时对位置上报距离间隔无限制。 |
 | maxAccuracy | number | 否 | 是 |  应用向系统请求位置信息时要求的精度值，单位为米。该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>该参数生效的情况下，系统会对比GNSS或网络定位服务上报的位置信息与应用的位置信息申请。当位置信息[Location](#location)中的精度值（accuracy）小于等于应用要求的精度值（maxAccuracy）时，位置信息会返回给应用；否则系统将丢弃本次收到的位置信息。<br/>默认值为0，表示不限制位置信息的精度，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。<br/> |
@@ -110,8 +110,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。默认值为FIRST_FIX。|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。默认值为UNSET。 |
 | maxAccuracy | number | 否 | 是|  应用向系统请求位置信息时要求的精度值，单位为米。该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>该参数生效的情况下，系统会对比GNSS或网络定位服务上报的位置信息与应用的位置信息申请。当位置信息[Location](#location)中的精度值（accuracy）小于等于应用要求的精度值（maxAccuracy）时，位置信息会返回给应用；否则系统将丢弃本次收到的位置信息。<br/>默认值为0，表示不限制位置信息的精度，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
 | timeoutMs | number | 否 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
@@ -128,7 +128,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下不返回POI信息。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -143,7 +143,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locatingPriority | [LocatingPriority](#locatingpriority12) | 否 | 否 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
 | locatingTimeoutMs | number | 否 | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下不返回POI信息。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SatelliteStatusInfo
@@ -212,7 +212,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenario)  | 否 | 否  | 表示定位场景。 |
-| command | string | 否 | 否  | 扩展命令字符串。 |
+| command | string | 否 | 否  | 扩展命令字符串，字符串长度不超过100。 |
 
 
 ## Location
@@ -263,8 +263,8 @@ GNSS地理围栏请求参数。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | geofence | [Geofence](#geofence) | 否 | 否 | 表示地理围栏信息，包含圆形围栏圆心坐标、半径等信息。 |
-| monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | 否 | 否 | 表示APP监听的地理围栏事件列表。 |
-| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | 否 | 是 | 表示地理围栏事件发生后弹出的通知对象列表。<br/>monitorTransitionEvents与notifications中的顺序要一一对应，例如monitorTransitionEvents[0]为[GeofenceTransitionEvent](#geofencetransitionevent12).GEOFENCE_TRANSITION_EVENT_ENTER，那notifications[0]中就需要填入用户进入围栏时需要弹出的通知对象。 |
+| monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | 否 | 否 | 表示APP监听的地理围栏事件列表。数组长度不超过3。 |
+| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | 否 | 是 | 表示地理围栏事件发生后弹出的通知对象列表。<br/>monitorTransitionEvents与notifications中的顺序要一一对应，例如monitorTransitionEvents[0]为[GeofenceTransitionEvent](#geofencetransitionevent12).GEOFENCE_TRANSITION_EVENT_ENTER，那notifications[0]中就需要填入用户进入围栏时需要弹出的通知对象。默认值为空数组。 |
 | geofenceTransitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 否 | 表示用于接收地理围栏事件的回调函数。 |
 
 
@@ -2624,10 +2624,11 @@ getPoiInfo(): Promise&lt;PoiInfo&gt;
   import { geoLocationManager } from '@kit.LocationKit';
   try {
     if (geoLocationManager.isPoiServiceSupported()) {
-      let poiInfo = await geoLocationManager.getPoiInfo();
-      if (poiInfo !== undefined) {
-        console.info("get PoiInfo:" + json.stringify(poiInfo));
-      }
+      geoLocationManager.getPoiInfo().then((poiInfo) => {
+        if (poiInfo !== undefined) {
+          console.info("get PoiInfo:" + JSON.stringify(poiInfo));
+        }
+      })
     }
   } catch(error) {
     console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);

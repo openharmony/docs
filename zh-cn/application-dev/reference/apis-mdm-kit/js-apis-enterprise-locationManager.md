@@ -1,4 +1,9 @@
 # @ohos.enterprise.locationManager（位置服务管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备位置服务策略管理的能力，包括设置和查询位置服务开关策略等。
 
@@ -27,6 +32,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -75,6 +81,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -115,7 +122,7 @@ try {
     let result: locationManager.LocationPolicy = locationManager.getLocationPolicy(wantTemp);
     console.info(`Succeeded in getting location policy. policy: ${result}`);
 } catch(err) {
-    console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get location policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 

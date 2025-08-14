@@ -1,4 +1,9 @@
 #  Canvas
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 提供画布组件，用于自定义绘制图形。
 
@@ -15,6 +20,8 @@
 ### Canvas
 
 Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext)
+
+创建Canvas组件时，最大面积不超过10000px*10000px，超过最大面积则无法正常创建。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

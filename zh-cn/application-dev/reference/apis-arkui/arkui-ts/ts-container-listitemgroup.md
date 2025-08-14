@@ -1,5 +1,11 @@
 # ListItemGroup
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--SE: @yylong-->
+<!--TSE: @liuzhenshuo-->
+
 该组件用来展示列表item分组，宽度默认充满[List](ts-container-list.md)组件，必须配合List组件来使用。
 
 > **说明：**
@@ -14,7 +20,7 @@
 
 ## 子组件
 
-包含[ListItem](ts-container-listitem.md)子组件。
+包含[ListItem](ts-container-listitem.md)子组件。支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 
 ## 接口
@@ -36,6 +42,8 @@ ListItemGroup(options?: ListItemGroupOptions)
 ## ListItemGroupOptions对象说明
 
 ListItemGroup组件参数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -1,4 +1,9 @@
 # EnterpriseAdminExtensionAbility开发指南
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 ## 概述
 
@@ -52,7 +57,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-最后，在工程Module对应的[module.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/module-configuration-file-0000001427744540-V2)配置文件中将EnterpriseAdminAbility注册为ExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+最后，在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中将EnterpriseAdminAbility注册为ExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
 ```ts
 "extensionAbilities": [
@@ -69,4 +74,4 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 针对EnterpriseAdminExtensionAbility开发，有以下相关示例可供参考：
 
-- [企业设备管理扩展（ArkTS）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
+- [企业设备管理扩展（ArkTS）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)

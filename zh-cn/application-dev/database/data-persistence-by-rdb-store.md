@@ -1,4 +1,9 @@
 # 通过关系型数据库实现数据持久化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 
 ## 场景介绍
@@ -240,32 +245,17 @@
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    let value5 = BigInt('15822401018187971961171');
-   // 以下三种方式可用
-   const valueBucket1: relationalStore.ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-     'IDENTITY': value5,
-   };
-   const valueBucket2: relationalStore.ValuesBucket = {
+   const valueBucket: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
      IDENTITY: value5,
    };
-   const valueBucket3: relationalStore.ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-     "IDENTITY": value5,
-   };
 
    if (store !== undefined) {
      try {
-       const rowId = await store.insert('EMPLOYEE', valueBucket1);
+       const rowId = await store.insert('EMPLOYEE', valueBucket);
        console.info(`Succeeded in inserting data. rowId:${rowId}`);
      } catch (error) {
        const err = error as BusinessError;
@@ -288,34 +278,19 @@
    let value8 = 200.5;
    let value9 = new Uint8Array([1, 2, 3, 4, 5]);
    let value10 = BigInt('15822401018187971967863');
-   // 以下三种方式可用
-   const valueBucket4: relationalStore.ValuesBucket = {
-     'NAME': value6,
-     'AGE': value7,
-     'SALARY': value8,
-     'CODES': value9,
-     'IDENTITY': value10,
-   };
-   const valueBucket5: relationalStore.ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value6,
      AGE: value7,
      SALARY: value8,
      CODES: value9,
      IDENTITY: value10,
    };
-   const valueBucket6: relationalStore.ValuesBucket = {
-     "NAME": value6,
-     "AGE": value7,
-     "SALARY": value8,
-     "CODES": value9,
-     "IDENTITY": value10,
-   };
 
    // 修改数据
    let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
    predicates1.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket4, predicates1, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket2, predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -387,7 +362,7 @@
        console.error(`Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
      }
    }
-   if (store != undefined) {
+   if (store !== undefined) {
      try {
        const resultSet = await store.querySql('SELECT name FROM example WHERE example MATCH ?', ['测试']);
        while (resultSet.goToNextRow()) {
@@ -410,81 +385,56 @@
    具体信息请参见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)。
 
    ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Lisa",
-       'AGE': 18,
-       'SALARY': 100.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5])
-     };
+   if (store !== undefined) {
      // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象插入数据
-       transaction.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then((rowId: number) => {
-           // 插入成功提交事务
-           transaction.commit();
-           console.info(`Insert is successful, rowId = ${rowId}`);
-         })
-         .catch((e: BusinessError) => {
-           // 插入失败回滚事务
-           transaction.rollback();
-           console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+     try {
+       const transaction = await store.createTransaction();
+       try {
+         // 使用事务对象插入数据
+         const rowId = await transaction.insert(
+           'EMPLOYEE',
+           {
+             NAME: 'Lisa',
+             AGE: 18,
+             SALARY: 100.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Insert is successful, rowId = ${rowId}`);
 
-   ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Rose",
-       'AGE': 22,
-       'SALARY': 200.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5]),
-     };
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     predicates.equalTo("NAME", "Lisa");
-     // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象更新数据
-       transaction.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then(async (rows: Number) => {
-           // 更新成功提交事务
-           transaction.commit();
-           console.info(`Updated row count: ${rows}`);
-         }).catch((e: BusinessError) => {
-           // 更新失败回滚事务
-           transaction.rollback();
-           console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+         const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+         predicates.equalTo('NAME', 'Lisa');
+         // 使用事务对象更新数据
+         const rows = await transaction.update(
+           {
+             NAME: 'Rose',
+             AGE: 22,
+             SALARY: 200.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           predicates,
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Updated row count: ${rows}`);
 
-   ```ts
-   if (store != undefined) {
-     // 创建事务
-     (store as relationalStore.RdbStore).createTransaction()
-       .then((transaction: relationalStore.Transaction) => {
          // 使用事务对象删除数据
-         transaction.execute("DELETE FROM EMPLOYEE WHERE age = ? OR age = ?", [21, 20]).then(() => {
-           // 删除成功提交事务
-           transaction.commit();
-           console.log(`execute delete success`);
-         }).catch((e: BusinessError) => {
-           // 删除失败回滚事务
-           transaction.rollback();
-           console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
-         });
-       })
-       .catch((err: BusinessError) => {
-         console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
-       });
+         await transaction.execute('DELETE FROM EMPLOYEE WHERE age = ? OR age = ?', [21, 20]);
+         console.log(`execute delete success`);
+
+         // 提交事务
+         await transaction.commit();
+         console.info('Transaction commit success.');
+       } catch (error) {
+         const err = error as BusinessError;
+         // 执行失败回滚事务
+         await transaction.rollback();
+         console.error(`Transaction execute failed, code is ${err.code}, message is ${err.message}`);
+       }
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`createTransaction failed, code is ${err.code}, message is ${err.message}`);
+     }
    }
    ```
 

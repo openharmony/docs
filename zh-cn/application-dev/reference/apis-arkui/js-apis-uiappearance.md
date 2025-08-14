@@ -52,7 +52,7 @@ getDarkMode(): DarkMode
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -96,7 +96,7 @@ getFontScale(): number
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed. |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -140,7 +140,7 @@ getFontWeightScale(): number
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed. |
 | 500001 | Internal error. |
 
 **示例：** 

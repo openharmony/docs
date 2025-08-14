@@ -56,7 +56,7 @@ const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index)
 
 | 类型 | 说明                                                                                                                                                     |
 | -- |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| const char * | 通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](capi-raw-file-manager-h.md#oh_resourcemanager_openrawfile)的输入参数，<br> 如果遍历完所有文件仍未找到，则返回NULL。 |
+| const char * | 通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](capi-raw-file-manager-h.md#oh_resourcemanager_openrawfile)的输入参数。<br> 如果遍历完所有文件仍未找到，则返回NULL。 |
 
 **参考：**
 

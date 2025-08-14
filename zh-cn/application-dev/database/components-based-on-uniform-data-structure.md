@@ -1,4 +1,9 @@
 # 基于标准化数据结构的控件 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--SE: @junathuawei1; @zph000-->
+<!--TSE: @lj_liujing; @yippo; @logic42-->
 
 ## 场景介绍
 

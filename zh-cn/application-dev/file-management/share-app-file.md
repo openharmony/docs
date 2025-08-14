@@ -26,8 +26,13 @@
 
 - path：文件资源在应用沙箱中的路径。
 
+> **注意**
+>
+> 1. 因URI处理涉及编解码，系统无法保证应用自行拼接的URI地址的可用性。
+> 2. 推荐使用系统提供的接口获取URI，如[getUriFromPath接口](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)。
+
 ## 相关实例
 
 针对应用文件分享，有以下相关实例可供参考：
 
-- [文件分享与访问（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)
+- [文件分享与访问（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)

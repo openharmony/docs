@@ -1,4 +1,9 @@
 # @ohos.util.LightWeightMap (非线性容器LightWeightMap)  
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 

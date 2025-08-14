@@ -1,4 +1,9 @@
 # 坚盾守护模式
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--SE: @libing23232323-->
+<!--TSE: @ghiker-->
 
 坚盾守护模式提供给高安全需求用户的系统级别安全模式。该模式通过限制设备基础功能，增强安全性，有效抵御远程攻击面的针对性攻击。
 
@@ -47,7 +52,7 @@
 
 - 排查HTML页面是否存在\<math>标签嵌入的MathML语法，坚盾守护模式下，MathML语法无法解析，导致显示异常。
 
-- 排查前端代码是否存在SpeechRecognition（语言识别）、SpeechSynthesis（语音合成）等接口调用，坚盾守护模式下，相关接口无法调用。
+- 排查前端代码是否存在SpeechRecognition（语音识别）、SpeechSynthesis（语音合成）等接口调用，坚盾守护模式下，相关接口无法调用。
 
 - 排查前端代码是否存在RTCDataChannel/createDataChannel等接口调用，该类接口属于WebRTC API，用于建立双向数据通道，实现对等端之间的实时数据交换。坚盾守护模式下，相关接口无法调用。
 

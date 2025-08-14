@@ -1,4 +1,9 @@
 # 申请相机开发的权限
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 相机应用开发的主要流程包含开发准备、设备输入、会话管理、预览、拍照和录像等。
 

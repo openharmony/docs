@@ -8,7 +8,7 @@ DRM Kit provides MediaKeySystem to manage DRM certificates, DRM licenses, and Me
 
 ## How to Develop
 
-Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
+Read [DRM](../../reference/apis-drm-kit/capi-drm.md) for the API reference.
 
 1. Import the DRM Kit module.
 

@@ -1,4 +1,9 @@
 # Enums
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -40,6 +45,7 @@
 | AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | 表示不支持SEEK_CONTINUOUS模式的seek。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 | AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | 表示不支持超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 | AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | 表示未使能超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| AVERR_PARAMETER_OUT_OF_RANGE<sup>20+</sup> | 5400108 | 表示参数超过取值范围。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -366,11 +372,11 @@ Codec MIME类型枚举。
 
 | 名称    | 值   | 说明                                                         |
 | ------- | ---- | ------------------------------------------------------------ |
-| DEFAULT | 0    | 默认编码格式。<br/>仅做接口定义，暂不支持使用。              |
-| AMR_NB  | 1    | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AMR_WB  | 2    | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
-| HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| DEFAULT | 0    | 默认编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
+| AMR_NB  | 1    | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_NB替代。 |
+| AMR_WB  | 2    | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_WB替代。 |
+| AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
+| HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)中的AUDIO_AAC替代。 |
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
@@ -383,11 +389,11 @@ Codec MIME类型枚举。
 
 | 名称     | 值   | 说明                                                         |
 | -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0    | 默认封装格式。<br/>仅做接口定义，暂不支持使用。              |
-| MPEG_4   | 2    | 封装为MPEG-4格式。                                           |
-| AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
-| AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
-| AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+| DEFAULT  | 0    | 默认封装格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议根据具体情况选择[ContainerFormatType](#containerformattype8)中的一项替代。 |
+| MPEG_4   | 2    | 封装为MPEG-4格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_MPEG_4替代。 |
+| AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AMR，编码格式使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_NB替代。 |
+| AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AMR，编码格式使用[CodecMimeType](#codecmimetype8)中的AUDIO_AMR_WB替代。 |
+| AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用[ContainerFormatType](#containerformattype8)中的CFT_AAC替代。 |
 
 ## MediaErrorCode<sup>(deprecated)</sup>
 

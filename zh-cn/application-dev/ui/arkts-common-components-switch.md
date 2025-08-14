@@ -1,4 +1,9 @@
 # 切换按钮 (Toggle)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 
 Toggle组件提供状态按钮样式、勾选框样式和开关样式，一般用于两种状态之间的切换。具体用法请参考[Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)。

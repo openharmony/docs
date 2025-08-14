@@ -1,4 +1,9 @@
 # ArkGuard字节码混淆常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao-->
+<!--SE: @hufeng20-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 字节码混淆与源码混淆差异
 
@@ -241,10 +246,12 @@ dialogController:CustomDialogController|null = null;
 
 // 混淆前
 import jsonData from "./testjson";
+
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
 // 混淆后
 import jsonData from "./test.json";
+
 let jsonProp = jsonData.i.j;
 ```
 
@@ -265,6 +272,7 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 ```ts
 // 混淆前
 import { Want } from '@ohos:app.ability.Want';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -274,6 +282,7 @@ let petalMapWant: Want = {
 }
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -360,15 +369,18 @@ export interface MyInfo {
 }
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
     city1: "shanghai"
   }
 }
+
 // 混淆后，file1.ts的代码被保留
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -440,13 +452,17 @@ let mytest = (await import('./file')).Test1
 export namespace ns1 {
   export class person1 {}
 }
+
 import {ns1} from './file1'
+
 let person1 = new ns1.person1()
 // 混淆后
 export namespace a3 {
   export class b2 {}
 }
+
 import {a3} from './file1'
+
 let person1 = new a3.person1()
 ```
 

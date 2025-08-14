@@ -1,5 +1,10 @@
 # 基础绘制效果（C/C++）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 ## 场景介绍
 
@@ -62,7 +67,7 @@
 5. 当不需要填充效果时，可以使用OH_Drawing_CanvasDetachBrush()去除。入参为画布对象Canvas。
 
    ```c++
-   OH_Drawing_CanvasDetachBrush(canvas); 
+   OH_Drawing_CanvasDetachBrush(canvas);
    ```
 
 6. 当不再需要画刷进行效果填充时，请及时使用OH_Drawing_BrushDestroy()接口销毁Brush对象。
@@ -135,29 +140,29 @@
    - 可使用OH_Drawing_PenSetCap()接口设置画笔线帽样式。
 
       ```c++
-      OH_Drawing_PenSetCap(pen, OH_Drawing_PenLineCapStyle);
+      OH_Drawing_PenSetCap(pen, LINE_FLAT_CAP);
       ```
 
       OH_Drawing_PenLineCapStyle线帽样式可选分类对应如下：
 
       | 线帽样式 | 说明 | 示意图 |
       | -------- | -------- | -------- |
-      | FLAT_CAP | 没有线帽样式，线条头尾端点处横切。 | ![Screenshot_20241130143725824](figures/Screenshot_20241130143725824.jpg) |
-      | SQUARE_CAP | 线帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度是线段宽度的一半。 | ![Screenshot_20241130143837975](figures/Screenshot_20241130143837975.jpg) |
-      | ROUND_CAP | 线帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段宽度一致。 | ![Screenshot_20241130143949934](figures/Screenshot_20241130143949934.jpg) |
+      | LINE_FLAT_CAP | 没有线帽样式，线条头尾端点处横切。 | ![Screenshot_20241130143725824](figures/Screenshot_20241130143725824.jpg) |
+      | LINE_SQUARE_CAP | 线帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度是线段宽度的一半。 | ![Screenshot_20241130143837975](figures/Screenshot_20241130143837975.jpg) |
+      | LINE_ROUND_CAP | 线帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段宽度一致。 | ![Screenshot_20241130143949934](figures/Screenshot_20241130143949934.jpg) |
 
    - 可使用OH_Drawing_PenSetJoin()接口设置画笔转角样式。
 
       ```c++
-      OH_Drawing_PenSetJoin(pen, OH_Drawing_PenLineJoinStyle);
+      OH_Drawing_PenSetJoin(pen, LINE_MITER_JOIN);
       ```
 
       OH_Drawing_PenLineJoinStyle转角样式可选分类对应如下：
       | 转角样式 | 说明 | 示意图 |
       | -------- | -------- | -------- |
-      | MITER_JOIN | 转角类型为尖角 | ![zh-cn_image_0000002194025261](figures/zh-cn_image_0000002194025261.png) |
-      | ROUND_JOIN | 转角类型为圆头 | ![zh-cn_image_0000002194110901](figures/zh-cn_image_0000002194110901.png) |
-      | BEVEL_JOIN | 转角类型为平头 | ![zh-cn_image_0000002158744158](figures/zh-cn_image_0000002158744158.png) |
+      | LINE_MITER_JOIN | 转角类型为尖角 | ![zh-cn_image_0000002194025261](figures/zh-cn_image_0000002194025261.png) |
+      | LINE_ROUND_JOIN | 转角类型为圆头 | ![zh-cn_image_0000002194110901](figures/zh-cn_image_0000002194110901.png) |
+      | LINE_BEVEL_JOIN | 转角类型为平头 | ![zh-cn_image_0000002158744158](figures/zh-cn_image_0000002158744158.png) |
 
 4. 按需绘制图元，具体可见[图元绘制](primitive-drawing-overview.md)一节。
 
@@ -178,5 +183,5 @@
 
 针对Drawing(C/C++)的开发，有以下相关实例可供参考：
 
-- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+- [NDKGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
 <!--RP1End-->

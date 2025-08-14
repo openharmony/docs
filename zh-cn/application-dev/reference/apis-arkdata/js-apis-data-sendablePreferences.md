@@ -1,4 +1,9 @@
 # @ohos.data.sendablePreferences (共享用户首选项)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--SE: @houpengtao1-->
+<!--TSE: @yippo; @logic42-->
 
 
 共享用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
@@ -612,7 +617,7 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.error("The key 'startup' dose not contain.");
+    console.error("The key 'startup' does not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to check the key 'startup'. code: ${err.code}, message: ${err.message}`);
@@ -657,7 +662,7 @@ let isExist: boolean = preferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.error("The key 'startup' dose not contain.");
+  console.error("The key 'startup' does not contain.");
 }
 ```
 
@@ -985,7 +990,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;, callback: Callback&lt;lang.ISe
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
 | keys     | Array&lt;string&gt;                                          | 是   | 需要订阅的key集合。                                          |
-| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
+| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
 
 **错误码：**
 

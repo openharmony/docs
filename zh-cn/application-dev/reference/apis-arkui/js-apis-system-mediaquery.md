@@ -1,4 +1,9 @@
 # @system.mediaquery (媒体查询)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--SE: @lanshouren-->
+<!--TSE: @liuli0427-->
 
 提供根据不同媒体类型定义不同的样式。
 

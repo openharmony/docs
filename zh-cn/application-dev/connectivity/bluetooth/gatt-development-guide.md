@@ -1,5 +1,11 @@
 # 连接和传输数据
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 ## 简介
 本指南主要提供了基于通用属性协议（Generic Attribute Profile，GATT）实现BLE设备间连接和传输数据的开发指导。当两个设备间进行GATT通信交互时，依据设备功能的不同，可区分为GATT客户端和GATT服务端，本指南将分别介绍客户端与服务端的实现方法。
 
@@ -25,7 +31,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ```
 ### 客户端
 
-#### 1. 创建客户端实例
+**1. 创建客户端实例**<br>
 客户端通过查找设备流程搜索到目标设备后，即可构造客户端实例，后续所有操作都基于该客户端实例。
 ```ts
 // 此处是伪代码
@@ -38,7 +44,7 @@ try {
 }
 ```
 
-#### 2. 订阅连接状态变化事件
+**2. 订阅连接状态变化事件**<br>
 通过订阅连接状态变化事件，可以获取实时的GATT连接状态。整个连接过程会涉及多种状态的跃迁，其中[STATE_CONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate)表示已连接，[STATE_DISCONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate)表示已断连。
 ```ts
 // 此处是伪代码
@@ -57,7 +63,7 @@ try {
 }
 ```
 
-#### 3. 发起连接
+**3. 发起连接**<br>
 通过创建的客户端实例，直接发起连接即可。通过连接状态变化事件判断是否已连接成功。
 ```ts
 // 此处是伪代码
@@ -71,7 +77,7 @@ try {
 }
 ```
 
-#### 4. 服务发现
+**4. 服务发现**<br>
 服务发现是获取服务端支持的所有服务能力集合的过程。客户端需要根据服务发现结果，判断服务端是否存在应用需要的服务能力。
 - 后续的读写特征值、读写描述符等操作都需要在服务发现操作完成后进行，否则会失败。
 - 后续的读写等操作中指定的特征值或描述符必须包含在服务能力集合中，否则会失败。
@@ -90,7 +96,7 @@ try {
 }
 ```
 
-#### 5. 传输数据
+**5. 传输数据**<br>
 传输数据通过操作服务端的特征值或者描述符实现。
 
 **5.1 读取或写入特征值**<br>
@@ -260,7 +266,7 @@ try {
 }
 ```
 
-#### 6. 断开连接
+**6. 断开连接**<br>
 当应用不再需要已建立的连接时，需主动断开连接。
 ```ts
 // 此处是伪代码
@@ -280,7 +286,7 @@ try {
 
 ### 服务端
 
-#### 1. 创建服务端实例
+**1. 创建服务端实例**<br>
 构造服务端实例，后续所有操作都基于该服务端实例。
 ```ts
 try {
@@ -290,7 +296,7 @@ try {
 }
 ```
 
-#### 2. 添加服务
+**2. 添加服务**<br>
 添加应用需要的服务，将在蓝牙子系统中注册指定的UUID服务。客户端会发起服务查询，判断服务端是否支持特定的服务。
 ```ts
 // 创建descriptors
@@ -334,7 +340,7 @@ try {
 }
 ```
 
-#### 3. 订阅连接状态变化事件
+**3. 订阅连接状态变化事件**<br>
 通过订阅连接状态变化事件，可以获取实时的GATT连接状态以及客户端的设备地址。整个连接过程涉及多种状态的跃迁，其中[STATE_CONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate)表示已连接，[STATE_DISCONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate)表示已断连。
 ```ts
 function ServerConnectStateChanged(state: ble.BLEConnectionChangeState) {
@@ -351,7 +357,7 @@ try {
 }
 ```
 
-#### 4. 传输数据
+**4. 传输数据**<br>
 传输数据可以通过客户端读写特征值数据内容、读写描述符数据内容、主动发送特征值数据内容变化通知或指示实现。
 
 **4.1 订阅特征值读取或写入事件**<br>
@@ -521,7 +527,7 @@ try {
 }
 ```
 
-#### 5. 关闭服务端实例
+**5. 关闭服务端实例**<br>
 当应用不再需要创建的服务端实例时，需要主动关闭，并释放相关资源。例如：删除已添加的服务，取消已订阅事件。
 ```ts
 try {

@@ -1,4 +1,9 @@
 # \@Provide装饰器和\@Consume装饰器：与后代组件双向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 \@Provide和\@Consume，应用于与后代组件的双向数据同步、状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，\@Provide和\@Consume摆脱参数传递机制的束缚，实现跨层级传递。
 
@@ -377,7 +382,7 @@ struct ToDoDemo {
 @Entry
 @Component
 struct ToDo {
-  // @Provide装饰的变量index由入口组件ToDo提供其后代组件
+  // @Provide装饰的变量count由入口组件ToDo提供其后代组件
   @Provide count: number = 0;
 
   build() {

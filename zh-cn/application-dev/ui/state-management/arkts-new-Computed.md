@@ -1,4 +1,9 @@
 # \@Computed装饰器：计算属性
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 当开发者使用相同的计算逻辑重复绑定在UI上时，为了防止重复计算，可以使用\@Computed计算属性。计算属性中的依赖的状态变量变化时，只会计算一次。这解决了UI多次重用该属性导致的重复计算和性能问题。如下面例子。
 
@@ -17,8 +22,9 @@ Text(`${this.sum}`) // 读取@Computed sum的缓存值，节省上述重复计�
 
 >**说明：**
 >
->\@Computed装饰器从API version 12开始支持。
+> \@Computed装饰器从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

@@ -1,4 +1,9 @@
 # ContainerSpan
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 [Text](ts-basic-components-text.md)组件的子组件，用于统一管理多个[Span](ts-basic-components-span.md)、[ImageSpan](ts-basic-components-imagespan.md)的背景色及圆角弧度。
 
@@ -61,7 +66,7 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 ## 示例
 ### 示例1（设置背景样式）
 
-该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+从API version 11开始，该示例通过[textBackgroundStyle](#textbackgroundstyle)属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -88,7 +93,7 @@ struct Index {
 
 ### 示例2（通过attributeModifier设置背景样式）
 
-该示例通过attributeModifier属性展示了文本设置背景样式的效果。
+从API version 12开始，该示例通过[attributeModifier](#attributemodifier12)属性展示了文本设置背景样式的效果。
 
 ```ts
 import { ContainerSpanModifier } from '@ohos.arkui.modifier';

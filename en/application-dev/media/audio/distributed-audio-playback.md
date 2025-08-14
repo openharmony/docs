@@ -20,13 +20,13 @@ When obtaining the device list on the network, you can specify **DeviceFlag** to
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup> | Remote input device. This is a system API.| 
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup> | Remote input and output device. This is a system API.| 
 
-For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
+For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md).
 
 ### Continuing the Playing of All Audio Streams
 
 1. [Obtain the output device information](audio-output-device-management.md#obtaining-output-device-information).
 
-2. Create an **AudioDeviceDescriptor** instance to describe an audio output device.
+2. Create an AudioDeviceDescriptor instance to describe an audio output device.
 
 3. Call **selectOutputDevice** to select a remote device, on which all the audio streams will continue playing.
 
@@ -66,9 +66,9 @@ async function selectOutputDevice(): Promise<void> {
 
 1. [Obtain the output device information](audio-output-device-management.md#obtaining-output-device-information).
 
-2. Create an **AudioRendererFilter** instance, with **uid** to specify an application and **rendererId** to specify an audio stream.
+2. Create an AudioRendererFilter instance, with **uid** to specify an application and **rendererId** to specify an audio stream.
 
-3. Create an **AudioDeviceDescriptor** instance to describe an audio output device.
+3. Create an AudioDeviceDescriptor instance to describe an audio output device.
 
 4. Call **selectOutputDeviceByFilter** to select a remote device, on which the specified audio stream will continue playing.
  

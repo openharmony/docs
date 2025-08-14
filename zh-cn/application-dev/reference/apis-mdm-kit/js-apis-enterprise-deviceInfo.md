@@ -1,4 +1,9 @@
 # @ohos.enterprise.deviceInfo（设备信息管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备信息管理能力，包括获取设备序列号、设备名称等。
 
@@ -25,6 +30,8 @@ getDeviceInfo(admin: Want, label: string): string
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

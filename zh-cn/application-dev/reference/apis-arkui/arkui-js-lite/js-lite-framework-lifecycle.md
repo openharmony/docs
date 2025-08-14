@@ -1,4 +1,9 @@
 # 生命周期
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 
 ## 应用生命周期

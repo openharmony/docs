@@ -18,8 +18,8 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name    | Type   | Readable  | Writable | Description          |
+| Name    | Type   | Read-Only  | Optional | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| Pointer to the file descriptor.|
-| offset | number  | Yes   | No| Start offset.     |
-| length | number  | Yes   | No| File length.      |
+| fd     | number  | No   | No| Pointer to the file descriptor.|
+| offset | number  | No   | No| Start offset.     |
+| length | number  | No   | No| File length.      |

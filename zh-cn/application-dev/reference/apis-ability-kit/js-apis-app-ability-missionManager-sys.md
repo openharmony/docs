@@ -1455,7 +1455,7 @@ try {
       if (err) {
         console.error(`moveMissionsToForeground failed: ${err.message}`);
       } else {
-        console.info(`moveMissionsToForeground successfully: ${JSON.stringify(data)}`);
+        console.info(`moveMissionsToForeground successfully`);
       }
     });
   });

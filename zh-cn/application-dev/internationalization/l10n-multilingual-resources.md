@@ -22,11 +22,11 @@
 
 4. 创建资源文件。将字符串、图片和音频等资源放入相应的.json资源文件中。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    >   
    > - 应用本地化的推荐作法是将本地化的内容与核心功能尽可能分开，本地化内容放置在资源目录下。
    > 
-   > - 创建资源目录、资源组目录和资源文件的具体操作请参考[资源分类与访问](../quick-start/resource-categories-and-access.md#资源分类与访问)。
+   > - 创建资源目录、资源组目录和资源文件的具体操作请参考[资源分类与访问](../quick-start/resource-categories-and-access.md)。
 
 
 ## 资源匹配规则

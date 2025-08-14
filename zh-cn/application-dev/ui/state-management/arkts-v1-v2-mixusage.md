@@ -1,4 +1,9 @@
 # 状态管理V1V2混用文档
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 ## 概述
 
@@ -51,7 +56,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 - makeV1Observed不会递归执行，仅会将第一层包装成V1的状态变量。
 
 **限制条件**
-- 不支持[collections类型](../../reference/apis-arkts/js-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
+- 不支持[collections类型](../../reference/apis-arkts/arkts-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
 - 不支持非object类型。
 - 不支持undefined、null。
 - 不支持\@ObservedV2、[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)的返回值和V2装饰器装饰的built-in类型的变量（Array、Map、Set和Date）。
@@ -83,7 +88,7 @@ static enableV2Compatibility\<T extends object\>(source: T): T
 基于[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)接口，V1V2混用范式如下：
 
 ### V1->V2
-- V1的状态变量传递给V2的\@Param，调用`UIUtils.enableV2Compatibility`使V1的状态变量可在\@ComponentV2中有观察能力。完整例子见[常见场景](#v1-v2-1)。
+- V1的状态变量传递给V2的\@Param，调用`UIUtils.enableV2Compatibility`使V1的状态变量可在\@ComponentV2中有观察能力。完整例子见[常见场景](#常见场景)。
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -128,7 +133,7 @@ struct CompV2 {
 
 ### V2->V1
 
-在V2->V1时，推荐联合使用`UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())`。如果当前对象已经是V1的可观察数据了，则仅调用`UIUtils.enableV2Compatibility`即可，完整例子见[常见场景](#v2-v1-1)。
+在V2->V1时，推荐联合使用`UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())`。如果当前对象已经是V1的可观察数据了，则仅调用`UIUtils.enableV2Compatibility`即可，完整例子见[常见场景](#常见场景)。
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -208,7 +213,9 @@ arr.push(UIUtils.makeV1Observed(new ArrayItem())); // 新增数据是V1的状态
 
 ## 常见场景
 ### 普通JS Object
-#### V1->V2
+
+**V1->V2**
+
 **推荐写法**
 
 ```ts
@@ -289,7 +296,7 @@ struct CompV2 {
   }
 }
 ```
-#### V2->V1
+**V2->V1**
 
 **推荐写法**
 
@@ -387,7 +394,9 @@ struct CompV1 {
 }
 ```
 ### \@Observed装饰的class
-#### V1->V2
+
+**V1->V2**
+
 下面的例子中：
 - `ObservedClass`是\@Observed装饰的class，并在传递给V2时使能了在V2中观察的能力。
 - `name`是`@Track`装饰的属性，其在V1和V2均是可观察的。
@@ -434,7 +443,8 @@ struct CompV2 {
   }
 }
 ```
-#### V2->V1
+**V2->V1**
+
 - `ObservedClass`是\@Observed装饰的class，所以传递给V1调用`UIUtils.enableV2Compatibility`时，无需再调用`UIUtils.makeV1Observed`。
 - 只有\@Track装饰的变量在V1和V2中可观察。非\@Track的变量在V1中使用在UI上会有运行时报错，在V2中不会报错，但不会响应刷新。
 ```ts
@@ -486,7 +496,9 @@ struct CompV2 {
 
 ### 内置类型
 以Array为例。
-#### V1->V2
+
+**V1->V2**
+
 **推荐写法**
 
 ```ts
@@ -563,7 +575,8 @@ struct ArrayCompV2 {
   }
 }
 ```
-#### V2->V1
+**V2->V1**
+
 **推荐写法**
 
 ```ts
@@ -642,7 +655,8 @@ struct ArrayCompV1 {
 }
 ```
 ### 二维数组
-#### V1->V2
+
+**V1->V2**
 
 下面的例子中：
 - 使用makeV1Observed将二维数组的内层数组变成V1的状态变量。
@@ -705,7 +719,7 @@ struct IndexPage {
 }
 ```
 
-#### V2->V1
+**V2->V1**
 
 下面的例子中：
 - 使用makeV1Observed将二维数组的内层数组变成V1的状态变量。调用enableV2Compatibility，使其具有V2的观察能力，也避免V1V2的双重代理。
@@ -770,7 +784,9 @@ struct IndexPage {
 ```
 
 ### 嵌套类型
-#### V1->V2
+
+**V1->V2**
+
 结合上面的基本场景后，来看下面嵌套场景的例子。
 下面的例子的行为可以总结为：
 - \@State仅能观察第一层的变化，如果要深度观察，需要传递给\@ObjectLink。
@@ -903,7 +919,8 @@ struct NestedClassV2 {
 }
 ```
 
-#### V2->V1
+**V2->V1**
+
 - 下面的例子中，`NestedClassV2`中`outer`调用了`UIUtils.enableV2Compatibility`，且每一层都是`UIUtils.makeV1Observed`，所以`outer`在V2中有了深度观察的能力。
 - V1中仅能观察第一层的变化，所以需要多层自定义组件，且每层都配合使用\@ObjectLink来接收，从而实现深度观察能力。
 

@@ -1,4 +1,9 @@
 # 使用Image_NativeModule完成图片解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 创建ImageSource，获取位图的宽、高信息，以及释放ImageSource实例。
 

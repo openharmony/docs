@@ -1,4 +1,9 @@
 # native_key_event.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--SE: @piggyguy-->
+<!--TSE: @songyanhong-->
 
 ## 概述
 
@@ -245,7 +250,7 @@ enum ArkUI_KeySourceType
 | ARKUI_KEY_SOURCE_UNKNOWN = 0 | 未知类型。     |
 | ARKUI_KEY_SOURCE_TYPE_MOUSE = 1 | 鼠标。       |
 | ARKUI_KEY_SOURCE_TYPE_KEYBOARD = 4 | 键盘。       |
-| ARKUI_KEY_SOURCE_TYPE_JOYSTICK = 5 | 游戏手柄。<br>**起始版本：** 14 |
+| ARKUI_KEY_SOURCE_TYPE_JOYSTICK = 5 | 游戏手柄。<br>**起始版本：** 15 |
 
 ### ArkUI_KeyIntension
 

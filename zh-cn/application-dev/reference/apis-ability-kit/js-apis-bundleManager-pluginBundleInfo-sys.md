@@ -1,4 +1,9 @@
 # PluginBundleInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 插件信息，通过接口[bundleManager.getAllPluginInfo](js-apis-bundleManager-sys.md#bundlemanagergetallplugininfo19)获取。
 

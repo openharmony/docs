@@ -27,7 +27,7 @@ Below shows the directory structure after decompression on macOS.
 ### Configuring the Environment Variable
 Skip this step if the NDK is downloaded from DevEco Studio.
 1. Add the CMake tool that comes with the NDK to the environment variables.
-+ Configure the environment variables in Linux.
++ On Linux
 
   ```
   # Open the .bashrc file.
@@ -38,7 +38,7 @@ Skip this step if the NDK is downloaded from DevEco Studio.
   source ~/.bashrc
   ```
 
-+ Configure the environment variables in macOS.
++ On macOS
 
   ```
   #In the current user directory, open the .bash_profile file. If the file does not exist, create one.
@@ -49,7 +49,7 @@ Skip this step if the NDK is downloaded from DevEco Studio.
   source ~/.bash_profile
   ```
 
-+ Configure the environment variable in Windows.
++ On Windows
 
   Right-click **This PC** and choose **Properties** from the shortcut menu. In the displayed dialog box, click the **Advanced System Settings** tab and then click **Environment Variables**. Under **System Variables** dialog box, select the **Path** environment variable and click **Edit**. Add the paths, save the settings, and exit. (If the next step cannot be performed, restart the computer.)
   
@@ -61,14 +61,14 @@ Skip this step if the NDK is downloaded from DevEco Studio.
 
 
 2. Check the default CMake path.
-   + In Linux or macOS
+   + On Linux or macOS
       ```
       #Run the which cmake command.
       which cmake
       #The result should be the same as the custom path previously appended to the .bashrc file.
       ~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin/cmake
       ```
-   + In Windows
+   + On Windows
      
      Right-click **This PC** and choose **Properties** from the shortcut menu. In the displayed dialog box, click the **Advanced System Settings** tab and then click **Environment Variables**. Under **System Variables** dialog box, check the **Path** value. The displayed CMake path should be the one you have added.
 
@@ -169,14 +169,11 @@ int sum(int a, int b)
 
 ### Compiling and Building the Demo Project
 
-#### In Linux or macOS
-In the project directory, create the **build** directory to store the intermediate files generated during CMake building.
+**For Linux and macOS**
 
-> **NOTE**
->
-> In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
+In the project directory, create the **build** directory to store the intermediate files generated during CMake building. **NOTE**<br>In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
 
-1. Use **OHOS_STL=c++_shared** to dynamically link the C++ library to build a project. If **OHOS_STL** is not specified, **c++_shared** is used by default. Set **DOHOS_ARCH** based on the system architecture.
+1. To build the project using dynamic linking with the C++ shared library, use **OHOS_STL=c++_shared**. Note that if **OHOS_STL** is not specified, **c++_shared** is used by default. Set **DOHOS_ARCH** based on the target system architecture. With **DOHOS_ARCH=armeabi-v7a**, a 32-bit dynamic library is compiled; with **DOHOS_ARCH=arm64-v8a**, a 64-bit dynamic library is compiled.
 
    ```
     >mkdir build && cd build
@@ -184,7 +181,7 @@ In the project directory, create the **build** directory to store the intermedia
     >cmake --build .
    ```
 
-2. Use **OHOS_STL=c++_static** to link a static C++ library to build the project.
+2. To build the project using static linking with the C++ shared library, use **OHOS_STL=c++_static**. Set **DOHOS_ARCH** based on the target system architecture. With **DOHOS_ARCH=armeabi-v7a**, a 32-bit static library is compiled; with **DOHOS_ARCH=arm64-v8a**, a 64-bit static library is compiled.
 
    ```
     >mkdir build && cd build
@@ -196,7 +193,7 @@ In the project directory, create the **build** directory to store the intermedia
    
    In the **CMAKE_TOOLCHAIN_FILE** file, **--sysroot={ndk_*sysroot_directory*}** is set for Clang++ by default, instructing the compiler to search for the root directory of system header files.
 
-#### In Windows
+**For Windows**
 
 Using CMake in Windows, unlike that in Linux, requires you to use the **-G** option to specify the generator.
 
@@ -210,12 +207,12 @@ Step 1. Create the **build** folder in the project directory and run the followi
 ```
  F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
-Note: If debugging is required, add the **-D CMAKE_BUILD_TYPE=normal** option. The CMake path and the ohos.toolchain.cmake path are where the NDK is downloaded.
+**NOTE**<br>If debugging is required, add the **-D CMAKE_BUILD_TYPE=normal** option. Both the CMake path and the toolchain file path (**ohos.toolchain.cmake**) should point to your downloaded NDK directory.
 The following figure shows the command output.
 
 ![en-us_image_20-24-01-16-14-58](figures/en-us_image_20-24-01-16-14-58.png)
 
-The **build.ninja** file generated is what we need.
+The **build.ninja** file is the build configuration file.
 
 Step 2. Use the ninja command to compile and generate the target file. The following figure shows the location of the target file.
 

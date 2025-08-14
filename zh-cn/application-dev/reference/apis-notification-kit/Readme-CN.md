@@ -31,8 +31,8 @@
     <!--DelEnd-->
 - C API
   - 模块
-    - [Notification](capi-notification.md)
+      - [NOTIFICATION](capi-notification.md)
   - 头文件
-    - [notification.h](notification_8h.md)
+      - [notification.h](capi-notification-h.md)
 - 错误码
   - [通知错误码](errorcode-notification.md)

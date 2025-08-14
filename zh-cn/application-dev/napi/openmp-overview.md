@@ -1,4 +1,9 @@
 # OpenMP简介
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yangming4249-->
+<!--SE: @ychen3--->
+<!--TSE: @zsw_zhushiwei-->
 
 [OpenMP（Open Multi-Processing）](https://www.openmp.org/)是一套支持跨平台共享内存方式的多线程并发的编程API，由一套编译器指令、库和一些能够影响运行行为的环境变量构成，提供了对并行算法的高层抽象描述，适合在多核CPU机器上的并行程序设计。编译器根据程序中添加的pragma指令，自动将pragma指令标记的程序片段并行处理，使用OpenMP可以降低并行编程的复杂度。
 

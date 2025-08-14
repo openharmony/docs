@@ -1,4 +1,9 @@
 # AVScreenCapture
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
+<!--TSE: @xdlinc-->
 
 ## 概述
 

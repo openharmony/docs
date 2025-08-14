@@ -1,4 +1,9 @@
 # @system.router (页面路由)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 通过不同的uri访问不同的页面。
 

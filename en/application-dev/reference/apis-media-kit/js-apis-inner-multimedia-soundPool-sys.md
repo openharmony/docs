@@ -1,8 +1,8 @@
 # SoundPool (Sound Pool) (System API)
 
-The **SoundPool** module provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
+The module provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
 
-Before using these APIs, you must call [media.createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a **SoundPool** instance.
+Before using these APIs, you must call [media.createSoundPool](arkts-apis-media-f.md#mediacreatesoundpool10) to create a SoundPool instance.
 
 > **NOTE**
 >

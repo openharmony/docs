@@ -1,4 +1,9 @@
 # @ohos.enterprise.wifiManager（Wi-Fi管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备Wi-Fi管理能力，包括查询Wi-Fi开启状态等。
 
@@ -28,6 +33,7 @@ isWifiActiveSync(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -82,6 +88,7 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -144,6 +151,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -198,6 +206,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -251,6 +260,7 @@ getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -309,6 +319,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -363,6 +374,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -416,6 +428,7 @@ getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -539,13 +552,13 @@ IP配置信息。
 
 
 
-| 名称         | 类型                | 必填 | 说明        |
-| ------------ | ------------------- | ---- | ----------- |
-| ipAddress    | number              | 是   | IP地址。    |
-| gateway      | number              | 是   | 网关。      |
-| prefixLength | number              | 是   | 掩码。      |
-| dnsServers   | number[]            | 是   | DNS服务器。 |
-| domains      | Array&lt;string&gt; | 是   | 域信息。    |
+| 名称         | 类型                | 只读 | 可选 | 说明        |
+| ------------ | ------------------- | ---- | ----| ----------- |
+| ipAddress    | number              | 否   | 否  | IP地址。    |
+| gateway      | number              | 否   | 否  | 网关。      |
+| prefixLength | number              | 否   | 否  | 掩码。      |
+| dnsServers   | number[]            | 否   | 否  | DNS服务器。 |
+| domains      | Array&lt;string&gt; | 否   | 否  | 域信息。    |
 
 ## WifiEapProfile
 

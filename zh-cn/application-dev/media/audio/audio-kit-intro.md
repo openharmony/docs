@@ -1,4 +1,9 @@
 # Audio Kit简介
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 Audio Kit（音频服务）旨在提供场景化的音频播放和录制接口，助力开发者迅速构建音频高清采集及沉浸式播放能力。
 
@@ -20,7 +25,7 @@ Audio Kit（音频服务）旨在提供场景化的音频播放和录制接口�
 <!--Del-->
 - 空间音频
 
-   提供空间音频能力，支持用户佩戴TWS耳机时，使用应用播放音源（立体声/多声道/AudioVivid格式），可主观感受到空间音频渲染效果（方位感/空间感）。
+   提供空间音频能力，支持用户佩戴TWS耳机时，使用应用播放音源（立体声/多声道/Audio Vivid格式），可主观感受到空间音频渲染效果（方位感/空间感）。
 <!--DelEnd-->
 - 音振协同
 
@@ -54,7 +59,7 @@ HAL通过统一的HDI接口对外提供服务，不同的音频硬件开发人�
 
 **Kernel**
 
-内核驱动程序负责与音频硬件交互，针对不同规模的操作系统，可以选择多种内核，如Linux、LiteOS、OpenHamrony内核等。
+内核驱动程序负责与音频硬件交互，针对不同规模的操作系统，可以选择多种内核，如Linux、LiteOS、OpenHarmony内核等。
 
 ## 开发说明
 

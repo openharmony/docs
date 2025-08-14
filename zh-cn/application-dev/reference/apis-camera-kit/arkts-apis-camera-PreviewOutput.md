@@ -1,4 +1,9 @@
 # Interface (PreviewOutput)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -401,7 +406,7 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | previewRotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation)  | 是   | 预览旋转角度 |
-| isDisplayLocked | boolean  | 否   | 是否旋转锁定 |
+| isDisplayLocked | boolean  | 否   | 是否旋转锁定(默认不锁定), true表示旋转锁定，false表示不锁定旋转。 |
 
 **错误码：**
 
@@ -445,7 +450,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当开始输出预览流成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -475,7 +480,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 start(): Promise\<void\>
 
-开始输出预览流，通过Promise获取结果。
+开始输出预览流。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](arkts-apis-camera-Session.md#start11-1)替代。
@@ -486,7 +491,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                |
 | -------------- |-------------------|
-| Promise\<void\> | 无返回结果的Promise对象。  |
+| Promise\<void\> | Promise对象，无返回结果。  |
 
 **错误码：**
 
@@ -525,7 +530,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当停止输出预览流成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -547,7 +552,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
 
 stop(): Promise\<void\>
 
-停止输出预览流，通过Promise获取结果。
+停止输出预览流。使用Promise异步回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](arkts-apis-camera-Session.md#stop11-1)替代。
@@ -558,7 +563,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **示例：**
 

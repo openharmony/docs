@@ -1,5 +1,11 @@
 # GridItem
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zcdqs; @fangyuhao-->
+<!--SE: @zcdqs-->
+<!--TSE: @liuzhenshuo-->
+
 网格容器中单项内容容器。
 
 >  **说明：**

@@ -34,7 +34,7 @@ onReceiveEvent(event: CommonEventData): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -44,7 +44,7 @@ onReceiveEvent(event: CommonEventData): void;
 
 **示例：**
   ```ts
-  import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+  import { commonEventManager } from '@kit.BasicServicesKit';
 
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event: commonEventManager.CommonEventData) {

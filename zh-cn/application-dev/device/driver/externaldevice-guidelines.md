@@ -1,4 +1,9 @@
 # 开发带UI界面基础驱动
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--SE: @w00373942-->
+<!--TSE: @dong-dongzhen-->
 
 ## 场景介绍
 
@@ -150,7 +155,7 @@
     }
     ```
 
-7. 渲染UI界面，更多UI界面开发请参考[UI开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-ui-development-V5)。
+7. 渲染UI界面，更多UI界面开发请参考[UI开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-ui-development)。
 
     ```ts
     build() {
@@ -236,5 +241,5 @@
       }
       ```
 
-自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
+自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。
 <!--RP1End-->

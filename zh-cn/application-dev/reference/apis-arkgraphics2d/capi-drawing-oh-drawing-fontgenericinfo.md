@@ -1,5 +1,9 @@
 # OH_Drawing_FontGenericInfo
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 ## 概述
 
 系统所支持的通用字体集信息结构体。

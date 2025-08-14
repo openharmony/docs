@@ -1,4 +1,9 @@
 # 气泡提示（Popup）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、交互逻辑和显示状态。主要用于屏幕录制、信息弹出提醒等显示状态。
 
 气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡；CustomPopupOptions通过配置[builder](../../application-dev/ui/state-management/arkts-builder.md)来设置自定义的气泡。其中系统提供的气泡PopupOptions，字体的最大放大倍数为2。
@@ -138,7 +143,7 @@ struct PopupExample {
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
-          placementOnTop: true,
+          placement: Placement.Top,
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {

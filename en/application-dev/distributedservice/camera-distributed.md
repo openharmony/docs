@@ -30,10 +30,10 @@
 
 ### Environment Setup
 
-  1. Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 5.0 or later.
-  2. Update the public-SDK to API version 16 or later. For details, see [OpenHarmony SDK Upgrade Assistant](../tools/openharmony_sdk_upgrade_assistant.md).
+  1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 5.0 or later.
+  2. Update the public SDK to API version 16 or later.
   3. Connect device A and device B to the PC using USB cables.
-  4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#initiating-a-session-between-applications).
+  4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#how-to-develop).
 
 
 ### Environment Verification
@@ -89,7 +89,7 @@
         console.log("testTag", data);
       })
         .catch((err : BusinessError) => {
-          console.log("testTag", err.message);
+          console.error("testTag", err.message);
         });
     }
   ```
@@ -119,7 +119,7 @@
     if (this.cameraManager) {
       console.info('[camera] case getCameraManager success');
     } else {
-      console.info('[camera] case getCameraManager failed');
+      console.error('[camera] case getCameraManager failed');
       return;
     }
     this.cameras = this.cameraManager.getSupportedCameras();
@@ -137,7 +137,7 @@
         }
       }
     } else {
-      console.info('[camera] case getCameras failed');
+      console.error('[camera] case getCameras failed');
     }
   }
   ```
@@ -159,10 +159,10 @@
         await this.cameraInput.open().then(() => {
           console.log('[camera] case cameraInput.open() success');
         }).catch((err: Error) => {
-          console.log('[camera] cameraInput.open then.error:', json.stringify(err));
+          console.error('[camera] cameraInput.open then.error:', json.stringify(err));
         });
       } else {
-        console.log('[camera] case createCameraInput failed');
+        console.error('[camera] case createCameraInput failed');
         return;
       }
     }
@@ -196,7 +196,7 @@
       }
       this.previewOutput = this.cameraManager.createPreviewOutput(this.previewProfiles[0], this.surfaceId);
       if (!this.previewOutput) {
-        console.log('create previewOutput failed!');
+        console.error('create previewOutput failed!');
       }
       console.log('createPreviewOutput done');
     }
@@ -244,19 +244,19 @@
       }
     }
     if (!this.cameraManager) {
-      console.log('createPhotoOutput cameraManager is null')
+      console.error('createPhotoOutput cameraManager is null')
     }
     if (!this.photoReceiver) {
       this.photoReceiver = image.createImageReceiver(photoProfile.size.width, photoProfile.size.height, photoProfile.format, 8)
       this.photoReceiver.on("imageArrival",()=>{
         this.photoReceiver?.readNextImage((err,image)=>{
           if (err || image === undefined) {
-            console.log('photoReceiver imageArrival on error')
+            console.error('photoReceiver imageArrival on error')
             return
           }
           image.getComponent(4, async (err, img) => {
             if (err || img === undefined) {
-              console.log('image getComponent on error')
+              console.error('image getComponent on error')
               return
             }
             await this.getImageFileFd()
@@ -270,7 +270,7 @@
         await this.photoReceiver.getReceivingSurfaceId().then((surfaceId: string) => {
           this.photoOutput = this.cameraManager?.createPhotoOutput(photoProfile, surfaceId)
           if (!this.photoOutput) {
-            console.log('cameraManager.createPhotoOutput on error')
+            console.error('cameraManager.createPhotoOutput on error')
           }
           console.log('cameraManager.createPhotoOutput success')
           this.photoOutput?.on("captureStart", (err, captureId) => {
@@ -291,11 +291,11 @@
   private captureSession?: camera.CaptureSession;
 
   function failureCallback(error: BusinessError): Promise<void> {
-    console.log('case failureCallback called,errMessage is ', json.stringify(error));
+    console.error('case failureCallback called,errMessage is ', json.stringify(error));
   }
 
   function catchCallback(error: BusinessError): Promise<void> {
-    console.log('case catchCallback called,errMessage is ', json.stringify(error));
+    console.error('case catchCallback called,errMessage is ', json.stringify(error));
   }
 
   // create camera capture session
@@ -304,19 +304,19 @@
     if (this.cameraManager) {
       this.captureSession = this.cameraManager.createCaptureSession();
       if (!this.captureSession) {
-        console.log('createCaptureSession failed!');
+        console.error('createCaptureSession failed!');
         return
       }
       try {
         this.captureSession.beginConfig();
         this.captureSession.addInput(this.cameraInput);
       } catch (e) {
-        console.log('case addInput error:' + json.stringify(e));
+        console.error('case addInput error:' + json.stringify(e));
       }
       try {
         this.captureSession.addOutput(this.previewOutput);
       } catch (e) {
-        console.log('case addOutput error:' + json.stringify(e));
+        console.error('case addOutput error:' + json.stringify(e));
       }
       await this.captureSession.commitConfig().then(() => {
         console.log('captureSession commitConfig success');
@@ -334,7 +334,7 @@
   async startCaptureSession(): Promise<void> {
     console.log('startCaptureSession called');
     if (!this.captureSession) {
-      console.log('CaptureSession does not exists!');
+      console.error('CaptureSession does not exists!');
       return
     }
     await this.captureSession.start().then(() => {
@@ -441,5 +441,3 @@
   hidumper -s 4700 -a "buscenter -l remote_device_info"
   ```
   If **remote device num = 0** is displayed in the command output, the networking fails. In this case, disable and then enable Wi-Fi, and connect devices to the same Wi-Fi again. If the networking is successful, run the shell command again and the number of networking devices is displayed, for example, **remote device num = 1**.
-
-<!--no_check-->

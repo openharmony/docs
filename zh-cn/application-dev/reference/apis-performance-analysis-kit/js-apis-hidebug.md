@@ -1,5 +1,11 @@
 # @ohos.hidebug (Debug调试)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 > **说明：**
@@ -324,7 +330,7 @@ dumpJsHeapData(filename: string) : void
 
 > **注意：**
 >
-> 由于虚拟机堆导出极其耗时，建议不要在上架版本中调用该接口，以避免应用卡死、闪退，影响用户体验。
+> 由于虚拟机堆导出极其耗时，且该接口为同步接口，建议不要在上架版本中调用该接口，以避免应用冻屏，影响用户体验。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -901,12 +907,12 @@ try {
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用进程的驻留集的限制，以KB为单位。     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位。       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
-| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
+| 名称      | 类型   | 只读 | 可选 | 说明         |
+| --------- | ------ | --|----| ------------ |
+| rssLimit    | bigint |  否  | 否  | 应用进程的驻留集的限制，以KB为单位。     |
+| vssLimit  | bigint |  否  | 否  | 进程的虚拟内存限制，以KB为单位。       |
+| vmHeapLimit | bigint |  否  | 否  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
+| vmTotalHeapSize | bigint |  否  | 否  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -914,11 +920,11 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位。     |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位。    |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- | ---|----| ---------------------------------- |
+| totalHeap          | bigint  | 否  | 否  | 表示当前虚拟机的堆总大小，以KB为单位。     |
+| heapUsed           | bigint  | 否  | 否  | 表示当前虚拟机使用的堆大小，以KB为单位。    |
+| allArraySize       | bigint  | 否  | 否  | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -926,10 +932,10 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | 是   | 否   | 线程号。      |
-| cpuUsage           | number  | 是   | 否   | 线程CPU使用率。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- |----|----| ----------------------------------- |
+| threadId           | number  | 否  | 否  | 线程号。      |
+| cpuUsage           | number  | 否  | 否  | 线程CPU使用率。 |
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -982,15 +988,15 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                                                             |
-| --------- | ------ | ---- |--------------------------------------------------------------------------------|
-| pss  | bigint |  是  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
-| vss  | bigint |  是  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
-| rss  | bigint |  是  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
-| sharedDirty  | bigint |  是  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
-| privateDirty  | bigint |  是  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
-| sharedClean  | bigint |  是  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
-| privateClean  | bigint |  是  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
+| 名称      | 类型   | 只读  | 可选 | 说明                                                                             |
+| --------- | ------ | --|----|--------------------------------------------------------------------------------|
+| pss  | bigint |  否  | 否  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
+| vss  | bigint |  否  | 否  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
+| rss  | bigint |  否  | 否  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
+| sharedDirty  | bigint |  否  | 否  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
+| privateDirty  | bigint |  否  | 否  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
+| sharedClean  | bigint |  否  | 否  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
+| privateClean  | bigint |  否  | 否  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -998,11 +1004,11 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                              |
-| --------- | ------ | ---- |-------------------------------------------------|
-| totalMem  | bigint |  是  | 系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
-| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
-| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
+| 名称      | 类型   | 只读  | 可选 | 说明                                              |
+| --------- | ------ | ---- |---- |-------------------------------------------------|
+| totalMem  | bigint |  否  |   否  |系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
+| freeMem  | bigint |  否  |   否  |系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
+| availableMem  | bigint |  否  |   否  |系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
 
 ## TraceFlag<sup>12+</sup>
 
@@ -1036,6 +1042,21 @@ GcStats包含以下键值信息：
 | ark.gc.gc-bytes-allocated | number | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
 | ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
 | ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
+
+## JsRawHeapTrimLevel<sup>20+</sup>
+
+转储堆快照的裁剪级别的枚举。
+
+TRIM_LEVEL_2相比TRIM_LEVEL_1，裁剪时间更长。冻屏的阈值为6秒。使用TRIM_LEVEL_1时，不会达到该阈值；切换至TRIM_LEVEL_2时，裁剪时间可能会超过6秒，触发APP_FREEZE（冻屏事件），导致应用被系统查杀，此时回退至TRIM_LEVEL_1级别进行裁剪。
+
+推荐优先使用TRIM_LEVEL_1确保应用稳定，仅在需要更彻底裁剪时尝试TRIM_LEVEL_2。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称         | 值   | 说明                                                         |
+| ------------ | ---- | ------------------------------------------------------------ |
+| TRIM_LEVEL_1 | 0    | LEVEL 1级别裁剪，主要裁剪字符串。                       |
+| TRIM_LEVEL_2 | 1    | LEVEL 2级别裁剪，在TRIM_LEVEL_1的基础上，精简了对象地址标识的大小，从8个字节减少到4个字节。 |
 
 ## hidebug.isDebugState<sup>12+</sup>
 
@@ -1234,7 +1255,7 @@ let duration: number = 4;
 
 try {
   hidebug.enableGwpAsanGrayscale(options, duration);
-  console.info('Succeeded in enabling GWP-Asan.');
+  console.info(`Succeeded in enabling GWP-Asan.`);
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
@@ -1286,4 +1307,32 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let remainDays: number = hidebug.getGwpAsanGrayscaleState();
 console.info(`remainDays: ${remainDays}`);
+```
+
+## hidebug.setJsRawHeapTrimLevel<sup>20+</sup>
+
+setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
+
+设置当前进程转储虚拟机原始堆快照的裁剪级别。使用该接口并传入参数TRIM_LEVEL_2，可以有效减少堆快照的文件大小。
+
+> **注意：**
+>
+> 默认裁剪级别是TRIM_LEVEL_1。如果设置了TRIM_LEVEL_2裁剪，需使用API version 20之后的[rawheap-translator](../../tools/rawheap-translator.md)工具才能将.rawheap文件转换为.heapsnapshot文件，否则可能导致转换失败。
+>
+> 该接口影响[dumpJsRawHeapData](#hidebugdumpjsrawheapdata18)的结果。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 参数名 | 类型                                        | 必填 | 说明                   |
+| ------ | ------------------------------------------- | ---- | ---------------------- |
+| level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
+
+**示例**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+hidebug.setJsRawHeapTrimLevel(TRIM_LEVEL_2);
+}
 ```

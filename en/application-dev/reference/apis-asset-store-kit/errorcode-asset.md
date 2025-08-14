@@ -51,7 +51,7 @@ Check whether the alias of the asset to add is correct. If the alias is incorrec
 1. Use [asset.remove](js-apis-asset.md#assetremove) to remove the asset with the same alias, and use [asset.add](js-apis-asset.md#assetadd) to add the asset.
 2. Call [asset.add](js-apis-asset.md#assetadd) with **asset.Tag.CONFLICT_RESOLUTION** set to **asset.ConflictResolution.OVERWRITE**.
 
-## 24000004 Access denied
+## 24000004 Access to Asset Denied
 
 **Error Message**
 
@@ -129,7 +129,7 @@ The database operation failed.
 1. Use **add()** to create an asset store first.
 2. Locate the cause of the database access failure based on error information.
 
-## 24000009 Cryptographic Operation Failed
+## 24000009 Cryptographic Operation Failed 
 
 **Error Message**
 
@@ -255,3 +255,17 @@ The API is supported, but certain sub-features of the API, for example, querying
 **Solution**
 
 Adjust API parameters and use alternative APIs, for example, invoking the alternative API multiple times to query assets.
+
+## 24000018 Parameter Check Failed
+
+**Error Message**
+
+Parameter verify failed.
+
+**Possible Cause**
+
+The input argument is invalid.
+
+**Solution**
+
+Adjust the API arguments based on the error information and call the API again.

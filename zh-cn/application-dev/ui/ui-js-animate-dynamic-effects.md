@@ -1,4 +1,9 @@
 # 动画动效
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 
 通过设置插值器来实现动画效果。

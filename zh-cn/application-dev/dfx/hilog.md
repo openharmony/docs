@@ -721,7 +721,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
   hilog -G 16M
   ```
 
-- 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
+- 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“write socket failed”的规避方式，通过命令关闭其领域的日志打印。
 
 
 ### write socket failed

@@ -1,10 +1,12 @@
 # SegmentButton
 
-**SegmentButton** is a versatile component containing a group of related items, which can be tab-style, single-select, and multi-select buttons.
+**SegmentButton** is a versatile component that organizes related options into visually grouped buttons. It supports three variants: tab-style, capsule-style single-select, and capsule-style multi-select.
 
 >**NOTE**
 >
->This component and its child components are supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -27,7 +29,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | Name           | Type                                     | Mandatory| Decorator | Description                                                        |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | Yes  | @ObjectLink | Options of the **SegmentButton** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index starts from 0 and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../ui/state-management/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index is zero-based and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../ui/state-management/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in. <br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onItemClicked<sup>13+</sup> | Callback\<number\> | No| - | Callback invoked when an item in the **SegmentButton** is clicked. The index of the clicked item is passed in as the parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | maxFontScale<sup>14+</sup> | number \| [Resource](ts-types.md#resource) | Yes| @Prop | Maximum font scale for the text in the **SegmentButton**.<br>Default value: **1**<br>Value range: [1, 2]<br>**NOTE**<br>Values less than 1 are treated as 1, and values greater than 2 are treated as 2.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
@@ -37,42 +39,47 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 ## SegmentButtonOptions
 
+>**NOTE**
+> 
+> The component does not support custom font type settings.
+
 Provides initial data and custom properties for the **SegmentButton** component.
 
 **Decorator Type**: @Observed
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Properties
 
-| Name                 | Type                                                        | Mandatory                                                    | Description                                                      |
+| Name                 | Type                                                        | Mandatory                                                      | Description                                                      |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| type                    | 'tab' \| 'capsule'                                       | Yes                                       | Type of the **SegmentButton**.                                            |
-| multiply                | boolean                                                      | Yes                                                  | Whether multiple items can be selected.<br>**NOTE**<br>The default value is **false**.<br>**true**: Multiple items can be selected.<br>**false**: Multiple items cannot be selected. For the **SegmentButton** component consisting of tab-style buttons, only one item can be selected. In this case, setting **multiply** to **true** does not take effect.|
-| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | Yes| Button information, including the icon and text.                              |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**|
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | Yes          | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | Yes           | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | Yes             | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**|
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | Yes             | Font weight of the selected item.<br>Default value: **FontWeight.Medium**    |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Yes                | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Yes                | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**|
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Yes                    | Image size.<br>Default value: **{ width: 24, height: 24 }**<br>**NOTE**<br>This property is effective only for buttons that contain icons.|
-| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Yes| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Yes| Text padding.<br>Default value: **0**                          |
-| localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No              | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
-| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No             | Text padding.<br>Default value: **0**                                                                                                                                                                                                                                         |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                         | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Yes               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                   |
+| type                    | 'tab' \| 'capsule'                                       | Yes                                       | Type of the **SegmentButton** component.<br>**NOTE**<br>**'tab'**: tab-style segmented buttons, designed for page or content section switching.<br>**'capsule'**: capsule-style segmented buttons, suitable for single or multiple selection scenarios.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| multiply                | boolean                                                      | Yes                                                  | Whether multiple items can be selected.<br>**NOTE**<br>Default value: **false**.<br>**true**: Multiple items can be selected.<br>**false**: Multiple items cannot be selected. For the **SegmentButton** component consisting of tab-style buttons, only one item can be selected. In this case, setting **multiply** to **true** does not take effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | Yes| Button information, including the icon and text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"**<br>and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the selected item.<br>Default value: **FontWeight.Medium**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"**<br>and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | No                     | Image size.<br>Default value: { width: 24, height: 24 }.<br>**NOTE**<br>This property is effective only for buttons that contain icons.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Text padding.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Text padding.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                           | Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| borderRadiusMode<sup>20+</sup> | [BorderRadiusMode](#borderradiusmode20) | No| Border radius mode, used to control the border radius calculation method.<br>Default value: **BorderRadiusMode.DEFAULT**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| backgroundBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No| Container border radius.<br>**NOTE**<br>This attribute takes effect only when **borderRadiusMode** is set to **BorderRadiusMode.CUSTOM**.<br>For capsule-style multi-select segmented buttons (with **type** being **'capsule'** and **multiply** being **true**), this attribute does not take effect and **itemBorderRadius** must be used to set the border radius.<br>The maximum value for the border radius is half of the component's width or height, and percentage values are not supported.<br>Default value: **$r('sys.float.segmentbutton_container_shape')**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| itemBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No| Individual button border radius.<br>**NOTE**<br>This attribute takes effect only when **borderRadiusMode** is set to **BorderRadiusMode.CUSTOM**.<br>For capsule-style multi-select segmented buttons (with **type** being **'capsule'** and **multiply** being **true**), this attribute only affects end items.<br>The maximum value for the border radius is half of the component's width or height, and percentage values are not supported.<br>Default value: **$r('sys.float.segmentbutton_selected_background_shape')**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ### constructor
 
 constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
-A constructor used to create a **SegmentButtonOptions** instance.
+A constructor used to create a **SegmentButton** instance with specified configuration options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -81,13 +88,13 @@ A constructor used to create a **SegmentButtonOptions** instance.
 
 | Name   | Type                                                    | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Options of the **SegmentButton** component.|
+| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Configuration options for tab-style or capsule-style segmented buttons.|
 
 ### tab
 
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of tab-style buttons.
+Creates a **SegmentButtonOptions** object specifically for tab-style segmented buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -96,7 +103,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 | Name   | Type                                                        | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Options of the tab-style buttons.|
+| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Configuration options for tab-style segmented buttons.|
 
 **Return value**
 
@@ -108,7 +115,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of single-select or multi-select buttons.
+Creates a **SegmentButtonOptions** object specifically for capsule-style segmented buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -117,7 +124,7 @@ Creates a **SegmentButtonOptions** object for the **SegmentButton** component co
 
 | Name   | Type                                                        | Mandatory| Description                       |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
-| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Options of the single-select or multi-select buttons.|
+| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Configuration options for capsule-style segmented buttons.|
 
 **Return value**
 
@@ -145,9 +152,7 @@ Represents the length union type that does not support values in percentage.
 
 ## CommonSegmentButtonOptions
 
-Defines the attributes that can be customized for the segment button.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+Defines the customizable properties for the **SegmentButton** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,27 +160,43 @@ Defines the attributes that can be customized for the segment button.
 
 | Name                 | Type                                                        | Mandatory                                                      | Description                                                      |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**|
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**|
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the selected item.<br>Default value: **FontWeight.Medium**|
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**|
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | No                     | Image size.<br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This property is effective only for buttons that contain icons.|
-| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Text padding.<br>Default value: **0**                        |
-| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
-| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Text padding.<br>Default value: **0**                                                                                                                                                                                                                                         |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                           | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                         |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**|
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"**<br>and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the selected item.<br>Default value: **FontWeight.Medium**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"**<br>and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | No                     | Image size.<br>Default value: { width: 24, height: 24 }.<br>**NOTE**<br>This property is effective only for buttons that contain icons.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Text padding.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Text padding.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                           | Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| borderRadiusMode<sup>20+</sup> | [BorderRadiusMode](#borderradiusmode20) | No| Border radius mode, used to control the border radius calculation method.<br>Default value: **BorderRadiusMode.DEFAULT**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| backgroundBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No| Container border radius.<br>**NOTE**<br>This attribute takes effect only when **borderRadiusMode** is set to **BorderRadiusMode.CUSTOM**.<br>For capsule-style multi-select segmented buttons (with **type** being **'capsule'** and **multiply** being **true**), this attribute does not take effect and **itemBorderRadius** must be used to set the border radius.<br>The maximum value for the border radius is half of the component's width or height, and percentage values are not supported.<br>Default value: **$r('sys.float.segmentbutton_container_shape')**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| itemBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No| Individual button border radius.<br>**NOTE**<br>This attribute takes effect only when **borderRadiusMode** is set to **BorderRadiusMode.CUSTOM**.<br>For capsule-style multi-select segmented buttons (with **type** being **'capsule'** and **multiply** being **true**), this attribute only affects end items.<br>The maximum value for the border radius is half of the component's width or height, and percentage values are not supported.<br>Default value: **$r('sys.float.segmentbutton_selected_background_shape')**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+
+## BorderRadiusMode<sup>20+</sup>
+
+Enumerates the border radius modes for the **SegmentButton** component, which are used to control the border radius calculation method.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   |Value| Description                            |
+| ------- | - |-------------------------------- |
+| DEFAULT | 0 |Default mode, where the framework automatically calculates the border radius.|
+| CUSTOM  | 1 |Custom mode, where the border radius is set by the developer.|
 
 ## TabSegmentButtonConstructionOptions
 
-Represents options for creating a **SegmentButton** component consisting of tab-style buttons.
+Represents configuration options for creating a **SegmentButton** component consisting of tab-style segmented buttons.
 
-It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
+Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -189,9 +210,9 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 ## CapsuleSegmentButtonConstructionOptions
 
-Represents options for creating a **SegmentButton** component consisting of single-select or multi-select buttons.
+Represents configuration options for creating a **SegmentButton** component consisting of capsule-style segmented buttons.
 
-It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
+Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -202,7 +223,7 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 | Name     | Type                                             | Mandatory| Description                       |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | Yes  | Button information.                   |
-| multiply | boolean                                           | No  | Whether multiple items can be selected.<br>Default value: **false**|
+| multiply | boolean                                           | No  | Whether multi-selection is allowed. <br>**true**: Multi-selection is allowed.<br>**false**: Multi-selection is not allowed. Default value: **false**.|
 
 ## ItemRestriction
 
@@ -429,7 +450,7 @@ Creates a **SegmentButtonItemOptionsArray** object.
 
 ## TabSegmentButtonOptions
 
-Provides the options of the **SegmentButton** component consisting of tab-style buttons. It inherits [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
+Provides configuration options for tab-style segmented buttons. Inherits from [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -437,11 +458,11 @@ Provides the options of the **SegmentButton** component consisting of tab-style 
 
 | Name| Type | Mandatory| Description                  |
 | ---- | ----- | ---- | ---------------------- |
-| type | 'tab' | Yes  | **SegmentButton** component consisting of tab-style buttons.|
+| type | 'tab' | Yes  | Type of the segmented buttons, which is **'tab'** in this case.|
 
 ## CapsuleSegmentButtonOptions
 
-Provides the options of the **SegmentButton** component consisting of single-select or multi-select buttons. It inherits [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
+Provides configuration options for capsule-style segmented buttons. Inherits from [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -449,7 +470,7 @@ Provides the options of the **SegmentButton** component consisting of single-sel
 
 | Name| Type     | Mandatory| Description                       |
 | ---- | --------- | ---- | ----------------------------- |
-| type | 'capsule' | Yes  | **SegmentButton** component consisting of single-select or multi-select buttons.|
+| type | 'capsule' | Yes  | Type of the segmented buttons, which is **'capsule'** in this case.|
 
 ## SegmentButtonTextItem
 
@@ -539,7 +560,7 @@ A constructor used to create a **SegmentButtonItemOptions** instance.
 
 | Name | Type                                                        | Mandatory| Description              |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Options of the items in the **SegmentButton** component.|
+| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Configuration options for a single segmented button, including the icon, text, and accessibility attributes.|
 
 ## SegmentButtonItemOptionsConstructorOptions
 
@@ -780,8 +801,10 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 10 }) {
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $capsuleSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $capsuleSelectedIndexes
+          })
           Button("Delete First Item")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.shift()
@@ -807,8 +830,8 @@ struct Index {
           Button("Change All Button Text")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons =
-              SegmentButtonItemOptionsArray.create([{ text: 'a' }, { text: 'b' },
-                { text: 'c' }, { text: 'd' }, { text: 'e' }])
+                SegmentButtonItemOptionsArray.create([{ text: 'a' }, { text: 'b' },
+                  { text: 'c' }, { text: 'd' }, { text: 'e' }])
             })
         }.width('90%')
       }.width('100%')
@@ -819,12 +842,12 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### Example 4: Implementing a Mirroring Effect
-This example shows how to implement a mirroring effect by configuring the **direction** property of the **SegmentButton** component.
+### Example 4: Implementing a Mirror Effect
+This example shows how to implement a mirror effect by configuring the **direction** property of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
-import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI';
 
 
 @Entry
@@ -944,42 +967,87 @@ struct Index {
   @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
     buttons: [{ text: 'Tab 1', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 1 usage hints' },
       { text: 'Tab 2', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 2 usage hints' },
-      { text: 'Tab 3', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 3 usage hints'
-    }] as ItemRestriction<SegmentButtonTextItem>,
+      {
+        text: 'Tab 3 ', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 3 usage hints'
+      }] as ItemRestriction<SegmentButtonTextItem>,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-      accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'}
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem usage hints'
+      }
     ] as SegmentButtonItemTuple,
     multiply: false,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
-      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'}
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      },
+      {
+        text: 'Icon 1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: 'Unselected icon accessibility text',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: 'Selected icon accessibility text',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+      }
     ] as SegmentButtonItemTuple,
     multiply: true
   })
@@ -991,20 +1059,31 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 25 }) {
-          SegmentButton({ options: this.tabOptions,
-            selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
           Button("Replace Items 2 and 3 with splice1 and splice2")
             .onClick(() => {
               this.iconTextCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
                 text: 'splice1', accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonItemOptions usage hints'
-              }), new SegmentButtonItemOptions({ text: 'splice2', icon: $r('sys.media.ohos_ic_public_email'),
-                iconAccessibilityText: 'Accessibility text for the unselected icon', selectedIcon: $r('sys.media.ohos_ic_public_clock'),
-                selectedIconAccessibilityText: 'Accessibility text for the selected icon', accessibilityLevel: 'yes',
-                accessibilityDescription: 'SegmentButtonIconTextItem usage hints' }))
+              }), new SegmentButtonItemOptions({
+                text: 'splice2',
+                icon: $r('sys.media.ohos_ic_public_email'),
+                iconAccessibilityText: 'Unselected icon accessibility text',
+                selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+                selectedIconAccessibilityText: 'Selected icon accessibility text',
+                accessibilityLevel: 'yes',
+                accessibilityDescription: 'SegmentButtonIconTextItem usage hints'
+              }))
             })
         }.width('90%')
       }.width('100%')
@@ -1012,3 +1091,49 @@ struct Index {
   }
 }
 ```
+
+### Example 6: Setting Custom Border Radius
+
+This example demonstrates how to set a custom border radius for the **SegmentButton** component.
+
+```ts
+// xxx.ets
+import {
+  BorderRadiusMode,
+  ItemRestriction,
+  LengthMetrics,
+  SegmentButton,
+  SegmentButtonOptions,
+  SegmentButtonTextItem
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: 'Tab 1' }, { text: 'Tab 2' }, {
+      text: 'Tab 3'
+    }] as ItemRestriction<SegmentButtonTextItem>,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK,
+    borderRadiusMode: BorderRadiusMode.CUSTOM,
+    backgroundBorderRadius: LengthMetrics.vp(8),
+    itemBorderRadius: LengthMetrics.vp(6)
+  })
+  @State tabSelectedIndexes: number[] = [1]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 25 }) {
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes,
+          })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![segmentbutton-sample6](figures/segmentbutton-sample6.png)

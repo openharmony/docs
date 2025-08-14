@@ -1,5 +1,11 @@
 # ffrt_condattr_t
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## 概述
 
 FFRT条件变量属性结构。

@@ -1,4 +1,9 @@
 # 弹出框概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--SE: @houguobiao-->
+<!--TSE: @lxl007-->
 
 弹出框是一种模态窗口，通常用于在保持当前上下文环境的同时，临时展示用户需关注的信息或待处理的操作。用户需在模态弹出框内完成相关交互任务之后，才能退出模态模式。弹出框可以不与任何组件绑定，其内容通常由多种组件组成，如文本、列表、输入框、图片等，以实现布局。ArkUI当前提供了**自定义**和**固定样式**两类弹出框组件。
 
@@ -25,7 +30,7 @@
 ## 规格约束
 
 * 建议<!--Del-->在除[ServiceExtensionAbility](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均<!--DelEnd-->使用UIContext中的弹出框方法。
-* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
+* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象。
 * 由于系统安全管控原因，当弹出系统权限弹窗等场景时，弹出框在此状态下无法显示。
 
 

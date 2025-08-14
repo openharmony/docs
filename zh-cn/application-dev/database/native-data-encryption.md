@@ -1,4 +1,9 @@
 # 数据库加密 (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 ## 场景介绍
 

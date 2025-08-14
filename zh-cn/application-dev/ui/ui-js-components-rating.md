@@ -1,4 +1,9 @@
 # rating开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--SE: @liyi0309-->
+<!--TSE: @lxl007-->
 
 
 rating是评分组件，用于展示用户对某项内容的评价等级。具体用法请参考[rating](../reference/apis-arkui/arkui-js/js-components-basic-rating.md)。

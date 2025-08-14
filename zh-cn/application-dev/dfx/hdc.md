@@ -4,11 +4,11 @@ hdc（HarmonyOS Device Connector）是提供给开发人员的命令行调试工
 
 hdc包含三部分：
 
-**client**：运行在电脑端的进程，开发者在执行hdc命令时启动该进程，命令结束后进程自动退出。
+**客户端（client）**：运行在电脑端的进程，开发者在执行hdc命令时启动该进程，命令结束后进程自动退出。
 
-**server**：运行在电脑端的后台服务进程，用来管理client进程和设备端daemon进程之间的数据交互，设备发现等。
+**服务器（server）**：运行在电脑端的后台服务进程，用来管理客户端进程和设备端守护进程之间的数据交互，设备发现等。
 
-**daemon**：作为守护进程运行在设备端，用来响应电脑端server发来的请求。
+**守护程序（daemon）**：运行在调试设备端的进程，用来响应服务器发来的请求。
 
 如图所示：
 
@@ -16,9 +16,9 @@ hdc包含三部分：
 
 > **说明：**
 >
-> hdc client在启动时，默认会判断server是否正在运行。如果没有运行则会启动一个新的hdc进程作为server，运行在后台。
+> 客户端进程在启动时，默认会判断服务器进程是否正在运行。如果没有运行则会启动一个新的hdc进程作为服务器进程，运行在后台。
 >
-> hdc server运行时，默认会监听电脑端的8710端口。开发者可通过设置系统环境变量OHOS_HDC_SERVER_PORT自定义监听的端口号，范围为1~65535。
+> 服务器运行时，默认会监听电脑端的8710端口。开发者可通过设置系统环境变量OHOS_HDC_SERVER_PORT自定义监听的端口号，范围为1~65535。
 
 ## 环境准备
 
@@ -83,9 +83,9 @@ hdc支持USB和无线两种连接调试方式。在设备的设置>系统>开发
 
   6. 环境变量配置完成后，重启系统。
 
-### （可选）hdc server配置
+### （可选）服务器配置
 
-配置系统环境变量可修改hdc server的监听端口、日志打印级别或特性开关等。详细介绍请查看[可选配置项](#可选配置项)章节。
+配置系统环境变量可修改服务器进程的监听端口、日志打印级别或特性开关等。详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -104,8 +104,8 @@ hdc -t connect-key shell echo "Hello world"
 | 参数 | 说明 |
 | -------- | -------- |
 | [-t](#连接指定的目标设备) | 通过设备标识符连接指定的目标设备。单台设备连接时为可选参数，连接多台设备时为必选参数。 |
-| [-l](#server端日志) | 可选参数，指定运行时日志等级，范围为数字0-6，默认为3（LOG_INFO）。 |
-| [-s](#远程连接场景) | 可选参数，指定客户端连接服务端时，服务进程的网络监听参数，格式为IP:port。 |
+| [-l](#服务器进程日志) | 可选参数，指定运行时日志等级，范围为数字0-6，默认为3（LOG_INFO）。 |
+| [-s](#远程连接场景) | 可选参数，指定客户端连接服务器时，服务进程的网络监听参数，格式为IP:port。 |
 | [-p](#快速执行命令) | 可选参数，绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
 | [-m](#前台启动服务) | 可选参数，使用前台启动模式启动服务进程。 |
 
@@ -119,7 +119,7 @@ hdc -t connect-key shell echo "Hello world"
 | [tmode port](#打开设备网络连接通道) | 打开设备网络连接通道。 |
 | [tmode port close](#关闭网络连接通道) | 关闭设备网络连接通道。 |
 | [tconn](#tcp连接设备) | 指定连接设备：通过“IP:port”来指定连接的设备。 |
-| [shell](#执行交互命令) | 在设备侧执行单次命令，例如hdc shell ls，无命令参数可进入设备侧终端执行命令。 |
+| [shell](#执行交互命令) | 在设备侧执行单次命令，例如hdc shell ls。无命令参数可进入设备侧终端执行命令。 |
 | [install](#安装应用文件) | 安装指定的应用文件。 |
 | [uninstall](#卸载应用) | 卸载指定的应用包。 |
 | [file send](#本地发送文件至远端设备) | 从本地发送文件至远端设备。 |
@@ -138,7 +138,7 @@ hdc -t connect-key shell echo "Hello world"
 | <!--DelRow--> smode | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权（非root的设备不可用）。 |
 | [keygen](#安全相关命令) | 生成一个新的秘钥对。 |
 | [version](#查询hdc版本号) | 打印hdc版本信息，也可使用hdc -v打印版本信息。 |
-| [checkserver](#查询客户端和服务端进程版本) | 获取客户进程与服务进程版本信息。 |
+| [checkserver](#查询客户端和服务器进程版本) | 获取客户进程与服务进程版本信息。 |
 
 ## 基本使用方法
 
@@ -200,8 +200,7 @@ hdc list targets [-v]
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 设备标识符列表 | 已连接的设备标识符列表。<br/>命令添加-v参数显示更多详情：设备标识符、连接方式（TCP/USB）、连接状态（Unknown/Ready/Connected/Offline/Unauthorized）、设备名称、
-hdc标识。 |
+| 设备标识符列表 | 已连接的设备标识符列表。<br/>命令添加-v参数显示更多详情：设备标识符、连接方式（TCP/USB）、连接状态（Unknown/Ready/Connected/Offline/Unauthorized）、设备名称和hdc标识。 |
 | 设备标识符 Unauthorized | 设备处于未授权状态。 |
 | [Empty] | 没有查询到设备信息。 |
 
@@ -362,14 +361,14 @@ $ hdc -t connect-key1 wait # 多设备需使用-t指定连接设备
 
 ### 远程连接场景
 
-远程连接场景指客户端（通常是开发者使用的本地电脑）通过网络与服务端（通常是连接了调试设备的服务器或开发机）建立连接，实现客户端对目标设备的远程调试，控制和管理。
+远程连接场景指客户端（通常是开发者使用的本地电脑）通过网络与服务器（通常是连接了调试设备的服务器或开发机）建立连接，实现客户端对目标设备的远程调试，控制和管理。
 
 ![hdc_image_004](figures/hdc_image_004.PNG)
 
-远程连接使用-s参数来指定服务端的网络参数，包括地址和端口号，该设置只在当前命令执行期间有效，命令格式如下：
+远程连接使用-s参数来指定服务器的网络参数，包括地址和端口号，该设置只在当前命令执行期间有效，命令格式如下：
 
 ```shell
-hdc -s IP:port [command]
+hdc -s [IP:]port [command]
 ```
 
 | 命令 | 说明 |
@@ -380,7 +379,7 @@ hdc -s IP:port [command]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| IP | 指定监听的IP地址，支持IPv4和IPv6。 |
+| IP | 可选参数，指定监听的IP地址，支持IPv4和IPv6。不指定IP默认监听本机127.0.0.1。 |
 | port | 指定监听的端口，范围为1~65535。 |
 | command | hdc支持的命令，参见[hdc命令列表](#hdc命令列表)。 |
 
@@ -400,29 +399,29 @@ $ hdc -s 127.0.0.1:8710 list targets
 
 **连接步骤**
 
-1. 服务端配置
-   服务端通过USB连接对应hdc设备后，执行以下命令：
+1. 服务器配置
+   服务器通过USB连接对应hdc设备后，执行以下命令：
 
    ```shell
    $ hdc kill          # 关闭本地hdc服务
    $ hdc -s IP:8710 -m # 启动网络转发的hdc服务
-                       # 其中IP为服务端自身的IP，windows可通过ipconfig查询，unix系统可通过ifconfig查询
+                       # 其中IP为服务器自身的IP，windows可通过ipconfig查询，unix系统可通过ifconfig查询
                        # 8710是默认端口号，也可设置其他端口号如：18710
-                       # 启动后服务端将打印日志
+                       # 启动后服务器将打印日志
    ```
 
 2. 客户端连接
-   客户端可以连通服务端IP地址，满足条件后执行以下命令：
+   客户端可以连通服务器IP地址，满足条件后执行以下命令：
 
    ```shell
-   $ hdc -s IP:8710 [command] # 其中IP为服务端IP，8710为第一步服务端启动时设置的端口号，
+   $ hdc -s IP:8710 [command] # 其中IP为服务器IP，8710为第一步服务器进程启动时设置的端口号，
                               # 如果端口号有变化，这里也需要变更。
                               # command可以为任意hdc可用命令，例如list targets
    ```
 
 > **说明：**
 >
-> 当命令行中明确使用 -s 参数指定服务端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
+> 当命令行中明确使用 -s 参数指定服务器进程端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
 
 ### USB调试和无线调试切换
 
@@ -431,8 +430,8 @@ $ hdc -s 127.0.0.1:8710 list targets
 | 命令 | 说明 |
 | -------- | -------- |
 | tmode usb | 该命令已废弃，不会操作设备连接通道，请在设备设置界面通过USB调试开关进行设置。 |
-| tmode port [port-number] | 打开设备网络连接通道：设备端daemon进程会重启，已建立的连接需要重新连接。 |
-| tmode port close | 关闭设备网络连接通道：设备端daemon进程会重启，已建立的连接需要重新连接。 |
+| tmode port [port-number] | 打开设备网络连接通道：设备端守护程序会重启，已建立的连接需要重新连接。 |
+| tmode port close | 关闭设备网络连接通道：设备端守护程序会重启，已建立的连接需要重新连接。 |
 | tconn IP:port [-remove] | 连接指定设备，使用“IP:port”指定，使用-remove参数断开。 |
 
 > **说明：**
@@ -478,7 +477,7 @@ Set device run mode successful.
 >
 > 如不满足以上条件，切勿使用该命令进行切换。
 >
-> 执行完毕后，远端daemon进程将退出并重启，需要重新连接。
+> 执行完毕后，远端守护程序将退出并重启，需要重新连接。
 
 ### 关闭网络连接通道
 
@@ -502,7 +501,7 @@ hdc tmode port close
 
 > **说明：**
 >
-> 执行完毕后，远端daemon进程将退出并重启，需要重新连接。
+> 执行完毕后，远端设备上的守护程序将退出并重启，需要重新连接。
 
 ### TCP连接设备
 
@@ -552,7 +551,7 @@ hdc shell [-b bundlename] [command]
 
 > **说明：**
 >
-> 使用参数[-b bundlename]指定包名，该报名对应的已安装应用必须满足以下条件：使用调试证书签名，并且已在设备上启动。有关如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
+> 使用参数[-b bundlename]指定包名，该包名对应的已安装应用必须满足以下条件：使用调试证书签名，并且已在设备上启动。有关如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 **返回信息**：
 
@@ -703,7 +702,7 @@ hdc file send [-a|-sync|-z|-m|-b bundlename] SOURCE DEST
 | -sync | 只传输文件mtime有更新的文件。<br/>mtime（modified timestamp）：修改后的时间戳。 |
 | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
 | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。<br/>DAC（Discretionary Access Control）：自主访问控制，<br/>uid（User identifier）：用户标识符（或用户ID），<br/>gid（Group identifier）：组标识符（或组ID），<br/>MAC（Mandatory Access Control）：强制访问控制（或非自主访问控制）。 |
-| -b | 3.1.0e版本新增参数，用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
+| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
 | bundlename | 指定可调试应用包名。 |
 
 **返回信息**：
@@ -876,7 +875,7 @@ Remove forward ruler success, ruler:tcp:1234 tcp:1080
 | start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动。 |
 | kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动。 |
 | -p | 绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
-| -m | 使用前台启动模式启动服务进程。<br/>前台启动模式（添加-m参数）：实时打印服务日志到客户端窗口。<br/>后台启动模式（不添加-m参数）：客户端不打印服务日志，日志内容写入本地磁盘文件，具体文件存放路径可参考[server端日志](#server端日志)。 |
+| -m | 使用前台启动模式启动服务进程。<br/>前台启动模式（添加-m参数）：实时打印服务日志到客户端窗口。<br/>后台启动模式（不添加-m参数）：客户端不打印服务日志，日志内容写入本地磁盘文件，具体文件存放路径可参考[服务器进程日志](#服务器进程日志)。 |
 
 ### 启动服务
 
@@ -945,7 +944,7 @@ hdc -p [command]
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| Connect server failed. | 与服务进程建立连接失败。 |
+| Connect server failed. | 与服务器进程建立连接失败。 |
 
 **使用方法**：
 
@@ -975,7 +974,7 @@ hdc -m
 | 返回信息 | 说明 |
 | -------- | -------- |
 | Initial failed. | 服务进程初始化失败。 |
-| [I][1970-01-01 00:00:00.000] Program running. Ver: X.X.Xx Pid:XXX.<br/>... | 正常打印对应等级的日志，显示服务端活动状态。 |
+| [I][1970-01-01 00:00:00.000] Program running. Ver: X.X.Xx Pid:XXX.<br/>... | 正常打印对应等级的日志，显示服务器进程活动状态。 |
 
 **使用方法**：
 
@@ -1200,31 +1199,53 @@ $ hdc keygen key
 
 | 命令 | 说明 |
 | -------- | -------- |
-| -v/version | 打印hdc版本信息。 |
+| -v | 打印客户端进程版本信息。 |
+| version | 打印服务进程版本信息。 |
 | checkserver | 获取客户端与服务进程版本。 |
 
-### 查询hdc服务进程版本
+### 查询hdc客户端进程版本
 
-查询hdc服务进程的版本信息，命令格式如下：
+查询hdc客户端进程的版本信息，命令格式如下：
 
 ```shell
-hdc -v/version
+hdc -v
 ```
 
 **返回信息**：
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| Ver: X.X.Xx. | hdc（SDK）的版本信息。 |
+| Ver: X.X.Xx. | hdc（SDK）客户端进程版本信息。 |
 
 **使用方法**：
 
 ```shell
-$ hdc -v 或hdc version
+$ hdc -v
 Ver: 3.1.0e
 ```
 
-### 查询客户端和服务端进程版本
+### 查询hdc服务进程版本
+
+查询hdc服务进程的版本信息，命令格式如下：
+
+```shell
+hdc version
+```
+
+**返回信息**：
+
+| 返回信息 | 说明 |
+| -------- | -------- |
+| Ver: X.X.Xx. | hdc（SDK）服务进程版本信息。 |
+
+**使用方法**：
+
+```shell
+$ hdc version
+Ver: 3.1.0e
+```
+
+### 查询客户端和服务器进程版本
 
 命令格式如下：
 
@@ -1236,7 +1257,7 @@ hdc checkserver
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| Client version: Ver: X.X.Xx, Server version: Ver: X.X.Xx. | client（客户端），server（服务进程）版本号。 |
+| Client version: Ver: X.X.Xx, Server version: Ver: X.X.Xx. | client（客户端），server（服务器）版本号。 |
 
 **使用方法**：
 
@@ -1247,7 +1268,7 @@ Client version: Ver: 3.1.0e, Server version: Ver: 3.1.0e
 
 ## hdc调试日志
 
-### server端日志
+### 服务器进程日志
 
 **指定运行时日志等级**
 
@@ -1324,7 +1345,7 @@ hdc -l 5 start
 
 | 日志类型 | 日志名称格式 | 日志用途 | 备注 |
 | -------- | -------- | -------- | -------- |
-| 实时日志 | hdc.log | 实时记录hdc server日志。 | 每次重启hdc服务进程，将会重命名原有日志并记录新的hdc.log。 |
+| 实时日志 | hdc.log | 实时记录服务器进程日志。 | 每次重启hdc服务进程，将会重命名原有日志并记录新的hdc.log。 |
 | 历史日志临时文件 | hdc-%Y%m%d-%H%M%S.log | 转储历史日志归档生成的中间文件。 | 以时间2024年9月19日16:18:57.921为例，对应时间格式为：20240919-161857921，生成的日志临时文件名为：hdc-20240919-161857921.log。 |
 | 历史日志归档文件 | hdc-%Y%m%d-%H%M%S.log.tgz | 压缩存储历史日志。 | 归档文件为.tgz类型压缩文件，可使用解压工具进行解压查看。以历史日志临时文件名hdc-20240919-161857921.log为例，对应的历史日志归档文件名为：hdc-20240919-161857921.log.tgz，历史日志归档文件生成后，对应的历史日志临时文件将自动删除。 |
 | 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存。 |  |
@@ -1346,9 +1367,9 @@ hdc file recv /data/log/hilog {local_path}            # 获取hilog已落盘日�
 
 默认值：8710。
 
-用于设置hdc server运行时监听的端口号，该端口用于hdc client与hdc server之间的数据通讯。
+用于设置服务器进程运行时监听的端口号，该端口用于客户端与服务器之间的数据通讯。
 
-hdc server启动时，默认会监听电脑的8710端口，hdc client使用TCP协议通过此端口连接server。如果电脑的8710端口已经被使用或希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。可以设置的端口范围为1~65535。
+服务器进程启动时，默认会监听电脑的8710端口，客户端使用TCP协议通过此端口连接服务器。如果电脑的8710端口已经被使用或希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改服务器进程启动时监听的端口号。可以设置的端口范围为1~65535。
 
 例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
 
@@ -1356,17 +1377,17 @@ hdc server启动时，默认会监听电脑的8710端口，hdc client使用TCP�
 
 默认值：3。
 
-用于设置服务进程日志记录级别，日志级别详情参考：[server端日志](#server端日志)指定运行时日志等级章节。
+用于设置服务进程日志记录级别，日志级别详情参考：[服务器进程日志](#服务器进程日志)指定运行时日志等级章节。
 
 ### OHOS_HDC_HEARTBEAT
 
 默认：心跳功能开启。
 
-用于设置hdc server和hdc daemon的心跳功能开关。
+用于设置服务器和守护程序的心跳功能开关。
 
-hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到心跳数据包后会记录在hdc的日志中，方便后期查看设备的连接情况。
+服务器和守护程序启动后，默认会互相发送心跳数据包，收到心跳数据包后会记录在hdc的日志中，方便后期查看设备的连接情况。
 
-hdc server运行的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当有设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
+服务器进程运行的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，服务器会关闭心跳特性；当有设备连接这台电脑后，服务器会给守护程序发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
 
 设置为"1"表示关闭心跳功能，设置为其它数字表示开启心跳功能。
 
@@ -1392,7 +1413,7 @@ hdc server运行的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，
 
 默认：通道加密功能关闭。
 
-用于设置hdc server和hdc daemon之间的TCP连接通道加密功能开关。
+用于设置服务器和守护程序之间的TCP连接通道加密功能开关。
 
 设置为"1"表示开启TCP连接的通道加密功能；不设置或者设置为其它数字表示关闭通道加密功能。
 
@@ -1400,7 +1421,7 @@ hdc server运行的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，
 
 > **说明：**
 >
-> hdc server运行时默认监听电脑端的8710端口，可通过设置系统环境变量OHOS_HDC_SERVER_PORT自定义监听的端口号。
+> 服务器进程运行时默认监听电脑端的8710端口，可通过设置系统环境变量OHOS_HDC_SERVER_PORT自定义监听的端口号。
 
 ### 环境变量配置方法
 
@@ -1535,14 +1556,15 @@ MacOS环境：
 
    如存在抢占的软件，请关闭该软件进程或更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
-3. 排查未关闭的其他版本hdc server。
+3. 排查未关闭的其他版本服务器进程。
+   
    Windows：
 
-   使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（执行hdc kill命令或者在任务管理器直接结束进程）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重启hdc server）。
+   使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（执行hdc kill命令或者在任务管理器直接结束进程）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重启服务器）。
 
    Unix：
 
-   使用ps -ef |grep hdc查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重启hdc server）。
+   使用ps -ef |grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重启服务器）。
 
 **注册表异常**
 
@@ -1621,7 +1643,7 @@ sudo chmod -R 777 /dev/bus/usb/
 
 hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送带有中文名称的文件到本地，报错提示[Fail]Error opening file: no such file or directory, path:XXXXX，其中path显示中文乱码。
 
-![File transfer garbled text ](figures/File transfer garbled text .PNG)
+![File transfer garbled text ](figures/file_transfer_garbled_text.png)
 
 **可能原因&amp;解决方法**
 
@@ -1635,7 +1657,7 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
 
 使用hdc list targets命令查询已连接设备，连接设备标识后显示Unauthorized。
 
-![Device not certified ](figures/Device not certified .PNG)
+![Device not certified ](figures/device_not_certified.png)
 
 **可能原因&amp;解决方法**
 
@@ -1669,7 +1691,7 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
 
 使用USB方式连接调试设备，电脑端设备管理器通用串行总线控制器出现未知USB设备（设备描述符请求失败）
 
-![Unknown Device ](figures/Unknown Device .png)
+![Unknown Device ](figures/unknown_device.png)
 
 **可能原因&amp;解决方法**
 
@@ -1714,10 +1736,10 @@ hdc命令执行后未输出预期内容，可能涉及以下场景。
 
    如存在抢占的软件，可以终止该软件进程，或者修改OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
-3. 排查未关闭的其他版本hdc server。
-   Windows：使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（命令行工具中执行hdc kill或者任务管理器直接结束进程）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc服务进程）。
+3. 排查未关闭的其他版本服务器进程。
+   Windows：使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（命令行工具中执行hdc kill或者任务管理器直接结束进程）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重新启动服务器）。
 
-   Unix：使用ps -ef | grep hdc查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc 服务进程）。
+   Unix：使用ps -ef | grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重新启动服务器）。
 
 ### 其他问题排查常用步骤
 
@@ -1725,7 +1747,7 @@ hdc命令执行后未输出预期内容，可能涉及以下场景。
 
 2. 检查设备管理是否有HDC Device。
 
-3. 执行hdc kill关闭server后，执行hdc -l5 start收集日志（hdc.log位于执行端TEMP目录下，不同平台目录位置存在差异，可参考[server端日志](#server端日志)）。
+3. 执行hdc kill关闭服务器进程后，执行hdc -l5 start收集日志（hdc.log位于执行端TEMP目录下，不同平台目录位置存在差异，可参考[服务器进程日志](#服务器进程日志)）。
 
 4. 通过hdc.log日志定位相关问题。
 
@@ -1767,7 +1789,7 @@ Otherwise try 'hdc kill' if that seems wrong.
 
 **错误描述**
 
-设备未授权。请检查计算机侧公钥是否已设置，如果未设置，请先完成设置。如果已经授权，请尝试执行"hdc kill"命令后重新执行调试命令。
+设备未授权。请检查是否在设备授权弹窗“信任”授权，如果已经授权，请尝试执行"hdc kill"命令后重新执行调试命令。
 
 **可能原因**
 
@@ -1941,7 +1963,7 @@ DevEco Studio中模拟器调试不支持hdc tmode命令。
 
 如需调试tmode相关命令，请连接实体设备后进行调试。
 
-### E002101 server进程无法结束
+### E002101 服务器进程无法结束
 
 **错误信息**
 
@@ -1949,11 +1971,11 @@ Terminal hdc process failed, please terminal the hdc process in the task manager
 
 **错误描述**
 
-hdc server进程无法结束。
+服务器进程无法结束。
 
 **可能原因**
 
-当删除.hdcserver.pid文件后执行hdc kill时，由于无法获取hdc server的进程pid，导致无法结束进程。
+当删除.hdcserver.pid文件后执行hdc kill时，由于无法获取服务器的进程pid，导致无法结束进程。
 
 **处理步骤**
 
@@ -1985,7 +2007,7 @@ Failed to communicate with daemon.
 
 **错误描述**
 
-server与设备侧daemon通信异常。
+服务器与设备侧守护程序通信异常。
 
 **可能原因**
 

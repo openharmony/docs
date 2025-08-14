@@ -17,7 +17,9 @@
 
 以实现对用户点击按钮触发卡顿场景生成的卡顿事件订阅为例，说明开发步骤。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+1. 参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Using JsonCpp in your project**介绍的使用方法获取到jsoncpp.cpp、json.h和json-forwards.h三个文件。
+
+2. 新建Native C++工程，并将上述文件导入到新建工程内，目录结构如下：
 
    ```yml
    entry:
@@ -40,7 +42,7 @@
              - Index.ets
    ```
 
-2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
+3. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -49,7 +51,7 @@
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑“napi_init.cpp”文件，导入依赖的文件，并定义LOG_TAG。
+4. 编辑“napi_init.cpp”文件，导入依赖的文件，并定义LOG_TAG。
 
    ```c++
    #include "napi/native_api.h"
@@ -63,7 +65,7 @@
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅系统事件：
+5. 订阅系统事件：
 
    - onReceive类型观察者
 
@@ -208,7 +210,7 @@
     }
    ```
 
-5. 新增TestHiCollieTimerNdk函数。
+6. 新增TestHiCollieTimerNdk函数。
 
    编辑“napi_init.cpp”文件，新增TestHiCollieTimerNdk函数，构造任务执行超时事件：
 
@@ -233,7 +235,7 @@
    }
    ```
 
-6. 将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口。
+7. 将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口。
 
    编辑“napi_init.cpp”文件，将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口：
 
@@ -271,7 +273,7 @@
    export const TestHiCollieTimerNdk: () => void;
    ```
 
-7. 编辑“EntryAbility.ets”文件，在onCreate()函数中新增接口调用。
+8. 编辑“EntryAbility.ets”文件，在onCreate()函数中新增接口调用。
 
    ```typescript
    // 导入依赖模块
@@ -282,7 +284,7 @@
    testNapi.RegisterWatcher();
    ```
 
-8. 编辑“Index.ets”文件，新增按钮触发任务执行超时事件。
+9. 编辑“Index.ets”文件，新增按钮触发任务执行超时事件。
 
    ```typescript
    import testNapi from 'libentry.so';
@@ -306,7 +308,7 @@
    }
    ```
 
-9. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。
+10. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。
 
 ### 验证观察者是否订阅到任务执行超时事件
 

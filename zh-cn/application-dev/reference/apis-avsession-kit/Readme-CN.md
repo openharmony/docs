@@ -1,4 +1,9 @@
 # AVSession Kit（音视频播控服务）
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 - ArkTS API<!--avsession-arkts-->
   - @ohos.multimedia.avsession (媒体会话管理)<!--js-apis-avsession-->

@@ -1,4 +1,9 @@
 # IME Kit（输入法开发服务）<!--ime-kit-->
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 - [IME Kit简介](ime-kit-intro.md)
 - [实现一个输入法应用](inputmethod-application-guide.md)

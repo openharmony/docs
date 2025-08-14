@@ -1,4 +1,9 @@
 # Stepper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 步骤导航器组件，适用于引导用户按照步骤完成任务的导航场景。
 
@@ -46,6 +51,12 @@ onFinish(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 步骤导航器最后一个StepperItem的nextLabel被点击时，并且ItemState属性为Normal时，触发该回调。|
+
 ### onSkip
 
 onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -55,6 +66,12 @@ onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 当前显示的StepperItem状态为ItemState.Skip时，nextLabel被点击时触发该回调。|
 
 ### onChange
 

@@ -1,5 +1,11 @@
 # 使用ECDSA密钥对签名验签 (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--SE: @lanming-->
+<!--TSE: @PAFT-->
+
 对应的算法规格请查看[签名验签算法规格：ECDSA](crypto-sign-sig-verify-overview.md#ecdsa)。
 
 ## 在CMake脚本中链接相关动态库

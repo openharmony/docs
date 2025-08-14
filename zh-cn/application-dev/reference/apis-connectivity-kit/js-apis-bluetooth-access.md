@@ -1,5 +1,11 @@
 # @ohos.bluetooth.access (蓝牙access模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 
 > **说明：**
@@ -19,6 +25,8 @@ import { access } from '@kit.ConnectivityKit';
 enableBluetooth(): void
 
 开启蓝牙。
+
+- 调用该接口时，系统弹出开启蓝牙的对话框，由用户确认是否需要开启蓝牙。如果应用想要感知用户操作对话框的行为，建议使用[access.enableBluetoothAsync](#accessenablebluetoothasync20)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -49,11 +57,61 @@ try {
 ```
 
 
+## access.enableBluetoothAsync<sup>20+</sup>
+
+enableBluetoothAsync(): Promise&lt;void&gt;
+
+开启蓝牙。使用Promise异步回调。
+- 调用该接口时，系统弹出开启蓝牙的对话框，由用户确认是否需要开启蓝牙。应用可以感知用户操作对话框的行为。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 801      | Capability not supported.  |
+| 2900001  | Service stopped.           |
+| 2900013  | The user does not respond. |
+| 2900014  | User refuse the action.    |
+| 2900099  | Operation failed.          |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+    access.enableBluetoothAsync().then(() => {
+        console.info('enableBluetoothAsync');
+    }, (error: BusinessError) => {
+        console.error('enableBluetoothAsync: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## access.disableBluetooth
 
 disableBluetooth(): void
 
 关闭蓝牙。
+- 调用该接口时，系统弹出关闭蓝牙的对话框，由用户确认是否需要关闭蓝牙。如果应用想要感知用户操作对话框的行为，建议使用[access.disableBluetoothAsync](#accessdisablebluetoothasync20)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -78,6 +136,54 @@ disableBluetooth(): void
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetooth();
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## access.disableBluetoothAsync<sup>20+</sup>
+
+disableBluetoothAsync(): Promise&lt;void&gt;
+
+关闭蓝牙。使用Promise异步回调。
+- 调用该接口时，系统弹出关闭蓝牙的对话框，由用户确认是否需要关闭蓝牙。应用可以感知用户操作对话框的行为。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 801      | Capability not supported.  |
+| 2900001  | Service stopped.           |
+| 2900013  | The user does not respond. |
+| 2900014  | User refuse the action.    |
+| 2900099  | Operation failed.          |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+    access.disableBluetoothAsync().then(() => {
+        console.info('disableBluetoothAsync');
+    }, (error: BusinessError) => {
+        console.error('disableBluetoothAsync: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -281,7 +387,7 @@ deletePersistentDeviceId(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -422,4 +528,3 @@ try {
 | STATE_BLE_TURNING_ON  | 4    | 表示蓝牙正在打开LE-only模式。 |
 | STATE_BLE_ON          | 5    | 表示蓝牙正处于LE-only模式。  |
 | STATE_BLE_TURNING_OFF | 6    | 表示蓝牙正在关闭LE-only模式。 |
-

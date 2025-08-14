@@ -1,4 +1,9 @@
 # Interface (AudioVolumeManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 > **说明：**
 >
@@ -39,10 +44,10 @@ let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
-    console.error(`Failed to obtain the volume group infos list. ${err}`);
+    console.error(`Failed to getVolumeGroupManager. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+  console.info('Succeeded in doing getVolumeGroupManager.');
 });
 
 ```
@@ -73,12 +78,12 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 import { audio } from '@kit.AudioKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 
-async function getVolumeGroupManager(){
-  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
-  console.info('Promise returned to indicate that the volume group infos list is obtained.');
-}
+audioVolumeManager.getVolumeGroupManager(groupId).then((audioVolumeGroupManager: audio.AudioVolumeGroupManager) => {
+  console.info('Succeeded in doing getVolumeGroupManager.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getVolumeGroupManager. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## getVolumeGroupManagerSync<sup>10+</sup>

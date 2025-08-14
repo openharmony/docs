@@ -68,7 +68,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
-The operations is supported in stage mode only.
+The operation is supported in stage mode only.
 
 **Description**
 
@@ -82,7 +82,7 @@ The context is not a stage model.
 
 Perform the operation on the stage model.
 
-## 15501002 The dataGroupId parameter in Options is invalid.
+## 15501002 Invalid dataGroupId Parameter in Options
 
 **Error Message**
 

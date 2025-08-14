@@ -68,7 +68,7 @@ struct Index {
           try {
             this.session?.sendData(data);
           } catch (err) {
-            console.log('sendData err:' + JSON.stringify(err));
+            console.error('sendData err:' + JSON.stringify(err));
           }
         })
     }
@@ -689,13 +689,13 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       session.loadContent('pages/Extension', storage);
     } catch (err) {
-      console.log('loadContent err:' + JSON.stringify(err));
+      console.error('loadContent err:' + JSON.stringify(err));
     }
 
     try {
       session.setWindowBackgroundColor('#00FF00');
     } catch (err) {
-      console.log('setWindowBackgroundColor err:' + JSON.stringify(err));
+      console.error('setWindowBackgroundColor err:' + JSON.stringify(err));
     }
   }
 
@@ -987,7 +987,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       session.loadContent('pages/Extension', storage);
     } catch (err) {
-      console.log('loadContent err:' + JSON.stringify(err));
+      console.error('loadContent err:' + JSON.stringify(err));
     }
   }
 

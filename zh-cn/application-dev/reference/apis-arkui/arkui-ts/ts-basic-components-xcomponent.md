@@ -1,6 +1,11 @@
 # XComponent
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
-提供用于图形绘制和媒体数据写入的[Surface](../../../ui/napi-xcomponent-guidelines.md#自绘制原理说明)，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
+提供用于图形绘制和媒体数据写入的[Surface](../../../ui/napi-xcomponent-guidelines.md#概述)，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
@@ -100,7 +105,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 ## NativeXComponentParameters<sup>19+</sup>
 
-定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到Native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
+定义XComponent的具体配置参数。通过这种构造参数创建的XComponent，可以将其对应的[FrameNode](../js-apis-arkui-frameNode.md)对象传递至Native侧，使用NDK接口进行Surface生命周期的相关设置和[监听组件事件](../../../ui/ndk-listen-to-component-events.md)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -282,7 +287,7 @@ getXComponentSurfaceId(): string
 
 **返回值：**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | string | XComponent持有Surface的ID。 |
 
@@ -344,7 +349,7 @@ getXComponentContext(): Object
 
 **返回值：**
 
-| 类型   | 描述                                                         |
+| 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义，context内容与onLoad回调中的第一个参数一致。 |
 
@@ -384,7 +389,7 @@ getXComponentSurfaceRect(): SurfaceRect
 
 **返回值：**
 
-| 类型                                 | 描述                                  |
+| 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRect](#surfacerect12对象说明) | 获取XComponent持有Surface的显示区域。 |
 
@@ -539,7 +544,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 **返回值：**
 
-| 类型                                 | 描述                                  |
+| 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
 | Required<[SurfaceRotationOptions](#surfacerotationoptions12对象说明)> | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
 
@@ -644,7 +649,7 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 <!--RP1-->
 > **说明：**
 >
-> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)。
 <!--RP1End-->
 
 ```ts
@@ -776,7 +781,7 @@ struct XComponentExample {
 
 > **说明：**
 >
-> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)。<!--RP2End-->
 
 ```ts
 // xxx.ets
@@ -834,7 +839,7 @@ struct Index {
 
 ### 示例3（使用画布对象在XComponent上绘制内容）
 
-应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
+从API version 20开始，该示例通过调用[lockCanvas](#lockcanvas20)返回画布对象，通过画布对象调用对应的绘制接口，再调用[unlockCanvasAndPost](#unlockcanvasandpost20)在XComponent上绘制内容。
 
 ```ts
 // xxx.ets

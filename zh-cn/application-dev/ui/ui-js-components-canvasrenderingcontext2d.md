@@ -1,4 +1,9 @@
 # CanvasRenderingContext2D对象
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--SE: @sunbees-->
+<!--TSE: @liuli0427-->
 
 
 使用CanvasRenderingContext2D在Canvas画布组件上进行绘制，绘制对象可以是图形、文本、线段、图片等。具体请参考[CanvasRenderingContext2D对象](../reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)。
@@ -802,7 +807,7 @@ export default {
   },
   onShow(){
     this.ctx = this.$refs.canvas.getContext("2d");
-    this.ctx.fillStyle = "red"
+    this.ctx.fillStyle = "red";
     this.ctx.fillRect(200, 150, 200, 200);
   },
   save(){
@@ -812,7 +817,7 @@ export default {
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);
-    // 该变画笔颜色
+    // 改变画笔颜色
     this.ctx.fillStyle = "#2133d2";
   },
   restore(){

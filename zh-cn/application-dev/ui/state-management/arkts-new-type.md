@@ -1,4 +1,9 @@
 # \@Type装饰器：标记类属性的类型
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 为了实现序列化类时不丢失属性的复杂类型，开发者可以使用\@Type装饰器装饰类属性。
 
@@ -6,8 +11,9 @@
 
 >**说明：**
 >
->\@Type从API version 12开始支持。
+> \@Type从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -22,7 +28,7 @@
 
 ## 使用限制
 
-1. 只能用在\@ObservedV2装饰的类中，不能用在自定义组件中。
+1. 只能用在[\@ObservedV2](./arkts-new-observedV2-and-trace.md)装饰的类中，不能用在自定义组件中。
 
     ```ts
     class Sample {

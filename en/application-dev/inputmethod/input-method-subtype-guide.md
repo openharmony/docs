@@ -1,4 +1,9 @@
 # Setting Input Method Subtypes
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The input method subtypes allow the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
 
@@ -29,7 +34,7 @@ The input method subtypes allow the input method to switch to a specific mode or
    }
    ```
    
-2. Configure the subtype fields. For details, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [i18n-locale-culture](.././internationalization/i18n-locale-culture.md#how-it-works).
+2. Configure the subtype fields. For details about the fields, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [i18n-locale-culture](.././internationalization/i18n-locale-culture.md#how-it-works).
    ```
    {
      "subtypes": [

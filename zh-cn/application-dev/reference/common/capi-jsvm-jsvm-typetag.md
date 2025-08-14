@@ -1,4 +1,9 @@
 # JSVM_TypeTag
+<!--Kit: Common Basic Capability-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--SE: @knightaoko-->
+<!--TSE: @test_lzz-->
 
 ## 概述
 

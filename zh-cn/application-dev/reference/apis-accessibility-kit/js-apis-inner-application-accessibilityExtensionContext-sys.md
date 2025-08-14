@@ -1,5 +1,11 @@
 # AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--SE: @z7o-->
+<!--TSE: @A_qqq-->
+
 AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，继承自ExtensionContext。
 
 辅助功能扩展上下文模块提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
@@ -109,7 +115,7 @@ startAbility(want: Want): Promise\<void>;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
-  bundleName: 'com.huawei.hmos.photos'
+  bundleName: 'com.huawei.hmos.photos',
   abilityName: 'com.huawei.hmos.photos.MainAbility'
 }
 
@@ -644,19 +650,42 @@ enableScreenCurtain(isEnable: boolean): void;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@kit.AccessibilityKit';
+import {
+  AccessibilityElement,
+  AccessibilityEvent, 
+  AccessibilityExtensionContext
+} from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let rootElement: AccessibilityElement;
+export default class AccessibilityManager {
+  private static instance: AccessibilityManager;
+  context?: AccessibilityExtensionContext;
 
-axContext.getWindowRootElement().then((data: AccessibilityElement) => {
-  rootElement = data;
-  console.log(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
-  await rootElement.enableScreenCurtain(true);
-  console.log(`Succeeded in enableScreenCurtain}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to enableScreenCurtain, Code is ${err.code}, message is ${err.message}`);
-});
+  static getInstance(): AccessibilityManager {
+    if (!AccessibilityManager.instance) {
+      AccessibilityManager.instance = new AccessibilityManager();
+    }
+    return AccessibilityManager.instance;
+  }
+
+  onStart(context: AccessibilityExtensionContext) {
+    this.context = context;
+  }
+
+  onStop() {
+    this.context = undefined;
+  }
+
+  onEvent(accessibilityEvent: AccessibilityEvent): void {
+    this.context?.getWindowRootElement().then((rootElement: AccessibilityElement) => {
+      console.log(`Succeeded in get root element of the window, ${JSON.stringify(rootElement)}`);
+      rootElement.enableScreenCurtain(true);
+      console.log(`Succeeded in enableScreenCurtain`);
+    }).catch((err: BusinessError) => {
+      console.error(`failed to enableScreenCurtain, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
 ```
 
 ### findElement('elementId')<sup>12+</sup>

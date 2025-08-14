@@ -1,5 +1,11 @@
 # CA证书开发指导
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--SE: @chande-->
+<!--TSE: @zhangzhi1995-->
+
 > **说明**
 >
 > 本开发指导需使用API version 12及以上版本SDK。

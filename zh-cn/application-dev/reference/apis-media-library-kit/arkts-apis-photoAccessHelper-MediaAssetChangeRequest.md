@@ -1,4 +1,9 @@
 # Class (MediaAssetChangeRequest)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 > **说明：**
 >
@@ -410,7 +415,7 @@ setTitle(title: string): void
 title参数规格为：
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **错误码：**
 
@@ -475,7 +480,7 @@ getWriteCacheHandler(): Promise&lt;number&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011 |  System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011 |  System inner fail.        |
 | 14000016 |  Operation Not Support.     |
 
 **示例：**

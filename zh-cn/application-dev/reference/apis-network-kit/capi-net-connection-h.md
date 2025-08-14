@@ -42,6 +42,8 @@
 | [int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)](#oh_netconn_unregisternetconncallback) | 注销监听网络状态变化的回调。 |
 | [NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)](#oh_netconn_setpacurl) | 设置系统级代理自动配置（PAC）脚本地址。 |
 | [NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)](#oh_netconn_getpacurl) | 获取系统级代理自动配置（PAC）脚本地址。 |
+| [int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)](#oh_netconn_queryproberesult) | 查询网络探测结果。 |
+| [int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,NetConn_TraceRouteInfo *traceRouteInfo)](#oh_netconn_querytraceroute) | 查询网络跟踪路由。 |
 
 
 ## 函数说明
@@ -668,3 +670,60 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
 | -- | -- |
 | [NetConn_ErrorCode](capi-net-connection-type-h.md#netconn_errorcode) | 结果定义在 [NetConn_ErrorCode](capi-net-connection-type-h.md#netconn_errorcode)。<br>         [NETCONN_SUCCESS](capi-net-connection-type-h.md#netconn_errorcode) 成功。<br>         [NETCONN_PARAMETER_ERROR](capi-net-connection-type-h.md#netconn_errorcode) 参数错误。<br>         [NETCONN_OPERATION_FAILED](capi-net-connection-type-h.md#netconn_errorcode) 无法连接到服务。<br>         [NETCONN_INTERNAL_ERROR](capi-net-connection-type-h.md#netconn_errorcode) 内部错误。 |
 
+### OH_NetConn_QueryProbeResult()
+
+```
+int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)
+```
+
+**描述**
+
+查询网络探测结果。
+
+**需要权限：** ohos.permission.INTERNET
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| char *destination | 目的地址。 |
+| int32_t duration | 探测持续时间。单位：秒。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) *probeResultInfo | 丢包率和往返时间（RTT）。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 0 - 成功。<br>         201 - 缺少权限。<br>         401 - 参数错误。<br>         2100003 - 内部错误。 |
+
+### OH_NetConn_QueryTraceRoute()
+
+```
+int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,NetConn_TraceRouteInfo *traceRouteInfo)
+```
+
+**描述**
+
+查询网络跟踪路由。
+
+**需要权限：** ohos.permission.INTERNET、ohos.permission.LOCATION 和 ohos.permission.ACCESS_TRACE_ROUTE_INFO
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| char *destination | 目的地址。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) *option | 路由参数选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) *traceRouteInfo | 路由结果。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 0 - 成功。<br>         201 - 缺少权限。 |

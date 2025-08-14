@@ -1,4 +1,9 @@
 # Building and Managing ArkGraphics 3D Scenes
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
 
 A 3D scene consists of three essential parts: light, camera, and model.
 - Light provides illumination for a 3D scene so that the models in the 3D scene become visible. Without light, the rendering result is all black.
@@ -20,13 +25,13 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function loadModel() : void {
-  // Load the model.
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"));
   scene.then(async (result: Scene) => {});
 }
 ```
 
-Once the model is loaded, you can use the **SceneResourceFactory** instance to create a camera and light source, and modify the camera and light settings to adjust the viewing angle and illumination effect. Finally, you can pass the **Scene** instance and **ModelType** as **SceneOptions** to the **Component3D** component to display them on the screen.
+Once the model is loaded, you can use the SceneResourceFactory instance to create a camera and light source, and modify the camera and light settings to adjust the viewing angle and illumination effect. Finally, you can pass the Scene instance and **ModelType** as **SceneOptions** to the **Component3D** component to display them on the screen.
 
 Below is the comprehensive sample code for displaying a model. It is crucial to verify that the .gltf file's content and its path are correctly specified.
 
@@ -47,8 +52,8 @@ struct Model {
 
   Init(): void {
     if (this.scene == null) {
-      // Load the model and place the .gltf file in the related path. Use the actual path during loading.
-      Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'))
+      // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+      Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
       .then(async (result: Scene) => {
         this.scene = result;
         let rf:SceneResourceFactory = this.scene.getResourceFactory();
@@ -72,7 +77,7 @@ struct Model {
           // Use Component3D to display the 3D scenario.
           Component3D(this.sceneOpt)
         } else {
-          Text("loading ...")
+          Text("Loading···")
         }
       }.width('100%')
     }.height('60%')
@@ -90,11 +95,12 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createCameraPromise() : Promise<Camera> {
-  return new Promise(() => {
-    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  return new Promise((resolve, reject) => {
+    // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera" };
       // Create a camera.
       let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
       camera.then(async (cameraEntity: Camera) => {
@@ -109,8 +115,8 @@ function createCameraPromise() : Promise<Camera> {
 
         // Set other camera parameters.
         // ...
+        resolve(cameraEntity);
       });
-      return camera;
     });
   });
 }
@@ -121,7 +127,9 @@ function createCameraPromise() : Promise<Camera> {
 
 Light in a 3D scene is a data model that simulates the impact of the light in the physical world on an object in the 3D scene.
 
-There are many types of lights, for example, directional light and spot light. Directional light, similar to the sunlight, emits parallel light rays with uniform intensity. Spot light is like a flashlight that produces cone-shaped light, which attenuates with distance. The light color also affects the color of the object in the scene. The interaction between the light color and the object color should be consistent with that in the physical world. ArkGraphics 3D provides APIs for creating light and modifying light parameters. You can adjust the 3D scene by setting light attributes to obtain the expected rendering effect.
+There are many types of lights, for example, directional light and spotlight. Directional light, similar to the sunlight, emits parallel light rays with uniform intensity. Spotlight is like a flashlight that produces cone-shaped light, which attenuates with distance. The color of the light impacts how objects are shaded in the scene. When rendering, the system calculates the interaction between the light and the object's surface color based on physical principles, resulting in a more realistic lighting effect.
+
+ArkGraphics 3D provides APIs for creating light and modifying light parameters. You can adjust the 3D scene by setting light properties to obtain the expected rendering effect.
 
 The sample code for controlling light is as follows:
 ```ts
@@ -129,8 +137,9 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createLightPromise() : Promise<Light> {
-  return new Promise(() => {
-    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  return new Promise((resolve, reject) => {
+    // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneLightParameter: SceneNodeParameters = { name: "light" };
@@ -142,9 +151,10 @@ function createLightPromise() : Promise<Light> {
 
         // Set other light parameters.
         // ...
+        resolve(lightEntity);
       });
-      return light;
     });
   });
 }
 ```
+

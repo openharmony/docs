@@ -1,5 +1,10 @@
 # 启动应用内的UIAbility组件
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay-->
+<!--SE: @altay-->
+<!--TSE: @lixueqing513-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的其他UIAbility、或者其他应用的UIAbility（例如启动三方支付UIAbility）。
 
@@ -431,7 +436,7 @@ export default class EntryAbility extends UIAbility {
 
 开发步骤如下所示。
 
-1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)对象。
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -583,7 +588,7 @@ export default class EntryAbility extends UIAbility {
         }
         ```
 
-    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#modulejson5配置文件)中配置routerMap路由映射。
+    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#routermap标签)中配置routerMap路由映射。
 
         ```ts
         // module.json5

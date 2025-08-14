@@ -1,4 +1,9 @@
 # 显式动画 (animateTo)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--SE: @yangfan229-->
+<!--TSE: @lxl007-->
 
 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
@@ -6,7 +11,7 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+>  本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../arkts-apis-uicontext-uicontext.md)说明。
 
 ## animateTo<sup>(deprecated)</sup>
 
@@ -21,8 +26,8 @@ animateTo(value: AnimateParam, event: () => void): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
-> - 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)替代。
-> - 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)来明确UI的执行上下文。
+> - 从API version 18开始废弃，建议使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)替代。
+> - 从API version 10开始，可以通过使用[UIContext](../arkts-apis-uicontext-uicontext.md)中的[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)来明确UI的执行上下文。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
@@ -36,7 +41,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | value | [AnimateParam](#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 | event | () => void                        | 是    | 指定动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
-## AnimateParam对象说明 
+## AnimateParam对象说明
 
 动画效果相关参数。
 
@@ -46,7 +51,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | ---------- | ---------------|---------- | -------------- | ---------------------------------------- |
 | duration   | number         |  否  | 是 | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。<br/>-&nbsp;可以通过在持续时间为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
 | tempo      | number         | 否 | 是 | 动画播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>当设置小于0的值时按值为1处理。 |
-| curve      | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve<sup>9+</sup>](../js-apis-curve.md#icurve9)&nbsp;\|&nbsp;string | 否 | 是 | 动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，仅支持以下可选值：<br/>"linear"：动画线性变化。<br/>"ease"：动画开始和结束时的速度较慢，cubic-bezier(0.25、0.1、0.25、1.0)。<br/>"ease-in"：动画播放速度先慢后快，cubic-bezier(0.42, 0.0, 1.0, 1.0)。<br/>"ease-out"：动画播放速度先快后慢，cubic-bezier(0.0, 0.0, 0.58, 1.0)。<br/>"ease-in-out"：动画播放速度先加速后减速，cubic-bezier(0.42, 0.0, 0.58, 1.0)。<br/>"fast-out-slow-in"：标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。<br/>"linear-out-slow-in"：减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。<br>"fast-out-linear-in"：加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。<br/>"friction"：阻尼曲线，cubic-bezier(0.2, 0.0, 0.2, 1.0)。<br/>"extreme-deceleration"：急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。<br/>"rhythm"：节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。<br/>"sharp"：锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。<br/>"smooth"：平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。<br/>"cubic-bezier(x1, y1, x2, y2)"：三次贝塞尔曲线，x1、x2的值必须处于0-1之间。例如"cubic-bezier(0.42, 0.0, 0.58, 1.0)"。<br/>"steps(number,step-position)"：阶梯曲线，number必须设置，为正整数，step-position参数可选，支持设置start或end，默认值为end。例如"steps(3,start)"。<br/>"interpolating-spring(velocity,mass,stiffness,damping)"：具体参数含义参考[插值弹簧曲线](../js-apis-curve.md#curvesinterpolatingspring10)。<br/>"responsive-spring-motion(response,dampingFraction,overlapDuration)"：具体参数含义参考[弹性跟手动画曲线](../js-apis-curve.md#curvesresponsivespringmotion9)。<br/>"spring(velocity,mass,stiffness,damping)"：具体参数含义参考[弹簧曲线](../js-apis-curve.md#curvesspringcurve9)。<br/>"spring-motion(response,dampingFraction,overlapDuration)"：具体参数含义参考[弹性动画曲线](../js-apis-curve.md#curvesspringmotion9)。<br/>默认值：Curve.EaseInOut<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| curve      | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve<sup>9+</sup>](#icurve9)| 否 | 是 | 动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，仅支持以下可选值：<br/>"linear"：动画线性变化。<br/>"ease"：动画开始和结束时的速度较慢，cubic-bezier(0.25、0.1、0.25、1.0)。<br/>"ease-in"：动画播放速度先慢后快，cubic-bezier(0.42, 0.0, 1.0, 1.0)。<br/>"ease-out"：动画播放速度先快后慢，cubic-bezier(0.0, 0.0, 0.58, 1.0)。<br/>"ease-in-out"：动画播放速度先加速后减速，cubic-bezier(0.42, 0.0, 0.58, 1.0)。<br/>"fast-out-slow-in"：标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。<br/>"linear-out-slow-in"：减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。<br>"fast-out-linear-in"：加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。<br/>"friction"：阻尼曲线，cubic-bezier(0.2, 0.0, 0.2, 1.0)。<br/>"extreme-deceleration"：急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。<br/>"rhythm"：节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。<br/>"sharp"：锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。<br/>"smooth"：平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。<br/>"cubic-bezier(x1, y1, x2, y2)"：三次贝塞尔曲线，x1、x2的值必须处于0-1之间。例如"cubic-bezier(0.42, 0.0, 0.58, 1.0)"。<br/>"steps(number,step-position)"：阶梯曲线，number必须设置，为正整数，step-position参数可选，支持设置start或end，默认值为end。例如"steps(3,start)"。<br/>"interpolating-spring(velocity,mass,stiffness,damping)"：具体参数含义参考[插值弹簧曲线](../js-apis-curve.md#curvesinterpolatingspring10)。<br/>"responsive-spring-motion(response,dampingFraction,overlapDuration)"：具体参数含义参考[弹性跟手动画曲线](../js-apis-curve.md#curvesresponsivespringmotion9)。<br/>"spring(velocity,mass,stiffness,damping)"：具体参数含义参考[弹簧曲线](../js-apis-curve.md#curvesspringcurve9)。<br/>"spring-motion(response,dampingFraction,overlapDuration)"：具体参数含义参考[弹性动画曲线](../js-apis-curve.md#curvesspringmotion9)。<br/>默认值：Curve.EaseInOut<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | delay      | number         | 否 | 是 | 动画延迟播放时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>取值范围：(-∞, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>-&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
 | iterations | number         | 否 | 是 | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1 <br/>取值范围：[-1, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode)|否 | 是 | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -59,6 +64,34 @@ animateTo(value: AnimateParam, event: () => void): void
 > - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。
 > - 使用PlayMode.Alternate或PlayMode.AlternateReverse时，开发者应保证动画最终状态和状态变量的取值一致，即应保证动画的最后一轮是正向播放的。使用PlayMode.Alternate时，iterations应为奇数。使用PlayMode.AlternateReverse时，iterations应为偶数。
 > - 不推荐使用PlayMode.Reverse，此场景下不仅会导致动画刚开始就跳变到终止状态，也会导致动画最终状态和状态变量的取值不同。
+
+## ICurve<sup>9+</sup>
+
+曲线对象。
+
+### interpolate<sup>9+</sup>
+
+interpolate(fraction:&nbsp;number): number
+
+插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| fraction | number | 是   | 当前的归一化时间参数。<br/>取值范围：[0,1]<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
+
+**返回值：**
+
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| number | 返回归一化time时间点对应的曲线插值。 |
 
 ## FinishCallbackType<sup>11+</sup>
 
@@ -83,9 +116,9 @@ animateTo(value: AnimateParam, event: () => void): void
 
 | 名称  | 类型     |  只读 | 可选    | 说明      |
 |-----|--------|---------|------- |---------|
-| min | number | 否 | 否 | 期望的最小帧率，单位为FPS，取值范围为(0, 设备最大帧率]。 |
-| max | number | 否 | 否 | 期望的最大帧率，单位为FPS，取值范围为[min, 设备最大帧率]。 |
-| expected | number | 否 | 否 | 期望的最优帧率，单位为FPS，取值范围为[min, max]。 |
+| min | number | 否 | 否 | 期望的最小帧率，单位为帧/秒（fps），取值范围为[0, 设备最大帧率]。 |
+| max | number | 否 | 否 | 期望的最大帧率，单位为帧/秒（fps），取值范围为[min, 设备最大帧率]。 |
+| expected | number | 否 | 否 | 期望的最优帧率，单位为帧/秒（fps），取值范围为[min, max]。设置为0时，将跟随应用的帧率。 |
 
 ## 示例
 
@@ -93,7 +126,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > 
-> 直接使用animateTo可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+> 直接使用animateTo可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../arkts-apis-uicontext-uicontext.md)实例，并使用[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)调用绑定实例的animateTo。
 
 该示例通过在onAppear方法中创建组件出现时的动画效果。
 

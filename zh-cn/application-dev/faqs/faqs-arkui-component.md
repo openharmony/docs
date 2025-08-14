@@ -656,28 +656,30 @@ Scroll组件中的容器组件不设置尺寸，大小由内容撑开。
 
 ```
 class Model {
-  value: string
+  value: string = "";
 }
+
 @Entry
 @Component
 struct EntryComponent {
   test() {
     console.log('testTag test in my component');
   }
+
   build() {
     Column() {
-      MyComponent({ title: { value: 'Hello World 2' }, count: 7, onClick: this.test }) //初始化时传递定义的方法
+      MyComponent({ title: { value: 'Hello World 2' }, count: 7, click: this.test }) //初始化时传递定义的方法
     }
   }
 }
 
 @Component
 struct MyComponent {
-  @State title: Model = { value: 'Hello World' }
-  @State count: number = 0
-  onClick: any;
-  private toggle: string = 'Hello World'
-  private increaseBy: number = 1
+  @State title: Model = { value: 'Hello World' };
+  @State count: number = 0;
+  click: () => void = () => {
+  };
+  private increaseBy: number = 1;
 
   build() {
     Column() {
@@ -686,8 +688,8 @@ struct MyComponent {
         .margin(20)
         .onClick(() => {
           // 修改内部状态变量count
-          this.count += this.increaseBy
-          this.onClick.call();
+          this.count += this.increaseBy;
+          this.click();
         })
     }
   }
@@ -716,14 +718,13 @@ struct MyComponent {
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon : Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon")
   selectedIcon: Resource = $r("app.media.icon")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -750,13 +751,15 @@ struct SideBarContainerExample {
     }
     .sideBarWidth(150)
     .minSideBarWidth(50)
-    .controlButton({left:32,
-      top:32,
-      width:32,
-      height:32, 
-      icons:{shown: $r("app.media.icon"),
+    .controlButton({
+      left: 32,
+      top: 32,
+      width: 32,
+      height: 32,
+      icons: { shown: $r("app.media.icon"),
         hidden: $r("app.media.icon"),
-        switching: $r("app.media.icon")}})
+        switching: $r("app.media.icon") }
+    })
     .maxSideBarWidth(300)
     .onChange((value: boolean) => {
       console.info('status:' + value)

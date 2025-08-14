@@ -1,4 +1,9 @@
 # 使用AVScreenCapture录屏写文件(C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--SE: @stupig001-->
+<!--TSE: @xdlinc-->
 
 屏幕录制主要为主屏幕录屏功能。
 
@@ -35,8 +40,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
     #include <fcntl.h>
-    #include "string"
-    #include "unistd.h"
+    #include <string>
     ```
 
 2. 创建AVScreenCapture实例capture。
@@ -132,8 +136,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <fcntl.h>
-#include "string"
-#include "unistd.h"
+#include <string>
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;

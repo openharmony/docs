@@ -1,4 +1,9 @@
 # Class (WebKeyboardController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](./arkts-basic-components-web-events.md#oninterceptkeyboardattach12)。
 
@@ -46,7 +51,7 @@ deleteForward(length: number): void
 | ------ | -------- | ---- | ------------------------ |
 | length | number   | 是   | 从后往前删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
-## deleteBackward12+</sup>
+## deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 

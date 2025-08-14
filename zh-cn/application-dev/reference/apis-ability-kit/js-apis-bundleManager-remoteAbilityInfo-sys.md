@@ -1,4 +1,9 @@
 # RemoteAbilityInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 包含远程的ability信息，通过接口[distributedBundle.getRemoteAbilityInfo](js-apis-distributedBundleManager-sys.md#distributedbundlegetremoteabilityinfo)获取。
 

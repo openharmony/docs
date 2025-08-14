@@ -1,4 +1,9 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
@@ -1855,7 +1860,7 @@ getAllBundleCacheSize(): Promise\<number>
 
 获取全局缓存大小，使用Promise异步回调。
 
-有程序运行时的应用的缓存、或者在[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
+有程序运行时的应用的缓存、或者在[应用配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3844,7 +3849,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 
@@ -5528,7 +5533,8 @@ try {
 
 getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
 
-根据应用的沙箱目录获取应用的身份信息，包括应用包名和分身索引信息。
+根据应用的沙箱目录名称获取应用的身份信息，包括应用包名和分身索引信息。
+
 
 **系统接口：** 此接口为系统接口。
 
@@ -5538,7 +5544,7 @@ getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)。      |
+| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)名称。 <br>**说明：**<br> 参数不校验合法性，如果入参sandboxDataDir不符合分身应用或元服务的目录名称格式，则sandboxDataDir将作为返回信息中的AppCloneIdentity.bundleName返回，此时AppCloneIdentity.appIndex为0。 <br> 1.分身应用目录名称格式要求：`+clone-{appIndex}+{bundleName}`，appIndex和bundleName是变量，对应分身索引和应用包名，例如： `+clone-1+com.example.myapplication`。<br> 2.元服务目录名称格式格式要求：`+auid-{uid}+{bundleName}`，uid和bundleName是变量，对应应用程序的UID和应用包名，例如： `+auid-20000000+com.example.myapplication`。   |
 
 **返回值：**
 
@@ -5601,7 +5607,7 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
 | bundleName | string |  是  |   表示要查询的应用包名。当前用户下有此应用或者分身才可查询，否则返回错误码17700001。   |
-| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。   |
+| appIndex | number |  是  |   表示应用索引。取值范围0~5，取值为0表示主应用，取值1~5表示分身应用的索引。   |
 
 **返回值：**
 

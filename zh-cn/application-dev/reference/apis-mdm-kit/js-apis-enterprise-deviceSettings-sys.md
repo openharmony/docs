@@ -1,4 +1,9 @@
 # @ohos.enterprise.deviceSettings （设备设置管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供企业设备设置能力，包括获取设备息屏时间等。
 
@@ -27,6 +32,8 @@ setScreenOffTime(admin: Want, time: number): void
 **需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -77,6 +84,8 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -126,6 +135,8 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -181,6 +192,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -216,8 +229,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -244,6 +257,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -285,8 +300,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -324,6 +339,8 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -357,7 +374,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 // 需根据实际情况进行替换
-let aliasStr = "certName"
+let aliasStr = "certName";
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
   if (err) {
     console.error(`Failed to uninstall user certificate. Code: ${err.code}, message: ${err.message}`);
@@ -376,6 +393,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -434,6 +453,8 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -486,6 +507,8 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

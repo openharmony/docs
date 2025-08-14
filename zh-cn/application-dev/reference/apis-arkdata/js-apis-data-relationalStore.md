@@ -1,4 +1,9 @@
 # @ohos.data.relationalStore (关系型数据库)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--SE: @widecode; @htt1997-->
+<!--TSE: @yippo; @logic42-->
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
 
@@ -8111,10 +8116,10 @@ getColumnIndex(columnName: string): number
 
 ```ts
 if (resultSet != undefined) {
-  const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
 }
 ```
 
@@ -8768,7 +8773,7 @@ getString(columnIndex: number): string
 
 ```ts
 if (resultSet != undefined) {
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 }
 ```
 
@@ -10223,7 +10228,7 @@ predicates.equalTo("NAME", "Lisa");
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.delete(predicates).then((rows: Number) => {
+    transaction.delete(predicates).then((rows: number) => {
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     }).catch((e: BusinessError) => {
@@ -10287,7 +10292,7 @@ predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
-      let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
+      let rows: number = (transaction as relationalStore.Transaction).deleteSync(predicates);
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     } catch (e) {

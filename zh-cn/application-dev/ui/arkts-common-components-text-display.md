@@ -1,4 +1,9 @@
 # 文本显示 (Text/Span)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--SE: @pssea-->
+<!--TSE: @jiaoaozihao-->
 
 
 Text是文本组件，用于展示用户视图，如显示文章的文字内容。该组件支持绑定自定义文本选择菜单，用户可根据需要选择不同功能。此外，还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于展示行内文本。  
@@ -425,7 +430,7 @@ Text可通过以下两种方式来创建：
 
   ```ts
   @State number: number = 98;
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false };
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   Column() {
     Text(this.number + "")
@@ -752,7 +757,7 @@ struct Index {
  
 ### 屏蔽系统服务类菜单
 
-- 从API version 20开始，支持通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽文本选择菜单内所有系统服务菜单项。
+- 从API version 20开始，支持通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽文本选择菜单内所有系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -797,7 +802,7 @@ struct Index {
 
   ![text_disable_system_service_menuItems](figures/text_disable_system_service_menuItems.jpg)
 
-- 从API version 20开始，支持通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽文本选择菜单内指定的系统服务菜单项。
+- 从API version 20开始，支持通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)屏蔽文本选择菜单内指定的系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';

@@ -1,4 +1,9 @@
 # @ohos.bundle.installer (installer模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--SE: @hanfeng6-->
+<!--TSE: @kongjing2-->
 
 > **说明：**
 >

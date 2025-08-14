@@ -1,5 +1,9 @@
 # 复杂文本绘制与显示（ArkTS）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
+<!--SE: @liumingxiang-->
+<!--TSE: @yhl0101-->
 在进行文本绘制时，可以通过选择合适的字体、大小和颜色完成简单文本的绘制与显示；此外，还支持通过设置其他丰富的样式、语言、段落等进行复杂文本的绘制。
 
 复杂文本绘制主要包含以下几个场景：
@@ -8,7 +12,7 @@
 
 - 多行文本绘制与显示
 
-- 多类型文本绘制与显示
+- 多样式文本绘制与显示
 
 
 ## 多语言文本绘制与显示
@@ -150,7 +154,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -364,7 +367,6 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
     }
     return this.rootNode
   }
@@ -427,6 +429,7 @@ struct Font08 {
 | -------- | -------- |
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002246563849](figures/zh-cn_image_0000002246563849.png) | 
 | 文本对齐方式为text.TextAlign.RIGHT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002211443900](figures/zh-cn_image_0000002211443900.png) | 
+| 文本对齐方式为text.TextAlign.JUSTIFY ，最大行数为10 ，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_complexArkTsDemoJustify](figures/zh-cn_image_complexArkTsDemoJustify.png) | 
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002211603680](figures/zh-cn_image_0000002211603680.png) | 
 | 文本对齐方式为text.TextAlign.LEFT ，最大行数为10 ，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002246563845](figures/zh-cn_image_0000002246563845.png) | 
 
@@ -447,6 +450,12 @@ struct Font08 {
 
 - **占位符绘制：** 可以在不确定文本内容时保持文本布局的稳定性，使得文本显示更为流畅和自然。
 
+- **自动间距绘制：** 可以在一些字符混排切换的地方自动添加额外间距，提升阅读体验。
+
+- **垂直对齐：** 调整文本在垂直方向排版位置，提升排版质量。
+
+- **上下标：** 可以将任意字符处理成上标或下标，更精准表达文本含义。
+
 ### 装饰线
 
 装饰线（[Decoration](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#decoration)）是指在文本上方、下方或中间添加的装饰性线条，当前支持上划线、下划线、删除线。
@@ -455,17 +464,23 @@ struct Font08 {
 
 使用装饰线需要初始化装饰线样式对象，并添加到文本样式中，从而在文本绘制时生效。
 
+具体使用效果可参见下文[示例一](#示例一装饰线字体特征)。
+
 ### 字体特征
 
 **字体特征**（[FontFeature](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#fontfeature)）绘制专注于在文本渲染过程中对字体特性（如粗体、斜体、字体变种等）的处理，允许字体在不同的排版场景下表现出不同的效果，可用于增强文本的表现力，使其更符合设计和阅读需求。
 
 常见的**FontFeature**包含有liga、frac、case等，需要对应的ttf文件支持才能正常使能。
 
+具体使用效果可参见下文[示例一](#示例一装饰线字体特征)。
+
 ### 可变字体
 
 **可变字体**（[FontVariation](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#fontvariation)）是一种在一个字体文件中包含多个字形变体的字体格式，允许在一个字体文件内灵活地调整字体的各种属性（如字重、字宽、斜体等）。
 
 与传统字体文件（每种变体需要一个独立的文件）不同，可变字体在一个字体文件中包含多个变体轴，可通过使用可变字体实现文本渲染绘制时的平滑过渡。
+
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
 ### 文本阴影
 
@@ -475,120 +490,52 @@ struct Font08 {
 
 使用阴影效果需要在文本样式中设置对应的阴影效果数组，从而在文本绘制时生效。
 
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
+
 ### 占位符
 
 占位符绘制用于处理文本中占位符符号的渲染。
 
-占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
+占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供或替代某个位置的视觉元素。
 
-### 开发步骤
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
-1. 通过context获取到Canvas画布对象。
+### 自动间距
 
-   ```ts
-   // 绘制代码逻辑写在这里
-   let canvas = context.canvas;
-   ```
+使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。例如，在中英文混排场景中，使能自动间距即可在中英文切换的地方自动添加额外间距，提升阅读体验。
+关键示例如下：
+```ts
+let myParagraphStyle: text.ParagraphStyle = {
+  autoSpace: true
+};
+```
 
-2. 初始化文本样式。
+### 垂直对齐
 
-   ```ts
-   // 初始化装饰线对象
-   let decorations: text.Decoration =
-     {
-       // 装饰线类型，支持上划线、下划线、删除线
-       textDecoration: text.TextDecorationType.UNDERLINE,
-       // 装饰线颜色
-       color: {
-         alpha: 255,
-         red: 255,
-         green: 0,
-         blue: 0
-       },
-       // 装饰线样式，支持波浪，虚线，直线等
-       decorationStyle:text.TextDecorationStyle.SOLID,
-       // 装饰线的高度
-       decorationThicknessScale: 1
-     };
-   
-   let myTextStyle: text.TextStyle = {
-     color: {
-       alpha: 255,
-       red: 255,
-       green: 0,
-       blue: 0
-     },
-     fontSize: 300,
-     // 设置装饰线
-     decoration: decorations,
-     // 可变字体
-     fontVariations: [{axis: 'wght', value: 555}],
-     // 文本阴影
-     textShadows: [{color: { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }, point: {x:10,y:10}, blurRadius: 10}],
-     // 开启字体特征
-     fontFeatures: [{name: 'frac', value: 1}]
-   };
-   ```
+垂直对齐用于调整文本在一行中垂直方向的排版位置。开启行高缩放或行内存在不同字号文本混排时使能垂直对齐，可以让文本实现顶部对齐、居中对齐、底部对齐或基线对齐（默认）。关键代码如下：
 
-3. 初始化段落样式。
+```ts
+let myParagraphStyle: text.ParagraphStyle = {
+  verticalAlign: text.TextVerticalAlign.CENTER
+};
+```
 
-   ```ts
-   let myParagraphStyle: text.ParagraphStyle = {
-     textStyle: myTextStyle
-   };
-   ```
+具体使用效果可参见下文[示例三](#示例三垂直对齐)。
 
-4. 初始化段落对象，并添加占位符和文本。
+### 上下标
 
-   ```ts
-   let fontCollection = text.FontCollection.getGlobalInstance();
-   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-   
-   // 初始化占位符对象
-   let myPlaceholderSpan: text.PlaceholderSpan = {
-     width: 300,//宽度
-     height: 300,//高度
-     align: text.PlaceholderAlignment.BOTTOM_OF_ROW_BOX, //基线对齐策略
-     baseline: text.TextBaseline.ALPHABETIC,//使用的文本基线类型
-     baselineOffset: 100//相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
-   };
-   // 添加占位符
-   paragraphBuilder.addPlaceholder(myPlaceholderSpan)
-   
-   // 更新文本样式
-   paragraphBuilder.pushStyle(myTextStyle);
-   // 添加文本
-   paragraphBuilder.addText("1/2 1/3 1/4 ");
-   ```
+使能上下标，能将文本作为上标或下标参与排版。一般用于数学公式、化学式等场景。关键代码如下：
 
-5. 排版段落并进行文本绘制。
+```ts
+let superScriptStyle: text.TextStyle = {
+    badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
+};
+```
 
-   ```ts
-   //生成段落
-   let paragraph = paragraphBuilder.build();
-   // 布局
-   paragraph.layoutSync(1250);
-   // 绘制文本
-   paragraph.paint(canvas, 0, 0);
-   ```
+具体使用效果可参见下文[示例四](#示例四上下标文本)。
 
-6. 绘制占位符所在的内容。
-
-   ```ts
-   let placeholderRects = paragraph.getRectsForPlaceholders();//获取全部占位符的数组
-   let left = placeholderRects[0].rect.left//获取第一个占位符的左边界
-   let top = placeholderRects[0].rect.top//获取第一个占位符的上边界
-   let right = placeholderRects[0].rect.right//获取第一个占位符的右边界
-   let bottom = placeholderRects[0].rect.bottom//获取第一个占位符的下边界
-   let pen: drawing.Pen =  new drawing.Pen()
-   let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
-   pen.setColor(pen_color)
-   canvas.attachPen(pen)
-   canvas.drawRect(left,top,right,bottom)//使用draw方法绘制占位符矩形框
-   ```
-
-
-### 完整示例
+### 示例一（装饰线、字体特征）
+这里以文本样式中的装饰线和字体特征为例，呈现多样式文本的绘制与显示。
 
 ```ts
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
@@ -601,7 +548,6 @@ import { common2D } from '@kit.ArkGraphics2D'
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
-    // 绘制代码逻辑写在这里
     let canvas = context.canvas;
 
     // 初始化装饰线对象
@@ -632,31 +578,16 @@ class MyRenderNode extends RenderNode {
       fontSize: 300,
       // 设置装饰线
       decoration: decorations,
-      // 可变字体
-      fontVariations: [{axis: 'wght', value: 555}],
-      // 文本阴影
-      textShadows: [{color: { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }, point: {x:10,y:10}, blurRadius: 10}],
       // 开启字体特征
       fontFeatures: [{name: 'frac', value: 1}]
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
-      textStyle: myTextStyle
+      textStyle: myTextStyle,
     };
 
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-
-    // 初始化占位符对象
-    let myPlaceholderSpan: text.PlaceholderSpan = {
-      width: 300,//宽度
-      height: 300,//高度
-      align: text.PlaceholderAlignment.BOTTOM_OF_ROW_BOX, //基线对齐策略
-      baseline: text.TextBaseline.ALPHABETIC,//使用的文本基线类型
-      baselineOffset: 100//相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
-    };
-    // 添加占位符
-    paragraphBuilder.addPlaceholder(myPlaceholderSpan)
 
     // 更新文本样式
     paragraphBuilder.pushStyle(myTextStyle);
@@ -669,17 +600,320 @@ class MyRenderNode extends RenderNode {
     paragraph.layoutSync(1250);
     // 绘制文本
     paragraph.paint(canvas, 0, 0);
+  }
+}
 
-    let placeholderRects = paragraph.getRectsForPlaceholders();//获取全部占位符的数组
-    let left = placeholderRects[0].rect.left// 获取第一个占位符的左边界
-    let top = placeholderRects[0].rect.top// 获取第一个占位符的上边界
-    let right = placeholderRects[0].rect.right// 获取第一个占位符的右边界
-    let bottom = placeholderRects[0].rect.bottom// 获取第一个占位符的下边界
+// 创建一个MyRenderNode对象
+const textNode = new MyRenderNode()
+// 定义newNode的像素格式
+textNode.frame = {
+  x: 0,
+  y: 0,
+  width: 400,
+  height: 600
+}
+textNode.pivot = { x: 0.2, y: 0.8 }
+textNode.scale = { x: 1, y: 1 }
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext)
+    if (this.rootNode == null) {
+      return this.rootNode
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 10,
+        height: 500
+      }
+    }
+    return this.rootNode
+  }
+
+  addNode(node: RenderNode): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.appendChild(node)
+    }
+  }
+
+  clearNodes(): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.clearChildren()
+    }
+  }
+}
+
+let myNodeController: MyNodeController = new MyNodeController()
+
+async function performTask() {
+  myNodeController.clearNodes()
+  myNodeController.addNode(textNode)
+}
+
+@Entry
+@Component
+struct Font08 {
+  @State src: Resource = $r('app.media.startIcon')
+  build() {
+    Column() {
+      Row() {
+        NodeContainer(myNodeController)
+          .height('100%')
+          .width('100%')
+        Image(this.src)
+          .width('0%').height('0%')
+          .onComplete(
+            () => {
+              performTask();
+            })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+
+具体示意效果如下所示：
+
+| 样式设置（装饰线样式、字体特征） | 示意效果 | 
+| -------- | -------- |
+| 不开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_1](figures/zh-cn_image_complexArkTsDemo1_1.png) | 
+| 开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_2](figures/zh-cn_image_complexArkTsDemo1_2.png) | 
+
+### 示例二（可变字体、文本阴影、占位符）
+这里以可变字体、文本阴影、占位符三个特性为例，呈现多样式文本的绘制与显示。
+```ts
+import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
+import { UIContext } from '@kit.ArkUI'
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { common2D } from '@kit.ArkGraphics2D'
+
+// 创建一个MyRenderNode类，并绘制文本。
+class MyRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    let canvas = context.canvas;
+
+    let myTextStyle: text.TextStyle = {
+      color: {
+        alpha: 255,
+        red: 255,
+        green: 0,
+        blue: 0
+      },
+      fontSize: 150,
+      // 可变字体
+      fontVariations: [{axis: 'wght', value: 555}],
+      // 文本阴影
+      textShadows: [{color: { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }, point: {x:10,y:10}, blurRadius: 10}],
+    };
+
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
+    };
+
+    let fontCollection = text.FontCollection.getGlobalInstance();
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    // 初始化占位符对象
+    let myPlaceholderSpan: text.PlaceholderSpan = {
+      // 宽度
+      width: 300,
+      // 高度
+      height: 300,
+      // 基线对齐策略
+      align: text.PlaceholderAlignment.BOTTOM_OF_ROW_BOX,
+      // 使用的文本基线类型
+      baseline: text.TextBaseline.ALPHABETIC,
+      // 相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
+      baselineOffset: 100
+    };
+    // 添加占位符
+    paragraphBuilder.addPlaceholder(myPlaceholderSpan)
+
+    // 更新文本样式
+    paragraphBuilder.pushStyle(myTextStyle);
+    // 添加文本
+    paragraphBuilder.addText("Hello Test");
+
+    // 生成段落
+    let paragraph = paragraphBuilder.build();
+    // 布局
+    paragraph.layoutSync(1250);
+    // 绘制文本
+    paragraph.paint(canvas, 0, 0);
+
+    //获取全部占位符的数组
+    let placeholderRects = paragraph.getRectsForPlaceholders();
+    // 获取第一个占位符的左边界
+    let left = placeholderRects[0].rect.left
+    // 获取第一个占位符的上边界
+    let top = placeholderRects[0].rect.top
+    // 获取第一个占位符的右边界
+    let right = placeholderRects[0].rect.right
+    // 获取第一个占位符的下边界
+    let bottom = placeholderRects[0].rect.bottom
     let pen: drawing.Pen =  new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
     pen.setColor(pen_color)
     canvas.attachPen(pen)
-    canvas.drawRect(left,top,right,bottom)// 使用draw方法绘制占位符矩形框
+    // 使用draw方法绘制占位符矩形框
+    canvas.drawRect(left,top,right,bottom)
+  }
+}
+
+// 创建一个MyRenderNode对象
+const textNode = new MyRenderNode()
+// 定义newNode的像素格式
+textNode.frame = {
+  x: 0,
+  y: 0,
+  width: 400,
+  height: 600
+}
+textNode.pivot = { x: 0.2, y: 0.8 }
+textNode.scale = { x: 1, y: 1 }
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext)
+    if (this.rootNode == null) {
+      return this.rootNode
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 10,
+        height: 500
+      }
+    }
+    return this.rootNode
+  }
+
+  addNode(node: RenderNode): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.appendChild(node)
+    }
+  }
+
+  clearNodes(): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.clearChildren()
+    }
+  }
+}
+
+let myNodeController: MyNodeController = new MyNodeController()
+
+async function performTask() {
+  myNodeController.clearNodes()
+  myNodeController.addNode(textNode)
+}
+
+@Entry
+@Component
+struct Font08 {
+  @State src: Resource = $r('app.media.startIcon')
+  build() {
+    Column() {
+      Row() {
+        NodeContainer(myNodeController)
+          .height('100%')
+          .width('100%')
+        Image(this.src)
+          .width('0%').height('0%')
+          .onComplete(
+            () => {
+              performTask();
+            })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+具体示意效果如下所示：
+
+| 样式设置（可变字体、文本阴影、占位符） | 示意效果 | 
+| -------- | -------- |
+| 不开启可变字体和文本阴影，不使用占位符 | ![zh-cn_image_complexArkTsDemo2_1](figures/zh-cn_image_complexArkTsDemo2_1.png) | 
+| 开启可变字体和文本阴影，使用占位符 | ![zh-cn_image_complexArkTsDemo2_2](figures/zh-cn_image_complexArkTsDemo2_2.png) | 
+
+### 示例三（垂直对齐）
+这里以垂直对齐-居中对齐特性为例，呈现文本垂直方向排版的特性。
+
+```ts
+import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+
+// 创建一个MyRenderNode类，并绘制文本。
+class MyRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    let canvas = context.canvas;
+
+    let myTextStyle: text.TextStyle = {
+      color: {
+        alpha: 255,
+        red: 255,
+        green: 0,
+        blue: 0
+      },
+      fontSize: 30,
+      // 开启行高缩放
+      heightOnly: true,
+      // 行高缩放系数为字号的2倍
+      heightScale: 2
+    };
+
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
+      // 设置垂直对齐-居中对齐模式
+      verticalAlign: text.TextVerticalAlign.CENTER,
+    };
+
+    let fontCollection = text.FontCollection.getGlobalInstance();
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    // 设置待排版文本要应用的样式
+    paragraphBuilder.pushStyle(myTextStyle);
+    // 添加文本
+    paragraphBuilder.addText("VerticalAlignment-center");
+
+    // 生成段落
+    let paragraph = paragraphBuilder.build();
+    // 布局
+    paragraph.layoutSync(1000);
+    // 绘制文本
+    paragraph.paint(canvas, 0, 0);
   }
 }
 
@@ -754,12 +988,10 @@ struct Font08 {
         NodeContainer(myNodeController)
           .height('100%')
           .width('100%')
-        Image(this.src)
-          .width('0%').height('0%')
-          .onComplete(
-            () => {
-              performTask();
-            })
+        Text("Test for vertical alignment")
+          .onApper(() => {
+            performTask();
+          })
       }
       .width('100%')
     }
@@ -767,10 +999,158 @@ struct Font08 {
 }
 ```
 
-
-### 效果展示
-
-| 样式设置（装饰线样式、可变字体、文本阴影、字体特征、占位符） | 示意效果 | 
+具体示意效果如下所示：
+| 样式设置（垂直对齐） | 示意效果 | 
 | -------- | -------- |
-| 不开启装饰线、可变字体、文本阴影、字体特征，不添加占位符。 | ![zh-cn_image_0000002211603688](figures/zh-cn_image_0000002211603688.png) | 
-| 开启装饰线、可变字体、文本阴影、字体特征，添加占位符。 | ![zh-cn_image_0000002211443912](figures/zh-cn_image_0000002211443912.png) | 
+| 基线对齐（默认）| ![zh-cn_image_complexArkTsDemo2_1](figures/en_image_verticalAlignment_baseline.jpg) | 
+| 顶部对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_top.jpg) | 
+| 居中对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_center.jpg) | 
+| 底部对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_bottom.jpg) | 
+
+### 示例四（上下标文本）
+这里以上标为例，呈现上下标文本排版特性。
+
+```ts
+import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+
+// 创建一个MyRenderNode类，并绘制文本。
+class MyRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    let canvas = context.canvas;
+
+    let myTextStyle: text.TextStyle = {
+      color: {
+        alpha: 255,
+        red: 255,
+        green: 0,
+        blue: 0
+      },
+      fontSize: 30,
+    };
+
+    let superScriptStyle: text.TextStyle = {
+      color: {
+        alpha: 255,
+        red: 255,
+        green: 0,
+        blue: 0
+      },
+      fontSize: 30,
+      // 设置上标样式
+      badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
+    };
+
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
+    };
+
+    let fontCollection = text.FontCollection.getGlobalInstance();
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    // 设置待排版文本要应用的样式
+    paragraphBuilder.pushStyle(myTextStyle);
+    // 添加文本
+    paragraphBuilder.addText("The chemical formula for water: H");
+    paragraphBuilder.pushStyle(superScriptStyle);
+    paragraphBuilder.addText("2");
+    paragraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.addText("o");
+
+    // 生成段落
+    let paragraph = paragraphBuilder.build();
+    // 布局
+    paragraph.layoutSync(1000);
+    // 绘制文本
+    paragraph.paint(canvas, 0, 0);
+  }
+}
+
+// 创建一个MyRenderNode对象
+const textNode = new MyRenderNode()
+// 定义newNode的像素格式
+textNode.frame = {
+  x: 0,
+  y: 0,
+  width: 400,
+  height: 600
+}
+textNode.pivot = { x: 0.2, y: 0.8 }
+textNode.scale = { x: 1, y: 1 }
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext)
+    if (this.rootNode == null) {
+      return this.rootNode
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 10,
+        height: 500
+      }
+      renderNode.pivot = { x: 50, y: 50 }
+    }
+    return this.rootNode
+  }
+
+  addNode(node: RenderNode): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.appendChild(node)
+    }
+  }
+
+  clearNodes(): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.clearChildren()
+    }
+  }
+}
+
+let myNodeController: MyNodeController = new MyNodeController()
+
+async function performTask() {
+  myNodeController.clearNodes()
+  myNodeController.addNode(textNode)
+}
+
+@Entry
+@Component
+struct Font08 {
+  @State src: Resource = $r('app.media.startIcon')
+  build() {
+    Column() {
+      Row() {
+        NodeContainer(myNodeController)
+          .height('100%')
+          .width('100%')
+        Text("Test for superscript and subscript")
+          .onApper(() => {
+            performTask();
+          })
+      }
+    }
+      .width('100%')
+  }
+}
+```
+
+具体示意效果如下所示：
+| 样式设置（上下标) | 示意效果 | 
+| -------- | -------- |
+| 上标文本 | ![zh-cn_image_complexArkTsDemo2_1](figures/en_image_subscript.jpg) | 
+| 下标文本 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_superscript.jpg) | 

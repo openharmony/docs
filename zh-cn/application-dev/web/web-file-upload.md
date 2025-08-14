@@ -1,4 +1,9 @@
 # 使用Web组件上传文件
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--SE: @zhufenghao-->
+<!--TSE: @ghiker-->
 
 Web组件支持前端页面选择文件上传功能，应用开发者可以使用[onShowFileSelector()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onshowfileselector9)接口来处理前端页面文件上传的请求，如果应用开发者不做任何处理，Web会提供默认行为来处理前端页面文件上传的请求。
 
@@ -80,7 +85,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     async selectFile(result: FileSelectorResult): Promise<void> {
       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -304,7 +309,7 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController()
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -331,4 +336,10 @@ getAcceptType返回的是 `accept` 属性值全量转换为文件扩展名所组
 
 ### ArkWeb默认弹窗的说明
 
-选项“图片”会拉起图库，根据 `accept` 属性值不同，用户可以选择上传图片或视频；选项“拍照”会拉起相机，根据 `accept` 属性值不同，用户可以选择拍照或录像；选项“文件”会拉起文管，用户可以上传任意内容。
+选项“图片”会拉起图库，根据 `accept` 属性值不同，用户可以选择上传图片或视频；选项“拍照”会拉起相机，根据 `accept` 属性值不同，用户可以选择拍照或录像；选项“文件”会拉起文件管理器，用户可以上传任意内容。
+
+### handleFileList的使用说明
+
+该函数将选择的文件路径提交给ArkWeb，入参主要有两种类型：
+1. file协议路径，目前只支持前缀为 `file://media/` 、`file://docs/` 的公共路径和 `file://<packageName>/` 的应用包名路径，其他file协议路径无权限。
+2. 沙箱目录，具体参考[应用沙箱目录](../file-management/app-sandbox-directory.md)。

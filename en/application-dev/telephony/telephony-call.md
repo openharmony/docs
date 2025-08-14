@@ -33,7 +33,7 @@ You can implement the call service in either of the following ways:
 
 |                                  Name                                            | Description                                                        |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| hasVoiceCapability(): boolean;                                                      | Checks whether the voice function is available.                                       |
+| hasVoiceCapability(): boolean;                                                      | Checks whether the voice call function is supported. The default value is **false**.<br>- **true**: The voice call function is supported.<br>- **false**: The voice call function is not supported.                                       |
 |<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Makes a call. This is a system API.                                     |
 | makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Redirects to the dial screen and displays the called number.                                 |
 
@@ -64,7 +64,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
     if (isSupport) {
         // If the device supports the voice call function, call the following API to make a call.
         call.dialCall("13xxxx", (err: BusinessError) => {
-            console.log(`callback: dial call err->${JSON.stringify(err)}`);
+            console.error(`callback: dial call err->${JSON.stringify(err)}`);
         })
 
         // (Optional) Register the observer for call service status changes.
@@ -101,7 +101,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
             if (!err) {
                 console.log("make call success.");
             } else {
-                console.log("make call fail, err is:" + JSON.stringify(err));
+                console.error("make call fail, err is:" + JSON.stringify(err));
             }
         });
         // (Optional) Register the observer for call service status changes.
@@ -116,4 +116,3 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
-

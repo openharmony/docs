@@ -44,7 +44,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // Ensure that the resource exists in the sandbox path.
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -155,7 +155,7 @@ async function release() {
 
 This process is similar to the process of [using AudioCapturer to develop audio recording](using-audiocapturer-for-recording.md). The key differences lie in the **audioCapturerInfo** parameter and audio data stream direction. In the **audioCapturerInfo** parameter used for audio calling, **source** must be set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
 
-You must request the **ohos.permission.MICROPHONE** permission for all recording tasks. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+You must request the ohos.permission.MICROPHONE permission for all recording tasks. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -190,7 +190,7 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {

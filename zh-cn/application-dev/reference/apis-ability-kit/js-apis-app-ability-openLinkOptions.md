@@ -1,5 +1,11 @@
 # @ohos.app.ability.OpenLinkOptions (openLink的可选参数)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--SE: @ccllee1-->
+<!--TSE: @lixueqing513-->
+
 OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12)的入参，用于标识是否仅打开AppLinking和传递键值对可选参数。
 
 > **说明：**
@@ -22,7 +28,7 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | 否 | 是 | 表示是否必须以AppLinking的方式启动UIAbility。<br />- 取值为true时，如果不存在与AppLinking相匹配的UIAbility，直接返回。<br />- 取值为false时，如果不存在与AppLinking相匹配的UIAbility，AppLinking会退化为DeepLink。默认值为false。<br />aa命令隐式拉起Ability时可以通过设置"--pb appLinkingOnly true/false"以AppLinking的方式进行启动。 |
+| appLinkingOnly | boolean | 否 | 是 | 表示是否必须以<!--RP1-->[AppLinking](../../application-models/app-linking-startup.md)<!--RP1End-->的方式启动UIAbility。<br />- 取值为true时，如果不存在与AppLinking相匹配的UIAbility，直接返回。<br />- 取值为false时，如果不存在与AppLinking相匹配的UIAbility，AppLinking会退化为[DeepLinking](../../application-models/deep-linking-startup.md)。默认值为false。<br />aa命令隐式拉起Ability时可以通过设置"--pb appLinkingOnly true/false"以AppLinking的方式进行启动。 |
 | parameters | Record\<string, Object> | 否 | 是 | 表示WantParams参数。<br/>**说明**：具体使用规则请参考[want](./js-apis-app-ability-want.md)中的parameters属性。 |
 
 **示例：**

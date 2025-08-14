@@ -1,4 +1,9 @@
 # 使用Image_NativeModule完成多图对象编码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 图像编码类，用于创建以及释放ImagePacker实例，并编码多图对象。
 
@@ -94,7 +99,7 @@ static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
     uint32_t fd = 0;
     napi_get_value_uint32(env, args[0], &fd);
     size_t outDataSize = 10000 * 10000;
-    uint8_t *outData = new uint8_t[10000 * 10000];
+    uint8_t *outData = new uint8_t[outDataSize];
 
     if (thisPicture->packerOptions == nullptr) {
         thisPicture->errorCode = OH_PackingOptions_Create(&thisPicture->packerOptions);
@@ -131,7 +136,7 @@ static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
         ReleaseImageSource(thisPicture->source);
     OH_LOG_DEBUG(LOG_APP, "OH_ImagePackerNative_PackToDataFromPicture success !");
     }
-
+	delete[] outData;
     return getJsResult(env, thisPicture->errorCode);
 }
 

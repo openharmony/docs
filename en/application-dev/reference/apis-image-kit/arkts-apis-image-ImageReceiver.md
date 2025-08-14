@@ -1,8 +1,14 @@
 # Interface (ImageReceiver)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this interface are supported since API version 9.
 
 The **ImageReceiver** class provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the ImageReceiver instance. The ImageReceiver acts as the receiver and consumer of images. Its parameter properties do not actually affect the received images. The configuration of image properties should be done on the sending side (the producer), such as when creating a camera preview stream with [createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput).
 
@@ -20,9 +26,9 @@ import { image } from '@kit.ImageKit';
 
 | Name    | Type                        | Read Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [Size](arkts-apis-image-i.md#size)                | Yes  | No  | Image size. This parameter does not affect the size of the received image. The actual returned size is determined by the producer, for example, the camera.        |
-| capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
-| format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | No  | Image format, which is a constant of [ImageFormat](arkts-apis-image-e.md#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.)       |
+| size<sup>9+</sup>     | [Size](arkts-apis-image-i.md#size)                | Yes  | No  | Image size. This parameter does not affect the size of the received image. The actual returned size is determined by the producer, for example, the camera.        |
+| capacity<sup>9+</sup> | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
+| format<sup>9+</sup>   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | No  | Image format, which is a constant of [ImageFormat](arkts-apis-image-e.md#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.)       |
 
 ## getReceivingSurfaceId<sup>9+</sup>
 
@@ -299,5 +305,3 @@ receiver.release().then(() => {
   console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
 ```
-
-<!--no_check-->

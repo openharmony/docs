@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AVScreenCapture module provides APIs for screen capture.
+The module provides APIs for screen capture.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -15,6 +15,6 @@ You can refer to the corresponding development guide and samples based on your d
 
 | Name| Description|
 | -- | -- |
-| [native_avscreen_capture.h](capi-native-avscreen-capture-h.md) | Declares the APIs used to create an **OH_AVScreenCapture** instance.|
+| [native_avscreen_capture.h](capi-native-avscreen-capture-h.md) | Declares the APIs used to create an OH_AVScreenCapture instance.|
 | [native_avscreen_capture_base.h](capi-native-avscreen-capture-base-h.md) | Declares the common structs, character constants, and enums used for running screen capture.|
 | [native_avscreen_capture_errors.h](capi-native-avscreen-capture-errors-h.md) | Declares the error codes generated during screen capture.|

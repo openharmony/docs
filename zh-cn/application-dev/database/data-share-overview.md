@@ -1,4 +1,9 @@
 # 跨应用数据共享概述
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--SE: @woodenarow; @xuelei3-->
+<!--TSE: @chenwan188; @logic42-->
 
 ## 功能简介
 

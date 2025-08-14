@@ -59,7 +59,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 
 })
 ```
-<!--@[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[promise_async_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 ## docs代码和sample中不一致（单行缩进不一致），验证扫描结果
 
@@ -87,7 +87,7 @@ promise.then((result: number) => {
     console.error(error.message);
 });
 ```
-<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[promise_then_catch_handling](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 
 ## docs代码和sample中不一致（整段代码缩进不一致），验证扫描结果
@@ -128,7 +128,7 @@ docs代码和sample中不一致（整段代码缩进不一致），验证扫描�
       }
     }
     ```
-    <!--@[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+    <!--@[async_await_sync_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 * list 2
 * list 3
 
@@ -152,7 +152,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
-<!--@[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[promise_async_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 上述代码中，setTimeout函数模拟了一个异步操作，并在1秒钟后随机生成一个数字。如果随机数大于0.5，则执行resolve回调函数并将随机数作为参数传递；否则执行reject回调函数并传递一个错误对象作为参数。
 
@@ -167,7 +167,7 @@ promise.then((result: number) => {
  console.error(error.message);
 });
 ```
-<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[promise_then_catch_handling](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 上述代码中，then方法的回调函数接收Promise对象的成功结果作为参数，并将其输出到控制台上。如果Promise对象进入rejected状态，则catch方法的回调函数接收错误对象作为参数，并将其输出到控制台上。
 
@@ -216,7 +216,7 @@ struct Index {
   }
 }
 ```
-<!--@[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[async_await_sync_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 上述代码中，sample含有Exclude代码
 
@@ -237,7 +237,7 @@ async function myAsyncFunction(): Promise<void> {
 
 myAsyncFunction();
 ```
-<!--@[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[async_operation_error_handling_with_try_catch](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 ## 验证注释格式不同
 
@@ -295,4 +295,4 @@ struct Index {
   }
 }
 ```
-<!--@[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[actor_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->

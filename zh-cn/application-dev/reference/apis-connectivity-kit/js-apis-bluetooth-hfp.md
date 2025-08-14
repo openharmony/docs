@@ -1,5 +1,11 @@
 # @ohos.bluetooth.hfp (蓝牙hfp模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--SE: @chengguohong; @tangjia15-->
+<!--TSE: @wangfeng517-->
+
 hfp模块提供了访问蓝牙呼叫接口的方法。
 
 > **说明：**

@@ -1,4 +1,9 @@
 # Class (AVCastPickerHelper)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **说明：**
 >
@@ -17,7 +22,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 constructor(context: Context)
 
-创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +41,7 @@ constructor(context: Context)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -141,7 +146,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -181,7 +186,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception. |
 
 **示例：**
 

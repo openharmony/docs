@@ -1,5 +1,10 @@
 # 复杂绘制效果（C/C++）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--SE: @wangyanglan-->
+<!--TSE: @nobuggers-->
 
 除了基础填充颜色、描边颜色和一些样式设置的绘制效果外，还支持通过画刷和画笔实现更多复杂的绘制效果。比如：
 
@@ -100,7 +105,7 @@ OH_Drawing_PathEffectDestroy(pathEffect);
 
 ## 着色器效果
 
-着色器效果基于画刷或画笔实现，可使用OH_Drawing_BrushSetShaderEffect()接口设置画刷的着色器效果，或者使用 OH_Drawing_PenSetShaderEffect接口设置画笔的着色器效果。当前支持不同的着色器效果，如线性渐变着色器效果、径向渐变着色器效果、扇形渐变着色器效果。
+着色器效果基于画刷或画笔实现，可使用OH_Drawing_BrushSetShaderEffect()接口设置画刷的着色器效果，或者使用 OH_Drawing_PenSetShaderEffect()接口设置画笔的着色器效果。当前支持不同的着色器效果，如线性渐变着色器效果、径向渐变着色器效果、扇形渐变着色器效果。
 
 着色器相关接口和具体参数的说明请见[drawing_shader_effect](../reference/apis-arkgraphics2d/capi-drawing-shader-effect-h.md)。
 
@@ -395,7 +400,7 @@ OH_Drawing_FilterDestroy(filter);
 
 蒙版滤波器可基于画笔或画刷实现，蒙版滤波器的相关接口和具体参数的说明请见[drawing_mask_filter.h](../reference/apis-arkgraphics2d/capi-drawing-mask-filter-h.md)。
 
-可使用H_Drawing_MaskFilterCreateBlur()接口创建想要设置具有模糊效果的蒙版滤波器。接口接受3个参数，分别为：
+可使用OH_Drawing_MaskFilterCreateBlur()接口创建想要设置具有模糊效果的蒙版滤波器。接口接受3个参数，分别为：
 
 - blurType：用于指定要应用的模糊类型，详细分类请参考[BlurType](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-e.md#blurtype12)。
 
@@ -446,5 +451,5 @@ OH_Drawing_FilterDestroy(filter);
 
 针对Drawing(C/C++)的开发，有以下相关实例可供参考：
 
-- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+- [NDKGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
 <!--RP1End-->

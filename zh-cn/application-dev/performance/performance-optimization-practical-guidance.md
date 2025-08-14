@@ -47,7 +47,7 @@ struct ViewA {
     // 耗时操作
     this.computeTask();
     let context = this.getUIContext().getHostContext() as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text').id);
   }
 
   computeTask(): void {
@@ -56,7 +56,7 @@ struct ViewA {
       this.count++;
     }
     let context = this.getUIContext().getHostContext() as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text').id);
   }
 }
 ```
@@ -74,7 +74,7 @@ struct ViewB {
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
     let context = this.getUIContext().getHostContext() as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text').id);
   }
 
   computeTask(): void {
@@ -83,7 +83,7 @@ struct ViewB {
       this.count++;
     }
     let context = this.getUIContext().getHostContext() as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text').id);
   }
 
   // 运算任务异步处理

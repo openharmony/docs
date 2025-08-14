@@ -1,4 +1,9 @@
 # 分段式拍照实践(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -70,7 +75,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
-    console.info(`err: ${JSON.stringify(err)}`);
+    console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;

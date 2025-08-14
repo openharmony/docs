@@ -1,4 +1,9 @@
 # OH_AVRecorder_Config
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--SE: @HmQQQ-->
+<!--TSE: @xdlinc-->
 
 ## 概述
 

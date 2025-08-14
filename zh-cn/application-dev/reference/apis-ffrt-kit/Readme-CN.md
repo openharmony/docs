@@ -1,5 +1,11 @@
 # Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 - C API<!--function-flow-runtime-c-->
   - 模块<!--function-flow-runtime-module-->
     - [FFRT](capi-ffrt.md)
@@ -12,6 +18,7 @@
     - [sleep.h](capi-sleep-h.md)
     - [task.h](capi-task-h.md)
     - [timer.h](capi-timer-h.md)
+    - [fiber.h](capi-fiber-h.md)
     - [type_def.h](capi-type-def-h.md)
   - 结构体<!--function-flow-runtime-struct-->
     - [ffrt_function_header_t](capi-ffrt-ffrt-function-header-t.md)
@@ -28,3 +35,4 @@
     - [ffrt_loop_t](capi-ffrt-ffrt-loop-t.md)
     - [ffrt_queue_t](capi-ffrt-ffrt-queue-t.md)
     - [ffrt_task_handle_t](capi-ffrt-ffrt-task-handle-t.md)
+    - [ffrt_fiber_t](capi-ffrt-ffrt-fiber-t.md)

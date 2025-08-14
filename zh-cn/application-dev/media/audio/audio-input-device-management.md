@@ -1,4 +1,9 @@
 # 管理全局音频输入设备
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 本模块提供音频输入设备管理能力，包括查询输入设备信息、监听设备连接状态变化等。具体API说明可参考文档[AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
 

@@ -1,5 +1,11 @@
 # 耗电统计错误码
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--SE: @wangyantian0-->
+<!--TSE: @alien0208-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。

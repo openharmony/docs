@@ -1,4 +1,9 @@
 # OH_Pasteboard
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--SE: @guo867-->
+<!--TSE: @maxiaorong2-->
 
 ## 概述
 

@@ -1,4 +1,9 @@
 # 基本语法概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--SE: @s10021109-->
+<!--TSE: @TerryTsao-->
 
 在初步了解ArkTS语言后，本指南将以具体的示例来说明ArkTS的基本组成。
 

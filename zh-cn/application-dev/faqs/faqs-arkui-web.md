@@ -193,7 +193,7 @@ Web({ src: 'www.example.com', controller: this.controller })
    <body>
        <h1>标题</h1>
        <h5 id="h5"></h5>
-       <h5 id = "h6"></h5>
+       <h5 id="h6"></h5>
        <button onclick="handleFromH5">调用Arkts的方法</button>
        <script type="text/javascript">
            function handleFromH5(){

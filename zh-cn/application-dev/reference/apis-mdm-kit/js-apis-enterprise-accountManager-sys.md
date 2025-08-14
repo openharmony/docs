@@ -1,4 +1,9 @@
 # @ohos.enterprise.accountManager（账户管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--SE: @liuzuming-->
+<!--TSE: @lpw_work-->
 
 本模块提供设备帐户管理能力，包括禁止创建本地用户等。
 
@@ -28,6 +33,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -81,6 +87,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -138,6 +145,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -191,6 +199,7 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -249,6 +258,7 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**

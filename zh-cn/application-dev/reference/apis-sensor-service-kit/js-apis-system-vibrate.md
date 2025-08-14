@@ -1,4 +1,9 @@
 # @system.vibrator (振动)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--SE: @butterls-->
+<!--TSE: @murphy84-->
 
 vibrator模块提供控制马达振动的能力，主要包含灯的列表查询、打开灯、关闭灯等接口，振动器的列表查询、振动器的振动器效果查询、触发/关闭振动器等接口。
 

@@ -1,4 +1,15 @@
 # 图片编码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
+
+> **说明：**
+>
+> 当前开发指导使用的接口为[Image](../../reference/apis-image-kit/capi-image.md)模块下的C API，可完成图片编解码，图片接收器，处理图像数据等功能。这部分API在API 11之前发布，在后续的版本不再增加新功能，**不再推荐使用**。<br>
+> 开发者可使用[Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md)模块下的C API，不仅提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关开发指导请参考[图片开发指导(C/C++)](image-source-c.md)节点下的内容。这部分API从API 12开始支持，并将持续演进，**推荐开发者使用**。<br>
+> 两套C API不建议同时使用，在部分场景下存在不兼容的问题。
 
 开发者可以调用本模块的Native API接口，完成图片编码，即将PixelMap压缩成不同格式的图片文件。
 
@@ -53,10 +64,10 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
 3. 初始化资源。
 
-   通过OH_ImagePacker_InitNative来初始化编码器原生实例对象。
+   通过OH_ImagePacker_InitNative来初始化编码器实例对象。
 
    ```cpp
-   // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象。
+   // 通过 napi_env 及上述创建的编码器对象初始化实例对象。
    ImagePacker_Native* nativePacker = OH_ImagePacker_InitNative(env, packer);
    ```
 

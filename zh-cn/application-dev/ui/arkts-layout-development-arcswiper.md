@@ -1,5 +1,9 @@
 # 创建弧形轮播 (ArcSwiper)（圆形屏幕推荐使用）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--SE: @jiangdayuan-->
+<!--TSE: @lxl007-->
 
 ArcSwiper是弧形轮播组件，用于圆形屏幕使用，提供弧形轮播显示能力。具体用法请参考[ArcSwiper](../reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)。
 

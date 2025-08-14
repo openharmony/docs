@@ -1,4 +1,9 @@
 #  Select
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghaibo0-->
+<!--SE: @zhanghaibo0-->
+<!--TSE: @lxl007-->
 
 提供下拉选择菜单，让用户在多个选项间选择。
 
@@ -30,11 +35,11 @@ Select(options: Array\<SelectOption>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                            | 必填 | 说明       |
-| ------ | ----------------------------------- | ---- | -------------- |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称 | 类型                            | 只读 | 可选 | 说明       |
+| ------ | ----------------------------------- | ---- | -------------- | -------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 否  | 否 | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| symbolIcon<sup>12+</sup>  |[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md) | 否   | 是  | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -75,7 +80,7 @@ selected(numCount: Optional<number | Resource>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| numCount | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 下拉菜单初始选项的索引。<br/>当numCount的值为undefined时，选中第一项。 |
+| numCount | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 下拉菜单初始选项的索引。<br/>当numCount的值为undefined时，选中第一项。 |
 
 ### value
 
@@ -112,7 +117,7 @@ value(resStr: Optional\<ResourceStr>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resStr | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceStr](ts-types.md#resourcestr)> | 是   | 下拉按钮本身的文本内容。<br/>当resStr的值为undefined时维持上次取值。 |
+| resStr | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceStr](ts-types.md#resourcestr)> | 是   | 下拉按钮本身的文本内容。<br/>当resStr的值为undefined时维持上次取值。 |
 
 ### controlSize<sup>12+</sup>
 
@@ -152,7 +157,7 @@ controlSize(size: Optional\<ControlSize>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ControlSize](ts-basic-components-button.md#controlsize11枚举说明)> | 是   | Select组件的尺寸。<br/>当size的值为undefined时，默认值为ControlSize.NORMAL。 |
+| size   | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ControlSize](ts-basic-components-button.md#controlsize11枚举说明)> | 是   | Select组件的尺寸。<br/>当size的值为undefined时，默认值为ControlSize.NORMAL。 |
 
 controlSize、width、height接口作用优先级：
 
@@ -192,7 +197,7 @@ menuItemContentModifier(modifier: Optional\<ContentModifier\<MenuItemConfigurati
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明)> | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明)> | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ### divider<sup>12+</sup>
 
@@ -256,7 +261,7 @@ font(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉按钮本身的文本样式。<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。<br/>当selectFont的值为undefined时，恢复为系统文本样式。 |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Font](ts-types.md#font)> | 是   | 下拉按钮本身的文本样式。<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。<br/>当selectFont的值为undefined时，恢复为系统文本样式。 |
 
 ### fontColor
 
@@ -288,7 +293,7 @@ fontColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉按钮本身的文本颜色。<br/>当resColor的值为undefined时，默认值：`$r('sys.color.ohos_id_color_text_primary')`混合`$r('sys.color.ohos_id_alpha_content_primary')`的透明度。<br/>当value的值为undefined时，维持上次取值。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉按钮本身的文本颜色。<br/>当resColor的值为undefined时，默认值：`$r('sys.color.ohos_id_color_text_primary')`混合`$r('sys.color.ohos_id_alpha_content_primary')`的透明度。<br/>当value的值为undefined时，维持上次取值。 |
 
 ### selectedOptionBgColor
 
@@ -320,7 +325,7 @@ selectedOptionBgColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单选中项的背景色。<br/>当resColor的值为undefined时，默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单选中项的背景色。<br/>当resColor的值为undefined时，默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
 
 ### selectedOptionFont
 
@@ -352,7 +357,7 @@ selectedOptionFont(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFontColor
 
@@ -384,7 +389,7 @@ selectedOptionFontColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单选中项的文本颜色。<br/>当resColor的值为undefined时，默认值为$r('sys.color.ohos_id_color_text_primary_activated')。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单选中项的文本颜色。<br/>当resColor的值为undefined时，默认值为$r('sys.color.ohos_id_color_text_primary_activated')。 |
 
 ### optionBgColor
 
@@ -416,7 +421,7 @@ optionBgColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
 
 ### optionFont
 
@@ -450,7 +455,7 @@ optionFont(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### optionFontColor
 
@@ -482,7 +487,7 @@ optionFontColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的文本颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary') |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的文本颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary') |
 
 ### space<sup>10+</sup>
 
@@ -514,7 +519,7 @@ space(spaceLength: Optional\<Length>)
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| spaceLength | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Length](ts-types.md#length)> | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>当spaceLength的值为undefined时，默认值：8 |
+| spaceLength | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Length](ts-types.md#length)> | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>当spaceLength的值为undefined时，默认值：8 |
 
 ### arrowPosition<sup>10+</sup>
 
@@ -546,7 +551,7 @@ arrowPosition(position: Optional\<ArrowPosition>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| position | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ArrowPosition](#arrowposition10枚举说明)> | 是   | 下拉菜单项的文本与箭头之间的对齐方式。<br/>当position的值为undefined时，默认值：ArrowPosition.END |
+| position | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ArrowPosition](#arrowposition10枚举说明)> | 是   | 下拉菜单项的文本与箭头之间的对齐方式。<br/>当position的值为undefined时，默认值：ArrowPosition.END |
 
 ### menuAlign<sup>10+</sup>
 
@@ -579,7 +584,7 @@ menuAlign(alignType: Optional\<MenuAlignType>, offset?: Offset)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| alignType | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MenuAlignType](#menualigntype10枚举说明)> | 是   | 对齐方式类型。<br/>当alignType的值为undefined时，默认值：MenuAlignType.START |
+| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[MenuAlignType](#menualigntype10枚举说明)> | 是   | 对齐方式类型。<br/>当alignType的值为undefined时，默认值：MenuAlignType.START |
 | offset    | [Offset](ts-types.md#offset)                                 | 否   | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0} |
 
 ### optionWidth<sup>11+</sup>
@@ -589,6 +594,8 @@ optionWidth(value: Dimension | OptionWidthMode )
 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。
 
 当设置为异常值或小于最小宽度56vp时，属性无效，菜单项宽度设为默认值，即2栅格。
+
+Select组件距屏幕边缘的左右间距为16vp，建议将组件本身及菜单项的宽度设置为小于等于`calc(100% - 32vp)`的值，以避免下拉菜单弹出时发生偏移。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -608,6 +615,8 @@ optionWidth(width: Optional\<Dimension | OptionWidthMode> )
 
 当设置为异常值或小于最小宽度56vp时，属性无效，菜单项宽度设为默认值，即2栅格。
 
+Select组件距屏幕边缘的左右间距为16vp，建议将组件本身及菜单项的宽度设置为小于等于`calc(100% - 32vp)`的值，以避免下拉菜单弹出时发生偏移。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -616,7 +625,7 @@ optionWidth(width: Optional\<Dimension | OptionWidthMode> )
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11)> | 是   | 下拉菜单项的宽度。<br/>当width的值为undefined时，属性无效，菜单项宽度设为默认值，即2栅格。 |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11)> | 是   | 下拉菜单项的宽度。<br/>当width的值为undefined时，属性无效，菜单项宽度设为默认值，即2栅格。 |
 
 ### optionHeight<sup>11+</sup>
 
@@ -656,7 +665,7 @@ optionHeight(height: Optional\<Dimension>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| height | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 下拉菜单显示的最大高度。<br/>当height的值为undefined时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。 |
+| height | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Dimension](ts-types.md#dimension10)> | 是   | 下拉菜单显示的最大高度。<br/>当height的值为undefined时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。 |
 
 ### menuBackgroundColor<sup>11+</sup>
 
@@ -688,7 +697,7 @@ menuBackgroundColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
 
 ### menuBackgroundBlurStyle<sup>11+</sup>
 
@@ -720,7 +729,7 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 下拉菜单的背景模糊材质。<br/>当style的值为undefined时，默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 下拉菜单的背景模糊材质。<br/>当style的值为undefined时，默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ### avoidance<sup>19+</sup>
 
@@ -784,11 +793,11 @@ textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribut
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制按钮文本样式的方法。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制按钮文本样式的方法。 |
 
 ### arrowModifier<sup>20+</sup>
 
-arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)>)
+arrowModifier(modifier: Optional\<SymbolGlyphModifier>)
 
 定制Select按钮下拉箭头图标样式的方法，在应用arrowModifier之后，Select按钮下拉箭头的图标样式将完全由开发者自定义。
 
@@ -800,7 +809,7 @@ arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
 
 ### optionTextModifier<sup>20+</sup>
 
@@ -818,7 +827,7 @@ optionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-at
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select下拉菜单未选中项样式的方法。|
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select下拉菜单未选中项样式的方法。|
 
 ### selectedOptionTextModifier<sup>20+</sup>
 
@@ -836,7 +845,7 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
 
 ### showInSubWindow<sup>20+</sup>
 
@@ -852,7 +861,7 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
+| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
@@ -902,14 +911,14 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                         | 必填 | 说明                                                         |
-| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。<br/>**说明：** 当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
-| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。<br/>**说明：** string格式可用于加载网络图片和本地图片。 |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
-| selected  | boolean | 是   | 下拉菜单项是否被选中。值为true表示选中，值为false表示未选中。<br/>默认值：false |
-| index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
-| triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
+| 名称 | 类型                                         | 只读 | 可选 | 说明                                                         |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 否  | 否  | 下拉菜单项的文本内容。<br/>**说明：** 当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
+| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 下拉菜单项的图片内容。<br/>**说明：** string格式可用于加载网络图片和本地图片。 |
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md) | 否   | 是  | 下拉选项Symbol图片内容。|
+| selected  | boolean | 否  | 否  | 下拉菜单项是否被选中。值为true表示选中，值为false表示未选中。<br/>默认值：false |
+| index  | number | 否  | 否  | 下拉菜单项的索引，索引值从0开始。 |
+| triggerSelect  | (index: number, value: string) :void | 否  | 否  | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
 ## MenuOutlineOptions<sup>20+</sup>对象说明
 
@@ -919,10 +928,10 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型                   |必填                                      | 说明                                                         |
-| ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
-| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0 |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明)|否 | 设置外描边颜色。<br/>默认值：#19ffffff|
+| 名称   | 类型                   |只读                                      |可选                                      | 说明                                                         |
+| ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明)| 否| 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明)|否 |是 | 设置外描边颜色。<br/>默认值：#19ffffff|
 
 ## 事件
 
@@ -957,7 +966,7 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback18)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnSelectCallback](#onselectcallback18)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnSelectCallback<sup>18+</sup>
 
@@ -1317,10 +1326,10 @@ import { TextModifier } from "@kit.ArkUI";
 struct SelectExample {
   @State text: string = "TTTTTTTTTT".repeat(3);
   @State index: number = 2;
-  optiontextModifier: TextModifier = new TextModifier();
-  selectedOptiontextModifier: TextModifier = new TextModifier();
+  optionTextModifier: TextModifier = new TextModifier();
+  selectedOptionTextModifier: TextModifier = new TextModifier();
   aboutToAppear(): void {
-    this.optiontextModifier
+    this.optionTextModifier
       .maxLines(1)
       .fontSize(16)
       .textAlign(TextAlign.Start)
@@ -1328,7 +1337,7 @@ struct SelectExample {
       .fontWeight(FontWeight.Normal)
       .width(200)
 
-    this.selectedOptiontextModifier
+    this.selectedOptionTextModifier
       .maxLines(1)
       .fontSize(18)
       .textAlign(TextAlign.Start)
@@ -1354,9 +1363,8 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .optionTextModifier(this.optiontextModifier)
-        .selectedOptionTextModifier(this.selectedOptiontextModifier)
-        .width('90%')
+        .optionTextModifier(this.optionTextModifier)
+        .selectedOptionTextModifier(this.selectedOptionTextModifier)
         .margin({ top: 20,left:30 })
         .borderRadius(12)
         .width(200)

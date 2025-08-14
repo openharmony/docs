@@ -447,9 +447,9 @@ Defines an SMS message instance.
 
 |         Name            |                  Type                  | Mandatory| Description                                                        |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 |  Yes | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>TP-Reply-Path: The device returns a response based on the SMSC that sends the SMS message. |
-| isReplaceMessage         | boolean                                 |  Yes | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see [3GPP TS 23.040 9.2.3.9](https://www.3gpp.org/ftp/specs/archive/23_series/23.040).|
-| isSmsStatusReportMessage | boolean                                 |  Yes | Whether the received SMS message is an SMS delivery report. The default value is **false**.<br>SMS delivery report: a message sent from the SMSC to show the current status of the SMS message you delivered.|
+| hasReplyPath             | boolean                                 |  Yes | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>- **true**: The received SMS contains **TP-Reply-Path**.<br>- **false**: The received SMS does not contain **TP-Reply-Path**.<br>TP-Reply-Path: The device returns a response based on the SMSC that sends the SMS message. |
+| isReplaceMessage         | boolean                                 |  Yes | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>- **true**: The received SMS message is a **replace short message**.<br>- **false**: The received SMS message is not a **replace short message**.<br>For details, see [3GPP TS 23.040 9.2.3.9](https://www.3gpp.org/ftp/specs/archive/23_series/23.040).|
+| isSmsStatusReportMessage | boolean                                 |  Yes | Whether the received SMS message is an SMS delivery report. The default value is **false**.<br>- **true**: The received SMS message is an SMS delivery report.<br>- **false**: The received SMS message is not an SMS delivery report.<br>SMS delivery report: a message sent from the SMSC to show the current status of the SMS message you delivered.|
 | messageClass             | [ShortMessageClass](#shortmessageclass) |  Yes | Enumerates SMS message types.                                                  |
 | pdu                      | Array&lt;number&gt;                     |  Yes | PDU in the SMS message.                           |
 | protocolId               | number                                  |  Yes | Protocol identifier used for delivering the SMS message.                                  |
@@ -501,7 +501,7 @@ Provides the callback for the SMS message sending result. It consists of three p
 
 |   Name    | Type                           | Mandatory|                                               Description                                        |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | Yes  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
+| isLastPart | boolean                         | Yes  | Whether this SMS message is the last part of a long SMS message. The default value is **false**.<br>- **true**: The SMS message is the last part of a long SMS message.<br>- **false**: The SMS message is not the last part of a long SMS message.<br>|
 | result     | [SendSmsResult](#sendsmsresult) | Yes  | SMS message sending result.                                                                            |
 | url        | string                          | Yes  | URI for storing the sent SMS message.                                                                       |
 

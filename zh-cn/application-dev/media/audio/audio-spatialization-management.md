@@ -1,4 +1,9 @@
 # 空间音频管理（仅对系统应用开放）
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--TSE: @Filger-->
 
 空间音频管理主要包含空间音频相关状态和能力的查询、设置与监听。
 

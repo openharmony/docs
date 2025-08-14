@@ -1,4 +1,9 @@
 # @ohos.util.Stack (线性容器Stack)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--SE: @yuanyao14-->
+<!--TSE: @kirl75; @zsw_zhushiwei-->
 
 Stack基于数组的数据结构实现，特点是先进后出，只能在一端进行数据的插入和删除。
 
@@ -264,12 +269,10 @@ stack.push(4);
 stack.forEach((value : number, index: number) :void => {
   console.info("value:" + value, "index:" + index);
 });
-/**
- * value:2 index:0
- * value:4 index:1
- * value:5 index:2
- * value:4 index:3
- */
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### isEmpty

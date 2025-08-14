@@ -1,5 +1,11 @@
 # 管理域账号插件（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--SE: @JiDong-CS1-->
+<!--TSE: @zhaimengchao-->
+
 OEM厂商可以采用插件方式定制化域账号管理能力，系统提供了域账号插件注册和注销能力。
 
 ## 开发准备

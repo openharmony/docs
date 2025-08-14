@@ -236,14 +236,16 @@ Defines a union type for **Repeat** data source parameters.
 
 ## VirtualScrollOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | totalCount | number | No  | Total number of data items to load, which may not equal the data source length.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| reusable<sup>18+</sup> | boolean | No  | Whether to enable the reuse feature.<br>Default value: **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| reusable<sup>18+</sup> | boolean | No  | Whether to enable the reuse feature. The value **true** means to enable the reuse feature, and **false** means the opposite.<br>Default value: **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | onLazyLoading<sup>19+</sup> | (index: number) => void | No  | Function to load data on demand for a given index.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
-| onTotalCount<sup>19+</sup> | () => number | No  | Function to dynamically obtain the total number of items, which may not equal the data source length. Prioritize this function over **totalCount**. If both **totalCount** and **onTotalCount** are set, **totalCount** is ignored.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
+| onTotalCount<sup>19+</sup> | () => number | No  | Function to dynamically obtain the total number of items, which may not equal the data source length. Prioritize this function over **totalCount**. If both **totalCount** and **onTotalCount** are set, **totalCount** is ignored.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 
 ### totalCount: Length of the Data to Be Loaded
 

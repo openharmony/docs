@@ -1,5 +1,11 @@
 # PermissionRequestResult
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 权限请求结果对象，在调用[requestPermissionsFromUser](js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请权限时返回此对象表明此次权限申请的结果。
 
 > **说明：**
