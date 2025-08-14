@@ -987,12 +987,10 @@ struct Font08 {
         NodeContainer(myNodeController)
           .height('100%')
           .width('100%')
-        Image(this.src)
-          .width('0%').height('0%')
-          .onComplete(
-            () => {
-              performTask();
-            })
+        Text("Test for vertical alignment")
+          .onApper(() => {
+            performTask();
+          })
       }
       .width('100%')
     }
@@ -1009,7 +1007,7 @@ struct Font08 {
 | 底部对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_bottom.jpg) | 
 
 ### 示例四（上下标文本）
-这里以任意字符上标为例，呈现上下标文本排版特性。
+这里以上标为例，呈现上下标文本排版特性。
 
 ```ts
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
@@ -1141,15 +1139,13 @@ struct Font08 {
         NodeContainer(myNodeController)
           .height('100%')
           .width('100%')
-        Image(this.src)
-          .width('0%').height('0%')
-          .onComplete(
-            () => {
-              performTask();
-            })
+        Text("Test for superscript and subscript")
+          .onApper(() => {
+            performTask();
+          })
       }
-      .width('100%')
     }
+      .width('100%')
   }
 }
 ```
