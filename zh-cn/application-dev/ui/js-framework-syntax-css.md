@@ -1,4 +1,10 @@
 # CSS语法参考
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 CSS是描述HML页面结构的样式语言。所有组件均存在系统默认样式，也可在页面CSS样式文件中对组件、页面自定义不同的样式。请参考[通用样式](../reference/apis-arkui/arkui-js/js-components-common-styles.md)了解兼容JS的类Web开发范式支持的组件样式。
 
@@ -79,6 +85,12 @@ css选择器用于选择需要添加样式的元素，支持的选择器如下�
 
 ```css
 /* 页面样式xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 /* 对所有div组件设置样式 */
 div {
   flex-direction: column;
@@ -142,6 +154,13 @@ css伪类是选择器中的关键字，用于指定要选择元素的特殊状�
 
 ```css
 /* index.css */
+.container {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .button:active {
   background-color: #888888;/*按钮被激活时，背景颜色变为#888888 */
 }
