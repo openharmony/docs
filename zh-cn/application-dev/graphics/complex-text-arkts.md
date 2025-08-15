@@ -1019,7 +1019,7 @@ struct Font08 {
 | 底部对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_bottom.jpg) | 
 
 ### 示例四（上下标文本）
-这里以上标为例，呈现上下标文本排版特性。
+这里以下标样式为例，呈现上下标文本排版特性。
 
 ```ts
 import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
