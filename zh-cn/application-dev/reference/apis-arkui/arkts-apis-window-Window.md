@@ -7619,7 +7619,7 @@ try {
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -7627,7 +7627,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**设备行为差异：** 当使用该接口创建模应用子窗口时（即[SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11)中的[ModalityType](arkts-apis-window-e.md#modalitytype14)为APPLICATION_MODALITY），该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。当使用该接口创建其他类型子窗口时，该接口在所有设备中可正常调用。
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回undefined。
 
 **参数：**
 
