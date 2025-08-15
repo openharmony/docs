@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @huipeizi-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
 
 本章节介绍拉起系统应用的方式，以及支持跳转系统应用的能力清单。
 

@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 ## Introduction
 Bluetooth is a wireless communication technology that enables short-range data transmission. Its technical specifications are developed by the Bluetooth Special Interest Group (SIG). It can be used to connect various devices such as smartphones, headsets, speakers, keyboards, mice, and printers. Currently, Bluetooth has two common technical categories: Bluetooth Classic (BR/EDR) and Bluetooth Low Energy (BLE).

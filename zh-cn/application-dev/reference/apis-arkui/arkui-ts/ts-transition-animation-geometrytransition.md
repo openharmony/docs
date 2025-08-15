@@ -2,8 +2,8 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
-<!--SE: @chensiyi_CE @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @chensiyi_CE @yangfan229-->
+<!--Tester: @lxl007-->
 
 在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
 

@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 ## Introduction
 This document provides guidance on how to connect devices and transfer data via Serial Port Profile (SPP). When two devices communicate via SPP, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.

@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @jayleehw-->
-<!--SE: @jayleehw-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jayleehw-->
+<!--Tester: @lixueqing513-->
 
 
 - [Ability Kit简介](abilitykit-overview.md)
