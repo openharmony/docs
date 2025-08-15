@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Print-->
 <!--Owner: @guoshengbang-->
-<!--SE: @gcw_4D6e0BBd-->
-<!--TSE: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
 
 该模块为打印扩展能力的操作API，提供调用打印扩展能力的接口。
 
