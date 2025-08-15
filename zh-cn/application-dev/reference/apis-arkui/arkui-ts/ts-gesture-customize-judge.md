@@ -17,6 +17,8 @@
 
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
+为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
