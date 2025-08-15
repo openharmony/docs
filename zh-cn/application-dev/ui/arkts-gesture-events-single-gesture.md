@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ## 点击事件（onClick）
 
@@ -184,7 +185,7 @@ PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
 
 - fingers：用于声明触发拖动手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。
 
-- direction：用于声明触发拖动的手势方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为Pandirection.All。
+- direction：用于声明触发拖动的手势方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为PanDirection.All。
 
 - distance：用于声明触发拖动的最小拖动识别距离，单位为vp，默认值为5。
 

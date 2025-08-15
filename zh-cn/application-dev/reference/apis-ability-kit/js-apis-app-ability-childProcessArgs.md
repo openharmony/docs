@@ -1,4 +1,10 @@
 # @ohos.app.ability.ChildProcessArgs (子进程参数)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 传递到子进程的参数。[childProcessManager](js-apis-app-ability-childProcessManager.md)启动子进程时，可以通过ChildProcessArgs传递参数到子进程中。
 

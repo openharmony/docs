@@ -1,5 +1,12 @@
 # Test Kit（应用测试服务）<!--test-kit-->
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
+
 - ArkTS API<!--test-arkts-->
   - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-app-ability-abilityDelegatorRegistry.md)
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

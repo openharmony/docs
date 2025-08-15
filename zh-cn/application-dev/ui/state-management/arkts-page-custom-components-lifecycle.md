@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926; @huyisuo-->
-<!--SE: @zhangboren-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 自定义组件生命周期，即用[@Component](arkts-create-custom-components.md#component)或[@ComponentV2](arkts-new-componentV2.md)装饰的自定义组件的生命周期，提供以下生命周期接口：
 
@@ -67,7 +68,7 @@
 @Component
 struct Parent {
   @State showChild: boolean = true;
-  @State btnColor: string = "#FF007DFF";
+  @State btnColor: string = '#FF007DFF';
 
   // 组件生命周期
   aboutToAppear() {

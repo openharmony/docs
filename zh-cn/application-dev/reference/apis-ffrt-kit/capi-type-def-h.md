@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -68,7 +69,6 @@
 | [typedef void (\*ffrt_poller_cb)(void* data, uint32_t event)](#ffrt_poller_cb) | ffrt_poller_cb | poller回调函数定义。 |
 | [typedef void (\*ffrt_timer_cb)(void* data)](#ffrt_timer_cb) | ffrt_timer_cb | timer回调函数定义。 |
 
-
 ## 枚举类型说明
 
 ### ffrt_queue_priority_t
@@ -130,6 +130,7 @@ enum ffrt_storage_size_t
 | ffrt_cond_storage_size = 64 | 条件变量                |
 | ffrt_queue_attr_storage_size = 128 | 队列属性                |
 | ffrt_rwlock_storage_size = 64 | 读写锁<br>**起始版本：** 18 |
+| ffrt_fiber_storage_size| 纤程在不同平台所占大小，单位：Byte。（平台相关）aarch64架构：22字节；arm架构：64字节；x86_64架构：8字节；其他平台：不支持。<br>**起始版本：** 20  |
 
 ### ffrt_function_kind_t
 

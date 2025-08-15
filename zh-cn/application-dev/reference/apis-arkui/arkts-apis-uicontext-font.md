@@ -1,4 +1,10 @@
 # Class (Font)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 注册自定义字体的信息。
 
@@ -9,6 +15,8 @@
 > - 本Class首批接口从API version 10开始支持。
 >
 > - 以下API需先使用UIContext中的[getFont()](./arkts-apis-uicontext-uicontext.md#getfont)方法获取到Font对象，再通过该对象调用对应方法。
+>
+> - 推荐使用字体引擎的[loadFontSync](../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口注册自定义字体。
 
 ## registerFont
 
@@ -26,7 +34,7 @@ registerFont(options: font.FontOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。 |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。<br/>**说明：**<br/>设置注册字体文件的路径，读取系统沙箱路径内的资源时，建议使用file://路径前缀的字符串，需要确保沙箱目录路径下的文件存在并且有可读权限。 |
 
 **示例：**
 

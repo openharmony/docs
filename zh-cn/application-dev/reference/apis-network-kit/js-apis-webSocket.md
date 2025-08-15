@@ -1,5 +1,12 @@
 # @ohos.net.webSocket (WebSocket连接)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -334,7 +341,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.info("connect success")
     } else {
-      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
+      console.error("connect fail. Code: ${err.code}, message: ${err.message}")
     }
 });
 
@@ -1396,9 +1403,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let localServer = webSocket.createWebSocketServer();
-localServer.on('error', (err: BusinessError) => {
-  console.error(`error. Code: ${error.code}, message: ${error.message}`);
+let wsServer: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+wsServer.on('error', (err: BusinessError) => {
+  console.error(`error. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

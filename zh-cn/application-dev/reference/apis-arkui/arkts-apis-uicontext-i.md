@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92; @liyi0903; @mayaolll-->
+<!--Designer: @piggyguy; @liyi0903; @jiangdayuan-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -38,10 +44,10 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称             | 类型                | 必填     | 说明                     |
-| --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| 名称             | 类型                | 只读 | 可选   | 说明                     |
+| --------------- | ---------------------- | ------------ | --------------------- | --------------------- |
+| renderRootOverlay   | boolean | 否 | 是 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## GestureTriggerInfo<sup>20+</sup>
 

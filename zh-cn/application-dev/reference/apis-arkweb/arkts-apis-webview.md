@@ -1,9 +1,10 @@
 # 模块描述
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yp99ustc-->
-<!--SE: @ctqctq99-->
-<!--TSE: @ghiker-->
+<!--Designer: @ctqctq99-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 @ohos.web.webview提供Web控制能力，[Web](arkts-basic-components-web.md)组件提供网页显示的能力。
 

@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -57,6 +58,7 @@
 | [FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle)](#ffrt_queue_wait) | 等待队列中一个任务执行完成。 |
 | [FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle)](#ffrt_queue_cancel) | 取消队列中一个任务。 |
 | [FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void)](#ffrt_get_main_queue) | 获取主线程队列。 |
+| [FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void)](#ffrt_get_current_queue) | 获取应用Worker(ArkTs)线程队列。 |
 
 ## 枚举类型说明
 
@@ -520,5 +522,25 @@ FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void)
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API [ffrt_queue_t](capi-ffrt-ffrt-queue-t.md) | 返回主线程队列句柄。 |
+
+### ffrt_get_current_queue()
+
+```
+FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void)
+```
+
+**描述**
+
+获取应用Worker(ArkTs)线程队列。
+
+**起始版本：** 12
+
+**废弃版本：** 18
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API ffrt_queue_t | 返回当前线程队列句柄。 |
 
 

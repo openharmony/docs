@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zcdqs; @fangyuhao-->
-<!--SE: @zcdqs-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @zcdqs-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
@@ -78,6 +79,10 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 > **说明：** 
 >
 > Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> 设置Grid的padding后，如果子组件部分位于Grid内容区且部分位于padding区域内，则会显示；如果子组件完全位于padding区域内，则不会显示。如下图所示，GridItem1显示，而GridItem2不显示。
+>
+> ![GridPadding示意图](figures/gridPadding.png)
 
 ### columnsTemplate
 
@@ -725,6 +730,12 @@ Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Gri
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格到达起始位置时触发的回调。 |
+
 ### onReachEnd<sup>10+</sup>
 
 onReachEnd(event: () => void)
@@ -737,9 +748,15 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格到达末尾位置时触发的回调。 |
+
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
 
@@ -763,14 +780,7 @@ onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemai
 
 | 参数名 | 类型                                                    | 必填 | 说明                       |
 | ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
-
-**返回值：** 
-
-| 类型                     | 说明                 |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | 实际滑动量，单位vp。 |
+| event | [OnScrollFrameBeginCallback](ts-container-scroll.md#onscrollframebegincallback18)   | 是   | 每帧滚动开始回调函数。 |
 
 ### onScrollStart<sup>10+</sup>
 
@@ -782,6 +792,12 @@ onScrollStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格滑动开始时触发的回调。 |
+
 ### onScrollStop<sup>10+</sup>
 
 onScrollStop(event: () => void)
@@ -791,6 +807,12 @@ onScrollStop(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| event | () => void | 是 | 网格滑动停止时触发的回调。 |
 
 ### onScroll<sup>(deprecated)</sup>
 onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 
@@ -2423,8 +2445,8 @@ struct GridItemExample {
   @State dragItem: number = -1
   @State scaleItem: number = -1
   @State item: number = -1
-  private dragRefOffsetx: number = 0
-  private dragRefOffsety: number = 0
+  private dragRefOffsetX: number = 0
+  private dragRefOffsetY: number = 0
   @State offsetX: number = 0
   @State offsetY: number = 0
   private FIX_VP_X: number = 108
@@ -2452,7 +2474,7 @@ struct GridItemExample {
       return
     }
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 3)
   }
 
@@ -2462,7 +2484,7 @@ struct GridItemExample {
       return
     }
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 3)
   }
 
@@ -2472,7 +2494,7 @@ struct GridItemExample {
       return
     }
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 3)
   }
 
@@ -2482,7 +2504,7 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.itemMove(index, index - 1)
   }
 
@@ -2492,7 +2514,7 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.itemMove(index, index + 1)
   }
 
@@ -2502,9 +2524,9 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 4)
   }
 
@@ -2514,9 +2536,9 @@ struct GridItemExample {
       return
     }
     this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetx += this.FIX_VP_X
+    this.dragRefOffsetX += this.FIX_VP_X
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 2)
   }
 
@@ -2526,9 +2548,9 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsety += this.FIX_VP_Y
+    this.dragRefOffsetY += this.FIX_VP_Y
     this.itemMove(index, index + 2)
   }
 
@@ -2538,9 +2560,9 @@ struct GridItemExample {
       return
     }
     this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetx -= this.FIX_VP_X
+    this.dragRefOffsetX -= this.FIX_VP_X
     this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsety -= this.FIX_VP_Y
+    this.dragRefOffsetY -= this.FIX_VP_Y
     this.itemMove(index, index - 4)
   }
 
@@ -2598,12 +2620,12 @@ struct GridItemExample {
               PanGesture({ fingers: 1, direction: null, distance: 0 })
                 .onActionStart(() => {
                   this.dragItem = item
-                  this.dragRefOffsetx = 0
-                  this.dragRefOffsety = 0
+                  this.dragRefOffsetX = 0
+                  this.dragRefOffsetY = 0
                 })
                 .onActionUpdate((event: GestureEvent) => {
-                  this.offsetY = event.offsetY - this.dragRefOffsety
-                  this.offsetX = event.offsetX - this.dragRefOffsetx
+                  this.offsetY = event.offsetY - this.dragRefOffsetY
+                  this.offsetX = event.offsetX - this.dragRefOffsetX
                   this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     let index = this.numbers.indexOf(this.dragItem)
                     if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&

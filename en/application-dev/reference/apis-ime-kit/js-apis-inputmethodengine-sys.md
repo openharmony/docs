@@ -1,4 +1,9 @@
 # @ohos.inputMethodEngine (Input Method Service) (System API)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethodEngine** module provides management capabilities for system input method applications. With the APIs of this module, input method applications are able to create soft keyboard windows, insert or delete characters, select text, and listen for physical keyboard events.
 
@@ -119,6 +124,8 @@ Describes the attribute of the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
+**System API**: This is a system API.
+
 | Name        | Type| Read-Only| Optional| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | fluidLightMode<sup>20+</sup> | [FluidLightMode](#fluidlightmode20) | Yes| Yes| Fluid light mode. If this attribute is not specified or is set to an invalid value, the fluid light mode is not used by default.<br>This attribute is available only to system applications.|
@@ -128,6 +135,8 @@ Describes the attribute of the edit box.
 Describes the immersive effect.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**System API**: This is a system API.
 
 | Name  | Type                                 | Read-Only| Optional| Description          |
 | ------ | ------------------------------------ | ---- | ---- | -------------- |

@@ -1,9 +1,10 @@
 # OH_NativeBundle_ApplicationInfo
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @wang19954-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 概述
 
@@ -22,4 +23,4 @@
 | 名称 | 描述 |
 | -- | -- |
 | char* bundleName | 应用包名。 |
-| char* fingerprint | 应用的指纹信息。 |
+| char* fingerprint | 应用的指纹信息，由签名证书通过SHA-256算法计算哈希值生成。使用的签名证书发生变化时，该字段也会发生变化。 |

@@ -1,4 +1,10 @@
 # Mechanic Kit简介
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 从API version 20开始，支持使用机械设备管理。随着智能设备的快速发展，手机与云台、机械臂等三方配件设备之间的交互需求日益增长，但当前缺乏统一、完整的连接和控制解决方案。为了解决这一问题，现在提供 MechanicKit（机械设备管理套件），为开发者提供了完整的三方配件集成解决方案。
 

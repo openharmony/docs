@@ -2,17 +2,18 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wanghang-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6; @lihaitao-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @huipeizi-->
 
 - ArkTS API<!--ability-arkts-->
   - Stage模型能力的接口<!--stage-model-->
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](js-apis-app-ability-abilityLifecycleCallback.md)
-    - [@ohos.app.ability.AbilityStage (AbilityStage组件容器)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.AbilityStage 组件管理器](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
-    - [@ohos.app.ability.application (应用基础能力)](js-apis-app-ability-application.md)
+    - [@ohos.app.ability.application (应用工具类)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](js-apis-app-ability-appServiceExtensionAbility.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
@@ -21,8 +22,8 @@
     - [@ohos.app.ability.childProcessManager (子进程管理)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.ChildProcessArgs (子进程参数)](js-apis-app-ability-childProcessArgs.md)
     - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](js-apis-app-ability-childProcessOptions.md)
-    - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
-    - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](js-apis-app-ability-completionHandler.md)
+    - [@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)
+    - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.contextConstant (Context相关常量)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -31,7 +32,7 @@
     - [@ohos.app.ability.insightIntent (意图调用基础能力)](js-apis-app-ability-insightIntent.md)
     - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](js-apis-app-ability-InsightIntentDecorator.md)
-    - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
+    - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
     - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
     - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](js-apis-app-ability-photoEditorExtensionAbility.md)
     - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](js-apis-app-ability-openLinkOptions.md)
@@ -52,7 +53,7 @@
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](js-apis-app-ability-autoFillManager-sys.md)
     - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](js-apis-app-ability-autoStartupManager-sys.md)
-    - [@ohos.app.ability.common (应用上下文Context)(系统接口)](js-apis-app-ability-common-sys.md)
+    - [@ohos.app.ability.common (Ability公共模块)(系统接口)](js-apis-app-ability-common-sys.md)
     - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](js-apis-app-ability-dialogSession-sys.md)
     - [@ohos.app.ability.insightIntent (insightIntent)(系统接口)](js-apis-app-ability-insightIntent-sys.md)
     - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](js-apis-app-ability-insightIntentDriver-sys.md)
@@ -65,6 +66,14 @@
     - [@ohos.ability.ability (Ability模块)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
+    - ability<!--fa-model-ability-->
+      - [dataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
+      - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
+      - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
+    - app<!--app-->
+      - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
+      - [context](js-apis-inner-app-context.md)
+      - [processInfo](js-apis-inner-app-processInfo.md)
   - 通用能力的接口(推荐)<!--both-models-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
     - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
@@ -121,14 +130,6 @@
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
       - [connectOptions](js-apis-inner-ability-connectOptions.md)
       - [dataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)
-      - [dataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
-      - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
-      - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
-      - [want](js-apis-inner-ability-want.md)
-    - app<!--app-->
-      - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
-      - [context](js-apis-inner-app-context.md)
-      - [processInfo](js-apis-inner-app-processInfo.md)
     - application<!--ability-arkts-application-->
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
@@ -257,6 +258,8 @@
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (应用管理)](js-apis-system-package.md)
+    - ability<!--ability-deprecated-->
+      - [want](js-apis-inner-ability-want.md)
     - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
       - [applicationInfo](js-apis-bundle-ApplicationInfo.md)

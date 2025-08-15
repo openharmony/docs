@@ -1,5 +1,12 @@
 # Class (RectUtils)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 > **说明：**
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -471,7 +478,7 @@ let rect = drawing.RectUtils.makeEmpty();
 let isEmpty = drawing.RectUtils.isEmpty(rect);
 console.info('isEmpty :', isEmpty);
 let rect2 = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
-isEmpty = drawing.RectUtils.isEmpty(rect);
+isEmpty = drawing.RectUtils.isEmpty(rect2);
 console.info('isEmpty :', isEmpty);
 ```
 
@@ -489,7 +496,7 @@ static offset(rect: common2D.Rect, dx: number, dy: number): void
 | ------ | ------ | ---- | -------------- |
 | rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 发生偏移的矩形区域。 |
 | dx   | number | 是    | 水平方向平移的距离，该参数为浮点数。0表示不平移，负数表示向左平移，正数表示向右平移。 |
-| dy    | number | 是   | 竖直方向平移的距离，该参数为浮点数。0表示不平移，负数表示向上平移，正数表示向右平移。 |
+| dy    | number | 是   | 竖直方向平移的距离，该参数为浮点数。0表示不平移，负数表示向上平移，正数表示向下平移。 |
 
 **示例：**
 
@@ -523,7 +530,7 @@ static offsetTo(rect: common2D.Rect, newLeft: number, newTop: number): void
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
-let rect = drawing.RectUtils.makeLtrb(40, 40, 20, 20);
+let rect = drawing.RectUtils.makeLtrb(20, 20, 40, 40);
 drawing.RectUtils.offsetTo(rect, 10, 20);
 console.info('rect.left:', rect.left);
 console.info('rect.top: ', rect.top);

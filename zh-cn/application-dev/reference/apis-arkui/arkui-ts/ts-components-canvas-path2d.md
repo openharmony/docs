@@ -2,14 +2,17 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口或者fill接口进行绘制。
 
 >  **说明：**
 >
 >  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  Path2D对象不支持重置已设置的路径，如需新路径可重新创建一个空的Path2D对象。
 >
 >  Path2D对象的方法无法对[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)和[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)对象中设置的路径生效。
 
@@ -164,8 +167,14 @@ moveTo(x: number, y: number): void
 
 | 参数   | 类型     | 必填 | 描述       |
 | ---- | ------ | ---- | -------- |
-| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp |
-| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp |
+| x    | number | 是 | 目标点X轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y    | number | 是 | 目标点Y轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+
+> **说明：**
+>
+> API version 18之前，若未执行moveTo接口或moveTo接口传入无效参数，路径以(0,0)为起点。
+>
+> API version 18及以后，若未执行moveTo接口或moveTo接口传入无效参数，路径以初次调用的lineTo、arcTo、bezierCurveTo或quadraticCurveTo接口中的起始点为起点。
 
 **示例：**
 
@@ -217,8 +226,8 @@ lineTo(x: number, y: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp |
-| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp |
+| x    | number | 是 | 目标点X轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y    | number | 是 | 目标点Y轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
 
 **示例：**
 
@@ -271,12 +280,12 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| cp1x | number | 是 | 第一个贝塞尔参数的x坐标值。<br>默认单位：vp |
-| cp1y | number | 是 | 第一个贝塞尔参数的y坐标值。<br>默认单位：vp |
-| cp2x | number | 是 | 第二个贝塞尔参数的x坐标值。<br>默认单位：vp |
-| cp2y | number | 是 | 第二个贝塞尔参数的y坐标值。<br>默认单位：vp |
-| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp    |
-| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp    |
+| cp1x | number | 是 | 第一个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cp1y | number | 是 | 第一个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cp2x | number | 是 | 第二个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cp2y | number | 是 | 第二个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x    | number | 是 | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp    |
+| y    | number | 是 | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp    |
 
 **示例：**
 
@@ -326,10 +335,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| cpx  | number | 是 | 贝塞尔参数的x坐标值。<br>默认单位：vp |
-| cpy  | number | 是 | 贝塞尔参数的y坐标值。<br>默认单位：vp |
-| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp |
-| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp |
+| cpx  | number | 是 | 贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cpy  | number | 是 | 贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x    | number | 是 | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y    | number | 是 | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
 
 **示例：**
 
@@ -379,12 +388,12 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x                | number  | 是 | 弧线圆心的x坐标值。<br>默认单位：vp |
-| y                | number  | 是 | 弧线圆心的y坐标值。<br>默认单位：vp |
-| radius           | number  | 是 | 弧线的圆半径。<br>默认单位：vp    |
-| startAngle       | number  | 是 | 弧线的起始弧度。<br>单位：弧度。   |
-| endAngle         | number  | 是 | 弧线的终止弧度。<br>单位：弧度。   |
-| counterclockwise | boolean | 否 | 是否逆时针绘制圆弧。<br>true：逆时针方向绘制圆弧。<br>false：顺时针方向绘制圆弧。<br>默认值：false |
+| x                | number  | 是 | 弧线圆心的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y                | number  | 是 | 弧线圆心的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| radius           | number  | 是 | 弧线的圆半径。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp    |
+| startAngle       | number  | 是 | 弧线的起始弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度。   |
+| endAngle         | number  | 是 | 弧线的终止弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度。   |
+| counterclockwise | boolean | 否 | 是否逆时针绘制圆弧。<br>true：逆时针方向绘制圆弧。<br>false：顺时针方向绘制圆弧。<br>默认值：false，设置null或undefined按默认值处理。  |
 
 **示例：**
 
@@ -433,11 +442,11 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x1     | number | 是 | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp |
-| y1     | number | 是 | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp |
-| x2     | number | 是 | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp |
-| y2     | number | 是 | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp |
-| radius | number | 是 | 圆弧的圆半径值。<br>默认单位：vp |
+| x1     | number | 是 | 圆弧经过的第一个点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y1     | number | 是 | 圆弧经过的第一个点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x2     | number | 是 | 圆弧经过的第二个点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y2     | number | 是 | 圆弧经过的第二个点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| radius | number | 是 | 圆弧的圆半径值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
 
 **示例：**
 
@@ -487,14 +496,14 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x                | number  | 是  | 椭圆圆心的x轴坐标。<br>默认单位：vp|
-| y                | number  | 是  | 椭圆圆心的y轴坐标。<br>默认单位：vp|
-| radiusX          | number  | 是  | 椭圆x轴的半径长度。<br>默认单位：vp|
-| radiusY          | number  | 是  | 椭圆y轴的半径长度。<br>默认单位：vp|
-| rotation         | number  | 是  | 椭圆的旋转角度。<br>单位：弧度                           |
-| startAngle       | number  | 是  | 椭圆绘制的起始点角度。<br>单位：弧度                        |
-| endAngle         | number  | 是  | 椭圆绘制的结束点角度。<br>单位：弧度                        |
-| counterclockwise | boolean | 否  | 是否以逆时针方向绘制椭圆。<br>true：逆时针方向绘制椭圆。<br>false：顺时针方向绘制椭圆。<br>默认值：false |
+| x                | number  | 是  | 椭圆圆心的x轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp|
+| y                | number  | 是  | 椭圆圆心的y轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp|
+| radiusX          | number  | 是  | 椭圆x轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp|
+| radiusY          | number  | 是  | 椭圆y轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp|
+| rotation         | number  | 是  | 椭圆的旋转角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度                           |
+| startAngle       | number  | 是  | 椭圆绘制的起始点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度                        |
+| endAngle         | number  | 是  | 椭圆绘制的结束点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度                        |
+| counterclockwise | boolean | 否  | 是否以逆时针方向绘制椭圆。<br>true：逆时针方向绘制椭圆。<br>false：顺时针方向绘制椭圆。<br>默认值：false，设置null或undefined按默认值处理。 |
 
 **示例：**
 
@@ -543,10 +552,10 @@ rect(x: number, y: number, w: number, h: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x    | number | 是 | 指定矩形的左上角x坐标值。<br>默认单位：vp |
-| y    | number | 是 | 指定矩形的左上角y坐标值。<br>默认单位：vp |
-| w    | number | 是 | 指定矩形的宽度。<br>默认单位：vp |
-| h    | number | 是 | 指定矩形的高度。<br>默认单位：vp |
+| x    | number | 是 | 指定矩形的左上角x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| y    | number | 是 | 指定矩形的左上角y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| w    | number | 是 | 指定矩形的宽度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| h    | number | 是 | 指定矩形的高度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
 
 **示例：**
 

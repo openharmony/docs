@@ -1,15 +1,21 @@
 # Using the Flashlight (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 To use the flashlight mode, you manipulate your phone to turn on the flashlight, which then stays on persistently.
 
 When you use the flashlight mode with a camera application, the following situations may occur:
-- When the rear camera is used and [FlashMode](../../reference/apis-camera-kit/js-apis-camera.md#flashmode) is set to off, the flashlight cannot be turned on.
+
+- When the rear camera is used and [FlashMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#flashmode) is set to off, the flashlight cannot be turned on.
 - When the front camera is used, the flashlight can be turned on and remains steady on.
 - When you switch from the front camera to the rear camera, the flashlight will be automatically turned off if it was turned on previously.
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import the camera module, which provides camera-related attributes and methods.
 
@@ -18,7 +24,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-2. Call [isTorchSupported](../../reference/apis-camera-kit/js-apis-camera.md#istorchsupported11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to check whether the current device supports the flashlight.
+2. Call [isTorchSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchsupported11) in the [CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to check whether the current device supports the flashlight.
 
     ```ts
     function isTorchSupported(cameraManager: camera.CameraManager) : boolean {
@@ -34,7 +40,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
     }
     ```
 
-3. Call [isTorchModeSupported](../../reference/apis-camera-kit/js-apis-camera.md#istorchmodesupported11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to check whether a specific [TorchMode](../../reference/apis-camera-kit/js-apis-camera.md#torchmode11) is supported.
+3. Call [isTorchModeSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchmodesupported11) in the [CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to check whether a specific [TorchMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#torchmode11) is supported.
 
     ```ts
     function isTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : boolean {
@@ -49,11 +55,11 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
     }
     ```
 
-4. Call [setTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#settorchmode11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to set the flashlight mode, and then [getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to obtain the flashlight mode in use.
+4. Call [setTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#settorchmode11) in the [CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to set the flashlight mode, and then [getTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#gettorchmode11) in the [CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to obtain the flashlight mode in use.
 
     > **NOTE**
     >
-    > Before using [getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11), register a listener for the flashlight status. For details, see [Status Listening](camera-torch-use.md#status-listening).
+    > Before using [getTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#gettorchmode11), register a listener for the flashlight status. For details, see [Status Listening](camera-torch-use.md#status-listening).
 
     ```ts
     function setTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : void {
@@ -68,7 +74,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 During camera application development, you can listen for the flashlight status, including on, off, unavailable, and available.  
 
-Register the **'torchStatusChange'** event and return the listening result through a callback, which carries the **TorchStatusInfo** parameter. For details about the parameter, see [TorchStatusInfo](../../reference/apis-camera-kit/js-apis-camera.md#torchstatusinfo11).
+Register the **'torchStatusChange'** event and return the listening result through a callback, which carries the **TorchStatusInfo** parameter. For details about the parameter, see [TorchStatusInfo](../../reference/apis-camera-kit/arkts-apis-camera-i.md#torchstatusinfo11).
 
 
 ```ts

@@ -1,5 +1,10 @@
 # 基于AVCodec播放DRM节目(C/C++)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 ## 功能介绍
 
 开发者可以调用DRM Kit的Native API接口，完成DRM节目播放。
@@ -108,10 +113,19 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
     memset(&info, 0, sizeof(DRM_MediaKeyRequestInfo));
     info.initDataLen = sizeof(initData);
     info.type = MEDIA_KEY_TYPE_ONLINE; // MEDIA_KEY_TYPE_ONLINE: 在线媒体密钥请求类型; MEDIA_KEY_TYPE_OFFLINE: 离线媒体密钥请求类型。 
-    memcpy(info.mimeType, (char *)"video/mp4", sizeof("video/mp4"));
-    memcpy(info.initData, initData, sizeof(initData));
-    memcpy(info.optionName[0], (char *)"optionalDataName", sizeof("optionalDataName"));
-    memcpy(info.optionData[0], (char *)"optionalDataValue", sizeof("optionalDataValue"));
+    if (sizeof("video/mp4") <= sizeof(info.mimeType)) {
+    memcpy(info.mimeType, "video/mp4", sizeof("video/mp4"));
+    }
+    if (info.initDataLen <= sizeof(info.initData)) {
+    memcpy(info.initData, initData, info.initDataLen);
+    }
+    if (sizeof("optionalDataName") <= sizeof(info.optionName[0])) {
+    memcpy(info.optionName[0], "optionalDataName", sizeof("optionalDataName"));
+    }
+
+    if (sizeof("optionalDataValue") <= sizeof(info.optionData[0])) {
+    memcpy(info.optionData[0], "optionalDataValue", sizeof("optionalDataValue"));
+    }
     info.optionsCount = 1;
     ret = OH_MediaKeySession_GenerateMediaKeyRequest(mediaKeySession, &info, &mediaKeyRequest);
     if (ret != DRM_ERR_OK) {

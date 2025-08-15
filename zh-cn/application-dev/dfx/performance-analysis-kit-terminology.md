@@ -1,5 +1,12 @@
 # Performance Analysis Kit术语
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mzyan-->
+<!--Designer: @liyueric-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 通用
 
 ### log版本
@@ -49,7 +56,7 @@ Asan（Address Sanitizer）为内存地址消毒器，用于检测非法地址�
 
 ### GWP-Asan
 
-GWP-Asan是一种原生内存分配器功能，可帮助查找释放后使用和堆缓冲区溢出问题。
+GWP-Asan是一种原生内存分配器功能，支持检测内存释放后使用和堆缓冲区溢出问题。
 
 ### HWAsan
 
@@ -57,7 +64,7 @@ HWAsan（Hardware-Assisted Address Sanitizer）是Clang LLVM提供的一套内�
 
 ### JS Crash
 
-应用JS/ArkTS代码执行过程中发生的未捕获异常或错误导致应用意外退出，应用会在抛出未处理的异常时崩溃。
+应用JS/ArkTS代码执行过程中发生的未捕获异常或错误，应用会因为无法继续正常运行而直接崩溃。
 
 ### TSan
 
@@ -97,7 +104,7 @@ LTPO（Low Temperature Polycrystalline Oxide）中文译为“低温多晶氧化
 
 ### 冗余绘制
 
-冗余绘制是指界面中存在被遮挡或重复渲染的图层，导致系统在同一像素上进行多次无效绘制，浪费GPU资源并可能引起卡顿。
+冗余绘制是指界面中存在被其他图层遮挡或多次重复渲染的图层，导致系统在同一像素上进行多次无效绘制，浪费GPU资源并可能引起卡顿。
 
 ### 不可见动效
 

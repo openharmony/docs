@@ -1,4 +1,10 @@
 # @ohos.pluginComponent (PluginComponentManager)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 用于给插件组件的使用方请求组件与数据，使用方发送组件模板和数据。
 

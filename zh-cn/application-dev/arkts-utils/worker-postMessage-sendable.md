@@ -1,9 +1,10 @@
 # 多级Worker间高性能消息通信
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 多级[Worker](worker-introduction.md)（即通过父Worker创建子Worker的机制形成层级线程关系）间通信是一种常见的需求，由于Worker线程生命周期由用户自行管理，因此需要注意多级Worker生命周期的正确管理，建议开发者确保销毁父Worker前先销毁所有子Worker。
 
@@ -26,7 +27,7 @@
    }
    ```
 
-2. 准备两个Worker文件，父Worker文件为`ParentWorker.ets`，子Worker文件为`ChildWorker.ets`。父Worker负责分发克隆任务并判断任务全部完成后关闭子Worker与父Worker；子Worker负责接收任务并执行数据克隆操作，并在任务完成后通知父Worker。
+2. 创建两个Worker文件，DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，单击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“ParentWorker”（父Worker）和“ChildWorker”（子Worker）为例。父Worker负责分发克隆任务并判断任务全部完成后关闭子Worker与父Worker；子Worker负责接收任务并执行数据克隆操作，并在任务完成后通知父Worker。
   
    ```ts
    // ParentWorker.ets
@@ -128,20 +129,8 @@
      console.error('onerror:' + e.message);
    }
    ```
-3. 在模块级build-profile.json5中添加ParentWorker.ets和ChildWorker.ets信息，确保Worker线程文件被打包到应用中。
 
-   ```json
-   "buildOption": {
-     "sourceOption": {
-       "workers": [
-         "./src/main/ets/pages/ParentWorker.ets",
-         "./src/main/ets/pages/ChildWorker.ets"
-       ]
-     }
-   }
-   ```
-
-4. 在UI主进程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
+3. 在UI主线程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
 
    ```ts
    // Index.ets

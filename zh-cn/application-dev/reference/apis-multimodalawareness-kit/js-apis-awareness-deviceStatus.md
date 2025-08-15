@@ -1,4 +1,10 @@
 # @ohos.multimodalAwareness.deviceStatus（设备状态感知）
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块提供对设备状态的感知能力。
 

@@ -1,5 +1,12 @@
 # 企业类应用可用权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
 企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
@@ -466,7 +473,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：PC/2in1
 
 **起始版本**：20
 
@@ -481,7 +488,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**支持设备**：Phone | PC/2in1 | Tablet
+**支持设备**：PC/2in1
 
 **起始版本**：20
 

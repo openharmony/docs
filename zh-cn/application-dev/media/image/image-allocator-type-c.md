@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 应用在进行图片解码操作时，需要申请对应内存。当前指导将介绍不同的内存类型，以及如何进行申请。
 
@@ -181,10 +182,10 @@ OH_PixelmapNative* TestStrideWithAllocatorType() {
     void *pixels = nullptr;
     OH_PixelmapNative_AccessPixels(pixelmap, &pixels);
     OH_PixelmapNative *newPixelmap = nullptr;
+    OH_ImageSourceNative_CreatePixelmap(imageSource, options, &newPixelmap);
     uint32_t dstRowStride = srcInfo.width * GetPixelFormatBytes(srcInfo.pixelFormat);
     void *newPixels = nullptr;
     OH_PixelmapNative_AccessPixels(newPixelmap, &newPixels);
-    OH_PixelmapNative_UnaccessPixels(newPixelmap);
     uint8_t *src = reinterpret_cast<uint8_t *>(pixels);
     uint8_t *dst = reinterpret_cast<uint8_t *>(newPixels);
     uint32_t dstSize = srcInfo.byteCount;
@@ -200,7 +201,10 @@ OH_PixelmapNative* TestStrideWithAllocatorType() {
         dst += dstRowStride;
         dstSize -= dstRowStride;
     }
+    OH_PixelmapNative_UnaccessPixels(newPixelmap);
     OH_PixelmapNative_UnaccessPixels(pixelmap);
+    OH_DecodingOptions_Release(options);
+    OH_ImageSourceNative_Release(imageSource);
     return newPixelmap;
 }
 ```

@@ -1,4 +1,10 @@
 # FileShare_PolicyInfo
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--Designer: @chenxi0605; @JerryH1011-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -16,8 +22,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* uri | 需要授予或使能权限的URI。 |
+| char *uri | 需要授予或使能权限的URI。 |
 | unsigned int length | URI的字节长度。 |
-| unsigned int operationMode | 授予或使能权限的URI访问模式。<br> 示例：FileShare_OperationMode.READ_MODE 、 FileShare_OperationMode.WRITE_MODE <br> 或者 FileShare_OperationMode.READ_MODE|FileShare_OperationMode.WRITE_MODE。 |
+| unsigned int operationMode | 授予或使能权限的URI访问模式。<br> 示例：FileShare_OperationMode.READ_MODE 、 FileShare_OperationMode.WRITE_MODE <br> 或者 FileShare_OperationMode.READ_MODE\|FileShare_OperationMode.WRITE_MODE。 |
 
 

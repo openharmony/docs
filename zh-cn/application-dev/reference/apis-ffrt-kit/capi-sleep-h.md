@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -27,6 +28,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [FFRT_C_API int ffrt_usleep(uint64_t usec)](#ffrt_usleep) | 睡眠调用线程固定的时间。 |
+| [FFRT_C_API void ffrt_yield(void)](#ffrt_yield) | 当前任务主动放权，让其他任务有机会调度执行。 |
 
 ## 函数说明
 
@@ -54,5 +56,17 @@ FFRT_C_API int ffrt_usleep(uint64_t usec)
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API int | 执行成功时返回ffrt_success，<br>          执行失败时返回ffrt_error。 |
+
+### ffrt_yield()
+
+```
+FFRT_C_API void ffrt_yield(void)
+```
+
+**描述**
+
+当前任务主动放权，让其他任务有机会调度执行。
+
+**起始版本：** 10
 
 
