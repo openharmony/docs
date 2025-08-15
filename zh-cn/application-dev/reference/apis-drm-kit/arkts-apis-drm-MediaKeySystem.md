@@ -472,6 +472,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
+import { drm } from '@kit.DrmKit';
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeySystem.off('keySystemRequired');
 ```

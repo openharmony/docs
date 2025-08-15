@@ -116,7 +116,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
         console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         this.streamId = streamID;
-        console.info('play success soundid:' + this.streamId);
+        console.info('play success soundId:' + this.streamId);
       }
     });
     ```
