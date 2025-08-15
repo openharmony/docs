@@ -1,5 +1,12 @@
 # @ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility类别的能力。
 
 > **说明：**
@@ -18,7 +25,7 @@ import { StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
