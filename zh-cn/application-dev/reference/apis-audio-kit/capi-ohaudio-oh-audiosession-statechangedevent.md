@@ -22,3 +22,5 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_AudioSession_StateChangeHint](capi-native-audio-session-manager-h.md#oh_audiosession_statechangehint) stateChangeHint | 音频会话停用的具体原因。 |
+
+
