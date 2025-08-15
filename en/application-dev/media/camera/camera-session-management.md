@@ -100,6 +100,7 @@ After the session configuration is complete, the application must commit the con
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to commitConfig. error: ${err}`);
+      return;
      }
    
      try {

@@ -2,9 +2,9 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
-
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
 
 ## 开发步骤
@@ -39,7 +39,6 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     storage.setOrCreate('extensionEvent', extensionEvent);
     try {
       session.loadContent('pages/Extension', storage);
-      session.setWindowBackgroundColor('#00000000');
     } catch (e) {
       console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
-<!--SE: @houguobiao-->
-<!--TSE: @lxl007-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 创建并显示文本提示框、对话框、操作菜单以及自定义弹窗。
 
@@ -178,7 +179,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-请参考[openToaset18](#opentoast18)的示例。
+请参考[openToast18](#opentoast18)的示例。
 
 ## showDialog
 
@@ -475,7 +476,7 @@ struct Index {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -607,7 +608,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
-通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。
 
 暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
@@ -1336,7 +1337,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 **示例：**
 
-该示例通过调用openPopuo、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
+该示例通过调用openPopup、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';

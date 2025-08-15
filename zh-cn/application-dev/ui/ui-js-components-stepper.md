@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[stepper API](../reference/apis-arkui/arkui-js/js-components-container-stepper.md)。
 

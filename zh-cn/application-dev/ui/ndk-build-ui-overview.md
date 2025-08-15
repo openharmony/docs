@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 
 ArkUI开发框架提供了一系列NDK接口，能够在应用中使用C和C++代码构建UI界面，这些接口包括UI组件创建、UI树操作、属性设置和事件监听等。面向通用UI界面开发场景，建议使用ArkTS代码和ArkUI声明式开发框架。然而，如果需要实现以下一个或多个目标，那么ArkUI NDK接口就能派上用场：
@@ -70,11 +71,12 @@ ArkUI NDK接口能力主要包括：
 | [构建弹窗](ndk-build-pop-up-window.md) | 介绍了如何使用弹窗接口构建UI界面进行弹窗显示。 |
 | [构建自定义组件](ndk-build-custom-components.md) | 介绍了如何使用NDK接口能力构建自定义组件，实现差异化UI组件。 |
 | [嵌入ArkTS组件](ndk-embed-arkts-components.md) | 介绍了如何在Native侧构建带有ArkTS组件的界面。 |
+| [构建渲染节点](ndk-embed-render-components.md) | 介绍了如何在Native侧构建渲染节点。 |
 | [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md) | 介绍了通过XComponent接入UI平台的三方系统如何对接无障碍。 |
 | [自定义绘制](arkts-user-defined-draw.md) | 介绍了如何使用自定义绘制能力，实现自定义内容的绘制。 |
 | [查询和操作自定义节点](ndk-node-query-operate.md) | 介绍了如何对自定义节点进行查询和操作。 |
 | [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md) | 介绍了如何在Native侧通过EmbeddedComponent拉起EmbeddedUIExtensionAbility。主要用于有进程隔离需求的模块化开发场景。 |
-| [使用文本](ndk-styled-string.md) | 介绍了Text组件对字体引擎文本的渲染显示和如何监听输入框文本相关的事件。 |
+| [使用文本](ndk-styled-string.md) | 介绍了Text组件与字体引擎如何配套使用。 |
 | [在NDK中保证多实例场景功能正常](ndk-scope-task.md) | 介绍了如何在NDK多线程场景中保证接口调用的功能正常。 |
 | [NDK支持多线程创建组件](ndk-build-on-multi-thread.md) | 介绍了如何使用NDK进行多线程UI组件创建。 |
 

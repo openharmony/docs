@@ -2,8 +2,9 @@
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--SE: @butterls-->
-<!--TSE: @murphy84-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 sensor模块提供了获取传感器数据的能力，包括获取传感器属性列表，订阅传感器数据，以及一些通用的传感器算法。
 
@@ -2098,7 +2099,7 @@ const sensorCallback = (response: sensor.AccelerometerResponse) => {
 }
 // 传感器监听类别
 const sensorType = sensor.SensorId.ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2239,7 +2240,7 @@ const sensorCallback = (response: sensor.AccelerometerUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ACCELEROMETER_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2374,7 +2375,7 @@ const sensorCallback = (response: sensor.LightResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_LIGHT;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2509,7 +2510,7 @@ const sensorCallback = (response: sensor.AmbientTemperatureResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_TEMPERATURE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2645,7 +2646,7 @@ const sensorCallback = (response: sensor.BarometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.BAROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2781,7 +2782,7 @@ const sensorCallback = (response: sensor.GravityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GRAVITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2926,7 +2927,7 @@ const sensorCallback = (response: sensor.GyroscopeResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3067,7 +3068,7 @@ const sensorCallback = (response: sensor.GyroscopeUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3202,7 +3203,7 @@ const sensorCallback = (response: sensor.HallResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HALL;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3343,7 +3344,7 @@ const sensorCallback = (response: sensor.HeartRateResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HEART_RATE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3478,7 +3479,7 @@ const sensorCallback = (response: sensor.HumidityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HUMIDITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3619,7 +3620,7 @@ const sensorCallback = (response: sensor.LinearAccelerometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.LINEAR_ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3754,7 +3755,7 @@ const sensorCallback = (response: sensor.MagneticFieldResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3889,7 +3890,7 @@ const sensorCallback = (response: sensor.MagneticFieldUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4028,7 +4029,7 @@ const sensorCallback = (response: sensor.OrientationResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ORIENTATION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4120,7 +4121,7 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER, callback2);
   // 仅取消callback1的注册
   sensor.off(sensor.SensorId.PEDOMETER, callback1);
-  // 取消注册SensorId.ORIENTATION的所有回调
+  // 取消注册SensorId.PEDOMETER的所有回调
   sensor.off(sensor.SensorId.PEDOMETER);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -4169,7 +4170,7 @@ const sensorCallback = (response: sensor.PedometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4310,7 +4311,7 @@ const sensorCallback = (response: sensor.PedometerDetectionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4445,7 +4446,7 @@ const sensorCallback = (response: sensor.ProximityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PROXIMITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4580,7 +4581,7 @@ const sensorCallback = (response: sensor.RotationVectorResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ROTATION_VECTOR;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4715,7 +4716,7 @@ const sensorCallback = (response: sensor.SignificantMotionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.SIGNIFICANT_MOTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4850,7 +4851,7 @@ const sensorCallback = (response: sensor.WearDetectionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.WEAR_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -5401,10 +5402,11 @@ try {
     }
     if (data.length < 3) {
       console.error("Failed to get angle variation, length" + data.length);
+      return;
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   })
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -5465,10 +5467,11 @@ try {
   promise.then((data: Array<number>) => {
     if (data.length < 3) {
       console.error("Failed to get angle variation, length" + data.length);
+      return;
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   }, (err: BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
@@ -5892,11 +5895,11 @@ try {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   }, (err: BusinessError) => {
-    console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getOrientation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
+  console.error(`Failed to getOrientation Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -8029,9 +8032,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
-  console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
+  console.info('Succeeded in invoking the device rotating at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking the device rotating at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking the device rotating at an angle around the Z axis: ' + data.alpha);
 });
 ```
 
@@ -8458,7 +8461,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HeartRateResponse) {
-  console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
+  console.info('Succeeded in invoking off. Heart rate: ' + data.heartRate);
 }
 
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 按钮组件，可快速创建不同样式的按钮。
 
@@ -559,7 +560,7 @@ struct SwipeGestureExample {
 @Entry
 @Component
 struct buttonTestDemo {
-  @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
+  @State txt: string = 'overflowTextOverLengthTextOverflow.Clip';
   @State widthShortSize: number = 205;
 
   build() {

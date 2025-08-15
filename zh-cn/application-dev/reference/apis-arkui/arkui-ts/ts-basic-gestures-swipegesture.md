@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 用于触发滑动事件，滑动速度大于速度阈值时可识别成功，默认最小速度为100vp/s。
 
@@ -52,12 +53,12 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| All | 所有方向。 |
-| Horizontal | 水平方向，手指滑动方向与x轴夹角小于45度时触发。 |
-| Vertical | 竖直方向，手指滑动方向与y轴夹角小于45度时触发。 |
-| None | 任何方向均不可触发。 |
+| 名称 | 值 | 说明 |
+| ---- | -- | ----- |
+| All | - | 所有方向。 |
+| Horizontal | - | 水平方向，手指滑动方向与x轴夹角小于45度时触发。 |
+| Vertical | - | 竖直方向，手指滑动方向与y轴夹角小于45度时触发。 |
+| None | - | 任何方向均不可触发。 |
 
 
 ## 事件
@@ -90,10 +91,10 @@ Swipe手势识别成功回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    |描述                                        |
-| ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Swipe手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Swipe手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                 |
+| ----  | ------ | ---- | ---- |-------------------- |
+| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Swipe手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置Swipe手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

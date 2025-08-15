@@ -3,8 +3,9 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 uinput 可模拟用户操作，例如鼠标、键盘、触控板等设备，适用于稳定性等压力测试。
 
@@ -261,7 +262,7 @@ uinput --keyboard --long_press <keyCode> [long press time]
 
 **使用示例**
 ```bash
-# 按下"a"键并保持6000ms后抬起。
+# 按下"A"键并保持6000ms后抬起。
 uinput -K -l 2017 6000
 ```
 
@@ -278,7 +279,7 @@ uinput --keyboard --repeat <keyCode> [repeat output time]
 
 **使用示例**
 ```bash
-# 按下"a"键并在4000ms内重复输入。
+# 按下"A"键并在4000ms内重复输入。
 uinput -K -r 2017 4000
 ```
 
@@ -295,7 +296,7 @@ uinput --keyboard --interval <time>
 
 **使用示例**
 ```bash
-# 按下键盘‘a’键间隔500ms后释放。
+# 按下键盘"A"键间隔500ms后释放。
 uinput -K -d 2017 -i 500 -u 2017
 ```
 

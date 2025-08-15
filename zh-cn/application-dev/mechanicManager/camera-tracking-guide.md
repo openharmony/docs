@@ -1,4 +1,10 @@
 # 智能拍摄跟踪开发指南
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 从API version 20开始，支持使用机械设备管理。在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如人脸智能跟踪和自动构图等专业拍摄功能。
 

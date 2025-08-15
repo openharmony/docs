@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -6007,7 +6008,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。 |
+| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。<br>**注意：** 不支持传入WatermarkType.DEFAULT。 |
 
 **错误码：**
 
@@ -6454,7 +6455,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -9481,6 +9482,7 @@ async function example(context: Context) {
 | OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | 照片所属的相册id。**系统接口**：此接口为系统接口。 |
 | IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | 是否设置为最近显示。**系统接口**：此接口为系统接口。 |
 | SUM_SIZE<sup>19+</sup>  | 'sum(size)' | 文件大小总和。在fetchColumns中填入SUM_SIZE属性时，仅获取到第一个资产，并且属性中带有所有资产的总大小。**系统接口**：此接口为系统接口。 |
+| EXIF_ROTATE<sup>20+</sup>  | 'exif_rotate' | 文件的旋转角度信息。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 

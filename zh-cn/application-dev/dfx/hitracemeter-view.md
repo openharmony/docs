@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--SE: @MontSaintMichel-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 通过DevEco Studio可视化界面查看
 
@@ -13,9 +14,9 @@
 
 ## 通过命令行工具查看
 
-1. 根据hdc命令行工具指导，完成[hdc](hdc.md#环境准备)，确保可以使用 hdc shell 命令正常连接设备。
+1. 根据hdc命令行工具指导，完成[hdc环境准备](hdc.md#环境准备)，确保可以使用“hdc shell”命令正常连接设备。
 
-2. 在DevEco Studio的Terminal窗口或主机命令行窗口执行 hdc shell 命令连接设备，然后在设备上执行[hitrace](hitrace.md)命令，开启HiTraceMeter日志抓取服务。
+2. 在DevEco Studio Terminal窗口或主机命令行窗口执行“hdc shell”命令连接设备，然后在设备上执行[hitrace](hitrace.md)命令，开启HiTraceMeter日志抓取服务。
 
    ```shell
    PS D:\xxx\xxx> hdc shell
@@ -33,22 +34,22 @@
    PS D:\xxx\xxx> hdc file recv /data/local/tmp/trace.ftrace ./
    ```
 
-6. 搜索HiTraceMeter文本日志中的打点名称等关键字，查看打点是否成功。
+6. 在HiTraceMeter文本日志中搜索打点名称等关键字，查看打点是否成功。
 
 7. HiTraceMeter支持文本日志的可视化分析。
 
-   - 导入DevEco Studio进行分析。
+   - 在DevEco Studio中导入日志进行分析。
 
       在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio。
 
       具体分析可参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)文档。
-   - 通过[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+   - 通过[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接：[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 
 ## 用户态trace格式说明
 
 
-### API 19前用户态trace格式
+### API version 19前用户态trace格式
 
 | 打点类型 | 开启HiTraceChain时格式 | 未开启HiTraceChain时格式 | 
 | -------- | -------- | -------- |
@@ -105,9 +106,9 @@
   count与name字段之间使用空格进行分隔。
 
 
-### API 19后用户态trace格式
+### API version 19后用户态trace格式
 
-各字段均使用竖线作为分隔符，对后续新增字段，均以**竖线+字段**的方式，追加在当前用户态trace格式的末尾。
+各字段使用竖线作为分隔符。对后续新增字段，均采用**竖线+字段**的方式，追加到当前用户态trace格式的末尾。
 
 | 打点类型 | 开启HiTraceChain时格式 | 未开启HiTraceChain时格式 | 
 | -------- | -------- | -------- |
@@ -119,7 +120,7 @@
 
 > **说明：**
 >
-> 用户态trace总长度限制512字符，建议name、customCategory和customArgs总长度不超过420字符，避免被截断。
+> 用户态trace总长度限制512字符。建议name、customCategory和customArgs的总长度不超过420字符，以避免被截断。
 
 
 **格式中的字段说明**
@@ -166,8 +167,8 @@
   level字段与%level映射关系参考[HiTraceOutputLevel](#hitraceoutputlevel)。
 
   > **说明：**
->
-  > API 19前的trace打点接口没有level字段，这些trace打点默认为COMMERCIAL级别打点。
+  >
+  > API version 19前的trace打点接口没有level字段，这些trace打点默认为COMMERCIAL级别。
 
 - **%tag**
 
@@ -176,7 +177,7 @@
   tag名称、tag值与%tag映射关系参考[HiTraceMeter Tag](#hitracemeter-tag)。
 
   > **说明：**
->
+  >
   > NDK C/C++和ArkTs/JS的HiTraceMeter性能打点接口并没有字段与%tag对应，这些打点接口均属于应用打点，对应的tag名称为HITRACE_TAG_APP，用户态trace中的%tag字段值为62。
 
 - **customCategory**
@@ -201,7 +202,7 @@
 针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain-intro.md)。
 
 
-API 19前的trace打点接口默认将这两个字段视为空字符串。
+API version 19前的trace打点接口默认将这两个字段视为空字符串。
 
 
 - 开始同步trace打点接口

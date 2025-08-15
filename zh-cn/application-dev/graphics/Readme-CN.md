@@ -2,9 +2,10 @@
 
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@goumiao;@hangmengxin-->
-<!--SE: @liumingxiang;@wangyanglan-->
-<!--TSE: @yhl0101;@nobuggers-->
+<!--Owner: @oh_wangxk; @goumiao; @hangmengxin-->
+<!--Designer: @liumingxiang; @wangyanglan-->
+<!--Tester: @yhl0101; @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 - [ArkGraphics 2D简介](arkgraphics2D-introduction.md)
 - 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -259,7 +260,7 @@ WindowStage生命周期的状态类型枚举。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |

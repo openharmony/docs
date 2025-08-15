@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -250,7 +251,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* vide
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)* window | 指向输出surface的指针。 |
+| const [OHNativeWindow](capi-videoprocessing-nativewindow.md)* window | 指向输出surface的指针。 |
 
 **返回：**
 
@@ -278,7 +279,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* vide
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)** window | 指向输入surface的指针。例如，此输入surface指针可以指向视频解码器输出surface。 |
+| [OHNativeWindow](capi-videoprocessing-nativewindow.md)** window | 指向输入surface的指针。例如，此输入surface指针可以指向视频解码器输出surface。 |
 
 **返回：**
 
@@ -304,7 +305,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* vi
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 指向视频处理参数实例的指针。 |
+| const [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | 指向视频处理参数实例的指针。 |
 
 **返回：**
 
@@ -330,7 +331,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* vi
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 指向视频处理参数实例的指针。 |
+| [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | 指向视频处理参数实例的指针。 |
 
 **返回：**
 

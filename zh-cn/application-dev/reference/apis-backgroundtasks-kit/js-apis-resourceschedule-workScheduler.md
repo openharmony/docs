@@ -1,4 +1,10 @@
 # @ohos.resourceschedule.workScheduler (延迟任务调度)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供延迟任务注册、取消、查询的能力。在开发过程中，对于实时性要求不高的任务，可以调用本模块接口注册延迟任务，在系统空闲时根据性能、功耗、热等情况进行调度执行。
 
@@ -222,6 +228,12 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 | -------- | -------------------- | ---- | ------------------------------- |
 | callback |  AsyncCallback\<void> | 是    | 回调函数，获取成功时，err为undefined，否则为错误对象。 |
 
+**返回值**：
+
+| 类型                              | 说明                                       |
+| ------------------------------- | ---------------------------------------- |
+| Array\<[WorkInfo](#workinfo)> | 延迟任务列表，如果已添加延迟任务到执行队列，则返回当前应用所有的延迟任务列表；否则返回空列表。|
+  
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
@@ -358,6 +370,12 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | workId   | number               | 是    | 指定延迟任务的Id。                                 |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
+**返回值**：
+
+| 类型                              | 说明                                       |
+| ------------------------------- | ---------------------------------------- |
+|boolean| 检查延迟任务最后一次执行是否超时，如果workId有效，则返回从WorkSchedulerService获取的任务最后一次执行是否超时；否则，抛出异常。true，对应workId延迟任务最后一次执行超时，false，对应workId延迟任务最后一次执行未超时。|
+  
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。

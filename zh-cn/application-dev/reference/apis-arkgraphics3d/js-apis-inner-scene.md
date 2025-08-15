@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 本模块作为ArkGraphics 3D基础模块，提供SceneResourceParameters、SceneNodeParameters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
 
@@ -31,7 +32,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createShaderPromise() : Promise<Shader> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
@@ -39,8 +40,11 @@ function createShaderPromise() : Promise<Shader> {
       // 创建SceneResourceParameters类型变量并以此创建shader
       let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
-      let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
-      return shader;
+      let shader: Shader = await sceneFactory.createShader(sceneResourceParameter);
+      resolve(shader);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -61,7 +65,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createNodePromise() : Promise<Node> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
@@ -69,8 +73,11 @@ function createNodePromise() : Promise<Node> {
       // 创建SceneNodeParameters类型变量并以此创建node
       let sceneNodeParameter: SceneNodeParameters = { name: "empty_node",
         path:"/rootNode_/empty_node" };
-      let node: Promise<Node> = sceneFactory.createNode(sceneNodeParameter);
-      return node;
+      let node: Node = await sceneFactory.createNode(sceneNodeParameter);
+      resolve(node);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -363,14 +370,17 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createCameraPromise() : Promise<Camera> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
       // 创建相机
-      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
-      return camera;
+      let camera: Camera = await sceneFactory.createCamera(sceneCameraParameter);
+      resolve(camera);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -400,14 +410,17 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createLightPromise() : Promise<Light> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneLightParameter: SceneNodeParameters = { name: "light" };
       // 创建平行光
-      let light: Promise<Light> = sceneFactory.createLight(sceneLightParameter, LightType.DIRECTIONAL);
-      return light;
+      let light: Light = await sceneFactory.createLight(sceneLightParameter, LightType.DIRECTIONAL);
+      resolve(light);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -436,15 +449,18 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createNodePromise() : Promise<Node> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneNodeParameter: SceneNodeParameters = { name: "empty_node",
         path:"/rootNode_/empty_node" };
       // 创建节点
-      let node: Promise<Node> = sceneFactory.createNode(sceneNodeParameter);
-      return node;
+      let node: Node = await sceneFactory.createNode(sceneNodeParameter);
+      resolve(node);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -474,14 +490,17 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createMaterialPromise() : Promise<Material> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneMaterialParameter: SceneResourceParameters = { name: "material" };
       // 创建材质
-      let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
-      return material;
+      let material: Material = await sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
+      resolve(material);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -510,14 +529,17 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createEnvironmentPromise() : Promise<Environment> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneEnvironmentParameter: SceneResourceParameters = { name: "env", uri: $rawfile("KTX/quarry_02_2k_radiance.ktx") };
       // 创建Environment
-      let env: Promise<Environment> = sceneFactory.createEnvironment(sceneEnvironmentParameter);
-      return env;
+      let env: Environment = await sceneFactory.createEnvironment(sceneEnvironmentParameter);
+      resolve(env);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -544,10 +566,12 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry,
+  MeshResource} from '@kit.ArkGraphics3D';
+import { CubeGeometry } from '@ohos.graphics.scene';
 
 function createGeometryPromise() : Promise<Geometry> {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     let scene: Promise<Scene> = Scene.load();
     scene.then(async (result: Scene | undefined) => {
       if (!result) {
@@ -558,8 +582,11 @@ function createGeometryPromise() : Promise<Geometry> {
       cubeGeom.size = { x: 1, y: 1, z: 1 };
       let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
       console.info("TEST createGeometryPromise");
-      let geometry: Promise<Geometry> = sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
-      return geometry;
+      let geometry: Geometry = await sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
+      resolve(geometry);
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -636,7 +663,7 @@ function loadPlugin(): Promise<boolean> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
   if (!renderContext) {
     console.error("RenderContext is null");
-    return Promise.resolve(false);
+    return Promise.reject(new Error("RenderContext is null"));
   }
   return renderContext.loadPlugin("pluginName");
 }

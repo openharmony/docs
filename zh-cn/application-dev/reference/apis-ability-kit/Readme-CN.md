@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wanghang-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6; @lihaitao-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @huipeizi-->
 
 - ArkTS API<!--ability-arkts-->
   - Stage模型能力的接口<!--stage-model-->
@@ -22,7 +23,7 @@
     - [@ohos.app.ability.ChildProcessArgs (子进程参数)](js-apis-app-ability-childProcessArgs.md)
     - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](js-apis-app-ability-childProcessOptions.md)
     - [@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)
-    - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](js-apis-app-ability-completionHandler.md)
+    - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.contextConstant (Context相关常量)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)

@@ -3,15 +3,16 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--SE: @MontSaintMichel-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
-hitrace命令行工具提供trace信息（包含系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter-intro.md)在应用中设置的打点）采集能力，支持多种方式采集文本格式或二进制格式trace信息，帮助开发者观测程序运行情况及定位故障问题。
+hitrace命令行工具提供trace信息采集能力，支持采集系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter-intro.md)在应用中设置的打点。该工具支持多种方式采集文本格式或二进制格式的trace信息，帮助开发者观测程序运行情况和定位故障问题。
 
 
 ## 环境要求
 
-- 根据hdc命令行工具指导，完成[hdc](hdc.md#环境准备)。
+- 根据hdc命令行工具指导，完成[hdc环境准备](hdc.md#环境准备)。
 
 - 确保设备已正常连接，并执行hdc shell。
 
@@ -24,18 +25,18 @@ hitrace命令行工具提供trace信息（包含系统提供的打点和开发�
 | -l/--list_categories | 查看tag列表。 | 
 | --trace_begin | 开始捕获trace。 | 
 | --trace_finish | 结束捕获trace。 | 
-| --trace_finish_nodump | 结束捕获trace，与--trace_finish的区别是不打印trace信息。 | 
+| --trace_finish_nodump | 结束捕获trace，与--trace_finish的区别是不输出trace信息。 | 
 | --trace_dump | 导出trace信息。 | 
 | --record | 使能录制模式，允许长时间采集并落盘trace数据，必须和--trace_begin或--trace_finish一起使用。 | 
 | --overwrite | 设置内核缓冲区满之后的行为，未设置此选项时默认丢弃最老数据，设置此选项后丢弃最新数据。 | 
-| --file_size | 设置文件大小，仅在采集二进制格式trace数据时有效。 | 
-| -b N/--buffer_size N | 设置用于存储和读取trace的缓冲区大小(单位为KB)。最小值为512，最大值与设备当前可用内存有关。 | 
+| --file_size | 设置文件大小（单位为KB），仅在采集二进制格式trace数据时有效。 | 
+| -b N/--buffer_size N | 设置用于存储和读取trace的缓冲区大小（单位为KB）。最小值为512，最大值与设备当前可用内存有关。 | 
 | -t N/--time N | 设置hitrace采集时长，单位为s。 | 
 | -o/--output filename | 指定目标文件的名称（导出trace格式为文本时默认为stdout，如需保存到文件，建议使用/data/local/tmp路径。导出trace格式为二进制时不支持此选项）。 | 
-| -z | 压缩捕获的跟踪。 | 
-| --text | 导出trace数据为文本格式。 | 
+| -z | 压缩捕获的trace数据。 | 
+| --text | 导出trace数据为文本格式（默认为文本格式）。 | 
 | --raw | 导出trace数据为二进制格式（默认为文本格式）。 | 
-| --trace_clock | 设置向trace添加时间戳的时钟类型，可以是boot（默认）、global、mono、uptime或perf。不同设备支持的时钟类型不同，建议使用默认的boot进行采集，其时间为从本次开机起的时间戳，单位为s。<br/>每种时间类型的说明：<br/>boot：系统启动后的时间戳，休眠或系统挂起时也会计时。<br/>global：全局同步的时钟，可能有性能开销。<br/>mono：系统启动后的时间戳，休眠或系统挂起时不会计时。<br/>uptime：系统启动后的时间戳，类似于mono。<br/>perf：高性能计数器，适合性能分析。 | 
+| --trace_clock | 设置向trace添加时间戳的时钟类型，可以是boot（默认）、global、mono、uptime或perf。不同设备支持的时钟类型不同，建议使用默认的boot进行采集，其时间为从本次开机起的时间戳，单位为s。每种时间类型的说明如下：<br/>- boot：系统启动后的时间戳，休眠或系统挂起时也会计时。<br/>- global：全局同步的时钟，可能有性能开销。<br/>- mono：系统启动后的时间戳，休眠或系统挂起时不会计时。<br/>- uptime：系统启动后的时间戳，类似于mono。<br/>- perf：高性能计数器，适合性能分析。 | 
 | --start_bgsrv | 开启快照模式trace捕获。 | 
 | --dump_bgsrv | 触发快照模式trace输出到文件。 | 
 | --stop_bgsrv | 关闭快照模式trace捕获。 | 
@@ -43,7 +44,7 @@ hitrace命令行工具提供trace信息（包含系统提供的打点和开发�
 
 > **说明：**
 >
-> trace信息可以用两种不同的格式保存，分别为文本格式和二进制格式。文本格式trace可以直接用文本编辑器查看，二进制格式trace可以使用[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+> trace信息可以用两种不同的格式保存，分别为文本格式和二进制格式。文本格式的trace可以直接用文本编辑器查看，二进制格式的trace可以使用[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 
 ## 常用命令
@@ -249,7 +250,7 @@ $ hitrace -t 10 -b 204800 app -o /data/local/tmp/test.ftrace
 
 ### 捕获指定时长二进制格式trace
 
-命令带--raw参数时可捕获二进制格式trace，捕获二进制格式trace时不支持指定路径，固定保存在路径/data/log/hitrace下，采集结束后会将生成文件的路径显示在命令行窗口。
+命令带--raw参数时可捕获二进制格式trace，捕获二进制格式trace时不支持指定路径，固定保存在路径/data/log/hitrace下。采集结束后，采集结束后生成文件的绝对路径会显示在命令行窗口。
 
 ```shell
 hitrace -t 10 -b 204800 app --raw
@@ -271,9 +272,9 @@ $ hitrace -t 10 -b 204800 app --raw
 
 ### 快照模式捕获文本格式trace
 
-快照模式下，会将trace信息保存在内核缓冲区，当数据量超出缓冲区大小时，默认丢弃最早的数据。
+快照模式下，trace信息保存在内核缓冲区。当数据量超出缓冲区大小时，默认丢弃最早的数据。
 
-使用下面的命令开启快照模式，指定了缓冲区大小为204800KB，采集的tag为app和graphic。
+使用以下命令开启快照模式，指定缓冲区大小为204800KB，采集的tag为app和graphic。
 
 ```shell
 hitrace --trace_begin -b 204800 app graphic
@@ -336,61 +337,61 @@ $ hitrace --trace_dump -o /data/local/tmp/test.ftrace
 2025/06/04 16:09:10 trace read done, output: /data/local/tmp/test.ftrace
 ```
 
-需要关闭采集时，有如下三种命令：
+需要停止采集时，有如下三种命令：
 
-1. 停止采集并将当前缓冲区内的trace信息显示到命令行窗口。
+1. 停止采集，并将当前缓冲区内的trace信息显示到命令行窗口。
 
-```shell
-hitrace --trace_finish
-```
+    ```shell
+    hitrace --trace_finish
+    ```
 
-**使用样例**：
+    **使用样例**：
 
-```shell
-$ hitrace --trace_finish
-2025/06/04 16:22:02 start to read trace.
-# tracer: nop
-#                                          _-----=> irqs-off
-#                                         / _----=> need-resched
-#                                        | / _---=> hardirq/softirq
-#                                        || / _--=> preempt-depth
-#                                        ||| /     delay
-#           TASK-PID       TGID    CPU#  ||||   TIMESTAMP  FUNCTION
-#              | |           |       |   ||||      |         |
- KstateRecvThrea-1132    (    952) [002] .... 610865.463378: tracing_mark_write: B|952|H:CheckMsgFromNetlink|I62
- KstateRecvThrea-1132    (    952) [002] .... 610865.463503: tracing_mark_write: B|952|H:OnKstateCallback, mask: 8, data: [PID 14446 KILLED][SIG 9]|I62
- KstateRecvThrea-1132    (    952) [002] .... 610865.463626: tracing_mark_write: E|952|I62
- KstateRecvThrea-1132    (    952) [002] .... 610865.463654: tracing_mark_write: E|952|I62
-```
+    ```shell
+    $ hitrace --trace_finish
+    2025/06/04 16:22:02 start to read trace.
+    # tracer: nop
+    #                                          _-----=> irqs-off
+    #                                         / _----=> need-resched
+    #                                        | / _---=> hardirq/softirq
+    #                                        || / _--=> preempt-depth
+    #                                        ||| /     delay
+    #           TASK-PID       TGID    CPU#  ||||   TIMESTAMP  FUNCTION
+    #              | |           |       |   ||||      |         |
+    KstateRecvThrea-1132    (    952) [002] .... 610865.463378: tracing_mark_write: B|952|H:CheckMsgFromNetlink|I62
+    KstateRecvThrea-1132    (    952) [002] .... 610865.463503: tracing_mark_write: B|952|H:OnKstateCallback, mask: 8, data: [PID 14446 KILLED][SIG 9]|I62
+    KstateRecvThrea-1132    (    952) [002] .... 610865.463626: tracing_mark_write: E|952|I62
+    KstateRecvThrea-1132    (    952) [002] .... 610865.463654: tracing_mark_write: E|952|I62
+    ```
 
-2. 停止采集并将当前缓冲区内的trace信息导出到指定文件，建议导出到/data/local/tmp路径下。
+2. 停止采集，并将当前缓冲区内的trace信息保存到指定文件。建议保存路径为/data/local/tmp。
 
-```shell
-hitrace --trace_finish -o /data/local/tmp/test.ftrace
-```
+    ```shell
+    hitrace --trace_finish -o /data/local/tmp/test.ftrace
+    ```
 
-**使用样例**：
+    **使用样例**：
 
-```shell
-$ hitrace --trace_finish -o /data/local/tmp/test.ftrace
-2025/06/04 16:24:52 start to read trace.
-2025/06/04 16:24:52 trace read done, output: /data/local/tmp/test.ftrace
-2025/06/04 16:24:52 Trace Closed.
-```
+    ```shell
+    $ hitrace --trace_finish -o /data/local/tmp/test.ftrace
+    2025/06/04 16:24:52 start to read trace.
+    2025/06/04 16:24:52 trace read done, output: /data/local/tmp/test.ftrace
+    2025/06/04 16:24:52 Trace Closed.
+    ```
 
-3. 停止采集并且不导出trace信息。
+3. 停止采集，不输出trace信息。
 
-```shell
-hitrace --trace_finish_nodump
-```
+    ```shell
+    hitrace --trace_finish_nodump
+    ```
 
-**使用样例**：
+    **使用样例**：
 
-```shell
-$ hitrace --trace_finish_nodump
-2025/06/04 16:26:11 hitrace enter, running_state is RECORDING_LONG_FINISH_NODUMP
-2025/06/04 16:26:11 end capture trace.
-```
+    ```shell
+    $ hitrace --trace_finish_nodump
+    2025/06/04 16:26:11 hitrace enter, running_state is RECORDING_LONG_FINISH_NODUMP
+    2025/06/04 16:26:11 end capture trace.
+    ```
 
 
 ### 快照模式捕获二进制格式trace
@@ -400,7 +401,7 @@ $ hitrace --trace_finish_nodump
 
 
 ```shell
-"net", "dsched", "graphic", "multimodalinput", "dinput", "ark", "ace", "window","zaudio", "daudio", "zmedia", "dcamera", "zcamera", "dhfwk", "app", "gresource", "ability", "power", "samgr", "ffrt", "ufs", "nweb", "hdf", "virse", "workq", "ipa", "sched", "freq", "disk", "sync", "binder", "mmc", "membus", "load", "pagecache"
+"net", "dsched", "graphic", "multimodalinput", "dinput", "ark", "ace", "window","zaudio", "daudio", "zmedia", "dcamera", "zcamera", "dhfwk", "app", "gresource", "ability", "power", "samgr", "ffrt", "nweb", "hdf", "virse", "workq", "ipa", "sched", "freq", "disk", "sync", "binder", "mmc", "membus", "load"
 ```
 
 
@@ -422,7 +423,7 @@ $ hitrace --start_bgsrv
 ```
 
 
-使用下面的命令将当前缓冲区内的trace信息导出到文件，二进制格式trace不支持指定路径导出或显示到命令行窗口，导出的文件路径会显示在命令行窗口。
+使用以下命令将当前缓冲区的trace信息导出到文件。二进制格式trace不支持指定路径导出或显示到命令行窗口，导出的文件路径会显示在命令行窗口。
 
 
 ```shell
@@ -459,11 +460,11 @@ $ hitrace --stop_bgsrv
 ```
 
 
-### 录制模式采集trace
+### 录制模式捕获trace
 
-录制模式下，将持续将系统运行时生成的二进制格式trace保存到文件（不支持指定路径），每当文件大小超过设定的值时会生成一个新的文件。
+录制模式下，系统会持续保存运行时生成的二进制格式trace，文件大小超过设定的值时会生成新文件。不支持指定保存路径。
 
-使用下面的命令可以开启录制模式。缓冲区大小为2048KB，文件大小为102400KB，采集的tag为app和graphic。
+使用以下命令开启录制模式。缓冲区大小设定为204800KB，文件大小设为102400KB，采集的tag为app和graphic。
 
 ```shell
 hitrace --trace_begin --record -b 204800 --file_size 102400 app graphic
@@ -479,7 +480,7 @@ $ hitrace --trace_begin --record -b 204800 --file_size 102400 app graphic
 ```
 
 
-采集结束时可以使用下面的命令停止采集，会将采集过程中生成的文件路径显示在命令行窗口。
+采集结束时，使用以下命令停止采集，命令行窗口会显示生成的文件的绝对路径。
 
 
 ```shell
@@ -540,11 +541,11 @@ $ hitrace --trace_level Info
 
 ## trace文件名说明
 
-使用hitrace命令行工具采集二进制格式trace信息时，不支持指定文件路径，默认生成在/data/log/hitrace路径下，hitrace将自动生成文件名并显示到命令行窗口。
+使用hitrace命令行工具采集二进制格式trace信息时，不支持指定文件路径。默认保存在/data/log/hitrace路径下，hitrace自动生成文件名并将绝对路径显示在命令行窗口。
 
 快照模式下生成的trace文件名以trace开头，录制模式下生成的trace文件名以record开头，后面为本地时间和boot time（从开机时间开始的时间戳）。
 
-以下面这个文件名为例：20250701215441说明这个文件生成的时间为2025年7月1日21时54分51秒，此时对应的boot time为6016.653165227。
+以下面这个文件名为例：20250701215441说明这个文件生成的时间为2025年7月1日21时54分41秒，此时对应的boot time为6016.653165227。
 
 ```shell
 $ hitrace --dump_bgsrv
@@ -561,7 +562,7 @@ $ hitrace --dump_bgsrv
 
 **现象描述**
 
-执行hitrace命令后报错，错误码为1
+执行hitrace命令后报错，错误码为1。
 
 ```shell
 $ hitrace --dump_bgsrv
@@ -574,11 +575,11 @@ $ hitrace --dump_bgsrv
 错误码1表示hiview进程状态异常，可以尝试重启手机后重新采集。
 
 
-### 执行hitrace命令后报错”not support category on this device“
+### 执行hitrace命令后报错“not support category on this device”
 
 **现象描述**
 
-执行hitrace命令后报错，命令行窗口显示”not support category on this device“
+执行hitrace命令后报错，命令行窗口显示“not support category on this device”。
 
 ```shell
 $ hitrace -t 10 aaa
@@ -588,14 +589,14 @@ $ hitrace -t 10 aaa
 
 **可能原因&amp;解决方法**
 
-命令中指定的tag不存在，建议使用"hitrace -l"命令查看支持的tag范围。
+命令中指定的tag不存在，建议使用“hitrace -l”命令查看支持的tag范围。
 
 
 ### 执行hitrace命令后显示错误码1004
 
 **现象描述**
 
-执行hitrace命令后报错，错误码为1004
+执行hitrace命令后报错，错误码为1004。
 
 ```shell
 $ hitrace --dump_bgsrv
@@ -605,8 +606,8 @@ $ hitrace --dump_bgsrv
 
 **可能原因&amp;解决方法**
 
-1004表示写入文件错误，出现这种情况可能有以下原因：
+1004表示写入文件错误，可能的原因包括：
 
-1. 采集文本格式trace时使用-o参数指定输出的文件路径不存在或无权限，建议保存文本trace到/data/local/tmp路径下。
+1. 采集文本格式trace时，使用-o参数指定输出的文件路径不存在或无权限。建议将trace保存到/data/local/tmp路径下。
 
-2. 磁盘空间已满时trace不会生成新的trace文件，建议释放磁盘空间至空闲空间大于500M后重新采集。
+2. 磁盘空间已满时，不会生成新的trace文件，建议释放磁盘空间，确保空闲空间大于500MB，然后重新采集。

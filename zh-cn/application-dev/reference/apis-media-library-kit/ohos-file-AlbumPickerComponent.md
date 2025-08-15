@@ -1,4 +1,10 @@
 # @ohos.file.AlbumPickerComponent (Album Picker组件)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda-->
+<!--Designer: @guxinggang-->
+<!--Tester: @wangbeibei-->
+<!--Adviser: @zengyawen-->
 
 应用可以在布局中嵌入AlbumPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的相册列表。
 
@@ -23,7 +29,8 @@ import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper,
 AlbumPickerComponent({
   albumPickerOptions?: AlbumPickerOptions,
   onAlbumClick?: (albumInfo: AlbumInfo) => boolean,
-  onEmptyAreaClick?: EmptyAreaClickCallback
+  onEmptyAreaClick?: EmptyAreaClickCallback,
+  albumPickerController?: AlbumPickerController
 })
 
 应用可以在布局中嵌入AlbumPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的相册列表。
@@ -39,6 +46,7 @@ AlbumPickerComponent({
 | albumPickerOptions | [AlbumPickerOptions](#albumpickeroptions)           | 否   | AlbumPicker的配置信息。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。              |
 | onAlbumClick       | (albumInfo: [AlbumInfo](#albuminfo)) => boolean     | 否   | 用户选择某个相册时产生的回调事件，将相册uri给到应用。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。    |
 | onEmptyAreaClick<sup>13+</sup>   | [EmptyAreaClickCallback](#emptyareaclickcallback13) | 否   | 点击相册组件空白区域时产生的回调事件，将该次点击通知给应用。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
+| albumPickerController<sup>20+</sup>   | [AlbumPickerController](#albumpickercontroller20) | 否   | 应用可通过AlbumPickerController向组件发送数据。<br> **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AlbumPickerOptions
 
@@ -50,6 +58,7 @@ Album Picker配置选项。
 |----------------|-------|-----|-------------------------------------------------------------|
 | themeColorMode | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | 否   | 相册页主题颜色，包括跟随系统、浅色模式以及深色模式，默认为跟随系统。 <br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                         |
 | filterType<sup>13+</sup>     | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | 否   | 相册组件过滤参数，可筛选只显示图片、视频或者图片和视频。若未配置此参数，则某个具体相册中显示图片和视频类型的所有资源。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
+| fontSize<sup>20+</sup> | number \| string | 否 | 字体大小，取值范围参考[fontsize](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。<br> **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## EmptyAreaClickCallback<sup>13+</sup>
 
@@ -73,6 +82,28 @@ type EmptyAreaClickCallback = () => void
 |------|------|-----|---------|
 | uri  | string | 否   | 相册的uri。 |
 | albumName  | string | 否   | 相册的名称。 |
+
+## AlbumPickerController<sup>20+</sup>
+
+应用可通过AlbumPickerController向组件发送数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### setFontSize<sup>20+</sup>
+
+setFontSize(fontSize: number | string): void
+
+应用可通过该接口设置相册列表的字体大小。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+|  参数名        | 类型                                    | 必填  | 说明  |
+| ------------------------- | ------------------ | ----- | --------------- |
+| fontSize | number \| string | 是 | 字体大小，取值范围参考[fontsize](../apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize)。 |
 
 ## 示例
 

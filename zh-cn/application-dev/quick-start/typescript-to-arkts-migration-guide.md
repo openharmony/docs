@@ -3,8 +3,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @husenlin-->
-<!--SE: @qyhuo32-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
 
 ArkTS规范约束了TypeScript（简称TS）中影响开发正确性或增加运行时开销的特性。本文罗列了ArkTS中限制的TS特性，并提供重构代码的建议。ArkTS保留了TS大部分语法特性，未在本文中约束的TS特性，ArkTS完全支持。例如，ArkTS支持自定义装饰器，语法与TS一致。按本文约束进行代码重构后，代码仍为合法有效的TS代码。
 
@@ -3299,7 +3300,7 @@ function f() {
   e5.prop;               // API18以前，编译时错误：不能访问ESObject类型变量的属性；API18以后，OK，支持点操作符访问
 
   let e6: ESObject = foo(); // OK，显式标注ESObject类型
-  let e7 = e6;              // OK，使用ESObject类型赋值
+  let e7: ESObject = e6;    // OK，使用ESObject类型赋值
   bar(e7);                  // OK，ESObject类型变量传给跨语言调用的函数
 }
 ```

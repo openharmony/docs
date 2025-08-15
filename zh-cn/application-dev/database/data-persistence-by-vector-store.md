@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @cuile44; @baijidong-->
-<!--SE: @houpengtao1-->
-<!--TSE: @logic42-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍

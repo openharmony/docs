@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 IsolatedComponent组件是构建隔离组件的工具，能够帮助开发者创建独立且可重用的组件。这些组件可在不同应用程序中使用，不会与其他组件产生冲突。
 

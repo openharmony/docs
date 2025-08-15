@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fenglinbailu-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 留言框的功能为：用户输入留言后点击完成，留言区域即显示留言内容。用户点击右侧的删除按钮可删除当前留言内容并重新输入。
 

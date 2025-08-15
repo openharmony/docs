@@ -157,7 +157,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
         // Obtain the camera list.
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size <= 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
             return;
         }
@@ -167,6 +167,11 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // Obtain the camera position.
             OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // Obtain the camera type.
             OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // Obtain the camera connection type.
+        }
+
+        if (size < cameraDeviceIndex + 1) {
+            OH_LOG_ERROR(LOG_APP, "cameraDeviceIndex is invalid.");
+            return;
         }
 
         // Obtain the output stream capability supported by the camera.

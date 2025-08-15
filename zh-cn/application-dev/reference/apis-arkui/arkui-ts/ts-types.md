@@ -2,14 +2,15 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@yylong;@liyi0309-->
-<!--SE: @piggyguy;@yylong;@liyi0309-->
-<!--TSE: @fredyuan0912-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
 
 >**说明：**
 >
@@ -700,7 +701,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 
 | 参数名            | 类型               | 必填       | 说明                                       |
 | ------------- | ------------------   | -------------   | ---------------------- |
-| isExpanding | boolean | 是| 示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。 |
+| isExpanding | boolean | 是| 示组件的可见面积与自身面积的比值与上一次回调相比的情况，比值变大为true，比值变小为false。 |
 | currentRatio | number | 是 | 触发回调时，组件可见面积与自身面积的比值。 |
 
 ## DividerStyleOptions<sup>12+</sup>

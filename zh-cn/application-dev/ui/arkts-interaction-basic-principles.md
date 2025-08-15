@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 对于指向性交互，交互框架基于坐标信息进行命中测试确定事件和手势的响应目标，即收集形成响应链，系统会根据触控事件的坐标、类型等信息，结合UI布局，将事件发送给对应UI组件。多个事件可以组合触发手势或其他功能，如长按、点击、拖拽。
 
@@ -113,7 +114,7 @@ node.collectEvent()
    Button("按钮")
      .responseRegion([
         { x: 0, y: 0, width: '30%', height: '100%' },      // 第一个热区为按钮的左侧1/3区域
-        { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的左侧1/3区域
+        { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的右侧1/3区域
       ])
    ```
 

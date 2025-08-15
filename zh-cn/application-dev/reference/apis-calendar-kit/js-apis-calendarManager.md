@@ -1,5 +1,12 @@
 # @ohos.calendarManager (日程管理能力)
 
+<!--Kit: Calendar Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @qq_42718467-->
+<!--Designer: @huangxinwei-->
+<!--Tester: @z30055209-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。
 
 - 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
@@ -1914,7 +1921,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称        | 类型                        | 只读 | 可选 | 说明                                  |
 | ----------- | --------------------------- | ---- |----|-------------------------------------|
 | type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                               |
-| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。长度限制为0~5000字符。 |
+| uri         | string                      | 否   | 否  | 服务的uri，格式为DeepLink类型。可以跳转到三方应用相应界面。长度限制为0~5000字符。 |
 | description | string                      | 否   | 是  | 服务辅助描述。长度限制为0~5000字符，不填时，默认为空字符串。                 |
 
 ## ServiceType

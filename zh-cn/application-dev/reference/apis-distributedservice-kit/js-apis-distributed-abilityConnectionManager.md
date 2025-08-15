@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @hobbycao-->
-<!--SE: @gsxiaowen-->
-<!--TSE: @hanjiawei-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 abilityConnectionManager模块提供了应用协同接口管理能力。设备组网成功（需登录同账号、双端打开蓝牙）后，系统应用和三方应用可以跨设备拉起同应用的一个[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，拉起并连接成功后可实现跨设备数据传输（文本信息）。
 
@@ -212,8 +213,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| PeerInfo | 接收端的协作应用信息。 |
-| undefined | 未知情况。 |
+| [PeerInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-distributed-abilityconnectionmanager#peerinfo) \| undefined | 若存在对应peeerInfo，则返回接收端的协作应用信息。若sessionId未找到，则查询失败，返回undefined。|
 
 **错误码：**
 

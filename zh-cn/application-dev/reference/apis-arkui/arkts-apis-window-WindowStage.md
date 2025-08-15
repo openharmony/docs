@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -829,6 +830,12 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | name    | string       | 是   | 命名路由页面的名称。                                             |
 | storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
@@ -1016,11 +1023,11 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 >
 > 2.当前接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)；
 >
-> 3.其他系统机制及其生命周期状态切换的详细说明，请参考开发指导。
+> 3.其他系统机制及其生命周期状态切换的详细说明，请参考[主窗口的生命周期](../../windowmanager/window-overview.md#主窗口的生命周期)。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -1035,6 +1042,7 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -1050,8 +1058,23 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     const callback = (data: window.WindowStageLifecycleEventType) => {
-        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+      console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
         JSON.stringify(data));
+      // 根据事件状态类型选择进行具体的处理
+      if (data === window.WindowStageLifecycleEventType.SHOWN) {
+        console.info('current window stage event is SHOWN');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.RESUMED) {
+        console.info('current window stage event is RESUMED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.PAUSED) {
+        console.info('current window stage event is PAUSED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.HIDDEN) {
+        console.info('current window stage event is HIDDEN');
+        // ...
+      }
+      // ...
     }
     try {
       windowStage.on('windowStageLifecycleEvent', callback);
@@ -1070,7 +1093,7 @@ off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLi
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -1085,6 +1108,7 @@ off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLi
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 

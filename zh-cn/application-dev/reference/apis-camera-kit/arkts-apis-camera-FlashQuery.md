@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -22,7 +23,7 @@ import { camera } from '@kit.CameraKit';
 
 hasFlash(): boolean
 
-检测是否有闪光灯，通过注册回调函数获取结果。
+检测是否有闪光灯，返回是否支持闪光灯。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

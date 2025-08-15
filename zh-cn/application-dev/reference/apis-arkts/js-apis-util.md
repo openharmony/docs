@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)、对方法进行插桩和替换（[Aspect<sup>11+</sup>](#aspect11)）等功能。
 
@@ -319,7 +320,7 @@ console.info("RFC 4122 Version 4 UUID:" + uuid);
 
 generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的UUID。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -357,7 +358,7 @@ console.info(JSON.stringify(uuid));
 
 parseUUID(uuid: string): Uint8Array
 
-将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，符合RFC 4122版本规范。
+将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的UUID，符合RFC 4122版本规范。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -488,7 +489,9 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 getHash(object: object): number
 
-获取对象的Hash值。首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
+获取对象的Hash值。
+
+首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -533,7 +536,9 @@ console.info('result2 is ' + result2);
 
 getMainThreadStackTrace(): string
 
-获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+获取主线程的栈追踪信息，最多返回64层调用帧。
+
+该接口可能对主线程性能产生影响，建议仅在必要时使用，如日志记录、错误分析或调试场景。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -568,7 +573,7 @@ console.info(stack);
 
 ## DecodeToStringOptions<sup>12+</sup>
 
-解码是否使用流处理方式。
+用于配置decodeToString方法在解码字节流时的行为参数。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2546,7 +2551,7 @@ console.info('result = ' + result);
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
-迭代此对象中的所有键值对。
+返回一个迭代器对象，用于按插入顺序遍历当前对象中的所有键值对（[key, value]）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2837,7 +2842,9 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir);
+let result = range.intersect(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
 ```
 
 ### intersect<sup>9+</sup>

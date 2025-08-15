@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @lushi871202-->
-<!--SE: @lushi871202-->
-<!--TSE: @sally__-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 

@@ -1,9 +1,10 @@
 # ArkUI（方舟UI框架）
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@jiyujia926;@yangfan229-->
-<!--SE: @piggyguy;@s10021109;@yangfan229-->
-<!--TSE: @fredyuan912-->
+<!--Owner: @piggyguy; @jiyujia926; @yangfan229-->
+<!--Designer: @piggyguy; @s10021109; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 - [ArkUI简介](arkui-overview.md)
 - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
   - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
@@ -259,6 +260,7 @@
   - [构建弹窗](ndk-build-pop-up-window.md)
   - [构建自定义组件](ndk-build-custom-components.md)
   - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+  - [构建渲染节点](ndk-embed-render-components.md)
   - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
   - [自定义绘制](arkts-user-defined-draw.md)
   - [查询和操作自定义节点](ndk-node-query-operate.md)

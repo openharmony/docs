@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @dwhuawei-->
-<!--SE: @yingguofeng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yingguofeng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是指识别并释放内存中的不再使用的对象，以回收内存空间。目前广泛使用的编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
 
@@ -241,7 +242,7 @@ heap中生成两个Semi Space，供copying使用。
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
-- 限制参数：`globalSpaceNativeLimit`。
+- 限制参数：`globalSpaceNativeLimit`
 - 说明：影响是否进行全量mark以及是否开启并发mark。
 
 #### 切换后台触发GC

@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
-<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
@@ -684,7 +685,7 @@ accessBackward(): boolean
 
 > **说明：**
 >
-> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackForward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 >
 > 该现象是由于在Web组件首次加载时，调用[setCustomUserAgent](#setcustomuseragent10)会导致组件重新加载并保持初始历史节点的状态。随后新增的节点将替换初始历史节点，不会生成新的历史节点，导致accessBackward为false。
 

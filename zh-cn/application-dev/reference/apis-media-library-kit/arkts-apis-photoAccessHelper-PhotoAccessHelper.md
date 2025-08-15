@@ -2,9 +2,10 @@
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xuchangda;@yixiaoff-->
-<!--SE: @guxinggang;@liweilu1-->
-<!--TSE: @wangbeibei;@xchaosioda-->
+<!--Owner: @xuchangda; @yixiaoff-->
+<!--Designer: @guxinggang; @liweilu1-->
+<!--Tester: @wangbeibei; @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -1511,13 +1512,13 @@ getRecentPhotoInfo(options?: RecentPhotoOptions): Promise\<RecentPhotoInfo>
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照时间找到最近图片。<br>该参数在配置的情况下，需与RecentPhotoComponent组件中的options配置相同才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#recentphotooptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照时间找到最近图片。<br>该参数在配置的情况下，需与RecentPhotoComponent组件中的options配置相同才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#RecentPhotoInfo20)>| Promise对象，返回最近图片信息。 |
+| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#recentphotoinfo20)>| Promise对象，返回最近图片信息。 |
 
 **示例：**
 

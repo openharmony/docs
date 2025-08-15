@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -31,7 +32,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当启动录制成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -62,7 +63,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
 
 start(): Promise\<void\>
 
-启动录制，通过Promise获取结果。
+启动录制。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -72,7 +73,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -111,7 +112,7 @@ stop(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当结束录制成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -133,7 +134,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
 
 stop(): Promise\<void\>
 
-结束录制，通过Promise获取结果。
+结束录制。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +144,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -571,7 +572,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度（单位：度）。 |
+| deviceDegree | number | 是   | 设备旋转角度，单位度，取值范围0-360。 |
 
 **返回值：**
 
@@ -597,38 +598,38 @@ import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
-    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-    try {
-        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
-    } catch (error) {
-        let err = error as BusinessError;
-    }
-    return videoRotation;
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+  try {
+    videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+  } catch (error) {
+    let err = error as BusinessError;
+  }
+  return videoRotation;
 }
 
 //获取deviceDegree。
 function getDeviceDegree(): number {
-    let deviceDegree: number = -1;
-    try {
-        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
-            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
-            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
-            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
-            let x = data.x;
-            let y = data.y;
-            let z = data.z;
-            if ((x * x + y * y) * 3 < z * z) {
-                deviceDegree = -1;
-            } else {
-                let sd: Decimal = Decimal.atan2(y, -x);
-                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
-                deviceDegree = 90 - Number(sc);
-                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
-            }
-        });
-    } catch (error) {
-        let err: BusinessError = error as BusinessError;
-    }
-    return deviceDegree;
+  let deviceDegree: number = -1;
+  try {
+    sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+      console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+      console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+      console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+      let x = data.x;
+      let y = data.y;
+      let z = data.z;
+      if ((x * x + y * y) * 3 < z * z) {
+        deviceDegree = -1;
+      } else {
+        let sd: Decimal = Decimal.atan2(y, -x);
+        let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+        deviceDegree = 90 - Number(sc);
+        deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+      }
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+  }
+  return deviceDegree;
 }
 ```
