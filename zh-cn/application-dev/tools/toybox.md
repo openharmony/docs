@@ -1,6 +1,6 @@
 # toybox
 <!--Kit: Test Kit-->
-<!--Subsystem: Init-->
+<!--Subsystem: Test-->
 <!--Owner: @yan-mingzhen-->
 <!--Designer: @liveery-->
 <!--Tester: @liuhaonan2-->
