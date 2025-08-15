@@ -248,7 +248,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
-| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待删除的媒体文件数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待删除的媒体文件数组，数组中元素个数不超过300个。<!--Del-->系统应用对此无限制。<!--DelEnd--> |
 
 **返回值：**
 
@@ -306,7 +306,7 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，数组中元素个数不超过300个。<!--Del-->系统应用对此无限制。<!--DelEnd--> |
 
 **返回值：**
 
