@@ -2,9 +2,10 @@
 
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 
 ## 如何对找不到字形的字符进行显示优化
 
