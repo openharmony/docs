@@ -6488,19 +6488,10 @@ pauseAllTimers(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
 **示例：**
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6512,11 +6503,7 @@ struct WebComponent {
       Row() {
         Button('PauseAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.pauseAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.pauseAllTimers();
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -6561,19 +6548,10 @@ resumeAllTimers(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
 **示例：**
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6585,19 +6563,11 @@ struct WebComponent {
       Row() {
         Button('ResumeAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.resumeAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.resumeAllTimers();
           })
         Button('PauseAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.pauseAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.pauseAllTimers();
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
