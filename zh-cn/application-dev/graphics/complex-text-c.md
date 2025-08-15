@@ -205,6 +205,7 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 - **渐变色绘制：** 可以为文字提供颜色渐变效果，增强文字表现力。
 
+- **高对比度文字绘制：** 主要通过将深色文字变黑、浅色文字变白，增强文本的对比效果。
 
 ### 装饰线
 
@@ -731,6 +732,59 @@ OH_Drawing_DestroyTypography(typography);
 ```
 
 ![zh-cn_image_gradient_c](figures/zh-cn_image_gradient_c.png)
+
+### 高对比度
+
+高对比度可将深色文字变黑、浅色文字变白。开发者可选择开启或关闭应用的高对比度文字渲染，或遵循系统设置中的高对比度文字配置。
+
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action) | 设置文字渲染高对比度模式。模式具体可参考[OH_Drawing_TextHighContrast](../reference/apis-arkgraphics2d/capi-drawing-text-global-h.md#oh_drawing_texthighcontrast)。 | 
+
+
+示例及示意效果如下所示：
+
+
+```c++
+// 开启APP的文字渲染高对比模式，该模式的优先级要高于系统设置中的高对比度文字配置
+OH_Drawing_SetTextHighContrast(TEXT_APP_ENABLE_HIGH_CONTRAST);
+// 创建一个 TypographyStyle，创建 Typography 时需要使用
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+
+// 设置文字颜色、大小，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x6F, 0xFF, 0xFF));
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+
+// 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+// 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+
+// 将之前创建的 TextStyle 加入 handler 中
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// 设置文本内容，并将文本添加到 handler 中
+const char *text = "Hello World Drawing\n";
+OH_Drawing_TypographyHandlerAddText(handler, text);  
+
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1250);
+// 将文本绘制到画布上
+OH_Drawing_TypographyPaint(typography, canvas, 10, 800);
+
+// 释放内存
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+| 高对比度设置 | 示意效果 | 
+| -------- | -------- |
+| 不开启高对比度 | ![zh-cn_image_highContrast_1](figures/zh-cn_image_highContrast_1.png) | 
+| 开启高对比度 | ![zh-cn_image_highContrast_2](figures/zh-cn_image_highContrast_2.png) | 
 
 ## 样式的拷贝、绘制与显示
 支持拷贝文本样式、段落样式、阴影样式，以便快速复制相关样式作用到不同文字上。
