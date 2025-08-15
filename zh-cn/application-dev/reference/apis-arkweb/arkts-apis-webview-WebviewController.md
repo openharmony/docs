@@ -3707,7 +3707,7 @@ removeCache(clearRom: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                                                     |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
+| clearRom | boolean | 是   | 设置为true时同时清除ROM和RAM中的缓存，设置为false时只清除ram中的缓存。 |
 
 **错误码：**
 
@@ -9121,7 +9121,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
