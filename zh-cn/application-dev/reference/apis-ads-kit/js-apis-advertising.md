@@ -46,17 +46,12 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function showAd(ad: advertising.Advertisement, context?: common.UIAbilityContext): void {
   // 广告展示参数，开发者可根据项目实际情况设置
   const adDisplayOptions: advertising.AdDisplayOptions = {};
-  try {
-    // 调用全屏广告展示接口
-    advertising.showAd(ad, adDisplayOptions, context);
-  } catch (err) {
-    hilog.error(0x0000, 'testTag', `Failed to show ad. Code is ${err.code}, message is ${err.message}`);
-  }
+  // 调用全屏广告展示接口
+  advertising.showAd(ad, adDisplayOptions, context);
 }
 ```
 
@@ -95,19 +90,14 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 
 ```ts
 import { advertising } from '@kit.AdsKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function getAdRequestBody(adRequestParamsArray: advertising.AdRequestParams[]): void {
   // 广告配置参数，开发者可根据项目实际情况设置
   const adOptions: advertising.AdOptions = {};
-  advertising.getAdRequestBody(adRequestParamsArray, adOptions)
-    .then((data: string) => {
-      hilog.info(0x0000, 'testTag', `Succeeded in getting ad request body. Data is ${data}`);
-    })
-    .catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `Failed to get ad request body. Code is ${err.code}, message is ${err.message}`);
-    })
+  advertising.getAdRequestBody(adRequestParamsArray, adOptions).then((data: string) => {
+    hilog.info(0x0000, 'testTag', `Succeeded in getting ad request body. Data is ${data}`);
+  });
 }
 ```
 
@@ -160,12 +150,8 @@ function parseAdResponse(adResponse: string, context: common.UIAbilityContext): 
       ads.forEach((adsArray) => returnAds.push(...adsArray));
     }
   };
-  try {
-    // 调用响应体解析接口
-    advertising.parseAdResponse(adResponse, multiSlotsAdLoaderListener, context);
-  } catch (error) {
-    hilog.error(0x0000, 'testTag', `Failed to parse ad response. Code is ${error.code}, message is ${error.message}`);
-  }
+  // 调用响应体解析接口
+  advertising.parseAdResponse(adResponse, multiSlotsAdLoaderListener, context);
 }
 ```
 
@@ -201,32 +187,24 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
   private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('registerWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.registerWebAdInterface(this.webController, this.context);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Failed to register web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.registerWebAdInterface(this.webViewController, this.context);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController
-      })
-        .width("100%")
-        .height("100%")
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -264,32 +242,24 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
   private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('registerWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.registerWebAdInterface(this.webController, this.context, true);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Failed to register web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.registerWebAdInterface(this.webViewController, this.context, true);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController
-      })
-        .width("100%")
-        .height("100%")
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -325,31 +295,23 @@ deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boo
 ```ts
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.deleteWebAdInterface(this.webController, true);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Failed to delete web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.deleteWebAdInterface(this.webViewController, true);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController,
-      })
-        .width('100%')
-        .height('100%')
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -386,7 +348,7 @@ constructor(context: common.Context)
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 
-function createConstructor(context: common.Context): void {
+function createAdLoader(context: common.Context): void {
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
 }
 ```
@@ -445,12 +407,8 @@ function loadAd(context: common.Context, adRequestParams: advertising.AdRequestP
   };
   // 创建AdLoader广告对象
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
-  try {
-    // 调用广告请求接口
-    adLoader.loadAd(adRequestParams, adOptions, adLoaderListener);
-  } catch (error) {
-    hilog.error(0x0000, 'testTag', `Failed to load ad. Code is ${error.code}, message is ${error.message}`);
-  }
+  // 调用广告请求接口
+  adLoader.loadAd(adRequestParams, adOptions, adLoaderListener);
 }
 ```
 
@@ -509,12 +467,8 @@ function loadAdWithMultiSlots(context: common.Context, adRequestParamsArray: adv
   };
   // 创建AdLoader广告对象
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
-  try {
-    // 调用广告请求接口
-    adLoader.loadAdWithMultiSlots(adRequestParamsArray, adOptions, multiSlotsAdLoaderListener);
-  } catch (error) {
-    hilog.error(0x0000, 'testTag', `Failed to load multiSlots ad. Code is ${error.code}, message is ${error.message}`);
-  }
+  // 调用广告请求接口
+  adLoader.loadAdWithMultiSlots(adRequestParamsArray, adOptions, multiSlotsAdLoaderListener);
 }
 ```
 
