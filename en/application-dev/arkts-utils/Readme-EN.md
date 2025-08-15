@@ -30,7 +30,7 @@
             - [ArrayBuffer Object](arraybuffer-object.md)
             - [SharedArrayBuffer Object](shared-arraybuffer-object.md)
             - [Transferable Object (NativeBinding Object)](transferabled-object.md)
-            - Sendable Object<!--Designerndable-object-->
+            - Sendable Object<!--sendable-object-->
                 - [Overview of Sendable Objects](arkts-sendable.md)
                 - [Usage Rules and Constraints for Sendable](sendable-constraints.md)
                 - [Asynchronous Lock](arkts-async-lock-introduction.md)

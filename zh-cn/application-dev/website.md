@@ -153,7 +153,7 @@
             - [窗口属性](application-models/window-properties.md)
             - [申请授权](application-models/request-permissions.md)
             - [跳转规则](application-models/redirection-rules.md)
-          - ServiceAbility组件开发指导<!--Designerrviceability-->
+          - ServiceAbility组件开发指导<!--serviceability-->
             - [ServiceAbility组件概述](application-models/serviceability-overview.md)
             - [ServiceAbility组件配置](application-models/serviceability-configuration.md)
             - [ServiceAbility的生命周期](application-models/serviceability-lifecycle.md)
@@ -291,7 +291,7 @@
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
             - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
             - [Transferable对象（NativeBinding对象）](arkts-utils/transferabled-object.md)
-            - Sendable对象<!--Designerndable-object-->
+            - Sendable对象<!--sendable-object-->
               - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
@@ -1397,9 +1397,9 @@
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
         - [设备状态感知开发指导](device/stationary/deviceStatus-guidelines.md)
         - [用户状态感知开发指导](device/stationary/userStatus-guidelines.md)
-      - Sensor Service Kit（传感器服务）<!--Designernsor-service-kit-->
+      - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
-        - 传感器<!--Designernsor-->
+        - 传感器<!--sensor-->
           - [传感器开发概述](device/sensor/sensor-overview.md)
           - [传感器开发指导(ArkTS)](device/sensor/sensor-guidelines.md)
           - [传感器开发指导(C/C++)](device/sensor/sensor-guidelines-capi.md)
@@ -4498,8 +4498,8 @@
           - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
           - [设备状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md)
           - [用户状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-userStatus.md)
-      - Sensor Service Kit（传感器服务）<!--Designernsor-service-api-->
-        - ArkTS API<!--Designernsor-service-arkts-->
+      - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
+        - ArkTS API<!--sensor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
           - [@ohos.vibrator(振动)](reference/apis-sensor-service-kit/js-apis-vibrator.md)
           <!--Del-->
@@ -4507,19 +4507,19 @@
           <!--DelEnd-->
           - [@ohos.sensor(传感器)(已废弃接口)](reference/apis-sensor-service-kit/js-apis-system-sensor.md)
           - [@ohos.vibrator(振动)(已废弃接口)](reference/apis-sensor-service-kit/js-apis-system-vibrate.md)
-        - C API<!--Designernsor-service-c-->
-          - 模块<!--Designernsor-service-module-->
+        - C API<!--sensor-service-c-->
+          - 模块<!--sensor-service-module-->
             - [Sensor](reference/apis-sensor-service-kit/_sensor.md)
             - [Vibrator](reference/apis-sensor-service-kit/_vibrator.md)
-          - 头文件<!--Designernsor-service-headerfile-->
+          - 头文件<!--sensor-service-headerfile-->
             - [oh_sensor.h](reference/apis-sensor-service-kit/oh_sensor_8h.md)
             - [oh_sensor_type.h](reference/apis-sensor-service-kit/oh_sensor_type_8h.md)
             - [vibrator.h](reference/apis-sensor-service-kit/vibrator_8h.md)
             - [vibrator_type.h](reference/apis-sensor-service-kit/vibrator_type_8h.md)
-          - 结构体<!--Designernsor-service-struct-->
+          - 结构体<!--sensor-service-struct-->
             - [Vibrator_Attribute](reference/apis-sensor-service-kit/_vibrator_attribute.md)
             - [Vibrator_File_Description](reference/apis-sensor-service-kit/_vibrator_file_description.md)
-        - 错误码<!--Designernsor-service-arkts-errcode-->
+        - 错误码<!--sensor-service-arkts-errcode-->
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
     - 调测调优<!--system-debug-optimize-api-->

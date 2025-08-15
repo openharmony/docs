@@ -107,7 +107,7 @@
       - [窗口属性](window-properties.md)
       - [申请授权](request-permissions.md)
       - [跳转规则](redirection-rules.md)
-    - ServiceAbility组件开发指导<!--Designerrviceability-->
+    - ServiceAbility组件开发指导<!--serviceability-->
       - [ServiceAbility组件概述](serviceability-overview.md)
       - [ServiceAbility组件配置](serviceability-configuration.md)
       - [ServiceAbility的生命周期](serviceability-lifecycle.md)

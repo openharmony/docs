@@ -30,7 +30,7 @@
             - [ArrayBuffer对象](arraybuffer-object.md)
             - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
             - [Transferable对象（NativeBinding对象）](transferabled-object.md)
-            - Sendable对象<!--Designerndable-object-->
+            - Sendable对象<!--sendable-object-->
                 - [Sendable对象简介](arkts-sendable.md)
                 - [Sendable使用规则与约束](sendable-constraints.md)
                 - [异步锁](arkts-async-lock-introduction.md)

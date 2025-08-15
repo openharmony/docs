@@ -91,7 +91,7 @@
       - [Window Properties](window-properties.md)
       - [Requesting Permissions](request-permissions.md)
       - [Redirection Rules](redirection-rules.md)
-    - ServiceAbility Component Development<!--Designerrviceability-->
+    - ServiceAbility Component Development<!--serviceability-->
       - [ServiceAbility Overview](serviceability-overview.md)
       - [ServiceAbility Configuration](serviceability-configuration.md)
       - [ServiceAbility Lifecycle](serviceability-lifecycle.md)
